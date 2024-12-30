@@ -120,7 +120,7 @@ Es por eso que cuando se habla de la versión 2.0 es común decir "Swagger", y p
 
 /// check | Inspiró a **FastAPI** a
 
-Adoptar y usar un estándar abierto para especificaciones de API, en lugar de usar un schema personalizado.
+Adoptar y usar un estándar abierto para especificaciones de API, en lugar de usar un esquema personalizado.
 
 Y a integrar herramientas de interfaz de usuario basadas en estándares:
 
@@ -145,11 +145,11 @@ Sin un sistema de validación de datos, tendrías que hacer todas las comprobaci
 
 Estas funcionalidades son para lo que fue creado Marshmallow. Es un gran paquete, y lo he usado mucho antes.
 
-Pero fue creado antes de que existieran las anotaciones de tipos en Python. Así que, para definir cada <abbr title="la definición de cómo deberían formarse los datos">schema</abbr> necesitas usar utilidades y clases específicas proporcionadas por Marshmallow.
+Pero fue creado antes de que existieran las anotaciones de tipos en Python. Así que, para definir cada <abbr title="la definición de cómo deberían formarse los datos">esquema</abbr> necesitas usar utilidades y clases específicas proporcionadas por Marshmallow.
 
 /// check | Inspiró a **FastAPI** a
 
-Usar código para definir "schemas" que proporcionen tipos de datos y validación automáticamente.
+Usar código para definir "esquemas" que proporcionen tipos de datos y validación automáticamente.
 
 ///
 
@@ -183,15 +183,15 @@ Pero la documentación todavía falta. Entonces APISpec fue creado.
 
 Es un plug-in para muchos frameworks (y hay un plug-in para Starlette también).
 
-La manera en que funciona es que escribes la definición del schema usando el formato YAML dentro del docstring de cada función que maneja una ruta.
+La manera en que funciona es que escribes la definición del esquema usando el formato YAML dentro del docstring de cada función que maneja una ruta.
 
-Y genera schemas OpenAPI.
+Y genera esquemas OpenAPI.
 
 Así es como funciona en Flask, Starlette, Responder, etc.
 
 Pero luego, tenemos otra vez el problema de tener una micro-sintaxis, dentro de un string de Python (un gran YAML).
 
-El editor no puede ayudar mucho con eso. Y si modificamos parámetros o schemas de Marshmallow y olvidamos también modificar ese docstring YAML, el schema generado estaría obsoleto.
+El editor no puede ayudar mucho con eso. Y si modificamos parámetros o esquemas de Marshmallow y olvidamos también modificar ese docstring YAML, el esquema generado estaría obsoleto.
 
 /// info | Información
 
@@ -209,7 +209,7 @@ Soportar el estándar abierto para APIs, OpenAPI.
 
 Es un plug-in de Flask, que conecta juntos Webargs, Marshmallow y APISpec.
 
-Usa la información de Webargs y Marshmallow para generar automáticamente schemas OpenAPI, usando APISpec.
+Usa la información de Webargs y Marshmallow para generar automáticamente esquemas OpenAPI, usando APISpec.
 
 Es una gran herramienta, muy subestimada. Debería ser mucho más popular que muchos plug-ins de Flask por ahí. Puede que se deba a que su documentación es demasiado concisa y abstracta.
 
@@ -233,7 +233,7 @@ Flask-apispec fue creado por los mismos desarrolladores de Marshmallow.
 
 /// check | Inspiró a **FastAPI** a
 
-Generar el schema OpenAPI automáticamente, desde el mismo código que define la serialización y validación.
+Generar el esquema OpenAPI automáticamente, desde el mismo código que define la serialización y validación.
 
 ///
 
@@ -247,7 +247,7 @@ Tiene un sistema de inyección de dependencias integrado, inspirado por Angular 
 
 Como los parámetros se describen con tipos de TypeScript (similar a las anotaciones de tipos en Python), el soporte editorial es bastante bueno.
 
-Pero como los datos de TypeScript no se preservan después de la compilación a JavaScript, no puede depender de los tipos para definir validación, serialización y documentación al mismo tiempo. Debido a esto y algunas decisiones de diseño, para obtener validación, serialización y generación automática del schema, es necesario agregar decoradores en muchos lugares. Por lo tanto, se vuelve bastante verboso.
+Pero como los datos de TypeScript no se preservan después de la compilación a JavaScript, no puede depender de los tipos para definir validación, serialización y documentación al mismo tiempo. Debido a esto y algunas decisiones de diseño, para obtener validación, serialización y generación automática del esquema, es necesario agregar decoradores en muchos lugares. Por lo tanto, se vuelve bastante verboso.
 
 No puede manejar muy bien modelos anidados. Entonces, si el cuerpo JSON en la request es un objeto JSON que tiene campos internos que a su vez son objetos JSON anidados, no puede ser documentado y validado apropiadamente.
 
@@ -327,7 +327,7 @@ Hug fue uno de los primeros frameworks en implementar la declaración de tipos d
 
 Usaba tipos personalizados en sus declaraciones en lugar de tipos estándar de Python, pero aún así fue un gran avance.
 
-También fue uno de los primeros frameworks en generar un schema personalizado declarando toda la API en JSON.
+También fue uno de los primeros frameworks en generar un esquema personalizado declarando toda la API en JSON.
 
 No se basaba en un estándar como OpenAPI y JSON Schema. Por lo que no sería sencillo integrarlo con otras herramientas, como Swagger UI. Pero, nuevamente, fue una idea muy innovadora.
 
@@ -345,7 +345,7 @@ Hug fue creado por Timothy Crosley, el mismo creador de <a href="https://github.
 
 Hug inspiró partes de APIStar, y fue una de las herramientas que encontré más prometedoras, junto a APIStar.
 
-Hug ayudó a inspirar a **FastAPI** a usar anotaciones de tipos de Python para declarar parámetros, y a generar un schema definiendo la API automáticamente.
+Hug ayudó a inspirar a **FastAPI** a usar anotaciones de tipos de Python para declarar parámetros, y a generar un esquema definiendo la API automáticamente.
 
 Hug inspiró a **FastAPI** a declarar un parámetro `response` en funciones para configurar headers y cookies.
 
@@ -357,9 +357,9 @@ Justo antes de decidir construir **FastAPI** encontré **APIStar** server. Tení
 
 Era una de las primeras implementaciones de un framework utilizando las anotaciones de tipos de Python para declarar parámetros y requests que jamás vi (antes de NestJS y Molten). Lo encontré más o menos al mismo tiempo que Hug. Pero APIStar usaba el estándar OpenAPI.
 
-Tenía validación de datos automática, serialización de datos y generación del schema OpenAPI basada en las mismas anotaciones de tipos en varios lugares.
+Tenía validación de datos automática, serialización de datos y generación del esquema OpenAPI basada en las mismas anotaciones de tipos en varios lugares.
 
-Las definiciones de schema de cuerpo no usaban las mismas anotaciones de tipos de Python como Pydantic, era un poco más similar a Marshmallow, por lo que el soporte del editor no sería tan bueno, pero aún así, APIStar era la mejor opción disponible.
+Las definiciones de esquema de cuerpo no usaban las mismas anotaciones de tipos de Python como Pydantic, era un poco más similar a Marshmallow, por lo que el soporte del editor no sería tan bueno, pero aún así, APIStar era la mejor opción disponible.
 
 Tenía los mejores benchmarks de rendimiento en ese momento (solo superado por Starlette).
 
@@ -430,7 +430,7 @@ Tiene:
 * Tareas en segundo plano dentro del proceso.
 * Eventos de inicio y apagado.
 * Cliente de pruebas basado en HTTPX.
-* CORS, GZip, Archivos estáticos, Respuestas en streaming.
+* CORS, GZip, Archivos estáticos, Responses en streaming.
 * Soporte para sesiones y cookies.
 * Cobertura de tests del 100%.
 * Base de código 100% tipada.
@@ -442,7 +442,7 @@ Starlette proporciona toda la funcionalidad básica de un microframework web.
 
 Pero no proporciona validación de datos automática, serialización o documentación.
 
-Esa es una de las principales cosas que **FastAPI** agrega, todo basado en las anotaciones de tipos de Python (usando Pydantic). Eso, además del sistema de inyección de dependencias, utilidades de seguridad, generación de schemas OpenAPI, etc.
+Esa es una de las principales cosas que **FastAPI** agrega, todo basado en las anotaciones de tipos de Python (usando Pydantic). Eso, además del sistema de inyección de dependencias, utilidades de seguridad, generación de esquemas OpenAPI, etc.
 
 /// note | Detalles Técnicos
 

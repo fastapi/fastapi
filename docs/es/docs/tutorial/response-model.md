@@ -1,6 +1,6 @@
-# Modelo de Respuesta - Tipo de Retorno
+# Modelo de Response - Tipo de Retorno
 
-Puedes declarar el tipo utilizado para la respuesta anotando el **tipo de retorno** de la *path operation function*.
+Puedes declarar el tipo utilizado para el response anotando el **tipo de retorno** de la *path operation function*.
 
 Puedes utilizar **anotaciones de tipos** de la misma manera que lo harías para datos de entrada en **parámetros** de función, puedes utilizar modelos de Pydantic, listas, diccionarios, valores escalares como enteros, booleanos, etc.
 
@@ -10,7 +10,7 @@ FastAPI usará este tipo de retorno para:
 
 * **Validar** los datos devueltos.
     * Si los datos son inválidos (por ejemplo, falta un campo), significa que el código de *tu* aplicación está defectuoso, no devolviendo lo que debería, y retornará un error del servidor en lugar de devolver datos incorrectos. De esta manera, tú y tus clientes pueden estar seguros de que recibirán los datos y la forma de los datos esperada.
-* Agregar un **JSON Schema** para la respuesta, en la *path operation* de OpenAPI.
+* Agregar un **JSON Schema** para el response, en la *path operation* de OpenAPI.
     * Esto será utilizado por la **documentación automática**.
     * También será utilizado por herramientas de generación automática de código de cliente.
 
@@ -61,9 +61,9 @@ De esa manera le dices al editor que intencionalmente estás devolviendo cualqui
 
 Si declaras tanto un tipo de retorno como un `response_model`, el `response_model` tomará prioridad y será utilizado por FastAPI.
 
-De esta manera puedes añadir anotaciones de tipos correctas a tus funciones incluso cuando estás devolviendo un tipo diferente al modelo de respuesta, para ser utilizado por el editor y herramientas como mypy. Y aún así puedes hacer que FastAPI realice la validación de datos, documentación, etc. usando el `response_model`.
+De esta manera puedes añadir anotaciones de tipos correctas a tus funciones incluso cuando estás devolviendo un tipo diferente al modelo de response, para ser utilizado por el editor y herramientas como mypy. Y aún así puedes hacer que FastAPI realice la validación de datos, documentación, etc. usando el `response_model`.
 
-También puedes usar `response_model=None` para desactivar la creación de un modelo de respuesta para esa *path operation*, podrías necesitar hacerlo si estás añadiendo anotaciones de tipos para cosas que no son campos válidos de Pydantic, verás un ejemplo de eso en una de las secciones a continuación.
+También puedes usar `response_model=None` para desactivar la creación de un modelo de response para esa *path operation*, podrías necesitar hacerlo si estás añadiendo anotaciones de tipos para cosas que no son campos válidos de Pydantic, verás un ejemplo de eso en una de las secciones a continuación.
 
 ## Devolver los mismos datos de entrada
 
@@ -93,7 +93,7 @@ Y estamos usando este modelo para declarar nuestra entrada y el mismo modelo par
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
 
-Ahora, cada vez que un navegador esté creando un usuario con una contraseña, la API devolverá la misma contraseña en la respuesta.
+Ahora, cada vez que un navegador esté creando un usuario con una contraseña, la API devolverá la misma contraseña en el response.
 
 En este caso, podría no ser un problema, porque es el mismo usuario que envía la contraseña.
 
@@ -101,7 +101,7 @@ Pero si usamos el mismo modelo para otra *path operation*, podríamos estar envi
 
 /// danger | Peligro
 
-Nunca almacenes la contraseña en texto plano de un usuario ni la envíes en una respuesta como esta, a menos que conozcas todas las advertencias y sepas lo que estás haciendo.
+Nunca almacenes la contraseña en texto plano de un usuario ni la envíes en un response como esta, a menos que conozcas todas las advertencias y sepas lo que estás haciendo.
 
 ///
 
@@ -133,7 +133,7 @@ Por eso en este ejemplo tenemos que declararlo en el parámetro `response_model`
 
 Continuemos con el ejemplo anterior. Queríamos **anotar la función con un tipo**, pero queríamos poder devolver desde la función algo que en realidad incluya **más datos**.
 
-Queremos que FastAPI continúe **filtrando** los datos usando el modelo de respuesta. Para que, incluso cuando la función devuelva más datos, la respuesta solo incluya los campos declarados en el modelo de respuesta.
+Queremos que FastAPI continúe **filtrando** los datos usando el modelo de response. Para que, incluso cuando la función devuelva más datos, el response solo incluya los campos declarados en el modelo de response.
 
 En el ejemplo anterior, debido a que las clases eran diferentes, tuvimos que usar el parámetro `response_model`. Pero eso también significa que no obtenemos el soporte del editor y las herramientas verificando el tipo de retorno de la función.
 
@@ -179,9 +179,9 @@ Y ambos modelos se utilizarán para la documentación interactiva de la API:
 
 Podría haber casos en los que devuelvas algo que no es un campo válido de Pydantic y lo anotes en la función, solo para obtener el soporte proporcionado por las herramientas (el editor, mypy, etc).
 
-### Devolver una Respuesta Directamente
+### Devolver un Response Directamente
 
-El caso más común sería [devolver una Respuesta directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md){.internal-link target=_blank}.
+El caso más común sería [devolver un Response directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md){.internal-link target=_blank}.
 
 {* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
@@ -189,7 +189,7 @@ Este caso simple es manejado automáticamente por FastAPI porque la anotación d
 
 Y las herramientas también estarán felices porque tanto `RedirectResponse` como `JSONResponse` son subclases de `Response`, por lo que la anotación del tipo es correcta.
 
-### Anotar una Subclase de Respuesta
+### Anotar una Subclase de Response
 
 También puedes usar una subclase de `Response` en la anotación del tipo:
 
@@ -199,7 +199,7 @@ Esto también funcionará porque `RedirectResponse` es una subclase de `Response
 
 ### Anotaciones de Tipos de Retorno Inválidas
 
-Pero cuando devuelves algún otro objeto arbitrario que no es un tipo válido de Pydantic (por ejemplo, un objeto de base de datos) y lo anotas así en la función, FastAPI intentará crear un modelo de respuesta de Pydantic a partir de esa anotación de tipo, y fallará.
+Pero cuando devuelves algún otro objeto arbitrario que no es un tipo válido de Pydantic (por ejemplo, un objeto de base de datos) y lo anotas así en la función, FastAPI intentará crear un modelo de response de Pydantic a partir de esa anotación de tipo, y fallará.
 
 Lo mismo sucedería si tuvieras algo como un <abbr title='Una unión entre múltiples tipos significa "cualquiera de estos tipos".'>union</abbr> entre diferentes tipos donde uno o más de ellos no son tipos válidos de Pydantic, por ejemplo esto fallaría 💥:
 
@@ -207,21 +207,21 @@ Lo mismo sucedería si tuvieras algo como un <abbr title='Una unión entre múlt
 
 ...esto falla porque la anotación de tipo no es un tipo de Pydantic y no es solo una sola clase `Response` o subclase, es una unión (cualquiera de los dos) entre una `Response` y un `dict`.
 
-### Desactivar el Modelo de Respuesta
+### Desactivar el Modelo de Response
 
 Continuando con el ejemplo anterior, puede que no quieras tener la validación de datos por defecto, documentación, filtrado, etc. que realiza FastAPI.
 
 Pero puedes querer mantener la anotación del tipo de retorno en la función para obtener el soporte de herramientas como editores y verificadores de tipos (por ejemplo, mypy).
 
-En este caso, puedes desactivar la generación del modelo de respuesta configurando `response_model=None`:
+En este caso, puedes desactivar la generación del modelo de response configurando `response_model=None`:
 
 {* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
 
-Esto hará que FastAPI omita la generación del modelo de respuesta y de esa manera puedes tener cualquier anotación de tipo de retorno que necesites sin que afecte a tu aplicación FastAPI. 🤓
+Esto hará que FastAPI omita la generación del modelo de response y de esa manera puedes tener cualquier anotación de tipo de retorno que necesites sin que afecte a tu aplicación FastAPI. 🤓
 
-## Parámetros de codificación del Modelo de Respuesta
+## Parámetros de codificación del Modelo de Response
 
-Tu modelo de respuesta podría tener valores por defecto, como:
+Tu modelo de response podría tener valores por defecto, como:
 
 {* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
 
@@ -231,7 +231,7 @@ Tu modelo de respuesta podría tener valores por defecto, como:
 
 pero podrías querer omitirlos del resultado si no fueron en realidad almacenados.
 
-Por ejemplo, si tienes modelos con muchos atributos opcionales en una base de datos NoSQL, pero no quieres enviar respuestas JSON muy largas llenas de valores por defecto.
+Por ejemplo, si tienes modelos con muchos atributos opcionales en una base de datos NoSQL, pero no quieres enviar responses JSON muy largos llenos de valores por defecto.
 
 ### Usa el parámetro `response_model_exclude_unset`
 
@@ -239,9 +239,9 @@ Puedes configurar el parámetro del decorador de path operation `response_model_
 
 {* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
 
-y esos valores por defecto no serán incluidos en la respuesta, solo los valores realmente establecidos.
+y esos valores por defecto no serán incluidos en el response, solo los valores realmente establecidos.
 
-Entonces, si envías un request a esa *path operation* para el ítem con ID `foo`, la respuesta (no incluyendo valores por defecto) será:
+Entonces, si envías un request a esa *path operation* para el ítem con ID `foo`, el response (no incluyendo valores por defecto) será:
 
 ```JSON
 {
@@ -288,7 +288,7 @@ Pero si tus datos tienen valores para los campos del modelo con valores por defe
 }
 ```
 
-serán incluidos en la respuesta.
+serán incluidos en el response.
 
 #### Datos con los mismos valores que los valores por defecto
 
@@ -306,7 +306,7 @@ Si los datos tienen los mismos valores que los valores por defecto, como el art�
 
 FastAPI es lo suficientemente inteligente (de hecho, Pydantic es lo suficientemente inteligente) para darse cuenta de que, a pesar de que `description`, `tax` y `tags` tienen los mismos valores que los valores por defecto, fueron establecidos explícitamente (en lugar de tomados de los valores por defecto).
 
-Por lo tanto, se incluirán en la respuesta JSON.
+Por lo tanto, se incluirán en el response JSON.
 
 /// tip | Consejo
 
@@ -352,6 +352,6 @@ Si olvidas usar un `set` y usas un `list` o `tuple` en su lugar, FastAPI todaví
 
 ## Resumen
 
-Usa el parámetro `response_model` del *decorador de path operation* para definir modelos de respuesta y especialmente para asegurarte de que los datos privados sean filtrados.
+Usa el parámetro `response_model` del *decorador de path operation* para definir modelos de response y especialmente para asegurarte de que los datos privados sean filtrados.
 
 Usa `response_model_exclude_unset` para devolver solo los valores establecidos explícitamente.

@@ -74,7 +74,7 @@ Y si lo haces, tendrás un pequeño formulario de autorización para escribir un
 
 /// note | Nota
 
-No importa lo que escribas en el form, aún no funcionará. Pero llegaremos allí.
+No importa lo que escribas en el formulario, aún no funcionará. Pero llegaremos allí.
 
 ///
 
@@ -174,7 +174,7 @@ Ahora puedes pasar ese `oauth2_scheme` en una dependencia con `Depends`.
 
 Esta dependencia proporcionará un `str` que se asigna al parámetro `token` de la *path operation function*.
 
-**FastAPI** sabrá que puede usar esta dependencia para definir un "security scheme" en el schema OpenAPI (y en los docs automáticos del API).
+**FastAPI** sabrá que puede usar esta dependencia para definir un "security scheme" en el esquema OpenAPI (y en los docs automáticos del API).
 
 /// info | Detalles técnicos
 

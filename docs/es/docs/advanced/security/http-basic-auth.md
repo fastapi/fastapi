@@ -82,7 +82,7 @@ Python tendrá que comparar todo `stanleyjobso` en ambos `stanleyjobsox` y `stan
 
 #### El tiempo de respuesta ayuda a los atacantes
 
-En ese punto, al notar que el servidor tardó algunos microsegundos más en enviar la respuesta "Nombre de usuario o contraseña incorrectos", los atacantes sabrán que acertaron en _algo_, algunas de las letras iniciales eran correctas.
+En ese punto, al notar que el servidor tardó algunos microsegundos más en enviar el response "Nombre de usuario o contraseña incorrectos", los atacantes sabrán que acertaron en _algo_, algunas de las letras iniciales eran correctas.
 
 Y luego pueden intentar de nuevo sabiendo que probablemente es algo más similar a `stanleyjobsox` que a `johndoe`.
 

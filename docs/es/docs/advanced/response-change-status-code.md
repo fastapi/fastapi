@@ -18,7 +18,7 @@ Para esos casos, puedes usar un parámetro `Response`.
 
 Puedes declarar un parámetro de tipo `Response` en tu *función de la operación de path* (como puedes hacer para cookies y headers).
 
-Y luego puedes establecer el `status_code` en ese objeto de respuesta *temporal*.
+Y luego puedes establecer el `status_code` en ese objeto de response *temporal*.
 
 {* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
@@ -26,6 +26,6 @@ Y luego puedes retornar cualquier objeto que necesites, como normalmente lo har�
 
 Y si declaraste un `response_model`, aún se usará para filtrar y convertir el objeto que retornaste.
 
-**FastAPI** usará esa respuesta *temporal* para extraer el código de estado (también cookies y headers), y los pondrá en la respuesta final que contiene el valor que retornaste, filtrado por cualquier `response_model`.
+**FastAPI** usará ese response *temporal* para extraer el código de estado (también cookies y headers), y los pondrá en el response final que contiene el valor que retornaste, filtrado por cualquier `response_model`.
 
 También puedes declarar la dependencia del parámetro `Response`, y establecer el código de estado en ellos. Pero ten en cuenta que el último en establecerse será el que gane.

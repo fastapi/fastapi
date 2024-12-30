@@ -50,7 +50,7 @@ Puedes usar la configuración del modelo de Pydantic para `forbid` cualquier cam
 
 {* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
 
-Si un cliente intenta enviar datos extra, recibirá una respuesta de **error**.
+Si un cliente intenta enviar datos extra, recibirá un response de **error**.
 
 Por ejemplo, si el cliente intenta enviar los campos de formulario:
 
@@ -58,7 +58,7 @@ Por ejemplo, si el cliente intenta enviar los campos de formulario:
 * `password`: `Portal Gun`
 * `extra`: `Mr. Poopybutthole`
 
-Recibirá una respuesta de error indicando que el campo `extra` no está permitido:
+Recibirá un response de error indicando que el campo `extra` no está permitido:
 
 ```json
 {

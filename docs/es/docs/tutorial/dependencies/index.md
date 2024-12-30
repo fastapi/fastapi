@@ -158,7 +158,7 @@ Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a
 
 ## Integración con OpenAPI
 
-Todas las declaraciones de request, validaciones y requisitos de tus dependencias (y sub-dependencias) se integrarán en el mismo schema de OpenAPI.
+Todas las declaraciones de request, validaciones y requisitos de tus dependencias (y sub-dependencias) se integrarán en el mismo esquema de OpenAPI.
 
 Así, la documentación interactiva tendrá toda la información de estas dependencias también:
 
@@ -200,7 +200,7 @@ La simplicidad del sistema de inyección de dependencias hace que **FastAPI** se
 * APIs externas
 * sistemas de autenticación y autorización
 * sistemas de monitoreo de uso de la API
-* sistemas de inyección de datos de respuesta
+* sistemas de inyección de datos de response
 * etc.
 
 ## Simple y Poderoso
@@ -247,4 +247,4 @@ paying_user --> pro_items
 
 Todas estas dependencias, al declarar sus requisitos, también añaden parámetros, validaciones, etc. a tus *path operations*.
 
-**FastAPI** se encargará de agregar todo al schema de OpenAPI, para que se muestre en los sistemas de documentación interactiva.
+**FastAPI** se encargará de agregar todo al esquema de OpenAPI, para que se muestre en los sistemas de documentación interactiva.

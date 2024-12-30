@@ -20,13 +20,13 @@ Ahora, cada request bajo el path `/v1/` será manejado por la aplicación Flask.
 
 Y el resto será manejado por **FastAPI**.
 
-Si lo ejecutas y vas a <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> verás la respuesta de Flask:
+Si lo ejecutas y vas a <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> verás el response de Flask:
 
 ```txt
 Hello, World from Flask!
 ```
 
-Y si vas a <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a> verás la respuesta de FastAPI:
+Y si vas a <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a> verás el response de FastAPI:
 
 ```JSON
 {

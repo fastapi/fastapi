@@ -6,7 +6,7 @@ Puedes declarar los "parámetros" o "variables" con la misma sintaxis que usan l
 
 El valor del parámetro de path `item_id` será pasado a tu función como el argumento `item_id`.
 
-Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás una respuesta de:
+Entonces, si corres este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás un response de:
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@ Esto te dará soporte en el editor dentro de tu función, con chequeo de errores
 
 ## <abbr title="también conocido en inglés como: serialization, parsing, marshalling">Conversión</abbr> de datos
 
-Si corres este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> verás una respuesta de:
+Si corres este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> verás un response de:
 
 ```JSON
 {"item_id":3}
@@ -91,7 +91,7 @@ Observa que el parámetro de path está declarado como un integer.
 
 ## Beneficios basados en estándares, documentación alternativa
 
-Debido a que el schema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramientas compatibles.
+Debido a que el esquema generado es del estándar <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> hay muchas herramientas compatibles.
 
 Es por esto que **FastAPI** mismo provee una documentación alternativa de la API (usando ReDoc), a la que puedes acceder en <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>:
 
@@ -189,7 +189,7 @@ Ellos serán convertidos a sus valores correspondientes (strings en este caso) a
 
 {* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
-En tu cliente obtendrás una respuesta en JSON como:
+En tu cliente obtendrás un response en JSON como:
 
 ```JSON
 {

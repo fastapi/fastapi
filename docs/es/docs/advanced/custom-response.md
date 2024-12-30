@@ -1,40 +1,40 @@
-# Respuesta Personalizada - HTML, Stream, Archivo, otros
+# Response Personalizado - HTML, Stream, Archivo, otros
 
-Por defecto, **FastAPI** devolverá las respuestas usando `JSONResponse`.
+Por defecto, **FastAPI** devolverá los responses usando `JSONResponse`.
 
-Puedes sobrescribirlo devolviendo una `Response` directamente como se ve en [Devolver una Response directamente](response-directly.md){.internal-link target=_blank}.
+Puedes sobrescribirlo devolviendo un `Response` directamente como se ve en [Devolver una Response directamente](response-directly.md){.internal-link target=_blank}.
 
-Pero si devuelves una `Response` directamente (o cualquier subclase, como `JSONResponse`), los datos no se convertirán automáticamente (incluso si declaras un `response_model`), y la documentación no se generará automáticamente (por ejemplo, incluyendo el "media type" específico, en el HTTP header `Content-Type` como parte de OpenAPI generado).
+Pero si devuelves un `Response` directamente (o cualquier subclase, como `JSONResponse`), los datos no se convertirán automáticamente (incluso si declaras un `response_model`), y la documentación no se generará automáticamente (por ejemplo, incluyendo el "media type" específico, en el HTTP header `Content-Type` como parte del OpenAPI generado).
 
-Pero también puedes declarar la `Response` que quieres usar (por ejemplo, cualquier subclase de `Response`), en el *path operation decorator* usando el parámetro `response_class`.
+Pero también puedes declarar el `Response` que quieres usar (por ejemplo, cualquier subclase de `Response`), en el *path operation decorator* usando el parámetro `response_class`.
 
 Los contenidos que devuelvas desde tu *path operation function* se colocarán dentro de esa `Response`.
 
-Y si esa `Response` tiene un media type JSON (`application/json`), como es el caso con `JSONResponse` y `UJSONResponse`, los datos que devuelvas se convertirán automáticamente (y serán filtrados) con cualquier `response_model` de Pydantic que hayas declarado en el *path operation decorator*.
+Y si ese `Response` tiene un media type JSON (`application/json`), como es el caso con `JSONResponse` y `UJSONResponse`, los datos que devuelvas se convertirán automáticamente (y serán filtrados) con cualquier `response_model` de Pydantic que hayas declarado en el *path operation decorator*.
 
 /// note | Nota
 
-Si usas una clase de respuesta sin media type, FastAPI esperará que tu respuesta no tenga contenido, por lo que no documentará el formato de la respuesta en su OpenAPI generado.
+Si usas una clase de response sin media type, FastAPI esperará que tu response no tenga contenido, por lo que no documentará el formato del response en su OpenAPI generado.
 
 ///
 
 ## Usa `ORJSONResponse`
 
-Por ejemplo, si estás exprimendo el rendimiento, puedes instalar y usar <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> y establecer la respuesta como `ORJSONResponse`.
+Por ejemplo, si estás exprimendo el rendimiento, puedes instalar y usar <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> y establecer el response como `ORJSONResponse`.
 
 Importa la clase `Response` (sub-clase) que quieras usar y declárala en el *path operation decorator*.
 
-Para respuestas grandes, devolver una `Response` directamente es mucho más rápido que devolver un diccionario.
+Para responses grandes, devolver una `Response` directamente es mucho más rápido que devolver un diccionario.
 
 Esto se debe a que, por defecto, FastAPI inspeccionará cada elemento dentro y se asegurará de que sea serializable como JSON, usando el mismo [Codificador Compatible con JSON](../tutorial/encoder.md){.internal-link target=_blank} explicado en el tutorial. Esto es lo que te permite devolver **objetos arbitrarios**, por ejemplo, modelos de bases de datos.
 
-Pero si estás seguro de que el contenido que estás devolviendo es **serializable con JSON**, puedes pasarlo directamente a la clase de respuesta y evitar la sobrecarga extra que FastAPI tendría al pasar tu contenido de retorno a través de `jsonable_encoder` antes de pasarlo a la clase de respuesta.
+Pero si estás seguro de que el contenido que estás devolviendo es **serializable con JSON**, puedes pasarlo directamente a la clase de response y evitar la sobrecarga extra que FastAPI tendría al pasar tu contenido de retorno a través de `jsonable_encoder` antes de pasarlo a la clase de response.
 
 {* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
 
 /// info | Información
 
-El parámetro `response_class` también se utilizará para definir el "media type" de la respuesta.
+El parámetro `response_class` también se utilizará para definir el "media type" del response.
 
 En este caso, el HTTP header `Content-Type` se establecerá en `application/json`.
 
@@ -48,9 +48,9 @@ El `ORJSONResponse` solo está disponible en FastAPI, no en Starlette.
 
 ///
 
-## Respuesta HTML
+## Response HTML
 
-Para devolver una respuesta con HTML directamente desde **FastAPI**, usa `HTMLResponse`.
+Para devolver un response con HTML directamente desde **FastAPI**, usa `HTMLResponse`.
 
 * Importa `HTMLResponse`.
 * Pasa `HTMLResponse` como parámetro `response_class` de tu *path operation decorator*.
@@ -59,7 +59,7 @@ Para devolver una respuesta con HTML directamente desde **FastAPI**, usa `HTMLRe
 
 /// info | Información
 
-El parámetro `response_class` también se utilizará para definir el "media type" de la respuesta.
+El parámetro `response_class` también se utilizará para definir el "media type" del response.
 
 En este caso, el HTTP header `Content-Type` se establecerá en `text/html`.
 
@@ -69,7 +69,7 @@ Y se documentará así en OpenAPI.
 
 ### Devuelve una `Response`
 
-Como se ve en [Devolver una Response directamente](response-directly.md){.internal-link target=_blank}, también puedes sobrescribir la respuesta directamente en tu *path operation*, devolviéndola.
+Como se ve en [Devolver una Response directamente](response-directly.md){.internal-link target=_blank}, también puedes sobrescribir el response directamente en tu *path operation*, devolviéndolo.
 
 El mismo ejemplo de arriba, devolviendo una `HTMLResponse`, podría verse así:
 
@@ -89,7 +89,7 @@ Por supuesto, el `Content-Type` header real, el código de estado, etc., provend
 
 ### Documenta en OpenAPI y sobrescribe `Response`
 
-Si quieres sobrescribir la respuesta desde dentro de la función pero al mismo tiempo documentar el "media type" en OpenAPI, puedes usar el parámetro `response_class` Y devolver un objeto `Response`.
+Si quieres sobrescribir el response desde dentro de la función pero al mismo tiempo documentar el "media type" en OpenAPI, puedes usar el parámetro `response_class` Y devolver un objeto `Response`.
 
 El `response_class` solo se usará para documentar el OpenAPI *path operation*, pero tu `Response` se usará tal cual.
 
@@ -107,9 +107,9 @@ Pero como pasaste `HTMLResponse` en el `response_class` también, **FastAPI** sa
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Respuestas disponibles
+## Responses disponibles
 
-Aquí hay algunas de las respuestas disponibles.
+Aquí hay algunos de los responses disponibles.
 
 Ten en cuenta que puedes usar `Response` para devolver cualquier otra cosa, o incluso crear una sub-clase personalizada.
 
@@ -117,13 +117,13 @@ Ten en cuenta que puedes usar `Response` para devolver cualquier otra cosa, o in
 
 También podrías usar `from starlette.responses import HTMLResponse`.
 
-**FastAPI** proporciona los mismos `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+**FastAPI** proporciona los mismos `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de los responses disponibles vienen directamente de Starlette.
 
 ///
 
 ### `Response`
 
-La clase principal `Response`, todas las otras respuestas heredan de ella.
+La clase principal `Response`, todos los otros responses heredan de ella.
 
 Puedes devolverla directamente.
 
@@ -140,23 +140,23 @@ FastAPI (de hecho Starlette) incluirá automáticamente un header Content-Length
 
 ### `HTMLResponse`
 
-Toma algún texto o bytes y devuelve una respuesta HTML, como leíste arriba.
+Toma algún texto o bytes y devuelve un response HTML, como leíste arriba.
 
 ### `PlainTextResponse`
 
-Toma algún texto o bytes y devuelve una respuesta de texto plano.
+Toma algún texto o bytes y devuelve un response de texto plano.
 
 {* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse`
 
-Toma algunos datos y devuelve una respuesta codificada como `application/json`.
+Toma algunos datos y devuelve un response codificado como `application/json`.
 
-Esta es la respuesta predeterminada usada en **FastAPI**, como leíste arriba.
+Este es el response predeterminado usado en **FastAPI**, como leíste arriba.
 
 ### `ORJSONResponse`
 
-Una respuesta JSON rápida alternativa usando <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, como leíste arriba.
+Un response JSON rápido alternativo usando <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, como leíste arriba.
 
 /// info | Información
 
@@ -166,7 +166,7 @@ Esto requiere instalar `orjson`, por ejemplo, con `pip install orjson`.
 
 ### `UJSONResponse`
 
-Una respuesta JSON alternativa usando <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+Un response JSON alternativo usando <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
 /// info | Información
 
@@ -214,7 +214,7 @@ También puedes usar el parámetro `status_code` combinado con el parámetro `re
 
 ### `StreamingResponse`
 
-Toma un generador `async` o un generador/iterador normal y transmite el cuerpo de la respuesta.
+Toma un generador `async` o un generador/iterador normal y transmite el cuerpo del response.
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
@@ -229,7 +229,7 @@ Esto incluye muchos paquetes para interactuar con almacenamiento en la nube, pro
 {* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 1. Esta es la función generadora. Es una "función generadora" porque contiene declaraciones `yield` dentro.
-2. Al usar un bloque `with`, nos aseguramos de que el objeto similar a un archivo se cierre después de que la función generadora termine. Así, después de que termina de enviar la respuesta.
+2. Al usar un bloque `with`, nos aseguramos de que el objeto similar a un archivo se cierre después de que la función generadora termine. Así, después de que termina de enviar el response.
 3. Este `yield from` le dice a la función que itere sobre esa cosa llamada `file_like`. Y luego, para cada parte iterada, yield esa parte como proveniente de esta función generadora (`iterfile`).
 
     Entonces, es una función generadora que transfiere el trabajo de "generar" a algo más internamente.
@@ -244,16 +244,16 @@ Nota que aquí como estamos usando `open()` estándar que no admite `async` y `a
 
 ### `FileResponse`
 
-Transmite un archivo asincrónicamente como respuesta.
+Transmite un archivo asincrónicamente como response.
 
-Toma un conjunto diferente de argumentos para crear un instance que los otros tipos de respuesta:
+Toma un conjunto diferente de argumentos para crear un instance que los otros tipos de response:
 
 * `path` - La path del archivo para el archivo a transmitir.
 * `headers` - Cualquier header personalizado para incluir, como un diccionario.
 * `media_type` - Un string que da el media type. Si no se establece, se usará el nombre de archivo o la path para inferir un media type.
 * `filename` - Si se establece, se incluirá en el response `Content-Disposition`.
 
-Las respuestas de archivos incluirán los headers apropiados `Content-Length`, `Last-Modified` y `ETag`.
+Los responses de archivos incluirán los headers apropiados `Content-Length`, `Last-Modified` y `ETag`.
 
 {* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
@@ -263,9 +263,9 @@ También puedes usar el parámetro `response_class`:
 
 En este caso, puedes devolver la path del archivo directamente desde tu *path operation* function.
 
-## Clase de respuesta personalizada
+## Clase de response personalizada
 
-Puedes crear tu propia clase de respuesta personalizada, heredando de `Response` y usándola.
+Puedes crear tu propia clase de response personalizada, heredando de `Response` y usándola.
 
 Por ejemplo, digamos que quieres usar <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, pero con algunas configuraciones personalizadas no utilizadas en la clase `ORJSONResponse` incluida.
 
@@ -281,7 +281,7 @@ Ahora en lugar de devolver:
 {"message": "Hello World"}
 ```
 
-...esta respuesta devolverá:
+...este response devolverá:
 
 ```json
 {
@@ -291,9 +291,9 @@ Ahora en lugar de devolver:
 
 Por supuesto, probablemente encontrarás formas mucho mejores de aprovechar esto que formatear JSON. 😉
 
-## Clase de respuesta predeterminada
+## Clase de response predeterminada
 
-Al crear una instance de la clase **FastAPI** o un `APIRouter`, puedes especificar qué clase de respuesta usar por defecto.
+Al crear una instance de la clase **FastAPI** o un `APIRouter`, puedes especificar qué clase de response usar por defecto.
 
 El parámetro que define esto es `default_response_class`.
 
@@ -309,4 +309,4 @@ Todavía puedes sobrescribir `response_class` en *path operations* como antes.
 
 ## Documentación adicional
 
-También puedes declarar el media type y muchos otros detalles en OpenAPI usando `responses`: [Respuestas Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+También puedes declarar el media type y muchos otros detalles en OpenAPI usando `responses`: [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.

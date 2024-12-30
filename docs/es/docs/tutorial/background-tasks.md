@@ -1,15 +1,15 @@
 # Tareas en Segundo Plano
 
-Puedes definir tareas en segundo plano para que se ejecuten *después* de devolver una respuesta.
+Puedes definir tareas en segundo plano para que se ejecuten *después* de devolver un response.
 
-Esto es útil para operaciones que necesitan ocurrir después de un request, pero para las que el cliente realmente no necesita esperar a que la operación termine antes de recibir la respuesta.
+Esto es útil para operaciones que necesitan ocurrir después de un request, pero para las que el cliente realmente no necesita esperar a que la operación termine antes de recibir el response.
 
 Esto incluye, por ejemplo:
 
 * Notificaciones por email enviadas después de realizar una acción:
-  * Como conectarse a un servidor de email y enviar un email tiende a ser "lento" (varios segundos), puedes devolver la respuesta de inmediato y enviar la notificación por email en segundo plano.
+  * Como conectarse a un servidor de email y enviar un email tiende a ser "lento" (varios segundos), puedes devolver el response de inmediato y enviar la notificación por email en segundo plano.
 * Procesamiento de datos:
-  * Por ejemplo, supongamos que recibes un archivo que debe pasar por un proceso lento, puedes devolver una respuesta de "Accepted" (HTTP 202) y procesar el archivo en segundo plano.
+  * Por ejemplo, supongamos que recibes un archivo que debe pasar por un proceso lento, puedes devolver un response de "Accepted" (HTTP 202) y procesar el archivo en segundo plano.
 
 ## Usando `BackgroundTasks`
 
@@ -53,7 +53,7 @@ Usar `BackgroundTasks` también funciona con el sistema de inyección de depende
 
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
-En este ejemplo, los mensajes se escribirán en el archivo `log.txt` *después* de que se envíe la respuesta.
+En este ejemplo, los mensajes se escribirán en el archivo `log.txt` *después* de que se envíe el response.
 
 Si hay un query en el request, se escribirá en el log en una tarea en segundo plano.
 

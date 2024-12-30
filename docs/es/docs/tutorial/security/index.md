@@ -64,11 +64,11 @@ OpenAPI (anteriormente conocido como Swagger) es la especificación abierta para
 
 Eso es lo que hace posible tener múltiples interfaces de documentación interactiva automática, generación de código, etc.
 
-OpenAPI tiene una forma de definir múltiples "schemas" de seguridad.
+OpenAPI tiene una forma de definir múltiples "esquemas" de seguridad.
 
 Al usarlos, puedes aprovechar todas estas herramientas basadas en estándares, incluidos estos sistemas de documentación interactiva.
 
-OpenAPI define los siguientes schemas de seguridad:
+OpenAPI define los siguientes esquemas de seguridad:
 
 * `apiKey`: una clave específica de la aplicación que puede provenir de:
   * Un parámetro de query.
@@ -98,7 +98,7 @@ El problema más complejo es construir un proveedor de autenticación/autorizaci
 
 ## Utilidades de **FastAPI**
 
-FastAPI proporciona varias herramientas para cada uno de estos schemas de seguridad en el módulo `fastapi.security` que simplifican el uso de estos mecanismos de seguridad.
+FastAPI proporciona varias herramientas para cada uno de estos esquemas de seguridad en el módulo `fastapi.security` que simplifican el uso de estos mecanismos de seguridad.
 
 En los siguientes capítulos verás cómo agregar seguridad a tu API usando esas herramientas proporcionadas por **FastAPI**.
 

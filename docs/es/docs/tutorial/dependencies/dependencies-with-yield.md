@@ -27,7 +27,7 @@ De hecho, FastAPI usa esos dos decoradores internamente.
 
 Por ejemplo, podrías usar esto para crear una sesión de base de datos y cerrarla después de finalizar.
 
-Solo el código anterior e incluyendo la declaración `yield` se ejecuta antes de crear una respuesta:
+Solo el código anterior e incluyendo la declaración `yield` se ejecuta antes de crear un response:
 
 {* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
@@ -35,7 +35,7 @@ El valor generado es lo que se inyecta en *path operations* y otras dependencias
 
 {* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
-El código posterior a la declaración `yield` se ejecuta después de crear la respuesta pero antes de enviarla:
+El código posterior a la declaración `yield` se ejecuta después de crear el response pero antes de enviarla:
 
 {* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
@@ -117,7 +117,7 @@ Si capturas una excepción usando `except` en una dependencia con `yield` y no l
 
 {* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
-En este caso, el cliente verá una respuesta *HTTP 500 Internal Server Error* como debería, dado que no estamos lanzando una `HTTPException` o similar, pero el servidor **no tendrá ningún registro** ni ninguna otra indicación de cuál fue el error. 😱
+En este caso, el cliente verá un response *HTTP 500 Internal Server Error* como debería, dado que no estamos lanzando una `HTTPException` o similar, pero el servidor **no tendrá ningún registro** ni ninguna otra indicación de cuál fue el error. 😱
 
 ### Siempre `raise` en Dependencias con `yield` y `except`
 
@@ -127,7 +127,7 @@ Puedes volver a lanzar la misma excepción usando `raise`:
 
 {* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
-Ahora el cliente obtendrá la misma respuesta *HTTP 500 Internal Server Error*, pero el servidor tendrá nuestro `InternalError` personalizado en los registros. 😎
+Ahora el cliente obtendrá el mismo response *HTTP 500 Internal Server Error*, pero el servidor tendrá nuestro `InternalError` personalizado en los registros. 😎
 
 ## Ejecución de dependencias con `yield`
 
@@ -147,7 +147,7 @@ participant tasks as Background tasks
     Note over dep: Ejecutar código hasta yield
     opt raise Exception
         dep -->> handler: Lanzar Exception
-        handler -->> client: Respuesta HTTP de error
+        handler -->> client: Response HTTP de error
     end
     dep ->> operation: Ejecutar dependencia, por ejemplo, sesión de BD
     opt raise
@@ -155,11 +155,11 @@ participant tasks as Background tasks
         opt handle
             dep -->> dep: Puede capturar excepción, lanzar una nueva HTTPException, lanzar otra excepción
         end
-        handler -->> client: Respuesta HTTP de error
+        handler -->> client: Response HTTP de error
     end
 
-    operation ->> client: Devolver respuesta al cliente
-    Note over client,operation: La respuesta ya fue enviada, no se puede cambiar
+    operation ->> client: Devolver response al cliente
+    Note over client,operation: El response ya fue enviado, no se puede cambiar
     opt Tasks
         operation -->> tasks: Enviar tareas en background
     end
@@ -170,9 +170,9 @@ participant tasks as Background tasks
 
 /// info | Información
 
-Solo **una respuesta** será enviada al cliente. Podría ser una de las respuestas de error o será la respuesta de la *path operation*.
+Solo **un response** será enviado al cliente. Podría ser uno de los responses de error o será el response de la *path operation*.
 
-Después de que se envíe una de esas respuestas, no se podrá enviar ninguna otra respuesta.
+Después de que se envíe uno de esos responses, no se podrá enviar ningún otro response.
 
 ///
 
@@ -202,11 +202,11 @@ Esto se cambió en la versión 0.110.0 para corregir el consumo no gestionado de
 
 ### Tareas en Background y Dependencias con `yield`, Detalles Técnicos
 
-Antes de FastAPI 0.106.0, lanzar excepciones después de `yield` no era posible, el código de salida en dependencias con `yield` se ejecutaba *después* de que la respuesta se enviara, por lo que los [Manejadores de Excepciones](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} ya se habrían ejecutado.
+Antes de FastAPI 0.106.0, lanzar excepciones después de `yield` no era posible, el código de salida en dependencias con `yield` se ejecutaba *después* de que el response se enviara, por lo que los [Manejadores de Excepciones](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} ya se habrían ejecutado.
 
 Esto se diseñó de esta manera principalmente para permitir usar los mismos objetos "extraídos" por dependencias dentro de tareas en background, porque el código de salida se ejecutaría después de que las tareas en background terminaran.
 
-Sin embargo, ya que esto significaría esperar a que la respuesta viaje a través de la red mientras se retiene innecesariamente un recurso en una dependencia con yield (por ejemplo, una conexión a base de datos), esto se cambió en FastAPI 0.106.0.
+Sin embargo, ya que esto significaría esperar a que el response viaje a través de la red mientras se retiene innecesariamente un recurso en una dependencia con yield (por ejemplo, una conexión a base de datos), esto se cambió en FastAPI 0.106.0.
 
 /// tip | Consejo
 

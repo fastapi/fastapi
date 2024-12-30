@@ -125,7 +125,7 @@ FastAPI ahora:
 
 * **Validará** los datos asegurándose de que la longitud máxima sea de 50 caracteres
 * Mostrará un **error claro** para el cliente cuando los datos no sean válidos
-* **Documentará** el parámetro en el OpenAPI schema *path operation* (así aparecerá en la **UI de documentación automática**)
+* **Documentará** el parámetro en el OpenAPI esquema *path operation* (así aparecerá en la **UI de documentación automática**)
 
 ## Alternativa (antigua): `Query` como valor por defecto
 
@@ -195,7 +195,7 @@ Luego, podemos pasar más parámetros a `Query`. En este caso, el parámetro `ma
 q: Union[str, None] = Query(default=None, max_length=50)
 ```
 
-Esto validará los datos, mostrará un error claro cuando los datos no sean válidos, y documentará el parámetro en el OpenAPI schema *path operation*.
+Esto validará los datos, mostrará un error claro cuando los datos no sean válidos, y documentará el parámetro en el esquema del *path operation* de OpenaPI.
 
 ### `Query` como valor por defecto o en `Annotated`
 
@@ -373,7 +373,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 recibirías los múltiples valores del *query parameter* `q` (`foo` y `bar`) en una `list` de Python dentro de tu *path operation function*, en el *parámetro de función* `q`.
 
-Entonces, la respuesta a esa URL sería:
+Entonces, el response a esa URL sería:
 
 ```JSON
 {
@@ -406,7 +406,7 @@ Si vas a:
 http://localhost:8000/items/
 ```
 
-el valor por defecto de `q` será: `["foo", "bar"]` y tu respuesta será:
+el valor por defecto de `q` será: `["foo", "bar"]` y tu response será:
 
 ```JSON
 {
@@ -489,7 +489,7 @@ La documentación lo mostrará así:
 
 ## Excluir parámetros de OpenAPI
 
-Para excluir un parámetro de query del OpenAPI schema generado (y por lo tanto, de los sistemas de documentación automática), establece el parámetro `include_in_schema` de `Query` a `False`:
+Para excluir un parámetro de query del esquema de OpenAPI generado (y por lo tanto, de los sistemas de documentación automática), establece el parámetro `include_in_schema` de `Query` a `False`:
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 

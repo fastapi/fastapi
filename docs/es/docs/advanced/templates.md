@@ -39,7 +39,7 @@ Además, antes de eso, en versiones anteriores, el objeto `request` se pasaba co
 
 /// tip | Consejo
 
-Al declarar `response_class=HTMLResponse`, la interfaz de usuario de la documentación podrá saber que la respuesta será HTML.
+Al declarar `response_class=HTMLResponse`, la interfaz de usuario de la documentación podrá saber que el response será HTML.
 
 ///
 
@@ -47,7 +47,7 @@ Al declarar `response_class=HTMLResponse`, la interfaz de usuario de la document
 
 También podrías usar `from starlette.templating import Jinja2Templates`.
 
-**FastAPI** proporciona el mismo `starlette.templating` como `fastapi.templating`, solo como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette. Lo mismo con `Request` y `StaticFiles`.
+**FastAPI** proporciona el mismo `starlette.templating` como `fastapi.templating`, solo como una conveniencia para ti, el desarrollador. Pero la mayoría de los responses disponibles vienen directamente de Starlette. Lo mismo con `Request` y `StaticFiles`.
 
 ///
 

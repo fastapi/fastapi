@@ -73,11 +73,11 @@ Con solo esa declaración de tipo en Python, **FastAPI** hará lo siguiente:
 * Proporcionar los datos recibidos en el parámetro `item`.
     * Como lo declaraste en la función como de tipo `Item`, también tendrás todo el soporte del editor (autocompletado, etc.) para todos los atributos y sus tipos.
 * Generar definiciones de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para tu modelo, que también puedes usar en cualquier otro lugar si tiene sentido para tu proyecto.
-* Schemas que serán parte del schema de OpenAPI generado y usados por la <abbr title="User Interfaces">UIs</abbr> de documentación automática.
+* Esquemas que serán parte del esquema de OpenAPI generado y usados por la <abbr title="User Interfaces">UIs</abbr> de documentación automática.
 
 ## Documentación automática
 
-Los JSON Schemas de tus modelos serán parte del schema OpenAPI generado y se mostrarán en la documentación API interactiva:
+Los JSON Schemas de tus modelos serán parte del esquema OpenAPI generado y se mostrarán en la documentación API interactiva:
 
 <img src="/img/tutorial/body/image01.png">
 

@@ -62,7 +62,7 @@ Ten en cuenta que aunque el `item` se declaró de la misma manera que antes, aho
 
 **FastAPI** hará la conversión automática del request, de modo que el parámetro `item` reciba su contenido específico y lo mismo para `user`.
 
-Realizará la validación de los datos compuestos, y los documentará así para el schema de OpenAPI y la documentación automática.
+Realizará la validación de los datos compuestos, y los documentará así para el esquema de OpenAPI y la documentación automática.
 
 ## Valores singulares en el cuerpo
 
@@ -166,7 +166,7 @@ en lugar de:
 
 Puedes añadir múltiples parámetros de cuerpo a tu *path operation function*, aunque un request solo puede tener un único cuerpo.
 
-Pero **FastAPI** lo manejará, te dará los datos correctos en tu función, y validará y documentará el schema correcto en la *path operation*.
+Pero **FastAPI** lo manejará, te dará los datos correctos en tu función, y validará y documentará el esquema correcto en la *path operation*.
 
 También puedes declarar valores singulares para ser recibidos como parte del cuerpo.
 

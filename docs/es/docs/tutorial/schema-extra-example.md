@@ -32,7 +32,7 @@ Puedes establecer `"json_schema_extra"` con un `dict` que contenga cualquier dat
 
 //// tab | Pydantic v1
 
-En Pydantic versión 1, usarías una clase interna `Config` y `schema_extra`, como se describe en <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">la documentación de Pydantic: Personalización de Schema</a>.
+En Pydantic versión 1, usarías una clase interna `Config` y `schema_extra`, como se describe en <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">la documentación de Pydantic: Personalización de Esquema</a>.
 
 Puedes establecer `schema_extra` con un `dict` que contenga cualquier dato adicional que desees que aparezca en el JSON Schema generado, incluyendo `examples`.
 

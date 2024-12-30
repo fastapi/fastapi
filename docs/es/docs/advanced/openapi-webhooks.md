@@ -34,7 +34,7 @@ Cuando creas una aplicación de **FastAPI**, hay un atributo `webhooks` que pued
 
 {* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:13,36:53] *}
 
-Los webhooks que defines terminarán en el schema de **OpenAPI** y en la interfaz automática de **documentación**.
+Los webhooks que defines terminarán en el esquema de **OpenAPI** y en la interfaz automática de **documentación**.
 
 /// info | Información
 

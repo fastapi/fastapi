@@ -34,15 +34,15 @@ Empecemos con una aplicación simple de FastAPI:
 
 {* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
-Nota que las *path operations* definen los modelos que usan para el payload de la petición y el payload de la respuesta, usando los modelos `Item` y `ResponseMessage`.
+Nota que las *path operations* definen los modelos que usan para el payload de la petición y el payload del response, usando los modelos `Item` y `ResponseMessage`.
 
 ### Documentación de la API
 
-Si vas a la documentación de la API, verás que tiene los **schemas** para los datos que se enviarán en las peticiones y se recibirán en las respuestas:
+Si vas a la documentación de la API, verás que tiene los **esquemas** para los datos que se enviarán en las peticiones y se recibirán en los responses:
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
-Puedes ver esos schemas porque fueron declarados con los modelos en la aplicación.
+Puedes ver esos esquemas porque fueron declarados con los modelos en la aplicación.
 
 Esa información está disponible en el **JSON Schema** de OpenAPI de la aplicación, y luego se muestra en la documentación de la API (por Swagger UI).
 
@@ -127,7 +127,7 @@ Tendrás errores en línea para los datos que envíes:
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
-El objeto de respuesta también tendrá autocompletado:
+El objeto de response también tendrá autocompletado:
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
@@ -176,7 +176,7 @@ Por ejemplo, podrías asegurarte de que cada *path operation* tenga un tag, y lu
 
 ### Función Personalizada para Generar ID Único
 
-FastAPI usa un **ID único** para cada *path operation*, se usa para el **operation ID** y también para los nombres de cualquier modelo personalizado necesario, para peticiones o respuestas.
+FastAPI usa un **ID único** para cada *path operation*, se usa para el **operation ID** y también para los nombres de cualquier modelo personalizado necesario, para requests o responses.
 
 Puedes personalizar esa función. Toma un `APIRoute` y retorna un string.
 
@@ -250,7 +250,7 @@ Cuando usas los clientes generados automáticamente obtendrás **autocompletado*
 
 * Métodos.
 * Payloads de peticiones en el cuerpo, parámetros de query, etc.
-* Payloads de respuestas.
+* Payloads de responses.
 
 También tendrás **errores en línea** para todo.
 

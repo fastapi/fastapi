@@ -87,7 +87,7 @@ En ambos casos, tendrá:
 * Un parámetro de query `skip` que es un `int`, con un valor por defecto de `0`.
 * Un parámetro de query `limit` que es un `int`, con un valor por defecto de `100`.
 
-En ambos casos, los datos serán convertidos, validados, documentados en el schema de OpenAPI, etc.
+En ambos casos, los datos serán convertidos, validados, documentados en el esquema de OpenAPI, etc.
 
 ## Úsalo
 

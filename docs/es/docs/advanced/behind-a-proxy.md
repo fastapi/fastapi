@@ -24,11 +24,11 @@ Y el proxy estaría **"eliminando"** el **prefijo del path** sobre la marcha ant
 
 Hasta aquí, todo funcionaría normalmente.
 
-Pero luego, cuando abres la UI integrada de los docs (el frontend), esperaría obtener el schema de OpenAPI en `/openapi.json`, en lugar de `/api/v1/openapi.json`.
+Pero luego, cuando abres la UI integrada de los docs (el frontend), esperaría obtener el esquema de OpenAPI en `/openapi.json`, en lugar de `/api/v1/openapi.json`.
 
-Entonces, el frontend (que se ejecuta en el navegador) trataría de alcanzar `/openapi.json` y no podría obtener el schema de OpenAPI.
+Entonces, el frontend (que se ejecuta en el navegador) trataría de alcanzar `/openapi.json` y no podría obtener el esquema de OpenAPI.
 
-Porque tenemos un proxy con un prefijo de path de `/api/v1` para nuestra aplicación, el frontend necesita obtener el schema de OpenAPI en `/api/v1/openapi.json`.
+Porque tenemos un proxy con un prefijo de path de `/api/v1` para nuestra aplicación, el frontend necesita obtener el esquema de OpenAPI en `/api/v1/openapi.json`.
 
 ```mermaid
 graph LR
@@ -47,7 +47,7 @@ La IP `0.0.0.0` se usa comúnmente para indicar que el programa escucha en todas
 
 ///
 
-La UI de los docs también necesitaría el schema de OpenAPI para declarar que este API `servidor` se encuentra en `/api/v1` (detrás del proxy). Por ejemplo:
+La UI de los docs también necesitaría el esquema de OpenAPI para declarar que este API `servidor` se encuentra en `/api/v1` (detrás del proxy). Por ejemplo:
 
 ```JSON hl_lines="4-8"
 {
@@ -110,7 +110,7 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-La respuesta sería algo como:
+El response sería algo como:
 
 ```JSON
 {
@@ -131,7 +131,7 @@ Pasar el `root_path` a `FastAPI` sería el equivalente a pasar la opción de lí
 
 Ten en cuenta que el servidor (Uvicorn) no usará ese `root_path` para nada, a excepción de pasárselo a la app.
 
-Pero si vas con tu navegador a <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> verás la respuesta normal:
+Pero si vas con tu navegador a <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> verás el response normal:
 
 ```JSON
 {
@@ -231,9 +231,9 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-### Revisa las respuestas
+### Revisa los responses
 
-Ahora, si vas a la URL con el puerto para Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, verás la respuesta normal:
+Ahora, si vas a la URL con el puerto para Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, verás el response normal:
 
 ```JSON
 {
@@ -250,7 +250,7 @@ Nota que incluso aunque estés accediendo en `http://127.0.0.1:8000/app`, muestr
 
 Y ahora abre la URL con el puerto para Traefik, incluyendo el prefijo de path: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
-Obtenemos la misma respuesta:
+Obtenemos el mismo response:
 
 ```JSON
 {
@@ -295,7 +295,7 @@ Este es un caso de uso más avanzado. Siéntete libre de omitirlo.
 
 ///
 
-Por defecto, **FastAPI** creará un `server` en el schema de OpenAPI con la URL para el `root_path`.
+Por defecto, **FastAPI** creará un `server` en el esquema de OpenAPI con la URL para el `root_path`.
 
 Pero también puedes proporcionar otros `servers` alternativos, por ejemplo, si deseas que *la misma* UI de los docs interactúe con un entorno de pruebas y de producción.
 
@@ -305,7 +305,7 @@ Por ejemplo:
 
 {* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
-Generará un schema de OpenAPI como:
+Generará un esquema de OpenAPI como:
 
 ```JSON hl_lines="5-7"
 {
@@ -352,7 +352,7 @@ Si no quieres que **FastAPI** incluya un server automático usando el `root_path
 
 {* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
 
-y entonces no lo incluirá en el schema de OpenAPI.
+y entonces no lo incluirá en el esquema de OpenAPI.
 
 ## Montando una sub-aplicación
 

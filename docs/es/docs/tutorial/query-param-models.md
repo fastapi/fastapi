@@ -34,7 +34,7 @@ Puedes usar la configuración del modelo de Pydantic para `forbid` cualquier cam
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
-Si un cliente intenta enviar algunos datos **extra** en los **parámetros query**, recibirán una respuesta de **error**.
+Si un cliente intenta enviar algunos datos **extra** en los **parámetros query**, recibirán un response de **error**.
 
 Por ejemplo, si el cliente intenta enviar un parámetro query `tool` con un valor de `plumbus`, como:
 
@@ -42,7 +42,7 @@ Por ejemplo, si el cliente intenta enviar un parámetro query `tool` con un valo
 https://example.com/items/?limit=10&tool=plumbus
 ```
 
-Recibirán una respuesta de **error** que les indica que el parámetro query `tool` no está permitido:
+Recibirán un response de **error** que les indica que el parámetro query `tool` no está permitido:
 
 ```json
 {

@@ -1,4 +1,4 @@
-# Headers de Respuesta
+# Headers de Response
 
 ## Usar un parámetro `Response`
 
@@ -21,7 +21,7 @@ También puedes declarar el parámetro `Response` en dependencias, así como con
 
 Adicionalmente, puedes añadir headers cuando se retorne una `Response` directamente.
 
-Crea un response tal como se describe en [Retornar una respuesta directamente](response-directly.md){.internal-link target=_blank} y pasa los headers como un parámetro adicional:
+Crea un response tal como se describe en [Retornar un response directamente](response-directly.md){.internal-link target=_blank} y pasa los headers como un parámetro adicional:
 
 {* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 

@@ -34,9 +34,9 @@ Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier c
 
 {* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
 
-Si un cliente intenta enviar algunos **headers extra**, recibirán una respuesta de **error**.
+Si un cliente intenta enviar algunos **headers extra**, recibirán un response de **error**.
 
-Por ejemplo, si el cliente intenta enviar un header `tool` con un valor de `plumbus`, recibirán una respuesta de **error** indicando que el parámetro de header `tool` no está permitido:
+Por ejemplo, si el cliente intenta enviar un header `tool` con un valor de `plumbus`, recibirán un response de **error** indicando que el parámetro de header `tool` no está permitido:
 
 ```json
 {

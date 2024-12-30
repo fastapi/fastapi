@@ -1,6 +1,6 @@
 # Form Data
 
-Cuando necesitas recibir campos de form en lugar de JSON, puedes usar `Form`.
+Cuando necesitas recibir campos de formulario en lugar de JSON, puedes usar `Form`.
 
 /// info | Información
 
@@ -22,13 +22,13 @@ Importar `Form` desde `fastapi`:
 
 ## Definir parámetros de `Form`
 
-Crea parámetros de form de la misma manera que lo harías para `Body` o `Query`:
+Crea parámetros de formulario de la misma manera que lo harías para `Body` o `Query`:
 
 {* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
-Por ejemplo, en una de las formas en las que se puede usar la especificación OAuth2 (llamada "password flow") se requiere enviar un `username` y `password` como campos de form.
+Por ejemplo, en una de las formas en las que se puede usar la especificación OAuth2 (llamada "password flow") se requiere enviar un `username` y `password` como campos de formulario.
 
-La <abbr title="specification">especificación</abbr> requiere que los campos se llamen exactamente `username` y `password`, y que se envíen como campos de form, no JSON.
+La <abbr title="specification">especificación</abbr> requiere que los campos se llamen exactamente `username` y `password`, y que se envíen como campos de formulario, no JSON.
 
 Con `Form` puedes declarar las mismas configuraciones que con `Body` (y `Query`, `Path`, `Cookie`), incluyendo validación, ejemplos, un alias (por ejemplo, `user-name` en lugar de `username`), etc.
 
@@ -44,7 +44,7 @@ Para declarar bodies de forms, necesitas usar `Form` explícitamente, porque sin
 
 ///
 
-## Sobre "Campos de Form"
+## Sobre "Campos de Formulario"
 
 La manera en que los forms HTML (`<form></form>`) envían los datos al servidor normalmente usa una codificación "especial" para esos datos, es diferente de JSON.
 
@@ -54,9 +54,9 @@ La manera en que los forms HTML (`<form></form>`) envían los datos al servidor 
 
 Los datos de forms normalmente se codifican usando el "media type" `application/x-www-form-urlencoded`.
 
-Pero cuando el form incluye archivos, se codifica como `multipart/form-data`. Leerás sobre la gestión de archivos en el próximo capítulo.
+Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Leerás sobre la gestión de archivos en el próximo capítulo.
 
-Si quieres leer más sobre estas codificaciones y campos de form, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
+Si quieres leer más sobre estas codificaciones y campos de formulario, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
 
 ///
 
@@ -70,4 +70,4 @@ Esto no es una limitación de **FastAPI**, es parte del protocolo HTTP.
 
 ## Recapitulación
 
-Usa `Form` para declarar parámetros de entrada de datos de form.
+Usa `Form` para declarar parámetros de entrada de datos de formulario.

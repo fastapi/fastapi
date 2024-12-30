@@ -57,8 +57,8 @@ Se admiten los siguientes argumentos:
 * `allow_methods` - Una lista de métodos HTTP que deberían estar permitidos para requests cross-origin. Por defecto es `['GET']`. Puedes usar `['*']` para permitir todos los métodos estándar.
 * `allow_headers` - Una lista de headers de request HTTP que deberían estar soportados para requests cross-origin. Por defecto es `[]`. Puedes usar `['*']` para permitir todos los headers. Los headers `Accept`, `Accept-Language`, `Content-Language` y `Content-Type` siempre están permitidos para <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">requests CORS simples</a>.
 * `allow_credentials` - Indica que las cookies deberían estar soportadas para requests cross-origin. Por defecto es `False`. Además, `allow_origins` no puede ser configurado a `['*']` para que las credenciales estén permitidas, los orígenes deben ser especificados.
-* `expose_headers` - Indica cualquier header de respuesta que debería ser accesible para el navegador. Por defecto es `[]`.
-* `max_age` - Establece un tiempo máximo en segundos para que los navegadores almacenen en caché las respuestas CORS. Por defecto es `600`.
+* `expose_headers` - Indica cualquier header de response que debería ser accesible para el navegador. Por defecto es `[]`.
+* `max_age` - Establece un tiempo máximo en segundos para que los navegadores almacenen en caché los responses CORS. Por defecto es `600`.
 
 El middleware responde a dos tipos particulares de request HTTP...
 
@@ -66,11 +66,11 @@ El middleware responde a dos tipos particulares de request HTTP...
 
 Estos son cualquier request `OPTIONS` con headers `Origin` y `Access-Control-Request-Method`.
 
-En este caso, el middleware interceptará el request entrante y responderá con los headers CORS adecuados, y una respuesta `200` o `400` con fines informativos.
+En este caso, el middleware interceptará el request entrante y responderá con los headers CORS adecuados, y un response `200` o `400` con fines informativos.
 
 ### Requests simples
 
-Cualquier request con un header `Origin`. En este caso, el middleware pasará el request a través de lo normal, pero incluirá los headers CORS adecuados en la respuesta.
+Cualquier request con un header `Origin`. En este caso, el middleware pasará el request a través de lo normal, pero incluirá los headers CORS adecuados en el response.
 
 ## Más info
 

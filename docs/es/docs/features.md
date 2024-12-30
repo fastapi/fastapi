@@ -121,7 +121,7 @@ Toda la validación es manejada por **Pydantic**, que es robusto y sólidamente 
 
 La seguridad y la autenticación están integradas. Sin ningún compromiso con bases de datos ni modelos de datos.
 
-Todos los schemes de seguridad están definidos en OpenAPI incluyendo:
+Todos los esquemas de seguridad están definidos en OpenAPI incluyendo:
 
 * HTTP Basic.
 * **OAuth2** (también con **JWT tokens**). Prueba el tutorial en [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
@@ -188,13 +188,13 @@ Lo mismo aplica para el sentido contrario. En muchos casos puedes pasar el objet
 Con **FastAPI** obtienes todas las características de **Pydantic** (dado que FastAPI está basado en Pydantic para todo el manejo de datos):
 
 * **Sin dificultades para entender**:
-    * No necesitas aprender un nuevo micro-lenguaje de definición de schemas.
+    * No necesitas aprender un nuevo micro-lenguaje de definición de esquemas.
     * Si sabes tipos de Python, sabes cómo usar Pydantic.
 * Interactúa bien con tu **<abbr title="en inglés: Integrated Development Environment, similar a editor de código">IDE</abbr>/<abbr title="Un programa que chequea errores en el código">linter</abbr>/cerebro**:
     * Porque las estructuras de datos de Pydantic son solo <abbr title='En español: ejemplares. Aunque a veces los llaman incorrectamente "instancias"'>instances</abbr> de clases que tu defines, el auto-completado, el linting, mypy y tu intuición deberían funcionar bien con tus datos validados.
 * Valida **estructuras complejas**:
     * Usa modelos jerárquicos de modelos de Pydantic, `typing` de Python,  `List` y `Dict`, etc.
-    * Los validadores también permiten que se definan fácil y claramente schemas complejos de datos. Estos son chequeados y documentados como JSON Schema.
+    * Los validadores también permiten que se definan fácil y claramente esquemas complejos de datos. Estos son chequeados y documentados como JSON Schema.
     * Puedes tener objetos de **JSON profundamente anidados** y que todos sean validados y anotados.
 * **Extensible**:
     * Pydantic permite que se definan tipos de datos a la medida o puedes extender la validación con métodos en un modelo decorado con el <abbr title="en inglés: validator decorator"> decorador de validación</abbr>.

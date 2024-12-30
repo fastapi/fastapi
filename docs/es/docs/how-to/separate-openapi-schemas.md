@@ -1,4 +1,4 @@
-# Separación de Schemas OpenAPI para Entrada y Salida o No
+# Separación de Esquemas OpenAPI para Entrada y Salida o No
 
 Al usar **Pydantic v2**, el OpenAPI generado es un poco más exacto y **correcto** que antes. 😎
 
@@ -36,9 +36,9 @@ Pero si usas el mismo modelo como salida, como aquí:
 
 ...entonces, porque `description` tiene un valor por defecto, si **no devuelves nada** para ese campo, aún tendrá ese **valor por defecto**.
 
-### Modelo para Datos de Respuesta de Salida
+### Modelo para Datos de Response de Salida
 
-Si interactúas con la documentación y revisas la respuesta, aunque el código no agregó nada en uno de los campos `description`, la respuesta JSON contiene el valor por defecto (`null`):
+Si interactúas con la documentación y revisas el response, aunque el código no agregó nada en uno de los campos `description`, el response JSON contiene el valor por defecto (`null`):
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image02.png">
@@ -65,7 +65,7 @@ También puedes revisar el modelo de salida en la documentación, **ambos** `nam
 
 ### Modelo para Entrada y Salida en la Documentación
 
-Y si revisas todos los Schemas disponibles (JSON Schemas) en OpenAPI, verás que hay dos, uno `Item-Input` y uno `Item-Output`.
+Y si revisas todos los esquemas disponibles (JSON Schemas) en OpenAPI, verás que hay dos, uno `Item-Input` y uno `Item-Output`.
 
 Para `Item-Input`, `description` **no es requerido**, no tiene un asterisco rojo.
 
@@ -77,9 +77,9 @@ Pero para `Item-Output`, `description` **es requerido**, tiene un asterisco rojo
 
 Con esta funcionalidad de **Pydantic v2**, la documentación de tu API es más **precisa**, y si tienes clientes y SDKs autogenerados, también serán más precisos, con una mejor **experiencia para desarrolladores** y consistencia. 🎉
 
-## No Separar Schemas
+## No Separar Esquemas
 
-Ahora, hay algunos casos donde podrías querer tener el **mismo schema para entrada y salida**.
+Ahora, hay algunos casos donde podrías querer tener el **mismo esquema para entrada y salida**.
 
 Probablemente el caso principal para esto es si ya tienes algún código cliente/SDKs autogenerado y no quieres actualizar todo el código cliente/SDKs autogenerado aún, probablemente querrás hacerlo en algún momento, pero tal vez no ahora.
 
@@ -93,9 +93,9 @@ El soporte para `separate_input_output_schemas` fue agregado en FastAPI `0.102.0
 
 {* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
 
-### Mismo Schema para Modelos de Entrada y Salida en la Documentación
+### Mismo Esquema para Modelos de Entrada y Salida en la Documentación
 
-Y ahora habrá un único schema para entrada y salida para el modelo, solo `Item`, y tendrá `description` como **no requerido**:
+Y ahora habrá un único esquema para entrada y salida para el modelo, solo `Item`, y tendrá `description` como **no requerido**:
 
 <div class="screenshot">
 <img src="/img/tutorial/separate_openapi_schemas/image05.png">

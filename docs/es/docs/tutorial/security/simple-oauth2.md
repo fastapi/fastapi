@@ -20,9 +20,9 @@ La especificación también establece que el `username` y `password` deben envia
 
 ### `scope`
 
-La especificación también indica que el cliente puede enviar otro campo del form llamado "`scope`".
+La especificación también indica que el cliente puede enviar otro campo del formulario llamado "`scope`".
 
-El nombre del campo del form es `scope` (en singular), pero en realidad es un string largo con "scopes" separados por espacios.
+El nombre del campo del formulario es `scope` (en singular), pero en realidad es un string largo con "scopes" separados por espacios.
 
 Cada "scope" es simplemente un string (sin espacios).
 
@@ -54,7 +54,7 @@ Primero, importa `OAuth2PasswordRequestForm`, y úsalo como una dependencia con 
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
-`OAuth2PasswordRequestForm` es una dependencia de clase que declara un form body con:
+`OAuth2PasswordRequestForm` es una dependencia de clase que declara un body de formulario con:
 
 * El `username`.
 * El `password`.
@@ -152,7 +152,7 @@ Para una explicación más completa de `**user_dict` revisa en [la documentació
 
 ## Devolver el token
 
-La respuesta del endpoint `token` debe ser un objeto JSON.
+El response del endpoint `token` debe ser un objeto JSON.
 
 Debe tener un `token_type`. En nuestro caso, como estamos usando tokens "Bearer", el tipo de token debe ser "`bearer`".
 

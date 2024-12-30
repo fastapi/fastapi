@@ -1,6 +1,6 @@
-# Código de Estado de la Respuesta
+# Código de Estado del Response
 
-De la misma manera que puedes especificar un modelo de respuesta, también puedes declarar el código de estado HTTP usado para la respuesta con el parámetro `status_code` en cualquiera de las *path operations*:
+De la misma manera que puedes especificar un modelo de response, también puedes declarar el código de estado HTTP usado para el response con el parámetro `status_code` en cualquiera de las *path operations*:
 
 * `@app.get()`
 * `@app.post()`
@@ -26,14 +26,14 @@ El parámetro `status_code` recibe un número con el código de estado HTTP.
 
 Esto hará:
 
-* Devolver ese código de estado en la respuesta.
-* Documentarlo como tal en el schema de OpenAPI (y por lo tanto, en las interfaces de usuario):
+* Devolver ese código de estado en el response.
+* Documentarlo como tal en el esquema de OpenAPI (y por lo tanto, en las interfaces de usuario):
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
 /// note | Nota
 
-Algunos códigos de respuesta (ver la siguiente sección) indican que la respuesta no tiene un body.
+Algunos códigos de response (ver la siguiente sección) indican que el response no tiene un body.
 
 FastAPI sabe esto, y producirá documentación OpenAPI que establece que no hay un response body.
 
@@ -47,20 +47,20 @@ Si ya sabes qué son los códigos de estado HTTP, salta a la siguiente sección.
 
 ///
 
-En HTTP, envías un código de estado numérico de 3 dígitos como parte de la respuesta.
+En HTTP, envías un código de estado numérico de 3 dígitos como parte del response.
 
 Estos códigos de estado tienen un nombre asociado para reconocerlos, pero la parte importante es el número.
 
 En breve:
 
-* `100` y superiores son para "Información". Rara vez los usas directamente. Las respuestas con estos códigos de estado no pueden tener un body.
-* **`200`** y superiores son para respuestas "Exitosas". Estos son los que usarías más.
+* `100` y superiores son para "Información". Rara vez los usas directamente. Los responses con estos códigos de estado no pueden tener un body.
+* **`200`** y superiores son para responses "Exitosos". Estos son los que usarías más.
     * `200` es el código de estado por defecto, lo que significa que todo estaba "OK".
     * Otro ejemplo sería `201`, "Created". Comúnmente se usa después de crear un nuevo registro en la base de datos.
-    * Un caso especial es `204`, "No Content". Esta respuesta se usa cuando no hay contenido para devolver al cliente, por lo tanto, la respuesta no debe tener un body.
-* **`300`** y superiores son para "Redirección". Las respuestas con estos códigos de estado pueden o no tener un body, excepto `304`, "Not Modified", que no debe tener uno.
-* **`400`** y superiores son para respuestas de "Error del Cliente". Este es el segundo tipo que probablemente más usarías.
-    * Un ejemplo es `404`, para una respuesta "Not Found".
+    * Un caso especial es `204`, "No Content". Este response se usa cuando no hay contenido para devolver al cliente, por lo tanto, el response no debe tener un body.
+* **`300`** y superiores son para "Redirección". Los responses con estos códigos de estado pueden o no tener un body, excepto `304`, "Not Modified", que no debe tener uno.
+* **`400`** y superiores son para responses de "Error del Cliente". Este es el segundo tipo que probablemente más usarías.
+    * Un ejemplo es `404`, para un response "Not Found".
     * Para errores genéricos del cliente, puedes usar simplemente `400`.
 * `500` y superiores son para errores del servidor. Casi nunca los usas directamente. Cuando algo sale mal en alguna parte de tu código de aplicación, o del servidor, automáticamente devolverá uno de estos códigos de estado.
 

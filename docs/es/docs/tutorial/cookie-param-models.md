@@ -52,11 +52,11 @@ Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier c
 
 {* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
 
-Si un cliente intenta enviar algunas **cookies extra**, recibirán una respuesta de **error**.
+Si un cliente intenta enviar algunas **cookies extra**, recibirán un response de **error**.
 
 Pobres banners de cookies con todo su esfuerzo para obtener tu consentimiento para que la <abbr title="Esta es otra broma. No me prestes atención. Toma un café para tu cookie. ☕">API lo rechace</abbr>. 🍪
 
-Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valor de `good-list-please`, el cliente recibirá una respuesta de **error** que le informa que la cookie `santa_tracker` <abbr title="Santa desaprueba la falta de cookies. 🎅 Está bien, no más bromas de cookies.">no está permitida</abbr>:
+Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valor de `good-list-please`, el cliente recibirá un response de **error** que le informa que la cookie `santa_tracker` <abbr title="Santa desaprueba la falta de cookies. 🎅 Está bien, no más bromas de cookies.">no está permitida</abbr>:
 
 ```json
 {

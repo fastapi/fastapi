@@ -243,5 +243,5 @@ Pero con todos los beneficios:
 * Soporte de editor (¡autocompletado en todas partes!)
 * Conversión de datos (también conocido como parsing/serialización)
 * Validación de datos
-* Documentación del schema
+* Documentación del esquema
 * Documentación automática

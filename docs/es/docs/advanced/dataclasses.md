@@ -1,6 +1,6 @@
 # Usando Dataclasses
 
-FastAPI está construido sobre **Pydantic**, y te he estado mostrando cómo usar modelos de Pydantic para declarar requests y respuestas.
+FastAPI está construido sobre **Pydantic**, y te he estado mostrando cómo usar modelos de Pydantic para declarar requests y responses.
 
 Pero FastAPI también soporta el uso de <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> de la misma manera:
 
@@ -36,7 +36,7 @@ También puedes usar `dataclasses` en el parámetro `response_model`:
 
 El dataclass será automáticamente convertido a un dataclass de Pydantic.
 
-De esta manera, su schema aparecerá en la interfaz de usuario de la documentación de la API:
+De esta manera, su esquema aparecerá en la interfaz de usuario de la documentación de la API:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
@@ -78,7 +78,7 @@ En ese caso, simplemente puedes intercambiar los `dataclasses` estándar con `py
 
 9. Esta *path operation function* no está devolviendo dataclasses (aunque podría), sino una lista de diccionarios con datos internos.
 
-    FastAPI usará el parámetro `response_model` (que incluye dataclasses) para convertir la respuesta.
+    FastAPI usará el parámetro `response_model` (que incluye dataclasses) para convertir el response.
 
 Puedes combinar `dataclasses` con otras anotaciones de tipos en muchas combinaciones diferentes para formar estructuras de datos complejas.
 

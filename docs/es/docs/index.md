@@ -225,7 +225,7 @@ El comando `uvicorn main:app` se refiere a:
 
 Abre tu navegador en <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Verás la respuesta de JSON cómo:
+Verás el response de JSON cómo:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}

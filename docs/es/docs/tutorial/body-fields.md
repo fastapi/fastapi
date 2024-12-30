@@ -48,8 +48,8 @@ Aprenderás más sobre cómo agregar información extra más adelante en la docu
 
 /// warning | Advertencia
 
-Las claves extra pasadas a `Field` también estarán presentes en el schema de OpenAPI resultante para tu aplicación.
-Como estas claves no necesariamente tienen que ser parte de la especificación de OpenAPI, algunas herramientas de OpenAPI, por ejemplo [el validador de OpenAPI](https://validator.swagger.io/), podrían no funcionar con tu schema generado.
+Las claves extra pasadas a `Field` también estarán presentes en el esquema de OpenAPI resultante para tu aplicación.
+Como estas claves no necesariamente tienen que ser parte de la especificación de OpenAPI, algunas herramientas de OpenAPI, por ejemplo [el validador de OpenAPI](https://validator.swagger.io/), podrían no funcionar con tu esquema generado.
 
 ///
 

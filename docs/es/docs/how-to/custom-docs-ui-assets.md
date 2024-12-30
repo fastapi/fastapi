@@ -26,7 +26,7 @@ Ahora puedes crear las *path operations* para la documentación personalizada.
 
 Puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML para la documentación, y pasarles los argumentos necesarios:
 
-* `openapi_url`: la URL donde la página HTML para la documentación puede obtener el OpenAPI schema de tu API. Puedes usar aquí el atributo `app.openapi_url`.
+* `openapi_url`: la URL donde la página HTML para la documentación puede obtener el OpenAPI esquema de tu API. Puedes usar aquí el atributo `app.openapi_url`.
 * `title`: el título de tu API.
 * `oauth2_redirect_url`: puedes usar `app.swagger_ui_oauth2_redirect_url` aquí para usar el valor predeterminado.
 * `swagger_js_url`: la URL donde el HTML para tu documentación de Swagger UI puede obtener el archivo **JavaScript**. Esta es la URL personalizada del CDN.
@@ -158,7 +158,7 @@ Y de la misma manera que con un CDN personalizado, ahora puedes crear las *path 
 
 Nuevamente, puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML para la documentación, y pasarles los argumentos necesarios:
 
-* `openapi_url`: la URL donde la página HTML para la documentación puede obtener el OpenAPI schema de tu API. Puedes usar aquí el atributo `app.openapi_url`.
+* `openapi_url`: la URL donde la página HTML para la documentación puede obtener el OpenAPI esquema de tu API. Puedes usar aquí el atributo `app.openapi_url`.
 * `title`: el título de tu API.
 * `oauth2_redirect_url`: puedes usar `app.swagger_ui_oauth2_redirect_url` aquí para usar el valor predeterminado.
 * `swagger_js_url`: la URL donde el HTML para tu documentación de Swagger UI puede obtener el archivo **JavaScript**. **Este es el que tu propia aplicación está sirviendo ahora**.

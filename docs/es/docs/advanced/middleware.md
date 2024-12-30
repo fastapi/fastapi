@@ -69,19 +69,19 @@ Se soportan los siguientes argumentos:
 
 * `allowed_hosts` - Una list de nombres de dominio que deberían ser permitidos como nombres de host. Se soportan dominios comodín como `*.example.com` para hacer coincidir subdominios. Para permitir cualquier nombre de host, usa `allowed_hosts=["*"]` u omite el middleware.
 
-Si una request entrante no se valida correctamente, se enviará una respuesta `400`.
+Si una request entrante no se valida correctamente, se enviará un response `400`.
 
 ## `GZipMiddleware`
 
-Maneja respuestas GZip para cualquier request que incluya `"gzip"` en el header `Accept-Encoding`.
+Maneja responses GZip para cualquier request que incluya `"gzip"` en el header `Accept-Encoding`.
 
-El middleware manejará tanto respuestas estándar como en streaming.
+El middleware manejará tanto responses estándar como en streaming.
 
 {* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Se soportan los siguientes argumentos:
 
-* `minimum_size` - No comprimir con GZip respuestas que sean más pequeñas que este tamaño mínimo en bytes. Por defecto es `500`.
+* `minimum_size` - No comprimir con GZip responses que sean más pequeñas que este tamaño mínimo en bytes. Por defecto es `500`.
 * `compresslevel` - Usado durante la compresión GZip. Es un entero que varía de 1 a 9. Por defecto es `9`. Un valor más bajo resulta en una compresión más rápida pero archivos más grandes, mientras que un valor más alto resulta en una compresión más lenta pero archivos más pequeños.
 
 ## Otros middlewares

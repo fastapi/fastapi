@@ -166,7 +166,7 @@ De esa manera, podemos declarar solo las diferencias entre los modelos (con `pas
 
 ## `Union` o `anyOf`
 
-Puedes declarar una respuesta que sea la `Union` de dos o más tipos, eso significa que la respuesta sería cualquiera de ellos.
+Puedes declarar un response que sea la `Union` de dos o más tipos, eso significa que el response sería cualquiera de ellos.
 
 Se definirá en OpenAPI con `anyOf`.
 
@@ -197,16 +197,16 @@ Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obten
 
 ## Lista de modelos
 
-De la misma manera, puedes declarar respuestas de listas de objetos.
+De la misma manera, puedes declarar responses de listas de objetos.
 
 Para eso, usa el `typing.List` estándar de Python (o simplemente `list` en Python 3.9 y posteriores):
 
 {* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
 
-## Respuesta con `dict` arbitrario
+## Response con `dict` arbitrario
 
-También puedes declarar una respuesta usando un `dict` arbitrario plano, declarando solo el tipo de las claves y valores, sin usar un modelo Pydantic.
+También puedes declarar un response usando un `dict` arbitrario plano, declarando solo el tipo de las claves y valores, sin usar un modelo Pydantic.
 
 Esto es útil si no conoces los nombres de los campos/atributos válidos (que serían necesarios para un modelo Pydantic) de antemano.
 

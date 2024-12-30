@@ -148,7 +148,7 @@ Crea una variable `ALGORITHM` con el algoritmo usado para firmar el token JWT y 
 
 Crea una variable para la expiración del token.
 
-Define un Modelo de Pydantic que se usará en el endpoint de token para la respuesta.
+Define un Modelo de Pydantic que se usará en el endpoint de token para el response.
 
 Crea una función de utilidad para generar un nuevo token de acceso.
 
@@ -217,7 +217,7 @@ Observa que en ninguna parte del código está la contraseña en texto claro "`s
 
 <img src="/img/tutorial/security/image08.png">
 
-Llama al endpoint `/users/me/`, obtendrás la respuesta como:
+Llama al endpoint `/users/me/`, obtendrás el response como:
 
 ```JSON
 {

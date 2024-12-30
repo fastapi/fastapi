@@ -119,7 +119,7 @@ La manera en que los forms de HTML (`<form></form>`) envían los datos al servid
 
 Los datos de los forms normalmente se codifican usando el "media type" `application/x-www-form-urlencoded` cuando no incluyen archivos.
 
-Pero cuando el form incluye archivos, se codifica como `multipart/form-data`. Si usas `File`, **FastAPI** sabrá que tiene que obtener los archivos de la parte correcta del cuerpo.
+Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Si usas `File`, **FastAPI** sabrá que tiene que obtener los archivos de la parte correcta del cuerpo.
 
 Si deseas leer más sobre estas codificaciones y campos de formularios, dirígete a la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
 
@@ -149,7 +149,7 @@ También puedes usar `File()` con `UploadFile`, por ejemplo, para establecer met
 
 Es posible subir varios archivos al mismo tiempo.
 
-Estarían asociados al mismo "campo de form" enviado usando "form data".
+Estarían asociados al mismo "campo de formulario" enviado usando "form data".
 
 Para usar eso, declara una lista de `bytes` o `UploadFile`:
 
@@ -161,7 +161,7 @@ Recibirás, como se declaró, una `list` de `bytes` o `UploadFile`s.
 
 También podrías usar `from starlette.responses import HTMLResponse`.
 
-**FastAPI** proporciona las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+**FastAPI** proporciona las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de los responses disponibles vienen directamente de Starlette.
 
 ///
 

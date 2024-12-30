@@ -21,7 +21,7 @@ Los códigos de estado en el rango de 400 significan que hubo un error por parte
 
 ## Usa `HTTPException`
 
-Para devolver respuestas HTTP con errores al cliente, usa `HTTPException`.
+Para devolver responses HTTP con errores al cliente, usa `HTTPException`.
 
 ### Importa `HTTPException`
 
@@ -41,9 +41,9 @@ En este ejemplo, cuando el cliente solicita un ítem por un ID que no existe, la
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
-### La respuesta resultante
+### El response resultante
 
-Si el cliente solicita `http://example.com/items/foo` (un `item_id` `"foo"`), ese cliente recibirá un código de estado HTTP de 200, y una respuesta JSON de:
+Si el cliente solicita `http://example.com/items/foo` (un `item_id` `"foo"`), ese cliente recibirá un código de estado HTTP de 200, y un response JSON de:
 
 ```JSON
 {
@@ -51,7 +51,7 @@ Si el cliente solicita `http://example.com/items/foo` (un `item_id` `"foo"`), es
 }
 ```
 
-Pero si el cliente solicita `http://example.com/items/bar` (un `item_id` inexistente `"bar"`), ese cliente recibirá un código de estado HTTP de 404 (el error "no encontrado"), y una respuesta JSON de:
+Pero si el cliente solicita `http://example.com/items/bar` (un `item_id` inexistente `"bar"`), ese cliente recibirá un código de estado HTTP de 404 (el error "no encontrado"), y un response JSON de:
 
 ```JSON
 {
@@ -105,7 +105,7 @@ Así que recibirás un error limpio, con un código de estado HTTP de `418` y un
 
 También podrías usar `from starlette.requests import Request` y `from starlette.responses import JSONResponse`.
 
-**FastAPI** ofrece las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette. Lo mismo con `Request`.
+**FastAPI** ofrece las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de los responses disponibles vienen directamente de Starlette. Lo mismo con `Request`.
 
 ///
 
@@ -113,7 +113,7 @@ También podrías usar `from starlette.requests import Request` y `from starlett
 
 **FastAPI** tiene algunos manejadores de excepciones predeterminados.
 
-Estos manejadores se encargan de devolver las respuestas JSON predeterminadas cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
+Estos manejadores se encargan de devolver los responses JSON predeterminadas cuando lanzas un `HTTPException` y cuando el request tiene datos inválidos.
 
 Puedes sobrescribir estos manejadores de excepciones con los tuyos propios.
 
@@ -176,7 +176,7 @@ Y mientras lo arreglas, tus clientes/usuarios no deberían tener acceso a inform
 
 De la misma manera, puedes sobrescribir el manejador de `HTTPException`.
 
-Por ejemplo, podrías querer devolver una respuesta de texto plano en lugar de JSON para estos errores:
+Por ejemplo, podrías querer devolver un response de texto plano en lugar de JSON para estos errores:
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
@@ -184,7 +184,7 @@ Por ejemplo, podrías querer devolver una respuesta de texto plano en lugar de J
 
 También podrías usar `from starlette.responses import PlainTextResponse`.
 
-**FastAPI** ofrece las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de las respuestas disponibles vienen directamente de Starlette.
+**FastAPI** ofrece las mismas `starlette.responses` como `fastapi.responses` solo como una conveniencia para ti, el desarrollador. Pero la mayoría de los responses disponibles vienen directamente de Starlette.
 
 ///
 
@@ -205,7 +205,7 @@ Ahora intenta enviar un ítem inválido como:
 }
 ```
 
-Recibirás una respuesta que te dirá que los datos son inválidos conteniendo el body recibido:
+Recibirás un response que te dirá que los datos son inválidos conteniendo el body recibido:
 
 ```JSON hl_lines="12-15"
 {

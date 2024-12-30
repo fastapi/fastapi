@@ -73,7 +73,7 @@ X-Token: foo
 X-Token: bar
 ```
 
-La respuesta sería como:
+El response sería como:
 
 ```JSON
 {

@@ -50,7 +50,7 @@ A continuación, creamos una subclase personalizada de `fastapi.routing.APIRoute
 
 Esta vez, sobrescribirá el método `APIRoute.get_route_handler()`.
 
-Este método devuelve una función. Y esa función es la que recibirá un request y devolverá una respuesta.
+Este método devuelve una función. Y esa función es la que recibirá un request y devolverá un response.
 
 Aquí lo usamos para crear un `GzipRequest` a partir del request original.
 
@@ -104,6 +104,6 @@ También puedes establecer el parámetro `route_class` de un `APIRouter`:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
-En este ejemplo, las *path operations* bajo el `router` usarán la clase personalizada `TimedRoute`, y tendrán un header `X-Response-Time` extra en la respuesta con el tiempo que tomó generar la respuesta:
+En este ejemplo, las *path operations* bajo el `router` usarán la clase personalizada `TimedRoute`, y tendrán un header `X-Response-Time` extra en el response con el tiempo que tomó generar el response:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

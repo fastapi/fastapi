@@ -94,7 +94,7 @@ Por ejemplo, aunque `users` iría después de `items` en orden alfabético, se m
 
 ## URL de OpenAPI
 
-Por defecto, el schema OpenAPI se sirve en `/openapi.json`.
+Por defecto, el esquema OpenAPI se sirve en `/openapi.json`.
 
 Pero puedes configurarlo con el parámetro `openapi_url`.
 
@@ -102,7 +102,7 @@ Por ejemplo, para configurarlo para que se sirva en `/api/v1/openapi.json`:
 
 {* ../../docs_src/metadata/tutorial002.py hl[3] *}
 
-Si quieres deshabilitar el schema OpenAPI completamente, puedes establecer `openapi_url=None`, eso también deshabilitará las interfaces de usuario de documentación que lo usan.
+Si quieres deshabilitar el esquema OpenAPI completamente, puedes establecer `openapi_url=None`, eso también deshabilitará las interfaces de usuario de documentación que lo usan.
 
 ## URLs de Docs
 

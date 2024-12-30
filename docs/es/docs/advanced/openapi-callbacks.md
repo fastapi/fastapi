@@ -4,7 +4,7 @@ Podrías crear una API con una *path operation* que podría desencadenar un requ
 
 El proceso que ocurre cuando tu aplicación API llama a la *API externa* se llama un "callback". Porque el software que escribió el desarrollador externo envía un request a tu API y luego tu API *responde*, enviando un request a una *API externa* (que probablemente fue creada por el mismo desarrollador).
 
-En este caso, podrías querer documentar cómo esa API externa *debería* verse. Qué *path operation* debería tener, qué cuerpo debería esperar, qué respuesta debería devolver, etc.
+En este caso, podrías querer documentar cómo esa API externa *debería* verse. Qué *path operation* debería tener, qué cuerpo debería esperar, qué response debería devolver, etc.
 
 ## Una aplicación con callbacks
 
@@ -82,7 +82,7 @@ Así que vamos a usar ese mismo conocimiento para documentar cómo debería vers
 
 Cuando escribas el código para documentar un callback, podría ser útil imaginar que eres ese *desarrollador externo*. Y que actualmente estás implementando la *API externa*, no *tu API*.
 
-Adoptar temporalmente este punto de vista (del *desarrollador externo*) puede ayudarte a sentir que es más obvio dónde poner los parámetros, el modelo de Pydantic para el body, para la respuesta, etc. para esa *API externa*.
+Adoptar temporalmente este punto de vista (del *desarrollador externo*) puede ayudarte a sentir que es más obvio dónde poner los parámetros, el modelo de Pydantic para el body, para el response, etc. para esa *API externa*.
 
 ///
 
@@ -99,7 +99,7 @@ Para crear la *path operation* del callback utiliza el mismo `APIRouter` que cre
 Debería verse como una *path operation* normal de FastAPI:
 
 * Probablemente debería tener una declaración del body que debería recibir, por ejemplo `body: InvoiceEvent`.
-* Y también podría tener una declaración de la respuesta que debería devolver, por ejemplo `response_model=InvoiceEventReceived`.
+* Y también podría tener una declaración del response que debería devolver, por ejemplo `response_model=InvoiceEventReceived`.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
 
@@ -149,7 +149,7 @@ con un JSON body que contiene algo como:
 }
 ```
 
-y esperaría una respuesta de esa *API externa* con un JSON body como:
+y esperaría un response de esa *API externa* con un JSON body como:
 
 ```JSON
 {

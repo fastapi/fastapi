@@ -214,7 +214,7 @@ En este ejemplo, hay un **Proceso Administrador** que inicia y controla dos **Wo
 
 Este Proceso Administrador probablemente sería el que escuche en el **puerto** en la IP. Y transmitirá toda la comunicación a los worker processes.
 
-Esos worker processes serían los que ejecutan tu aplicación, realizarían los cálculos principales para recibir una **request** y devolver una **respuesta**, y cargarían cualquier cosa que pongas en variables en RAM.
+Esos worker processes serían los que ejecutan tu aplicación, realizarían los cálculos principales para recibir un **request** y devolver un **response**, y cargarían cualquier cosa que pongas en variables en RAM.
 
 <img src="/img/deployment/concepts/process-ram.svg">
 

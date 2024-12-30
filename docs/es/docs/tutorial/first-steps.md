@@ -44,7 +44,7 @@ Esa línea muestra la URL dónde se está sirviendo tu app en tu maquina local.
 
 Abre tu navegador en <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
-Verás la respuesta en JSON:
+Verás el response en JSON:
 
 ```JSON
 {"message": "Hello World"}
@@ -68,31 +68,31 @@ Aquí verás la documentación automática alternativa (proveída por <a href="h
 
 ### OpenAPI
 
-**FastAPI** genera un "schema" con toda tu API usando el estándar para definir APIs, **OpenAPI**.
+**FastAPI** genera un "esquema" con toda tu API usando el estándar para definir APIs, **OpenAPI**.
 
-#### "Schema"
+#### "Esquema"
 
-Un "schema" es una definición o descripción de algo. No es el código que la implementa, sino solo una descripción abstracta.
+Un "esquema" es una definición o descripción de algo. No es el código que la implementa, sino solo una descripción abstracta.
 
-#### "Schema" de la API
+#### "Esquema" de la API
 
-En este caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> es una especificación que dicta como se debe definir el schema de tu API.
+En este caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> es una especificación que dicta como se debe definir el esquema de tu API.
 
-La definición del schema incluye los paths de tu API, los parámetros que podría recibir, etc.
+La definición del esquema incluye los paths de tu API, los parámetros que podría recibir, etc.
 
-#### "Schema" de datos
+#### "Esquema" de datos
 
-El concepto "schema" también se puede referir a la forma de algunos datos, como un contenido en formato JSON.
+El concepto "esquema" también se puede referir a la forma de algunos datos, como un contenido en formato JSON.
 
 En ese caso haría referencia a los atributos del JSON, los tipos de datos que tiene, etc.
 
 #### OpenAPI y JSON Schema
 
-OpenAPI define un schema de API para tu API. Ese schema incluye definiciones (o "schemas") de los datos enviados y recibidos por tu API usando **JSON Schema**, el estándar para los schemas de datos en JSON.
+OpenAPI define un esquema de API para tu API. Ese esquema incluye definiciones (o "esquemas") de los datos enviados y recibidos por tu API usando **JSON Schema**, el estándar para los esquemas de datos en JSON.
 
 #### Revisa el `openapi.json`
 
-Si sientes curiosidad por saber cómo se ve el schema de OpenAPI en bruto, FastAPI genera automáticamente un (schema) JSON con la descripción de todo tu API.
+Si sientes curiosidad por saber cómo se ve el esquema de OpenAPI en bruto, FastAPI genera automáticamente un (esquema) JSON con la descripción de todo tu API.
 
 Lo puedes ver directamente en: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
 
@@ -121,7 +121,7 @@ Esto te mostrará un JSON que comienza con algo como:
 
 #### ¿Para qué se usa OpenAPI?
 
-El schema de OpenAPI es lo que alimenta a los dos sistemas de documentación interactiva incluidos.
+El esquema de OpenAPI es lo que alimenta a los dos sistemas de documentación interactiva incluidos.
 
 También hay docenas de alternativas, todas basadas en OpenAPI. Podrías añadir fácilmente cualquiera de esas alternativas a tu aplicación construida con **FastAPI**.
 

@@ -1,4 +1,4 @@
-# Respuestas Adicionales en OpenAPI
+# Responses Adicionales en OpenAPI
 
 /// warning | Advertencia
 
@@ -8,23 +8,23 @@ Si estás comenzando con **FastAPI**, puede que no lo necesites.
 
 ///
 
-Puedes declarar respuestas adicionales, con códigos de estado adicionales, tipos de medios, descripciones, etc.
+Puedes declarar responses adicionales, con códigos de estado adicionales, tipos de medios, descripciones, etc.
 
-Esas respuestas adicionales se incluirán en el schema de OpenAPI, por lo que también aparecerán en la documentación de la API.
+Esos responses adicionales se incluirán en el esquema de OpenAPI, por lo que también aparecerán en la documentación de la API.
 
-Pero para esas respuestas adicionales tienes que asegurarte de devolver un `Response` como `JSONResponse` directamente, con tu código de estado y contenido.
+Pero para esos responses adicionales tienes que asegurarte de devolver un `Response` como `JSONResponse` directamente, con tu código de estado y contenido.
 
-## Respuesta Adicional con `model`
+## Response Adicional con `model`
 
 Puedes pasar a tus *decoradores de path operation* un parámetro `responses`.
 
-Recibe un `dict`: las claves son los códigos de estado para cada respuesta (como `200`), y los valores son otros `dict`s con la información para cada uno de ellos.
+Recibe un `dict`: las claves son los códigos de estado para cada response (como `200`), y los valores son otros `dict`s con la información para cada uno de ellos.
 
-Cada uno de esos `dict`s de respuesta puede tener una clave `model`, conteniendo un modelo de Pydantic, así como `response_model`.
+Cada uno de esos `dict`s de response puede tener una clave `model`, conteniendo un modelo de Pydantic, así como `response_model`.
 
 **FastAPI** tomará ese modelo, generará su JSON Schema y lo incluirá en el lugar correcto en OpenAPI.
 
-Por ejemplo, para declarar otra respuesta con un código de estado `404` y un modelo Pydantic `Message`, puedes escribir:
+Por ejemplo, para declarar otro response con un código de estado `404` y un modelo Pydantic `Message`, puedes escribir:
 
 {* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
@@ -49,7 +49,7 @@ El lugar correcto es:
 
 ///
 
-Las respuestas generadas en el OpenAPI para esta *path operation* serán:
+Los responses generadas en el OpenAPI para esta *path operation* serán:
 
 ```JSON hl_lines="3-12"
 {
@@ -88,7 +88,7 @@ Las respuestas generadas en el OpenAPI para esta *path operation* serán:
 }
 ```
 
-Los schemas se referencian a otro lugar dentro del schema de OpenAPI:
+Los esquemas se referencian a otro lugar dentro del esquema de OpenAPI:
 
 ```JSON hl_lines="4-16"
 {
@@ -169,9 +169,9 @@ Los schemas se referencian a otro lugar dentro del schema de OpenAPI:
 }
 ```
 
-## Tipos de medios adicionales para la respuesta principal
+## Tipos de medios adicionales para el response principal
 
-Puedes usar este mismo parámetro `responses` para agregar diferentes tipos de medios para la misma respuesta principal.
+Puedes usar este mismo parámetro `responses` para agregar diferentes tipos de medios para el mismo response principal.
 
 Por ejemplo, puedes agregar un tipo de medio adicional de `image/png`, declarando que tu *path operation* puede devolver un objeto JSON (con tipo de medio `application/json`) o una imagen PNG:
 
@@ -185,23 +185,23 @@ Nota que debes devolver la imagen usando un `FileResponse` directamente.
 
 /// info | Información
 
-A menos que especifiques un tipo de medio diferente explícitamente en tu parámetro `responses`, FastAPI asumirá que la respuesta tiene el mismo tipo de medio que la clase de respuesta principal (por defecto `application/json`).
+A menos que especifiques un tipo de medio diferente explícitamente en tu parámetro `responses`, FastAPI asumirá que el response tiene el mismo tipo de medio que la clase de response principal (por defecto `application/json`).
 
-Pero si has especificado una clase de respuesta personalizada con `None` como su tipo de medio, FastAPI usará `application/json` para cualquier respuesta adicional que tenga un modelo asociado.
+Pero si has especificado una clase de response personalizada con `None` como su tipo de medio, FastAPI usará `application/json` para cualquier response adicional que tenga un modelo asociado.
 
 ///
 
 ## Combinando información
 
-También puedes combinar información de respuesta de múltiples lugares, incluyendo los parámetros `response_model`, `status_code`, y `responses`.
+También puedes combinar información de response de múltiples lugares, incluyendo los parámetros `response_model`, `status_code`, y `responses`.
 
-Puedes declarar un `response_model`, usando el código de estado predeterminado `200` (o uno personalizado si lo necesitas), y luego declarar información adicional para esa misma respuesta en `responses`, directamente en el schema de OpenAPI.
+Puedes declarar un `response_model`, usando el código de estado predeterminado `200` (o uno personalizado si lo necesitas), y luego declarar información adicional para ese mismo response en `responses`, directamente en el esquema de OpenAPI.
 
 **FastAPI** manterá la información adicional de `responses` y la combinará con el JSON Schema de tu modelo.
 
-Por ejemplo, puedes declarar una respuesta con un código de estado `404` que usa un modelo Pydantic y tiene una `description` personalizada.
+Por ejemplo, puedes declarar un response con un código de estado `404` que usa un modelo Pydantic y tiene una `description` personalizada.
 
-Y una respuesta con un código de estado `200` que usa tu `response_model`, pero incluye un `example` personalizado:
+Y un response con un código de estado `200` que usa tu `response_model`, pero incluye un `example` personalizado:
 
 {* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
@@ -209,9 +209,9 @@ Todo se combinará e incluirá en tu OpenAPI, y se mostrará en la documentació
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combina respuestas predefinidas y personalizadas
+## Combina responses predefinidos y personalizados
 
-Es posible que desees tener algunas respuestas predefinidas que se apliquen a muchas *path operations*, pero que quieras combinarlas con respuestas personalizadas necesarias por cada *path operation*.
+Es posible que desees tener algunos responses predefinidos que se apliquen a muchas *path operations*, pero que quieras combinarlos con responses personalizados necesarios por cada *path operation*.
 
 Para esos casos, puedes usar la técnica de Python de "desempaquetar" un `dict` con `**dict_to_unpack`:
 
@@ -233,15 +233,15 @@ Aquí, `new_dict` contendrá todos los pares clave-valor de `old_dict` más el n
 }
 ```
 
-Puedes usar esa técnica para reutilizar algunas respuestas predefinidas en tus *path operations* y combinarlas con otras personalizadas adicionales.
+Puedes usar esa técnica para reutilizar algunos responses predefinidos en tus *path operations* y combinarlos con otros personalizados adicionales.
 
 Por ejemplo:
 
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
-## Más información sobre respuestas OpenAPI
+## Más información sobre responses OpenAPI
 
-Para ver exactamente qué puedes incluir en las respuestas, puedes revisar estas secciones en la especificación OpenAPI:
+Para ver exactamente qué puedes incluir en los responses, puedes revisar estas secciones en la especificación OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Respuestas de OpenAPI</a>, incluye el `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Respuesta de OpenAPI</a>, puedes incluir cualquier cosa de esto directamente en cada respuesta dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes tipos de medios y JSON Schemas), y `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Responses de OpenAPI</a>, incluye el `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Response de OpenAPI</a>, puedes incluir cualquier cosa de esto directamente en cada response dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes tipos de medios y JSON Schemas), y `links`.

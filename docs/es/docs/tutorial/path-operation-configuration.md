@@ -8,9 +8,9 @@ Ten en cuenta que estos parámetros se pasan directamente al *path operation dec
 
 ///
 
-## Código de Estado de Respuesta
+## Código de Estado del Response
 
-Puedes definir el `status_code` (HTTP) que se utilizará en la respuesta de tu *path operation*.
+Puedes definir el `status_code` (HTTP) que se utilizará en el response de tu *path operation*.
 
 Puedes pasar directamente el código `int`, como `404`.
 
@@ -18,7 +18,7 @@ Pero si no recuerdas para qué es cada código numérico, puedes usar las consta
 
 {* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
 
-Ese código de estado se usará en la respuesta y se añadirá al schema de OpenAPI.
+Ese código de estado se usará en el response y se añadirá al esquema de OpenAPI.
 
 /// note | Detalles Técnicos
 
@@ -34,7 +34,7 @@ Puedes añadir tags a tu *path operation*, pasando el parámetro `tags` con un `
 
 {* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
 
-Serán añadidas al schema de OpenAPI y usadas por las interfaces de documentación automática:
+Serán añadidas al esquema de OpenAPI y usadas por las interfaces de documentación automática:
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
@@ -66,23 +66,23 @@ Será usado en la documentación interactiva:
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
-## Descripción de la Respuesta
+## Descripción del Response
 
-Puedes especificar la descripción de la respuesta con el parámetro `response_description`:
+Puedes especificar la descripción del response con el parámetro `response_description`:
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
 
 /// info | Información
 
-Ten en cuenta que `response_description` se refiere específicamente a la respuesta, mientras que `description` se refiere a la *path operation* en general.
+Ten en cuenta que `response_description` se refiere específicamente al response, mientras que `description` se refiere a la *path operation* en general.
 
 ///
 
 /// check | Revisa
 
-OpenAPI especifica que cada *path operation* requiere una descripción de respuesta.
+OpenAPI especifica que cada *path operation* requiere una descripción de response.
 
-Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de "Respuesta exitosa".
+Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de "Response exitoso".
 
 ///
 
