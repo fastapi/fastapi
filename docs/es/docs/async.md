@@ -241,7 +241,7 @@ Este es el caso para la mayoría de las aplicaciones web.
 
 Muchos, muchos usuarios, pero tu servidor está esperando 🕙 su conexión no tan buena para enviar sus requests.
 
-Y luego esperar 🕙 nuevamente a que los responses regresen.
+Y luego esperar 🕙 nuevamente a que los responses retornen.
 
 Esta "espera" 🕙 se mide en microsegundos, pero aún así, sumándolo todo, es mucha espera al final.
 
