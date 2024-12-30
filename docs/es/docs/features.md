@@ -115,7 +115,7 @@ Pero por defecto, todo **"simplemente funciona"**.
     * UUID.
     * ...y otros.
 
-Toda la validación es manejada por el **Pydantic** bien establecido y robusto.
+Toda la validación es manejada por **Pydantic**, una herramienta bien establecida y robusta.
 
 ### Seguridad y autenticación
 
