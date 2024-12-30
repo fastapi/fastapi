@@ -111,7 +111,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -147,7 +147,7 @@ commons: Annotated[CommonQueryParams, ...
 
 //// tab | Python 3.8+ sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -173,7 +173,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -207,7 +207,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -235,7 +235,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 //// tab | Python 3.8+ sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -259,7 +259,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 //// tab | Python 3.8 sin `Annotated`
 
-/// Consejo
+/// tip | Consejo
 
 Prefiere usar la versión `Annotated` si es posible.
 
@@ -279,7 +279,7 @@ El mismo ejemplo se vería entonces así:
 
 ...y **FastAPI** sabrá qué hacer.
 
-/// Consejo
+/// tip | Consejo
 
 Si eso parece más confuso que útil, ignóralo, no lo *necesitas*.
 

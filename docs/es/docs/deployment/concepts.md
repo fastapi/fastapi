@@ -151,7 +151,7 @@ Y aún así, probablemente no querrías que la aplicación quede muerta porque h
 
 Pero en esos casos con errores realmente malos que colapsan el **proceso en ejecución**, querrías un componente externo encargado de **reiniciar** el proceso, al menos un par de veces...
 
-/// Consejo
+/// tip | Consejo
 
 ...Aunque si la aplicación completa **colapsa inmediatamente**, probablemente no tenga sentido seguir reiniciándola eternamente. Pero en esos casos, probablemente lo notarás durante el desarrollo, o al menos justo después de la implementación.
 
