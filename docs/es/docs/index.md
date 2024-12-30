@@ -431,7 +431,7 @@ Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="ht
 
 **Alerta de spoilers**: el tutorial - guía del usuario incluye:
 
-* Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de form** y **archivos**.
+* Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de formulario** y **archivos**.
 * Cómo establecer **restricciones de validación** como `maximum_length` o `regex`.
 * Un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso y fácil de usar.
 * Seguridad y autenticación, incluyendo soporte para **OAuth2** con **tokens JWT** y autenticación **HTTP Basic**.
