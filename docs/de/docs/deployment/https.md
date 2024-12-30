@@ -4,7 +4,7 @@ Es ist leicht anzunehmen, dass HTTPS etwas ist, was einfach nur „aktiviert“ 
 
 Aber es ist viel komplexer als das.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie es eilig haben oder es Ihnen egal ist, fahren Sie mit den nächsten Abschnitten fort, um Schritt-für-Schritt-Anleitungen für die Einrichtung der verschiedenen Technologien zu erhalten.
 
@@ -71,7 +71,7 @@ In dem oder den DNS-Server(n) würden Sie einen Eintrag (einen „`A record`“)
 
 Sie würden dies wahrscheinlich nur einmal tun, beim ersten Mal, wenn Sie alles einrichten.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Dieser Domainnamen-Aspekt liegt weit vor HTTPS, aber da alles von der Domain und der IP-Adresse abhängt, lohnt es sich, das hier zu erwähnen.
 
@@ -121,7 +121,7 @@ Danach verfügen der Client und der Server über eine **verschlüsselte TCP-Verb
 
 Und genau das ist **HTTPS**, es ist einfach **HTTP** innerhalb einer **sicheren TLS-Verbindung**, statt einer puren (unverschlüsselten) TCP-Verbindung.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass die Verschlüsselung der Kommunikation auf der **TCP-Ebene** und nicht auf der HTTP-Ebene erfolgt.
 

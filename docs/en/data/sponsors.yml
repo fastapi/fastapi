@@ -1,7 +1,7 @@
 gold:
-  - url: https://cryptapi.io/
-    title: "CryptAPI: Your easy to use, secure and privacy oriented payment gateway."
-    img: https://fastapi.tiangolo.com/img/sponsors/cryptapi.svg
+  - url: https://blockbee.io?ref=fastapi
+    title: BlockBee Cryptocurrency Payment Gateway
+    img: https://fastapi.tiangolo.com/img/sponsors/blockbee.png
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
@@ -17,24 +17,21 @@ gold:
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://docs.withcoherence.com/configuration/frameworks/?utm_medium=advertising&utm_source=fastapi&utm_campaign=docs#fastapi-example
+  - url: https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website
     title: Coherence
     img: https://fastapi.tiangolo.com/img/sponsors/coherence.png
   - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
     title: Simplify Full Stack Development with FastAPI & MongoDB
     img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
-  - url: https://konghq.com/products/kong-konnect?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=fast-api
-    title: Kong Konnect - API management platform
-    img: https://fastapi.tiangolo.com/img/sponsors/kong.png
   - url: https://zuplo.link/fastapi-gh
     title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
-  - url: https://fine.dev?ref=fastapibadge
-    title: "Fine's AI FastAPI Workflow: Effortlessly Deploy and Integrate FastAPI into Your Project"
-    img: https://fastapi.tiangolo.com/img/sponsors/fine.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/liblab.png
+  - url: https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi
+    title: Deploy & scale any full-stack web app on Render. Focus on building apps, not infra.
+    img: https://fastapi.tiangolo.com/img/sponsors/render.svg
 silver:
   - url: https://github.com/deepset-ai/haystack/
     title: Build powerful search from composable, open source building blocks
@@ -48,9 +45,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: https://fastapi.tiangolo.com/img/sponsors/svix.svg
-  - url: https://www.codacy.com/?utm_source=github&utm_medium=sponsors&utm_id=pioneers
-    title: Take code reviews from hours to minutes
-    img: https://fastapi.tiangolo.com/img/sponsors/codacy.png
   - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
     title: Stainless | Generate best-in-class SDKs
     img: https://fastapi.tiangolo.com/img/sponsors/stainless.png
