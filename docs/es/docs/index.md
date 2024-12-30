@@ -241,7 +241,7 @@ Puedes leer más sobre esto en la <a href="https://fastapi.tiangolo.com/fastapi-
 
 Abre tu navegador en <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Verás la respuesta JSON como:
+Verás el response JSON como:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}

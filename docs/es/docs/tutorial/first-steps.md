@@ -68,7 +68,7 @@ Esa línea muestra la URL donde tu aplicación está siendo servida, en tu máqu
 
 Abre tu navegador en <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
-Verás la respuesta JSON como:
+Verás el response JSON como:
 
 ```JSON
 {"message": "Hello World"}

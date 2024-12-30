@@ -1,6 +1,6 @@
-# Respuesta - Cambiar Código de Estado
+# Response - Cambiar Código de Estado
 
-Probablemente leíste antes que puedes establecer un [Código de Estado de Respuesta](../tutorial/response-status-code.md){.internal-link target=_blank} por defecto.
+Probablemente leíste antes que puedes establecer un [Código de Estado de Response](../tutorial/response-status-code.md){.internal-link target=_blank} por defecto.
 
 Pero en algunos casos necesitas devolver un código de estado diferente al predeterminado.
 
@@ -18,7 +18,7 @@ Para esos casos, puedes usar un parámetro `Response`.
 
 Puedes declarar un parámetro de tipo `Response` en tu *función de path operation* (como puedes hacer para cookies y headers).
 
-Y luego puedes establecer el `status_code` en ese objeto de respuesta *temporal*.
+Y luego puedes establecer el `status_code` en ese objeto de response *temporal*.
 
 {* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
@@ -26,6 +26,6 @@ Y luego puedes devolver cualquier objeto que necesites, como lo harías normalme
 
 Y si declaraste un `response_model`, todavía se utilizará para filtrar y convertir el objeto que devolviste.
 
-**FastAPI** usará esa respuesta *temporal* para extraer el código de estado (también cookies y headers), y los pondrá en la respuesta final que contiene el valor que devolviste, filtrado por cualquier `response_model`.
+**FastAPI** usará ese response *temporal* para extraer el código de estado (también cookies y headers), y los pondrá en el response final que contiene el valor que devolviste, filtrado por cualquier `response_model`.
 
 También puedes declarar el parámetro `Response` en dependencias y establecer el código de estado en ellas. Pero ten en cuenta que el último establecido prevalecerá.

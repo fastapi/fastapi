@@ -6,7 +6,7 @@ Puedes declarar "parámetros" o "variables" de path con la misma sintaxis que se
 
 El valor del parámetro de path `item_id` se pasará a tu función como el argumento `item_id`.
 
-Así que, si ejecutas este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás una respuesta de:
+Así que, si ejecutas este ejemplo y vas a <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, verás un response de:
 
 ```JSON
 {"item_id":"foo"}
@@ -28,7 +28,7 @@ Esto te dará soporte del editor dentro de tu función, con chequeo de errores, 
 
 ## Conversión de datos
 
-Si ejecutas este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, verás una respuesta de:
+Si ejecutas este ejemplo y abres tu navegador en <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, verás un response de:
 
 ```JSON
 {"item_id":3}
@@ -197,7 +197,7 @@ Serán convertidos a sus valores correspondientes (cadenas en este caso) antes d
 
 {* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
-En tu cliente recibirás una respuesta JSON como:
+En tu cliente recibirás un response JSON como:
 
 ```JSON
 {

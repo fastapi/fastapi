@@ -52,15 +52,15 @@ No aparecerá en la documentación, pero otras herramientas (como Sphinx) podrá
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
 
-## Respuestas Adicionales
+## Responses Adicionales
 
 Probablemente has visto cómo declarar el `response_model` y el `status_code` para una *path operation*.
 
-Eso define los metadatos sobre la respuesta principal de una *path operation*.
+Eso define los metadatos sobre el response principal de una *path operation*.
 
-También puedes declarar respuestas adicionales con sus modelos, códigos de estado, etc.
+También puedes declarar responses adicionales con sus modelos, códigos de estado, etc.
 
-Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Respuestas Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Hay un capítulo entero en la documentación sobre ello, puedes leerlo en [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ## OpenAPI Extra
 
@@ -82,7 +82,7 @@ Este esquema de OpenAPI específico de *path operation* normalmente se genera au
 
 Este es un punto de extensión de bajo nivel.
 
-Si solo necesitas declarar respuestas adicionales, una forma más conveniente de hacerlo es con [Respuestas Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Si solo necesitas declarar responses adicionales, una forma más conveniente de hacerlo es con [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ///
 
