@@ -8,7 +8,7 @@ Si estás comenzando con **FastAPI**, puede que no lo necesites.
 
 ///
 
-Puedes declarar responses adicionales, con códigos de estado adicionales, tipos de medios, descripciones, etc.
+Puedes declarar responses adicionales, con códigos de estado adicionales, media types, descripciones, etc.
 
 Esos responses adicionales se incluirán en el esquema de OpenAPI, por lo que también aparecerán en la documentación de la API.
 
@@ -43,7 +43,7 @@ La clave `model` no es parte de OpenAPI.
 El lugar correcto es:
 
 * En la clave `content`, que tiene como valor otro objeto JSON (`dict`) que contiene:
-  * Una clave con el tipo de medio, por ejemplo, `application/json`, que contiene como valor otro objeto JSON, que contiene:
+  * Una clave con el media type, por ejemplo, `application/json`, que contiene como valor otro objeto JSON, que contiene:
     * Una clave `schema`, que tiene como valor el JSON Schema del modelo, aquí es el lugar correcto.
         * **FastAPI** agrega una referencia aquí a los JSON Schemas globales en otro lugar de tu OpenAPI en lugar de incluirlo directamente. De este modo, otras aplicaciones y clientes pueden usar esos JSON Schemas directamente, proporcionar mejores herramientas de generación de código, etc.
 
@@ -169,11 +169,11 @@ Los esquemas se referencian a otro lugar dentro del esquema de OpenAPI:
 }
 ```
 
-## Tipos de medios adicionales para el response principal
+## Media types adicionales para el response principal
 
-Puedes usar este mismo parámetro `responses` para agregar diferentes tipos de medios para el mismo response principal.
+Puedes usar este mismo parámetro `responses` para agregar diferentes media type para el mismo response principal.
 
-Por ejemplo, puedes agregar un tipo de medio adicional de `image/png`, declarando que tu *path operation* puede devolver un objeto JSON (con tipo de medio `application/json`) o una imagen PNG:
+Por ejemplo, puedes agregar un media type adicional de `image/png`, declarando que tu *path operation* puede devolver un objeto JSON (con media type `application/json`) o una imagen PNG:
 
 {* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
@@ -185,9 +185,9 @@ Nota que debes devolver la imagen usando un `FileResponse` directamente.
 
 /// info | Información
 
-A menos que especifiques un tipo de medio diferente explícitamente en tu parámetro `responses`, FastAPI asumirá que el response tiene el mismo tipo de medio que la clase de response principal (por defecto `application/json`).
+A menos que especifiques un media type diferente explícitamente en tu parámetro `responses`, FastAPI asumirá que el response tiene el mismo media type que la clase de response principal (por defecto `application/json`).
 
-Pero si has especificado una clase de response personalizada con `None` como su tipo de medio, FastAPI usará `application/json` para cualquier response adicional que tenga un modelo asociado.
+Pero si has especificado una clase de response personalizada con `None` como su media type, FastAPI usará `application/json` para cualquier response adicional que tenga un modelo asociado.
 
 ///
 
@@ -244,4 +244,4 @@ Por ejemplo:
 Para ver exactamente qué puedes incluir en los responses, puedes revisar estas secciones en la especificación OpenAPI:
 
 * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objeto de Responses de OpenAPI</a>, incluye el `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Response de OpenAPI</a>, puedes incluir cualquier cosa de esto directamente en cada response dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes tipos de medios y JSON Schemas), y `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objeto de Response de OpenAPI</a>, puedes incluir cualquier cosa de esto directamente en cada response dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes media types y JSON Schemas), y `links`.
