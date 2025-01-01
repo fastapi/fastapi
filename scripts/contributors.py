@@ -1,4 +1,5 @@
 import logging
+import secrets
 import subprocess
 from collections import Counter
 from datetime import datetime
@@ -285,7 +286,7 @@ def main() -> None:
     subprocess.run(
         ["git", "config", "user.email", "github-actions@github.com"], check=True
     )
-    branch_name = "fastapi-people-contributors"
+    branch_name = f"fastapi-people-contributors-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
