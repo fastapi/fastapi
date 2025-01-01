@@ -16,4 +16,4 @@ griffe-typingdoc==0.2.7
 # For griffe, it formats with black
 black==24.10.0
 mkdocs-macros-plugin==1.3.7
-markdown-include-variants==0.0.3
+markdown-include-variants==0.0.4
