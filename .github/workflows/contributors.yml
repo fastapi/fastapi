@@ -19,18 +19,15 @@ jobs:
   job:
     if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v4
-      # Allow debugging with tmate
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
-        with:
-          limit-access-to-actor: true
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -45,6 +42,13 @@ jobs:
             pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements-github-actions.txt
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        # TODO: fix this
+        # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
       - name: FastAPI People Contributors
         run: python ./scripts/contributors.py
         env:
