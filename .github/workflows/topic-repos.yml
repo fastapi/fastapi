@@ -1,6 +1,10 @@
 name: Update Topic Repos
 
 on:
+  # TODO: Remove this
+  push:
+    branches:
+      - external-repos
   schedule:
     - cron: "0 12 1 * *"
   workflow_dispatch:
