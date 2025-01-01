@@ -48,8 +48,8 @@ def main() -> None:
     logging.info("Finished")
 
     # Local development
-    # repos_path = Path("../docs/en/data/external_repos.yml")
-    repos_path = Path("./docs/en/data/external_repos.yml")
+    # repos_path = Path("../docs/en/data/topic_repos.yml")
+    repos_path = Path("./docs/en/data/topic_repos.yml")
     repos_old_content = repos_path.read_text(encoding="utf-8")
     new_repos_content = yaml.dump(data, sort_keys=False, width=200, allow_unicode=True)
     if repos_old_content == new_repos_content:
@@ -61,13 +61,13 @@ def main() -> None:
     subprocess.run(
         ["git", "config", "user.email", "github-actions@github.com"], check=True
     )
-    branch_name = "fastapi-external-repos"
+    branch_name = "fastapi-topic-repos"
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
     subprocess.run(["git", "add", str(repos_path)], check=True)
     logging.info("Committing updated file")
-    message = "👥 Update FastAPI GitHub external repositories"
+    message = "👥 Update FastAPI GitHub topic repositories"
     subprocess.run(["git", "commit", "-m", message], check=True)
     logging.info("Pushing branch")
     subprocess.run(["git", "push", "origin", branch_name], check=True)
