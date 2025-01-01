@@ -6,11 +6,14 @@ on:
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
         required: false
-        default: 'false'
+        default: "false"
   # TODO: fix this
   pull_request:
+
+env:
+  UV_SYSTEM_PYTHON: 1
 
 jobs:
   job:
