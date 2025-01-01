@@ -49,6 +49,8 @@ jobs:
         # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: FastAPI People Contributors
         run: python ./scripts/contributors.py
         env:
