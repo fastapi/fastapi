@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - name: Dump GitHub context
         env:
@@ -50,8 +49,8 @@ jobs:
         with:
           limit-access-to-actor: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
       - name: FastAPI People Contributors
         run: python ./scripts/contributors.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
