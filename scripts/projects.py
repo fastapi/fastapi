@@ -1,12 +1,12 @@
 import logging
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
+import yaml
 from github import Github
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
-import yaml
 
 
 class Settings(BaseSettings):
@@ -51,12 +51,8 @@ def main() -> None:
     # repos_path = Path("../docs/en/data/external_repos.yml")
     repos_path = Path("./docs/en/data/external_repos.yml")
     repos_old_content = repos_path.read_text(encoding="utf-8")
-    new_repos_content = yaml.dump(
-        data, sort_keys=False, width=200, allow_unicode=True
-    )
-    if (
-        repos_old_content == new_repos_content
-    ):
+    new_repos_content = yaml.dump(data, sort_keys=False, width=200, allow_unicode=True)
+    if repos_old_content == new_repos_content:
         logging.info("The data hasn't changed. Finishing.")
         sys.exit(0)
     repos_path.write_text(new_repos_content, encoding="utf-8")
@@ -69,9 +65,7 @@ def main() -> None:
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
-    subprocess.run(
-        ["git", "add", str(repos_path)], check=True
-    )
+    subprocess.run(["git", "add", str(repos_path)], check=True)
     logging.info("Committing updated file")
     message = "👥 Update FastAPI GitHub external repositories"
     subprocess.run(["git", "commit", "-m", message], check=True)
@@ -81,7 +75,6 @@ def main() -> None:
     pr = r.create_pull(title=message, body=message, base="master", head=branch_name)
     logging.info(f"Created PR: {pr.number}")
     logging.info("Finished")
-
 
 
 if __name__ == "__main__":
