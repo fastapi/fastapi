@@ -1,4 +1,5 @@
 import logging
+import secrets
 import subprocess
 import sys
 from pathlib import Path
@@ -61,7 +62,7 @@ def main() -> None:
     subprocess.run(
         ["git", "config", "user.email", "github-actions@github.com"], check=True
     )
-    branch_name = "fastapi-topic-repos"
+    branch_name = f"fastapi-topic-repos-{secrets.token_hex(4)}"
     logging.info(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     logging.info("Adding updated file")
