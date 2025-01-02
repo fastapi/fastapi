@@ -1,7 +1,6 @@
 import logging
 import secrets
 import subprocess
-import sys
 from pathlib import Path
 
 import yaml
