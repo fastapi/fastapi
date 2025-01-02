@@ -9,10 +9,6 @@ on:
         description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
         required: false
         default: "false"
-  # TODO: fix this
-  push:
-    branches:
-      - contributors
 
 env:
   UV_SYSTEM_PYTHON: 1
@@ -50,8 +46,8 @@ jobs:
         with:
           limit-access-to-actor: true
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
       - name: FastAPI People Contributors
         run: python ./scripts/contributors.py
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
