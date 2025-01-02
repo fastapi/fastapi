@@ -8,17 +8,20 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, alto desempeño, fácil de aprender, rápido de programar, listo para producción</em>
+    <em>FastAPI framework, alto rendimiento, fácil de aprender, rápido de programar, listo para producción</em>
 </p>
 <p align="center">
-<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -29,21 +32,21 @@
 **Código Fuente**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
 
-Sus características principales son:
+FastAPI es un framework web moderno, rápido (de alto rendimiento), para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
 
-* **Rapidez**: Alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks de Python más rápidos](#rendimiento).
+Las características clave son:
 
-* **Rápido de programar**: Incrementa la velocidad de desarrollo entre 200% y 300%. *
-* **Menos errores**: Reduce los errores humanos (de programador) aproximadamente un 40%. *
-* **Intuitivo**: Gran soporte en los editores con <abbr title="conocido en inglés como auto-complete, autocompletion, IntelliSense, completion">auto completado</abbr> en todas partes. Gasta menos tiempo <abbr title="buscando y corrigiendo errores">debugging</abbr>.
-* **Fácil**: Está diseñado para ser fácil de usar y aprender. Gastando menos tiempo leyendo documentación.
-* **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades con cada declaración de parámetros. Menos errores.
-* **Robusto**: Crea código listo para producción con documentación automática interactiva.
-* **Basado en estándares**: Basado y totalmente compatible con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (conocido previamente como Swagger) y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+* **Rápido**: Muy alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks Python más rápidos disponibles](#performance).
+* **Rápido de programar**: Aumenta la velocidad para desarrollar funcionalidades en aproximadamente un 200% a 300%. *
+* **Menos bugs**: Reduce en aproximadamente un 40% los errores inducidos por humanos (desarrolladores). *
+* **Intuitivo**: Gran soporte para editores. <abbr title="también conocido como autocompletado, IntelliSense">Autocompletado</abbr> en todas partes. Menos tiempo depurando.
+* **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
+* **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades desde cada declaración de parámetro. Menos bugs.
+* **Robusto**: Obtén código listo para producción. Con documentación interactiva automática.
+* **Basado en estándares**: Basado (y completamente compatible) con los estándares abiertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (anteriormente conocido como Swagger) y <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Esta estimación está basada en pruebas con un equipo de desarrollo interno construyendo aplicaciones listas para producción.</small>
+<small>* estimación basada en pruebas con un equipo de desarrollo interno, construyendo aplicaciones de producción.</small>
 
 ## Sponsors
 
@@ -64,41 +67,47 @@ Sus características principales son:
 
 ## Opiniones
 
-"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
+"_[...] Estoy usando **FastAPI** un montón estos días. [...] De hecho, estoy planeando usarlo para todos los servicios de **ML de mi equipo en Microsoft**. Algunos de ellos se están integrando en el núcleo del producto **Windows** y algunos productos de **Office**._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+"_Adoptamos el paquete **FastAPI** para crear un servidor **REST** que pueda ser consultado para obtener **predicciones**. [para Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, y Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
+"_**Netflix** se complace en anunciar el lanzamiento de código abierto de nuestro framework de orquestación de **gestión de crisis**: **Dispatch**! [construido con **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_I’m over the moon excited about **FastAPI**. It’s so fun!_"
+"_Estoy súper emocionado con **FastAPI**. ¡Es tan divertido!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
-
----
-
-"_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">host del podcast Python Bytes</a></strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
-"_If you're looking to learn one **modern framework** for building REST APIs, check out **FastAPI** [...] It's fast, easy to use and easy to learn [...]_"
+"_Honestamente, lo que has construido parece súper sólido y pulido. En muchos aspectos, es lo que quería que **Hug** fuera; es realmente inspirador ver a alguien construir eso._"
 
-"_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">creador de Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+---
+
+"_Si estás buscando aprender un **framework moderno** para construir APIs REST, échale un vistazo a **FastAPI** [...] Es rápido, fácil de usar y fácil de aprender [...]_"
+
+"_Nos hemos cambiado a **FastAPI** para nuestras **APIs** [...] Creo que te gustará [...]_"
+
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">fundadores de Explosion AI</a> - <a href="https://spacy.io" target="_blank">creadores de spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_Si alguien está buscando construir una API de Python para producción, altamente recomendaría **FastAPI**. Está **hermosamente diseñado**, es **simple de usar** y **altamente escalable**, se ha convertido en un **componente clave** en nuestra estrategia de desarrollo API primero y está impulsando muchas automatizaciones y servicios como nuestro Ingeniero Virtual TAC._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -106,40 +115,32 @@ Sus características principales son:
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Si estás construyendo un app de <abbr title="Interfaz de línea de comandos en español">CLI</abbr> para ser usada en la terminal en vez de una API web, fíjate en <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+Si estás construyendo una aplicación de <abbr title="Interfaz de Línea de Comandos">CLI</abbr> para ser usada en el terminal en lugar de una API web, revisa <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** es el hermano menor de FastAPI.  La intención es que sea el **FastAPI de las CLIs**. ⌨️ 🚀
+**Typer** es el hermano pequeño de FastAPI. Y está destinado a ser el **FastAPI de las CLIs**. ⌨️ 🚀
 
 ## Requisitos
 
-FastAPI está sobre los hombros de gigantes:
+FastAPI se apoya en hombros de gigantes:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para las partes web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> para las partes de datos.
 
 ## Instalación
 
+Crea y activa un <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">entorno virtual</a> y luego instala FastAPI:
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-También vas a necesitar un servidor ASGI para producción cómo <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> o <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
-
-<div class="termy">
-
-```console
-$ pip install "uvicorn[standard]"
-
----> 100%
-```
-
-</div>
+**Nota**: Asegúrate de poner `"fastapi[standard]"` entre comillas para asegurar que funcione en todas las terminales.
 
 ## Ejemplo
 
@@ -148,8 +149,9 @@ $ pip install "uvicorn[standard]"
 * Crea un archivo `main.py` con:
 
 ```Python
-from fastapi import FastAPI
 from typing import Union
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -169,9 +171,10 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Si tu código usa `async` / `await`, usa `async def`:
 
-```Python hl_lines="7  12"
-from fastapi import FastAPI
+```Python hl_lines="9  14"
 from typing import Union
+
+from fastapi import FastAPI
 
 app = FastAPI()
 
@@ -188,7 +191,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Nota**:
 
-Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/es/async/#con-prisa" target="_blank">`async` y `await` en la documentación</a>.
+Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` y `await` en la documentación</a>.
 
 </details>
 
@@ -199,11 +202,24 @@ Corre el servidor con:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -211,13 +227,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>Sobre el comando <code>uvicorn main:app --reload</code>...</summary>
+<summary>Acerca del comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `uvicorn main:app` se refiere a:
+El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
-* `main`: el archivo `main.py` (el"modulo" de Python).
-* `app`: el objeto creado dentro de `main.py` con la línea `app = FastAPI()`.
-* `--reload`: hace que el servidor se reinicie después de cambios en el código. Esta opción solo debe ser usada en desarrollo.
+Por defecto, `fastapi dev` comenzará con auto-recarga habilitada para el desarrollo local.
+
+Puedes leer más sobre esto en la <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">documentación del CLI de FastAPI</a>.
 
 </details>
 
@@ -225,7 +241,7 @@ El comando `uvicorn main:app` se refiere a:
 
 Abre tu navegador en <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Verás la respuesta de JSON cómo:
+Verás el response JSON como:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
@@ -233,37 +249,38 @@ Verás la respuesta de JSON cómo:
 
 Ya creaste una API que:
 
-* Recibe HTTP requests en los _paths_ `/` y `/items/{item_id}`.
-* Ambos _paths_ toman <em>operaciones</em> `GET` (también conocido como HTTP _methods_).
-* El _path_ `/items/{item_id}` tiene un _path parameter_ `item_id` que debería ser un `int`.
-* El _path_ `/items/{item_id}` tiene un `str` _query parameter_ `q` opcional.
+* Recibe requests HTTP en los _paths_ `/` y `/items/{item_id}`.
+* Ambos _paths_ toman _operaciones_ `GET` (también conocidas como métodos HTTP).
+* El _path_ `/items/{item_id}` tiene un _parámetro de path_ `item_id` que debe ser un `int`.
+* El _path_ `/items/{item_id}` tiene un _parámetro de query_ `q` opcional que es un `str`.
 
-### Documentación interactiva de APIs
+### Documentación interactiva de la API
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Verás la documentación automática e interactiva de la API (proveída por <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Verás la documentación interactiva automática de la API (proporcionada por <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Documentación alternativa de la API
+### Documentación de API Alternativa
 
-Ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-Ahora verás la documentación automática alternativa (proveída por <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Verás la documentación alternativa automática (proporcionada por <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Mejora al ejemplo
+## Actualización del Ejemplo
 
-Ahora modifica el archivo `main.py` para recibir un <abbr title="cuerpo del mensaje HTTP">body</abbr> del `PUT` request.
+Ahora modifica el archivo `main.py` para recibir un body desde un request `PUT`.
 
-Declara el body usando las declaraciones de tipo estándares de Python gracias a Pydantic.
+Declara el body usando tipos estándar de Python, gracias a Pydantic.
 
-```Python hl_lines="2  7-10  23-25"
+```Python hl_lines="4  9-12  25-27"
+from typing import Union
+
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Union
 
 app = FastAPI()
 
@@ -289,9 +306,9 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-El servidor debería recargar automáticamente (porque añadiste `--reload` al comando `uvicorn` que está más arriba).
+El servidor `fastapi dev` debería recargarse automáticamente.
 
-### Mejora a la documentación interactiva de APIs
+### Actualización de la Documentación Interactiva de la API
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -299,29 +316,29 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Haz click en el botón de "Try it out" que te permite llenar los parámetros e interactuar directamente con la API:
+* Haz clic en el botón "Try it out", te permite llenar los parámetros e interactuar directamente con la API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Luego haz click en el botón de "Execute". La interfaz de usuario se comunicará con tu API, enviará los parámetros y recibirá los resultados para mostrarlos en pantalla:
+* Luego haz clic en el botón "Execute", la interfaz de usuario se comunicará con tu API, enviará los parámetros, obtendrá los resultados y los mostrará en la pantalla:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Mejora a la documentación alternativa de la API
+### Actualización de la Documentación Alternativa de la API
 
-Ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* La documentación alternativa también reflejará el nuevo parámetro de query y el body:
+* La documentación alternativa también reflejará el nuevo parámetro de query y body:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Resumen
 
-En resumen, declaras los tipos de parámetros, body, etc. **una vez** como parámetros de la función.
+En resumen, declaras **una vez** los tipos de parámetros, body, etc. como parámetros de función.
 
-Lo haces con tipos modernos estándar de Python.
+Lo haces con tipos estándar modernos de Python.
 
-No tienes que aprender una sintaxis nueva, los métodos o clases de una library específica, etc.
+No tienes que aprender una nueva sintaxis, los métodos o clases de un paquete específico, etc.
 
 Solo **Python** estándar.
 
@@ -331,7 +348,7 @@ Por ejemplo, para un `int`:
 item_id: int
 ```
 
-o para un modelo más complejo de `Item`:
+o para un modelo `Item` más complejo:
 
 ```Python
 item: Item
@@ -339,62 +356,62 @@ item: Item
 
 ...y con esa única declaración obtienes:
 
-* Soporte del editor incluyendo:
-    * Auto completado.
-    * Anotaciones de tipos.
+* Soporte para editores, incluyendo:
+    * Autocompletado.
+    * Chequeo de tipos.
 * Validación de datos:
-    * Errores automáticos y claros cuándo los datos son inválidos.
-    * Validación, incluso para objetos JSON profundamente anidados.
-* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de input: viniendo de la red a datos y tipos de Python. Leyendo desde:
+    * Errores automáticos y claros cuando los datos son inválidos.
+    * Validación incluso para objetos JSON profundamente anidados.
+* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de entrada: de la red a los datos y tipos de Python. Leyendo desde:
     * JSON.
-    * Path parameters.
-    * Query parameters.
+    * Parámetros de path.
+    * Parámetros de query.
     * Cookies.
     * Headers.
-    * Formularios.
+    * Forms.
     * Archivos.
-* <abbr title="en inglés: serialization, parsing, marshalling">Conversión</abbr> de datos de output: convirtiendo de datos y tipos de Python a datos para la red (como JSON):
+* <abbr title="también conocido como: serialización, parsing, marshalling">Conversión</abbr> de datos de salida: convirtiendo de datos y tipos de Python a datos de red (como JSON):
     * Convertir tipos de Python (`str`, `int`, `float`, `bool`, `list`, etc).
     * Objetos `datetime`.
     * Objetos `UUID`.
-    * Modelos de bases de datos.
+    * Modelos de base de datos.
     * ...y muchos más.
-* Documentación automática e interactiva incluyendo 2 interfaces de usuario alternativas:
+* Documentación interactiva automática de la API, incluyendo 2 interfaces de usuario alternativas:
     * Swagger UI.
     * ReDoc.
 
 ---
 
-Volviendo al ejemplo de código anterior, **FastAPI** va a:
+Volviendo al ejemplo de código anterior, **FastAPI**:
 
-* Validar que existe un `item_id` en el path para requests usando `GET` y `PUT`.
-* Validar que el `item_id` es del tipo `int` para requests de tipo `GET` y `PUT`.
-    * Si no lo es, el cliente verá un mensaje de error útil y claro.
-* Revisar si existe un query parameter opcional llamado `q` (cómo en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests de tipo `GET`.
-    * Como el parámetro `q` fue declarado con `= None` es opcional.
-    * Sin el `None` sería obligatorio (cómo lo es el body en el caso con `PUT`).
-* Para requests de tipo `PUT` a `/items/{item_id}` leer el body como JSON:
-    * Revisar si tiene un atributo requerido `name` que debe ser un `str`.
-    * Revisar si tiene un atributo requerido `price` que debe ser un `float`.
-    * Revisar si tiene un atributo opcional `is_offer`, que debe ser un `bool`si está presente.
-    * Todo esto funcionaría para objetos JSON profundamente anidados.
-* Convertir de y a JSON automáticamente.
-* Documentar todo con OpenAPI que puede ser usado por:
+* Validará que haya un `item_id` en el path para requests `GET` y `PUT`.
+* Validará que el `item_id` sea del tipo `int` para requests `GET` y `PUT`.
+    * Si no lo es, el cliente verá un error útil y claro.
+* Comprobará si hay un parámetro de query opcional llamado `q` (como en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests `GET`.
+    * Como el parámetro `q` está declarado con `= None`, es opcional.
+    * Sin el `None` sería requerido (como lo es el body en el caso con `PUT`).
+* Para requests `PUT` a `/items/{item_id}`, leerá el body como JSON:
+    * Comprobará que tiene un atributo requerido `name` que debe ser un `str`.
+    * Comprobará que tiene un atributo requerido `price` que debe ser un `float`.
+    * Comprobará que tiene un atributo opcional `is_offer`, que debe ser un `bool`, si está presente.
+    * Todo esto también funcionaría para objetos JSON profundamente anidados.
+* Convertirá de y a JSON automáticamente.
+* Documentará todo con OpenAPI, que puede ser usado por:
     * Sistemas de documentación interactiva.
-    * Sistemas de generación automática de código de cliente para muchos lenguajes.
-* Proveer directamente 2 interfaces de documentación web interactivas.
+    * Sistemas de generación automática de código cliente, para muchos lenguajes.
+* Proporcionará 2 interfaces web de documentación interactiva directamente.
 
 ---
 
-Hasta ahora, escasamente vimos lo básico pero ya tienes una idea de cómo funciona.
+Solo tocamos los conceptos básicos, pero ya te haces una idea de cómo funciona todo.
 
-Intenta cambiando la línea a:
+Intenta cambiar la línea con:
 
 ```Python
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-...de:
+...desde:
 
 ```Python
         ... "item_name": item.name ...
@@ -406,56 +423,74 @@ Intenta cambiando la línea a:
         ... "item_price": item.price ...
 ```
 
-... y mira como el editor va a auto-completar los atributos y sabrá sus tipos:
+...y observa cómo tu editor autocompleta los atributos y conoce sus tipos:
 
-![soporte de editor](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Para un ejemplo más completo que incluye más características ve el <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Guía de Usuario</a>.
+Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Guía del Usuario</a>.
 
-**Spoiler alert**: el Tutorial - Guía de Usuario incluye:
+**Alerta de spoilers**: el tutorial - guía del usuario incluye:
 
-* Declaración de **parámetros** en otros lugares diferentes cómo los: **headers**, **cookies**, **formularios** y **archivos**.
-* Cómo agregar **requisitos de validación** cómo `maximum_length` o `regex`.
-* Un sistema de **<abbr title="también conocido en inglés cómo: components, resources, providers, services, injectables">Dependency Injection</abbr>** poderoso y fácil de usar.
-* Seguridad y autenticación incluyendo soporte para **OAuth2** con **JWT tokens** y **HTTP Basic** auth.
-* Técnicas más avanzadas, pero igual de fáciles, para declarar **modelos de JSON profundamente anidados** (gracias a Pydantic).
-* Muchas características extra (gracias a Starlette) como:
+* Declaración de **parámetros** desde otros lugares diferentes como: **headers**, **cookies**, **campos de formulario** y **archivos**.
+* Cómo establecer **restricciones de validación** como `maximum_length` o `regex`.
+* Un sistema de **<abbr title="también conocido como componentes, recursos, proveedores, servicios, inyectables">Inyección de Dependencias</abbr>** muy poderoso y fácil de usar.
+* Seguridad y autenticación, incluyendo soporte para **OAuth2** con **tokens JWT** y autenticación **HTTP Basic**.
+* Técnicas más avanzadas (pero igualmente fáciles) para declarar **modelos JSON profundamente anidados** (gracias a Pydantic).
+* Integración con **GraphQL** usando <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> y otros paquetes.
+* Muchas funcionalidades extra (gracias a Starlette) como:
     * **WebSockets**
-    * **GraphQL**
-    * pruebas extremadamente fáciles con HTTPX y `pytest`
+    * pruebas extremadamente fáciles basadas en HTTPX y `pytest`
     * **CORS**
-    * **Cookie Sessions**
-    * ...y mucho más.
+    * **Sesiones de Cookies**
+    * ...y más.
 
 ## Rendimiento
 
-Benchmarks independientes de TechEmpower muestran que aplicaciones de **FastAPI** corriendo con Uvicorn cómo <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">uno de los frameworks de Python más rápidos</a>, únicamente debajo de Starlette y Uvicorn (usados internamente por FastAPI). (*)
+Benchmarks independientes de TechEmpower muestran aplicaciones **FastAPI** ejecutándose bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">uno de los frameworks Python más rápidos disponibles</a>, solo por debajo de Starlette y Uvicorn (usados internamente por FastAPI). (*)
 
-Para entender más al respecto revisa la sección <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Para entender más sobre esto, ve la sección <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Dependencias Opcionales
+## Dependencias
+
+FastAPI depende de Pydantic y Starlette.
+
+### Dependencias `standard`
+
+Cuando instalas FastAPI con `pip install "fastapi[standard]"` viene con el grupo `standard` de dependencias opcionales:
 
 Usadas por Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - para validación de emails.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - para validación de correos electrónicos.
 
-Usados por Starlette:
+Usadas por Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si quieres usar el `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si quieres usar la configuración por defecto de templates.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si quieres dar soporte a  <abbr title="convertir el string que viene de un HTTP request a datos de Python">"parsing"</abbr> de formularios, con `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Requerido para dar soporte a `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Requerido para dar soporte al `SchemaGenerator` de Starlette (probablemente no lo necesites con FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Requerido para dar soporte a `GraphQLApp`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si deseas usar el `TestClient`.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si deseas usar la configuración de plantilla predeterminada.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar <abbr title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</abbr> de forms, con `request.form()`.
 
-Usado por FastAPI / Starlette:
+Usadas por FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requerido si quieres usar `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requerido si quieres usar `UJSONResponse`.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
+* `fastapi-cli` - para proporcionar el comando `fastapi`.
 
-Puedes instalarlos con `pip install fastapi[all]`.
+### Sin Dependencias `standard`
+
+Si no deseas incluir las dependencias opcionales `standard`, puedes instalar con `pip install fastapi` en lugar de `pip install "fastapi[standard]"`.
+
+### Dependencias Opcionales Adicionales
+
+Existen algunas dependencias adicionales que podrías querer instalar.
+
+Dependencias opcionales adicionales de Pydantic:
+
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - para la gestión de configuraciones.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - para tipos extra para ser usados con Pydantic.
+
+Dependencias opcionales adicionales de FastAPI:
+
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requerido si deseas usar `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requerido si deseas usar `UJSONResponse`.
 
 ## Licencia
 
-Este proyecto está licenciado bajo los términos de la licencia del MIT.
+Este proyecto tiene licencia bajo los términos de la licencia MIT.
