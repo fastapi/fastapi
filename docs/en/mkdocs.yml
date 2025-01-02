@@ -72,6 +72,7 @@ plugins:
     - members: ../en/data/members.yml
     - sponsors_badge: ../en/data/sponsors_badge.yml
     - sponsors: ../en/data/sponsors.yml
+    - topic_repos: ../en/data/topic_repos.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
