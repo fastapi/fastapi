@@ -30,3 +30,6 @@ logins:
   - svix
   - zuplo-oss
   - Kong
+  - speakeasy-api
+  - jess-render
+  - blockbee-io

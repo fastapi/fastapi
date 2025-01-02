@@ -1,93 +1,93 @@
-# Acerca de las versiones de FastAPI
+# Sobre las versiones de FastAPI
 
-**FastAPI** está siendo utilizado en producción en muchas aplicaciones y sistemas. La cobertura de los tests se mantiene al 100%. Sin embargo, su desarrollo sigue siendo rápido.
+**FastAPI** ya se está utilizando en producción en muchas aplicaciones y sistemas. Y la cobertura de tests se mantiene al 100%. Pero su desarrollo sigue avanzando rápidamente.
 
-Se agregan nuevas características frecuentemente, se corrigen errores continuamente y el código está constantemente mejorando.
+Se añaden nuevas funcionalidades con frecuencia, se corrigen bugs regularmente, y el código sigue mejorando continuamente.
 
-Por eso las versiones actuales siguen siendo `0.x.x`, esto significa que cada versión puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>. Las versiones siguen las convenciones de <a href="https://semver.org/" class="external-link" target="_blank"><abbr title="versionado semántico">*Semantic Versioning*</abbr></a>.
+Por eso las versiones actuales siguen siendo `0.x.x`, esto refleja que cada versión podría tener potencialmente cambios incompatibles. Esto sigue las convenciones de <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a>.
 
-Puedes crear aplicaciones listas para producción con **FastAPI** ahora mismo (y probablemente lo has estado haciendo por algún tiempo), solo tienes que asegurarte de usar la versión que funciona correctamente con el resto de tu código.
+Puedes crear aplicaciones de producción con **FastAPI** ahora mismo (y probablemente ya lo has estado haciendo desde hace algún tiempo), solo debes asegurarte de que utilizas una versión que funciona correctamente con el resto de tu código.
 
-## Fijar la versión de `fastapi`
+## Fijar tu versión de `fastapi`
 
-Lo primero que debes hacer en tu proyecto es "fijar" la última versión específica de **FastAPI** que sabes que funciona bien con tu aplicación.
+Lo primero que debes hacer es "fijar" la versión de **FastAPI** que estás usando a la versión específica más reciente que sabes que funciona correctamente para tu aplicación.
 
-Por ejemplo, digamos que estás usando la versión `0.45.0` en tu aplicación.
+Por ejemplo, digamos que estás utilizando la versión `0.112.0` en tu aplicación.
 
-Si usas el archivo `requirements.txt` puedes especificar la versión con:
-
-```txt
-fastapi==0.45.0
-```
-
-esto significa que usarás específicamente la versión `0.45.0`.
-
-También puedes fijar las versiones de esta forma:
+Si usas un archivo `requirements.txt` podrías especificar la versión con:
 
 ```txt
-fastapi>=0.45.0,<0.46.0
+fastapi[standard]==0.112.0
 ```
 
-esto significa que usarás la versión `0.45.0` o superiores, pero menores a la versión `0.46.0`, por ejemplo, la versión `0.45.2` sería aceptada.
+eso significaría que usarías exactamente la versión `0.112.0`.
 
-Si usas cualquier otra herramienta para manejar tus instalaciones, como Poetry, Pipenv, u otras, todas tienen una forma que puedes usar para definir versiones específicas para tus paquetes.
+O también podrías fijarla con:
+
+```txt
+fastapi[standard]>=0.112.0,<0.113.0
+```
+
+eso significaría que usarías las versiones `0.112.0` o superiores, pero menores que `0.113.0`, por ejemplo, una versión `0.112.2` todavía sería aceptada.
+
+Si utilizas cualquier otra herramienta para gestionar tus instalaciones, como `uv`, Poetry, Pipenv, u otras, todas tienen una forma que puedes usar para definir versiones específicas para tus paquetes.
 
 ## Versiones disponibles
 
-Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la actual) en las [Release Notes](../release-notes.md){.internal-link target=_blank}.
+Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la más reciente) en las [Release Notes](../release-notes.md){.internal-link target=_blank}.
 
-## Acerca de las versiones
+## Sobre las versiones
 
-Siguiendo las convenciones de *Semantic Versioning*, cualquier versión por debajo de `1.0.0` puede potencialmente tener <abbr title="cambios que rompen funcionalidades o compatibilidad">*breaking changes*</abbr>.
+Siguiendo las convenciones del Semantic Versioning, cualquier versión por debajo de `1.0.0` podría potencialmente añadir cambios incompatibles.
 
-FastAPI también sigue la convención de que cualquier cambio hecho en una <abbr title="versiones de parche">"PATCH" version</abbr> es para solucionar errores y <abbr title="cambios que no rompan funcionalidades o compatibilidad">*non-breaking changes*</abbr>.
+FastAPI también sigue la convención de que cualquier cambio de versión "PATCH" es para corrección de bugs y cambios no incompatibles.
 
 /// tip | Consejo
 
-El <abbr title="parche">"PATCH"</abbr> es el último número, por ejemplo, en `0.2.3`, la <abbr title="versiones de parche">PATCH version</abbr> es `3`.
+El "PATCH" es el último número, por ejemplo, en `0.2.3`, la versión PATCH es `3`.
 
 ///
 
-Entonces, deberías fijar la versión así:
+Así que deberías poder fijar a una versión como:
 
 ```txt
 fastapi>=0.45.0,<0.46.0
 ```
 
-En versiones <abbr title="versiones menores">"MINOR"</abbr> son añadidas nuevas características y posibles <abbr title="Cambios que rompen posibles funcionalidades o compatibilidad">breaking changes</abbr>.
+Los cambios incompatibles y nuevas funcionalidades se añaden en versiones "MINOR".
 
 /// tip | Consejo
 
-La versión "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la <abbr title="versión menor">"MINOR" version</abbr> es `2`.
+El "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la versión MINOR es `2`.
 
 ///
 
 ## Actualizando las versiones de FastAPI
 
-Para esto es recomendable primero añadir tests a tu aplicación.
+Deberías añadir tests para tu aplicación.
 
-Con **FastAPI** es muy fácil (gracias a Starlette), revisa la documentación [Testing](../tutorial/testing.md){.internal-link target=_blank}
+Con **FastAPI** es muy fácil (gracias a Starlette), revisa la documentación: [Testing](../tutorial/testing.md){.internal-link target=_blank}
 
-Luego de tener los tests, puedes actualizar la versión de **FastAPI** a una más reciente y asegurarte de que tu código funciona correctamente ejecutando los tests.
+Después de tener tests, puedes actualizar la versión de **FastAPI** a una más reciente, y asegurarte de que todo tu código está funcionando correctamente ejecutando tus tests.
 
-Si todo funciona correctamente, o haces los cambios necesarios para que esto suceda, y todos tus tests pasan, entonces puedes fijar tu versión de `fastapi` a la más reciente.
+Si todo está funcionando, o después de hacer los cambios necesarios, y todos tus tests pasan, entonces puedes fijar tu `fastapi` a esa nueva versión más reciente.
 
-## Acerca de Starlette
+## Sobre Starlette
 
 No deberías fijar la versión de `starlette`.
 
-Diferentes versiones de **FastAPI** pueden usar una versión específica de Starlette.
+Diferentes versiones de **FastAPI** utilizarán una versión más reciente específica de Starlette.
 
-Entonces, puedes dejar que **FastAPI** se asegure por sí mismo de qué versión de Starlette usar.
+Así que, puedes simplemente dejar que **FastAPI** use la versión correcta de Starlette.
 
-## Acerca de Pydantic
+## Sobre Pydantic
 
-Pydantic incluye los tests para **FastAPI** dentro de sus propios tests, esto significa que las versiones de Pydantic (superiores a `1.0.0`) son compatibles con FastAPI.
+Pydantic incluye los tests para **FastAPI** con sus propios tests, así que nuevas versiones de Pydantic (por encima de `1.0.0`) siempre son compatibles con FastAPI.
 
-Puedes fijar Pydantic a cualquier versión superior a `1.0.0` e inferior a `2.0.0` que funcione para ti.
+Puedes fijar Pydantic a cualquier versión por encima de `1.0.0` que funcione para ti.
 
 Por ejemplo:
 
 ```txt
-pydantic>=1.2.0,<2.0.0
+pydantic>=2.7.0,<3.0.0
 ```
