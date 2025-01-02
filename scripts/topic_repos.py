@@ -54,7 +54,7 @@ def main() -> None:
     new_repos_content = yaml.dump(data, sort_keys=False, width=200, allow_unicode=True)
     if repos_old_content == new_repos_content:
         logging.info("The data hasn't changed. Finishing.")
-        sys.exit(0)
+        return
     repos_path.write_text(new_repos_content, encoding="utf-8")
     logging.info("Setting up GitHub Actions git user")
     subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
