@@ -19,7 +19,10 @@ env:
 
 jobs:
   topic-repos:
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Dump GitHub context
         env:
@@ -43,4 +46,4 @@ jobs:
       - name: Update Topic Repos
         run: python ./scripts/topic_repos.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
