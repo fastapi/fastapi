@@ -31,9 +31,7 @@ API 的用户 （外部开发者）要在您的 API 内使用 POST 请求创建�
 
 这部分代码很常规，您对绝大多数代码应该都比较熟悉了：
 
-```Python hl_lines="10-14  37-54"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[10:14,37:54] *}
 
 /// tip | 提示
 
@@ -92,9 +90,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 首先，新建包含一些用于回调的 `APIRouter`。
 
-```Python hl_lines="5  26"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[5,26] *}
 
 ### 创建回调*路径操作*
 
@@ -105,9 +101,7 @@ requests.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 声明要接收的请求体，例如，`body: InvoiceEvent`
 * 还要声明要返回的响应，例如，`response_model=InvoiceEventReceived`
 
-```Python hl_lines="17-19  22-23  29-33"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[17:19,22:23,29:33] *}
 
 回调*路径操作*与常规*路径操作*有两点主要区别：
 
@@ -175,9 +169,7 @@ JSON 请求体包含如下内容：
 
 现在使用 API *路径操作装饰器*的参数 `callbacks`，从回调路由传递属性 `.routes`（实际上只是路由/路径操作的**列表**）：
 
-```Python hl_lines="36"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[36] *}
 
 /// tip | 提示
 

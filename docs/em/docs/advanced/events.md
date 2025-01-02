@@ -30,9 +30,7 @@
 
 👥 ✍ 🔁 🔢 `lifespan()` ⏮️ `yield` 💖 👉:
 
-```Python hl_lines="16  19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 📥 👥 ⚖ 😥 *🕴* 🛠️ 🚚 🏷 🚮 (❌) 🏷 🔢 📖 ⏮️ 🎰 🏫 🏷 ⏭ `yield`. 👉 📟 🔜 🛠️ **⏭** 🈸 **▶️ ✊ 📨**, ⏮️ *🕴*.
 
@@ -50,9 +48,7 @@
 
 🥇 👜 👀, 👈 👥 ⚖ 🔁 🔢 ⏮️ `yield`. 👉 📶 🎏 🔗 ⏮️ `yield`.
 
-```Python hl_lines="14-19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 🥇 🍕 🔢, ⏭ `yield`, 🔜 🛠️ **⏭** 🈸 ▶️.
 
@@ -64,9 +60,7 @@
 
 👈 🗜 🔢 🔘 🕳 🤙 "**🔁 🔑 👨‍💼**".
 
-```Python hl_lines="1  13"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 **🔑 👨‍💼** 🐍 🕳 👈 👆 💪 ⚙️ `with` 📄, 🖼, `open()` 💪 ⚙️ 🔑 👨‍💼:
 
@@ -88,9 +82,7 @@ async with lifespan(app):
 
 `lifespan` 🔢 `FastAPI` 📱 ✊ **🔁 🔑 👨‍💼**, 👥 💪 🚶‍♀️ 👆 🆕 `lifespan` 🔁 🔑 👨‍💼 ⚫️.
 
-```Python hl_lines="22"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## 🎛 🎉 (😢)
 
@@ -112,9 +104,7 @@ async with lifespan(app):
 
 🚮 🔢 👈 🔜 🏃 ⏭ 🈸 ▶️, 📣 ⚫️ ⏮️ 🎉 `"startup"`:
 
-```Python hl_lines="8"
-{!../../docs_src/events/tutorial001.py!}
-```
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 👉 💼, `startup` 🎉 🐕‍🦺 🔢 🔜 🔢 🏬 "💽" ( `dict`) ⏮️ 💲.
 
@@ -126,9 +116,7 @@ async with lifespan(app):
 
 🚮 🔢 👈 🔜 🏃 🕐❔ 🈸 🤫 🔽, 📣 ⚫️ ⏮️ 🎉 `"shutdown"`:
 
-```Python hl_lines="6"
-{!../../docs_src/events/tutorial002.py!}
-```
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 📥, `shutdown` 🎉 🐕‍🦺 🔢 🔜 ✍ ✍ ⏸ `"Application shutdown"` 📁 `log.txt`.
 

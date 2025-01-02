@@ -34,9 +34,7 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 
 이러한 경우, 데이터를 응답에 전달하기 전에 `jsonable_encoder`를 사용하여 변환할 수 있습니다:
 
-```Python hl_lines="6-7 21-22"
-{!../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
 /// note | 기술적 세부 사항
 
@@ -55,9 +53,7 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 
 XML 내용을 문자열에 넣고, 이를 `Response`에 넣어 반환할 수 있습니다:
 
-```Python hl_lines="1 18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 참고 사항
 `Response`를 직접 반환할 때, 그 데이터는 자동으로 유효성 검사되거나, 변환(직렬화)되거나, 문서화되지 않습니다.
