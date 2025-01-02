@@ -9,12 +9,22 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typo in `docs/en/docs/virtual-environments.md`. PR [#13124](https://github.com/fastapi/fastapi/pull/13124) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ Fix error in `docs/en/docs/contributing.md`. PR [#12899](https://github.com/fastapi/fastapi/pull/12899) by [@kingsubin](https://github.com/kingsubin).
+* 📝 Minor corrections in `docs/en/docs/tutorial/sql-databases.md`. PR [#13081](https://github.com/fastapi/fastapi/pull/13081) by [@alv2017](https://github.com/alv2017).
 * 📝 Update includes in `docs/ru/docs/tutorial/query-param-models.md`. PR [#12994](https://github.com/fastapi/fastapi/pull/12994) by [@alejsdev](https://github.com/alejsdev).
 * ✏️ Fix typo in README installation instructions. PR [#13011](https://github.com/fastapi/fastapi/pull/13011) by [@dave-hay](https://github.com/dave-hay).
 * 📝 Update docs for `fastapi-cli`. PR [#13031](https://github.com/fastapi/fastapi/pull/13031) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
 
+* 🌐 Add new Spanish translations for all docs with new LLM-assisted system using PydanticAI. PR [#13122](https://github.com/fastapi/fastapi/pull/13122) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update existing Spanish translations using the new LLM-assisted system using PydanticAI. PR [#13118](https://github.com/fastapi/fastapi/pull/13118) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Chinese translation for `docs/zh/docs/advanced/security/oauth2-scopes.md`. PR [#13110](https://github.com/fastapi/fastapi/pull/13110) by [@ChenPu2002](https://github.com/ChenPu2002).
+* 🌐 Add Indonesian translation for `docs/id/docs/tutorial/path-params.md`. PR [#13086](https://github.com/fastapi/fastapi/pull/13086) by [@gerry-sabar](https://github.com/gerry-sabar).
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/sql-databases.md`. PR [#13093](https://github.com/fastapi/fastapi/pull/13093) by [@GeumBinLee](https://github.com/GeumBinLee).
+* 🌐 Update Chinese translation for `docs/zh/docs/async.md`. PR [#13095](https://github.com/fastapi/fastapi/pull/13095) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+* 🌐 Add Chinese translation for `docs/zh/docs/advanced/openapi-webhooks.md`. PR [#13091](https://github.com/fastapi/fastapi/pull/13091) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/async-tests.md`. PR [#13074](https://github.com/fastapi/fastapi/pull/13074) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/fastapi-cli.md`. PR [#13020](https://github.com/fastapi/fastapi/pull/13020) by [@ykertytsky](https://github.com/ykertytsky).
 * 🌐 Add Chinese translation for `docs/zh/docs/advanced/events.md`. PR [#12512](https://github.com/fastapi/fastapi/pull/12512) by [@ZhibangYue](https://github.com/ZhibangYue).
@@ -52,6 +62,11 @@ hide:
 
 ### Internal
 
+* ⬆ Bump markdown-include-variants from 0.0.3 to 0.0.4. PR [#13129](https://github.com/fastapi/fastapi/pull/13129) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump inline-snapshot from 0.14.0 to 0.18.1. PR [#13132](https://github.com/fastapi/fastapi/pull/13132) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocs-macros-plugin from 1.0.5 to 1.3.7. PR [#13133](https://github.com/fastapi/fastapi/pull/13133) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔨 Add internal scripts to generate language translations with PydanticAI, include Spanish prompt. PR [#13123](https://github.com/fastapi/fastapi/pull/13123) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump astral-sh/setup-uv from 4 to 5. PR [#13096](https://github.com/fastapi/fastapi/pull/13096) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: rename CryptAPI to BlockBee. PR [#13078](https://github.com/fastapi/fastapi/pull/13078) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.2 to 1.12.3. PR [#13055](https://github.com/fastapi/fastapi/pull/13055) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump types-ujson from 5.7.0.1 to 5.10.0.20240515. PR [#13018](https://github.com/fastapi/fastapi/pull/13018) by [@dependabot[bot]](https://github.com/apps/dependabot).
