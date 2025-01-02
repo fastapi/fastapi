@@ -46,7 +46,6 @@ def main() -> None:
             )
         )
     data = [repo.model_dump() for repo in final_repos]
-    logging.info("Finished")
 
     # Local development
     # repos_path = Path("../docs/en/data/topic_repos.yml")
