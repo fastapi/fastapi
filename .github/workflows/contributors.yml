@@ -10,7 +10,9 @@ on:
         required: false
         default: "false"
   # TODO: fix this
-  pull_request:
+  push:
+    branches:
+      - contributors
 
 env:
   UV_SYSTEM_PYTHON: 1
@@ -44,8 +46,7 @@ jobs:
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        # TODO: fix this
-        # if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
         env:
