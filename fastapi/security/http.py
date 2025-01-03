@@ -4,7 +4,9 @@ from typing import Optional
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
+from fastapi.openapi.models import HTTPBasic as HTTPBasicModel
 from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
+from fastapi.openapi.models import HTTPDigest as HTTPDigestModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
@@ -147,7 +149,7 @@ class HTTPBasic(HTTPBase):
                 HTTP Basic authentication realm.
                 """
             ),
-        ] = None,
+        ] = "global",
         description: Annotated[
             Optional[str],
             Doc(
@@ -179,7 +181,7 @@ class HTTPBasic(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBaseModel(scheme="basic", description=description)
+        self.model = HTTPBasicModel(description=description, realm=realm)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
@@ -189,23 +191,21 @@ class HTTPBasic(HTTPBase):
     ) -> Optional[HTTPBasicCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        if self.realm:
-            unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
-        else:
-            unauthorized_headers = {"WWW-Authenticate": "Basic"}
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
-                    headers=unauthorized_headers,
+                    detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
+                    headers={"WWW-Authenticate": f'Basic realm="{self.realm}"'},
                 )
             else:
                 return None
         invalid_user_credentials_exc = HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
-            headers=unauthorized_headers,
+            detail="Invalid authentication credentials. (Check the WWW-Authenticate header for authentication hints)",
+            headers={
+                "WWW-Authenticate": f'Basic realm="{self.realm}", error="invalid_token", error_description="base64 token has invalid format"'
+            },
         )
         try:
             data = b64decode(param).decode("ascii")
@@ -263,6 +263,14 @@ class HTTPBearer(HTTPBase):
                 """
             ),
         ] = None,
+        realm: Annotated[
+            Optional[str],
+            Doc(
+                """
+                HTTP Bearer authentication realm.
+                """
+            ),
+        ] = "global",
         description: Annotated[
             Optional[str],
             Doc(
@@ -294,8 +302,11 @@ class HTTPBearer(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
+        self.model = HTTPBearerModel(
+            bearerFormat=bearerFormat, description=description, realm=realm
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
         self.auto_error = auto_error
 
     async def __call__(
@@ -303,18 +314,22 @@ class HTTPBearer(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
+        unauthorized_headers = {"WWW-Authenticate": f'Bearer realm="{self.realm}"'}
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
-                    detail="Invalid authentication credentials",
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
@@ -366,6 +381,24 @@ class HTTPDigest(HTTPBase):
                 """
             ),
         ] = None,
+        realm: Annotated[
+            Optional[str],
+            Doc(
+                """
+                HTTP Digest authentication realm.
+                """
+            ),
+        ] = "global",
+        qop: Annotated[
+            Optional[str],
+            Doc(
+                """
+                HTTP Digest authentication qulity of protection.
+
+                This value can be "auth" | "auth-int" | <token> according to RFC 7616
+                """
+            ),
+        ] = "auth",
         description: Annotated[
             Optional[str],
             Doc(
@@ -396,8 +429,10 @@ class HTTPDigest(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBaseModel(scheme="digest", description=description)
+        self.model = HTTPDigestModel(description=description, realm=realm, qop=qop)
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
+        self.qop = qop
         self.auto_error = auto_error
 
     async def __call__(
@@ -405,16 +440,22 @@ class HTTPDigest(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
+        unauthorize_headers = {
+            "WWW-Authenticate": f'Digest realm="{self.realm}" qop="{self.qop}"'
+        }
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated. (Check the WWW-Authenticate header for authentication hints)",
+                    headers=unauthorize_headers,
                 )
             else:
                 return None
         if scheme.lower() != "digest":
             raise HTTPException(
-                status_code=HTTP_403_FORBIDDEN,
-                detail="Invalid authentication credentials",
+                status_code=HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication schema. (Check the WWW-Authenticate header for authentication hints)",
+                headers=unauthorize_headers,
             )
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
