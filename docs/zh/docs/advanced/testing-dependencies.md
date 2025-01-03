@@ -28,7 +28,7 @@
 
 这样一来，**FastAPI** 就会调用覆盖依赖项，不再调用原依赖项。
 
-{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
 /// tip | 提示
 
