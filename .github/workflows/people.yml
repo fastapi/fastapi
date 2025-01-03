@@ -9,6 +9,8 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: 'false'
+  # TODO: fix this
+  pull_request:
 
 jobs:
   fastapi-people:
@@ -29,6 +31,19 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-      - uses: ./.github/actions/people
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          token: ${{ secrets.FASTAPI_PEOPLE }}
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ runner.os }}-python-github-actions-${{ env.pythonLocation }}-${{ hashFiles('requirements-github-actions.txt') }}-v01
+      - name: Install GitHub Actions dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pip install -r requirements-github-actions.txt
+      - name: FastAPI People
+        run: python ./scripts/people.py
+        env:
+          TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
