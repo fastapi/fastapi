@@ -23,6 +23,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Chinese translation for `docs/zh/docs/fastapi-cli.md`. PR [#13102](https://github.com/fastapi/fastapi/pull/13102) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 * 🌐 Add new Spanish translations for all docs with new LLM-assisted system using PydanticAI. PR [#13122](https://github.com/fastapi/fastapi/pull/13122) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update existing Spanish translations using the new LLM-assisted system using PydanticAI. PR [#13118](https://github.com/fastapi/fastapi/pull/13118) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Chinese translation for `docs/zh/docs/advanced/security/oauth2-scopes.md`. PR [#13110](https://github.com/fastapi/fastapi/pull/13110) by [@ChenPu2002](https://github.com/ChenPu2002).
