@@ -1,28 +1,28 @@
-# Plantilla de FastAPI Full Stack
+# Plantilla Full Stack FastAPI
 
-Las plantillas, aunque típicamente vienen con una configuración específica, están diseñadas para ser flexibles y personalizables. Esto te permite modificarlas y adaptarlas a los requisitos de tu proyecto, lo que las convierte en un excelente punto de partida. 🏁
+Las plantillas, aunque normalmente vienen con una configuración específica, están diseñadas para ser flexibles y personalizables. Esto te permite modificarlas y adaptarlas a los requisitos de tu proyecto, haciéndolas un excelente punto de partida. 🏁
 
-Puedes utilizar esta plantilla para comenzar, ya que incluye gran parte de la configuración inicial, seguridad, base de datos y algunos endpoints de API ya realizados.
+Puedes usar esta plantilla para comenzar, ya que incluye gran parte de la configuración inicial, seguridad, base de datos y algunos endpoints de API ya hechos para ti.
 
-Repositorio en GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
+Repositorio de GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Plantilla Full Stack FastAPI</a>
 
-## Plantilla de FastAPI Full Stack - Tecnología y Características
+## Plantilla Full Stack FastAPI - Tecnología y Funcionalidades
 
-- ⚡ [**FastAPI**](https://fastapi.tiangolo.com) para el backend API en Python.
-    - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con la base de datos SQL en Python (ORM).
-    - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y la gestión de configuraciones.
-    - 💾 [PostgreSQL](https://www.postgresql.org) como la base de datos SQL.
+- ⚡ [**FastAPI**](https://fastapi.tiangolo.com) para la API del backend en Python.
+    - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
+    - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
+    - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
-    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev) y otras partes de un stack de frontend moderno.
+    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev), y otras partes de una stack moderna de frontend.
     - 🎨 [Chakra UI](https://chakra-ui.com) para los componentes del frontend.
-    - 🤖 Un cliente frontend generado automáticamente.
+    - 🤖 Un cliente de frontend generado automáticamente.
     - 🧪 [Playwright](https://playwright.dev) para pruebas End-to-End.
     - 🦇 Soporte para modo oscuro.
 - 🐋 [Docker Compose](https://www.docker.com) para desarrollo y producción.
 - 🔒 Hashing seguro de contraseñas por defecto.
-- 🔑 Autenticación con token JWT.
+- 🔑 Autenticación con tokens JWT.
 - 📫 Recuperación de contraseñas basada en email.
-- ✅ Tests con [Pytest](https://pytest.org).
+- ✅ Pruebas con [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) como proxy inverso / balanceador de carga.
-- 🚢 Instrucciones de despliegue utilizando Docker Compose, incluyendo cómo configurar un proxy frontend Traefik para manejar certificados HTTPS automáticos.
+- 🚢 Instrucciones de despliegue usando Docker Compose, incluyendo cómo configurar un proxy Traefik frontend para manejar certificados HTTPS automáticos.
 - 🏭 CI (integración continua) y CD (despliegue continuo) basados en GitHub Actions.

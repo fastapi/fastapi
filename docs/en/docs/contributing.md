@@ -107,7 +107,7 @@ $ cd docs/en/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -245,7 +245,7 @@ $ cd docs/es/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///

@@ -85,9 +85,9 @@ $ pip install "fastapi[standard]"
 
 /// note
 
-當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準相依項。
+當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準依賴項。
 
-如果你不想包含那些可選的相依項，你可以使用 `pip install fastapi` 來安裝。
+如果你不想包含那些可選的依賴項，你可以使用 `pip install fastapi` 來安裝。
 
 ///
 
