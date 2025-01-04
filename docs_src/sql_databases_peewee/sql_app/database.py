@@ -4,7 +4,8 @@ import peewee
 
 DATABASE_NAME = "test.db"
 db_state_default = {"closed": None, "conn": None, "ctx": None, "transactions": None}
-db_state = ContextVar("db_state", default=db_state_default.copy())
+db_state = ContextVar("db_state", default=None)
+db_state.set(db_state_default.copy())
 
 
 class PeeweeConnectionState(peewee._ConnectionState):
