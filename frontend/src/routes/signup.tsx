@@ -96,7 +96,7 @@ function SignUp() {
             )}
           </FormControl>
           <FormControl id="email" isInvalid={!!errors.email}>
-            <FormLabel htmlFor="username" srOnly>
+            <FormLabel htmlFor="email" srOnly>
               Email
             </FormLabel>
             <Input
