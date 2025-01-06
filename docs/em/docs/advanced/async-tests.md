@@ -32,15 +32,11 @@
 
 📁 `main.py` 🔜 ✔️:
 
-```Python
-{!../../../docs_src/async_tests/main.py!}
-```
+{* ../../docs_src/async_tests/main.py *}
 
 📁 `test_main.py` 🔜 ✔️ 💯 `main.py`, ⚫️ 💪 👀 💖 👉 🔜:
 
-```Python
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py *}
 
 ## 🏃 ⚫️
 
@@ -60,18 +56,17 @@ $ pytest
 
 📑 `@pytest.mark.anyio` 💬 ✳ 👈 👉 💯 🔢 🔜 🤙 🔁:
 
-```Python hl_lines="7"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[7] *}
 
-!!! tip
-    🗒 👈 💯 🔢 🔜 `async def` ↩️ `def` ⏭ 🕐❔ ⚙️ `TestClient`.
+/// tip
+
+🗒 👈 💯 🔢 🔜 `async def` ↩️ `def` ⏭ 🕐❔ ⚙️ `TestClient`.
+
+///
 
 ⤴️ 👥 💪 ✍ `AsyncClient` ⏮️ 📱, &amp; 📨 🔁 📨 ⚫️, ⚙️ `await`.
 
-```Python hl_lines="9-10"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
 
 👉 🌓:
 
@@ -81,12 +76,18 @@ response = client.get('/')
 
 ...👈 👥 ⚙️ ⚒ 👆 📨 ⏮️ `TestClient`.
 
-!!! tip
-    🗒 👈 👥 ⚙️ 🔁/⌛ ⏮️ 🆕 `AsyncClient` - 📨 🔁.
+/// tip
+
+🗒 👈 👥 ⚙️ 🔁/⌛ ⏮️ 🆕 `AsyncClient` - 📨 🔁.
+
+///
 
 ## 🎏 🔁 🔢 🤙
 
 🔬 🔢 🔜 🔁, 👆 💪 🔜 🤙 (&amp; `await`) 🎏 `async` 🔢 ↖️ ⚪️➡️ 📨 📨 👆 FastAPI 🈸 👆 💯, ⚫️❔ 👆 🔜 🤙 👫 🙆 🙆 👆 📟.
 
-!!! tip
-    🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠️ 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `'@app.on_event("startup")` ⏲.
+/// tip
+
+🚥 👆 ⚔ `RuntimeError: Task attached to a different loop` 🕐❔ 🛠️ 🔁 🔢 🤙 👆 💯 (✅ 🕐❔ ⚙️ <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">✳ MotorClient</a>) 💭 🔗 🎚 👈 💪 🎉 ➰ 🕴 🏞 🔁 🔢, ✅ `'@app.on_event("startup")` ⏲.
+
+///

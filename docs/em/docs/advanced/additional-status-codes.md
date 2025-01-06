@@ -14,21 +14,25 @@
 
 🏆 👈, 🗄 `JSONResponse`, &amp; 📨 👆 🎚 📤 🔗, ⚒ `status_code` 👈 👆 💚:
 
-```Python hl_lines="4  25"
-{!../../../docs_src/additional_status_codes/tutorial001.py!}
-```
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
-!!! warning
-    🕐❔ 👆 📨 `Response` 🔗, 💖 🖼 🔛, ⚫️ 🔜 📨 🔗.
+/// warning
 
-    ⚫️ 🏆 🚫 🎻 ⏮️ 🏷, ♒️.
+🕐❔ 👆 📨 `Response` 🔗, 💖 🖼 🔛, ⚫️ 🔜 📨 🔗.
 
-    ⚒ 💭 ⚫️ ✔️ 📊 👆 💚 ⚫️ ✔️, &amp; 👈 💲 ☑ 🎻 (🚥 👆 ⚙️ `JSONResponse`).
+⚫️ 🏆 🚫 🎻 ⏮️ 🏷, ♒️.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import JSONResponse`.
+⚒ 💭 ⚫️ ✔️ 📊 👆 💚 ⚫️ ✔️, &amp; 👈 💲 ☑ 🎻 (🚥 👆 ⚙️ `JSONResponse`).
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `status`.
+///
+
+/// note | 📡 ℹ
+
+👆 💪 ⚙️ `from starlette.responses import JSONResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃. 🎏 ⏮️ `status`.
+
+///
 
 ## 🗄 &amp; 🛠️ 🩺
 
