@@ -59,13 +59,13 @@ $ pytest
 
 ## In Detail
 
-The lifespan function demonstrates how to manage the lifecycle of application-wide resources. During the app's lifespan, we open a resource (`some_state_open`) at startup and clean it up (`some_state_close`) during shutdown.  
+The lifespan function demonstrates how to manage the lifecycle of application-wide resources. During the app's lifespan, we open a resource (`some_state_open`) at startup and clean it up (`some_state_close`) during shutdown.
 
 We use **ASGITransport** from **HTTPX** to interact directly with the **FastAPI** app in an async test environment.
 
-When testing **FastAPI** apps with a custom lifespan, it's critical to manually trigger it in the test context to ensure proper setup and teardown of resources.  
+When testing **FastAPI** apps with a custom lifespan, it's critical to manually trigger it in the test context to ensure proper setup and teardown of resources.
 
-If you observe issues with state initialization or teardown in your tests, ensure that the lifespan is correctly invoked, and verify the app's state before and after requests.  
+If you observe issues with state initialization or teardown in your tests, ensure that the lifespan is correctly invoked, and verify the app's state before and after requests.
 
 
 ## Other Asynchronous Function Calls
@@ -87,4 +87,3 @@ def event_loop() -> Generator[AbstractEventLoop, None, None]:
 ```
 
 ///
-

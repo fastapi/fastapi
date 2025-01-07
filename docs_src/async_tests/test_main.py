@@ -6,7 +6,9 @@ from .main import app, lifespan
 
 @pytest.mark.anyio
 async def test_root():
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as client:
         async with lifespan(app=app):
             # Send a GET request to the root endpoint
             response = await client.get("/")
