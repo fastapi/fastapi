@@ -1,14 +1,19 @@
-# Async Tests
+# Async Tests with Lifespan Trigger
 
-You have already seen how to test your **FastAPI** applications using the provided `TestClient`. Up to now, you have only seen how to write synchronous tests, without using `async` functions.
+You’ve already seen how to test your **FastAPI** applications using `TestClient`. So far, you’ve primarily written synchronous tests using def functions.
 
-Being able to use asynchronous functions in your tests could be useful, for example, when you're querying your database asynchronously. Imagine you want to test sending requests to your FastAPI application and then verify that your backend successfully wrote the correct data in the database, while using an async database library.
-
-Let's look at how we can make that work.
+However, asynchronous test functions can be useful, especially when querying your database asynchronously. For instance, you may want to test that sending requests to your **FastAPI** app successfully writes correct data to the database using an async library. Let’s explore how to achieve this.
 
 ## pytest.mark.anyio
 
 If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. AnyIO provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
+
+/// note
+
+You can also use <a href="https://pytest-asyncio.readthedocs.io/en/latest/" class="external-link" target="_blank">PyTest asyncio</a>.
+
+///
+
 
 ## HTTPX
 
@@ -25,9 +30,9 @@ For a simple example, let's consider a file structure similar to the one describ
 ```
 .
 ├── app
-│   ├── __init__.py
-│   ├── main.py
-│   └── test_main.py
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
 ```
 
 The file `main.py` would have:
@@ -54,46 +59,32 @@ $ pytest
 
 ## In Detail
 
-The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:
+The lifespan function demonstrates how to manage the lifecycle of application-wide resources. During the app's lifespan, we open a resource (`some_state_open`) at startup and clean it up (`some_state_close`) during shutdown.  
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+We use **ASGITransport** from **HTTPX** to interact directly with the **FastAPI** app in an async test environment.
 
-/// tip
+When testing **FastAPI** apps with a custom lifespan, it's critical to manually trigger it in the test context to ensure proper setup and teardown of resources.  
 
-Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+If you observe issues with state initialization or teardown in your tests, ensure that the lifespan is correctly invoked, and verify the app's state before and after requests.  
 
-///
-
-Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
-
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
-
-This is the equivalent to:
-
-```Python
-response = client.get('/')
-```
-
-...that we used to make our requests with the `TestClient`.
-
-/// tip
-
-Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
-
-///
-
-/// warning
-
-If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
-
-///
 
 ## Other Asynchronous Function Calls
 
-As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
+As the testing function is now asynchronous, you can now also call (and await) other async functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
 /// tip
 
-If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests, you can override the default pytest event loop using the following fixture:
+
+```python
+@pytest.fixture(scope="session")
+def event_loop() -> Generator[AbstractEventLoop, None, None]:
+    """Overrides pytest default function scoped event loop"""
+    policy = asyncio.get_event_loop_policy()
+    loop = policy.new_event_loop()
+    yield loop
+    loop.close()
+```
 
 ///
+
