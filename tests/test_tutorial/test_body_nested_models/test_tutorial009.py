@@ -10,7 +10,7 @@ from ...utils import needs_py39
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial00",
+        "tutorial009",
         pytest.param("tutorial009_py39", marks=needs_py39),
     ],
 )
