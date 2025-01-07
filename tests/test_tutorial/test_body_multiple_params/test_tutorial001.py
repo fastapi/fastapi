@@ -1,3 +1,5 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
@@ -15,10 +17,10 @@ from ...utils import needs_py39, needs_py310
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
-def get_client():
-    from docs_src.body_multiple_params.tutorial001_py310 import app
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_multiple_params.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
