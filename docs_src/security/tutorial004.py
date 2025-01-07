@@ -61,7 +61,7 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 
-def get_user(db, username: str):
+def get_user(db, username: Union[str, None]):
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
@@ -95,7 +95,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
+        username: Union[str, None] = payload.get("sub")
         if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)
