@@ -9,8 +9,8 @@ from ...utils import needs_py39
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003",
-        pytest.param("tutorial003_py310", marks=needs_py39),
+        "tutorial005",
+        pytest.param("tutorial005_py39", marks=needs_py39),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
