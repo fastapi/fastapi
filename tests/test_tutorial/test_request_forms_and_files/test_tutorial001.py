@@ -23,7 +23,6 @@ def get_app(request: pytest.FixtureRequest):
 
 
 @pytest.fixture(name="client")
-
 def get_client(app: FastAPI):
     client = TestClient(app)
     return client
