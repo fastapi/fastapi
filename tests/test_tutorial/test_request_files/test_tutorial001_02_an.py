@@ -1,7 +1,7 @@
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.request_files.tutorial001_02 import app
+from docs_src.request_files.tutorial001_02_an import app
 
 client = TestClient(app)
 

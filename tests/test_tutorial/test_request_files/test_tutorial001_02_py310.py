@@ -1,46 +1,58 @@
+from pathlib import Path
+
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.request_files.tutorial001_02 import app
-
-client = TestClient(app)
+from ...utils import needs_py310
 
 
-def test_post_form_no_body():
+@pytest.fixture(name="client")
+def get_client():
+    from docs_src.request_files.tutorial001_02_py310 import app
+
+    client = TestClient(app)
+    return client
+
+
+@needs_py310
+def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "No file sent"}
 
 
-def test_post_uploadfile_no_body():
+@needs_py310
+def test_post_uploadfile_no_body(client: TestClient):
     response = client.post("/uploadfile/")
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "No upload file sent"}
 
 
-def test_post_file(tmp_path):
+@needs_py310
+def test_post_file(tmp_path: Path, client: TestClient):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
 
-    client = TestClient(app)
     with path.open("rb") as file:
         response = client.post("/files/", files={"file": file})
     assert response.status_code == 200, response.text
     assert response.json() == {"file_size": 14}
 
 
-def test_post_upload_file(tmp_path):
+@needs_py310
+def test_post_upload_file(tmp_path: Path, client: TestClient):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
 
-    client = TestClient(app)
     with path.open("rb") as file:
         response = client.post("/uploadfile/", files={"file": file})
     assert response.status_code == 200, response.text
     assert response.json() == {"filename": "test.txt"}
 
 
-def test_openapi_schema():
+@needs_py310
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
