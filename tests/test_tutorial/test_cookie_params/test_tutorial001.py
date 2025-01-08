@@ -19,7 +19,7 @@ from ...utils import needs_py39, needs_py310
     ],
 )
 def get_mod(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.dependencies.{request.param}")
+    mod = importlib.import_module(f"docs_src.cookie_params.{request.param}")
 
     return mod
 
@@ -38,8 +38,8 @@ def get_mod(request: pytest.FixtureRequest):
         ("/items", {"session": "cookiesession"}, 200, {"ads_id": None}),
     ],
 )
-def test(path, expected_status, expected_response, mod: ModuleType):
-    client = TestClient(mod.app, mod.cookies)
+def test(path, cookies, expected_status, expected_response, mod: ModuleType):
+    client = TestClient(mod.app, cookies)
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
