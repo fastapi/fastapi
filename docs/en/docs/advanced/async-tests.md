@@ -77,13 +77,16 @@ As the testing function is now asynchronous, you can now also call (and await) o
 If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests, you can override the default pytest event loop using the following fixture:
 
 ```python
+import asyncio
+import pytest
+from collections.abc import Generator
+
 @pytest.fixture(scope="session")
-def event_loop() -> Generator[AbstractEventLoop, None, None]:
-    """Overrides pytest default function scoped event loop"""
-    policy = asyncio.get_event_loop_policy()
-    loop = policy.new_event_loop()
-    yield loop
-    loop.close()
+def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
+    """Overrides pytest default function scoped event loop using asyncio.Runner"""
+    with asyncio.Runner() as runner:
+        yield runner.get_loop()
+
 ```
 
 ///
