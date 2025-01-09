@@ -309,7 +309,7 @@ def update_item(item_id: int, item: Item):
 
 الأمر `fastapi dev` يجعل الخادم يقوم بإعادة التحميل تلقائياً.
 
-### تحديث وثائق API التفاعلية 
+### تحديث وثائق API التفاعلية
 
 انتقل الآن إلى <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
