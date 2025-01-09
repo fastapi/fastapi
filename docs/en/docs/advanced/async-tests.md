@@ -72,7 +72,7 @@ If you observe issues with state initialization or teardown in your tests, ensur
 
 As the testing function is now asynchronous, you can now also call (and await) other async functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
-/// tip
+//// tip
 
 If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests, you can override the default pytest event loop using the following fixture:
 
@@ -81,7 +81,7 @@ import asyncio
 import pytest
 from collections.abc import Generator
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
     """Overrides pytest default function scoped event loop using asyncio.Runner"""
     with asyncio.Runner() as runner:
@@ -89,4 +89,10 @@ def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
 
 ```
 
+/// note
+
+This fixture uses `scope="function"`, which ensures a fresh event loop is created for each test. While this is a robust approach, especially for isolating test cases, configuring a session-scoped loop (`scope="session"`) can simplify setup in some scenarios, such as when working with shared resources like database connections. Choose the scope based on the specific requirements and complexity of your tests.
+
 ///
+
+////
