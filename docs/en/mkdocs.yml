@@ -342,6 +342,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /ar/
+    name: ar - اللغة العربية
   - link: /az/
     name: az - azərbaycan dili
   - link: /bn/
