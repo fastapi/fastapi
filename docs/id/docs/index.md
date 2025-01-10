@@ -38,7 +38,7 @@ FastAPI adalah *framework* *web* moderen, cepat (performa-tinggi) untuk membangu
 Fitur utama FastAPI:
 
 * **Cepat**: Performa sangat tinggi, setara **NodeJS** dan **Go** (berkat Starlette dan Pydantic). [Salah satu *framework* Python tercepat yang ada](#performa).
-* **Cepat untuk coding**: Meningkatkan kecepatan pengembangan fitur dari 200% sampai 300%. * 
+* **Cepat untuk coding**: Meningkatkan kecepatan pengembangan fitur dari 200% sampai 300%. *
 * **Sedikit bug**: Mengurangi hingga 40% kesalahan dari manusia (pemrogram). *
 * **Intuitif**: Dukungan editor hebat. <abbr title="juga dikenal otomatis-lengkap, pelengkapan otomatis, kecerdasan">Penyelesaian</abbr> di mana pun. Lebih sedikit *debugging*.
 * **Mudah**: Dibuat mudah digunakan dan dipelajari. Sedikit waktu membaca dokumentasi.
@@ -114,7 +114,7 @@ Fitur utama FastAPI:
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Jika anda mengembangkan app <abbr title="Command Line Interface">CLI</abbr> yang digunakan di terminal bukan sebagai API web, kunjungi <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>. 
+Jika anda mengembangkan app <abbr title="Command Line Interface">CLI</abbr> yang digunakan di terminal bukan sebagai API web, kunjungi <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
 **Typer** adalah saudara kecil FastAPI. Dan ditujukan sebagai **CLI FastAPI**. ⌨️ 🚀
 
