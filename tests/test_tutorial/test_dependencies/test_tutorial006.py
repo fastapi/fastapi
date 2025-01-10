@@ -22,7 +22,6 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@needs_py39
 def test_get_no_headers(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422, response.text
@@ -62,14 +61,12 @@ def test_get_no_headers(client: TestClient):
     )
 
 
-@needs_py39
 def test_get_invalid_one_header(client: TestClient):
     response = client.get("/items/", headers={"X-Token": "invalid"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "X-Token header invalid"}
 
 
-@needs_py39
 def test_get_invalid_second_header(client: TestClient):
     response = client.get(
         "/items/", headers={"X-Token": "fake-super-secret-token", "X-Key": "invalid"}
@@ -78,7 +75,6 @@ def test_get_invalid_second_header(client: TestClient):
     assert response.json() == {"detail": "X-Key header invalid"}
 
 
-@needs_py39
 def test_get_valid_headers(client: TestClient):
     response = client.get(
         "/items/",
@@ -91,7 +87,6 @@ def test_get_valid_headers(client: TestClient):
     assert response.json() == [{"item": "Foo"}, {"item": "Bar"}]
 
 
-@needs_py39
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
