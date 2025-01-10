@@ -29,7 +29,6 @@ def get_client(app: FastAPI):
     return client
 
 
-@needs_py39
 def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 422, response.text
@@ -58,7 +57,6 @@ def test_post_form_no_body(client: TestClient):
     )
 
 
-@needs_py39
 def test_post_body_json(client: TestClient):
     response = client.post("/files/", json={"file": "Foo"})
     assert response.status_code == 422, response.text
@@ -87,7 +85,6 @@ def test_post_body_json(client: TestClient):
     )
 
 
-@needs_py39
 def test_post_files(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
@@ -107,7 +104,6 @@ def test_post_files(tmp_path, app: FastAPI):
     assert response.json() == {"file_sizes": [14, 15]}
 
 
-@needs_py39
 def test_post_upload_file(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
@@ -127,7 +123,6 @@ def test_post_upload_file(tmp_path, app: FastAPI):
     assert response.json() == {"filenames": ["test.txt", "test2.txt"]}
 
 
-@needs_py39
 def test_get_root(app: FastAPI):
     client = TestClient(app)
     response = client.get("/")
@@ -135,7 +130,6 @@ def test_get_root(app: FastAPI):
     assert b"<form" in response.content
 
 
-@needs_py39
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
