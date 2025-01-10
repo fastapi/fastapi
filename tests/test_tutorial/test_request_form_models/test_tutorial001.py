@@ -4,7 +4,7 @@ import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_py39
+from ...utils import needs_py39
 
 
 @pytest.fixture(
