@@ -1,18 +1,33 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
-from docs_src.security.tutorial005 import (
-    app,
-    create_access_token,
-    fake_users_db,
-    get_password_hash,
-    verify_password,
+from ...utils import needs_py39, needs_py310
+
+
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial005",
+        pytest.param("tutorial005_py310", marks=needs_py310),
+        "tutorial005_an",
+        pytest.param("tutorial005_py39", marks=needs_py39),
+        pytest.param("tutorial005_an_py39", marks=needs_py39),
+        pytest.param("tutorial005_an_py310", marks=needs_py310),
+    ],
 )
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.security.{request.param}")
 
-client = TestClient(app)
+    client = TestClient(mod.app)
+    return client
 
 
-def get_access_token(username="johndoe", password="secret", scope=None):
+def get_access_token(
+    *, username="johndoe", password="secret", scope=None, client: TestClient
+):
     data = {"username": username, "password": password}
     if scope:
         data["scope"] = scope
@@ -22,7 +37,7 @@ def get_access_token(username="johndoe", password="secret", scope=None):
     return access_token
 
 
-def test_login():
+def test_login(client: TestClient):
     response = client.post("/token", data={"username": "johndoe", "password": "secret"})
     assert response.status_code == 200, response.text
     content = response.json()
@@ -30,7 +45,7 @@ def test_login():
     assert content["token_type"] == "bearer"
 
 
-def test_login_incorrect_password():
+def test_login_incorrect_password(client: TestClient):
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
@@ -38,21 +53,21 @@ def test_login_incorrect_password():
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_login_incorrect_username():
+def test_login_incorrect_username(client: TestClient):
     response = client.post("/token", data={"username": "foo", "password": "secret"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_no_token():
+def test_no_token(client: TestClient):
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_token():
-    access_token = get_access_token(scope="me")
+def test_token(client: TestClient):
+    access_token = get_access_token(scope="me", client=client)
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -65,14 +80,14 @@ def test_token():
     }
 
 
-def test_incorrect_token():
+def test_incorrect_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_incorrect_token_type():
+def test_incorrect_token_type(client: TestClient):
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
@@ -82,19 +97,25 @@ def test_incorrect_token_type():
 
 
 def test_verify_password():
+    from docs_src.security.tutorial005_an_py310 import fake_users_db, verify_password
+
     assert verify_password("secret", fake_users_db["johndoe"]["hashed_password"])
 
 
 def test_get_password_hash():
+    from docs_src.security.tutorial005_an_py310 import get_password_hash
+
     assert get_password_hash("secretalice")
 
 
 def test_create_access_token():
+    from docs_src.security.tutorial005_an_py310 import create_access_token
+
     access_token = create_access_token(data={"data": "foo"})
     assert access_token
 
 
-def test_token_no_sub():
+def test_token_no_sub(client: TestClient):
     response = client.get(
         "/users/me",
         headers={
@@ -106,7 +127,7 @@ def test_token_no_sub():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_no_username():
+def test_token_no_username(client: TestClient):
     response = client.get(
         "/users/me",
         headers={
@@ -118,8 +139,8 @@ def test_token_no_username():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_no_scope():
-    access_token = get_access_token()
+def test_token_no_scope(client: TestClient):
+    access_token = get_access_token(client=client)
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -128,7 +149,7 @@ def test_token_no_scope():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_nonexistent_user():
+def test_token_nonexistent_user(client: TestClient):
     response = client.get(
         "/users/me",
         headers={
@@ -140,9 +161,9 @@ def test_token_nonexistent_user():
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_inactive_user():
+def test_token_inactive_user(client: TestClient):
     access_token = get_access_token(
-        username="alice", password="secretalice", scope="me"
+        username="alice", password="secretalice", scope="me", client=client
     )
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
@@ -151,8 +172,8 @@ def test_token_inactive_user():
     assert response.json() == {"detail": "Inactive user"}
 
 
-def test_read_items():
-    access_token = get_access_token(scope="me items")
+def test_read_items(client: TestClient):
+    access_token = get_access_token(scope="me items", client=client)
     response = client.get(
         "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -160,8 +181,8 @@ def test_read_items():
     assert response.json() == [{"item_id": "Foo", "owner": "johndoe"}]
 
 
-def test_read_system_status():
-    access_token = get_access_token()
+def test_read_system_status(client: TestClient):
+    access_token = get_access_token(client=client)
     response = client.get(
         "/status/", headers={"Authorization": f"Bearer {access_token}"}
     )
@@ -169,14 +190,14 @@ def test_read_system_status():
     assert response.json() == {"status": "ok"}
 
 
-def test_read_system_status_no_token():
+def test_read_system_status_no_token(client: TestClient):
     response = client.get("/status/")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
