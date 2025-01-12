@@ -1,23 +1,34 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
+from ...utils import needs_py39, needs_py310, needs_pydanticv2
 
 
-@pytest.fixture(name="client")
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial002",
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        pytest.param("tutorial002_py39", marks=needs_py39),
+    ],
+)
 def get_client() -> TestClient:
-    from docs_src.separate_openapi_schemas.tutorial002 import app
+    mod = importlib.import_module(f"docs_src.separate_openapi_schemas.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
+@needs_py310
 def test_create_item(client: TestClient) -> None:
     response = client.post("/items/", json={"name": "Foo"})
     assert response.status_code == 200, response.text
     assert response.json() == {"name": "Foo", "description": None}
 
 
+@needs_py310
 def test_read_items(client: TestClient) -> None:
     response = client.get("/items/")
     assert response.status_code == 200, response.text
@@ -30,6 +41,7 @@ def test_read_items(client: TestClient) -> None:
     ]
 
 
+@needs_py310
 @needs_pydanticv2
 def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
