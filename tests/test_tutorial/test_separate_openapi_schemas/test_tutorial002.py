@@ -14,7 +14,7 @@ from ...utils import needs_py39, needs_py310, needs_pydanticv2
         pytest.param("tutorial002_py39", marks=needs_py39),
     ],
 )
-def get_client() -> TestClient:
+def get_client(request: pytest.FixtureRequest) -> TestClient:
     mod = importlib.import_module(f"docs_src.separate_openapi_schemas.{request.param}")
 
     client = TestClient(mod.app)
