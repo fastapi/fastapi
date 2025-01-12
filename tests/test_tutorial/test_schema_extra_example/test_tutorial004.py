@@ -24,8 +24,6 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-# Test required and embedded body parameters with no bodies sent
-@needs_py310
 def test_post_body_example(client: TestClient):
     response = client.put(
         "/items/5",
@@ -39,7 +37,6 @@ def test_post_body_example(client: TestClient):
     assert response.status_code == 200
 
 
-@needs_py310
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
