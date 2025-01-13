@@ -3,7 +3,7 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_py39, needs_pydanticv2
+from ...utils import needs_py39, needs_pydanticv2
 
 
 @pytest.fixture(
