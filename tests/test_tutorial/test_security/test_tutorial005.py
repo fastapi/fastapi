@@ -1,4 +1,5 @@
 import importlib
+from types import ModuleType
 
 import pytest
 from dirty_equals import IsDict, IsOneOf
@@ -8,7 +9,7 @@ from ...utils import needs_py39, needs_py310
 
 
 @pytest.fixture(
-    name="client",
+    name="mod",
     params=[
         "tutorial005",
         pytest.param("tutorial005_py310", marks=needs_py310),
@@ -18,11 +19,10 @@ from ...utils import needs_py39, needs_py310
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )
-def get_client(request: pytest.FixtureRequest):
+def get_mod(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.security.{request.param}")
 
-    client = TestClient(mod.app)
-    return client
+    return mod
 
 
 def get_access_token(
@@ -37,7 +37,8 @@ def get_access_token(
     return access_token
 
 
-def test_login(client: TestClient):
+def test_login(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.post("/token", data={"username": "johndoe", "password": "secret"})
     assert response.status_code == 200, response.text
     content = response.json()
@@ -45,7 +46,8 @@ def test_login(client: TestClient):
     assert content["token_type"] == "bearer"
 
 
-def test_login_incorrect_password(client: TestClient):
+def test_login_incorrect_password(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
@@ -53,20 +55,23 @@ def test_login_incorrect_password(client: TestClient):
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_login_incorrect_username(client: TestClient):
+def test_login_incorrect_username(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.post("/token", data={"username": "foo", "password": "secret"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_no_token(client: TestClient):
+def test_no_token(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_token(client: TestClient):
+def test_token(mod: ModuleType):
+    client = TestClient(mod.app)
     access_token = get_access_token(scope="me", client=client)
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
@@ -80,14 +85,16 @@ def test_token(client: TestClient):
     }
 
 
-def test_incorrect_token(client: TestClient):
+def test_incorrect_token(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_incorrect_token_type(client: TestClient):
+def test_incorrect_token_type(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
@@ -96,26 +103,24 @@ def test_incorrect_token_type(client: TestClient):
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_verify_password():
-    from docs_src.security.tutorial005_an_py310 import fake_users_db, verify_password
-
-    assert verify_password("secret", fake_users_db["johndoe"]["hashed_password"])
-
-
-def test_get_password_hash():
-    from docs_src.security.tutorial005_an_py310 import get_password_hash
-
-    assert get_password_hash("secretalice")
+def test_verify_password(mod: ModuleType):
+    assert mod.verify_password(
+        "secret", mod.fake_users_db["johndoe"]["hashed_password"]
+    )
 
 
-def test_create_access_token():
-    from docs_src.security.tutorial005_an_py310 import create_access_token
+def test_get_password_hash(mod: ModuleType):
+    assert mod.get_password_hash("secretalice")
 
-    access_token = create_access_token(data={"data": "foo"})
+
+def test_create_access_token(mod: ModuleType):
+    access_token = mod.create_access_token(data={"data": "foo"})
     assert access_token
 
 
-def test_token_no_sub(client: TestClient):
+def test_token_no_sub(mod: ModuleType):
+    client = TestClient(mod.app)
+
     response = client.get(
         "/users/me",
         headers={
@@ -127,7 +132,9 @@ def test_token_no_sub(client: TestClient):
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_no_username(client: TestClient):
+def test_token_no_username(mod: ModuleType):
+    client = TestClient(mod.app)
+
     response = client.get(
         "/users/me",
         headers={
@@ -139,7 +146,9 @@ def test_token_no_username(client: TestClient):
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_no_scope(client: TestClient):
+def test_token_no_scope(mod: ModuleType):
+    client = TestClient(mod.app)
+
     access_token = get_access_token(client=client)
     response = client.get(
         "/users/me", headers={"Authorization": f"Bearer {access_token}"}
@@ -149,7 +158,9 @@ def test_token_no_scope(client: TestClient):
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_nonexistent_user(client: TestClient):
+def test_token_nonexistent_user(mod: ModuleType):
+    client = TestClient(mod.app)
+
     response = client.get(
         "/users/me",
         headers={
@@ -161,7 +172,9 @@ def test_token_nonexistent_user(client: TestClient):
     assert response.headers["WWW-Authenticate"] == 'Bearer scope="me"'
 
 
-def test_token_inactive_user(client: TestClient):
+def test_token_inactive_user(mod: ModuleType):
+    client = TestClient(mod.app)
+
     access_token = get_access_token(
         username="alice", password="secretalice", scope="me", client=client
     )
@@ -172,7 +185,8 @@ def test_token_inactive_user(client: TestClient):
     assert response.json() == {"detail": "Inactive user"}
 
 
-def test_read_items(client: TestClient):
+def test_read_items(mod: ModuleType):
+    client = TestClient(mod.app)
     access_token = get_access_token(scope="me items", client=client)
     response = client.get(
         "/users/me/items/", headers={"Authorization": f"Bearer {access_token}"}
@@ -181,7 +195,8 @@ def test_read_items(client: TestClient):
     assert response.json() == [{"item_id": "Foo", "owner": "johndoe"}]
 
 
-def test_read_system_status(client: TestClient):
+def test_read_system_status(mod: ModuleType):
+    client = TestClient(mod.app)
     access_token = get_access_token(client=client)
     response = client.get(
         "/status/", headers={"Authorization": f"Bearer {access_token}"}
@@ -190,14 +205,16 @@ def test_read_system_status(client: TestClient):
     assert response.json() == {"status": "ok"}
 
 
-def test_read_system_status_no_token(client: TestClient):
+def test_read_system_status_no_token(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.get("/status/")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_openapi_schema(client: TestClient):
+def test_openapi_schema(mod: ModuleType):
+    client = TestClient(mod.app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
