@@ -868,10 +868,13 @@ class APIRouter(routing.Router):
         ] = Default(generate_unique_id),
         defer_init: Annotated[
             bool,
-            Doc("""
-        By default every route will defer its initialization upon usage.
-        This flag disables the behavior for the routes defined in this router, causing the routes to initialize immediately.
-    """),
+            Doc(
+                """
+                By default, every route will defer its initialization until the first call.
+                This flag can be used to deactivate this behavior for the routes defined in this router,
+                causing the routes to initialize immediately when they are defined.
+                """
+            ),
         ] = True,
     ) -> None:
         super().__init__(
