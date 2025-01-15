@@ -48,8 +48,6 @@ Se você pretente utilizar algoritmos de assinatura digital como o RSA ou o ECDS
 
 Você pode ler mais sobre isso na <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">documentação de instalação do PyJWT</a>.
 
-If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
-
 ///
 
 ## Hashing de senhas
@@ -238,7 +236,7 @@ Se você abrir as ferramentas de desenvolvedor, poderá ver que os dados enviado
 
 /// note | Nota
 
-Perceba que o cabeçalho `Authorization`, com o valor que coma com `Bearer `.
+Perceba que o cabeçalho `Authorization`, com o valor que começa com `Bearer `.
 
 ///
 
@@ -273,4 +271,4 @@ Mas ele fornece as ferramentas para simplificar o processo o máximo possível, 
 
 E você pode usar e implementar protocolos padrão seguros, como o OAuth2, de uma maneira relativamente simples.
 
-Você pode aprender mais no **Guia Avançado do Usuário** sobre como usar os "scopes" do OAuth2 para um sistema de permissões mais refinado, seguindo esses mesmos padrões. O OAuth2 com scopes é o mecanismo usado por muitos provedores grandes de autenticação, como o Facebook, Google, GitHub, Microsoft, Twitter, etc., para autorizar aplicativos de terceiros a interagir com suas APIs em nome de seus usuários.
+Você pode aprender mais no **Guia Avançado do Usuário** sobre como usar os "scopes" do OAuth2 para um sistema de permissões mais refinado, seguindo esses mesmos padrões. O OAuth2 com scopes é o mecanismo usado por muitos provedores grandes de autenticação, como o Facebook, Google, GitHub, Microsoft, Twitter, etc. para autorizar aplicativos de terceiros a interagir com suas APIs em nome de seus usuários.
