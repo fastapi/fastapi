@@ -5,7 +5,6 @@ import pytest
 
 from ...utils import needs_py39, needs_py310
 
-
 doc_module = "docs_src.dependency_testing"
 
 
