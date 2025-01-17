@@ -1,7 +1,30 @@
-from docs_src.app_testing.app_b import test_main
+import importlib
+import pytest
+from types import ModuleType
+
+from ...utils import needs_py39, needs_py310
 
 
-def test_app():
+doc_module = "docs_src.app_testing"
+
+
+@pytest.fixture(
+    name="test_module",
+    params=[
+        "app_b.test_main",
+        pytest.param("app_b_py310.test_main", marks=needs_py310),
+        "app_b_an.test_main",
+        pytest.param("app_b_an_py39.test_main", marks=needs_py39),
+        pytest.param("app_b_an_py310.test_main", marks=needs_py310)
+    ],
+)
+def get_test_module(request: pytest.FixtureRequest) -> ModuleType:
+    mod: ModuleType = importlib.import_module(f"{doc_module}.{request.param}")
+    return mod
+
+
+def test_app(test_module: ModuleType):
+    test_main = test_module
     test_main.test_create_existing_item()
     test_main.test_create_item()
     test_main.test_create_item_bad_token()
