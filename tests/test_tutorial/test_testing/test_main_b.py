@@ -1,9 +1,9 @@
 import importlib
-import pytest
 from types import ModuleType
 
-from ...utils import needs_py39, needs_py310
+import pytest
 
+from ...utils import needs_py39, needs_py310
 
 doc_module = "docs_src.app_testing"
 
@@ -15,7 +15,7 @@ doc_module = "docs_src.app_testing"
         pytest.param("app_b_py310.test_main", marks=needs_py310),
         "app_b_an.test_main",
         pytest.param("app_b_an_py39.test_main", marks=needs_py39),
-        pytest.param("app_b_an_py310.test_main", marks=needs_py310)
+        pytest.param("app_b_an_py310.test_main", marks=needs_py310),
     ],
 )
 def get_test_module(request: pytest.FixtureRequest) -> ModuleType:
