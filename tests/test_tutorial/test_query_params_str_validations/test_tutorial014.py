@@ -5,7 +5,6 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py39, needs_py310
 
-
 doc_module = "docs_src.query_params_str_validations"
 
 
@@ -17,7 +16,7 @@ doc_module = "docs_src.query_params_str_validations"
         "tutorial014_an",
         pytest.param("tutorial014_an_py39", marks=needs_py39),
         pytest.param("tutorial014_an_py310", marks=needs_py310),
-    ]
+    ],
 )
 def get_client(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"{doc_module}.{request.param}")
