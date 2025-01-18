@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | Подсказка
 
-Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), то не забывайте инициализировать объекты, которым нужен цикл событий, только внутри асинхронных функций, например, в `'@app.on_event("startup")` callback.
+Если вы столкнулись с `RuntimeError: Task attached to a different loop` при вызове асинхронных функций в ваших тестах (например, при использовании <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), то не забывайте инициализировать объекты, которым нужен цикл событий (event loop), только внутри асинхронных функций, например, в `'@app.on_event("startup")` callback.
 
 ///
