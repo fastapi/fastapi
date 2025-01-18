@@ -83,7 +83,8 @@ class SponsorsResponse(BaseModel):
 
 
 class Settings(BaseSettings):
-    github_token: SecretStr
+    sponsors_token: SecretStr
+    pr_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
 
@@ -94,7 +95,7 @@ def get_graphql_response(
     query: str,
     after: str | None = None,
 ) -> dict[str, Any]:
-    headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
+    headers = {"Authorization": f"token {settings.sponsors_token.get_secret_value()}"}
     variables = {"after": after}
     response = httpx.post(
         github_graphql_url,
@@ -159,7 +160,7 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.github_token.get_secret_value())
+    g = Github(settings.pr_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 
     tiers = get_individual_sponsors(settings=settings)
