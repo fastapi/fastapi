@@ -1,3 +1,29 @@
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Sponsors](#sponsors)
+- [Opinions](#opinions)
+- [**Typer**, the FastAPI of CLIs](#typer-the-fastapi-of-clis)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Example](#example)
+  - [Create it](#create-it)
+  - [Run it](#run-it)
+  - [Check it](#check-it)
+  - [Interactive API docs](#interactive-api-docs)
+  - [Alternative API docs](#alternative-api-docs)
+- [Example upgrade](#example-upgrade)
+  - [Interactive API docs upgrade](#interactive-api-docs-upgrade)
+  - [Alternative API docs upgrade](#alternative-api-docs-upgrade)
+  - [Recap](#recap)
+- [Performance](#performance)
+- [Dependencies](#dependencies)
+  - [`standard` Dependencies](#standard-dependencies)
+  - [Without `standard` Dependencies](#without-standard-dependencies)
+  - [Additional Optional Dependencies](#additional-optional-dependencies)
+- [License](#license)
+
+---
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
