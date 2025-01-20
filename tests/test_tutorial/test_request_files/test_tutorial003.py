@@ -28,17 +28,6 @@ def get_client(app: FastAPI):
     return client
 
 
-file_required = {
-    "detail": [
-        {
-            "loc": ["body", "files"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-
 def test_post_files(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")

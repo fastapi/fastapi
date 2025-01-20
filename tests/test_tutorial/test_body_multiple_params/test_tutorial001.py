@@ -1,13 +1,26 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py39, needs_py310
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.body_multiple_params.tutorial001 import app
 
-    client = TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        pytest.param("tutorial001_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_multiple_params.{request.param}")
+
+    client = TestClient(mod.app)
     return client
 
 
