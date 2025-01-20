@@ -28,8 +28,6 @@ def get_client(app: FastAPI):
     return client
 
 
-
-
 def test_post_files(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
