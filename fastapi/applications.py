@@ -4539,7 +4539,7 @@ class FastAPI(Starlette):
 
     def exception_handler(
         self,
-        *exc_classes_or_status_codes: Annotated[
+        exc_class_or_status_code: Annotated[
             Union[int, Type[Exception]],
             Doc(
                 """
@@ -4547,9 +4547,18 @@ class FastAPI(Starlette):
                 """
             ),
         ],
+
+        *extra_exc_classes_or_status_codes: Annotated[
+            Union[int, Type[Exception]],
+            Doc(
+                """
+                Extra Exception classes or status codes this would handle.
+                """
+            ),
+        ],
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
-        Add an exception handler to the app.
+        Add one or more exception handler to the app.
 
         Read more about it in the
         [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/).
@@ -4579,9 +4588,11 @@ class FastAPI(Starlette):
             )
         ```
         """
-        for exc_class_or_status_code in exc_classes_or_status_codes:
-            def decorator(func: DecoratedCallable) -> DecoratedCallable:
-                self.add_exception_handler(exc_class_or_status_code, func)
-                return func
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            self.add_exception_handler(exc_class_or_status_code, func)
+            for extra_exc_class_or_status_code in extra_exc_classes_or_status_codes:
+                self.add_exception_handler(extra_exc_class_or_status_code, func)
+            return func
+        
 
         return decorator
