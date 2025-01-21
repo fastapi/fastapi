@@ -4547,7 +4547,6 @@ class FastAPI(Starlette):
                 """
             ),
         ],
-
         *extra_exc_classes_or_status_codes: Annotated[
             Union[int, Type[Exception]],
             Doc(
@@ -4588,11 +4587,11 @@ class FastAPI(Starlette):
             )
         ```
         """
+
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_exception_handler(exc_class_or_status_code, func)
             for extra_exc_class_or_status_code in extra_exc_classes_or_status_codes:
                 self.add_exception_handler(extra_exc_class_or_status_code, func)
             return func
-        
 
         return decorator
