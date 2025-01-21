@@ -65,9 +65,14 @@ plugins:
     - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
+    - contributors: ../en/data/contributors.yml
+    - translators: ../en/data/translators.yml
+    - translation_reviewers: ../en/data/translation_reviewers.yml
+    - skip_users: ../en/data/skip_users.yml
     - members: ../en/data/members.yml
     - sponsors_badge: ../en/data/sponsors_badge.yml
     - sponsors: ../en/data/sponsors.yml
+    - topic_repos: ../en/data/topic_repos.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md

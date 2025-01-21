@@ -748,7 +748,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 That means that the `python` program that will be used is the one **in the virtual environment**.
 
-you use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
+You use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
 
 The way that command works is that it will go and check in the `PATH` environment variable, going through **each path in order**, looking for the program called `python`. Once it finds it, it will **show you the path** to that program.
 
