@@ -35,6 +35,7 @@ hide:
 
 ### Upgrades
 
+* ⬆️ Bump Starlette to allow up to 0.45.0: `>=0.40.0,<0.46.0`. PR [#13117](https://github.com/fastapi/fastapi/pull/13117) by [@Kludex](https://github.com/Kludex).
 * ⬆️ Upgrade `jinja2` to >=3.1.5. PR [#13194](https://github.com/fastapi/fastapi/pull/13194) by [@DanielKusyDev](https://github.com/DanielKusyDev).
 
 ### Docs
