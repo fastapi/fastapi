@@ -60,7 +60,7 @@ standard = [
     # For the test client
     "httpx >=0.23.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
     "python-multipart >=0.0.7",
     # To validate email fields
@@ -79,7 +79,7 @@ all = [
     # # For the test client
     "httpx >=0.23.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
     "python-multipart >=0.0.7",
     # For Starlette's SessionMiddleware, not commonly used with FastAPI
