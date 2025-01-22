@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.7
+
 ### Upgrades
 
 * ⬆️ Upgrade `python-multipart` to >=0.0.18. PR [#13219](https://github.com/fastapi/fastapi/pull/13219) by [@DanielKusyDev](https://github.com/DanielKusyDev).
