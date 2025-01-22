@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Upgrade `python-multipart` to >=0.0.18. PR [#13219](https://github.com/fastapi/fastapi/pull/13219) by [@DanielKusyDev](https://github.com/DanielKusyDev).
+* ⬆️ Bump Starlette to allow up to 0.45.0: `>=0.40.0,<0.46.0`. PR [#13117](https://github.com/fastapi/fastapi/pull/13117) by [@Kludex](https://github.com/Kludex).
+* ⬆️ Upgrade `jinja2` to >=3.1.5. PR [#13194](https://github.com/fastapi/fastapi/pull/13194) by [@DanielKusyDev](https://github.com/DanielKusyDev).
+
 ### Refactors
 
 * ✅ Simplify tests for websockets. PR [#13202](https://github.com/fastapi/fastapi/pull/13202) by [@alejsdev](https://github.com/alejsdev).
@@ -32,12 +38,6 @@ hide:
 * ✅ Simplify tests for bigger_applications. PR [#13167](https://github.com/fastapi/fastapi/pull/13167) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Simplify tests for background_tasks. PR [#13166](https://github.com/fastapi/fastapi/pull/13166) by [@alejsdev](https://github.com/alejsdev).
 * ✅ Simplify tests for additional_status_codes. PR [#13149](https://github.com/fastapi/fastapi/pull/13149) by [@tiangolo](https://github.com/tiangolo).
-
-### Upgrades
-
-* ⬆️ Upgrade `python-multipart` to >=0.0.18. PR [#13219](https://github.com/fastapi/fastapi/pull/13219) by [@DanielKusyDev](https://github.com/DanielKusyDev).
-* ⬆️ Bump Starlette to allow up to 0.45.0: `>=0.40.0,<0.46.0`. PR [#13117](https://github.com/fastapi/fastapi/pull/13117) by [@Kludex](https://github.com/Kludex).
-* ⬆️ Upgrade `jinja2` to >=3.1.5. PR [#13194](https://github.com/fastapi/fastapi/pull/13194) by [@DanielKusyDev](https://github.com/DanielKusyDev).
 
 ### Docs
 
