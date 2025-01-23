@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from annotated_types import SupportsGe, SupportsGt, SupportsLe, SupportsLt
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
@@ -90,7 +91,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -99,7 +100,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -108,7 +109,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -116,7 +117,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -415,7 +416,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -424,7 +425,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -433,7 +434,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -441,7 +442,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -730,7 +731,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -739,7 +740,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -748,7 +749,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -756,7 +757,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1035,7 +1036,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1044,7 +1045,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1053,7 +1054,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1061,7 +1062,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1362,7 +1363,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1371,7 +1372,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1380,7 +1381,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1388,7 +1389,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1677,7 +1678,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1686,7 +1687,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1695,7 +1696,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1703,7 +1704,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1991,7 +1992,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -2000,7 +2001,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -2009,7 +2010,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -2017,7 +2018,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
