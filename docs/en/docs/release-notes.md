@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/bigger-applications.md`. PR [#13154](https://github.com/fastapi/fastapi/pull/13154) by [@alv2017](https://github.com/alv2017).
+
 ## 0.115.7
 
 ### Upgrades
