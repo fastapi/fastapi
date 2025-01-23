@@ -48,4 +48,5 @@ jobs:
       - name: FastAPI People Sponsors
         run: python ./scripts/sponsors.py
         env:
-          GITHUB_TOKEN: ${{ secrets.SPONSORS }}
+          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
+          PR_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
