@@ -30,14 +30,17 @@ def get_session():
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
-@asynccontextmanager
-async def lifespan(app:FastAPI):
-    create_db_and_tables() #Startup
-    yield #This Allows app to run
 
-    #Statements below yield are ran after shutdown
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()  # Startup
+    yield  # This Allows app to run
+
+    # Statements below yield are ran after shutdown
+
 
 app = FastAPI(lifespan=lifespan)
+
 
 @app.post("/heroes/")
 def create_hero(hero: Hero, session: SessionDep) -> Hero:

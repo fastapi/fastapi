@@ -28,14 +28,15 @@ def get_session():
         yield session
 
 
-
 @asynccontextmanager
-async def lifespan(app:FastAPI):
-    create_db_and_tables() #Startup
-    yield #Allows app to run
-    #Shutdown
+async def lifespan(app: FastAPI):
+    create_db_and_tables()  # Startup
+    yield  # Allows app to run
+    # Shutdown
+
 
 app = FastAPI(lifespan=lifespan)
+
 
 @app.post("/heroes/")
 def create_hero(hero: Hero, session: Session = Depends(get_session)) -> Hero:

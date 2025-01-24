@@ -114,7 +114,7 @@ For production you would probably use a migration script that runs before you st
 
 The `@app.on_event("startup")` and `@app.on_event("shutdown")` decorators are **deprecated** as of FastAPI v0.103.0.
 
-Use the <a href="https://fastapi.tiangolo.com/advanced/events/#lifespan" class="external-link" target="_blank">`lifespan`</a> parameter in the `FastAPI` class instead for lifecycle management. 
+Use the <a href="https://fastapi.tiangolo.com/advanced/events/#lifespan" class="external-link" target="_blank">`lifespan`</a> parameter in the `FastAPI` class instead for lifecycle management.
 
 ///
 
