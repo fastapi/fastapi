@@ -103,7 +103,7 @@ Then we create an `Annotated` dependency `SessionDep` to simplify the rest of th
 
 We will create the database tables when the application starts.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[33:40] hl[33:36, 40] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[34:42] hl[34:37, 42] *}
 
 Here we create the tables on an application startup event.
 
@@ -133,7 +133,7 @@ For example, if you declare a parameter of type `Hero`, it will be read from the
 
 The same way, you can declare it as the function's **return type**, and then the shape of the data will show up in the automatic API docs UI.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[42:47] hl[42:47] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[45:50] hl[45:50] *}
 
 Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
 
@@ -141,19 +141,19 @@ Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to t
 
 We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[50:57] hl[53:54,56] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[54:61] hl[56:57,59] *}
 
 ### Read One Hero
 
 We can **read** a single `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[60:65] hl[62] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[64:68] hl[65] *}
 
 ### Delete a Hero
 
 We can also **delete** a `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[68:75] hl[73] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[72:79] hl[76] *}
 
 ### Run the App
 
@@ -268,7 +268,7 @@ The fields of `HeroCreate` are:
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:23] hl[24:25] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:23] hl[22:23] *}
 
 #### `HeroUpdate` - the *data model* to update a hero
 
@@ -298,7 +298,7 @@ This new *table model* `Hero` will have the fields sent by the client, and will 
 
 Then we return the same *table model* `Hero` as is from the function. But as we declare the `response_model` with the `HeroPublic` *data model*, **FastAPI** will use `HeroPublic` to validate and serialize the data.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[59:65] hl[59:61] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[61:67] hl[61:63] *}
 
 /// tip
 
@@ -314,13 +314,13 @@ By declaring it in `response_model` we are telling **FastAPI** to do its thing, 
 
 We can do the same as before to **read** `Hero`s, again, we use `response_model=list[HeroPublic]` to ensure that the data is validated and serialized correctly.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[68:75] hl[68] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[70:77] hl[70] *}
 
 ### Read One Hero with `HeroPublic`
 
 We can **read** a single hero:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[78:83] hl[80] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[80:85] hl[82] *}
 
 ### Update a Hero with `HeroUpdate`
 
@@ -330,7 +330,7 @@ And in the code, we get a `dict` with all the data sent by the client, **only th
 
 Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with the data from `hero_data`.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[86:96] hl[86:87,91:92] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[88:98] hl[88:89,93:94] *}
 
 ### Delete a Hero Again
 
@@ -338,7 +338,7 @@ Then we use `hero_db.sqlmodel_update(hero_data)` to update the `hero_db` with th
 
 We won't satisfy the desire to refactor everything in this one. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[99:106] hl[104] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[101:108] hl[106] *}
 
 ### Run the App Again
 
