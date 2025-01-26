@@ -210,7 +210,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 OSは、もしそのプログラムをそこで発見すれば**実行し**ますが、そうでなければリストの**他のディレクトリ**を探していきます。
 
-## PythonのインストールとPATH環境変数の更新
+### PythonのインストールとPATH環境変数の更新
 
 Pythonのインストール時に`PATH`環境変数を更新したいか聞かれるかもしれません。
 
@@ -218,7 +218,7 @@ Pythonのインストール時に`PATH`環境変数を更新したいか聞か�
 
 Pythonをインストールして、そのプログラムが`/opt/custompython/bin`というディレクトリに配置されたとします。
 
-もし、`PATH`環境変数を更新を更新するように答えると、`PATH`環境変数に`/opt/custompython/bin`が追加されます。
+もし、`PATH`環境変数を更新するように答えると、`PATH`環境変数に`/opt/custompython/bin`が追加されます。
 
 `PATH`環境変数は以下のように更新されるでしょう：
 
@@ -226,7 +226,7 @@ Pythonをインストールして、そのプログラムが`/opt/custompython/b
 /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/custompython/bin
 ```
 
-このようにして、ターミナルで`python`と入力するしたときに、OSは`/opt/custompython/bin`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
+このようにして、ターミナルで`python`と入力したときに、OSは`/opt/custompython/bin`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
 
 ///
 
@@ -234,7 +234,7 @@ Pythonをインストールして、そのプログラムが`/opt/custompython/b
 
 Pythonをインストールして、そのプログラムが`C:\opt\custompython\bin`というディレクトリに配置されたとします。
 
-もし、`PATH`環境変数を更新を更新するように答えると、`PATH`環境変数に`C:\opt\custompython\bin`が追加されます。
+もし、`PATH`環境変数を更新するように答えると、`PATH`環境変数に`C:\opt\custompython\bin`が追加されます。
 
 `PATH`環境変数は以下のように更新されるでしょう：
 
@@ -242,13 +242,11 @@ Pythonをインストールして、そのプログラムが`C:\opt\custompython
 C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System32;C:\opt\custompython\bin
 ```
 
-このようにして、ターミナルで`python`と入力するしたときに、OSは`C:\opt\custompython\bin\python`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
+このようにして、ターミナルで`python`と入力したときに、OSは`C:\opt\custompython\bin\python`（リストの末尾のディレクトリ）にあるPythonプログラムを見つけ、使用します。
 
 ///
 
-#### 実行例：
-
-ターミナルで以下のコマンドを入力すると：
+つまり、ターミナルで以下のコマンドを入力すると：
 
 <div class="termy">
 
