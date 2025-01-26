@@ -8,7 +8,8 @@ app = FastAPI()
 
 
 class DataModel(BaseModel):
-    alias_with: str = Field(alias="with", default="nothing")
+    foo: str = Field(alias="bar", default="default_foo")
+    bar: str = Field(alias="foo", default="default_bar")
 
 
 @app.post("/param/body")
@@ -38,34 +39,39 @@ def post_param_headers(data: Annotated[DataModel, Header()]):
 
 client = TestClient(app)
 
+expected_json = {
+    "bar": "default_foo",
+    "foo": "set_foo",
+}
+
 
 def test_param_body_with_alias():
-    response = client.post("/param/body", json={"with": "something"})
+    response = client.post("/param/body", json={"foo": "set_foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"with": "something"}
+    assert response.json() == expected_json
 
 
 def test_param_form_with_alias():
-    response = client.post("/param/form", data={"with": "something"})
+    response = client.post("/param/form", data={"foo": "set_foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"with": "something"}
+    assert response.json() == expected_json
 
 
 def test_param_query_with_alias():
-    response = client.post("/param/query", params={"with": "something"})
+    response = client.post("/param/query", params={"foo": "set_foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"with": "something"}
+    assert response.json() == expected_json
 
 
 def test_param_headers_with_alias():
-    response = client.post("/param/headers", headers={"with": "something"})
+    response = client.post("/param/headers", headers={"foo": "set_foo"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"with": "something"}
+    assert response.json() == expected_json
 
 
 def test_param_cookies_with_alias():
     with client as c:
-        c.cookies.set("with", "something")
+        c.cookies.set("foo", "set_foo")
         response = c.post("/param/cookies")
     assert response.status_code == 200, response.text
-    assert response.json() == {"with": "something"}
+    assert response.json() == expected_json
