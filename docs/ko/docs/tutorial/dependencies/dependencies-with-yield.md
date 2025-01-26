@@ -4,13 +4,13 @@ FastAPI는 <abbr title='때로는 "종료 코드", "정리 코드", "정리 작�
 
 이를 구현하려면 `return` 대신 `yield`를 사용하고, 추가로 실행할 단계(코드)를 그 뒤에 작성하세요.
 
-/// 팁
+/// tip | 팁
 
 각 의존성마다 `yield`는 한 번만 사용해야 합니다.
 
 ///
 
-/// 참고 | 기술 세부사항
+/// note | 기술 세부사항
 
 다음과 함께 사용할 수 있는 모든 함수:
 
@@ -39,7 +39,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 {* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
-/// 팁
+/// tip | 팁
 
 `async` 함수와 일반 함수 모두 사용할 수 있습니다.
 
@@ -53,7 +53,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 예를 들어, 다른 의존성이나 *경로 작업*의 중간에 데이터베이스 트랜잭션 "롤백"이 발생하거나 다른 오류가 발생한다면, 해당 예외를 의존성에서 받을 수 있습니다.
 
-따라서, 읜존성 내에서 `except SomeException`을 사용하여 특정 예외를 처리할 수 있습니다.
+따라서, 의존성 내에서 `except SomeException`을 사용하여 특정 예외를 처리할 수 있습니다.
 
 마찬가지로, `finally`를 사용하여 예외 발생 여부와 관계 없이 종료 단계까 실행되도록 할 수 있습니다.
 
@@ -63,9 +63,9 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 어떤 크기와 형태의 하위 의존성과 "하위 의존성 트리"도 가질 수 있으며, 이들 모두가 `yield`를 사용할 수 있습니다.
 
-**FastAPI**는 `yield`를 사용하는 각 의존성의 "종료 코드가" 올바른 순서로 실행되도록 보장합니다.
+**FastAPI**는 `yield`를 사용하는 각 의존성의 "종료 코드"가 올바른 순서로 실행되도록 보장합니다.
 
-예를 들어, `dependency_c`는 `dependency_b`에 의존할 수 있고, `dependency_b`는 `dependency_a'에 의존할 수 있습니다.
+예를 들어, `dependency_c`는 `dependency_b`에 의존할 수 있고, `dependency_b`는 `dependency_a`에 의존할 수 있습니다.
 
 {* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
@@ -73,7 +73,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 이 경우 `dependency_c`는 종료 코드를 실행하기 위해, `dependency_b`의 값 (여기서는 `dep_b`로 명명)이 여전히 사용 가능해야 합니다.
 
-그리고, `dependency_b`는 종료 코드를 위해 `dependency_a`의 값 (여기서는 `dep_a`로 명명) 이 사용 가능
+그리고, `dependency_b`는 종료 코드를 위해 `dependency_a`의 값 (여기서는 `dep_a`로 명명) 이 사용 가능해야 합니다.
 
 {* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
@@ -85,7 +85,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 **FastAPI**는 모든 것이 올바른 순서로 실행되도록 보장합니다.
 
-/// 참고 | 기술 세부사항
+/// note | 기술 세부사항
 
 파이썬의 <a href=“https://docs.python.org/3/library/contextlib.html” class=“external-link” target=“_blank”>Context Managers</a> 덕분에 이 기능이 작동합니다.
 
@@ -99,7 +99,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 같은 방식으로, `yield` 이후의 종료 코드에서 `HTTPException`이나 유사한 예외를 발생시킬 수 있습니다.
 
-/// 팁
+/// tip | 팁
 
 이것은 다소 고급 기술이며, 대부분의 경우에는 경로 작업 함수와 같은 애플리케이션 코드 내에서 직접 `HTTPException`을 포함한 예외를 발생시킬 수 있기 때문에 실제로 필요하지 않습니다.
 
@@ -111,7 +111,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 예외를 처리하고(또는 추가로 다른 `HTTPException`을 발생시키기 위해) 사용할 수 있는 또 다른 방법은 [사용자 정의 예외 처리기](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}를 생성하는 것 입니다.
 
-## 'yield`와 `except`를 사용하는 의존성
+## `yield`와 `except`를 사용하는 의존성
 
 `yield`를 사용하는 의존성에서 `except`를 사용하여 예외를 포착하고 예외를 다시 발생시키지 않거나 (또는 새 예외를 발생시키지 않으면), FastAPI는 해당 예외가 발생했는지 알 수 없습니다. 이는 일반적인 Python 방식과 동일합니다:
 
@@ -168,7 +168,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// 정보
+/// info | 정보
 
 클라이언트에 **하나의 응답** 만 전송됩니다. 이는 오류 응답 중 하나일 수도 있고,*경로 작업*에서 생성된 응답일 수도 있습니다.
 
@@ -176,7 +176,7 @@ participant tasks as Background tasks
 
 ///
 
-/// 팁
+/// tip | 팁
 
 이 다이어그램은 `HTTPException`을 보여주지만, `yield`를 사용하는 의존성에서 처리한 예외나 [사용자 정의 예외처리기](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.를 사용하여 처리한 다른 예외도 발생시킬 수 있습니다.
 
@@ -186,7 +186,7 @@ participant tasks as Background tasks
 
 ## `yield`, `HTTPException`, `except` 및 백그라운드 작업을 사용하는 의존성
 
-/// 경고
+/// warning | 경고
 
 이러한 기술적 세부 사항은 대부분 필요하지 않으므로 이 섹션을 건너뛰고 아래에서 계속 진행해도 됩니다.
 
@@ -208,7 +208,7 @@ FastAPI 0.106.0 이전에는 yield 이후에 예외를 발생시키는 것이 �
 
 하지만 이렇게 하면 리소스를 불필요하게 양보한 의존성(예: 데이터베이스 연결)에서 보유하면서 응답이 네트워크를 통해 이동할 때까지 기다리는 것을 의미하기 때문에 FastAPI 0.106.0에서 변경되었습니다.
 
-/// 팁
+/// tip | 팁
 
 또한 백그라운드 작업은 일반적으로 자체 리소스(예: 자체 데이터베이스 연결)를 사용하여 별도로 처리해야 하는 독립적인 로직 집합입니다.
 
@@ -240,9 +240,9 @@ with open("./somefile.txt") as f:
 
 `yield`가 있는 의존성을 생성하면 **FastAPI**는 내부적으로 이를 위한 컨텍스트 매니저를 생성하고 다른 관련 도구들과 결합합니다.
 
-### '`yield`를 사용하는 의존성에서 컨텍스트 관리자 사용하기
+### `yield`를 사용하는 의존성에서 컨텍스트 관리자 사용하기
 
-/// 경고
+/// warning | 경고
 
 이것은 어느 정도 "고급" 개념입니다.
 
@@ -257,7 +257,7 @@ Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습�
 
 {* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
-/// 팁
+/// tip | 팁
 
 컨텍스트 관리자를 생성하는 또 다른 방법은 다음과 같습니다:
 
