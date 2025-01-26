@@ -141,19 +141,19 @@ Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to t
 
 We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[54:61] hl[56:57,59] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[53:60] hl[56:57,59] *}
 
 ### Read One Hero
 
 We can **read** a single `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[64:68] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[63:68] hl[65] *}
 
 ### Delete a Hero
 
 We can also **delete** a `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[72:79] hl[76] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[71:78] hl[76] *}
 
 ### Run the App
 
