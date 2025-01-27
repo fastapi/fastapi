@@ -218,8 +218,8 @@ Pull Requests를 이용하여 소스코드에 [컨트리뷰트](contributing.md)
 
 지금 할 수 있는 주요 작업은:
 
-* [GitHub에서 다른 사람들의 질문에 도움 주기](#help-others-with-questions-in-github){.internal-link target=_blank} (위의 섹션을 참조하세요).
-* [Pull Request 리뷰하기](#review-pull-requests){.internal-link target=_blank} (위의 섹션을 참조하세요).
+* [GitHub에서 다른 사람들의 질문에 도움 주기](#github_1){.internal-link target=_blank} (위의 섹션을 참조하세요).
+* [Pull Request 리뷰하기](#pull-requests){.internal-link target=_blank} (위의 섹션을 참조하세요).
 
 이 두 작업이 **가장 많은 시간을 소모**하는 일입니다. 그것이 FastAPI 유지 관리의 주요 작업입니다.
 
