@@ -47,7 +47,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub**에서 팔로우하기.</a>.
     * 당신에게 도움이 될 저의 다른 오픈소스 프로젝트를 확인하십시오.
     * 새로운 오픈소스 프로젝트를 만들었을 때 확인하려면 팔로우 하십시오.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">**Twitter**에서 팔로우하기.</a> or <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
+* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">**Twitter**</a> 또는 <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>에서 팔로우하기.
     * FastAPI의 사용 용도를 알려주세요 (그것을 듣는 것을 좋아합니다).
     * 발표 또는 새로운 툴 출시할 때 들으십시오.
     * <a href="https://twitter.com/fastapi" class="external-link" target="_blank">**Twitter**의 @fastapi를 팔로우</a> (별도 계정에서) 할 수 있습니다.
