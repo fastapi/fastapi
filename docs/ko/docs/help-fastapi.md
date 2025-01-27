@@ -12,7 +12,7 @@ FastAPI, 다른 사용자, 개발자를 응원하고 싶으신가요?
 
 ## 뉴스레터 구독
 
-[**FastAPI와 친구** 뉴스레터](https://github.com/fastapi/fastapi/blob/master/newsletter){.internal-link target=\_blank}를 구독하여 최신 정보를 유지할 수 있습니다:
+[**FastAPI와 친구** 뉴스레터](newsletter.md){.internal-link target=\_blank}를 구독하여 최신 정보를 유지할 수 있습니다:
 
 * FastAPI 와 그 친구들에 대한 뉴스 🚀
 * 가이드 📝
@@ -78,7 +78,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
 
 많은 경우, 여러분은 이미 그 질문에 대한 답을 알고 있을 수도 있습니다. 🤓
 
-만약 많은 사람들의 문제를 도와준다면, 공식적인 [FastAPI 전문가](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/fastapi-people.md#experts){.internal-link target=\_blank} 가 될 것입니다. 🎉
+만약 많은 사람들의 문제를 도와준다면, 공식적인 [FastAPI 전문가](fastapi-people.md#fastapi-experts){.internal-link target=\_blank} 가 될 것입니다. 🎉
 
 가장 중요한 점은: 친절하려고 노력하는 것입니다. 사람들은 좌절감을 안고 오며, 많은 경우 최선의 방식으로 질문하지 않을 수도 있습니다. 하지만 최대한 친절하게 대하려고 노력하세요. 🤗
 
@@ -196,7 +196,7 @@ Pull Rrquest를 리뷰할 때 고려해야 할 사항과 방법은 다음과 같
 
 ## Pull Request를 만드십시오
 
-Pull Requests를 이용하여 소스코드에 [컨트리뷰트](https://github.com/fastapi/fastapi/blob/master/docs/en/docs/contributing.md){.internal-link target=\_blank} 할 수 있습니다. 예를 들면 다음과 같습니다:
+Pull Requests를 이용하여 소스코드에 [컨트리뷰트](contributing.md){.internal-link target=\_blank} 할 수 있습니다. 예를 들면 다음과 같습니다:
 
 * 문서에서 발견한 오타를 수정할 때.
 * FastAPI 관련 문서, 비디오 또는 팟캐스트를 작성했거나 발견하여 <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">이 파일을 편집하여</a> 공유할 때.
