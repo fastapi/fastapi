@@ -51,7 +51,7 @@ jobs:
           limit-access-to-actor: true
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
-      - name: FastAPI People Contributors
-        run: python ./scripts/contributors.py
+      - name: FastAPI People Experts
+        run: python ./scripts/people.py
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
