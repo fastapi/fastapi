@@ -181,11 +181,13 @@ class Settings(BaseSettings):
     github_event_path: Path
     github_event_name: Union[str, None] = None
     httpx_timeout: int = 30
-    input_debug: Union[bool, None] = False
+    debug: Union[bool, None] = False
+    number: int | None = None
+
 
 
 class PartialGitHubEventIssue(BaseModel):
-    number: int
+    number: int | None = None
 
 
 class PartialGitHubEvent(BaseModel):
@@ -302,7 +304,7 @@ def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment
 
 def main() -> None:
     settings = Settings()
-    if settings.input_debug:
+    if settings.debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
@@ -315,6 +317,10 @@ def main() -> None:
         )
     contents = settings.github_event_path.read_text()
     github_event = PartialGitHubEvent.model_validate_json(contents)
+    logging.info(f"Using GitHub event: {github_event}")
+    number = github_event.pull_request.number or settings.number
+    if number is None:
+        raise RuntimeError("No PR number available")
 
     # Avoid race conditions with multiple labels
     sleep_time = random.random() * 10  # random number between 0 and 10 seconds
@@ -325,8 +331,8 @@ def main() -> None:
     time.sleep(sleep_time)
 
     # Get PR
-    logging.debug(f"Processing PR: #{github_event.pull_request.number}")
-    pr = repo.get_pull(github_event.pull_request.number)
+    logging.debug(f"Processing PR: #{number}")
+    pr = repo.get_pull(number)
     label_strs = {label.name for label in pr.get_labels()}
     langs = []
     for label in label_strs:
