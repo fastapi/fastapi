@@ -1,0 +1,29 @@
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+
+# Nastavenia pre Spotify API
+CLIENT_ID = 'your_client_id'  # Nahraďte svojím Client ID
+CLIENT_SECRET = 'your_client_secret'  # Nahraďte svojím Client Secret
+REDIRECT_URI = 'http://localhost:8888/callback'  # Redirect URI zaregistrovaný v Spotify Developer Dashboard
+
+# Autentifikácia pomocou OAuth
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
+                                               client_secret=CLIENT_SECRET,
+                                               redirect_uri=REDIRECT_URI,
+                                               scope="user-read-currently-playing"))
+
+# Získanie aktuálne prehrávanej skladby
+current_track = sp.currently_playing()
+
+if current_track is not None:
+    track_name = current_track['item']['name']
+    artist_name = current_track['item']['artists'][0]['name']
+    album_name = current_track['item']['album']['name']
+    progress_ms = current_track['progress_ms']
+    duration_ms = current_track['item']['duration_ms']
+
+    print(f"Teraz prehrávaš: {track_name} od {artist_name}")
+    print(f"Album: {album_name}")
+    print(f"Progress: {progress_ms / 1000:.2f}s / {duration_ms / 1000:.2f}s")
+else:
+    print("Momentálne nič neprehrávaš.")
