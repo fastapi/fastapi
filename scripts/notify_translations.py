@@ -185,13 +185,12 @@ class Settings(BaseSettings):
     number: int | None = None
 
 
-
 class PartialGitHubEventIssue(BaseModel):
     number: int | None = None
 
 
 class PartialGitHubEvent(BaseModel):
-    pull_request: PartialGitHubEventIssue
+    pull_request: PartialGitHubEventIssue | None = None
 
 
 def get_graphql_response(
@@ -318,7 +317,9 @@ def main() -> None:
     contents = settings.github_event_path.read_text()
     github_event = PartialGitHubEvent.model_validate_json(contents)
     logging.info(f"Using GitHub event: {github_event}")
-    number = github_event.pull_request.number or settings.number
+    number = (
+        github_event.pull_request and github_event.pull_request.number
+    ) or settings.number
     if number is None:
         raise RuntimeError("No PR number available")
 
