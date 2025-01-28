@@ -7,12 +7,13 @@ from typing import Any, Dict, List, Union, cast
 
 import httpx
 from github import Github
-from pydantic import BaseModel, BaseSettings, SecretStr
+from pydantic import BaseModel, SecretStr
+from pydantic_settings import BaseSettings
 
 awaiting_label = "awaiting-review"
 lang_all_label = "lang-all"
 approved_label = "approved-1"
-translations_path = Path(__file__).parent / "translations.yml"
+
 
 github_graphql_url = "https://api.github.com/graphql"
 questions_translations_category_id = "DIC_kwDOCZduT84CT5P9"
@@ -176,19 +177,20 @@ class AllDiscussionsResponse(BaseModel):
 
 class Settings(BaseSettings):
     github_repository: str
-    input_token: SecretStr
+    github_token: SecretStr
     github_event_path: Path
     github_event_name: Union[str, None] = None
     httpx_timeout: int = 30
-    input_debug: Union[bool, None] = False
+    debug: Union[bool, None] = False
+    number: int | None = None
 
 
 class PartialGitHubEventIssue(BaseModel):
-    number: int
+    number: int | None = None
 
 
 class PartialGitHubEvent(BaseModel):
-    pull_request: PartialGitHubEventIssue
+    pull_request: PartialGitHubEventIssue | None = None
 
 
 def get_graphql_response(
@@ -202,9 +204,7 @@ def get_graphql_response(
     comment_id: Union[str, None] = None,
     body: Union[str, None] = None,
 ) -> Dict[str, Any]:
-    headers = {"Authorization": f"token {settings.input_token.get_secret_value()}"}
-    # some fields are only used by one query, but GraphQL allows unused variables, so
-    # keep them here for simplicity
+    headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {
         "after": after,
         "category_id": category_id,
@@ -228,37 +228,40 @@ def get_graphql_response(
     data = response.json()
     if "errors" in data:
         logging.error(f"Errors in response, after: {after}, category_id: {category_id}")
+        logging.error(data["errors"])
         logging.error(response.text)
         raise RuntimeError(response.text)
     return cast(Dict[str, Any], data)
 
 
-def get_graphql_translation_discussions(*, settings: Settings):
+def get_graphql_translation_discussions(
+    *, settings: Settings
+) -> List[AllDiscussionsDiscussionNode]:
     data = get_graphql_response(
         settings=settings,
         query=all_discussions_query,
         category_id=questions_translations_category_id,
     )
-    graphql_response = AllDiscussionsResponse.parse_obj(data)
+    graphql_response = AllDiscussionsResponse.model_validate(data)
     return graphql_response.data.repository.discussions.nodes
 
 
 def get_graphql_translation_discussion_comments_edges(
     *, settings: Settings, discussion_number: int, after: Union[str, None] = None
-):
+) -> List[CommentsEdge]:
     data = get_graphql_response(
         settings=settings,
         query=translation_discussion_query,
         discussion_number=discussion_number,
         after=after,
     )
-    graphql_response = CommentsResponse.parse_obj(data)
+    graphql_response = CommentsResponse.model_validate(data)
     return graphql_response.data.repository.discussion.comments.edges
 
 
 def get_graphql_translation_discussion_comments(
     *, settings: Settings, discussion_number: int
-):
+) -> list[Comment]:
     comment_nodes: List[Comment] = []
     discussion_edges = get_graphql_translation_discussion_comments_edges(
         settings=settings, discussion_number=discussion_number
@@ -276,43 +279,49 @@ def get_graphql_translation_discussion_comments(
     return comment_nodes
 
 
-def create_comment(*, settings: Settings, discussion_id: str, body: str):
+def create_comment(*, settings: Settings, discussion_id: str, body: str) -> Comment:
     data = get_graphql_response(
         settings=settings,
         query=add_comment_mutation,
         discussion_id=discussion_id,
         body=body,
     )
-    response = AddCommentResponse.parse_obj(data)
+    response = AddCommentResponse.model_validate(data)
     return response.data.addDiscussionComment.comment
 
 
-def update_comment(*, settings: Settings, comment_id: str, body: str):
+def update_comment(*, settings: Settings, comment_id: str, body: str) -> Comment:
     data = get_graphql_response(
         settings=settings,
         query=update_comment_mutation,
         comment_id=comment_id,
         body=body,
     )
-    response = UpdateCommentResponse.parse_obj(data)
+    response = UpdateCommentResponse.model_validate(data)
     return response.data.updateDiscussionComment.comment
 
 
-if __name__ == "__main__":
+def main() -> None:
     settings = Settings()
-    if settings.input_debug:
+    if settings.debug:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
-    logging.debug(f"Using config: {settings.json()}")
-    g = Github(settings.input_token.get_secret_value())
+    logging.debug(f"Using config: {settings.model_dump_json()}")
+    g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
     if not settings.github_event_path.is_file():
         raise RuntimeError(
             f"No github event file available at: {settings.github_event_path}"
         )
     contents = settings.github_event_path.read_text()
-    github_event = PartialGitHubEvent.parse_raw(contents)
+    github_event = PartialGitHubEvent.model_validate_json(contents)
+    logging.info(f"Using GitHub event: {github_event}")
+    number = (
+        github_event.pull_request and github_event.pull_request.number
+    ) or settings.number
+    if number is None:
+        raise RuntimeError("No PR number available")
 
     # Avoid race conditions with multiple labels
     sleep_time = random.random() * 10  # random number between 0 and 10 seconds
@@ -323,8 +332,8 @@ if __name__ == "__main__":
     time.sleep(sleep_time)
 
     # Get PR
-    logging.debug(f"Processing PR: #{github_event.pull_request.number}")
-    pr = repo.get_pull(github_event.pull_request.number)
+    logging.debug(f"Processing PR: #{number}")
+    pr = repo.get_pull(number)
     label_strs = {label.name for label in pr.get_labels()}
     langs = []
     for label in label_strs:
@@ -415,3 +424,7 @@ if __name__ == "__main__":
                 f"There doesn't seem to be anything to be done about PR #{pr.number}"
             )
     logging.info("Finished")
+
+
+if __name__ == "__main__":
+    main()
