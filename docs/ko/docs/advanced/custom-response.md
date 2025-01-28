@@ -1,4 +1,4 @@
-# 사용자 정의 응답 - HTML, Stream, 파일, 기타 
+# 사용자 정의 응답 - HTML, Stream, 파일, 기타
 
 기본적으로, **FastAPI** 응답을 `JSONResponse`를 사용하여 반환합니다.
 
@@ -8,7 +8,7 @@
 
 하지만 *경로 작업 데코레이터*에서 `response_class` 매개변수를 사용하여 원하는 `Response`(예: 모든 `Response` 하위 클래스)를 선언할 수도 있습니다.
 
-*경로 작업 함수*에서 반환하는 내용은 해당 `Response`안에 포함됩니다. 
+*경로 작업 함수*에서 반환하는 내용은 해당 `Response`안에 포함됩니다.
 
 그리고 만약 그 `Response`가 `JSONResponse`와 `UJSONResponse`의 경우 처럼 JSON 미디어 타입(`application/json`)을 가지고 있다면, *경로 작업 데코레이터*에서 선언한 Pydantic의 `response_model`을 사용해 자동으로 변환(및 필터링) 됩니다.
 

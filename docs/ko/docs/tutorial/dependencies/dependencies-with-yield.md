@@ -63,7 +63,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 어떤 크기와 형태의 하위 의존성과 "하위 의존성 트리"도 가질 수 있으며, 이들 모두가 `yield`를 사용할 수 있습니다.
 
-**FastAPI**는 `yield`를 사용하는 각 의존성의 "종료 코드가" 올바른 순서로 실행되도록 보장합니다. 
+**FastAPI**는 `yield`를 사용하는 각 의존성의 "종료 코드가" 올바른 순서로 실행되도록 보장합니다.
 
 예를 들어, `dependency_c`는 `dependency_b`에 의존할 수 있고, `dependency_b`는 `dependency_a'에 의존할 수 있습니다.
 
@@ -97,11 +97,11 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 `yield`와 `try` 블록이 있는 의존성을 사용하여 예외를 처리할 수 있다는 것을 알게 되었습니다.
 
-같은 방식으로, `yield` 이후의 종료 코드에서 `HTTPException`이나 유사한 예외를 발생시킬 수 있습니다. 
+같은 방식으로, `yield` 이후의 종료 코드에서 `HTTPException`이나 유사한 예외를 발생시킬 수 있습니다.
 
 /// 팁
 
-이것은 다소 고급 기술이며, 대부분의 경우에는 경로 작업 함수와 같은 애플리케이션 코드 내에서 직접 `HTTPException`을 포함한 예외를 발생시킬 수 있기 때문에 실제로 필요하지 않습니다. 
+이것은 다소 고급 기술이며, 대부분의 경우에는 경로 작업 함수와 같은 애플리케이션 코드 내에서 직접 `HTTPException`을 포함한 예외를 발생시킬 수 있기 때문에 실제로 필요하지 않습니다.
 
 하지만 필요한 경우 사용할 수 있습니다. 🤓
 
@@ -252,7 +252,7 @@ with open("./somefile.txt") as f:
 
 Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습니다. <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> 두가지 메서드가 있는 클래스를 생성합니다: `__enter__()` and `__exit__()`</a>.
 
-**FastAPI**의 `yield`가 있는 의존성 내에서 
+**FastAPI**의 `yield`가 있는 의존성 내에서
 `with` 또는 `async with`문을 사용하여 이들을 활용할 수 있습니다:
 
 {* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
