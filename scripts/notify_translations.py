@@ -176,6 +176,8 @@ class AllDiscussionsResponse(BaseModel):
 
 
 class Settings(BaseSettings):
+    model_config = {"env_ignore_empty": True}
+
     github_repository: str
     github_token: SecretStr
     github_event_path: Path
