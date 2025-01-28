@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 👥 Update FastAPI People - Experts. PR [#13269](https://github.com/fastapi/fastapi/pull/13269) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Japanese translation for `docs/ja/docs/environment-variables.md`. PR [#13226](https://github.com/fastapi/fastapi/pull/13226) by [@k94-ishi](https://github.com/k94-ishi).
