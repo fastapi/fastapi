@@ -84,7 +84,7 @@ jobs:
       # TODO: Remove this once Python 3.8 is no longer supported
       - name: Install older AnyIO in Python 3.8
         if: matrix.python-version == '3.8'
-        run: uv pip install "anyio<4.0.0"
+        run: uv pip install "anyio[trio]<4.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
