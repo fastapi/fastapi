@@ -184,7 +184,7 @@ def get_discussion_nodes(settings: Settings) -> list[DiscussionsNode]:
             discussion_nodes.append(discussion_edge.node)
         last_edge = discussion_edges[-1]
         # Handle GitHub secondary rate limits, requests per minute
-        time.sleep(2)
+        time.sleep(5)
         discussion_edges = get_graphql_question_discussion_edges(
             settings=settings, after=last_edge.cursor
         )
