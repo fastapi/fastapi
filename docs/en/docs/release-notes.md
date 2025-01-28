@@ -20,6 +20,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Upgrade AnyIO max version for tests, new range: `>=3.2.1,<5.0.0`. PR [#13273](https://github.com/fastapi/fastapi/pull/13273) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update Sponsors badges. PR [#13271](https://github.com/fastapi/fastapi/pull/13271) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Fix `notify_translations.py` empty env var handling for PR label events vs workflow_dispatch. PR [#13272](https://github.com/fastapi/fastapi/pull/13272) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor and move `scripts/notify_translations.py`, no need for a custom GitHub Action. PR [#13270](https://github.com/fastapi/fastapi/pull/13270) by [@tiangolo](https://github.com/tiangolo).
