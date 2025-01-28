@@ -185,7 +185,6 @@ class Settings(BaseSettings):
     number: int | None = None
 
 
-
 class PartialGitHubEventIssue(BaseModel):
     number: int | None = None
 
