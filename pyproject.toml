@@ -164,6 +164,8 @@ filterwarnings = [
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
     # Ignore flaky SQLite connection warnings
     'ignore:unclosed database in <sqlite3\.Connection object.*:ResourceWarning:sqlite3',
+    # Ignore: pytest.PytestUnraisableExceptionWarning: ResourceWarning: unclosed database in <sqlite3.Connection object 
+    'ignore:Exception ignored in: <sqlite3\.Connection object.*:PytestUnraisableExceptionWarning:pytest',
 ]
 
 [tool.coverage.run]
