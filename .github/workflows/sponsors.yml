@@ -1,12 +1,12 @@
-name: FastAPI People
+name: FastAPI People Sponsors
 
 on:
   schedule:
-    - cron: "0 14 1 * *"
+    - cron: "0 6 1 * *"
   workflow_dispatch:
     inputs:
       debug_enabled:
-        description: Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)
+        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
         required: false
         default: "false"
 
@@ -45,9 +45,8 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
+      - name: FastAPI People Sponsors
+        run: python ./scripts/sponsors.py
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
-      - name: FastAPI People Experts
-        run: python ./scripts/people.py
-        env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
+          PR_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
