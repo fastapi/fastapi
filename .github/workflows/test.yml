@@ -87,13 +87,6 @@ jobs:
         if: matrix.python-version == '3.8'
         run: uv pip install "anyio[trio]<4.0.0"
       - run: mkdir coverage
-      # TODO: remove this
-      # Allow debugging with tmate
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ matrix.python-version == '3.13' && matrix.pydantic-version == 'pydantic-v1' }}
-        with:
-          limit-access-to-actor: true
       - name: Test
         run: bash scripts/test.sh
         env:
