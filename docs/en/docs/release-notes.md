@@ -7,13 +7,24 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 👥 Update FastAPI People - Experts. PR [#13269](https://github.com/fastapi/fastapi/pull/13269) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
+* 🌐 Add Japanese translation for `docs/ja/docs/environment-variables.md`. PR [#13226](https://github.com/fastapi/fastapi/pull/13226) by [@k94-ishi](https://github.com/k94-ishi).
+* 🌐 Add Russian translation for `docs/ru/docs/advanced/async-tests.md`. PR [#13227](https://github.com/fastapi/fastapi/pull/13227) by [@Rishat-F](https://github.com/Rishat-F).
 * 🌐 Update Russian translation for `docs/ru/docs/tutorial/dependencies/dependencies-in-path-operation-decorators.md`. PR [#13252](https://github.com/fastapi/fastapi/pull/13252) by [@Rishat-F](https://github.com/Rishat-F).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/bigger-applications.md`. PR [#13154](https://github.com/fastapi/fastapi/pull/13154) by [@alv2017](https://github.com/alv2017).
 
 ### Internal
 
+* ⬆️ Upgrade AnyIO max version for tests, new range: `>=3.2.1,<5.0.0`. PR [#13273](https://github.com/fastapi/fastapi/pull/13273) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update Sponsors badges. PR [#13271](https://github.com/fastapi/fastapi/pull/13271) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Fix `notify_translations.py` empty env var handling for PR label events vs workflow_dispatch. PR [#13272](https://github.com/fastapi/fastapi/pull/13272) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor and move `scripts/notify_translations.py`, no need for a custom GitHub Action. PR [#13270](https://github.com/fastapi/fastapi/pull/13270) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update FastAPI People Experts script, refactor and optimize data fetching to handle rate limits. PR [#13267](https://github.com/fastapi/fastapi/pull/13267) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.3 to 1.12.4. PR [#13251](https://github.com/fastapi/fastapi/pull/13251) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.115.7
