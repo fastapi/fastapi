@@ -20,6 +20,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Add support for Python 3.13. PR [#13274](https://github.com/fastapi/fastapi/pull/13274) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade AnyIO max version for tests, new range: `>=3.2.1,<5.0.0`. PR [#13273](https://github.com/fastapi/fastapi/pull/13273) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update Sponsors badges. PR [#13271](https://github.com/fastapi/fastapi/pull/13271) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Fix `notify_translations.py` empty env var handling for PR label events vs workflow_dispatch. PR [#13272](https://github.com/fastapi/fastapi/pull/13272) by [@tiangolo](https://github.com/tiangolo).
