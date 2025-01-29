@@ -25,10 +25,10 @@ def get_app(request: pytest.FixtureRequest):
 
 
 def test_main(app: FastAPI):
-    client = TestClient(app)
-    response = client.get("/")
-    assert response.status_code == 200, response.text
-    assert b"<!DOCTYPE html>" in response.content
+    with TestClient(app) as client:
+        response = client.get("/")
+        assert response.status_code == 200, response.text
+        assert b"<!DOCTYPE html>" in response.content
 
 
 def test_websocket_with_cookie(app: FastAPI):
