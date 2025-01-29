@@ -162,6 +162,8 @@ filterwarnings = [
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
+    # Ignore flaky SQLite connection warnings
+    'ignore:unclosed database in <sqlite3\.Connection object.*:ResourceWarning:sqlite3',
 ]
 
 [tool.coverage.run]
