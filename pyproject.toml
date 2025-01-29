@@ -162,8 +162,7 @@ filterwarnings = [
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
-    # Ignore flaky SQLite connection warnings
-    # Ignore: pytest.PytestUnraisableExceptionWarning: ResourceWarning: unclosed database in <sqlite3.Connection object
+    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
     'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
 ]
 
