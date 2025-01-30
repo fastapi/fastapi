@@ -13,6 +13,7 @@ hide:
 
 ### Refactors
 
+* ✅ Simplify tests for body_multiple_params . PR [#13237](https://github.com/fastapi/fastapi/pull/13237) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Move duplicated code portion to a static method in the `APIKeyBase` super class. PR [#3142](https://github.com/fastapi/fastapi/pull/3142) by [@ShahriyarR](https://github.com/ShahriyarR).
 * ✅ Simplify tests for request_files. PR [#13182](https://github.com/fastapi/fastapi/pull/13182) by [@alejsdev](https://github.com/alejsdev).
 
