@@ -16,7 +16,7 @@ $ pip install websockets
 
 </div>
 
-## Клиент Веб-сокетов
+## Клиент WebSockets
 
 ### В продакшене
 
