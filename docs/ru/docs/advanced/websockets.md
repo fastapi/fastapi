@@ -4,7 +4,7 @@
 
 ## Установка `WebSockets`
 
-Убедитесь, что [виртуальная среда](../virtual-environments.md){.internal-link target=_blank} создана, активируйте его и установите `websockets`:
+Убедитесь, что [виртуальная среда](../virtual-environments.md){.internal-link target=_blank} создана, активируйте её и установите `websockets`:
 
 <div class="termy">
 
