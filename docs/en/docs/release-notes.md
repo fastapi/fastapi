@@ -19,6 +19,7 @@ hide:
 
 ### Docs
 
+* 📝 Change the word "unwrap" to "unpack" in `docs/en/docs/tutorial/extra-models.md`. PR [#13061](https://github.com/fastapi/fastapi/pull/13061) by [@timothy-jeong](https://github.com/timothy-jeong).
 * 📝 Update Request Body's `tutorial002` to deal with `tax=0` case. PR [#13230](https://github.com/fastapi/fastapi/pull/13230) by [@togogh](https://github.com/togogh).
 * 👥 Update FastAPI People - Experts. PR [#13269](https://github.com/fastapi/fastapi/pull/13269) by [@tiangolo](https://github.com/tiangolo).
 
