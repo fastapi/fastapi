@@ -1,6 +1,6 @@
 # Веб-сокеты
 
-Вы можете использовать <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">Веб-сокеты</a> в **FastAPI**.
+Вы можете использовать <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">веб-сокеты</a> в **FastAPI**.
 
 ## Установка `WebSockets`
 
