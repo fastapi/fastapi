@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `OAuth2PasswordRequestForm` and `OAuth2PasswordRequestFormStrict` fixed `grant_type` "password" RegEx. PR [#9783](https://github.com/fastapi/fastapi/pull/9783) by [@skarfie123](https://github.com/skarfie123).
+
 ### Refactors
 
 * ✅ Simplify tests for request_files. PR [#13182](https://github.com/fastapi/fastapi/pull/13182) by [@alejsdev](https://github.com/alejsdev).
