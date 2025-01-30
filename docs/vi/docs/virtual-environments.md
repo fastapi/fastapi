@@ -465,7 +465,7 @@ Nếu bạn muốn chạy `philosophers-stone` bạn sẽ cần phải cài đ�
 <div class="termy">
 
 ```console
-$ pip install "harry==1"    
+$ pip install "harry==1"
 ```
 
 </div>
@@ -813,7 +813,7 @@ $ python main.py
 
 I solemnly swear 🐺
 
-(Thề đấy 🐺 - câu này được lấy từ Harry Potter, chú thích của người dịch) 
+(Thề đấy 🐺 - câu này được lấy từ Harry Potter, chú thích của người dịch)
 ```
 
 </div>
