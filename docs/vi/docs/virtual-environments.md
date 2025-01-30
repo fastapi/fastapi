@@ -813,7 +813,7 @@ $ python main.py
 
 I solemnly swear 🐺
 
-(Tôi long trọng thề 🐺 - câu này được lấy từ Harry Potter, chú thích của người dịch) 
+(Tôi long trọng thề 🐺 - câu này được lấy từ Harry Potter, chú thích của người dịch)
 ```
 
 </div>
