@@ -6,57 +6,7 @@ Você pode definir parâmetros de Cookie da mesma maneira que define paramêtros
 
 Primeiro importe `Cookie`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
 
 ## Declare parâmetros de `Cookie`
 
@@ -65,57 +15,7 @@ Então declare os paramêtros de cookie usando a mesma estrutura que em `Path` e
 Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/cookie_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
 
 /// note | Detalhes Técnicos
 

@@ -10,57 +10,7 @@ Diese können so **tief** verschachtelt sein, wie nötig.
 
 Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8-9"
-{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-9"
-{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-10"
-{!> ../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6-7"
-{!> ../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8-9"
-{!> ../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
 
 Diese deklariert einen optionalen Abfrageparameter `q` vom Typ `str` und gibt ihn dann einfach zurück.
 
@@ -70,57 +20,7 @@ Das ist recht einfach (nicht sehr nützlich), hilft uns aber dabei, uns auf die 
 
 Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erstellen, die gleichzeitig eine eigene Abhängigkeit deklariert (also auch ein „Dependant“ ist):
 
-//// tab | Python 3.10+
-
-```Python hl_lines="13"
-{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="13"
-{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14"
-{!> ../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="11"
-{!> ../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="13"
-{!> ../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
 
 Betrachten wir die deklarierten Parameter:
 
@@ -133,57 +33,7 @@ Betrachten wir die deklarierten Parameter:
 
 Diese Abhängigkeit verwenden wir nun wie folgt:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23"
-{!> ../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="22"
-{!> ../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
 /// info
 
