@@ -26,7 +26,7 @@ Walaupun pada [Tutorial - Panduan Pengguna](../tutorial/index.md){.internal-link
 
 Atau barangkali Anda tertarik mengambil pelatihan lain dikarenakan pelatihan tersebut sesuai dengan gaya Anda dalam belajar.
 
-Beberapa penyedia pelatihan menjadi ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ yang memastikan **pengembangan** FastAPI dalam **ekosistem** berkelanjutan.
+Beberapa penyedia pelatihan menjadi ✨ [**sponsor FastAPI**](../help-fastapi.md#penyedia-sponsor){.internal-link target=_blank} ✨ yang memastikan **pengembangan** FastAPI dalam **ekosistem** berkelanjutan.
 
 Dan ini pula menunjukkan komitmen mereka kepada FastAPI dan bagian **komunitas** (Anda), sebagaimana mereka tak hanya ingin menyediakan **pengalaman belajar yang baik** tetapi pula ingin memastikan Anda memiliki **kerangka kerja yang baik dan kuat**, FastAPI. 🙇
 
