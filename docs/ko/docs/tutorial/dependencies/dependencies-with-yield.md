@@ -194,7 +194,7 @@ participant tasks as Background tasks
 
 ///
 
-### `yield`와 `except`를 사용하는 의존성: 기술 세부사항
+### `yield`와 `except`를 사용하는 의존성, 기술 세부사항
 
 FastAPI 0.110.0 이전에는 `yield`가 포함된 의존성을 사용한 후 해당 의존성에서 `except`가 포함된 예외를 캡처하고 다시 예외를 발생시키지 않으면 예외가 자동으로 예외 핸들러 또는 내부 서버 오류 핸들러로 발생/전달되었습니다.
 
