@@ -250,7 +250,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습니다. <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> 두가지 메서드가 있는 클래스를 생성합니다: `__enter__()` and `__exit__()`</a>.
+Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습니다. <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> 두 가지 메서드가 있는 클래스를 생성합니다: `__enter__()` and `__exit__()`</a>.
 
 **FastAPI**의 `yield`가 있는 의존성 내에서
 `with` 또는 `async with`문을 사용하여 이들을 활용할 수 있습니다:
