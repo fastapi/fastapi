@@ -117,7 +117,7 @@ yield된 값은 *경로 작업* 및 다른 의존성들에 주입되는 값 입�
 
 {* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
-이 경우, HTTPException이나 유사한 예외를 발생시키지 않기 때문에 클라이언트는 HTTP 500 Internal Server Error 응답을 보게 되지만, 서버는 어떤 오류가 발생했는지에 대한 **로그**나 다른 표시를 전혀 가지지 않게 됩니다. 😱
+이 경우, `HTTPException`이나 유사한 예외를 발생시키지 않기 때문에 클라이언트는 HTTP 500 Internal Server Error 응답을 보게 되지만, 서버는 어떤 오류가 발생했는지에 대한 **로그**나 다른 표시를 전혀 가지지 않게 됩니다. 😱
 
 ### `yield`와 `except`를 사용하는 의존성에서 항상 `raise` 하기
 
