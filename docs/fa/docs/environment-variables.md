@@ -224,4 +224,3 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 با این اطلاعات، درک اولیه‌ای از **متغیرهای محیطی** و نحوه استفاده از آن‌ها در پایتون پیدا کردید.
 
 همچنین می‌توانید اطلاعات بیشتر را در [ویکی‌پدیا: Environment Variable](https://en.wikipedia.org/wiki/Environment_variable) مطالعه کنید.
-
