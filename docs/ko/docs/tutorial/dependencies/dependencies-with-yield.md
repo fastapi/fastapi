@@ -202,7 +202,7 @@ FastAPI 0.110.0 이전에는 `yield`가 포함된 의존성을 사용한 후 해
 
 ### 백그라운드 작업과 `yield`를 사용하는 기술 세부사항
 
-FastAPI 0.106.0 이전에는 yield 이후에 예외를 발생시키는 것이 불가능했습니다. `yield`가 있는 의존성 종료 코드는 응답이 전송된 이후에 실행되었기 때문에, [예외 처리기](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}가 이미 실행된 상태였습니다.
+FastAPI 0.106.0 이전에는 `yield` 이후에 예외를 발생시키는 것이 불가능했습니다. `yield`가 있는 의존성 종료 코드는 응답이 전송된 이후에 실행되었기 때문에, [예외 처리기](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}가 이미 실행된 상태였습니다.
 
 이는 주로 백그라운드 작업 내에서 의존성에서 "yield된" 동일한 객체를 사용할 수 있도록 하기 위해 이런 방식으로 설계되었습니다. 종료 코드는 백그라운드 작업이 완료된 후에 실행되었기 때문입니다
 
