@@ -620,7 +620,7 @@ $ source .venv/Scripts/activate
 
 /// tip | 豆知識
 
-`PATH` 変数についての詳細は [環境変数](environment-variables.md#path-environment-variable){.internal-link target=_blank} を参照してください。
+`PATH` 変数についての詳細は [環境変数](environment-variables.md#path環境変数){.internal-link target=_blank} を参照してください。
 
 ///
 
