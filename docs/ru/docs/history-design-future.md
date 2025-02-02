@@ -42,7 +42,7 @@
 
 Я проверил несколько идей на самых популярных редакторах кода среди Python-разработчиков: PyCharm, VS Code, Jedi.
 
-Данные по редакторам я взял из <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">опроса Python-разработчиков</a>, который охватываает около 80% пользователей.
+Данные по редакторам я взял из <a href="https://www.jetbrains.com/research/python-developers-survey-2018/#development-tools" class="external-link" target="_blank">опроса Python-разработчиков</a>, который охватывает около 80% пользователей.
 
 Это означает, что **FastAPI** был специально проверен на редакторах, используемых 80% Python-разработчиками. И поскольку большинство других редакторов, как правило, работают аналогичным образом, все его преимущества должны работать практически для всех редакторов.
 
@@ -74,4 +74,4 @@
 
 У **FastAPI** великое будущее.
 
-И [ваш вклад в это](help-fastapi.md){.internal-link target=_blank} - очень ценнен.
+И [ваш вклад в это](help-fastapi.md){.internal-link target=_blank} - очень ценен.
