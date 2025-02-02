@@ -48,6 +48,9 @@ silver:
   - url: https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral
     title: Stainless | Generate best-in-class SDKs
     img: https://fastapi.tiangolo.com/img/sponsors/stainless.png
+  - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
+    title: Fine-Grained Authorization for FastAPI
+    img: https://fastapi.tiangolo.com/img/sponsors/permit.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
