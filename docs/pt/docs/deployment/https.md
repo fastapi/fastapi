@@ -14,7 +14,7 @@ Para aprender o básico de HTTPS de uma perspectiva do usuário, verifique <a hr
 
 Agora, a partir de uma perspectiva do desenvolvedor, aqui estão algumas coisas para ter em mente ao pensar em HTTPS:
 
-* Para HTTPS, **o servidor** precisa ter certificados gerados por **um terceiro**. 
+* Para HTTPS, **o servidor** precisa ter certificados gerados por **um terceiro**.
     * Esses certificados são na verdade **adquiridos** de um terceiro, eles não são simplesmente "gerados".
 * Certificados têm um **tempo de vida**.
     * Eles **expiram**.
@@ -77,7 +77,7 @@ Essa parte do Nome do Domínio se dá muito antes do HTTPS, mas como tudo depend
 
 ///
 
-### DNS 
+### DNS
 
 Agora vamos focar em todas as partes que realmente fazem parte do HTTPS.
 
