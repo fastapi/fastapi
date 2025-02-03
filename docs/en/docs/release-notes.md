@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Russian translation for `docs/ru/docs/advanced/websockets.md`. PR [#13279](https://github.com/fastapi/fastapi/pull/13279) by [@Rishat-F](https://github.com/Rishat-F).
+
 ### Internal
 
 * 🔧 Update sponsors, add Permit. PR [#13288](https://github.com/fastapi/fastapi/pull/13288) by [@tiangolo](https://github.com/tiangolo).
