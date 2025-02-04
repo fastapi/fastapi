@@ -764,6 +764,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        favicon_url: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The URL of the favicon to use. It is normally shown in the browser tab.
+                """
+            ),
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -836,6 +844,7 @@ class FastAPI(Starlette):
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
+        self.favicon_url = favicon_url
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.extra = extra
@@ -1017,13 +1026,16 @@ class FastAPI(Starlette):
                 oauth2_redirect_url = self.swagger_ui_oauth2_redirect_url
                 if oauth2_redirect_url:
                     oauth2_redirect_url = root_path + oauth2_redirect_url
-                return get_swagger_ui_html(
-                    openapi_url=openapi_url,
-                    title=f"{self.title} - Swagger UI",
-                    oauth2_redirect_url=oauth2_redirect_url,
-                    init_oauth=self.swagger_ui_init_oauth,
-                    swagger_ui_parameters=self.swagger_ui_parameters,
-                )
+                swagger_params = {
+                    "openapi_url": openapi_url,
+                    "title": f"{self.title} - Swagger UI",
+                    "oauth2_redirect_url": oauth2_redirect_url,
+                    "init_oauth": self.swagger_ui_init_oauth,
+                    "swagger_ui_parameters": self.swagger_ui_parameters,
+                }
+                if self.favicon_url:
+                    swagger_params["swagger_favicon_url"] = self.favicon_url
+                return get_swagger_ui_html(**swagger_params)
 
             self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
@@ -1042,9 +1054,13 @@ class FastAPI(Starlette):
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
-                return get_redoc_html(
-                    openapi_url=openapi_url, title=f"{self.title} - ReDoc"
-                )
+                redoc_params = {
+                    "openapi_url": openapi_url,
+                    "title": f"{self.title} - ReDoc",
+                }
+                if self.favicon_url:
+                    redoc_params["redoc_favicon_url"] = self.favicon_url
+                return get_redoc_html(**redoc_params)
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
 
