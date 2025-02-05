@@ -49,7 +49,7 @@ Antes de Let's Encrypt, esses **certificados HTTPS** eram vendidos por terceiros
 
 O processo de aquisição de um desses certificados costumava ser complicado, exigia bastante papelada e os certificados eram bastante caros.
 
-Mas então **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** foi criado.
+Mas então o **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>** foi criado.
 
 Ele é um projeto da Linux Foundation que fornece **certificados HTTPS gratuitamente** . De forma automatizada. Esses certificados usam toda a segurança criptográfica padrão e têm vida curta (cerca de 3 meses), então a **segurança é, na verdade, melhor** por causa de sua vida útil reduzida.
 
@@ -196,5 +196,4 @@ Possuir **HTTPS** habilitado na sua aplicação é bastante importante, e até *
 
 Mas uma vez que você saiba o básico de **HTTPS para desenvolvedores**, você pode combinar e configurar diferentes ferramentas facilmente para gerenciar tudo de uma forma simples.
 
-Em alguns dos próximos capítulos, eu mostrarei para você vários exemplos concretos de como configurar o **HTTPS** para aplicações **FastAPI**.
-🔒
+Em alguns dos próximos capítulos, eu mostrarei para você vários exemplos concretos de como configurar o **HTTPS** para aplicações **FastAPI**. 🔒
