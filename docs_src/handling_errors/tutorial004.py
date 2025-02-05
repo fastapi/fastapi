@@ -25,11 +25,6 @@ async def validation_exception_handler(request, exc):
     return PlainTextResponse(str(exc), status_code=400)
 
 
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(request, exc):
-    return PlainTextResponse(str(exc), status_code=400)
-
-
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
     if item_id == 3:
