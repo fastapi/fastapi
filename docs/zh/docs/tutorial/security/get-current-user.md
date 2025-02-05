@@ -2,9 +2,7 @@
 
 上一章中，（基于依赖注入系统的）安全系统向*路径操作函数*传递了 `str` 类型的 `token`：
 
-```Python hl_lines="10"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[10] *}
 
 但这并不实用。
 
@@ -17,9 +15,7 @@
 
 与使用 Pydantic 声明请求体相同，并且可在任何位置使用：
 
-```Python hl_lines="5  12-16"
-{!../../docs_src/security/tutorial002.py!}
-```
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## 创建 `get_current_user` 依赖项
 
@@ -31,25 +27,19 @@
 
 与之前直接在路径操作中的做法相同，新的 `get_current_user` 依赖项从子依赖项 `oauth2_scheme` 中接收 `str` 类型的 `token`：
 
-```Python hl_lines="25"
-{!../../docs_src/security/tutorial002.py!}
-```
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## 获取用户
 
 `get_current_user` 使用创建的（伪）工具函数，该函数接收 `str` 类型的令牌，并返回 Pydantic 的 `User` 模型：
 
-```Python hl_lines="19-22  26-27"
-{!../../docs_src/security/tutorial002.py!}
-```
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## 注入当前用户
 
 在*路径操作* 的 `Depends` 中使用 `get_current_user`：
 
-```Python hl_lines="31"
-{!../../docs_src/security/tutorial002.py!}
-```
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 注意，此处把 `current_user` 的类型声明为 Pydantic 的 `User` 模型。
 
@@ -104,9 +94,7 @@
 
 所有*路径操作*只需 3 行代码就可以了：
 
-```Python hl_lines="30-32"
-{!../../docs_src/security/tutorial002.py!}
-```
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## 小结
 

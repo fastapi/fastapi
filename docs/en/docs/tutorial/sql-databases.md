@@ -125,8 +125,6 @@ The same way, you can declare it as the function's **return type**, and then the
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
 
-</details>
-
 Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
 
 ### Read Heroes
@@ -235,7 +233,6 @@ All the fields in `HeroPublic` are the same as in `HeroBase`, with `id` declared
 * `id`
 * `name`
 * `age`
-* `secret_name`
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
 

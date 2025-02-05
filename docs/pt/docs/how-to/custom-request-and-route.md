@@ -42,9 +42,7 @@ Se não houver `gzip` no cabeçalho, ele não tentará descomprimir o corpo.
 
 Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas ou não comprimidas.
 
-```Python hl_lines="8-15"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
 ### Criar uma classe `GzipRoute` personalizada
 
@@ -56,9 +54,7 @@ Esse método retorna uma função. E essa função é o que irá receber uma req
 
 Aqui nós usamos para criar um `GzipRequest` a partir da requisição original.
 
-```Python hl_lines="18-26"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
 
 /// note | Detalhes Técnicos
 
@@ -96,26 +92,18 @@ Também podemos usar essa mesma abordagem para acessar o corpo da requisição e
 
 Tudo que precisamos fazer é manipular a requisição dentro de um bloco `try`/`except`:
 
-```Python hl_lines="13  15"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
 
 Se uma exceção ocorrer, a instância `Request` ainda estará em escopo, então podemos ler e fazer uso do corpo da requisição ao lidar com o erro:
 
-```Python hl_lines="16-18"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
 ## Classe `APIRoute` personalizada em um router
 
 você também pode definir o parametro `route_class` de uma `APIRouter`;
 
-```Python hl_lines="26"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 Nesse exemplo, as *operações de rota* sob o `router` irão usar a classe `TimedRoute` personalizada, e terão um cabeçalho extra `X-Response-Time` na resposta com o tempo que levou para gerar a resposta:
 
-```Python hl_lines="13-20"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

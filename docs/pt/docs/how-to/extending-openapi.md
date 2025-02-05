@@ -1,4 +1,3 @@
-
 # Extendendo o OpenAPI
 
 Existem alguns casos em que pode ser necessário modificar o esquema OpenAPI gerado.
@@ -44,25 +43,19 @@ Por exemplo, vamos adicionar <a href="https://github.com/Rebilly/ReDoc/blob/mast
 
 Primeiro, escreva toda a sua aplicação **FastAPI** normalmente:
 
-```Python hl_lines="1  4  7-9"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Gerar o esquema OpenAPI
 
 Em seguida, use a mesma função utilitária para gerar o esquema OpenAPI, dentro de uma função `custom_openapi()`:
 
-```Python hl_lines="2  15-21"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Modificar o esquema OpenAPI
 
 Agora, você pode adicionar a extensão do ReDoc, incluindo um `x-logo` personalizado ao "objeto" `info` no esquema OpenAPI:
 
-```Python hl_lines="22-24"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Armazenar em cache o esquema OpenAPI
 
@@ -72,17 +65,13 @@ Dessa forma, sua aplicação não precisará gerar o esquema toda vez que um usu
 
 Ele será gerado apenas uma vez, e o mesmo esquema armazenado em cache será utilizado nas próximas requisições.
 
-```Python hl_lines="13-14  25-26"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Sobrescrever o método
 
 Agora, você pode substituir o método `.openapi()` pela sua nova função.
 
-```Python hl_lines="29"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Verificar
 
