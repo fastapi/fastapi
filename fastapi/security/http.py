@@ -78,6 +78,7 @@ class HTTPBase(SecurityBase):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.scheme = scheme
 
     async def __call__(
         self, request: Request
@@ -90,7 +91,7 @@ class HTTPBase(SecurityBase):
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
                     detail="Not authenticated",
-                    headers={"WWW-Authenticate": self.model.scheme},
+                    headers={"WWW-Authenticate": self.scheme},
                 )
 
             else:
