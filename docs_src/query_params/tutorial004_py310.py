@@ -8,7 +8,7 @@ async def read_user_item(
     user_id: int, item_id: str, q: str | None = None, short: bool = False
 ):
     item = {"item_id": item_id, "owner_id": user_id}
-    if q:
+    if q is not None:
         item.update({"q": q})
     if not short:
         item.update(
