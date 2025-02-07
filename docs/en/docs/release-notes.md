@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/static-files.md`. PR [#13285](https://github.com/fastapi/fastapi/pull/13285) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Vietnamese translation for `docs/vi/docs/environment-variables.md`. PR [#13287](https://github.com/fastapi/fastapi/pull/13287) by [@ptt3199](https://github.com/ptt3199).
 * 🌐 Add Vietnamese translation for `docs/vi/docs/fastapi-cli.md`. PR [#13294](https://github.com/fastapi/fastapi/pull/13294) by [@ptt3199](https://github.com/ptt3199).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/features.md`. PR [#13308](https://github.com/fastapi/fastapi/pull/13308) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
