@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/features.md`. PR [#13308](https://github.com/fastapi/fastapi/pull/13308) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/learn/index.md`. PR [#13306](https://github.com/fastapi/fastapi/pull/13306) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Update Portuguese Translation for `docs/pt/docs/deployment/https.md`. PR [#13317](https://github.com/fastapi/fastapi/pull/13317) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
 * 🌐 Update Portuguese Translation for `docs/pt/docs/index.md`. PR [#13328](https://github.com/fastapi/fastapi/pull/13328) by [@ceb10n](https://github.com/ceb10n).
