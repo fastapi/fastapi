@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Vietnamese translation for `docs/vi/docs/fastapi-cli.md`. PR [#13294](https://github.com/fastapi/fastapi/pull/13294) by [@ptt3199](https://github.com/ptt3199).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/features.md`. PR [#13308](https://github.com/fastapi/fastapi/pull/13308) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/learn/index.md`. PR [#13306](https://github.com/fastapi/fastapi/pull/13306) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Update Portuguese Translation for `docs/pt/docs/deployment/https.md`. PR [#13317](https://github.com/fastapi/fastapi/pull/13317) by [@Joao-Pedro-P-Holanda](https://github.com/Joao-Pedro-P-Holanda).
