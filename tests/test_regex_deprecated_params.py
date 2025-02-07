@@ -15,7 +15,7 @@ def get_client():
         async def read_items(
             q: Annotated[str | None, Query(regex="^fixedquery$")] = None,
         ):
-            if q:
+            if q is not None:
                 return f"Hello {q}"
             else:
                 return "Hello World"
