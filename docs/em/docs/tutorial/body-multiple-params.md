@@ -8,20 +8,13 @@
 
 &amp; 👆 💪 📣 💪 🔢 📦, ⚒ 🔢 `None`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[19:21] *}
 
-    ```Python hl_lines="19-21"
-    {!> ../../../docs_src/body_multiple_params/tutorial001.py!}
-    ```
+/// note
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+👀 👈, 👉 💼, `item` 👈 🔜 ✊ ⚪️➡️ 💪 📦. ⚫️ ✔️ `None` 🔢 💲.
 
-    ```Python hl_lines="17-19"
-    {!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
-    ```
-
-!!! note
-    👀 👈, 👉 💼, `item` 👈 🔜 ✊ ⚪️➡️ 💪 📦. ⚫️ ✔️ `None` 🔢 💲.
+///
 
 ## 💗 💪 🔢
 
@@ -38,17 +31,7 @@
 
 ✋️ 👆 💪 📣 💗 💪 🔢, ✅ `item` &amp; `user`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/body_multiple_params/tutorial002.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
-    ```
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[22] *}
 
 👉 💼, **FastAPI** 🔜 👀 👈 📤 🌅 🌘 1️⃣ 💪 🔢 🔢 (2️⃣ 🔢 👈 Pydantic 🏷).
 
@@ -69,9 +52,11 @@
 }
 ```
 
-!!! note
-    👀 👈 ✋️ `item` 📣 🎏 🌌 ⏭, ⚫️ 🔜 ⌛ 🔘 💪 ⏮️ 🔑 `item`.
+/// note
 
+👀 👈 ✋️ `item` 📣 🎏 🌌 ⏭, ⚫️ 🔜 ⌛ 🔘 💪 ⏮️ 🔑 `item`.
+
+///
 
 **FastAPI** 🔜 🏧 🛠️ ⚪️➡️ 📨, 👈 🔢 `item` 📨 ⚫️ 🎯 🎚 &amp; 🎏 `user`.
 
@@ -87,17 +72,7 @@
 
 ✋️ 👆 💪 💡 **FastAPI** 😥 ⚫️ ➕1️⃣ 💪 🔑 ⚙️ `Body`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="22"
-    {!> ../../../docs_src/body_multiple_params/tutorial003.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
-    ```
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[22] *}
 
 👉 💼, **FastAPI** 🔜 ⌛ 💪 💖:
 
@@ -137,20 +112,13 @@ q: str | None = None
 
 🖼:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[27] *}
 
-    ```Python hl_lines="27"
-    {!> ../../../docs_src/body_multiple_params/tutorial004.py!}
-    ```
+/// info
 
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
+`Body` ✔️ 🌐 🎏 ➕ 🔬 &amp; 🗃 🔢 `Query`,`Path` &amp; 🎏 👆 🔜 👀 ⏪.
 
-    ```Python hl_lines="26"
-    {!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
-    ```
-
-!!! info
-    `Body` ✔️ 🌐 🎏 ➕ 🔬 &amp; 🗃 🔢 `Query`,`Path` &amp; 🎏 👆 🔜 👀 ⏪.
+///
 
 ## ⏯ 👁 💪 🔢
 
@@ -166,17 +134,7 @@ item: Item = Body(embed=True)
 
 :
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/body_multiple_params/tutorial005.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
-    ```
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 👉 💼 **FastAPI** 🔜 ⌛ 💪 💖:
 

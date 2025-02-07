@@ -17,12 +17,13 @@
 
 在这里我将向您展示如何将 <a href="https://gunicorn.org/" class="external-link" target="_blank">**Gunicorn**</a> 与 **Uvicorn worker 进程** 一起使用。
 
-!!! info
-    如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
+/// info
 
-    特别是，当在 **Kubernetes** 上运行时，您可能**不想**使用 Gunicorn，而是运行 **每个容器一个 Uvicorn 进程**，但我将在本章后面告诉您这一点。
+如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md){.internal-link target=_blank}。
 
+特别是，当在 **Kubernetes** 上运行时，您可能**不想**使用 Gunicorn，而是运行 **每个容器一个 Uvicorn 进程**，但我将在本章后面告诉您这一点。
 
+///
 
 ## Gunicorn with Uvicorn Workers
 

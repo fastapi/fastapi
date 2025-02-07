@@ -7,14 +7,15 @@ Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisc
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-!!! note "Technische Details"
-    Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
+/// note | Technische Details
 
-    **FastAPI** stellt dasselbe `starlette.staticfiles` auch via `fastapi.staticfiles` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
+
+**FastAPI** stellt dasselbe `starlette.staticfiles` auch via `fastapi.staticfiles` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+
+///
 
 ### Was ist „Mounten“?
 

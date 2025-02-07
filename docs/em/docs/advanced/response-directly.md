@@ -14,8 +14,11 @@
 
 👐, 👆 💪 📨 🙆 `Response` ⚖️ 🙆 🎧-🎓 ⚫️.
 
-!!! tip
-    `JSONResponse` ⚫️ 🎧-🎓 `Response`.
+/// tip
+
+`JSONResponse` ⚫️ 🎧-🎓 `Response`.
+
+///
 
 &amp; 🕐❔ 👆 📨 `Response`, **FastAPI** 🔜 🚶‍♀️ ⚫️ 🔗.
 
@@ -31,14 +34,15 @@
 
 📚 💼, 👆 💪 ⚙️ `jsonable_encoder` 🗜 👆 📊 ⏭ 🚶‍♀️ ⚫️ 📨:
 
-```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import JSONResponse`.
+/// note | 📡 ℹ
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import JSONResponse`.
+
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ## 🛬 🛃 `Response`
 
@@ -50,9 +54,7 @@
 
 👆 💪 🚮 👆 📂 🎚 🎻, 🚮 ⚫️ `Response`, &amp; 📨 ⚫️:
 
-```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 🗒
 

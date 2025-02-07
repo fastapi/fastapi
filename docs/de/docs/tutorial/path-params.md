@@ -2,9 +2,7 @@
 
 Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python-<abbr title="Format-String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format-Strings</abbr> verwendet wird:
 
-```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 Der Wert des Pfad-Parameters `item_id` wird Ihrer Funktion als das Argument `item_id` übergeben.
 
@@ -18,14 +16,15 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 
 Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typannotationen:
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
-!!! check
-    Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
+/// check
+
+Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
+
+///
 
 ## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr>
 
@@ -35,10 +34,13 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 {"item_id":3}
 ```
 
-!!! check
-    Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
+/// check
 
-    Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
+
+Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+
+///
 
 ## Datenvalidierung
 
@@ -65,12 +67,15 @@ Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-!!! check
-    Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
+/// check
 
-    Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
+Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
 
-    Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit ihrer API interagiert.
+Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
+
+Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit ihrer API interagiert.
+
+///
 
 ## Dokumentation
 
@@ -78,10 +83,13 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check
-    Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+/// check
 
-    Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
+Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
+
+Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
+
+///
 
 ## Nützliche Standards. Alternative Dokumentation
 
@@ -111,17 +119,13 @@ Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifisc
 
 Weil *Pfadoperationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
 
-```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Ansonsten würde der Pfad für `/users/{user_id}` auch `/users/me` auswerten, und annehmen, dass ein Parameter `user_id` mit dem Wert `"me"` übergeben wurde.
 
 Sie können eine Pfadoperation auch nicht erneut definieren:
 
-```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003b.py!}
-```
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinstimmt.
 
@@ -137,23 +141,25 @@ Indem Sie von `str` erben, weiß die API Dokumentation, dass die Werte des Enums
 
 Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaubten Werte sein werden:
 
-```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
-!!! info
-    <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
+/// info
 
-!!! tip "Tipp"
-    Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
+
+///
+
+/// tip | Tipp
+
+Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
+
+///
 
 ### Deklarieren Sie einen *Pfad-Parameter*
 
 Dann erstellen Sie einen *Pfad-Parameter*, der als Typ die gerade erstellte Enum-Klasse hat (`ModelName`):
 
-```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Testen Sie es in der API-Dokumentation
 
@@ -169,20 +175,19 @@ Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der mögl
 
 Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 
-```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### *Enum-Wert* erhalten
 
 Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
 
-```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
-!!! tip "Tipp"
-    Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
+/// tip | Tipp
+
+Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen.
+
+///
 
 #### *Enum-Member* zurückgeben
 
@@ -190,9 +195,7 @@ Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschach
 
 Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings), bevor sie zum Client übertragen werden:
 
-```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 In Ihrem Client erhalten Sie eine JSON-Response, wie etwa:
 
@@ -231,14 +234,15 @@ In diesem Fall ist der Name des Parameters `file_path`. Der letzte Teil, `:path`
 
 Sie verwenden das also wie folgt:
 
-```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
-!!! tip "Tipp"
-    Der Parameter könnte einen führenden Schrägstrich (`/`) haben, wie etwa in `/home/johndoe/myfile.txt`.
+/// tip | Tipp
 
-    In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
+Der Parameter könnte einen führenden Schrägstrich (`/`) haben, wie etwa in `/home/johndoe/myfile.txt`.
+
+In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelten Schrägstrich (`//`) zwischen `files` und `home`.
+
+///
 
 ## Zusammenfassung
 

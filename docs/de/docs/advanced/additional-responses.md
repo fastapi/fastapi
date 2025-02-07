@@ -1,9 +1,12 @@
 # Zusätzliche Responses in OpenAPI
 
-!!! warning "Achtung"
-    Dies ist ein eher fortgeschrittenes Thema.
+/// warning | Achtung
 
-    Wenn Sie mit **FastAPI** beginnen, benötigen Sie dies möglicherweise nicht.
+Dies ist ein eher fortgeschrittenes Thema.
+
+Wenn Sie mit **FastAPI** beginnen, benötigen Sie dies möglicherweise nicht.
+
+///
 
 Sie können zusätzliche Responses mit zusätzlichen Statuscodes, Medientypen, Beschreibungen, usw. deklarieren.
 
@@ -23,24 +26,28 @@ Jedes dieser Response-`dict`s kann einen Schlüssel `model` haben, welcher ein P
 
 Um beispielsweise eine weitere Response mit dem Statuscode `404` und einem Pydantic-Modell `Message` zu deklarieren, können Sie schreiben:
 
-```Python hl_lines="18  22"
-{!../../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-!!! note "Hinweis"
-    Beachten Sie, dass Sie die `JSONResponse` direkt zurückgeben müssen.
+/// note | Hinweis
 
-!!! info
-    Der `model`-Schlüssel ist nicht Teil von OpenAPI.
+Beachten Sie, dass Sie die `JSONResponse` direkt zurückgeben müssen.
 
-    **FastAPI** nimmt das Pydantic-Modell von dort, generiert das JSON-Schema und fügt es an der richtigen Stelle ein.
+///
 
-    Die richtige Stelle ist:
+/// info
 
-    * Im Schlüssel `content`, der als Wert ein weiteres JSON-Objekt (`dict`) hat, welches Folgendes enthält:
-        * Ein Schlüssel mit dem Medientyp, z. B. `application/json`, der als Wert ein weiteres JSON-Objekt hat, welches Folgendes enthält:
-            * Ein Schlüssel `schema`, der als Wert das JSON-Schema aus dem Modell hat, hier ist die richtige Stelle.
-                * **FastAPI** fügt hier eine Referenz auf die globalen JSON-Schemas an einer anderen Stelle in Ihrer OpenAPI hinzu, anstatt es direkt einzubinden. Auf diese Weise können andere Anwendungen und Clients diese JSON-Schemas direkt verwenden, bessere Tools zur Codegenerierung bereitstellen, usw.
+Der `model`-Schlüssel ist nicht Teil von OpenAPI.
+
+**FastAPI** nimmt das Pydantic-Modell von dort, generiert das JSON-Schema und fügt es an der richtigen Stelle ein.
+
+Die richtige Stelle ist:
+
+* Im Schlüssel `content`, der als Wert ein weiteres JSON-Objekt (`dict`) hat, welches Folgendes enthält:
+    * Ein Schlüssel mit dem Medientyp, z. B. `application/json`, der als Wert ein weiteres JSON-Objekt hat, welches Folgendes enthält:
+        * Ein Schlüssel `schema`, der als Wert das JSON-Schema aus dem Modell hat, hier ist die richtige Stelle.
+            * **FastAPI** fügt hier eine Referenz auf die globalen JSON-Schemas an einer anderen Stelle in Ihrer OpenAPI hinzu, anstatt es direkt einzubinden. Auf diese Weise können andere Anwendungen und Clients diese JSON-Schemas direkt verwenden, bessere Tools zur Codegenerierung bereitstellen, usw.
+
+///
 
 Die generierten Responses in der OpenAPI für diese *Pfadoperation* lauten:
 
@@ -168,17 +175,21 @@ Sie können denselben `responses`-Parameter verwenden, um verschiedene Medientyp
 
 Sie können beispielsweise einen zusätzlichen Medientyp `image/png` hinzufügen und damit deklarieren, dass Ihre *Pfadoperation* ein JSON-Objekt (mit dem Medientyp `application/json`) oder ein PNG-Bild zurückgeben kann:
 
-```Python hl_lines="19-24  28"
-{!../../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-!!! note "Hinweis"
-    Beachten Sie, dass Sie das Bild direkt mit einer `FileResponse` zurückgeben müssen.
+/// note | Hinweis
 
-!!! info
-    Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (Standardmäßig `application/json`).
+Beachten Sie, dass Sie das Bild direkt mit einer `FileResponse` zurückgeben müssen.
 
-    Wenn Sie jedoch eine benutzerdefinierte Response-Klasse mit `None` als Medientyp angegeben haben, verwendet FastAPI `application/json` für jede zusätzliche Response, die über ein zugehöriges Modell verfügt.
+///
+
+/// info
+
+Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (Standardmäßig `application/json`).
+
+Wenn Sie jedoch eine benutzerdefinierte Response-Klasse mit `None` als Medientyp angegeben haben, verwendet FastAPI `application/json` für jede zusätzliche Response, die über ein zugehöriges Modell verfügt.
+
+///
 
 ## Informationen kombinieren
 
@@ -192,9 +203,7 @@ Sie können beispielsweise eine Response mit dem Statuscode `404` deklarieren, d
 
 Und eine Response mit dem Statuscode `200`, die Ihr `response_model` verwendet, aber ein benutzerdefiniertes Beispiel (`example`) enthält:
 
-```Python hl_lines="20-31"
-{!../../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Es wird alles kombiniert und in Ihre OpenAPI eingebunden und in der API-Dokumentation angezeigt:
 
@@ -228,9 +237,7 @@ Mit dieser Technik können Sie einige vordefinierte Responses in Ihren *Pfadoper
 
 Zum Beispiel:
 
-```Python hl_lines="13-17  26"
-{!../../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## Weitere Informationen zu OpenAPI-Responses
 
