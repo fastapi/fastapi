@@ -29,6 +29,6 @@ async def update_item(
     q: Union[str, None] = None,
 ):
     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
-    if q:
+    if q is not None:
         results.update({"q": q})
     return results

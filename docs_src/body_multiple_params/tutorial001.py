@@ -21,7 +21,7 @@ async def update_item(
     item: Union[Item, None] = None,
 ):
     results = {"item_id": item_id}
-    if q:
+    if q is not None:
         results.update({"q": q})
     if item:
         results.update({"item": item})

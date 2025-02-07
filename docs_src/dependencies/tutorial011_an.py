@@ -9,7 +9,7 @@ class FixedContentQueryChecker:
         self.fixed_content = fixed_content
 
     def __call__(self, q: str = ""):
-        if q:
+        if q is not None:
             return self.fixed_content in q
         return False
 

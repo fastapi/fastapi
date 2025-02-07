@@ -17,6 +17,6 @@ app = FastAPI()
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Item, q: Union[str, None] = None):
     result = {"item_id": item_id, **item.dict()}
-    if q:
+    if q is not None:
         result.update({"q": q})
     return result

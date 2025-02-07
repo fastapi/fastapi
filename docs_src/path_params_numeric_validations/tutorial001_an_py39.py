@@ -11,6 +11,6 @@ async def read_items(
     q: Annotated[Union[str, None], Query(alias="item-query")] = None,
 ):
     results = {"item_id": item_id}
-    if q:
+    if q is not None:
         results.update({"q": q})
     return results

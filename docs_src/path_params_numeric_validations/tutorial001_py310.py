@@ -9,6 +9,6 @@ async def read_items(
     q: str | None = Query(default=None, alias="item-query"),
 ):
     results = {"item_id": item_id}
-    if q:
+    if q is not None:
         results.update({"q": q})
     return results

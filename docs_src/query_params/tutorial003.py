@@ -8,7 +8,7 @@ app = FastAPI()
 @app.get("/items/{item_id}")
 async def read_item(item_id: str, q: Union[str, None] = None, short: bool = False):
     item = {"item_id": item_id}
-    if q:
+    if q is not None:
         item.update({"q": q})
     if not short:
         item.update(
