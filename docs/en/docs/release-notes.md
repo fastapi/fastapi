@@ -21,6 +21,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pillow from 11.0.0 to 11.1.0. PR [#13300](https://github.com/fastapi/fastapi/pull/13300) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Sponsors. PR [#13295](https://github.com/fastapi/fastapi/pull/13295) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Experts. PR [#13303](https://github.com/fastapi/fastapi/pull/13303) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#13302](https://github.com/fastapi/fastapi/pull/13302) by [@tiangolo](https://github.com/tiangolo).
