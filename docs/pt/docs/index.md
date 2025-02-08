@@ -11,14 +11,17 @@
     <em>Framework FastAPI, alta performance, fácil de aprender, fácil de codar, pronto para produção</em>
 </p>
 <p align="center">
-<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -60,13 +63,25 @@ Os recursos chave são:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/pt/fastapi-people/#patrocinadores" class="external-link" target="_blank">Outros patrocinadores</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Outros patrocinadores</a>
 
 ## Opiniões
 
 "*[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizar ele em todos os times de **serviços _Machine Learning_ na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**.*"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_Nós adotamos a biblioteca **FastAPI** para iniciar um servidor **REST** que pode ser consultado para obter **previsões**. [para o Ludwig]_"
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, e Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+
+---
+
+"_A **Netflix** tem o prazer de anunciar o lançamento open-source do nosso framework de orquestração de **gerenciamento de crises**: **Dispatch**! [criado com **FastAPI**]_"
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -90,9 +105,9 @@ Os recursos chave são:
 
 ---
 
-"*Nós adotamos a biblioteca **FastAPI** para criar um servidor **REST** que possa ser chamado para obter **predições**. [para o Ludwig]*"
+"_Se alguém estiver procurando construir uma API Python para produção, eu recomendaria fortemente o **FastAPI**. Ele é **lindamente projetado**, **simples de usar** e **altamente escalável**. Ele se tornou um **componente chave** para a nossa estratégia API first de desenvolvimento e está impulsionando diversas automações e serviços, como o nosso Virtual TAC Engineer._"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin e Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -113,27 +128,19 @@ FastAPI está nos ombros de gigantes:
 
 ## Instalação
 
+Crie e ative um <a href="https://fastapi.tiangolo.com/pt/virtual-environments/" class="external-link" target="_blank">ambiente virtual</a>, e então instale o FastAPI:
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-Você também precisará de um servidor ASGI para produção, tal como <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ou <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
-
-<div class="termy">
-
-```console
-$ pip install "uvicorn[standard]"
-
----> 100%
-```
-
-</div>
+**Nota**: Certifique-se de que você colocou `"fastapi[standard]"` com aspas, para garantir que funcione em todos os terminais.
 
 ## Exemplo
 
@@ -184,7 +191,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Nota**:
 
-Se você não sabe, verifique a seção _"In a hurry?"_ sobre <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` e `await` nas docs</a>.
+Se você não sabe, verifique a seção _"Com pressa?"_ sobre <a href="https://fastapi.tiangolo.com/pt/async/#com-pressa" target="_blank">`async` e `await` nas docs</a>.
 
 </details>
 
@@ -195,11 +202,24 @@ Rode o servidor com:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -207,13 +227,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>Sobre o comando <code>uvicorn main:app --reload</code>...</summary>
+<summary>Sobre o comando <code>fastapi dev main.py</code>...</summary>
 
-O comando `uvicorn main:app` se refere a:
+O comando `fastapi dev` lê o seu arquivo `main.py`, identifica o aplicativo **FastAPI** nele, e inicia um servidor usando o <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
-* `main`: o arquivo `main.py` (o "módulo" Python).
-* `app`: o objeto criado dentro de `main.py` com a linha `app = FastAPI()`.
-* `--reload`: faz o servidor recarregar após mudanças de código. Somente faça isso para desenvolvimento.
+Por padrão, o `fastapi dev` iniciará com *auto-reload* habilitado para desenvolvimento local.
+
+Você pode ler mais sobre isso na <a href="https://fastapi.tiangolo.com/pt/fastapi-cli/" target="_blank">documentação do FastAPI CLI</a>.
 
 </details>
 
@@ -268,7 +288,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool] = None
+    is_offer: Union[bool, None] = None
 
 
 @app.get("/")
@@ -286,7 +306,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-O servidor deverá recarregar automaticamente (porquê você adicionou `--reload` ao comando `uvicorn` acima).
+O servidor `fastapi dev` deverá recarregar automaticamente.
 
 ### Evoluindo a Documentação Interativa da API
 
@@ -316,7 +336,7 @@ E agora, vá para <a href="http://127.0.0.1:8000/redoc" class="external-link" ta
 
 Resumindo, você declara **uma vez** os tipos dos parâmetros, corpo etc. como parâmetros de função.
 
-Você faz com tipos padrão do Python moderno.
+Você faz isso com os tipos padrão do Python moderno.
 
 Você não terá que aprender uma nova sintaxe, métodos ou classes de uma biblioteca específica etc.
 
@@ -383,7 +403,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
 
 ---
 
-Nós arranhamos apenas a superfície, mas você já tem idéia de como tudo funciona.
+Nós apenas arranhamos a superfície, mas você já tem idéia de como tudo funciona.
 
 Experimente mudar a seguinte linha:
 
@@ -407,7 +427,7 @@ Experimente mudar a seguinte linha:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Guia do Usuário</a>.
+Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fastapi.tiangolo.com/pt/tutorial/">Tutorial - Guia do Usuário</a>.
 
 **Alerta de Spoiler**: o tutorial - guia do usuário inclui:
 
@@ -416,9 +436,9 @@ Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fas
 * Um poderoso e fácil de usar sistema de **<abbr title="também conhecido como componentes, recursos, fornecedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
 * Segurança e autenticação, incluindo suporte para **OAuth2** com autenticação **JWT tokens** e **HTTP Basic**.
 * Técnicas mais avançadas (mas igualmente fáceis) para declaração de **modelos JSON profundamente aninhados** (graças ao Pydantic).
+* Integrações **GraphQL** com o <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> e outras bibliotecas.
 * Muitos recursos extras (graças ao Starlette) como:
     * **WebSockets**
-    * **GraphQL**
     * testes extrememamente fáceis baseados em HTTPX e `pytest`
     * **CORS**
     * **Cookie Sessions**
@@ -428,30 +448,49 @@ Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fas
 
 Testes de performance da _Independent TechEmpower_ mostram aplicações **FastAPI** rodando sob Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">um dos _frameworks_ Python mais rápidos disponíveis</a>, somente atrás de Starlette e Uvicorn (utilizados internamente pelo FastAPI). (*)
 
-Para entender mais sobre performance, veja a seção <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Para entender mais sobre performance, veja a seção <a href="https://fastapi.tiangolo.com/pt/benchmarks/" class="internal-link" target="_blank">Comparações</a>.
 
-## Dependências opcionais
+## Dependências
 
-Usados por Pydantic:
+O FastAPI depende do Pydantic e do Starlette.
+
+
+### Dependências `standard`
+
+Quando você instala o FastAPI com `pip install "fastapi[standard]"`, ele vêm com o grupo `standard` (padrão) de dependências opcionais:
+
+Utilizado pelo Pydantic:
 
 * <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - para validação de email.
 
-Usados por Starlette:
+Utilizado pelo Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Necessário se você quiser utilizar o `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Necessário se você quiser utilizar a configuração padrão de templates.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Necessário se você quiser suporte com <abbr title="converte uma string que chega de uma requisição HTTP para dados Python">"parsing"</abbr> de formulário, com `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Necessário para suporte a `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Necessário para suporte a `SchemaGenerator` da Starlette (você provavelmente não precisará disso com o FastAPI).
-* <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - Necessário para suporte a `GraphQLApp`.
+* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Obrigatório caso você queira utilizar o `TestClient`.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obrigatório se você quer utilizar a configuração padrão de templates.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obrigatório se você deseja suporte a <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr> de formulário, com `request.form()`.
 
-Usados por FastAPI / Starlette:
+Utilizado pelo FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para o servidor que carrega e serve sua aplicação.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Necessário se você quer utilizar `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Necessário se você quer utilizar `UJSONResponse`.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para o servidor que carrega e serve a sua aplicação. Isto inclui `uvicorn[standard]`, que inclui algumas dependências (e.g. `uvloop`) necessárias para servir em alta performance.
+* `fastapi-cli` - que disponibiliza o comando `fastapi`.
 
-Você pode instalar todas essas dependências com `pip install fastapi[all]`.
+### Sem as dependências `standard`
+
+Se você não deseja incluir as dependências opcionais `standard`, você pode instalar utilizando `pip install fastapi` ao invés de `pip install "fastapi[standard]"`.
+
+### Dpendências opcionais adicionais
+
+Existem algumas dependências adicionais que você pode querer instalar.
+
+Dependências opcionais adicionais do Pydantic:
+
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - para gerenciamento de configurações.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - tipos extras para serem utilizados com o Pydantic.
+
+Dependências opcionais adicionais do FastAPI:
+
+* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Obrigatório se você deseja utilizar o `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obrigatório se você deseja utilizar o `UJSONResponse`.
 
 ## Licença
 
