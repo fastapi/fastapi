@@ -218,7 +218,7 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image08.png">
 
-`/users/me/` 를 호출하면 다음과 같은 응답을 얻을 수 있습니다: 
+`/users/me/` 를 호출하면 다음과 같은 응답을 얻을 수 있습니다:
 
 ```JSON
 {
