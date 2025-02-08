@@ -47,5 +47,5 @@ You could also use `from starlette.responses import Response` or `from starlette
 And as the `Response` can be used frequently to set headers and cookies, **FastAPI** also provides it at `fastapi.Response`.
 
 ///
-Технические детали
+
 To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
