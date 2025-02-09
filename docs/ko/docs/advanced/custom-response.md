@@ -22,7 +22,7 @@
 
 예를 들어, 성능을 극대화하려는 경우, <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">orjson</a>을 설치하여 사용하고 응답을 `ORJSONResponse`로 설정할 수 있습니다.
 
-사용하고자 하는 `Response` 클래스(하위 클래스)를 가져와서 **경로 작업 데코레이터*에서 선언하세요.
+사용하고자 하는 `Response` 클래스(하위 클래스)를 임포트한 후, **경로 작업 데코레이터*에서 선언하세요.
 
 대규모 응답의 경우, 사전을 반환하는 것보다 `Response`를 반환하는 것이 훨씬 빠릅니다.
 
@@ -52,7 +52,7 @@
 
 **FastAPI**에서 HTML 응답을 직접 반환하려면 `HTMLResponse`를 사용하세요.
 
-* `HTMLResponse`를 가져옵니다.
+* `HTMLResponse`를 임포트합니.
 * *경로 작업 데코레이터*의 `response_class` 매개변수로 `HTMLResponse`를 전달합니다.
 
 {* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
