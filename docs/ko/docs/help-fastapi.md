@@ -14,7 +14,7 @@ FastAPI, 다른 사용자, 개발자를 응원하고 싶으신가요?
 
 [**FastAPI and friends** 뉴스레터](newsletter.md){.internal-link target=\_blank}를 구독하여 최신 정보를 유지할 수 있습니다:
 
-* FastAPI 와 그 친구들에 대한 뉴스 🚀
+* FastAPI and friends에 대한 뉴스 🚀
 * 가이드 📝
 * 기능 ✨
 * 획기적인 변화 🚨
