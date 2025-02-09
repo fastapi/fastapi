@@ -52,7 +52,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
     * 발표나 새로운 툴 출시 소식을 받아보십시오.
     * <a href="https://twitter.com/fastapi" class="external-link" target="_blank">**Twitter**의 @fastapi를 팔로우</a> (별도 계정에서) 할 수 있습니다.
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**LinkedIn**에서 팔로우하기.</a>.
-    * 새로운 툴의 발표나 릴리스를 들을 수 있습니다 (단, Twitter를 더 자주 사용합니다 🤷‍♂).
+    * 새로운 툴의 발표나 출시 소식을 받아보십시오. (단, Twitter를 더 자주 사용합니다 🤷‍♂).
 * <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> 또는 <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>에서 제가 작성한 내용을 읽어 보십시오 (또는 팔로우).
     * 다른 기사나 아이디어들을 읽고, 제가 만들어왔던 툴에 대해서도 읽으십시오.
     * 새로운 기사를 읽기 위해 팔로우 하십시오.
