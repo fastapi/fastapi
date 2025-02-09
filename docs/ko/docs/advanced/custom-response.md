@@ -20,9 +20,9 @@
 
 ## `ORJSONResponse` 사용하기
 
-예를 들어, 성능을 극대화하려는 경우, <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">orjson</a>을 설치하여 사용하고 응답을 `ORJSONResponse`로 설정 할수 있습니다.
+예를 들어, 성능을 극대화하려는 경우, <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">orjson</a>을 설치하여 사용하고 응답을 `ORJSONResponse`로 설정할 수 있습니다.
 
-사용하고자 하는 `Response` 클래스(하위 클래스)를 가져와서 **경로 작동 테코레이터*에서 선언하세요.
+사용하고자 하는 `Response` 클래스(하위 클래스)를 가져와서 **경로 작업 데코레이터*에서 선언하세요.
 
 대규모 응답의 경우, 사전을 반환하는 것보다 `Response`를 반환하는 것이 훨씬 빠릅니다.
 
