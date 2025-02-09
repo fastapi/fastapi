@@ -528,15 +528,15 @@ class APIRoute(routing.Route):
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
-        
+
         # Get docstring and handle raw strings
         docstring = inspect.cleandoc(self.endpoint.__doc__ or "")
         if docstring.startswith('r"""') or docstring.startswith("r'''"):
             docstring = docstring[1:]  # Remove the leading 'r'
-            
+
         # Truncate at form feed
         self.description = docstring.split("\f")[0].strip()
-        
+
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
