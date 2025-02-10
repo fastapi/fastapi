@@ -10,7 +10,7 @@
 
 JWT 는 "JSON Web Tokens" 을 의미합니다.
 
-JSON 객체를 공백이 없는 긴 문자열로 인코딩하는 표준이며, 다음과 같은 형태입니다.
+JSON 객체를 공백이 없는 긴 문자열로 인코딩하는 표준이며, 다음과 같은 형태입니다:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
