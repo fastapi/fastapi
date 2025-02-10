@@ -199,7 +199,7 @@ JWT는 사용자를 식별하고 사용자가 API를 직접 사용할 수 있도
 
 서버를 실행하고 문서로 이동하십시오: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-다음과 같은 사용자 인터페이스를 볼 수 있습니다.
+다음과 같은 사용자 인터페이스를 볼 수 있습니다:
 
 <img src="/img/tutorial/security/image07.png">
 
