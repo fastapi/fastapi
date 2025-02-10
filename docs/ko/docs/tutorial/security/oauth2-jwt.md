@@ -72,7 +72,7 @@ PassLib는 패스워드 해시를 다루는 훌륭한 파이썬 패키지입니�
 
 추천 알고리즘은 "Bcrypt"입니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank} 을 만들고 활성화한 다음 PassLib와 Bcrypt를 설치하십시오.
+[가상환경](../../virtual-environments.md){.internal-link target=_blank} 을 만들고 활성화한 다음 PassLib와 Bcrypt를 설치하십시오:
 
 <div class="termy">
 
