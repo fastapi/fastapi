@@ -30,7 +30,7 @@ JWT는 암호화되지 않아 누구든지 토큰에서 정보를 복원할 수 
 
 파이썬으로 JWT 토큰을 생성하고 검증하려면 `PyJWT` 를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank} 을 만들고 활성화한 다음 `pyjwt` 를 설치하십시오.
+[가상환경](../../virtual-environments.md){.internal-link target=_blank} 을 만들고 활성화한 다음 `pyjwt` 를 설치하십시오:
 
 <div class="termy">
 
