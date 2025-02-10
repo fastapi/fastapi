@@ -7,9 +7,9 @@ Bạn có thể triển khai tệp tĩnh tự động từ một thư mục bằ
 - Nhập `StaticFiles`.
 - "Mount" a `StaticFiles()` instance in a specific path.
 
-{_ ../../docs_src/static_files/tutorial001.py hl[2,6] _}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | Technical Details
+/// note | Chi tiết kỹ thuật
 
 Bạn cũng có thể sử dụng `from starlette.staticfiles import StaticFiles`.
 
@@ -33,8 +33,8 @@ Bạn có thể đọc thêm về điều này trong [Hướng dẫn Người d�
 
 Tham số `name="static"` đặt tên cho nó để có thể được sử dụng bên trong **FastAPI**.
 
-Tất cả các tham số này có thể khác với "`static`", điều chỉnh chúng với nhu cầu và chi tiết cụ thể của ứng dụng của bạn.
+Tất cả các tham số này có thể khác với `static`, điều chỉnh chúng với phù hợp với ứng dụng của bạn.
 
 ## Thông tin thêm
 
-Để biết thêm chi tiết và tùy chọn, hãy kiểm tra <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Để biết thêm chi tiết và tùy chọn, hãy xem <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
