@@ -42,7 +42,7 @@
 
 **FastAPI** предоставляет `fastapi.responses`, которые являются теми же объектами, что и `starlette.responses`, просто для удобства. Однако большинство доступных типов ответов поступает непосредственно из **Starlette**.
 
-Поскольку `Response` в основном используется для установки заголовков и cookies, **FastAPI** также предоставляет его через `fastapi.Response`.
+Для установки заголовков и cookies `Response` используется часто, поэтому **FastAPI** также предоставляет его через `fastapi.responses`.
 ///
 
 Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">документацией Starlette</a>.
