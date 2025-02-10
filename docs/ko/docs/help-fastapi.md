@@ -127,7 +127,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
 
 GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버튼을 클릭): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
-"Releases only" 대신 "Watching"을 선택하면, 새로운 issue나 질문이 생성될 때 알림을 받을 수 있습니다. 또한, 특정하게 새로운 issue, discussion, PR 등만 알림 받도록 설정할 수도 있습니다.
+"Releases only" 대신 "Watching"을 선택하면, 새로운 이슈나 질문이 생성될 때 알림을 받을 수 있습니다. 또한, 특정하게 새로운 이슈, 디스커션, PR 등만 알림 받도록 설정할 수도 있습니다.
 
 그런 다음 이런 issues를 해결 할 수 있도록 도움을 줄 수 있습니다.
 
