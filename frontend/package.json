@@ -39,6 +39,6 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "dotenv": "^16.4.5",
     "typescript": "^5.2.2",
-    "vite": "^5.0.13"
+    "vite": "^5.4.14"
   }
 }
