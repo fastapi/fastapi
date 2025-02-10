@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix test badge. PR [#13313](https://github.com/fastapi/fastapi/pull/13313) by [@esadek](https://github.com/esadek).
+
 ### Translations
 
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/dependencies/dependencies-with-yield.md`. PR [#13257](https://github.com/fastapi/fastapi/pull/13257) by [@11kkw](https://github.com/11kkw).
