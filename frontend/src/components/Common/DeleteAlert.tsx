@@ -85,7 +85,7 @@ const Delete = ({ type, id, isOpen, onClose }: DeleteProps) => {
               {type === "User" && (
                 <span>
                   All items associated with this user will also be{" "}
-                  <strong>permantly deleted. </strong>
+                  <strong>permanently deleted. </strong>
                 </span>
               )}
               Are you sure? You will not be able to undo this action.
