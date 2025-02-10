@@ -36,6 +36,7 @@
 
 ### Internal
 
+* Bump vite from 5.0.13 to 5.4.14 in /frontend. PR [#1469](https://github.com/fastapi/full-stack-fastapi-template/pull/1469) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump astral-sh/setup-uv from 4 to 5. PR [#1453](https://github.com/fastapi/full-stack-fastapi-template/pull/1453) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump astral-sh/setup-uv from 3 to 4. PR [#1433](https://github.com/fastapi/full-stack-fastapi-template/pull/1433) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump tiangolo/latest-changes from 0.3.1 to 0.3.2. PR [#1418](https://github.com/fastapi/full-stack-fastapi-template/pull/1418) by [@dependabot[bot]](https://github.com/apps/dependabot).
