@@ -52,7 +52,7 @@
 
 **FastAPI**에서 HTML 응답을 직접 반환하려면 `HTMLResponse`를 사용하세요.
 
-* `HTMLResponse`를 임포트합니.
+* `HTMLResponse`를 임포트 합니다.
 * *경로 작업 데코레이터*의 `response_class` 매개변수로 `HTMLResponse`를 전달합니다.
 
 {* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
