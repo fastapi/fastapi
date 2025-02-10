@@ -13,6 +13,7 @@
 
 ### Refactors
 
+* ♻️ Remove redundant item deletion code leveraging cascade delete. PR [#1481](https://github.com/fastapi/full-stack-fastapi-template/pull/1481) by [@nauanbek](https://github.com/nauanbek).
 * ✏️ Fix a couple of spelling mistakes. PR [#1485](https://github.com/fastapi/full-stack-fastapi-template/pull/1485) by [@rjmunro](https://github.com/rjmunro).
 * 🎨 Move `prefix` and `tags` to routers. PR [#1439](https://github.com/fastapi/full-stack-fastapi-template/pull/1439) by [@patrick91](https://github.com/patrick91).
 * ♻️ Remove modify id script in favor of openapi-ts config. PR [#1434](https://github.com/fastapi/full-stack-fastapi-template/pull/1434) by [@patrick91](https://github.com/patrick91).
