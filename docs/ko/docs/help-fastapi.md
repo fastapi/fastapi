@@ -40,7 +40,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
 
 ## 개발자와의 연결
 
-개발자인 <a href="https://tiangolo.com" class="external-link" target="_blank">me (Sebastián Ramírez / `tiangolo`)</a>와 연락을 취할 수 있습니다.
+<a href="https://tiangolo.com" class="external-link" target="_blank">개발자(Sebastián Ramírez / `tiangolo`)</a>와 연락을 취할 수 있습니다.
 
 여러분은 할 수 있습니다:
 
