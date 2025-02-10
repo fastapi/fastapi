@@ -1,39 +1,40 @@
-# StaticFiles
+# Tệp tĩnh (Static Files)
 
-Bạn có thể tự động cung cấp các tệp tĩnh từ một thư mục bằng `StaticFiles`.
+Bạn có thể triển khai tệp tĩnh tự động từ một thư mục bằng cách sử dụng StaticFiles.
 
-## Sử dụng `StaticFiles`
+## Sử dụng `Tệp tĩnh`
 
-* Import `StaticFiles`.
-* "Mount" một `StaticFiles()` instance trong một đường dẫn cụ thể.
+- Nhập `StaticFiles`.
+- "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{_ ../../docs_src/static_files/tutorial001.py hl[2,6] _}
 
-!!! note "Chi tiết kỹ thuật"
-    Bạn cũng có thể dùng `from starlette.staticfiles import StaticFiles`.
+/// note | Technical Details
 
-    **FastAPI** cung cấp `starlette.staticfiles` tương tự `fastapi.staticfiles` để thuận tiện hơn cho các lập trình viên. Tuy nhiên nó thực sự bắt nguồn từ Starlette.
+Bạn cũng có thể sử dụng `from starlette.staticfiles import StaticFiles`.
+
+**FastAPI** cung cấp cùng `starlette.staticfiles` như `fastapi.staticfiles` giúp đơn giản hóa việc sử dụng, nhưng nó thực sự đến từ Starlette.
+
+///
 
 ### "Mounting" là gì
 
-"Mounting" có nghĩ là thêm một ứng dụng "độc lập" hoàn chỉnh vào một đường dẫn cụ thể, sau đó sẽ xử lý tất cả các đường dẫn phụ.
+"Mounting" có nghĩa là thêm một ứng dụng "độc lập" hoàn chỉnh vào một đường dẫn cụ thể, sau đó ứng dụng đó sẽ chịu trách nhiệm xử lý tất cả các đường dẫn con.
 
-Điều này khác với việc sử dụng `APIRouter` vì một ứng dụng được gắn kết hoàn toàn độc lập. OpenAPI và docs được tạo ra từ ứng dụng của bạn sẽ không bao gồm bất kỳ thứ gì từ ứng dụng được gắn kết, v.v.
+Điều này khác với việc sử dụng `APIRouter` vì một ứng dụng được gắn kết là hoàn toàn độc lập. OpenAPI và tài liệu từ ứng dụng chính của bạn sẽ không bao gồm bất kỳ thứ gì từ ứng dụng được gắn kết, v.v.
 
-You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
+Bạn có thể đọc thêm về điều này trong [Hướng dẫn Người dùng Nâng cao](../advanced/index.md){.internal-link target=\_blank}.
 
-## Cụ thể
+## Chi tiết
 
-Đường dẫn `"/static"` đầu tiên đề cập đến đường dẫn phụ mà "ứng dụng phụ" này sẽ được "gắn kết" vào. Vì vậy, bất kỳ đường dẫn nào bắt đầu bằng `"/static"` sẽ được nó xử lý.
+Đường dẫn đầu tiên `"/static"` là đường dẫn con mà "ứng dụng con" này sẽ được "gắn" vào. Vì vậy, bất kỳ đường dẫn nào bắt đầu bằng `"/static"` sẽ được xử lý bởi nó.
 
-`directory="static"` đề cập đến tên của thư mục chứa các tệp tĩnh của bạn.
+Đường dẫn `directory="static"` là tên của thư mục chứa tệp tĩnh của bạn.
 
-`name="static"` đặt cho nó một tên mà **FastAPI** có thể sử dụng nội bộ.
+Tham số `name="static"` đặt tên cho nó để có thể được sử dụng bên trong **FastAPI**.
 
-Tất cả các tham số này có thể khác với "`static`, hãy điều chỉnh chúng theo nhu cầu và chi tiết cụ thể của ứng dụng của bạn.
+Tất cả các tham số này có thể khác với "`static`", điều chỉnh chúng với nhu cầu và chi tiết cụ thể của ứng dụng của bạn.
 
-## Tìm hiểu thêm
+## Thông tin thêm
 
-Để biết thêm chi tiết và tùy chọn, hãy xem <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Tài liệu của Starlette về Tệp tĩnh</a>.
+Để biết thêm chi tiết và tùy chọn, hãy kiểm tra <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
