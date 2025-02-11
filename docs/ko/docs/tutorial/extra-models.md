@@ -117,7 +117,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.dict())
 ```
 
-...왜냐하면 `user_in.dict()`는 `dict`이며, 이를 `**`로 Python이 "언랩(unwrap)"하도록 하여 `UserInDB`에 전달하기 때문입니다.
+...왜냐하면 `user_in.dict()`는 `dict`이며, 이를 `**`로 Python이 "언팩(unpack)"하도록 하여 `UserInDB`에 전달하기 때문입니다.
 
 따라서, 다른 Pydantic 모델의 데이터를 사용하여 새로운 Pydantic 모델을 생성할 수 있습니다.
 
