@@ -10,7 +10,7 @@
 
 /// danger | 위험
 
-절대 유저의 비밀번호를 평문으로 저장하지 마세요. 항상 이후에 검증 가능한 "안전한 해시(secure hash)"로 저장하세요.
+절대 사용자의 비밀번호를 평문으로 저장하지 마세요. 항상 이후에 검증 가능한 "안전한 해시(secure hash)"로 저장하세요.
 
 만약 이게 무엇인지 모르겠다면, [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.에서 비밀번호 해시에 대해 배울 수 있습니다.
 
