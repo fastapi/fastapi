@@ -70,7 +70,7 @@ Python의 `dict`가 다음과 같이 출력됩니다:
 }
 ```
 
-#### `dict` 언래핑(Unwrapping)
+#### `dict` 언패킹(Unpacking)
 
 `user_dict`와 같은 `dict`를 함수(또는 클래스)에 `**user_dict`로 전달하면, Python은 이를 "언랩(unwrap)"합니다. 이 과정에서 `user_dict`의 키와 값을 각각 키-값 인자로 직접 전달합니다.
 
