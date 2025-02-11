@@ -121,7 +121,7 @@ UserInDB(**user_in.dict())
 
 따라서, 다른 Pydantic 모델의 데이터를 사용하여 새로운 Pydantic 모델을 생성할 수 있습니다.
 
-#### `dict` 언래핑(Unwrapping)과 추가 키워드
+#### `dict` 언패킹(Unpacking)과 추가 키워드
 
 그리고 다음과 같이 추가 키워드 인자 `hashed_password=hashed_password`를 포함하면:
 
