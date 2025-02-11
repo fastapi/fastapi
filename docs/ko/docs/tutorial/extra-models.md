@@ -186,7 +186,7 @@ OpenAPI에서는 이를 `anyOf`로 정의합니다.
 
 위의 예제에서는 `response_model` 인자 값으로 `Union[PlaneItem, CarItem]`을 전달합니다.
 
-이 경우, 이를 **타입 주석(type annotation)** 이 아닌 **인자 값(argument value)** 으로 전달하고 있기 때문에 Python 3.10에서도 `Union`을 사용해야 합니다.
+이 경우, 이를 **타입 어노테이션(type annotation)** 이 아닌 **인자 값(argument value)** 으로 전달하고 있기 때문에 Python 3.10에서도 `Union`을 사용해야 합니다.
 
 만약 타입 주석에 사용한다면, 다음과 같이 수직 막대(|)를 사용할 수 있습니다:
 
