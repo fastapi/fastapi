@@ -173,7 +173,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
-### JWT "주제(subject)" `sub`에 대한 기술 세부 사항
+### JWT "주체(subject)" `sub`에 대한 기술 세부 사항
 
 JWT 명세에 따르면 키 `sub`는 토큰의 주제(발급 목적)을 의미합니다.
 
