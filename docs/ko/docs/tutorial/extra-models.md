@@ -194,7 +194,7 @@ OpenAPI에서는 이를 `anyOf`로 정의합니다.
 some_variable: PlaneItem | CarItem
 ```
 
-하지만 이를 `response_model=PlaneItem | CarItem`과 같이 할당하면 에러가 발생합니다. 이는 Python이 이를 타입 주석으로 해석하지 않고, `PlaneItem`과 `CarItem` 사이의 **잘못된 연산(invalid operation)**을 시도하기 때문입니다
+하지만 이를 `response_model=PlaneItem | CarItem`과 같이 할당하면 에러가 발생합니다. 이는 Python이 이를 타입 어노테이션으로 해석하지 않고, `PlaneItem`과 `CarItem` 사이의 **잘못된 연산(invalid operation)**을 시도하기 때문입니다
 
 ## 모델 리스트
 
