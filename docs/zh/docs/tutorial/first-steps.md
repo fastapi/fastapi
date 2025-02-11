@@ -266,7 +266,7 @@ https://example.com/items/foo
 
 /// tip
 
-您可以随意使用任何一个操作（HTTP方法）。
+你可以随意使用任何一个操作（HTTP方法）。
 
 **FastAPI** 没有强制要求操作有任何特定的含义。
 
