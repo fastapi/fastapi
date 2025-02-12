@@ -54,18 +54,18 @@ from docs_src.background_tasks.tutorial002 import get_query, write_log
 def test_get_query_with_empty_string():
     """
     Test the get_query dependency when an empty string is provided as the query.
-    This verifies that an empty string is returned and that a background task 
+    This verifies that an empty string is returned and that a background task
     is added with the expected log message ("found query: \n").
     """
     bt = BackgroundTasks()
     result = get_query(bt, "")
-    
+
     # Verify that the dependency returns an empty string.
     assert result == ""
-    
+
     # Verify that one background task has been added.
     assert len(bt.tasks) == 1
-    
+
     # Each task is a tuple: (callable, args, kwargs).
     task_callable, task_args, task_kwargs = bt.tasks[0]
     # Check that the task is to call write_log.
@@ -86,19 +86,19 @@ def test_get_query_with_empty_string():
     """
     bt = BackgroundTasks()
     result = get_query(bt, "")
-    
+
     # Verify that the dependency returns an empty string.
     assert result == ""
-    
+
     # Verify that one background task has been added.
     assert len(bt.tasks) == 1
-    
+
     # Retrieve the scheduled task.
     task = bt.tasks[0]
-    
+
     # Verify that the task is a BackgroundTask instance.
     assert isinstance(task, BackgroundTask)
-    
+
     # Verify that the task is to call write_log with the expected log message.
     assert task.func is write_log
     assert task.args == ("found query: \n",)
@@ -173,19 +173,19 @@ def test_get_query_with_empty_string():
     """
     bt = BackgroundTasks()
     result = get_query(bt, "")
-    
+
     # Verify that the dependency returns an empty string.
     assert result == ""
-    
+
     # Verify that one background task has been added.
     assert len(bt.tasks) == 1
-    
+
     # Retrieve the scheduled task.
     task = bt.tasks[0]
-    
+
     # Verify that the task is a BackgroundTask instance.
     assert isinstance(task, BackgroundTask)
-    
+
     # Verify that the task is to call write_log with the expected log message.
     assert task.func is write_log
     assert task.args == ("found query: \n",)
