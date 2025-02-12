@@ -280,3 +280,5 @@ def test_openapi_schema(client: TestClient):
             },
         }
     )
+
+# Automated edit: [Edited] Add docstring to improve documentation
