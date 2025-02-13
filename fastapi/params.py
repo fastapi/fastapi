@@ -784,6 +784,6 @@ class Security(Depends):
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
         if isinstance(scopes, str):
-            self.scopes = [scopes]
+            self.scopes: Sequence[str] = [scopes]
         else:
             self.scopes = scopes or []
