@@ -26,3 +26,5 @@ def test_openapi_schema():
             }
         },
     }
+
+# Automated edit: [Edited] Add docstring to improve documentation
