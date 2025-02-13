@@ -1,5 +1,3 @@
-from typing import Annotated
-
 from fastapi import FastAPI, Security
 from fastapi.params import Depends
 from fastapi.security import OAuth2PasswordBearer
@@ -14,24 +12,20 @@ oauth2_scheme = OAuth2PasswordBearer(
 )
 
 
-def get_security_scopes(
-    security_scopes: SecurityScopes, token: Annotated[str, Depends(oauth2_scheme)]
-):
+def get_security_scopes(security_scopes: SecurityScopes, token=Depends(oauth2_scheme)):
     return security_scopes.scopes
 
 
 @app.get("/me")
 async def read_single_scope(
-    current_scope: Annotated[list[str], Security(get_security_scopes, scopes="me")],
+    current_scope=Security(get_security_scopes, scopes="me"),
 ):
     return {"scopes": current_scope}
 
 
 @app.get("/me-and-items")
 async def read_single_scope(
-    current_scope: Annotated[
-        list[str], Security(get_security_scopes, scopes=["me", "items"])
-    ],
+    current_scope=Security(get_security_scopes, scopes=["me", "items"]),
 ):
     return {"scopes": current_scope}
 
