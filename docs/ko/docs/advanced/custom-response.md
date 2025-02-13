@@ -99,7 +99,7 @@
 
 {* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
-이 예제에서, `generate_html_response()` 함수는 HTML을 `str`로 반환하는 대신 이미 `Response`를 생헝하고 반환합니다.
+이 예제에서, `generate_html_response()` 함수는 HTML을 `str`로 반환하는 대신 이미 `Response`를 생성하고 반환합니다.
 
 `generate_html_response()`를 호출한 결과를 반환함으로써, 기본적인 **FastAPI** 기본 동작을 재정의 하는 `Response`를 이미 반환하고 있습니다.
 
