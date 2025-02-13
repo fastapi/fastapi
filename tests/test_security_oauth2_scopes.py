@@ -24,7 +24,7 @@ async def read_single_scope(
 
 
 @app.get("/me-and-items")
-async def read_single_scope(
+async def read_multiple_scopes(
     current_scope=Security(get_security_scopes, scopes=["me", "items"]),
 ):
     return {"scopes": current_scope}
