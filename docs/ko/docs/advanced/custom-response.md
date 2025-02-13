@@ -272,7 +272,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 만약 들여쓰기 및 포맷된 JSON을 반환하고 싶다면, `orjson.OPT_INDENT_2` 옵션을 사용할 수 있습니다.
 
-`CustomORJSONResponse`를 생성할 수 있습니다. 여기서 핵심은 `Response.render(content)` 메서드를 생성하여 내용을 bytes로 반환하는 것입니다:
+`CustomORJSONResponse`를 생성할 수 있습니다. 여기서 핵심은 `Response.render(content)` 메서드를 생성하여 내용을 `bytes`로 반환하는 것입니다:
 
 {* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
