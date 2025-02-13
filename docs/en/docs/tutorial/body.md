@@ -26,9 +26,9 @@ First, you need to import `BaseModel` from `pydantic`:
 
 ## Create your data model
 
-Then you declare your data model as a class that inherits from `BaseModel`.
+Then you declare your data model as a class that inherits from `BaseModel`. These classes will be the containers for the various requests and responses you intend to implement.
 
-Use standard Python types for all the attributes:
+`BaseModel` will handle the data validation of all requests and responses for you.  All you do is declare what type each attribute is supposed to have.  Use standard Python types for the attributes:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 

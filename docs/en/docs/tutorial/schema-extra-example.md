@@ -24,7 +24,7 @@ That extra info will be added as-is to the output **JSON Schema** for that model
 
 //// tab | Pydantic v2
 
-In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
+In Pydantic version 2, you would use the attribute `model_config`. `model_config` formats the behavior of an entire model, as opposed to `Field` which formats the behavior of individual attributes. It takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
