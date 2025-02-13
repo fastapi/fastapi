@@ -783,4 +783,7 @@ class Security(Depends):
         use_cache: bool = True,
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
-        self.scopes = scopes or []
+        if isinstance(scopes, str):
+            self.scopes = [scopes]
+        else:
+            self.scopes = scopes or []
