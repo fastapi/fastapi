@@ -12,7 +12,9 @@ oauth2_scheme = OAuth2PasswordBearer(
 )
 
 
-def get_security_scopes(security_scopes: SecurityScopes, token=Depends(oauth2_scheme)):
+def get_security_scopes(
+    security_scopes: SecurityScopes, token=Depends(oauth2_scheme)
+) -> list[str]:
     return security_scopes.scopes
 
 
