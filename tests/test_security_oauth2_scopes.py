@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI, Security
 from fastapi.params import Depends
 from fastapi.security import OAuth2PasswordBearer
@@ -14,7 +15,7 @@ oauth2_scheme = OAuth2PasswordBearer(
 
 def get_security_scopes(
     security_scopes: SecurityScopes, token=Depends(oauth2_scheme)
-) -> list[str]:
+) -> List[str]:
     return security_scopes.scopes
 
 
