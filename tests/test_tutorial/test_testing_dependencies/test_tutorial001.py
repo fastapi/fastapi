@@ -17,7 +17,9 @@ from ...utils import needs_py39, needs_py310
     ],
 )
 def get_test_module(request: pytest.FixtureRequest) -> ModuleType:
-    mod: ModuleType = importlib.import_module(f"docs_src.dependency_testing.{request.param}")
+    mod: ModuleType = importlib.import_module(
+        f"docs_src.dependency_testing.{request.param}"
+    )
     return mod
 
 
