@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Korean translation for `docs/ko/docs/help-fastapi.md`. PR [#13262](https://github.com/fastapi/fastapi/pull/13262) by [@Zerohertz](https://github.com/Zerohertz).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/custom-response.md`. PR [#13265](https://github.com/fastapi/fastapi/pull/13265) by [@11kkw](https://github.com/11kkw).
 * 🌐 Update Korean translation for `docs/ko/docs/tutorial/security/simple-oauth2.md`. PR [#13335](https://github.com/fastapi/fastapi/pull/13335) by [@yes0ng](https://github.com/yes0ng).
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/response-cookies.md`. PR [#13327](https://github.com/fastapi/fastapi/pull/13327) by [@Stepakinoyan](https://github.com/Stepakinoyan).
