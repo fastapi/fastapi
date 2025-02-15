@@ -1,10 +1,10 @@
-# Parámetros de query
+# Parámetros de Query
 
-Cuando declaras otros parámetros de la función que no hacen parte de los parámetros de path estos se interpretan automáticamente como parámetros de "query".
+Cuando declaras otros parámetros de función que no son parte de los parámetros de path, son automáticamente interpretados como parámetros de "query".
 
 {* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
-El query es el conjunto de pares de key-value que van después del `?` en la URL, separados por caracteres `&`.
+La query es el conjunto de pares clave-valor que van después del `?` en una URL, separados por caracteres `&`.
 
 Por ejemplo, en la URL:
 
@@ -17,36 +17,36 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 * `skip`: con un valor de `0`
 * `limit`: con un valor de `10`
 
-Dado que son parte de la URL son strings "naturalmente".
+Como son parte de la URL, son "naturalmente" strings.
 
-Pero cuando los declaras con tipos de Python (en el ejemplo arriba, como `int`) son convertidos a ese tipo y son validados con él.
+Pero cuando los declaras con tipos de Python (en el ejemplo anterior, como `int`), son convertidos a ese tipo y validados respecto a él.
 
-Todo el proceso que aplicaba a los parámetros de path también aplica a los parámetros de query:
+Todo el mismo proceso que se aplica para los parámetros de path también se aplica para los parámetros de query:
 
 * Soporte del editor (obviamente)
-* <abbr title="convertir el string que viene de un HTTP request a datos de Python">"Parsing"</abbr> de datos
+* <abbr title="convirtiendo el string que viene de un request HTTP en datos de Python">"Parsing"</abbr> de datos
 * Validación de datos
 * Documentación automática
 
-## Configuraciones por defecto
+## Valores por defecto
 
-Como los parámetros de query no están fijos en una parte del path pueden ser opcionales y pueden tener valores por defecto.
+Como los parámetros de query no son una parte fija de un path, pueden ser opcionales y pueden tener valores por defecto.
 
-El ejemplo arriba tiene `skip=0` y `limit=10` como los valores por defecto.
+En el ejemplo anterior, tienen valores por defecto de `skip=0` y `limit=10`.
 
-Entonces, si vas a la URL:
+Entonces, ir a la URL:
 
 ```
 http://127.0.0.1:8000/items/
 ```
 
-Sería lo mismo que ir a:
+sería lo mismo que ir a:
 
 ```
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-Pero, si por ejemplo vas a:
+Pero si vas a, por ejemplo:
 
 ```
 http://127.0.0.1:8000/items/?skip=20
@@ -54,36 +54,26 @@ http://127.0.0.1:8000/items/?skip=20
 
 Los valores de los parámetros en tu función serán:
 
-* `skip=20`: porque lo definiste en la URL
-* `limit=10`: porque era el valor por defecto
+* `skip=20`: porque lo configuraste en la URL
+* `limit=10`: porque ese era el valor por defecto
 
 ## Parámetros opcionales
 
-Del mismo modo puedes declarar parámetros de query opcionales definiendo el valor por defecto como `None`:
+De la misma manera, puedes declarar parámetros de query opcionales, estableciendo su valor por defecto en `None`:
 
-{* ../../docs_src/query_params/tutorial002.py hl[9] *}
-
-En este caso el parámetro de la función `q` será opcional y será `None` por defecto.
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 /// check | Revisa
 
-También puedes notar que **FastAPI** es lo suficientemente inteligente para darse cuenta de que el parámetro de path `item_id` es un parámetro de path y que `q` no lo es, y por lo tanto es un parámetro de query.
+Además, nota que **FastAPI** es lo suficientemente inteligente para notar que el parámetro de path `item_id` es un parámetro de path y `q` no lo es, por lo tanto, es un parámetro de query.
 
 ///
 
-/// note | Nota
+## Conversión de tipos en parámetros de query
 
-FastAPI sabrá que `q` es opcional por el `= None`.
+También puedes declarar tipos `bool`, y serán convertidos:
 
-El `Union` en `Union[str, None]` no es usado por FastAPI (FastAPI solo usará la parte `str`), pero el `Union[str, None]` le permitirá a tu editor ayudarte a encontrar errores en tu código.
-
-///
-
-## Conversión de tipos de parámetros de query
-
-También puedes declarar tipos `bool` y serán convertidos:
-
-{* ../../docs_src/query_params/tutorial003.py hl[9] *}
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
 En este caso, si vas a:
 
@@ -115,54 +105,56 @@ o
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.) tu función verá el parámetro `short` con un valor `bool` de `True`. Si no, lo verá como `False`.
+o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.), tu función verá el parámetro `short` con un valor `bool` de `True`. De lo contrario, será `False`.
 
-## Múltiples parámetros de path y query
+## Múltiples parámetros de path y de query
 
-Puedes declarar múltiples parámetros de path y parámetros de query al mismo tiempo. **FastAPI** sabe cuál es cuál.
+Puedes declarar múltiples parámetros de path y de query al mismo tiempo, **FastAPI** sabe cuál es cuál.
 
-No los tienes que declarar en un orden específico.
+Y no tienes que declararlos en un orden específico.
 
 Serán detectados por nombre:
 
-{* ../../docs_src/query_params/tutorial004.py hl[8,10] *}
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
 ## Parámetros de query requeridos
 
-Cuando declaras un valor por defecto para los parámetros que no son de path (por ahora solo hemos visto parámetros de query), entonces no es requerido.
+Cuando declaras un valor por defecto para parámetros que no son de path (por ahora, solo hemos visto parámetros de query), entonces no es requerido.
 
-Si no quieres añadir un valor específico sino solo hacerlo opcional, pon el valor por defecto como `None`.
+Si no quieres agregar un valor específico pero solo hacer que sea opcional, establece el valor por defecto como `None`.
 
-Pero cuando quieres hacer que un parámetro de query sea requerido, puedes simplemente no declararle un valor por defecto:
+Pero cuando quieres hacer un parámetro de query requerido, simplemente no declares ningún valor por defecto:
 
 {* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
-Aquí el parámetro de query `needy` es un parámetro de query requerido, del tipo `str`.
+Aquí el parámetro de query `needy` es un parámetro de query requerido de tipo `str`.
 
-Si abres tu navegador en una URL como:
+Si abres en tu navegador una URL como:
 
 ```
 http://127.0.0.1:8000/items/foo-item
 ```
 
-...sin añadir el parámetro `needy` requerido, verás un error como:
+...sin agregar el parámetro requerido `needy`, verás un error como:
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null,
+      "url": "https://errors.pydantic.dev/2.1/v/missing"
+    }
+  ]
 }
 ```
 
-Dado que `needy` es un parámetro requerido necesitarías declararlo en la URL:
+Como `needy` es un parámetro requerido, necesitarías establecerlo en la URL:
 
 ```
 http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
@@ -177,11 +169,11 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 }
 ```
 
-Por supuesto que también puedes definir algunos parámetros como requeridos, con un valor por defecto y otros completamente opcionales:
+Y por supuesto, puedes definir algunos parámetros como requeridos, algunos con un valor por defecto, y algunos enteramente opcionales:
 
-{* ../../docs_src/query_params/tutorial006.py hl[10] *}
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
-En este caso hay 3 parámetros de query:
+En este caso, hay 3 parámetros de query:
 
 * `needy`, un `str` requerido.
 * `skip`, un `int` con un valor por defecto de `0`.
@@ -189,6 +181,6 @@ En este caso hay 3 parámetros de query:
 
 /// tip | Consejo
 
-También podrías usar los `Enum`s de la misma manera que con los [Parámetros de path](path-params.md#valores-predefinidos){.internal-link target=_blank}.
+También podrías usar `Enum`s de la misma manera que con [Parámetros de Path](path-params.md#predefined-values){.internal-link target=_blank}.
 
 ///
