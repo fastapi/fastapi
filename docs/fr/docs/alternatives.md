@@ -134,8 +134,8 @@ Adopter et utiliser une norme ouverte pour les spécifications des API, au lieu 
 
 Intégrer des outils d'interface utilisateur basés sur des normes :
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
-* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
+- <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
+- <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
 Ces deux-là ont été choisis parce qu'ils sont populaires et stables, mais en faisant une recherche rapide, vous pourriez trouver des dizaines d'alternatives supplémentaires pour OpenAPI (que vous pouvez utiliser avec **FastAPI**).
 
@@ -260,7 +260,7 @@ Générer le schéma OpenAPI automatiquement, à partir du même code qui défin
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (et <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
 
-Ce n'est même pas du Python, NestJS est un framework JavaScript (TypeScript) NodeJS inspiré d'Angular.
+Ce n'est même pas du Python, NestJS est un framework JavaScript (TypeScript) Node.JS inspiré d'Angular.
 
 Il réalise quelque chose de similaire à ce qui peut être fait avec Flask-apispec.
 
@@ -413,9 +413,9 @@ Maintenant, APIStar est un ensemble d'outils pour valider les spécifications Op
 
 APIStar a été créé par Tom Christie. Le même gars qui a créé :
 
-* Django REST Framework
-* Starlette (sur lequel **FastAPI** est basé)
-* Uvicorn (utilisé par Starlette et **FastAPI**)
+- Django REST Framework
+- Starlette (sur lequel **FastAPI** est basé)
+- Uvicorn (utilisé par Starlette et **FastAPI**)
 
 ///
 
@@ -513,7 +513,7 @@ Le serveur web principal pour exécuter les applications **FastAPI**.
 
 Vous pouvez le combiner avec Gunicorn, pour avoir un serveur multi-processus asynchrone.
 
-Pour plus de détails, consultez la section [Déploiement](deployment/index.md){.internal-link target=_blank}.
+Pour plus de détails, consultez la section [Déploiement](deployment/index.md){.internal-link target=\_blank}.
 
 ///
 

@@ -26,21 +26,21 @@
 **Forrás kód**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
-A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
 
+A FastAPI egy modern, gyors (nagy teljesítményű), webes keretrendszer API-ok építéséhez Python -al, a Python szabványos típusjelöléseire építve.
 
 Kulcs funkciók:
 
-* **Gyors**: Nagyon nagy teljesítmény, a **NodeJS**-el és a **Go**-val egyenrangú (a Starlettenek és a Pydantic-nek köszönhetően). [Az egyik leggyorsabb Python keretrendszer](#performance).
-* **Gyorsan kódolható**: A funkciók fejlesztési sebességét 200-300 százalékkal megnöveli. *
-* **Kevesebb hiba**: Körülbelül 40%-al csökkenti az emberi (fejlesztői) hibák számát. *
-* **Intuitív**: Kiváló szerkesztő támogatás. <abbr title="más néven auto-complete, autocompletion, IntelliSense">Kiegészítés</abbr> mindenhol. Kevesebb hibakereséssel töltött idő.
-* **Egyszerű**: Egyszerű tanulásra és használatra tervezve. Kevesebb dokumentáció olvasással töltött idő.
-* **Rövid**: Kód duplikáció minimalizálása. Több funkció minden paraméter deklarálásával. Kevesebb hiba.
-* **Robosztus**: Production ready kód. Automatikus interaktív dokumentáció val.
-* **Szabvány alapú**: Az API-ok nyílt szabványaira alapuló (és azokkal teljesen kompatibilis): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (korábban Swagger néven ismert) és a <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **Gyors**: Nagyon nagy teljesítmény, a **Node.JS**-el és a **Go**-val egyenrangú (a Starlettenek és a Pydantic-nek köszönhetően). [Az egyik leggyorsabb Python keretrendszer](#performance).
+- **Gyorsan kódolható**: A funkciók fejlesztési sebességét 200-300 százalékkal megnöveli. \*
+- **Kevesebb hiba**: Körülbelül 40%-al csökkenti az emberi (fejlesztői) hibák számát. \*
+- **Intuitív**: Kiváló szerkesztő támogatás. <abbr title="más néven auto-complete, autocompletion, IntelliSense">Kiegészítés</abbr> mindenhol. Kevesebb hibakereséssel töltött idő.
+- **Egyszerű**: Egyszerű tanulásra és használatra tervezve. Kevesebb dokumentáció olvasással töltött idő.
+- **Rövid**: Kód duplikáció minimalizálása. Több funkció minden paraméter deklarálásával. Kevesebb hiba.
+- **Robosztus**: Production ready kód. Automatikus interaktív dokumentáció val.
+- **Szabvány alapú**: Az API-ok nyílt szabványaira alapuló (és azokkal teljesen kompatibilis): <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (korábban Swagger néven ismert) és a <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Egy production alkalmazásokat építő belső fejlesztői csapat tesztjein alapuló becslés. </small>
+<small>\* Egy production alkalmazásokat építő belső fejlesztői csapat tesztjein alapuló becslés. </small>
 
 ## Szponzorok
 
@@ -117,8 +117,8 @@ Ha egy olyan CLI alkalmazást fejlesztesz amit a parancssorban kell használni w
 
 A FastAPI óriások vállán áll:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> a webes részekhez.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
+- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> a webes részekhez.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> az adat részekhez.
 
 ## Telepítés
 
@@ -148,7 +148,7 @@ $ pip install "uvicorn[standard]"
 
 ### Hozd létre
 
-* Hozz létre a `main.py` fájlt a következő tartalommal:
+- Hozz létre a `main.py` fájlt a következő tartalommal:
 
 ```Python
 from typing import Union
@@ -220,9 +220,9 @@ INFO:     Application startup complete.
 
 A `uvicorn main:app` parancs a következőre utal:
 
-* `main`: fájl `main.py` (a Python "modul").
-* `app`: a `main.py`-ban a `app = FastAPI()` sorral létrehozott objektum.
-* `--reload`: kód változtatás esetén újra indítja a szervert. Csak fejlesztés közben használandó.
+- `main`: fájl `main.py` (a Python "modul").
+- `app`: a `main.py`-ban a `app = FastAPI()` sorral létrehozott objektum.
+- `--reload`: kód változtatás esetén újra indítja a szervert. Csak fejlesztés közben használandó.
 
 </details>
 
@@ -238,10 +238,10 @@ A következő JSON választ fogod látni:
 
 Máris létrehoztál egy API-t ami:
 
-* HTTP kéréseket fogad a  `/` és `/items/{item_id}` _útvonalakon_.
-* Mindkét _útvonal_ a `GET` <em>műveletet</em> használja (másik elnevezés: HTTP _metódus_).
-* A `/items/{item_id}` _útvonalnak_ van egy _path paramétere_, az `item_id`, aminek `int` típusúnak kell lennie.
-* A `/items/{item_id}` _útvonalnak_ még van egy opcionális, `str` típusú _query paramétere_ is, a `q`.
+- HTTP kéréseket fogad a `/` és `/items/{item_id}` _útvonalakon_.
+- Mindkét _útvonal_ a `GET` <em>műveletet</em> használja (másik elnevezés: HTTP _metódus_).
+- A `/items/{item_id}` _útvonalnak_ van egy _path paramétere_, az `item_id`, aminek `int` típusúnak kell lennie.
+- A `/items/{item_id}` _útvonalnak_ még van egy opcionális, `str` típusú _query paramétere_ is, a `q`.
 
 ### Interaktív API dokumentáció
 
@@ -301,15 +301,15 @@ A szerver automatikusan újraindul (mert hozzáadtuk a --reload paramétert a fe
 
 Most menj el a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> címre.
 
-* Az interaktív API dokumentáció automatikusan frissült így már benne van az új body.
+- Az interaktív API dokumentáció automatikusan frissült így már benne van az új body.
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Kattints rá a "Try it out" gombra, ennek segítségével kitöltheted a paramétereket és közvetlen használhatod az API-t:
+- Kattints rá a "Try it out" gombra, ennek segítségével kitöltheted a paramétereket és közvetlen használhatod az API-t:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Ezután kattints az "Execute" gompra, a felhasználói felület kommunikálni fog az API-oddal. Elküldi a paramétereket és a visszakapott választ megmutatja a képernyődön.
+- Ezután kattints az "Execute" gompra, a felhasználói felület kommunikálni fog az API-oddal. Elküldi a paramétereket és a visszakapott választ megmutatja a képernyődön.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -317,7 +317,7 @@ Most menj el a <a href="http://127.0.0.1:8000/docs" class="external-link" target
 
 Most menj el a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> címre.
 
-* Az alternatív dokumentáció szintúgy tükrözni fogja az új kérési paraméter és body-t.
+- Az alternatív dokumentáció szintúgy tükrözni fogja az új kérési paraméter és body-t.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -345,50 +345,50 @@ item: Item
 
 ... És csupán egy deklarációval megkapod a:
 
-* Szerkesztő támogatást, beleértve:
-    * Szövegkiegészítés.
-    * Típus ellenőrzés.
-* Adatok validációja:
-    * Automatikus és érthető hibák amikor az adatok hibásak.
-    * Validáció mélyen ágyazott objektumok esetén is.
-* Bemeneti adatok<abbr title="also known as: serialization, parsing, marshalling"> átváltása</abbr> : a hálózatról érkező Python adatokká és típusokká. Adatok olvasása következő forrásokból:
-    * JSON.
-    * Cím paraméterek.
-    * Query paraméterek.
-    * Cookie-k.
-    * Header-ök.
-    * Formok.
-    * Fájlok.
-* Kimeneti adatok <abbr title=" más néven: serialization, parsing, marshalling">átváltása</abbr>: Python adatok is típusokról hálózati adatokká:
-    * válts át Python típusokat (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` csak objektumokat.
-    * `UUID` objektumokat.
-    * Adatbázis modelleket.
-    * ...És sok mást.
-* Automatikus interaktív dokumentáció, beleértve két alternatív dokumentációt is:
-    * Swagger UI.
-    * ReDoc.
+- Szerkesztő támogatást, beleértve:
+  - Szövegkiegészítés.
+  - Típus ellenőrzés.
+- Adatok validációja:
+  - Automatikus és érthető hibák amikor az adatok hibásak.
+  - Validáció mélyen ágyazott objektumok esetén is.
+- Bemeneti adatok<abbr title="also known as: serialization, parsing, marshalling"> átváltása</abbr> : a hálózatról érkező Python adatokká és típusokká. Adatok olvasása következő forrásokból:
+  - JSON.
+  - Cím paraméterek.
+  - Query paraméterek.
+  - Cookie-k.
+  - Header-ök.
+  - Formok.
+  - Fájlok.
+- Kimeneti adatok <abbr title=" más néven: serialization, parsing, marshalling">átváltása</abbr>: Python adatok is típusokról hálózati adatokká:
+  - válts át Python típusokat (`str`, `int`, `float`, `bool`, `list`, etc).
+  - `datetime` csak objektumokat.
+  - `UUID` objektumokat.
+  - Adatbázis modelleket.
+  - ...És sok mást.
+- Automatikus interaktív dokumentáció, beleértve két alternatív dokumentációt is:
+  - Swagger UI.
+  - ReDoc.
 
 ---
 
 Visszatérve az előző kód példához. A **FastAPI**:
 
-* Validálja hogy van egy `item_id` mező a `GET` és `PUT` kérésekben.
-* Validálja hogy az `item_id` `int` típusú a `GET` és `PUT` kérésekben.
-    * Ha nem akkor látni fogunk egy tiszta hibát ezzel kapcsolatban.
-* ellenőrzi hogyha van egy opcionális query paraméter `q` névvel (azaz `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` kérések esetén.
-    * Mivel a `q` paraméter `= None`-al van deklarálva, ezért opcionális.
-    * `None` nélkül ez a mező kötelező lenne (mint például a body `PUT` kérések esetén).
-* a `/items/{item_id}` címre érkező `PUT` kérések esetén, a JSON-t a következőképpen olvassa be:
-    * Ellenőrzi hogy létezik a kötelező `name` nevű attribútum és `string`.
-    * Ellenőrzi hogy létezik a kötelező `price` nevű attribútum és `float`.
-    * Ellenőrzi hogy létezik a `is_offer` nevű opcionális paraméter, ami ha létezik akkor `bool`
-    * Ez ágyazott JSON objektumokkal is működik
-* JSONről való automatikus konvertálás.
-* dokumentáljuk mindent OpenAPI-al amit használható:
-    * Interaktív dokumentációs rendszerekkel.
-    * Automatikus kliens kód generáló a rendszerekkel, több nyelven.
-* Hozzá tartozik kettő interaktív dokumentációs web felület.
+- Validálja hogy van egy `item_id` mező a `GET` és `PUT` kérésekben.
+- Validálja hogy az `item_id` `int` típusú a `GET` és `PUT` kérésekben.
+  - Ha nem akkor látni fogunk egy tiszta hibát ezzel kapcsolatban.
+- ellenőrzi hogyha van egy opcionális query paraméter `q` névvel (azaz `http://127.0.0.1:8000/items/foo?q=somequery`) `GET` kérések esetén.
+  - Mivel a `q` paraméter `= None`-al van deklarálva, ezért opcionális.
+  - `None` nélkül ez a mező kötelező lenne (mint például a body `PUT` kérések esetén).
+- a `/items/{item_id}` címre érkező `PUT` kérések esetén, a JSON-t a következőképpen olvassa be:
+  - Ellenőrzi hogy létezik a kötelező `name` nevű attribútum és `string`.
+  - Ellenőrzi hogy létezik a kötelező `price` nevű attribútum és `float`.
+  - Ellenőrzi hogy létezik a `is_offer` nevű opcionális paraméter, ami ha létezik akkor `bool`
+  - Ez ágyazott JSON objektumokkal is működik
+- JSONről való automatikus konvertálás.
+- dokumentáljuk mindent OpenAPI-al amit használható:
+  - Interaktív dokumentációs rendszerekkel.
+  - Automatikus kliens kód generáló a rendszerekkel, több nyelven.
+- Hozzá tartozik kettő interaktív dokumentációs web felület.
 
 ---
 
@@ -420,22 +420,22 @@ Teljesebb példákért és funkciókért tekintsd meg a <a href="https://fastapi
 
 **Spoiler veszély**: a Tutorial - User Guidehoz tartozik:
 
-* **Paraméterek** deklarációja különböző helyekről: **header-ök**, **cookie-k**, **form mezők** és **fájlok**.
-* Hogyan állíts be **validációs feltételeket** mint a `maximum_length` vagy a `regex`.
-* Nagyon hatékony és erős **<abbr title="also known as components, resources, providers, services, injectables">Függőség Injekció</abbr>** rendszerek.
-* Biztonság és autentikáció beleértve, **OAuth2**, **JWT tokens** és **HTTP Basic** támogatást.
-* Több haladó (de ugyanannyira könnyű) technika **mélyen ágyazott JSON modellek deklarációjára** (Pydantic-nek köszönhetően).
-* **GraphQL** integráció <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a>-vel és más könyvtárakkal.
-* több extra funkció (Starlette-nek köszönhetően) pl.:
-    * **WebSockets**
-    * rendkívül könnyű tesztek HTTPX és `pytest` alapokra építve
-    * **CORS**
-    * **Cookie Sessions**
-    * ...és több.
+- **Paraméterek** deklarációja különböző helyekről: **header-ök**, **cookie-k**, **form mezők** és **fájlok**.
+- Hogyan állíts be **validációs feltételeket** mint a `maximum_length` vagy a `regex`.
+- Nagyon hatékony és erős **<abbr title="also known as components, resources, providers, services, injectables">Függőség Injekció</abbr>** rendszerek.
+- Biztonság és autentikáció beleértve, **OAuth2**, **JWT tokens** és **HTTP Basic** támogatást.
+- Több haladó (de ugyanannyira könnyű) technika **mélyen ágyazott JSON modellek deklarációjára** (Pydantic-nek köszönhetően).
+- **GraphQL** integráció <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a>-vel és más könyvtárakkal.
+- több extra funkció (Starlette-nek köszönhetően) pl.:
+  - **WebSockets**
+  - rendkívül könnyű tesztek HTTPX és `pytest` alapokra építve
+  - **CORS**
+  - **Cookie Sessions**
+  - ...és több.
 
 ## Teljesítmény
 
-A független TechEmpower benchmarkok szerint az Uvicorn alatt futó **FastAPI** alkalmazások az <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">egyik leggyorsabb Python keretrendszerek közé tartoznak</a>, éppen lemaradva a Starlette és az Uvicorn (melyeket a FastAPI belsőleg használ) mögött.(*)
+A független TechEmpower benchmarkok szerint az Uvicorn alatt futó **FastAPI** alkalmazások az <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">egyik leggyorsabb Python keretrendszerek közé tartoznak</a>, éppen lemaradva a Starlette és az Uvicorn (melyeket a FastAPI belsőleg használ) mögött.(\*)
 
 Ezeknek a további megértéséhez: <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
@@ -443,25 +443,26 @@ Ezeknek a további megértéséhez: <a href="https://fastapi.tiangolo.com/benchm
 
 Pydantic által használt:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - e-mail validációkra.
-* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - Beállítások követésére.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Extra típusok Pydantic-hoz.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - e-mail validációkra.
+- <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - Beállítások követésére.
+- <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Extra típusok Pydantic-hoz.
 
 Starlette által használt:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Követelmény ha a `TestClient`-et akarod használni.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Követelmény ha az alap template konfigurációt akarod használni.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Követelmény ha <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>-ot akarsz támogatni, `request.form()`-al.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Követelmény `SessionMiddleware` támogatáshoz.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Követelmény a Starlette `SchemaGenerator`-ának támogatásához (valószínűleg erre nincs szükség FastAPI használása esetén).
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Követelmény ha a `TestClient`-et akarod használni.
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Követelmény ha az alap template konfigurációt akarod használni.
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Követelmény ha <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>-ot akarsz támogatni, `request.form()`-al.
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Követelmény `SessionMiddleware` támogatáshoz.
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Követelmény a Starlette `SchemaGenerator`-ának támogatásához (valószínűleg erre nincs szükség FastAPI használása esetén).
 
 FastAPI / Starlette által használt
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Szerverekhez amíg betöltik és szolgáltatják az applikációdat.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Követelmény ha `ORJSONResponse`-t akarsz használni.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Követelmény ha `UJSONResponse`-t akarsz használni.
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Szerverekhez amíg betöltik és szolgáltatják az applikációdat.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Követelmény ha `ORJSONResponse`-t akarsz használni.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Követelmény ha `UJSONResponse`-t akarsz használni.
 
 Ezeket mind telepítheted a `pip install "fastapi[all]"` paranccsal.
 
 ## Licensz
+
 Ez a projekt az MIT license, licensz alatt fut

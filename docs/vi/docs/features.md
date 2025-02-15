@@ -6,21 +6,20 @@
 
 ### Dựa trên những tiêu chuẩn mở
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> cho việc tạo API, bao gồm những khai báo về <abbr title="cũng được biết đến như: endpoints, routes">đường dẫn</abbr> <abbr title="cũng được biết đến như các phương thức HTTP, như POST, GET, PUT, DELETE"> các toán tử</abbr>, tham số, body requests, cơ chế bảo mật, etc.
-* Tự động tài liệu hóa data model theo <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI bản thân nó được dựa trên JSON Schema).
-* Được thiết kế xung quanh các tiêu chuẩn này sau khi nghiên cứu tỉ mỉ thay vì chỉ suy nghĩ đơn giản và sơ xài.
-* Điều này cho phép tự động hóa **trình sinh code client** cho nhiều ngôn ngữ lập trình khác nhau.
+- <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> cho việc tạo API, bao gồm những khai báo về <abbr title="cũng được biết đến như: endpoints, routes">đường dẫn</abbr> <abbr title="cũng được biết đến như các phương thức HTTP, như POST, GET, PUT, DELETE"> các toán tử</abbr>, tham số, body requests, cơ chế bảo mật, etc.
+- Tự động tài liệu hóa data model theo <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (OpenAPI bản thân nó được dựa trên JSON Schema).
+- Được thiết kế xung quanh các tiêu chuẩn này sau khi nghiên cứu tỉ mỉ thay vì chỉ suy nghĩ đơn giản và sơ xài.
+- Điều này cho phép tự động hóa **trình sinh code client** cho nhiều ngôn ngữ lập trình khác nhau.
 
 ### Tự động hóa tài liệu
 
-
 Tài liệu tương tác API và web giao diện người dùng. Là một framework được dựa trên OpenAPI do đó có nhiều tùy chọn giao diện cho tài liệu API, 2 giao diện bên dưới là mặc định.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, với giao diện khám phá, gọi và kiểm thử API trực tiếp từ trình duyệt.
+- <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, với giao diện khám phá, gọi và kiểm thử API trực tiếp từ trình duyệt.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Thay thế với tài liệu API với <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+- Thay thế với tài liệu API với <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -28,7 +27,7 @@ Tài liệu tương tác API và web giao diện người dùng. Là một frame
 
 Tất cả được dựa trên khai báo kiểu dữ liệu chuẩn của **Python 3.8** (cảm ơn Pydantic). Bạn không cần học cú pháp mới, chỉ cần biết chuẩn Python hiện đại.
 
-Nếu bạn cần 2 phút để làm mới lại cách sử dụng các kiểu dữ liệu mới của Python (thậm chí nếu bạn không sử dụng FastAPI), xem hướng dẫn ngắn: [Kiểu dữ liệu Python](python-types.md){.internal-link target=_blank}.
+Nếu bạn cần 2 phút để làm mới lại cách sử dụng các kiểu dữ liệu mới của Python (thậm chí nếu bạn không sử dụng FastAPI), xem hướng dẫn ngắn: [Kiểu dữ liệu Python](python-types.md){.internal-link target=\_blank}.
 
 Bạn viết chuẩn Python với kiểu dữ liệu như sau:
 
@@ -74,7 +73,6 @@ Truyền các khóa và giá trị của dict `second_user_data` trực tiếp n
 
 ### Được hỗ trợ từ các trình soạn thảo
 
-
 Toàn bộ framework được thiết kế để sử dụng dễ dàng và trực quan, toàn bộ quyết định đã được kiểm thử trên nhiều trình soạn thảo thậm chí trước khi bắt đầu quá trình phát triển, để chắc chắn trải nghiệm phát triển là tốt nhất.
 
 Trong lần khảo sát cuối cùng dành cho các lập trình viên Python, đã rõ ràng <a href="https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features" class="external-link" target="_blank">rằng đa số các lập trình viên sử dụng tính năng "autocompletion"</a>.
@@ -83,11 +81,11 @@ Toàn bộ framework "FastAPI" phải đảm bảo rằng: autocompletion hoạt
 
 Đây là các trình soạn thảo có thể giúp bạn:
 
-* trong <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+- trong <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* trong <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+- trong <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -103,17 +101,18 @@ Nhưng mặc định, tất cả **đều hoạt động**.
 
 ### Validation
 
-* Validation cho đa số (hoặc tất cả?) **các kiểu dữ liệu** Python, bao gồm:
-    * JSON objects (`dict`).
-    * Mảng JSON (`list`) định nghĩa kiểu dữ liệu từng phần tử.
-    * Xâu (`str`), định nghĩa độ dài lớn nhất, nhỏ nhất.
-    * Số (`int`, `float`) với các giá trị lớn nhất, nhỏ nhất, etc.
+- Validation cho đa số (hoặc tất cả?) **các kiểu dữ liệu** Python, bao gồm:
 
-* Validation cho nhiều kiểu dữ liệu bên ngoài như:
-    * URL.
-    * Email.
-    * UUID.
-    * ...và nhiều cái khác.
+  - JSON objects (`dict`).
+  - Mảng JSON (`list`) định nghĩa kiểu dữ liệu từng phần tử.
+  - Xâu (`str`), định nghĩa độ dài lớn nhất, nhỏ nhất.
+  - Số (`int`, `float`) với các giá trị lớn nhất, nhỏ nhất, etc.
+
+- Validation cho nhiều kiểu dữ liệu bên ngoài như:
+  - URL.
+  - Email.
+  - UUID.
+  - ...và nhiều cái khác.
 
 Tất cả validation được xử lí bằng những thiết lập tốt và mạnh mẽ của **Pydantic**.
 
@@ -123,12 +122,12 @@ Bảo mật và xác thực đã tích hợp mà không làm tổn hại tới c
 
 Tất cả cơ chế bảo mật định nghĩa trong OpenAPI, bao gồm:
 
-* HTTP Basic.
-* **OAuth2** (với **JWT tokens**). Xem hướng dẫn [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Các tham số trong query string.
-    * Cookies, etc.
+- HTTP Basic.
+- **OAuth2** (với **JWT tokens**). Xem hướng dẫn [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=\_blank}.
+- API keys in:
+  - Headers.
+  - Các tham số trong query string.
+  - Cookies, etc.
 
 Cộng với tất cả các tính năng bảo mật từ Starlette (bao gồm **session cookies**).
 
@@ -138,24 +137,24 @@ Tất cả được xây dựng dưới dạng các công cụ và thành phần
 
 FastAPI bao gồm một hệ thống <abbr title='cũng biết đến như là "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> vô cùng dễ sử dụng nhưng vô cùng mạnh mẽ.
 
-* Thậm chí, các dependency có thể có các dependency khác, tạo thành một phân cấp hoặc **"một đồ thị" của các dependency**.
-* Tất cả **được xử lí tự động** bởi framework.
-* Tất cả các dependency có thể yêu cầu dữ liệu từ request và **tăng cường các ràng buộc từ đường dẫn** và tự động tài liệu hóa.
-* **Tự động hóa validation**, thậm chí với các tham số *đường dẫn* định nghĩa trong các dependency.
-* Hỗ trợ hệ thống xác thực người dùng phức tạp, **các kết nối cơ sở dữ liệu**,...
-* **Không làm tổn hại** cơ sở dữ liệu, frontends,... Nhưng dễ dàng tích hợp với tất cả chúng.
+- Thậm chí, các dependency có thể có các dependency khác, tạo thành một phân cấp hoặc **"một đồ thị" của các dependency**.
+- Tất cả **được xử lí tự động** bởi framework.
+- Tất cả các dependency có thể yêu cầu dữ liệu từ request và **tăng cường các ràng buộc từ đường dẫn** và tự động tài liệu hóa.
+- **Tự động hóa validation**, thậm chí với các tham số _đường dẫn_ định nghĩa trong các dependency.
+- Hỗ trợ hệ thống xác thực người dùng phức tạp, **các kết nối cơ sở dữ liệu**,...
+- **Không làm tổn hại** cơ sở dữ liệu, frontends,... Nhưng dễ dàng tích hợp với tất cả chúng.
 
 ### Không giới hạn "plug-ins"
 
 Hoặc theo một cách nào khác, không cần chúng, import và sử dụng code bạn cần.
 
-Bất kì tích hợp nào được thiết kế để sử dụng đơn giản (với các dependency), đến nỗi bạn có thể tạo một "plug-in" cho ứng dụng của mình trong 2 dòng code bằng cách sử dụng cùng một cấu trúc và cú pháp được sử dụng cho *path operations* của bạn.
+Bất kì tích hợp nào được thiết kế để sử dụng đơn giản (với các dependency), đến nỗi bạn có thể tạo một "plug-in" cho ứng dụng của mình trong 2 dòng code bằng cách sử dụng cùng một cấu trúc và cú pháp được sử dụng cho _path operations_ của bạn.
 
 ### Đã được kiểm thử
 
-* 100% <abbr title=" Lượng code đã được kiểm thử tự động">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, với điều này trình soạn thảo của bạn và các công cụ bên ngoài có thể hỗ trợ bạn tốt hơn">type annotated</abbr> code base.
-* Được sử dụng cho các ứng dụng sản phẩm.
+- 100% <abbr title=" Lượng code đã được kiểm thử tự động">test coverage</abbr>.
+- 100% <abbr title="Python type annotations, với điều này trình soạn thảo của bạn và các công cụ bên ngoài có thể hỗ trợ bạn tốt hơn">type annotated</abbr> code base.
+- Được sử dụng cho các ứng dụng sản phẩm.
 
 ## Tính năng của Starlette
 
@@ -163,15 +162,15 @@ Bất kì tích hợp nào được thiết kế để sử dụng đơn giản 
 
 Với **FastAPI**, bạn có được tất cả những tính năng của **Starlette**:
 
-* Hiệu năng thực sự ấn tượng. Nó là <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">một trong nhưng framework Python nhanh nhất, khi so sánh với **NodeJS** và **Go**</a>.
-* Hỗ trợ **WebSocket**.
-* In-process background tasks.
-* Startup and shutdown events.
-* Client cho kiểm thử xây dựng trên HTTPX.
-* **CORS**, GZip, Static Files, Streaming responses.
-* Hỗ trợ **Session and Cookie**.
-* 100% test coverage.
-* 100% type annotated codebase.
+- Hiệu năng thực sự ấn tượng. Nó là <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">một trong nhưng framework Python nhanh nhất, khi so sánh với **Node.JS** và **Go**</a>.
+- Hỗ trợ **WebSocket**.
+- In-process background tasks.
+- Startup and shutdown events.
+- Client cho kiểm thử xây dựng trên HTTPX.
+- **CORS**, GZip, Static Files, Streaming responses.
+- Hỗ trợ **Session and Cookie**.
+- 100% test coverage.
+- 100% type annotated codebase.
 
 ## Tính năng của Pydantic
 
@@ -185,16 +184,17 @@ Nó cũng có nghĩa là trong nhiều trường hợp, bạn có thể truyền
 
 Với **FastAPI**, bạn có tất cả những tính năng của **Pydantic** (FastAPI dựa trên Pydantic cho tất cả những xử lí về dữ liệu):
 
-* **Không gây rối não**:
-    * Không cần học ngôn ngữ mô tả cấu trúc mới.
-    * Nếu bạn biết kiểu dữ liệu Python, bạn biết cách sử dụng Pydantic.
-* Sử dụng tốt với **<abbr title="Môi trường phát triển tích hợp, tương tự như một trình soạn thảo code">IDE</abbr>/<abbr title="Một chương trình kiểm tra code lỗi">linter</abbr>/não của bạn**:
+- **Không gây rối não**:
+  - Không cần học ngôn ngữ mô tả cấu trúc mới.
+  - Nếu bạn biết kiểu dữ liệu Python, bạn biết cách sử dụng Pydantic.
+- Sử dụng tốt với **<abbr title="Môi trường phát triển tích hợp, tương tự như một trình soạn thảo code">IDE</abbr>/<abbr title="Một chương trình kiểm tra code lỗi">linter</abbr>/não của bạn**:
 
-    * Bởi vì các cấu trúc dữ liệu của Pydantic chỉ là các instances của class bạn định nghĩa; auto-completion, linting, mypy và trực giác của bạn nên làm việc riêng biệt với những dữ liệu mà bạn đã validate.
-* Validate **các cấu trúc phức tạp**:
-    * Sử dụng các models Pydantic phân tầng, `List` và `Dict` của Python `typing`,...
-    * Và các validators cho phép các cấu trúc dữ liệu phức tạp trở nên rõ ràng và dễ dàng để định nghĩa, kiểm tra và tài liệu hóa thành JSON Schema.
-    * Bạn có thể có các object **JSON lồng nhau** và tất cả chúng đã validate và annotated.
-* **Có khả năng mở rộng**:
-    * Pydantic cho phép bạn tùy chỉnh kiểu dữ liệu bằng việc định nghĩa hoặc bạn có thể mở rộng validation với các decorator trong model.
-* 100% test coverage.
+  - Bởi vì các cấu trúc dữ liệu của Pydantic chỉ là các instances của class bạn định nghĩa; auto-completion, linting, mypy và trực giác của bạn nên làm việc riêng biệt với những dữ liệu mà bạn đã validate.
+
+- Validate **các cấu trúc phức tạp**:
+  - Sử dụng các models Pydantic phân tầng, `List` và `Dict` của Python `typing`,...
+  - Và các validators cho phép các cấu trúc dữ liệu phức tạp trở nên rõ ràng và dễ dàng để định nghĩa, kiểm tra và tài liệu hóa thành JSON Schema.
+  - Bạn có thể có các object **JSON lồng nhau** và tất cả chúng đã validate và annotated.
+- **Có khả năng mở rộng**:
+  - Pydantic cho phép bạn tùy chỉnh kiểu dữ liệu bằng việc định nghĩa hoặc bạn có thể mở rộng validation với các decorator trong model.
+- 100% test coverage.

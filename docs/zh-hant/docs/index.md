@@ -31,7 +31,7 @@ FastAPI 是一個現代、快速（高效能）的 web 框架，用於 Python �
 
 主要特點包含：
 
-- **快速**： 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
+- **快速**： 非常高的效能，可與 **Node.JS** 和 **Go** 效能相當 (歸功於 Starlette and Pydantic)。 [FastAPI 是最快的 Python web 框架之一](#performance)。
 - **極速開發**： 提高開發功能的速度約 200% 至 300%。 \*
 - **更少的 Bug**： 減少約 40% 的人為（開發者）導致的錯誤。 \*
 - **直覺**： 具有出色的編輯器支援，處處都有<abbr title="也被稱為自動完成、IntelliSense">自動補全</abbr>以減少偵錯時間。
@@ -346,28 +346,28 @@ item: Item
 在進行一次宣告後，你將獲得：
 
 - 編輯器支援：
-    - 自動補全
-    - 型別檢查
+  - 自動補全
+  - 型別檢查
 - 資料驗證：
-    - 驗證失敗時自動生成清楚的錯誤訊息
-    - 可驗證多層巢狀的 JSON 物件
+  - 驗證失敗時自動生成清楚的錯誤訊息
+  - 可驗證多層巢狀的 JSON 物件
 - <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸入的資料： 轉換來自網路請求到 Python 資料型別。包含以下數據：
-    - JSON
-    - 路徑參數
-    - 查詢參數
-    - Cookies
-    - 請求標頭
-    - 表單
-    - 文件
+  - JSON
+  - 路徑參數
+  - 查詢參數
+  - Cookies
+  - 請求標頭
+  - 表單
+  - 文件
 - <abbr title="也被稱為： 序列化或解析">轉換</abbr>輸出的資料： 轉換 Python 資料型別到網路傳輸的 JSON：
-    - 轉換 Python 型別 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
-    - `datetime` 物件
-    - `UUID` 物件
-    - 數據模型
-    - ...還有其他更多
+  - 轉換 Python 型別 (`str`、 `int`、 `float`、 `bool`、 `list` 等)
+  - `datetime` 物件
+  - `UUID` 物件
+  - 數據模型
+  - ...還有其他更多
 - 自動生成的 API 文件，包含 2 種不同的使用介面：
-    - Swagger UI
-    - ReDoc
+  - Swagger UI
+  - ReDoc
 
 ---
 
@@ -375,19 +375,19 @@ item: Item
 
 - 驗證 `GET` 和 `PUT` 請求路徑中是否包含 `item_id`。
 - 驗證 `GET` 和 `PUT` 請求中的 `item_id` 是否是 `int` 型別。
-    - 如果驗證失敗，將會返回清楚有用的錯誤訊息。
+  - 如果驗證失敗，將會返回清楚有用的錯誤訊息。
 - 查看 `GET` 請求中是否有命名為 `q` 的查詢參數 (例如 `http://127.0.0.1:8000/items/foo?q=somequery`)。
-    - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
-    - 如果沒有宣告 `None`，則此參數將會是必填 (例如 `PUT` 範例的請求 body)。
+  - 因為 `q` 參數被宣告為 `= None`，所以是選填的。
+  - 如果沒有宣告 `None`，則此參數將會是必填 (例如 `PUT` 範例的請求 body)。
 - 對於 `PUT` 的請求 `/items/{item_id}`，將會讀取 body 為 JSON：
-    - 驗證是否有必填屬性 `name` 且型別是 `str`。
-    - 驗證是否有必填屬性 `price` 且型別是 `float`。
-    - 驗證是否有選填屬性 `is_offer` 且型別是 `bool`。
-    - 以上驗證都適用於多層次巢狀 JSON 物件。
+  - 驗證是否有必填屬性 `name` 且型別是 `str`。
+  - 驗證是否有必填屬性 `price` 且型別是 `float`。
+  - 驗證是否有選填屬性 `is_offer` 且型別是 `bool`。
+  - 以上驗證都適用於多層次巢狀 JSON 物件。
 - 自動轉換 JSON 格式。
 - 透過 OpenAPI 文件來記錄所有內容，可以被用於：
-    - 互動式文件系統。
-    - 自動為多種程式語言生成用戶端的程式碼。
+  - 互動式文件系統。
+  - 自動為多種程式語言生成用戶端的程式碼。
 - 提供兩種交互式文件介面。
 
 ---
@@ -427,11 +427,11 @@ item: Item
 - 更進階 (但同樣簡單) 的宣告 **多層次的巢狀 JSON 格式** (感謝 Pydantic)。
 - **GraphQL** 與 <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 以及其他的相關函式庫進行整合。
 - 更多其他的功能 (感謝 Starlette) 像是：
-    - **WebSockets**
-    - 於 HTTPX 和 `pytest` 的非常簡單測試
-    - **CORS**
-    - **Cookie Sessions**
-    - ...以及更多
+  - **WebSockets**
+  - 於 HTTPX 和 `pytest` 的非常簡單測試
+  - **CORS**
+  - **Cookie Sessions**
+  - ...以及更多
 
 ## 效能
 

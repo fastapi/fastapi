@@ -30,11 +30,11 @@
 
 ---
 
-FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降でAPI を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
+FastAPI は、Python の標準である型ヒントに基づいて Python 以降で API を構築するための、モダンで、高速(高パフォーマンス)な、Web フレームワークです。
 
 主な特徴:
 
-- **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげです)。 [最も高速な Python フレームワークの一つです](#_10).
+- **高速**: **Node.JS** や **Go** 並みのとても高いパフォーマンス (Starlette と Pydantic のおかげです)。 [最も高速な Python フレームワークの一つです](#_10).
 
 - **高速なコーディング**: 開発速度を約 200%~300%向上させます。 \*
 - **少ないバグ**: 開発者起因のヒューマンエラーを約 40％削減します。 \*
@@ -71,7 +71,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降�
 
 ---
 
-"_FastAPIライブラリを採用し、クエリで**予測値**を取得できる**REST**サーバを構築しました。 [for Ludwig]_"
+"_FastAPI ライブラリを採用し、クエリで**予測値**を取得できる**REST**サーバを構築しました。 [for Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(ref)</small></a></div>
 
@@ -377,10 +377,10 @@ item: Item
   - オプションの属性 `is_offer` を確認してください。値がある場合は、`bool` であるべきです。
   - これらはすべて、深くネストされた JSON オブジェクトに対しても動作します。
 - JSON から JSON に自動的に変換します。
-- OpenAPIですべてを文書化し、以下を使用することができます:
+- OpenAPI ですべてを文書化し、以下を使用することができます:
   - 対話的なドキュメントシステム。
   - 多くの言語に対応した自動クライアントコード生成システム。
-- 2 つの対話的なドキュメントのWebインターフェイスを直接提供します。
+- 2 つの対話的なドキュメントの Web インターフェイスを直接提供します。
 
 ---
 

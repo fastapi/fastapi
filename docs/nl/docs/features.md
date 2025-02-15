@@ -6,20 +6,20 @@
 
 ### Gebaseerd op open standaarden
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> voor het maken van API's, inclusief declaraties van <abbr title="ook bekend als: endpoints, routess">pad</abbr><abbr title="ook bekend als HTTP-methoden, zoals POST, GET, PUT, DELETE">bewerkingen</abbr>, parameters, request bodies, beveiliging, enz.
-* Automatische datamodel documentatie met <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (aangezien OpenAPI zelf is gebaseerd op JSON Schema).
-* Ontworpen op basis van deze standaarden, na zorgvuldig onderzoek. In plaats van achteraf deze laag er bovenop te bouwen.
-* Dit maakt het ook mogelijk om automatisch **clientcode te genereren** in verschillende programmeertalen.
+- <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> voor het maken van API's, inclusief declaraties van <abbr title="ook bekend als: endpoints, routess">pad</abbr><abbr title="ook bekend als HTTP-methoden, zoals POST, GET, PUT, DELETE">bewerkingen</abbr>, parameters, request bodies, beveiliging, enz.
+- Automatische datamodel documentatie met <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (aangezien OpenAPI zelf is gebaseerd op JSON Schema).
+- Ontworpen op basis van deze standaarden, na zorgvuldig onderzoek. In plaats van achteraf deze laag er bovenop te bouwen.
+- Dit maakt het ook mogelijk om automatisch **clientcode te genereren** in verschillende programmeertalen.
 
 ### Automatische documentatie
 
 Interactieve API-documentatie en verkenning van webgebruikersinterfaces. Aangezien dit framework is gebaseerd op OpenAPI, zijn er meerdere documentatie opties mogelijk, waarvan er standaard 2 zijn inbegrepen.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, met interactieve interface, maakt het mogelijk je API rechtstreeks vanuit de browser aan te roepen en te testen.
+- <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, met interactieve interface, maakt het mogelijk je API rechtstreeks vanuit de browser aan te roepen en te testen.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternatieve API-documentatie met <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+- Alternatieve API-documentatie met <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -27,7 +27,7 @@ Interactieve API-documentatie en verkenning van webgebruikersinterfaces. Aangezi
 
 Het is allemaal gebaseerd op standaard **Python type** declaraties (dankzij Pydantic). Je hoeft dus geen nieuwe syntax te leren. Het is gewoon standaard moderne Python.
 
-Als je een opfriscursus van 2 minuten nodig hebt over het gebruik van Python types (zelfs als je FastAPI niet gebruikt), bekijk dan deze korte tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+Als je een opfriscursus van 2 minuten nodig hebt over het gebruik van Python types (zelfs als je FastAPI niet gebruikt), bekijk dan deze korte tutorial: [Python Types](python-types.md){.internal-link target=\_blank}.
 
 Je schrijft gewoon standaard Python met types:
 
@@ -83,11 +83,11 @@ Je hoeft zelden terug te vallen op de documentatie.
 
 Zo kan je editor je helpen:
 
-* in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+- in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
 ![editor ondersteuning](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+- in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor ondersteuning](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -103,17 +103,18 @@ Maar standaard werkt alles **“gewoon”**.
 
 ### Validatie
 
-* Validatie voor de meeste (of misschien wel alle?) Python **datatypes**, inclusief:
-    * JSON objecten (`dict`).
-    * JSON array (`list`) die itemtypes definiëren.
-    * String (`str`) velden, die min en max lengtes hebben.
-    * Getallen (`int`, `float`) met min en max waarden, enz.
+- Validatie voor de meeste (of misschien wel alle?) Python **datatypes**, inclusief:
 
-* Validatie voor meer exotische typen, zoals:
-    * URL.
-    * E-mail.
-    * UUID.
-    * ...en anderen.
+  - JSON objecten (`dict`).
+  - JSON array (`list`) die itemtypes definiëren.
+  - String (`str`) velden, die min en max lengtes hebben.
+  - Getallen (`int`, `float`) met min en max waarden, enz.
+
+- Validatie voor meer exotische typen, zoals:
+  - URL.
+  - E-mail.
+  - UUID.
+  - ...en anderen.
 
 Alle validatie wordt uitgevoerd door het beproefde en robuuste **Pydantic**.
 
@@ -123,12 +124,12 @@ Beveiliging en authenticatie is geïntegreerd. Zonder compromissen te doen naar 
 
 Alle beveiligingsschema's gedefinieerd in OpenAPI, inclusief:
 
-* HTTP Basic.
-* **OAuth2** (ook met **JWT tokens**). Bekijk de tutorial over [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Query parameters.
-    * Cookies, enz.
+- HTTP Basic.
+- **OAuth2** (ook met **JWT tokens**). Bekijk de tutorial over [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=\_blank}.
+- API keys in:
+  - Headers.
+  - Query parameters.
+  - Cookies, enz.
 
 Plus alle beveiligingsfuncties van Starlette (inclusief **sessiecookies**).
 
@@ -138,24 +139,24 @@ Gebouwd als een herbruikbare tool met componenten die makkelijk te integreren zi
 
 FastAPI bevat een uiterst eenvoudig, maar uiterst krachtig <abbr title='ook bekend als "componenten", "bronnen", "diensten", "aanbieders"'><strong>Dependency Injection</strong></abbr> systeem.
 
-* Zelfs dependencies kunnen dependencies hebben, waardoor een hiërarchie of **“graph” van dependencies** ontstaat.
-* Allemaal **automatisch afgehandeld** door het framework.
-* Alle dependencies kunnen data nodig hebben van request, de vereiste **padoperaties veranderen** en automatische documentatie verstrekken.
-* **Automatische validatie** zelfs voor *padoperatie* parameters gedefinieerd in dependencies.
-* Ondersteuning voor complexe gebruikersauthenticatiesystemen, **databaseverbindingen**, enz.
-* **Geen compromisen** met databases, gebruikersinterfaces, enz. Maar eenvoudige integratie met ze allemaal.
+- Zelfs dependencies kunnen dependencies hebben, waardoor een hiërarchie of **“graph” van dependencies** ontstaat.
+- Allemaal **automatisch afgehandeld** door het framework.
+- Alle dependencies kunnen data nodig hebben van request, de vereiste **padoperaties veranderen** en automatische documentatie verstrekken.
+- **Automatische validatie** zelfs voor _padoperatie_ parameters gedefinieerd in dependencies.
+- Ondersteuning voor complexe gebruikersauthenticatiesystemen, **databaseverbindingen**, enz.
+- **Geen compromisen** met databases, gebruikersinterfaces, enz. Maar eenvoudige integratie met ze allemaal.
 
 ### Ongelimiteerde "plug-ins"
 
 Of anders gezegd, je hebt ze niet nodig, importeer en gebruik de code die je nodig hebt.
 
-Elke integratie is ontworpen om eenvoudig te gebruiken (met afhankelijkheden), zodat je een “plug-in" kunt maken in 2 regels code, met dezelfde structuur en syntax die wordt gebruikt voor je *padbewerkingen*.
+Elke integratie is ontworpen om eenvoudig te gebruiken (met afhankelijkheden), zodat je een “plug-in" kunt maken in 2 regels code, met dezelfde structuur en syntax die wordt gebruikt voor je _padbewerkingen_.
 
 ### Getest
 
-* 100% <abbr title="De hoeveelheid code die automatisch wordt getest">van de code is getest</abbr>.
-* 100% <abbr title="Python type annotaties, hiermee kunnen je editor en externe tools je beter ondersteunen">type geannoteerde</abbr> codebase.
-* Wordt gebruikt in productietoepassingen.
+- 100% <abbr title="De hoeveelheid code die automatisch wordt getest">van de code is getest</abbr>.
+- 100% <abbr title="Python type annotaties, hiermee kunnen je editor en externe tools je beter ondersteunen">type geannoteerde</abbr> codebase.
+- Wordt gebruikt in productietoepassingen.
 
 ## Starlette functies
 
@@ -165,15 +166,15 @@ Elke integratie is ontworpen om eenvoudig te gebruiken (met afhankelijkheden), z
 
 Met **FastAPI** krijg je alle functies van **Starlette** (FastAPI is gewoon Starlette op steroïden):
 
-* Zeer indrukwekkende prestaties. Het is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">een van de snelste Python frameworks, vergelijkbaar met **NodeJS** en **Go**</a>.
-* **WebSocket** ondersteuning.
-* Taken in de achtergrond tijdens het proces.
-* Opstart- en afsluit events.
-* Test client gebouwd op HTTPX.
-* **CORS**, GZip, Statische bestanden, Streaming reacties.
-* **Sessie en Cookie** ondersteuning.
-* 100% van de code is getest.
-* 100% type geannoteerde codebase.
+- Zeer indrukwekkende prestaties. Het is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">een van de snelste Python frameworks, vergelijkbaar met **Node.JS** en **Go**</a>.
+- **WebSocket** ondersteuning.
+- Taken in de achtergrond tijdens het proces.
+- Opstart- en afsluit events.
+- Test client gebouwd op HTTPX.
+- **CORS**, GZip, Statische bestanden, Streaming reacties.
+- **Sessie en Cookie** ondersteuning.
+- 100% van de code is getest.
+- 100% type geannoteerde codebase.
 
 ## Pydantic functionaliteit
 
@@ -187,15 +188,15 @@ Hetzelfde geldt ook andersom, in veel gevallen kun je dus het object dat je krij
 
 Met **FastAPI** krijg je alle functionaliteit van **Pydantic** (omdat FastAPI is gebaseerd op Pydantic voor alle dataverwerking):
 
-* **Geen brainfucks**:
-    * Je hoeft geen nieuwe microtaal voor schemadefinities te leren.
-    * Als je bekend bent Python types, weet je hoe je Pydantic moet gebruiken.
-* Werkt goed samen met je **<abbr title=“Integrated Development Environment, vergelijkbaar met een code editor”>IDE</abbr>/<abbr title=“Een programma dat controleert op fouten in de code”>linter</abbr>/hersenen**:
-    * Doordat pydantic's datastructuren enkel instanties zijn van klassen, die je definieert, werkt automatische aanvulling, linting, mypy en je intuïtie allemaal goed met je gevalideerde data.
-* Valideer **complexe structuren**:
-    * Gebruik van hiërarchische Pydantic modellen, Python `typing`'s `List` en `Dict`, enz.
-    * Met validators kunnen complexe dataschema's duidelijk en eenvoudig worden gedefinieerd, gecontroleerd en gedocumenteerd als JSON Schema.
-    * Je kunt diep **geneste JSON** objecten laten valideren en annoteren.
-* **Uitbreidbaar**:
-    * Met Pydantic kunnen op maat gemaakte datatypen worden gedefinieerd of je kunt validatie uitbreiden met methoden op een model dat is ingericht met de decorator validator.
-* 100% van de code is getest.
+- **Geen brainfucks**:
+  - Je hoeft geen nieuwe microtaal voor schemadefinities te leren.
+  - Als je bekend bent Python types, weet je hoe je Pydantic moet gebruiken.
+- Werkt goed samen met je **<abbr title=“Integrated Development Environment, vergelijkbaar met een code editor”>IDE</abbr>/<abbr title=“Een programma dat controleert op fouten in de code”>linter</abbr>/hersenen**:
+  - Doordat pydantic's datastructuren enkel instanties zijn van klassen, die je definieert, werkt automatische aanvulling, linting, mypy en je intuïtie allemaal goed met je gevalideerde data.
+- Valideer **complexe structuren**:
+  - Gebruik van hiërarchische Pydantic modellen, Python `typing`'s `List` en `Dict`, enz.
+  - Met validators kunnen complexe dataschema's duidelijk en eenvoudig worden gedefinieerd, gecontroleerd en gedocumenteerd als JSON Schema.
+  - Je kunt diep **geneste JSON** objecten laten valideren en annoteren.
+- **Uitbreidbaar**:
+  - Met Pydantic kunnen op maat gemaakte datatypen worden gedefinieerd of je kunt validatie uitbreiden met methoden op een model dat is ingericht met de decorator validator.
+- 100% van de code is getest.

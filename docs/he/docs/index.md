@@ -37,15 +37,15 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 תכונות המפתח הן:
 
--   **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם NodeJS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#_14).
+- **מהירה**: ביצועים גבוהים מאוד, בקנה אחד עם Node.JS ו - Go (תודות ל - Starlette ו - Pydantic). [אחת מתשתיות הפייתון המהירות ביותר](#_14).
 
--   **מהירה לתכנות**: הגבירו את מהירות פיתוח התכונות החדשות בכ - %200 עד %300. \*
--   **פחות שגיאות**: מנעו כ - %40 משגיאות אנוש (מפתחים). \*
--   **אינטואיטיבית**: תמיכת עורך מעולה. <abbr title="ידועה גם כהשלמה אוטומטית או IntelliSense">השלמה</abbr> בכל מקום. פחות זמן ניפוי שגיאות.
--   **קלה**: מתוכננת להיות קלה לשימוש וללמידה. פחות זמן קריאת תיעוד.
--   **קצרה**: מזערו שכפול קוד. מספר תכונות מכל הכרזת פרמטר. פחות שגיאות.
--   **חסונה**: קבלו קוד מוכן לסביבת ייצור. עם תיעוד אינטרקטיבי אוטומטי.
--   **מבוססת סטנדרטים**: מבוססת על (ותואמת לחלוטין ל -) הסטדנרטים הפתוחים לממשקי תכנות יישומים: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (ידועים לשעבר כ - Swagger) ו - <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **מהירה לתכנות**: הגבירו את מהירות פיתוח התכונות החדשות בכ - %200 עד %300. \*
+- **פחות שגיאות**: מנעו כ - %40 משגיאות אנוש (מפתחים). \*
+- **אינטואיטיבית**: תמיכת עורך מעולה. <abbr title="ידועה גם כהשלמה אוטומטית או IntelliSense">השלמה</abbr> בכל מקום. פחות זמן ניפוי שגיאות.
+- **קלה**: מתוכננת להיות קלה לשימוש וללמידה. פחות זמן קריאת תיעוד.
+- **קצרה**: מזערו שכפול קוד. מספר תכונות מכל הכרזת פרמטר. פחות שגיאות.
+- **חסונה**: קבלו קוד מוכן לסביבת ייצור. עם תיעוד אינטרקטיבי אוטומטי.
+- **מבוססת סטנדרטים**: מבוססת על (ותואמת לחלוטין ל -) הסטדנרטים הפתוחים לממשקי תכנות יישומים: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (ידועים לשעבר כ - Swagger) ו - <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>\* הערכה מבוססת על בדיקות של צוות פיתוח פנימי שבונה אפליקציות בסביבת ייצור.</small>
 
@@ -120,8 +120,8 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 FastAPI עומדת על כתפי ענקיות:
 
--   <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> לחלקי הרשת.
--   <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> לחלקי המידע.
+- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> לחלקי הרשת.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> לחלקי המידע.
 
 ## התקנה
 
@@ -151,7 +151,7 @@ $ pip install "uvicorn[standard]"
 
 ### צרו אותה
 
--   צרו קובץ בשם `main.py` עם:
+- צרו קובץ בשם `main.py` עם:
 
 ```Python
 from typing import Union
@@ -223,9 +223,9 @@ INFO:     Application startup complete.
 
 הפקודה `uvicorn main:app` מתייחסת ל:
 
--   `main`: הקובץ `main.py` (מודול פייתון).
--   `app`: האובייקט שנוצר בתוך `main.py` עם השורה <code dir="ltr">app = FastAPI()</code>.
--   <code dir="ltr">--reload</code>: גרמו לשרת להתאתחל לאחר שינויים בקוד. עשו זאת רק בסביבת פיתוח.
+- `main`: הקובץ `main.py` (מודול פייתון).
+- `app`: האובייקט שנוצר בתוך `main.py` עם השורה <code dir="ltr">app = FastAPI()</code>.
+- <code dir="ltr">--reload</code>: גרמו לשרת להתאתחל לאחר שינויים בקוד. עשו זאת רק בסביבת פיתוח.
 
 </details>
 
@@ -241,10 +241,10 @@ INFO:     Application startup complete.
 
 כבר יצרתם API ש:
 
--   מקבל בקשות HTTP בנתיבים `/` ו - <code dir="ltr">/items/{item_id}</code>.
--   שני ה _נתיבים_ מקבלים _בקשות_ `GET` (ידועות גם כ*מתודות* HTTP).
--   ה _נתיב_ <code dir="ltr">/items/{item_id}</code> כולל \*פרמטר נתיב\_ `item_id` שאמור להיות `int`.
--   ה _נתיב_ <code dir="ltr">/items/{item_id}</code> \*פרמטר שאילתא\_ אופציונלי `q`.
+- מקבל בקשות HTTP בנתיבים `/` ו - <code dir="ltr">/items/{item_id}</code>.
+- שני ה _נתיבים_ מקבלים _בקשות_ `GET` (ידועות גם כ*מתודות* HTTP).
+- ה _נתיב_ <code dir="ltr">/items/{item_id}</code> כולל \*פרמטר נתיב\_ `item_id` שאמור להיות `int`.
+- ה _נתיב_ <code dir="ltr">/items/{item_id}</code> \*פרמטר שאילתא\_ אופציונלי `q`.
 
 ### תיעוד API אינטרקטיבי
 
@@ -304,15 +304,15 @@ def update_item(item_id: int, item: Item):
 
 כעת פנו לכתובת <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
--   התיעוד האוטומטי יתעדכן, כולל הגוף החדש:
+- התיעוד האוטומטי יתעדכן, כולל הגוף החדש:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
--   לחצו על הכפתור "Try it out", הוא יאפשר לכם למלא את הפרמטרים ולעבוד ישירות מול ה - API.
+- לחצו על הכפתור "Try it out", הוא יאפשר לכם למלא את הפרמטרים ולעבוד ישירות מול ה - API.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
--   אחר כך לחצו על הכפתור "Execute", האתר יתקשר עם ה - API שלכם, ישלח את הפרמטרים, ישיג את התוצאות ואז יראה אותן על המסך:
+- אחר כך לחצו על הכפתור "Execute", האתר יתקשר עם ה - API שלכם, ישלח את הפרמטרים, ישיג את התוצאות ואז יראה אותן על המסך:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -320,7 +320,7 @@ def update_item(item_id: int, item: Item):
 
 כעת פנו לכתובת <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
--   התיעוד האלטרנטיבי גם יראה את פרמטר השאילתא והגוף החדשים.
+- התיעוד האלטרנטיבי גם יראה את פרמטר השאילתא והגוף החדשים.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -348,50 +348,50 @@ item: Item
 
 ...ועם הכרזת הטיפוס האחת הזו אתם מקבלים:
 
--   תמיכת עורך, כולל:
-    -   השלמות.
-    -   בדיקת טיפוסים.
--   אימות מידע:
-    -   שגיאות ברורות ואטומטיות כאשר מוכנס מידע לא חוקי .
-    -   אימות אפילו לאובייקטי JSON מקוננים.
--   <abbr title="ידועה גם כ: פרסור, סיריאליזציה">המרה</abbr> של מידע קלט: המרה של מידע שמגיע מהרשת למידע וטיפוסים של פייתון. קורא מ:
-    -   JSON.
-    -   פרמטרי נתיב.
-    -   פרמטרי שאילתא.
-    -   עוגיות.
-    -   כותרות.
-    -   טפסים.
-    -   קבצים.
--   <abbr title="ידועה גם כ: פרסור, סיריאליזציה">המרה</abbr> של מידע פלט: המרה של מידע וטיפוסים מפייתון למידע רשת (כ - JSON):
-    -   המירו טיפוסי פייתון (`str`, `int`, `float`, `bool`, `list`, etc).
-    -   עצמי `datetime`.
-    -   עצמי `UUID`.
-    -   מודלי בסיסי נתונים.
-    -   ...ורבים אחרים.
--   תיעוד API אוטומטי ואינטרקטיבית כולל שתי אלטרנטיבות לממשק המשתמש:
-    -   Swagger UI.
-    -   ReDoc.
+- תמיכת עורך, כולל:
+  - השלמות.
+  - בדיקת טיפוסים.
+- אימות מידע:
+  - שגיאות ברורות ואטומטיות כאשר מוכנס מידע לא חוקי .
+  - אימות אפילו לאובייקטי JSON מקוננים.
+- <abbr title="ידועה גם כ: פרסור, סיריאליזציה">המרה</abbr> של מידע קלט: המרה של מידע שמגיע מהרשת למידע וטיפוסים של פייתון. קורא מ:
+  - JSON.
+  - פרמטרי נתיב.
+  - פרמטרי שאילתא.
+  - עוגיות.
+  - כותרות.
+  - טפסים.
+  - קבצים.
+- <abbr title="ידועה גם כ: פרסור, סיריאליזציה">המרה</abbr> של מידע פלט: המרה של מידע וטיפוסים מפייתון למידע רשת (כ - JSON):
+  - המירו טיפוסי פייתון (`str`, `int`, `float`, `bool`, `list`, etc).
+  - עצמי `datetime`.
+  - עצמי `UUID`.
+  - מודלי בסיסי נתונים.
+  - ...ורבים אחרים.
+- תיעוד API אוטומטי ואינטרקטיבית כולל שתי אלטרנטיבות לממשק המשתמש:
+  - Swagger UI.
+  - ReDoc.
 
 ---
 
 בחזרה לדוגמאת הקוד הקודמת, **FastAPI** ידאג:
 
--   לאמת שיש `item_id` בנתיב בבקשות `GET` ו - `PUT`.
--   לאמת שה - `item_id` הוא מטיפוס `int` בבקשות `GET` ו - `PUT`.
-    -   אם הוא לא, הלקוח יראה שגיאה ברורה ושימושית.
--   לבדוק האם קיים פרמטר שאילתא בשם `q` (קרי `http://127.0.0.1:8000/items/foo?q=somequery`) לבקשות `GET`.
-    -   מאחר והפרמטר `q` מוגדר עם <code dir="ltr"> = None</code>, הוא אופציונלי.
-    -   לולא ה - `None` הוא היה חובה (כמו הגוף במקרה של `PUT`).
--   לבקשות `PUT` לנתיב <code dir="ltr">/items/{item_id}</code>, לקרוא את גוף הבקשה כ - JSON:
-    -   לאמת שהוא כולל את מאפיין החובה `name` שאמור להיות מטיפוס `str`.
-    -   לאמת שהוא כולל את מאפיין החובה `price` שחייב להיות מטיפוס `float`.
-    -   לבדוק האם הוא כולל את מאפיין הרשות `is_offer` שאמור להיות מטיפוס `bool`, אם הוא נמצא.
-    -   כל זה יעבוד גם לאובייקט JSON מקונן.
--   להמיר מ - JSON ול- JSON אוטומטית.
--   לתעד הכל באמצעות OpenAPI, תיעוד שבו יוכלו להשתמש:
-    -   מערכות תיעוד אינטרקטיביות.
-    -   מערכות ייצור קוד אוטומטיות, להרבה שפות.
--   לספק ישירות שתי מערכות תיעוד רשתיות.
+- לאמת שיש `item_id` בנתיב בבקשות `GET` ו - `PUT`.
+- לאמת שה - `item_id` הוא מטיפוס `int` בבקשות `GET` ו - `PUT`.
+  - אם הוא לא, הלקוח יראה שגיאה ברורה ושימושית.
+- לבדוק האם קיים פרמטר שאילתא בשם `q` (קרי `http://127.0.0.1:8000/items/foo?q=somequery`) לבקשות `GET`.
+  - מאחר והפרמטר `q` מוגדר עם <code dir="ltr"> = None</code>, הוא אופציונלי.
+  - לולא ה - `None` הוא היה חובה (כמו הגוף במקרה של `PUT`).
+- לבקשות `PUT` לנתיב <code dir="ltr">/items/{item_id}</code>, לקרוא את גוף הבקשה כ - JSON:
+  - לאמת שהוא כולל את מאפיין החובה `name` שאמור להיות מטיפוס `str`.
+  - לאמת שהוא כולל את מאפיין החובה `price` שחייב להיות מטיפוס `float`.
+  - לבדוק האם הוא כולל את מאפיין הרשות `is_offer` שאמור להיות מטיפוס `bool`, אם הוא נמצא.
+  - כל זה יעבוד גם לאובייקט JSON מקונן.
+- להמיר מ - JSON ול- JSON אוטומטית.
+- לתעד הכל באמצעות OpenAPI, תיעוד שבו יוכלו להשתמש:
+  - מערכות תיעוד אינטרקטיביות.
+  - מערכות ייצור קוד אוטומטיות, להרבה שפות.
+- לספק ישירות שתי מערכות תיעוד רשתיות.
 
 ---
 
@@ -423,18 +423,18 @@ item: Item
 
 **התראת ספוילרים**: המדריך - למשתמש כולל:
 
--   הכרזה על **פרמטרים** ממקורות אחרים ושונים כגון: **כותרות**, **עוגיות**, **טפסים** ו - **קבצים**.
--   איך לקבוע **מגבלות אימות** בעזרת `maximum_length` או `regex`.
--   דרך חזקה וקלה להשתמש ב**<abbr title="ידועה גם כרכיבים, משאבים, ספקים, שירותים, מוזרקים">הזרקת תלויות</abbr>**.
--   אבטחה והתאמתות, כולל תמיכה ב - **OAuth2** עם **JWT** והתאמתות **HTTP Basic**.
--   טכניקות מתקדמות (אבל קלות באותה מידה) להכרזת אובייקטי JSON מקוננים (תודות ל - Pydantic).
--   אינטרקציה עם **GraphQL** דרך <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> וספריות אחרות.
--   תכונות נוספות רבות (תודות ל - Starlette) כגון:
-    -   **WebSockets**
-    -   בדיקות קלות במיוחד מבוססות על `requests` ו - `pytest`
-    -   **CORS**
-    -   **Cookie Sessions**
-    -   ...ועוד.
+- הכרזה על **פרמטרים** ממקורות אחרים ושונים כגון: **כותרות**, **עוגיות**, **טפסים** ו - **קבצים**.
+- איך לקבוע **מגבלות אימות** בעזרת `maximum_length` או `regex`.
+- דרך חזקה וקלה להשתמש ב**<abbr title="ידועה גם כרכיבים, משאבים, ספקים, שירותים, מוזרקים">הזרקת תלויות</abbr>**.
+- אבטחה והתאמתות, כולל תמיכה ב - **OAuth2** עם **JWT** והתאמתות **HTTP Basic**.
+- טכניקות מתקדמות (אבל קלות באותה מידה) להכרזת אובייקטי JSON מקוננים (תודות ל - Pydantic).
+- אינטרקציה עם **GraphQL** דרך <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> וספריות אחרות.
+- תכונות נוספות רבות (תודות ל - Starlette) כגון:
+  - **WebSockets**
+  - בדיקות קלות במיוחד מבוססות על `requests` ו - `pytest`
+  - **CORS**
+  - **Cookie Sessions**
+  - ...ועוד.
 
 ## ביצועים
 
@@ -446,21 +446,21 @@ item: Item
 
 בשימוש Pydantic:
 
--   <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - לאימות כתובות אימייל.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - לאימות כתובות אימייל.
 
 בשימוש Starlette:
 
--   <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - דרוש אם ברצונכם להשתמש ב - `TestClient`.
--   <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - דרוש אם ברצונכם להשתמש בברירת המחדל של תצורת הטמפלייטים.
--   <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - דרוש אם ברצונכם לתמוך ב <abbr title="המרת המחרוזת שמגיעה מבקשת HTTP למידע פייתון">"פרסור"</abbr> טפסים, באצמעות <code dir="ltr">request.form()</code>.
--   <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - דרוש אם ברצונכם להשתמש ב - `SessionMiddleware`.
--   <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - דרוש אם ברצונכם להשתמש ב - `SchemaGenerator` של Starlette (כנראה שאתם לא צריכים את זה עם FastAPI).
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - דרוש אם ברצונכם להשתמש ב - `TestClient`.
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - דרוש אם ברצונכם להשתמש בברירת המחדל של תצורת הטמפלייטים.
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - דרוש אם ברצונכם לתמוך ב <abbr title="המרת המחרוזת שמגיעה מבקשת HTTP למידע פייתון">"פרסור"</abbr> טפסים, באצמעות <code dir="ltr">request.form()</code>.
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - דרוש אם ברצונכם להשתמש ב - `SessionMiddleware`.
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - דרוש אם ברצונכם להשתמש ב - `SchemaGenerator` של Starlette (כנראה שאתם לא צריכים את זה עם FastAPI).
 
 בשימוש FastAPI / Starlette:
 
--   <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - לשרת שטוען ומגיש את האפליקציה שלכם.
--   <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - דרוש אם ברצונכם להשתמש ב - `ORJSONResponse`.
--   <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - דרוש אם ברצונכם להשתמש ב - `UJSONResponse`.
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - לשרת שטוען ומגיש את האפליקציה שלכם.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - דרוש אם ברצונכם להשתמש ב - `ORJSONResponse`.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - דרוש אם ברצונכם להשתמש ב - `UJSONResponse`.
 
 תוכלו להתקין את כל אלו באמצעות <code dir="ltr">pip install "fastapi[all]"</code>.
 

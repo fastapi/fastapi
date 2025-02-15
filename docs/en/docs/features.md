@@ -6,20 +6,20 @@
 
 ### Based on open standards
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, request bodies, security, etc.
-* Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
-* Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
-* This also allows using automatic **client code generation** in many languages.
+- <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, request bodies, security, etc.
+- Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
+- Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
+- This also allows using automatic **client code generation** in many languages.
 
 ### Automatic docs
 
 Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
+- <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>, with interactive exploration, call and test your API directly from the browser.
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+- Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -27,7 +27,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 It's all based on standard **Python type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
-If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=_blank}.
+If you need a 2 minute refresher of how to use Python types (even if you don't use FastAPI), check the short tutorial: [Python Types](python-types.md){.internal-link target=\_blank}.
 
 You write standard Python with types:
 
@@ -83,11 +83,11 @@ You will rarely need to come back to the docs.
 
 Here's how your editor might help you:
 
-* in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
+- in <a href="https://code.visualstudio.com/" class="external-link" target="_blank">Visual Studio Code</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-* in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
+- in <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>:
 
 ![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
@@ -103,17 +103,18 @@ But by default, it all **"just works"**.
 
 ### Validation
 
-* Validation for most (or all?) Python **data types**, including:
-    * JSON objects (`dict`).
-    * JSON array (`list`) defining item types.
-    * String (`str`) fields, defining min and max lengths.
-    * Numbers (`int`, `float`) with min and max values, etc.
+- Validation for most (or all?) Python **data types**, including:
 
-* Validation for more exotic types, like:
-    * URL.
-    * Email.
-    * UUID.
-    * ...and others.
+  - JSON objects (`dict`).
+  - JSON array (`list`) defining item types.
+  - String (`str`) fields, defining min and max lengths.
+  - Numbers (`int`, `float`) with min and max values, etc.
+
+- Validation for more exotic types, like:
+  - URL.
+  - Email.
+  - UUID.
+  - ...and others.
 
 All the validation is handled by the well-established and robust **Pydantic**.
 
@@ -123,12 +124,12 @@ Security and authentication integrated. Without any compromise with databases or
 
 All the security schemes defined in OpenAPI, including:
 
-* HTTP Basic.
-* **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
-* API keys in:
-    * Headers.
-    * Query parameters.
-    * Cookies, etc.
+- HTTP Basic.
+- **OAuth2** (also with **JWT tokens**). Check the tutorial on [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=\_blank}.
+- API keys in:
+  - Headers.
+  - Query parameters.
+  - Cookies, etc.
 
 Plus all the security features from Starlette (including **session cookies**).
 
@@ -138,24 +139,24 @@ All built as reusable tools and components that are easy to integrate with your 
 
 FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
 
-* Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
-* All **automatically handled** by the framework.
-* All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
-* **Automatic validation** even for *path operation* parameters defined in dependencies.
-* Support for complex user authentication systems, **database connections**, etc.
-* **No compromise** with databases, frontends, etc. But easy integration with all of them.
+- Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
+- All **automatically handled** by the framework.
+- All the dependencies can require data from requests and **augment the path operation** constraints and automatic documentation.
+- **Automatic validation** even for _path operation_ parameters defined in dependencies.
+- Support for complex user authentication systems, **database connections**, etc.
+- **No compromise** with databases, frontends, etc. But easy integration with all of them.
 
 ### Unlimited "plug-ins"
 
 Or in other way, no need for them, import and use the code you need.
 
-Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
+Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your _path operations_.
 
 ### Tested
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
-* Used in production applications.
+- 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
+- 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
+- Used in production applications.
 
 ## Starlette features
 
@@ -165,15 +166,15 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Starlette on steroids):
 
-* Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **NodeJS** and **Go**</a>.
-* **WebSocket** support.
-* In-process background tasks.
-* Startup and shutdown events.
-* Test client built on HTTPX.
-* **CORS**, GZip, Static Files, Streaming responses.
-* **Session and Cookie** support.
-* 100% test coverage.
-* 100% type annotated codebase.
+- Seriously impressive performance. It is <a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">one of the fastest Python frameworks available, on par with **Node.JS** and **Go**</a>.
+- **WebSocket** support.
+- In-process background tasks.
+- Startup and shutdown events.
+- Test client built on HTTPX.
+- **CORS**, GZip, Static Files, Streaming responses.
+- **Session and Cookie** support.
+- 100% test coverage.
+- 100% type annotated codebase.
 
 ## Pydantic features
 
@@ -187,15 +188,15 @@ The same applies the other way around, in many cases you can just pass the objec
 
 With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on Pydantic for all the data handling):
 
-* **No brainfuck**:
-    * No new schema definition micro-language to learn.
-    * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
-    * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
-* Validate **complex structures**:
-    * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
-    * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
-    * You can have deeply **nested JSON** objects and have them all validated and annotated.
-* **Extensible**:
-    * Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
-* 100% test coverage.
+- **No brainfuck**:
+  - No new schema definition micro-language to learn.
+  - If you know Python types you know how to use Pydantic.
+- Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
+  - Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
+- Validate **complex structures**:
+  - Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
+  - And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
+  - You can have deeply **nested JSON** objects and have them all validated and annotated.
+- **Extensible**:
+  - Pydantic allows custom data types to be defined or you can extend validation with methods on a model decorated with the validator decorator.
+- 100% test coverage.

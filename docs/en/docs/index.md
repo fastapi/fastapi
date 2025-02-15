@@ -37,16 +37,16 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 
 The key features are:
 
-* **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
-* **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
-* **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
-* **Robust**: Get production-ready code. With automatic interactive documentation.
-* **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **Fast**: Very high performance, on par with **Node.JS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
+- **Fast to code**: Increase the speed to develop features by about 200% to 300%. \*
+- **Fewer bugs**: Reduce about 40% of human (developer) induced errors. \*
+- **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
+- **Easy**: Designed to be easy to use and learn. Less time reading docs.
+- **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
+- **Robust**: Get production-ready code. With automatic interactive documentation.
+- **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>\* estimation based on tests on an internal development team, building production applications.</small>
 
 ## Sponsors
 
@@ -123,8 +123,8 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 FastAPI stands on the shoulders of giants:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
+- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
 ## Installation
 
@@ -146,7 +146,7 @@ $ pip install "fastapi[standard]"
 
 ### Create it
 
-* Create a file `main.py` with:
+- Create a file `main.py` with:
 
 ```Python
 from typing import Union
@@ -249,10 +249,10 @@ You will see the JSON response as:
 
 You already created an API that:
 
-* Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
-* The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
-* The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
+- Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
+- Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
+- The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
+- The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 
 ### Interactive API docs
 
@@ -312,15 +312,15 @@ The `fastapi dev` server should reload automatically.
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* The interactive API documentation will be automatically updated, including the new body:
+- The interactive API documentation will be automatically updated, including the new body:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
+- Click on the button "Try it out", it allows you to fill the parameters and directly interact with the API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
+- Then click on the "Execute" button, the user interface will communicate with your API, send the parameters, get the results and show them on the screen:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -328,7 +328,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* The alternative documentation will also reflect the new query parameter and body:
+- The alternative documentation will also reflect the new query parameter and body:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -356,50 +356,50 @@ item: Item
 
 ...and with that single declaration you get:
 
-* Editor support, including:
-    * Completion.
-    * Type checks.
-* Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
-    * JSON.
-    * Path parameters.
-    * Query parameters.
-    * Cookies.
-    * Headers.
-    * Forms.
-    * Files.
-* <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
-* Automatic interactive API documentation, including 2 alternative user interfaces:
-    * Swagger UI.
-    * ReDoc.
+- Editor support, including:
+  - Completion.
+  - Type checks.
+- Validation of data:
+  - Automatic and clear errors when the data is invalid.
+  - Validation even for deeply nested JSON objects.
+- <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
+  - JSON.
+  - Path parameters.
+  - Query parameters.
+  - Cookies.
+  - Headers.
+  - Forms.
+  - Files.
+- <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
+  - Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
+  - `datetime` objects.
+  - `UUID` objects.
+  - Database models.
+  - ...and many more.
+- Automatic interactive API documentation, including 2 alternative user interfaces:
+  - Swagger UI.
+  - ReDoc.
 
 ---
 
 Coming back to the previous code example, **FastAPI** will:
 
-* Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
-* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
-* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`.
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
-* Convert from and to JSON automatically.
-* Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
-* Provide 2 interactive documentation web interfaces directly.
+- Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
+- Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
+  - If it is not, the client will see a useful, clear error.
+- Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
+  - As the `q` parameter is declared with `= None`, it is optional.
+  - Without the `None` it would be required (as is the body in the case with `PUT`).
+- For `PUT` requests to `/items/{item_id}`, read the body as JSON:
+  - Check that it has a required attribute `name` that should be a `str`.
+  - Check that it has a required attribute `price` that has to be a `float`.
+  - Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
+  - All this would also work for deeply nested JSON objects.
+- Convert from and to JSON automatically.
+- Document everything with OpenAPI, that can be used by:
+  - Interactive documentation systems.
+  - Automatic client code generation systems, for many languages.
+- Provide 2 interactive documentation web interfaces directly.
 
 ---
 
@@ -431,22 +431,22 @@ For a more complete example including more features, see the <a href="https://fa
 
 **Spoiler alert**: the tutorial - user guide includes:
 
-* Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** as `maximum_length` or `regex`.
-* A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
-* Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
-* More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
-* **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
-* Many extra features (thanks to Starlette) as:
-    * **WebSockets**
-    * extremely easy tests based on HTTPX and `pytest`
-    * **CORS**
-    * **Cookie Sessions**
-    * ...and more.
+- Declaration of **parameters** from other different places as: **headers**, **cookies**, **form fields** and **files**.
+- How to set **validation constraints** as `maximum_length` or `regex`.
+- A very powerful and easy to use **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** system.
+- Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
+- More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
+- **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
+- Many extra features (thanks to Starlette) as:
+  - **WebSockets**
+  - extremely easy tests based on HTTPX and `pytest`
+  - **CORS**
+  - **Cookie Sessions**
+  - ...and more.
 
 ## Performance
 
-Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
+Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (\*)
 
 To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
@@ -460,18 +460,18 @@ When you install FastAPI with `pip install "fastapi[standard]"` it comes with th
 
 Used by Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
 
 Used by Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Required if you want to use the `TestClient`.
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 
 Used by FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
-* `fastapi-cli` - to provide the `fastapi` command.
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
+- `fastapi-cli` - to provide the `fastapi` command.
 
 ### Without `standard` Dependencies
 
@@ -483,13 +483,13 @@ There are some additional dependencies you might want to install.
 
 Additional optional Pydantic dependencies:
 
-* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+- <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
+- <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
 
 Additional optional FastAPI dependencies:
 
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
 ## License
 

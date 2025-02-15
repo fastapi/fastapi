@@ -14,7 +14,6 @@ results = await some_library()
 
 然後，使用 `async def` 宣告你的*路徑操作函式*：
 
-
 ```Python hl_lines="2"
 @app.get('/')
 async def read_results():
@@ -61,9 +60,9 @@ def results():
 
 接下來我們逐一介紹：
 
-* **非同步程式碼**
-* **`async` 和 `await`**
-* **協程**
+- **非同步程式碼**
+- **`async` 和 `await`**
+- **協程**
 
 ## 非同步程式碼
 
@@ -76,14 +75,14 @@ def results():
 接下來，它 🤖 完成第一個工作（例如我們的「慢速檔案」📝）並繼續執行相關的所有操作。
 這個「等待其他事情」通常指的是一些相對較慢的（與處理器和 RAM 記憶體的速度相比）的 <abbr title="Input and Output">I/O</abbr> 操作，比如說：
 
-* 透過網路傳送來自用戶端的資料
-* 從網路接收來自用戶端的資料
-* 從磁碟讀取檔案內容
-* 將內容寫入磁碟
-* 遠端 API 操作
-* 資料庫操作
-* 資料庫查詢
-* 等等
+- 透過網路傳送來自用戶端的資料
+- 從網路接收來自用戶端的資料
+- 從磁碟讀取檔案內容
+- 將內容寫入磁碟
+- 遠端 API 操作
+- 資料庫操作
+- 資料庫查詢
+- 等等
 
 由於大部分的執行時間都消耗在等待 <abbr title="輸入與輸出">I/O</abbr> 操作上，因此這些操作被稱為 "I/O 密集型" 操作。
 
@@ -135,7 +134,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
 
-你和戀人享用這頓大餐，整個過程十分開心✨
+你和戀人享用這頓大餐，整個過程十分開心 ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
@@ -149,7 +148,7 @@ def results():
 
 想像你是故事中的電腦或程式 🤖。
 
-當你排隊時，你在放空😴，等待輪到你，沒有做任何「生產性」的事情。但這沒關係，因為收銀員只是接單（而不是準備食物），所以排隊速度很快。
+當你排隊時，你在放空 😴，等待輪到你，沒有做任何「生產性」的事情。但這沒關係，因為收銀員只是接單（而不是準備食物），所以排隊速度很快。
 
 然後，當輪到你時，你開始做真正「有生產力」的工作，處理菜單，決定你想要什麼，替戀人選擇餐點，付款，確認你給了正確的帳單或信用卡，檢查你是否被正確收費，確認訂單中的項目是否正確等等。
 
@@ -247,11 +246,11 @@ def results():
 
 這就是為什麼對於 Web API 來說，使用非同步程式碼 ⏸🔀⏯ 是非常有意義的。
 
-這種類型的非同步性正是 NodeJS 成功的原因（儘管 NodeJS 不是平行的），這也是 Go 語言作為程式語言的一個強大優勢。
+這種類型的非同步性正是 Node.JS 成功的原因（儘管 Node.JS 不是平行的），這也是 Go 語言作為程式語言的一個強大優勢。
 
 這與 **FastAPI** 所能提供的性能水平相同。
 
-你可以同時利用並行性和平行性，進一步提升效能，這比大多數已測試的 NodeJS 框架都更快，並且與 Go 語言相當，而 Go 是一種更接近 C 的編譯語言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">感謝 Starlette</a>）。
+你可以同時利用並行性和平行性，進一步提升效能，這比大多數已測試的 Node.JS 框架都更快，並且與 Go 語言相當，而 Go 是一種更接近 C 的編譯語言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">感謝 Starlette</a>）。
 
 ### 並行比平行更好嗎？
 
@@ -263,7 +262,7 @@ def results():
 
 > 你需要打掃一間又大又髒的房子。
 
-*是的，這就是全部的故事。*
+_是的，這就是全部的故事。_
 
 ---
 
@@ -273,7 +272,7 @@ def results():
 
 無論輪流執行與否（並行），你都需要相同的工時完成任務，同時需要執行相同工作量。
 
-但是，在這種情境下，如果你可以邀請8位前收銀員/廚師（現在是清潔工）來幫忙，每個人（加上你）負責房子的某個區域，這樣你就可以 **平行** 地更快完成工作。
+但是，在這種情境下，如果你可以邀請 8 位前收銀員/廚師（現在是清潔工）來幫忙，每個人（加上你）負責房子的某個區域，這樣你就可以 **平行** 地更快完成工作。
 
 在這個場景中，每個清潔工（包括你）都是一個處理器，完成工作的一部分。
 
@@ -285,20 +284,20 @@ def results():
 
 例如：
 
-* **音訊**或**圖像處理**；
-* **電腦視覺**：一張圖片由數百萬個像素組成，每個像素有 3 個值/顏色，處理這些像素通常需要同時進行大量計算；
-* **機器學習**: 通常需要大量的「矩陣」和「向量」運算。想像一個包含數字的巨大電子表格，並所有的數字同時相乘;
-* **深度學習**: 這是機器學習的子領域，同樣適用。只不過這不僅僅是一張數字表格，而是大量的數據集合，並且在很多情況下，你會使用特殊的處理器來構建或使用這些模型。
+- **音訊**或**圖像處理**；
+- **電腦視覺**：一張圖片由數百萬個像素組成，每個像素有 3 個值/顏色，處理這些像素通常需要同時進行大量計算；
+- **機器學習**: 通常需要大量的「矩陣」和「向量」運算。想像一個包含數字的巨大電子表格，並所有的數字同時相乘;
+- **深度學習**: 這是機器學習的子領域，同樣適用。只不過這不僅僅是一張數字表格，而是大量的數據集合，並且在很多情況下，你會使用特殊的處理器來構建或使用這些模型。
 
 ### 並行 + 平行: Web + 機器學習
 
-使用 **FastAPI**，你可以利用並行的優勢，這在 Web 開發中非常常見（這也是 NodeJS 的最大吸引力）。
+使用 **FastAPI**，你可以利用並行的優勢，這在 Web 開發中非常常見（這也是 Node.JS 的最大吸引力）。
 
 但你也可以利用平行與多行程 (multiprocessing)（讓多個行程同時運行） 的優勢來處理機器學習系統中的 **CPU 密集型**工作。
 
 這一點，再加上 Python 是 **資料科學**、機器學習，尤其是深度學習的主要語言，讓 **FastAPI** 成為資料科學/機器學習 Web API 和應用程式（以及許多其他應用程式）的絕佳選擇。
 
-想了解如何在生產環境中實現這種平行性，請參見 [部屬](deployment/index.md){.internal-link target=_blank}。
+想了解如何在生產環境中實現這種平行性，請參見 [部屬](deployment/index.md){.internal-link target=\_blank}。
 
 ## `async` 和 `await`
 
@@ -375,13 +374,13 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 但它使處理異步程式碼變得更加容易。
 
-相同的語法（或幾乎相同的語法）最近也被包含在現代 JavaScript（無論是瀏覽器還是 NodeJS）中。
+相同的語法（或幾乎相同的語法）最近也被包含在現代 JavaScript（無論是瀏覽器還是 Node.JS）中。
 
 但在此之前，處理異步程式碼要更加複雜和困難。
 
 在較舊的 Python 版本中，你可能會使用多執行緒或 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但這些程式碼要更難以理解、調試和思考。
 
-在較舊的 NodeJS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致<a href="http://callbackhell.com/" class="external-link" target="_blank">回呼地獄</a>。
+在較舊的 Node.JS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致<a href="http://callbackhell.com/" class="external-link" target="_blank">回呼地獄</a>。
 
 ## 協程
 
@@ -417,15 +416,15 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 如果你來自於其他不以這種方式運作的非同步框架，而且你習慣於使用普通的 `def` 定義僅進行簡單計算的*路徑操作函式*，目的是獲得微小的性能增益（大約 100 奈秒），請注意，在 FastAPI 中，效果會完全相反。在這些情況下，最好使用 `async def`除非你的*路徑操作函式*執行阻塞的 <abbr title="輸入/輸出：磁碟讀寫或網路通訊">I/O</abbr> 的程式碼。
 
-不過，在這兩種情況下，**FastAPI** [仍然很快](index.md#_11){.internal-link target=_blank}至少與你之前的框架相當（或者更快）。
+不過，在這兩種情況下，**FastAPI** [仍然很快](index.md#_11){.internal-link target=\_blank}至少與你之前的框架相當（或者更快）。
 
 ### 依賴項(Dependencies)
 
-同樣適用於[依賴項](tutorial/dependencies/index.md){.internal-link target=_blank}。如果依賴項是一個標準的 `def` 函式，而不是 `async def`，那麼它在外部的執行緒池被運行。
+同樣適用於[依賴項](tutorial/dependencies/index.md){.internal-link target=\_blank}。如果依賴項是一個標準的 `def` 函式，而不是 `async def`，那麼它在外部的執行緒池被運行。
 
 ### 子依賴項
 
-你可以擁有多個相互依賴的依賴項和[子依賴項](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} （作為函式定義的參數），其中一些可能是用 `async def` 宣告，也可能是用 `def` 宣告。它們仍然可以正常運作，用 `def` 定義的那些將會在外部的執行緒中呼叫（來自執行緒池），而不是被「等待」。
+你可以擁有多個相互依賴的依賴項和[子依賴項](tutorial/dependencies/sub-dependencies.md){.internal-link target=\_blank} （作為函式定義的參數），其中一些可能是用 `async def` 宣告，也可能是用 `def` 宣告。它們仍然可以正常運作，用 `def` 定義的那些將會在外部的執行緒中呼叫（來自執行緒池），而不是被「等待」。
 
 ### 其他輔助函式
 

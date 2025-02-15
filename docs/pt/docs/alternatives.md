@@ -68,11 +68,11 @@ Ser simples e com sistema de roteamento fácil de usar.
 
 **FastAPI** não é uma alternativa para **Requests**. O escopo deles é muito diferente.
 
-Na verdade é comum utilizar Requests *dentro* de uma aplicação FastAPI.
+Na verdade é comum utilizar Requests _dentro_ de uma aplicação FastAPI.
 
 Ainda assim, FastAPI pegou alguma inspiração do Requests.
 
-**Requests** é uma biblioteca para interagir com APIs (como um cliente), enquanto **FastAPI** é uma biblioteca para *construir* APIs (como um servidor).
+**Requests** é uma biblioteca para interagir com APIs (como um cliente), enquanto **FastAPI** é uma biblioteca para _construir_ APIs (como um servidor).
 
 Eles estão, mais ou menos, em pontas opostas, um complementando o outro.
 
@@ -88,7 +88,7 @@ O jeito de usar é muito simples. Por exemplo, para fazer uma requisição `GET`
 response = requests.get("http://example.com/some/url")
 ```
 
-A contra-parte da aplicação FastAPI, *rota de operação*, poderia parecer como:
+A contra-parte da aplicação FastAPI, _rota de operação_, poderia parecer como:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -100,9 +100,9 @@ Veja as similaridades em `requests.get(...)` e `@app.get(...)`.
 
 /// check | **FastAPI** inspirado para
 
-* Ter uma API simples e intuitiva.
-* Utilizar nomes de métodos HTTP (operações) diretamente, de um jeito direto e intuitivo.
-* Ter padrões sensíveis, mas customizações poderosas.
+- Ter uma API simples e intuitiva.
+- Utilizar nomes de métodos HTTP (operações) diretamente, de um jeito direto e intuitivo.
+- Ter padrões sensíveis, mas customizações poderosas.
 
 ///
 
@@ -124,8 +124,8 @@ Adotar e usar um padrão aberto para especificações API, ao invés de algum es
 
 E integrar ferramentas de interface para usuários baseado nos padrões:
 
-* <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
-* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
+- <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
+- <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
 Esses dois foram escolhidos por serem bem populares e estáveis, mas fazendo uma pesquisa rápida, você pode encontrar dúzias de interfaces alternativas adicionais para OpenAPI (assim você poderá utilizar com **FastAPI**).
 
@@ -219,11 +219,11 @@ Essa combinação de Flask, Flask-apispec com Marshmallow e Webargs foi meu _bac
 
 Usando essa combinação levou a criação de vários geradores Flask _full-stack_. Há muitas _stacks_ que eu (e vários times externos) estou utilizando até agora:
 
-* <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
-* <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
-* <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
+- <a href="https://github.com/tiangolo/full-stack" class="external-link" target="_blank">https://github.com/tiangolo/full-stack</a>
+- <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
+- <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-E esses mesmos geradores _full-stack_ foram a base dos [Geradores de Projetos **FastAPI**](project-generation.md){.internal-link target=_blank}.
+E esses mesmos geradores _full-stack_ foram a base dos [Geradores de Projetos **FastAPI**](project-generation.md){.internal-link target=\_blank}.
 
 /// info
 
@@ -239,7 +239,7 @@ Gerar _schema_ OpenAPI automaticamente, a partir do mesmo código que define ser
 
 ### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (and <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
 
-NestJS, que não é nem Python, é um framework NodeJS JavaScript (TypeScript) inspirado pelo Angular.
+NestJS, que não é nem Python, é um framework Node.JS JavaScript (TypeScript) inspirado pelo Angular.
 
 Ele alcança de uma forma similar ao que pode ser feito com o Flask-apispec.
 
@@ -303,9 +303,9 @@ Embora no FastAPI seja opcional, é utilizado principalmente para configurar cab
 
 Eu descobri Molten nos primeiros estágios da construção do **FastAPI**. E ele tem umas idéias bem similares:
 
-* Baseado em _type hints_ Python.
-* Validação e documentação desses tipos.
-* Sistema de injeção de dependência.
+- Baseado em _type hints_ Python.
+- Validação e documentação desses tipos.
+- Sistema de injeção de dependência.
 
 Ele não utiliza validação de dados, seriallização e documentação de bibliotecas de terceiros como o Pydantic, ele tem seu prórpio. Então, essas definições de tipo de dados não podem ser reutilizados tão facilmente.
 
@@ -339,7 +339,7 @@ Como é baseado nos padrões anteriores de frameworks web síncronos (WSGI), ele
 
 /// info
 
-Hug foi criado por Timothy Crosley, o mesmo criador do  <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, uma grande ferramenta para ordenação automática de _imports_ em arquivos Python.
+Hug foi criado por Timothy Crosley, o mesmo criador do <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, uma grande ferramenta para ordenação automática de _imports_ em arquivos Python.
 
 ///
 
@@ -381,9 +381,9 @@ Agora APIStar é um conjunto de ferramentas para validar especificações OpenAP
 
 APIStar foi criado por Tom Christie. O mesmo cara que criou:
 
-* Django REST Framework
-* Starlette (no qual **FastAPI** é baseado)
-* Uvicorn (usado por Starlette e **FastAPI**)
+- Django REST Framework
+- Starlette (no qual **FastAPI** é baseado)
+- Uvicorn (usado por Starlette e **FastAPI**)
 
 ///
 
@@ -427,17 +427,17 @@ Ele é muito simples e intuitivo. É projetado para ser extensível facilmente, 
 
 Ele tem:
 
-* Performance seriamente impressionante.
-* Suporte a WebSocket.
-* Suporte a GraphQL.
-* Tarefas de processamento interno por trás dos panos.
-* Eventos de inicialização e encerramento.
-* Cliente de testes construído com HTTPX.
-* Respostas CORS, GZip, Arquivos Estáticos, Streaming.
-* Suporte para Sessão e Cookie.
-* 100% coberto por testes.
-* Código base 100% anotado com tipagem.
-* Dependências complexas Zero.
+- Performance seriamente impressionante.
+- Suporte a WebSocket.
+- Suporte a GraphQL.
+- Tarefas de processamento interno por trás dos panos.
+- Eventos de inicialização e encerramento.
+- Cliente de testes construído com HTTPX.
+- Respostas CORS, GZip, Arquivos Estáticos, Streaming.
+- Suporte para Sessão e Cookie.
+- 100% coberto por testes.
+- Código base 100% anotado com tipagem.
+- Dependências complexas Zero.
 
 Starlette é atualmente o mais rápido framework Python testado. Somente ultrapassado pelo Uvicorn, que não é um framework, mas um servidor.
 
@@ -479,10 +479,10 @@ O principal servidor web para rodar aplicações **FastAPI**.
 
 Você pode combinar ele com o Gunicorn, para ter um servidor multi-processos assíncrono.
 
-Verifique mais detalhes na seção [Deployment](deployment/index.md){.internal-link target=_blank}.
+Verifique mais detalhes na seção [Deployment](deployment/index.md){.internal-link target=\_blank}.
 
 ///
 
 ## Performance e velocidade
 
-Para entender, comparar e ver a diferença entre Uvicorn, Starlette e FastAPI, verifique a seção sobre [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+Para entender, comparar e ver a diferença entre Uvicorn, Starlette e FastAPI, verifique a seção sobre [Benchmarks](benchmarks.md){.internal-link target=\_blank}.

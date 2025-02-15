@@ -37,16 +37,16 @@ FastAPI est un framework web moderne et rapide (haute performance) pour la créa
 
 Les principales fonctionnalités sont :
 
-* **Rapidité** : De très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
-* **Rapide à coder** : Augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. *
-* **Moins de bugs** : Réduit d'environ 40 % les erreurs induites par le développeur. *
-* **Intuitif** : Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps passé à déboguer.
-* **Facile** : Conçu pour être facile à utiliser et à apprendre. Moins de temps passé à lire la documentation.
-* **Concis** : Diminue la duplication de code. De nombreuses fonctionnalités liées à la déclaration de chaque paramètre. Moins de bugs.
-* **Robuste** : Obtenez un code prêt pour la production. Avec une documentation interactive automatique.
-* **Basé sur des normes** : Basé sur (et entièrement compatible avec) les standards ouverts pour les APIs : <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (précédemment connu sous le nom de Swagger) et <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **Rapidité** : De très hautes performances, au niveau de **Node.JS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
+- **Rapide à coder** : Augmente la vitesse de développement des fonctionnalités d'environ 200 % à 300 %. \*
+- **Moins de bugs** : Réduit d'environ 40 % les erreurs induites par le développeur. \*
+- **Intuitif** : Excellente compatibilité avec les IDE. <abbr title="également connu sous le nom d'auto-complétion, autocomplétion, IntelliSense">Complétion</abbr> complète. Moins de temps passé à déboguer.
+- **Facile** : Conçu pour être facile à utiliser et à apprendre. Moins de temps passé à lire la documentation.
+- **Concis** : Diminue la duplication de code. De nombreuses fonctionnalités liées à la déclaration de chaque paramètre. Moins de bugs.
+- **Robuste** : Obtenez un code prêt pour la production. Avec une documentation interactive automatique.
+- **Basé sur des normes** : Basé sur (et entièrement compatible avec) les standards ouverts pour les APIs : <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (précédemment connu sous le nom de Swagger) et <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* estimation basée sur des tests d'une équipe de développement interne, construisant des applications de production.</small>
+<small>\* estimation basée sur des tests d'une équipe de développement interne, construisant des applications de production.</small>
 
 ## Sponsors
 
@@ -123,8 +123,8 @@ Si vous souhaitez construire une application <abbr title="Command Line Interface
 
 FastAPI repose sur les épaules de géants :
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> pour les parties web.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> pour les parties données.
+- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> pour les parties web.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> pour les parties données.
 
 ## Installation
 
@@ -154,7 +154,7 @@ $ pip install "uvicorn[standard]"
 
 ### Créez
 
-* Créez un fichier `main.py` avec :
+- Créez un fichier `main.py` avec :
 
 ```Python
 from typing import Union
@@ -226,9 +226,9 @@ INFO:     Application startup complete.
 
 La commande `uvicorn main:app` fait référence à :
 
-* `main` : le fichier `main.py` (le "module" Python).
-* `app` : l'objet créé à l'intérieur de `main.py` avec la ligne `app = FastAPI()`.
-* `--reload` : fait redémarrer le serveur après des changements de code. À n'utiliser que pour le développement.
+- `main` : le fichier `main.py` (le "module" Python).
+- `app` : l'objet créé à l'intérieur de `main.py` avec la ligne `app = FastAPI()`.
+- `--reload` : fait redémarrer le serveur après des changements de code. À n'utiliser que pour le développement.
 
 </details>
 
@@ -244,10 +244,10 @@ Vous obtenez alors cette réponse <abbr title="JavaScript Object Notation">JSON<
 
 Vous venez de créer une API qui :
 
-* Reçoit les requêtes HTTP pour les _chemins_ `/` et `/items/{item_id}`.
-* Les deux _chemins_ acceptent des <em>opérations</em> `GET` (également connu sous le nom de _méthodes_ HTTP).
-* Le _chemin_ `/items/{item_id}` a un  _<abbr title="en anglais : path parameter">paramètre</abbr>_ `item_id` qui doit être un `int`.
-* Le _chemin_ `/items/{item_id}` a un _<abbr title="en anglais : query param">paramètre de requête</abbr>_ optionnel `q` de type `str`.
+- Reçoit les requêtes HTTP pour les _chemins_ `/` et `/items/{item_id}`.
+- Les deux _chemins_ acceptent des <em>opérations</em> `GET` (également connu sous le nom de _méthodes_ HTTP).
+- Le _chemin_ `/items/{item_id}` a un _<abbr title="en anglais : path parameter">paramètre</abbr>_ `item_id` qui doit être un `int`.
+- Le _chemin_ `/items/{item_id}` a un _<abbr title="en anglais : query param">paramètre de requête</abbr>_ optionnel `q` de type `str`.
 
 ### Documentation API interactive
 
@@ -307,15 +307,15 @@ Le serveur se recharge normalement automatiquement (car vous avez pensé à `--r
 
 Maintenant, rendez-vous sur <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* La documentation interactive de l'API sera automatiquement mise à jour, y compris le nouveau corps de la requête :
+- La documentation interactive de l'API sera automatiquement mise à jour, y compris le nouveau corps de la requête :
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Cliquez sur le bouton "Try it out", il vous permet de renseigner les paramètres et d'interagir directement avec l'API :
+- Cliquez sur le bouton "Try it out", il vous permet de renseigner les paramètres et d'interagir directement avec l'API :
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Cliquez ensuite sur le bouton "Execute", l'interface utilisateur communiquera avec votre API, enverra les paramètres, obtiendra les résultats et les affichera à l'écran :
+- Cliquez ensuite sur le bouton "Execute", l'interface utilisateur communiquera avec votre API, enverra les paramètres, obtiendra les résultats et les affichera à l'écran :
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -323,13 +323,13 @@ Maintenant, rendez-vous sur <a href="http://127.0.0.1:8000/docs" class="external
 
 Et maintenant, rendez-vous sur <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* La documentation alternative reflétera également le nouveau paramètre de requête et le nouveau corps :
+- La documentation alternative reflétera également le nouveau paramètre de requête et le nouveau corps :
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### En résumé
 
-En résumé, vous déclarez **une fois** les types de paramètres, <abbr title="en anglais : body">le corps</abbr>  de la requête, etc. en tant que paramètres de fonction.
+En résumé, vous déclarez **une fois** les types de paramètres, <abbr title="en anglais : body">le corps</abbr> de la requête, etc. en tant que paramètres de fonction.
 
 Vous faites cela avec les types Python standard modernes.
 
@@ -351,50 +351,50 @@ item: Item
 
 ... et avec cette déclaration unique, vous obtenez :
 
-* Une assistance dans votre IDE, notamment :
-    * la complétion.
-    * la vérification des types.
-* La validation des données :
-    * des erreurs automatiques et claires lorsque les données ne sont pas valides.
-    * une validation même pour les objets <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués.
-* <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">Une conversion</abbr> des données d'entrée : venant du réseau et allant vers les données et types de Python, permettant de lire :
-    * le <abbr title="JavaScript Object Notation">JSON</abbr>.
-    * <abbr title="en anglais : path parameters">les paramètres du chemin</abbr>.
-    * <abbr title="en anglais : query parameters">les paramètres de la requête</abbr>.
-    * les cookies.
-    * <abbr title="en anglais : headers">les en-têtes</abbr>.
-    * <abbr title="en anglais : forms">les formulaires</abbr>.
-    * <abbr title="en anglais : files">les fichiers</abbr>.
-* <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">La conversion</abbr> des données de sortie : conversion des données et types Python en données réseau (au format <abbr title="JavaScript Object Notation">JSON</abbr>), permettant de convertir :
-    * les types Python (`str`, `int`, `float`, `bool`, `list`, etc).
-    * les objets `datetime`.
-    * les objets `UUID`.
-    * les modèles de base de données.
-    * ... et beaucoup plus.
-* La documentation API interactive automatique, avec 2 interfaces utilisateur au choix :
-    * Swagger UI.
-    * ReDoc.
+- Une assistance dans votre IDE, notamment :
+  - la complétion.
+  - la vérification des types.
+- La validation des données :
+  - des erreurs automatiques et claires lorsque les données ne sont pas valides.
+  - une validation même pour les objets <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués.
+- <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">Une conversion</abbr> des données d'entrée : venant du réseau et allant vers les données et types de Python, permettant de lire :
+  - le <abbr title="JavaScript Object Notation">JSON</abbr>.
+  - <abbr title="en anglais : path parameters">les paramètres du chemin</abbr>.
+  - <abbr title="en anglais : query parameters">les paramètres de la requête</abbr>.
+  - les cookies.
+  - <abbr title="en anglais : headers">les en-têtes</abbr>.
+  - <abbr title="en anglais : forms">les formulaires</abbr>.
+  - <abbr title="en anglais : files">les fichiers</abbr>.
+- <abbr title="aussi connu sous le nom de : serialization, parsing, marshalling">La conversion</abbr> des données de sortie : conversion des données et types Python en données réseau (au format <abbr title="JavaScript Object Notation">JSON</abbr>), permettant de convertir :
+  - les types Python (`str`, `int`, `float`, `bool`, `list`, etc).
+  - les objets `datetime`.
+  - les objets `UUID`.
+  - les modèles de base de données.
+  - ... et beaucoup plus.
+- La documentation API interactive automatique, avec 2 interfaces utilisateur au choix :
+  - Swagger UI.
+  - ReDoc.
 
 ---
 
 Pour revenir à l'exemple de code précédent, **FastAPI** permet de :
 
-* Valider que `item_id` existe dans le chemin des requêtes `GET` et `PUT`.
-* Valider que `item_id` est de type `int` pour les requêtes `GET` et `PUT`.
-    * Si ce n'est pas le cas, le client voit une erreur utile et claire.
-* Vérifier qu'il existe un paramètre de requête facultatif nommé `q` (comme dans `http://127.0.0.1:8000/items/foo?q=somequery`) pour les requêtes `GET`.
-    * Puisque le paramètre `q` est déclaré avec `= None`, il est facultatif.
-    * Sans le `None`, il serait nécessaire (comme l'est <abbr title="en anglais : body">le corps</abbr> de la requête dans le cas du `PUT`).
-* Pour les requêtes `PUT` vers `/items/{item_id}`, de lire <abbr title="en anglais : body">le corps</abbr>  en <abbr title="JavaScript Object Notation">JSON</abbr> :
-    * Vérifier qu'il a un attribut obligatoire `name` qui devrait être un `str`.
-    * Vérifier qu'il a un attribut obligatoire `prix` qui doit être un `float`.
-    * Vérifier qu'il a un attribut facultatif `is_offer`, qui devrait être un `bool`, s'il est présent.
-    * Tout cela fonctionnerait également pour les objets <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués.
-* Convertir de et vers <abbr title="JavaScript Object Notation">JSON</abbr> automatiquement.
-* Documenter tout avec OpenAPI, qui peut être utilisé par :
-    * Les systèmes de documentation interactifs.
-    * Les systèmes de génération automatique de code client, pour de nombreuses langues.
-* Fournir directement 2 interfaces web de documentation interactive.
+- Valider que `item_id` existe dans le chemin des requêtes `GET` et `PUT`.
+- Valider que `item_id` est de type `int` pour les requêtes `GET` et `PUT`.
+  - Si ce n'est pas le cas, le client voit une erreur utile et claire.
+- Vérifier qu'il existe un paramètre de requête facultatif nommé `q` (comme dans `http://127.0.0.1:8000/items/foo?q=somequery`) pour les requêtes `GET`.
+  - Puisque le paramètre `q` est déclaré avec `= None`, il est facultatif.
+  - Sans le `None`, il serait nécessaire (comme l'est <abbr title="en anglais : body">le corps</abbr> de la requête dans le cas du `PUT`).
+- Pour les requêtes `PUT` vers `/items/{item_id}`, de lire <abbr title="en anglais : body">le corps</abbr> en <abbr title="JavaScript Object Notation">JSON</abbr> :
+  - Vérifier qu'il a un attribut obligatoire `name` qui devrait être un `str`.
+  - Vérifier qu'il a un attribut obligatoire `prix` qui doit être un `float`.
+  - Vérifier qu'il a un attribut facultatif `is_offer`, qui devrait être un `bool`, s'il est présent.
+  - Tout cela fonctionnerait également pour les objets <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués.
+- Convertir de et vers <abbr title="JavaScript Object Notation">JSON</abbr> automatiquement.
+- Documenter tout avec OpenAPI, qui peut être utilisé par :
+  - Les systèmes de documentation interactifs.
+  - Les systèmes de génération automatique de code client, pour de nombreuses langues.
+- Fournir directement 2 interfaces web de documentation interactive.
 
 ---
 
@@ -426,22 +426,22 @@ Pour un exemple plus complet comprenant plus de fonctionnalités, voir le <a hre
 
 **Spoiler alert** : le tutoriel - guide utilisateur inclut :
 
-* Déclaration de **paramètres** provenant d'autres endroits différents comme : **<abbr title="en anglais : headers">en-têtes</abbr>.**, **cookies**, **champs de formulaire** et **fichiers**.
-* L'utilisation de **contraintes de validation** comme `maximum_length` ou `regex`.
-* Un **<abbr title="aussi connu sous le nom de composants, ressources, fournisseurs, services, injectables">système d'injection de dépendance </abbr>** très puissant et facile à utiliser .
-* Sécurité et authentification, y compris la prise en charge de **OAuth2** avec les **<abbr title="en anglais : JWT tokens">jetons <abbr title="JSON Web Tokens">JWT</abbr></abbr>** et l'authentification **HTTP Basic**.
-* Des techniques plus avancées (mais tout aussi faciles) pour déclarer les **modèles <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués** (grâce à Pydantic).
-* Intégration de **GraphQL** avec <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> et d'autres bibliothèques.
-* D'obtenir de nombreuses fonctionnalités supplémentaires (grâce à  Starlette) comme :
-    * **WebSockets**
-    * de tester le code très facilement avec `requests` et `pytest`
-    * **<abbr title="Cross-Origin Resource Sharing">CORS</abbr>**
-    * **Cookie Sessions**
-    * ... et plus encore.
+- Déclaration de **paramètres** provenant d'autres endroits différents comme : **<abbr title="en anglais : headers">en-têtes</abbr>.**, **cookies**, **champs de formulaire** et **fichiers**.
+- L'utilisation de **contraintes de validation** comme `maximum_length` ou `regex`.
+- Un **<abbr title="aussi connu sous le nom de composants, ressources, fournisseurs, services, injectables">système d'injection de dépendance </abbr>** très puissant et facile à utiliser .
+- Sécurité et authentification, y compris la prise en charge de **OAuth2** avec les **<abbr title="en anglais : JWT tokens">jetons <abbr title="JSON Web Tokens">JWT</abbr></abbr>** et l'authentification **HTTP Basic**.
+- Des techniques plus avancées (mais tout aussi faciles) pour déclarer les **modèles <abbr title="JavaScript Object Notation">JSON</abbr> profondément imbriqués** (grâce à Pydantic).
+- Intégration de **GraphQL** avec <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> et d'autres bibliothèques.
+- D'obtenir de nombreuses fonctionnalités supplémentaires (grâce à Starlette) comme :
+  - **WebSockets**
+  - de tester le code très facilement avec `requests` et `pytest`
+  - **<abbr title="Cross-Origin Resource Sharing">CORS</abbr>**
+  - **Cookie Sessions**
+  - ... et plus encore.
 
 ## Performance
 
-Les benchmarks TechEmpower indépendants montrent que les applications **FastAPI** s'exécutant sous Uvicorn sont <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> parmi les frameworks existants en Python les plus rapides </a>, juste derrière Starlette et Uvicorn (utilisés en interne par FastAPI). (*)
+Les benchmarks TechEmpower indépendants montrent que les applications **FastAPI** s'exécutant sous Uvicorn sont <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank"> parmi les frameworks existants en Python les plus rapides </a>, juste derrière Starlette et Uvicorn (utilisés en interne par FastAPI). (\*)
 
 Pour en savoir plus, consultez la section <a href="https://fastapi.tiangolo.com/fr/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
@@ -449,21 +449,21 @@ Pour en savoir plus, consultez la section <a href="https://fastapi.tiangolo.com/
 
 Utilisées par Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - pour la validation des adresses email.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - pour la validation des adresses email.
 
 Utilisées par Starlette :
 
-* <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Obligatoire si vous souhaitez utiliser `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire avec `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Obligatoire pour la prise en charge de `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Obligatoire pour le support `SchemaGenerator` de Starlette (vous n'en avez probablement pas besoin avec FastAPI).
+- <a href="https://requests.readthedocs.io" target="_blank"><code>requests</code></a> - Obligatoire si vous souhaitez utiliser `TestClient`.
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obligatoire si vous souhaitez supporter le <abbr title="convertit la chaine de caractère d'une requête HTTP en donnée Python">"décodage"</abbr> de formulaire avec `request.form()`.
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Obligatoire pour la prise en charge de `SessionMiddleware`.
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Obligatoire pour le support `SchemaGenerator` de Starlette (vous n'en avez probablement pas besoin avec FastAPI).
 
 Utilisées par FastAPI / Starlette :
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Pour le serveur qui charge et sert votre application.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Obligatoire si vous voulez utiliser `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Pour le serveur qui charge et sert votre application.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Obligatoire si vous voulez utiliser `ORJSONResponse`.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
 
 Vous pouvez tout installer avec `pip install fastapi[all]`.
 

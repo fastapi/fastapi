@@ -1,6 +1,6 @@
 # Concurrencia y async / await
 
-Detalles sobre la sintaxis `async def` para *path operation functions* y algunos antecedentes sobre el código asíncrono, la concurrencia y el paralelismo.
+Detalles sobre la sintaxis `async def` para _path operation functions_ y algunos antecedentes sobre el código asíncrono, la concurrencia y el paralelismo.
 
 ## ¿Con prisa?
 
@@ -12,7 +12,7 @@ Si estás usando paquetes de terceros que te dicen que los llames con `await`, c
 results = await some_library()
 ```
 
-Entonces, declara tus *path operation functions* con `async def` así:
+Entonces, declara tus _path operation functions_ con `async def` así:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -29,7 +29,7 @@ Solo puedes usar `await` dentro de funciones creadas con `async def`.
 
 ---
 
-Si estás usando un paquete de terceros que se comunica con algo (una base de datos, una API, el sistema de archivos, etc.) y no tiene soporte para usar `await` (este es actualmente el caso para la mayoría de los paquetes de base de datos), entonces declara tus *path operation functions* como normalmente, usando simplemente `def`, así:
+Si estás usando un paquete de terceros que se comunica con algo (una base de datos, una API, el sistema de archivos, etc.) y no tiene soporte para usar `await` (este es actualmente el caso para la mayoría de los paquetes de base de datos), entonces declara tus _path operation functions_ como normalmente, usando simplemente `def`, así:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -48,7 +48,7 @@ Si simplemente no lo sabes, usa `def` normal.
 
 ---
 
-**Nota**: Puedes mezclar `def` y `async def` en tus *path operation functions* tanto como necesites y definir cada una utilizando la mejor opción para ti. FastAPI hará lo correcto con ellas.
+**Nota**: Puedes mezclar `def` y `async def` en tus _path operation functions_ tanto como necesites y definir cada una utilizando la mejor opción para ti. FastAPI hará lo correcto con ellas.
 
 De todos modos, en cualquiera de los casos anteriores, FastAPI seguirá funcionando de forma asíncrona y será extremadamente rápido.
 
@@ -60,13 +60,13 @@ Las versiones modernas de Python tienen soporte para **"código asíncrono"** ut
 
 Veamos esa frase por partes en las secciones a continuación:
 
-* **Código Asíncrono**
-* **`async` y `await`**
-* **Coroutines**
+- **Código Asíncrono**
+- **`async` y `await`**
+- **Coroutines**
 
 ## Código Asíncrono
 
-El código asíncrono simplemente significa que el lenguaje 💬 tiene una forma de decirle a la computadora / programa 🤖 que en algún momento del código, tendrá que esperar que *otra cosa* termine en otro lugar. Digamos que esa *otra cosa* se llama "archivo-lento" 📝.
+El código asíncrono simplemente significa que el lenguaje 💬 tiene una forma de decirle a la computadora / programa 🤖 que en algún momento del código, tendrá que esperar que _otra cosa_ termine en otro lugar. Digamos que esa _otra cosa_ se llama "archivo-lento" 📝.
 
 Entonces, durante ese tiempo, la computadora puede ir y hacer algún otro trabajo, mientras "archivo-lento" 📝 termina.
 
@@ -76,14 +76,14 @@ Después, 🤖 toma la primera tarea que termine (digamos, nuestro "archivo-lent
 
 Ese "esperar otra cosa" normalmente se refiere a las operaciones de <abbr title="Input and Output">I/O</abbr> que son relativamente "lentas" (comparadas con la velocidad del procesador y la memoria RAM), como esperar:
 
-* que los datos del cliente se envíen a través de la red
-* que los datos enviados por tu programa sean recibidos por el cliente a través de la red
-* que el contenido de un archivo en el disco sea leído por el sistema y entregado a tu programa
-* que el contenido que tu programa entregó al sistema sea escrito en el disco
-* una operación de API remota
-* que una operación de base de datos termine
-* que una query de base de datos devuelva los resultados
-* etc.
+- que los datos del cliente se envíen a través de la red
+- que los datos enviados por tu programa sean recibidos por el cliente a través de la red
+- que el contenido de un archivo en el disco sea leído por el sistema y entregado a tu programa
+- que el contenido que tu programa entregó al sistema sea escrito en el disco
+- una operación de API remota
+- que una operación de base de datos termine
+- que una query de base de datos devuelva los resultados
+- etc.
 
 Como el tiempo de ejecución se consume principalmente esperando operaciones de <abbr title="Input and Output">I/O</abbr>, las llaman operaciones "I/O bound".
 
@@ -99,7 +99,7 @@ Esta idea de código **asíncrono** descrita anteriormente a veces también se l
 
 **Concurrencia** y **paralelismo** ambos se relacionan con "diferentes cosas sucediendo más o menos al mismo tiempo".
 
-Pero los detalles entre *concurrencia* y *paralelismo* son bastante diferentes.
+Pero los detalles entre _concurrencia_ y _paralelismo_ son bastante diferentes.
 
 Para ver la diferencia, imagina la siguiente historia sobre hamburguesas:
 
@@ -247,11 +247,11 @@ Esta "espera" 🕙 se mide en microsegundos, pero aún así, sumándolo todo, es
 
 Por eso tiene mucho sentido usar código asíncrono ⏸🔀⏯ para las APIs web.
 
-Este tipo de asincronía es lo que hizo popular a NodeJS (aunque NodeJS no es paralelo) y esa es la fortaleza de Go como lenguaje de programación.
+Este tipo de asincronía es lo que hizo popular a Node.JS (aunque Node.JS no es paralelo) y esa es la fortaleza de Go como lenguaje de programación.
 
 Y ese es el mismo nivel de rendimiento que obtienes con **FastAPI**.
 
-Y como puedes tener paralelismo y asincronía al mismo tiempo, obtienes un mayor rendimiento que la mayoría de los frameworks de NodeJS probados y a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(todo gracias a Starlette)</a>.
+Y como puedes tener paralelismo y asincronía al mismo tiempo, obtienes un mayor rendimiento que la mayoría de los frameworks de Node.JS probados y a la par con Go, que es un lenguaje compilado más cercano a C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(todo gracias a Starlette)</a>.
 
 ### ¿Es la concurrencia mejor que el paralelismo?
 
@@ -263,7 +263,7 @@ Así que, para equilibrar eso, imagina la siguiente historia corta:
 
 > Tienes que limpiar una casa grande y sucia.
 
-*Sí, esa es toda la historia*.
+_Sí, esa es toda la historia_.
 
 ---
 
@@ -285,20 +285,20 @@ Ejemplos comunes de operaciones limitadas por la CPU son cosas que requieren pro
 
 Por ejemplo:
 
-* **Procesamiento de audio** o **imágenes**.
-* **Visión por computadora**: una imagen está compuesta de millones de píxeles, cada píxel tiene 3 valores / colores, procesar eso normalmente requiere calcular algo en esos píxeles, todos al mismo tiempo.
-* **Machine Learning**: normalmente requiere muchas multiplicaciones de "matrices" y "vectores". Piensa en una enorme hoja de cálculo con números y multiplicando todos juntos al mismo tiempo.
-* **Deep Learning**: este es un subcampo de Machine Learning, por lo tanto, se aplica lo mismo. Es solo que no hay una sola hoja de cálculo de números para multiplicar, sino un enorme conjunto de ellas, y en muchos casos, usas un procesador especial para construir y / o usar esos modelos.
+- **Procesamiento de audio** o **imágenes**.
+- **Visión por computadora**: una imagen está compuesta de millones de píxeles, cada píxel tiene 3 valores / colores, procesar eso normalmente requiere calcular algo en esos píxeles, todos al mismo tiempo.
+- **Machine Learning**: normalmente requiere muchas multiplicaciones de "matrices" y "vectores". Piensa en una enorme hoja de cálculo con números y multiplicando todos juntos al mismo tiempo.
+- **Deep Learning**: este es un subcampo de Machine Learning, por lo tanto, se aplica lo mismo. Es solo que no hay una sola hoja de cálculo de números para multiplicar, sino un enorme conjunto de ellas, y en muchos casos, usas un procesador especial para construir y / o usar esos modelos.
 
 ### Concurrencia + Paralelismo: Web + Machine Learning
 
-Con **FastAPI** puedes aprovechar la concurrencia que es muy común para el desarrollo web (la misma atracción principal de NodeJS).
+Con **FastAPI** puedes aprovechar la concurrencia que es muy común para el desarrollo web (la misma atracción principal de Node.JS).
 
 Pero también puedes explotar los beneficios del paralelismo y la multiprocesamiento (tener múltiples procesos ejecutándose en paralelo) para cargas de trabajo **CPU bound** como las de los sistemas de Machine Learning.
 
 Eso, más el simple hecho de que Python es el lenguaje principal para **Data Science**, Machine Learning y especialmente Deep Learning, hacen de FastAPI una muy buena opción para APIs web de Data Science / Machine Learning y aplicaciones (entre muchas otras).
 
-Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Deployment](deployment/index.md){.internal-link target=_blank}.
+Para ver cómo lograr este paralelismo en producción, consulta la sección sobre [Deployment](deployment/index.md){.internal-link target=\_blank}.
 
 ## `async` y `await`
 
@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-Así que, si estás usando un paquete que te dice que puedes llamarlo con `await`, necesitas crear las *path operation functions* que lo usen con `async def`, como en:
+Así que, si estás usando un paquete que te dice que puedes llamarlo con `await`, necesitas crear las _path operation functions_ que lo usen con `async def`, como en:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -357,7 +357,7 @@ Pero al mismo tiempo, las funciones definidas con `async def` deben ser "awaited
 
 Entonces, sobre el huevo y la gallina, ¿cómo llamas a la primera función `async`?
 
-Si estás trabajando con **FastAPI** no tienes que preocuparte por eso, porque esa "primera" función será tu *path operation function*, y FastAPI sabrá cómo hacer lo correcto.
+Si estás trabajando con **FastAPI** no tienes que preocuparte por eso, porque esa "primera" función será tu _path operation function_, y FastAPI sabrá cómo hacer lo correcto.
 
 Pero si deseas usar `async` / `await` sin FastAPI, también puedes hacerlo.
 
@@ -367,7 +367,7 @@ Starlette (y **FastAPI**) están basados en <a href="https://anyio.readthedocs.i
 
 En particular, puedes usar directamente <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para tus casos de uso avanzados de concurrencia que requieran patrones más avanzados en tu propio código.
 
-E incluso si no estuvieras usando FastAPI, también podrías escribir tus propias aplicaciones asíncronas con <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para ser altamente compatibles y obtener sus beneficios (p.ej. *concurrencia estructurada*).
+E incluso si no estuvieras usando FastAPI, también podrías escribir tus propias aplicaciones asíncronas con <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> para ser altamente compatibles y obtener sus beneficios (p.ej. _concurrencia estructurada_).
 
 Creé otro paquete sobre AnyIO, como una capa delgada, para mejorar un poco las anotaciones de tipos y obtener mejor **autocompletado**, **errores en línea**, etc. También tiene una introducción amigable y tutorial para ayudarte a **entender** y escribir **tu propio código async**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Sería particularmente útil si necesitas **combinar código async con regular** (bloqueante/sincrónico).
 
@@ -377,13 +377,13 @@ Este estilo de usar `async` y `await` es relativamente nuevo en el lenguaje.
 
 Pero hace que trabajar con código asíncrono sea mucho más fácil.
 
-Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las versiones modernas de JavaScript (en el Navegador y NodeJS).
+Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las versiones modernas de JavaScript (en el Navegador y Node.JS).
 
 Pero antes de eso, manejar el código asíncrono era mucho más complejo y difícil.
 
 En versiones previas de Python, podrías haber usado hilos o <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y razonar.
 
-En versiones previas de NodeJS / JavaScript en el Navegador, habrías usado "callbacks". Lo que lleva al <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+En versiones previas de Node.JS / JavaScript en el Navegador, habrías usado "callbacks". Lo que lleva al <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
 
 ## Coroutines
 
@@ -413,27 +413,27 @@ Si tienes bastante conocimiento técnico (coroutines, hilos, bloqueo, etc.) y ti
 
 ///
 
-### Funciones de *path operation*
+### Funciones de _path operation_
 
-Cuando declaras una *path operation function* con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego es esperado, en lugar de ser llamado directamente (ya que bloquearía el servidor).
+Cuando declaras una _path operation function_ con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego es esperado, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 
-Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de *path operation* solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen código que realice <abbr title="Input/Output: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
+Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de _path operation_ solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus _path operation functions_ usen código que realice <abbr title="Input/Output: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
 
-Aun así, en ambas situaciones, es probable que **FastAPI** [siga siendo más rápida](index.md#performance){.internal-link target=_blank} que (o al menos comparable a) tu framework anterior.
+Aun así, en ambas situaciones, es probable que **FastAPI** [siga siendo más rápida](index.md#performance){.internal-link target=\_blank} que (o al menos comparable a) tu framework anterior.
 
 ### Dependencias
 
-Lo mismo aplica para las [dependencias](tutorial/dependencies/index.md){.internal-link target=_blank}. Si una dependencia es una función estándar `def` en lugar de `async def`, se ejecuta en el threadpool externo.
+Lo mismo aplica para las [dependencias](tutorial/dependencies/index.md){.internal-link target=\_blank}. Si una dependencia es una función estándar `def` en lugar de `async def`, se ejecuta en el threadpool externo.
 
 ### Sub-dependencias
 
-Puedes tener múltiples dependencias y [sub-dependencias](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiriéndose mutuamente (como parámetros de las definiciones de funciones), algunas de ellas podrían ser creadas con `async def` y algunas con `def` normal. Aun funcionará, y las que fueron creadas con `def` normal serían llamadas en un hilo externo (del threadpool) en lugar de ser "awaited".
+Puedes tener múltiples dependencias y [sub-dependencias](tutorial/dependencies/sub-dependencies.md){.internal-link target=\_blank} requiriéndose mutuamente (como parámetros de las definiciones de funciones), algunas de ellas podrían ser creadas con `async def` y algunas con `def` normal. Aun funcionará, y las que fueron creadas con `def` normal serían llamadas en un hilo externo (del threadpool) en lugar de ser "awaited".
 
 ### Otras funciones de utilidad
 
 Cualquier otra función de utilidad que llames directamente puede ser creada con `def` normal o `async def` y FastAPI no afectará la forma en que la llames.
 
-Esto contrasta con las funciones que FastAPI llama por ti: *path operation functions* y dependencias.
+Esto contrasta con las funciones que FastAPI llama por ti: _path operation functions_ y dependencias.
 
 Si tu función de utilidad es una función normal con `def`, será llamada directamente (como la escribas en tu código), no en un threadpool; si la función es creada con `async def` entonces deberías "await" por esa función cuando la llames en tu código.
 

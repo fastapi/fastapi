@@ -37,16 +37,16 @@ FastAPI là một web framework hiện đại, hiệu năng cao để xây dựn
 
 Những tính năng như:
 
-* **Nhanh**: Hiệu năng rất cao khi so sánh với **NodeJS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#hieu-nang).
-* **Code nhanh**: Tăng tốc độ phát triển tính năng từ 200% tới 300%. *
-* **Ít lỗi hơn**: Giảm khoảng 40% những lỗi phát sinh bởi con người (nhà phát triển). *
-* **Trực giác tốt hơn**: Được các trình soạn thảo hỗ tuyệt vời. <abbr title="như auto-complete, autocompletion, IntelliSense">Completion</abbr> mọi nơi. Ít thời gian gỡ lỗi.
-* **Dễ dàng**: Được thiết kế để dễ dàng học và sử dụng. Ít thời gian đọc tài liệu.
-* **Ngắn**: Tối thiểu code bị trùng lặp. Nhiều tính năng được tích hợp khi định nghĩa tham số. Ít lỗi hơn.
-* **Tăng tốc**: Có được sản phẩm cùng với tài liệu (được tự động tạo) có thể tương tác.
-* **Được dựa trên các tiêu chuẩn**: Dựa trên (và hoàn toàn tương thích với) các tiêu chuẩn mở cho APIs : <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (trước đó được biết đến là Swagger) và <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
+- **Nhanh**: Hiệu năng rất cao khi so sánh với **Node.JS** và **Go** (cảm ơn Starlette và Pydantic). [Một trong những Python framework nhanh nhất](#hieu-nang).
+- **Code nhanh**: Tăng tốc độ phát triển tính năng từ 200% tới 300%. \*
+- **Ít lỗi hơn**: Giảm khoảng 40% những lỗi phát sinh bởi con người (nhà phát triển). \*
+- **Trực giác tốt hơn**: Được các trình soạn thảo hỗ tuyệt vời. <abbr title="như auto-complete, autocompletion, IntelliSense">Completion</abbr> mọi nơi. Ít thời gian gỡ lỗi.
+- **Dễ dàng**: Được thiết kế để dễ dàng học và sử dụng. Ít thời gian đọc tài liệu.
+- **Ngắn**: Tối thiểu code bị trùng lặp. Nhiều tính năng được tích hợp khi định nghĩa tham số. Ít lỗi hơn.
+- **Tăng tốc**: Có được sản phẩm cùng với tài liệu (được tự động tạo) có thể tương tác.
+- **Được dựa trên các tiêu chuẩn**: Dựa trên (và hoàn toàn tương thích với) các tiêu chuẩn mở cho APIs : <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (trước đó được biết đến là Swagger) và <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* ước tính được dựa trên những kiểm chứng trong nhóm phát triển nội bộ, xây dựng các ứng dụng sản phẩm.</small>
+<small>\* ước tính được dựa trên những kiểm chứng trong nhóm phát triển nội bộ, xây dựng các ứng dụng sản phẩm.</small>
 
 ## Nhà tài trợ
 
@@ -99,7 +99,7 @@ Những tính năng như:
 
 "_Nếu bạn đang tìm kiếm một **framework hiện đại** để xây dựng một REST APIs, thử xem xét **FastAPI** [...] Nó nhanh, dễ dùng và dễ học [...]_"
 
-"_Chúng tôi đã chuyển qua **FastAPI cho **APIs** của chúng tôi [...] Tôi nghĩ bạn sẽ thích nó [...]_"
+"_Chúng tôi đã chuyển qua **FastAPI cho **APIs\*\* của chúng tôi [...] Tôi nghĩ bạn sẽ thích nó [...]_"
 
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 <div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>nhà sáng lập <a href="https://explosion.ai" target="_blank">Explosion AI</a> - người tạo ra <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
@@ -124,8 +124,8 @@ Nếu bạn đang xây dựng một <abbr title="Giao diện dòng lệnh">CLI</
 
 FastAPI đứng trên vai những người khổng lồ:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> cho phần web.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> cho phần data.
+- <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> cho phần web.
+- <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> cho phần data.
 
 ## Cài đặt
 
@@ -155,7 +155,7 @@ $ pip install "uvicorn[standard]"
 
 ### Khởi tạo
 
-* Tạo một tệp tin `main.py` như sau:
+- Tạo một tệp tin `main.py` như sau:
 
 ```Python
 from typing import Union
@@ -227,9 +227,9 @@ INFO:     Application startup complete.
 
 Lệnh `uvicorn main:app` tham chiếu tới những thành phần sau:
 
-* `main`: tệp tin `main.py` (một Python "module").
-* `app`: object được tạo trong tệp tin `main.py` tại dòng `app = FastAPI()`.
-* `--reload`: chạy lại server sau khi code thay đổi. Chỉ sử dụng trong quá trình phát triển.
+- `main`: tệp tin `main.py` (một Python "module").
+- `app`: object được tạo trong tệp tin `main.py` tại dòng `app = FastAPI()`.
+- `--reload`: chạy lại server sau khi code thay đổi. Chỉ sử dụng trong quá trình phát triển.
 
 </details>
 
@@ -245,10 +245,10 @@ Bạn sẽ thấy một JSON response:
 
 Bạn đã sẵn sàng để tạo một API như sau:
 
-* Nhận HTTP request với _đường dẫn_ `/` và `/items/{item_id}`.
-* Cả hai _đường dẫn_ sử dụng <em>toán tử</em> `GET` (cũng đươc biết đến là _phương thức_ HTTP).
-* _Đường dẫn_ `/items/{item_id}` có một _tham số đường dẫn_ `item_id`, nó là một tham số kiểu `int`.
-* _Đường dẫn_ `/items/{item_id}`  có một _tham số query string_ `q`, nó là một tham số tùy chọn kiểu `str`.
+- Nhận HTTP request với _đường dẫn_ `/` và `/items/{item_id}`.
+- Cả hai _đường dẫn_ sử dụng <em>toán tử</em> `GET` (cũng đươc biết đến là _phương thức_ HTTP).
+- _Đường dẫn_ `/items/{item_id}` có một _tham số đường dẫn_ `item_id`, nó là một tham số kiểu `int`.
+- _Đường dẫn_ `/items/{item_id}` có một _tham số query string_ `q`, nó là một tham số tùy chọn kiểu `str`.
 
 ### Tài liệu tương tác API
 
@@ -308,15 +308,15 @@ Server nên tự động chạy lại (bởi vì bạn đã thêm `--reload` tro
 
 Bây giờ truy cập tới <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* Tài liệu API sẽ được tự động cập nhật, bao gồm body mới:
+- Tài liệu API sẽ được tự động cập nhật, bao gồm body mới:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Click vào nút "Try it out", nó cho phép bạn điền những tham số và tương tác trực tiếp với API:
+- Click vào nút "Try it out", nó cho phép bạn điền những tham số và tương tác trực tiếp với API:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Sau khi click vào nút "Execute", giao diện người dùng sẽ giao tiếp với API của bạn bao gồm: gửi các tham số, lấy kết quả và hiển thị chúng trên màn hình:
+- Sau khi click vào nút "Execute", giao diện người dùng sẽ giao tiếp với API của bạn bao gồm: gửi các tham số, lấy kết quả và hiển thị chúng trên màn hình:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -324,7 +324,7 @@ Bây giờ truy cập tới <a href="http://127.0.0.1:8000/docs" class="external
 
 Và bây giờ truy cập tới <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* Tài liệu thay thế cũng sẽ phản ánh tham số và body mới:
+- Tài liệu thay thế cũng sẽ phản ánh tham số và body mới:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -352,51 +352,52 @@ item: Item
 
 ...và với định nghĩa đơn giản đó, bạn có được:
 
-* Sự hỗ trợ từ các trình soạn thảo, bao gồm:
-    * Completion.
-    * Kiểm tra kiểu dữ liệu.
-* Kiểm tra kiểu dữ liệu:
-    * Tự động sinh lỗi rõ ràng khi dữ liệu không hợp lệ .
-    * Kiểm tra JSON lồng nhau .
-* <abbr title="cũng được biết tới như: serialization, parsing, marshalling">Chuyển đổi</abbr> dữ liệu đầu vào: tới từ network sang dữ liệu kiểu Python. Đọc từ:
-    * JSON.
-    * Các tham số trong đường dẫn.
-    * Các tham số trong query string.
-    * Cookies.
-    * Headers.
-    * Forms.
-    * Files.
-* <abbr title="cũng được biết tới như: serialization, parsing, marshalling">Chuyển đổi</abbr> dữ liệu đầu ra: chuyển đổi từ kiểu dữ liệu Python sang dữ liệu network (như JSON):
-    * Chuyển đổi kiểu dữ liệu Python (`str`, `int`, `float`, `bool`, `list`,...).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...và nhiều hơn thế.
-* Tự động tạo tài liệu tương tác API, bao gồm 2 giao diện người dùng:
-    * Swagger UI.
-    * ReDoc.
+- Sự hỗ trợ từ các trình soạn thảo, bao gồm:
+  - Completion.
+  - Kiểm tra kiểu dữ liệu.
+- Kiểm tra kiểu dữ liệu:
+  - Tự động sinh lỗi rõ ràng khi dữ liệu không hợp lệ .
+  - Kiểm tra JSON lồng nhau .
+- <abbr title="cũng được biết tới như: serialization, parsing, marshalling">Chuyển đổi</abbr> dữ liệu đầu vào: tới từ network sang dữ liệu kiểu Python. Đọc từ:
+  - JSON.
+  - Các tham số trong đường dẫn.
+  - Các tham số trong query string.
+  - Cookies.
+  - Headers.
+  - Forms.
+  - Files.
+- <abbr title="cũng được biết tới như: serialization, parsing, marshalling">Chuyển đổi</abbr> dữ liệu đầu ra: chuyển đổi từ kiểu dữ liệu Python sang dữ liệu network (như JSON):
+  - Chuyển đổi kiểu dữ liệu Python (`str`, `int`, `float`, `bool`, `list`,...).
+  - `datetime` objects.
+  - `UUID` objects.
+  - Database models.
+  - ...và nhiều hơn thế.
+- Tự động tạo tài liệu tương tác API, bao gồm 2 giao diện người dùng:
+  - Swagger UI.
+  - ReDoc.
 
 ---
 
 Quay trở lại ví dụ trước, **FastAPI** sẽ thực hiện:
 
-* Kiểm tra xem có một `item_id` trong đường dẫn với các request `GET` và `PUT` không?
-* Kiểm tra xem `item_id` có phải là kiểu `int` trong các request `GET` và `PUT` không?
-    * Nếu không, client sẽ thấy một lỗi rõ ràng và hữu ích.
-* Kiểm tra xem nếu có một tham số `q` trong query string (ví dụ như `http://127.0.0.1:8000/items/foo?q=somequery`) cho request `GET`.
-    * Tham số `q` được định nghĩa `= None`, nó là tùy chọn.
-    * Nếu không phải `None`, nó là bắt buộc (như body trong trường hợp của `PUT`).
-* Với request `PUT` tới `/items/{item_id}`, đọc body như JSON:
-    * Kiểm tra xem nó có một thuộc tính bắt buộc kiểu  `str` là `name` không?
-    * Kiểm tra xem nó có một thuộc tính bắt buộc kiểu `float` là `price` không?
-    * Kiểm tra xem nó có một thuộc tính tùy chọn là `is_offer` không? Nếu có, nó phải có kiểu `bool`.
-    * Tất cả những kiểm tra này cũng được áp dụng với các JSON lồng nhau.
-* Chuyển đổi tự động các JSON object đến và JSON object đi.
-* Tài liệu hóa mọi thứ với OpenAPI, tài liệu đó có thể được sử dụng bởi:
+- Kiểm tra xem có một `item_id` trong đường dẫn với các request `GET` và `PUT` không?
+- Kiểm tra xem `item_id` có phải là kiểu `int` trong các request `GET` và `PUT` không?
+  - Nếu không, client sẽ thấy một lỗi rõ ràng và hữu ích.
+- Kiểm tra xem nếu có một tham số `q` trong query string (ví dụ như `http://127.0.0.1:8000/items/foo?q=somequery`) cho request `GET`.
+  - Tham số `q` được định nghĩa `= None`, nó là tùy chọn.
+  - Nếu không phải `None`, nó là bắt buộc (như body trong trường hợp của `PUT`).
+- Với request `PUT` tới `/items/{item_id}`, đọc body như JSON:
+  - Kiểm tra xem nó có một thuộc tính bắt buộc kiểu `str` là `name` không?
+  - Kiểm tra xem nó có một thuộc tính bắt buộc kiểu `float` là `price` không?
+  - Kiểm tra xem nó có một thuộc tính tùy chọn là `is_offer` không? Nếu có, nó phải có kiểu `bool`.
+  - Tất cả những kiểm tra này cũng được áp dụng với các JSON lồng nhau.
+- Chuyển đổi tự động các JSON object đến và JSON object đi.
+- Tài liệu hóa mọi thứ với OpenAPI, tài liệu đó có thể được sử dụng bởi:
 
-    * Các hệ thống tài liệu có thể tương tác.
-    * Hệ thống sinh code tự động, cho nhiều ngôn ngữ lập trình.
-* Cung cấp trực tiếp 2 giao diện web cho tài liệu tương tác
+  - Các hệ thống tài liệu có thể tương tác.
+  - Hệ thống sinh code tự động, cho nhiều ngôn ngữ lập trình.
+
+- Cung cấp trực tiếp 2 giao diện web cho tài liệu tương tác
 
 ---
 
@@ -426,25 +427,24 @@ Thử thay đổi dòng này:
 
 Ví dụ hoàn chỉnh bao gồm nhiều tính năng hơn, xem <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
 
-
 **Cảnh báo tiết lỗ**: Tutorial - User Guide:
 
-* Định nghĩa **tham số** từ các nguồn khác nhau như: **headers**, **cookies**, **form fields** và **files**.
-* Cách thiết lập **các ràng buộc cho validation** như `maximum_length` hoặc `regex`.
-* Một hệ thống **<abbr title="cũng được biết đến như components, resources, providers, services, injectables">Dependency Injection</abbr> vô cùng mạnh mẽ và dễ dàng sử dụng.
-* Bảo mật và xác thực, hỗ trợ **OAuth2**(với **JWT tokens**) và **HTTP Basic**.
-* Những kĩ thuật nâng cao hơn (nhưng tương đối dễ) để định nghĩa **JSON models lồng nhau** (cảm ơn Pydantic).
-* Tích hợp **GraphQL** với <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> và các thư viện khác.
-* Nhiều tính năng mở rộng (cảm ơn Starlette) như:
-    * **WebSockets**
-    * kiểm thử vô cùng dễ dàng dựa trên HTTPX và `pytest`
-    * **CORS**
-    * **Cookie Sessions**
-    * ...và nhiều hơn thế.
+- Định nghĩa **tham số** từ các nguồn khác nhau như: **headers**, **cookies**, **form fields** và **files**.
+- Cách thiết lập **các ràng buộc cho validation** như `maximum_length` hoặc `regex`.
+- Một hệ thống \*\*<abbr title="cũng được biết đến như components, resources, providers, services, injectables">Dependency Injection</abbr> vô cùng mạnh mẽ và dễ dàng sử dụng.
+- Bảo mật và xác thực, hỗ trợ **OAuth2**(với **JWT tokens**) và **HTTP Basic**.
+- Những kĩ thuật nâng cao hơn (nhưng tương đối dễ) để định nghĩa **JSON models lồng nhau** (cảm ơn Pydantic).
+- Tích hợp **GraphQL** với <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> và các thư viện khác.
+- Nhiều tính năng mở rộng (cảm ơn Starlette) như:
+  - **WebSockets**
+  - kiểm thử vô cùng dễ dàng dựa trên HTTPX và `pytest`
+  - **CORS**
+  - **Cookie Sessions**
+  - ...và nhiều hơn thế.
 
 ## Hiệu năng
 
-Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** chạy dưới Uvicorn là <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">một trong những Python framework nhanh nhất</a>, chỉ đứng sau Starlette và Uvicorn (được sử dụng bên trong FastAPI). (*)
+Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** chạy dưới Uvicorn là <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">một trong những Python framework nhanh nhất</a>, chỉ đứng sau Starlette và Uvicorn (được sử dụng bên trong FastAPI). (\*)
 
 Để hiểu rõ hơn, xem phần <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
@@ -452,21 +452,21 @@ Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** ch�
 
 Sử dụng bởi Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - cho email validation.
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - cho email validation.
 
 Sử dụng Starlette:
 
-* <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Bắt buộc nếu bạn muốn sử dụng `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Bắt buộc nếu bạn muốn sử dụng cấu hình template engine mặc định.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Bắt buộc nếu bạn muốn hỗ trợ <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, form với `request.form()`.
-* <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Bắt buộc để hỗ trợ `SessionMiddleware`.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Bắt buộc để hỗ trợ `SchemaGenerator` cho Starlette (bạn có thể không cần nó trong FastAPI).
+- <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Bắt buộc nếu bạn muốn sử dụng `TestClient`.
+- <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Bắt buộc nếu bạn muốn sử dụng cấu hình template engine mặc định.
+- <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Bắt buộc nếu bạn muốn hỗ trợ <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, form với `request.form()`.
+- <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - Bắt buộc để hỗ trợ `SessionMiddleware`.
+- <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - Bắt buộc để hỗ trợ `SchemaGenerator` cho Starlette (bạn có thể không cần nó trong FastAPI).
 
 Sử dụng bởi FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
-* <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Bắt buộc nếu bạn muốn sử dụng `ORJSONResponse`.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
+- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
+- <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Bắt buộc nếu bạn muốn sử dụng `ORJSONResponse`.
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 
 Bạn có thể cài đặt tất cả những dependency trên với `pip install "fastapi[all]"`.
 
