@@ -108,21 +108,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-### 使用省略号(`...`)声明必需参数
-
-有另一种方法可以显式的声明一个值是必需的，即将默认参数的默认值设为 `...` ：
-
-{* ../../docs_src/query_params_str_validations/tutorial006b.py hl[7] *}
-
-/// info
-
-如果你之前没见过 `...` 这种用法：它是一个特殊的单独值，它是 <a href="https://docs.python.org/zh-cn/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Python 的一部分并且被称为“Ellipsis”（意为省略号 —— 译者注）</a>。
-Pydantic 和 FastAPI 使用它来显式的声明需要一个值。
-
-///
-
-这将使 **FastAPI** 知道此查询参数是必需的。
-
 ### 使用`None`声明必需参数
 
 你可以声明一个参数可以接收`None`值，但它仍然是必需的。这将强制客户端发送一个值，即使该值是`None`。

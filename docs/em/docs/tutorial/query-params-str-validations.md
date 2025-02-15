@@ -148,22 +148,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-### ✔ ⏮️ ❕ (`...`)
-
-📤 🎛 🌌 🎯 📣 👈 💲 ✔. 👆 💪 ⚒ `default` 🔢 🔑 💲 `...`:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b.py hl[7] *}
-
-/// info
-
-🚥 👆 🚫 👀 👈 `...` ⏭: ⚫️ 🎁 👁 💲, ⚫️ <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">🍕 🐍 &amp; 🤙 "❕"</a>.
-
-⚫️ ⚙️ Pydantic &amp; FastAPI 🎯 📣 👈 💲 ✔.
-
-///
-
-👉 🔜 ➡️ **FastAPI** 💭 👈 👉 🔢 ✔.
-
 ### ✔ ⏮️ `None`
 
 👆 💪 📣 👈 🔢 💪 🚫 `None`, ✋️ 👈 ⚫️ ✔. 👉 🔜 ⚡ 👩‍💻 📨 💲, 🚥 💲 `None`.
