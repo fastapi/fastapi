@@ -122,18 +122,6 @@ Pydantic 是 FastAPI 中所有数据验证和序列化的核心，当你在没�
 
 ///
 
-### 使用Pydantic中的`Required`代替省略号(`...`)
-
-如果你觉得使用 `...` 不舒服，你也可以从 Pydantic 导入并使用 `Required`：
-
-{* ../../docs_src/query_params_str_validations/tutorial006d.py hl[2,8] *}
-
-/// tip
-
-请记住，在大多数情况下，当你需要某些东西时，可以简单地省略 `default` 参数，因此你通常不必使用 `...` 或 `Required`
-
-///
-
 ## 查询参数列表 / 多个值
 
 当你使用 `Query` 显式地定义查询参数时，你还可以声明它去接收一组值，或换句话来说，接收多个值。
