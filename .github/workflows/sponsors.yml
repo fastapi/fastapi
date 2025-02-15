@@ -45,9 +45,8 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
       - name: FastAPI People Sponsors
         run: python ./scripts/sponsors.py
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
+          SPONSORS_TOKEN: ${{ secrets.SPONSORS_TOKEN }}
+          PR_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
