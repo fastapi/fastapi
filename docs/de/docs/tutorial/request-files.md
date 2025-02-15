@@ -2,70 +2,41 @@
 
 Mit `File` können sie vom Client hochzuladende Dateien definieren.
 
-!!! info
-    Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    Z. B. `pip install python-multipart`.
+Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
 
-    Das, weil hochgeladene Dateien als „Formulardaten“ gesendet werden.
+Z. B. `pip install python-multipart`.
+
+Das, weil hochgeladene Dateien als „Formulardaten“ gesendet werden.
+
+///
 
 ## `File` importieren
 
 Importieren Sie `File` und `UploadFile` von `fastapi`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
 ## `File`-Parameter definieren
 
 Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` und `Form` machen würden:
 
-=== "Python 3.9+"
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
+/// info
 
-=== "Python 3.8+"
+`File` ist eine Klasse, die direkt von `Form` erbt.
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
+Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `File` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben
 
-=== "Python 3.8+ nicht annotiert"
+///
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+/// tip | Tipp
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+Um Dateibodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
 
-!!! info
-    `File` ist eine Klasse, die direkt von `Form` erbt.
-
-    Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`,  `File` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben
-
-!!! tip "Tipp"
-    Um Dateibodys zu deklarieren, müssen Sie `File` verwenden, da diese Parameter sonst als Query-Parameter oder Body(-JSON)-Parameter interpretiert werden würden.
+///
 
 Die Dateien werden als „Formulardaten“ hochgeladen.
 
@@ -79,26 +50,7 @@ Aber es gibt viele Fälle, in denen Sie davon profitieren, `UploadFile` zu verwe
 
 Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
@@ -141,11 +93,17 @@ Wenn Sie sich innerhalb einer normalen `def`-*Pfadoperation-Funktion* befinden, 
 contents = myfile.file.read()
 ```
 
-!!! note "Technische Details zu `async`"
-    Wenn Sie die `async`-Methoden verwenden, führt **FastAPI** die Datei-Methoden in einem <abbr title="Mehrere unabhängige Kindprozesse">Threadpool</abbr> aus und erwartet sie.
+/// note | Technische Details zu `async`
 
-!!! note "Technische Details zu Starlette"
-    **FastAPI**s `UploadFile` erbt direkt von **Starlette**s `UploadFile`, fügt aber ein paar notwendige Teile hinzu, um es kompatibel mit **Pydantic** und anderen Teilen von FastAPI zu machen.
+Wenn Sie die `async`-Methoden verwenden, führt **FastAPI** die Datei-Methoden in einem <abbr title="Mehrere unabhängige Kindprozesse">Threadpool</abbr> aus und erwartet sie.
+
+///
+
+/// note | Technische Details zu Starlette
+
+**FastAPI**s `UploadFile` erbt direkt von **Starlette**s `UploadFile`, fügt aber ein paar notwendige Teile hinzu, um es kompatibel mit **Pydantic** und anderen Teilen von FastAPI zu machen.
+
+///
 
 ## Was sind „Formulardaten“
 
@@ -153,82 +111,35 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodi
 
 **FastAPI** stellt sicher, dass diese Daten korrekt ausgelesen werden, statt JSON zu erwarten.
 
-!!! note "Technische Details"
-    Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
+/// note | Technische Details
 
-    Sollte das Formular aber Dateien enthalten, dann werden diese mit `multipart/form-data` kodiert. Wenn Sie `File` verwenden, wird **FastAPI** wissen, dass es die Dateien vom korrekten Teil des Bodys holen muss.
+Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <abbr title='Media type – Medientyp, Typ des Mediums'>„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
-    Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
+Sollte das Formular aber Dateien enthalten, dann werden diese mit `multipart/form-data` kodiert. Wenn Sie `File` verwenden, wird **FastAPI** wissen, dass es die Dateien vom korrekten Teil des Bodys holen muss.
 
-!!! warning "Achtung"
-    Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `multipart/form-data` statt `application/json` kodiert.
+Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
 
-    Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
+///
+
+/// warning | Achtung
+
+Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `multipart/form-data` statt `application/json` kodiert.
+
+Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
+
+///
 
 ## Optionaler Datei-Upload
 
 Sie können eine Datei optional machen, indem Sie Standard-Typannotationen verwenden und den Defaultwert auf `None` setzen:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="10  18"
-    {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
-    ```
-
-=== "Python 3.10+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="7  15"
-    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## `UploadFile` mit zusätzlichen Metadaten
 
 Sie können auch `File()` zusammen mit `UploadFile` verwenden, um zum Beispiel zusätzliche Metadaten zu setzen:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="9  15"
-    {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="8  14"
-    {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="7  13"
-    {!> ../../../docs_src/request_files/tutorial001_03.py!}
-    ```
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
 ## Mehrere Datei-Uploads
 
@@ -238,76 +149,23 @@ Diese werden demselben Formularfeld zugeordnet, welches mit den Formulardaten ge
 
 Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/request_files/tutorial002_an.py!}
-    ```
-
-=== "Python 3.9+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 Sie erhalten, wie deklariert, eine `list`e von `bytes` oder `UploadFile`s.
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+/// note | Technische Details
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+///
 
 ### Mehrere Datei-Uploads mit zusätzlichen Metadaten
 
 Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu setzen, sogar für `UploadFile`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="11  18-20"
-    {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="12  19-21"
-    {!> ../../../docs_src/request_files/tutorial003_an.py!}
-    ```
-
-=== "Python 3.9+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="9  16"
-    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.8+ nicht annotiert"
-
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-    ```Python hl_lines="11  18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
 ## Zusammenfassung
 

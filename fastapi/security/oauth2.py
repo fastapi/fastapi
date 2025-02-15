@@ -52,7 +52,7 @@ class OAuth2PasswordRequestForm:
     ```
 
     Note that for OAuth2 the scope `items:read` is a single scope in an opaque string.
-    You could have custom internal logic to separate it by colon caracters (`:`) or
+    You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
     know that that it is application specific, it's not part of the specification.
@@ -63,7 +63,7 @@ class OAuth2PasswordRequestForm:
         *,
         grant_type: Annotated[
             Union[str, None],
-            Form(pattern="password"),
+            Form(pattern="^password$"),
             Doc(
                 """
                 The OAuth2 spec says it is required and MUST be the fixed string
@@ -194,7 +194,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     ```
 
     Note that for OAuth2 the scope `items:read` is a single scope in an opaque string.
-    You could have custom internal logic to separate it by colon caracters (`:`) or
+    You could have custom internal logic to separate it by colon characters (`:`) or
     similar, and get the two parts `items` and `read`. Many applications do that to
     group and organize permissions, you could do it as well in your application, just
     know that that it is application specific, it's not part of the specification.
@@ -217,7 +217,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
         self,
         grant_type: Annotated[
             str,
-            Form(pattern="password"),
+            Form(pattern="^password$"),
             Doc(
                 """
                 The OAuth2 spec says it is required and MUST be the fixed string

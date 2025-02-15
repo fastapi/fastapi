@@ -4,18 +4,24 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 👉, ⚙️ `yield` ↩️ `return`, &amp; ✍ ➕ 🔁 ⏮️.
 
-!!! tip
-    ⚒ 💭 ⚙️ `yield` 1️⃣ 👁 🕰.
+/// tip
 
-!!! note "📡 ℹ"
-    🙆 🔢 👈 ☑ ⚙️ ⏮️:
+⚒ 💭 ⚙️ `yield` 1️⃣ 👁 🕰.
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ⚖️
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+///
 
-    🔜 ☑ ⚙️ **FastAPI** 🔗.
+/// note | 📡 ℹ
 
-    👐, FastAPI ⚙️ 📚 2️⃣ 👨‍🎨 🔘.
+🙆 🔢 👈 ☑ ⚙️ ⏮️:
+
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ⚖️
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+
+🔜 ☑ ⚙️ **FastAPI** 🔗.
+
+👐, FastAPI ⚙️ 📚 2️⃣ 👨‍🎨 🔘.
+
+///
 
 ## 💽 🔗 ⏮️ `yield`
 
@@ -23,26 +29,23 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 🕴 📟 ⏭ &amp; 🔌 `yield` 📄 🛠️ ⏭ 📨 📨:
 
-```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 🌾 💲 ⚫️❔ 💉 🔘 *➡ 🛠️* &amp; 🎏 🔗:
 
-```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 📟 📄 `yield` 📄 🛠️ ⏮️ 📨 ✔️ 🚚:
 
-```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
-!!! tip
-    👆 💪 ⚙️ `async` ⚖️ 😐 🔢.
+/// tip
 
-    **FastAPI** 🔜 ▶️️ 👜 ⏮️ 🔠, 🎏 ⏮️ 😐 🔗.
+👆 💪 ⚙️ `async` ⚖️ 😐 🔢.
+
+**FastAPI** 🔜 ▶️️ 👜 ⏮️ 🔠, 🎏 ⏮️ 😐 🔗.
+
+///
 
 ## 🔗 ⏮️ `yield` &amp; `try`
 
@@ -54,9 +57,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 🎏 🌌, 👆 💪 ⚙️ `finally` ⚒ 💭 🚪 📶 🛠️, 🙅‍♂ 🤔 🚥 📤 ⚠ ⚖️ 🚫.
 
-```Python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## 🎧-🔗 ⏮️ `yield`
 
@@ -66,9 +67,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 🖼, `dependency_c` 💪 ✔️ 🔗 🔛 `dependency_b`, &amp; `dependency_b` 🔛 `dependency_a`:
 
-```Python hl_lines="4  12  20"
-{!../../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[4,12,20] *}
 
 &amp; 🌐 👫 💪 ⚙️ `yield`.
 
@@ -76,9 +75,7 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 &amp; , 🔄, `dependency_b` 💪 💲 ⚪️➡️ `dependency_a` (📥 📛 `dep_a`) 💪 🚮 🚪 📟.
 
-```Python hl_lines="16-17  24-25"
-{!../../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[16:17,24:25] *}
 
 🎏 🌌, 👆 💪 ✔️ 🔗 ⏮️ `yield` &amp; `return` 🌀.
 
@@ -88,10 +85,13 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 **FastAPI** 🔜 ⚒ 💭 🌐 🏃 ☑ ✔.
 
-!!! note "📡 ℹ"
-    👉 👷 👏 🐍 <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">🔑 👨‍💼</a>.
+/// note | 📡 ℹ
 
-    **FastAPI** ⚙️ 👫 🔘 🏆 👉.
+👉 👷 👏 🐍 <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">🔑 👨‍💼</a>.
+
+**FastAPI** ⚙️ 👫 🔘 🏆 👉.
+
+///
 
 ## 🔗 ⏮️ `yield` &amp; `HTTPException`
 
@@ -113,8 +113,11 @@ FastAPI 🐕‍🦺 🔗 👈 <abbr title='sometimes also called "exit", "cleanu
 
 🚥 👆 ✔️ 🛃 ⚠ 👈 👆 🔜 💖 🍵 *⏭* 🛬 📨 &amp; 🎲 ❎ 📨, 🎲 🙋‍♀ `HTTPException`, ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank}.
 
-!!! tip
-    👆 💪 🤚 ⚠ 🔌 `HTTPException` *⏭* `yield`. ✋️ 🚫 ⏮️.
+/// tip
+
+👆 💪 🤚 ⚠ 🔌 `HTTPException` *⏭* `yield`. ✋️ 🚫 ⏮️.
+
+///
 
 🔁 🛠️ 🌅 ⚖️ 🌘 💖 👉 📊. 🕰 💧 ⚪️➡️ 🔝 🔝. &amp; 🔠 🏓 1️⃣ 🍕 🔗 ⚖️ 🛠️ 📟.
 
@@ -158,15 +161,21 @@ participant tasks as Background tasks
     end
 ```
 
-!!! info
-    🕴 **1️⃣ 📨** 🔜 📨 👩‍💻. ⚫️ 💪 1️⃣ ❌ 📨 ⚖️ ⚫️ 🔜 📨 ⚪️➡️ *➡ 🛠️*.
+/// info
 
-    ⏮️ 1️⃣ 📚 📨 📨, 🙅‍♂ 🎏 📨 💪 📨.
+🕴 **1️⃣ 📨** 🔜 📨 👩‍💻. ⚫️ 💪 1️⃣ ❌ 📨 ⚖️ ⚫️ 🔜 📨 ⚪️➡️ *➡ 🛠️*.
 
-!!! tip
-    👉 📊 🎦 `HTTPException`, ✋️ 👆 💪 🤚 🙆 🎏 ⚠ ❔ 👆 ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank}.
+⏮️ 1️⃣ 📚 📨 📨, 🙅‍♂ 🎏 📨 💪 📨.
 
-    🚥 👆 🤚 🙆 ⚠, ⚫️ 🔜 🚶‍♀️ 🔗 ⏮️ 🌾, 🔌 `HTTPException`, &amp; ⤴️ **🔄** ⚠ 🐕‍🦺. 🚥 📤 🙅‍♂ ⚠ 🐕‍🦺 👈 ⚠, ⚫️ 🔜 ⤴️ 🍵 🔢 🔗 `ServerErrorMiddleware`, 🛬 5️⃣0️⃣0️⃣ 🇺🇸🔍 👔 📟, ➡️ 👩‍💻 💭 👈 📤 ❌ 💽.
+///
+
+/// tip
+
+👉 📊 🎦 `HTTPException`, ✋️ 👆 💪 🤚 🙆 🎏 ⚠ ❔ 👆 ✍ [🛃 ⚠ 🐕‍🦺](../handling-errors.md#_4){.internal-link target=_blank}.
+
+🚥 👆 🤚 🙆 ⚠, ⚫️ 🔜 🚶‍♀️ 🔗 ⏮️ 🌾, 🔌 `HTTPException`, &amp; ⤴️ **🔄** ⚠ 🐕‍🦺. 🚥 📤 🙅‍♂ ⚠ 🐕‍🦺 👈 ⚠, ⚫️ 🔜 ⤴️ 🍵 🔢 🔗 `ServerErrorMiddleware`, 🛬 5️⃣0️⃣0️⃣ 🇺🇸🔍 👔 📟, ➡️ 👩‍💻 💭 👈 📤 ❌ 💽.
+
+///
 
 ## 🔑 👨‍💼
 
@@ -190,30 +199,34 @@ with open("./somefile.txt") as f:
 
 ### ⚙️ 🔑 👨‍💼 🔗 ⏮️ `yield`
 
-!!! warning
-    👉, 🌅 ⚖️ 🌘, "🏧" 💭.
+/// warning
 
-    🚥 👆 ▶️ ⏮️ **FastAPI** 👆 💪 💚 🚶 ⚫️ 🔜.
+👉, 🌅 ⚖️ 🌘, "🏧" 💭.
+
+🚥 👆 ▶️ ⏮️ **FastAPI** 👆 💪 💚 🚶 ⚫️ 🔜.
+
+///
 
 🐍, 👆 💪 ✍ 🔑 👨‍💼 <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">🏗 🎓 ⏮️ 2️⃣ 👩‍🔬: `__enter__()` &amp; `__exit__()`</a>.
 
 👆 💪 ⚙️ 👫 🔘 **FastAPI** 🔗 ⏮️ `yield` ⚙️
 `with` ⚖️ `async with` 📄 🔘 🔗 🔢:
 
-```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
-!!! tip
-    ➕1️⃣ 🌌 ✍ 🔑 👨‍💼 ⏮️:
+/// tip
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ⚖️
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+➕1️⃣ 🌌 ✍ 🔑 👨‍💼 ⏮️:
 
-    ⚙️ 👫 🎀 🔢 ⏮️ 👁 `yield`.
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> ⚖️
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
-    👈 ⚫️❔ **FastAPI** ⚙️ 🔘 🔗 ⏮️ `yield`.
+⚙️ 👫 🎀 🔢 ⏮️ 👁 `yield`.
 
-    ✋️ 👆 🚫 ✔️ ⚙️ 👨‍🎨 FastAPI 🔗 (&amp; 👆 🚫🔜 🚫).
+👈 ⚫️❔ **FastAPI** ⚙️ 🔘 🔗 ⏮️ `yield`.
 
-    FastAPI 🔜 ⚫️ 👆 🔘.
+✋️ 👆 🚫 ✔️ ⚙️ 👨‍🎨 FastAPI 🔗 (&amp; 👆 🚫🔜 🚫).
+
+FastAPI 🔜 ⚫️ 👆 🔘.
+
+///

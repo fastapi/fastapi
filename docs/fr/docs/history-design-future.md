@@ -1,6 +1,6 @@
 # Histoire, conception et avenir
 
-Il y a quelque temps, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un utilisateur de **FastAPI** a demandé</a> :
+Il y a quelque temps, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un utilisateur de **FastAPI** a demandé</a> :
 
 > Quelle est l'histoire de ce projet ? Il semble être sorti de nulle part et est devenu génial en quelques semaines [...].
 

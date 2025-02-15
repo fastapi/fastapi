@@ -2,9 +2,7 @@
 
 Tệp tin FastAPI đơn giản nhất có thể trông như này:
 
-```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Sao chép sang một tệp tin `main.py`.
 
@@ -24,12 +22,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    Câu lệnh `uvicorn main:app` được giải thích như sau:
+/// note
 
-    * `main`: tệp tin `main.py` (một Python "mô đun").
-    * `app`: một object được tạo ra bên trong `main.py` với dòng `app = FastAPI()`.
-    * `--reload`: làm server khởi động lại sau mỗi lần thay đổi. Chỉ sử dụng trong môi trường phát triển.
+Câu lệnh `uvicorn main:app` được giải thích như sau:
+
+* `main`: tệp tin `main.py` (một Python "mô đun").
+* `app`: một object được tạo ra bên trong `main.py` với dòng `app = FastAPI()`.
+* `--reload`: làm server khởi động lại sau mỗi lần thay đổi. Chỉ sử dụng trong môi trường phát triển.
+
+///
 
 Trong output, có một dòng giống như:
 
@@ -130,22 +131,21 @@ Bạn cũng có thể sử dụng nó để sinh code tự động, với các c
 
 ### Bước 1: import `FastAPI`
 
-```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` là một Python class cung cấp tất cả chức năng cho API của bạn.
 
-!!! note "Chi tiết kĩ thuật"
-    `FastAPI` là một class kế thừa trực tiếp `Starlette`.
+/// note | Chi tiết kĩ thuật
 
-    Bạn cũng có thể sử dụng tất cả <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> chức năng với `FastAPI`.
+`FastAPI` là một class kế thừa trực tiếp `Starlette`.
+
+Bạn cũng có thể sử dụng tất cả <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> chức năng với `FastAPI`.
+
+///
 
 ### Bước 2: Tạo một `FastAPI` "instance"
 
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Biến `app` này là một "instance" của class `FastAPI`.
 
@@ -165,9 +165,7 @@ $ uvicorn main:app --reload
 
 Nếu bạn tạo ứng dụng của bạn giống như:
 
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 Và đặt nó trong một tệp tin `main.py`, sau đó bạn sẽ gọi `uvicorn` giống như:
 
@@ -199,8 +197,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-    Một đường dẫn cũng là một cách gọi chung cho một "endpoint" hoặc một "route".
+/// info
+
+Một đường dẫn cũng là một cách gọi chung cho một "endpoint" hoặc một "route".
+
+///
 
 Trong khi xây dựng một API, "đường dẫn" là các chính để phân tách "mối quan hệ" và "tài nguyên".
 
@@ -241,25 +242,26 @@ Chúng ta cũng sẽ gọi chúng là "**các toán tử**".
 
 #### Định nghĩa moojt *decorator cho đường dẫn toán tử*
 
-```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` nói **FastAPI** rằng hàm bên dưới có trách nhiệm xử lí request tới:
 
 * đường dẫn `/`
 * sử dụng một <abbr title="an HTTP GET method">toán tử<code>get</code></abbr>
 
-!!! info Thông tin về "`@decorator`"
-    Cú pháp `@something` trong Python được gọi là một "decorator".
+/// info | Thông tin về "`@decorator`"
 
-    Bạn đặt nó trên một hàm. Giống như một chiếc mũ xinh xắn (Tôi ddonas đó là lí do mà thuật ngữ này ra đời).
+Cú pháp `@something` trong Python được gọi là một "decorator".
 
-    Một "decorator" lấy một hàm bên dưới và thực hiện một vài thứ với nó.
+Bạn đặt nó trên một hàm. Giống như một chiếc mũ xinh xắn (Tôi ddonas đó là lí do mà thuật ngữ này ra đời).
 
-    Trong trường hợp của chúng ta, decorator này nói **FastAPI** rằng hàm bên dưới ứng với **đường dẫn** `/` và một **toán tử** `get`.
+Một "decorator" lấy một hàm bên dưới và thực hiện một vài thứ với nó.
 
-    Nó là một "**decorator đường dẫn toán tử**".
+Trong trường hợp của chúng ta, decorator này nói **FastAPI** rằng hàm bên dưới ứng với **đường dẫn** `/` và một **toán tử** `get`.
+
+Nó là một "**decorator đường dẫn toán tử**".
+
+///
 
 Bạn cũng có thể sử dụng với các toán tử khác:
 
@@ -274,14 +276,17 @@ Và nhiều hơn với các toán tử còn lại:
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    Bạn thoải mái sử dụng mỗi toán tử (phương thức HTTP) như bạn mơ ước.
+/// tip
 
-    **FastAPI** không bắt buộc bất kì ý nghĩa cụ thể nào.
+Bạn thoải mái sử dụng mỗi toán tử (phương thức HTTP) như bạn mơ ước.
 
-    Thông tin ở đây được biểu thị như là một chỉ dẫn, không phải là một yêu cầu bắt buộc.
+**FastAPI** không bắt buộc bất kì ý nghĩa cụ thể nào.
 
-    Ví dụ, khi sử dụng GraphQL bạn thông thường thực hiện tất cả các hành động chỉ bằng việc sử dụng các toán tử `POST`.
+Thông tin ở đây được biểu thị như là một chỉ dẫn, không phải là một yêu cầu bắt buộc.
+
+Ví dụ, khi sử dụng GraphQL bạn thông thường thực hiện tất cả các hành động chỉ bằng việc sử dụng các toán tử `POST`.
+
+///
 
 ### Step 4: Định nghĩa **hàm cho đường dẫn toán tử**
 
@@ -291,9 +296,7 @@ Và nhiều hơn với các toán tử còn lại:
 * **toán tử**: là `get`.
 * **hàm**: là hàm bên dưới "decorator" (bên dưới `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Đây là một hàm Python.
 
@@ -305,18 +308,17 @@ Trong trường hợp này, nó là một hàm `async`.
 
 Bạn cũng có thể định nghĩa nó như là một hàm thông thường thay cho `async def`:
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
-!!! note
-    Nếu bạn không biết sự khác nhau, kiểm tra [Async: *"Trong khi vội vàng?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+/// note
+
+Nếu bạn không biết sự khác nhau, kiểm tra [Async: *"Trong khi vội vàng?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+
+///
 
 ### Bước 5: Nội dung trả về
 
-```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Bạn có thể trả về một `dict`, `list`, một trong những giá trị đơn như `str`, `int`,...
 

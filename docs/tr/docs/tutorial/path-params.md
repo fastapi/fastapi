@@ -2,9 +2,7 @@
 
 Yol "parametrelerini" veya "değişkenlerini" Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimi ile tanımlayabilirsiniz.
 
-```Python hl_lines="6-7"
-{!../../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 Yol parametresi olan `item_id`'nin değeri, fonksiyonunuza `item_id` argümanı olarak aktarılacaktır.
 
@@ -18,14 +16,15 @@ Eğer bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" clas
 
 Standart Python tip belirteçlerini kullanarak yol parametresinin tipini fonksiyonun içerisinde tanımlayabilirsiniz.
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Bu durumda, `item_id` bir `int` olarak tanımlanacaktır.
 
-!!! check "Ek bilgi"
-    Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
+/// check | Ek bilgi
+
+Bu sayede, fonksiyon içerisinde hata denetimi, kod tamamlama gibi konularda editör desteğine kavuşacaksınız.
+
+///
 
 ## Veri <abbr title="Dönüşüm: serialization, parsing ve marshalling olarak da biliniyor">Dönüşümü</abbr>
 
@@ -35,10 +34,13 @@ Eğer bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:800
 {"item_id":3}
 ```
 
-!!! check "Ek bilgi"
-    Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
+/// check | Ek bilgi
 
-    Bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+Dikkatinizi çekerim ki, fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3` bir string `"3"` değil aksine bir Python `int`'idir.
+
+Bu tanımlamayla birlikte, **FastAPI** size otomatik istek <abbr title="HTTP isteği ile birlikte gelen string'i Python verisine dönüştürme">"ayrıştırma"</abbr> özelliği sağlar.
+
+///
 
 ## Veri Doğrulama
 
@@ -65,12 +67,15 @@ Eğer tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external
 
 Aynı hata <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> sayfasında olduğu gibi `int` yerine `float` bir değer verseydik de ortaya çıkardı.
 
-!!! check "Ek bilgi"
-    Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
+/// check | Ek bilgi
 
-    Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
+Böylece, aynı Python tip tanımlaması ile birlikte, **FastAPI** veri doğrulama özelliği sağlar.
 
-    Bu özellik, API'ınızla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
+Dikkatinizi çekerim ki, karşılaştığınız hata, doğrulamanın geçersiz olduğu mutlak noktayı da açık bir şekilde belirtiyor.
+
+Bu özellik, API'ınızla iletişime geçen kodu geliştirirken ve ayıklarken inanılmaz derecede yararlı olacaktır.
+
+///
 
 ## Dokümantasyon
 
@@ -78,10 +83,13 @@ Ayrıca, tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-l
 
 <img src="/img/tutorial/path-params/image01.png">
 
-!!! check "Ek bilgi"
-    Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
+/// check | Ek bilgi
 
-    Dikkatinizi çekerim ki, yol parametresi integer olarak tanımlanmıştır.
+Üstelik, sadece aynı Python tip tanımlaması ile, **FastAPI** size otomatik ve interaktif (Swagger UI ile entegre) bir dokümantasyon sağlar.
+
+Dikkatinizi çekerim ki, yol parametresi integer olarak tanımlanmıştır.
+
+///
 
 ## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon
 
@@ -111,17 +119,13 @@ Benzer şekilde `/users/{user_id}` gibi tanımlanmış ve belirli bir kullanıc�
 
 *Yol operasyonları* sıralı bir şekilde gözden geçirildiğinden dolayı `/users/me` yolunun `/users/{user_id}` yolundan önce tanımlanmış olmasından emin olmanız gerekmektedir:
 
-```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Aksi halde, `/users/{user_id}` yolu `"me"` değerinin `user_id` parametresi için gönderildiğini "düşünerek" `/users/me` ile de eşleşir.
 
 Benzer şekilde, bir yol operasyonunu yeniden tanımlamanız mümkün değildir:
 
-```Python hl_lines="6  11"
-{!../../../docs_src/path_params/tutorial003b.py!}
-```
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 Yol, ilk kısım ile eşleştiğinden dolayı her koşulda ilk yol operasyonu kullanılacaktır.
 
@@ -137,23 +141,25 @@ Eğer *yol parametresi* alan bir *yol operasyonunuz* varsa ve alabileceği *yol 
 
 Sonrasında, sınıf içerisinde, mevcut ve geçerli değerler olacak olan sabit değerli özelliklerini oluşturalım:
 
-```Python hl_lines="1  6-9"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
-!!! info "Bilgi"
-    3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
+/// info | Bilgi
 
-!!! tip "İpucu"
-    Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
+3.4 sürümünden beri <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">enumerationlar (ya da enumlar) Python'da mevcuttur</a>.
+
+///
+
+/// tip | İpucu
+
+Merak ediyorsanız söyleyeyim, "AlexNet", "ResNet" ve "LeNet" isimleri Makine Öğrenmesi <abbr title="Teknik olarak, Derin Öğrenme model mimarileri">modellerini</abbr> temsil eder.
+
+///
 
 ### Bir *Yol Parametresi* Tanımlayalım
 
 Sonrasında, yarattığımız enum sınıfını (`ModelName`) kullanarak tip belirteci aracılığıyla bir *yol parametresi* oluşturalım:
 
-```Python hl_lines="16"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Dokümana Göz Atalım
 
@@ -169,20 +175,19 @@ Sonrasında, yarattığımız enum sınıfını (`ModelName`) kullanarak tip bel
 
 Parametreyi, yarattığınız enum olan `ModelName` içerisindeki *enumeration üyesi* ile karşılaştırabilirsiniz:
 
-```Python hl_lines="17"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### *Enumeration Değerini* Edinelim
 
 `model_name.value` veya genel olarak `your_enum_member.value` tanımlarını kullanarak (bu durumda bir `str` olan) gerçek değere ulaşabilirsiniz:
 
-```Python hl_lines="20"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
-!!! tip "İpucu"
-    `"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
+/// tip | İpucu
+
+`"lenet"` değerine `ModelName.lenet.value` tanımı ile de ulaşabilirsiniz.
+
+///
 
 #### *Enumeration Üyelerini* Döndürelim
 
@@ -190,9 +195,7 @@ JSON gövdesine (örneğin bir `dict`) gömülü olsalar bile *yol operasyonunda
 
 Bu üyeler istemciye iletilmeden önce kendilerine karşılık gelen değerlerine (bu durumda string) dönüştürüleceklerdir:
 
-```Python hl_lines="18  21  23"
-{!../../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 İstemci tarafında şuna benzer bir JSON yanıtı ile karşılaşırsınız:
 
@@ -231,14 +234,15 @@ Bu durumda, parametrenin adı `file_path` olacaktır ve son kısım olan `:path`
 
 Böylece şunun gibi bir kullanım yapabilirsiniz:
 
-```Python hl_lines="6"
-{!../../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
-!!! tip "İpucu"
-    Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
+/// tip | İpucu
 
-    Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
+Parametrenin başında `/home/johndoe/myfile.txt` yolunda olduğu gibi (`/`) işareti ile birlikte kullanmanız gerektiği durumlar olabilir.
+
+Bu durumda, URL, `files` ile `home` arasında iki eğik çizgiye (`//`) sahip olup `/files//home/johndoe/myfile.txt` gibi gözükecektir.
+
+///
 
 ## Özet
 

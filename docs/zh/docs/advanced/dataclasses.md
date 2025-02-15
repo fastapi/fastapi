@@ -4,9 +4,7 @@ FastAPI 基于 **Pydantic** 构建，前文已经介绍过如何使用 Pydantic 
 
 但 FastAPI 还可以使用数据类（<a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>）：
 
-```Python hl_lines="1  7-12  19-20"
-{!../../../docs_src/dataclasses/tutorial001.py!}
-```
+{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
 
 这还是借助于 **Pydantic** 及其<a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">内置的 `dataclasses`</a>。
 
@@ -20,21 +18,21 @@ FastAPI 基于 **Pydantic** 构建，前文已经介绍过如何使用 Pydantic 
 
 数据类的和运作方式与 Pydantic 模型相同。实际上，它的底层使用的也是 Pydantic。
 
-!!! info "说明"
+/// info | 说明
 
-    注意，数据类不支持 Pydantic 模型的所有功能。
+注意，数据类不支持 Pydantic 模型的所有功能。
 
-    因此，开发时仍需要使用 Pydantic 模型。
+因此，开发时仍需要使用 Pydantic 模型。
 
-    但如果数据类很多，这一技巧能给 FastAPI 开发 Web API 增添不少助力。🤓
+但如果数据类很多，这一技巧能给 FastAPI 开发 Web API 增添不少助力。🤓
+
+///
 
 ## `response_model` 使用数据类
 
 在 `response_model` 参数中使用 `dataclasses`：
 
-```Python hl_lines="1  7-13  19"
-{!../../../docs_src/dataclasses/tutorial002.py!}
-```
+{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
 
 本例把数据类自动转换为 Pydantic 数据类。
 
@@ -51,7 +49,7 @@ API 文档中也会显示相关概图：
 本例把标准的 `dataclasses` 直接替换为 `pydantic.dataclasses`：
 
 ```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../../docs_src/dataclasses/tutorial003.py!}
+{!../../docs_src/dataclasses/tutorial003.py!}
 ```
 
 1. 本例依然要从标准的 `dataclasses` 中导入 `field`；
