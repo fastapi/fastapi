@@ -47,9 +47,11 @@ This is the current list of team members. 😎
 They have different levels of involvement and permissions, they can perform [repository management tasks](./management-tasks.md){.internal-link target=_blank} and together we  [manage the FastAPI repository](./management.md){.internal-link target=_blank}.
 
 <div class="user-list user-list-center">
+
 {% for user in members["members"] %}
 
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatar_url }}"/></div><div class="title">@{{ user.login }}</div></a></div>
+
 {% endfor %}
 
 </div>
@@ -83,9 +85,15 @@ You can see the **FastAPI Experts** for:
 These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last month. 🤓
 
 <div class="user-list user-list-center">
+
 {% for user in people.last_month_experts[:10] %}
 
+{% if user.login not in skip_users %}
+
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+
+{% endif %}
+
 {% endfor %}
 
 </div>
@@ -95,9 +103,15 @@ These are the users that have been [helping others the most with questions in Gi
 These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 3 months. 😎
 
 <div class="user-list user-list-center">
+
 {% for user in people.three_months_experts[:10] %}
 
+{% if user.login not in skip_users %}
+
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+
+{% endif %}
+
 {% endfor %}
 
 </div>
@@ -107,9 +121,15 @@ These are the users that have been [helping others the most with questions in Gi
 These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last 6 months. 🧐
 
 <div class="user-list user-list-center">
+
 {% for user in people.six_months_experts[:10] %}
 
+{% if user.login not in skip_users %}
+
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+
+{% endif %}
+
 {% endfor %}
 
 </div>
@@ -119,9 +139,15 @@ These are the users that have been [helping others the most with questions in Gi
 These are the users that have been [helping others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} during the last year. 🧑‍🔬
 
 <div class="user-list user-list-center">
+
 {% for user in people.one_year_experts[:20] %}
 
+{% if user.login not in skip_users %}
+
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+
+{% endif %}
+
 {% endfor %}
 
 </div>
@@ -133,9 +159,15 @@ Here are the all time **FastAPI Experts**. 🤓🤯
 These are the users that have [helped others the most with questions in GitHub](help-fastapi.md#help-others-with-questions-in-github){.internal-link target=_blank} through *all time*. 🧙
 
 <div class="user-list user-list-center">
+
 {% for user in people.experts[:50] %}
 
+{% if user.login not in skip_users %}
+
 <div class="user"><a href="{{ user.url }}" target="_blank"><div class="avatar-wrapper"><img src="{{ user.avatarUrl }}"/></div><div class="title">@{{ user.login }}</div></a> <div class="count">Questions replied: {{ user.count }}</div></div>
+
+{% endif %}
+
 {% endfor %}
 
 </div>
@@ -149,6 +181,7 @@ These users have [created the most Pull Requests](help-fastapi.md#create-a-pull-
 They have contributed source code, documentation, etc. 📦
 
 <div class="user-list user-list-center">
+
 {% for user in (contributors.values() | list)[:50] %}
 
 {% if user.login not in skip_users %}
