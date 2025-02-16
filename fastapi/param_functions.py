@@ -13,10 +13,10 @@ def Path(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is provided for compatibility only.
             """
         ),
     ] = ...,
@@ -25,10 +25,10 @@ def Path(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable that generates the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is provided for compatibility only.
             """
         ),
     ] = _Unset,
@@ -38,7 +38,7 @@ def Path(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -58,8 +58,8 @@ def Path(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -67,9 +67,9 @@ def Path(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -77,7 +77,7 @@ def Path(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -85,7 +85,7 @@ def Path(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -93,7 +93,7 @@ def Path(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -103,7 +103,7 @@ def Path(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -111,7 +111,7 @@ def Path(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -120,7 +120,7 @@ def Path(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -179,7 +179,7 @@ def Path(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -187,7 +187,7 @@ def Path(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -195,7 +195,7 @@ def Path(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -228,7 +228,7 @@ def Path(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -243,9 +243,9 @@ def Path(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -253,10 +253,10 @@ def Path(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -341,7 +341,7 @@ def Query(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -350,10 +350,10 @@ def Query(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -363,7 +363,7 @@ def Query(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -383,8 +383,8 @@ def Query(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -392,9 +392,9 @@ def Query(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -402,7 +402,7 @@ def Query(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -410,7 +410,7 @@ def Query(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -418,7 +418,7 @@ def Query(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -428,7 +428,7 @@ def Query(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -436,7 +436,7 @@ def Query(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -445,7 +445,7 @@ def Query(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -504,7 +504,7 @@ def Query(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -512,7 +512,7 @@ def Query(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -520,7 +520,7 @@ def Query(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -553,7 +553,7 @@ def Query(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -568,9 +568,9 @@ def Query(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -578,10 +578,10 @@ def Query(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -645,7 +645,7 @@ def Header(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -654,10 +654,10 @@ def Header(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -667,7 +667,7 @@ def Header(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -687,8 +687,8 @@ def Header(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -696,9 +696,9 @@ def Header(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -717,7 +717,7 @@ def Header(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -725,7 +725,7 @@ def Header(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -733,7 +733,7 @@ def Header(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -743,7 +743,7 @@ def Header(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -751,7 +751,7 @@ def Header(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -760,7 +760,7 @@ def Header(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -819,7 +819,7 @@ def Header(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -827,7 +827,7 @@ def Header(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -835,7 +835,7 @@ def Header(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -868,7 +868,7 @@ def Header(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -883,9 +883,9 @@ def Header(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -893,10 +893,10 @@ def Header(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -961,7 +961,7 @@ def Cookie(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -970,10 +970,10 @@ def Cookie(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -983,7 +983,7 @@ def Cookie(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -1003,8 +1003,8 @@ def Cookie(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -1012,9 +1012,9 @@ def Cookie(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -1022,7 +1022,7 @@ def Cookie(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -1030,7 +1030,7 @@ def Cookie(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -1038,7 +1038,7 @@ def Cookie(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -1048,7 +1048,7 @@ def Cookie(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1056,7 +1056,7 @@ def Cookie(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1065,7 +1065,7 @@ def Cookie(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1124,7 +1124,7 @@ def Cookie(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1132,7 +1132,7 @@ def Cookie(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1140,7 +1140,7 @@ def Cookie(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -1173,7 +1173,7 @@ def Cookie(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -1188,9 +1188,9 @@ def Cookie(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -1198,10 +1198,10 @@ def Cookie(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -1265,7 +1265,7 @@ def Body(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -1274,10 +1274,10 @@ def Body(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -1299,8 +1299,8 @@ def Body(  # noqa: N802
         str,
         Doc(
             """
-            The media type of this parameter field. Changing it would affect the
-            generated OpenAPI, but currently it doesn't affect the parsing of the data.
+            The media type of this parameter field. Changing it affects the
+            generated OpenAPI but does not currently impact data parsing.
             """
         ),
     ] = "application/json",
@@ -1310,7 +1310,7 @@ def Body(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -1330,8 +1330,8 @@ def Body(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -1339,9 +1339,9 @@ def Body(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -1349,7 +1349,7 @@ def Body(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -1357,7 +1357,7 @@ def Body(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -1365,7 +1365,7 @@ def Body(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -1375,7 +1375,7 @@ def Body(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1383,7 +1383,7 @@ def Body(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1392,7 +1392,7 @@ def Body(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1451,7 +1451,7 @@ def Body(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1459,7 +1459,7 @@ def Body(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1467,7 +1467,7 @@ def Body(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -1500,7 +1500,7 @@ def Body(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -1515,9 +1515,9 @@ def Body(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -1525,10 +1525,10 @@ def Body(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -1594,7 +1594,7 @@ def Form(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -1603,10 +1603,10 @@ def Form(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -1614,8 +1614,8 @@ def Form(  # noqa: N802
         str,
         Doc(
             """
-            The media type of this parameter field. Changing it would affect the
-            generated OpenAPI, but currently it doesn't affect the parsing of the data.
+            The media type of this parameter field. Changing it affects the
+            generated OpenAPI but does not currently impact data parsing.
             """
         ),
     ] = "application/x-www-form-urlencoded",
@@ -1625,7 +1625,7 @@ def Form(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -1645,8 +1645,8 @@ def Form(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -1654,9 +1654,9 @@ def Form(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -1664,7 +1664,7 @@ def Form(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -1672,7 +1672,7 @@ def Form(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -1680,7 +1680,7 @@ def Form(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -1690,7 +1690,7 @@ def Form(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1698,7 +1698,7 @@ def Form(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1707,7 +1707,7 @@ def Form(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -1766,7 +1766,7 @@ def Form(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1774,7 +1774,7 @@ def Form(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -1782,7 +1782,7 @@ def Form(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -1815,7 +1815,7 @@ def Form(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -1830,9 +1830,9 @@ def Form(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -1840,10 +1840,10 @@ def Form(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -1908,7 +1908,7 @@ def File(  # noqa: N802
         Any,
         Doc(
             """
-            Default value if the parameter field is not set.
+            The default value used when the parameter field is not set.
             """
         ),
     ] = Undefined,
@@ -1917,10 +1917,10 @@ def File(  # noqa: N802
         Union[Callable[[], Any], None],
         Doc(
             """
-            A callable to generate the default value.
+            A callable used to generate the default value.
 
-            This doesn't affect `Path` parameters as the value is always required.
-            The parameter is available only for compatibility.
+            This does not affect `Path` parameters, as the value is always required.
+            The parameter is available for compatibility only.
             """
         ),
     ] = _Unset,
@@ -1928,8 +1928,8 @@ def File(  # noqa: N802
         str,
         Doc(
             """
-            The media type of this parameter field. Changing it would affect the
-            generated OpenAPI, but currently it doesn't affect the parsing of the data.
+            The media type of this parameter field. Changing it affects the
+            generated OpenAPI but does not currently impact data parsing.
             """
         ),
     ] = "multipart/form-data",
@@ -1939,7 +1939,7 @@ def File(  # noqa: N802
             """
             An alternative name for the parameter field.
 
-            This will be used to extract the data and for the generated OpenAPI.
+            Used for data extraction and in the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
             """
@@ -1959,8 +1959,8 @@ def File(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Whitelist' validation step. The parameter field will be the single one
-            allowed by the alias or set of aliases defined.
+            'Whitelist' validation step. The parameter field will be the only one
+            allowed under the defined alias or set of aliases.
             """
         ),
     ] = None,
@@ -1968,9 +1968,9 @@ def File(  # noqa: N802
         Union[str, None],
         Doc(
             """
-            'Blacklist' validation step. The vanilla parameter field will be the
-            single one of the alias' or set of aliases' fields and all the other
-            fields will be ignored at serialization time.
+            'Blacklist' validation step. The original parameter field will be the
+            only one used among the alias' or set of aliases' fields, and all other
+            fields will be ignored during serialization.
             """
         ),
     ] = None,
@@ -1978,7 +1978,7 @@ def File(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable title.
+            A human-readable title.
             """
         ),
     ] = None,
@@ -1986,7 +1986,7 @@ def File(  # noqa: N802
         Optional[str],
         Doc(
             """
-            Human-readable description.
+            A human-readable description.
             """
         ),
     ] = None,
@@ -1994,7 +1994,7 @@ def File(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
+            Greater than. If set, value must be greater than this. Applicable only to
             numbers.
             """
         ),
@@ -2004,7 +2004,7 @@ def File(  # noqa: N802
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -2012,7 +2012,7 @@ def File(  # noqa: N802
         Optional[float],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable only to numbers.
             """
         ),
     ] = None,
@@ -2021,7 +2021,7 @@ def File(  # noqa: N802
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable only to numbers.
             """
         ),
     ] = None,
@@ -2080,7 +2080,7 @@ def File(  # noqa: N802
         Union[float, None],
         Doc(
             """
-            Value must be a multiple of this. Only applicable to numbers.
+            Value must be a multiple of this. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -2088,7 +2088,7 @@ def File(  # noqa: N802
         Union[bool, None],
         Doc(
             """
-            Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
+            Allow `inf`, `-inf`, `nan`. Applicable only to numbers.
             """
         ),
     ] = _Unset,
@@ -2096,7 +2096,7 @@ def File(  # noqa: N802
         Union[int, None],
         Doc(
             """
-            Maximum number of allow digits for strings.
+            Maximum number of allowed digits for strings.
             """
         ),
     ] = _Unset,
@@ -2129,7 +2129,7 @@ def File(  # noqa: N802
             """
             OpenAPI-specific examples.
 
-            It will be added to the generated OpenAPI (e.g. visible at `/docs`).
+            It will be added to the generated OpenAPI (e.g., visible at `/docs`).
 
             Swagger UI (that provides the `/docs` interface) has better support for the
             OpenAPI-specific examples than the JSON Schema `examples`, that's the main
@@ -2144,9 +2144,9 @@ def File(  # noqa: N802
         Union[deprecated, str, bool, None],
         Doc(
             """
-            Mark this parameter field as deprecated.
+            Marks this parameter field as deprecated.
 
-            It will affect the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at '/docs').
             """
         ),
     ] = None,
@@ -2154,10 +2154,10 @@ def File(  # noqa: N802
         bool,
         Doc(
             """
-            To include (or not) this parameter field in the generated OpenAPI.
-            You probably don't need it, but it's available.
+            Specifies whether to include this parameter field in the generated OpenAPI.
+            Unlikely to be needed, but available if required.
 
-            This affects the generated OpenAPI (e.g. visible at `/docs`).
+            Affects the generated OpenAPI (e.g., visible at `/docs`).
             """
         ),
     ] = True,
@@ -2294,7 +2294,7 @@ def Security(  # noqa: N802
         Optional[Sequence[str]],
         Doc(
             """
-            OAuth2 scopes required for the *path operation* that uses this Security
+            OAuth2 scopes required for the *path operation* that uses this security
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
@@ -2314,16 +2314,16 @@ def Security(  # noqa: N802
             By default, after a dependency is called the first time in a request, if
             the dependency is declared again for the rest of the request (for example
             if the dependency is needed by several dependencies), the value will be
-            re-used for the rest of the request.
+            reused for the rest of the request.
 
-            Set `use_cache` to `False` to disable this behavior and ensure the
-            dependency is called again (if declared more than once) in the same request.
+            Set `use_cache` to `False` to disable this behavior and ensure that the
+            dependency is called again if it is declared multiple times in the same request.
             """
         ),
     ] = True,
 ) -> Any:
     """
-    Declare a FastAPI Security dependency.
+    Declare a FastAPI security dependency.
 
     The only difference with a regular dependency is that it can declare OAuth2
     scopes that will be integrated with OpenAPI and the automatic UI docs (by default
@@ -2334,7 +2334,7 @@ def Security(  # noqa: N802
     Don't call it directly, FastAPI will call it for you.
 
     Read more about it in the
-    [FastAPI docs for Security](https://fastapi.tiangolo.com/tutorial/security/) and
+    [FastAPI docs for security](https://fastapi.tiangolo.com/tutorial/security/) and
     in the
     [FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).
 
