@@ -1,18 +1,4 @@
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
-import {
-  Button,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  Icon,
-  Image,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Link,
-  Text,
-  useBoolean,
-} from "@chakra-ui/react"
+import { Container, Image, Input, Text } from "@chakra-ui/react"
 import {
   Link as RouterLink,
   createFileRoute,
@@ -20,10 +6,15 @@ import {
 } from "@tanstack/react-router"
 import { type SubmitHandler, useForm } from "react-hook-form"
 
+import { FiLock, FiMail } from "react-icons/fi"
 import Logo from "/assets/images/fastapi-logo.svg"
 import type { Body_login_login_access_token as AccessToken } from "../client"
+import { Button } from "../components/ui/button"
+import { Field } from "../components/ui/field"
+import { InputGroup } from "../components/ui/input-group"
+import { PasswordInput } from "../components/ui/password-input"
 import useAuth, { isLoggedIn } from "../hooks/useAuth"
-import { emailPattern } from "../utils"
+import { emailPattern, passwordRules } from "../utils"
 
 export const Route = createFileRoute("/login")({
   component: Login,
@@ -37,7 +28,6 @@ export const Route = createFileRoute("/login")({
 })
 
 function Login() {
-  const [show, setShow] = useBoolean()
   const { loginMutation, error, resetError } = useAuth()
   const {
     register,
@@ -84,59 +74,40 @@ function Login() {
           alignSelf="center"
           mb={4}
         />
-        <FormControl id="username" isInvalid={!!errors.username || !!error}>
-          <Input
-            id="username"
-            {...register("username", {
-              required: "Username is required",
-              pattern: emailPattern,
-            })}
-            placeholder="Email"
-            type="email"
-            required
-          />
-          {errors.username && (
-            <FormErrorMessage>{errors.username.message}</FormErrorMessage>
-          )}
-        </FormControl>
-        <FormControl id="password" isInvalid={!!error}>
-          <InputGroup>
+        <Field
+          invalid={!!errors.username}
+          errorText={errors.username?.message || !!error}
+        >
+          <InputGroup w="100%" startElement={<FiMail />}>
             <Input
-              {...register("password", {
-                required: "Password is required",
+              id="username"
+              {...register("username", {
+                required: "Username is required",
+                pattern: emailPattern,
               })}
-              type={show ? "text" : "password"}
-              placeholder="Password"
-              required
+              placeholder="Email"
+              type="email"
             />
-            <InputRightElement
-              color="ui.dim"
-              _hover={{
-                cursor: "pointer",
-              }}
-            >
-              <Icon
-                as={show ? ViewOffIcon : ViewIcon}
-                onClick={setShow.toggle}
-                aria-label={show ? "Hide password" : "Show password"}
-              >
-                {show ? <ViewOffIcon /> : <ViewIcon />}
-              </Icon>
-            </InputRightElement>
           </InputGroup>
-          {error && <FormErrorMessage>{error}</FormErrorMessage>}
-        </FormControl>
-        <Link as={RouterLink} to="/recover-password" color="blue.500">
-          Forgot password?
-        </Link>
-        <Button variant="primary" type="submit" isLoading={isSubmitting}>
+        </Field>
+        <PasswordInput
+          type="password"
+          startElement={<FiLock />}
+          {...register("password", passwordRules())}
+          placeholder="Password"
+          errors={errors}
+        />
+        <RouterLink to="/recover-password" className="main-link">
+          Forgot Password?
+        </RouterLink>
+        <Button variant="solid" type="submit" loading={isSubmitting} size="md">
           Log In
         </Button>
         <Text>
           Don't have an account?{" "}
-          <Link as={RouterLink} to="/signup" color="blue.500">
-            Sign up
-          </Link>
+          <RouterLink to="/signup" className="main-link">
+            Sign Up
+          </RouterLink>
         </Text>
       </Container>
     </>

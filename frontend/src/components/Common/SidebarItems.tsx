@@ -1,8 +1,9 @@
-import { Box, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
+import { Box, Flex, Icon, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
-import { Link } from "@tanstack/react-router"
-import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
+import { Link as RouterLink } from "@tanstack/react-router"
 
+import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
+import type { IconType } from "react-icons/lib"
 import type { UserPublic } from "../../client"
 
 const items = [
@@ -15,39 +16,43 @@ interface SidebarItemsProps {
   onClose?: () => void
 }
 
+interface Item {
+  icon: IconType
+  title: string
+  path: string
+}
+
 const SidebarItems = ({ onClose }: SidebarItemsProps) => {
   const queryClient = useQueryClient()
-  const textColor = useColorModeValue("ui.main", "ui.light")
-  const bgActive = useColorModeValue("#E2E8F0", "#4A5568")
   const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
 
-  const finalItems = currentUser?.is_superuser
+  const finalItems: Item[] = currentUser?.is_superuser
     ? [...items, { icon: FiUsers, title: "Admin", path: "/admin" }]
     : items
 
   const listItems = finalItems.map(({ icon, title, path }) => (
-    <Flex
-      as={Link}
-      to={path}
-      w="100%"
-      p={2}
-      key={title}
-      activeProps={{
-        style: {
-          background: bgActive,
-          borderRadius: "12px",
-        },
-      }}
-      color={textColor}
-      onClick={onClose}
-    >
-      <Icon as={icon} alignSelf="center" />
-      <Text ml={2}>{title}</Text>
-    </Flex>
+    <RouterLink key={title} to={path} onClick={onClose}>
+      <Flex
+        gap={4}
+        px={4}
+        py={2}
+        _hover={{
+          background: "gray.subtle",
+        }}
+        alignItems="center"
+        fontSize="sm"
+      >
+        <Icon as={icon} alignSelf="center" />
+        <Text ml={2}>{title}</Text>
+      </Flex>
+    </RouterLink>
   ))
 
   return (
     <>
+      <Text fontSize="xs" px={4} py={2} fontWeight="bold">
+        Menu
+      </Text>
       <Box>{listItems}</Box>
     </>
   )

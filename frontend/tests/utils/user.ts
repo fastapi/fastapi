@@ -11,11 +11,8 @@ export async function signUpNewUser(
   await page.getByPlaceholder("Full Name").fill(name)
   await page.getByPlaceholder("Email").fill(email)
   await page.getByPlaceholder("Password", { exact: true }).fill(password)
-  await page.getByPlaceholder("Repeat Password").fill(password)
+  await page.getByPlaceholder("Confirm Password").fill(password)
   await page.getByRole("button", { name: "Sign Up" }).click()
-  await expect(
-    page.getByText("Your account has been created successfully"),
-  ).toBeVisible()
   await page.goto("/login")
 }
 

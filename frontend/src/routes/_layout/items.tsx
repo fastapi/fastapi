@@ -1,33 +1,29 @@
 import {
   Container,
+  EmptyState,
+  Flex,
   Heading,
-  SkeletonText,
   Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
+  VStack,
 } from "@chakra-ui/react"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
-import { useEffect } from "react"
+import { FiSearch } from "react-icons/fi"
 import { z } from "zod"
 
+import { useQuery } from "@tanstack/react-query"
 import { ItemsService } from "../../client"
-import ActionsMenu from "../../components/Common/ActionsMenu"
-import Navbar from "../../components/Common/Navbar"
+import { ItemActionsMenu } from "../../components/Common/ItemActionsMenu"
 import AddItem from "../../components/Items/AddItem"
-import { PaginationFooter } from "../../components/Common/PaginationFooter.tsx"
+import PendingItems from "../../components/Pending/PendingItems"
+import {
+  PaginationItems,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+  PaginationRoot,
+} from "../../components/ui/pagination.tsx"
 
 const itemsSearchSchema = z.object({
   page: z.number().catch(1),
-})
-
-export const Route = createFileRoute("/_layout/items")({
-  component: Items,
-  validateSearch: (search) => itemsSearchSchema.parse(search),
 })
 
 const PER_PAGE = 5
@@ -40,83 +36,97 @@ function getItemsQueryOptions({ page }: { page: number }) {
   }
 }
 
-function ItemsTable() {
-  const queryClient = useQueryClient()
-  const { page } = Route.useSearch()
-  const navigate = useNavigate({ from: Route.fullPath })
-  const setPage = (page: number) =>
-    navigate({ search: (prev: {[key: string]: string}) => ({ ...prev, page }) })
+export const Route = createFileRoute("/_layout/items")({
+  component: Items,
+  validateSearch: (search) => itemsSearchSchema.parse(search),
+})
 
-  const {
-    data: items,
-    isPending,
-    isPlaceholderData,
-  } = useQuery({
+function ItemsTable() {
+  const navigate = useNavigate({ from: Route.fullPath })
+  const { page } = Route.useSearch()
+
+  const { data, isLoading, isPlaceholderData } = useQuery({
     ...getItemsQueryOptions({ page }),
     placeholderData: (prevData) => prevData,
   })
 
-  const hasNextPage = !isPlaceholderData && items?.data.length === PER_PAGE
-  const hasPreviousPage = page > 1
+  const setPage = (page: number) =>
+    navigate({
+      search: (prev: { [key: string]: string }) => ({ ...prev, page }),
+    })
 
-  useEffect(() => {
-    if (hasNextPage) {
-      queryClient.prefetchQuery(getItemsQueryOptions({ page: page + 1 }))
-    }
-  }, [page, queryClient, hasNextPage])
+  const items = data?.data.slice(0, PER_PAGE) ?? []
+  const count = data?.count ?? 0
+
+  if (isLoading) {
+    return <PendingItems />
+  }
+
+  if (items.length === 0) {
+    return (
+      <EmptyState.Root>
+        <EmptyState.Content>
+          <EmptyState.Indicator>
+            <FiSearch />
+          </EmptyState.Indicator>
+          <VStack textAlign="center">
+            <EmptyState.Title>You don't have any items yet</EmptyState.Title>
+            <EmptyState.Description>
+              Add a new item to get started
+            </EmptyState.Description>
+          </VStack>
+        </EmptyState.Content>
+      </EmptyState.Root>
+    )
+  }
 
   return (
     <>
-      <TableContainer>
-        <Table size={{ base: "sm", md: "md" }}>
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>Title</Th>
-              <Th>Description</Th>
-              <Th>Actions</Th>
-            </Tr>
-          </Thead>
-          {isPending ? (
-            <Tbody>
-              <Tr>
-                {new Array(4).fill(null).map((_, index) => (
-                  <Td key={index}>
-                    <SkeletonText noOfLines={1} paddingBlock="16px" />
-                  </Td>
-                ))}
-              </Tr>
-            </Tbody>
-          ) : (
-            <Tbody>
-              {items?.data.map((item) => (
-                <Tr key={item.id} opacity={isPlaceholderData ? 0.5 : 1}>
-                  <Td>{item.id}</Td>
-                  <Td isTruncated maxWidth="150px">
-                    {item.title}
-                  </Td>
-                  <Td
-                    color={!item.description ? "ui.dim" : "inherit"}
-                    isTruncated
-                    maxWidth="150px"
-                  >
-                    {item.description || "N/A"}
-                  </Td>
-                  <Td>
-                    <ActionsMenu type={"Item"} value={item} />
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          )}
-        </Table>
-      </TableContainer>
-      <PaginationFooter
-        page={page}
-        onChangePage={setPage}
-        hasNextPage={hasNextPage}
-        hasPreviousPage={hasPreviousPage}
-      />
+      <Table.Root size={{ base: "sm", md: "md" }}>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader w="30%">ID</Table.ColumnHeader>
+            <Table.ColumnHeader w="30%">Title</Table.ColumnHeader>
+            <Table.ColumnHeader w="30%">Description</Table.ColumnHeader>
+            <Table.ColumnHeader w="10%">Actions</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {items?.map((item) => (
+            <Table.Row key={item.id} opacity={isPlaceholderData ? 0.5 : 1}>
+              <Table.Cell truncate maxW="30%">
+                {item.id}
+              </Table.Cell>
+              <Table.Cell truncate maxW="30%">
+                {item.title}
+              </Table.Cell>
+              <Table.Cell
+                color={!item.description ? "gray" : "inherit"}
+                truncate
+                maxW="30%"
+              >
+                {item.description || "N/A"}
+              </Table.Cell>
+              <Table.Cell width="10%">
+                <ItemActionsMenu item={item} />
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
+      <Flex justifyContent="flex-end" mt={4}>
+        <PaginationRoot
+          count={count}
+          pageSize={PER_PAGE}
+          onPageChange={({ page }) => setPage(page)}
+        >
+          <Flex>
+            <PaginationPrevTrigger />
+            <PaginationItems />
+            <PaginationNextTrigger />
+          </Flex>
+        </PaginationRoot>
+      </Flex>
     </>
   )
 }
@@ -124,11 +134,10 @@ function ItemsTable() {
 function Items() {
   return (
     <Container maxW="full">
-      <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
+      <Heading size="lg" pt={12}>
         Items Management
       </Heading>
-
-      <Navbar type={"Item"} addModalAs={AddItem} />
+      <AddItem />
       <ItemsTable />
     </Container>
   )

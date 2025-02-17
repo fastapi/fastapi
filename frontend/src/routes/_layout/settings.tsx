@@ -1,26 +1,17 @@
-import {
-  Container,
-  Heading,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react"
-import { useQueryClient } from "@tanstack/react-query"
+import { Container, Heading, Tabs } from "@chakra-ui/react"
 import { createFileRoute } from "@tanstack/react-router"
 
-import type { UserPublic } from "../../client"
 import Appearance from "../../components/UserSettings/Appearance"
 import ChangePassword from "../../components/UserSettings/ChangePassword"
 import DeleteAccount from "../../components/UserSettings/DeleteAccount"
 import UserInformation from "../../components/UserSettings/UserInformation"
+import useAuth from "../../hooks/useAuth"
 
 const tabsConfig = [
-  { title: "My profile", component: UserInformation },
-  { title: "Password", component: ChangePassword },
-  { title: "Appearance", component: Appearance },
-  { title: "Danger zone", component: DeleteAccount },
+  { value: "my-profile", title: "My profile", component: UserInformation },
+  { value: "password", title: "Password", component: ChangePassword },
+  { value: "appearance", title: "Appearance", component: Appearance },
+  { value: "danger-zone", title: "Danger zone", component: DeleteAccount },
 ]
 
 export const Route = createFileRoute("/_layout/settings")({
@@ -28,31 +19,35 @@ export const Route = createFileRoute("/_layout/settings")({
 })
 
 function UserSettings() {
-  const queryClient = useQueryClient()
-  const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
+  const { user: currentUser } = useAuth()
   const finalTabs = currentUser?.is_superuser
     ? tabsConfig.slice(0, 3)
     : tabsConfig
+
+  if (!currentUser) {
+    return null
+  }
 
   return (
     <Container maxW="full">
       <Heading size="lg" textAlign={{ base: "center", md: "left" }} py={12}>
         User Settings
       </Heading>
-      <Tabs variant="enclosed">
-        <TabList>
-          {finalTabs.map((tab, index) => (
-            <Tab key={index}>{tab.title}</Tab>
+
+      <Tabs.Root defaultValue="my-profile" variant="subtle">
+        <Tabs.List>
+          {finalTabs.map((tab) => (
+            <Tabs.Trigger key={tab.value} value={tab.value}>
+              {tab.title}
+            </Tabs.Trigger>
           ))}
-        </TabList>
-        <TabPanels>
-          {finalTabs.map((tab, index) => (
-            <TabPanel key={index}>
-              <tab.component />
-            </TabPanel>
-          ))}
-        </TabPanels>
-      </Tabs>
+        </Tabs.List>
+        {finalTabs.map((tab) => (
+          <Tabs.Content key={tab.value} value={tab.value}>
+            <tab.component />
+          </Tabs.Content>
+        ))}
+      </Tabs.Root>
     </Container>
   )
 }

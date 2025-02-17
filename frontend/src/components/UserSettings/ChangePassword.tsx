@@ -1,34 +1,25 @@
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { Box, Button, Container, Heading, VStack } from "@chakra-ui/react"
 import { useMutation } from "@tanstack/react-query"
 import { type SubmitHandler, useForm } from "react-hook-form"
 
+import { FiLock } from "react-icons/fi"
 import { type ApiError, type UpdatePassword, UsersService } from "../../client"
 import useCustomToast from "../../hooks/useCustomToast"
 import { confirmPasswordRules, handleError, passwordRules } from "../../utils"
+import { PasswordInput } from "../ui/password-input"
 
 interface UpdatePasswordForm extends UpdatePassword {
   confirm_password: string
 }
 
 const ChangePassword = () => {
-  const color = useColorModeValue("inherit", "ui.light")
-  const showToast = useCustomToast()
+  const { showSuccessToast } = useCustomToast()
   const {
     register,
     handleSubmit,
     reset,
     getValues,
-    formState: { errors, isSubmitting },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<UpdatePasswordForm>({
     mode: "onBlur",
     criteriaMode: "all",
@@ -38,11 +29,11 @@ const ChangePassword = () => {
     mutationFn: (data: UpdatePassword) =>
       UsersService.updatePasswordMe({ requestBody: data }),
     onSuccess: () => {
-      showToast("Success!", "Password updated successfully.", "success")
+      showSuccessToast("Password updated successfully.")
       reset()
     },
     onError: (err: ApiError) => {
-      handleError(err, showToast)
+      handleError(err)
     },
   })
 
@@ -57,60 +48,39 @@ const ChangePassword = () => {
           Change Password
         </Heading>
         <Box
-          w={{ sm: "full", md: "50%" }}
+          w={{ sm: "full", md: "300px" }}
           as="form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <FormControl isRequired isInvalid={!!errors.current_password}>
-            <FormLabel color={color} htmlFor="current_password">
-              Current Password
-            </FormLabel>
-            <Input
-              id="current_password"
-              {...register("current_password")}
-              placeholder="Password"
-              type="password"
-              w="auto"
+          <VStack gap={4}>
+            <PasswordInput
+              type="current_password"
+              startElement={<FiLock />}
+              {...register("current_password", passwordRules())}
+              placeholder="Current Password"
+              errors={errors}
             />
-            {errors.current_password && (
-              <FormErrorMessage>
-                {errors.current_password.message}
-              </FormErrorMessage>
-            )}
-          </FormControl>
-          <FormControl mt={4} isRequired isInvalid={!!errors.new_password}>
-            <FormLabel htmlFor="password">Set Password</FormLabel>
-            <Input
-              id="password"
+            <PasswordInput
+              type="new_password"
+              startElement={<FiLock />}
               {...register("new_password", passwordRules())}
-              placeholder="Password"
-              type="password"
-              w="auto"
+              placeholder="New Password"
+              errors={errors}
             />
-            {errors.new_password && (
-              <FormErrorMessage>{errors.new_password.message}</FormErrorMessage>
-            )}
-          </FormControl>
-          <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
-            <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
-            <Input
-              id="confirm_password"
+            <PasswordInput
+              type="confirm_password"
+              startElement={<FiLock />}
               {...register("confirm_password", confirmPasswordRules(getValues))}
-              placeholder="Password"
-              type="password"
-              w="auto"
+              placeholder="Confirm Password"
+              errors={errors}
             />
-            {errors.confirm_password && (
-              <FormErrorMessage>
-                {errors.confirm_password.message}
-              </FormErrorMessage>
-            )}
-          </FormControl>
+          </VStack>
           <Button
-            variant="primary"
+            variant="solid"
             mt={4}
             type="submit"
-            isLoading={isSubmitting}
+            loading={isSubmitting}
+            disabled={!isValid}
           >
             Save
           </Button>

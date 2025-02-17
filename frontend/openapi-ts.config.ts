@@ -15,7 +15,7 @@ export default defineConfig({
         // @ts-ignore
         let name: string = operation.name
         // @ts-ignore
-        let service: string = operation.service
+        const service: string = operation.service
 
         if (service && name.toLowerCase().startsWith(service.toLowerCase())) {
           name = name.slice(service.length)

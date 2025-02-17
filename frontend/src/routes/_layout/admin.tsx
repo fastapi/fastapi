@@ -1,36 +1,21 @@
-import {
-  Badge,
-  Box,
-  Container,
-  Flex,
-  Heading,
-  SkeletonText,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react"
+import { Badge, Container, Flex, Heading, Table } from "@chakra-ui/react"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
-import { useEffect } from "react"
 import { z } from "zod"
 
 import { type UserPublic, UsersService } from "../../client"
 import AddUser from "../../components/Admin/AddUser"
-import ActionsMenu from "../../components/Common/ActionsMenu"
-import Navbar from "../../components/Common/Navbar"
-import { PaginationFooter } from "../../components/Common/PaginationFooter.tsx"
+import { UserActionsMenu } from "../../components/Common/UserActionsMenu"
+import PendingUsers from "../../components/Pending/PendingUsers"
+import {
+  PaginationItems,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+  PaginationRoot,
+} from "../../components/ui/pagination.tsx"
 
 const usersSearchSchema = z.object({
   page: z.number().catch(1),
-})
-
-export const Route = createFileRoute("/_layout/admin")({
-  component: Admin,
-  validateSearch: (search) => usersSearchSchema.parse(search),
 })
 
 const PER_PAGE = 5
@@ -43,106 +28,87 @@ function getUsersQueryOptions({ page }: { page: number }) {
   }
 }
 
+export const Route = createFileRoute("/_layout/admin")({
+  component: Admin,
+  validateSearch: (search) => usersSearchSchema.parse(search),
+})
+
 function UsersTable() {
   const queryClient = useQueryClient()
   const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
-  const { page } = Route.useSearch()
   const navigate = useNavigate({ from: Route.fullPath })
-  const setPage = (page: number) =>
-    navigate({ search: (prev: {[key: string]: string}) => ({ ...prev, page }) })
+  const { page } = Route.useSearch()
 
-  const {
-    data: users,
-    isPending,
-    isPlaceholderData,
-  } = useQuery({
+  const { data, isLoading, isPlaceholderData } = useQuery({
     ...getUsersQueryOptions({ page }),
     placeholderData: (prevData) => prevData,
   })
 
-  const hasNextPage = !isPlaceholderData && users?.data.length === PER_PAGE
-  const hasPreviousPage = page > 1
+  const setPage = (page: number) =>
+    navigate({
+      search: (prev: { [key: string]: string }) => ({ ...prev, page }),
+    })
 
-  useEffect(() => {
-    if (hasNextPage) {
-      queryClient.prefetchQuery(getUsersQueryOptions({ page: page + 1 }))
-    }
-  }, [page, queryClient, hasNextPage])
+  const users = data?.data.slice(0, PER_PAGE) ?? []
+  const count = data?.count ?? 0
+
+  if (isLoading) {
+    return <PendingUsers />
+  }
 
   return (
     <>
-      <TableContainer>
-        <Table size={{ base: "sm", md: "md" }}>
-          <Thead>
-            <Tr>
-              <Th width="20%">Full name</Th>
-              <Th width="50%">Email</Th>
-              <Th width="10%">Role</Th>
-              <Th width="10%">Status</Th>
-              <Th width="10%">Actions</Th>
-            </Tr>
-          </Thead>
-          {isPending ? (
-            <Tbody>
-              <Tr>
-                {new Array(4).fill(null).map((_, index) => (
-                  <Td key={index}>
-                    <SkeletonText noOfLines={1} paddingBlock="16px" />
-                  </Td>
-                ))}
-              </Tr>
-            </Tbody>
-          ) : (
-            <Tbody>
-              {users?.data.map((user) => (
-                <Tr key={user.id}>
-                  <Td
-                    color={!user.full_name ? "ui.dim" : "inherit"}
-                    isTruncated
-                    maxWidth="150px"
-                  >
-                    {user.full_name || "N/A"}
-                    {currentUser?.id === user.id && (
-                      <Badge ml="1" colorScheme="teal">
-                        You
-                      </Badge>
-                    )}
-                  </Td>
-                  <Td isTruncated maxWidth="150px">
-                    {user.email}
-                  </Td>
-                  <Td>{user.is_superuser ? "Superuser" : "User"}</Td>
-                  <Td>
-                    <Flex gap={2}>
-                      <Box
-                        w="2"
-                        h="2"
-                        borderRadius="50%"
-                        bg={user.is_active ? "ui.success" : "ui.danger"}
-                        alignSelf="center"
-                      />
-                      {user.is_active ? "Active" : "Inactive"}
-                    </Flex>
-                  </Td>
-                  <Td>
-                    <ActionsMenu
-                      type="User"
-                      value={user}
-                      disabled={currentUser?.id === user.id}
-                    />
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          )}
-        </Table>
-      </TableContainer>
-      <PaginationFooter
-        onChangePage={setPage}
-        page={page}
-        hasNextPage={hasNextPage}
-        hasPreviousPage={hasPreviousPage}
-      />
+      <Table.Root size={{ base: "sm", md: "md" }}>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader w="20%">Full name</Table.ColumnHeader>
+            <Table.ColumnHeader w="25%">Email</Table.ColumnHeader>
+            <Table.ColumnHeader w="15%">Role</Table.ColumnHeader>
+            <Table.ColumnHeader w="20%">Status</Table.ColumnHeader>
+            <Table.ColumnHeader w="20%">Actions</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {users?.map((user) => (
+            <Table.Row key={user.id} opacity={isPlaceholderData ? 0.5 : 1}>
+              <Table.Cell w="20%" color={!user.full_name ? "gray" : "inherit"}>
+                {user.full_name || "N/A"}
+                {currentUser?.id === user.id && (
+                  <Badge ml="1" colorScheme="teal">
+                    You
+                  </Badge>
+                )}
+              </Table.Cell>
+              <Table.Cell w="25%">{user.email}</Table.Cell>
+              <Table.Cell w="15%">
+                {user.is_superuser ? "Superuser" : "User"}
+              </Table.Cell>
+              <Table.Cell w="20%">
+                {user.is_active ? "Active" : "Inactive"}
+              </Table.Cell>
+              <Table.Cell w="20%">
+                <UserActionsMenu
+                  user={user}
+                  disabled={currentUser?.id === user.id}
+                />
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
+      <Flex justifyContent="flex-end" mt={4}>
+        <PaginationRoot
+          count={count}
+          pageSize={PER_PAGE}
+          onPageChange={({ page }) => setPage(page)}
+        >
+          <Flex>
+            <PaginationPrevTrigger />
+            <PaginationItems />
+            <PaginationNextTrigger />
+          </Flex>
+        </PaginationRoot>
+      </Flex>
     </>
   )
 }
@@ -150,11 +116,11 @@ function UsersTable() {
 function Admin() {
   return (
     <Container maxW="full">
-      <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
+      <Heading size="lg" pt={12}>
         Users Management
       </Heading>
 
-      <Navbar type={"User"} addModalAs={AddUser} />
+      <AddUser />
       <UsersTable />
     </Container>
   )

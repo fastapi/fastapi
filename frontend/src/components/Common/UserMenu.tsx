@@ -1,19 +1,13 @@
-import {
-  Box,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react"
+import { Box, Button, Flex, Text } from "@chakra-ui/react"
 import { Link } from "@tanstack/react-router"
 import { FaUserAstronaut } from "react-icons/fa"
-import { FiLogOut, FiUser } from "react-icons/fi"
 
+import { FiLogOut, FiUser } from "react-icons/fi"
 import useAuth from "../../hooks/useAuth"
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu"
 
 const UserMenu = () => {
-  const { logout } = useAuth()
+  const { user, logout } = useAuth()
 
   const handleLogout = async () => {
     logout()
@@ -22,36 +16,47 @@ const UserMenu = () => {
   return (
     <>
       {/* Desktop */}
-      <Box
-        display={{ base: "none", md: "block" }}
-        position="fixed"
-        top={4}
-        right={4}
-      >
-        <Menu>
-          <MenuButton
-            as={IconButton}
-            aria-label="Options"
-            icon={<FaUserAstronaut color="white" fontSize="18px" />}
-            bg="ui.main"
-            isRound
-            data-testid="user-menu"
-          />
-          <MenuList>
-            <MenuItem icon={<FiUser fontSize="18px" />} as={Link} to="settings">
-              My profile
-            </MenuItem>
-            <MenuItem
-              icon={<FiLogOut fontSize="18px" />}
-              onClick={handleLogout}
-              color="ui.danger"
-              fontWeight="bold"
+      <Flex>
+        <MenuRoot>
+          <MenuTrigger asChild p={2}>
+            <Button
+              data-testid="user-menu"
+              variant="solid"
+              maxW="150px"
+              truncate
             >
-              Log out
+              <FaUserAstronaut fontSize="18" />
+              <Text>{user?.full_name || "User"}</Text>
+            </Button>
+          </MenuTrigger>
+
+          <MenuContent>
+            <Link to="settings">
+              <MenuItem
+                closeOnSelect
+                value="user-settings"
+                gap={2}
+                py={2}
+                style={{ cursor: "pointer" }}
+              >
+                <FiUser fontSize="18px" />
+                <Box flex="1">My Profile</Box>
+              </MenuItem>
+            </Link>
+
+            <MenuItem
+              value="logout"
+              gap={2}
+              py={2}
+              onClick={handleLogout}
+              style={{ cursor: "pointer" }}
+            >
+              <FiLogOut />
+              Log Out
             </MenuItem>
-          </MenuList>
-        </Menu>
-      </Box>
+          </MenuContent>
+        </MenuRoot>
+      </Flex>
     </>
   )
 }

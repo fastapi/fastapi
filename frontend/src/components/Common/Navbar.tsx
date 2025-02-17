@@ -1,38 +1,30 @@
-import type { ComponentType, ElementType } from "react"
+import { Flex, Image, useBreakpointValue } from "@chakra-ui/react"
+import { Link } from "@tanstack/react-router"
+import Logo from "/assets/images/fastapi-logo.svg"
+import UserMenu from "./UserMenu"
 
-import { Button, Flex, Icon, useDisclosure } from "@chakra-ui/react"
-import { FaPlus } from "react-icons/fa"
+function Navbar() {
+  const display = useBreakpointValue({ base: "none", md: "flex" })
 
-interface NavbarProps {
-  type: string
-  addModalAs: ComponentType | ElementType
-}
-
-const Navbar = ({ type, addModalAs }: NavbarProps) => {
-  const addModal = useDisclosure()
-
-  const AddModal = addModalAs
   return (
-    <>
-      <Flex py={8} gap={4}>
-        {/* TODO: Complete search functionality */}
-        {/* <InputGroup w={{ base: '100%', md: 'auto' }}>
-                    <InputLeftElement pointerEvents='none'>
-                        <Icon as={FaSearch} color='ui.dim' />
-                    </InputLeftElement>
-                    <Input type='text' placeholder='Search' fontSize={{ base: 'sm', md: 'inherit' }} borderRadius='8px' />
-                </InputGroup> */}
-        <Button
-          variant="primary"
-          gap={1}
-          fontSize={{ base: "sm", md: "inherit" }}
-          onClick={addModal.onOpen}
-        >
-          <Icon as={FaPlus} /> Add {type}
-        </Button>
-        <AddModal isOpen={addModal.isOpen} onClose={addModal.onClose} />
+    <Flex
+      display={display}
+      justify="space-between"
+      position="sticky"
+      color="white"
+      align="center"
+      bg="bg.muted"
+      w="100%"
+      top={0}
+      p={4}
+    >
+      <Link to="/">
+        <Image src={Logo} alt="Logo" w="180px" maxW="2xs" px={2} />
+      </Link>
+      <Flex gap={2} alignItems="center">
+        <UserMenu />
       </Flex>
-    </>
+    </Flex>
   )
 }
 

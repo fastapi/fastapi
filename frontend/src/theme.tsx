@@ -1,61 +1,31 @@
-import { extendTheme } from "@chakra-ui/react"
+import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { buttonRecipe } from "./theme/button.recipe"
 
-const disabledStyles = {
-  _disabled: {
-    backgroundColor: "ui.main",
-  },
-}
-
-const theme = extendTheme({
-  colors: {
-    ui: {
-      main: "#009688",
-      secondary: "#EDF2F7",
-      success: "#48BB78",
-      danger: "#E53E3E",
-      light: "#FAFAFA",
-      dark: "#1A202C",
-      darkSlate: "#252D3D",
-      dim: "#A0AEC0",
+export const system = createSystem(defaultConfig, {
+  globalCss: {
+    html: {
+      fontSize: "16px",
+    },
+    body: {
+      fontSize: "0.875rem",
+      margin: 0,
+      padding: 0,
+    },
+    ".main-link": {
+      color: "ui.main",
+      fontWeight: "bold",
     },
   },
-  components: {
-    Button: {
-      variants: {
-        primary: {
-          backgroundColor: "ui.main",
-          color: "ui.light",
-          _hover: {
-            backgroundColor: "#00766C",
-          },
-          _disabled: {
-            ...disabledStyles,
-            _hover: {
-              ...disabledStyles,
-            },
-          },
-        },
-        danger: {
-          backgroundColor: "ui.danger",
-          color: "ui.light",
-          _hover: {
-            backgroundColor: "#E32727",
-          },
+  theme: {
+    tokens: {
+      colors: {
+        ui: {
+          main: { value: "#009688" },
         },
       },
     },
-    Tabs: {
-      variants: {
-        enclosed: {
-          tab: {
-            _selected: {
-              color: "ui.main",
-            },
-          },
-        },
-      },
+    recipes: {
+      button: buttonRecipe,
     },
   },
 })
-
-export default theme
