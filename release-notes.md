@@ -30,6 +30,7 @@
 
 ### Docs
 
+* 📝 Removing deprecated manual client SDK step. PR [#1494](https://github.com/fastapi/full-stack-fastapi-template/pull/1494) by [@chandy](https://github.com/chandy).
 * 📝 Update Frontend README.md. PR [#1462](https://github.com/fastapi/full-stack-fastapi-template/pull/1462) by [@getmarkus](https://github.com/getmarkus).
 * 📝 Update `frontend/README.md` to also remove Playwright when removing Frontend. PR [#1452](https://github.com/fastapi/full-stack-fastapi-template/pull/1452) by [@youben11](https://github.com/youben11).
 * 📝 Update `deployment.md`, instructions to install GitHub Runner in non-root VMs. PR [#1412](https://github.com/fastapi/full-stack-fastapi-template/pull/1412) by [@tiangolo](https://github.com/tiangolo).
