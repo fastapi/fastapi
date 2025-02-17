@@ -4,6 +4,7 @@
 
 ### Features
 
+* 🛂 Migrate to Chakra UI v3 . PR [#1496](https://github.com/fastapi/full-stack-fastapi-template/pull/1496) by [@alejsdev](https://github.com/alejsdev).
 * ✨ Add private, local only, API for usage in E2E tests. PR [#1429](https://github.com/fastapi/full-stack-fastapi-template/pull/1429) by [@patrick91](https://github.com/patrick91).
 * ✨ Migrate to latest openapi-ts. PR [#1430](https://github.com/fastapi/full-stack-fastapi-template/pull/1430) by [@patrick91](https://github.com/patrick91).
 
