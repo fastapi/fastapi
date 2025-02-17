@@ -1,36 +1,59 @@
+from pathlib import Path
+
+import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-FAVICON_URL = "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22"
-"http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%"
-"22%20viewBox%3D%220%200%2032%2032%22%3E%3Ccircle%20cx%3D%2216%22%20c"
-"y%3D%2216%22%20r%3D%2214%22%20fill%3D%22%23009688%22/%3E%3Ctext%20x%"
-"3D%2250%25%22%20y%3D%2255%25%22%20font-size%3D%2216%22%20font-family"
-"%3D%22Arial%2C%20sans-serif%22%20fill%3D%22white%22%20text-anchor%3D"
-"%22middle%22%20dominant-baseline%3D%22middle%22%3EF%3C/text%3E%3C/svg%3E"
-app = FastAPI(favicon_url=FAVICON_URL)
+TEST_HTTP_FAVICON_URL = "http://favicon-url.com/favicon.png"
+TEST_HTTPS_FAVICON_URL = "http://favicon-url.com/favicon.png"
+DEFAULT_FASTAPI_FAVICON = "https://fastapi.tiangolo.com/img/favicon.png"
 
 
-@app.get("/items/")
-async def read_items():
-    return {"id": "foo"}
+def get_client_with_custom_docs_logo(favicon_url):
+    app = FastAPI(favicon_url=favicon_url)
+
+    @app.get("/items/")
+    async def read_items():
+        return {"id": "foo"}
+
+    return TestClient(app)
 
 
-client = TestClient(app)
-
-
-def test_swagger_ui_loads_custom_logo():
+@pytest.mark.parametrize(
+    "input_favicon_url,generated_favicon_url",
+    [
+        [TEST_HTTP_FAVICON_URL, TEST_HTTP_FAVICON_URL],
+        [TEST_HTTPS_FAVICON_URL, TEST_HTTPS_FAVICON_URL],
+        [None, DEFAULT_FASTAPI_FAVICON],
+    ],
+)
+def test_docs_ui_loads_custom_logo(input_favicon_url, generated_favicon_url):
+    client = get_client_with_custom_docs_logo(input_favicon_url)
     response = client.get("/docs")
+    redoc_response = client.get("/redoc")
+
     assert response.status_code == 200, response.text
-    assert FAVICON_URL in response.text
+    assert redoc_response.status_code == 200, redoc_response.text
+    assert generated_favicon_url in response.text
+    assert generated_favicon_url in redoc_response.text
 
 
-def test_redoc_ui_loads_custom_logo():
-    response = client.get("/redoc")
+def test_docs_ui_load_file_as_custom_logo(tmp_path):
+    favicon_filename = "custom-favicon.png"
+    file_path: Path = tmp_path / favicon_filename
+    test_content = b"Fake favicon bytes"
+    file_path.write_bytes(test_content)
+    client = get_client_with_custom_docs_logo(str(file_path))
+    response = client.get("/docs")
+    redoc_response = client.get("/redoc")
+
     assert response.status_code == 200, response.text
-    assert FAVICON_URL in response.text
+    assert redoc_response.status_code == 200, redoc_response.text
+    assert favicon_filename in response.text
+    assert favicon_filename in redoc_response.text
 
 
-def test_response():
+def test_items_response():
+    client = get_client_with_custom_docs_logo(None)
     response = client.get("/items/")
     assert response.json() == {"id": "foo"}
