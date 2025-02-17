@@ -16,10 +16,10 @@ import {
   type UserPublic,
   type UserUpdateMe,
   UsersService,
-} from "../../client"
-import useAuth from "../../hooks/useAuth"
-import useCustomToast from "../../hooks/useCustomToast"
-import { emailPattern, handleError } from "../../utils"
+} from "@/client"
+import useAuth from "@/hooks/useAuth"
+import useCustomToast from "@/hooks/useCustomToast"
+import { emailPattern, handleError } from "@/utils"
 import { Field } from "../ui/field"
 
 const UserInformation = () => {

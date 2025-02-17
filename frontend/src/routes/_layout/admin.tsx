@@ -3,16 +3,16 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { z } from "zod"
 
-import { type UserPublic, UsersService } from "../../client"
-import AddUser from "../../components/Admin/AddUser"
-import { UserActionsMenu } from "../../components/Common/UserActionsMenu"
-import PendingUsers from "../../components/Pending/PendingUsers"
+import { type UserPublic, UsersService } from "@/client"
+import AddUser from "@/components/Admin/AddUser"
+import { UserActionsMenu } from "@/components/Common/UserActionsMenu"
+import PendingUsers from "@/components/Pending/PendingUsers"
 import {
   PaginationItems,
   PaginationNextTrigger,
   PaginationPrevTrigger,
   PaginationRoot,
-} from "../../components/ui/pagination.tsx"
+} from "@/components/ui/pagination.tsx"
 
 const usersSearchSchema = z.object({
   page: z.number().catch(1),

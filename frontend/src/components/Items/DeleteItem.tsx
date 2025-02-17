@@ -3,7 +3,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { FiTrash2 } from "react-icons/fi"
-import { ItemsService } from "../../client"
+
+import { ItemsService } from "@/client"
 import {
   DialogActionTrigger,
   DialogBody,
@@ -13,8 +14,8 @@ import {
   DialogHeader,
   DialogRoot,
   DialogTrigger,
-} from "../../components/ui/dialog"
-import useCustomToast from "../../hooks/useCustomToast"
+} from "@/components/ui/dialog"
+import useCustomToast from "@/hooks/useCustomToast"
 
 const DeleteItem = ({ id }: { id: string }) => {
   const [isOpen, setIsOpen] = useState(false)

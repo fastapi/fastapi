@@ -13,10 +13,11 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { FaExchangeAlt } from "react-icons/fa"
-import { type UserPublic, type UserUpdate, UsersService } from "../../client"
-import type { ApiError } from "../../client/core/ApiError"
-import useCustomToast from "../../hooks/useCustomToast"
-import { emailPattern, handleError } from "../../utils"
+
+import { type UserPublic, type UserUpdate, UsersService } from "@/client"
+import type { ApiError } from "@/client/core/ApiError"
+import useCustomToast from "@/hooks/useCustomToast"
+import { emailPattern, handleError } from "@/utils"
 import { Checkbox } from "../ui/checkbox"
 import {
   DialogBody,

@@ -1,6 +1,7 @@
 import { Container, Heading, Stack } from "@chakra-ui/react"
 import { useTheme } from "next-themes"
-import { Radio, RadioGroup } from "../../components/ui/radio"
+
+import { Radio, RadioGroup } from "@/components/ui/radio"
 
 const Appearance = () => {
   const { theme, setTheme } = useTheme()

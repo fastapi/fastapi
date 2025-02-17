@@ -10,9 +10,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
 import { FaExchangeAlt } from "react-icons/fa"
-import { type ApiError, type ItemPublic, ItemsService } from "../../client"
-import useCustomToast from "../../hooks/useCustomToast"
-import { handleError } from "../../utils"
+
+import { type ApiError, type ItemPublic, ItemsService } from "@/client"
+import useCustomToast from "@/hooks/useCustomToast"
+import { handleError } from "@/utils"
 import {
   DialogBody,
   DialogCloseTrigger,

@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 
+import { type UserCreate, UsersService } from "@/client"
+import type { ApiError } from "@/client/core/ApiError"
+import useCustomToast from "@/hooks/useCustomToast"
+import { emailPattern, handleError } from "@/utils"
 import {
   Button,
   DialogActionTrigger,
@@ -12,10 +16,6 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react"
 import { FaPlus } from "react-icons/fa"
-import { type UserCreate, UsersService } from "../../client"
-import type { ApiError } from "../../client/core/ApiError"
-import useCustomToast from "../../hooks/useCustomToast"
-import { emailPattern, handleError } from "../../utils"
 import { Checkbox } from "../ui/checkbox"
 import {
   DialogBody,

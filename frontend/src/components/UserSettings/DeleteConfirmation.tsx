@@ -2,7 +2,8 @@ import { Button, ButtonGroup, Text } from "@chakra-ui/react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { type ApiError, UsersService } from "../../client"
+
+import { type ApiError, UsersService } from "@/client"
 import {
   DialogActionTrigger,
   DialogBody,
@@ -13,10 +14,10 @@ import {
   DialogRoot,
   DialogTitle,
   DialogTrigger,
-} from "../../components/ui/dialog"
-import useAuth from "../../hooks/useAuth"
-import useCustomToast from "../../hooks/useCustomToast"
-import { handleError } from "../../utils"
+} from "@/components/ui/dialog"
+import useAuth from "@/hooks/useAuth"
+import useCustomToast from "@/hooks/useCustomToast"
+import { handleError } from "@/utils"
 
 const DeleteConfirmation = () => {
   const [isOpen, setIsOpen] = useState(false)

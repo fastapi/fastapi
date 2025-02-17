@@ -6,21 +6,21 @@ import {
   Table,
   VStack,
 } from "@chakra-ui/react"
+import { useQuery } from "@tanstack/react-query"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { FiSearch } from "react-icons/fi"
 import { z } from "zod"
 
-import { useQuery } from "@tanstack/react-query"
-import { ItemsService } from "../../client"
-import { ItemActionsMenu } from "../../components/Common/ItemActionsMenu"
-import AddItem from "../../components/Items/AddItem"
-import PendingItems from "../../components/Pending/PendingItems"
+import { ItemsService } from "@/client"
+import { ItemActionsMenu } from "@/components/Common/ItemActionsMenu"
+import AddItem from "@/components/Items/AddItem"
+import PendingItems from "@/components/Pending/PendingItems"
 import {
   PaginationItems,
   PaginationNextTrigger,
   PaginationPrevTrigger,
   PaginationRoot,
-} from "../../components/ui/pagination.tsx"
+} from "@/components/ui/pagination.tsx"
 
 const itemsSearchSchema = z.object({
   page: z.number().catch(1),

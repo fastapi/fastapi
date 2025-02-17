@@ -2,7 +2,7 @@ import { IconButton } from "@chakra-ui/react"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { MenuContent, MenuRoot, MenuTrigger } from "../ui/menu"
 
-import type { UserPublic } from "../../client"
+import type { UserPublic } from "@/client"
 import DeleteUser from "../Admin/DeleteUser"
 import EditUser from "../Admin/EditUser"
 
