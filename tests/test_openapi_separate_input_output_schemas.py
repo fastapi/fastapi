@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -23,7 +24,8 @@ class Item(BaseModel):
         model_config = {"json_schema_serialization_defaults_required": True}
 
 
-def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
+@pytest.fixture(name="app")
+def custom_app(separate_input_output_schemas: bool) -> FastAPI:
     app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
 
     @app.post("/items/", responses={402: {"model": Item}})
@@ -45,47 +47,40 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
             Item(name="Plumbus"),
         ]
 
+    return app
+
+
+@pytest.mark.parametrize("separate_input_output_schemas", [True, False])
+def test_create_item(app: FastAPI, separate_input_output_schemas: bool):
     client = TestClient(app)
-    return client
-
-
-def test_create_item():
-    client = get_app_client()
-    client_no = get_app_client(separate_input_output_schemas=False)
     response = client.post("/items/", json={"name": "Plumbus"})
-    response2 = client_no.post("/items/", json={"name": "Plumbus"})
-    assert response.status_code == response2.status_code == 200, response.text
-    assert (
-        response.json()
-        == response2.json()
-        == {"name": "Plumbus", "description": None, "sub": None}
-    )
+
+    assert app.separate_input_output_schemas == separate_input_output_schemas
+    assert response.status_code == 200, response.text
+    assert response.json() == {"name": "Plumbus", "description": None, "sub": None}
 
 
-def test_create_item_with_sub():
-    client = get_app_client()
-    client_no = get_app_client(separate_input_output_schemas=False)
+@pytest.mark.parametrize("separate_input_output_schemas", [True, False])
+def test_create_item_with_sub(app: FastAPI, separate_input_output_schemas: bool):
+    client = TestClient(app)
     data = {
         "name": "Plumbus",
         "sub": {"subname": "SubPlumbus", "sub_description": "Sub WTF"},
     }
     response = client.post("/items/", json=data)
-    response2 = client_no.post("/items/", json=data)
-    assert response.status_code == response2.status_code == 200, response.text
-    assert (
-        response.json()
-        == response2.json()
-        == {
-            "name": "Plumbus",
-            "description": None,
-            "sub": {"subname": "SubPlumbus", "sub_description": "Sub WTF", "tags": []},
-        }
-    )
+
+    assert app.separate_input_output_schemas == separate_input_output_schemas
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "name": "Plumbus",
+        "description": None,
+        "sub": {"subname": "SubPlumbus", "sub_description": "Sub WTF", "tags": []},
+    }
 
 
-def test_create_item_list():
-    client = get_app_client()
-    client_no = get_app_client(separate_input_output_schemas=False)
+@pytest.mark.parametrize("separate_input_output_schemas", [True, False])
+def test_create_item_list(app: FastAPI, separate_input_output_schemas: bool):
+    client = TestClient(app)
     data = [
         {"name": "Plumbus"},
         {
@@ -94,46 +89,44 @@ def test_create_item_list():
         },
     ]
     response = client.post("/items-list/", json=data)
-    response2 = client_no.post("/items-list/", json=data)
-    assert response.status_code == response2.status_code == 200, response.text
-    assert (
-        response.json()
-        == response2.json()
-        == [
-            {"name": "Plumbus", "description": None, "sub": None},
-            {
-                "name": "Portal Gun",
-                "description": "Device to travel through the multi-rick-verse",
-                "sub": None,
-            },
-        ]
-    )
+
+    assert app.separate_input_output_schemas == separate_input_output_schemas
+    assert response.status_code == 200, response.text
+    assert response.json() == [
+        {"name": "Plumbus", "description": None, "sub": None},
+        {
+            "name": "Portal Gun",
+            "description": "Device to travel through the multi-rick-verse",
+            "sub": None,
+        },
+    ]
 
 
-def test_read_items():
-    client = get_app_client()
-    client_no = get_app_client(separate_input_output_schemas=False)
+@pytest.mark.parametrize("separate_input_output_schemas", [True, False])
+def test_read_items(app: FastAPI, separate_input_output_schemas: bool):
+    client = TestClient(app)
     response = client.get("/items/")
-    response2 = client_no.get("/items/")
-    assert response.status_code == response2.status_code == 200, response.text
-    assert (
-        response.json()
-        == response2.json()
-        == [
-            {
-                "name": "Portal Gun",
-                "description": "Device to travel through the multi-rick-verse",
-                "sub": {"subname": "subname", "sub_description": None, "tags": []},
-            },
-            {"name": "Plumbus", "description": None, "sub": None},
-        ]
-    )
+
+    assert hasattr(app, "separate_input_output_schemas")
+    assert app.separate_input_output_schemas == separate_input_output_schemas
+    assert response.status_code == 200, response.text
+    assert response.json() == [
+        {
+            "name": "Portal Gun",
+            "description": "Device to travel through the multi-rick-verse",
+            "sub": {"subname": "subname", "sub_description": None, "tags": []},
+        },
+        {"name": "Plumbus", "description": None, "sub": None},
+    ]
 
 
 @needs_pydanticv2
-def test_openapi_schema():
-    client = get_app_client()
+@pytest.mark.parametrize("separate_input_output_schemas", [True])
+def test_openapi_schema(app: FastAPI, separate_input_output_schemas: bool):
+    client = TestClient(app)
     response = client.get("/openapi.json")
+
+    assert app.separate_input_output_schemas == separate_input_output_schemas
     assert response.status_code == 200, response.text
     assert response.json() == {
         "openapi": "3.1.0",
@@ -349,9 +342,12 @@ def test_openapi_schema():
 
 
 @needs_pydanticv2
-def test_openapi_schema_no_separate():
-    client = get_app_client(separate_input_output_schemas=False)
+@pytest.mark.parametrize("separate_input_output_schemas", [False])
+def test_openapi_schema_no_separate(app: FastAPI, separate_input_output_schemas: bool):
+    client = TestClient(app)
     response = client.get("/openapi.json")
+
+    assert app.separate_input_output_schemas == separate_input_output_schemas
     assert response.status_code == 200, response.text
     assert response.json() == {
         "openapi": "3.1.0",
