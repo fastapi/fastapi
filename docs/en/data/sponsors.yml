@@ -58,3 +58,6 @@ bronze:
   - url: https://testdriven.io/courses/tdd-fastapi/
     title: Learn to build high-quality web apps with best practices
     img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://lambdatest.com/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
+    title: LambdaTest, AI-Powered Cloud-based Test Orchestration Platform
+    img: https://fastapi.tiangolo.com/img/sponsors/lambdatest.png
