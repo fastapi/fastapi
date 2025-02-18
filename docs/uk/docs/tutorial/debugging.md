@@ -84,7 +84,7 @@ from myapp import app
 
 ---
 
-Наприклад, у Visual Studio Code ви можете:
+Наприклад, у Visual Studio Code Ви можете:
 
 * Перейдіть на вкладку "Debug".
 * Натисніть "Add configuration...".
