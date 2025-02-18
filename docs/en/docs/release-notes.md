@@ -42,6 +42,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update team: Add Ludovico. PR [#13390](https://github.com/fastapi/fastapi/pull/13390) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: Add LambdaTest. PR [#13389](https://github.com/fastapi/fastapi/pull/13389) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump cloudflare/wrangler-action from 3.13 to 3.14. PR [#13350](https://github.com/fastapi/fastapi/pull/13350) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocs-material from 9.5.18 to 9.6.1. PR [#13301](https://github.com/fastapi/fastapi/pull/13301) by [@dependabot[bot]](https://github.com/apps/dependabot).
