@@ -195,7 +195,7 @@ $ pip install httpx
 /// info | Інформація
 
 Зверніть увагу, що `TestClient` отримує дані, які можна конвертувати в JSON, а не Pydantic-моделі.
-Якщо у вас є Pydantic-модель у тесті, і ви хочете передати її дані в додаток під час тестування, ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+Якщо у Вас є Pydantic-модель у тесті, і Ви хочете передати її дані в додаток під час тестування, Ви можете використати `jsonable_encoder`, описаний у розділі [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
 
 ///
 
