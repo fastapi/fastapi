@@ -14,6 +14,7 @@
 
 ### Refactors
 
+* 🔧 Remove unused context from router creation. PR [#1498](https://github.com/fastapi/full-stack-fastapi-template/pull/1498) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Remove redundant item deletion code leveraging cascade delete. PR [#1481](https://github.com/fastapi/full-stack-fastapi-template/pull/1481) by [@nauanbek](https://github.com/nauanbek).
 * ✏️ Fix a couple of spelling mistakes. PR [#1485](https://github.com/fastapi/full-stack-fastapi-template/pull/1485) by [@rjmunro](https://github.com/rjmunro).
 * 🎨 Move `prefix` and `tags` to routers. PR [#1439](https://github.com/fastapi/full-stack-fastapi-template/pull/1439) by [@patrick91](https://github.com/patrick91).
