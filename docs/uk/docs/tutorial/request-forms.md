@@ -6,7 +6,7 @@
 
 Щоб використовувати форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, і потім встановили бібліотеку, наприклад:
+Переконайтеся, що Ви створили [віртуальне середовище](../virtual-environments.md){.internal-link target=_blank}, активували його, і потім встановили бібліотеку, наприклад:
 
 ```console
 $ pip install python-multipart
