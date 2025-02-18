@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: Add LambdaTest. PR [#13389](https://github.com/fastapi/fastapi/pull/13389) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump cloudflare/wrangler-action from 3.13 to 3.14. PR [#13350](https://github.com/fastapi/fastapi/pull/13350) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocs-material from 9.5.18 to 9.6.1. PR [#13301](https://github.com/fastapi/fastapi/pull/13301) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pillow from 11.0.0 to 11.1.0. PR [#13300](https://github.com/fastapi/fastapi/pull/13300) by [@dependabot[bot]](https://github.com/apps/dependabot).
