@@ -83,7 +83,7 @@ $ pip install fastapi
 
 </div>
 
-!!! Not
+!!! note
 `pip install fastapi` ile kurulum yaptığınızda, bazı varsayılan isteğe bağlı standart bağımlılıklarla birlikte gelir.
 
     Bu isteğe bağlı bağımlılıklara sahip olmak istemiyorsanız, bunun yerine `pip install fastapi-slim` ile yükleyebilirsiniz.
