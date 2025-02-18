@@ -22,7 +22,7 @@ $ pip install python-multipart
 
 ## Оголошення параметрів `Form`
 
-Створюйте параметри форми так само як ви б створювали `Body` або `Query`:
+Створюйте параметри форми так само як Ви б створювали `Body` або `Query`:
 
 {* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
