@@ -1,8 +1,8 @@
-# Запити з формами та файлами 
+# Запити з формами та файлами
 
 У FastAPI ви можете одночасно отримувати файли та поля форми, використовуючи `File` і `Form`.
 
-/// info | Інформація 
+/// info | Інформація
 
 Щоб отримувати завантажені файли та/або дані форми, спочатку встановіть <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">python-multipart</a>.
 
@@ -18,7 +18,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
 
-## Оголошення параметрів `File` та `Form` 
+## Оголошення параметрів `File` та `Form`
 
 Створіть параметри файлів та форми так само як і для `Body` або `Query`:
 
