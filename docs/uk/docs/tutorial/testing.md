@@ -64,7 +64,7 @@ $ pip install httpx
 
 ### Файл застосунку **FastAPI**
 
-Припустимо, у вас є структура файлів, описана в розділі [Більші застосунки](bigger-applications.md){.internal-link target=_blank}:
+Припустимо, у Вас є структура файлів, описана в розділі [Більші застосунки](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .
