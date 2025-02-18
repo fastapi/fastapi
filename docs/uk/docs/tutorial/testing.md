@@ -3,7 +3,7 @@
 Тестування **FastAPI**  додатків є простим та ефективним завдяки бібліотеці <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, яка базується на <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>.
 Оскільки HTTPX розроблений на основі Requests, його API є інтуїтивно зрозумілим для тих, хто вже знайомий з Requests.
 
-З його допомогою ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
+З його допомогою Ви можете використовувати <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> безпосередньо з **FastAPI**.
 
 ## Використання `TestClient`
 
