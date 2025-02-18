@@ -14,6 +14,7 @@
 
 ### Refactors
 
+* ♻️ Replace email types from `str` to `EmailStr` in `config.py`. PR [#1492](https://github.com/fastapi/full-stack-fastapi-template/pull/1492) by [@jpizquierdo](https://github.com/jpizquierdo).
 * 🔧 Remove unused context from router creation. PR [#1498](https://github.com/fastapi/full-stack-fastapi-template/pull/1498) by [@alejsdev](https://github.com/alejsdev).
 * ♻️ Remove redundant item deletion code leveraging cascade delete. PR [#1481](https://github.com/fastapi/full-stack-fastapi-template/pull/1481) by [@nauanbek](https://github.com/nauanbek).
 * ✏️ Fix a couple of spelling mistakes. PR [#1485](https://github.com/fastapi/full-stack-fastapi-template/pull/1485) by [@rjmunro](https://github.com/rjmunro).
