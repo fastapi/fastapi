@@ -1,14 +1,23 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
+
+from ...utils import needs_py310
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.query_params.tutorial006 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial006",
+        pytest.param("tutorial006_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.query_params.{request.param}")
 
-    c = TestClient(app)
+    c = TestClient(mod.app)
     return c
 
 
@@ -34,21 +43,18 @@ def test_foo_no_needy(client: TestClient):
                     "loc": ["query", "needy"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "skip"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "a",
-                    "url": match_pydantic_error_url("int_parsing"),
                 },
                 {
                     "type": "int_parsing",
                     "loc": ["query", "limit"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "b",
-                    "url": match_pydantic_error_url("int_parsing"),
                 },
             ]
         }

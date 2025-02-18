@@ -1,10 +1,10 @@
 from typing import Optional
 
+import pytest
 from dirty_equals import IsDict
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -76,21 +76,18 @@ def test_strict_login_None():
                     "loc": ["body", "grant_type"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "username"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "password"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -129,7 +126,6 @@ def test_strict_login_no_grant_type():
                     "loc": ["body", "grant_type"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 }
             ]
         }
@@ -147,10 +143,18 @@ def test_strict_login_no_grant_type():
     )
 
 
-def test_strict_login_incorrect_grant_type():
+@pytest.mark.parametrize(
+    argnames=["grant_type"],
+    argvalues=[
+        pytest.param("incorrect", id="incorrect value"),
+        pytest.param("passwordblah", id="password with suffix"),
+        pytest.param("blahpassword", id="password with prefix"),
+    ],
+)
+def test_strict_login_incorrect_grant_type(grant_type: str):
     response = client.post(
         "/login",
-        data={"username": "johndoe", "password": "secret", "grant_type": "incorrect"},
+        data={"username": "johndoe", "password": "secret", "grant_type": grant_type},
     )
     assert response.status_code == 422
     assert response.json() == IsDict(
@@ -159,10 +163,9 @@ def test_strict_login_incorrect_grant_type():
                 {
                     "type": "string_pattern_mismatch",
                     "loc": ["body", "grant_type"],
-                    "msg": "String should match pattern 'password'",
-                    "input": "incorrect",
-                    "ctx": {"pattern": "password"},
-                    "url": match_pydantic_error_url("string_pattern_mismatch"),
+                    "msg": "String should match pattern '^password$'",
+                    "input": grant_type,
+                    "ctx": {"pattern": "^password$"},
                 }
             ]
         }
@@ -172,9 +175,9 @@ def test_strict_login_incorrect_grant_type():
             "detail": [
                 {
                     "loc": ["body", "grant_type"],
-                    "msg": 'string does not match regex "password"',
+                    "msg": 'string does not match regex "^password$"',
                     "type": "value_error.str.regex",
-                    "ctx": {"pattern": "password"},
+                    "ctx": {"pattern": "^password$"},
                 }
             ]
         }
@@ -259,7 +262,7 @@ def test_openapi_schema():
                     "properties": {
                         "grant_type": {
                             "title": "Grant Type",
-                            "pattern": "password",
+                            "pattern": "^password$",
                             "type": "string",
                         },
                         "username": {"title": "Username", "type": "string"},

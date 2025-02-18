@@ -3,14 +3,16 @@ import dataclasses
 import email.message
 import inspect
 import json
-from contextlib import AsyncExitStack
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
     Any,
+    AsyncIterator,
     Callable,
     Coroutine,
     Dict,
     List,
+    Mapping,
     Optional,
     Sequence,
     Set,
@@ -31,8 +33,10 @@ from fastapi._compat import (
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    _should_embed_body_fields,
     get_body_field,
     get_dependant,
+    get_flat_dependant,
     get_parameterless_sub_dependant,
     get_typed_return_annotation,
     solve_dependencies,
@@ -47,7 +51,7 @@ from fastapi.exceptions import (
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
-    create_response_field,
+    create_model_field,
     generate_unique_id,
     get_value_or_default,
     is_body_allowed_for_status_code,
@@ -67,9 +71,9 @@ from starlette.routing import (
     websocket_session,
 )
 from starlette.routing import Mount as Mount  # noqa
-from starlette.types import ASGIApp, Lifespan, Scope
+from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 
 def _prepare_response_content(
@@ -117,6 +121,23 @@ def _prepare_response_content(
     elif dataclasses.is_dataclass(res):
         return dataclasses.asdict(res)
     return res
+
+
+def _merge_lifespan_context(
+    original_context: Lifespan[Any], nested_context: Lifespan[Any]
+) -> Lifespan[Any]:
+    @asynccontextmanager
+    async def merged_lifespan(
+        app: AppType,
+    ) -> AsyncIterator[Optional[Mapping[str, Any]]]:
+        async with original_context(app) as maybe_original_state:
+            async with nested_context(app) as maybe_nested_state:
+                if maybe_nested_state is None and maybe_original_state is None:
+                    yield None  # old ASGI compatibility
+                else:
+                    yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
+
+    return merged_lifespan  # type: ignore[return-value]
 
 
 async def serialize_response(
@@ -206,6 +227,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -216,19 +238,14 @@ def get_request_handler(
         actual_response_class = response_class
 
     async def app(request: Request) -> Response:
-        exception_to_reraise: Optional[Exception] = None
         response: Union[Response, None] = None
-        async with AsyncExitStack() as async_exit_stack:
-            # TODO: remove this scope later, after a few releases
-            # This scope fastapi_astack is no longer used by FastAPI, kept for
-            # compatibility, just in case
-            request.scope["fastapi_astack"] = async_exit_stack
+        async with AsyncExitStack() as file_stack:
             try:
                 body: Any = None
                 if body_field:
                     if is_body_form:
                         body = await request.form()
-                        async_exit_stack.push_async_callback(body.close)
+                        file_stack.push_async_callback(body.close)
                     else:
                         body_bytes = await request.body()
                         if body_bytes:
@@ -260,86 +277,90 @@ def get_request_handler(
                     ],
                     body=e.doc,
                 )
-                exception_to_reraise = validation_error
                 raise validation_error from e
-            except HTTPException as e:
-                exception_to_reraise = e
+            except HTTPException:
+                # If a middleware raises an HTTPException, it should be raised again
                 raise
             except Exception as e:
                 http_error = HTTPException(
                     status_code=400, detail="There was an error parsing the body"
                 )
-                exception_to_reraise = http_error
                 raise http_error from e
-            try:
+            errors: List[Any] = []
+            async with AsyncExitStack() as async_exit_stack:
                 solved_result = await solve_dependencies(
                     request=request,
                     dependant=dependant,
                     body=body,
                     dependency_overrides_provider=dependency_overrides_provider,
                     async_exit_stack=async_exit_stack,
+                    embed_body_fields=embed_body_fields,
                 )
-                values, errors, background_tasks, sub_response, _ = solved_result
-            except Exception as e:
-                exception_to_reraise = e
-                raise e
+                errors = solved_result.errors
+                if not errors:
+                    raw_response = await run_endpoint_function(
+                        dependant=dependant,
+                        values=solved_result.values,
+                        is_coroutine=is_coroutine,
+                    )
+                    if isinstance(raw_response, Response):
+                        if raw_response.background is None:
+                            raw_response.background = solved_result.background_tasks
+                        response = raw_response
+                    else:
+                        response_args: Dict[str, Any] = {
+                            "background": solved_result.background_tasks
+                        }
+                        # If status_code was set, use it, otherwise use the default from the
+                        # response class, in the case of redirect it's 307
+                        current_status_code = (
+                            status_code
+                            if status_code
+                            else solved_result.response.status_code
+                        )
+                        if current_status_code is not None:
+                            response_args["status_code"] = current_status_code
+                        if solved_result.response.status_code:
+                            response_args["status_code"] = (
+                                solved_result.response.status_code
+                            )
+                        content = await serialize_response(
+                            field=response_field,
+                            response_content=raw_response,
+                            include=response_model_include,
+                            exclude=response_model_exclude,
+                            by_alias=response_model_by_alias,
+                            exclude_unset=response_model_exclude_unset,
+                            exclude_defaults=response_model_exclude_defaults,
+                            exclude_none=response_model_exclude_none,
+                            is_coroutine=is_coroutine,
+                        )
+                        response = actual_response_class(content, **response_args)
+                        if not is_body_allowed_for_status_code(response.status_code):
+                            response.body = b""
+                        response.headers.raw.extend(solved_result.response.headers.raw)
             if errors:
                 validation_error = RequestValidationError(
                     _normalize_errors(errors), body=body
                 )
-                exception_to_reraise = validation_error
                 raise validation_error
-            else:
-                try:
-                    raw_response = await run_endpoint_function(
-                        dependant=dependant, values=values, is_coroutine=is_coroutine
-                    )
-                except Exception as e:
-                    exception_to_reraise = e
-                    raise e
-                if isinstance(raw_response, Response):
-                    if raw_response.background is None:
-                        raw_response.background = background_tasks
-                    response = raw_response
-                else:
-                    response_args: Dict[str, Any] = {"background": background_tasks}
-                    # If status_code was set, use it, otherwise use the default from the
-                    # response class, in the case of redirect it's 307
-                    current_status_code = (
-                        status_code if status_code else sub_response.status_code
-                    )
-                    if current_status_code is not None:
-                        response_args["status_code"] = current_status_code
-                    if sub_response.status_code:
-                        response_args["status_code"] = sub_response.status_code
-                    content = await serialize_response(
-                        field=response_field,
-                        response_content=raw_response,
-                        include=response_model_include,
-                        exclude=response_model_exclude,
-                        by_alias=response_model_by_alias,
-                        exclude_unset=response_model_exclude_unset,
-                        exclude_defaults=response_model_exclude_defaults,
-                        exclude_none=response_model_exclude_none,
-                        is_coroutine=is_coroutine,
-                    )
-                    response = actual_response_class(content, **response_args)
-                    if not is_body_allowed_for_status_code(response.status_code):
-                        response.body = b""
-                    response.headers.raw.extend(sub_response.headers.raw)
-        # This exception was possibly handled by the dependency but it should
-        # still bubble up so that the ServerErrorMiddleware can return a 500
-        # or the ExceptionMiddleware can catch and handle any other exceptions
-        if exception_to_reraise:
-            raise exception_to_reraise
-        assert response is not None, "An error occurred while generating the request"
+        if response is None:
+            raise FastAPIError(
+                "No response object was returned. There's a high chance that the "
+                "application code is raising an exception and a dependency with yield "
+                "has a block with a bare except, or a block with except Exception, "
+                "and is not raising the exception again. Read more about it in the "
+                "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
+            )
         return response
 
     return app
 
 
 def get_websocket_app(
-    dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
+    dependant: Dependant,
+    dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
@@ -352,12 +373,14 @@ def get_websocket_app(
                 dependant=dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
             )
-            values, errors, _, _2, _3 = solved_result
-            if errors:
-                raise WebSocketRequestValidationError(_normalize_errors(errors))
+            if solved_result.errors:
+                raise WebSocketRequestValidationError(
+                    _normalize_errors(solved_result.errors)
+                )
             assert dependant.call is not None, "dependant.call must be a function"
-            await dependant.call(**values)
+            await dependant.call(**solved_result.values)
 
     return app
 
@@ -383,11 +406,15 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
+                embed_body_fields=self._embed_body_fields,
             )
         )
 
@@ -466,9 +493,9 @@ class APIRoute(routing.Route):
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
-            current_generate_unique_id: Callable[
-                ["APIRoute"], str
-            ] = generate_unique_id_function.value
+            current_generate_unique_id: Callable[[APIRoute], str] = (
+                generate_unique_id_function.value
+            )
         else:
             current_generate_unique_id = generate_unique_id_function
         self.unique_id = self.operation_id or current_generate_unique_id(self)
@@ -481,7 +508,7 @@ class APIRoute(routing.Route):
                 status_code
             ), f"Status code {status_code} must not have a response body"
             response_name = "Response_" + self.unique_id
-            self.response_field = create_response_field(
+            self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
@@ -494,9 +521,9 @@ class APIRoute(routing.Route):
             # By being a new field, no inheritance will be passed as is. A new model
             # will always be created.
             # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[
-                ModelField
-            ] = create_cloned_field(self.response_field)
+            self.secure_cloned_response_field: Optional[ModelField] = (
+                create_cloned_field(self.response_field)
+            )
         else:
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
@@ -514,7 +541,9 @@ class APIRoute(routing.Route):
                     additional_status_code
                 ), f"Status code {additional_status_code} must not have a response body"
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                response_field = create_response_field(name=response_name, type_=model)
+                response_field = create_model_field(
+                    name=response_name, type_=model, mode="serialization"
+                )
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
@@ -528,7 +557,15 @@ class APIRoute(routing.Route):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-        self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
+        self.body_field = get_body_field(
+            flat_dependant=self._flat_dependant,
+            name=self.unique_id,
+            embed_body_fields=self._embed_body_fields,
+        )
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -545,6 +582,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            embed_body_fields=self._embed_body_fields,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
@@ -1320,6 +1358,10 @@ class APIRouter(routing.Router):
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
             self.add_event_handler("shutdown", handler)
+        self.lifespan_context = _merge_lifespan_context(
+            self.lifespan_context,
+            router.lifespan_context,
+        )
 
     def get(
         self,

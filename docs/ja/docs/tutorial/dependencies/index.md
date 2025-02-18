@@ -31,9 +31,7 @@
 
 以下のように、*path operation関数*と同じパラメータを全て取ることができる関数にすぎません:
 
-```Python hl_lines="8 9"
-{!../../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[8,9] *}
 
 これだけです。
 
@@ -55,17 +53,13 @@
 
 ### `Depends`のインポート
 
-```Python hl_lines="3"
-{!../../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### "dependant"での依存関係の宣言
 
 *path operation関数*のパラメータに`Body`や`Query`などを使用するのと同じように、新しいパラメータに`Depends`を使用することができます:
 
-```Python hl_lines="13  18"
-{!../../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 関数のパラメータに`Depends`を使用するのは`Body`や`Query`などと同じですが、`Depends`の動作は少し異なります。
 
@@ -75,8 +69,11 @@
 
 そして、その関数は、*path operation関数*が行うのと同じ方法でパラメータを取ります。
 
-!!! tip "豆知識"
-    次の章では、関数以外の「もの」が依存関係として使用できるものを見ていきます。
+/// tip | 豆知識
+
+次の章では、関数以外の「もの」が依存関係として使用できるものを見ていきます。
+
+///
 
 新しいリクエストが到着するたびに、**FastAPI** が以下のような処理を行います:
 
@@ -97,10 +94,13 @@ common_parameters --> read_users
 
 この方法では、共有されるコードを一度書き、**FastAPI** が*path operations*のための呼び出しを行います。
 
-!!! check "確認"
-    特別なクラスを作成してどこかで **FastAPI** に渡して「登録」する必要はないことに注意してください。
+/// check | 確認
 
-    `Depends`を渡すだけで、**FastAPI** が残りの処理をしてくれます。
+特別なクラスを作成してどこかで **FastAPI** に渡して「登録」する必要はないことに注意してください。
+
+`Depends`を渡すだけで、**FastAPI** が残りの処理をしてくれます。
+
+///
 
 ## `async`にするかどうか
 
@@ -112,8 +112,11 @@ common_parameters --> read_users
 
 それは重要ではありません。**FastAPI** は何をすべきかを知っています。
 
-!!! note "備考"
-    わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+/// note | 備考
+
+わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+
+///
 
 ## OpenAPIとの統合
 

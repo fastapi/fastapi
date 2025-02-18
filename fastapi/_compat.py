@@ -2,6 +2,7 @@ from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
+from functools import lru_cache
 from typing import (
     Any,
     Callable,
@@ -24,7 +25,8 @@ from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
-PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
+PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
+PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 
 sequence_annotation_to_type = {
@@ -42,6 +44,8 @@ sequence_annotation_to_type = {
 }
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
+
+Url: Type[Any]
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -68,7 +72,7 @@ if PYDANTIC_V2:
             general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
         )
 
-    Required = PydanticUndefined
+    RequiredParam = PydanticUndefined
     Undefined = PydanticUndefined
     UndefinedType = PydanticUndefinedType
     evaluate_forwardref = eval_type_lenient
@@ -127,7 +131,7 @@ if PYDANTIC_V2:
                 )
             except ValidationError as exc:
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(), loc_prefix=loc
+                    errors=exc.errors(include_url=False), loc_prefix=loc
                 )
 
         def serialize(
@@ -266,7 +270,7 @@ if PYDANTIC_V2:
     def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors()[0]
+        ).errors(include_url=False)[0]
         error["input"] = None
         return error  # type: ignore[return-value]
 
@@ -276,6 +280,12 @@ if PYDANTIC_V2:
         field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
+
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return [
+            ModelField(field_info=field_info, name=name)
+            for name, field_info in model.model_fields.items()
+        ]
 
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
@@ -304,9 +314,10 @@ else:
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         ModelField as ModelField,  # noqa: F401
     )
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        Required as Required,  # noqa: F401
-    )
+
+    # Keeping old "Required" functionality from Pydantic V1, without
+    # shadowing typing.Required.
+    RequiredParam: Any = Ellipsis  # type: ignore[no-redef]
     from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
         Undefined as Undefined,
     )
@@ -511,6 +522,9 @@ else:
             BodyModel.__fields__[f.name] = f  # type: ignore[index]
         return BodyModel
 
+    def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+        return list(model.__fields__.values())  # type: ignore[attr-defined]
+
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
@@ -530,6 +544,12 @@ def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        for arg in get_args(annotation):
+            if field_annotation_is_sequence(arg):
+                return True
+        return False
     return _annotation_is_sequence(annotation) or _annotation_is_sequence(
         get_origin(annotation)
     )
@@ -632,3 +652,8 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+@lru_cache
+def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+    return get_model_fields(model)

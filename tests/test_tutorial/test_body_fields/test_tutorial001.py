@@ -1,14 +1,26 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
+
+from ...utils import needs_py39, needs_py310
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.body_fields.tutorial001 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        pytest.param("tutorial001_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_fields.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
@@ -57,7 +69,6 @@ def test_invalid_price(client: TestClient):
                     "msg": "Input should be greater than 0",
                     "input": -3.0,
                     "ctx": {"gt": 0.0},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }

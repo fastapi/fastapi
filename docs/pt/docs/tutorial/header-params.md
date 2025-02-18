@@ -6,17 +6,7 @@ Você pode definir parâmetros de Cabeçalho da mesma maneira que define paramê
 
 Primeiro importe `Header`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+{* ../../docs_src/header_params/tutorial001_py310.py hl[1] *}
 
 ## Declare parâmetros de `Header`
 
@@ -24,25 +14,21 @@ Então declare os paramêtros de cabeçalho usando a mesma estrutura que em `Pat
 
 O primeiro valor é o valor padrão, você pode passar todas as validações adicionais ou parâmetros de anotação:
 
-=== "Python 3.10+"
+{* ../../docs_src/header_params/tutorial001_py310.py hl[7] *}
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+/// note | Detalhes Técnicos
 
-=== "Python 3.8+"
+`Header` é uma classe "irmã" de `Path`, `Query` e `Cookie`. Ela também herda da mesma classe em comum `Param`.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+Mas lembre-se que quando você importa `Query`, `Path`, `Header`, e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
 
-!!! note "Detalhes Técnicos"
-    `Header` é uma classe "irmã" de `Path`, `Query` e `Cookie`. Ela também herda da mesma classe em comum `Param`.
+///
 
-    Mas lembre-se que quando você importa `Query`, `Path`, `Header`, e outras de `fastapi`, elas são na verdade funções que retornam classes especiais.
+/// info
 
-!!! info
-    Para declarar headers, você precisa usar `Header`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+Para declarar headers, você precisa usar `Header`, caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
+
+///
 
 ## Conversão automática
 
@@ -60,20 +46,13 @@ Portanto, você pode usar `user_agent` como faria normalmente no código Python,
 
 Se por algum motivo você precisar desabilitar a conversão automática de sublinhados para hífens, defina o parâmetro `convert_underscores` de `Header` para `False`:
 
-=== "Python 3.10+"
+{* ../../docs_src/header_params/tutorial002_py310.py hl[8] *}
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/header_params/tutorial002_py310.py!}
-    ```
+/// warning | Aviso
 
-=== "Python 3.8+"
+Antes de definir `convert_underscores` como `False`, lembre-se de que alguns proxies e servidores HTTP não permitem o uso de cabeçalhos com sublinhados.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002.py!}
-    ```
-
-!!! warning "Aviso"
-    Antes de definir `convert_underscores` como `False`, lembre-se de que alguns proxies e servidores HTTP não permitem o uso de cabeçalhos com sublinhados.
+///
 
 ## Cabeçalhos duplicados
 
@@ -85,23 +64,7 @@ Você receberá todos os valores do cabeçalho duplicado como uma `list` Python.
 
 Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de uma vez, você pode escrever:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003.py!}
-    ```
+{* ../../docs_src/header_params/tutorial003_py310.py hl[7] *}
 
 Se você se comunicar com essa *operação de caminho* enviando dois cabeçalhos HTTP como:
 

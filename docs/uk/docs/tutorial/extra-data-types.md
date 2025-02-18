@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Пайтонівський `datetime.timedelta`.
     * У запитах та відповідях буде представлений як `float` загальної кількості секунд.
-    * Pydantic також дозволяє представляти це як "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/usage/exporting_models/#json_encoders" class="external-link" target="_blank">більше інформації дивись у документації</a>.
+    * Pydantic також дозволяє представляти це як "ISO 8601 time diff encoding", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#json_encoders" class="external-link" target="_blank">більше інформації дивись у документації</a>.
 * `frozenset`:
     * У запитах і відповідях це буде оброблено так само, як і `set`:
         * У запитах список буде зчитано, дублікати будуть видалені та він буде перетворений на `set`.
@@ -49,82 +49,14 @@
 * `Decimal`:
     * Стандартний Пайтонівський `Decimal`.
     * У запитах і відповідях це буде оброблено так само, як і `float`.
-* Ви можете перевірити всі дійсні типи даних Pydantic тут: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">типи даних Pydantic</a>.
+* Ви можете перевірити всі дійсні типи даних Pydantic тут: <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">типи даних Pydantic</a>.
 
 ## Приклад
 
 Ось приклад *path operation* з параметрами, використовуючи деякі з вищезазначених типів.
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="1  3  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="1  3  13-17"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="1  2  11-15"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="1  2  12-16"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 Зверніть увагу, що параметри всередині функції мають свій звичайний тип даних, і ви можете, наприклад, виконувати звичайні маніпуляції з датами, такі як:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="19-20"
-    {!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="18-19"
-    {!> ../../../docs_src/extra_data_types/tutorial001.py!}
-    ```
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}

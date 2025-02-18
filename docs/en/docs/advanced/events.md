@@ -30,26 +30,25 @@ Let's start with an example and then see it in detail.
 
 We create an async function `lifespan()` with `yield` like this:
 
-```Python hl_lines="16  19"
-{!../../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 Here we are simulating the expensive *startup* operation of loading the model by putting the (fake) model function in the dictionary with machine learning models before the `yield`. This code will be executed **before** the application **starts taking requests**, during the *startup*.
 
 And then, right after the `yield`, we unload the model. This code will be executed **after** the application **finishes handling requests**, right before the *shutdown*. This could, for example, release resources like memory or a GPU.
 
-!!! tip
-    The `shutdown` would happen when you are **stopping** the application.
+/// tip
 
-    Maybe you need to start a new version, or you just got tired of running it. 🤷
+The `shutdown` would happen when you are **stopping** the application.
+
+Maybe you need to start a new version, or you just got tired of running it. 🤷
+
+///
 
 ### Lifespan function
 
 The first thing to notice, is that we are defining an async function with `yield`. This is very similar to Dependencies with `yield`.
 
-```Python hl_lines="14-19"
-{!../../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 The first part of the function, before the `yield`, will be executed **before** the application starts.
 
@@ -61,9 +60,7 @@ If you check, the function is decorated with an `@asynccontextmanager`.
 
 That converts the function into something called an "**async context manager**".
 
-```Python hl_lines="1  13"
-{!../../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 A **context manager** in Python is something that you can use in a `with` statement, for example, `open()` can be used as a context manager:
 
@@ -85,16 +82,17 @@ In our code example above, we don't use it directly, but we pass it to FastAPI f
 
 The `lifespan` parameter of the `FastAPI` app takes an **async context manager**, so we can pass our new `lifespan` async context manager to it.
 
-```Python hl_lines="22"
-{!../../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternative Events (deprecated)
 
-!!! warning
-    The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
+/// warning
 
-    You can probably skip this part.
+The recommended way to handle the *startup* and *shutdown* is using the `lifespan` parameter of the `FastAPI` app as described above. If you provide a `lifespan` parameter, `startup` and `shutdown` event handlers will no longer be called. It's all `lifespan` or all events, not both.
+
+You can probably skip this part.
+
+///
 
 There's an alternative way to define this logic to be executed during *startup* and during *shutdown*.
 
@@ -106,9 +104,7 @@ These functions can be declared with `async def` or normal `def`.
 
 To add a function that should be run before the application starts, declare it with the event `"startup"`:
 
-```Python hl_lines="8"
-{!../../../docs_src/events/tutorial001.py!}
-```
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 In this case, the `startup` event handler function will initialize the items "database" (just a `dict`) with some values.
 
@@ -120,23 +116,27 @@ And your application won't start receiving requests until all the `startup` even
 
 To add a function that should be run when the application is shutting down, declare it with the event `"shutdown"`:
 
-```Python hl_lines="6"
-{!../../../docs_src/events/tutorial002.py!}
-```
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 
-!!! info
-    In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
+/// info
 
-!!! tip
-    Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
 
-    So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
+///
 
-    But `open()` doesn't use `async` and `await`.
+/// tip
 
-    So, we declare the event handler function with standard `def` instead of `async def`.
+Notice that in this case we are using a standard Python `open()` function that interacts with a file.
+
+So, it involves I/O (input/output), that requires "waiting" for things to be written to disk.
+
+But `open()` doesn't use `async` and `await`.
+
+So, we declare the event handler function with standard `def` instead of `async def`.
+
+///
 
 ### `startup` and `shutdown` together
 
@@ -152,11 +152,14 @@ Just a technical detail for the curious nerds. 🤓
 
 Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
 
-!!! info
-    You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+/// info
 
-    Including how to handle lifespan state that can be used in other areas of your code.
+You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+
+Including how to handle lifespan state that can be used in other areas of your code.
+
+///
 
 ## Sub Applications
 
-🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](./sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.
