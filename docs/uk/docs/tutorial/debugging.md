@@ -98,7 +98,7 @@ from myapp import app
 <img src="/img/tutorial/debugging/image01.png">
 
 ---
-Якщо ви використовуєте PyCharm, ви можете:
+Якщо Ви використовуєте PyCharm, ви можете:
 
 * Відкрити меню "Run".
 * Вибрати опцію "Debug...".
