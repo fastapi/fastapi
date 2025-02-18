@@ -56,7 +56,7 @@ HTML-форми (`<form></form>`) надсилають дані на серве�
 
 Але якщо форма містить файли, вона кодується як `multipart/form-data`. Ви дізнаєтеся про обробку файлів у наступному розділі.
 
-Якщо ви хочете дізнатися більше про ці кодування та поля форм, зверніться до <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> вебдокументації для <code>POST</code></a>.
+Якщо Ви хочете дізнатися більше про ці кодування та поля форм, зверніться до <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> вебдокументації для <code>POST</code></a>.
 
 ///
 
