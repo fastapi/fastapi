@@ -72,7 +72,7 @@ $ pip install httpx
 │   ├── __init__.py
 │   └── main.py
 ```
-У файлі `main.py` знаходиться ваш застосунок **FastAPI** :
+У файлі `main.py` знаходиться Ваш застосунок **FastAPI** :
 
 {* ../../docs_src/app_testing/main.py *}
 
