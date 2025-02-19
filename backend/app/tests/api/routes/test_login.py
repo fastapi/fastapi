@@ -1,11 +1,14 @@
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
-from sqlmodel import Session, select
+from sqlmodel import Session
 
 from app.core.config import settings
 from app.core.security import verify_password
-from app.models import User
+from app.crud import create_user
+from app.models import UserCreate
+from app.tests.utils.user import user_authentication_headers
+from app.tests.utils.utils import random_email, random_lower_string
 from app.utils import generate_password_reset_token
 
 
@@ -69,23 +72,34 @@ def test_recovery_password_user_not_exits(
     assert r.status_code == 404
 
 
-def test_reset_password(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
-) -> None:
-    token = generate_password_reset_token(email=settings.FIRST_SUPERUSER)
-    data = {"new_password": "changethis", "token": token}
+def test_reset_password(client: TestClient, db: Session) -> None:
+    email = random_email()
+    password = random_lower_string()
+    new_password = random_lower_string()
+
+    user_create = UserCreate(
+        email=email,
+        full_name="Test User",
+        password=password,
+        is_active=True,
+        is_superuser=False,
+    )
+    user = create_user(session=db, user_create=user_create)
+    token = generate_password_reset_token(email=email)
+    headers = user_authentication_headers(client=client, email=email, password=password)
+    data = {"new_password": new_password, "token": token}
+
     r = client.post(
         f"{settings.API_V1_STR}/reset-password/",
-        headers=superuser_token_headers,
+        headers=headers,
         json=data,
     )
+
     assert r.status_code == 200
     assert r.json() == {"message": "Password updated successfully"}
 
-    user_query = select(User).where(User.email == settings.FIRST_SUPERUSER)
-    user = db.exec(user_query).first()
-    assert user
-    assert verify_password(data["new_password"], user.hashed_password)
+    db.refresh(user)
+    assert verify_password(new_password, user.hashed_password)
 
 
 def test_reset_password_invalid_token(
