@@ -2,6 +2,8 @@
 
 ## Latest Changes
 
+## 0.8.0
+
 ### Features
 
 * 🛂 Migrate to Chakra UI v3 . PR [#1496](https://github.com/fastapi/full-stack-fastapi-template/pull/1496) by [@alejsdev](https://github.com/alejsdev).
