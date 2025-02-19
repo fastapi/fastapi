@@ -24,7 +24,7 @@ JWT는 암호화되지 않아 누구든지 토큰에서 정보를 복원할 수 
 
 일주일 뒤에는 토큰이 만료될 것이고, 사용자는 인가되지 않아 새 토큰을 받기 위해 다시 로그인해야 할 것입니다. 만약 사용자(또는 제3자)가 토큰을 수정하거나 만료일을 변경하면 서명이 일치하지 않아 알아챌 수 있을 것입니다.
 
-만약 JWT 토큰의 작동 방식을 알아보고 싶다면 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> 을 확인하십시오.
+만약 JWT 토큰을 다뤄보고, 작동 방식도 알아보고 싶다면 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> 을 확인하십시오.
 
 ## `PyJWT` 설치
 
