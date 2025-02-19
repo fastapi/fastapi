@@ -102,7 +102,7 @@ UserInDB(
 )
 ```
 
-#### 다른 Pydantic 모델의 데이터를 활용한 Pydantic 모델 생성
+#### 다른 모델 데이터로 새 Pydantic 모델 생성
 
 위의 예제에서 `user_in.dict()`로부터 `user_dict`를 생성한 것처럼, 아래 코드는:
 
