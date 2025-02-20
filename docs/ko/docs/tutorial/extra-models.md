@@ -123,7 +123,7 @@ UserInDB(**user_in.dict())
 
 #### `dict` 언패킹(Unpacking)과 추가 키워드
 
-그리고 다음과 같이 추가 키워드 인자 `hashed_password=hashed_password`를 포함하면:
+그리고 다음과 같이 추가 키워드 인자 `hashed_password=hashed_password`를 추가하면:
 
 ```Python
 UserInDB(**user_in.dict(), hashed_password=hashed_password)
