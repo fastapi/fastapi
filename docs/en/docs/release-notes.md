@@ -15,6 +15,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix typos in virtual environments documentation. PR [#13396](https://github.com/fastapi/fastapi/pull/13396) by [@bullet-ant](https://github.com/bullet-ant).
 * 🐛 Fix issue with Swagger theme change example in the official tutorial. PR [#13289](https://github.com/fastapi/fastapi/pull/13289) by [@Zerohertz](https://github.com/Zerohertz).
 * 📝 Add more precise description of HTTP status code range in docs. PR [#13347](https://github.com/fastapi/fastapi/pull/13347) by [@DanielYang59](https://github.com/DanielYang59).
 * 🔥 Remove manual type annotations in JWT tutorial to avoid typing expectations (JWT doesn't provide more types). PR [#13378](https://github.com/fastapi/fastapi/pull/13378) by [@tiangolo](https://github.com/tiangolo).
