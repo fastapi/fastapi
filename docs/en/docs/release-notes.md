@@ -45,6 +45,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add CodeRabbit. PR [#13402](https://github.com/fastapi/fastapi/pull/13402) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update team: Add Ludovico. PR [#13390](https://github.com/fastapi/fastapi/pull/13390) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: Add LambdaTest. PR [#13389](https://github.com/fastapi/fastapi/pull/13389) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump cloudflare/wrangler-action from 3.13 to 3.14. PR [#13350](https://github.com/fastapi/fastapi/pull/13350) by [@dependabot[bot]](https://github.com/apps/dependabot).
