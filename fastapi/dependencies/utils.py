@@ -16,6 +16,7 @@ from typing import (
     Type,
     Union,
     cast,
+    get_type_hints,
 )
 
 import anyio
@@ -229,14 +230,14 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+    hints = get_type_hints(call, include_extras=True)
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param.annotation, globalns),
+            annotation=hints.get(param.name),
         )
         for param in signature.parameters.values()
     ]
