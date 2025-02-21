@@ -2,6 +2,10 @@
 
 ## Latest Changes
 
+### Refactors
+
+* 🎨 Add minor UI tweaks. PR [#1506](https://github.com/fastapi/full-stack-fastapi-template/pull/1506) by [@alejsdev](https://github.com/alejsdev).
+
 ## 0.8.0
 
 ### Features
