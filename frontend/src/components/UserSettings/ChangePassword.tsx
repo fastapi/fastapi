@@ -48,11 +48,10 @@ const ChangePassword = () => {
           Change Password
         </Heading>
         <Box
-          w={{ sm: "full", md: "300px" }}
           as="form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <VStack gap={4}>
+          <VStack gap={4} w={{ base: "100%", md: "sm" }}>
             <PasswordInput
               type="current_password"
               startElement={<FiLock />}
