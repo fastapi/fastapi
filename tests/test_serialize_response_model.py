@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional
 
 from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
 
@@ -152,3 +153,32 @@ def test_validdict_exclude_unset():
         "k2": {"aliased_name": "bar", "price": 1.0},
         "k3": {"aliased_name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
     }
+
+
+class Toggle(BaseModel):
+    switch: bool
+
+    if PYDANTIC_V2:
+        from pydantic import field_validator
+
+        @field_validator("switch")
+        def toggle_switch(cls, switch: bool):
+            return not switch
+
+    else:
+        from pydantic import validator
+
+        @validator("switch")
+        def toggle_switch(cls, v):
+            return not v
+
+
+@app.post("/toggle", response_model=Toggle)
+def toggle():
+    return Toggle(switch=False)
+
+
+def test_response_model_should_not_revalidate_response_content_if_they_had_same_type():
+    response = client.post("/toggle")
+    response.raise_for_status()
+    assert response.json() == {"switch": True}
