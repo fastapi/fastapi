@@ -6,9 +6,7 @@ Você pode declarar um parâmetro do tipo `Response` na sua *função de operaç
 
 E então você pode definir cookies nesse objeto de resposta *temporário*.
 
-```Python hl_lines="1  8-9"
-{!../../docs_src/response_cookies/tutorial002.py!}
-```
+{* ../../docs_src/response_cookies/tutorial002.py hl[1,8:9] *}
 
 Em seguida, você pode retornar qualquer objeto que precise, como normalmente faria (um `dict`, um modelo de banco de dados, etc).
 
@@ -26,9 +24,7 @@ Para fazer isso, você pode criar uma resposta como descrito em [Retornando uma 
 
 Então, defina os cookies nela e a retorne:
 
-```Python hl_lines="10-12"
-{!../../docs_src/response_cookies/tutorial001.py!}
-```
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | Dica
 
