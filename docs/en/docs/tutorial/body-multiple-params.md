@@ -10,8 +10,6 @@ And you can also declare body parameters as optional, by setting the default to 
 
 {* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
-## Multiple body parameters
-
 /// note
 
 Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
