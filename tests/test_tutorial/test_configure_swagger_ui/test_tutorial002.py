@@ -12,7 +12,7 @@ def test_swagger_ui():
         '"syntaxHighlight": false' not in response.text
     ), "not used parameters should not be included"
     assert (
-        '"syntaxHighlight.theme": "obsidian"' in response.text
+        '"syntaxHighlight": {"theme": "obsidian"}' in response.text
     ), "parameters with middle dots should be included in a JSON compatible way"
     assert (
         '"dom_id": "#swagger-ui"' in response.text
