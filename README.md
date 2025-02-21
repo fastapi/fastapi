@@ -268,11 +268,19 @@ You will see the automatic interactive API documentation (provided by <a href="h
 
 ### Alternative API docs
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Here are some alternatives to Swagger UI: Redoc & Scalar.
+
+Go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 You will see the alternative automatic documentation (provided by <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
+
+And now, go to <a href="http://127.0.0.1:8000/scalar" class="external-link" target="_blank">http://127.0.0.1:8000/scalar</a>.
+
+You will see the alternative automatic documentation (provided by <a href="https://github.com/scalar/scalar" class="external-link" target="_blank">Scalar</a>):
+
+![Scalar](https://fastapi.tiangolo.com/img/index/index-07-scalar-simple.png)
 
 ## Example upgrade
 
@@ -330,11 +338,19 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 ### Alternative API docs upgrade
 
-And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Here are some alternatives to Swagger UI: Redoc & Scalar.
+
+Go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 * The alternative documentation will also reflect the new query parameter and body:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
+
+And now, go to <a href="http://127.0.0.1:8000/scalar" class="external-link" target="_blank">http://127.0.0.1:8000/scalar</a>.
+
+* The alternative documentation will also reflect the new query parameter and body:
+
+![ReDoc](https://fastapi.tiangolo.com/img/index/index-08-scalar-02.png)
 
 ### Recap
 
