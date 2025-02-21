@@ -1,33 +1,34 @@
-import { Skeleton, Table } from "@chakra-ui/react"
+import { Table } from "@chakra-ui/react"
+import { SkeletonText } from "../ui/skeleton"
 
 const PendingUsers = () => (
   <Table.Root size={{ base: "sm", md: "md" }}>
     <Table.Header>
       <Table.Row>
-        <Table.ColumnHeader w="20%">Full name</Table.ColumnHeader>
-        <Table.ColumnHeader w="25%">Email</Table.ColumnHeader>
-        <Table.ColumnHeader w="15%">Role</Table.ColumnHeader>
-        <Table.ColumnHeader w="20%">Status</Table.ColumnHeader>
-        <Table.ColumnHeader w="20%">Actions</Table.ColumnHeader>
+        <Table.ColumnHeader w="sm">Full name</Table.ColumnHeader>
+        <Table.ColumnHeader w="sm">Email</Table.ColumnHeader>
+        <Table.ColumnHeader w="sm">Role</Table.ColumnHeader>
+        <Table.ColumnHeader w="sm">Status</Table.ColumnHeader>
+        <Table.ColumnHeader w="sm">Actions</Table.ColumnHeader>
       </Table.Row>
     </Table.Header>
     <Table.Body>
       {[...Array(5)].map((_, index) => (
         <Table.Row key={index}>
           <Table.Cell>
-            <Skeleton h="20px" />
+            <SkeletonText noOfLines={1} />
           </Table.Cell>
           <Table.Cell>
-            <Skeleton h="20px" />
+            <SkeletonText noOfLines={1} />
           </Table.Cell>
           <Table.Cell>
-            <Skeleton h="20px" />
+            <SkeletonText noOfLines={1} />
           </Table.Cell>
           <Table.Cell>
-            <Skeleton h="20px" />
+            <SkeletonText noOfLines={1} />
           </Table.Cell>
           <Table.Cell>
-            <Skeleton h="20px" />
+            <SkeletonText noOfLines={1} />
           </Table.Cell>
         </Table.Row>
       ))}

@@ -61,17 +61,17 @@ function UsersTable() {
       <Table.Root size={{ base: "sm", md: "md" }}>
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeader w="20%">Full name</Table.ColumnHeader>
-            <Table.ColumnHeader w="25%">Email</Table.ColumnHeader>
-            <Table.ColumnHeader w="15%">Role</Table.ColumnHeader>
-            <Table.ColumnHeader w="20%">Status</Table.ColumnHeader>
-            <Table.ColumnHeader w="20%">Actions</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Full name</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Email</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Role</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Status</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {users?.map((user) => (
             <Table.Row key={user.id} opacity={isPlaceholderData ? 0.5 : 1}>
-              <Table.Cell w="20%" color={!user.full_name ? "gray" : "inherit"}>
+              <Table.Cell color={!user.full_name ? "gray" : "inherit"}>
                 {user.full_name || "N/A"}
                 {currentUser?.id === user.id && (
                   <Badge ml="1" colorScheme="teal">
@@ -79,14 +79,14 @@ function UsersTable() {
                   </Badge>
                 )}
               </Table.Cell>
-              <Table.Cell w="25%">{user.email}</Table.Cell>
-              <Table.Cell w="15%">
+              <Table.Cell truncate maxW="sm">
+                {user.email}
+              </Table.Cell>
+              <Table.Cell>
                 {user.is_superuser ? "Superuser" : "User"}
               </Table.Cell>
-              <Table.Cell w="20%">
-                {user.is_active ? "Active" : "Inactive"}
-              </Table.Cell>
-              <Table.Cell w="20%">
+              <Table.Cell>{user.is_active ? "Active" : "Inactive"}</Table.Cell>
+              <Table.Cell>
                 <UserActionsMenu
                   user={user}
                   disabled={currentUser?.id === user.id}

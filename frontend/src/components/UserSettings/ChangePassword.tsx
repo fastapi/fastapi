@@ -47,10 +47,7 @@ const ChangePassword = () => {
         <Heading size="sm" py={4}>
           Change Password
         </Heading>
-        <Box
-          as="form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <Box as="form" onSubmit={handleSubmit(onSubmit)}>
           <VStack gap={4} w={{ base: "100%", md: "sm" }}>
             <PasswordInput
               type="current_password"

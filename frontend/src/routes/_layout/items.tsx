@@ -85,19 +85,19 @@ function ItemsTable() {
       <Table.Root size={{ base: "sm", md: "md" }}>
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeader w="30%">ID</Table.ColumnHeader>
-            <Table.ColumnHeader w="30%">Title</Table.ColumnHeader>
-            <Table.ColumnHeader w="30%">Description</Table.ColumnHeader>
-            <Table.ColumnHeader w="10%">Actions</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">ID</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Title</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Description</Table.ColumnHeader>
+            <Table.ColumnHeader w="sm">Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {items?.map((item) => (
             <Table.Row key={item.id} opacity={isPlaceholderData ? 0.5 : 1}>
-              <Table.Cell truncate maxW="30%">
+              <Table.Cell truncate maxW="sm">
                 {item.id}
               </Table.Cell>
-              <Table.Cell truncate maxW="30%">
+              <Table.Cell truncate maxW="sm">
                 {item.title}
               </Table.Cell>
               <Table.Cell
@@ -107,7 +107,7 @@ function ItemsTable() {
               >
                 {item.description || "N/A"}
               </Table.Cell>
-              <Table.Cell width="10%">
+              <Table.Cell>
                 <ItemActionsMenu item={item} />
               </Table.Cell>
             </Table.Row>
