@@ -129,7 +129,6 @@ const EditUser = ({ user }: EditUserProps) => {
               </Field>
 
               <Field
-                required
                 invalid={!!errors.password}
                 errorText={errors.password?.message}
                 label="Set Password"
@@ -148,7 +147,6 @@ const EditUser = ({ user }: EditUserProps) => {
               </Field>
 
               <Field
-                required
                 invalid={!!errors.confirm_password}
                 errorText={errors.confirm_password?.message}
                 label="Confirm Password"
