@@ -26,6 +26,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-files.md`. PR [#13395](https://github.com/fastapi/fastapi/pull/13395) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-form-models.md`. PR [#13384](https://github.com/fastapi/fastapi/pull/13384) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-forms-and-files.md`. PR [#13386](https://github.com/fastapi/fastapi/pull/13386) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Update Korean translation for `docs/ko/docs/help-fastapi.md`. PR [#13262](https://github.com/fastapi/fastapi/pull/13262) by [@Zerohertz](https://github.com/Zerohertz).
