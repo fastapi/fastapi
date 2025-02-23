@@ -19,13 +19,10 @@ app.include_router(router, prefix="/prefix")
 client = TestClient(app)
 
 
-def test_use_empty():
+@pytest.mark.parametrize("prefix", ["/prefix", "/prefix/"])
+def test_use_empty_with_prefix(prefix):
     with client:
-        response = client.get("/prefix")
-        assert response.status_code == 200, response.text
-        assert response.json() == ["OK"]
-
-        response = client.get("/prefix/")
+        response = client.get(prefix)
         assert response.status_code == 200, response.text
         assert response.json() == ["OK"]
 
