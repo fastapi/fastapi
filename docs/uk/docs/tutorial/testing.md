@@ -160,7 +160,7 @@ $ pip install httpx
 
 //// tab | Python 3.8+ non-Annotated
 
-/// Порада
+/// tip | Порада
 
 Бажано використовувати версію з `Annotated`, якщо це можливо
 
