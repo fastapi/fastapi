@@ -2,6 +2,7 @@
 
 Another authentication method, particularly for machine-to-machine communication, is an API key. An API key is a string that the application will expect with each request from a particular client. The API key can be sent as a header, a cookie, or a query parameter.
 
+<!-- TODO: currently we return 403 in the implementation! discuss with @tiangolo et al -->
 If the API key is missing or invalid, the application returns an HTTP 401 "Unauthorized" error to the client.
 
 /// warning
@@ -9,6 +10,10 @@ If the API key is missing or invalid, the application returns an HTTP 401 "Unaut
 It is generally recommended to use API keys for programmatic access only, and to keep the API Key secret between the client(s) authenticated by the key and the server. Depending on your use case, this may mean storing this value in an environment variable or encrypted database (instead of hard-coding it, as in the examples below), and even providing a
 unique API key for each client trying to authenticate.
 
+///
+
+/// tip
+Please refer to the [API Reference](../../reference/security/index.md#api-key-security-schemes){.internal-link target=_blank} for specifics on the underlying security schemes used.
 ///
 
 ## Simple API Key Auth using Header
@@ -44,8 +49,6 @@ The client will then need to pass in the key as a cookie (note that the name of 
 GET /secure-data HTTP/1.1
 Cookie: X-API-KEY=mysecretapikey
 ```
-
-https://fastapi.tiangolo.com/reference/security/?h=apikeyheader#api-key-security-schemes
 
 ## API Key Auth using Query Param
 
