@@ -67,3 +67,10 @@ The client will then need to pass in the key as part of the query param:
 ```http
 GET /secure-data?x-api-key=mysecretapikey HTTP/1.1
 ```
+
+## Multiple Auth Schemes
+
+By default, these API key schemes set `auto_error=True`. This means that if no
+value is found in the expected location (header, cookie, or query param), the
+application will raise an exception (currently 403). If you'd like to have
+multiple auth schemes, then you can set `auto_error=False` on `APIKeyHeader`, etc.
