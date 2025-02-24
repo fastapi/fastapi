@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Adil Maqsood
+    author_link: https://www.linkedin.com/in/adilmaqsood0/
+    link: https://medium.com/@adilmaqsood501/deploying-an-ai-powered-seo-agent-with-fastapi-groq-and-koyeb-9594d3487cc1
+    title: Deploying an AI-Powered SEO Agent with FastAPI, Groq, and Koyeb
   - author: Balthazar Rouberol
     author_link: https://balthazar-rouberol.com
     link: https://blog.balthazar-rouberol.com/how-to-profile-a-fastapi-asynchronous-request
