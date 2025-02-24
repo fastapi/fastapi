@@ -18,9 +18,7 @@ O primeiro passo é desativar a documentação automática, pois por padrão, el
 
 Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAPI`:
 
-```Python hl_lines="8"
-{!../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Incluir a documentação personalizada
 
@@ -36,9 +34,7 @@ Você pode reutilizar as funções internas do FastAPI para criar as páginas HT
 
 E de forma semelhante para o ReDoc...
 
-```Python hl_lines="2-6  11-19  22-24  27-33"
-{!../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Dica
 
@@ -54,9 +50,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-```Python hl_lines="36-38"
-{!../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### Teste
 
@@ -124,9 +118,7 @@ Depois disso, sua estrutura de arquivos deve se parecer com:
 * Importe `StaticFiles`.
 * "Monte" a instância `StaticFiles()` em um caminho específico.
 
-```Python hl_lines="7  11"
-{!../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Teste os arquivos estáticos
 
@@ -158,9 +150,7 @@ Da mesma forma que ao usar um CDN personalizado, o primeiro passo é desativar a
 
 Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAPI`:
 
-```Python hl_lines="9"
-{!../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Incluir a documentação personalizada para arquivos estáticos
 
@@ -176,9 +166,7 @@ Novamente, você pode reutilizar as funções internas do FastAPI para criar as 
 
 E de forma semelhante para o ReDoc...
 
-```Python hl_lines="2-6  14-22  25-27  30-36"
-{!../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Dica
 
@@ -194,9 +182,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-```Python hl_lines="39-41"
-{!../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Teste a UI de Arquivos Estáticos
 
