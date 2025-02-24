@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security.api_key import APIKeyCookie
 
 app = FastAPI()
@@ -7,7 +7,7 @@ app = FastAPI()
 # or stored in a secure DB.
 API_KEY = "mysecretapikey"
 
-API_KEY_NAME = "X-API-KEY" # case-sensitive!
+API_KEY_NAME = "X-API-KEY"  # case-sensitive!
 api_key_cookie = APIKeyCookie(
     name=API_KEY_NAME,
     description="API Key required to access secure endpoints.",
@@ -18,8 +18,10 @@ def verify_api_key(api_key: str = Depends(api_key_cookie)):
     if api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid API Key")
 
+
 # Apply it for all endpoints
 app = FastAPI(dependencies=[Depends(verify_api_key)])
+
 
 # Apply it for specific endpoints
 @app.get("/secure-data")

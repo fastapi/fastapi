@@ -55,7 +55,6 @@ def test_apikey_header_no_credentials():
     assert response.json() == {"detail": "Not authenticated"}
 
 
-
 def test_apikey_header_invalid_credentials():
     auth = {"X-API-KEY": "totally-wrong-api-key"}
     response = client.get("/secure-data", headers=auth)

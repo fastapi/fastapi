@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 
 from docs_src.security.tutorial009 import app
 
-
 openapi_schema = {
     "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
@@ -54,6 +53,7 @@ def test_apikey_cookie_no_key():
     # TODO: this should be 401 in the implementation! discuss with @tiangolo et al
     assert response.status_code == 403, response.text
     assert response.json() == {"detail": "Not authenticated"}
+
 
 def test_apikey_cookie_invalid_key():
     client = TestClient(app, cookies={"X-API-KEY": "wrongkey"})

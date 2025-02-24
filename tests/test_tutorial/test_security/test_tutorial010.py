@@ -2,7 +2,6 @@ from fastapi.testclient import TestClient
 
 from docs_src.security.tutorial010 import app
 
-
 client = TestClient(app)
 
 openapi_schema = {
