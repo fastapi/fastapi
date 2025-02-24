@@ -1,4 +1,4 @@
-# Middleware (Служебные функции)
+# Middleware (Промежуточный слой)
 
 Вы можете добавлять служебные функции (middleware) в ваши **FastAPI** приложения.
 
@@ -31,7 +31,7 @@
 * Функцию `call_next`, которая получает `request` в качестве параметра.
     * Эта функция передаёт `request` соответствующей *функции эндпоинта*.
     * Затем она возвращает ответ `response`, сгенерированный *функцией эндпоинта*.
-* Также имеется возможность обработать `response` перед тем как его вернуть.
+* Также имеется возможность обработать `response`, перед тем как его вернуть.
 
 {* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
@@ -71,4 +71,4 @@
 
 Вы можете узнать больше о других middleware в разделе [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
 
-В следующем разделе вы можете прочитать как работать с <abbr title="Cross-Origin Resource Sharing">CORS</abbr> middleware.
+В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing">CORS</abbr> с помощью middleware.
