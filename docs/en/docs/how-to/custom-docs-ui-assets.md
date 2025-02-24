@@ -98,7 +98,7 @@ You can probably right-click each link and select an option similar to `Save lin
 
 And **ReDoc** uses the file:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2.0.0/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@2.4.0/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 After that, your file structure could look like:
 
