@@ -6,7 +6,10 @@ from fastapi.security.api_key import APIKeyHeader
 API_KEY = "mysecretapikey"
 
 API_KEY_NAME = "X-API-Key"
-api_key_header = APIKeyHeader(name=API_KEY_NAME)
+api_key_header = APIKeyHeader(
+    name=API_KEY_NAME,
+    description="API Key required to access secure endpoints.",
+)
 
 def verify_api_key(api_key: str = Depends(api_key_header)):
     if api_key != API_KEY:

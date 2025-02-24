@@ -62,5 +62,5 @@ Again, similar to the approaches above, except we use `APIKeyQuery`:
 The client will then need to pass in the key as part of the query param:
 
 ```http
-GET /secure-data?api_key=mysecretapikey HTTP/1.1
+GET /secure-data?x-api-key=mysecretapikey HTTP/1.1
 ```

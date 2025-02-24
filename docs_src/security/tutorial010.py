@@ -7,7 +7,11 @@ app = FastAPI()
 # or stored in a secure DB.
 API_KEY = "mysecretapikey"
 
-api_key_query = APIKeyQuery(name="api_key") # Note you have to use underscores
+API_KEY_NAME = "x-api-key"
+api_key_query = APIKeyQuery(
+    name=API_KEY_NAME,
+    description="API Key required to access secure endpoints.",
+)
 
 
 def verify_api_key(api_key: str = Depends(api_key_query)):
