@@ -14,7 +14,6 @@ Triển khai một ứng dụng có nghĩa là thực hiện các bước cần 
 
 Có nhiều cách để triển khai ứng dụng của bạn tùy thuộc vào trường hợp sử dụng của bạn và các công cụ mà bạn sử dụng.
 
-You could **deploy a server** yourself using a combination of tools, you could use a **cloud service** that does part of the work for you, or other possible options.
 Bạn có thể **triển khai một máy chủ** của riêng bạn bằng cách sử dụng một sự kết hợp các công cụ, hoặc bạn có thể sử dụng một **dịch vụ cloud** để làm một số công việc cho bạn, hoặc các tùy chọn khác.
 
 Tôi sẽ chỉ ra một số khái niệm chính cần thiết khi triển khai một ứng dụng **FastAPI** (mặc dù hầu hết nó áp dụng cho bất kỳ loại ứng dụng web nào).
