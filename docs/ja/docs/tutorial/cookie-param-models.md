@@ -47,7 +47,7 @@
 
 特定の（あまり一般的ではないかもしれない）ケースで、受け付けるクッキーを**制限**する必要があるかもしれません。
 
-あなたのAPIは独自の <abbr title="念のためですが、これはジョークです。クッキー同意とは関係ありませんが、APIでさえ不適切なクッキーを拒否できるとは愉快ですね。クッキーでも食べてでください。🍪 （原文: This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪）">クッキー同意</abbr> を管理する能力を持っています。 🤪🍪
+あなたのAPIは独自の <abbr title="念のためですが、これはジョークです。クッキー同意とは関係ありませんが、APIでさえ不適切なクッキーを拒否できるとは愉快ですね。クッキーでも食べてください。🍪 （原文: This is a joke, just in case. It has nothing to do with cookie consents, but it's funny that even the API can now reject the poor cookies. Have a cookie. 🍪）">クッキー同意</abbr> を管理する能力を持っています。 🤪🍪
 
 Pydanticのモデルの configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
 
