@@ -30,7 +30,7 @@
 
 特定の（あまり一般的ではないかもしれない）ケースで、受け付けるクエリパラメータを**制限**する必要があるかもしれません。
 
-Pydanticのモデルの configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
+Pydanticのモデルの Configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
