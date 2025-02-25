@@ -394,7 +394,7 @@ Hello World
 
 아마 여러분의 대부분은 에디터를 사용하므로, 자동 완성 기능과 인라인 오류 표시를 활용하기 위해서는 생성한 가상 환경을 사용하도록 설정해야 합니다. (대부분 자동으로 감지될 것입니다)
 
-예: 
+예:
 
 * <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
 * <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
@@ -675,7 +675,7 @@ C:\Windows\System32
 
 다른 디렉터리를 검색하기 전에 해당 경로에서 먼저 찾습니다.
 
-따라서 터미널에서 `python`을 입력하면, 시스템은 파이썬 프로그램을 다음 위치에서 찾고 
+따라서 터미널에서 `python`을 입력하면, 시스템은 파이썬 프로그램을 다음 위치에서 찾고
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin/python
@@ -699,7 +699,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts
 
 다른 디렉터리를 검색하기 전에 해당 경로에서 먼저 찾습니다.
 
-따라서 터미널에서 `python`을 입력하면, 시스템은 파이썬 프로그램을 다음 위치에서 찾고 
+따라서 터미널에서 `python`을 입력하면, 시스템은 파이썬 프로그램을 다음 위치에서 찾고
 
 
 ```plaintext
@@ -768,7 +768,7 @@ Linux와 macOS에서는 `which`를, Windows PowerShell에서는 `Get-Command`를
 
 ## 가상 환경을 비활성화 하는 이유
 
-예를 들자면, **가상 환경을 활성화 한** `philosophers-stone` 프로젝트에서 작업 중일 때, 그 환경에서 패키지를 설치하고 작업할 수 있습니다. 
+예를 들자면, **가상 환경을 활성화 한** `philosophers-stone` 프로젝트에서 작업 중일 때, 그 환경에서 패키지를 설치하고 작업할 수 있습니다.
 
 그런 후 **다른 프로젝트**인 `prisoner-of-azkaban`에서 작업하길 원할 수도 있습니다.
 
@@ -806,7 +806,7 @@ Traceback (most recent call last):
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// 가상 환경을 비활성화 하기 위해 반드시 이전 디렉터리에 있을 필요는 없으며, 다른 프로젝트로 이동한 후에도 어디서나 비활성화할 수 있습니다 😎 
+// 가상 환경을 비활성화 하기 위해 반드시 이전 디렉터리에 있을 필요는 없으며, 다른 프로젝트로 이동한 후에도 어디서나 비활성화할 수 있습니다 😎
 $ deactivate
 
 // prisoner-of-azkaban/.venv 에서 가상 환경을 활성화합니다 🚀
@@ -834,7 +834,7 @@ I solemnly swear 🐺
 * 프로젝트의 **가상 환경** 관리
 * **패키지** 설치
 * 프로젝트를 위한 패키지 **의존성 및 버전** 관리
-* 개발 중인 컴퓨터와 프로덕션 환경에서 동일하게 실행할 수 있도록, **정확한** 패키지와 버전 및 의존성의 집합을 설치하도록 하는 **로킹(locking)** 
+* 개발 중인 컴퓨터와 프로덕션 환경에서 동일하게 실행할 수 있도록, **정확한** 패키지와 버전 및 의존성의 집합을 설치하도록 하는 **로킹(locking)**
 * 그 외의 많은 다른 기능들
 
 ## 결론
