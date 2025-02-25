@@ -15,9 +15,7 @@ We'll protect the entire API under a Key (rather than single endpoints).
 * Create a `get_api_key` function to check the key
 * Create a `security` from the `get_api_key` function, used as a dependency in your FastAPI `app`.
 
-```Python hl_lines="5  7  14  23"
-{!../../../docs_src/security/tutorial008.py!}
-```
+{* ../../docs_src/security/tutorial008.py hl=[5,7,14,23] *}
 
 This API now requires authentication to hit any endpoint:
 
@@ -36,9 +34,7 @@ description ends up on the documentation for the authentication: the description
 is a perfect place to link to your developer documentation's "Generate a token"
 section.
 
-```Python hl_lines="8  9"
-{!../../../docs_src/security/tutorial008.py!}
-```
+{* ../../docs_src/security/tutorial008.py hl=[8:9] *}
 
 As for the `auto_error` parameter, it can be set to `True` so that missing the
 header returns automatic HTTP 403 "Forbidden".
@@ -59,9 +55,7 @@ For convenience, API Keys can be pushed in cookies instead.
 
 <!-- Note: tutorial009.py is 100 %CLONED from tests/test_security_api_key_cookie.py -->
 
-```Python hl_lines="2 7 14"
-{!../../../docs_src/security/tutorial009.py!}
-```
+{* ../../docs_src/security/tutorial009.py hl=[2,7,14] *}
 
 Users can call this via:
 
@@ -74,9 +68,7 @@ response = client.get("/users/me", cookies={"key": "secret"})
 To round up the multiple ways to use API Keys, one can set the API key as query parameter.
 
 <!-- Note: tutorial010.py is 100 %CLONED from tests/test_security_api_key_query.py -->
-```Python hl_lines="2 7 14"
-{!../../../docs_src/security/tutorial010.py!}
-```
+{* ../../docs_src/security/tutorial010.py hl=[2,7,14] *}
 
 Users can call this via:
 
