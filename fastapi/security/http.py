@@ -89,7 +89,8 @@ class HTTPBase(SecurityBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            return None
+            else:
+                return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
@@ -199,7 +200,8 @@ class HTTPBasic(HTTPBase):
                     detail="Not authenticated",
                     headers=unauthorized_headers,
                 )
-            return None
+            else:
+                return None
         invalid_user_credentials_exc = HTTPException(
             status_code=HTTP_401_UNAUTHORIZED,
             detail="Invalid authentication credentials",
@@ -306,14 +308,16 @@ class HTTPBearer(HTTPBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            return None
+            else:
+                return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN,
                     detail="Invalid authentication credentials",
                 )
-            return None
+            else:
+                return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
 
@@ -406,12 +410,14 @@ class HTTPDigest(HTTPBase):
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
                 )
-            return None
+            else:
+                return None
         if scheme.lower() != "digest":
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_403_FORBIDDEN,
                     detail="Invalid authentication credentials",
                 )
-            return None
+            else:
+                return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
