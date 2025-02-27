@@ -507,7 +507,10 @@ def analyze_param(
                     and getattr(field, "shape", 1) == 1
                 )
             )
-
+        if lenient_issubclass(field.type_, BaseModel) and getattr(field_info, "convert_underscores", None):
+            extracted_fields = _get_flat_fields_from_params([field])
+            for param_field in extracted_fields:
+                param_field.field_info.alias = param_field.name.replace("_", "-")
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
 
