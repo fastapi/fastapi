@@ -52,6 +52,7 @@ hide:
 
 ### Internal
 
+* 👷 Use `wrangler-action` v3. PR [#13415](https://github.com/fastapi/fastapi/pull/13415) by [@joakimnordling](https://github.com/joakimnordling).
 * 🔧 Update sponsors: add CodeRabbit. PR [#13402](https://github.com/fastapi/fastapi/pull/13402) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update team: Add Ludovico. PR [#13390](https://github.com/fastapi/fastapi/pull/13390) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: Add LambdaTest. PR [#13389](https://github.com/fastapi/fastapi/pull/13389) by [@tiangolo](https://github.com/tiangolo).
