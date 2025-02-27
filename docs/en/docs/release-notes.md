@@ -53,6 +53,7 @@ hide:
 
 ### Internal
 
+* ✅ Fix a minor bug in the test `tests/test_modules_same_name_body/test_main.py`. PR [#13411](https://github.com/fastapi/fastapi/pull/13411) by [@alv2017](https://github.com/alv2017).
 * 👷 Use `wrangler-action` v3. PR [#13415](https://github.com/fastapi/fastapi/pull/13415) by [@joakimnordling](https://github.com/joakimnordling).
 * 🔧 Update sponsors: add CodeRabbit. PR [#13402](https://github.com/fastapi/fastapi/pull/13402) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update team: Add Ludovico. PR [#13390](https://github.com/fastapi/fastapi/pull/13390) by [@tiangolo](https://github.com/tiangolo).
