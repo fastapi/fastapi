@@ -19,6 +19,7 @@ hide:
 
 ### Docs
 
+* 🍱 Update sponsors: CodeRabbit logo. PR [#13424](https://github.com/fastapi/fastapi/pull/13424) by [@tiangolo](https://github.com/tiangolo).
 * 🩺 Unify the badges across all tutorial translations. PR [#13329](https://github.com/fastapi/fastapi/pull/13329) by [@svlandeg](https://github.com/svlandeg).
 * 📝 Fix typos in virtual environments documentation. PR [#13396](https://github.com/fastapi/fastapi/pull/13396) by [@bullet-ant](https://github.com/bullet-ant).
 * 🐛 Fix issue with Swagger theme change example in the official tutorial. PR [#13289](https://github.com/fastapi/fastapi/pull/13289) by [@Zerohertz](https://github.com/Zerohertz).
