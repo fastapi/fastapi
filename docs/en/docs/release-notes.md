@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.10
+
 ### Fixes
 
 * ♻️ Update internal annotation usage for compatibilty with Pydantic 2.11. PR [#13314](https://github.com/fastapi/fastapi/pull/13314) by [@Viicos](https://github.com/Viicos).
