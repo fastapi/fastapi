@@ -11,6 +11,10 @@ hide:
 
 * ⬆️ Bump Starlette to allow up to 0.46.0: `>=0.40.0,<0.47.0`. PR [#13426](https://github.com/fastapi/fastapi/pull/13426) by [@musicinmybrain](https://github.com/musicinmybrain).
 
+### Translations
+
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/testing.md`. PR [#13371](https://github.com/fastapi/fastapi/pull/13371) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+
 ## 0.115.9
 
 ### Fixes
