@@ -6,13 +6,13 @@ Let's take this application as example:
 
 {* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
 
-The query parameter `q` is of type `Union[str, None]` (or `str | None` in Python 3.10), that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+The query parameter `q` is of type `str | None`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
 /// note
 
 FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-The `Union` in `Union[str, None]` will allow your editor to give you better support and detect errors.
+Having `str | None` will allow your editor to give you better support and detect errors.
 
 ///
 
@@ -25,29 +25,9 @@ We are going to enforce that even though `q` is optional, whenever it is provide
 To achieve that, first import:
 
 * `Query` from `fastapi`
-* `Annotated` from `typing` (or from `typing_extensions` in Python below 3.9)
+* `Annotated` from `typing`
 
-//// tab | Python 3.10+
-
-In Python 3.9 or above, `Annotated` is part of the standard library, so you can import it from `typing`.
-
-```Python hl_lines="1  3"
-{!> ../../docs_src/query_params_str_validations/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-In versions of Python below Python 3.9 you import `Annotated` from `typing_extensions`.
-
-It will already be installed with FastAPI.
-
-```Python hl_lines="3-4"
-{!> ../../docs_src/query_params_str_validations/tutorial002_an.py!}
-```
-
-////
+{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
 /// info
 
@@ -146,53 +126,22 @@ As in this case (without using `Annotated`) we have to replace the default value
 So:
 
 ```Python
-q: Union[str, None] = Query(default=None)
-```
-
-...makes the parameter optional, with a default value of `None`, the same as:
-
-```Python
-q: Union[str, None] = None
-```
-
-And in Python 3.10 and above:
-
-```Python
 q: str | None = Query(default=None)
 ```
 
 ...makes the parameter optional, with a default value of `None`, the same as:
 
+
 ```Python
 q: str | None = None
 ```
 
-But the `Query` versions declare it explicitly as being a query parameter.
-
-/// info
-
-Keep in mind that the most important part to make a parameter optional is the part:
-
-```Python
-= None
-```
-
-or the:
-
-```Python
-= Query(default=None)
-```
-
-as it will use that `None` as the default value, and that way make the parameter **not required**.
-
-The `Union[str, None]` part allows your editor to provide better support, but it is not what tells FastAPI that this parameter is not required.
-
-///
+But the `Query` version declares it explicitly as being a query parameter.
 
 Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
 ```Python
-q: Union[str, None] = Query(default=None, max_length=50)
+q: str | None = Query(default=None, max_length=50)
 ```
 
 This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
@@ -201,7 +150,7 @@ This will validate the data, show a clear error when the data is not valid, and 
 
 Keep in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
 
-Instead use the actual default value of the function parameter. Otherwise, it would be inconsistent.
+Instead, use the actual default value of the function parameter. Otherwise, it would be inconsistent.
 
 For example, this is not allowed:
 
@@ -255,7 +204,7 @@ This specific regular expression pattern checks that the received parameter valu
 
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
-But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+Now you know that whenever you need them you can use them in **FastAPI**.
 
 ### Pydantic v1 `regex` instead of `pattern`
 
@@ -296,7 +245,7 @@ q: str
 instead of:
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
 But we are now declaring it with `Query`, for example like:
@@ -304,15 +253,7 @@ But we are now declaring it with `Query`, for example like:
 //// tab | Annotated
 
 ```Python
-q: Annotated[Union[str, None], Query(min_length=3)] = None
-```
-
-////
-
-//// tab | non-Annotated
-
-```Python
-q: Union[str, None] = Query(default=None, min_length=3)
+q: Annotated[str | None, Query(min_length=3)] = None
 ```
 
 ////
@@ -321,41 +262,13 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Required with Ellipsis (`...`)
-
-There's an alternative way to explicitly declare that a value is required. You can set the default to the literal value `...`:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b_an_py39.py hl[9] *}
-
-/// info
-
-If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
-
-It is used by Pydantic and FastAPI to explicitly declare that a value is required.
-
-///
-
-This will let **FastAPI** know that this parameter is required.
-
 ### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
-To do that, you can declare that `None` is a valid type but still use `...` as the default:
+To do that, you can declare that `None` is a valid type but simply do not declare a default value:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
-
-/// tip
-
-Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-optional-fields" class="external-link" target="_blank">Required fields</a>.
-
-///
-
-/// tip
-
-Remember that in most of the cases, when something is required, you can simply omit the default, so you normally don't have to use `...`.
-
-///
 
 ## Query parameter list / multiple values
 
@@ -396,7 +309,7 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 ### Query parameter list / multiple values with defaults
 
-And you can also define a default `list` of values if none are provided:
+You can also define a default `list` of values if none are provided:
 
 {* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
 
@@ -419,7 +332,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 
 #### Using just `list`
 
-You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
+You can also use `list` directly instead of `list[str]`:
 
 {* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
 
@@ -427,7 +340,7 @@ You can also use `list` directly instead of `List[str]` (or `list[str]` in Pytho
 
 Keep in mind that in this case, FastAPI won't check the contents of the list.
 
-For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
+For example, `list[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
 
 ///
 
