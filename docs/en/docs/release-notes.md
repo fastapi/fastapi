@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/index.md`. PR [#13405](https://github.com/fastapi/fastapi/pull/13405) by [@ptt3199](https://github.com/ptt3199).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-forms.md`. PR [#13383](https://github.com/fastapi/fastapi/pull/13383) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/testing.md`. PR [#13371](https://github.com/fastapi/fastapi/pull/13371) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 
