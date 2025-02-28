@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
           version: "0.4.15"
           enable-cache: true
@@ -48,6 +48,7 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
@@ -66,7 +67,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Setup uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
           version: "0.4.15"
           enable-cache: true
@@ -81,6 +82,10 @@ jobs:
       - name: Install Pydantic v2
         if: matrix.pydantic-version == 'pydantic-v2'
         run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
+      # TODO: Remove this once Python 3.8 is no longer supported
+      - name: Install older AnyIO in Python 3.8
+        if: matrix.python-version == '3.8'
+        run: uv pip install "anyio[trio]<4.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
@@ -107,7 +112,7 @@ jobs:
         with:
           python-version: '3.8'
       - name: Setup uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@v5
         with:
           version: "0.4.15"
           enable-cache: true
