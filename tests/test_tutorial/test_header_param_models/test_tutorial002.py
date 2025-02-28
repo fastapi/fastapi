@@ -140,26 +140,26 @@ def test_openapi_schema(client: TestClient):
                                 "schema": {"type": "string", "title": "Host"},
                             },
                             {
-                                "name": "save_data",
+                                "name": "save-data",
                                 "in": "header",
                                 "required": True,
-                                "schema": {"type": "boolean", "title": "Save Data"},
+                                "schema": {"type": "boolean", "title": "Save-Data"},
                             },
                             {
-                                "name": "if_modified_since",
+                                "name": "if-modified-since",
                                 "in": "header",
                                 "required": False,
                                 "schema": IsDict(
                                     {
                                         "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "If Modified Since",
+                                        "title": "If-Modified-Since",
                                     }
                                 )
                                 | IsDict(
                                     # TODO: remove when deprecating Pydantic v1
                                     {
                                         "type": "string",
-                                        "title": "If Modified Since",
+                                        "title": "If-Modified-Since",
                                     }
                                 ),
                             },
@@ -182,14 +182,14 @@ def test_openapi_schema(client: TestClient):
                                 ),
                             },
                             {
-                                "name": "x_tag",
+                                "name": "x-tag",
                                 "in": "header",
                                 "required": False,
                                 "schema": {
                                     "type": "array",
                                     "items": {"type": "string"},
                                     "default": [],
-                                    "title": "X Tag",
+                                    "title": "X-Tag",
                                 },
                             },
                         ],
