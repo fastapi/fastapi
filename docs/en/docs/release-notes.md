@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.9
+
 ### Fixes
 
 * 🐛 Ensure that `HTTPDigest` only raises an exception when `auto_error is True`. PR [#2939](https://github.com/fastapi/fastapi/pull/2939) by [@arthurio](https://github.com/arthurio).
