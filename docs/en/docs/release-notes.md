@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Russian translation for  `docs/ru/docs/tutorial/middleware.md`. PR [#13412](https://github.com/fastapi/fastapi/pull/13412) by [@alv2017](https://github.com/alv2017).
+
 ## 0.115.10
 
 ### Fixes
