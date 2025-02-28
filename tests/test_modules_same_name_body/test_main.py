@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from .app.main import app
@@ -5,29 +6,22 @@ from .app.main import app
 client = TestClient(app)
 
 
-def test_post_a():
+@pytest.mark.parametrize(
+    "path", ["/a/compute", "/a/compute/", "/b/compute", "/b/compute/"]
+)
+def test_post(path):
     data = {"a": 2, "b": "foo"}
-    response = client.post("/a/compute", json=data)
+    response = client.post(path, json=data)
     assert response.status_code == 200, response.text
-    data = response.json()
+    assert data == response.json()
 
 
-def test_post_a_invalid():
+@pytest.mark.parametrize(
+    "path", ["/a/compute", "/a/compute/", "/b/compute", "/b/compute/"]
+)
+def test_post_invalid(path):
     data = {"a": "bar", "b": "foo"}
-    response = client.post("/a/compute", json=data)
-    assert response.status_code == 422, response.text
-
-
-def test_post_b():
-    data = {"a": 2, "b": "foo"}
-    response = client.post("/b/compute/", json=data)
-    assert response.status_code == 200, response.text
-    data = response.json()
-
-
-def test_post_b_invalid():
-    data = {"a": "bar", "b": "foo"}
-    response = client.post("/b/compute/", json=data)
+    response = client.post(path, json=data)
     assert response.status_code == 422, response.text
 
 
