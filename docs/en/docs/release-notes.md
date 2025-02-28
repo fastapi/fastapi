@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-multiple-params.md`. PR [#13408](https://github.com/fastapi/fastapi/pull/13408) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Japanese translation for `docs/ja/docs/tutorial/query-param-models.md`. PR [#13323](https://github.com/fastapi/fastapi/pull/13323) by [@k94-ishi](https://github.com/k94-ishi).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-nested-models.md`. PR [#13409](https://github.com/fastapi/fastapi/pull/13409) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/versions.md`. PR [#13406](https://github.com/fastapi/fastapi/pull/13406) by [@ptt3199](https://github.com/ptt3199).
