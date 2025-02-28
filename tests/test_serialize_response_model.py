@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional
 
 from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
 
@@ -152,3 +153,23 @@ def test_validdict_exclude_unset():
         "k2": {"aliased_name": "bar", "price": 1.0},
         "k3": {"aliased_name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
     }
+
+
+if not PYDANTIC_V2:
+    from pydantic import validator
+
+    class AutoIncrement(BaseModel):
+        count: int
+
+        @validator("count")
+        def auto_increment(cls, count: int):
+            return count + 1
+
+    @app.post("/increment", response_model=AutoIncrement)
+    async def increment():
+        return AutoIncrement(count=0)
+
+    def test_response_model_should_not_revalidate_response_content_if_they_had_same_type():
+        response = client.post("/increment")
+        response.raise_for_status()
+        assert response.json() == {"count": 1}
