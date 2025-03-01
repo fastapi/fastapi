@@ -1,4 +1,3 @@
-# Deploy FastAPI on Cloud Providers
 # Triển khai FastAPI trên các Dịch vụ Cloud
 
 Bạn có thể sử dụng **bất kỳ nhà cung cấp dịch vụ cloud** nào để triển khai ứng dụng FastAPI của mình.
