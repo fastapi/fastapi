@@ -449,15 +449,15 @@ def analyze_param(
             # We might check here that `default_value is RequiredParam`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
-            field_info = params.Path(annotation=type_annotation)
+            field_info = params.Path(annotation=use_annotation)
         elif is_uploadfile_or_nonable_uploadfile_annotation(
             type_annotation
         ) or is_uploadfile_sequence_annotation(type_annotation):
-            field_info = params.File(annotation=type_annotation, default=default_value)
+            field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
-            field_info = params.Body(annotation=type_annotation, default=default_value)
+            field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
-            field_info = params.Query(annotation=type_annotation, default=default_value)
+            field_info = params.Query(annotation=use_annotation, default=default_value)
 
     field = None
     # It's a field_info, not a dependency
