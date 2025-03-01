@@ -430,6 +430,14 @@ This is available with Pydantic version 2 or above. 😎
 
 ///
 
+/// tip
+
+If you need to do any type of validation that requires communicating with any **external component**, like a database or another API, you should instead use **FastAPI Dependencies**, you will learn about them later.
+
+These custom validators are for things that can be checked with **only** the **same data** provided in the request.
+
+///
+
 ### Understand that Code
 
 The important point is just using **`AfterValidator` with a function inside `Annotated`**. Feel free to skip this part. 🤸
