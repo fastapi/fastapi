@@ -9,7 +9,8 @@ hide:
 
 ### Fixes
 
-* 🐛 Add docs examples and tests (support) for `Annotated` custom validations, like `AfterValidator`, revert #13440. PR [#13442](https://github.com/fastapi/fastapi/pull/13442) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Add docs examples and tests (support) for `Annotated` custom validations, like `AfterValidator`, revert [#13440](https://github.com/fastapi/fastapi/pull/13440). PR [#13442](https://github.com/fastapi/fastapi/pull/13442) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Query Parameters and String Validations - Custom Validation](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#custom-validation).
 
 ### Translations
 
