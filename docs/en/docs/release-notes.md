@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Add docs examples and tests (support) for `Annotated` custom validations, like `AfterValidator`, revert #13440. PR [#13442](https://github.com/fastapi/fastapi/pull/13442) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Russian translation for  `docs/ru/docs/tutorial/middleware.md`. PR [#13412](https://github.com/fastapi/fastapi/pull/13412) by [@alv2017](https://github.com/alv2017).
