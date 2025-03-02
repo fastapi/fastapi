@@ -4,9 +4,7 @@ Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos,
 
 Cada seção constrói, gradualmente, sobre as anteriores, mas sua estrutura são tópicos separados, para que você possa ir a qualquer um específico e resolver suas necessidades específicas de API.
 
-Ele também foi feito como referência futura.
-
-Então você poderá voltar e ver exatamente o que precisar.
+Ele também foi construído para servir como uma referência futura, então você pode voltar e ver exatamente o que você precisa.
 
 ## Rode o código
 
@@ -17,13 +15,39 @@ Para rodar qualquer um dos exemplos, copie o codigo para um arquivo `main.py`, e
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -43,32 +67,18 @@ Para o tutorial, você deve querer instalá-lo com todas as dependências e recu
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-...isso também inclui o `uvicorn`, que você pode usar como o servidor que rodará seu código.
+/// note | Nota
 
-/// note | "Nota"
+Quando você instala com pip install "fastapi[standard]", ele vem com algumas dependências opcionais padrão.
 
-Você também pode instalar parte por parte.
-
-Isso é provavelmente o que você faria quando você quisesse lançar sua aplicação em produção:
-
-```
-pip install fastapi
-```
-
-Também instale o `uvicorn` para funcionar como servidor:
-
-```
-pip install "uvicorn[standard]"
-```
-
-E o mesmo para cada dependência opcional que você quiser usar.
+Se você não quiser ter essas dependências opcionais, pode instalar pip install fastapi em vez disso.
 
 ///
 

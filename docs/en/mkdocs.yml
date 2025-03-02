@@ -65,19 +65,22 @@ plugins:
     - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
+    - contributors: ../en/data/contributors.yml
+    - translators: ../en/data/translators.yml
+    - translation_reviewers: ../en/data/translation_reviewers.yml
+    - skip_users: ../en/data/skip_users.yml
     - members: ../en/data/members.yml
     - sponsors_badge: ../en/data/sponsors_badge.yml
     - sponsors: ../en/data/sponsors.yml
+    - topic_repos: ../en/data/topic_repos.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
-      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
-      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
-      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
       advanced/graphql.md: how-to/graphql.md
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+      advanced/testing-database.md: how-to/testing-database.md
   mkdocstrings:
     handlers:
       python:
@@ -187,7 +190,6 @@ nav:
     - advanced/testing-websockets.md
     - advanced/testing-events.md
     - advanced/testing-dependencies.md
-    - advanced/testing-database.md
     - advanced/async-tests.md
     - advanced/settings.md
     - advanced/openapi-callbacks.md
@@ -214,9 +216,7 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
+    - how-to/testing-database.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -271,7 +271,6 @@ markdown_extensions:
 
   # Python Markdown Extensions
   pymdownx.betterem:
-    smart_enable: all
   pymdownx.caret:
   pymdownx.highlight:
     line_spans: __span
@@ -305,7 +304,7 @@ markdown_extensions:
 
   # Other extensions
   mdx_include:
-    base_path: docs
+  markdown_include_variants:
 
 extra:
   analytics:

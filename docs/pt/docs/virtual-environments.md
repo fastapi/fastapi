@@ -2,13 +2,13 @@
 
 Ao trabalhar em projetos Python, você provavelmente deve usar um **ambiente virtual** (ou um mecanismo similar) para isolar os pacotes que você instala para cada projeto.
 
-/// info | "Informação"
+/// info | Informação
 
 Se você já sabe sobre ambientes virtuais, como criá-los e usá-los, talvez seja melhor pular esta seção. 🤓
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Um **ambiente virtual** é diferente de uma **variável de ambiente**.
 
@@ -18,7 +18,7 @@ Um **ambiente virtual** é um diretório com alguns arquivos.
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 Esta página lhe ensinará como usar **ambientes virtuais** e como eles funcionam.
 
@@ -55,7 +55,7 @@ $ cd awesome-project
 
 Ao começar a trabalhar em um projeto Python **pela primeira vez**, crie um ambiente virtual **<abbr title="existem outras opções, esta é uma diretriz simples">dentro do seu projeto</abbr>**.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você só precisa fazer isso **uma vez por projeto**, não toda vez que trabalhar.
 
@@ -96,7 +96,7 @@ $ uv venv
 
 </div>
 
-/// tip | "Dica"
+/// tip | Dica
 
 Por padrão, `uv` criará um ambiente virtual em um diretório chamado `.venv`.
 
@@ -118,7 +118,7 @@ Você pode criar o ambiente virtual em um diretório diferente, mas há uma conv
 
 Ative o novo ambiente virtual para que qualquer comando Python que você executar ou pacote que você instalar o utilize.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Faça isso **toda vez** que iniciar uma **nova sessão de terminal** para trabalhar no projeto.
 
@@ -162,7 +162,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Toda vez que você instalar um **novo pacote** naquele ambiente, **ative** o ambiente novamente.
 
@@ -174,7 +174,7 @@ Isso garante que, se você usar um **programa de terminal (<abbr title="interfac
 
 Verifique se o ambiente virtual está ativo (o comando anterior funcionou).
 
-/// tip | "Dica"
+/// tip | Dica
 
 Isso é **opcional**, mas é uma boa maneira de **verificar** se tudo está funcionando conforme o esperado e se você está usando o ambiente virtual pretendido.
 
@@ -214,7 +214,7 @@ Se ele mostrar o binário `python` em `.venv\Scripts\python`, dentro do seu proj
 
 ## Atualizar `pip`
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você usar <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>, você o usará para instalar coisas em vez do `pip`, então não precisará atualizar o `pip`. 😎
 
@@ -224,7 +224,7 @@ Se você estiver usando `pip` para instalar pacotes (ele vem por padrão com o P
 
 Muitos erros exóticos durante a instalação de um pacote são resolvidos apenas atualizando o `pip` primeiro.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Normalmente, você faria isso **uma vez**, logo após criar o ambiente virtual.
 
@@ -246,13 +246,13 @@ $ python -m pip install --upgrade pip
 
 Se você estiver usando **Git** (você deveria), adicione um arquivo `.gitignore` para excluir tudo em seu `.venv` do Git.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você usou <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> para criar o ambiente virtual, ele já fez isso para você, você pode pular esta etapa. 😎
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Faça isso **uma vez**, logo após criar o ambiente virtual.
 
@@ -286,7 +286,7 @@ Esse comando criará um arquivo `.gitignore` com o conteúdo:
 
 Após ativar o ambiente, você pode instalar pacotes nele.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Faça isso **uma vez** ao instalar ou atualizar os pacotes que seu projeto precisa.
 
@@ -298,7 +298,7 @@ Se precisar atualizar uma versão ou adicionar um novo pacote, você **fará iss
 
 Se estiver com pressa e não quiser usar um arquivo para declarar os requisitos de pacote do seu projeto, você pode instalá-los diretamente.
 
-/// tip | "Dica"
+/// tip | Dica
 
 É uma (muito) boa ideia colocar os pacotes e versões que seu programa precisa em um arquivo (por exemplo `requirements.txt` ou `pyproject.toml`).
 
@@ -399,7 +399,7 @@ Por exemplo:
 * <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
 * <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
 
-/// tip | "Dica"
+/// tip | Dica
 
 Normalmente, você só precisa fazer isso **uma vez**, ao criar o ambiente virtual.
 
@@ -425,7 +425,7 @@ Agora você está pronto para começar a trabalhar no seu projeto.
 
 
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você quer entender o que é tudo isso acima?
 
@@ -516,7 +516,7 @@ flowchart LR
     end
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 É muito comum em pacotes Python tentar ao máximo **evitar alterações drásticas** em **novas versões**, mas é melhor prevenir do que remediar e instalar versões mais recentes intencionalmente e, quando possível, executar os testes para verificar se tudo está funcionando corretamente.
 
@@ -623,7 +623,7 @@ Esse comando criará ou modificará algumas [variáveis ​​de ambiente](envir
 
 Uma dessas variáveis ​​é a variável `PATH`.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você pode aprender mais sobre a variável de ambiente `PATH` na seção [Variáveis ​​de ambiente](environment-variables.md#path-environment-variable){.internal-link target=_blank}.
 
@@ -756,7 +756,7 @@ A parte mais importante é que quando você chama ``python`, esse é exatamente 
 
 Assim, você pode confirmar se está no ambiente virtual correto.
 
-/// tip | "Dica"
+/// tip | Dica
 
 É fácil ativar um ambiente virtual, obter um Python e então **ir para outro projeto**.
 
