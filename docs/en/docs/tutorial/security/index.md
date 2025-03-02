@@ -12,7 +12,10 @@ But first, let's check some small concepts.
 
 ## In a hurry?
 
-If you don't care about any of these terms and you just need to add security with authentication based on username and password *right now*, skip to the next chapters.
+If you need quick security solutions:
+
+* For simple API key authentication, check the [API Key Authentication](api-key.md) guide
+* For username/password authentication, continue to the next chapters
 
 ## OAuth2
 
