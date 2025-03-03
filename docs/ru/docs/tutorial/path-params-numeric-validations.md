@@ -6,48 +6,17 @@
 
 Сначала импортируйте `Path` из `fastapi`, а также импортируйте `Annotated`:
 
-=== "Python 3.10+"
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-    ```
+/// info | Информация
 
-=== "Python 3.9+"
+Поддержка `Annotated` была добавлена в FastAPI начиная с версии 0.95.0 (и с этой версии рекомендуется использовать этот подход).
 
-    ```Python hl_lines="1  3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
+Если вы используете более старую версию, вы столкнётесь с ошибками при попытке использовать `Annotated`.
 
-=== "Python 3.8+"
+Убедитесь, что вы [обновили версию FastAPI](../deployment/versions.md#fastapi_2){.internal-link target=_blank} как минимум до 0.95.1 перед тем, как использовать `Annotated`.
 
-    ```Python hl_lines="3-4"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
-
-!!! info "Информация"
-    Поддержка `Annotated` была добавлена в FastAPI начиная с версии 0.95.0 (и с этой версии рекомендуется использовать этот подход).
-
-    Если вы используете более старую версию, вы столкнётесь с ошибками при попытке использовать `Annotated`.
-
-    Убедитесь, что вы [обновили версию FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} как минимум до 0.95.1 перед тем, как использовать `Annotated`.
+///
 
 ## Определите метаданные
 
@@ -55,53 +24,25 @@
 
 Например, чтобы указать значение метаданных `title` для path-параметра `item_id`, вы можете написать:
 
-=== "Python 3.10+"
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-    ```
+/// note | Примечание
 
-=== "Python 3.9+"
+Path-параметр всегда является обязательным, поскольку он составляет часть пути.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-    ```
+Поэтому следует объявить его с помощью `...`, чтобы обозначить, что этот параметр обязательный.
 
-=== "Python 3.8+"
+Тем не менее, даже если вы объявите его как `None` или установите для него значение по умолчанию, это ни на что не повлияет и параметр останется обязательным.
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
-
-!!! note "Примечание"
-    Path-параметр всегда является обязательным, поскольку он составляет часть пути.
-
-    Поэтому следует объявить его с помощью `...`, чтобы обозначить, что этот параметр обязательный.
-
-    Тем не менее, даже если вы объявите его как `None` или установите для него значение по умолчанию, это ни на что не повлияет и параметр останется обязательным.
+///
 
 ## Задайте нужный вам порядок параметров
 
-!!! tip "Подсказка"
-    Это не имеет большого значения, если вы используете `Annotated`.
+/// tip | Подсказка
+
+Это не имеет большого значения, если вы используете `Annotated`.
+
+///
 
 Допустим, вы хотите объявить query-параметр `q` как обязательный параметр типа `str`.
 
@@ -117,33 +58,31 @@
 
 Поэтому вы можете определить функцию так:
 
-=== "Python 3.8 без Annotated"
+//// tab | Python 3.8 без Annotated
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+/// tip | Подсказка
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002.py!}
-    ```
+Рекомендуется использовать версию с `Annotated` если возможно.
+
+///
+
+```Python hl_lines="7"
+{!> ../../docs_src/path_params_numeric_validations/tutorial002.py!}
+```
+
+////
 
 Но имейте в виду, что если вы используете `Annotated`, вы не столкнётесь с этой проблемой, так как вы не используете `Query()` или `Path()` в качестве значения по умолчанию для параметра функции.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial002_an.py!}
-    ```
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py hl[10] *}
 
 ## Задайте нужный вам порядок параметров, полезные приёмы
 
-!!! tip "Подсказка"
-    Это не имеет большого значения, если вы используете `Annotated`.
+/// tip | Подсказка
+
+Это не имеет большого значения, если вы используете `Annotated`.
+
+///
 
 Здесь описан **небольшой приём**, который может оказаться удобным, хотя часто он вам не понадобится.
 
@@ -160,25 +99,13 @@
 
 Python не будет ничего делать с `*`, но он будет знать, что все следующие параметры являются именованными аргументами (парами ключ-значение), также известными как <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>, даже если у них нет значений по умолчанию.
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
 ### Лучше с `Annotated`
 
 Имейте в виду, что если вы используете `Annotated`, то, поскольку вы не используете значений по умолчанию для параметров функции, то у вас не возникнет подобной проблемы и вам не придётся использовать `*`.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial003_an.py!}
-    ```
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
 
 ## Валидация числовых данных: больше или равно
 
@@ -186,26 +113,7 @@ Python не будет ничего делать с `*`, но он будет з
 
 В этом примере при указании `ge=1`, параметр `item_id` должен быть больше или равен `1` ("`g`reater than or `e`qual").
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004_an.py!}
-    ```
-
-=== "Python 3.8+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial004.py!}
-    ```
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
 
 ## Валидация числовых данных: больше и меньше или равно
 
@@ -214,26 +122,7 @@ Python не будет ничего делать с `*`, но он будет з
 * `gt`: больше (`g`reater `t`han)
 * `le`: меньше или равно (`l`ess than or `e`qual)
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005_an.py!}
-    ```
-
-=== "Python 3.8+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial005.py!}
-    ```
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
 
 ## Валидация числовых данных: числа с плавающей точкой, больше и меньше
 
@@ -245,26 +134,7 @@ Python не будет ничего делать с `*`, но он будет з
 
 То же самое справедливо и для <abbr title="less than"><code>lt</code></abbr>.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006_an.py!}
-    ```
-
-=== "Python 3.8+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial006.py!}
-    ```
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 
 ## Резюме
 
@@ -277,16 +147,22 @@ Python не будет ничего делать с `*`, но он будет з
 * `lt`: меньше (`l`ess `t`han)
 * `le`: меньше или равно (`l`ess than or `e`qual)
 
-!!! info "Информация"
-    `Query`, `Path` и другие классы, которые мы разберём позже, являются наследниками общего класса `Param`.
+/// info | Информация
 
-    Все они используют те же параметры для дополнительной валидации и метаданных, которые вы видели ранее.
+`Query`, `Path` и другие классы, которые мы разберём позже, являются наследниками общего класса `Param`.
 
-!!! note "Технические детали"
-    `Query`, `Path` и другие "классы", которые вы импортируете из `fastapi`, на самом деле являются функциями, которые при вызове возвращают экземпляры одноимённых классов.
+Все они используют те же параметры для дополнительной валидации и метаданных, которые вы видели ранее.
 
-    Объект `Query`, который вы импортируете, является функцией. И при вызове она возвращает экземпляр одноимённого класса `Query`.
+///
 
-    Использование функций (вместо использования классов напрямую) нужно для того, чтобы ваш редактор не подсвечивал ошибки, связанные с их типами.
+/// note | Технические детали
 
-    Таким образом вы можете использовать привычный вам редактор и инструменты разработки, не добавляя дополнительных конфигураций для игнорирования подобных ошибок.
+`Query`, `Path` и другие "классы", которые вы импортируете из `fastapi`, на самом деле являются функциями, которые при вызове возвращают экземпляры одноимённых классов.
+
+Объект `Query`, который вы импортируете, является функцией. И при вызове она возвращает экземпляр одноимённого класса `Query`.
+
+Использование функций (вместо использования классов напрямую) нужно для того, чтобы ваш редактор не подсвечивал ошибки, связанные с их типами.
+
+Таким образом вы можете использовать привычный вам редактор и инструменты разработки, не добавляя дополнительных конфигураций для игнорирования подобных ошибок.
+
+///

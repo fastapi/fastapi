@@ -4,7 +4,7 @@ You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets
 
 ## Install `WebSockets`
 
-First you need to install `WebSockets`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets`:
 
 <div class="termy">
 
@@ -38,30 +38,27 @@ In production you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
-```Python hl_lines="2  6-38  41-43"
-{!../../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Create a `websocket`
 
 In your **FastAPI** application, create a `websocket`:
 
-```Python hl_lines="1  46-47"
-{!../../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
-!!! note "Technical Details"
-    You could also use `from starlette.websockets import WebSocket`.
+/// note | Technical Details
 
-    **FastAPI** provides the same `WebSocket` directly just as a convenience for you, the developer. But it comes directly from Starlette.
+You could also use `from starlette.websockets import WebSocket`.
+
+**FastAPI** provides the same `WebSocket` directly just as a convenience for you, the developer. But it comes directly from Starlette.
+
+///
 
 ## Await for messages and send messages
 
 In your WebSocket route you can `await` for messages and send messages.
 
-```Python hl_lines="48-52"
-{!../../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
 
 You can receive and send binary, text, and JSON data.
 
@@ -72,7 +69,7 @@ If your file is named `main.py`, run your application with:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -112,46 +109,15 @@ In WebSocket endpoints you can import from `fastapi` and use:
 
 They work the same way as for other FastAPI endpoints/*path operations*:
 
-=== "Python 3.10+"
+{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py310.py!}
-    ```
+/// info
 
-=== "Python 3.9+"
+As this is a WebSocket it doesn't really make sense to raise an `HTTPException`, instead we raise a `WebSocketException`.
 
-    ```Python hl_lines="68-69  82"
-    {!> ../../../docs_src/websockets/tutorial002_an_py39.py!}
-    ```
+You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
 
-=== "Python 3.8+"
-
-    ```Python hl_lines="69-70  83"
-    {!> ../../../docs_src/websockets/tutorial002_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="66-67  79"
-    {!> ../../../docs_src/websockets/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="68-69  81"
-    {!> ../../../docs_src/websockets/tutorial002.py!}
-    ```
-
-!!! info
-    As this is a WebSocket it doesn't really make sense to raise an `HTTPException`, instead we raise a `WebSocketException`.
-
-    You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">valid codes defined in the specification</a>.
+///
 
 ### Try the WebSockets with dependencies
 
@@ -160,7 +126,7 @@ If your file is named `main.py`, run your application with:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -174,8 +140,11 @@ There you can set:
 * The "Item ID", used in the path.
 * The "Token" used as a query parameter.
 
-!!! tip
-    Notice that the query `token` will be handled by a dependency.
+/// tip
+
+Notice that the query `token` will be handled by a dependency.
+
+///
 
 With that you can connect the WebSocket and then send and receive messages:
 
@@ -185,17 +154,7 @@ With that you can connect the WebSocket and then send and receive messages:
 
 When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="79-81"
-    {!> ../../../docs_src/websockets/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="81-83"
-    {!> ../../../docs_src/websockets/tutorial003.py!}
-    ```
+{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
 
 To try it out:
 
@@ -209,12 +168,15 @@ That will raise the `WebSocketDisconnect` exception, and all the other clients w
 Client #1596980209979 left the chat
 ```
 
-!!! tip
-    The app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.
+/// tip
 
-    But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
+The app above is a minimal and simple example to demonstrate how to handle and broadcast messages to several WebSocket connections.
 
-    If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+But keep in mind that, as everything is handled in memory, in a single list, it will only work while the process is running, and will only work with a single process.
+
+If you need something easy to integrate with FastAPI but that is more robust, supported by Redis, PostgreSQL or others, check <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>.
+
+///
 
 ## More info
 
