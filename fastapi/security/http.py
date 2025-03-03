@@ -423,9 +423,13 @@ class HTTPDigest(HTTPBase):
             else:
                 return None
         if scheme.lower() != "digest":
-            raise HTTPException(
-                status_code=HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication credentials",
-                headers={"WWW-Authenticate": "Digest"},
-            )
+            if self.auto_error:
+                raise HTTPException(
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Invalid authentication credentials",
+                    headers={"WWW-Authenticate": "Digest"},
+                )
+            else:
+              return None
+
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
