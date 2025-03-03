@@ -15,13 +15,7 @@ class APIKeyBase(SecurityBase):
     ) -> Optional[str]:
         if not api_key:
             if auto_error:
-                # Customize header based on where the API key should be
-                auth_header = {
-                    APIKeyIn.query: f'ApiKey name="{key_name}", in="query"',
-                    APIKeyIn.header: f'ApiKey name="{key_name}", in="header"',
-                    APIKeyIn.cookie: f'ApiKey name="{key_name}", in="cookie"',
-                }.get(key_in, "ApiKey")
-
+                auth_header = f'ApiKey name="{key_name}", in="{key_in.value}"'
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
                     detail="Not authenticated",
