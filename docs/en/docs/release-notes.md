@@ -7,6 +7,47 @@ hide:
 
 ## Latest Changes
 
+## 0.115.11
+
+### Fixes
+
+* 🐛 Add docs examples and tests (support) for `Annotated` custom validations, like `AfterValidator`, revert [#13440](https://github.com/fastapi/fastapi/pull/13440). PR [#13442](https://github.com/fastapi/fastapi/pull/13442) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Query Parameters and String Validations - Custom Validation](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#custom-validation).
+
+### Translations
+
+* 🌐 Add Russian translation for  `docs/ru/docs/tutorial/middleware.md`. PR [#13412](https://github.com/fastapi/fastapi/pull/13412) by [@alv2017](https://github.com/alv2017).
+
+### Internal
+
+* 👥 Update FastAPI GitHub topic repositories. PR [#13439](https://github.com/fastapi/fastapi/pull/13439) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13432](https://github.com/fastapi/fastapi/pull/13432) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Sponsors. PR [#13433](https://github.com/fastapi/fastapi/pull/13433) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.115.10
+
+### Fixes
+
+* ♻️ Update internal annotation usage for compatibility with Pydantic 2.11. PR [#13314](https://github.com/fastapi/fastapi/pull/13314) by [@Viicos](https://github.com/Viicos).
+
+### Upgrades
+
+* ⬆️ Bump Starlette to allow up to 0.46.0: `>=0.40.0,<0.47.0`. PR [#13426](https://github.com/fastapi/fastapi/pull/13426) by [@musicinmybrain](https://github.com/musicinmybrain).
+
+### Translations
+
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/debugging.md`. PR [#13370](https://github.com/fastapi/fastapi/pull/13370) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/query-params.md`. PR [#13362](https://github.com/fastapi/fastapi/pull/13362) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/path-params.md`. PR [#13354](https://github.com/fastapi/fastapi/pull/13354) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/cookie-param-models.md`. PR [#13330](https://github.com/fastapi/fastapi/pull/13330) by [@k94-ishi](https://github.com/k94-ishi).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-multiple-params.md`. PR [#13408](https://github.com/fastapi/fastapi/pull/13408) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Japanese translation for `docs/ja/docs/tutorial/query-param-models.md`. PR [#13323](https://github.com/fastapi/fastapi/pull/13323) by [@k94-ishi](https://github.com/k94-ishi).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-nested-models.md`. PR [#13409](https://github.com/fastapi/fastapi/pull/13409) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/versions.md`. PR [#13406](https://github.com/fastapi/fastapi/pull/13406) by [@ptt3199](https://github.com/ptt3199).
+* 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/index.md`. PR [#13405](https://github.com/fastapi/fastapi/pull/13405) by [@ptt3199](https://github.com/ptt3199).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/request-forms.md`. PR [#13383](https://github.com/fastapi/fastapi/pull/13383) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/testing.md`. PR [#13371](https://github.com/fastapi/fastapi/pull/13371) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+
 ## 0.115.9
 
 ### Fixes
