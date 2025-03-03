@@ -58,9 +58,9 @@ bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
     img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
-  - url: https://testdriven.io/courses/tdd-fastapi/
-    title: Learn to build high-quality web apps with best practices
-    img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  # - url: https://testdriven.io/courses/tdd-fastapi/
+  #   title: Learn to build high-quality web apps with best practices
+  #   img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
   - url: https://lambdatest.com/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
     title: LambdaTest, AI-Powered Cloud-based Test Orchestration Platform
     img: https://fastapi.tiangolo.com/img/sponsors/lambdatest.png
