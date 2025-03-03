@@ -430,6 +430,6 @@ class HTTPDigest(HTTPBase):
                     headers={"WWW-Authenticate": "Digest"},
                 )
             else:
-              return None
+                return None
 
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
