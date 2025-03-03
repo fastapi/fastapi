@@ -6,9 +6,7 @@
 
 먼저 `fastapi`에서 `Path`를 임포트합니다:
 
-```Python hl_lines="3"
-{!../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[3] *}
 
 ## 메타데이터 선언
 
@@ -16,11 +14,9 @@
 
 예를 들어, `title` 메타데이터 값을 경로 매개변수 `item_id`에 선언하려면 다음과 같이 입력할 수 있습니다:
 
-```Python hl_lines="10"
-{!../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
-/// note | "참고"
+/// note | 참고
 
 경로 매개변수는 경로의 일부여야 하므로 언제나 필수적입니다.
 
@@ -46,9 +42,7 @@
 
 따라서 함수를 다음과 같이 선언 할 수 있습니다:
 
-```Python hl_lines="7"
-{!../../docs_src/path_params_numeric_validations/tutorial002.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
 
 ## 필요한 경우 매개변수 정렬하기, 트릭
 
@@ -58,9 +52,7 @@
 
 파이썬은 `*`으로 아무런 행동도 하지 않지만, 따르는 매개변수들은 <abbr title="유래: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>로도 알려진 키워드 인자(키-값 쌍)여야 함을 인지합니다. 기본값을 가지고 있지 않더라도 그렇습니다.
 
-```Python hl_lines="7"
-{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
 ## 숫자 검증: 크거나 같음
 
@@ -68,9 +60,7 @@
 
 여기서 `ge=1`인 경우, `item_id`는 `1`보다 "크거나(`g`reater) 같은(`e`qual)" 정수형 숫자여야 합니다.
 
-```Python hl_lines="8"
-{!../../docs_src/path_params_numeric_validations/tutorial004.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[8] *}
 
 ## 숫자 검증: 크거나 같음 및 작거나 같음
 
@@ -79,9 +69,7 @@
 * `gt`: 크거나(`g`reater `t`han)
 * `le`: 작거나 같은(`l`ess than or `e`qual)
 
-```Python hl_lines="9"
-{!../../docs_src/path_params_numeric_validations/tutorial005.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[9] *}
 
 ## 숫자 검증: 부동소수, 크거나 및 작거나
 
@@ -93,9 +81,7 @@
 
 <abbr title="less than"><code>lt</code></abbr> 역시 마찬가지입니다.
 
-```Python hl_lines="11"
-{!../../docs_src/path_params_numeric_validations/tutorial006.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[11] *}
 
 ## 요약
 
@@ -108,7 +94,7 @@
 * `lt`: 작거나(`l`ess `t`han)
 * `le`: 작거나 같은(`l`ess than or `e`qual)
 
-/// info | "정보"
+/// info | 정보
 
 `Query`, `Path`, 그리고 나중에게 보게될 것들은 (여러분이 사용할 필요가 없는) 공통 `Param` 클래스의 서브 클래스입니다.
 
@@ -116,7 +102,7 @@
 
 ///
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `fastapi`에서 `Query`, `Path` 등을 임포트 할 때, 이것들은 실제로 함수입니다.
 

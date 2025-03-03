@@ -6,57 +6,7 @@ So wie `Query`-, `Path`-, und `Cookie`-Parameter können Sie auch <abbr title='H
 
 Importieren Sie zuerst `Header`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/header_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
 ## `Header`-Parameter deklarieren
 
@@ -64,59 +14,9 @@ Dann deklarieren Sie Ihre Header-Parameter, auf die gleiche Weise, wie Sie auch 
 
 Der erste Wert ist der Typ. Sie können `Header` die gehabten Extra Validierungs- und Beschreibungsparameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
 
-//// tab | Python 3.10+
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/header_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001.py!}
-```
-
-////
-
-/// note | "Technische Details"
+/// note | Technische Details
 
 `Header` ist eine Schwesterklasse von `Path`, `Query` und `Cookie`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
 
@@ -146,59 +46,9 @@ Sie können also `user_agent` schreiben, wie Sie es normalerweise in Python-Code
 
 Wenn Sie aus irgendeinem Grund das automatische Konvertieren von Unterstrichen zu Bindestrichen abschalten möchten, setzen Sie den Parameter `convert_underscores` auf `False`.
 
-//// tab | Python 3.10+
+{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11"
-{!> ../../docs_src/header_params/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12"
-{!> ../../docs_src/header_params/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8"
-{!> ../../docs_src/header_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial002.py!}
-```
-
-////
-
-/// warning | "Achtung"
+/// warning | Achtung
 
 Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass manche HTTP-Proxys und Server die Verwendung von Headern mit Unterstrichen nicht erlauben.
 
@@ -214,71 +64,7 @@ Sie erhalten dann alle Werte von diesem doppelten Header als Python-`list`e.
 
 Um zum Beispiel einen Header `X-Token` zu deklarieren, der mehrmals vorkommen kann, schreiben Sie:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/header_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
 Wenn Sie mit einer *Pfadoperation* kommunizieren, die zwei HTTP-Header sendet, wie:
 

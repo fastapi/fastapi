@@ -6,57 +6,7 @@
 
 首先，从 `fastapi` 导入 `Path`：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1  3"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  3"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3-4"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
 ## 声明元数据
 
@@ -64,57 +14,7 @@
 
 例如，要声明路径参数 `item_id`的 `title` 元数据值，你可以输入：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="10"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="10"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="8"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/path_params_numeric_validations/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
 
 /// note
 
@@ -142,19 +42,7 @@
 
 因此，你可以将函数声明为：
 
-//// tab | Python 3.8 non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/path_params_numeric_validations/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
 
 ## 按需对参数排序的技巧
 
@@ -164,9 +52,7 @@
 
 Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参数都应作为关键字参数（键值对），也被称为 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>，来调用。即使它们没有默认值。
 
-```Python hl_lines="7"
-{!../../docs_src/path_params_numeric_validations/tutorial003.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
 ## 数值校验：大于等于
 
@@ -174,9 +60,7 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 像下面这样，添加 `ge=1` 后，`item_id` 将必须是一个大于（`g`reater than）或等于（`e`qual）`1` 的整数。
 
-```Python hl_lines="8"
-{!../../docs_src/path_params_numeric_validations/tutorial004.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[8] *}
 
 ## 数值校验：大于和小于等于
 
@@ -185,9 +69,7 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 * `gt`：大于（`g`reater `t`han）
 * `le`：小于等于（`l`ess than or `e`qual）
 
-```Python hl_lines="9"
-{!../../docs_src/path_params_numeric_validations/tutorial005.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[9] *}
 
 ## 数值校验：浮点数、大于和小于
 
@@ -199,9 +81,7 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 对于 <abbr title="less than"><code>lt</code></abbr> 也是一样的。
 
-```Python hl_lines="11"
-{!../../docs_src/path_params_numeric_validations/tutorial006.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[11] *}
 
 ## 总结
 
@@ -222,7 +102,7 @@ Python 不会对该 `*` 做任何事情，但是它将知道之后的所有参�
 
 ///
 
-/// note | "技术细节"
+/// note | 技术细节
 
 当你从 `fastapi` 导入 `Query`、`Path` 和其他同类对象时，它们实际上是函数。
 

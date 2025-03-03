@@ -20,13 +20,11 @@
 
 `main.py`に、下記の例をコピーします:
 
-```Python
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 実行
 
-/// info | "情報"
+/// info | 情報
 
 まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
@@ -56,7 +54,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Authorizeボタン!"
+/// check | Authorizeボタン!
 
 すでにピカピカの新しい「Authorize」ボタンがあります。
 
@@ -68,7 +66,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "備考"
+/// note | 備考
 
 フォームに何を入力しても、まだうまくいきません。ですが、これから動くようになります。
 
@@ -114,7 +112,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 この例では、**Bearer**トークンを使用して**OAuth2**を**パスワード**フローで使用します。これには`OAuth2PasswordBearer`クラスを使用します。
 
-/// info | "情報"
+/// info | 情報
 
 「bearer」トークンが、唯一の選択肢ではありません。
 
@@ -128,11 +126,9 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 `OAuth2PasswordBearer` クラスのインスタンスを作成する時に、パラメーター`tokenUrl`を渡します。このパラメーターには、クライアント (ユーザーのブラウザで動作するフロントエンド) がトークンを取得するために`ユーザー名`と`パスワード`を送信するURLを指定します。
 
-```Python hl_lines="6"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[6] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
 
@@ -146,7 +142,7 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 実際のpath operationもすぐに作ります。
 
-/// info | "情報"
+/// info | 情報
 
 非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
 
@@ -168,15 +164,13 @@ oauth2_scheme(some, parameters)
 
 これで`oauth2_scheme`を`Depends`で依存関係に渡すことができます。
 
-```Python hl_lines="10"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[10] *}
 
 この依存関係は、*path operation function*のパラメーター`token`に代入される`str`を提供します。
 
 **FastAPI**は、この依存関係を使用してOpenAPIスキーマ (および自動APIドキュメント) で「セキュリティスキーム」を定義できることを知っています。
 
-/// info | "技術詳細"
+/// info | 技術詳細
 
 **FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
 

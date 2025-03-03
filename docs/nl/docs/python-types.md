@@ -22,9 +22,8 @@ Als je een Python expert bent en alles al weet over type hints, sla dan dit hoof
 
 Laten we beginnen met een eenvoudig voorbeeld:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 Het aanroepen van dit programma leidt tot het volgende resultaat:
 
@@ -39,9 +38,8 @@ De functie voert het volgende uit:
 ``
 * <abbr title="Voegt ze samen, als één. Met de inhoud van de een na de ander.">Voeg samen</abbr> met een spatie in het midden.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### Bewerk het
 
@@ -83,9 +81,8 @@ Dat is alles.
 
 Dat zijn de "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 Dit is niet hetzelfde als het declareren van standaardwaarden zoals bij:
 
@@ -113,9 +110,8 @@ Nu kun je de opties bekijken en er doorheen scrollen totdat je de optie vindt di
 
 Bekijk deze functie, deze heeft al type hints:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 Omdat de editor de types van de variabelen kent, krijgt u niet alleen aanvulling, maar ook controles op fouten:
 
@@ -123,9 +119,8 @@ Omdat de editor de types van de variabelen kent, krijgt u niet alleen aanvulling
 
 Nu weet je hoe je het moet oplossen, converteer `age` naar een string met `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## Types declareren
 
@@ -144,9 +139,8 @@ Je kunt bijvoorbeeld het volgende gebruiken:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### Generieke types met typeparameters
 
@@ -370,9 +364,8 @@ Het gaat alleen om de woorden en naamgeving. Maar die naamgeving kan invloed heb
 
 Laten we als voorbeeld deze functie nemen:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
+
 
 De parameter `name` is gedefinieerd als `Optional[str]`, maar is **niet optioneel**, je kunt de functie niet aanroepen zonder de parameter:
 
@@ -388,9 +381,8 @@ say_hi(name=None)  # Dit werkt, None is geldig 🎉
 
 Het goede nieuws is dat als je eenmaal Python 3.10 gebruikt, je je daar geen zorgen meer over hoeft te maken, omdat je dan gewoon `|` kunt gebruiken om unions van types te definiëren:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
+
 
 Dan hoef je je geen zorgen te maken over namen als `Optional` en `Union`. 😎
 
@@ -452,15 +444,13 @@ Je kunt een klasse ook declareren als het type van een variabele.
 
 Stel dat je een klasse `Person` hebt, met een naam:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Vervolgens kun je een variabele van het type `Persoon` declareren:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 Dan krijg je ook nog eens volledige editorondersteuning:
 

@@ -2,7 +2,7 @@
 
 Используя класс `File`, мы можем позволить клиентам загружать файлы.
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Чтобы получать загруженные файлы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
@@ -16,71 +16,15 @@
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
 ## Определите параметры `File`
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-//// tab | Python 3.9+
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
-```Python hl_lines="9"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
-
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 `File` - это класс, который наследуется непосредственно от `Form`.
 
@@ -88,7 +32,7 @@
 
 ///
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Для объявления тела файла необходимо использовать `File`, поскольку в противном случае параметры будут интерпретироваться как параметры запроса или параметры тела (JSON).
 
@@ -106,35 +50,7 @@
 
 Определите параметр файла с типом `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../docs_src/request_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="13"
-{!> ../../docs_src/request_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="12"
-{!> ../../docs_src/request_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -177,13 +93,13 @@ contents = await myfile.read()
 contents = myfile.file.read()
 ```
 
-/// note | "Технические детали `async`"
+/// note | Технические детали `async`
 
 При использовании методов `async` **FastAPI** запускает файловые методы в пуле потоков и ожидает их.
 
 ///
 
-/// note | "Технические детали Starlette"
+/// note | Технические детали Starlette
 
 **FastAPI** наследует `UploadFile` непосредственно из **Starlette**, но добавляет некоторые детали для совместимости с **Pydantic** и другими частями FastAPI.
 
@@ -195,7 +111,7 @@ contents = myfile.file.read()
 
 **FastAPI** позаботится о том, чтобы считать эти данные из нужного места, а не из JSON.
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Данные из форм обычно кодируются с использованием "media type" `application/x-www-form-urlencoded` когда он не включает файлы.
 
@@ -205,7 +121,7 @@ contents = myfile.file.read()
 
 ///
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 В операции *функции операции пути* можно объявить несколько параметров `File` и `Form`, но нельзя также объявлять поля `Body`, которые предполагается получить в виде JSON, поскольку тело запроса будет закодировано с помощью `multipart/form-data`, а не `application/json`.
 
@@ -217,91 +133,13 @@ contents = myfile.file.read()
 
 Вы можете сделать загрузку файла необязательной, используя стандартные аннотации типов и установив значение по умолчанию `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="10  18"
-{!> ../../docs_src/request_files/tutorial001_02_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="7  15"
-{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
 ## `UploadFile` с дополнительными метаданными
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9  15"
-{!> ../../docs_src/request_files/tutorial001_03_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="8  14"
-{!> ../../docs_src/request_files/tutorial001_03_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="7  13"
-{!> ../../docs_src/request_files/tutorial001_03.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
 ## Загрузка нескольких файлов
 
@@ -311,53 +149,11 @@ contents = myfile.file.read()
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/request_files/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 Вы получите, как и было объявлено, список `list` из `bytes` или `UploadFile`.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Можно также использовать `from starlette.responses import HTMLResponse`.
 
@@ -369,49 +165,7 @@ contents = myfile.file.read()
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  18-20"
-{!> ../../docs_src/request_files/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="12  19-21"
-{!> ../../docs_src/request_files/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.9+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="9  16"
-{!> ../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="11  18"
-{!> ../../docs_src/request_files/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
 ## Резюме
 

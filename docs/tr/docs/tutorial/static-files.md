@@ -7,11 +7,9 @@
 * `StaticFiles` sınıfını projenize dahil edin.
 * Bir `StaticFiles()` örneğini belirli bir yola bağlayın.
 
-```Python hl_lines="2  6"
-{!../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | "Teknik Detaylar"
+/// note | Teknik Detaylar
 
 Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
 

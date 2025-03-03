@@ -2,7 +2,7 @@
 
 İstek gövdesinde JSON verisi yerine form alanlarını karşılamanız gerketiğinde `Form` sınıfını kullanabilirsiniz.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 Formları kullanmak için öncelikle <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> paketini indirmeniz gerekmektedir.
 
@@ -14,69 +14,13 @@ Formları kullanmak için öncelikle <a href="https://github.com/Kludex/python-m
 
 `Form` sınıfını `fastapi`'den projenize dahil edin:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
 ## `Form` Parametrelerini Tanımlayın
 
 Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
 Örneğin, OAuth2 spesifikasyonunun kullanılabileceği ("şifre akışı" olarak adlandırılan) yollardan birinde, form alanları olarak <abbr title="Kullanıcı Adı: Username">"username"</abbr> ve <abbr title="Şifre: Password">"password"</abbr> gönderilmesi gerekir.
 
@@ -84,13 +28,13 @@ Bu <abbr title="Spesifikasyon: Specification">spesifikasyon</abbr> form alanlar�
 
 `Form` sınıfıyla tanımlama yaparken `Body`, `Query`, `Path` ve `Cookie` sınıflarında kullandığınız aynı validasyon, örnekler, isimlendirme (örneğin `username` yerine `user-name` kullanımı) ve daha fazla konfigurasyonu kullanabilirsiniz.
 
-/// info | "Bilgi"
+/// info | Bilgi
 
 `Form` doğrudan `Body` sınıfını miras alan bir sınıftır.
 
 ///
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Form gövdelerini tanımlamak için `Form` sınıfını kullanmanız gerekir; çünkü bu olmadan parametreler sorgu parametreleri veya gövde (JSON) parametreleri olarak yorumlanır.
 
@@ -102,7 +46,7 @@ HTML formlarının (`<form></form>`) verileri sunucuya gönderirken JSON'dan far
 
 **FastAPI** bu verilerin JSON yerine doğru şekilde okunmasını sağlayacaktır.
 
-/// note | "Teknik Detaylar"
+/// note | Teknik Detaylar
 
 Form verileri normalde `application/x-www-form-urlencoded` medya tipiyle kodlanır.
 
@@ -112,7 +56,7 @@ Form kodlama türleri ve form alanları hakkında daha fazla bilgi edinmek istiy
 
 ///
 
-/// warning | "Uyarı"
+/// warning | Uyarı
 
 *Yol operasyonları* içerisinde birden fazla `Form` parametresi tanımlayabilirsiniz ancak bunlarla birlikte JSON verisi kabul eden `Body` alanları tanımlayamazsınız çünkü bu durumda istek gövdesi `application/json` yerine `application/x-www-form-urlencoded` ile kodlanmış olur.
 

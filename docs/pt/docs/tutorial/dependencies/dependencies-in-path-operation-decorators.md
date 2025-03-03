@@ -14,39 +14,11 @@ O *decorador da operação de rota* recebe um argumento opcional `dependencies`.
 
 Ele deve ser uma lista de `Depends()`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
 
 Essas dependências serão executadas/resolvidas da mesma forma que dependências comuns. Mas o valor delas (se existir algum) não será passado para a sua *função de operação de rota*.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Alguns editores de texto checam parâmetros de funções não utilizados, e os mostram como erros.
 
@@ -56,7 +28,7 @@ Isso também pode ser útil para evitar confundir novos desenvolvedores que ao v
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 Neste exemplo utilizamos cabeçalhos personalizados inventados `X-Keys` e `X-Token`.
 
@@ -72,69 +44,13 @@ Você pode utilizar as mesmas *funções* de dependências que você usaria norm
 
 Dependências podem declarar requisitos de requisições (como cabeçalhos) ou outras subdependências:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7  12"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="6  11"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 
 ### Levantando exceções
 
 Essas dependências podem levantar exceções, da mesma forma que dependências comuns:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  14"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
 
 ### Valores de retorno
 
@@ -142,37 +58,7 @@ E elas também podem ou não retornar valores, eles não serão utilizados.
 
 Então, você pode reutilizar uma dependência comum (que retorna um valor) que já seja utilizada em outro lugar, e mesmo que o valor não seja utilizado, a dependência será executada:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-
-
-///
-
-   Utilize a versão com `Annotated` se possível
-
-```Python hl_lines="9  14"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
 
 ## Dependências para um grupo de *operações de rota*
 

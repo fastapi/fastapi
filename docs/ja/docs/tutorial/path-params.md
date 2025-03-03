@@ -2,9 +2,7 @@
 
 Pythonのformat文字列と同様のシンタックスで「パスパラメータ」や「パス変数」を宣言できます:
 
-```Python hl_lines="6 7"
-{!../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6,7] *}
 
 パスパラメータ `item_id` の値は、引数 `item_id` として関数に渡されます。
 
@@ -18,13 +16,11 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 標準のPythonの型アノテーションを使用して、関数内のパスパラメータの型を宣言できます:
 
-```Python hl_lines="7"
-{!../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 ここでは、 `item_id` は `int` として宣言されています。
 
-/// check | "確認"
+/// check | 確認
 
 これにより、関数内でのエディターサポート (エラーチェックや補完など) が提供されます。
 
@@ -38,7 +34,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {"item_id":3}
 ```
 
-/// check | "確認"
+/// check | 確認
 
 関数が受け取った（および返した）値は、文字列の `"3"` ではなく、Pythonの `int` としての `3` であることに注意してください。
 
@@ -69,7 +65,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a> で見られるように、intのかわりに `float` が与えられた場合にも同様なエラーが表示されます。
 
-/// check | "確認"
+/// check | 確認
 
 したがって、Pythonの型宣言を使用することで、**FastAPI**はデータのバリデーションを行います。
 
@@ -85,7 +81,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | "確認"
+/// check | 確認
 
 繰り返しになりますが、Python型宣言を使用するだけで、**FastAPI**は対話的なAPIドキュメントを自動的に生成します（Swagger UIを統合）。
 
@@ -121,9 +117,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 *path operations* は順に評価されるので、 `/users/me` が `/users/{user_id}` よりも先に宣言されているか確認する必要があります:
 
-```Python hl_lines="6 11"
-{!../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 それ以外の場合、 `/users/{users_id}` は `/users/me` としてもマッチします。値が「"me"」であるパラメータ `user_id` を受け取ると「考え」ます。
 
@@ -139,17 +133,15 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 そして、固定値のクラス属性を作ります。すると、その値が使用可能な値となります:
 
-```Python hl_lines="1 6 7 8 9"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6,7,8,9] *}
 
-/// info | "情報"
+/// info | 情報
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (もしくは、enums)はPython 3.4以降で利用できます</a>。
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 "AlexNet"、"ResNet"そして"LeNet"は機械学習<abbr title="Technically, Deep Learning model architectures">モデル</abbr>の名前です。
 
@@ -159,9 +151,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します:
 
-```Python hl_lines="16"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### ドキュメントの確認
 
@@ -177,19 +167,15 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 これは、作成した列挙型 `ModelName` の*列挙型メンバ*と比較できます:
 
-```Python hl_lines="17"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### *列挙値*の取得
 
 `model_name.value` 、もしくは一般に、 `your_enum_member.value` を使用して実際の値 (この場合は `str`) を取得できます。
 
-```Python hl_lines="20"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `ModelName.lenet.value` でも `"lenet"` 値にアクセスできます。
 
@@ -201,9 +187,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 それらはクライアントに返される前に適切な値 (この場合は文字列) に変換されます。
 
-```Python hl_lines="18  21  23"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 クライアントは以下の様なJSONレスポンスを得ます:
 
@@ -242,11 +226,9 @@ Starletteのオプションを直接使用することで、以下のURLの様�
 
 したがって、以下の様に使用できます:
 
-```Python hl_lines="6"
-{!../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 最初のスラッシュ (`/`)が付いている `/home/johndoe/myfile.txt` をパラメータが含んでいる必要があります。
 

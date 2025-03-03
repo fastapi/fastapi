@@ -8,11 +8,9 @@
 * `@app.delete()`
 * 기타.
 
-```Python hl_lines="17"
-{!../../docs_src/response_model/tutorial001.py!}
-```
+{* ../../docs_src/response_model/tutorial001.py hl[17] *}
 
-/// note | "참고"
+/// note | 참고
 
 `response_model`은 "데코레이터" 메소드(`get`, `post`, 등)의 매개변수입니다. 모든 매개변수들과 본문(body)처럼 *경로 작동 함수*가 아닙니다.
 
@@ -31,7 +29,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 * 해당 모델의 출력 데이터 제한. 이것이 얼마나 중요한지 아래에서 볼 것입니다.
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 응답 모델은 함수의 타입 어노테이션 대신 이 매개변수로 선언하는데, 경로 함수가 실제 응답 모델을 반환하지 않고 `dict`, 데이터베이스 객체나 기타 다른 모델을 `response_model`을 사용하여 필드 제한과 직렬화를 수행하고 반환할 수 있기 때문입니다
 
@@ -41,15 +39,11 @@ FastAPI는 이 `response_model`를 사용하여:
 
 여기서 우리는 평문 비밀번호를 포함하는 `UserIn` 모델을 선언합니다:
 
-```Python hl_lines="9  11"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
 그리고 이 모델을 사용하여 입력을 선언하고 같은 모델로 출력을 선언합니다:
 
-```Python hl_lines="17-18"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[17:18] *}
 
 이제 브라우저가 비밀번호로 사용자를 만들 때마다 API는 응답으로 동일한 비밀번호를 반환합니다.
 
@@ -57,7 +51,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 그러나 동일한 모델을 다른 *경로 작동*에서 사용할 경우, 모든 클라이언트에게 사용자의 비밀번호를 발신할 수 있습니다.
 
-/// danger | "위험"
+/// danger | 위험
 
 절대로 사용자의 평문 비밀번호를 저장하거나 응답으로 발신하지 마십시오.
 
@@ -67,21 +61,15 @@ FastAPI는 이 `response_model`를 사용하여:
 
 대신 평문 비밀번호로 입력 모델을 만들고 해당 비밀번호 없이 출력 모델을 만들 수 있습니다:
 
-```Python hl_lines="9  11  16"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 여기서 *경로 작동 함수*가 비밀번호를 포함하는 동일한 입력 사용자를 반환할지라도:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...`response_model`을 `UserOut` 모델로 선언했기 때문에 비밀번호를 포함하지 않습니다:
 
-```Python hl_lines="22"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 따라서 **FastAPI**는 출력 모델에서 선언하지 않은 모든 데이터를 (Pydantic을 사용하여) 필터링합니다.
 
@@ -99,9 +87,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 응답 모델은 아래와 같이 기본값을 가질 수 있습니다:
 
-```Python hl_lines="11  13-14"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[11,13:14] *}
 
 * `description: Optional[str] = None`은 기본값으로 `None`을 갖습니다.
 * `tax: float = 10.5`는 기본값으로 `10.5`를 갖습니다.
@@ -115,9 +101,7 @@ FastAPI는 이 `response_model`를 사용하여:
 
 *경로 작동 데코레이터* 매개변수를 `response_model_exclude_unset=True`로 설정 할 수 있습니다:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[24] *}
 
 이러한 기본값은 응답에 포함되지 않고 실제로 설정된 값만 포함됩니다.
 
@@ -130,13 +114,13 @@ FastAPI는 이 `response_model`를 사용하여:
 }
 ```
 
-/// info | "정보"
+/// info | 정보
 
 FastAPI는 이를 위해 Pydantic 모델의 `.dict()`의 <a href="https://docs.pydantic.dev/latest/concepts/serialization/#modeldict" class="external-link" target="_blank"> `exclude_unset` 매개변수</a>를 사용합니다.
 
 ///
 
-/// info | "정보"
+/// info | 정보
 
 아래 또한 사용할 수 있습니다:
 
@@ -181,7 +165,7 @@ ID가 `baz`인 항목(items)처럼 기본값과 동일한 값을 갖는다면:
 
 따라서 JSON 스키마에 포함됩니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 `None` 뿐만 아니라 다른 어떤 것도 기본값이 될 수 있습니다.
 
@@ -197,7 +181,7 @@ ID가 `baz`인 항목(items)처럼 기본값과 동일한 값을 갖는다면:
 
 Pydantic 모델이 하나만 있고 출력에서 ​​일부 데이터를 제거하려는 경우 빠른 지름길로 사용할 수 있습니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 하지만 이러한 매개변수 대신 여러 클래스를 사용하여 위 아이디어를 사용하는 것을 추천합니다.
 
@@ -207,11 +191,9 @@ Pydantic 모델이 하나만 있고 출력에서 ​​일부 데이터를 제�
 
 ///
 
-```Python hl_lines="31  37"
-{!../../docs_src/response_model/tutorial005.py!}
-```
+{* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
-/// tip | "팁"
+/// tip | 팁
 
 문법 `{"name", "description"}`은 두 값을 갖는 `set`을 만듭니다.
 
@@ -223,9 +205,7 @@ Pydantic 모델이 하나만 있고 출력에서 ​​일부 데이터를 제�
 
 `list` 또는 `tuple` 대신 `set`을 사용하는 법을 잊었더라도, FastAPI는 `set`으로 변환하고 정상적으로 작동합니다:
 
-```Python hl_lines="31  37"
-{!../../docs_src/response_model/tutorial006.py!}
-```
+{* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
 
 ## 요약
 

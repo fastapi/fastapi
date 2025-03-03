@@ -8,29 +8,7 @@
 * `@app.delete()`
 * 等等。
 
-//// tab | Python 3.10+
-
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17  22  24-27"
-{!> ../../docs_src/response_model/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
 
 /// note
 
@@ -51,7 +29,7 @@ FastAPI 将使用此 `response_model` 来：
 
 * 会将输出数据限制在该模型定义内。下面我们会看到这一点有多重要。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 响应模型在参数中被声明，而不是作为函数返回类型的注解，这是因为路径函数可能不会真正返回该响应模型，而是返回一个 `dict`、数据库对象或其他模型，然后再使用 `response_model` 来执行字段约束和序列化。
 
@@ -61,15 +39,11 @@ FastAPI 将使用此 `response_model` 来：
 
 现在我们声明一个 `UserIn` 模型，它将包含一个明文密码属性。
 
-```Python hl_lines="9  11"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
 我们正在使用此模型声明输入数据，并使用同一模型声明输出数据：
 
-```Python hl_lines="17-18"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[17:18] *}
 
 现在，每当浏览器使用一个密码创建用户时，API 都会在响应中返回相同的密码。
 
@@ -87,57 +61,15 @@ FastAPI 将使用此 `response_model` 来：
 
 相反，我们可以创建一个有明文密码的输入模型和一个没有明文密码的输出模型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9  11  16"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  11  16"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
 
 这样，即便我们的*路径操作函数*将会返回包含密码的相同输入用户：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
 
 ...我们已经将 `response_model` 声明为了不包含密码的 `UserOut` 模型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="22"
-{!> ../../docs_src/response_model/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/response_model/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
 
 因此，**FastAPI** 将会负责过滤掉未在输出模型中声明的所有数据（使用 Pydantic）。
 
@@ -155,9 +87,7 @@ FastAPI 将使用此 `response_model` 来：
 
 你的响应模型可以具有默认值，例如：
 
-```Python hl_lines="11  13-14"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[11,13:14] *}
 
 * `description: Union[str, None] = None` 具有默认值 `None`。
 * `tax: float = 10.5` 具有默认值 `10.5`.
@@ -171,9 +101,7 @@ FastAPI 将使用此 `response_model` 来：
 
 你可以设置*路径操作装饰器*的 `response_model_exclude_unset=True` 参数：
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[24] *}
 
 然后响应中将不会包含那些默认值，而是仅有实际设置的值。
 
@@ -262,9 +190,7 @@ FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydanti
 
 ///
 
-```Python hl_lines="31  37"
-{!../../docs_src/response_model/tutorial005.py!}
-```
+{* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
 /// tip
 
@@ -278,9 +204,7 @@ FastAPI 通过 Pydantic 模型的 `.dict()` 配合 <a href="https://docs.pydanti
 
 如果你忘记使用 `set` 而是使用 `list` 或 `tuple`，FastAPI 仍会将其转换为 `set` 并且正常工作：
 
-```Python hl_lines="31  37"
-{!../../docs_src/response_model/tutorial006.py!}
-```
+{* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
 
 ## 总结
 

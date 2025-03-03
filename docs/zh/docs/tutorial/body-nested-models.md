@@ -6,21 +6,7 @@
 
 你可以将一个属性定义为拥有子元素的类型。例如 Python `list`：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="12"
-{!> ../../docs_src/body_nested_models/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14"
-{!> ../../docs_src/body_nested_models/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
 
 这将使 `tags` 成为一个由元素组成的列表。不过它没有声明每个元素的类型。
 
@@ -32,9 +18,7 @@
 
 首先，从 Python 的标准库 `typing` 模块中导入 `List`：
 
-```Python hl_lines="1"
-{!> ../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
 
 ### 声明具有子类型的 List
 
@@ -55,29 +39,7 @@ my_list: List[str]
 
 因此，在我们的示例中，我们可以将 `tags` 明确地指定为一个「字符串列表」：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="12"
-{!> ../../docs_src/body_nested_models/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../docs_src/body_nested_models/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14"
-{!> ../../docs_src/body_nested_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
 
 ## Set 类型
 
@@ -87,29 +49,7 @@ Python 具有一种特殊的数据类型来保存一组唯一的元素，即 `se
 
 然后我们可以导入 `Set` 并将 `tag` 声明为一个由 `str` 组成的 `set`：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="12"
-{!> ../../docs_src/body_nested_models/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="14"
-{!> ../../docs_src/body_nested_models/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  14"
-{!> ../../docs_src/body_nested_models/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
 
 这样，即使你收到带有重复数据的请求，这些数据也会被转换为一组唯一项。
 
@@ -131,57 +71,13 @@ Pydantic 模型的每个属性都具有类型。
 
 例如，我们可以定义一个 `Image` 模型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7-9"
-{!> ../../docs_src/body_nested_models/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9-11"
-{!> ../../docs_src/body_nested_models/tutorial004_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-11"
-{!> ../../docs_src/body_nested_models/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
 
 ### 将子模型用作类型
 
 然后我们可以将其用作一个属性的类型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_nested_models/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_nested_models/tutorial004_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_nested_models/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
 
 这意味着 **FastAPI** 将期望类似于以下内容的请求体：
 
@@ -214,29 +110,7 @@ Pydantic 模型的每个属性都具有类型。
 
 例如，在 `Image` 模型中我们有一个 `url` 字段，我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="2  8"
-{!> ../../docs_src/body_nested_models/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  10"
-{!> ../../docs_src/body_nested_models/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  10"
-{!> ../../docs_src/body_nested_models/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
 
 该字符串将被检查是否为有效的 URL，并在 JSON Schema / OpenAPI 文档中进行记录。
 
@@ -244,29 +118,7 @@ Pydantic 模型的每个属性都具有类型。
 
 你还可以将 Pydantic 模型用作 `list`、`set` 等的子类型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_nested_models/tutorial006_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_nested_models/tutorial006_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_nested_models/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
 
 这将期望（转换，校验，记录文档等）下面这样的 JSON 请求体：
 
@@ -304,29 +156,7 @@ Pydantic 模型的每个属性都具有类型。
 
 你可以定义任意深度的嵌套模型：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7  12  18  21  25"
-{!> ../../docs_src/body_nested_models/tutorial007_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9  14  20  23  27"
-{!> ../../docs_src/body_nested_models/tutorial007_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  14  20  23  27"
-{!> ../../docs_src/body_nested_models/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
 /// info
 
@@ -344,21 +174,7 @@ images: List[Image]
 
 例如：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="13"
-{!> ../../docs_src/body_nested_models/tutorial008_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_nested_models/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
 
 ## 无处不在的编辑器支持
 
@@ -388,21 +204,7 @@ images: List[Image]
 
 在下面的例子中，你将接受任意键为 `int` 类型并且值为 `float` 类型的 `dict`：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="7"
-{!> ../../docs_src/body_nested_models/tutorial009_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/body_nested_models/tutorial009.py!}
-```
-
-////
+{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
 
 /// tip
 

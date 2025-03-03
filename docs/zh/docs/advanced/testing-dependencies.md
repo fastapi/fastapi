@@ -28,11 +28,9 @@
 
 这样一来，**FastAPI** 就会调用覆盖依赖项，不再调用原依赖项。
 
-```Python hl_lines="26-27  30"
-{!../../docs_src/dependency_testing/tutorial001.py!}
-```
+{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
-/// tip | "提示"
+/// tip | 提示
 
 **FastAPI** 应用中的任何位置都可以实现覆盖依赖项。
 
@@ -48,7 +46,7 @@ FastAPI 可以覆盖这些位置的依赖项。
 app.dependency_overrides = {}
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 如果只在某些测试时覆盖依赖项，您可以在测试开始时（在测试函数内）设置覆盖依赖项，并在结束时（在测试函数结尾）重置覆盖依赖项。
 

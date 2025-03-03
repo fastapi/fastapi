@@ -8,11 +8,9 @@
 * `@app.delete()`
 * 等……
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
-/// note | "笔记"
+/// note | 笔记
 
 注意，`status_code` 是（`get`、`post` 等）**装饰器**方法中的参数。与之前的参数和请求体不同，不是*路径操作函数*的参数。
 
@@ -20,7 +18,7 @@
 
 `status_code` 参数接收表示 HTTP 状态码的数字。
 
-/// info | "说明"
+/// info | 说明
 
 `status_code` 还能接收 `IntEnum` 类型，比如 Python 的 <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>。
 
@@ -33,7 +31,7 @@
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-/// note | "笔记"
+/// note | 笔记
 
 某些响应状态码表示响应没有响应体（参阅下一章）。
 
@@ -43,7 +41,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ## 关于 HTTP 状态码
 
-/// note | "笔记"
+/// note | 笔记
 
 如果已经了解 HTTP 状态码，请跳到下一章。
 
@@ -66,7 +64,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
     * 对于来自客户端的一般错误，可以只使用 `400`
 * `500` 及以上的状态码用于表示服务器端错误。几乎永远不会直接使用这些状态码。应用代码或服务器出现问题时，会自动返回这些状态代码
 
-/// tip | "提示"
+/// tip | 提示
 
 状态码及适用场景的详情，请参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN 的 HTTP 状态码</abbr>文档</a>。
 
@@ -76,9 +74,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 再看下之前的例子：
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` 表示**已创建**的状态码。
 
@@ -86,15 +82,13 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 可以使用 `fastapi.status` 中的快捷变量。
 
-```Python hl_lines="1  6"
-{!../../docs_src/response_status_code/tutorial002.py!}
-```
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 这只是一种快捷方式，具有相同的数字代码，但它可以使用编辑器的自动补全功能：
 
 <img src="../../../../../../img/tutorial/response-status-code/image02.png">
 
-/// note | "技术细节"
+/// note | 技术细节
 
 也可以使用 `from starlette import status`。
 

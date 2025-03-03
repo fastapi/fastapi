@@ -12,7 +12,7 @@
 
 しかしたとえまったく **FastAPI** を使用しない場合でも、それらについて少し学ぶことで利点を得ることができるでしょう。
 
-/// note | "備考"
+/// note | 備考
 
 もしあなたがPythonの専門家で、すでに型ヒントについてすべて知っているのであれば、次の章まで読み飛ばしてください。
 
@@ -22,9 +22,8 @@
 
 簡単な例から始めてみましょう:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 このプログラムを実行すると以下が出力されます:
 
@@ -38,9 +37,8 @@ John Doe
 * `title()`を用いて、それぞれの最初の文字を大文字に変換します。
 * 真ん中にスペースを入れて<abbr title="次から次へと中身を入れて一つにまとめる">連結</abbr>します。
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### 編集
 
@@ -82,9 +80,8 @@ John Doe
 
 それが「型ヒント」です:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 これは、以下のようにデフォルト値を宣言するのと同じではありません:
 
@@ -112,9 +109,8 @@ John Doe
 
 この関数を見てください。すでに型ヒントを持っています:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 エディタは変数の型を知っているので、補完だけでなく、エラーチェックをすることもできます。
 
@@ -122,9 +118,8 @@ John Doe
 
 これで`age`を`str(age)`で文字列に変換して修正する必要があることがわかります:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## 型の宣言
 
@@ -143,9 +138,8 @@ John Doe
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### 型パラメータを持つジェネリック型
 
@@ -161,9 +155,8 @@ John Doe
 
 `typing`から`List`をインポートします（大文字の`L`を含む）:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+
 
 同じようにコロン（`:`）の構文で変数を宣言します。
 
@@ -171,11 +164,10 @@ John Doe
 
 リストはいくつかの内部の型を含む型なので、それらを角括弧で囲んでいます。
 
-```Python hl_lines="4"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[4] *}
 
-/// tip | "豆知識"
+
+/// tip | 豆知識
 
 角括弧内の内部の型は「型パラメータ」と呼ばれています。
 
@@ -199,9 +191,8 @@ John Doe
 
 `tuple`と`set`の宣言も同様です:
 
-```Python hl_lines="1 4"
-{!../../docs_src/python_types/tutorial007.py!}
-```
+{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
+
 
 つまり:
 
@@ -217,9 +208,8 @@ John Doe
 
 ２番目の型パラメータは`dict`の値です。
 
-```Python hl_lines="1 4"
-{!../../docs_src/python_types/tutorial008.py!}
-```
+{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
+
 
 つまり:
 
@@ -256,15 +246,13 @@ John Doe
 
 例えば、`Person`クラスという名前のクラスがあるとしましょう:
 
-```Python hl_lines="1 2 3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1,2,3] *}
+
 
 変数の型を`Person`として宣言することができます:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 そして、再び、すべてのエディタのサポートを得ることができます:
 
@@ -284,11 +272,10 @@ John Doe
 
 Pydanticの公式ドキュメントから引用:
 
-```Python
-{!../../docs_src/python_types/tutorial011.py!}
-```
+{* ../../docs_src/python_types/tutorial011.py *}
 
-/// info | "情報"
+
+/// info | 情報
 
 Pydanticについてより学びたい方は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">ドキュメントを参照してください</a>.
 
@@ -320,7 +307,7 @@ Pydanticについてより学びたい方は<a href="https://docs.pydantic.dev/"
 
 重要なのは、Pythonの標準的な型を使うことで、（クラスやデコレータなどを追加するのではなく）１つの場所で **FastAPI** が多くの作業を代わりにやってくれているということです。
 
-/// info | "情報"
+/// info | 情報
 
 すでにすべてのチュートリアルを終えて、型についての詳細を見るためにこのページに戻ってきた場合は、<a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">`mypy`のチートシートを参照してください</a>
 

@@ -2,9 +2,7 @@
 
 最简单的 FastAPI 文件可能像下面这样：
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 将其复制到 `main.py` 文件中。
 
@@ -134,13 +132,11 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ### 步骤 1：导入 `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
@@ -150,9 +146,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ### 步骤 2：创建一个 `FastAPI`「实例」
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
@@ -172,9 +166,7 @@ $ uvicorn main:app --reload
 
 如果你像下面这样创建应用：
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 将代码放入 `main.py` 文件中，然后你可以像下面这样运行 `uvicorn`：
 
@@ -251,16 +243,14 @@ https://example.com/items/foo
 
 #### 定义一个*路径操作装饰器*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 告诉 **FastAPI** 在它下方的函数负责处理如下访问请求：
 
 * 请求路径为 `/`
 * 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -307,9 +297,7 @@ https://example.com/items/foo
 * **操作**：是 `get`。
 * **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 这是一个 Python 函数。
 
@@ -321,21 +309,17 @@ https://example.com/items/foo
 
 你也可以将其定义为常规函数而不使用 `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
-如果你不知道两者的区别，请查阅 [Async: *"In a hurry?"*](https://fastapi.tiangolo.com/async/#in-a-hurry){.internal-link target=_blank}。
+如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#_1){.internal-link target=_blank}。
 
 ///
 
 ### 步骤 5：返回内容
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 你可以返回一个 `dict`、`list`，像 `str`、`int` 一样的单个值，等等。
 

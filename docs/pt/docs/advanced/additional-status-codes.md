@@ -14,59 +14,9 @@ Mas você também deseja aceitar novos itens. E quando os itens não existiam, e
 
 Para conseguir isso, importe `JSONResponse` e retorne o seu conteúdo diretamente, definindo o `status_code` que você deseja:
 
-//// tab | Python 3.10+
+{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-```Python hl_lines="4  25"
-{!> ../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  25"
-{!> ../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  26"
-{!> ../../docs_src/additional_status_codes/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Dica"
-
-Faça uso da versão `Annotated` quando possível.
-
-///
-
-```Python hl_lines="2  23"
-{!> ../../docs_src/additional_status_codes/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Faça uso da versão `Annotated` quando possível.
-
-///
-
-```Python hl_lines="4  25"
-{!> ../../docs_src/additional_status_codes/tutorial001.py!}
-```
-
-////
-
-/// warning | "Aviso"
+/// warning | Aviso
 
 Quando você retorna um `Response` diretamente, como no exemplo acima, ele será retornado diretamente.
 
@@ -76,7 +26,7 @@ Garanta que ele tenha toda informação que você deseja, e que os valores sejam
 
 ///
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode utilizar `from starlette.responses import JSONResponse`.
 
