@@ -291,22 +291,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Обязательный параметр с Ellipsis (`...`)
-
-Альтернативный способ указать обязательность параметра запроса - это указать параметр `default` через многоточие `...`:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b_an_py39.py hl[9] *}
-
-/// info | Дополнительная информация
-
-Если вы ранее не сталкивались с `...`: это специальное значение, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">часть языка Python и называется "Ellipsis"</a>.
-
-Используется в Pydantic и FastAPI для определения, что значение требуется обязательно.
-
-///
-
-Таким образом, **FastAPI** определяет, что параметр является обязательным.
-
 ### Обязательный параметр с `None`
 
 Вы можете определить, что параметр может принимать `None`, но всё ещё является обязательным. Это может потребоваться для того, чтобы пользователи явно указали параметр, даже если его значение будет `None`.
@@ -318,18 +302,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 /// tip | Подсказка
 
 Pydantic, мощь которого используется в FastAPI для валидации и сериализации, имеет специальное поведение для `Optional` или `Union[Something, None]` без значения по умолчанию. Вы можете узнать об этом больше в документации Pydantic, раздел <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">Обязательные Опциональные поля</a>.
-
-///
-
-### Использование Pydantic's `Required` вместо Ellipsis (`...`)
-
-Если вас смущает `...`, вы можете использовать `Required` из Pydantic:
-
-{* ../../docs_src/query_params_str_validations/tutorial006d_an_py39.py hl[4,10] *}
-
-/// tip | Подсказка
-
-Запомните, когда вам необходимо объявить query-параметр обязательным, вы можете просто не указывать параметр `default`. Таким образом, вам редко придётся использовать `...` или `Required`.
 
 ///
 

@@ -148,22 +148,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 {* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-### ✔ ⏮️ ❕ (`...`)
-
-📤 🎛 🌌 🎯 📣 👈 💲 ✔. 👆 💪 ⚒ `default` 🔢 🔑 💲 `...`:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b.py hl[7] *}
-
-/// info
-
-🚥 👆 🚫 👀 👈 `...` ⏭: ⚫️ 🎁 👁 💲, ⚫️ <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">🍕 🐍 &amp; 🤙 "❕"</a>.
-
-⚫️ ⚙️ Pydantic &amp; FastAPI 🎯 📣 👈 💲 ✔.
-
-///
-
-👉 🔜 ➡️ **FastAPI** 💭 👈 👉 🔢 ✔.
-
 ### ✔ ⏮️ `None`
 
 👆 💪 📣 👈 🔢 💪 🚫 `None`, ✋️ 👈 ⚫️ ✔. 👉 🔜 ⚡ 👩‍💻 📨 💲, 🚥 💲 `None`.
@@ -175,18 +159,6 @@ q: Union[str, None] = Query(default=None, min_length=3)
 /// tip
 
 Pydantic, ❔ ⚫️❔ 🏋️ 🌐 💽 🔬 &amp; 🛠️ FastAPI, ✔️ 🎁 🎭 🕐❔ 👆 ⚙️ `Optional` ⚖️ `Union[Something, None]` 🍵 🔢 💲, 👆 💪 ✍ 🌅 🔃 ⚫️ Pydantic 🩺 🔃 <a href="https://docs.pydantic.dev/latest/concepts/models/#required-optional-fields" class="external-link" target="_blank">✔ 📦 🏑</a>.
-
-///
-
-### ⚙️ Pydantic `Required` ↩️ ❕ (`...`)
-
-🚥 👆 💭 😬 ⚙️ `...`, 👆 💪 🗄 &amp; ⚙️ `Required` ⚪️➡️ Pydantic:
-
-{* ../../docs_src/query_params_str_validations/tutorial006d.py hl[2,8] *}
-
-/// tip
-
-💭 👈 🌅 💼, 🕐❔ 🕳 🚚, 👆 💪 🎯 🚫 `default` 🔢, 👆 🛎 🚫 ✔️ ⚙️ `...` 🚫 `Required`.
 
 ///
 
