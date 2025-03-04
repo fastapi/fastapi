@@ -510,9 +510,16 @@ def analyze_param(
         if lenient_issubclass(field.type_, BaseModel) and getattr(
             field_info, "convert_underscores", None
         ):
-            extracted_fields = _get_flat_fields_from_params([field])
-            for param_field in extracted_fields:
-                param_field.field_info.alias = param_field.name.replace("_", "-")
+            if PYDANTIC_V2:
+                extracted_fields = _get_flat_fields_from_params([field])
+                for param_field in extracted_fields:
+                    param_field.field_info.alias = param_field.name.replace("_", "-")
+            else:
+                # For Pydantic v1
+                model_cls: Type[BaseModel] = field.type_
+                for model_field in model_cls.__fields__.items():
+                    model_cls.__fields__[model_field[0]].alias = model_field[1].name.replace("_", "-")
+            
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
 
