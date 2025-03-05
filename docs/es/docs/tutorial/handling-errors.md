@@ -19,58 +19,6 @@ Los códigos de estado en el rango de 400 significan que hubo un error por parte
 
 ¿Recuerdas todos esos errores de **"404 Not Found"** (y chistes)?
 
-## Herramientas de Monitoreo de Errores
-
-<a href="https://sentry.io/welcome" class="external-link" target="_blank">Sentry</a> es un servicio de monitoreo de aplicaciones que ayuda a los desarrolladores a identificar y solucionar problemas en tiempo real. Sentry proporciona:
-
-* Agrupación de errores para agregar errores similares
-* Contexto del código fuente de los rastros de pila
-* Información detallada de las solicitudes
-* Monitoreo de rendimiento para solicitudes web, consultas de bases de datos y más
-* Rastreo distribuido para entender cómo se propagan los errores a través de su stack
-
-Para usar Sentry con FastAPI, primero instale el SDK:
-
-```bash
-pip install --upgrade 'sentry-sdk[fastapi]'
-```
-
-Luego inicialice Sentry en su aplicación:
-
-```python
-import sentry_sdk
-from fastapi import FastAPI
-
-sentry_sdk.init(
-    dsn="your-dsn-here",
-    # Configure traces_sample_rate para establecer el porcentaje de trazas a enviar a Sentry, donde 1.0 es 100%
-    traces_sample_rate=1.0,
-)
-
-app = FastAPI()
-
-# Su código FastAPI aquí
-```
-
-Sentry capturará automáticamente las excepciones no manejadas, pero también puede capturar excepciones explícitamente y enviar eventos personalizados:
-
-```python
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    try:
-        # Su código que podría fallar
-        if item_id == 0:
-            raise ValueError("El ID del ítem no puede ser cero")
-        # ...
-    except Exception as e:
-        # Capture la excepción
-        sentry_sdk.capture_exception(e)
-        # Aún puede manejar la excepción normalmente
-        raise HTTPException(status_code=500, detail="Error interno del servidor")
-```
-
-Para más información, consulte la <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">documentación de integración de Sentry para FastAPI</a>.
-
 ## Usa `HTTPException`
 
 Para devolver responses HTTP con errores al cliente, usa `HTTPException`.

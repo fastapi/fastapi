@@ -19,58 +19,6 @@ Die Statuscodes im 400er-Bereich bedeuten hingegen, dass es einen Fehler gab.
 
 Erinnern Sie sich an all diese **404 Not Found** Fehler (und Witze)?
 
-## Fehlerüberwachungstools
-
-<a href="https://sentry.io/welcome" class="external-link" target="_blank">Sentry</a> ist ein Anwendungsüberwachungsdienst, der Entwicklern hilft, Probleme in Echtzeit zu identifizieren und zu beheben. Sentry bietet:
-
-* Fehlergruppierung zur Aggregation ähnlicher Fehler
-* Quellcode-Kontext aus Stack-Traces
-* Detaillierte Anfrageinformationen
-* Leistungsüberwachung für Webanfragen, Datenbankabfragen und mehr
-* Verteiltes Tracing, um zu verstehen, wie sich Fehler über den Stack ausbreiten
-
-Um Sentry mit FastAPI zu verwenden, installieren Sie zuerst das SDK:
-
-```bash
-pip install --upgrade 'sentry-sdk[fastapi]'
-```
-
-Initialisieren Sie dann Sentry in Ihrer Anwendung:
-
-```python
-import sentry_sdk
-from fastapi import FastAPI
-
-sentry_sdk.init(
-    dsn="your-dsn-here",
-    # Setzen Sie traces_sample_rate, um den Prozentsatz der an Sentry zu sendenden Traces zu konfigurieren, wobei 1.0 100% entspricht
-    traces_sample_rate=1.0,
-)
-
-app = FastAPI()
-
-# Ihr FastAPI-Code hier
-```
-
-Sentry erfasst automatisch unbehandelte Ausnahmen, aber Sie können auch explizit Ausnahmen erfassen und benutzerdefinierte Events senden:
-
-```python
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    try:
-        # Ihr Code, der fehlschlagen könnte
-        if item_id == 0:
-            raise ValueError("Item ID kann nicht Null sein")
-        # ...
-    except Exception as e:
-        # Erfassen Sie die Ausnahme
-        sentry_sdk.capture_exception(e)
-        # Sie können die Ausnahme weiterhin normal behandeln
-        raise HTTPException(status_code=500, detail="Interner Serverfehler")
-```
-
-Weitere Informationen finden Sie in der <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry FastAPI-Integrationsdokumentation</a>.
-
 ## `HTTPException` verwenden
 
 Um HTTP-Responses mit Fehlern zum Client zurückzugeben, verwenden Sie `HTTPException`.
