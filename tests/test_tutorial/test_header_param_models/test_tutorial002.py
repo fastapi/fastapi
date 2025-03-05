@@ -2,10 +2,9 @@ import importlib
 
 import pytest
 from dirty_equals import IsDict
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-
-from fastapi._compat import PYDANTIC_V2
 
 from tests.utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
 
@@ -75,7 +74,7 @@ def test_header_param_model_defaults(client: TestClient):
             "x_tag": [],
         }
     else:
-         assert response.json() == {
+        assert response.json() == {
             "host": "testserver",
             "save-data": True,
             "if-modified-since": None,

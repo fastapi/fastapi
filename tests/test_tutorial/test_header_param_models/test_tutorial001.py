@@ -2,10 +2,9 @@ import importlib
 
 import pytest
 from dirty_equals import IsDict
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-
-from fastapi._compat import PYDANTIC_V2
 
 from tests.utils import needs_py39, needs_py310
 
@@ -49,7 +48,7 @@ def test_header_param_model(client: TestClient):
             "x_tag": ["one", "two"],
         }
     else:
-         assert response.json() == {
+        assert response.json() == {
             "host": "testserver",
             "save-data": True,
             "if-modified-since": "yesterday",
@@ -70,7 +69,7 @@ def test_header_param_model_defaults(client: TestClient):
             "x_tag": [],
         }
     else:
-         assert response.json() == {
+        assert response.json() == {
             "host": "testserver",
             "save-data": True,
             "if-modified-since": None,
@@ -113,7 +112,7 @@ def test_header_param_model_invalid(client: TestClient):
             }
         )
     else:
-         assert response.json() == snapshot(
+        assert response.json() == snapshot(
             {
                 "detail": [
                     IsDict(
@@ -142,8 +141,6 @@ def test_header_param_model_invalid(client: TestClient):
                 ]
             }
         )
-            
-   
 
 
 def test_header_param_model_extra(client: TestClient):
@@ -162,7 +159,7 @@ def test_header_param_model_extra(client: TestClient):
             }
         )
     else:
-         assert response.json() == snapshot(
+        assert response.json() == snapshot(
             {
                 "host": "testserver",
                 "save-data": True,

@@ -520,7 +520,9 @@ def analyze_param(
                     model_cls.__fields__[model_field[0]].alias = model_field[
                         1
                     ].name.replace("_", "-")
-                    model_cls.__fields__[model_field[0]].model_config.allow_population_by_field_name = True
+                    model_cls.__fields__[
+                        model_field[0]
+                    ].model_config.allow_population_by_field_name = True
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
