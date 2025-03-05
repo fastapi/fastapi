@@ -515,14 +515,11 @@ def analyze_param(
                     param_field.field_info.alias = param_field.name.replace("_", "-")
             else:
                 # For Pydantic v1
-                model_cls: Type[BaseModel] = field.type_
-                for model_field in model_cls.__fields__.items():
-                    model_cls.__fields__[model_field[0]].alias = model_field[
-                        1
-                    ].name.replace("_", "-")
-                    model_cls.__fields__[
-                        model_field[0]
-                    ].model_config.allow_population_by_field_name = True
+                fields = field.type_.__fields__
+                if isinstance(fields, dict):
+                    for info in fields.values():
+                        info.alias = info.name.replace("_", "-")
+                        info.model_config.allow_population_by_field_name = True
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
