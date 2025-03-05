@@ -51,7 +51,7 @@ Wenn der Client `http://example.com/items/foo` anfragt (ein `item_id` `"foo"`), 
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der "Not Found"-Fehler), und eine JSON-Response wie folgt:
+Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „Not Found“-Fehler), und eine JSON-Response wie folgt:
 
 ```JSON
 {
