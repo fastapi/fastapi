@@ -511,8 +511,7 @@ def analyze_param(
             field_info, "convert_underscores", None
         ):
             if PYDANTIC_V2:
-                extracted_fields = _get_flat_fields_from_params([field])
-                for param_field in extracted_fields:
+                for param_field in get_cached_model_fields(field.type_):
                     param_field.field_info.alias = param_field.name.replace("_", "-")
             else:
                 # For Pydantic v1
@@ -521,6 +520,7 @@ def analyze_param(
                     model_cls.__fields__[model_field[0]].alias = model_field[
                         1
                     ].name.replace("_", "-")
+                    model_cls.__fields__[model_field[0]].model_config.allow_population_by_field_name = True
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 

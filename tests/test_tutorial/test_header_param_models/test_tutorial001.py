@@ -5,6 +5,8 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
+from fastapi._compat import PYDANTIC_V2
+
 from tests.utils import needs_py39, needs_py310
 
 
@@ -38,59 +40,110 @@ def test_header_param_model(client: TestClient):
         ],
     )
     assert response.status_code == 200
-    assert response.json() == {
-        "host": "testserver",
-        "save_data": True,
-        "if_modified_since": "yesterday",
-        "traceparent": "123",
-        "x_tag": ["one", "two"],
-    }
+    if PYDANTIC_V2:
+        assert response.json() == {
+            "host": "testserver",
+            "save_data": True,
+            "if_modified_since": "yesterday",
+            "traceparent": "123",
+            "x_tag": ["one", "two"],
+        }
+    else:
+         assert response.json() == {
+            "host": "testserver",
+            "save-data": True,
+            "if-modified-since": "yesterday",
+            "traceparent": "123",
+            "x-tag": ["one", "two"],
+        }
 
 
 def test_header_param_model_defaults(client: TestClient):
     response = client.get("/items/", headers=[("save-data", "true")])
     assert response.status_code == 200
-    assert response.json() == {
-        "host": "testserver",
-        "save_data": True,
-        "if_modified_since": None,
-        "traceparent": None,
-        "x_tag": [],
-    }
+    if PYDANTIC_V2:
+        assert response.json() == {
+            "host": "testserver",
+            "save_data": True,
+            "if_modified_since": None,
+            "traceparent": None,
+            "x_tag": [],
+        }
+    else:
+         assert response.json() == {
+            "host": "testserver",
+            "save-data": True,
+            "if-modified-since": None,
+            "traceparent": None,
+            "x-tag": [],
+        }
 
 
 def test_header_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                IsDict(
-                    {
-                        "type": "missing",
-                        "loc": ["header", "save_data"],
-                        "msg": "Field required",
-                        "input": {
-                            "x_tag": [],
-                            "host": "testserver",
-                            "accept": "*/*",
-                            "accept-encoding": "gzip, deflate",
-                            "connection": "keep-alive",
-                            "user-agent": "testclient",
-                        },
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "type": "value_error.missing",
-                        "loc": ["header", "save_data"],
-                        "msg": "field required",
-                    }
-                )
-            ]
-        }
-    )
+    if PYDANTIC_V2:
+        assert response.json() == snapshot(
+            {
+                "detail": [
+                    IsDict(
+                        {
+                            "type": "missing",
+                            "loc": ["header", "save_data"],
+                            "msg": "Field required",
+                            "input": {
+                                "x_tag": [],
+                                "host": "testserver",
+                                "accept": "*/*",
+                                "accept-encoding": "gzip, deflate",
+                                "connection": "keep-alive",
+                                "user-agent": "testclient",
+                            },
+                        }
+                    )
+                    | IsDict(
+                        # TODO: remove when deprecating Pydantic v1
+                        {
+                            "type": "value_error.missing",
+                            "loc": ["header", "save_data"],
+                            "msg": "field required",
+                        }
+                    )
+                ]
+            }
+        )
+    else:
+         assert response.json() == snapshot(
+            {
+                "detail": [
+                    IsDict(
+                        {
+                            "type": "missing",
+                            "loc": ["header", "save-data"],
+                            "msg": "Field required",
+                            "input": {
+                                "x_tag": [],
+                                "host": "testserver",
+                                "accept": "*/*",
+                                "accept-encoding": "gzip, deflate",
+                                "connection": "keep-alive",
+                                "user-agent": "testclient",
+                            },
+                        }
+                    )
+                    | IsDict(
+                        # TODO: remove when deprecating Pydantic v1
+                        {
+                            "type": "value_error.missing",
+                            "loc": ["header", "save-data"],
+                            "msg": "field required",
+                        }
+                    )
+                ]
+            }
+        )
+            
+   
 
 
 def test_header_param_model_extra(client: TestClient):
@@ -98,15 +151,26 @@ def test_header_param_model_extra(client: TestClient):
         "/items/", headers=[("save-data", "true"), ("tool", "plumbus")]
     )
     assert response.status_code == 200, response.text
-    assert response.json() == snapshot(
-        {
-            "host": "testserver",
-            "save_data": True,
-            "if_modified_since": None,
-            "traceparent": None,
-            "x_tag": [],
-        }
-    )
+    if PYDANTIC_V2:
+        assert response.json() == snapshot(
+            {
+                "host": "testserver",
+                "save_data": True,
+                "if_modified_since": None,
+                "traceparent": None,
+                "x_tag": [],
+            }
+        )
+    else:
+         assert response.json() == snapshot(
+            {
+                "host": "testserver",
+                "save-data": True,
+                "if-modified-since": None,
+                "traceparent": None,
+                "x-tag": [],
+            }
+        )
 
 
 def test_openapi_schema(client: TestClient):
