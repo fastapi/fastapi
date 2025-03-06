@@ -9,7 +9,7 @@ Một vài nhà cung cấp dịch vụ cloud ✨ [**tài trợ FastAPI**](../hel
 
 Thêm nữa, điều này cũng thể hiện cam kết thực sự của họ đối với FastAPI và **cộng đồng người dùng** (bạn), vì họ không chỉ muốn cung cấp cho bạn một **dịch vụ tốt** mà còn muốn đảm bảo rằng bạn có một **framework tốt và bền vững**, đó chính là FastAPI. 🙇
 
-Bạn có thể thử các dịch vụ và theo hướng dẫn của họ:
+Bạn có thể thử các dịch vụ của họ và làm theo hướng dẫn của họ:
 
 * <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
 * <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
