@@ -5,7 +5,7 @@ Bạn có thể sử dụng **bất kỳ nhà cung cấp dịch vụ cloud** nà
 Trong hầu hết các trường hợp, các nhà cung cấp dịch vụ cloud có hướng dẫn để triển khai FastAPI với chúng.
 
 ## Nhà cung cấp dịch vụ Cloud - Nhà tài trợ
-Một vài nhà cung cấp dịch vụ cloud ✨ [**tài trợ FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, điều này đảm bảo sự phát triển liên tục và khỏe mạnh của FastAPI và hệ sinh thái của nó.
+Một vài nhà cung cấp dịch vụ cloud ✨ [**tài trợ cho FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, điều này giúp đảm bảo sự phát triển liên tục và khỏe mạnh của FastAPI và hệ sinh thái của nó.
 
 Thêm nữa, điều này cũng thể hiện cam kết thực sự của họ đối với FastAPI và **cộng đồng người dùng** (bạn), vì họ không chỉ muốn cung cấp cho bạn một **dịch vụ tốt** mà còn muốn đảm bảo rằng bạn có một **framework tốt và bền vững**, đó chính là FastAPI. 🙇
 
