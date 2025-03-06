@@ -7,7 +7,7 @@ Trong hầu hết các trường hợp, các nhà cung cấp dịch vụ cloud c
 ## Nhà cung cấp dịch vụ Cloud - Nhà tài trợ
 Một vài nhà cung cấp dịch vụ cloud ✨ [**tài trợ FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, điều này đảm bảo sự phát triển liên tục và khỏe mạnh của FastAPI và hệ sinh thái của nó.
 
-Thêm nữa, điều này đảm bảo sự cam kết của họ với FastAPI và **cộng đồng** của nó (bạn), vì họ không chỉ muốn cung cấp cho bạn một **dịch vụ tốt** mà còn muốn đảm bảo rằng bạn có một **framework tốt và bền vững**, FastAPI. 🙇
+Thêm nữa, điều này cũng thể hiện cam kết thực sự của họ đối với FastAPI và **cộng đồng người dùng** (bạn), vì họ không chỉ muốn cung cấp cho bạn một **dịch vụ tốt** mà còn muốn đảm bảo rằng bạn có một **framework tốt và bền vững**, đó chính là FastAPI. 🙇
 
 Bạn có thể thử các dịch vụ và theo hướng dẫn của họ:
 
