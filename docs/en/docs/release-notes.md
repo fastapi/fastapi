@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: pause TestDriven. PR [#13446](https://github.com/fastapi/fastapi/pull/13446) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.115.11
