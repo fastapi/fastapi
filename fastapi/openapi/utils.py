@@ -364,9 +364,9 @@ def get_openapi_path(
                     openapi_response = operation_responses.setdefault(
                         status_code_key, {}
                     )
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
+                    assert isinstance(process_response, dict), (
+                        "An additional response must be a dict"
+                    )
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
@@ -434,9 +434,9 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
+                assert isinstance(route.body_field, ModelField), (
+                    "A request body must be a Pydantic Field"
+                )
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)
