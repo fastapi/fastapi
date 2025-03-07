@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/cloud.md`. PR [#13407](https://github.com/fastapi/fastapi/pull/13407) by [@ptt3199](https://github.com/ptt3199).
+
 ### Internal
 
 * ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
