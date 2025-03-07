@@ -533,7 +533,7 @@ class APIRoute(routing.Route):
         # truncate description text to the content preceding the first "form feed"
         self.description = (
             self.description.split("\f")[0].strip()
-            if type(self.description) is str
+            if isinstance(self.description, str)
             else self.description
         )
         response_fields = {}
