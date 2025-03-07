@@ -714,7 +714,10 @@ def _validate_value_with_model_field(
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: Union[str, None] = None,
+    return_default=True,
 ) -> Any:
     alias = alias or field.alias
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
@@ -730,10 +733,10 @@ def _get_multidict_value(
         )
         or (is_sequence_field(field) and len(value) == 0)
     ):
-        if field.required:
-            return
-        else:
+        if return_default and not field.required:
             return deepcopy(field.default)
+        else:
+            return None
     return value
 
 
@@ -839,7 +842,7 @@ async def _extract_form_body(
     first_field_info = first_field.field_info
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        value = _get_multidict_value(field, received_body, return_default=False)
         if (
             isinstance(first_field_info, params.File)
             and is_bytes_field(field)
