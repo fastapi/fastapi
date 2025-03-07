@@ -2,6 +2,10 @@
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS or "Cross-Origin Resource Sharing"</a> refers to the situations when a frontend running in a browser has JavaScript code that communicates with a backend, and the backend is in a different "origin" than the frontend.
 
+For security reasons a front-end application running in a browser can only request resources (such as APIs, stylesheets, and images) from the same origin the application was loaded from, unless the response from other origins includes the right CORS headers.
+
+CORS is a security standard implemented by browsers. It enables scripts running in a browser securely access resources located outside the browser domain. 
+
 ## Origin
 
 An origin is the combination of protocol (`http`, `https`), domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`), and port (`80`, `443`, `8080`).
