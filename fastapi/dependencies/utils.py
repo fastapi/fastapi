@@ -507,6 +507,19 @@ def analyze_param(
                     and getattr(field, "shape", 1) == 1
                 )
             )
+        if lenient_issubclass(field.type_, BaseModel) and getattr(
+            field_info, "convert_underscores", None
+        ):
+            if PYDANTIC_V2:
+                for param_field in get_cached_model_fields(field.type_):
+                    param_field.field_info.alias = param_field.name.replace("_", "-")
+            else:
+                # For Pydantic v1
+                fields = field.type_.__fields__
+                if isinstance(fields, dict):
+                    for info in fields.values():
+                        info.alias = info.name.replace("_", "-")
+                        info.model_config.allow_population_by_field_name = True
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
