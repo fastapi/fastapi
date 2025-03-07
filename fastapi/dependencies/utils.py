@@ -717,7 +717,7 @@ def _get_multidict_value(
     field: ModelField,
     values: Mapping[str, Any],
     alias: Union[str, None] = None,
-    return_default=True,
+    return_default: bool = True,
 ) -> Any:
     alias = alias or field.alias
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
