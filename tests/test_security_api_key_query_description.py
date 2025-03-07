@@ -54,13 +54,13 @@ def test_openapi_schema():
                     },
                     "summary": "Read Current User",
                     "operationId": "read_current_user_users_me_get",
-                    "security": [{"APIKeyQuery": []}],
+                    "security": [{"key": []}],
                 }
             }
         },
         "components": {
             "securitySchemes": {
-                "APIKeyQuery": {
+                "key": {
                     "type": "apiKey",
                     "name": "key",
                     "in": "query",
