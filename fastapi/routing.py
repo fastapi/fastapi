@@ -531,7 +531,11 @@ class APIRoute(routing.Route):
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0].strip() if type(self.description) is str else self.description
+        self.description = (
+            self.description.split("\f")[0].strip()
+            if type(self.description) is str
+            else self.description
+        )
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
