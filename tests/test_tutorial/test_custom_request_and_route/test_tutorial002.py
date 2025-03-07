@@ -28,6 +28,20 @@ def test_exception_handler_body_access():
             }
         }
     ) | IsDict(
+        {
+            "detail": {
+                "errors": [
+                    {
+                        "type": "list_type",
+                        "loc": ["body"],
+                        "msg": "Input should be a valid list",
+                        "input": {"numbers": [1, 2, 3]},
+                    }
+                ],
+                "body": '{"numbers":[1,2,3]}',
+            }
+        }
+    ) | IsDict(
         # TODO: remove when deprecating Pydantic v1
         {
             "detail": {
