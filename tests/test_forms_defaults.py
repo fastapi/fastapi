@@ -1,13 +1,11 @@
-from importlib.metadata import version
 from typing import Optional
 
 import pytest
 from fastapi import FastAPI, Form
+from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
 from typing_extensions import Annotated
-
-PYDANTIC_V2 = int(version("pydantic")[0]) >= 2
 
 if PYDANTIC_V2:
     from pydantic import model_validator
@@ -62,20 +60,21 @@ class FieldModel(Parent):
     true_if_unset: Optional[bool] = Field(default=None)
 
 
-class AnnotatedFieldModel(Parent):
-    default_true: Annotated[bool, Field(default=True)]
-    default_false: Annotated[bool, Field(default=False)]
-    default_none: Annotated[Optional[bool], Field(default=None)]
-    default_zero: Annotated[int, Field(default=0)]
-    true_if_unset: Annotated[Optional[bool], Field(default=None)]
+if PYDANTIC_V2:
 
+    class AnnotatedFieldModel(Parent):
+        default_true: Annotated[bool, Field(default=True)]
+        default_false: Annotated[bool, Field(default=False)]
+        default_none: Annotated[Optional[bool], Field(default=None)]
+        default_zero: Annotated[int, Field(default=0)]
+        true_if_unset: Annotated[Optional[bool], Field(default=None)]
 
-class AnnotatedFormModel(Parent):
-    default_true: Annotated[bool, Form(default=True)]
-    default_false: Annotated[bool, Form(default=False)]
-    default_none: Annotated[Optional[bool], Form(default=None)]
-    default_zero: Annotated[int, Form(default=0)]
-    true_if_unset: Annotated[Optional[bool], Form(default=None)]
+    class AnnotatedFormModel(Parent):
+        default_true: Annotated[bool, Form(default=True)]
+        default_false: Annotated[bool, Form(default=False)]
+        default_none: Annotated[Optional[bool], Form(default=None)]
+        default_zero: Annotated[int, Form(default=0)]
+        true_if_unset: Annotated[Optional[bool], Form(default=None)]
 
 
 class ResponseModel(BaseModel):
@@ -87,13 +86,22 @@ class ResponseModel(BaseModel):
 
     @classmethod
     def from_value(cls, value: Parent) -> "ResponseModel":
-        return ResponseModel(
-            init_input=value.init_input,
-            fields_set=list(value.model_fields_set),
-            dumped_fields_no_exclude=value.model_dump(),
-            dumped_fields_exclude_default=value.model_dump(exclude_defaults=True),
-            dumped_fields_exclude_unset=value.model_dump(exclude_unset=True),
-        )
+        if PYDANTIC_V2:
+            return ResponseModel(
+                init_input=value.init_input,
+                fields_set=list(value.model_fields_set),
+                dumped_fields_no_exclude=value.model_dump(),
+                dumped_fields_exclude_default=value.model_dump(exclude_defaults=True),
+                dumped_fields_exclude_unset=value.model_dump(exclude_unset=True),
+            )
+        else:
+            return ResponseModel(
+                init_input=value.init_input,
+                fields_set=list(value.__fields_set__),
+                dumped_fields_no_exclude=value.dict(),
+                dumped_fields_exclude_default=value.dict(exclude_defaults=True),
+                dumped_fields_exclude_unset=value.dict(exclude_unset=True),
+            )
 
 
 app = FastAPI()
@@ -109,18 +117,19 @@ async def form_field(value: Annotated[FieldModel, Form()]) -> ResponseModel:
     return ResponseModel.from_value(value)
 
 
-@app.post("/form/annotated-field")
-async def form_annotated_field(
-    value: Annotated[AnnotatedFieldModel, Form()],
-) -> ResponseModel:
-    return ResponseModel.from_value(value)
+if PYDANTIC_V2:
 
+    @app.post("/form/annotated-field")
+    async def form_annotated_field(
+        value: Annotated[AnnotatedFieldModel, Form()],
+    ) -> ResponseModel:
+        return ResponseModel.from_value(value)
 
-@app.post("/form/annotated-form")
-async def form_annotated_form(
-    value: Annotated[AnnotatedFormModel, Form()],
-) -> ResponseModel:
-    return ResponseModel.from_value(value)
+    @app.post("/form/annotated-form")
+    async def form_annotated_form(
+        value: Annotated[AnnotatedFormModel, Form()],
+    ) -> ResponseModel:
+        return ResponseModel.from_value(value)
 
 
 @app.post("/json/standard")
@@ -133,22 +142,29 @@ async def json_field(value: FieldModel) -> ResponseModel:
     return ResponseModel.from_value(value)
 
 
-@app.post("/json/annotated-field")
-async def json_annotated_field(value: AnnotatedFieldModel) -> ResponseModel:
-    return ResponseModel.from_value(value)
+if PYDANTIC_V2:
+
+    @app.post("/json/annotated-field")
+    async def json_annotated_field(value: AnnotatedFieldModel) -> ResponseModel:
+        return ResponseModel.from_value(value)
+
+    @app.post("/json/annotated-form")
+    async def json_annotated_form(value: AnnotatedFormModel) -> ResponseModel:
+        return ResponseModel.from_value(value)
 
 
-@app.post("/json/annotated-form")
-async def json_annotated_form(value: AnnotatedFormModel) -> ResponseModel:
-    return ResponseModel.from_value(value)
-
-
-MODEL_TYPES = {
-    "standard": StandardModel,
-    "field": FieldModel,
-    "annotated-field": AnnotatedFieldModel,
-    "annotated-form": AnnotatedFormModel,
-}
+if PYDANTIC_V2:
+    MODEL_TYPES = {
+        "standard": StandardModel,
+        "field": FieldModel,
+        "annotated-field": AnnotatedFieldModel,
+        "annotated-form": AnnotatedFormModel,
+    }
+else:
+    MODEL_TYPES = {
+        "standard": StandardModel,
+        "field": FieldModel,
+    }
 ENCODINGS = ("form", "json")
 
 
@@ -193,20 +209,24 @@ def test_no_prefill_defaults_partially_set(encoding, model_type, client, monkeyp
         data = {"true_if_unset": False, "default_false": True, "default_zero": 0}
         res = client.post(endpoint, json=data)
 
-    data_with_init_input = data.copy()
-    data_with_init_input["init_input"] = data.copy()
+    if PYDANTIC_V2:
+        dumped_exclude_unset = MODEL_TYPES[model_type](**data).model_dump(
+            exclude_unset=True
+        )
+        dumped_exclude_default = MODEL_TYPES[model_type](**data).model_dump(
+            exclude_defaults=True
+        )
+    else:
+        dumped_exclude_unset = MODEL_TYPES[model_type](**data).dict(exclude_unset=True)
+        dumped_exclude_default = MODEL_TYPES[model_type](**data).dict(
+            exclude_defaults=True
+        )
 
     assert res.status_code == 200
     response_model = ResponseModel(**res.json())
     assert response_model.init_input == data
     assert len(response_model.fields_set) == 4
-    dumped_exclude_unset = MODEL_TYPES[model_type](**data).model_dump(
-        exclude_unset=True
-    )
     assert response_model.dumped_fields_exclude_unset == dumped_exclude_unset
     assert response_model.dumped_fields_no_exclude["true_if_unset"] is False
-    dumped_exclude_default = MODEL_TYPES[model_type](**data).model_dump(
-        exclude_defaults=True
-    )
     assert "default_zero" not in dumped_exclude_default
     assert "default_zero" not in response_model.dumped_fields_exclude_default
