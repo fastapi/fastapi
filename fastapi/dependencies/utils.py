@@ -71,7 +71,7 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import Annotated, TypeAliasType, get_args, get_origin
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -359,9 +359,13 @@ def analyze_param(
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
         type_annotation = annotation
+    # Handle PEP 695 Type Parameter Syntax (Python 3.12+)
+    if isinstance(type_annotation, TypeAliasType):
+        type_annotation = type_annotation.__value__
+        use_annotation = type_annotation
     # Extract Annotated info
     if get_origin(use_annotation) is Annotated:
-        annotated_args = get_args(annotation)
+        annotated_args = get_args(use_annotation)
         type_annotation = annotated_args[0]
         fastapi_annotations = [
             arg
