@@ -887,9 +887,9 @@ class APIRouter(routing.Router):
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -1308,9 +1308,9 @@ class APIRouter(routing.Router):
         """
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009
