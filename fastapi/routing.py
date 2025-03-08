@@ -506,9 +506,9 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
-                status_code
-            ), f"Status code {status_code} must not have a response body"
+            assert is_body_allowed_for_status_code(status_code), (
+                f"Status code {status_code} must not have a response body"
+            )
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -573,9 +573,9 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(
-                    additional_status_code
-                ), f"Status code {additional_status_code} must not have a response body"
+                assert is_body_allowed_for_status_code(additional_status_code), (
+                    f"Status code {additional_status_code} must not have a response body"
+                )
 
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
