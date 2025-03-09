@@ -838,6 +838,7 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
+    field_aliases = {field.alias for field in body_fields}
     first_field = body_fields[0]
     first_field_info = first_field.field_info
 
@@ -870,8 +871,10 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
+
+    # preserve extra keys not in model body fields for validation
     for key, value in received_body.items():
-        if key not in values:
+        if key not in field_aliases:
             values[key] = value
     return values
 
