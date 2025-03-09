@@ -82,7 +82,6 @@ if PYDANTIC_V2:
         default_str: Annotated[str, Form(default="foo")]
         true_if_unset: Annotated[Optional[bool], Form(default=None)]
 
-
     class SimpleForm(BaseModel):
         """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
 
@@ -200,7 +199,6 @@ if PYDANTIC_V2:
     async def json_annotated_form(value: AnnotatedFormModel) -> ResponseModel:
         return ResponseModel.from_value(value)
 
-
     @app.post("/simple-form")
     def form_endpoint(model: Annotated[SimpleForm, Form()]) -> dict:
         """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
@@ -284,6 +282,7 @@ def test_no_prefill_defaults_partially_set(encoding, model_type, client):
     assert response_model.dumped_fields_no_exclude["true_if_unset"] is False
     assert "default_zero" not in dumped_exclude_default
     assert "default_zero" not in response_model.dumped_fields_exclude_default
+
 
 @needs_pydanticv2
 def test_casted_empty_defaults(client: TestClient):
