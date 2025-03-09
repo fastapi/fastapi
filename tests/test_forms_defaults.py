@@ -7,6 +7,8 @@ from pydantic import BaseModel, Field
 from starlette.testclient import TestClient
 from typing_extensions import Annotated
 
+from .utils import needs_pydanticv2
+
 if PYDANTIC_V2:
     from pydantic import model_validator
 else:
@@ -81,11 +83,11 @@ if PYDANTIC_V2:
         true_if_unset: Annotated[Optional[bool], Form(default=None)]
 
 
-class SimpleForm(BaseModel):
-    """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
+    class SimpleForm(BaseModel):
+        """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
 
-    foo: Annotated[str, Form(default="bar")]
-    alias_with: Annotated[str, Form(alias="with", default="nothing")]
+        foo: Annotated[str, Form(default="bar")]
+        alias_with: Annotated[str, Form(alias="with", default="nothing")]
 
 
 class ResponseModel(BaseModel):
@@ -199,10 +201,10 @@ if PYDANTIC_V2:
         return ResponseModel.from_value(value)
 
 
-@app.post("/simple-form")
-def form_endpoint(model: Annotated[SimpleForm, Form()]) -> dict:
-    """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
-    return model.model_dump()
+    @app.post("/simple-form")
+    def form_endpoint(model: Annotated[SimpleForm, Form()]) -> dict:
+        """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
+        return model.model_dump()
 
 
 if PYDANTIC_V2:
@@ -283,7 +285,7 @@ def test_no_prefill_defaults_partially_set(encoding, model_type, client):
     assert "default_zero" not in dumped_exclude_default
     assert "default_zero" not in response_model.dumped_fields_exclude_default
 
-
+@needs_pydanticv2
 def test_casted_empty_defaults(client: TestClient):
     """https://github.com/fastapi/fastapi/pull/13464#issuecomment-2708378172"""
     form_content = {"foo": "", "with": ""}
