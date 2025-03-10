@@ -9,7 +9,11 @@ from typing import Optional
 import pytest
 from fastapi._compat import PYDANTIC_V2, Undefined
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import (
+    BaseModel,
+    Field,
+    ValidationError,
+)
 
 from .utils import needs_pydanticv1, needs_pydanticv2
 
@@ -319,3 +323,26 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+@needs_pydanticv2
+def test_encode_with_context() -> None:
+    from pydantic import SerializationInfo, field_serializer
+
+    class ModelWithContextualSerializer(BaseModel):
+        value: int
+
+        @field_serializer("value")
+        def serialize_value(value: int, info: SerializationInfo) -> int:
+            if info.context is not None:
+                if isinstance(
+                    value_from_context := info.context.get("value"), int
+                ):
+                    return value_from_context
+
+            return value
+
+    model = ModelWithContextualSerializer(value=1)
+
+    assert jsonable_encoder(model) == {"value": 1}
+    assert jsonable_encoder(model, context={"value": 2}) == {"value": 2}
