@@ -156,6 +156,12 @@ Si no lo sabes, revisa la sección [Async: *"¿Con prisa?"*](../../async.md#in-a
 
 ///
 
+/// warning | Advertencia
+
+Si necesitas depender de valores de `ContextVar` a lo largo de múltiples pasos en una solicitud, **usa una dependencia async** u otro enfoque. Esto se debe a que las dependencias sync se ejecutan en el hilo principal, mientras que las dependencias `async` se ejecutan en el mismo grupo de hilos que maneja la solicitud. Como `ContextVar` proporciona almacenamiento local de hilos, cualquier valor establecido dentro de una dependencia sync no estará disponible en el resto del manejo de la solicitud.
+
+///
+
 ## Integración con OpenAPI
 
 Todas las declaraciones de request, validaciones y requisitos de tus dependencias (y sub-dependencias) se integrarán en el mismo esquema de OpenAPI.
