@@ -11,7 +11,7 @@ def get_client():
 
 @pytest.mark.parametrize("parameter_value", [-10, 0, 10])
 def test_with_integer_parameters(client, parameter_value):
-    parameter = parameter_value
+    parameter: int = parameter_value
     response = client.get(f"/items/{parameter}")
     assert response.status_code == 200
     assert response.json() == {"item_id": parameter}
@@ -19,10 +19,10 @@ def test_with_integer_parameters(client, parameter_value):
 
 @pytest.mark.parametrize("parameter_value", [-10.00, 0.00, 10.00])
 def test_with_integers_converted_to_floats(client, parameter_value):
-    parameter = parameter_value
+    parameter: float = parameter_value
     response = client.get(f"/items/{parameter}")
     assert response.status_code == 200
-    assert response.json() == {"item_id": parameter}
+    assert response.json() == {"item_id": int(parameter)}
 
 
 @pytest.mark.parametrize("parameter_value", [-3.14, 3.14])
