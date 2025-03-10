@@ -7,21 +7,19 @@ client = TestClient(app)
 
 def test_file_path():
     response = client.get("/files/home/johndoe/myfile.txt")
-    print(response.content)
-    assert response.status_code == 200, response.text
+    assert response.status_code == 200
     assert response.json() == {"file_path": "home/johndoe/myfile.txt"}
 
 
 def test_root_file_path():
     response = client.get("/files//home/johndoe/myfile.txt")
-    print(response.content)
-    assert response.status_code == 200, response.text
+    assert response.status_code == 200
     assert response.json() == {"file_path": "/home/johndoe/myfile.txt"}
 
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
+    assert response.status_code == 200
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
