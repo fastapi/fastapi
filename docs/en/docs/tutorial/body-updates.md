@@ -64,6 +64,14 @@ Then you can use this to generate a `dict` with only the data that was set (sent
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
+/// note
+
+Notice that setting a value to `null` in a request does not omit the field; it explicitly assigns `null` to a field (which FastAPI converts to `None` in Python) and is not considered "unset."
+
+To omit a field, simply exclude it from the request payload.
+
+///
+
 ### Using Pydantic's `update` parameter
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
