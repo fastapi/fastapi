@@ -1,11 +1,26 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.path_params.tutorial003a import app
+
+@pytest.fixture(name="app")
+def fastapi_app_wrong_path_operations_order():
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/users/{user_id}")
+    async def read_user(user_id: str):
+        return {"user_id": user_id}
+
+    @app.get("/users/me")
+    async def read_user_me():
+        return {"user_id": "the current user"}
+
+    return app
 
 
 @pytest.fixture(name="client")
-def get_client():
+def get_client(app):
     return TestClient(app)
 
 
