@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from docs_src.path_params.tutorial004 import app
@@ -5,18 +6,18 @@ from docs_src.path_params.tutorial004 import app
 client = TestClient(app)
 
 
-def test_file_path():
-    response = client.get("/files/home/johndoe/myfile.txt")
-    print(response.content)
-    assert response.status_code == 200, response.text
-    assert response.json() == {"file_path": "home/johndoe/myfile.txt"}
+test_data = [
+        ("/files/data/monthly-2024.csv", {"file_path": "data/monthly-2024.csv"}),
+        ("/files/home/johndoe/myfile.txt", {"file_path": "home/johndoe/myfile.txt"}),
+        ("/files//home/johndoe/myfile.txt", {"file_path": "/home/johndoe/myfile.txt"}),
+]
 
 
-def test_root_file_path():
-    response = client.get("/files//home/johndoe/myfile.txt")
-    print(response.content)
-    assert response.status_code == 200, response.text
-    assert response.json() == {"file_path": "/home/johndoe/myfile.txt"}
+@pytest.mark.parametrize("url_path, expected_response", test_data)
+def test_file_paths(url_path, expected_response):
+    response = client.get(url_path)
+    assert response.status_code == 200
+    assert response.json() == expected_response
 
 
 def test_openapi_schema():
