@@ -21,5 +21,3 @@ def test_get_users_user_id_is_responding_as_expected(client):
     response = client.get(f"/users/{user_id}")
     assert response.status_code == 200
     assert response.json() == {"user_id": user_id}
-
-
