@@ -7,9 +7,9 @@ client = TestClient(app)
 
 
 test_data = [
-        ("/files/data/monthly-2024.csv", {"file_path": "data/monthly-2024.csv"}),
-        ("/files/home/johndoe/myfile.txt", {"file_path": "home/johndoe/myfile.txt"}),
-        ("/files//home/johndoe/myfile.txt", {"file_path": "/home/johndoe/myfile.txt"}),
+    ("/files/data/monthly-2024.csv", {"file_path": "data/monthly-2024.csv"}),
+    ("/files/home/johndoe/myfile.txt", {"file_path": "home/johndoe/myfile.txt"}),
+    ("/files//home/johndoe/myfile.txt", {"file_path": "/home/johndoe/myfile.txt"}),
 ]
 
 
