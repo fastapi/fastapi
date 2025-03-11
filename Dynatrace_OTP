@@ -1,0 +1,28 @@
+from flask import Flask, request, jsonify
+import subprocess
+import sys
+from encoding_tools import TheSoCalledGreatEncoder, GuessEncodingFailedException
+
+app = Flask(__name__)
+
+def GenOathKey(oath_key):
+    s2_out = subprocess.check_output(
+        [sys.executable, "C:\\Users\\sharany\\Setup_python\\oathtool", oath_key])
+    encoder = TheSoCalledGreatEncoder()
+    encoder.load_bytes(s2_out)
+    try:
+        encoder.decode()
+        decoded_string = encoder.decoded_data.replace('\r\n', '')
+    except GuessEncodingFailedException as e:
+        raise ValueError('Wrong input...')(e)
+    return decoded_string
+
+@app.route('/generate-otp', methods=['POST'])
+def generate_otp():
+    data = request.json
+    master_key = data.get("master_key", "default_master_key")
+    otp = GenOathKey(master_key)
+    return jsonify({"otp": otp})
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
