@@ -137,7 +137,9 @@ def test_openapi_schema(client):
                     "HTTPValidationError": {
                         "properties": {
                             "detail": {
-                                "items": {"$ref": "#/components/schemas/ValidationError"},
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
                                 "type": "array",
                                 "title": "Detail",
                             }
