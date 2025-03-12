@@ -92,8 +92,8 @@ class AppRouter(APIRouter):
         self,
         path: str,
         endpoint: Callable[[Request], Union[Awaitable[Response], Response]],
-        methods: list[str] | None = None,
-        name: str | None = None,
+        methods: Union[List[str], None] = None,
+        name: Union[str, None] = None,
         include_in_schema: bool = True,
     ) -> None:
         name = f"{self.request_name_prefix}.{name}"
