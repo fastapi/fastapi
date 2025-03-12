@@ -810,6 +810,28 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        route_class: Annotated[
+            Type[routing.APIRoute],
+            Doc(
+                """
+                Custom route (*path operation*) class to be used by this router.
+
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRoute class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apiroute-class-in-a-router).
+                """
+            ),
+        ] = routing.APIRoute,
+        router_class: Annotated[
+            Type[routing.APIRouter],
+            Doc(
+                """
+                Custom router class to be used by this application.
+
+                Read more about it in the
+                [FastAPI docs for Custom Request and APIRouter class](https://fastapi.tiangolo.com/how-to/custom-request-and-route/#custom-apirouter-class-in-a-router).
+                """
+            ),
+        ] = routing.APIRouter,
         **extra: Annotated[
             Any,
             Doc(
@@ -893,7 +915,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ] = webhooks or routing.APIRouter()
+        ] = webhooks or router_class(route_class=route_class)
         self.root_path = root_path or openapi_prefix
         self.state: Annotated[
             State,
@@ -929,7 +951,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
-        self.router: routing.APIRouter = routing.APIRouter(
+        self.router: routing.APIRouter = router_class(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
@@ -943,6 +965,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
+            route_class=route_class,
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
