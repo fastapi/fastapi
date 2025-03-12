@@ -128,7 +128,7 @@ This example enhances FastAPI with structured routing and response timing, makin
 ##### 📌 API Structure
 - **`/healthz`**: Health check endpoint for the main router. it path name is `Global.health-check`.
 - **`/model/create`**: Model creation endpoint for the model router with path name `Model.create`.
-- **`/model/{model_id}/item/create`**: Item creation endpoint for the item router and its child router of model 
+- **`/model/{model_id}/item/create`**: Item creation endpoint for the item router and its child router of model
   router with path name `Model.Item.create`.
 ##### 🔥 Benefits
 
