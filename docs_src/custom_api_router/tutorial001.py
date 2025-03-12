@@ -91,7 +91,7 @@ class AppRouter(APIRouter):
     def add_route(
         self,
         path: str,
-        endpoint: Callable[[Request], Awaitable[Response] | Response],
+        endpoint: Callable[[Request], Union[Awaitable[Response], Response]],
         methods: list[str] | None = None,
         name: str | None = None,
         include_in_schema: bool = True,
