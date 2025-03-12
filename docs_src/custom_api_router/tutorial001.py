@@ -110,6 +110,7 @@ app = FastAPI(route_class=TimedRoute, router_class=AppRouter)
 model = AppRouter(prefix="/model", name="Model", route_class=TimedRoute)
 item = AppRouter(prefix="/{model_id}/item", name="Item", route_class=TimedRoute)
 
+
 async def create_model(request: Request):
     """
     Create a model
@@ -117,11 +118,20 @@ async def create_model(request: Request):
     print("Model created")
     route: TimedRoute = request.scope["route"]
     router: AppRouter = request.scope["router"]
-    return JSONResponse({"route_class": route.__class__.__name__, "route_name": route.name, "router_class": router.__class__.__name__}, status_code=200)
+    return JSONResponse(
+        {
+            "route_class": route.__class__.__name__,
+            "route_name": route.name,
+            "router_class": router.__class__.__name__,
+        },
+        status_code=200,
+    )
+
 
 model.add_api_route(
     path="/create", endpoint=create_model, methods=["POST"], name="create-model"
 )
+
 
 async def create_item(request: Request):
     """
@@ -131,8 +141,14 @@ async def create_item(request: Request):
     route: TimedRoute = request.scope["route"]
     router: AppRouter = request.scope["router"]
     return JSONResponse(
-        {"route_class": route.__class__.__name__, "route_name": route.name, "router_class": router.__class__.__name__},
-        status_code=200)
+        {
+            "route_class": route.__class__.__name__,
+            "route_name": route.name,
+            "router_class": router.__class__.__name__,
+        },
+        status_code=200,
+    )
+
 
 item.add_api_route(
     path="/create", endpoint=create_item, methods=["POST"], name="create-item"
