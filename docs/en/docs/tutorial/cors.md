@@ -4,7 +4,7 @@
 
 For security reasons a front-end application running in a browser can only request resources (such as APIs, stylesheets, and images) from the same origin the application was loaded from, unless the response from other origins includes the right CORS headers.
 
-CORS is a security standard implemented by browsers. It enables scripts running in a browser securely access resources located outside the browser domain.
+CORS is a security standard implemented by browsers. It enables scripts running in a browser to securely access resources located outside the browser domain.
 
 ## Origin
 
