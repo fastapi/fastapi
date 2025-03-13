@@ -19,6 +19,58 @@ The status codes in the 400 range mean that there was an error from the client.
 
 Remember all those **"404 Not Found"** errors (and jokes)?
 
+## Error Monitoring Tools
+
+<a href="https://sentry.io/welcome" class="external-link" target="_blank">Sentry</a> is an application monitoring service that helps developers identify and fix issues in real-time. Sentry provides:
+
+* Error grouping to aggregate similar errors
+* Source code context from stack traces
+* Detailed request information
+* Performance monitoring for web requests, database queries, and more
+* Distributed tracing to understand how errors propagate across your stack
+
+To use Sentry with FastAPI, first install the SDK:
+
+```bash
+pip install --upgrade 'sentry-sdk[fastapi]'
+```
+
+Then initialize Sentry in your application:
+
+```python
+import sentry_sdk
+from fastapi import FastAPI
+
+sentry_sdk.init(
+    dsn="your-dsn-here",
+    # Set traces_sample_rate to configure the percent of traces to send to Sentry, where 1.0 is 100%
+    traces_sample_rate=1.0,
+)
+
+app = FastAPI()
+
+# Your FastAPI code here
+```
+
+Sentry will automatically capture unhandled exceptions, but you can also explicitly capture exceptions and send custom events:
+
+```python
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    try:
+        # Your code that might fail
+        if item_id == 0:
+            raise ValueError("Item ID cannot be zero")
+        # ...
+    except Exception as e:
+        # Capture the exception
+        sentry_sdk.capture_exception(e)
+        # You can still handle the exception normally
+        raise HTTPException(status_code=500, detail="Internal server error")
+```
+
+For more information, see the <a href="https://docs.sentry.io/platforms/python/guides/fastapi/" class="external-link" target="_blank">Sentry FastAPI integration documentation</a>.
+
 ## Use `HTTPException`
 
 To return HTTP responses with errors to the client you use `HTTPException`.
