@@ -1,12 +1,3 @@
-"""
-File: tutorial001
-Author: prakash
-Created: 12/03/25.
-"""
-
-__author__ = "prakash"
-__date__ = "12/03/25"
-
 import time
 from typing import Any, Awaitable, Callable, List, Optional, Set, Union
 
