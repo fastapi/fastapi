@@ -7,8 +7,16 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/security/oauth2-jwt.md`. PR [#13333](https://github.com/fastapi/fastapi/pull/13333) by [@yes0ng](https://github.com/yes0ng).
+* 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/cloud.md`. PR [#13407](https://github.com/fastapi/fastapi/pull/13407) by [@ptt3199](https://github.com/ptt3199).
+
 ### Internal
 
+* ⬆ Bump sqlmodel from 0.0.22 to 0.0.23. PR [#13437](https://github.com/fastapi/fastapi/pull/13437) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump black from 24.10.0 to 25.1.0. PR [#13436](https://github.com/fastapi/fastapi/pull/13436) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: pause TestDriven. PR [#13446](https://github.com/fastapi/fastapi/pull/13446) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.115.11
