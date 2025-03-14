@@ -1,12 +1,3 @@
-"""
-File: test_tutorial004
-Author: prakash
-Created: 12/03/25.
-"""
-
-__author__ = "prakash"
-__date__ = "12/03/25"
-
 from fastapi.testclient import TestClient
 
 from docs_src.custom_api_router.tutorial001 import app
