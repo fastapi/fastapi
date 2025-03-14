@@ -112,7 +112,7 @@ In this example, the *path operations* under the `router` will use the custom `T
 
 You can also set the `router_class` parameter of an `APIRouter`:
 
-{* ../../docs_src/custom_api_router/tutorial001.py hl[96,100] *}
+{* ../../docs_src/custom_api_router/tutorial001.py hl[100:102] *}
 
 #### 🚀 Custom FastAPI Router with Timed Responses
 
@@ -138,4 +138,4 @@ This example enhances FastAPI with structured routing and response timing, makin
 
 This setup is **ideal for scalable FastAPI projects**, ensuring better organization and easier debugging.
 
-{* ../../docs_src/custom_api_router/tutorial001.py hl[93:120,30:36] *}
+{* ../../docs_src/custom_api_router/tutorial001.py hl[100:149,21:27] *}
