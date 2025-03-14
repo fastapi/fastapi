@@ -10,7 +10,7 @@
 |------------|------|-------------|
 | `title` | `str` | Назва API. |
 | `summary` | `str` | Короткий опис API. <small>Доступно з OpenAPI 3.1.0, FastAPI 0.99.0.</small> |
-| `description` | `str` | Короткий опис API. Може використовувати Markdown. |
+| `description` | `str` | Більш детальний опис API. Може використовувати Markdown. |
 | `version` | `string` | Версія API. Це версія Вашого додатка, а не OpenAPI. Наприклад, `2.5.0`. |
 | `terms_of_service` | `str` |  URL до умов використання API. Якщо вказано, має бути у форматі URL. |
 | `contact` | `dict` | Інформація для контакту з API. Може містити кілька полів. <details><summary><code>contact</code> поля</summary><table><thead><tr><th>Параметр</th><th>Тип</th><th>Опис</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>Ім'я контактної особи або організації.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>URL з інформацією для контакту. Повинен бути у форматі URL.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>Email контактної особи або організації. Повинен бути у форматі електронної пошти.</td></tr></tbody></table></details> |
