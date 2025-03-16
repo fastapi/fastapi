@@ -118,7 +118,7 @@ FastAPI нь стандарт Python тайп хинт(1) дээр суурил�
 
 ---
 
-## **Typer**, CLI дахь FastAPI  
+## **Typer**, CLI дахь FastAPI
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
@@ -131,7 +131,7 @@ FastAPI нь стандарт Python тайп хинт(1) дээр суурил�
 FastAPI-ийн үндсэн тулгуур:
 
 * Bеб-тэй холбоотой зүйлс: <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
-* Дата болон өгөгдөлтэй холбоотой зүйлс: <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>. 
+* Дата болон өгөгдөлтэй холбоотой зүйлс: <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## FastAPI-г суулгах
 
@@ -147,7 +147,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Тэмдэглэл**: Бүх терминал дээр асуудалгүй ажиллуулахын тулд `"fastapi[standard]"`-ийг хашилтад хийж бичихээ мартуузай. 
+**Тэмдэглэл**: Бүх терминал дээр асуудалгүй ажиллуулахын тулд `"fastapi[standard]"`-ийг хашилтад хийж бичихээ мартуузай.
 ## Жишээ
 
 ### Файл үүсгэцгээе
