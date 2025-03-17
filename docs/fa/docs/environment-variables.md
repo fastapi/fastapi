@@ -1,6 +1,6 @@
 # متغیرهای محیطی
 
-/// نکته
+/// tip
 
 اگر از قبل می‌دونید «متغیرهای محیطی» چی هستن و چطور کار می‌کنن، می‌تونید این بخش رو رد کنید.
 
@@ -63,7 +63,7 @@ name = os.getenv("MY_NAME", "جهان")
 print(f"سلام {name} از پایتون")
 ```
 
-/// نکته
+/// tip
 
 آرگومان دوم تابع <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> مقدار پیش‌فرضیه که برمی‌گرده.
 
@@ -151,7 +151,7 @@ $ python main.py
 
 </div>
 
-/// نکته
+/// tip
 
 می‌تونید بیشتر در موردش توی <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a> بخونید.
 
