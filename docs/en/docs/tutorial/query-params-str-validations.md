@@ -406,6 +406,68 @@ To exclude a query parameter from the generated OpenAPI schema (and thus, from t
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
+## Custom Validation
+
+There could be cases where you need to do some **custom validation** that can't be done with the parameters shown above.
+
+In those cases, you can use a **custom validator function** that is applied after the normal validation (e.g. after validating that the value is a `str`).
+
+You can achieve that using <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic's `AfterValidator`</a> inside of `Annotated`.
+
+/// tip
+
+Pydantic also has <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> and others. 🤓
+
+///
+
+For example, this custom validator checks that the item ID starts with `isbn-` for an <abbr title="ISBN means International Standard Book Number">ISBN</abbr> book number or with `imdb-` for an <abbr title="IMDB (Internet Movie Database) is a website with information about movies">IMDB</abbr> movie URL ID:
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+
+/// info
+
+This is available with Pydantic version 2 or above. 😎
+
+///
+
+/// tip
+
+If you need to do any type of validation that requires communicating with any **external component**, like a database or another API, you should instead use **FastAPI Dependencies**, you will learn about them later.
+
+These custom validators are for things that can be checked with **only** the **same data** provided in the request.
+
+///
+
+### Understand that Code
+
+The important point is just using **`AfterValidator` with a function inside `Annotated`**. Feel free to skip this part. 🤸
+
+---
+
+But if you're curious about this specific code example and you're still entertained, here are some extra details.
+
+#### String with `value.startswith()`
+
+Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+
+#### A Random Item
+
+With `data.items()` we get an <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">iterable object</abbr> with tuples containing the key and value for each dictionary item.
+
+We convert this iterable object into a proper `list` with `list(data.items())`.
+
+Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, name)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+
+Then we **assign those two values** of the tuple to the variables `id` and `name`.
+
+So, if the user didn't provide an item ID, they will still receive a random suggestion.
+
+...we do all this in a **single simple line**. 🤯 Don't you love Python? 🐍
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+
 ## Recap
 
 You can declare additional validations and metadata for your parameters.
@@ -422,6 +484,8 @@ Validations specific for strings:
 * `min_length`
 * `max_length`
 * `pattern`
+
+Custom validations using `AfterValidator`.
 
 In these examples you saw how to declare validations for `str` values.
 
