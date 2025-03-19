@@ -49,7 +49,7 @@ const Sidebar = () => {
           <DrawerBody>
             <Flex flexDir="column" justify="space-between">
               <Box>
-                <SidebarItems />
+                <SidebarItems onClose={() => setOpen(false)} />
                 <Flex
                   as="button"
                   onClick={() => {
