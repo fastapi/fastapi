@@ -65,7 +65,7 @@ FastAPI знає про це і створить OpenAPI документаці�
 
 /// tip | Порада
 
-Щоб дізнатися більше про кожен код статусу і призначення кожного з них, перегляньте документацію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>про HTTP коди статусу</a>.
+Щоб дізнатися більше про кожен код статусу і призначення кожного з них, перегляньте документацію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> про HTTP коди статусу</a>.
 
 ///
 
