@@ -120,7 +120,7 @@ async with lifespan(app):
 
 여기서, `shutdown` 이벤트 핸들러 함수는 `"Application shutdown"`이라는 텍스트를 `log.txt` 파일에 기록합니다.
 
-/// 정보
+/// info | 정보
 
 `open()` 함수에서 `mode="a"`는 "추가"를 의미하므로, 파일에 있는 기존 내용은 덮어쓰지 않고 새로운 줄이 추가됩니다.
 
