@@ -86,7 +86,7 @@ async with lifespan(app):
 
 ## 대체 이벤트 (사용 중단)
 
-/// 경고
+/// warning | 경고
 
 *시작*과 *종료*를 처리하는 권장 방법은 위에서 설명한 대로 `FastAPI` 애플리케이션의 `lifespan` 매개변수를 사용하는 것입니다. `lifespan` 매개변수를 제공하면 `startup`과 `shutdown` 이벤트 핸들러는 더 이상 호출되지 않습니다. `lifespan`을 사용할지, 모든 이벤트를 사용할지 선택해야 하며 둘 다 사용할 수는 없습니다.
 
