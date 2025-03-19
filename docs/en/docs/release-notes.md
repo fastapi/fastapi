@@ -18,6 +18,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump pydantic-ai from 0.0.15 to 0.0.30. PR [#13438](https://github.com/fastapi/fastapi/pull/13438) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump sqlmodel from 0.0.22 to 0.0.23. PR [#13437](https://github.com/fastapi/fastapi/pull/13437) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 24.10.0 to 25.1.0. PR [#13436](https://github.com/fastapi/fastapi/pull/13436) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
