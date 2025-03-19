@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/metadata.md` page. PR [#13459](https://github.com/fastapi/fastapi/pull/13459) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/response-status-code.md` page. PR [#13462](https://github.com/fastapi/fastapi/pull/13462) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/cookie-param-models.md` page. PR [#13460](https://github.com/fastapi/fastapi/pull/13460) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/header-param-models.md` page. PR [#13461](https://github.com/fastapi/fastapi/pull/13461) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
