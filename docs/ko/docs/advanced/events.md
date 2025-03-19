@@ -152,7 +152,7 @@ async with lifespan(app):
 
 ASGI 기술 사양에 따르면, 이는 <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>의 일부이며, `startup`과 `shutdown`이라는 이벤트를 정의합니다.
 
-/// 정보
+/// info | 정보
 
 Starlette의 `lifespan` 핸들러에 대해 더 읽고 싶다면 <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette의 Lifespan 문서</a>에서 확인할 수 있습니다.
 
