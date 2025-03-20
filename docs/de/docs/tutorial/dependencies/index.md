@@ -155,6 +155,12 @@ Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.
 
 ///
 
+/// warning | Warnung
+
+Wenn du dich über mehrere Schritte in einer Anfrage hinweg auf `ContextVar`-Werte verlassen musst, **verwende eine async-Abhängigkeit** oder einen anderen Ansatz. Dies liegt daran, dass synchrone Abhängigkeiten im Hauptthread ausgeführt werden, während `async`-Abhängigkeiten im selben Thread-Pool wie derjenige, der die Anfrage bearbeitet, ausgeführt werden. Da `ContextVar` thread-lokalen Speicher bereitstellt, sind alle Werte, die innerhalb einer synchronen Abhängigkeit gesetzt werden, im restlichen Anfrageverlauf nicht verfügbar.
+
+///
+
 ## Integriert in OpenAPI
 
 Alle Requestdeklarationen, -validierungen und -anforderungen Ihrer Abhängigkeiten (und Unterabhängigkeiten) werden in dasselbe OpenAPI-Schema integriert.
