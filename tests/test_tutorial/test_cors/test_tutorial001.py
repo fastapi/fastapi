@@ -18,17 +18,19 @@ class TestCORS:
         headers = {
             "Origin": origin_url,
             "Access-Control-Request-Method": "GET",
-            "Access-Control-Request-Headers": "X-Example",
+            "Access-Control-Request-Headers": "X-Example-1, X-Example-2",
         }
         response = client.options("/", headers=headers)
         assert origin_url in self.allowed_origins
         # response
         assert response.status_code == 200
+        assert response.text == "OK"
         # response headers: cors
         assert "access-control-allow-methods" in response.headers
         assert "access-control-allow-credentials" in response.headers
         assert "access-control-max-age" in response.headers
         assert "access-control-allow-headers" in response.headers
+        assert response.headers["access-control-allow-headers"] == "X-Example-1, X-Example-2"
         # response headers: cors: origin
         assert "access-control-allow-origin" in response.headers
         assert response.headers["access-control-allow-origin"] == origin_url
@@ -38,17 +40,19 @@ class TestCORS:
         headers = {
             "Origin": origin_url,
             "Access-Control-Request-Method": "GET",
-            "Access-Control-Request-Headers": "X-Example",
+            "Access-Control-Request-Headers": "X-Example-1, X-Example-2",
         }
         response = client.options("/", headers=headers)
         assert origin_url not in self.allowed_origins
         # response
         assert response.status_code == 400
+        assert response.text == "Disallowed CORS origin"
         # response headers: cors
         assert "access-control-allow-methods" in response.headers
         assert "access-control-allow-credentials" in response.headers
         assert "access-control-max-age" in response.headers
         assert "access-control-allow-headers" in response.headers
+        assert response.headers["access-control-allow-headers"] == "X-Example-1, X-Example-2"
         # response headers: cors: origin
         assert "access-control-allow-origin" not in response.headers
 
