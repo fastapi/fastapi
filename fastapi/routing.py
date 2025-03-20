@@ -490,7 +490,9 @@ class APIRoute(routing.Route):
         self.name = get_name(endpoint) if name is None else name
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
-            methods = ["GET"]
+            methods = ["GET", "HEAD"]
+        elif "GET" in methods:
+            methods = set(methods) | {"HEAD"}
         self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[[APIRoute], str] = (
@@ -1724,7 +1726,7 @@ class APIRouter(routing.Router):
             response_description=response_description,
             responses=responses,
             deprecated=deprecated,
-            methods=["GET"],
+            methods=["GET", "HEAD"],
             operation_id=operation_id,
             response_model_include=response_model_include,
             response_model_exclude=response_model_exclude,

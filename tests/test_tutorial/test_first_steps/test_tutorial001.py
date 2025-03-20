@@ -13,10 +13,13 @@ client = TestClient(app)
         ("/nonexistent", 404, {"detail": "Not Found"}),
     ],
 )
-def test_get_path(path, expected_status, expected_response):
+def test_get_path(path: str, expected_status: int, expected_response: dict[str, str]):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+    response = client.head(path)
+    assert response.status_code == expected_status
 
 
 def test_openapi_schema():
