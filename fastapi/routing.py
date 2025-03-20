@@ -492,7 +492,7 @@ class APIRoute(routing.Route):
         if methods is None:
             methods = ["GET", "HEAD"]
         elif "GET" in methods:
-            methods = set(methods) | {"HEAD"}
+            methods = set(methods).union({"HEAD"})
         self.methods: Set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[[APIRoute], str] = (
