@@ -30,7 +30,10 @@ class TestCORS:
         assert "access-control-allow-credentials" in response.headers
         assert "access-control-max-age" in response.headers
         assert "access-control-allow-headers" in response.headers
-        assert response.headers["access-control-allow-headers"] == "X-Example-1, X-Example-2"
+        assert (
+            response.headers["access-control-allow-headers"]
+            == "X-Example-1, X-Example-2"
+        )
         # response headers: cors: origin
         assert "access-control-allow-origin" in response.headers
         assert response.headers["access-control-allow-origin"] == origin_url
@@ -52,7 +55,10 @@ class TestCORS:
         assert "access-control-allow-credentials" in response.headers
         assert "access-control-max-age" in response.headers
         assert "access-control-allow-headers" in response.headers
-        assert response.headers["access-control-allow-headers"] == "X-Example-1, X-Example-2"
+        assert (
+            response.headers["access-control-allow-headers"]
+            == "X-Example-1, X-Example-2"
+        )
         # response headers: cors: origin
         assert "access-control-allow-origin" not in response.headers
 
