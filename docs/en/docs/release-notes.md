@@ -7,13 +7,23 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 👥 Update FastAPI People - Experts. PR [#13493](https://github.com/fastapi/fastapi/pull/13493) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/metadata.md` page. PR [#13459](https://github.com/fastapi/fastapi/pull/13459) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/response-status-code.md` page. PR [#13462](https://github.com/fastapi/fastapi/pull/13462) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/cookie-param-models.md` page. PR [#13460](https://github.com/fastapi/fastapi/pull/13460) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/header-param-models.md` page. PR [#13461](https://github.com/fastapi/fastapi/pull/13461) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Japanese translation for `docs/ja/docs/virtual-environments.md`. PR [#13304](https://github.com/fastapi/fastapi/pull/13304) by [@k94-ishi](https://github.com/k94-ishi).
 * 🌐 Add Korean translation for `docs/ko/docs/tutorial/security/oauth2-jwt.md`. PR [#13333](https://github.com/fastapi/fastapi/pull/13333) by [@yes0ng](https://github.com/yes0ng).
 * 🌐 Add Vietnamese translation for `docs/vi/docs/deployment/cloud.md`. PR [#13407](https://github.com/fastapi/fastapi/pull/13407) by [@ptt3199](https://github.com/ptt3199).
 
 ### Internal
 
+* ⬆ Bump pydantic-ai from 0.0.15 to 0.0.30. PR [#13438](https://github.com/fastapi/fastapi/pull/13438) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump sqlmodel from 0.0.22 to 0.0.23. PR [#13437](https://github.com/fastapi/fastapi/pull/13437) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 24.10.0 to 25.1.0. PR [#13436](https://github.com/fastapi/fastapi/pull/13436) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump ruff to 0.9.4. PR [#13299](https://github.com/fastapi/fastapi/pull/13299) by [@dependabot[bot]](https://github.com/apps/dependabot).
