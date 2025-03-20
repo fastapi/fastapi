@@ -15,7 +15,7 @@
 
 Сначала импортируйте `BackgroundTasks`, потом добавьте в функцию параметр с типом `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[3,16] *}
 
 **FastAPI** создаст объект класса `BackgroundTasks` для вас и запишет его в параметр.
 
@@ -31,13 +31,13 @@
 
 Так как операция записи не использует `async` и `await`, мы определим ее как обычную `def`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[8:11] *}
 
 ## Добавление фоновой задачи
 
 Внутри функции вызовите метод `.add_task()` у объекта *background tasks* и передайте ему функцию, которую хотите выполнить в фоне:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[18] *}
 
 `.add_task()` принимает следующие аргументы:
 

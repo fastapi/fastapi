@@ -15,7 +15,7 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 
 먼저 아래와 같이 `BackgroundTasks`를 임포트하고, `BackgroundTasks`를 _경로 작동 함수_ 에서 매개변수로 가져오고 정의합니다.
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[3,16] *}
 
 **FastAPI** 는 `BackgroundTasks` 개체를 생성하고, 매개 변수로 전달합니다.
 
@@ -31,13 +31,13 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 
 그리고 이 작업은 `async`와 `await`를 사용하지 않으므로 일반 `def` 함수로 선언합니다.
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[8:11] *}
 
 ## 백그라운드 작업 추가
 
 _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _백그라운드 작업_ 개체에 전달합니다.
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[18] *}
 
 `.add_task()` 함수는 다음과 같은 인자를 받습니다 :
 
@@ -51,7 +51,7 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 **FastAPI**는 각 경우에 수행할 작업과 동일한 개체를 내부적으로 재사용하기에, 모든 백그라운드 작업이 함께 병합되고 나중에 백그라운드에서 실행됩니다.
 
-{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[14,17,24,27] *}
 
 이 예제에서는 응답이 반환된 후에 `log.txt` 파일에 메시지가 기록됩니다.
 
