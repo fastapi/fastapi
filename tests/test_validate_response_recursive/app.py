@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI
+from fastapi._compat import PYDANTIC_V2
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -9,9 +10,6 @@ app = FastAPI()
 class RecursiveItem(BaseModel):
     sub_items: List["RecursiveItem"] = []
     name: str
-
-
-RecursiveItem.update_forward_refs()
 
 
 class RecursiveSubitemInSubmodel(BaseModel):
@@ -24,7 +22,13 @@ class RecursiveItemViaSubmodel(BaseModel):
     name: str
 
 
-RecursiveSubitemInSubmodel.update_forward_refs()
+if PYDANTIC_V2:
+    RecursiveItem.model_rebuild()
+    RecursiveSubitemInSubmodel.model_rebuild()
+    RecursiveItemViaSubmodel.model_rebuild()
+else:
+    RecursiveItem.update_forward_refs()
+    RecursiveSubitemInSubmodel.update_forward_refs()
 
 
 @app.get("/items/recursive", response_model=RecursiveItem)

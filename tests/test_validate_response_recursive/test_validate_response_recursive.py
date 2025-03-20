@@ -1,12 +1,9 @@
 from fastapi.testclient import TestClient
 
-from ..utils import needs_pydanticv2
+from .app import app
 
 
-@needs_pydanticv2
 def test_recursive():
-    from .app_pv2 import app
-
     client = TestClient(app)
     response = client.get("/items/recursive")
     assert response.status_code == 200, response.text
