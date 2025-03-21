@@ -37,7 +37,7 @@ FastAPI, είναι ένα σύγχρονο, γρήγορο (υψηλής από
 
 Τα βασικά χαρακτηριστικά είναι:
 
-* **Yψηλή απόδοση**: Στο ίδιο επίπεδο με **NodeJS** και **Go** (χάρη στo Starlette και το Pydantic). [Ένα από τα πιο γρήγορα διαθέσιμα Python web framework](#performance).
+* **Yψηλή απόδοση**: Στο ίδιο επίπεδο με **NodeJS** και **Go** (χάρη στo Starlette και το Pydantic). [Ένα από τα πιο γρήγορα διαθέσιμα Python web framework](#_11).
 * **Γρήγορη κωδικοποίηση**: Αυξάνει την ταχύτητα εγγραφής κώδικα κατά περίπου 200% έως 300%. *
 * **Λιγότερα σφάλματα**: Μειώστε περίπου το 40% των σφαλμάτων που προκαλούνται από ανθρώπους (προγραμματιστές). *
 * **Διαισθητικό**: Yποστήριξη για <abbr title="γνωστό και ως IntelliSense">βοηθητικά προγράμματα συμπλήρωσης κώδικα</abbr>. Λιγότερος χρόνος αποσφαλμάτωσης.
@@ -444,7 +444,6 @@ item: Item
     * **Cookie Sessions**
     * ...και πολλά άλλα.
 
-<a id="performance"></a>
 ## Απόδοση
 
 Ανεξάρτητα benchmarks από το TechEmpower δείχνουν ότι οι εφαρμογές **FastAPI** που τρέχουν με Uvicorn είναι <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">από τα ταχύτερα διαθέσιμα Python frameworks</a>, μόνο κάτω από τα ίδια τα Starlette και Uvicorn (που χρησιμοποιούνται εσωτερικά από το FastAPI). (*)
