@@ -348,6 +348,8 @@ extra:
     name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
+  - link: /el/
+    name: el - Ελληνικά
   - link: /es/
     name: es - español
   - link: /fa/
