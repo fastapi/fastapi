@@ -62,23 +62,33 @@ def test_header_param_model_no_underscore(client: TestClient):
     assert response.json() == snapshot(
         {
             "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "save_data"],
-                    "msg": "Field required",
-                    "input": {
-                        "host": "testserver",
-                        "traceparent": "123",
-                        "x_tag": [],
-                        "accept": "*/*",
-                        "accept-encoding": "gzip, deflate",
-                        "connection": "keep-alive",
-                        "user-agent": "testclient",
-                        "save-data": "true",
-                        "if-modified-since": "yesterday",
-                        "x-tag": "two",
-                    },
-                }
+                IsDict(
+                    {
+                        "type": "missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "Field required",
+                        "input": {
+                            "host": "testserver",
+                            "traceparent": "123",
+                            "x_tag": [],
+                            "accept": "*/*",
+                            "accept-encoding": "gzip, deflate",
+                            "connection": "keep-alive",
+                            "user-agent": "testclient",
+                            "save-data": "true",
+                            "if-modified-since": "yesterday",
+                            "x-tag": "two",
+                        },
+                    }
+                )
+                | IsDict(
+                    # TODO: remove when deprecating Pydantic v1
+                    {
+                        "type": "value_error.missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "field required",
+                    }
+                )
             ]
         }
     )
