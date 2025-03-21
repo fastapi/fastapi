@@ -12,3 +12,8 @@ async def add_process_time_header(request: Request, call_next):
     process_time = time.perf_counter() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     return response
+
+
+@app.get("/")
+def hello():
+    return {"hello": "world"}
