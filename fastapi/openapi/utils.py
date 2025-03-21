@@ -135,10 +135,15 @@ def _get_openapi_operation_parameters(
                 separate_input_output_schemas=separate_input_output_schemas,
             )
             name = param.alias
+            convert_underscores = getattr(
+                param.field_info,
+                "convert_underscores",
+                default_convert_underscores,
+            )
             if (
                 param_type == ParamTypes.header
                 and param.alias == param.name
-                and default_convert_underscores
+                and convert_underscores
             ):
                 name = param.name.replace("_", "-")
 
