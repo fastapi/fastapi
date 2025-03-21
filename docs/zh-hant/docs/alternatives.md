@@ -36,7 +36,7 @@ Django REST Framework 是 Tom Christie 所發明. 他同時研發了 Starlette �
 
 ///
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 提供自動生成的 API 文件化網頁使用者介面（Web UI）。
 
@@ -56,7 +56,7 @@ Flask 是一個「微框架」，它並未內建資料庫整合功能，也不�
 
 鑑於 Flask 的簡潔性，它似乎是構建 API 的理想選擇。接下來要尋找的，便是 Flask 的「Django REST Framework」。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 成為微框架，使其能夠輕鬆組合和搭配所需的工具與元件。
 
@@ -98,7 +98,7 @@ def read_url():
 
 觀察 `requests.get(...)` 和 `@app.get(...)`的相似程度。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 * 擁有一個簡單且直觀的 API。
 * 在一個直觀且明確的方式，直接使用 HTTP 的 method names (operations)。
@@ -118,7 +118,7 @@ def read_url():
 
 這就是為什麼在談到 2.0 版本時，人們通常會說「Swagger」，而對於 3+ 版本則會說「OpenAPI」。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 採用並使用 API 規範的開放標準，而非自定義的架構。
 
@@ -147,7 +147,7 @@ API 系統所需的主要功能之一是數據 "<abbr title="又稱為marshallin
 
 但 Marshmallow 是在 Python 類型提示（type hints）出現之前創建的。因此，要定義每個 <abbr title="數據應如何被組成的定義">schema</abbr> 你必須使用 Marshmallow 提供的特定工具和類別。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 使用程式碼自動定義「模式」（schemas），以提供資料型別與驗證功能。
 
@@ -169,7 +169,7 @@ Webargs 由與 Marshmallow 相同的開發團隊打造。
 
 ///
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 實現對請求資料的自動驗證功能。
 
@@ -197,7 +197,7 @@ APISpec 是 Marshmallow 相同的開發團隊所創建。
 
 ///
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 支援 API 的開放標準 OpenAPI。
 
@@ -229,7 +229,7 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 ///
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 從原本的定義序列化與驗證的程式碼中，自動生成 OpemAPI schema。
 
@@ -251,7 +251,7 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 此外，它無法很好地處理巢狀模型。如果請求中的 JSON 主體包含內部欄位，而這些內部欄位本身又是巢狀的 JSON 物件，那麼這些巢狀結構可能無法正確地被文件化與驗證。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 使用 Python 類型來獲得更強大的編輯器支援。
 
@@ -271,7 +271,7 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 ///
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 找到一個可以有非常高效能的方法。
 
@@ -287,7 +287,7 @@ Falcon 是另一個高效能的 Python 框架，設計簡潔，並作為 Hug 等
 
 因此，無法使用標準 Python 型別註記來宣告請求參數與主體。 數據驗證、序列化與文件化必須手動編寫，或是透過像 Hug 這類基於 Falcon 的框架來實現。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 尋找方法以獲得優秀的效能。
 
@@ -311,7 +311,7 @@ Molten 的相依性注入系統要求先行註冊所有相依性，並且是根�
 
 路由定義則是集中在單一位置，並使用在其他地方定義的函式來處理請求，而非像 Flask 或 Starlette 那樣透過裝飾器（decorator）直接將路由與處理函式綁定在一起。這種方式與 Django 的作法較為相似，但它將程式碼中關聯性較高的部分分開處理，可能影響可讀性與維護性。
 
-/// check | 啟發了 **FastAPI** 
+/// check | 啟發了 **FastAPI**
 
 Molten 的一個設計概念啟發了 FastAPI 允許透過模型屬性的「預設值」來定義額外的資料驗證規則。這樣的做法能夠提升編輯器的支援度，而在當時的 Pydantic 中尚未支援。
 
