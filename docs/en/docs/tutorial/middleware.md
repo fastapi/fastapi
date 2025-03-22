@@ -67,9 +67,9 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ## HTTP Middleware
 
-As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`. 
+As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`.
 
-This parameter defines the type of server events to be handled by the middleware. 
+This parameter defines the type of server events to be handled by the middleware.
 
 ASGI server supports the following scope types (or event types): `lifespan`, `http`, and `websocket`.
 

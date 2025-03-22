@@ -14,4 +14,3 @@ def test_add_process_time_header_middleware():
     # request/response process time
     process_time = response.headers["X-Process-Time"]
     assert float(process_time) > 0
-
