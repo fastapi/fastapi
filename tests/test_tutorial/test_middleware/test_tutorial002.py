@@ -10,3 +10,6 @@ def test_add_process_time_header_middleware():
     assert response.json() == {"hello": "world"}
     assert "X-Process-Time" in response.headers
     assert len(response.headers["X-Process-Time"]) > 0
+    # request/response process time
+    process_time = response.headers["X-Process-Time"]
+    assert float(process_time) > 0
