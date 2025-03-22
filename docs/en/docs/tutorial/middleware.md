@@ -2,7 +2,13 @@
 
 You can add middleware to **FastAPI** applications.
 
-A "middleware" is a function that works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.
+In this tutorial we will discuss how to add a custom `http` middleware to your FastAPI applications.
+
+The `http` middleware is designed to work with HTTP protocol, and it is responsible for handling of HTTP requests and responses.
+
+## How `http` middleware works?
+
+The `http` middleware works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.
 
 * It takes each **request** that comes to your application.
 * It can then do something to that **request** or run any needed code.
@@ -65,16 +71,13 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
-## HTTP Middleware
+/// note | Technical Details
 
-As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`.
-
-This parameter defines the type of server events to be handled by the middleware.
+As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`. This parameter defines the type of server events to be handled by the middleware, and hence the name `http` middleware.
 
 ASGI server supports the following scope types (or event types): `lifespan`, `http`, and `websocket`.
 
-The `http` middleware is designed to work with HTTP protocol, and it is responsible for handling of HTTP requests and responses.
-
+///
 
 ## Class-Based Middleware
 
