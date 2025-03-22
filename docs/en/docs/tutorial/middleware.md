@@ -65,11 +65,22 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
-### Class-Based Middleware
+## HTTP Middleware
+
+As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`. 
+
+This parameter defines the type of server events to be handled by the middleware. 
+
+ASGI server supports the following scope types (or event types): `lifespan`, `http`, and `websocket`.
+
+The `http` middleware is designed to work with HTTP protocol, and it is responsible for handling of HTTP requests and responses.
+
+
+## Class-Based Middleware
 
 It is possible to define a custom `http` middleware using classes.
 
-We will implement the class-based middleware with exactly the same functionality as in the example above.
+We will implement a class-based middleware with exactly the same functionality as in the example with the `@app.middleware('http')` decorator.
 
 We will use an abstract `BaseHTTPMiddleware` class from Starlette that allows to write custom `http` middlewares.
 
