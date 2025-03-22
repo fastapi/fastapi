@@ -65,6 +65,39 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
+## HTTP Middleware
+
+As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`.
+
+This parameter defines the type of server events to be handled by the middleware.
+
+ASGI server supports the following scope types (or event types): `lifespan`, `http`, and `websocket`.
+
+The `http` middleware is designed to work with HTTP protocol, and it is responsible for handling of HTTP requests and responses.
+
+
+## Class-Based Middleware
+
+It is possible to define a custom `http` middleware using classes.
+
+We will implement a class-based middleware with exactly the same functionality as in the example with the `@app.middleware('http')` decorator.
+
+We will use an abstract `BaseHTTPMiddleware` class from Starlette that allows to write custom `http` middlewares.
+
+{* ../../docs_src/middleware/tutorial002.py hl[7:13,17] *}
+
+To create the middleware we need to override the `async dispatch` method of the `BaseHTTPMiddleware` class.
+
+The functionality of the method is very similar to the decorated middleware function from the previous example.
+
+The middleware is connected to the FastAPI application using `app.add_middleware` method.
+
+/// note
+
+You can read more about Starlette middleware in [Starlette documentation](https://www.starlette.io/middleware).
+
+///
+
 ## Other middlewares
 
 You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
