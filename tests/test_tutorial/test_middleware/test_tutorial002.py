@@ -1,5 +1,6 @@
-from docs_src.middleware.tutorial002 import app
 from fastapi.testclient import TestClient
+
+from docs_src.middleware.tutorial002 import app
 
 
 def test_add_process_time_header_middleware():
