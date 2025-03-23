@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.12
+
 ### Fixes
 
 * 🐛 Fix `convert_underscores=False` for header Pydantic models. PR [#13515](https://github.com/fastapi/fastapi/pull/13515) by [@tiangolo](https://github.com/tiangolo).
