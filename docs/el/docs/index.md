@@ -27,7 +27,7 @@
 
 ---
 
-**Tεκμηρίωση κώδικα**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Τεκμηρίωση κώδικα**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Πηγαίος κώδικας**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -40,7 +40,7 @@ FastAPI, είναι ένα σύγχρονο, γρήγορο (υψηλής από
 * **Yψηλή απόδοση**: Στο ίδιο επίπεδο με **NodeJS** και **Go** (χάρη στo Starlette και το Pydantic). [Ένα από τα πιο γρήγορα διαθέσιμα Python web framework](#_11).
 * **Γρήγορη κωδικοποίηση**: Αυξάνει την ταχύτητα συγγραφής κώδικα κατά περίπου 200% έως 300%. *
 * **Λιγότερα σφάλματα**: Μειώστε περίπου το 40% των σφαλμάτων που προκαλούνται από ανθρώπους (προγραμματιστές). *
-* **Διαισθητικό**: Yποστήριξη για <abbr title="γνωστό και ως IntelliSense">βοηθητικά προγράμματα συμπλήρωσης κώδικα</abbr>. Λιγότερος χρόνος αποσφαλμάτωσης.
+* **Διαισθητικό**: Υποστήριξη για <abbr title="γνωστό και ως IntelliSense">βοηθητικά προγράμματα συμπλήρωσης κώδικα</abbr>. Λιγότερος χρόνος αποσφαλμάτωσης.
 * **Εύκολο**: Σχεδιασμένο για να είναι εύκολο στη χρήση και στην εκμάθηση. Λιγότερος χρόνος ανάγνωσης εγγράφων.
 * **Σύντομο**: Ελαχιστοποιήστε την αντιγραφή κώδικα. Πολλαπλές δυνατότητες από κάθε δήλωση παραμέτρου. Λιγότερα σφάλματα.
 * **Εύρωστο**: Λάβετε κώδικα έτοιμο για παραγωγή. Με αυτόματη διαδραστική τεκμηρίωση.
@@ -446,7 +446,7 @@ item: Item
 
 ## Απόδοση
 
-Ανεξάρτητα benchmarks από το TechEmpower δείχνουν ότι οι εφαρμογές **FastAPI** που τρέχουν με Uvicorn είναι <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">από τα ταχύτερα διαθέσιμα Python frameworks</a>, μόνο κάτω από τα ίδια το Starlette και Uvicorn (που χρησιμοποιούνται εσωτερικά από το FastAPI). (*)
+Ανεξάρτητα σημεία αναφοράς από το TechEmpower δείχνουν ότι οι **FastAPI** εφαρμογές που τρέχουν με Uvicorn είναι <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">μεταξύ των πιο γρήγορων διαθέσιμων Python frameworks</a>, μετά από αυτά, Starlette και Uvicorn (τα οποία χρησιμοποιούνται εσωτερικά από το FastAPI). (*)
 
 Για να κατανοήσετε περισσότερα, δείτε την ενότητα <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
@@ -475,7 +475,7 @@ item: Item
 
 ### Χωρίς τις `standard` Εξαρτήσεις
 
-Αν δεν θέλετε να συμπεριλάβετε τις προαιρετικές εξαρτήσεις `standard`, μπορείτε να εγκαταστήσετε με `pip install fastapi` αντί για `pip install "fastapi[standard]"`.
+Αν δε θέλετε να συμπεριλάβετε τις προαιρετικές εξαρτήσεις `standard`, μπορείτε να εγκαταστήσετε με `pip install fastapi` αντί για `pip install "fastapi[standard]"`.
 
 ### Πρόσθετες Προαιρετικές Εξαρτήσεις
 
