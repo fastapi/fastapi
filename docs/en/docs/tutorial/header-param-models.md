@@ -51,6 +51,22 @@ For example, if the client tries to send a `tool` header with a value of `plumbu
 }
 ```
 
+## Disable Convert Underscores
+
+The same way as with regular header parameters, when you have underscore characters in the parameter names, they are **automatically converted to hyphens**.
+
+For example, if you have a header parameter `save_data` in the code, the expected HTTP header will be `save-data`, and it will show up like that in the docs.
+
+If for some reason you need to disable this automatic conversion, you can do it as well for Pydantic models for header parameters.
+
+{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+
+/// warning
+
+Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
+
+///
+
 ## Summary
 
 You can use **Pydantic models** to declare **headers** in **FastAPI**. 😎
