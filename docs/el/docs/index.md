@@ -446,7 +446,7 @@ item: Item
 
 ## Απόδοση
 
-Ανεξάρτητα benchmarks από το TechEmpower δείχνουν ότι οι εφαρμογές **FastAPI** που τρέχουν με Uvicorn είναι <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">από τα ταχύτερα διαθέσιμα Python frameworks</a>, μόνο κάτω από τα ίδια τα Starlette και Uvicorn (που χρησιμοποιούνται εσωτερικά από το FastAPI). (*)
+Ανεξάρτητα benchmarks από το TechEmpower δείχνουν ότι οι εφαρμογές **FastAPI** που τρέχουν με Uvicorn είναι <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">από τα ταχύτερα διαθέσιμα Python frameworks</a>, μόνο κάτω από τα ίδια το Starlette και Uvicorn (που χρησιμοποιούνται εσωτερικά από το FastAPI). (*)
 
 Για να κατανοήσετε περισσότερα, δείτε την ενότητα <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
