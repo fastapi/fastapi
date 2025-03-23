@@ -1,6 +1,6 @@
 # Desenvolvimento - Contribuindo
 
-Primeiro, você poderá querer ver as formas básicas de [ajudar o FastAPI e obter ajuda](help-fast-api.md){.internal-link target=_blank}. 
+Primeiro, você poderá querer ver as formas básicas de [ajudar o FastAPI e obter ajuda](help-fast-api.md){.internal-link target=_blank}.
 
 ## Desenvolvimento
 
@@ -162,7 +162,7 @@ Isso ajuda a garantir que:
 
 * A documentação está atualizada.
 * Os exemplos da documentação podem ser executados como estão.
-* A maioria das funcionalidades são cobertas pela documentação, garantidas pelo teste de cobertura. 
+* A maioria das funcionalidades são cobertas pela documentação, garantidas pelo teste de cobertura.
 
 #### Aplicações e documentação ao mesmo tempo
 
@@ -373,7 +373,7 @@ $ python ./scripts/docs.py serve
 Aviso: esse é um um servidor muito simples. Para desenvolvimento, use o mkdocs em vez disso.
 Isso está aqui apenas para pré-visualizar um site com traduções já construídas.
 Certifique-se de executar o comando build-all primeiro.
-Servindo em: http://127.0.0.1:8008  
+Servindo em: http://127.0.0.1:8008
 
 ```
 
