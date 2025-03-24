@@ -5,33 +5,49 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
+from tests.utils import needs_py39, needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002", marks=needs_pydanticv2),
-        pytest.param("tutorial002_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_an", marks=needs_pydanticv2),
-        pytest.param("tutorial002_an_py39", marks=[needs_py39, needs_pydanticv2]),
-        pytest.param("tutorial002_an_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_pv1", marks=[needs_pydanticv1, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_py310", marks=[needs_py310, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an", marks=[needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py39", marks=[needs_py39, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py310", marks=[needs_py310, needs_pydanticv1]),
+        "tutorial003",
+        pytest.param("tutorial003_py39", marks=needs_py39),
+        pytest.param("tutorial003_py310", marks=needs_py310),
+        "tutorial003_an",
+        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.header_param_models.{request.param}")
 
     client = TestClient(mod.app)
-    client.headers.clear()
     return client
 
 
 def test_header_param_model(client: TestClient):
+    response = client.get(
+        "/items/",
+        headers=[
+            ("save_data", "true"),
+            ("if_modified_since", "yesterday"),
+            ("traceparent", "123"),
+            ("x_tag", "one"),
+            ("x_tag", "two"),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "host": "testserver",
+        "save_data": True,
+        "if_modified_since": "yesterday",
+        "traceparent": "123",
+        "x_tag": ["one", "two"],
+    }
+
+
+def test_header_param_model_no_underscore(client: TestClient):
     response = client.get(
         "/items/",
         headers=[
@@ -42,18 +58,44 @@ def test_header_param_model(client: TestClient):
             ("x-tag", "two"),
         ],
     )
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "host": "testserver",
-        "save_data": True,
-        "if_modified_since": "yesterday",
-        "traceparent": "123",
-        "x_tag": ["one", "two"],
-    }
+    assert response.status_code == 422
+    assert response.json() == snapshot(
+        {
+            "detail": [
+                IsDict(
+                    {
+                        "type": "missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "Field required",
+                        "input": {
+                            "host": "testserver",
+                            "traceparent": "123",
+                            "x_tag": [],
+                            "accept": "*/*",
+                            "accept-encoding": "gzip, deflate",
+                            "connection": "keep-alive",
+                            "user-agent": "testclient",
+                            "save-data": "true",
+                            "if-modified-since": "yesterday",
+                            "x-tag": "two",
+                        },
+                    }
+                )
+                | IsDict(
+                    # TODO: remove when deprecating Pydantic v1
+                    {
+                        "type": "value_error.missing",
+                        "loc": ["header", "save_data"],
+                        "msg": "field required",
+                    }
+                )
+            ]
+        }
+    )
 
 
 def test_header_param_model_defaults(client: TestClient):
-    response = client.get("/items/", headers=[("save-data", "true")])
+    response = client.get("/items/", headers=[("save_data", "true")])
     assert response.status_code == 200
     assert response.json() == {
         "host": "testserver",
@@ -75,7 +117,14 @@ def test_header_param_model_invalid(client: TestClient):
                         "type": "missing",
                         "loc": ["header", "save_data"],
                         "msg": "Field required",
-                        "input": {"x_tag": [], "host": "testserver"},
+                        "input": {
+                            "x_tag": [],
+                            "host": "testserver",
+                            "accept": "*/*",
+                            "accept-encoding": "gzip, deflate",
+                            "connection": "keep-alive",
+                            "user-agent": "testclient",
+                        },
                     }
                 )
                 | IsDict(
@@ -93,29 +142,16 @@ def test_header_param_model_invalid(client: TestClient):
 
 def test_header_param_model_extra(client: TestClient):
     response = client.get(
-        "/items/", headers=[("save-data", "true"), ("tool", "plumbus")]
+        "/items/", headers=[("save_data", "true"), ("tool", "plumbus")]
     )
-    assert response.status_code == 422, response.text
+    assert response.status_code == 200, response.text
     assert response.json() == snapshot(
         {
-            "detail": [
-                IsDict(
-                    {
-                        "type": "extra_forbidden",
-                        "loc": ["header", "tool"],
-                        "msg": "Extra inputs are not permitted",
-                        "input": "plumbus",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "type": "value_error.extra",
-                        "loc": ["header", "tool"],
-                        "msg": "extra fields not permitted",
-                    }
-                )
-            ]
+            "host": "testserver",
+            "save_data": True,
+            "if_modified_since": None,
+            "traceparent": None,
+            "x_tag": [],
         }
     )
 
@@ -140,13 +176,13 @@ def test_openapi_schema(client: TestClient):
                                 "schema": {"type": "string", "title": "Host"},
                             },
                             {
-                                "name": "save-data",
+                                "name": "save_data",
                                 "in": "header",
                                 "required": True,
                                 "schema": {"type": "boolean", "title": "Save Data"},
                             },
                             {
-                                "name": "if-modified-since",
+                                "name": "if_modified_since",
                                 "in": "header",
                                 "required": False,
                                 "schema": IsDict(
@@ -182,7 +218,7 @@ def test_openapi_schema(client: TestClient):
                                 ),
                             },
                             {
-                                "name": "x-tag",
+                                "name": "x_tag",
                                 "in": "header",
                                 "required": False,
                                 "schema": {
