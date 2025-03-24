@@ -293,30 +293,53 @@ Now you can translate it all and see how it looks as you save the file.
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
+### Request a New Language
+
+Let's say that you want to add translations for a language that is not yet translated, not even some pages. For example, Latin.
+
+If there is no discussion for that language, you can start by requesting the new language. For that, you can follow these steps:
+
+1. Create a new discussion following the template.
+
+2. In the discussion, explain why you want to add the new language, what you plan to do, and how you plan to maintain it.
+
+3. Show community interest by:
+   * Getting at least 2 other native speakers to comment on the discussion expressing interest in helping with translations.
+
+**Important**: Wait for maintainer approval before starting any translation work.
+
+Approval typically requires:
+
+* Meeting the minimum number of interested contributors.
+* A clear plan for maintaining the translations.
+* Agreement from existing maintainers.
+
+This will help to prevent duplicate translation efforts, build a collaborative translation community, and ensure that the translations are maintained over time.
+
+Once your language request is approved, you can proceed with creating translations as described below.
+
 #### New Language
 
-Let's say that you want to add translations for a language that is not yet translated, not even some pages.
+Once you have the approval to start a new language, you can proceed. First, you need to know the 2-letter code for the language you want to translate.
 
-Let's say you want to add translations for Creole, and it's not yet there in the docs.
+Checking the link from above (List of ISO 639-1 codes), you can see that the 2-letter code for Latin is `la`.
 
-Checking the link from above, the code for "Creole" is `ht`.
-
-The next step is to run the script to generate a new translation directory:
+Now you can create a new directory for the new language, running the following script:
 
 <div class="termy">
 
 ```console
 // Use the command new-lang, pass the language code as a CLI argument
-$ python ./scripts/docs.py new-lang ht
+$ python ./scripts/docs.py new-lang la
 
-Successfully initialized: docs/ht
+Successfully initialized: docs/la
 ```
 
 </div>
 
-Now you can check in your code editor the newly created directory `docs/ht/`.
+Now you can check in your code editor the newly created directory `docs/la/`.
 
-That command created a file `docs/ht/mkdocs.yml` with a simple config that inherits everything from the `en` version:
+That command created a file `docs/la/mkdocs.yml` with a simple config that inherits everything from the `en` version:
 
 ```yaml
 INHERIT: ../en/mkdocs.yml
@@ -328,11 +351,11 @@ You could also simply create that file with those contents manually.
 
 ///
 
-That command also created a dummy file `docs/ht/index.md` for the main page, you can start by translating that one.
+That command also created a dummy file `docs/la/index.md` for the main page, you can start by translating that one.
 
 You can continue with the previous instructions for an "Existing Language" for that process.
 
-You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
+You can make the first pull request with those two files, `docs/la/mkdocs.yml` and `docs/la/index.md`. 🎉
 
 #### Preview the result
 
