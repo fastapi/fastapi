@@ -137,7 +137,7 @@ def read_url():
 
 ### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a>
 
-API 系統所需的主要功能之一是數據 "<abbr title="又稱為marshalling、轉換">serialization</abbr>" 這是指將數據從程式碼（如 Python）中取出，並轉換成可以透過網路傳送的格式。例如，將包含資料庫數據的物件轉換為 JSON 物件，或將 'datetime' 物件轉換為字串等。
+API 系統所需的主要功能之一是資料 "<abbr title="又稱為marshalling、轉換">序列化</abbr>" 這是指將數據從程式碼（如 Python）中取出，並轉換成可以透過網路傳送的格式。例如，將包含資料庫數據的物件轉換為 JSON 物件，或將 'datetime' 物件轉換為字串等。
 
 另一個 API 所需的重要功能是數據驗證，確保數據符合特定條件。例如，確保某個欄位是 int 類型，而不是隨機的字串。這對於接收的數據特別有用。
 
@@ -231,7 +231,7 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 /// check | 啟發了 **FastAPI**
 
-從原本的定義序列化與驗證的程式碼中，自動生成 OpemAPI schema。
+從原本的定義序列化與驗證的程式碼中，自動生成 OpenAPI schema。
 
 ///
 
@@ -307,7 +307,7 @@ Falcon 是另一個高效能的 Python 框架，設計簡潔，並作為 Hug 等
 
 此外，Molten 需要較為冗長的設定，且它是基於 WSGI（而非 ASGI），因此無法充分利用 Uvicorn、Starlette 和 Sanic 等工具所提供的高效能特性。
 
-Molten 的相依性注入系統要求先行註冊所有相依性，並且是根據所宣告的型別來解析相依性。因此，不允許有多個「元件」提供相同的型別。
+Molten 的依賴注入系統要求先行註冊所有相依性，並且是根據所宣告的型別來解析相依性。因此，不允許有多個「元件」提供相同的型別。
 
 路由定義則是集中在單一位置，並使用在其他地方定義的函式來處理請求，而非像 Flask 或 Starlette 那樣透過裝飾器（decorator）直接將路由與處理函式綁定在一起。這種方式與 Django 的作法較為相似，但它將程式碼中關聯性較高的部分分開處理，可能影響可讀性與維護性。
 
@@ -325,7 +325,7 @@ Hug 是最早使用 Python 型別提示（type hints） 來宣告 API 參數類�
 
 雖然 Hug 使用的是自訂型別而非標準 Python 型別，但這仍然是一大進步。
 
-Hug 也是最早支援 自動生成 API 架構（schema） 的框架之一，能夠以 JSON 格式定義整個 API。
+Hug 也是最早支援 自動生成 API 模式（schema） 的框架之一，能夠以 JSON 格式定義整個 API。
 
 然而，Hug 沒有基於 OpenAPI 或 JSON Schema 標準，這使得它較難與 Swagger UI 等其他工具整合。但即便如此，它仍然是一個相當創新的設計。
 
@@ -344,7 +344,7 @@ Hug 由 Timothy Crosley 創建，他同時也是 <a href="https://github.com/tim
 
 Hug 啟發了 APIStar 的部分設計，也與 APIStar 一起，成為當時最具潛力的框架之一。
 
-Hug 的創新理念對 FastAPI 產生了直接影響，特別是使用 Python 型別提示來宣告參數，以及自動生成 API 架構（schema）。
+Hug 的創新理念對 FastAPI 產生了直接影響，特別是使用 Python 型別提示來宣告參數，以及自動生成 API 模式（schema）。
 
 此外，Hug 也啟發了 **FastAPI** 在函式中宣告 `response` 參數，以設定 回應標頭（headers）與 cookies。
 
@@ -356,7 +356,7 @@ Hug 的創新理念對 FastAPI 產生了直接影響，特別是使用 Python �
 
 它是我見過最早使用 Python 型別提示（type hints）來宣告參數與請求的框架之一（比 NestJS 和 Molten 還早）。我大約在發現 Hug 的同時也接觸到了它。但 APIStar 採用了 OpenAPI 標準。
 
-它能夠自動進行資料驗證、資料序列化，並且根據相同的型別提示在多個地方生成 OpenAPI 架構（schema）。
+它能夠自動進行資料驗證、資料序列化，並且根據相同的型別提示在多個地方生成 OpenAPI 模式（schema）。
 
 不過，APIStar 的請求體（Body）架構定義並不像 Pydantic 那樣直接使用 Python 型別提示，而是更接近 Marshmallow。因此，編輯器的支援性相對較差，但即便如此，當時 APIStar 仍是最好的選擇。
 
@@ -422,7 +422,7 @@ Starlette 的特色:
 
 * 極佳的效能表現
 * 支援 WebSocket
-* 內部背景任務（In-process background tasks）
+* 執行中的背景任務（In-process background tasks）
 * 應用啟動與關閉事件（Startup & shutdown events）
 * 基於 HTTPX 的測試客戶端
 * 支援 CORS、GZip、靜態文件、串流回應
