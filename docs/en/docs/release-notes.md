@@ -9,6 +9,16 @@ hide:
 
 ### Docs
 
+* 📝 Add External Link: Taiwanese talk on FastAPI with observability . PR [#13527](https://github.com/fastapi/fastapi/pull/13527) by [@blueswen](https://github.com/blueswen).
+
+## 0.115.12
+
+### Fixes
+
+* 🐛 Fix `convert_underscores=False` for header Pydantic models. PR [#13515](https://github.com/fastapi/fastapi/pull/13515) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
 * 📝 Update `docs/en/docs/tutorial/middleware.md`. PR [#13444](https://github.com/fastapi/fastapi/pull/13444) by [@Rishat-F](https://github.com/Rishat-F).
 * 👥 Update FastAPI People - Experts. PR [#13493](https://github.com/fastapi/fastapi/pull/13493) by [@tiangolo](https://github.com/tiangolo).
 
