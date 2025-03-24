@@ -1,4 +1,4 @@
-### CORS (Cross-Origin اشتراک منابع)
+### CORS (اشتراک منابع Cross-Origin)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS یا "Cross-Origin"</a> به شرایطی اشاره دارد که در آن، یک فرانت‌اند که در مرورگر اجرا می‌شود، شامل کد **JavaScript** است که با یک بک‌اند ارتباط برقرار می‌کند، درحالی‌که بک‌اند در یک "مبدأ" متفاوت از فرانت‌اند قرار دارد.
 
