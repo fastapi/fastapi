@@ -293,7 +293,7 @@ Now you can translate it all and see how it looks as you save the file.
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
-### Request a New Language
+#### Request a New Language
 
 Let's say that you want to add translations for a language that is not yet translated, not even some pages. For example, Latin.
 
