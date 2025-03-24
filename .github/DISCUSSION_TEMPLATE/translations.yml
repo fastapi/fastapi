@@ -50,7 +50,7 @@ body:
       description: |
         You need at least 2 other native speakers to help with translations.
         Ask them to comment on this discussion expressing their commitment.
-        
+
         List their GitHub usernames below once they've commented.
       placeholder: |
         The following native speakers have committed to help:
