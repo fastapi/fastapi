@@ -20,19 +20,19 @@ Django 是最受歡迎的 Python 框架，並且廣受信任。它被用來構�
 
 它與關聯式資料庫（如 MySQL 或 PostgreSQL）的耦合度較高，因此將 NoSQL 資料庫（如 Couchbase、MongoDB、Cassandra 等）作為主要儲存引擎並不容易。
 
-Django 的設計初衷是為了在後端生成 HTML，而不是為了創建供現代前端（如 React、Vue.js 和 Angular）或其他系統 (類似 <abbr title="Internet of Things">IoT</abbr> devices）使用的 API。
+Django 的設計初衷是為了在後端生成 HTML，而不是為了建立供現代前端（如 React、Vue.js 和 Angular）或其他系統 (類似 <abbr title="Internet of Things">IoT</abbr> devices）使用的 API。
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
 
-Django REST Framework 是為了在 Django 的基礎上建構 Web API 而創建的靈活工具包，旨在提升其 API 功能。
+Django REST Framework 是為了在 Django 的基礎上建構 Web API 而建立的靈活工具包，旨在提升其 API 功能。
 
 它被許多公司使用，包括 Mozilla、Red Hat 和 Eventbrite。
 
-它是自動生成 API 文件的早期範例之一，而這正是啟發 「探索」FastAPI 的第一個想法之一。
+它是自動生成 API 文件的早期範例之一，而這正是啟發「探索」FastAPI 的第一個想法之一。
 
 /// note | 筆記
 
-Django REST Framework 是 Tom Christie 所發明. 他同時研發了 Starlette 和 Uvicorn, 兩者皆是基於 **FastAPI**.
+Django REST Framework 是 Tom Christie 所發明，他同時研發了 Starlette 和 Uvicorn，兩者皆是基於 **FastAPI**。
 
 ///
 
@@ -50,7 +50,7 @@ Flask 是一個「微框架」，它並未內建資料庫整合功能，也不�
 
 由於其設計極為簡潔，學習起來相對直觀，儘管其文件在某些部分仍需要點技術。
 
-它也常被用於其他不一定需要資料庫、用戶管理或 Django 中預建的眾多功能之應用程式。儘管這些功能中的許多可以透過插件來添加。
+它也常被用於其他不一定需要資料庫、用戶管理或 Django 中預建的眾多功能之應用程式。儘管這些功能中的許多可以透過擴充套件來添加。
 
 這種模組化的設計，以及作為一個可擴展以滿足特定需求的「微框架」，正是我希望保留的關鍵特性。
 
@@ -110,7 +110,7 @@ def read_url():
 
 我從 Django REST Framework 中想要的主要功能是自動生成 API 文件。
 
-後來我發現有一種標準可以用來記錄 API，使用 JSON（或 YAML，JSON 的擴展）來描述，稱為 Swagger。
+後來我發現有一種標準可以用來記錄 API，使用 JSON（或 YAML，為 JSON 的擴展）來描述，稱為 Swagger。
 
 而且已經有人為 Swagger API 創建了一個網頁用戶界面。因此，能夠為 API 生成 Swagger 文件，就能自動使用這個網頁用戶界面。
 
@@ -122,12 +122,12 @@ def read_url():
 
 採用並使用 API 規範的開放標準，而非自定義的架構。
 
-並整合基於標準的用戶界面工具：
+並整合基於標準的用戶介面工具：
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>
 * <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>
 
-這兩者之所以被選中，是因為它們相當流行且穩定，但若稍加搜尋，你會發現有數十種適用於 OpenAPI 的替代用戶界面（你也可以在 **FastAPI** 中使用這些工具）。
+這兩者之所以被選中，是因為它們相當流行且穩定，但若稍加搜尋，你會發現有數十種適用於 OpenAPI 的替代用戶介面（你也可以在 **FastAPI** 中使用這些工具）。
 
 ///
 
@@ -145,7 +145,7 @@ API 系統所需的主要功能之一是數據 "<abbr title="又稱為marshallin
 
 這些功能正是 Marshmallow 所提供的主要功能。它是一個非常優秀的函式庫，我之前也經常使用它。
 
-但 Marshmallow 是在 Python 類型提示（type hints）出現之前創建的。因此，要定義每個 <abbr title="數據應如何被組成的定義">schema</abbr> 你必須使用 Marshmallow 提供的特定工具和類別。
+但 Marshmallow 是在 Python 型別提示（type hints）出現之前建立的。因此，要定義每個 <abbr title="數據應如何被組成的定義">schema</abbr> 你必須使用 Marshmallow 提供的特定工具和類別。
 
 /// check | 啟發了 **FastAPI**
 
@@ -205,7 +205,7 @@ APISpec 是 Marshmallow 相同的開發團隊所創建。
 
 ### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a>
 
-這是一個 Flask 的插件，將 Webargs、Marshmallow 和 APISpec 整合在一起。
+這是一個 Flask 的擴充套件，將 Webargs、Marshmallow 和 APISpec 整合在一起。
 
 它利用 Webargs 和 Marshmallow 提供的數據驗證與解析功能，透過 APISpec 自動產生 OpenAPI 規範。
 
@@ -221,7 +221,7 @@ APISpec 是 Marshmallow 相同的開發團隊所創建。
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-這些全端應用程式生成器也是 [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}的基礎。
+這些全端應用程式生成器也是 [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank} 的基礎。
 
 /// info | 資訊
 
@@ -243,9 +243,9 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 它內建一套依賴注入（Dependency Injection）系統，靈感來自 Angular 2。與其他依賴注入系統一樣，它需要事先註冊「可注入項目（injectables）」，這導致程式碼變得更冗長且重複。
 
-因為參數是用 TypeScript 類型（類似 Python 型別註記）來描述的，因此編輯器支援相當良好。
+因為參數是用 TypeScript 型別（類似 Python 型別提示）來描述的，因此編輯器支援相當良好。
 
-但由於 TypeScript 類型在編譯後不會保留於 JavaScript，因此無法同時用來定義驗證、序列化與文件化。
+但由於 TypeScript 型別在編譯後不會保留於 JavaScript，因此無法同時用來定義驗證、序列化與文件化。
 
 由於這一點及其他設計考量，要實現驗證、序列化與自動模式生成，需要在許多地方添加裝飾器，這導致程式碼變得冗長。
 
@@ -253,7 +253,7 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 /// check | 啟發了 **FastAPI**
 
-使用 Python 類型來獲得更強大的編輯器支援。
+使用 Python 型別來獲得更強大的編輯器支援。
 
 設計一個強大的依賴注入系統，並設法減少程式碼重複。
 
@@ -261,13 +261,13 @@ Flask-apispec 由與 Marshmallow 相同的開發團隊所創建。
 
 ### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a>
 
-這是一個基於 `asyncio` 極快的python框架，與Flask非常相似。
+這是一個基於 `asyncio` 極快的 Python 框架，與 Flask 非常相似。
 
 /// note | 技術層面細節
 
-它使用了 <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> 而非python預設的`asyncio` loop。這也是讓它速度之快的原因。
+它使用了 <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> 而非 Python 預設的 `asyncio` loop。這也是讓它速度之快的原因。
 
-它很明顯的啟發了 Uvicorn 和 Starlette，兩者在效能測試速度皆優於Sanic。
+它很明顯的啟發了 Uvicorn 和 Starlette，兩者在效能測試速度皆優於 Sanic。
 
 ///
 
@@ -291,7 +291,7 @@ Falcon 是另一個高效能的 Python 框架，設計簡潔，並作為 Hug 等
 
 尋找方法以獲得優秀的效能。
 
-與 Hug 一樣（因為 Hug 是基於 Falcon 的），啟發 FastAPI 讓函式可選擇性地使用 response 參數來設置標頭、cookie 和狀態代碼。
+與 Hug 一樣（因為 Hug 是基於 Falcon 的），啟發 FastAPI 讓函式可選擇性地使用 response 參數來設置標頭、cookie 和狀態碼。
 
 ///
 
@@ -301,7 +301,7 @@ Falcon 是另一個高效能的 Python 框架，設計簡潔，並作為 Hug 等
 
 * 基於 Python 型別註解（type hints）。
 * 透過型別自動執行驗證與文件生成。
-* 內建相依性注入（Dependency Injection）系統。
+* 內建依賴注入系統。
 
 然而，Molten 並未採用像 Pydantic 這樣的第三方資料驗證、序列化與文件生成工具，而是內建了一套自己的解決方案。因此，定義的資料型別無法像 Pydantic 那樣輕鬆地被重複使用。
 
@@ -360,7 +360,7 @@ Hug 的創新理念對 FastAPI 產生了直接影響，特別是使用 Python �
 
 不過，APIStar 的請求體（Body）架構定義並不像 Pydantic 那樣直接使用 Python 型別提示，而是更接近 Marshmallow。因此，編輯器的支援性相對較差，但即便如此，當時 APIStar 仍是最好的選擇。
 
-當時，它的效能測試（Benchmark）表現最佳，只有 Starlette 能超越它。
+當時，它的基準測試（Benchmark）表現最佳，只有 Starlette 能超越它。
 
 最初，它沒有自動生成 API 文件的 Web UI，但我知道可以手動加入 Swagger UI 來補足這項功能。
 
@@ -378,7 +378,7 @@ APIStar 是由 Tom Christie 創建的。他同時也是以下專案的作者：
 
 * Django REST Framework
 * Starlette (**FastAPI** 的基礎)
-* Uvicorn (被Starlette 和 **FastAPI** 使用)
+* Uvicorn (被 Starlette 和 **FastAPI** 使用)
 
 ///
 
@@ -454,7 +454,7 @@ FastAPI 使用 ASGI 來處理所有核心的 Web 功能，並在其基礎上增�
 
 其 `FastAPI` 類別直接繼承自 `Starlette`類別。
 
-因此，任何可以在 Starlette 上做的事情，都可以直接在 **FastAPI** 上做，因為 FastAPI 本質上就是 增強版的 Starlette。
+因此，任何可以在 Starlette 上做的事情，都可以直接在 **FastAPI** 上做，因為 FastAPI 本質上就是增強版的 Starlette。
 
 ///
 
@@ -462,7 +462,7 @@ FastAPI 使用 ASGI 來處理所有核心的 Web 功能，並在其基礎上增�
 
 Uvicorn 是一款極速的 ASGI 伺服器，基於 uvloop 和 httptools 架構而成。
 
-它並不是一個網頁框架，而是一個伺服器。例如，它不提供路徑導向的路由功能，這部分需要像Starlette 或 **FastAPI** 這類框架來實現。
+它並不是一個網頁框架，而是一個伺服器。例如，它不提供路徑導向的路由功能，這部分需要像 Starlette 或 **FastAPI** 這類框架來實現。
 
 
 Uvicorn 是 Starlette 和 **FastAPI** 官方推薦的伺服器。
@@ -471,12 +471,12 @@ Uvicorn 是 Starlette 和 **FastAPI** 官方推薦的伺服器。
 
 運行 **FastAPI** 應用程式的主要網頁伺服器。
 
-此外，你還可以使用 `--workers` 指令選項，啟動非同步的多進程伺服器，以提升效能。
+此外，你還可以使用 `--workers` 指令選項，啟動非同步的多行程伺服器，以提升效能。
 
-更多詳細資訊請參考 [Deployment](deployment/index.md){.internal-link target=_blank} 章節.
+更多詳細資訊請參考[部署](deployment/index.md){.internal-link target=_blank}章節。
 
 ///
 
 ## 效能測試與速度
 
-如需瞭解、比較並觀察 Uvicorn, Starlette 和 FastAPI，請前往 [Benchmarks](benchmarks.md){.internal-link target=_blank}.
+如需瞭解、比較並觀察 Uvicorn, Starlette 和 FastAPI，請前往[基準測試](benchmarks.md){.internal-link target=_blank}.
