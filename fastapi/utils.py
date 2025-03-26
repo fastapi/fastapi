@@ -138,7 +138,7 @@ def create_cloned_field(
     new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
     new_field.default = field.default  # type: ignore[misc]
     new_field.required = field.required  # type: ignore[misc]
-    new_field.model_config = field.model_config  # type: ignore[attr-defined]
+    new_field.model_config = field.model_config
     new_field.field_info = field.field_info
     new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
     new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
