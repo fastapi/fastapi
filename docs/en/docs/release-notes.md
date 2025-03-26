@@ -7,6 +7,14 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add External Link: Taiwanese talk on FastAPI with observability . PR [#13527](https://github.com/fastapi/fastapi/pull/13527) by [@blueswen](https://github.com/blueswen).
+
+### Translations
+
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/first-steps.md`. PR [#13348](https://github.com/fastapi/fastapi/pull/13348) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+
 ## 0.115.12
 
 ### Fixes
