@@ -9,6 +9,26 @@ hide:
 
 ### Docs
 
+* 📝 Add External Link: Taiwanese talk on FastAPI with observability . PR [#13527](https://github.com/fastapi/fastapi/pull/13527) by [@blueswen](https://github.com/blueswen).
+
+### Translations
+
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/first-steps.md`. PR [#13348](https://github.com/fastapi/fastapi/pull/13348) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+
+### Internal
+
+* 🔧 Clean up `docs/en/mkdocs.yml` configuration file. PR [#13542](https://github.com/fastapi/fastapi/pull/13542) by [@svlandeg](https://github.com/svlandeg).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12986](https://github.com/fastapi/fastapi/pull/12986) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.115.12
+
+### Fixes
+
+* 🐛 Fix `convert_underscores=False` for header Pydantic models. PR [#13515](https://github.com/fastapi/fastapi/pull/13515) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update `docs/en/docs/tutorial/middleware.md`. PR [#13444](https://github.com/fastapi/fastapi/pull/13444) by [@Rishat-F](https://github.com/Rishat-F).
 * 👥 Update FastAPI People - Experts. PR [#13493](https://github.com/fastapi/fastapi/pull/13493) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations

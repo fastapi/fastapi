@@ -15,7 +15,7 @@ A "middleware" is a function that works with every **request** before it is proc
 
 If you have dependencies with `yield`, the exit code will run *after* the middleware.
 
-If there were any background tasks (documented later), they will run *after* all the middleware.
+If there were any background tasks (covered in the [Background Tasks](background-tasks.md){.internal-link target=_blank} section, you will see it later), they will run *after* all the middleware.
 
 ///
 
