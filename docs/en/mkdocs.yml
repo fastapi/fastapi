@@ -351,6 +351,8 @@ extra:
     name: pl - Polski
   - link: /pt/
     name: pt - português
+  - link: /ro/
+    name: ro - Română
   - link: /ru/
     name: ru - русский язык
   - link: /tr/
