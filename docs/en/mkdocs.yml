@@ -6,7 +6,7 @@ theme:
   name: material
   custom_dir: ../en/overrides
   palette:
-  - media: '(prefers-color-scheme)'
+  - media: (prefers-color-scheme)
     toggle:
       icon: material/lightbulb-auto
       name: Switch to light mode
