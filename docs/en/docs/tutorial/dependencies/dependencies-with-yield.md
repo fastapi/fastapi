@@ -117,6 +117,10 @@ If you catch an exception using `except` in a dependency with `yield` and you do
 
 {* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
 
+The same applies for an `async` dependency with `yield`:
+
+{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[13:14] *}
+
 In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
 
 ### Always `raise` in Dependencies with `yield` and `except`
@@ -127,7 +131,11 @@ You can re-raise the same exception using `raise`:
 
 {* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
-Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
+The same applies for an `async` dependency with `yield`:
+
+{* ../../docs_src/dependencies/tutorial008f_an_py39.py hl[15] *}
+
+Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` or `OSError` in the logs. 😎
 
 ## Execution of dependencies with `yield`
 
