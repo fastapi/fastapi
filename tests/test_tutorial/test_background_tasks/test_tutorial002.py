@@ -1,6 +1,4 @@
 import importlib
-import os
-from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -25,10 +23,7 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-def test(client: TestClient):
-    log = Path("log.txt")
-    if log.is_file():
-        os.remove(log)  # pragma: no cover
+def test(client: TestClient, path_to_log_file):
     response = client.post("/send-notification/foo@example.com?q=some-query")
     assert response.status_code == 200, response.text
     assert response.json() == {"message": "Message sent"}
