@@ -71,11 +71,11 @@ They are handled automatically by **FastAPI** and converted to JSON.
 
 ## Add custom headers
 
-There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
+There are some situations in which it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
 
 You probably won't need to use it directly in your code.
 
-But in case you needed it for an advanced scenario, you can add custom headers:
+But in case you need it for an advanced scenario, you can add custom headers:
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
