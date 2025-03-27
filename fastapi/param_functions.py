@@ -2295,7 +2295,8 @@ def Security(  # noqa: N802
         Doc(
             """
             OAuth2 scopes required for the *path operation* that uses this Security
-            dependency.
+            dependency. If a string is given, the list of scopes will have only one scope
+            defined by the string value.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
             intentionally vague and interpretable. It normally refers to permissions,
