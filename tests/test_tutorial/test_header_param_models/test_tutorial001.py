@@ -77,6 +77,8 @@ def test_header_param_model_invalid(client: TestClient):
                             "accept-encoding": "gzip, deflate",
                             "connection": "keep-alive",
                             "user-agent": "testclient",
+                            "if_modified_since": None,
+                            "traceparent": None,
                         },
                     }
                 )
