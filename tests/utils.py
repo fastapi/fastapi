@@ -18,17 +18,17 @@ def pydantic_snapshot(
     v1: Snapshot,
 ):
     """
-    this function should be used like:
+    This function should be used like this:
 
     >>> assert value == pydantic_snapshot(v2=snapshot(),v1=snapshot())
 
     inline-snapshot will create the snapshots when pytest is executed for each versions of pydantic.
 
-    It is also possible to use the function inside snapshots for version specific values.
+    It is also possible to use the function inside snapshots for version-specific values.
 
     >>> assert value == snapshot({
         "data": "some data",
-        "vesion_specific": pydantic_snapshot(v2=snapshot(),v1=snapshot()),
+        "version_specific": pydantic_snapshot(v2=snapshot(),v1=snapshot()),
     })
     """
     return v2 if PYDANTIC_V2 else v1
