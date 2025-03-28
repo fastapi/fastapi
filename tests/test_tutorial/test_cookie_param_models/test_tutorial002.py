@@ -5,7 +5,13 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
+from tests.utils import (
+    needs_py39,
+    needs_py310,
+    needs_pydanticv1,
+    needs_pydanticv2,
+    pydantic_snapshot,
+)
 
 
 @pytest.fixture(
@@ -59,8 +65,8 @@ def test_cookie_param_model_defaults(client: TestClient):
 def test_cookie_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == snapshot(
-        IsDict(
+    assert response.json() == pydantic_snapshot(
+        v2=snapshot(
             {
                 "detail": [
                     {
@@ -71,9 +77,8 @@ def test_cookie_param_model_invalid(client: TestClient):
                     }
                 ]
             }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
+        ),
+        v1=snapshot(
             {
                 "detail": [
                     {
@@ -83,7 +88,7 @@ def test_cookie_param_model_invalid(client: TestClient):
                     }
                 ]
             }
-        )
+        ),
     )
 
 
@@ -144,18 +149,23 @@ def test_openapi_schema(client: TestClient):
                                 "name": "fatebook_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "Fatebook Tracker",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "type": "string",
-                                        "title": "Fatebook Tracker",
-                                    }
+                                "schema": pydantic_snapshot(
+                                    v2=snapshot(
+                                        {
+                                            "anyOf": [
+                                                {"type": "string"},
+                                                {"type": "null"},
+                                            ],
+                                            "title": "Fatebook Tracker",
+                                        }
+                                    ),
+                                    v1=snapshot(
+                                        # TODO: remove when deprecating Pydantic v1
+                                        {
+                                            "type": "string",
+                                            "title": "Fatebook Tracker",
+                                        }
+                                    ),
                                 ),
                             },
                             {
