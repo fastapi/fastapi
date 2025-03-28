@@ -1,6 +1,6 @@
 # 手动运行服务器
 
-## Use the `fastapi run` Command
+## 使用 `fastapi run` 命令
 
 简而言之，使用 `fastapi run` 来运行您的 FastAPI 应用程序：
 
