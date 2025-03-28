@@ -55,7 +55,7 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "content": {"application/json": {"schema": {}}},
-                            "description": "Successful " "Response",
+                            "description": "Successful Response",
                         }
                     },
                     "summary": "A",
@@ -67,7 +67,7 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "content": {"application/json": {"schema": {}}},
-                            "description": "Successful " "Response",
+                            "description": "Successful Response",
                         }
                     },
                     "summary": "B",
