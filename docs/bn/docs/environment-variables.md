@@ -19,7 +19,7 @@
 <div class="termy">
 
 ```console
-// আপনি চাইলে MY_NAME নামে একটি env var তৈরি করতে পারেন 
+// আপনি চাইলে MY_NAME নামে একটি env var তৈরি করতে পারেন
 $ export MY_NAME="Wade Wilson"
 
 // তারপরে এটিকে চাইলে অন্যান্য প্রোগ্রামে ব্যবহার করতে পারেন
