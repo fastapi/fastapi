@@ -14,7 +14,7 @@ You can learn more about [FastAPI versions and how to pin and upgrade them](http
 
 ## Reporting a Vulnerability
 
-If you think you found a vulnerability, and even if you are not sure about it, please report it right away by sending an email to: security@tiangolo.com. Please try to be as explicit as possible, describing all the steps and example code to reproduce the security issue.
+If you think you found a vulnerability, and even if you are not sure about it, please report it right away by sending an email to: security@tiangolo.com. Please provide as much detail as possible, including steps and example code to help reproduce the issue.
 
 I (the author, [@tiangolo](https://twitter.com/tiangolo)) will review it thoroughly and get back to you.
 
