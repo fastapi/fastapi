@@ -140,13 +140,13 @@ def test_openapi_schema(client: TestClient):
                                 "schema": {"type": "string", "title": "Host"},
                             },
                             {
-                                "name": "save_data",
+                                "name": "save-data",
                                 "in": "header",
                                 "required": True,
                                 "schema": {"type": "boolean", "title": "Save Data"},
                             },
                             {
-                                "name": "if_modified_since",
+                                "name": "if-modified-since",
                                 "in": "header",
                                 "required": False,
                                 "schema": IsDict(
@@ -182,7 +182,7 @@ def test_openapi_schema(client: TestClient):
                                 ),
                             },
                             {
-                                "name": "x_tag",
+                                "name": "x-tag",
                                 "in": "header",
                                 "required": False,
                                 "schema": {
