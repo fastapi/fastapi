@@ -98,7 +98,7 @@ Você provavelmente pode clicar com o botão direito em cada link e selecionar u
 
 E o **ReDoc** usa os arquivos:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2.4.0/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 Depois disso, sua estrutura de arquivos deve se parecer com:
 

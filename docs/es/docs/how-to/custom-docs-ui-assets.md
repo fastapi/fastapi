@@ -98,7 +98,7 @@ Probablemente puedas hacer clic derecho en cada enlace y seleccionar una opción
 
 Y **ReDoc** utiliza el archivo:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2.4.0/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 Después de eso, tu estructura de archivos podría verse así:
 
