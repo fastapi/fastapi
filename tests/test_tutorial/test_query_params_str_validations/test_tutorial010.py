@@ -1,13 +1,29 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
+from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py39, needs_py310
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.query_params_str_validations.tutorial010 import app
 
-    client = TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial010",
+        pytest.param("tutorial010_py310", marks=needs_py310),
+        "tutorial010_an",
+        pytest.param("tutorial010_an_py39", marks=needs_py39),
+        pytest.param("tutorial010_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(
+        f"docs_src.query_params_str_validations.{request.param}"
+    )
+
+    client = TestClient(mod.app)
     return client
 
 
@@ -107,6 +123,12 @@ def test_openapi_schema(client: TestClient):
                                     ],
                                     "title": "Query string",
                                     "description": "Query string for the items to search in the database that have a good match",
+                                    # See https://github.com/pydantic/pydantic/blob/80353c29a824c55dea4667b328ba8f329879ac9f/tests/test_fastapi.sh#L25-L34.
+                                    **(
+                                        {"deprecated": True}
+                                        if PYDANTIC_VERSION_MINOR_TUPLE >= (2, 10)
+                                        else {}
+                                    ),
                                 }
                             )
                             | IsDict(

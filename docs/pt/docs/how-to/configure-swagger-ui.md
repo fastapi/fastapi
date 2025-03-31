@@ -1,6 +1,6 @@
 # Configurar Swagger UI
 
-Você pode configurar alguns <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">parâmetros extras da UI do Swagger</a>.
+Você pode configurar alguns <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">parâmetros extras da UI do Swagger</a>.
 
 Para configurá-los, passe o argumento `swagger_ui_parameters` ao criar o objeto de aplicativo `FastAPI()` ou para a função `get_swagger_ui_html()`.
 
@@ -18,9 +18,7 @@ Sem alterar as configurações, o destaque de sintaxe é habilitado por padrão:
 
 Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
-```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial001.py!}
-```
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...e então o Swagger UI não mostrará mais o destaque de sintaxe:
 
@@ -30,9 +28,7 @@ Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
 Da mesma forma que você pode definir o tema de destaque de sintaxe com a chave `"syntaxHighlight.theme"` (observe que há um ponto no meio):
 
-```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial002.py!}
-```
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 Essa configuração alteraria o tema de cores de destaque de sintaxe:
 
@@ -44,21 +40,17 @@ O FastAPI inclui alguns parâmetros de configuração padrão apropriados para a
 
 Inclui estas configurações padrão:
 
-```Python
-{!../../../fastapi/openapi/docs.py[ln:7-23]!}
-```
+{* ../../fastapi/openapi/docs.py ln[7:23] *}
 
 Você pode substituir qualquer um deles definindo um valor diferente no argumento `swagger_ui_parameters`.
 
 Por exemplo, para desabilitar `deepLinking` você pode passar essas configurações para `swagger_ui_parameters`:
 
-```Python hl_lines="3"
-{!../../../docs_src/configure_swagger_ui/tutorial003.py!}
-```
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## Outros parâmetros da UI do Swagger
 
-Para ver todas as outras configurações possíveis que você pode usar, leia a <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration" class="external-link" target="_blank">documentação oficial dos parâmetros da UI do Swagger</a>.
+Para ver todas as outras configurações possíveis que você pode usar, leia a <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">documentação oficial dos parâmetros da UI do Swagger</a>.
 
 ## Configurações somente JavaScript
 
