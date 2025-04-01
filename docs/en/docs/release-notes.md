@@ -9,10 +9,15 @@ hide:
 
 ### Docs
 
+* ✏️ Fix talk information typo. PR [#13544](https://github.com/fastapi/fastapi/pull/13544) by [@blueswen](https://github.com/blueswen).
 * 📝 Add External Link: Taiwanese talk on FastAPI with observability . PR [#13527](https://github.com/fastapi/fastapi/pull/13527) by [@blueswen](https://github.com/blueswen).
 
 ### Translations
 
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/header-param-models.md`. PR [#13526](https://github.com/fastapi/fastapi/pull/13526) by [@minaton-ru](https://github.com/minaton-ru).
+* 🌐 Update Chinese translation for `docs/zh/docs/tutorial/index.md`. PR [#13374](https://github.com/fastapi/fastapi/pull/13374) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+* 🌐 Update Chinese translation for `docs/zh/docs/deployment/manually.md`. PR [#13324](https://github.com/fastapi/fastapi/pull/13324) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
+* 🌐 Update Chinese translation for `docs/zh/docs/deployment/server-workers.md`. PR [#13292](https://github.com/fastapi/fastapi/pull/13292) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/first-steps.md`. PR [#13348](https://github.com/fastapi/fastapi/pull/13348) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 
 ### Internal
