@@ -14,3 +14,17 @@ updates:
       interval: daily
     commit-message:
       prefix: ⬆
+  # npm
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: ⬆
+  # Docker
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ⬆
