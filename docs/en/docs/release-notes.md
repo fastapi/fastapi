@@ -22,6 +22,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI GitHub topic repositories. PR [#13565](https://github.com/fastapi/fastapi/pull/13565) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#13559](https://github.com/fastapi/fastapi/pull/13559) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#13558](https://github.com/fastapi/fastapi/pull/13558) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump dirty-equals from 0.8.0 to 0.9.0. PR [#13561](https://github.com/fastapi/fastapi/pull/13561) by [@dependabot[bot]](https://github.com/apps/dependabot).
