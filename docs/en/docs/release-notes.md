@@ -22,6 +22,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13558](https://github.com/fastapi/fastapi/pull/13558) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump dirty-equals from 0.8.0 to 0.9.0. PR [#13561](https://github.com/fastapi/fastapi/pull/13561) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Clean up `docs/en/mkdocs.yml` configuration file. PR [#13542](https://github.com/fastapi/fastapi/pull/13542) by [@svlandeg](https://github.com/svlandeg).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#12986](https://github.com/fastapi/fastapi/pull/12986) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
