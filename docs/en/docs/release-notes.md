@@ -22,6 +22,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#13568](https://github.com/fastapi/fastapi/pull/13568) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#13565](https://github.com/fastapi/fastapi/pull/13565) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#13559](https://github.com/fastapi/fastapi/pull/13559) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#13558](https://github.com/fastapi/fastapi/pull/13558) by [@tiangolo](https://github.com/tiangolo).
