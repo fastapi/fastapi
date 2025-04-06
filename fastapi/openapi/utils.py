@@ -181,7 +181,9 @@ def get_openapi_operation_request_body(
         return None
 
     if not isinstance(body_field, ModelField):
-        raise TypeError(f"Expected body_field to be a ModelField, got {type(body_field).__name__}")
+        raise TypeError(
+            f"Expected body_field to be a ModelField, got {type(body_field).__name__}"
+        )
 
     body_schema = get_schema_from_model_field(
         field=body_field,
@@ -466,7 +468,9 @@ def get_fields_from_routes(
         ):
             if route.body_field:
                 if not isinstance(route.body_field, ModelField):
-                    raise TypeError("A request body must be a Pydantic ModelField instance")
+                    raise TypeError(
+                        "A request body must be a Pydantic ModelField instance"
+                    )
 
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:

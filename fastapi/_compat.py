@@ -264,7 +264,9 @@ if PYDANTIC_V2:
         origin_type = (
             get_origin(field.field_info.annotation) or field.field_info.annotation
         )
-        if not issubclass(origin_type, sequence_types) or not isinstance(origin_type, type):
+        if not issubclass(origin_type, sequence_types) or not isinstance(
+            origin_type, type
+        ):
             raise TypeError(f"Field {field.name} is not a supported sequence type")
         return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 

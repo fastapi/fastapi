@@ -108,7 +108,9 @@ def ensure_multipart_is_installed() -> None:
 
     try:
         # __version__ is available in both multiparts, and can be mocked
-        from multipart import __version__ as multipart_version  # type: ignore[no-redef,import-untyped]
+        from multipart import (
+            __version__ as multipart_version,  # type: ignore[no-redef,import-untyped]
+        )
     except ImportError:
         logger.error(multipart_not_installed_error)
         raise RuntimeError(multipart_not_installed_error) from None
@@ -118,7 +120,9 @@ def ensure_multipart_is_installed() -> None:
         raise RuntimeError(multipart_incorrect_install_error)
 
     try:
-        from multipart.multipart import parse_options_header  # type: ignore[import-untyped]
+        from multipart.multipart import (
+            parse_options_header,  # type: ignore[import-untyped]
+        )
     except ImportError:
         logger.error(multipart_incorrect_install_error)
         raise RuntimeError(multipart_incorrect_install_error) from None
@@ -132,7 +136,9 @@ def get_param_sub_dependant(
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     if depends.dependency is None:
-        raise ValueError(f"`depends.dependency` must be set for parameter '{param_name}'")
+        raise ValueError(
+            f"`depends.dependency` must be set for parameter '{param_name}'"
+        )
 
     return get_sub_dependant(
         depends=depends,
@@ -314,7 +320,9 @@ def get_dependant(
             dependant=dependant,
         ):
             if param_details.field is not None:
-                raise ValueError(f"Cannot specify multiple FastAPI annotations for {param_name!r}")
+                raise ValueError(
+                    f"Cannot specify multiple FastAPI annotations for {param_name!r}"
+                )
 
             continue
 
@@ -400,7 +408,10 @@ def analyze_param(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
 
-            if field_info.default is not Undefined and field_info.default is not RequiredParam:
+            if (
+                field_info.default is not Undefined
+                and field_info.default is not RequiredParam
+            ):
                 raise ValueError(
                     f"`{field_info.__class__.__name__}` default value cannot be set in "
                     f"`Annotated` for {param_name!r}. Set the default value with `=` instead."
@@ -464,7 +475,9 @@ def analyze_param(
             raise ValueError(f"Cannot specify `Depends` for type {type_annotation!r}")
 
         if field_info is not None:
-            raise ValueError(f"Cannot specify FastAPI annotation for type {type_annotation!r}")
+            raise ValueError(
+                f"Cannot specify FastAPI annotation for type {type_annotation!r}"
+            )
 
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
@@ -520,16 +533,18 @@ def analyze_param(
         )
         if is_path_param:
             if not is_scalar_field(field=field):
-                raise TypeError("Path parameters must be of one of the supported scalar types")
+                raise TypeError(
+                    "Path parameters must be of one of the supported scalar types"
+                )
 
         elif isinstance(field_info, params.Query):
             if not (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or (
-                    isinstance(field.type_, type) and
-                    issubclass(field.type_, BaseModel) and
-                    getattr(field, "shape", 1) == 1  # shape check for Pydantic v1
+                    isinstance(field.type_, type)
+                    and issubclass(field.type_, BaseModel)
+                    and getattr(field, "shape", 1) == 1  # shape check for Pydantic v1
                 )
             ):
                 raise TypeError(
@@ -894,7 +909,9 @@ async def _extract_form_body(
         ):
             # For types
             if not isinstance(value, sequence_types):
-                raise TypeError(f"Expected a sequence type (e.g., list, tuple), got {type(value).__name__}")
+                raise TypeError(
+                    f"Expected a sequence type (e.g., list, tuple), got {type(value).__name__}"
+                )
 
             results: List[Union[bytes, str]] = []
 
@@ -925,7 +942,9 @@ async def request_body_to_args(
     errors: List[Dict[str, Any]] = []
 
     if not body_fields:
-        raise ValueError("request_body_to_args() should be called with at least one field")
+        raise ValueError(
+            "request_body_to_args() should be called with at least one field"
+        )
 
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]

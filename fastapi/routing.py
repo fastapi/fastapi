@@ -380,7 +380,7 @@ def get_websocket_app(
             if solved_result.errors:
                 raise WebSocketRequestValidationError(
                     _normalize_errors(solved_result.errors)
-                )    
+                )
             if dependant.call is None:
                 raise ValueError("dependant.call must be a callable function")
             await dependant.call(**solved_result.values)
@@ -508,7 +508,9 @@ class APIRoute(routing.Route):
         self.status_code = status_code
         if self.response_model:
             if not is_body_allowed_for_status_code(status_code):
-                raise ValueError(f"Status code {status_code} must not have a response body")
+                raise ValueError(
+                    f"Status code {status_code} must not have a response body"
+                )
             response_name = "Response_" + self.unique_id
             self.response_field = create_model_field(
                 name=response_name,
@@ -541,7 +543,9 @@ class APIRoute(routing.Route):
             model = response.get("model")
             if model:
                 if not is_body_allowed_for_status_code(status_code):
-                    raise ValueError(f"Status code {status_code} must not have a response body")
+                    raise ValueError(
+                        f"Status code {status_code} must not have a response body"
+                    )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -850,7 +854,9 @@ class APIRouter(routing.Router):
             if not prefix.startswith("/"):
                 raise ValueError("A path prefix must start with '/'")
             if prefix.endswith("/"):
-                raise ValueError("A path prefix must not end with '/', as the routes will start with '/'")
+                raise ValueError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
 
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
@@ -1263,7 +1269,9 @@ class APIRouter(routing.Router):
             if not prefix.startswith("/"):
                 raise ValueError("A path prefix must start with '/'")
             if prefix.endswith("/"):
-                raise ValueError("A path prefix must not end with '/', as the routes will start with '/'")
+                raise ValueError(
+                    "A path prefix must not end with '/', as the routes will start with '/'"
+                )
 
         else:
             for r in router.routes:

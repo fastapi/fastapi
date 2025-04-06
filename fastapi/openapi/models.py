@@ -15,7 +15,7 @@ from typing_extensions import Annotated, Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
 try:
-    import email_validator # noqa: F401
+    import email_validator  # noqa: F401
     from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
