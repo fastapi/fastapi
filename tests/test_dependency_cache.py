@@ -48,6 +48,17 @@ async def get_scope_counter(
     }
 
 
+@app.get("/scope-sub-counter")
+async def get_scope_counter_sub(
+    count: int = Security(dep_counter),
+    scope_subcount: int = Security(super_dep, scopes=["scope"]),
+):
+    return {
+        "counter": count,
+        "scope_counter": scope_subcount,
+    }
+
+
 client = TestClient(app)
 
 
@@ -89,3 +100,13 @@ def test_security_cache():
     response = client.get("/scope-counter/")
     assert response.status_code == 200, response.text
     assert response.json() == {"counter": 3, "scope_counter_1": 4, "scope_counter_2": 4}
+
+
+def test_security_cache_sub():
+    counter_holder["counter"] = 0
+    response = client.get("/scope-sub-counter/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 1, "scope_counter": 1}
+    response = client.get("/scope-sub-counter/")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"counter": 2, "scope_counter": 2}
