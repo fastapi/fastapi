@@ -206,7 +206,8 @@ async def run_endpoint_function(
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
-    assert dependant.call is not None, "dependant.call must be a function"
+    if dependant.call is None:
+        raise ValueError("dependant.call must be a callable function")
 
     if is_coroutine:
         return await dependant.call(**values)
@@ -229,7 +230,8 @@ def get_request_handler(
     dependency_overrides_provider: Optional[Any] = None,
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-    assert dependant.call is not None, "dependant.call must be a function"
+    if dependant.call is None:
+        raise ValueError("dependant.call must be a callable function")
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
@@ -378,8 +380,9 @@ def get_websocket_app(
             if solved_result.errors:
                 raise WebSocketRequestValidationError(
                     _normalize_errors(solved_result.errors)
-                )
-            assert dependant.call is not None, "dependant.call must be a function"
+                )    
+            if dependant.call is None:
+                raise ValueError("dependant.call must be a callable function")
             await dependant.call(**solved_result.values)
 
     return app
@@ -504,9 +507,8 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(status_code), (
-                f"Status code {status_code} must not have a response body"
-            )
+            if not is_body_allowed_for_status_code(status_code):
+                raise ValueError(f"Status code {status_code} must not have a response body")
             response_name = "Response_" + self.unique_id
             self.response_field = create_model_field(
                 name=response_name,
@@ -534,12 +536,12 @@ class APIRoute(routing.Route):
         self.description = self.description.split("\f")[0].strip()
         response_fields = {}
         for additional_status_code, response in self.responses.items():
-            assert isinstance(response, dict), "An additional response must be a dict"
+            if not isinstance(response, dict):
+                raise TypeError("An additional response must be a dict")
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(additional_status_code), (
-                    f"Status code {additional_status_code} must not have a response body"
-                )
+                if not is_body_allowed_for_status_code(status_code):
+                    raise ValueError(f"Status code {status_code} must not have a response body")
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -550,7 +552,9 @@ class APIRoute(routing.Route):
         else:
             self.response_fields = {}
 
-        assert callable(endpoint), "An endpoint must be a callable"
+        if not callable(endpoint):
+            raise TypeError("An endpoint must be a callable")
+
         self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
@@ -843,10 +847,11 @@ class APIRouter(routing.Router):
             lifespan=lifespan,
         )
         if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith("/"), (
-                "A path prefix must not end with '/', as the routes will start with '/'"
-            )
+            if not prefix.startswith("/"):
+                raise ValueError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise ValueError("A path prefix must not end with '/', as the routes will start with '/'")
+
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -1255,10 +1260,11 @@ class APIRouter(routing.Router):
         ```
         """
         if prefix:
-            assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith("/"), (
-                "A path prefix must not end with '/', as the routes will start with '/'"
-            )
+            if not prefix.startswith("/"):
+                raise ValueError("A path prefix must start with '/'")
+            if prefix.endswith("/"):
+                raise ValueError("A path prefix must not end with '/', as the routes will start with '/'")
+
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009

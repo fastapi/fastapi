@@ -90,29 +90,38 @@ multipart_incorrect_install_error = (
 
 def ensure_multipart_is_installed() -> None:
     try:
-        from python_multipart import __version__
+        from python_multipart import __version__ as python_multipart_version
 
         # Import an attribute that can be mocked/deleted in testing
-        assert __version__ > "0.0.12"
-    except (ImportError, AssertionError):
-        try:
-            # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__  # type: ignore[no-redef,import-untyped]
+        if python_multipart_version <= "0.0.12":
+            raise RuntimeError(
+                f"Incompatible 'python-multipart' version: {python_multipart_version}. "
+                "Please upgrade to a version > 0.0.12"
+            )
+        return
 
-            assert __version__
-            try:
-                # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]
-                    parse_options_header,
-                )
+    except ImportError:
+        pass  # fallback to trying multipart
+    except Exception as e:
+        logger.error("Error checking 'python-multipart' version: %s", e)
+        raise
 
-                assert parse_options_header
-            except ImportError:
-                logger.error(multipart_incorrect_install_error)
-                raise RuntimeError(multipart_incorrect_install_error) from None
-        except ImportError:
-            logger.error(multipart_not_installed_error)
-            raise RuntimeError(multipart_not_installed_error) from None
+    try:
+        # __version__ is available in both multiparts, and can be mocked
+        from multipart import __version__ as multipart_version  # type: ignore[no-redef,import-untyped]
+    except ImportError:
+        logger.error(multipart_not_installed_error)
+        raise RuntimeError(multipart_not_installed_error) from None
+
+    if not multipart_version:
+        logger.error(multipart_incorrect_install_error)
+        raise RuntimeError(multipart_incorrect_install_error)
+
+    try:
+        from multipart.multipart import parse_options_header  # type: ignore[import-untyped]
+    except ImportError:
+        logger.error(multipart_incorrect_install_error)
+        raise RuntimeError(multipart_incorrect_install_error) from None
 
 
 def get_param_sub_dependant(
@@ -122,7 +131,9 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    if depends.dependency is None:
+        raise ValueError(f"`depends.dependency` must be set for parameter '{param_name}'")
+
     return get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -133,9 +144,9 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(depends.dependency), (
-        "A parameter-less dependency must have a callable dependency"
-    )
+    if not callable(depends.dependency):
+        raise TypeError("A parameter-less dependency must have a callable dependency")
+
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -302,11 +313,14 @@ def get_dependant(
             type_annotation=param_details.type_annotation,
             dependant=dependant,
         ):
-            assert param_details.field is None, (
-                f"Cannot specify multiple FastAPI annotations for {param_name!r}"
-            )
+            if param_details.field is not None:
+                raise ValueError(f"Cannot specify multiple FastAPI annotations for {param_name!r}")
+
             continue
-        assert param_details.field is not None
+
+        if param_details.field is None:
+            raise ValueError("Expected param_details.field to be set, but got None")
+
         if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:
@@ -385,14 +399,17 @@ def analyze_param(
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
-            assert (
-                field_info.default is Undefined or field_info.default is RequiredParam
-            ), (
-                f"`{field_info.__class__.__name__}` default value cannot be set in"
-                f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
-            )
+
+            if field_info.default is not Undefined and field_info.default is not RequiredParam:
+                raise ValueError(
+                    f"`{field_info.__class__.__name__}` default value cannot be set in "
+                    f"`Annotated` for {param_name!r}. Set the default value with `=` instead."
+                )
+
             if value is not inspect.Signature.empty:
-                assert not is_path_param, "Path parameters cannot have default values"
+                if is_path_param:
+                    raise ValueError("Path parameters cannot have default values")
+
                 field_info.default = value
             else:
                 field_info.default = RequiredParam
@@ -401,21 +418,26 @@ def analyze_param(
             depends = fastapi_annotation
     # Get Depends from default value
     if isinstance(value, params.Depends):
-        assert depends is None, (
-            "Cannot specify `Depends` in `Annotated` and default value"
-            f" together for {param_name!r}"
-        )
-        assert field_info is None, (
-            "Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a"
-            f" default value together for {param_name!r}"
-        )
+        if depends is not None:
+            raise ValueError(
+                f"Cannot specify `Depends` in `Annotated` and a default value together for {param_name!r}"
+            )
+
+        if field_info is not None:
+            raise ValueError(
+                f"Cannot specify a FastAPI annotation in `Annotated` and `Depends` as a default value "
+                f"together for {param_name!r}"
+            )
+
         depends = value
     # Get FieldInfo from default value
     elif isinstance(value, FieldInfo):
-        assert field_info is None, (
-            "Cannot specify FastAPI annotations in `Annotated` and default value"
-            f" together for {param_name!r}"
-        )
+        if field_info is not None:
+            raise ValueError(
+                f"Cannot specify FastAPI annotations in `Annotated` and a default value "
+                f"together for {param_name!r}"
+            )
+
         field_info = value
         if PYDANTIC_V2:
             field_info.annotation = type_annotation
@@ -438,10 +460,12 @@ def analyze_param(
             SecurityScopes,
         ),
     ):
-        assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
-        assert field_info is None, (
-            f"Cannot specify FastAPI annotation for type {type_annotation!r}"
-        )
+        if depends is not None:
+            raise ValueError(f"Cannot specify `Depends` for type {type_annotation!r}")
+
+        if field_info is not None:
+            raise ValueError(f"Cannot specify FastAPI annotation for type {type_annotation!r}")
+
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else RequiredParam
@@ -464,10 +488,11 @@ def analyze_param(
     if field_info is not None:
         # Handle field_info.in_
         if is_path_param:
-            assert isinstance(field_info, params.Path), (
-                f"Cannot use `{field_info.__class__.__name__}` for path param"
-                f" {param_name!r}"
-            )
+            if not isinstance(field_info, params.Path):
+                raise TypeError(
+                    f"Cannot use `{field_info.__class__.__name__}` for path param {param_name!r}"
+                )
+
         elif (
             isinstance(field_info, params.Param)
             and getattr(field_info, "in_", None) is None
@@ -494,19 +519,23 @@ def analyze_param(
             field_info=field_info,
         )
         if is_path_param:
-            assert is_scalar_field(field=field), (
-                "Path params must be of one of the supported types"
-            )
+            if not is_scalar_field(field=field):
+                raise TypeError("Path parameters must be of one of the supported scalar types")
+
         elif isinstance(field_info, params.Query):
-            assert (
+            if not (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or (
-                    lenient_issubclass(field.type_, BaseModel)
-                    # For Pydantic v1
-                    and getattr(field, "shape", 1) == 1
+                    isinstance(field.type_, type) and
+                    issubclass(field.type_, BaseModel) and
+                    getattr(field, "shape", 1) == 1  # shape check for Pydantic v1
                 )
-            )
+            ):
+                raise TypeError(
+                    f"Query parameter {field.name!r} must be a supported scalar, sequence, "
+                    "or a non-nested Pydantic model (shape == 1)"
+                )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
@@ -521,9 +550,11 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert field_info_in == params.ParamTypes.cookie, (
-            f"non-body parameters must be in path, query, header or cookie: {field.name}"
-        )
+        if field_info_in != params.ParamTypes.cookie:
+            raise ValueError(
+                f"Non-body parameters must be in path, query, header, or cookie: {field.name}"
+            )
+
         dependant.cookie_params.append(field)
 
 
@@ -790,9 +821,9 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
+        if not isinstance(field_info, params.Param):
+            raise TypeError("Params must be subclasses of Param")
+
         loc: Tuple[str, ...] = (field_info.in_.value,)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=params_to_process, values=values, loc=loc
@@ -802,9 +833,11 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
+        if not isinstance(field_info, params.Param):
+            raise TypeError(
+                f"Invalid parameter type: expected a subclass of Param, got {type(field_info).__name__}"
+            )
+
         loc = (field_info.in_.value, field.alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
@@ -860,7 +893,9 @@ async def _extract_form_body(
             and value_is_sequence(value)
         ):
             # For types
-            assert isinstance(value, sequence_types)  # type: ignore[arg-type]
+            if not isinstance(value, sequence_types):
+                raise TypeError(f"Expected a sequence type (e.g., list, tuple), got {type(value).__name__}")
+
             results: List[Union[bytes, str]] = []
 
             async def process_fn(
@@ -888,7 +923,10 @@ async def request_body_to_args(
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values: Dict[str, Any] = {}
     errors: List[Dict[str, Any]] = []
-    assert body_fields, "request_body_to_args() should be called with fields"
+
+    if not body_fields:
+        raise ValueError("request_body_to_args() should be called with at least one field")
+
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
     body_to_process = received_body
