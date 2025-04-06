@@ -283,7 +283,7 @@ def get_request_handler(
                 raise
             except Exception as e:
                 http_error = HTTPException(
-                    status_code=400, detail="There was an error parsing the body"
+                    status_code=400, detail=f"There was an error parsing the body: {e}"
                 )
                 raise http_error from e
             errors: List[Any] = []
