@@ -1,3 +1,4 @@
+import asyncio
 from enum import Enum
 from typing import (
     Any,
@@ -1006,7 +1007,10 @@ class FastAPI(Starlette):
                     if root_path and self.root_path_in_servers:
                         self.servers.insert(0, {"url": root_path})
                         server_urls.add(root_path)
-                return JSONResponse(self.openapi())
+                if asyncio.iscoroutinefunction(self.openapi):
+                    return JSONResponse(await self.openapi())
+                else:
+                    return JSONResponse(self.openapi())
 
             self.add_route(self.openapi_url, openapi, include_in_schema=False)
         if self.openapi_url and self.docs_url:
