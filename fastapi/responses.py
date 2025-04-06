@@ -1,15 +1,14 @@
 from typing import Any
 
 from starlette.responses import (  # noqa: F401
-    FileResponse,                 # noqa: F401
-    HTMLResponse,                 # noqa: F401
-    JSONResponse,                 # noqa: F401
-    PlainTextResponse,           # noqa: F401
-    RedirectResponse,            # noqa: F401
-    Response,                    # noqa: F401
-    StreamingResponse,           # noqa: F401
+    FileResponse,  # noqa: F401
+    HTMLResponse,  # noqa: F401
+    JSONResponse,  # noqa: F401
+    PlainTextResponse,  # noqa: F401
+    RedirectResponse,  # noqa: F401
+    Response,  # noqa: F401
+    StreamingResponse,  # noqa: F401
 )
-
 
 try:
     import ujson
