@@ -2,7 +2,9 @@
 
 You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
 
-But in some cases you need to return a different status code than the default.
+You also read that you signal errors (400-range status codes) by raising an `HTTPException`.
+
+But in some cases you need to return a status code other than the default or an error.
 
 ## Use case
 
