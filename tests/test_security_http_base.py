@@ -23,8 +23,9 @@ def test_security_http_base():
 
 def test_security_http_base_no_credentials():
     response = client.get("/users/me")
-    assert response.status_code == 403, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Other"
 
 
 def test_openapi_schema():
