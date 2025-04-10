@@ -230,7 +230,7 @@ class HTTPBasic(HTTPBase):
             else:
                 return None
         invalid_user_credentials_exc = HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
+            status_code=404,
             detail="Invalid authentication credentials",
             headers=unauthorized_headers,
         )
