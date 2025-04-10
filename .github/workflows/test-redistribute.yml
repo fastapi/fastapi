@@ -55,6 +55,8 @@ jobs:
           junit-paths: "**/junit.xml"        
           org-slug: est-mollitia-sed
           token: ${{ secrets.TRUNK_TOKEN }}
+        env:
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
       - name: Build wheel distribution
         run: |
           cd dist
