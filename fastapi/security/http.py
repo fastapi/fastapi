@@ -238,8 +238,10 @@ class HTTPBasic(HTTPBase):
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc  # noqa: B904
-        username, separator, password = data.partition(":")
-        if not separator:
+        splitted = data.split(":")
+        username = splitted[0]
+        password = splitted[-1]
+        if not password:
             raise invalid_user_credentials_exc
         return HTTPBasicCredentials(username=username, password=password)
 
