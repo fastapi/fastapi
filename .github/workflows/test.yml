@@ -98,6 +98,14 @@ jobs:
           name: coverage-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
           path: coverage
           include-hidden-files: true
+      - name: Upload Test Results to Trunk.io
+        if: "!cancelled()" # Upload the results even if the tests fail
+        continue-on-error: true # don't fail this job if the upload fails
+        uses: trunk-io/analytics-uploader@main
+        with:
+          junit-paths: "**/junit.xml"        
+          org-slug: est-mollitia-sed
+          token: ${{ secrets.TRUNK_TOKEN }}
 
   coverage-combine:
     needs: [test]
