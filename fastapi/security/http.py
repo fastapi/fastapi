@@ -238,7 +238,9 @@ class HTTPBasic(HTTPBase):
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error):
             raise invalid_user_credentials_exc  # noqa: B904
-        username, password = data.split(":")
+        splitted = data.split(":")
+        username = splitted[0]
+        password = splitted[-1]
         return HTTPBasicCredentials(username=username, password=password)
 
 class HTTPBearerExt(HTTPBase):
