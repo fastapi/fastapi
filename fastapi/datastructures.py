@@ -5,7 +5,6 @@ from typing import (
     Dict,
     Iterable,
     Optional,
-    Self,
     Type,
     TypeVar,
     cast,
@@ -75,8 +74,8 @@ class UploadFile(StarletteUploadFile):
 
     @classmethod
     def from_starlette(
-        cls: type[Self], starlette_uploadfile: StarletteUploadFile
-    ) -> Self:
+        cls: type["UploadFile"], starlette_uploadfile: StarletteUploadFile
+    ) -> "UploadFile":
         return cls(
             file=starlette_uploadfile.file,
             size=starlette_uploadfile.size,
