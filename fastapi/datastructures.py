@@ -5,6 +5,7 @@ from typing import (
     Dict,
     Iterable,
     Optional,
+    Self,
     Type,
     TypeVar,
     cast,
@@ -71,6 +72,17 @@ class UploadFile(StarletteUploadFile):
     content_type: Annotated[
         Optional[str], Doc("The content type of the request, from the headers.")
     ]
+
+    @classmethod
+    def from_starlette(
+        cls: type[Self], starlette_uploadfile: StarletteUploadFile
+    ) -> Self:
+        return cls(
+            file=starlette_uploadfile.file,
+            size=starlette_uploadfile.size,
+            filename=starlette_uploadfile.filename,
+            headers=starlette_uploadfile.headers,
+        )
 
     async def write(
         self,
