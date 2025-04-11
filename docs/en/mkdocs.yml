@@ -325,6 +325,8 @@ extra:
     name: az - azərbaycan dili
   - link: /bn/
     name: bn - বাংলা
+  - link: /ca/
+    name: ca - Català
   - link: /de/
     name: de - Deutsch
   - link: /es/
