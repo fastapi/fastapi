@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse, StreamingResponse
 import pandas as pd
 import io
@@ -9,7 +9,7 @@ from reportlab.pdfgen import canvas
 import mysql.connector
 
 
-router = FastAPI()
+router = APIRouter()
 
 
 # Sample data (to be linked with external db)
@@ -19,7 +19,7 @@ data = [
 ]
 
 
-@app.get("/export")
+@router.get("/export")
 
 async def export_data(format: str = Query("json", enum=["json", "csv", "excel", "pdf", "parquet", "mysql"])):
     df = pd.DataFrame(data)
@@ -45,7 +45,7 @@ async def export_data(format: str = Query("json", enum=["json", "csv", "excel", 
                                  headers={"Content-Disposition": "attachment; filename=data.xlsx"})
 
     
-     elif format == "pdf":
+    elif format == "pdf":
         output = io.BytesIO()
         pdf = canvas.Canvas(output, pagesize=letter)
         pdf.drawString(100, 750, "Exported Data")
