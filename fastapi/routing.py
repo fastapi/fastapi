@@ -339,6 +339,9 @@ def get_request_handler(
                         if not is_body_allowed_for_status_code(response.status_code):
                             response.body = b""
                         response.headers.raw.extend(solved_result.response.headers.raw)
+                    # pass response to generator dependencies
+                    for callback in reversed(solved_result.generators_callbacks):
+                        await callback(response)
             if errors:
                 validation_error = RequestValidationError(
                     _normalize_errors(errors), body=body
