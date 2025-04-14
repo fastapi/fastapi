@@ -1,7 +1,6 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
 from faststream.rabbit.fastapi import RabbitRouter
-
+from pydantic import BaseModel
 
 event_router = RabbitRouter()
 

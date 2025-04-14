@@ -1,7 +1,6 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
 from faststream.kafka.fastapi import KafkaRouter
-
+from pydantic import BaseModel
 
 event_router = KafkaRouter()
 

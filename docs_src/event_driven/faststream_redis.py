@@ -1,7 +1,6 @@
-from pydantic import BaseModel
 from fastapi import FastAPI
 from faststream.redis.fastapi import RedisRouter
-
+from pydantic import BaseModel
 
 event_router = RedisRouter()
 

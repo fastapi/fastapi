@@ -12,7 +12,7 @@ event-driven services development, you should take a look at <a href="https://fa
 This tool is strongly inspired by **FastAPI** and has a pretty close design - it's based on type annotations
 to serialize incoming messages, decorators to register consumers, and generate your application specification from the code automatically.
 
-Also, **FastStream** has a special integration with **FastAPI**, so you can declare event consumers and HTTP endpoints 
+Also, **FastStream** has a special integration with **FastAPI**, so you can declare event consumers and HTTP endpoints
 on the same **FastAPI** application.
 
 ## FastStream integration
