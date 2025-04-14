@@ -202,6 +202,7 @@ nav:
     - how-to/index.md
     - how-to/general.md
     - how-to/graphql.md
+    - how-to/event-driven.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
     - how-to/extending-openapi.md
