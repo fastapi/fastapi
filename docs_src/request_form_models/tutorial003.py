@@ -1,11 +1,13 @@
-from pydantic import BaseModel
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from jinja2 import DictLoader, Environment
+from pydantic import BaseModel
+
 
 class MyModel(BaseModel):
     checkbox: bool = True
+
 
 form_template = """
 <form action="/form" method="POST">
@@ -31,12 +33,14 @@ templates = Jinja2Templates(env=Environment(loader=loader))
 
 app = FastAPI()
 
+
 @app.get("/form", response_class=HTMLResponse)
 async def show_form(request: Request):
     return templates.TemplateResponse(
         request=request, name="form.html", context={"model": MyModel}
     )
 
-@app.post('/form')
+
+@app.post("/form")
 async def submit_form(data: MyModel = Form()) -> MyModel:
     return data

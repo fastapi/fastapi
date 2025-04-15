@@ -1,18 +1,19 @@
-from pydantic import BaseModel, model_validator
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from jinja2 import DictLoader, Environment
+from pydantic import BaseModel, root_validator
+
 
 class MyModel(BaseModel):
     checkbox: bool = True
 
-    @model_validator(mode="before")
+    @root_validator(pre=True)
     def handle_defaults(cls, value: dict) -> dict:
         # We can't tell if we're being validated by fastAPI,
         # so we have to just YOLO this.
-        if 'checkbox' not in value:
-            value['checkbox'] = False
+        if "checkbox" not in value:
+            value["checkbox"] = False
         return value
 
 
@@ -23,7 +24,7 @@ form_template = """
   <label for="{{ field_name }}">{{ field_name }}</label>
   {% if field.annotation.__name__ == "bool" %}
   <input type="checkbox" name="{{field_name}}"
-    {% if field.default %} 
+    {% if field.default %}
     checked="checked"
     {% endif %}
   >
@@ -40,12 +41,14 @@ templates = Jinja2Templates(env=Environment(loader=loader))
 
 app = FastAPI()
 
+
 @app.get("/form", response_class=HTMLResponse)
 async def show_form(request: Request):
     return templates.TemplateResponse(
         request=request, name="form.html", context={"model": MyModel}
     )
 
-@app.post('/form')
+
+@app.post("/form")
 async def submit_form(data: MyModel = Form()) -> MyModel:
     return data
