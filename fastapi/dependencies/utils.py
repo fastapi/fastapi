@@ -1,5 +1,5 @@
 import inspect
-from contextlib import AsyncExitStack, contextmanager
+from contextlib import AsyncExitStack
 from copy import copy, deepcopy
 from dataclasses import dataclass
 from typing import (
@@ -47,10 +47,7 @@ from fastapi._compat import (
     value_is_sequence,
 )
 from fastapi.background import BackgroundTasks
-from fastapi.concurrency import (
-    asynccontextmanager,
-    contextmanager_in_threadpool,
-)
+from fastapi.concurrency import ContextManagerFromGenerator
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
@@ -552,12 +549,9 @@ def is_gen_callable(call: Callable[..., Any]) -> bool:
 
 async def solve_generator(
     *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
-) -> Any:
-    if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif is_async_gen_callable(call):
-        cm = asynccontextmanager(call)(**sub_values)
-    return await stack.enter_async_context(cm)
+) -> Tuple[Any, Callable[[Response], Coroutine[None, None, None]]]:
+    cm = ContextManagerFromGenerator(call(**sub_values))
+    return (await stack.enter_async_context(cm), cm.asend)
 
 
 @dataclass
@@ -567,6 +561,7 @@ class SolvedDependency:
     background_tasks: Optional[StarletteBackgroundTasks]
     response: Response
     dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
+    generators_callbacks: List[Callable[[Response], Coroutine[None, None, None]]]
 
 
 async def solve_dependencies(
@@ -589,6 +584,7 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     dependency_cache = dependency_cache or {}
     sub_dependant: Dependant
+    generators_callbacks: List[Callable[[Response], Coroutine[None, None, None]]] = []
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         sub_dependant.cache_key = cast(
@@ -625,15 +621,17 @@ async def solve_dependencies(
         )
         background_tasks = solved_result.background_tasks
         dependency_cache.update(solved_result.dependency_cache)
+        generators_callbacks.extend(solved_result.generators_callbacks)
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
-            solved = await solve_generator(
+            solved, callback = await solve_generator(
                 call=call, stack=async_exit_stack, sub_values=solved_result.values
             )
+            generators_callbacks.append(callback)
         elif is_coroutine_callable(call):
             solved = await call(**solved_result.values)
         else:
@@ -692,6 +690,7 @@ async def solve_dependencies(
         background_tasks=background_tasks,
         response=response,
         dependency_cache=dependency_cache,
+        generators_callbacks=generators_callbacks,
     )
 
 
