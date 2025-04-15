@@ -104,7 +104,7 @@ class APIKeyQuery(APIKeyBase):
             name=name,
             description=description,
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -192,7 +192,7 @@ class APIKeyHeader(APIKeyBase):
             name=name,
             description=description,
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -280,7 +280,7 @@ class APIKeyCookie(APIKeyBase):
             name=name,
             description=description,
         )
-        self.scheme_name = scheme_name or self.__class__.__name__
+        self.scheme_name = scheme_name or name
         self.auto_error = auto_error
 
     async def __call__(self, request: Request) -> Optional[str]:
