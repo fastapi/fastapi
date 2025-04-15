@@ -97,7 +97,7 @@ and the JSON response is also correct:
 ```
 
 When the checkbox is *unchecked*, though, something strange happens.
-The submitted form data is *empty*, 
+The submitted form data is *empty*,
 and the returned JSON data still shows `checkbox` still being `true`!
 
 This is because checkboxes in HTML forms don't work exactly like the boolean inputs we expect,
@@ -108,7 +108,7 @@ When dealing with form models with defaults,
 we need to take special care to handle cases where the field being *unset* has a specific meaning.
 
 In some cases, we can resolve the problem by changing or removing the default,
-but we don't always have that option - 
+but we don't always have that option -
 particularly when the model is used in other places than the form
 (model reuse is one of the benefits of building FastAPI on top of pydantic, after all!).
 
@@ -116,8 +116,8 @@ To do this, you can use a [`model_validator`](https://docs.pydantic.dev/latest/c
 in the `before` mode - before the defaults from the model are applied,
 to differentiate between an explicit `False` value and an unset value.
 
-We also don't want to just treat any time the value is unset as ``False`` - 
-that would defeat the purpose of the default! 
+We also don't want to just treat any time the value is unset as ``False`` -
+that would defeat the purpose of the default!
 We want to specifically correct the behavior when it is used in the context of a *form.*
 
 So we can additionally use the `'fastapi_field'` passed to the
