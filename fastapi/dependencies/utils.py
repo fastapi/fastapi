@@ -255,7 +255,7 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     signature = inspect.signature(call)
     annotation = signature.return_annotation
 
-    if annotation is inspect.Signature.empty:
+    if annotation == "None" or annotation is inspect.Signature.empty:
         return None
 
     globalns = getattr(call, "__globals__", {})
