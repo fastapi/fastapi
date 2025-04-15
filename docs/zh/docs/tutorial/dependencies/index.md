@@ -118,6 +118,18 @@ common_parameters --> read_users
 
 ///
 
+/// note | 笔记
+
+如果你不知道，请查看文档中关于 `async` 和 `await` 的 [Async: *"赶时间？"*](../../async.md#in-a-hurry){.internal-link target=_blank} 部分。
+
+///
+
+/// warning | 警告
+
+如果你需要在请求的多个步骤中依赖 `ContextVar` 值，**使用 async 依赖**或其他方法。这是因为同步依赖在主线程中执行，而 `async` 依赖在处理请求的同一线程池中运行。由于 `ContextVar` 提供线程本地存储，在同步依赖中设置的任何值在请求处理的其余部分中将不可用。
+
+///
+
 ## 与 OpenAPI 集成
 
 依赖项及子依赖项的所有请求声明、验证和需求都可以集成至同一个 OpenAPI 概图。
