@@ -810,6 +810,25 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        ignore_trailing_slash: Annotated[
+            bool,
+            Doc(
+                """
+                To ignore (or not) trailing slashes at the end of URIs.
+
+                For example, by setting `ignore_trailing_slash` to True,
+                requests to `/auth` and `/auth/` will have the same behaviour.
+
+                By default (`ignore_trailing_slash` is False), the two requests are treated differently.
+                One of them will result in a 307-redirect.
+
+                It's important to understand that when `ignore_trailing_slash=True`, registering both `/auth`
+                and `/auth/` as different routes will be treated as if `/auth` was registered twice.
+                This means that only the first route registered will be used.
+                Therefore, ensure your route setup does not conflict unintentionally.
+                """
+            ),
+        ] = False,
         **extra: Annotated[
             Any,
             Doc(
@@ -943,6 +962,7 @@ class FastAPI(Starlette):
             include_in_schema=include_in_schema,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
+            ignore_trailing_slash=ignore_trailing_slash,
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
@@ -961,6 +981,22 @@ class FastAPI(Starlette):
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: Union[ASGIApp, None] = None
+
+        if ignore_trailing_slash:
+
+            class _IgnoreTrailingWhitespaceMiddleware:
+                def __init__(self, app: ASGIApp):
+                    self.app = app
+
+                async def __call__(
+                    self, scope: Scope, receive: Receive, send: Send
+                ) -> None:
+                    if scope["type"] in {"http", "websocket"}:
+                        scope["path"] = scope["path"].rstrip("/")
+                    await self.app(scope, receive, send)
+
+            self.add_middleware(_IgnoreTrailingWhitespaceMiddleware)
+
         self.setup()
 
     def openapi(self) -> Dict[str, Any]:
