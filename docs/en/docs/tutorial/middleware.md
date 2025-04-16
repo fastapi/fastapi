@@ -2,7 +2,13 @@
 
 You can add middleware to **FastAPI** applications.
 
-A "middleware" is a function that works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.
+In this tutorial we will discuss how to add a custom `http` middleware to your FastAPI applications.
+
+The `http` middleware is designed to work with HTTP protocol, and it is responsible for handling of HTTP requests and responses.
+
+## How `http` middleware works?
+
+The `http` middleware works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.
 
 * It takes each **request** that comes to your application.
 * It can then do something to that **request** or run any needed code.
@@ -62,6 +68,36 @@ For example, you could add a custom header `X-Process-Time` containing the time 
 /// tip
 
 Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> instead of `time.time()` because it can be more precise for these use cases. 🤓
+
+///
+
+/// note | Technical Details
+
+As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`. This parameter defines the type of server events to be handled by the middleware, and hence the name `http` middleware.
+
+ASGI server supports the following scope types (or event types): `lifespan`, `http`, and `websocket`.
+
+///
+
+## Class-Based Middleware
+
+It is possible to define a custom `http` middleware using classes.
+
+We will implement a class-based middleware with exactly the same functionality as in the example with the `@app.middleware('http')` decorator.
+
+We will use an abstract `BaseHTTPMiddleware` class from Starlette that allows to write custom `http` middlewares.
+
+{* ../../docs_src/middleware/tutorial002.py hl[7:13,17] *}
+
+To create the middleware we need to override the `async dispatch` method of the `BaseHTTPMiddleware` class.
+
+The functionality of the method is very similar to the decorated middleware function from the previous example.
+
+The middleware is connected to the FastAPI application using `app.add_middleware` method.
+
+/// note
+
+You can read more about Starlette middleware in [Starlette documentation](https://www.starlette.io/middleware).
 
 ///
 
