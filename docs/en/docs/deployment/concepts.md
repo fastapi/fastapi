@@ -65,7 +65,7 @@ The word **program** is commonly used to describe many things:
 
 * The **code** that you write, the **Python files**.
 * The **file** that can be **executed** by the operating system, for example: `python`, `python.exe` or `uvicorn`.
-* A particular program while it is **running** on the operating system, using the CPU, and storing things on memory. This is also called a **process**.
+* A particular program while it is **running** on the operating system, using the CPU, and storing things in memory. This is also called a **process**.
 
 ### What is a Process
 
