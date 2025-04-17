@@ -6,7 +6,11 @@ Quando você precisar receber campos de formulário ao invés de JSON, você pod
 
 Para usar formulários, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-Ex: `pip install python-multipart`.
+Lembre-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar a dependência, por exemplo:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 
@@ -14,17 +18,13 @@ Ex: `pip install python-multipart`.
 
 Importe `Form` de `fastapi`:
 
-```Python hl_lines="1"
-{!../../docs_src/request_forms/tutorial001.py!}
-```
+{* ../../docs_src/request_forms/tutorial001.py hl[1] *}
 
 ## Declare parâmetros de `Form`
 
 Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Query`:
 
-```Python hl_lines="7"
-{!../../docs_src/request_forms/tutorial001.py!}
-```
+{* ../../docs_src/request_forms/tutorial001.py hl[7] *}
 
 Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 

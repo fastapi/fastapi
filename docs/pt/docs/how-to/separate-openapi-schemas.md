@@ -10,123 +10,13 @@ Vamos ver como isso funciona e como alterar se for necessário.
 
 Digamos que você tenha um modelo Pydantic com valores padrão, como este:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-7]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-```
-
-</details>
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-9]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-```
-
-</details>
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-9]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001.py!}
-```
-
-</details>
-
-////
+{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
 
 ### Modelo para Entrada
 
 Se você usar esse modelo como entrada, como aqui:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="14"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py310.py[ln:1-15]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-```
-
-</details>
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py39.py[ln:1-17]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-```
-
-</details>
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001.py[ln:1-17]!}
-
-# Code below omitted 👇
-```
-
-<details>
-<summary>👀 Visualização completa do arquivo</summary>
-
-```Python
-{!> ../../docs_src/separate_openapi_schemas/tutorial001.py!}
-```
-
-</details>
-
-////
+{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
 
 ... então o campo `description` não será obrigatório. Porque ele tem um valor padrão de `None`.
 
@@ -142,29 +32,7 @@ Você pode confirmar que na documentação, o campo `description` não tem um **
 
 Mas se você usar o mesmo modelo como saída, como aqui:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="21"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="21"
-{!> ../../docs_src/separate_openapi_schemas/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
 
 ... então, como `description` tem um valor padrão, se você **não retornar nada** para esse campo, ele ainda terá o **valor padrão**.
 
@@ -223,29 +91,7 @@ O suporte para `separate_input_output_schemas` foi adicionado no FastAPI `0.102.
 
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="10"
-{!> ../../docs_src/separate_openapi_schemas/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/separate_openapi_schemas/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12"
-{!> ../../docs_src/separate_openapi_schemas/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
 
 ### Mesmo Esquema para Modelos de Entrada e Saída na Documentação
 
