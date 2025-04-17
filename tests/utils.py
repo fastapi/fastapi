@@ -15,7 +15,7 @@ needs_pydanticv1 = pytest.mark.skipif(PYDANTIC_V2, reason="requires Pydantic v1"
 def pydantic_snapshot(
     *,
     v2: Snapshot,
-    v1: Snapshot,  # Remove v1 argument when deprecating Pydantic v1
+    v1: Snapshot,  #TODO: remove v1 argument when deprecating Pydantic v1
 ):
     """
     This function should be used like this:
