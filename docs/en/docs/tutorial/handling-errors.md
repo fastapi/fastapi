@@ -252,4 +252,4 @@ If you want to use the exception along with the same default exception handlers 
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
-In this example you are just `print`ing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
+In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
