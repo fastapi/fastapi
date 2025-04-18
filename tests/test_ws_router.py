@@ -104,6 +104,11 @@ async def router_ws_custom_error(websocket: WebSocket):
     raise CustomError()
 
 
+@router.websocket("/test_tags/", name="test-tags", tags=["test"])
+async def router_ws_test_tags(websocket: WebSocket):
+    pass  # pragma: no cover
+
+
 def make_app(app=None, **kwargs):
     app = app or FastAPI(**kwargs)
     app.include_router(router)
@@ -269,3 +274,11 @@ def test_depend_err_handler():
             pass  # pragma: no cover
     assert e.value.code == 1002
     assert "foo" in e.value.reason
+
+
+def test_websocket_tags():
+    """
+    Verify that it is possible to add tags to websocket routes
+    """
+    route = next(route for route in app.routes if route.name == "test-tags")
+    assert route.tags == ["test"]
