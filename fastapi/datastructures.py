@@ -74,7 +74,7 @@ class UploadFile(StarletteUploadFile):
 
     @classmethod
     def from_starlette(
-        cls: type["UploadFile"], starlette_uploadfile: StarletteUploadFile
+        cls: Type["UploadFile"], starlette_uploadfile: StarletteUploadFile
     ) -> "UploadFile":
         return cls(
             file=starlette_uploadfile.file,
