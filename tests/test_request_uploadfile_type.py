@@ -1,5 +1,5 @@
 import io
-from typing import Any
+from typing import Any, Dict, List
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 @app.post("/uploadfile")
-async def uploadfile(uploadfile: UploadFile = File(...)) -> dict[str, Any]:
+async def uploadfile(uploadfile: UploadFile = File(...)) -> Dict[str, Any]:
     return {
         "filename": uploadfile.filename,
         "is_fastapi_uploadfile": isinstance(uploadfile, UploadFile),
@@ -20,8 +20,8 @@ async def uploadfile(uploadfile: UploadFile = File(...)) -> dict[str, Any]:
 
 @app.post("/uploadfiles")
 async def uploadfiles(
-    uploadfiles: list[UploadFile] = File(...),
-) -> list[dict[str, Any]]:
+    uploadfiles: List[UploadFile] = File(...),
+) -> List[Dict[str, Any]]:
     return [
         {
             "filename": uploadfile.filename,
