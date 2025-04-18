@@ -105,9 +105,7 @@ async def router_ws_custom_error(websocket: WebSocket):
 
 @router.websocket("/test_tags/", name='test-tags', tags=["test"])
 async def router_ws_test_tags(websocket: WebSocket):
-    await websocket.accept()
-    await websocket.send_text("Hello, router with tags!")
-    await websocket.close()
+    pass  # pragma: no cover
 
 
 def make_app(app=None, **kwargs):
