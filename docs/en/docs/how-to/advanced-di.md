@@ -18,7 +18,7 @@ Let's see how this approach can get confusing with the increasing complexity of 
 
 /// note
 
-Some functions of the auxiliary code used here can be explored on these pages: 
+Some functions of the auxiliary code used here can be explored on these pages:
 
 * ([Settings and environment variables](../advanced/settings.md){.internal-link target=_blank}) for `lru_cache`.
 * ([Bigger applications — multiple files](../tutorial/bigger-applications.md){.internal-link target=_blank}) for `APIRouter`.
