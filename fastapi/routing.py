@@ -935,7 +935,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
-        middleware: Optional[List[Middleware]] = None,
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -956,7 +956,7 @@ class APIRouter(routing.Router):
             generate_unique_id_function, self.generate_unique_id_function
         )
         if middleware and self.middleware:
-            middleware = self.middleware + middleware
+            middleware = list(self.middleware) + list(middleware)
 
         route = route_class(
             self.prefix + path,
@@ -1018,7 +1018,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[List[Middleware]] = None,
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(

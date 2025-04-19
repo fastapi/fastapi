@@ -1084,7 +1084,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[List[Middleware]] = None,
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -1142,7 +1142,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
-        middleware: Optional[List[Middleware]] = None,
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
