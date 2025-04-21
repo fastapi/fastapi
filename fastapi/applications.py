@@ -1226,8 +1226,8 @@ class FastAPI(Starlette):
                 """
                 A list of tags to be applied to this WebSocket.
                 """
-            )
-        ] = None
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Decorate a WebSocket function.

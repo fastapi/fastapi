@@ -13,9 +13,9 @@ from fastapi import (
 from fastapi.middleware import Middleware
 from fastapi.testclient import TestClient
 
-router = APIRouter(tags=['base'])
-prefix_router = APIRouter(tags=['prefix'])
-native_prefix_router = APIRouter(prefix="/native", tags=['native'])
+router = APIRouter(tags=["base"])
+prefix_router = APIRouter(tags=["prefix"])
+native_prefix_router = APIRouter(prefix="/native", tags=["native"])
 app = FastAPI()
 
 
@@ -105,17 +105,23 @@ async def router_ws_custom_error(websocket: WebSocket):
 
 
 @app.websocket("/test_tags", name="test-app-tags", tags=["test-app-tags"])
-
 @router.websocket("/test_tags/", name="test-router-tags", tags=["test-router-tags"])
 async def router_ws_test_tags(websocket: WebSocket):
     pass  # pragma: no cover
 
-@prefix_router.websocket("/test_tags/", name="test-prefix-router-tags", tags=["test-prefix-router-tags"])
+
+@prefix_router.websocket(
+    "/test_tags/", name="test-prefix-router-tags", tags=["test-prefix-router-tags"]
+)
 async def prefix_router_ws_test_tags(websocket: WebSocket):
     pass  # pragma: no cover
 
-@native_prefix_router.websocket("/test_tags/", name="test-native-prefix-router-tags",
-                                tags=["test-native-prefix-router-tags"])
+
+@native_prefix_router.websocket(
+    "/test_tags/",
+    name="test-native-prefix-router-tags",
+    tags=["test-native-prefix-router-tags"],
+)
 async def native_prefix_router_ws_test_tags(websocket: WebSocket):
     pass  # pragma: no cover
 
@@ -287,12 +293,18 @@ def test_depend_err_handler():
     assert "foo" in e.value.reason
 
 
-@pytest.mark.parametrize("route_name,route_tags", [
-    ("test-app-tags", ["test-app-tags"]),
-    ("test-router-tags", ["base", "test-router-tags"]),
-    ("test-prefix-router-tags", ["prefix", "test-prefix-router-tags"]),
-    ("test-native-prefix-router-tags", ["native", "test-native-prefix-router-tags"]),
-])
+@pytest.mark.parametrize(
+    "route_name,route_tags",
+    [
+        ("test-app-tags", ["test-app-tags"]),
+        ("test-router-tags", ["base", "test-router-tags"]),
+        ("test-prefix-router-tags", ["prefix", "test-prefix-router-tags"]),
+        (
+            "test-native-prefix-router-tags",
+            ["native", "test-native-prefix-router-tags"],
+        ),
+    ],
+)
 def test_websocket_tags(route_name, route_tags):
     """
     Verify that it is possible to add tags to websocket routes
