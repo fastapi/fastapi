@@ -4451,16 +4451,16 @@ class APIRouter(routing.Router):
         return decorator
 
     def combine_tags(
-            self,
-            *entities: Annotated[
-                Union[None, str, routing.Route, Sequence],
-                Doc(
-                    """
+        self,
+        *entities: Annotated[
+            Union[None, str, routing.Route, Sequence],
+            Doc(
+                """
                     Combine the router's current tags with those of the provided entities.
                     Supports None, strings, iterables, and Route objects with a `tags` attribute.
                     """
-                ),
-            ]
+            ),
+        ],
     ) -> List[str]:
         tags = set(self.tags or [])
         for entity in entities:
