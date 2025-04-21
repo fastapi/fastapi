@@ -4453,7 +4453,7 @@ class APIRouter(routing.Router):
     def combine_tags(
             self,
             *entities: Annotated[
-                None | str | routing.Route | Iterable,
+                Union[None, str, routing.Route, Sequence],
                 Doc(
                     """
                     Combine the router's current tags with those of the provided entities.
