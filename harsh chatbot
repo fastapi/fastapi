@@ -1,0 +1,286 @@
+// FlowAdsChatbot.jsx
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+
+export default function FlowAdsChatbot() {
+  const [messages, setMessages] = useState([
+    { sender: 'bot', text: 'Hi! 👋 Welcome to Flow Ads Cab. How can I help you today?' },
+  ]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const userMessage = { sender: 'user', text: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer YOUR_OPENAI_API_KEY`, // Secure this in prod!
+        },
+        body: JSON.stringify({
+          model: 'gpt-4',
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You are Flow Ads Cab assistant, help users with queries about taxi LED advertising plans, pricing, driver details, and campaign locations.',
+            },
+            ...messages
+              .map((msg) => ({
+                role: msg.sender === 'user' ? 'user' : 'assistant',
+                content: msg.text,
+              }))
+              .concat({ role: 'user', content: input }),
+          ],
+        }),
+      });
+
+      const data = await response.json();
+      const botMessage = { sender: 'bot', text: data.choices[0].message.content };
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'bot', text: 'Oops! Something went wrong. Try again later.' },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card className="w-full max-w-md mx-auto mt-6">
+      <CardContent className="space-y-2 p-4">
+        <div className="h-96 overflow-y-auto space-y-2 border p-2 rounded bg-gray-50">
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`p-2 rounded ${
+                msg.sender === 'user' ? 'bg-blue-200 text-right ml-auto' : 'bg-yellow-100 text-left'
+              }`}
+            >
+              {msg.text}
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-2 mt-2">
+          <Input
+            placeholder="Type your message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+            disabled={loading}
+          />
+          <Button onClick={sendMessage} disabled={loading}>
+            {loading ? '...' : 'Send'}
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+{
+     'system'
+    content: `
+  You are Flow Ads Cab Assistant.
+  
+  Your job is to help both:
+  - Advertisers (clients who want to run ads)
+  - Drivers (who operate the taxis with LED screens)
+  
+  If someone says:
+  - "What’s the ₹2.5 lakh plan?" → reply: "The ₹2.5 lakh plan is our most premium advertising package. It includes full taxi wrap branding, 30-day display, full-time ad slots, customizable videos and priority locations."
+  - "How do I run an ad?" → reply: "To run an ad, sign in to the Advertiser Panel → Upload your ad video (max 200MB) → Choose plan → Make payment → Schedule slots."
+  - "What’s included in your advertising package?" → reply: "All packages include geo-targeting, campaign insights, 20s ad slots, live view dashboard, and customization support."
+  - "Hi assist driver" → reply: "Please provide your Driver ID. I’ll help you with onboarding, documents, and pay info."
+  - "Hi assist advertiser" → reply: "I can guide you with uploading ads, choosing plans, and seeing campaign performance. What do you need help with?"
+  - "Hi create templates" → reply: "You can choose from our ready-made ad templates: Promo, Sale, Event, Branding. Just type: 'Send Promo Template' or 'Send Sale Template'."
+  - "Hi create loop video" → reply: "Please share the video content or client details, and I’ll help create a loop video suitable for your ad slot (20s/30s)."
+  
+  If someone types general queries like pricing, plans, or dashboard – help them like a smart assistant.
+  
+  Always reply with polite, helpful, and professional tone.
+    `
+  }
+// backendServer/index.js
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+import { Configuration, OpenAIApi } from 'openai';
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+// Storage setup for uploads
+const upload = multer({ dest: 'uploads/' });
+
+// OpenAI Config
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const flowAdsSystemPrompt = `
+You are Flow Ads Cab Assistant.
+Your job is to help both:
+- Advertisers (clients who want to run ads)
+- Drivers (who operate the taxis with LED screens)
+
+If someone says:
+- "What’s the ₹2.5 lakh plan?" → reply: "The ₹2.5 lakh plan is our most premium advertising package. It includes full taxi wrap branding, 30-day display, full-time ad slots, customizable videos and priority locations."
+- "How do I run an ad?" → reply: "To run an ad, sign in to the Advertiser Panel → Upload your ad video (max 200MB) → Choose plan → Make payment → Schedule slots."
+- "What’s included in your advertising package?" → reply: "All packages include geo-targeting, campaign insights, 20s ad slots, live view dashboard, and customization support."
+- "Hi assist driver" → reply: "Please provide your Driver ID. I’ll help you with onboarding, documents, and pay info."
+- "Hi assist advertiser" → reply: "I can guide you with uploading ads, choosing plans, and seeing campaign performance. What do you need help with?"
+- "Hi create templates" → reply: "You can choose from our ready-made ad templates: Promo, Sale, Event, Branding. Just type: 'Send Promo Template' or 'Send Sale Template'."
+- "Hi create loop video" → reply: "Please share the video content or client details, and I’ll help create a loop video suitable for your ad slot (20s/30s)."
+
+If someone types general queries like pricing, plans, or dashboard – help them like a smart assistant.
+Always reply with polite, helpful, and professional tone.
+`;
+
+// Chat Route
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages } = req.body;
+    const chatCompletion = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        { role: 'system', content: flowAdsSystemPrompt },
+        ...messages
+      ]
+    });
+
+    res.json({ reply: chatCompletion.data.choices[0].message.content });
+  } catch (error) {
+    console.error('Chat error:', error);
+    res.status(500).json({ error: 'Something went wrong with OpenAI.' });
+  }
+});
+
+// Template API
+app.get('/api/templates', (req, res) => {
+  const templates = [
+    { name: 'Promo', content: '🔥 Promo Template: 50% OFF on your next ride!' },
+    { name: 'Sale', content: '🛍️ Mega Sale – Limited Time Only!' },
+    { name: 'Event', content: '🎉 Event Template: Join us at XYZ Fest!' },
+    { name: 'Branding', content: '🚕 Branding Template: Drive your brand citywide.' }
+  ];
+  res.json({ templates });
+});
+
+// Loop Video Upload & Placeholder Generation
+app.post('/api/loop-video', upload.single('video'), (req, res) => {
+  const file = req.file;
+  const clientDetails = req.body.clientDetails || 'Default campaign info';
+
+  // Placeholder response (simulate video loop generation)
+  const outputPath = path.join('uploads', `loop-${Date.now()}.mp4`);
+  fs.copyFileSync(file.path, outputPath);
+
+  res.json({
+    message: 'Loop video generated successfully.',
+    filename: file.originalname,
+    url: `/${outputPath}`
+  });
+});
+
+// Serve static files (for video download)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Flow Ads backend running on port ${PORT}`));
+import React, { useState } from 'react';
+import axios from 'axios';
+
+const Chatbot = () => {
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [templates, setTemplates] = useState([]);
+  const [loopVideo, setLoopVideo] = useState(null);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const newMessages = [...messages, { role: 'user', content: input }];
+    setMessages(newMessages);
+    setInput('');
+
+    const res = await axios.post('http://localhost:5000/api/chat', { messages: newMessages });
+    setMessages([...newMessages, { role: 'assistant', content: res.data.reply }]);
+  };
+
+  const fetchTemplates = async () => {
+    const res = await axios.get('http://localhost:5000/api/templates');
+    setTemplates(res.data.templates);
+  };
+
+  const handleVideoUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('video', file);
+    formData.append('clientDetails', 'Test Upload');
+
+    const res = await axios.post('http://localhost:5000/api/loop-video', formData);
+    setLoopVideo(res.data.url);
+  };
+
+  return (
+    <div className="chatbot-container" style={{ padding: 20, fontFamily: 'Arial' }}>
+      <h2>💬 Flow Ads Assistant</h2>
+      <div style={{ height: 300, overflowY: 'scroll', border: '1px solid #ccc', padding: 10 }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{ margin: '10px 0' }}>
+            <b>{msg.role === 'user' ? 'You' : 'Assistant'}:</b> {msg.content}
+          </div>
+        ))}
+      </div>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Type your question..."
+        style={{ width: '80%', padding: 8 }}
+      />
+      <button onClick={sendMessage} style={{ padding: 8, marginLeft: 10 }}>Send</button>
+
+      <hr />
+
+      <button onClick={fetchTemplates}>📋 View Ad Templates</button>
+      <ul>
+        {templates.map((t, i) => (
+          <li key={i}><b>{t.name}:</b> {t.content}</li>
+        ))}
+      </ul>
+
+      <hr />
+      <h4>🎥 Upload Loop Video</h4>
+      <input type="file" onChange={handleVideoUpload} />
+      {loopVideo && (
+        <div>
+          <p>Loop Video URL:</p>
+          <a href={`http://localhost:5000${loopVideo}`} target="_blank" rel="noreferrer">
+            {loopVideo}
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
