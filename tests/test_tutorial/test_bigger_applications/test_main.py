@@ -580,7 +580,7 @@ def test_openapi_schema(client: TestClient):
                     },
                 },
                 "put": {
-                    "tags": ["items", "custom"],
+                    "tags": ["custom", "items"],
                     "summary": "Update Item",
                     "operationId": "update_item_items__item_id__put",
                     "parameters": [
