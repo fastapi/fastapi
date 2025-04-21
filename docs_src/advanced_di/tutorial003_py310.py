@@ -65,12 +65,12 @@ class GeoProvider(Provider):
 geo_router = APIRouter(prefix="/geo", tags=["Geo"], route_class=DishkaRoute)
 
 
-@geo_router.post(
+@geo_router.get(
     "",
     response_class=PlainTextResponse,
     summary="Fetches geodata.",
 )
-async def create(client: FromDishka[Client]) -> str:
+async def get(client: FromDishka[Client]) -> str:
     return await client.request()
 
 

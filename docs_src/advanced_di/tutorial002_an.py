@@ -61,12 +61,12 @@ VillageClientDep = Annotated[VillageClient, Depends(VillageClient)]
 geo_router = APIRouter(prefix="/geo", tags=["Geo"])
 
 
-@geo_router.post(
+@geo_router.get(
     "",
     response_class=PlainTextResponse,
     summary="Fetches geodata.",
 )
-async def create(client: CityClientDep) -> str:
+async def get(client: CityClientDep) -> str:
     return await client.request()
 
 

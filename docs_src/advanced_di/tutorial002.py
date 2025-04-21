@@ -52,12 +52,12 @@ class VillageClient(Client):
 geo_router = APIRouter(prefix="/geo", tags=["Geo"])
 
 
-@geo_router.post(
+@geo_router.get(
     "",
     response_class=PlainTextResponse,
     summary="Fetches geodata.",
 )
-async def create(client: CityClient = Depends(CityClient)) -> str:
+async def get(client: CityClient = Depends(CityClient)) -> str:
     return await client.request()
 
 
