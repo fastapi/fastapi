@@ -1,4 +1,6 @@
-from typing import Annotated, Literal
+from typing import Literal
+
+from typing_extensions import Annotated
 
 METHODS_WITH_BODY = {"GET", "HEAD", "POST", "PUT", "DELETE", "PATCH"}
 REF_PREFIX = "#/components/schemas/"
