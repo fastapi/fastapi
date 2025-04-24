@@ -64,7 +64,6 @@ async def get():
 
 
 async def get_cookie_or_token(
-    websocket: WebSocket,
     session: Annotated[str | None, Cookie()] = None,
     token: Annotated[str | None, Query()] = None,
 ):
