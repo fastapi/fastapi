@@ -24,7 +24,7 @@ gold:
     title: Simplify Full Stack Development with FastAPI & MongoDB
     img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
   - url: https://zuplo.link/fastapi-gh
-    title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
+    title: 'Zuplo: Deploy, Secure, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
