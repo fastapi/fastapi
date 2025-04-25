@@ -18,7 +18,7 @@ class UnsupportedFileTypeError(HTTPException):
 
 
 @app.exception_handler((FileTooLargeError, UnsupportedFileTypeError))
-def custom_exception_handler(request: Request, exc: HTTPException):
+async def custom_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content={"error": exc.detail, "hint": "Need help? Contact support@example.com"},
