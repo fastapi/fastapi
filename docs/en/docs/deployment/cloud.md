@@ -16,3 +16,4 @@ You might want to try their services and follow their guides:
 * <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
 * <a href="https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website" class="external-link" target="_blank">Coherence</a>
 * <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
+* <a href="https://vercel.com/templates/next.js/nextjs-fastapi-starter" class="external-link" target="_blank">Vercel</a>

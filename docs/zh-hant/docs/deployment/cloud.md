@@ -15,3 +15,4 @@
 * <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank" >Platform.sh</a>
 * <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
 * <a href="https://docs.withcoherence.com/" class="external-link" target="_blank">Coherence</a>
+* <a href="https://vercel.com/templates/next.js/nextjs-fastapi-starter" class="external-link" target="_blank">Vercel</a>
