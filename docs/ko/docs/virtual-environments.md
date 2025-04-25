@@ -102,7 +102,7 @@ $ uv venv
 
 ///
 
-////    
+////
 
 해당 명령어는 `.venv` 디렉터리에 새로운 가상 환경을 생성합니다.
 
@@ -391,7 +391,7 @@ Hello World
 
 ## 에디터 설정
 
-에디터를 사용할 경우, 앞서 만든 가상 환경을 사용하도록 설정하는 것이 좋습니다. (대부분의 에디터는 자동으로 감지하기도 합니다.)  
+에디터를 사용할 경우, 앞서 만든 가상 환경을 사용하도록 설정하는 것이 좋습니다. (대부분의 에디터는 자동으로 감지하기도 합니다.)
 이렇게 하면 자동 완성 기능이나 코드 내 오류 표시 기능을 제대로 사용할 수 있습니다.
 
 예시:
@@ -619,7 +619,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-이 명령어는 이후에 실행될 명령어에서 사용될 [환경 변수](environment-variables.md){.internal-link target=_blank} 몇 개를 생성하거나 수정합니다. 
+이 명령어는 이후에 실행될 명령어에서 사용될 [환경 변수](environment-variables.md){.internal-link target=_blank} 몇 개를 생성하거나 수정합니다.
 
 이 변수들 중 하나가 바로 `PATH` 변수입니다.
 
@@ -633,7 +633,7 @@ $ source .venv/Scripts/activate
 
 예를 들어, 가상 환경을 활성화하기 전의 `PATH` 변수는 다음과 같았다고 가정해봅시다:
 
-//// tab | Linux, macOS 
+//// tab | Linux, macOS
 
 ```plaintext
 /usr/bin:/bin:/usr/sbin:/sbin
@@ -750,7 +750,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 Linux와 macOS에서는 `which`, Windows PowerShell에서는 `Get-Command` 명령어를 사용합니다.
 
-이 명령어는 `PATH` 환경 변수에 지정된 경로들을 **순서대로 탐색**하면서 `python`이라는 이름의 프로그램을 찾습니다.  
+이 명령어는 `PATH` 환경 변수에 지정된 경로들을 **순서대로 탐색**하면서 `python`이라는 이름의 프로그램을 찾습니다.
 찾는 즉시, 해당 프로그램의 **경로를 출력**합니다.
 
 중요한 점은 터미널에서 `python`을 실행했을 때, 실제로 실행되는 "`python`"이 어떤 것인지 정확히 알 수 있다는 것입니다.
@@ -792,7 +792,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// sirius를 임포트하는 데 실패했습니다. 설치되어 있지 않아요 😱 
+// sirius를 임포트하는 데 실패했습니다. 설치되어 있지 않아요 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
