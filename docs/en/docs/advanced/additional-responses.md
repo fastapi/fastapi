@@ -191,6 +191,20 @@ But if you have specified a custom response class with `None` as its media type,
 
 ///
 
+## Global Responses
+
+You can also register responses at the application level.
+This automatically adds the specified response models to every endpoint, without needing to define them individually.
+Use the same syntax as demonstrated above.
+
+```Python
+class MyErrorModel(BaseModel):
+    message: str
+    code: str
+
+app = FastAPI(responses={"default": {"model": MyErrorModel, "description": "Error response"}})
+```
+
 ## Combining information
 
 You can also combine response information from multiple places, including the `response_model`, `status_code`, and `responses` parameters.
