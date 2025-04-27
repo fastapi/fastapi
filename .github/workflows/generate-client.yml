@@ -39,7 +39,6 @@ jobs:
     - run: uv run bash scripts/generate-client.sh
       env:
         VIRTUAL_ENV: backend/.venv
-        ENVIRONMENT: production
         SECRET_KEY: just-for-generating-client
         POSTGRES_PASSWORD: just-for-generating-client
         FIRST_SUPERUSER_PASSWORD: just-for-generating-client
