@@ -450,6 +450,8 @@ class APIRoute(routing.Route):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
+        include_error_input: bool = True,
+        include_error_url: bool = False,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
@@ -480,6 +482,8 @@ class APIRoute(routing.Route):
         self.response_model_exclude_defaults = response_model_exclude_defaults
         self.response_model_exclude_none = response_model_exclude_none
         self.include_in_schema = include_in_schema
+        self.include_error_input = include_error_input
+        self.include_error_url = include_error_url
         self.response_class = response_class
         self.dependency_overrides_provider = dependency_overrides_provider
         self.callbacks = callbacks
@@ -512,6 +516,8 @@ class APIRoute(routing.Route):
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
+                include_error_input=self.include_error_input,
+                include_error_url=self.include_error_url,
             )
             # Create a clone of the field, so that a Pydantic submodel is not returned
             # as is just because it's an instance of a subclass of a more limited class
@@ -542,7 +548,11 @@ class APIRoute(routing.Route):
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
-                    name=response_name, type_=model, mode="serialization"
+                    name=response_name,
+                    type_=model,
+                    mode="serialization",
+                    include_error_input=self.include_error_input,
+                    include_error_url=self.include_error_url,
                 )
                 response_fields[additional_status_code] = response_field
         if response_fields:
@@ -551,7 +561,12 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format,
+            call=self.endpoint,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -818,6 +833,22 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = True,
+        include_error_input: Annotated[
+            bool,
+            Doc(
+                """
+                TODO
+                """
+            ),
+        ] = True,
+        include_error_url: Annotated[
+            bool,
+            Doc(
+                """
+                TODO
+                """
+            ),
+        ] = False,
         generate_unique_id_function: Annotated[
             Callable[[APIRoute], str],
             Doc(
@@ -852,6 +883,8 @@ class APIRouter(routing.Router):
         self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
+        self.include_error_input = include_error_input
+        self.include_error_url = include_error_url
         self.responses = responses or {}
         self.callbacks = callbacks or []
         self.dependency_overrides_provider = dependency_overrides_provider
@@ -901,6 +934,8 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
+        include_error_input: bool = True,
+        include_error_url: bool = False,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
@@ -951,6 +986,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema and self.include_in_schema,
+            include_error_input=include_error_input,
+            include_error_url=include_error_url,
             response_class=current_response_class,
             name=name,
             dependency_overrides_provider=self.dependency_overrides_provider,
@@ -982,6 +1019,8 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
+        include_error_input: bool = True,
+        include_error_url: bool = False,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         callbacks: Optional[List[BaseRoute]] = None,
@@ -1012,6 +1051,8 @@ class APIRouter(routing.Router):
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
                 include_in_schema=include_in_schema,
+                include_error_input=include_error_input,
+                include_error_url=include_error_url,
                 response_class=response_class,
                 name=name,
                 callbacks=callbacks,
@@ -1322,6 +1363,8 @@ class APIRouter(routing.Router):
                     include_in_schema=route.include_in_schema
                     and self.include_in_schema
                     and include_in_schema,
+                    include_error_input=route.include_error_input,
+                    include_error_url=route.include_error_url,
                     response_class=use_response_class,
                     name=route.name,
                     route_class_override=type(route),
@@ -1733,6 +1776,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -2115,6 +2160,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -2497,6 +2544,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -2874,6 +2923,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -3251,6 +3302,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -3633,6 +3686,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -4015,6 +4070,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,
@@ -4397,6 +4454,8 @@ class APIRouter(routing.Router):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=self.include_error_input,
+            include_error_url=self.include_error_url,
             response_class=response_class,
             name=name,
             callbacks=callbacks,

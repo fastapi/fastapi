@@ -89,6 +89,8 @@ if PYDANTIC_V2:
         field_info: FieldInfo
         name: str
         mode: Literal["validation", "serialization"] = "validation"
+        include_error_input: bool = True
+        include_error_url: bool = False
 
         @property
         def alias(self) -> str:
@@ -131,7 +133,11 @@ if PYDANTIC_V2:
                 )
             except ValidationError as exc:
                 return None, _regenerate_error_with_loc(
-                    errors=exc.errors(include_url=False), loc_prefix=loc
+                    errors=exc.errors(
+                        include_input=self.include_error_input,
+                        include_url=self.include_error_url,
+                    ),
+                    loc_prefix=loc,
                 )
 
         def serialize(
@@ -267,11 +273,16 @@ if PYDANTIC_V2:
         assert issubclass(origin_type, sequence_types)  # type: ignore[arg-type]
         return sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+    def get_missing_field_error(
+        loc: Tuple[str, ...],
+        include_error_input: bool = True,
+        include_error_url: bool = False,
+    ) -> Dict[str, Any]:
         error = ValidationError.from_exception_data(
             "Field required", [{"type": "missing", "loc": loc, "input": {}}]
-        ).errors(include_url=False)[0]
-        error["input"] = None
+        ).errors(include_url=include_error_url)[0]
+        if include_error_input:
+            error["input"] = None
         return error  # type: ignore[return-value]
 
     def create_body_model(
@@ -509,10 +520,18 @@ else:
     def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
 
-    def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+    def get_missing_field_error(
+        loc: Tuple[str, ...],
+        include_error_input: bool = True,
+        include_error_url: bool = False,
+    ) -> Dict[str, Any]:
         missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
-        new_error = ValidationError([missing_field_error], RequestErrorModel)
-        return new_error.errors()[0]  # type: ignore[return-value]
+        new_error = ValidationError([missing_field_error], RequestErrorModel).errors(
+            include_url=include_error_url
+        )[0]
+        if include_error_input:
+            new_error["input"] = None
+        return new_error  # type: ignore[return-value]
 
     def create_body_model(
         *, fields: Sequence[ModelField], model_name: str
