@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆️ Update Dependabot configuration to target the backend directory for Python uv updates. PR [#1577](https://github.com/fastapi/full-stack-fastapi-template/pull/1577) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update Dependabot config. PR [#1576](https://github.com/fastapi/full-stack-fastapi-template/pull/1576) by [@alejsdev](https://github.com/alejsdev).
 * Bump @babel/runtime from 7.23.9 to 7.27.0 in /frontend. PR [#1570](https://github.com/fastapi/full-stack-fastapi-template/pull/1570) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * Bump esbuild, @vitejs/plugin-react-swc and vite in /frontend. PR [#1571](https://github.com/fastapi/full-stack-fastapi-template/pull/1571) by [@dependabot[bot]](https://github.com/apps/dependabot).
