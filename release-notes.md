@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump @biomejs/biome from 1.6.1 to 1.9.4 in /frontend. PR [#1582](https://github.com/fastapi/full-stack-fastapi-template/pull/1582) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆️ Update Dependabot configuration to target the backend directory for Python uv updates. PR [#1577](https://github.com/fastapi/full-stack-fastapi-template/pull/1577) by [@alejsdev](https://github.com/alejsdev).
 * 🔧 Update Dependabot config. PR [#1576](https://github.com/fastapi/full-stack-fastapi-template/pull/1576) by [@alejsdev](https://github.com/alejsdev).
 * Bump @babel/runtime from 7.23.9 to 7.27.0 in /frontend. PR [#1570](https://github.com/fastapi/full-stack-fastapi-template/pull/1570) by [@dependabot[bot]](https://github.com/apps/dependabot).
