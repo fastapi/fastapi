@@ -26,7 +26,7 @@
     "react-icons": "^5.4.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.6.1",
+    "@biomejs/biome": "1.9.4",
     "@hey-api/openapi-ts": "^0.57.0",
     "@playwright/test": "^1.45.2",
     "@tanstack/router-devtools": "1.19.1",
