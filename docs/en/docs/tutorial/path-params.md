@@ -56,8 +56,7 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
         "item_id"
       ],
       "msg": "Input should be a valid integer, unable to parse string as an integer",
-      "input": "foo",
-      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+      "input": "foo"
     }
   ]
 }
@@ -238,7 +237,7 @@ So, you can use it with:
 
 /// tip
 
-You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+You might need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
 
 In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
 
