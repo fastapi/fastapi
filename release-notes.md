@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump pyjwt from 2.9.0 to 2.10.1 in /backend. PR [#1588](https://github.com/fastapi/full-stack-fastapi-template/pull/1588) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump httpx from 0.27.2 to 0.28.1 in /backend. PR [#1587](https://github.com/fastapi/full-stack-fastapi-template/pull/1587) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump form-data from 4.0.0 to 4.0.2 in /frontend. PR [#1578](https://github.com/fastapi/full-stack-fastapi-template/pull/1578) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump @biomejs/biome from 1.6.1 to 1.9.4 in /frontend. PR [#1582](https://github.com/fastapi/full-stack-fastapi-template/pull/1582) by [@dependabot[bot]](https://github.com/apps/dependabot).
