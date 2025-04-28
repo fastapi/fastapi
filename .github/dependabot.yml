@@ -9,7 +9,7 @@ updates:
       prefix: ⬆
   # Python uv
   - package-ecosystem: uv
-    directory: /
+    directory: /backend
     schedule:
       interval: daily
     commit-message:
