@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Update ReDoc to version 2.x. PR [#9700](https://github.com/fastapi/fastapi/pull/9700) by [@joakimnordling](https://github.com/joakimnordling).
+
 ### Docs
 
 * 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
