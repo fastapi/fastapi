@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
 * ✏️ Fix syntax error in `docs/en/docs/tutorial/handling-errors.md`. PR [#13623](https://github.com/fastapi/fastapi/pull/13623) by [@gsheni](https://github.com/gsheni).
 * 📝 Fix typo in documentation. PR [#13599](https://github.com/fastapi/fastapi/pull/13599) by [@Taoup](https://github.com/Taoup).
 * 📝 Fix liblab client generation doc link. PR [#13571](https://github.com/fastapi/fastapi/pull/13571) by [@EFord36](https://github.com/EFord36).
@@ -25,6 +26,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump astral-sh/setup-uv from 5 to 6. PR [#13648](https://github.com/fastapi/fastapi/pull/13648) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13634](https://github.com/fastapi/fastapi/pull/13634) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13619](https://github.com/fastapi/fastapi/pull/13619) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13594](https://github.com/fastapi/fastapi/pull/13594) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
