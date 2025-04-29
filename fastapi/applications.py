@@ -44,7 +44,7 @@ from typing_extensions import Annotated, Doc, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
-
+print(101)
 class FastAPI(Starlette):
     """
     `FastAPI` app class, the main entrypoint to use FastAPI.
