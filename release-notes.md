@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump @playwright/test from 1.45.2 to 1.52.0 in /frontend. PR [#1586](https://github.com/fastapi/full-stack-fastapi-template/pull/1586) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pydantic-settings from 2.5.2 to 2.9.1 in /backend. PR [#1589](https://github.com/fastapi/full-stack-fastapi-template/pull/1589) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump next-themes from 0.4.4 to 0.4.6 in /frontend. PR [#1598](https://github.com/fastapi/full-stack-fastapi-template/pull/1598) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump @types/node from 20.10.5 to 22.15.3 in /frontend. PR [#1599](https://github.com/fastapi/full-stack-fastapi-template/pull/1599) by [@dependabot[bot]](https://github.com/apps/dependabot).
