@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump next-themes from 0.4.4 to 0.4.6 in /frontend. PR [#1598](https://github.com/fastapi/full-stack-fastapi-template/pull/1598) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump @types/node from 20.10.5 to 22.15.3 in /frontend. PR [#1599](https://github.com/fastapi/full-stack-fastapi-template/pull/1599) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump @tanstack/react-query-devtools from 5.28.14 to 5.74.9 in /frontend. PR [#1597](https://github.com/fastapi/full-stack-fastapi-template/pull/1597) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump sqlmodel from 0.0.22 to 0.0.24 in /backend. PR [#1596](https://github.com/fastapi/full-stack-fastapi-template/pull/1596) by [@dependabot[bot]](https://github.com/apps/dependabot).
