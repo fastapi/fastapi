@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump postgres from 12 to 17. PR [#1580](https://github.com/fastapi/full-stack-fastapi-template/pull/1580) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump axios from 1.8.2 to 1.9.0 in /frontend. PR [#1592](https://github.com/fastapi/full-stack-fastapi-template/pull/1592) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump react-icons from 5.4.0 to 5.5.0 in /frontend. PR [#1581](https://github.com/fastapi/full-stack-fastapi-template/pull/1581) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump jinja2 from 3.1.4 to 3.1.6 in /backend. PR [#1591](https://github.com/fastapi/full-stack-fastapi-template/pull/1591) by [@dependabot[bot]](https://github.com/apps/dependabot).
