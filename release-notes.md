@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump sqlmodel from 0.0.22 to 0.0.24 in /backend. PR [#1596](https://github.com/fastapi/full-stack-fastapi-template/pull/1596) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump python-multipart from 0.0.10 to 0.0.20 in /backend. PR [#1595](https://github.com/fastapi/full-stack-fastapi-template/pull/1595) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump alembic from 1.13.2 to 1.15.2 in /backend. PR [#1594](https://github.com/fastapi/full-stack-fastapi-template/pull/1594) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump postgres from 12 to 17. PR [#1580](https://github.com/fastapi/full-stack-fastapi-template/pull/1580) by [@dependabot[bot]](https://github.com/apps/dependabot).
