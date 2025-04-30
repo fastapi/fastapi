@@ -1,7 +1,7 @@
 services:
 
   db:
-    image: postgres:12
+    image: postgres:17
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
