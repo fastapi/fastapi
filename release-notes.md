@@ -16,6 +16,7 @@
 
 ### Internal
 
+* ⬆ Bump @tanstack/react-query-devtools from 5.28.14 to 5.74.9 in /frontend. PR [#1597](https://github.com/fastapi/full-stack-fastapi-template/pull/1597) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump sqlmodel from 0.0.22 to 0.0.24 in /backend. PR [#1596](https://github.com/fastapi/full-stack-fastapi-template/pull/1596) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump python-multipart from 0.0.10 to 0.0.20 in /backend. PR [#1595](https://github.com/fastapi/full-stack-fastapi-template/pull/1595) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump alembic from 1.13.2 to 1.15.2 in /backend. PR [#1594](https://github.com/fastapi/full-stack-fastapi-template/pull/1594) by [@dependabot[bot]](https://github.com/apps/dependabot).
