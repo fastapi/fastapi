@@ -1,8 +1,8 @@
+import pytest
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-import pytest
 
 # ======================
 # Configuração do app e rotas
@@ -23,7 +23,9 @@ async def read_items(request: Request):
         try:
             dados = await request.json()
             item = Item(**dados)
-            return JSONResponse({"message": "Item criado", "item": item.model_dump()}, status_code=201)
+            return JSONResponse(
+                {"message": "Item criado", "item": item.model_dump()}, status_code=201
+            )
         except Exception:
             return JSONResponse({"detail": "Erro ao processar JSON"}, status_code=400)
     return JSONResponse({"hello": "world"})
@@ -50,7 +52,7 @@ def test_post_items():
     assert resposta.status_code == 201
     assert resposta.json() == {
         "message": "Item criado",
-        "item": {"nome": "Caderno", "quantidade": 10}
+        "item": {"nome": "Caderno", "quantidade": 10},
     }
 
 
@@ -87,13 +89,16 @@ def test_method_not_allowed():
 
 # Testa múltiplos métodos HTTP para a mesma rota usando parametrização
 # Verifica se cada método responde com o status esperado
-@pytest.mark.parametrize("metodo,status_esperado", [
-    ("GET", 200),
-    ("POST", 201),
-    ("PUT", 405),
-    ("DELETE", 405),
-    ("PATCH", 405),
-])
+@pytest.mark.parametrize(
+    "metodo,status_esperado",
+    [
+        ("GET", 200),
+        ("POST", 201),
+        ("PUT", 405),
+        ("DELETE", 405),
+        ("PATCH", 405),
+    ],
+)
 def test_varios_metodos(metodo, status_esperado):
     payload = {"nome": "Caneta", "quantidade": 1}
     resposta = client.request(metodo, "/items/", json=payload)

@@ -1,7 +1,8 @@
 # https://github.com/fastapi/fastapi/issues/10180
 
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
+
 
 def test_mount_subapp_on_apirouter_should_not_work():
     app = FastAPI()
