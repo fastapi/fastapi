@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Update docs for "Help FastAPI", simplify and reduce "sponsor" section. PR [#13670](https://github.com/fastapi/fastapi/pull/13670) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
 * ✏️ Fix syntax error in `docs/en/docs/tutorial/handling-errors.md`. PR [#13623](https://github.com/fastapi/fastapi/pull/13623) by [@gsheni](https://github.com/gsheni).
 * 📝 Fix typo in documentation. PR [#13599](https://github.com/fastapi/fastapi/pull/13599) by [@Taoup](https://github.com/Taoup).
@@ -30,6 +31,10 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Experts. PR [#13671](https://github.com/fastapi/fastapi/pull/13671) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump typer from 0.12.5 to 0.15.3. PR [#13666](https://github.com/fastapi/fastapi/pull/13666) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump sqlmodel from 0.0.23 to 0.0.24. PR [#13665](https://github.com/fastapi/fastapi/pull/13665) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update Sponsors: Zuplo logo and alt text. PR [#13645](https://github.com/fastapi/fastapi/pull/13645) by [@martyndavies](https://github.com/martyndavies).
 * 👥 Update FastAPI GitHub topic repositories. PR [#13667](https://github.com/fastapi/fastapi/pull/13667) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update links for LinkedIn and bottom. PR [#13669](https://github.com/fastapi/fastapi/pull/13669) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Bump.sh and Coherence. PR [#13668](https://github.com/fastapi/fastapi/pull/13668) by [@tiangolo](https://github.com/tiangolo).
