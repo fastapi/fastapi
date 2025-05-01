@@ -1,16 +1,31 @@
+import importlib
+
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.websockets.tutorial003 import app, html
+from docs_src.websockets.tutorial003 import html
+from ...utils import needs_py39
 
-client = TestClient(app)
+@pytest.fixture(
+        name="client",
+        params=[
+            "tutorial003",
+            pytest.param("tutorial003_py39", marks=needs_py39),
+        ],
+)
 
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.websockets.{request.param}")
 
-def test_get():
+    client = TestClient(mod.app)
+    return client
+
+def test_get(client: TestClient):
     response = client.get("/")
     assert response.text == html
 
 
-def test_websocket_handle_disconnection():
+def test_websocket_handle_disconnection(client: TestClient):
     with client.websocket_connect("/ws/1234") as connection, client.websocket_connect(
         "/ws/5678"
     ) as connection_two:
