@@ -4,21 +4,23 @@ import pytest
 from fastapi.testclient import TestClient
 
 from docs_src.websockets.tutorial003 import html
+
 from ...utils import needs_py39
 
-@pytest.fixture(
-        name="client",
-        params=[
-            "tutorial003",
-            pytest.param("tutorial003_py39", marks=needs_py39),
-        ],
-)
 
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial003",
+        pytest.param("tutorial003_py39", marks=needs_py39),
+    ],
+)
 def get_client(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.websockets.{request.param}")
 
     client = TestClient(mod.app)
     return client
+
 
 def test_get(client: TestClient):
     response = client.get("/")
