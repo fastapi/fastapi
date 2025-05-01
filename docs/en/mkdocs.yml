@@ -311,11 +311,7 @@ extra:
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/tiangolo
-  - icon: fontawesome/brands/dev
-    link: https://dev.to/tiangolo
-  - icon: fontawesome/brands/medium
-    link: https://medium.com/@tiangolo
+    link: https://www.linkedin.com/company/fastapi
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
   alternate:
