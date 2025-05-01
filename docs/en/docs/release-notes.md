@@ -30,6 +30,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI GitHub topic repositories. PR [#13667](https://github.com/fastapi/fastapi/pull/13667) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update links for LinkedIn and bottom. PR [#13669](https://github.com/fastapi/fastapi/pull/13669) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Bump.sh and Coherence. PR [#13668](https://github.com/fastapi/fastapi/pull/13668) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#13664](https://github.com/fastapi/fastapi/pull/13664) by [@tiangolo](https://github.com/tiangolo).
