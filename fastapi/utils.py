@@ -83,11 +83,15 @@ def create_model_field(
     kwargs = {
         "name": name,
         "field_info": field_info,
-        "include_error_input": include_error_input,
-        "include_error_url": include_error_url,
     }
     if PYDANTIC_V2:
-        kwargs.update({"mode": mode})
+        kwargs.update(
+            {
+                "mode": mode,
+                "include_error_input": include_error_input,
+                "include_error_url": include_error_url,
+            }
+        )
     else:
         kwargs.update(
             {
@@ -147,8 +151,6 @@ def create_cloned_field(
     new_field.required = field.required  # type: ignore[misc]
     new_field.model_config = field.model_config  # type: ignore[attr-defined]
     new_field.field_info = field.field_info
-    new_field.include_error_input = field.include_error_input
-    new_field.include_error_url = field.include_error_url
     new_field.allow_none = field.allow_none  # type: ignore[attr-defined]
     new_field.validate_always = field.validate_always  # type: ignore[attr-defined]
     if field.sub_fields:  # type: ignore[attr-defined]
