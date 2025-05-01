@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Update ReDoc to version 2.x. PR [#9700](https://github.com/fastapi/fastapi/pull/9700) by [@joakimnordling](https://github.com/joakimnordling).
+
 ### Docs
 
 * 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
@@ -26,6 +30,9 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Sponsors. PR [#13664](https://github.com/fastapi/fastapi/pull/13664) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13662](https://github.com/fastapi/fastapi/pull/13662) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13656](https://github.com/fastapi/fastapi/pull/13656) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ✅ Use `inline-snapshot` to support different Pydantic versions in the test suite. PR [#12534](https://github.com/fastapi/fastapi/pull/12534) by [@15r10nk](https://github.com/15r10nk).
 * ⬆ Bump astral-sh/setup-uv from 5 to 6. PR [#13648](https://github.com/fastapi/fastapi/pull/13648) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13634](https://github.com/fastapi/fastapi/pull/13634) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
