@@ -40,25 +40,19 @@ _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
-    if status_code is None:
+    if status_code is None or status_code in {"default", "1XX", "2XX", "3XX", "4XX", "5XX"}:
         return True
-    # Ref: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#patterned-fields-1
-    if status_code in {
-        "default",
-        "1XX",
-        "2XX",
-        "3XX",
-        "4XX",
-        "5XX",
-    }:
-        return True
-    current_status_code = int(status_code)
-    return not (current_status_code < 200 or current_status_code in {204, 205, 304})
+    try:
+        code = int(status_code)
+        return 200 <= code < 300 and code not in {204, 205, 304}
+    except ValueError:
+        return False
 
+
+_PATH_PARAM_REGEX = re.compile(r"{(.*?)}")
 
 def get_path_param_names(path: str) -> Set[str]:
-    return set(re.findall("{(.*?)}", path))
-
+    return set(_PATH_PARAM_REGEX.findall(path))
 
 def create_model_field(
     name: str,
