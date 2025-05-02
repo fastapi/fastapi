@@ -756,7 +756,9 @@ class FastAPI(Starlette):
             bool,
             Doc(
                 """
-                TODO
+                To include (or not) the field `input` in the validation error of all *path operations*.
+
+                This does not affect the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
         ] = True,
@@ -764,7 +766,9 @@ class FastAPI(Starlette):
             bool,
             Doc(
                 """
-                TODO
+                To include (or not) the field `url` in the validation error of all *path operations*.
+
+                This does not affect the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
         ] = False,
