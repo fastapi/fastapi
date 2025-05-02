@@ -40,7 +40,14 @@ _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
-    if status_code is None or status_code in {"default", "1XX", "2XX", "3XX", "4XX", "5XX"}:
+    if status_code is None or status_code in {
+        "default",
+        "1XX",
+        "2XX",
+        "3XX",
+        "4XX",
+        "5XX",
+    }:
         return True
     try:
         code = int(status_code)
@@ -51,8 +58,10 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
 
 _PATH_PARAM_REGEX = re.compile(r"{(.*?)}")
 
+
 def get_path_param_names(path: str) -> Set[str]:
     return set(_PATH_PARAM_REGEX.findall(path))
+
 
 def create_model_field(
     name: str,
