@@ -3,8 +3,10 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
 from docs_src.websockets.tutorial003 import html
+
+from ...utils import needs_py39
+
 
 @pytest.fixture(
     name="client",
