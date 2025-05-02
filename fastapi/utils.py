@@ -80,10 +80,7 @@ def create_model_field(
         )
     else:
         field_info = field_info or FieldInfo()
-    kwargs = {
-        "name": name,
-        "field_info": field_info,
-    }
+    kwargs = {"name": name, "field_info": field_info}
     if PYDANTIC_V2:
         kwargs.update(
             {

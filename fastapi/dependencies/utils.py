@@ -709,13 +709,12 @@ def _validate_value_with_model_field(
     if value is None:
         if field.required:
             if PYDANTIC_V2:
-                return None, [
-                    get_missing_field_error(
-                        loc, field.include_error_input, field.include_error_url
-                    )
-                ]
+                error = get_missing_field_error(
+                    loc, field.include_error_input, field.include_error_url
+                )
             else:
-                return None, [get_missing_field_error(loc=loc)]
+                error = get_missing_field_error(loc)
+            return None, [error]
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
@@ -931,13 +930,12 @@ async def request_body_to_args(
             # If the received body is a list, not a dict
             except AttributeError:
                 if PYDANTIC_V2:
-                    errors.append(
-                        get_missing_field_error(
-                            loc, field.include_error_input, field.include_error_url
-                        )
+                    error = get_missing_field_error(
+                        loc, field.include_error_input, field.include_error_url
                     )
                 else:
-                    errors.append(get_missing_field_error(loc))
+                    error = get_missing_field_error(loc)
+                errors.append(error)
                 continue
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc

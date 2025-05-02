@@ -23,17 +23,19 @@ def test_input_and_url_fields(include_error_input, include_error_url):
     def path2(query_param: int):
         return query_param
 
-    router = APIRouter()
+    router = APIRouter(
+        include_error_input=include_error_input, include_error_url=include_error_url
+    )
 
-    @app.get("/path3/{path_param}")
+    @router.get("/path3/{path_param}")
     def path3(path_param: int):
         return {"path_param": path_param}
 
-    @app.get("/path4/")
+    @router.get("/path4/")
     def path4(query_param: int):
         return query_param
 
-    app.include_router(router, prefix="/prefix")
+    app.include_router(router)
     client = TestClient(app)
 
     with client:
