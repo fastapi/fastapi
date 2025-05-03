@@ -6,6 +6,30 @@ Cada seção constrói, gradualmente, sobre as anteriores, mas sua estrutura sã
 
 Ele também foi construído para servir como uma referência futura, então você pode voltar e ver exatamente o que você precisa.
 
+## Instale o FastAPI
+
+O primeiro passo é instalar o FastAPI.
+
+Para o tutorial, você deve querer instalá-lo com todas as dependências e recursos opicionais.
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+/// note | Nota
+
+Quando você instala com pip install "fastapi[standard]", ele vem com algumas dependências opcionais padrão.
+
+Se você não quiser ter essas dependências opcionais, pode instalar pip install fastapi em vez disso.
+
+///
+
 ## Rode o código
 
 Todos os blocos de código podem ser copiados e utilizados diretamente (eles são, na verdade, arquivos Python testados).
@@ -57,30 +81,6 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ver quão pouco código você tem que escrever, todas as conferências de tipo, auto completações etc.
 
 ---
-
-## Instale o FastAPI
-
-O primeiro passo é instalar o FastAPI.
-
-Para o tutorial, você deve querer instalá-lo com todas as dependências e recursos opicionais.
-
-<div class="termy">
-
-```console
-$ pip install "fastapi[standard]"
-
----> 100%
-```
-
-</div>
-
-/// note | Nota
-
-Quando você instala com pip install "fastapi[standard]", ele vem com algumas dependências opcionais padrão.
-
-Se você não quiser ter essas dependências opcionais, pode instalar pip install fastapi em vez disso.
-
-///
 
 ## Guia Avançado de Usuário
 

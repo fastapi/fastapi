@@ -8,32 +8,6 @@
 
 Тож ви можете повернутися і побачити саме те, що вам потрібно.
 
-## Запустіть код
-
-Усі блоки коду можна скопіювати та використовувати безпосередньо (це фактично перевірені файли Python).
-
-Щоб запустити будь-який із прикладів, скопіюйте код у файл `main.py` і запустіть `uvicorn` за допомогою:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-**ДУЖЕ радимо** написати або скопіювати код, відредагувати його та запустити локально.
-
-Використання його у своєму редакторі – це те, що дійсно показує вам переваги FastAPI, бачите, як мало коду вам потрібно написати, всі перевірки типів, автозаповнення тощо.
-
----
-
 ## Встановлення FastAPI
 
 Першим кроком є встановлення FastAPI.
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
 І те саме для кожної з опціональних залежностей, які ви хочете використовувати.
 
 ///
+
+## Запустіть код
+
+Усі блоки коду можна скопіювати та використовувати безпосередньо (це фактично перевірені файли Python).
+
+Щоб запустити будь-який із прикладів, скопіюйте код у файл `main.py` і запустіть `uvicorn` за допомогою:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+**ДУЖЕ радимо** написати або скопіювати код, відредагувати його та запустити локально.
+
+Використання його у своєму редакторі – це те, що дійсно показує вам переваги FastAPI, бачите, як мало коду вам потрібно написати, всі перевірки типів, автозаповнення тощо.
+
+---
 
 ## Розширений посібник користувача
 

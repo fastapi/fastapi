@@ -8,32 +8,6 @@
 
 Так что вы можете вернуться и посмотреть именно то, что вам нужно.
 
-## Запустите код
-
-Все блоки кода можно копировать и использовать напрямую (на самом деле это проверенные файлы Python).
-
-Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `uvicorn` с параметрами:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-**НАСТОЯТЕЛЬНО рекомендуется**, чтобы вы написали или скопировали код, отредактировали его и запустили локально.
-
-Использование кода в вашем редакторе — это то, что действительно показывает вам преимущества FastAPI, видя, как мало кода вам нужно написать, все проверки типов, автодополнение и т.д.
-
----
-
 ## Установка FastAPI
 
 Первый шаг — установить FastAPI.
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
 И то же самое для каждой из необязательных зависимостей, которые вы хотите использовать.
 
 ///
+
+## Запустите код
+
+Все блоки кода можно копировать и использовать напрямую (на самом деле это проверенные файлы Python).
+
+Чтобы запустить любой из примеров, скопируйте код в файл `main.py` и запустите `uvicorn` с параметрами:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+**НАСТОЯТЕЛЬНО рекомендуется**, чтобы вы написали или скопировали код, отредактировали его и запустили локально.
+
+Использование кода в вашем редакторе — это то, что действительно показывает вам преимущества FastAPI, видя, как мало кода вам нужно написать, все проверки типов, автодополнение и т.д.
+
+---
 
 ## Продвинутое руководство пользователя
 

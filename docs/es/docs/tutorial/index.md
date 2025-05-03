@@ -6,6 +6,30 @@ Cada sección se basa gradualmente en las anteriores, pero está estructurada pa
 
 También está diseñado para funcionar como una referencia futura para que puedas volver y ver exactamente lo que necesitas.
 
+## Instalar FastAPI
+
+El primer paso es instalar FastAPI.
+
+Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego **instala FastAPI**:
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+/// note | Nota
+
+Cuando instalas con `pip install "fastapi[standard]"` viene con algunas dependencias opcionales estándar por defecto.
+
+Si no quieres tener esas dependencias opcionales, en su lugar puedes instalar `pip install fastapi`.
+
+///
+
 ## Ejecuta el código
 
 Todos los bloques de código pueden ser copiados y usados directamente (de hecho, son archivos Python probados).
@@ -66,30 +90,6 @@ Es **ALTAMENTE recomendable** que escribas o copies el código, lo edites y lo e
 Usarlo en tu editor es lo que realmente te muestra los beneficios de FastAPI, al ver cuán poco código tienes que escribir, todos los chequeos de tipos, autocompletado, etc.
 
 ---
-
-## Instalar FastAPI
-
-El primer paso es instalar FastAPI.
-
-Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego **instala FastAPI**:
-
-<div class="termy">
-
-```console
-$ pip install "fastapi[standard]"
-
----> 100%
-```
-
-</div>
-
-/// note | Nota
-
-Cuando instalas con `pip install "fastapi[standard]"` viene con algunas dependencias opcionales estándar por defecto.
-
-Si no quieres tener esas dependencias opcionales, en su lugar puedes instalar `pip install fastapi`.
-
-///
 
 ## Guía Avanzada del Usuario
 

@@ -6,6 +6,30 @@
 
 本教程同样可以作为将来的参考手册，所以您可以随时回到本教程并查阅您需要的内容。
 
+## 安装 FastAPI
+
+第一个步骤是安装 FastAPI.
+
+请确保您创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后**安装 FastAPI**：
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+/// note
+
+当您使用 `pip install "fastapi[standard]"` 进行安装时，它会附带一些默认的可选标准依赖项。
+
+如果您不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
+
+///
+
 ## 运行代码
 
 所有代码片段都可以复制后直接使用（它们实际上是经过测试的 Python 文件）。
@@ -57,30 +81,6 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 在编辑器中使用 FastAPI 会真正地展现出它的优势：只需要编写很少的代码，所有的类型检查，代码补全等等。
 
 ---
-
-## 安装 FastAPI
-
-第一个步骤是安装 FastAPI.
-
-请确保您创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后**安装 FastAPI**：
-
-<div class="termy">
-
-```console
-$ pip install "fastapi[standard]"
-
----> 100%
-```
-
-</div>
-
-/// note
-
-当您使用 `pip install "fastapi[standard]"` 进行安装时，它会附带一些默认的可选标准依赖项。
-
-如果您不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
-
-///
 
 ## 进阶用户指南
 

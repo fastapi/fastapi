@@ -8,33 +8,6 @@
 
 그러므로 필요할 때에 다시 돌아와서 원하는 것을 정확히 찾을 수 있습니다.
 
-## 코드 실행하기
-
-모든 코드 블록은 복사하여 바로 사용할 수 있습니다(실제로 테스트된 파이썬 파일입니다).
-
-예제를 실행하려면 코드를 `main.py` 파일에 복사하고 다음을 사용하여 `uvicorn`을 시작합니다:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-코드를 작성하거나 복사, 편집할 때, 로컬 환경에서 실행하는 것을 **강력히 권장**합니다.
-
-로컬 편집기에서 사용한다면, 모든 타입 검사와 자동완성 등 작성해야 하는 코드가 얼마나 적은지 보면서 FastAPI의 이점을 비로소 경험할 수 있습니다.
-
-
----
-
 ## FastAPI 설치
 
 첫 번째 단계는 FastAPI를 설치하는 것입니다.
@@ -72,6 +45,33 @@ pip install uvicorn
 사용하려는 각 선택적인 의존성에 대해서도 동일합니다.
 
 ///
+
+## 코드 실행하기
+
+모든 코드 블록은 복사하여 바로 사용할 수 있습니다(실제로 테스트된 파이썬 파일입니다).
+
+예제를 실행하려면 코드를 `main.py` 파일에 복사하고 다음을 사용하여 `uvicorn`을 시작합니다:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+코드를 작성하거나 복사, 편집할 때, 로컬 환경에서 실행하는 것을 **강력히 권장**합니다.
+
+로컬 편집기에서 사용한다면, 모든 타입 검사와 자동완성 등 작성해야 하는 코드가 얼마나 적은지 보면서 FastAPI의 이점을 비로소 경험할 수 있습니다.
+
+
+---
 
 ## 고급 사용자 안내서
 
