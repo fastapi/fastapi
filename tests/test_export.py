@@ -1,8 +1,14 @@
+import sys
 import pytest
 from httpx import AsyncClient, ASGITransport
 from fastapi import FastAPI
 from fastapi.contrib.export.routes import router as export_router
 
+
+if "fastapi_slim" in sys.modules:
+    pytest.skip("Skipping export tests in fastapi_slim packaging job", allow_module_level=True)
+    
+    
 app = FastAPI()
 app.include_router(export_router)
 
