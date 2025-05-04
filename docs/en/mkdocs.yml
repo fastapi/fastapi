@@ -201,8 +201,8 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
-    - how-to/advanced-di.md
     - how-to/graphql.md
+    - how-to/ioc-containers.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
     - how-to/extending-openapi.md
