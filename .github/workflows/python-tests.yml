@@ -26,7 +26,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest pytest-asyncio httpx pandas xlsxwriter pyarrow reportlab avro-python3 mysql-connector-python protobuf
+        pip install fastapi \
+          pytest pytest-asyncio httpx \
+          pandas xlsxwriter pyarrow reportlab \
+          avro-python3 mysql-connector-python protobuf
 
     - name: Run export route tests only
       run: |
