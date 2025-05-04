@@ -29,7 +29,7 @@ jobs:
         pip install -e . \
           fastapi pandas xlsxwriter pyarrow reportlab \
           avro mysql-connector-python protobuf \
-          pytest pytest-asyncio httpx pandas-stubs types-pyarrow
+          pytest pytest-asyncio httpx pandas-stubs
 
     - name: Run export route tests only
       run: |
