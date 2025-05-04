@@ -5,17 +5,6 @@ from fastapi import FastAPI
 from fastapi.contrib.export.routes import router as export_router
 
 
-if "fastapi_slim" in sys.modules:
-    pytest.skip("Skipping export tests in fastapi_slim packaging job", allow_module_level=True)
-
-
-for pkg in ("pandas", "pyarrow", "reportlab"):
-    try:
-        __import__(pkg)
-    except ImportError:
-        pytest.skip(f"Skipping export tests because {pkg} is not installed", allow_module_level=True)
-
-
     
 app = FastAPI()
 app.include_router(export_router)

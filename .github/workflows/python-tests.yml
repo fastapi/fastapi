@@ -33,4 +33,4 @@ jobs:
 
     - name: Run export route tests only
       run: |
-        pytest tests/test_export.py
+        pytest tests_export/test_export.py
