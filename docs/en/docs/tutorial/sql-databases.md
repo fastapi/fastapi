@@ -110,15 +110,6 @@ Here we create the tables on an application startup event.
 For production you would probably use a migration script that runs before you start your app. 🤓
 
 
-/// warning
-
-The `@app.on_event("startup")` and `@app.on_event("shutdown")` decorators are **deprecated** as of FastAPI v0.103.0.
-
-Use the <a href="https://fastapi.tiangolo.com/advanced/events/#lifespan" class="external-link" target="_blank">`lifespan`</a> parameter in the `FastAPI` class instead for lifecycle management.
-
-///
-
-
 /// tip
 
 SQLModel will have migration utilities wrapping Alembic, but for now, you can use <a href="https://alembic.sqlalchemy.org/en/latest/" class="external-link" target="_blank">Alembic</a> directly.
