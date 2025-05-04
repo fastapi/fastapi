@@ -810,6 +810,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        router_class: Annotated[
+            Type[routing.APIRouter],
+            Doc(
+                """
+                Custom router class to be used by this application.
+                """,
+            ),
+        ] = routing.APIRouter,
         **extra: Annotated[
             Any,
             Doc(
@@ -929,7 +937,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
-        self.router: routing.APIRouter = routing.APIRouter(
+        self.router: routing.APIRouter = router_class(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
