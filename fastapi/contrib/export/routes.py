@@ -6,8 +6,8 @@ import csv
 import pyarrow.parquet as pq  # type: ignore
 import pyarrow.feather as feather  # type: ignore
 import pyarrow.orc as orc  # type: ignore
-import avro.schema  # type: ignore
-import avro.io  # type: ignore
+import avro.schema
+import avro.io
 import sqlite3
 import struct
 from reportlab.lib.pagesizes import letter  # type: ignore
