@@ -1,0 +1,6 @@
+xlsxwriter
+pyarrow
+reportlab
+avro-python3
+mysql-connector-python
+protobuf
