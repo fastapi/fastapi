@@ -51,7 +51,7 @@ async def export_data(format: str = Query("json", enum=["json", "csv", "excel", 
 
     elif format == "pdf":
         output: io.BytesIO = io.BytesIO()
-        pdf = canvas.Canvas(output, pagesize=pagesizes.letter)
+        pdf = canvas.Canvas(output, pagesize=letter)
         pdf.drawString(100, 750, "Exported Data")
         y = 730
         for row in df.to_dict(orient="records"):
