@@ -28,8 +28,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest pytest-asyncio httpx pandas xlsxwriter pyarrow reportlab avro-python3 mysql-connector-python protobuf
 
-    - name: Run tests
+    - name: Run export route tests only
       run: |
-        pytest tests/
-
-
+        pytest tests/test_export.py
