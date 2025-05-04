@@ -3,21 +3,31 @@ from fastapi.responses import JSONResponse, StreamingResponse, Response
 import pandas as pd  # type: ignore
 import io
 import csv
+import pyarrow.parquet as pq  # type: ignore
+import pyarrow.feather as feather  # type: ignore
+import pyarrow.orc as orc  # type: ignore
+import avro.schema
+import avro.io
 import sqlite3
 import struct
+from reportlab.lib.pagesizes import letter  # type: ignore
+from reportlab.pdfgen import canvas  # type: ignore
+import mysql.connector  # type: ignore
+
 
 router = APIRouter()
 
+
+# Sample data (to be linked with external db)
 data = [
     {"id": 1, "name": "George", "age": 35},
     {"id": 2, "name": "Joanna", "age": 22},
     {"id": 3, "name": "Sebastian", "age": 27}
 ]
 
+
 @router.get("/export")
-async def export_data(format: str = Query("json", enum=[
-    "json", "csv", "excel", "pdf", "parquet", "mysql", "avro", "feather", "orc", "sqlite", "protobuf"
-])) -> Response:
+async def export_data(format: str = Query("json", enum=["json", "csv", "excel", "pdf", "parquet", "mysql", "avro", "feather", "orc", "sqlite", "protobuf"])) -> Response:
     df = pd.DataFrame(data)
 
     if format == "json":
@@ -29,15 +39,10 @@ async def export_data(format: str = Query("json", enum=[
         writer.writeheader()
         writer.writerows(df.to_dict(orient="records"))
         output.seek(0)
-        return StreamingResponse(output, media_type="text/csv",
-                                 headers={"Content-Disposition": "attachment; filename=data.csv"})
+        return StreamingResponse(output, media_type="text/csv", headers={"Content-Disposition": "attachment; filename=data.csv"})
 
     elif format == "excel":
-        try:
-            import xlsxwriter  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "xlsxwriter not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         with pd.ExcelWriter(output, engine="xlsxwriter") as writer:
             df.to_excel(writer, index=False, sheet_name="Sheet1")
         output.seek(0)
@@ -45,12 +50,7 @@ async def export_data(format: str = Query("json", enum=[
                                  headers={"Content-Disposition": "attachment; filename=data.xlsx"})
 
     elif format == "pdf":
-        try:
-            from reportlab.lib.pagesizes import letter  # type: ignore
-            from reportlab.pdfgen import canvas  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "reportlab not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         pdf = canvas.Canvas(output, pagesize=letter)
         pdf.drawString(100, 750, "Exported Data")
         y = 730
@@ -63,21 +63,13 @@ async def export_data(format: str = Query("json", enum=[
                                  headers={"Content-Disposition": "attachment; filename=data.pdf"})
 
     elif format == "parquet":
-        try:
-            import pyarrow  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "pyarrow not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         df.to_parquet(output, engine="pyarrow")
         output.seek(0)
         return StreamingResponse(output, media_type="application/octet-stream",
                                  headers={"Content-Disposition": "attachment; filename=data.parquet"})
 
     elif format == "mysql":
-        try:
-            import mysql.connector  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "mysql-connector-python not installed"}, status_code=500)
         conn = mysql.connector.connect(
             host="your_mysql_host",
             user="your_mysql_user",
@@ -94,12 +86,7 @@ async def export_data(format: str = Query("json", enum=[
         return JSONResponse(content={"message": "Data successfully exported to MySQL."})
 
     elif format == "avro":
-        try:
-            import avro.schema
-            import avro.io
-        except ImportError:
-            return JSONResponse(content={"error": "avro not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         schema = avro.schema.parse('{"type": "record", "name": "DataRecord", "fields": [{"name": "id", "type": "int"}, {"name": "name", "type": "string"}, {"name": "age", "type": "int"}]}')
         writer = avro.io.DatumWriter(schema)
         encoder = avro.io.BinaryEncoder(output)
@@ -110,46 +97,38 @@ async def export_data(format: str = Query("json", enum=[
                                  headers={"Content-Disposition": "attachment; filename=data.avro"})
 
     elif format == "feather":
-        try:
-            from pyarrow import feather  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "pyarrow.feather not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         feather.write_feather(df, output)
         output.seek(0)
         return StreamingResponse(output, media_type="application/octet-stream",
                                  headers={"Content-Disposition": "attachment; filename=data.feather"})
 
     elif format == "orc":
-        try:
-            import pyarrow  # type: ignore
-        except ImportError:
-            return JSONResponse(content={"error": "pyarrow not installed"}, status_code=500)
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         df.to_orc(output, engine="pyarrow")
         output.seek(0)
         return StreamingResponse(output, media_type="application/octet-stream",
                                  headers={"Content-Disposition": "attachment; filename=data.orc"})
 
     elif format == "sqlite":
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         conn = sqlite3.connect(":memory:")
         df.to_sql("exported_data", conn, if_exists="replace", index=False)
-        # Note: conn.backup doesn't support BytesIO; here we simulate the export
-        output.write(b"-- SQLite export not fully supported in-memory --")
+        conn.backup(sqlite3.connect(output))
         output.seek(0)
         conn.close()
         return StreamingResponse(output, media_type="application/x-sqlite3",
                                  headers={"Content-Disposition": "attachment; filename=data.db"})
 
     elif format == "protobuf":
-        output = io.BytesIO()
+        output: io.BytesIO = io.BytesIO()
         for row in data:
             output.write(struct.pack("i", row["id"]))
-            output.write(row["name"].encode('utf-8') + b'\x00')
+            output.write(row["name"].encode('utf-8') + b'\x00')  # Null-terminated string
             output.write(struct.pack("i", row["age"]))
         output.seek(0)
         return StreamingResponse(output, media_type="application/octet-stream",
                                  headers={"Content-Disposition": "attachment; filename=data.proto"})
+
 
     return JSONResponse(content={"error": "Invalid format"}, status_code=400)
