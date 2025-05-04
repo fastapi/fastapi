@@ -15,5 +15,4 @@ inline-snapshot==0.19.3
 types-ujson ==5.10.0.20240515
 types-orjson ==3.6.2
 pandas-stubs
-types-pyarrow
 types-python-dateutil
