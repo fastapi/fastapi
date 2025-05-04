@@ -1,8 +1,23 @@
 import sys
 import pytest
+
+# Automatically skip the whole test file if required libraries are missing
+missing_deps = []
+for lib in ["pandas", "httpx", "pyarrow", "reportlab", "avro", "mysql.connector"]:
+    try:
+        __import__(lib)
+    except ImportError:
+        missing_deps.append(lib)
+if missing_deps:
+    pytest.skip(
+        f"Skipping export tests because dependencies are missing: {', '.join(missing_deps)}",
+        allow_module_level=True
+    )
+
 from httpx import AsyncClient, ASGITransport
 from fastapi import FastAPI
 from fastapi.contrib.export.routes import router as export_router
+
 
 
     
