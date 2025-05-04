@@ -29,4 +29,4 @@ async def test_export_invalid_format():
 	async with AsyncClient(app=app, base_url="http://test") as ac:
     	response = await ac.get("/export?format=invalid")
     	assert response.status_code == 400
-    	assert response.json()["error"] == "Unsupported format"
+    	assert response.json()["error"] == "Invalid format"

@@ -2,9 +2,9 @@ name: Run Export Tests
 
 on:
   push:
-	branches: [main, feature/**]
+	branches: [master, feature/**]
   pull_request:
-	branches: [main]
+	branches: [master]
 
 jobs:
   test:
@@ -26,7 +26,7 @@ jobs:
 	- name: Install dependencies
   	run: |
     	python -m pip install --upgrade pip
-    	pip install pytest pytest-asyncio httpx pandas xlsxwriter pyarrow reportlab
+    	pip install pytest pytest-asyncio httpx pandas xlsxwriter pyarrow reportlab avro-python3 mysql-connector-python protobuf
 
 	- name: Run tests
   	run: |
