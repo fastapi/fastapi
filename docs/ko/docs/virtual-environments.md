@@ -2,13 +2,13 @@
 
 Python 프로젝트를 작업할 때는 **가상 환경** (또는 이와 유사한 도구)을 사용하는 것이 좋습니다. 각 프로젝트 마다 설치하는 패키지를 분리하여 관리할 수 있습니다.
 
-/// info
+/// info | 정보
 
 이미 가상 환경에 대해 잘 알고 있다면, 이 섹션은 건너 뛰어도 괜찮습니다. 🤓
 
 ///
 
-/// tip
+/// tip | 팁
 
 **가상 환경(Virtual Environment)** 은 **환경 변수(Environment Variable)** 와 다릅니다.
 
@@ -18,7 +18,7 @@ Python 프로젝트를 작업할 때는 **가상 환경** (또는 이와 유사�
 
 ///
 
-/// info
+/// info | 정보
 
 이 페이지에서는 **가상 환경**의 사용 방법과 작동 방식을 설명합니다.
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 Python 프로젝트를 **처음 시작할 때**, 가상 환경을 **<abbr title="다른 방법들도 있지만, 이건 간단한 가이드라인입니다">프로젝트 내부</abbr>**에 생성합니다.
 
-/// tip
+/// tip | 팁
 
 이 작업은 **프로젝트를 처음 설정할 때 한번만** 해주면 됩니다. 이후 작업할 때 반복할 필요는 없습니다.
 
@@ -94,7 +94,7 @@ $ uv venv
 
 </div>
 
-/// tip
+/// tip | 팁
 
 `uv`는 기본적으로 `.venv` 디렉터리에 가상 환경을 생성합니다.
 
@@ -116,7 +116,7 @@ $ uv venv
 
 이후 실행하는 Python 명령어와 패키지 설치가 가상 환경을 따르도록, 가상 환경을 활성화하세요.
 
-/// tip
+/// tip | 팁
 
 **터미널을 새로 열고** 프로젝트 작업을 시작할 때는, **항상 이 작업을** 해주세요.
 
@@ -160,7 +160,7 @@ $ source .venv/Scripts/activate
 
 ////
 
-/// tip
+/// tip | 팁
 
 가상 환경에 새로운 패키지를 설치할 때마다, 해당 환경을 다시 활성화하세요.
 
@@ -172,7 +172,7 @@ $ source .venv/Scripts/activate
 
 가상 환경이 활성화되었는지 확인합니다. (이전 명령어가 제대로 작동했는지 확인합니다).
 
-/// tip
+/// tip | 팁
 
 이 단계는 **선택 사항**이지만, 모든 것이 예상대로 작동하고 있는지, 그리고 의도한 가상 환경이 활성화 되었는 지 **확인**하는 좋은 방법입니다.
 
@@ -212,7 +212,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ## pip 업그레이드
 
-/// tip
+/// tip | 팁
 
 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>를 사용한다면, `pip` 대신 `uv`로 패키지를 설치하게 되므로 `pip`을 업그레이드할 필요가 없습니다. 😎
 
@@ -222,7 +222,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 패키지 설치 중 발생하는 다양하고 특이한 에러들은 `pip` 업그레이드로 쉽게 해결되는 경우가 많습니다.
 
-/// tip
+/// tip | 팁
 
 이 작업은 보통 가상 환경을 생성한 **직후 한 번만** 하면 됩니다.
 
@@ -244,13 +244,13 @@ $ python -m pip install --upgrade pip
 
 **Git**을 사용하고 있다면 (사용하는 것이 좋습니다), `.gitignore` 파일을 추가해서 `.venv` 디렉터리 전체를 Git에서 제외하세요.
 
-/// tip
+/// tip | 팁
 
 <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>를 사용해 가상 환경을 생성했다면, 이미 이 작업이 자동으로 처리되어 있으므로 이 단계는 건너뛰어도 됩니다. 😎
 
 ///
 
-/// tip
+/// tip | 팁
 
 이 작업도 마찬가지로, 가상 환경을 생성한 **직후 한 번만** 하면 됩니다.
 
@@ -285,7 +285,7 @@ $ echo "*" > .venv/.gitignore
 
 가상 환경을 활성화한 후, 그 안에 필요한 패키지들을 설치할 수 있습니다.
 
-/// tip
+/// tip | 팁
 
 프로젝트에서 필요한 패키지를 설치하거나 업그레이드할 때는 이 작업을 **한 번만** 하면 됩니다.
 
@@ -297,7 +297,7 @@ $ echo "*" > .venv/.gitignore
 
 급하게 작업하거나, 프로젝트에 필요한 패키지 목록을 따로 파일로 관리하고 싶지 않은 경우, 패키지를 직접 설치할 수도 있습니다.
 
-/// tip
+/// tip | 팁
 
 패키지 이름과 버전 정보를 파일에 정리해두는 것(예: `requirements.txt` 또는 `pyproject.toml`)은 (매우) 좋은 생각입니다.
 
@@ -399,7 +399,7 @@ Hello World
 * <a href="https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment" class="external-link" target="_blank">VS Code</a>
 * <a href="https://www.jetbrains.com/help/pycharm/creating-virtual-environment.html" class="external-link" target="_blank">PyCharm</a>
 
-/// tip
+/// tip | 팁
 
 이 설정은 보통 가상 환경을 **처음 만들었을 때 한 번만** 해주면 됩니다.
 
@@ -424,7 +424,7 @@ $ deactivate
 이제 프로젝트 작업을 시작할 준비가 완료되었습니다.
 
 
-/// tip
+/// tip | 팁
 
 위 내용을 더 깊이 이해하고 싶으신가요?
 
@@ -515,7 +515,7 @@ flowchart LR
     end
 ```
 
-/// tip
+/// tip | 팁
 
 Python 패키지들은 **새 버전**에서 **호환성 문제(breaking changes)**가 발생하지 않도록 최대한 노력하는 것이 일반적입니다. 하지만 그래도 안전하게 작업하려면, 테스트를 실행해보면서 새 버전을 의도적으로 설치하는 것이 좋습니다.
 
@@ -623,7 +623,7 @@ $ source .venv/Scripts/activate
 
 이 변수들 중 하나가 바로 `PATH` 변수입니다.
 
-/// tip
+/// tip | 팁
 
 `PATH` 환경 변수에 대해 더 알고 싶다면 [환경 변수 문서의 PATH 환경 변수 섹션](environment-variables.md#path-environment-variable){.internal-link target=_blank}을 참고하세요.
 
@@ -757,7 +757,7 @@ Linux와 macOS에서는 `which`, Windows PowerShell에서는 `Get-Command` 명�
 
 따라서 현재 올바른 가상 환경에 있는지 확인할 수 있습니다.
 
-/// tip
+/// tip | 팁
 
 하나의 가상 환경을 활성화한 뒤, 해당 Python을 가진 상태에서 **또 다른 프로젝트**로 이동하는 것은 흔히 발생합니다.
 
