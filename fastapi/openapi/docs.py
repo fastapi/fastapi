@@ -1,9 +1,10 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Set
 
-from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 from typing_extensions import Annotated, Doc
+
+from fastapi.encoders import jsonable_encoder
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],
@@ -21,6 +22,18 @@ swagger_ui_default_parameters: Annotated[
     "showExtensions": True,
     "showCommonExtensions": True,
 }
+
+
+swagger_ui_default_scripts: Annotated[
+    Set[str],
+    Doc(
+        """
+        Default JS scripts for Swagger UI.
+
+        You can use it as a template to add any other configurations needed.
+        """
+    ),
+] = {"https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-standalone-preset.js"}
 
 
 def get_swagger_ui_html(
@@ -98,6 +111,16 @@ def get_swagger_ui_html(
             """
         ),
     ] = None,
+    swagger_ui_scripts: Annotated[
+        Optional[Set[str]],
+        Doc(
+            """
+            Configuration scripts for Swagger UI.
+
+            It defaults to [swagger_ui_default_scripts][fastapi.openapi.docs.swagger_ui_default_scripts].
+            """
+        ),
+    ] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML  that loads Swagger UI for the interactive
@@ -114,6 +137,10 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
+    current_swagger_ui_scripts = swagger_ui_default_scripts.copy()
+    if swagger_ui_scripts:
+        current_swagger_ui_scripts.update(swagger_ui_scripts)
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -126,6 +153,12 @@ def get_swagger_ui_html(
     <div id="swagger-ui">
     </div>
     <script src="{swagger_js_url}"></script>
+    """
+
+    for elem in current_swagger_ui_scripts:
+        html += f"<script src={json.dumps(elem)}></script>\n"
+
+    html += f"""
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
@@ -141,7 +174,7 @@ def get_swagger_ui_html(
     html += """
     presets: [
         SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
+        SwaggerUIStandalonePreset
         ],
     })"""
 
