@@ -124,6 +124,7 @@ def test_propagates_pydantic2_model_config():
         "embedded_value": "bar",
     }
 
+
 def test_is_bytes_sequence_annotation_union():
     # For coverage
     # TODO: in theory this would allow declaring types that could be lists of bytes

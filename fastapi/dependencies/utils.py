@@ -894,9 +894,13 @@ async def request_body_to_args(
     body_to_process = received_body
 
     fields_to_extract: List[ModelField] = body_fields
- 
-    if single_not_embedded_field and lenient_issubclass(first_field.type_, BaseModel) and isinstance(received_body, FormData):
-       fields_to_extract = get_cached_model_fields(first_field.type_)
+
+    if (
+        single_not_embedded_field
+        and lenient_issubclass(first_field.type_, BaseModel)
+        and isinstance(received_body, FormData)
+    ):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
 
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(fields_to_extract, received_body)
