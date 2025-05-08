@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+
 class MyModel(BaseModel):
     """
     A model with a form feed character in the title.
@@ -11,9 +12,11 @@ class MyModel(BaseModel):
     Text after form feed character.
     """
 
+
 @app.get("/foo")
 def foo(v: MyModel):
     pass
+
 
 client = TestClient(app)
 
