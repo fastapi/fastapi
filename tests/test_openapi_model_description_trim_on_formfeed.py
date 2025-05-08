@@ -14,7 +14,7 @@ class MyModel(BaseModel):
 
 
 @app.get("/foo")
-def foo(v: MyModel):
+def foo(v: MyModel):  # pragma: no cover
     pass
 
 
