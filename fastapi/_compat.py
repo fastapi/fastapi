@@ -231,6 +231,9 @@ if PYDANTIC_V2:
         field_mapping, definitions = schema_generator.generate_definitions(
             inputs=inputs
         )
+        for item_def in definitions.values():
+            if "description" in item_def:
+                item_def["description"] = item_def["description"].split("\f")[0]
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
