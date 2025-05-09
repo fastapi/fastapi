@@ -65,6 +65,29 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
+## Multiple middleware execution order
+
+When you add multiple middlewares using either `@app.middleware()` decorator or `app.add_middleware()` method, each new middleware wraps the application, forming a stack. The last middleware added is the *outermost*, and the first is the *innermost*.
+
+On the request path, the *outermost* middleware runs first.
+
+On the response path, it runs last.
+
+For example:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+This results in the following execution order:
+
+* **Request**: MiddlewareB → MiddlewareA → route
+
+* **Response**: route → MiddlewareA → MiddlewareB
+
+This stacking behavior ensures that middlewares are executed in a predictable and controllable order.
+
 ## Other middlewares
 
 You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
