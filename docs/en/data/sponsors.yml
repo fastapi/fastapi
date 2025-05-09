@@ -30,9 +30,6 @@ gold:
     title: Cut Code Review Time & Bugs in Half with CodeRabbit
     img: https://fastapi.tiangolo.com/img/sponsors/coderabbit.png
 silver:
-  - url: https://github.com/deepset-ai/haystack/
-    title: Build powerful search from composable, open source building blocks
-    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
