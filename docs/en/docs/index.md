@@ -146,7 +146,7 @@ $ pip install "fastapi[standard]"
 
 ### Create it
 
-* Create a file `main.py` with:
+Create a file `main.py` with:
 
 ```Python
 from typing import Union
