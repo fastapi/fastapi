@@ -31,6 +31,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove deepset / Haystack. PR [#13700](https://github.com/fastapi/fastapi/pull/13700) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13688](https://github.com/fastapi/fastapi/pull/13688) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 👥 Update FastAPI People - Experts. PR [#13671](https://github.com/fastapi/fastapi/pull/13671) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump typer from 0.12.5 to 0.15.3. PR [#13666](https://github.com/fastapi/fastapi/pull/13666) by [@dependabot[bot]](https://github.com/apps/dependabot).
