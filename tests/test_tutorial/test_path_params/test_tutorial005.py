@@ -1,3 +1,4 @@
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
@@ -6,22 +7,18 @@ from docs_src.path_params.tutorial005 import app
 client = TestClient(app)
 
 
-def test_get_enums_alexnet():
-    response = client.get("/models/alexnet")
+test_data = [
+    ("/models/alexnet", {"model_name": "alexnet", "message": "Deep Learning FTW!"}),
+    ("/models/lenet", {"model_name": "lenet", "message": "LeCNN all the images"}),
+    ("/models/resnet", {"model_name": "resnet", "message": "Have some residuals"}),
+]
+
+
+@pytest.mark.parametrize("url_path, expected_response", test_data)
+def test_get_enums(url_path, expected_response):
+    response = client.get(url_path)
     assert response.status_code == 200
-    assert response.json() == {"model_name": "alexnet", "message": "Deep Learning FTW!"}
-
-
-def test_get_enums_lenet():
-    response = client.get("/models/lenet")
-    assert response.status_code == 200
-    assert response.json() == {"model_name": "lenet", "message": "LeCNN all the images"}
-
-
-def test_get_enums_resnet():
-    response = client.get("/models/resnet")
-    assert response.status_code == 200
-    assert response.json() == {"model_name": "resnet", "message": "Have some residuals"}
+    assert response.json() == expected_response
 
 
 def test_get_enums_invalid():
