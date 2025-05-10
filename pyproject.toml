@@ -68,7 +68,7 @@ standard = [
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
-    "uvicorn[standard] >0.32.0< 0.33.0",
+    "uvicorn[standard]>0.32.0,<0.33.0",
     # TODO: this should be part of some pydantic optional extra dependencies
     # # Settings management
     # "pydantic-settings >=2.0.0",
