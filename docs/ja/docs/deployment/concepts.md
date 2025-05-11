@@ -219,7 +219,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 
 これらのワーカー・プロセスは、アプリケーションを実行するものであり、**リクエスト**を受けて**レスポンス**を返すための主要な計算を行い、あなたが変数に入れたものは何でもRAMにロードします。
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 そしてもちろん、同じマシンでは、あなたのアプリケーションとは別に、**他のプロセス**も実行されているでしょう。
 
