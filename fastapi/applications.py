@@ -4425,7 +4425,7 @@ class FastAPI(Starlette):
 
         app = FastAPI()
 
-        @app.put("/items/{item_id}")
+        @app.trace("/items/{item_id}")
         def trace_item(item_id: str):
             return None
         ```
