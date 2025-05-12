@@ -157,7 +157,7 @@ class Schema(BaseModelWithConfig):
     unevaluatedProperties: Optional["SchemaOrBool"] = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
     # A Vocabulary for Structural Validation
-    type: Optional[str] = None
+    type: Optional[Union[str, Set[str]]] = None
     enum: Optional[List[Any]] = None
     const: Optional[Any] = None
     multipleOf: Optional[float] = Field(default=None, gt=0)
