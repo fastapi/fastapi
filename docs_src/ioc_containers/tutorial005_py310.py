@@ -18,17 +18,18 @@ from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.responses import PlainTextResponse
 
 
+@dataclass
 class User:
-    name = "Pythonist"
-    email = "python@example.com"
+    name: str = "Pythonist"
+    email: str = "python@example.com"
 
 
 @dataclass
 class ClientSettings:
     user: User
 
-    timeout = 3
-    retries = 5
+    timeout: int = 3
+    retries: int = 5
 
 
 @dataclass
@@ -52,11 +53,12 @@ class CityClient(Client):
     async def request(self) -> str:
         await self._connect()
 
-        return f"Hello, {self.settings.user.name}! Response"
+        return f"Hello, dear {self.settings.user.name}! Response"
 
 
+@dataclass
 class VillageClient(Client):
-    ip = "192.168.0.1"
+    ip: str = "192.168.0.1"
 
     async def request(self) -> str:
         await self._connect()

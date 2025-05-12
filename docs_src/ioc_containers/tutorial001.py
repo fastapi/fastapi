@@ -1,13 +1,15 @@
 import asyncio
 import random
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 
 from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.responses import PlainTextResponse
 
 
+@dataclass
 class Client(ABC):
-    timeout = 3
+    timeout: int = 3
 
     async def _connect(self):
         await asyncio.sleep(min(random.randint(1, 5), self.timeout))
@@ -24,8 +26,9 @@ class CityClient(Client):
         return "Response"
 
 
+@dataclass
 class VillageClient(Client):
-    ip = "192.168.0.1"
+    ip: str = "192.168.0.1"
 
     async def request(self) -> str:
         await self._connect()
