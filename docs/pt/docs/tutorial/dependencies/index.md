@@ -156,6 +156,12 @@ Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#com-pr
 
 ///
 
+/// warning | Aviso
+
+Se você precisar depender de valores de `ContextVar` em várias etapas de uma solicitação, **use uma dependência async** ou outra abordagem. Isso ocorre porque as dependências síncronas são executadas no thread principal, enquanto as dependências `async` são executadas no mesmo pool de threads que está lidando com a solicitação. Como `ContextVar` fornece armazenamento local de threads, qualquer valor definido dentro de uma dependência síncrona não estará disponível no restante do manuseio da solicitação.
+
+///
+
 ## Integrando com OpenAPI
 
 Todas as declarações de requisições, validações e requisitos para suas dependências (e sub-dependências) serão integradas em um mesmo esquema OpenAPI.
