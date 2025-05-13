@@ -30,7 +30,7 @@ Currently, the *business logic* details leak into the *framework layer*: our *pa
 
 It causes us to modify each of them in order to switch between clients and complicates the understanding of the code: we unwittingly give attention to the client type, even though it doesn't matter at the *transport level*.
 
-And we also face the fact that our classes' `__init__` arguments fall into *OpenAPI schema*: **FastAPI** interprets them as *request parameters*. This is a result of `Depends` having two undistinguished areas of responsibility: *input data* and *business dependencies*.
+And we also face the fact that our classes' `__init__` arguments fall into *OpenAPI schema*: **FastAPI** interprets them as *request parameters* as a result of `Depends` having two undistinguished areas of responsibility: *input data* and *business dependencies*. This can lead, at best, to a broken application, and at worst, to their stealthy swapping on the *client side*.
 
 The easiest and most obvious way to power FastAPI's built-in **DI** with **dependency inversion** is to create a *global variable*/*factory function* that stores/returns the **current dependency to inject**.
 
@@ -59,7 +59,7 @@ Here's what was needed:
 4. A `lru_cache` decorator for each *singleton* — in such a case, *factory* is needed even for **lower-level dependency**.
 5. To have *singleton factories* sync or use a third-party async cache: `lru_cache` doesn't support coroutines.
 
-And we're still not protected from unexpected data coming into the spec as the project progresses.
+We have now eliminated unexpected data in speck by encapsulating it in *factories* — but we're still not protected from such cases in the future when we want to use some classes "as-is".
 
 Although manageable at first, this boilerplate grows quickly and spreads across your codebase — making maintenance more difficult.
 
@@ -77,7 +77,7 @@ You should consider third-party solutions if you are dissatisfied with:
 
 * inventing custom **inversion of control** and **business dependencies isolation** mechanisms for `Depends`.
 * the fact, that either your *business logic* contains details of **DI** or you have to duplicate constructor signatures.
-* lack of *scopes* or limitations of `lru_cache` (or other *caching libraries*).
+* lack of *scopes* or limitations of `lru_cache`/other *caching libraries*.
 * not being able to use `Depends` outside of *path operation functions*.
 * limited scalability due to lack of advanced **dependency modularity** features.
 
@@ -108,7 +108,7 @@ You no longer have to worry about `lru_cache` being created without **FastAPI** 
 
 Moreover, you can (and should) continue to use `Depends`: not for **DIP**, but for **DI** in the purpose of **request decomposition**. Even with a brief glance at the second *path operation function*, it becomes obvious which *dependency* refers to the *transport layer* (operates explicit *user input*) and which one refers to *services* (that operate objects with complex business logic).
 
-In this way, areas of responsibility are guaranteed to be separated and each tool doesn't attempt to solve unrelated tasks.
+In this way, areas of responsibility are separated, *OpenAPI* is clear, and each tool doesn't attempt to solve unrelated tasks.
 
 /// tip
 
