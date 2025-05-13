@@ -70,9 +70,9 @@ we would get a Python `dict` with:
 }
 ```
 
-#### Unwrapping a `dict`
+#### Unpacking a `dict`
 
-If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unwrap" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
+If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unpack" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
 
 So, continuing with the `user_dict` from above, writing:
 
@@ -117,11 +117,11 @@ would be equivalent to:
 UserInDB(**user_in.dict())
 ```
 
-...because `user_in.dict()` is a `dict`, and then we make Python "unwrap" it by passing it to `UserInDB` prefixed with `**`.
+...because `user_in.dict()` is a `dict`, and then we make Python "unpack" it by passing it to `UserInDB` prefixed with `**`.
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
-#### Unwrapping a `dict` and extra keywords
+#### Unpacking a `dict` and extra keywords
 
 And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 

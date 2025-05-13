@@ -14,69 +14,13 @@
 
 Импортируйте `Form` из `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать 'Annotated' версию, если это возможно.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
 ## Определение параметров `Form`
 
 Создайте параметры формы так же, как это делается для `Body` или `Query`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать 'Annotated' версию, если это возможно.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
 Например, в одном из способов использования спецификации OAuth2 (называемом "потоком пароля") требуется отправить `username` и `password` в виде полей формы.
 

@@ -1,17 +1,32 @@
+import importlib
+
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.extra_models.tutorial005 import app
-
-client = TestClient(app)
+from ...utils import needs_py39
 
 
-def test_get_items():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial005",
+        pytest.param("tutorial005_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.extra_models.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_get_items(client: TestClient):
     response = client.get("/keyword-weights/")
     assert response.status_code == 200, response.text
     assert response.json() == {"foo": 2.3, "bar": 3.4}
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

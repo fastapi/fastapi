@@ -29,9 +29,7 @@
 
 이를 위해서는 요청에 직접 접근해야 합니다.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/using_request_directly/tutorial001.py!}
-```
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 *경로 작동 함수* 매개변수를 `Request` 타입으로 선언하면 **FastAPI**가 해당 매개변수에 `Request` 객체를 전달하는 것을 알게 됩니다.
 

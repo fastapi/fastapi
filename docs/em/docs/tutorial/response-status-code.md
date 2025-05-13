@@ -8,9 +8,7 @@
 * `@app.delete()`
 * ♒️.
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note
 
@@ -76,9 +74,7 @@ FastAPI 💭 👉, &amp; 🔜 🏭 🗄 🩺 👈 🇵🇸 📤 🙅‍♂ 📨 
 
 ➡️ 👀 ⏮️ 🖼 🔄:
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` 👔 📟 "✍".
 
@@ -86,9 +82,7 @@ FastAPI 💭 👉, &amp; 🔜 🏭 🗄 🩺 👈 🇵🇸 📤 🙅‍♂ 📨 
 
 👆 💪 ⚙️ 🏪 🔢 ⚪️➡️ `fastapi.status`.
 
-```Python hl_lines="1  6"
-{!../../docs_src/response_status_code/tutorial002.py!}
-```
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 👫 🏪, 👫 🧑‍🤝‍🧑 🎏 🔢, ✋️ 👈 🌌 👆 💪 ⚙️ 👨‍🎨 📋 🔎 👫:
 
