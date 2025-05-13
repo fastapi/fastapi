@@ -810,6 +810,47 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        external_docs: Annotated[
+            Optional[Dict[str, Any]],
+            Doc(
+                """
+                This field allows you to provide additional external documentation links
+                for an API operation or component. It’s an optional field and can be added
+                to an operation or a tag. If provided, it must be a dictionary containing:
+
+                * `description`: A brief description of the external documentation, which may use
+                [CommonMark syntax](https://commonmark.org/) for rich text formatting.
+                * `url`: The URL pointing to the external documentation. The value **MUST**
+                be a valid URL format.
+
+                **Example**:
+
+                ```python
+                from fastapi import FastAPI
+                from typing import Dict, Any
+                from typing import Optional
+                from fastapi.openapi.models import Doc
+                from typing_extensions import Annotated
+
+                external_docs: Annotated[Optional[Dict[str, Any]], Doc()] = {
+                    "description": "Detailed API Reference",
+                    "url": "https://example.com/api-docs",
+                }
+
+                app = FastAPI(externalDocs=external_docs)
+                
+                ```
+
+                ### Explanation:
+                - `description`: Provides a short description explaining what this external documentation covers.
+                - `url`: Points to the full external documentation.
+
+                **Notes**:
+                - This field is **optional**; if not included, no external documentation will be linked.
+                - You can use this feature to link to full API documentation, tutorials, or any other
+                """
+            ),
+        ] = None,
         **extra: Annotated[
             Any,
             Doc(
@@ -838,6 +879,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
+        self.external_docs = external_docs
         self.extra = extra
         self.openapi_version: Annotated[
             str,
@@ -992,6 +1034,7 @@ class FastAPI(Starlette):
                 tags=self.openapi_tags,
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
+                external_docs=self.external_docs,
             )
         return self.openapi_schema
 
