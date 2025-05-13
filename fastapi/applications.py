@@ -838,7 +838,7 @@ class FastAPI(Starlette):
                 }
 
                 app = FastAPI(externalDocs=external_docs)
-                
+
                 ```
 
                 ### Explanation:
