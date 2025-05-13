@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 external_docs = {
     "description": "External API documentation.",
-    "url": "https://docs.example.com/api-general"
+    "url": "https://docs.example.com/api-general",
 }
 
 app = FastAPI(external_docs=external_docs)
@@ -475,6 +475,6 @@ def test_openapi_schema():
         },
         "externalDocs": {
             "description": "External API documentation.",
-            "url": "https://docs.example.com/api-general"
+            "url": "https://docs.example.com/api-general",
         },
     }
