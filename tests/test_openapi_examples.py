@@ -5,7 +5,12 @@ from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-app = FastAPI()
+external_docs = {
+    "description": "External API documentation.",
+    "url": "https://docs.example.com/api-general"
+}
+
+app = FastAPI(external_docs=external_docs)
 
 
 class Item(BaseModel):
@@ -467,5 +472,9 @@ def test_openapi_schema():
                     "title": "ValidationError",
                 },
             }
+        },
+        "externalDocs": {
+            "description": "External API documentation.",
+            "url": "https://docs.example.com/api-general"
         },
     }
