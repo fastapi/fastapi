@@ -10,7 +10,7 @@ external_docs = {
     "url": "https://docs.example.com/api-general",
 }
 
-app = FastAPI(external_docs=external_docs)
+app = FastAPI(openapi_external_docs=external_docs)
 
 
 class Item(BaseModel):
