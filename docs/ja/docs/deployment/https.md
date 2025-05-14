@@ -92,7 +92,7 @@ DNSサーバーでは、**取得したドメイン**をあなたのサーバー�
 
 DNSサーバーは、ブラウザに特定の**IPアドレス**を使用するように指示します。このIPアドレスは、DNSサーバーで設定した、あなたのサーバーが使用するパブリックIPアドレスになります。
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
 ### TLS Handshake の開始
 
@@ -100,7 +100,7 @@ DNSサーバーは、ブラウザに特定の**IPアドレス**を使用する�
 
 通信の最初の部分は、クライアントとサーバー間の接続を確立し、使用する暗号鍵などを決めるだけです。
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 TLS接続を確立するためのクライアントとサーバー間のこのやりとりは、**TLSハンドシェイク**と呼ばれます。
 
@@ -120,7 +120,7 @@ TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）に�
 
 今回は、`someapp.example.com`の証明書を使うことになります。
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 クライアントは、そのTLS証明書を生成したエンティティ（この場合はLet's Encryptですが、これについては後述します）をすでに**信頼**しているため、その証明書が有効であることを**検証**することができます。
 
@@ -142,19 +142,19 @@ TLS Termination Proxyは、1つ以上の**TLS証明書**（HTTPS証明書）に�
 
 そこで、クライアントは**HTTPSリクエスト**を送信します。これは、暗号化されたTLSコネクションを介した単なるHTTPリクエストです。
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
 ### リクエストの復号化
 
 TLS Termination Proxy は、合意が取れている暗号化を使用して、**リクエストを復号化**し、**プレーン (復号化された) HTTP リクエスト** をアプリケーションを実行しているプロセス (例えば、FastAPI アプリケーションを実行している Uvicorn を持つプロセス) に送信します。
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
 ### HTTP レスポンス
 
 アプリケーションはリクエストを処理し、**プレーン(暗号化されていない)HTTPレスポンス** をTLS Termination Proxyに送信します。
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
 ### HTTPS レスポンス
 
@@ -162,7 +162,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 その後ブラウザでは、レスポンスが有効で正しい暗号キーで暗号化されていることなどを検証します。そして、ブラウザはレスポンスを**復号化**して処理します。
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 クライアント（ブラウザ）は、レスポンスが正しいサーバーから来たことを知ることができます。 なぜなら、そのサーバーは、以前に**HTTPS証明書**を使って合意した暗号を使っているからです。
 
@@ -172,7 +172,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 特定のIPとポート（この例ではTLS Termination Proxy）を扱うことができるのは1つのプロセスだけですが、他のアプリケーション/プロセスも、同じ**パブリックIPとポート**の組み合わせを使用しようとしない限り、サーバー上で実行することができます。
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 そうすれば、TLS Termination Proxy は、**複数のドメイン**や複数のアプリケーションのHTTPSと証明書を処理し、それぞれのケースで適切なアプリケーションにリクエストを送信することができます。
 
@@ -182,7 +182,7 @@ TLS Termination Proxyは次に、事前に合意が取れている暗号(`someap
 
 その後、Let's Encryptと通信する別のプログラム（別のプログラムである場合もあれば、同じTLS Termination Proxyである場合もある）によって、証明書を更新します。
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 **TLS証明書**は、IPアドレスではなく、**ドメイン名に関連付けられて**います。
 

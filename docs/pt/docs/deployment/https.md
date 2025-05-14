@@ -85,7 +85,7 @@ Primeiro, o navegador iria verificar com os **servidores DNS** qual o **IP do do
 
 Os servidores DNS iriam informar o navegador para utilizar algum **endereço IP** específico. Esse seria o endereço IP público em uso no seu servidor, que você configurou nos servidores DNS.
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
 ### Início do Handshake TLS
 
@@ -93,7 +93,7 @@ O navegador então irá comunicar-se com esse endereço IP na **porta 443** (a p
 
 A primeira parte dessa comunicação é apenas para estabelecer a conexão entre o cliente e o servidor e para decidir as chaves criptográficas a serem utilizadas, etc.
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 Esse interação entre o cliente e o servidor para estabelecer uma conexão TLS é chamada de **Handshake TLS**.
 
@@ -111,7 +111,7 @@ Utilizando a **extensão SNI** discutida acima, o Proxy de Terminação TLS iria
 
 Nesse caso, ele usaria o certificado para `someapp.example.com`.
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 O cliente já **confia** na entidade que gerou o certificado TLS (nesse caso, o Let's Encrypt, mas veremos sobre isso mais tarde), então ele pode **verificar** que o certificado é válido.
 
@@ -133,19 +133,19 @@ Agora que o cliente e servidor (especialmente o navegador e o Proxy de Terminaç
 
 Então, o cliente envia uma **solicitação HTTPS**. Que é apenas uma solicitação HTTP sobre uma conexão TLS encriptada.
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
 ### Desencriptando a Solicitação
 
 O Proxy de Terminação TLS então usaria a encriptação combinada para **desencriptar a solicitação**, e transmitiria a **solicitação básica (desencriptada)** para o processo executando a aplicação (por exemplo, um processo com Uvicorn executando a aplicação FastAPI).
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
 ### Resposta HTTP
 
 A aplicação processaria a solicitação e retornaria uma **resposta HTTP básica (não encriptada)** para o Proxy de Terminação TLS.
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
 ### Resposta HTTPS
 
@@ -153,7 +153,7 @@ O Proxy de Terminação TLS iria **encriptar a resposta** utilizando a criptogra
 
 No próximo passo, o navegador verifica que a resposta é válida e encriptada com a chave criptográfica correta, etc. E depois **desencripta a resposta** e a processa.
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 O cliente (navegador) saberá que a resposta vem do servidor correto por que ela usa a criptografia que foi combinada entre eles usando o **certificado HTTPS** anterior.
 
@@ -163,7 +163,7 @@ Podem existir **múltiplas aplicações** em execução no mesmo servidor (ou se
 
 Apenas um processo pode estar vinculado a um IP e porta (o Proxy de Terminação TLS, por exemplo), mas outras aplicações/processos também podem estar em execução no(s) servidor(es), desde que não tentem usar a mesma **combinação de IP público e porta**.
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 Dessa forma, o Proxy de Terminação TLS pode gerenciar o HTTPS e os certificados de **múltiplos domínios**, para múltiplas aplicações, e então transmitir as requisições para a aplicação correta em cada caso.
 
@@ -173,7 +173,7 @@ Em algum momento futuro, cada certificado irá **expirar** (aproximadamente 3 me
 
 E então, haverá outro programa (em alguns casos pode ser o próprio Proxy de Terminação TLS) que irá interagir com o Let's Encrypt e renovar o(s) certificado(s).
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 Os **certificados TLS** são **associados com um nome de domínio**, e não a um endereço IP.
 
