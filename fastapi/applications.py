@@ -810,7 +810,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
-        external_docs: Annotated[
+        openapi_external_docs: Annotated[
             Optional[Dict[str, Any]],
             Doc(
                 """
@@ -837,7 +837,7 @@ class FastAPI(Starlette):
                     "url": "https://example.com/api-docs",
                 }
 
-                app = FastAPI(externalDocs=external_docs)
+                app = FastAPI(openapi_external_docs=external_docs)
 
                 ```
 
@@ -879,7 +879,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
-        self.external_docs = external_docs
+        self.openapi_external_docs = openapi_external_docs
         self.extra = extra
         self.openapi_version: Annotated[
             str,
@@ -1034,7 +1034,7 @@ class FastAPI(Starlette):
                 tags=self.openapi_tags,
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
-                external_docs=self.external_docs,
+                external_docs=self.openapi_external_docs,
             )
         return self.openapi_schema
 
