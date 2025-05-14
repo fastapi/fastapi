@@ -128,7 +128,7 @@ class Termynal {
 
     generateRestart() {
     const restart = document.createElement('a');
-    restart.href = 'javascript:void(0)';  
+    restart.href = 'javascript:void(0)';
     restart.setAttribute('data-terminal-control', '');
     restart.innerHTML = "restart ↻";
     restart.onclick = (e) => {
@@ -141,7 +141,7 @@ class Termynal {
 
     generateFinish() {
     const finish = document.createElement('a');
-    finish.href = 'javascript:void(0)'; 
+    finish.href = 'javascript:void(0)';
     finish.setAttribute('data-terminal-control', '');
     finish.innerHTML = "fast →";
     finish.onclick = (e) => {
