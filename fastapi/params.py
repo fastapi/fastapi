@@ -779,7 +779,7 @@ class Security(Depends):
         self,
         dependency: Optional[Callable[..., Any]] = None,
         *,
-        scopes: Optional[str | Sequence[str]] = None,
+        scopes: Optional[Union[str, Sequence[str]]] = None,
         use_cache: bool = True,
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
