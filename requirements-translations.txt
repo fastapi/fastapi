@@ -1,1 +1,1 @@
-pydantic-ai==0.0.15
+pydantic-ai==0.0.30

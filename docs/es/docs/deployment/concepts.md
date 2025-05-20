@@ -216,7 +216,7 @@ Este Proceso Administrador probablemente sería el que escuche en el **puerto** 
 
 Esos worker processes serían los que ejecutan tu aplicación, realizarían los cálculos principales para recibir un **request** y devolver un **response**, y cargarían cualquier cosa que pongas en variables en RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 Y por supuesto, la misma máquina probablemente tendría **otros procesos** ejecutándose también, aparte de tu aplicación.
 
