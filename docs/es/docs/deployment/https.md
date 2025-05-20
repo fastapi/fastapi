@@ -85,7 +85,7 @@ Primero, el navegador consultaría con los **servidores DNS** cuál es la **IP d
 
 Los servidores DNS le dirían al navegador que use una **dirección IP** específica. Esa sería la dirección IP pública utilizada por tu servidor, que configuraste en los servidores DNS.
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
 ### Inicio del Handshake TLS
 
@@ -93,7 +93,7 @@ El navegador luego se comunicaría con esa dirección IP en el **puerto 443** (e
 
 La primera parte de la comunicación es solo para establecer la conexión entre el cliente y el servidor y decidir las claves criptográficas que usarán, etc.
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 Esta interacción entre el cliente y el servidor para establecer la conexión TLS se llama **handshake TLS**.
 
@@ -111,7 +111,7 @@ Usando la **extensión SNI** discutida anteriormente, el TLS Termination Proxy v
 
 En este caso, usaría el certificado para `someapp.example.com`.
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 El cliente ya **confía** en la entidad que generó ese certificado TLS (en este caso Let's Encrypt, pero lo veremos más adelante), por lo que puede **verificar** que el certificado sea válido.
 
@@ -133,19 +133,19 @@ Ahora que el cliente y el servidor (específicamente el navegador y el TLS Termi
 
 Así que, el cliente envía un **request HTTPS**. Esto es simplemente un request HTTP a través de una conexión TLS encriptada.
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
 ### Desencriptar el Request
 
 El TLS Termination Proxy usaría la encriptación acordada para **desencriptar el request**, y transmitiría el **request HTTP simple (desencriptado)** al proceso que ejecuta la aplicación (por ejemplo, un proceso con Uvicorn ejecutando la aplicación FastAPI).
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
 ### Response HTTP
 
 La aplicación procesaría el request y enviaría un **response HTTP simple (sin encriptar)** al TLS Termination Proxy.
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
 ### Response HTTPS
 
@@ -153,7 +153,7 @@ El TLS Termination Proxy entonces **encriptaría el response** usando la criptog
 
 Luego, el navegador verificaría que el response sea válido y encriptado con la clave criptográfica correcta, etc. Entonces **desencriptaría el response** y lo procesaría.
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 El cliente (navegador) sabrá que el response proviene del servidor correcto porque está utilizando la criptografía que acordaron usando el **certificado HTTPS** anteriormente.
 
@@ -163,7 +163,7 @@ En el mismo servidor (o servidores), podrían haber **múltiples aplicaciones**,
 
 Solo un proceso puede estar gestionando la IP y puerto específica (el TLS Termination Proxy en nuestro ejemplo) pero las otras aplicaciones/procesos pueden estar ejecutándose en el/los servidor(es) también, siempre y cuando no intenten usar la misma **combinación de IP pública y puerto**.
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 De esa manera, el TLS Termination Proxy podría gestionar HTTPS y certificados para **múltiples dominios**, para múltiples aplicaciones, y luego transmitir los requests a la aplicación correcta en cada caso.
 
@@ -173,7 +173,7 @@ En algún momento en el futuro, cada certificado **expiraría** (alrededor de 3 
 
 Y entonces, habría otro programa (en algunos casos es otro programa, en algunos casos podría ser el mismo TLS Termination Proxy) que hablaría con Let's Encrypt y renovaría el/los certificado(s).
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 Los **certificados TLS** están **asociados con un nombre de dominio**, no con una dirección IP.
 
