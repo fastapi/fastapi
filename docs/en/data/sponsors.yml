@@ -14,9 +14,6 @@ gold:
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
-    title: Simplify Full Stack Development with FastAPI & MongoDB
-    img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
   - url: https://zuplo.link/fastapi-gh
     title: 'Zuplo: Deploy, Secure, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
