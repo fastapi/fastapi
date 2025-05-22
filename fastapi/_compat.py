@@ -16,6 +16,7 @@ from typing import (
     Tuple,
     Type,
     Union,
+    cast,
 )
 
 from fastapi.exceptions import RequestErrorModel
@@ -231,6 +232,10 @@ if PYDANTIC_V2:
         field_mapping, definitions = schema_generator.generate_definitions(
             inputs=inputs
         )
+        for item_def in cast(Dict[str, Dict[str, Any]], definitions).values():
+            if "description" in item_def:
+                item_description = cast(str, item_def["description"]).split("\f")[0]
+                item_def["description"] = item_description
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
