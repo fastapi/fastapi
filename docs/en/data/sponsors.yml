@@ -45,6 +45,9 @@ silver:
   - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
     title: Fine-Grained Authorization for FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/permit.png
+  - url: https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring
+    title: InterviewPal - AI Interview Coach for Engineers and Devs
+    img: https://fastapi.tiangolo.com/img/sponsors/interviewpal.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
