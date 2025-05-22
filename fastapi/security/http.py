@@ -9,7 +9,7 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 from typing_extensions import Annotated, Doc
 
 
@@ -87,7 +87,7 @@ class HTTPBase(SecurityBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED, detail="Not authenticated"
                 )
             else:
                 return None
@@ -306,14 +306,14 @@ class HTTPBearer(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED, detail="Not authenticated"
                 )
             else:
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
                 )
             else:
@@ -408,14 +408,14 @@ class HTTPDigest(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED, detail="Not authenticated"
                 )
             else:
                 return None
         if scheme.lower() != "digest":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
                 )
             else:
