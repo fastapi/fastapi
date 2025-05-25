@@ -13,12 +13,10 @@ nav:
   - Usage:
       - Export API: usage/export.md
 plugins:
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          setup_commands:
-            - import sys
-            - sys.path.append("fastapi/examples/export-data")
+- search
+- autorefs
+- mkdocstrings:
+    handlers:
+      python:
         options:
           show_source: true
