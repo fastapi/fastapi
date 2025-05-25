@@ -30,4 +30,4 @@ jobs:
         pip install -r requirements-docs.txt
 
     - name: Build example docs (only our project /docs folder)
-      run: mkdocs build --strict
+      run: mkdocs build --strict --config-file=mkdocs.yml
