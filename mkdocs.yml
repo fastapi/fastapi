@@ -17,5 +17,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          options:
-            show_source: true
+          setup_commands:
+            - import sys
+            - sys.path.append("fastapi/examples/export-data")
+        options:
+          show_source: true
