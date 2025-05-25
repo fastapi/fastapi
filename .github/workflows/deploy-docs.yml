@@ -21,5 +21,5 @@ jobs:
       run: |
         pip install -r requirements-docs.txt
 
-    - name: Deploy your example docs (not FastAPI's multilingual site)
+    - name: Deploy docs (not FastAPI's multilingual site)
       run: mkdocs gh-deploy --force --config-file=mkdocs.yml
