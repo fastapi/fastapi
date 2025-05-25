@@ -1,4 +1,4 @@
-name: Deploy Example Docs (AUEB DMST export project)
+name: Deploy Example Docs
 
 on:
   push:
