@@ -1,0 +1,27 @@
+name: Deploy Example Docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements-docs.txt
+
+    - name: Deploy to GitHub Pages
+      run: mkdocs gh-deploy --force --config-file=mkdocs.yml
