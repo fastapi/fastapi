@@ -3,7 +3,7 @@ name: Deploy Example Docs (AUEB DMST - FastAPI export project)
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
