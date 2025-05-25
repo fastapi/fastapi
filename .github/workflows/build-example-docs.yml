@@ -1,0 +1,33 @@
+name: Build Example Docs
+
+on:
+  push:
+    paths:
+      - 'mkdocs.yml'
+      - 'docs/**'
+      - 'requirements-docs.txt'
+  pull_request:
+    paths:
+      - 'mkdocs.yml'
+      - 'docs/**'
+      - 'requirements-docs.txt'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements-docs.txt
+
+    - name: Build example docs (only your /docs folder)
+      run: mkdocs build --strict
