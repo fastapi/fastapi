@@ -1,13 +1,13 @@
 site_name: FastAPI Export Example (AUEB DMST)
-site_url: https://GeoTsak314.github.io/fastapi_test/
+site_url: https://iwannaefraimia.github.io/fastapi/
 theme:
   name: material
   features:
     - navigation.tabs
     - navigation.top
     - content.code.copy
-repo_url: https://github.com/GeoTsak314/fastapi_test
-repo_name: GeoTsak314/fastapi_test
+repo_url: https://github.com/iwannaefraimia/fastapi
+repo_name: iwannaefraimia/fastapi
 nav:
   - Home: index.md
   - Usage:
