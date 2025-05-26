@@ -3,7 +3,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in helping translate FastAPI docs! 🌍
+        Thanks for your interest in helping translate the FastAPI docs! 🌍
 
         Please follow these instructions carefully to propose a new language translation. 🙏
 
@@ -26,7 +26,7 @@ body:
     id: language
     attributes:
       label: Target Language
-      description: What language do you want to translate FastAPI docs into?
+      description: What language do you want to translate the FastAPI docs into?
       placeholder: e.g. Latin
     validations:
       required: true
