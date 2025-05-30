@@ -24,6 +24,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Korean translation for `docs/ko/docs/advanced/events.md`. PR [#13487](https://github.com/fastapi/fastapi/pull/13487) by [@bom1215](https://github.com/bom1215).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/handling-errors.md` page. PR [#13420](https://github.com/fastapi/fastapi/pull/13420) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/request-form-models.md`. PR [#13552](https://github.com/fastapi/fastapi/pull/13552) by [@EgorOnishchuk](https://github.com/EgorOnishchuk).
 * 📝 Fix internal anchor link in Spanish deployment docs. PR [#13737](https://github.com/fastapi/fastapi/pull/13737) by [@fabianfalon](https://github.com/fabianfalon).
