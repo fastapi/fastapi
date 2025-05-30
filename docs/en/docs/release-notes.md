@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13736](https://github.com/fastapi/fastapi/pull/13736) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🔧 Update sponsors: Add InterviewPal. PR [#13728](https://github.com/fastapi/fastapi/pull/13728) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Remove Google Analytics. PR [#13727](https://github.com/fastapi/fastapi/pull/13727) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove MongoDB. PR [#13725](https://github.com/fastapi/fastapi/pull/13725) by [@tiangolo](https://github.com/tiangolo).
