@@ -1,12 +1,13 @@
-# FastAPI Export Example by AUEB DMST (Karitsioti & Tsakalos)
+# FastAPI Export app 
+# by Joanna Karitsioti & George Tsakalos (AUEB DMST - Spinelis SEIP)
 
-Welcome to the documentation for the **FastAPI Export Example App**!
+Welcome to the documentation for the **FastAPI Export App**!
 
-This application demonstrates how to export data to a variety of formats and backends using FastAPI, including:
+This application demonstrates how to export data to a variety of formats & backends using FastAPI, including:
 
 - File formats: JSON, CSV, Excel, PDF, Parquet, Avro, Feather, ORC
 - Databases: MySQL, SQLite
 - Cloud: AWS S3
 - Streaming: Kafka, RabbitMQ, Apache Pulsar
 
-Explore the sections below for usage instructions & development setup.
+➡️ [See usage and code docs »](usage/export.md)

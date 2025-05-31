@@ -1,16 +1,18 @@
-name: Build Public Docs
+name: Build Docs (ok ver)
 
 on:
   push:
     paths:
-      - 'mkdocs.yml'
       - 'docs/**'
-      - 'requirements-docs.txt'
+      - 'export-app/**'
+      - 'mkdocs-export.yml'
+      - '.github/workflows/build-docs.yml'
   pull_request:
     paths:
-      - 'mkdocs.yml'
       - 'docs/**'
-      - 'requirements-docs.txt'
+      - 'export-app/**'
+      - 'mkdocs-export.yml'
+      - '.github/workflows/build-docs.yml'
 
 jobs:
   build-docs:
@@ -31,4 +33,4 @@ jobs:
         pip install -r requirements-docs.txt
 
     - name: Build MkDocs documentation
-      run: mkdocs build --strict
+      run: mkdocs build --strict --config-file=mkdocs-export.yml

@@ -1,0 +1,35 @@
+name: Test Export App (AUEB DMST)
+
+on:
+  push:
+    paths:
+      - 'export_app/**'
+      - '.github/workflows/test-export-app.yml'
+  pull_request:
+    paths:
+      - 'export_app/**'
+      - '.github/workflows/test-export-app.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        cd export_app
+        python -m pip install --upgrade pip
+        pip install -r requirements-export-app.txt
+        pip install pytest
+
+    - name: Run tests
+      run: |
+        cd export_app
+        pytest test_export_app.py
