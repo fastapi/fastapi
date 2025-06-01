@@ -105,3 +105,19 @@ Check how deprecated and non-deprecated *path operations* look like:
 ## Recap
 
 You can configure and add metadata for your *path operations* easily by passing parameters to the *path operation decorators*.
+
+## Using `use_cache`
+
+FastAPI allows you to control whether dependencies are cached for the lifespan of a request using the `use_cache` parameter.
+
+For example:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items", use_cache=False)
+async def read_items():
+    return [{"item_id": "Foo"}]
+
