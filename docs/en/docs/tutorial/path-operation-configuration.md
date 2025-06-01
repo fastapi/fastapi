@@ -120,4 +120,3 @@ app = FastAPI()
 @app.get("/items", use_cache=False)
 async def read_items():
     return [{"item_id": "Foo"}]
-
