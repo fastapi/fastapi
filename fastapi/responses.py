@@ -66,8 +66,6 @@ class BSONResponse(Response):
 
     media_type = "application/bson"
 
-    def render(
-        self, content: Any, generator: Any | None = None, on_unknown: Any | None = None
-    ) -> bytes:
+    def render(self, content: Any) -> bytes:
         assert bson is not None, "bson must be installed to use BSONResponse"
-        return bson.dumps(content, generator=generator, on_unknown=on_unknown)
+        return bson.dumps(content)
