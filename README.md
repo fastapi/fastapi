@@ -128,6 +128,16 @@ FastAPI stands on the shoulders of giants:
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
+## 🧪 Example: Hello World API
+
+This example demonstrates a simple FastAPI application with a GET and POST endpoint using `pydantic` models.
+
+To run:
+
+```bash
+uvicorn examples.hello_world_api:app --reload
+
+
 ## Installation
 
 Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
