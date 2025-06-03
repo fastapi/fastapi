@@ -20,6 +20,12 @@ except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
 
 
+try:
+    import bson
+except ImportError:  # pragma: nocover
+    bson = None  # type: ignore
+
+
 class UJSONResponse(JSONResponse):
     """
     JSON response using the high-performance ujson library to serialize data to JSON.
@@ -46,3 +52,22 @@ class ORJSONResponse(JSONResponse):
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
         )
+
+
+class BSONResponse(Response):
+    """
+    BSON response using the current Python bson library for data serialization.
+
+    Note: This is a temporary solution. Soon, a custom Rust wrapper will be implemented for BSON serialization/deserialization to improve performance and reliability.
+
+    Read more about it in the
+    [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+    """
+
+    media_type = "application/bson"
+
+    def render(
+        self, content: Any, generator: Any | None = None, on_unknown: Any | None = None
+    ) -> bytes:
+        assert bson is not None, "bson must be installed to use BSONResponse"
+        return bson.dumps(content, generator=generator, on_unknown=on_unknown)

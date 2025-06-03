@@ -28,3 +28,7 @@ archive.zip
 
 # macOS
 .DS_Store
+
+# Pdm additional files
+.pdm-python
+pdm.lock
