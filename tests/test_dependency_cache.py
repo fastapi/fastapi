@@ -29,7 +29,7 @@ async def get_sub_counter(
 
 @app.get("/sub-counter-no-cache/")
 async def get_sub_counter_no_cache(
-    subcount: int = Depends(super_dep),
+    subcount: int = Depends(dep_counter),
     count: int = Depends(dep_counter, use_cache=False),
 ):
     return {"counter": count, "subcounter": subcount}
