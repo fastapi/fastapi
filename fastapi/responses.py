@@ -21,9 +21,9 @@ except ImportError:  # pragma: nocover
 
 
 try:
-    import bson
+    import bson  # type: ignore[import-untyped]
 except ImportError:  # pragma: nocover
-    bson = None  # type: ignore
+    bson = None
 
 
 class UJSONResponse(JSONResponse):
