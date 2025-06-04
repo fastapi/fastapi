@@ -141,7 +141,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 '''
                 A description of the API. Supports Markdown (using
