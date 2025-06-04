@@ -1,5 +1,4 @@
 import bson
-
 from fastapi import FastAPI
 from fastapi.responses import BSONResponse
 from fastapi.testclient import TestClient
