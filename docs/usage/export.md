@@ -1,54 +1,39 @@
-# Export Endpoint Usage
 
-## `/export?format=...`
+# Export & Import Endpoint Usage
 
-The `/export` endpoint supports exporting to various formats using a query parameter `format`.
+## `/export` (POST)
 
-### Available formats:
+Upload a `.txt`, `.csv`, or `.json` file and export it to your desired format.
 
-- `json`
-- `csv`
-- `excel`
-- `pdf`
-- `parquet`
-- `avro`
-- `feather`
-- `orc`
-- `mysql`
-- `sqlite`
-- `s3`
-- `kafka`
-- `rabbitmq`
-- `pulsar`
+### Query Parameters
+- `format`: Choose from one of the supported export formats:  
+  `json`, `csv`, `excel`, `pdf`, `parquet`, `avro`, `feather`, `orc`, `mysql`, `sqlite`, `s3`, `kafka`, `rabbitmq`, `pulsar`
 
-### Example
-
-```http
-GET /export?format=csv
-```
-
-This returns a CSV download of the exported data.
+### Example (via Swagger UI)
+1. Click `/export`
+2. Upload a file (e.g. `.csv`)
+3. Select format: `excel`
+4. Click **Execute**
 
 ---
 
-> 💡 Tip: You can test the endpoint interactively in the Swagger UI at `/docs`.
+## `/import-online-db` (GET)
 
+Import data directly from a remote **SQLite** or **MySQL** database.
 
-## Code Documentation
+### Query Parameters:
+- `db_type`: `sqlite` or `mysql`
+- If using `sqlite`:
+  - `url`: Full path to `.db` file
+  - `table`: Table name to fetch
+- If using `mysql`:
+  - `host`, `user`, `password`, `database`, `table`: Required MySQL credentials
 
-::: export_app.main
-    options:
-      members:
-        - export_data
-        - export_to_csv
-        - export_to_excel
-        - export_to_pdf
-        - export_to_avro
-        - export_to_feather
-        - export_to_orc
-        - export_to_sqlite
-        - export_to_mysql
-        - export_to_s3
-        - export_to_kafka
-        - export_to_rabbitmq
-        - export_to_pulsar
+### Example:
+```http
+GET /import-online-db?db_type=mysql&host=example.com&user=admin&password=1234&database=testdb&table=users
+```
+
+---
+
+> 💡 Use Swagger UI to interactively test both endpoints at `/docs`.

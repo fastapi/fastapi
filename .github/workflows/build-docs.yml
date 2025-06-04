@@ -5,13 +5,13 @@ on:
     paths:
       - 'docs/**'
       - 'export-app/**'
-      - 'mkdocs-export.yml'
+      - 'mkdocs.yml'
       - '.github/workflows/build-docs.yml'
   pull_request:
     paths:
       - 'docs/**'
       - 'export-app/**'
-      - 'mkdocs-export.yml'
+      - 'mkdocs.yml'
       - '.github/workflows/build-docs.yml'
 
 jobs:
@@ -33,4 +33,4 @@ jobs:
         pip install -r requirements-docs.txt
 
     - name: Build MkDocs documentation
-      run: mkdocs build --strict --config-file=mkdocs-export.yml
+      run: mkdocs build --strict --config-file=mkdocs.yml

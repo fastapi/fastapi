@@ -27,7 +27,10 @@ jobs:
         cd export_app
         python -m pip install --upgrade pip
         pip install -r requirements-export-app.txt
-        pip install pytest
+        pip install pytest python-multipart
+
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
     - name: Run tests
       run: |

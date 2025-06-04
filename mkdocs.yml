@@ -1,0 +1,20 @@
+
+site_name: FastAPI Import & Export App
+nav:
+  - Home: index.md
+  - Usage Guide:
+      - Export & Import: usage/export.md
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+
+repo_url: https://github.com/iwannaefraimia/fastapi

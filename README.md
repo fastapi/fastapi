@@ -1,90 +1,158 @@
-# Export Data Example with FastAPI 
-# by Joanna Karytsioti & George Tsakalos (AUEB DMST - Spinelis SEIP)
+# FastAPI Export App
 
-This FastAPI app demonstrates how to export structured data to a wide variety of formats and systems.
+Export structured data to multiple formats and systems with FastAPI.  
+By Joanna Karytsioti & George Tsakalos (AUEB DMST – Spinelis SEIP)
+
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fastapi-code-generator)](https://pypi.python.org/pypi/fastapi-code-generator)
+![license](https://img.shields.io/github/license/koxudaxi/fastapi-code-generator.svg)
 
 ---
 
-## ✅ Supported Export Formats
+## 📦 Features
+
+This FastAPI application supports exporting data to:
 
 ### 📁 File Formats
-- JSON (`?format=json`)
-- CSV (`?format=csv`)
-- Excel (`?format=excel`)
-- PDF (`?format=pdf`)
-- Parquet (`?format=parquet`)
-- Avro (`?format=avro`)
-- Feather (`?format=feather`)
-- ORC (`?format=orc`)
+
+This app supports uploading your own `.txt`, `.csv`, or `.json` file (via Swagger UI),  
+automatically converting it to structured data for export.
+
+You can also fetch data directly from an **online SQLite or MySQL database** by calling the `/import-online-db` endpoint.
+
+
+This app supports uploading your own `.txt`, `.csv`, or `.json` file (via Swagger UI),
+automatically converting it to structured data for export.
+
+
+- **JSON** → `?format=json`  
+- **CSV** → `?format=csv`  
+- **Excel** → `?format=excel`  
+- **PDF** → `?format=pdf`  
+- **Parquet** → `?format=parquet`  
+- **Avro** → `?format=avro`  
+- **Feather** → `?format=feather`  
+- **ORC** → `?format=orc`  
 
 ### 🗄 Databases & Storage
-- MySQL (`?format=mysql`)
-- SQLite (`?format=sqlite`)
-- AWS S3 (`?format=s3`)
+
+- **MySQL** → `?format=mysql`  
+- **SQLite** → `?format=sqlite`  
+- **AWS S3** → `?format=s3`  
 
 ### 🔄 Streaming Systems
-- Kafka (`?format=kafka`)
-- RabbitMQ (`?format=rabbitmq`)
-- Apache Pulsar (`?format=pulsar`)
+
+- **Kafka** → `?format=kafka`  
+- **RabbitMQ** → `?format=rabbitmq`  
+- **Apache Pulsar** → `?format=pulsar`  
 
 ---
 
-## 🚀 How to Run
+## 🛠 Installation
 
-1. **Install dependencies**:
+Install the required dependencies:
 
 ```bash
-pip install -r requirements_all_exports.txt
+pip install -r requirements-export-app.txt
 ```
 
-2. **Start the FastAPI server**:
+---
+
+## ▶️ Usage
+
+Start the development server:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-3. **Visit**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)  
-   This will redirect you to Swagger docs (`/docs`) where you can test the `/export` endpoint.
+Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the Swagger UI and test the `/export` endpoint.
+
+You can upload your own database file as input (in `.json`, `.csv`, or `.txt` format)
+and export it to any supported format. The conversion happens automatically.
+
+You can also use the `/import-online-db` GET endpoint to fetch data from remote SQLite or MySQL databases.
 
 ---
 
 ## 🔐 Environment Variables
 
-### AWS S3:
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `AWS_S3_BUCKET`
-- `AWS_S3_OBJECT_KEY`
+Set the following environment variables depending on your export target:
 
-### MySQL:
-- `MYSQL_HOST`
-- `MYSQL_USER`
-- `MYSQL_PASSWORD`
-- `MYSQL_DATABASE`
+### AWS S3
 
-### Kafka:
-- `KAFKA_BOOTSTRAP_SERVERS` (default: `localhost:9092`)
-- `KAFKA_TOPIC` (default: `exported_data`)
+```env
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+AWS_S3_BUCKET=...
+AWS_S3_OBJECT_KEY=...
+```
 
-### RabbitMQ:
-- `RABBITMQ_HOST` (default: `localhost`)
-- `RABBITMQ_QUEUE` (default: `export_queue`)
+### MySQL
 
-### Pulsar:
-- `PULSAR_SERVICE_URL` (default: `pulsar://localhost:6650`)
-- `PULSAR_TOPIC` (default: `exported_data`)
+```env
+MYSQL_HOST=...
+MYSQL_USER=...
+MYSQL_PASSWORD=...
+MYSQL_DATABASE=...
+```
+
+### Kafka
+
+```env
+KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+KAFKA_TOPIC=exported_data
+```
+
+### RabbitMQ
+
+```env
+RABBITMQ_HOST=localhost
+RABBITMQ_QUEUE=export_queue
+```
+
+### Pulsar
+
+```env
+PULSAR_SERVICE_URL=pulsar://localhost:6650
+PULSAR_TOPIC=exported_data
+```
 
 ---
 
-## 📦 Dependencies (see `requirements_all_exports.txt`)
+## 🧰 Tech Stack
 
-- `fastapi`, `uvicorn`
-- `pandas`, `xlsxwriter`, `reportlab`, `pyarrow`, `fastavro`
-- `mysql-connector-python`, `boto3`, `kafka-python`, `pika`, `pulsar-client`
+- **FastAPI**, **Uvicorn**
+- **Pandas**, **XlsxWriter**, **ReportLab**
+- **PyArrow**, **FastAvro**
+- **MySQL Connector**, **Boto3**, **Kafka-Python**
+- **Pika**, **Pulsar-Client**
+
+See [`requirements-export-app.txt`](./requirements-export-app.txt) for full details.
+
+---
+
+### Export app changed files vs. FastAPI
+
+```
+├── /fastapi                              # Official FastAPI root directory
+│   ├── /export_app                       # Our "export app" files package
+│   │   ├── main.py                       # export app main module
+│   │   ├── README.md                     # our export app readme doc
+│   │   ├── requirements-export-app.md    # our export app modules run requirements
+│   │   └── test_export_app.py            # Export app pytest
+│   ├── /docs                             # FastAPI docs
+│   │   ├── index.md                      # Export app index doc
+│   │   └── /usage
+│   │       └── export.md                 # Export app markdown (for endpoint usage)
+│   └── /.github
+│       └── /workflows
+│           └── test-export-app.yml       # Export app test workflow
+├── mkdocs-export.yml                     # Export app makedocs YAML
+└── requirements*.py                      # FastAPI official run requirements
+```
 
 ---
 
 ## 📄 License
 
-MIT – for educational, demonstration, and contribution purposes.
-
+MIT License – for educational and contribution purposes.
