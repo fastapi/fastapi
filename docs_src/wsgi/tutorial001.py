@@ -9,8 +9,8 @@ flask_app = Flask(__name__)
 @flask_app.route("/")
 def flask_main():
     name = request.args.get("name", "World")
-    return f"Hello, {escape(name)} from Flask!"
-
+from flask import Flask, render_template_string
+    return render_template_string("<html><body><h1>Hello World from Flask!</h1></body></html>")
 
 app = FastAPI()
 
