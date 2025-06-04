@@ -83,7 +83,7 @@ class Termynal {
             containerStyle.height : undefined;
 
         this.container.setAttribute('data-termynal', '');
-        this.container.innerHTML = '';
+        this.container.textContent = '';
         for (let line of this.lines) {
             line.style.visibility = 'visible'
         }
@@ -223,7 +223,7 @@ class Termynal {
     lineDataToElements(lineData) {
         return lineData.map(line => {
             let div = document.createElement('div');
-            div.innerHTML = `<span ${this._attributes(line)}>${line.value || ''}</span>`;
+            div.textContent = `<span ${this._attributes(line)}>${line.value || ''}</span>`;
 
             return div.firstElementChild;
         });
