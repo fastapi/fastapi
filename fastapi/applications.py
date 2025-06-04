@@ -1064,7 +1064,7 @@ class FastAPI(Starlette):
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
-        response_description: str = "Successful Response",
+        response_description: Optional[str] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
@@ -1122,7 +1122,7 @@ class FastAPI(Starlette):
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
-        response_description: str = "Successful Response",
+        response_description: Optional[str] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
@@ -1574,7 +1574,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -1582,7 +1582,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -1947,7 +1947,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -1955,7 +1955,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2325,7 +2325,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -2333,7 +2333,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2703,7 +2703,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -2711,7 +2711,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3076,7 +3076,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3084,7 +3084,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3449,7 +3449,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3457,7 +3457,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3822,7 +3822,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3830,7 +3830,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -4200,7 +4200,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -4208,7 +4208,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
