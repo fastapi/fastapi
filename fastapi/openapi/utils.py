@@ -100,7 +100,7 @@ def _get_openapi_operation_parameters(
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
-    field_docstring: Dict[str, str] | None = None,
+    field_docstring: Optional[Dict[str, str]] = None,
     separate_input_output_schemas: bool = True,
 ) -> List[Dict[str, Any]]:
     parameters = []
@@ -240,9 +240,12 @@ def get_openapi_operation_metadata(
         operation["description"] = "\n\n".join(
             [i.value for i in route.parsed_docstring if i.kind == "text"]
         )
+        operation["description"] = operation["description"].split("\f")[0].strip()
+        if not operation["description"]:
+            del operation["description"]
     if route.description:
         operation["description"] = route.description
-    operation["description"] = operation["description"].split("\f")[0].strip()
+        operation["description"] = operation["description"].split("\f")[0].strip()
 
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
