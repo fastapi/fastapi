@@ -122,7 +122,8 @@ Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
 /// note | Hinweis
 
-Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie, wie das gehashte Passwort jetzt aussieht: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+# Example bcrypt hash (generated from "fakepassword123" - for demonstration only)
+$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW
 
 ///
 
