@@ -49,6 +49,7 @@ The export functions support:
 Install the required dependencies:
 
 ```bash
+cd export_app
 pip install -r requirements-export-app.txt
 ```
 
@@ -61,7 +62,9 @@ Everything is actually easier through the Swagger UI...
 Start the development server:
 
 ```bash
-uvicorn main:app --reload
+# First get to the root directory with cd command...
+cd..
+uvicorn export_app.main:app --reload
 ```
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the Swagger UI and test the `/export` endpoint.
