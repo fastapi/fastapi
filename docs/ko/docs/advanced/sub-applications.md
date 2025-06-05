@@ -18,9 +18,7 @@
 
 이 하위 응용프로그램은 또 다른 표준 FastAPI 응용프로그램입니다. 다만 이것은 “마운트”될 것입니다:
 
-```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### 하위 응용프로그램 마운트
 
