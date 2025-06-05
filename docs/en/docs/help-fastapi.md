@@ -249,20 +249,7 @@ On the other side, there are thousands of users in the chat systems, so there's 
 
 ## Sponsor the author
 
-You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
-
-There you could buy me a coffee ☕️ to say thanks. 😄
-
-And you can also become a Silver or Gold sponsor for FastAPI. 🏅🎉
-
-## Sponsor the tools that power FastAPI
-
-As you have seen in the documentation, FastAPI stands on the shoulders of giants, Starlette and Pydantic.
-
-You can also sponsor:
-
-* <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
-* <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
+If your **product/company** depends on or is related to **FastAPI** and you want to reach its users, you can sponsor the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>. Depending on the tier, you could get some extra benefits, like a badge in the docs. 🎁
 
 ---
 
