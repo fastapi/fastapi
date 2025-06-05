@@ -13,6 +13,11 @@ ceb10n:
   count: 27
   avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
   url: https://github.com/ceb10n
+valentinDruzhinin:
+  login: valentinDruzhinin
+  count: 24
+  avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
+  url: https://github.com/valentinDruzhinin
 tokusumi:
   login: tokusumi
   count: 23
@@ -33,11 +38,6 @@ waynerv:
   count: 20
   avatarUrl: https://avatars.githubusercontent.com/u/39515546?u=ec35139777597cdbbbddda29bf8b9d4396b429a9&v=4
   url: https://github.com/waynerv
-valentinDruzhinin:
-  login: valentinDruzhinin
-  count: 18
-  avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
-  url: https://github.com/valentinDruzhinin
 AlertRED:
   login: AlertRED
   count: 16
@@ -328,6 +328,11 @@ nahyunkeem:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/174440096?u=e12401d492eee58570f8914d0872b52e421a776e&v=4
   url: https://github.com/nahyunkeem
+timothy-jeong:
+  login: timothy-jeong
+  count: 3
+  avatarUrl: https://avatars.githubusercontent.com/u/53824764?u=db3d0cea2f5fab64d810113c5039a369699a2774&v=4
+  url: https://github.com/timothy-jeong
 gerry-sabar:
   login: gerry-sabar
   count: 3
@@ -468,6 +473,11 @@ imtiaz101325:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/54007087?u=194d972b501b9ea9d2ddeaed757c492936e0121a&v=4
   url: https://github.com/imtiaz101325
+fabianfalon:
+  login: fabianfalon
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/3700760?u=95f69e31280b17ac22299cdcd345323b142fe0af&v=4
+  url: https://github.com/fabianfalon
 waketzheng:
   login: waketzheng
   count: 2
@@ -498,11 +508,6 @@ saeye:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/62229734?u=312d619db2588b60d5d5bde65260a2f44fdc6c76&v=4
   url: https://github.com/saeye
-timothy-jeong:
-  login: timothy-jeong
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/53824764?u=db3d0cea2f5fab64d810113c5039a369699a2774&v=4
-  url: https://github.com/timothy-jeong
 11kkw:
   login: 11kkw
   count: 2
@@ -513,3 +518,8 @@ yes0ng:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/25501794?u=3aed18b0d491e0220a167a1e9e58bea3638c6707&v=4
   url: https://github.com/yes0ng
+EgorOnishchuk:
+  login: EgorOnishchuk
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/120256301?v=4
+  url: https://github.com/EgorOnishchuk

@@ -1,11 +1,11 @@
 tiangolo:
   login: tiangolo
-  count: 734
+  count: 747
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 100
+  count: 102
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 alejsdev:
@@ -15,7 +15,7 @@ alejsdev:
   url: https://github.com/alejsdev
 pre-commit-ci:
   login: pre-commit-ci
-  count: 27
+  count: 30
   avatarUrl: https://avatars.githubusercontent.com/in/68672?v=4
   url: https://github.com/apps/pre-commit-ci
 github-actions:
