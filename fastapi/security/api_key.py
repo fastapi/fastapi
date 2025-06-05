@@ -81,12 +81,8 @@ class APIKeyCookie(APIKeyBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    async def __call__(
-        self,
-        request: Request = None,
-        websocket: WebSocket = None,
-    ) -> Optional[str]:
-        api_key = (request or websocket).cookies.get(self.model.name)
+    async def __call__(self, conn: HTTPConnection) -> Optional[str]:
+        api_key = conn.cookies.get(self.model.name)
         if not api_key:
             if self.auto_error:
                 raise HTTPException(
