@@ -48,6 +48,9 @@ silver:
   - url: https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring
     title: InterviewPal - AI Interview Coach for Engineers and Devs
     img: https://fastapi.tiangolo.com/img/sponsors/interviewpal.png
+  - url: https://dribia.com/en/
+    title: Dribia - Data Science within your reach
+    img: https://fastapi.tiangolo.com/img/sponsors/dribia.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
