@@ -65,7 +65,7 @@ The word **program** is commonly used to describe many things:
 
 * The **code** that you write, the **Python files**.
 * The **file** that can be **executed** by the operating system, for example: `python`, `python.exe` or `uvicorn`.
-* A particular program while it is **running** on the operating system, using the CPU, and storing things on memory. This is also called a **process**.
+* A particular program while it is **running** on the operating system, using the CPU, and storing things in memory. This is also called a **process**.
 
 ### What is a Process
 
@@ -216,7 +216,7 @@ This Manager Process would probably be the one listening on the **port** in the 
 
 Those worker processes would be the ones running your application, they would perform the main computations to receive a **request** and return a **response**, and they would load anything you put in variables in RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 And of course, the same machine would probably have **other processes** running as well, apart from your application.
 

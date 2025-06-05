@@ -6,7 +6,7 @@ Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **re
 
 /// tip | Consejo
 
-¿Tienes prisa y ya conoces esto? Salta al [`Dockerfile` más abajo 👇](#build-a-docker-image-for-fastapi).
+¿Tienes prisa y ya conoces esto? Salta al [`Dockerfile` más abajo 👇](#construir-una-imagen-de-docker-para-fastapi).
 
 ///
 
