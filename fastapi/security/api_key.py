@@ -24,6 +24,12 @@ class APIKeyQuery(APIKeyBase):
     """
     API key authentication using a query parameter.
 
+    Note:
+    This class does **not** perform API key validation or decoding.
+    It only extracts the key from the request and provides OpenAPI integration.
+
+    You must implement the actual verification logic yourself (e.g., checking against a database or list of valid keys).
+
     This defines the name of the query parameter that should be provided in the request
     with the API key and integrates that into the OpenAPI documentation. It extracts
     the key value sent in the query parameter automatically and provides it as the
@@ -116,6 +122,12 @@ class APIKeyHeader(APIKeyBase):
     """
     API key authentication using a header.
 
+    Note:
+    This class does **not** perform API key validation or decoding.
+    It only extracts the key from the request and provides OpenAPI integration.
+
+    You must implement the actual verification logic yourself (e.g., checking against a database or list of valid keys).
+
     This defines the name of the header that should be provided in the request with
     the API key and integrates that into the OpenAPI documentation. It extracts
     the key value sent in the header automatically and provides it as the dependency
@@ -203,6 +215,12 @@ class APIKeyHeader(APIKeyBase):
 class APIKeyCookie(APIKeyBase):
     """
     API key authentication using a cookie.
+    
+    Note:
+    This class does **not** perform API key validation or decoding.
+    It only extracts the key from the request and provides OpenAPI integration.
+
+    You must implement the actual verification logic yourself (e.g., checking against a database or list of valid keys).
 
     This defines the name of the cookie that should be provided in the request with
     the API key and integrates that into the OpenAPI documentation. It extracts
