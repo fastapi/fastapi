@@ -393,6 +393,11 @@ class OAuth2PasswordBearer(OAuth2):
     OAuth2 flow for authentication using a bearer token obtained with a password.
     An instance of it would be used as a dependency.
 
+    Note:
+    This class does **not** perform token validation or decoding.
+    It only extracts the `Authorization` header and includes metadata in the OpenAPI docs.
+    You must handle actual token validation separately (e.g. signature and claims verification).
+
     Read more about it in the
     [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
     """
@@ -489,6 +494,11 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
     """
     OAuth2 flow for authentication using a bearer token obtained with an OAuth2 code
     flow. An instance of it would be used as a dependency.
+
+    Note:
+    This class does **not** perform token validation or decoding.
+    It only extracts the `Authorization` header and includes metadata in the OpenAPI docs.
+    You must handle actual token validation separately (e.g. signature and claims verification).
     """
 
     def __init__(
