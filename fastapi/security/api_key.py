@@ -215,7 +215,7 @@ class APIKeyHeader(APIKeyBase):
 class APIKeyCookie(APIKeyBase):
     """
     API key authentication using a cookie.
-    
+
     Note:
     This class does **not** perform API key validation or decoding.
     It only extracts the key from the request and provides OpenAPI integration.
