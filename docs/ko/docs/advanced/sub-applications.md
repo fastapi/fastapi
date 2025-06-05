@@ -26,9 +26,7 @@
 
 이 예시에서, 하위 응용프로그램션은 `/subapi` 경로에 마운트 될 것입니다:
 
-```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### 자동으로 생성된 API 문서 확인
 
