@@ -10,9 +10,7 @@
 
 먼저, 메인, 최상단의 **FastAPI** 응용프로그램과 이것의 *경로 동작*을 생성합니다:
 
-```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### 하위 응용프로그램
 
