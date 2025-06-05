@@ -11,3 +11,4 @@ This application demonstrates how to export data to a variety of formats & backe
 - Streaming: Kafka, RabbitMQ, Apache Pulsar
 
 ➡️ [See usage and code docs »](usage/export.md)
+➡️ [See full readme »](../README.md)
