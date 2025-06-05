@@ -45,6 +45,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump typer from 0.15.3 to 0.16.0. PR [#13752](https://github.com/fastapi/fastapi/pull/13752) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#13754](https://github.com/fastapi/fastapi/pull/13754) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#13750](https://github.com/fastapi/fastapi/pull/13750) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#13749](https://github.com/fastapi/fastapi/pull/13749) by [@tiangolo](https://github.com/tiangolo).
