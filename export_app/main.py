@@ -1,5 +1,6 @@
+# FastAPI export app
+# by Joanna Karitsioti & George Tsakalos
 
-# FastAPI export app by Joanna Karitsioti & George Tsakalos
 
 from typing import Literal
 from fastapi import FastAPI, Query, UploadFile, File, HTTPException
@@ -9,8 +10,9 @@ import io
 import csv
 import os
 import sqlite3
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib import colors
 import boto3
 from botocore.exceptions import BotoCoreError, NoCredentialsError
 import mysql.connector
@@ -47,13 +49,22 @@ def export_to_excel(df: pd.DataFrame):
 
 def export_to_pdf(df: pd.DataFrame):
     output = io.BytesIO()
-    pdf = canvas.Canvas(output, pagesize=letter)
-    pdf.drawString(100, 750, "Exported Data")
-    y = 730
-    for row in df.to_dict(orient="records"):
-        pdf.drawString(100, y, str(row))
-        y -= 20
-    pdf.save()
+    doc = SimpleDocTemplate(output, pagesize=A4)
+
+    table_data = [df.columns.tolist()] + df.values.tolist()
+
+    table = Table(table_data)
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 6),
+        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
+    ]))
+
+    doc.build([table])
     output.seek(0)
     return StreamingResponse(output, media_type="application/pdf",
                              headers={"Content-Disposition": "attachment; filename=data.pdf"})
