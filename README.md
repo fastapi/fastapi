@@ -33,7 +33,7 @@ The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
 * **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
-* **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
+* **Fewer bugs**: Reduce about 40% of developer-induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
@@ -119,7 +119,7 @@ The key features are:
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** is FastAPI's little sibling. And it is intended to be the **FastAPI of CLIs**. ⌨️ 🚀
 
 ## Requirements
 
@@ -308,7 +308,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-The `fastapi dev` server should reload automatically.
+The `fastAPI dev` server should reload automatically.
 
 ### Interactive API docs upgrade
 
@@ -378,15 +378,16 @@ item: Item
     * `UUID` objects.
     * Database models.
     * ...and many more.
-* Automatic interactive API documentation, including 2 alternative user interfaces:
-    * Swagger UI.
-    * ReDoc.
 
+*  Automatic interactive API documentation with two interfaces:
+  - **Swagger UI**: Interactive, browser-based testing of endpoints.
+  - **ReDoc**: Static, readable documentation for sharing with teams.
 ---
 
 Coming back to the previous code example, **FastAPI** will:
 
 * Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
+  - If missing or invalid (e.g., non-integer), FastAPI returns a clear HTTP 422 error, visible in the Swagger UI at `http://127.0.0.1:8000/docs`.
 * Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
     * If it is not, the client will see a useful, clear error.
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
