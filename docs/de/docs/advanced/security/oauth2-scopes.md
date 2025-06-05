@@ -62,71 +62,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} ändern. Diesmal verwenden wir OAuth2-Scopes:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="2  4  8  12  47  65  106  108-116  122-125  129-135  140  156"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3  7  11  45  63  104  106-114  120-123  127-133  138  154"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2  4  8  12  46  64  105  107-115  121-124  128-134  139  155"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[4,8,12,46,64,105,107:115,121:124,128:134,139,155] *}
 
 Sehen wir uns diese Änderungen nun Schritt für Schritt an.
 
@@ -136,71 +72,7 @@ Die erste Änderung ist, dass wir jetzt das OAuth2-Sicherheitsschema mit zwei ve
 
 Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="62-65"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="62-65"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="63-66"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="61-64"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="62-65"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="62-65"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[62:65] *}
 
 Da wir diese Scopes jetzt deklarieren, werden sie in der API-Dokumentation angezeigt, wenn Sie sich einloggen/autorisieren.
 
@@ -226,71 +98,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="155"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="155"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="156"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="154"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="155"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="155"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[155] *}
 
 ## Scopes in *Pfadoperationen* und Abhängigkeiten deklarieren
 
@@ -316,71 +124,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  139  170"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  139  170"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  140  171"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3  138  167"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4  139  168"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4  139  168"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[4,139,170] *}
 
 /// info | Technische Details
 
@@ -406,71 +150,7 @@ Wir deklarieren auch einen speziellen Parameter vom Typ `SecurityScopes`, der au
 
 Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um das Request-Objekt direkt zu erhalten).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8  105"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8  105"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8  106"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="7  104"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8  105"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8  105"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[8,105] *}
 
 ## Die `scopes` verwenden
 
@@ -484,71 +164,7 @@ Wir erstellen eine `HTTPException`, die wir später an mehreren Stellen wiederve
 
 In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als durch Leerzeichen getrennten String ein (unter Verwendung von `scope_str`). Wir fügen diesen String mit den Scopes in den Header `WWW-Authenticate` ein (das ist Teil der Spezifikation).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="105  107-115"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="105  107-115"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="106  108-116"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="104  106-114"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="105  107-115"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="105  107-115"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[105,107:115] *}
 
 ## Den `username` und das Format der Daten überprüfen
 
@@ -564,71 +180,7 @@ Anstelle beispielsweise eines `dict`s oder etwas anderem, was später in der Anw
 
 Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, und wenn nicht, lösen wir dieselbe Exception aus, die wir zuvor erstellt haben.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="46  116-127"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="46  116-127"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="47  117-128"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="45  115-126"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="46  116-127"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="46  116-127"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[46,116:127] *}
 
 ## Die `scopes` verifizieren
 
@@ -636,71 +188,7 @@ Wir überprüfen nun, ob das empfangenen Token alle Scopes enthält, die von die
 
 Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen Scopes als `str` enthält.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="128-134"
-{!> ../../docs_src/security/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="128-134"
-{!> ../../docs_src/security/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="129-135"
-{!> ../../docs_src/security/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="127-133"
-{!> ../../docs_src/security/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="128-134"
-{!> ../../docs_src/security/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="128-134"
-{!> ../../docs_src/security/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial005_an_py310.py hl[128:134] *}
 
 ## Abhängigkeitsbaum und Scopes
 
