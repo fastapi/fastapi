@@ -19,10 +19,7 @@ automatically converting it to structured data for export.
 
 You can also fetch data directly from an **online SQLite or MySQL database** by calling the `/import-online-db` endpoint.
 
-
-This app supports uploading your own `.txt`, `.csv`, or `.json` file (via Swagger UI),
-automatically converting it to structured data for export.
-
+The export functions support:
 
 - **JSON** → `?format=json`  
 - **CSV** → `?format=csv`  
@@ -33,13 +30,13 @@ automatically converting it to structured data for export.
 - **Feather** → `?format=feather`  
 - **ORC** → `?format=orc`  
 
-### 🗄 Databases & Storage
+### Databases & Storage
 
 - **MySQL** → `?format=mysql`  
 - **SQLite** → `?format=sqlite`  
 - **AWS S3** → `?format=s3`  
 
-### 🔄 Streaming Systems
+### Streaming Systems
 
 - **Kafka** → `?format=kafka`  
 - **RabbitMQ** → `?format=rabbitmq`  
@@ -59,6 +56,8 @@ pip install -r requirements-export-app.txt
 
 ## ▶️ Usage
 
+Everything is actually easier through the Swagger UI...
+
 Start the development server:
 
 ```bash
@@ -67,8 +66,7 @@ uvicorn main:app --reload
 
 Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the Swagger UI and test the `/export` endpoint.
 
-You can upload your own database file as input (in `.json`, `.csv`, or `.txt` format)
-and export it to any supported format. The conversion happens automatically.
+You can upload your own database file as input (in `.json`, `.csv`, or `.txt` format) and export it to any supported format. The conversion happens automatically. 
 
 You can also use the `/import-online-db` GET endpoint to fetch data from remote SQLite or MySQL databases.
 
@@ -127,17 +125,18 @@ PULSAR_TOPIC=exported_data
 - **MySQL Connector**, **Boto3**, **Kafka-Python**
 - **Pika**, **Pulsar-Client**
 
-See [`requirements-export-app.txt`](./requirements-export-app.txt) for full details.
+See [`requirements-export-app.txt`](./export_app/requirements-export-app.txt) for full details.
 
 ---
 
-### Export app changed files vs. FastAPI
+### Export app files modified vs. FastAPI
 
 ```
 ├── /fastapi                              # Official FastAPI root directory
 │   ├── /export_app                       # Our "export app" files package
 │   │   ├── main.py                       # export app main module
-│   │   ├── README.md                     # our export app readme doc
+│   │   ├── dbase_converter.py            # import data from file app module
+│   │   ├── dbase_online_import.py        # import data from online source app module
 │   │   ├── requirements-export-app.md    # our export app modules run requirements
 │   │   └── test_export_app.py            # Export app pytest
 │   ├── /docs                             # FastAPI docs
@@ -147,6 +146,7 @@ See [`requirements-export-app.txt`](./requirements-export-app.txt) for full deta
 │   └── /.github
 │       └── /workflows
 │           └── test-export-app.yml       # Export app test workflow
+├── README.md                             # our export app readme doc
 ├── mkdocs-export.yml                     # Export app makedocs YAML
 └── requirements*.py                      # FastAPI official run requirements
 ```
