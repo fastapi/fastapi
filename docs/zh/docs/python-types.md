@@ -228,7 +228,7 @@ John Doe
 
 ## Pydantic 模型
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 是一个用来用来执行数据校验的 Python 库。
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 是一个用来执行数据校验的 Python 库。
 
 你可以将数据的"结构"声明为具有属性的类。
 
