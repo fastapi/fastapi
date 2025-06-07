@@ -8,7 +8,7 @@ from typing import Literal
 app = FastAPI(title="Online Database Import API")
 
 
-@app.get("/import-online-db", summary="Import data from an online database")
+@app.get("/import-online-db", summary="Import data from an online database", description="Connect to an online SQLite or MySQL database and fetch the contents of a specific table. Provide connection details via query parameters.")
 async def import_from_database(
     db_type: Literal["sqlite", "mysql"] = Query(..., description="Type of database"),
     host: str = Query(None, description="Database host (for MySQL)"),
