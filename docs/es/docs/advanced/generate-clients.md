@@ -22,7 +22,7 @@ Y muestra su verdadero compromiso con FastAPI y su **comunidad** (tú), ya que n
 
 Por ejemplo, podrías querer probar:
 
-* <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
+* <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
 * <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
 * <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi/?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
