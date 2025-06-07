@@ -171,12 +171,13 @@ filterwarnings = [
 parallel = true
 data_file = "coverage/.coverage"
 source = [
+    "export_app"
     "docs_src",
     "tests",
     "fastapi"
 ]
 context = '${CONTEXT}'
-dynamic_context = "test_function"
+# dynamic_context = test_function
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
