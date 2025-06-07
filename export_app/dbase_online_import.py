@@ -1,6 +1,6 @@
 # FastAPI online dbase import by Joanna Karitsioti & George Tsakalos
 
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException, APIRouter
 from fastapi.responses import JSONResponse
 from export_app.dbase_converter import fetch_from_sqlite, fetch_from_mysql
 from typing import Literal
