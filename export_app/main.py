@@ -17,7 +17,7 @@ import boto3
 from botocore.exceptions import BotoCoreError, NoCredentialsError
 import mysql.connector
 from export_app.dbase_converter import convert_to_json, fetch_from_sqlite, fetch_from_mysql
-from export_app.dbase_online_import import import_from_database
+from export_app.dbase_online_import import router as online_db_router
 import pulsar
 import pika
 from kafka import KafkaProducer
@@ -25,7 +25,7 @@ from kafka import KafkaProducer
 
 
 app = FastAPI(title="Data Import & Export App")
-
+app.include_router(online_db_router)
 
 
 # Main files exports
