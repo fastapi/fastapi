@@ -181,24 +181,33 @@ async def export_data(
         "json", "csv", "excel", "pdf", "parquet",
         "mysql", "avro", "feather", "orc", "sqlite", "s3", "kafka", "rabbitmq", "pulsar"
     ]),
+
     file: Optional[UploadFile] = File(None, description="Upload a file (.txt, .csv, .json)"),
-    db_params: Optional[DBConnectionParams] = Depends()
+
+    db_type: Optional[Literal["sqlite", "mysql"]] = Query(None),
+    host: Optional[str] = Query(None),
+    user: Optional[str] = Query(None),
+    password: Optional[str] = Query(None),
+    database: Optional[str] = Query(None),
+    table: Optional[str] = Query(None),
+    url: Optional[str] = Query(None)
 ):
+
     try:
         if file:
             records = await convert_to_json(file)
-        elif db_params:
-            if db_params.db_type == "sqlite":
-                if not db_params.url:
-                    raise ValueError("SQLite 'url' is required")
-                records = fetch_from_sqlite(url=db_params.url, table=db_params.table)
-            elif db_params.db_type == "mysql":
-                if not all([db_params.host, db_params.user, db_params.password, db_params.database]):
+        elif db_type:
+            if db_type == "sqlite":
+                if not url or not table:
+                    raise ValueError("SQLite 'url' and 'table' are required")
+                records = fetch_from_sqlite(url=url, table=table)
+            elif db_type == "mysql":
+                if not all([host, user, password, database, table]):
                     raise ValueError("Missing MySQL connection parameters")
                 records = fetch_from_mysql(
-                    host=db_params.host, user=db_params.user,
-                    password=db_params.password, database=db_params.database,
-                    table=db_params.table
+                    host=host, user=user,
+                    password=password, database=database,
+                    table=table
                 )
             else:
                 raise ValueError("Unsupported database type")
