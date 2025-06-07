@@ -24,7 +24,7 @@ from kafka import KafkaProducer
 
 
 
-app = FastAPI(title="Data Import & Export App")
+app = FastAPI(title="AUEB DMST Data Import & Export App")
 app.include_router(online_db_router)
 
 
@@ -117,6 +117,7 @@ def export_to_sqlite(df: pd.DataFrame):
                              headers={"Content-Disposition": "attachment; filename=data_export.db"})
 
 
+
 def export_to_mysql(df: pd.DataFrame):
     conn = mysql.connector.connect(
         host=os.getenv("MYSQL_HOST", "localhost"),
@@ -125,25 +126,65 @@ def export_to_mysql(df: pd.DataFrame):
         database=os.getenv("MYSQL_DATABASE", "testdb")
     )
     cursor = conn.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS exported_data (id INT, name VARCHAR(255), age INT)")
-    cursor.executemany("INSERT INTO exported_data (id, name, age) VALUES (%s, %s, %s)",
-                       [(row["id"], row["name"], row["age"]) for row in df.to_dict(orient="records")])
+
+    columns_sql = []
+    for col in df.columns:
+        dtype = df[col].dtype
+        if pd.api.types.is_integer_dtype(dtype):
+            col_type = "INT"
+        elif pd.api.types.is_float_dtype(dtype):
+            col_type = "FLOAT"
+        else:
+            col_type = "VARCHAR(255)"
+        columns_sql.append(f"{col} {col_type}")
+    cursor.execute(f"DROP TABLE IF EXISTS exported_data")
+    cursor.execute(f"CREATE TABLE exported_data ({', '.join(columns_sql)})")
+
+    placeholders = ', '.join(['%s'] * len(df.columns))
+    insert_stmt = f"INSERT INTO exported_data ({', '.join(df.columns)}) VALUES ({placeholders})"
+    values = [tuple(row) for row in df.to_numpy()]
+    cursor.executemany(insert_stmt, values)
+
     conn.commit()
     cursor.close()
     conn.close()
+
     return JSONResponse(content={"message": "Data successfully exported to MySQL."})
 
 
-@app.post("/export", summary="Export data to a specified format", description="Upload a .txt, .csv or .json file and choose the desired output format (e.g. Excel, PDF, MySQL, S3, Kafka, etc). The file will be parsed and converted automatically.")
+
+
+@app.post("/export", summary="Export data to a specified format", description="Upload a file OR provide online DB details to fetch and export data.")
 async def export_data(
-    file: UploadFile = File(...),
-    format: str = Query("json", enum=[
+    file: UploadFile = File(None),
+    format: str = Query(..., enum=[
         "json", "csv", "excel", "pdf", "parquet",
         "mysql", "avro", "feather", "orc", "sqlite", "s3", "kafka", "rabbitmq", "pulsar"
-    ])
+    ]),
+    db_type: Literal["sqlite", "mysql"] = Query(None),
+    host: str = Query(None),
+    user: str = Query(None),
+    password: str = Query(None),
+    database: str = Query(None),
+    table: str = Query(None),
+    url: str = Query(None)
 ):
     try:
-        records = await convert_to_json(file)
+        if file:
+            records = await convert_to_json(file)
+        elif db_type:
+            if db_type == "sqlite":
+                if not url:
+                    raise ValueError("SQLite 'url' is required")
+                records = fetch_from_sqlite(url=url, table=table)
+            elif db_type == "mysql":
+                if not all([host, user, password, database, table]):
+                    raise ValueError("Missing MySQL connection parameters")
+                records = fetch_from_mysql(host=host, user=user, password=password, database=database, table=table)
+            else:
+                raise ValueError("Unsupported database type")
+        else:
+            raise ValueError("Provide either a file or DB connection details")
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -185,6 +226,9 @@ async def export_data(
 @app.get("/", include_in_schema=False)
 async def root():
     return RedirectResponse(url="/docs")
+
+
+
 
 
 # Special formats export
