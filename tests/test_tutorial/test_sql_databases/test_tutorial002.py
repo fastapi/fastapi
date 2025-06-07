@@ -29,6 +29,7 @@ def clear_sqlmodel():
         pytest.param("tutorial002_an_py39", marks=needs_py39),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
+    scope="module",
 )
 def get_client(request: pytest.FixtureRequest):
     clear_sqlmodel()
@@ -45,6 +46,8 @@ def get_client(request: pytest.FixtureRequest):
 
     with TestClient(mod.app) as c:
         yield c
+
+    mod.engine.dispose()
 
 
 def test_crud_app(client: TestClient):
