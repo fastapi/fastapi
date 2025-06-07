@@ -8,7 +8,7 @@ from typing import Literal
 router = APIRouter()
 
 
-@router.get("/import-online-db", summary="Import data from an online database", tags=["Connect to an online SQLite or MySQL database and fetch the contents of a specific table."])
+@router.get("/import-online-db", summary="Import data from an online database", tags=["Connect to an online SQLite or MySQL database & fetch the contents of a specific table."])
 async def import_from_database(
     db_type: Literal["sqlite", "mysql"] = Query(..., description="Type of database"),
     host: str = Query(None, description="Database host (for MySQL)"),

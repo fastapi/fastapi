@@ -154,7 +154,7 @@ def export_to_mysql(df: pd.DataFrame):
 
 
 
-@app.post("/export", summary="Export data to a specified format", description="Upload a file OR provide online DB details to fetch and export data.")
+@app.post("/export", summary="Export data to a specified format", tags=["Upload a file OR connect to an online DB details to fetch & export data"], description="Upload a file OR provide online DB details to fetch & export data")
 async def export_data(
     file: UploadFile = File(None),
     format: str = Query(..., enum=[
