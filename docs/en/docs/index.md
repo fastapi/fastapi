@@ -142,6 +142,30 @@ $ pip install "fastapi[standard]"
 
 **Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
 
+If you prefer not to include the standard optional dependencies, you can install FastAPI with:
+
+<div class="termy">
+
+```console
+$ pip install fastapi
+
+---> 100%
+```
+
+</div>
+
+For running the server, you will also need an ASGI server like Uvicorn. Install it using:
+
+<div class="termy">
+
+```console
+$ pip install "uvicorn[standard]"
+
+---> 100%
+```
+
+</div>
+
 ## Example
 
 ### Create it
