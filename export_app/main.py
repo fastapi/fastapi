@@ -2,9 +2,11 @@
 # by Joanna Karitsioti & George Tsakalos
 
 
-from typing import Literal
-from fastapi import FastAPI, Query, UploadFile, File, HTTPException
+
+from typing import Literal, Optional
+from fastapi import FastAPI, Query, UploadFile, File, HTTPException, Depends
 from fastapi.responses import JSONResponse, StreamingResponse, RedirectResponse
+from pydantic import BaseModel
 import pandas as pd
 import io
 import csv
@@ -16,16 +18,34 @@ from reportlab.lib import colors
 import boto3
 from botocore.exceptions import BotoCoreError, NoCredentialsError
 import mysql.connector
-from export_app.dbase_converter import convert_to_json, fetch_from_sqlite, fetch_from_mysql
-from export_app.dbase_online_import import router as online_db_router
 import pulsar
 import pika
 from kafka import KafkaProducer
+from export_app.dbase_converter import convert_to_json, fetch_from_sqlite, fetch_from_mysql
+from export_app.dbase_online_import import router as online_db_router
 
 
 
-app = FastAPI(title="AUEB DMST Data Import & Export App")
+
+app = FastAPI(
+    title="AUEB DMST Data Import & Export App",
+    version="1.2.4")
 app.include_router(online_db_router)
+
+
+
+class DBConnectionParams(BaseModel):
+    db_type: Literal["sqlite", "mysql"]
+    host: Optional[str] = None
+    user: Optional[str] = None
+    password: Optional[str] = None
+    database: Optional[str] = None
+    table: str
+    url: Optional[str] = None
+
+
+
+
 
 
 # Main files exports
@@ -154,33 +174,32 @@ def export_to_mysql(df: pd.DataFrame):
 
 
 
-@app.post("/export", summary="Export data to a specified format", tags=["Upload a file OR connect to an online DB details to fetch & export data"], description="Upload a file OR provide online DB details to fetch & export data")
+
+@app.post("/export", summary="Export data to a specified format", tags=["Upload a file to fetch & export data"], description="Upload a file (.txt, .csv, .json) to fetch data.")
 async def export_data(
-    file: UploadFile = File(None),
     format: str = Query(..., enum=[
         "json", "csv", "excel", "pdf", "parquet",
         "mysql", "avro", "feather", "orc", "sqlite", "s3", "kafka", "rabbitmq", "pulsar"
     ]),
-    db_type: Literal["sqlite", "mysql"] = Query(None),
-    host: str = Query(None),
-    user: str = Query(None),
-    password: str = Query(None),
-    database: str = Query(None),
-    table: str = Query(None),
-    url: str = Query(None)
+    file: Optional[UploadFile] = File(None, description="Upload a file (.txt, .csv, .json)"),
+    db_params: Optional[DBConnectionParams] = Depends()
 ):
     try:
         if file:
             records = await convert_to_json(file)
-        elif db_type:
-            if db_type == "sqlite":
-                if not url:
+        elif db_params:
+            if db_params.db_type == "sqlite":
+                if not db_params.url:
                     raise ValueError("SQLite 'url' is required")
-                records = fetch_from_sqlite(url=url, table=table)
-            elif db_type == "mysql":
-                if not all([host, user, password, database, table]):
+                records = fetch_from_sqlite(url=db_params.url, table=db_params.table)
+            elif db_params.db_type == "mysql":
+                if not all([db_params.host, db_params.user, db_params.password, db_params.database]):
                     raise ValueError("Missing MySQL connection parameters")
-                records = fetch_from_mysql(host=host, user=user, password=password, database=database, table=table)
+                records = fetch_from_mysql(
+                    host=db_params.host, user=db_params.user,
+                    password=db_params.password, database=db_params.database,
+                    table=db_params.table
+                )
             else:
                 raise ValueError("Unsupported database type")
         else:
@@ -235,9 +254,7 @@ async def root():
 def export_to_s3(df: pd.DataFrame):
     bucket_name = os.getenv("AWS_S3_BUCKET", "your-bucket-name")
     object_key = os.getenv("AWS_S3_OBJECT_KEY", "exported_data.json")
-
     json_data = df.to_json(orient="records").encode("utf-8")
-
     try:
         s3 = boto3.client("s3")
         s3.put_object(Bucket=bucket_name, Key=object_key, Body=json_data)
@@ -264,7 +281,6 @@ def export_to_rabbitmq(df: pd.DataFrame):
         channel = connection.channel()
         queue = os.getenv("RABBITMQ_QUEUE", "export_queue")
         channel.queue_declare(queue=queue)
-
         for record in df.to_dict(orient="records"):
             channel.basic_publish(exchange='', routing_key=queue, body=pd.io.json.dumps(record))
         connection.close()
@@ -279,7 +295,6 @@ def export_to_pulsar(df: pd.DataFrame):
         topic = os.getenv("PULSAR_TOPIC", "exported_data")
         client = pulsar.Client(service_url)
         producer = client.create_producer(topic)
-
         for record in df.to_dict(orient="records"):
             producer.send(pd.io.json.dumps(record).encode('utf-8'))
         client.close()
