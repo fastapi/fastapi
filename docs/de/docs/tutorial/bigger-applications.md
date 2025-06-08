@@ -52,7 +52,7 @@ from app.routers import items
 * Es gibt auch ein Unterverzeichnis `app/internal/` mit einer weiteren Datei `__init__.py`, es handelt sich also um ein weiteres „Python-Subpackage“: `app.internal`.
 * Und die Datei `app/internal/admin.py` ist ein weiteres Submodul: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 Die gleiche Dateistruktur mit Kommentaren:
 
@@ -270,7 +270,7 @@ Aber diese Datei existiert nicht, unsere Abhängigkeiten befinden sich in einer 
 
 Erinnern Sie sich, wie unsere Anwendungs-/Dateistruktur aussieht:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
