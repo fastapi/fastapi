@@ -104,13 +104,13 @@ def test_no_data():
                     "type": "missing",
                     "loc": ["body", "username"],
                     "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                    "input": {"age": None, "tags": ["foo", "bar"], "with": "nothing"},
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "lastname"],
                     "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                    "input": {"age": None, "tags": ["foo", "bar"], "with": "nothing"},
                 },
             ]
         }
