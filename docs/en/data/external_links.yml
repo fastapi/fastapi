@@ -412,7 +412,7 @@ Talks:
     link: https://www.youtube.com/watch?v=3DLwPcrE5mA
     title: 'PyCon UK 2019: FastAPI from the ground up'
   Taiwanese:
-  - author: Bluewen
+  - author: Blueswen
     author_link: https://github.com/blueswen
     link: https://www.youtube.com/watch?v=y3sumuoDq4w
     title: 'PyCon TW 2024: 全方位強化 Python 服務可觀測性：以 FastAPI 和 Grafana Stack 為例'

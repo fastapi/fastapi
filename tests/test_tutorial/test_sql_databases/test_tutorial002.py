@@ -4,7 +4,7 @@ import warnings
 import pytest
 from dirty_equals import IsDict, IsInt
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 from sqlalchemy import StaticPool
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.main import default_registry
@@ -117,14 +117,14 @@ def test_crud_app(client: TestClient):
         )
         assert response.status_code == 200, response.text
         assert response.json() == snapshot(
-            {"name": "Dog Pond", "age": None, "id": hero_id}
+            {"name": "Dog Pond", "age": None, "id": Is(hero_id)}
         )
 
         # Get updated hero
         response = client.get(f"/heroes/{hero_id}")
         assert response.status_code == 200, response.text
         assert response.json() == snapshot(
-            {"name": "Dog Pond", "age": None, "id": hero_id}
+            {"name": "Dog Pond", "age": None, "id": Is(hero_id)}
         )
 
         # Delete a hero
