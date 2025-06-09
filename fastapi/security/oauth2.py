@@ -471,9 +471,11 @@ class OAuth2PasswordBearer(OAuth2):
         flows = OAuthFlowsModel(
             password=cast(
                 Any,
-                {"tokenUrl": tokenUrl, "refreshUrl": refreshUrl, "scopes": scopes}
-                if refreshUrl
-                else {"tokenUrl": tokenUrl, "scopes": scopes},
+                {
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
             )
         )
         super().__init__(
