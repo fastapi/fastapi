@@ -48,6 +48,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13781](https://github.com/fastapi/fastapi/pull/13781) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13757](https://github.com/fastapi/fastapi/pull/13757) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump griffe-typingdoc from 0.2.7 to 0.2.8. PR [#13751](https://github.com/fastapi/fastapi/pull/13751) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🍱 Update sponsors: Dribia badge size. PR [#13773](https://github.com/fastapi/fastapi/pull/13773) by [@tiangolo](https://github.com/tiangolo).
