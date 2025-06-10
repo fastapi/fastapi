@@ -5,11 +5,11 @@
     <em>FastAPI framework, yüksək məshuldarlı, öyrənməsi asan, çevik kodlama, istifadəyə hazırdır</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Əhatə">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Əhatə">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Paket versiyası">
@@ -23,11 +23,11 @@
 
 **Sənədlər**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Qaynaq Kodu**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Qaynaq Kodu**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip Məsləhətləri: Type Hints">tip məsləhətlərinə</abbr> əsaslanan, müasir, sürətli (yüksək performanslı) framework-dür.
+FastAPI Python ilə API yaratmaq üçün standart Python <abbr title="Tip Məsləhətləri: Type Hints">tip məsləhətlərinə</abbr> əsaslanan, müasir, sürətli (yüksək performanslı) framework-dür.
 
 Əsas xüsusiyyətləri bunlardır:
 
@@ -63,7 +63,7 @@ FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip M
 
 "_[...] Son günlərdə **FastAPI**-ı çox istifadə edirəm. [...]  Əslində onu komandamın bütün **Microsoftda ML sevislərində** istifadə etməyi planlayıram. Onların bəziləri **windows**-un əsas məhsuluna və bəzi **Office** məhsullarına inteqrasiya olunurlar._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -87,7 +87,7 @@ FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip M
 
 "_Düzünü desəm, sizin qurduğunuz şey həqiqətən möhkəm və peşəkar görünür. Bir çox cəhətdən **Hug**-un olmasını istədiyim kimdir - kiminsə belə bir şey qurduğunu görmək həqiqətən ruhlandırıcıdır._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -114,8 +114,6 @@ FastAPI Python 3.8+ ilə API yaratmaq üçün standart Python <abbr title="Tip M
 **Typer** FastAPI-ın kiçik qardaşıdır. Və o, CLI-lərin **FastAPI**-ı olmaq üçün nəzərdə tutulub. ⌨️ 🚀
 
 ## Tələblər
-
-Python 3.8+
 
 FastAPI nəhənglərin çiyinlərində dayanır:
 
@@ -330,7 +328,7 @@ Bunu standart müasir Python tipləri ilə edirsiniz.
 
 Yeni sintaksis, müəyyən bir kitabxananın metodlarını və ya siniflərini və s. öyrənmək məcburiyyətində deyilsiniz.
 
-Sadəcə standart **Python 3.8+**.
+Sadəcə standart **Python**.
 
 Məsələn, `int` üçün:
 
@@ -444,7 +442,7 @@ Müstəqil TechEmpower meyarları göstərir ki, Uvicorn üzərində işləyən 
 
 Pydantic tərəfindən istifadə olunanlar:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - e-poçtun yoxlanılması üçün.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - e-poçtun yoxlanılması üçün.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - parametrlərin idarə edilməsi üçün.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - Pydantic ilə istifadə edilə bilən əlavə tiplər üçün.
 

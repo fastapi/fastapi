@@ -64,10 +64,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` nghĩa là:
+/// info
 
-    Truyền các khóa và giá trị của dict `second_user_data` trực tiếp như các tham số kiểu key-value, tương đương với: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` nghĩa là:
+
+Truyền các khóa và giá trị của dict `second_user_data` trực tiếp như các tham số kiểu key-value, tương đương với: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Được hỗ trợ từ các trình soạn thảo
 

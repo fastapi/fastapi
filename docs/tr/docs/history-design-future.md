@@ -1,6 +1,6 @@
 # Geçmişi, Tasarımı ve Geleceği
 
-Bir süre önce, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">bir **FastAPI** kullanıcısı sordu</a>:
+Bir süre önce, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">bir **FastAPI** kullanıcısı sordu</a>:
 
 > Bu projenin geçmişi nedir? Birkaç hafta içinde hiçbir yerden harika bir şeye dönüşmüş gibi görünüyor [...]
 
