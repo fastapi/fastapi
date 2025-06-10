@@ -30,7 +30,7 @@
 ## セキュリティ - HTTPS
 
 <!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
-[前チャプターのHTTPSについて](./https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
+[前チャプターのHTTPSについて](https.md){.internal-link target=_blank}では、HTTPSがどのようにAPIを暗号化するのかについて学びました。
 
 通常、アプリケーションサーバにとって**外部の**コンポーネントである**TLS Termination Proxy**によって提供されることが一般的です。このプロキシは通信の暗号化を担当します。
 
@@ -151,10 +151,13 @@ FastAPIでWeb APIを構築する際に、コードにエラーがある場合、
 
 しかし、実行中の**プロセス**をクラッシュさせるような本当にひどいエラーの場合、少なくとも2〜3回ほどプロセスを**再起動**させる外部コンポーネントが必要でしょう。
 
-!!! tip
-    ...とはいえ、アプリケーション全体が**すぐにクラッシュする**のであれば、いつまでも再起動し続けるのは意味がないでしょう。しかし、その場合はおそらく開発中か少なくともデプロイ直後に気づくと思われます。
+/// tip
 
-    そこで、**将来**クラッシュする可能性があり、それでも再スタートさせることに意味があるような、主なケースに焦点を当ててみます。
+...とはいえ、アプリケーション全体が**すぐにクラッシュする**のであれば、いつまでも再起動し続けるのは意味がないでしょう。しかし、その場合はおそらく開発中か少なくともデプロイ直後に気づくと思われます。
+
+そこで、**将来**クラッシュする可能性があり、それでも再スタートさせることに意味があるような、主なケースに焦点を当ててみます。
+
+///
 
 あなたはおそらく**外部コンポーネント**がアプリケーションの再起動を担当することを望むと考えます。 なぜなら、その時点でUvicornとPythonを使った同じアプリケーションはすでにクラッシュしており、同じアプリケーションの同じコードに対して何もできないためです。
 
@@ -188,7 +191,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 ### ワーカー・プロセス と ポート
 <!-- NOTE: https.md written in Japanese does not exist, so it redirects to English one  -->
 
-[HTTPSについて](./https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
+[HTTPSについて](https.md){.internal-link target=_blank}のドキュメントで、1つのサーバーで1つのポートとIPアドレスの組み合わせでリッスンできるのは1つのプロセスだけであることを覚えていますでしょうか？
 
 これはいまだに同じです。
 
@@ -216,7 +219,7 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 
 これらのワーカー・プロセスは、アプリケーションを実行するものであり、**リクエスト**を受けて**レスポンス**を返すための主要な計算を行い、あなたが変数に入れたものは何でもRAMにロードします。
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 そしてもちろん、同じマシンでは、あなたのアプリケーションとは別に、**他のプロセス**も実行されているでしょう。
 
@@ -243,11 +246,14 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 * **クラウド・サービス**によるレプリケーション
     * クラウド・サービスはおそらく**あなたのためにレプリケーションを処理**します。**実行するプロセス**や使用する**コンテナイメージ**を定義できるかもしれませんが、いずれにせよ、それはおそらく**単一のUvicornプロセス**であり、クラウドサービスはそのレプリケーションを担当するでしょう。
 
-!!! tip
-    これらの**コンテナ**やDockerそしてKubernetesに関する項目が、まだあまり意味をなしていなくても心配しないでください。
-    <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
+/// tip
 
-    コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
+これらの**コンテナ**やDockerそしてKubernetesに関する項目が、まだあまり意味をなしていなくても心配しないでください。
+<!-- NOTE: the current version of docker.md is outdated compared to English one. -->
+
+コンテナ・イメージ、Docker、Kubernetesなどについては、次の章で詳しく説明します: [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## 開始前の事前のステップ
 
@@ -265,10 +271,13 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 
 もちろん、事前のステップを何度も実行しても問題がない場合もあり、その際は対処がかなり楽になります。
 
-!!! tip
-    また、セットアップによっては、アプリケーションを開始する前の**事前のステップ**が必要ない場合もあることを覚えておいてください。
+/// tip
 
-    その場合は、このようなことを心配する必要はないです。🤷
+また、セットアップによっては、アプリケーションを開始する前の**事前のステップ**が必要ない場合もあることを覚えておいてください。
+
+その場合は、このようなことを心配する必要はないです。🤷
+
+///
 
 ### 事前ステップの戦略例
 
@@ -280,9 +289,12 @@ FastAPI アプリケーションでは、Uvicorn のようなサーバープロ�
 * 事前のステップを実行し、アプリケーションを起動するbashスクリプト
     * 利用するbashスクリプトを起動／再起動したり、エラーを検出したりする方法は以前として必要になるでしょう。
 
-!!! tip
-   <!-- NOTE: the current version of docker.md is outdated compared to English one. -->
-   コンテナを使った具体的な例については、次の章で紹介します: [コンテナ内のFastAPI - Docker](./docker.md){.internal-link target=_blank}.
+/// tip
+
+<!-- NOTE: the current version of docker.md is outdated compared to English one. -->
+コンテナを使った具体的な例については、次の章で紹介します: [コンテナ内のFastAPI - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## リソースの利用
 

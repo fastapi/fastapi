@@ -1,10 +1,8 @@
 # Custom Response Classes - File, HTML, Redirect, Streaming, etc.
 
-There are several custom response classes you can use to create an instance and return
-them directly from your *path operations*.
+There are several custom response classes you can use to create an instance and return them directly from your *path operations*.
 
-Read more about it in the
-[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+Read more about it in the [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
 
 You can import them directly from `fastapi.responses`:
 

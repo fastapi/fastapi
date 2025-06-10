@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    Você só pode usar `await` dentro de funções criadas com `async def`.
+/// note
+
+Você só pode usar `await` dentro de funções criadas com `async def`.
+
+///
 
 ---
 
@@ -261,7 +264,7 @@ Mas você também pode explorar os benefícios do paralelismo e multiprocessamen
 
 Isso, mais o simples fato que Python é a principal linguagem para **Data Science**, Machine Learning e especialmente Deep Learning, faz do FastAPI uma ótima escolha para APIs web e aplicações com Data Science / Machine Learning (entre muitas outras).
 
-Para ver como alcançar esse paralelismo em produção veja a seção sobre [Deployment](deployment.md){.internal-link target=_blank}.
+Para ver como alcançar esse paralelismo em produção veja a seção sobre [Deployment](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` e `await`
 
@@ -356,12 +359,15 @@ Tudo isso é o que deixa o FastAPI poderoso (através do Starlette) e que o faz 
 
 ## Detalhes muito técnicos
 
-!!! warning
-    Você pode provavelmente pular isso.
+/// warning
 
-    Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
+Você pode provavelmente pular isso.
 
-    Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
+
+Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+
+///
 
 ### Funções de operação de rota
 
@@ -369,7 +375,7 @@ Quando você declara uma *função de operação de rota* com `def` normal ao in
 
 Se você está chegando de outro framework assíncrono que não faz o trabalho descrito acima e você está acostumado a definir triviais *funções de operação de rota* com simples `def` para ter um mínimo ganho de performance (cerca de 100 nanosegundos), por favor observe que no **FastAPI** o efeito pode ser bem o oposto. Nesses casos, é melhor usar `async def` a menos que suas *funções de operação de rota* utilizem código que performem bloqueamento <abbr title="Input/Output: disco lendo ou escrevendo, comunicações de rede.">IO</abbr>.
 
-Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](/#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
+Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](index.md#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
 
 ### Dependências
 
