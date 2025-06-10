@@ -146,7 +146,7 @@ OAuth2 中，**作用域**只是声明特定权限的字符串。
 
 该依赖项函数本身不需要作用域，因此，可以使用 `Depends` 和 `oauth2_scheme`。不需要指定安全作用域时，不必使用 `Security`。
 
-此处还声明了从 `fastapin.security` 导入的 `SecurityScopes` 类型的特殊参数。
+此处还声明了从 `fastapi.security` 导入的 `SecurityScopes` 类型的特殊参数。
 
 `SecuriScopes` 类与 `Request` 类似（`Request` 用于直接提取请求对象）。
 
