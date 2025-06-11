@@ -430,10 +430,38 @@ class HTTPDigest(HTTPBase):
                 """
             ),
         ] = True,
+        not_authenticated_status_code: Annotated[
+            Literal[401, 403],
+            Doc(
+                """
+                By default, if the HTTP Bearer token is not provided and `auto_error`
+                is set to `True`, `HTTPBearer` will automatically raise an
+                `HTTPException` with the status code `401`.
+
+                If your client relies on the old (incorrect) behavior and expects the
+                status code to be `403`, you can set `not_authenticated_status_code` to
+                `403` to achieve it.
+
+                Keep in mind that this parameter is temporary and will be removed in
+                the near future.
+                """
+            ),
+            deprecated(
+                """
+                This parameter is temporary. It was introduced to give users time
+                to upgrade their clients to follow the new behavior and will eventually
+                be removed.
+
+                Use it as a short-term workaround, but consider updating your clients
+                to align with the new behavior.
+                """
+            ),
+        ] = 401,
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.not_authenticated_status_code = not_authenticated_status_code
 
     async def __call__(
         self, request: Request
@@ -442,17 +470,24 @@ class HTTPDigest(HTTPBase):
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                self._raise_not_authenticated_error(error_message="Not authenticated")
             else:
                 return None
         if scheme.lower() != "digest":
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
-                    detail="Invalid authentication credentials",
+                self._raise_not_authenticated_error(
+                    error_message="Invalid authentication credentials",
                 )
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
+
+    def _raise_not_authenticated_error(self, error_message: str):
+        if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
+            raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail=error_message)
+        else:
+            raise HTTPException(
+                status_code=HTTP_401_UNAUTHORIZED,
+                detail=error_message,
+                headers={"WWW-Authenticate": "Digest"},
+            )

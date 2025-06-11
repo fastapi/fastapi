@@ -108,3 +108,43 @@ def test_oauth2_status_code_403_on_auth_error_no_auto_error(
 
     response = client.get("/")
     assert response.status_code == 200
+
+
+def test_digest_status_code_403_on_auth_error():
+    """
+    Test temporary `not_authenticated_status_code` parameter for `Digest` scheme.
+    """
+
+    app = FastAPI()
+
+    auth = HTTPDigest(not_authenticated_status_code=403)
+
+    @app.get("/")
+    async def protected(_: str = Security(auth)):
+        pass  # pragma: no cover
+
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 403
+    assert response.json() == {"detail": "Not authenticated"}
+
+
+def test_digest_status_code_403_on_auth_error_no_auto_error():
+    """
+    Test temporary `not_authenticated_status_code` parameter for `Digest` scheme with
+    `auto_error=False`.
+    """
+
+    app = FastAPI()
+
+    auth = HTTPDigest(not_authenticated_status_code=403, auto_error=False)
+
+    @app.get("/")
+    async def protected(_: str = Security(auth)):
+        pass  # pragma: no cover
+
+    client = TestClient(app)
+
+    response = client.get("/")
+    assert response.status_code == 200
