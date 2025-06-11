@@ -1,11 +1,11 @@
-from typing import Literal, Optional, Union
+from typing import Optional, Union
 
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, Doc, Literal, deprecated
 
 
 class APIKeyBase(SecurityBase):
