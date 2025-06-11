@@ -4,6 +4,7 @@ import pytest
 from fastapi import FastAPI, Security
 from fastapi.security.api_key import APIKeyBase, APIKeyCookie, APIKeyHeader, APIKeyQuery
 from fastapi.security.http import HTTPBase, HTTPBearer, HTTPDigest
+from fastapi.security.oauth2 import OAuth2
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.testclient import TestClient
 
@@ -65,6 +66,10 @@ def test_apikey_status_code_403_on_auth_error_no_auto_error(auth: APIKeyBase):
     [
         HTTPBearer(not_authenticated_status_code=403),
         OpenIdConnect(not_authenticated_status_code=403, openIdConnectUrl="/openid"),
+        OAuth2(
+            not_authenticated_status_code=403,
+            flows={"password": {"tokenUrl": "token", "scopes": {}}},
+        ),
     ],
 )
 def test_oauth2_status_code_403_on_auth_error(auth: Union[HTTPBase, OpenIdConnect]):
@@ -95,6 +100,12 @@ def test_oauth2_status_code_403_on_auth_error(auth: Union[HTTPBase, OpenIdConnec
             openIdConnectUrl="/openid",
             auto_error=False,
         ),
+        OAuth2(
+            not_authenticated_status_code=403,
+            flows={"password": {"tokenUrl": "token", "scopes": {}}},
+            auto_error=False,
+        ),
+
     ],
 )
 def test_oauth2_status_code_403_on_auth_error_no_auto_error(
