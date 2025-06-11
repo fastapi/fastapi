@@ -4,8 +4,11 @@ Il est facile de penser que HTTPS peut simplement être "activé" ou non.
 
 Mais c'est beaucoup plus complexe que cela.
 
-!!! tip
-    Si vous êtes pressé ou si cela ne vous intéresse pas, passez aux sections suivantes pour obtenir des instructions étape par étape afin de tout configurer avec différentes techniques.
+/// tip
+
+Si vous êtes pressé ou si cela ne vous intéresse pas, passez aux sections suivantes pour obtenir des instructions étape par étape afin de tout configurer avec différentes techniques.
+
+///
 
 Pour apprendre les bases du HTTPS, du point de vue d'un utilisateur, consultez <a href="https://howhttps.works/"
 class="external-link" target="_blank">https://howhttps.works/</a>.
