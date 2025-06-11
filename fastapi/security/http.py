@@ -74,10 +74,13 @@ class HTTPBase(SecurityBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
+        not_authenticated_status_code: Literal[401, 403] = 401,
     ):
         self.model = HTTPBaseModel(scheme=scheme, description=description)
+        self.model_scheme = scheme
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.not_authenticated_status_code = not_authenticated_status_code
 
     async def __call__(
         self, request: Request
@@ -86,9 +89,16 @@ class HTTPBase(SecurityBase):
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
+                    raise HTTPException(
+                        status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    )
+                else:
+                    raise HTTPException(
+                        status_code=HTTP_401_UNAUTHORIZED,
+                        detail="Not authenticated",
+                        headers={"WWW-Authenticate": self.model_scheme},
+                    )
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
