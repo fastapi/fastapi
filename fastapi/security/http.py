@@ -444,8 +444,8 @@ class HTTPDigest(HTTPBase):
             Literal[401, 403],
             Doc(
                 """
-                By default, if the HTTP Bearer token is not provided and `auto_error`
-                is set to `True`, `HTTPBearer` will automatically raise an
+                By default, if the HTTP Digest is not provided and `auto_error`
+                is set to `True`, `HTTPDigest` will automatically raise an
                 `HTTPException` with the status code `401`.
 
                 If your client relies on the old (incorrect) behavior and expects the
