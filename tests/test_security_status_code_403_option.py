@@ -105,7 +105,6 @@ def test_oauth2_status_code_403_on_auth_error(auth: Union[HTTPBase, OpenIdConnec
             flows={"password": {"tokenUrl": "token", "scopes": {}}},
             auto_error=False,
         ),
-
     ],
 )
 def test_oauth2_status_code_403_on_auth_error_no_auto_error(
