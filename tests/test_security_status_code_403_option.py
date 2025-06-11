@@ -1,8 +1,7 @@
 import pytest
 from fastapi import FastAPI, Security
-from fastapi.openapi.models import HTTPBase
 from fastapi.security.api_key import APIKeyBase, APIKeyCookie, APIKeyHeader, APIKeyQuery
-from fastapi.security.http import HTTPBearer, HTTPDigest
+from fastapi.security.http import HTTPBase, HTTPBearer, HTTPDigest
 from fastapi.testclient import TestClient
 
 
