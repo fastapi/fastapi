@@ -355,7 +355,7 @@ class HTTPBearer(HTTPBase):
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
-    def _raise_not_authenticated_error(self, error_message: str):
+    def _raise_not_authenticated_error(self, error_message: str) -> None:
         if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
             raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail=error_message)
         else:
@@ -492,7 +492,7 @@ class HTTPDigest(HTTPBase):
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
 
-    def _raise_not_authenticated_error(self, error_message: str):
+    def _raise_not_authenticated_error(self, error_message: str) -> None:
         if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
             raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail=error_message)
         else:
