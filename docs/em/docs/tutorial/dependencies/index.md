@@ -1,4 +1,4 @@
-# 🔗 - 🥇 🔁
+# 🔗
 
 **FastAPI** ✔️ 📶 🏋️ ✋️ 🏋️ **<abbr title="also known as components, resources, providers, services, injectables">🔗 💉</abbr>** ⚙️.
 
@@ -31,17 +31,7 @@
 
 ⚫️ 🔢 👈 💪 ✊ 🌐 🎏 🔢 👈 *➡ 🛠️ 🔢* 💪 ✊:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="8-11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="6-7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001.py hl[8:11] *}
 
 👈 ⚫️.
 
@@ -63,33 +53,13 @@
 
 ### 🗄 `Depends`
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### 📣 🔗, "⚓️"
 
 🎏 🌌 👆 ⚙️ `Body`, `Query`, ♒️. ⏮️ 👆 *➡ 🛠️ 🔢* 🔢, ⚙️ `Depends` ⏮️ 🆕 🔢:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="15  20"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial001.py hl[15,20] *}
 
 👐 👆 ⚙️ `Depends` 🔢 👆 🔢 🎏 🌌 👆 ⚙️ `Body`, `Query`, ♒️, `Depends` 👷 👄 🎏.
 
@@ -99,8 +69,11 @@
 
 &amp; 👈 🔢 ✊ 🔢 🎏 🌌 👈 *➡ 🛠️ 🔢* .
 
-!!! tip
-    👆 🔜 👀 ⚫️❔ 🎏 "👜", ↖️ ⚪️➡️ 🔢, 💪 ⚙️ 🔗 ⏭ 📃.
+/// tip
+
+👆 🔜 👀 ⚫️❔ 🎏 "👜", ↖️ ⚪️➡️ 🔢, 💪 ⚙️ 🔗 ⏭ 📃.
+
+///
 
 🕐❔ 🆕 📨 🛬, **FastAPI** 🔜 ✊ 💅:
 
@@ -121,10 +94,13 @@ common_parameters --> read_users
 
 👉 🌌 👆 ✍ 🔗 📟 🕐 &amp; **FastAPI** ✊ 💅 🤙 ⚫️ 👆 *➡ 🛠️*.
 
-!!! check
-    👀 👈 👆 🚫 ✔️ ✍ 🎁 🎓 &amp; 🚶‍♀️ ⚫️ 👱 **FastAPI** "®" ⚫️ ⚖️ 🕳 🎏.
+/// check
 
-    👆 🚶‍♀️ ⚫️ `Depends` &amp; **FastAPI** 💭 ❔ 🎂.
+👀 👈 👆 🚫 ✔️ ✍ 🎁 🎓 &amp; 🚶‍♀️ ⚫️ 👱 **FastAPI** "®" ⚫️ ⚖️ 🕳 🎏.
+
+👆 🚶‍♀️ ⚫️ `Depends` &amp; **FastAPI** 💭 ❔ 🎂.
+
+///
 
 ##  `async` ⚖️ 🚫 `async`
 
@@ -136,8 +112,11 @@ common_parameters --> read_users
 
 ⚫️ 🚫 🤔. **FastAPI** 🔜 💭 ⚫️❔.
 
-!!! note
-    🚥 👆 🚫 💭, ✅ [🔁: *"🏃 ❓" *](../../async.md){.internal-link target=_blank} 📄 🔃 `async` &amp; `await` 🩺.
+/// note
+
+🚥 👆 🚫 💭, ✅ [🔁: *"🏃 ❓" *](../../async.md){.internal-link target=_blank} 📄 🔃 `async` &amp; `await` 🩺.
+
+///
 
 ## 🛠️ ⏮️ 🗄
 

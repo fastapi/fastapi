@@ -1,6 +1,8 @@
 import pytest
 from fastapi import Depends, FastAPI, Path
 from fastapi.param_functions import Query
+from fastapi.testclient import TestClient
+from fastapi.utils import PYDANTIC_V2
 from typing_extensions import Annotated
 
 app = FastAPI()
@@ -28,18 +30,13 @@ def test_no_annotated_defaults():
             pass  # pragma: nocover
 
 
-def test_no_multiple_annotations():
+def test_multiple_annotations():
     async def dep():
         pass  # pragma: nocover
 
-    with pytest.raises(
-        AssertionError,
-        match="Cannot specify multiple `Annotated` FastAPI arguments for 'foo'",
-    ):
-
-        @app.get("/")
-        async def get(foo: Annotated[int, Query(min_length=1), Query()]):
-            pass  # pragma: nocover
+    @app.get("/multi-query")
+    async def get(foo: Annotated[int, Query(gt=2), Query(lt=10)]):
+        return foo
 
     with pytest.raises(
         AssertionError,
@@ -64,3 +61,15 @@ def test_no_multiple_annotations():
         @app.get("/")
         async def get3(foo: Annotated[int, Query(min_length=1)] = Depends(dep)):
             pass  # pragma: nocover
+
+    client = TestClient(app)
+    response = client.get("/multi-query", params={"foo": "5"})
+    assert response.status_code == 200
+    assert response.json() == 5
+
+    response = client.get("/multi-query", params={"foo": "123"})
+    assert response.status_code == 422
+
+    if PYDANTIC_V2:
+        response = client.get("/multi-query", params={"foo": "1"})
+        assert response.status_code == 422
