@@ -5,9 +5,6 @@ gold:
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
-  - url: https://www.porter.run
-    title: Deploy FastAPI on AWS with a few clicks
-    img: https://fastapi.tiangolo.com/img/sponsors/porter.png
   - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
     title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
     img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
@@ -48,6 +45,9 @@ silver:
   - url: https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring
     title: InterviewPal - AI Interview Coach for Engineers and Devs
     img: https://fastapi.tiangolo.com/img/sponsors/interviewpal.png
+  - url: https://dribia.com/en/
+    title: Dribia - Data Science within your reach
+    img: https://fastapi.tiangolo.com/img/sponsors/dribia.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
