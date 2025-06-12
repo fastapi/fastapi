@@ -14,7 +14,6 @@ from pydantic import AnyUrl, BaseModel, Field, validator
 from typing_extensions import Annotated, Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
-
 try:
     import email_validator
 
@@ -444,7 +443,8 @@ class OpenAPI(BaseModelWithConfig):
     def check_tags(cls, tags):  # type: ignore
         unique_names = set()
         assert not any(
-            t.name in unique_names or unique_names.add(t.name) for t in tags  # type: ignore
+            t.name in unique_names or unique_names.add(t.name)
+            for t in tags  # type: ignore
         ), "Tag names must be unique"
         return tags
 

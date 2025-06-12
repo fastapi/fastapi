@@ -568,5 +568,7 @@ def get_openapi(
         # discard tags with non-unique names as it is against the OpenAPI spec
         # https://swagger.io/specification/#openapi-object
         names = set()
-        output["tags"] = [t for t in tags if t["name"] not in names and not names.add(t["name"])]  # type: ignore
+        output["tags"] = [
+            t for t in tags if t["name"] not in names and not names.add(t["name"])
+        ]  # type: ignore
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
