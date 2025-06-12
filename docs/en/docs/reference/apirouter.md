@@ -1,7 +1,6 @@
 # `APIRouter` class
 
-Here's the reference information for the `APIRouter` class, with all its parameters,
-attributes and methods.
+Here's the reference information for the `APIRouter` class, with all its parameters, attributes and methods.
 
 You can import the `APIRouter` class directly from `fastapi`:
 

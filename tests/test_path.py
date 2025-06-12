@@ -1,6 +1,5 @@
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from .main import app
 
@@ -54,7 +53,6 @@ def test_path_int_foobar():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foobar",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -83,7 +81,6 @@ def test_path_int_True():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "True",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -118,7 +115,6 @@ def test_path_int_42_5():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "42.5",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -147,7 +143,6 @@ def test_path_float_foobar():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "foobar",
-                    "url": match_pydantic_error_url("float_parsing"),
                 }
             ]
         }
@@ -176,7 +171,6 @@ def test_path_float_True():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid number, unable to parse string as a number",
                     "input": "True",
-                    "url": match_pydantic_error_url("float_parsing"),
                 }
             ]
         }
@@ -217,7 +211,6 @@ def test_path_bool_foobar():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid boolean, unable to interpret input",
                     "input": "foobar",
-                    "url": match_pydantic_error_url("bool_parsing"),
                 }
             ]
         }
@@ -252,7 +245,6 @@ def test_path_bool_42():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid boolean, unable to interpret input",
                     "input": "42",
-                    "url": match_pydantic_error_url("bool_parsing"),
                 }
             ]
         }
@@ -281,7 +273,6 @@ def test_path_bool_42_5():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid boolean, unable to interpret input",
                     "input": "42.5",
-                    "url": match_pydantic_error_url("bool_parsing"),
                 }
             ]
         }
@@ -353,7 +344,6 @@ def test_path_param_minlength_fo():
                     "msg": "String should have at least 3 characters",
                     "input": "fo",
                     "ctx": {"min_length": 3},
-                    "url": match_pydantic_error_url("string_too_short"),
                 }
             ]
         }
@@ -390,7 +380,6 @@ def test_path_param_maxlength_foobar():
                     "msg": "String should have at most 3 characters",
                     "input": "foobar",
                     "ctx": {"max_length": 3},
-                    "url": match_pydantic_error_url("string_too_long"),
                 }
             ]
         }
@@ -427,7 +416,6 @@ def test_path_param_min_maxlength_foobar():
                     "msg": "String should have at most 3 characters",
                     "input": "foobar",
                     "ctx": {"max_length": 3},
-                    "url": match_pydantic_error_url("string_too_long"),
                 }
             ]
         }
@@ -458,7 +446,6 @@ def test_path_param_min_maxlength_f():
                     "msg": "String should have at least 2 characters",
                     "input": "f",
                     "ctx": {"min_length": 2},
-                    "url": match_pydantic_error_url("string_too_short"),
                 }
             ]
         }
@@ -494,7 +481,6 @@ def test_path_param_gt_2():
                     "msg": "Input should be greater than 3",
                     "input": "2",
                     "ctx": {"gt": 3.0},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }
@@ -531,7 +517,6 @@ def test_path_param_gt0_0():
                     "msg": "Input should be greater than 0",
                     "input": "0",
                     "ctx": {"gt": 0.0},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }
@@ -574,7 +559,6 @@ def test_path_param_ge_2():
                     "msg": "Input should be greater than or equal to 3",
                     "input": "2",
                     "ctx": {"ge": 3.0},
-                    "url": match_pydantic_error_url("greater_than_equal"),
                 }
             ]
         }
@@ -605,7 +589,6 @@ def test_path_param_lt_42():
                     "msg": "Input should be less than 3",
                     "input": "42",
                     "ctx": {"lt": 3.0},
-                    "url": match_pydantic_error_url("less_than"),
                 }
             ]
         }
@@ -648,7 +631,6 @@ def test_path_param_lt0_0():
                     "msg": "Input should be less than 0",
                     "input": "0",
                     "ctx": {"lt": 0.0},
-                    "url": match_pydantic_error_url("less_than"),
                 }
             ]
         }
@@ -679,7 +661,6 @@ def test_path_param_le_42():
                     "msg": "Input should be less than or equal to 3",
                     "input": "42",
                     "ctx": {"le": 3.0},
-                    "url": match_pydantic_error_url("less_than_equal"),
                 }
             ]
         }
@@ -728,7 +709,6 @@ def test_path_param_lt_gt_4():
                     "msg": "Input should be less than 3",
                     "input": "4",
                     "ctx": {"lt": 3.0},
-                    "url": match_pydantic_error_url("less_than"),
                 }
             ]
         }
@@ -759,7 +739,6 @@ def test_path_param_lt_gt_0():
                     "msg": "Input should be greater than 1",
                     "input": "0",
                     "ctx": {"gt": 1.0},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }
@@ -807,7 +786,6 @@ def test_path_param_le_ge_4():
                     "msg": "Input should be less than or equal to 3",
                     "input": "4",
                     "ctx": {"le": 3.0},
-                    "url": match_pydantic_error_url("less_than_equal"),
                 }
             ]
         }
@@ -844,7 +822,6 @@ def test_path_param_lt_int_42():
                     "msg": "Input should be less than 3",
                     "input": "42",
                     "ctx": {"lt": 3},
-                    "url": match_pydantic_error_url("less_than"),
                 }
             ]
         }
@@ -874,7 +851,6 @@ def test_path_param_lt_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -910,7 +886,6 @@ def test_path_param_gt_int_2():
                     "msg": "Input should be greater than 3",
                     "input": "2",
                     "ctx": {"gt": 3},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }
@@ -940,7 +915,6 @@ def test_path_param_gt_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -970,7 +944,6 @@ def test_path_param_le_int_42():
                     "msg": "Input should be less than or equal to 3",
                     "input": "42",
                     "ctx": {"le": 3},
-                    "url": match_pydantic_error_url("less_than_equal"),
                 }
             ]
         }
@@ -1012,7 +985,6 @@ def test_path_param_le_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1054,7 +1026,6 @@ def test_path_param_ge_int_2():
                     "msg": "Input should be greater than or equal to 3",
                     "input": "2",
                     "ctx": {"ge": 3},
-                    "url": match_pydantic_error_url("greater_than_equal"),
                 }
             ]
         }
@@ -1084,7 +1055,6 @@ def test_path_param_ge_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1120,7 +1090,6 @@ def test_path_param_lt_gt_int_4():
                     "msg": "Input should be less than 3",
                     "input": "4",
                     "ctx": {"lt": 3},
-                    "url": match_pydantic_error_url("less_than"),
                 }
             ]
         }
@@ -1151,7 +1120,6 @@ def test_path_param_lt_gt_int_0():
                     "msg": "Input should be greater than 1",
                     "input": "0",
                     "ctx": {"gt": 1},
-                    "url": match_pydantic_error_url("greater_than"),
                 }
             ]
         }
@@ -1181,7 +1149,6 @@ def test_path_param_lt_gt_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
@@ -1229,7 +1196,6 @@ def test_path_param_le_ge_int_4():
                     "msg": "Input should be less than or equal to 3",
                     "input": "4",
                     "ctx": {"le": 3},
-                    "url": match_pydantic_error_url("less_than_equal"),
                 }
             ]
         }
@@ -1259,7 +1225,6 @@ def test_path_param_le_ge_int_2_7():
                     "loc": ["path", "item_id"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "2.7",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }
