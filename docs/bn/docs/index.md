@@ -5,14 +5,17 @@
     <em>FastAPI উচ্চক্ষমতা সম্পন্ন, সহজে শেখার এবং দ্রুত কোড করে প্রোডাকশনের জন্য ফ্রামওয়ার্ক।</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -20,7 +23,7 @@
 
 **নির্দেশিকা নথি**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**সোর্স কোড**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**সোর্স কোড**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -61,7 +64,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "_আমি আজকাল **FastAPI** ব্যবহার করছি। [...] আমরা ভাবছি মাইক্রোসফ্টে **ML সার্ভিস** এ সকল দলের জন্য এটি ব্যবহার করব। যার মধ্যে কিছু পণ্য **Windows** এ সংযোযন হয় এবং কিছু **Office** এর সাথে সংযোযন হচ্ছে।_"
 
-<div style="text-align: right; margin-right: 10%;">কবির খান - <strong>মাইক্রোসফ্টে</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">কবির খান - <strong>মাইক্রোসফ্টে</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -85,7 +88,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "\_সত্যিই, আপনি যা তৈরি করেছেন তা খুব মজবুত এবং পরিপূর্ন৷ অনেক উপায়ে, আমি যা **Hug** এ করতে চেয়েছিলাম - তা কাউকে তৈরি করতে দেখে আমি সত্যিই অনুপ্রানিত৷\_"
 
-<div style="text-align: right; margin-right: 10%;">টিমোথি ক্রসলে - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> স্রষ্টা</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">টিমোথি ক্রসলে - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> স্রষ্টা</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -126,7 +129,7 @@ $ pip install fastapi
 
 </div>
 
-আপনার একটি ASGI সার্ভারেরও প্রয়োজন হবে, প্রোডাকশনের জন্য <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> অথবা <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+আপনার একটি ASGI সার্ভারেরও প্রয়োজন হবে, প্রোডাকশনের জন্য <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> অথবা <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -439,8 +442,7 @@ item: Item
 
 Pydantic দ্বারা ব্যবহৃত:
 
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - দ্রুত JSON এর জন্য <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
-- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - ইমেল যাচাইকরণের জন্য।
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - ইমেল যাচাইকরণের জন্য।
 
 স্টারলেট দ্বারা ব্যবহৃত:
 
@@ -450,12 +452,12 @@ Pydantic দ্বারা ব্যবহৃত:
 - <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - `SessionMiddleware` সহায়তার জন্য প্রয়োজন।
 - <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - স্টারলেটের SchemaGenerator সাপোর্ট এর জন্য প্রয়োজন (আপনার সম্ভাবত FastAPI প্রয়োজন নেই)।
 - <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - `GraphQLApp` সহায়তার জন্য প্রয়োজন।
-- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - আপনি `UJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
 
 FastAPI / Starlette দ্বারা ব্যবহৃত:
 
 - <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - সার্ভারের জন্য যা আপনার অ্যাপ্লিকেশন লোড করে এবং পরিবেশন করে।
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - আপনি `ORJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
+- <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - আপনি `UJSONResponse` ব্যবহার করতে চাইলে প্রয়োজন।
 
 আপনি এই সব ইনস্টল করতে পারেন `pip install fastapi[all]` দিয়ে.
 

@@ -8,9 +8,7 @@ Visual Studio Code (or VS Code for short) already has a debugger configuration s
 
 Let's assume you have placed your FastAPI application in a file `myapp.py`:
 
-```Python
-{!../../../docs_src/debugging/tutorial001.py!}
-```
+{* ../../docs_src/debugging/tutorial001.py *}
 
 In VS Code, you can now debug this application like this:
 
@@ -149,8 +147,12 @@ So the line:
 
 will not be executed.
 
-!!! info
-    For more information, check the <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">official Python docs</a>.
+/// info
+
+For more information, check <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">the official Python docs</a>.
+
+///
+
 
 ### Run the code with the debugger
 

@@ -52,22 +52,25 @@ $ pip install "fastapi[all]"
 
 ...wliczając w to `uvicorn`, który będzie służył jako serwer wykonujacy Twój kod.
 
-!!! note
-    Możesz również wykonać instalację "krok po kroku".
+/// note
 
-    Prawdopodobnie zechcesz to zrobić, kiedy będziesz wdrażać swoją aplikację w środowisku produkcyjnym:
+Możesz również wykonać instalację "krok po kroku".
 
-    ```
-    pip install fastapi
-    ```
+Prawdopodobnie zechcesz to zrobić, kiedy będziesz wdrażać swoją aplikację w środowisku produkcyjnym:
 
-    Zainstaluj też `uvicorn`, który będzie służył jako serwer:
+```
+pip install fastapi
+```
 
-    ```
-    pip install "uvicorn[standard]"
-    ```
+Zainstaluj też `uvicorn`, który będzie służył jako serwer:
 
-    Tak samo możesz zainstalować wszystkie dodatkowe biblioteki, których chcesz użyć.
+```
+pip install "uvicorn[standard]"
+```
+
+Tak samo możesz zainstalować wszystkie dodatkowe biblioteki, których chcesz użyć.
+
+///
 
 ## Zaawansowany poradnik
 

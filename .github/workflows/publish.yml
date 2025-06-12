@@ -8,6 +8,13 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - fastapi
+          - fastapi-slim
+    permissions:
+      id-token: write
     steps:
       - name: Dump GitHub context
         env:
@@ -24,11 +31,11 @@ jobs:
       - name: Install build dependencies
         run: pip install build
       - name: Build distribution
+        env:
+          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
         run: python -m build
       - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.8.11
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@v1.12.4
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}

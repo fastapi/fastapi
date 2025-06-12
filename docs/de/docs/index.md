@@ -1,7 +1,4 @@
----
-hide:
-  - navigation
----
+# FastAPI
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -14,11 +11,11 @@ hide:
     <em>FastAPI Framework, hochperformant, leicht zu erlernen, schnell zu programmieren, einsatzbereit</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package-Version">
@@ -32,11 +29,11 @@ hide:
 
 **Dokumentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Quellcode**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Quellcode**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python 3.8+ auf Basis von Standard-Python-Typhinweisen.
+FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python auf Basis von Standard-Python-Typhinweisen.
 
 Seine Schlüssel-Merkmale sind:
 
@@ -73,7 +70,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_[...] Ich verwende **FastAPI** heutzutage sehr oft. [...] Ich habe tatsächlich vor, es für alle **ML-Dienste meines Teams bei Microsoft** zu verwenden. Einige davon werden in das Kernprodukt **Windows** und einige **Office**-Produkte integriert._“
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
@@ -97,7 +94,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Autor von <a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Autor von <a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
@@ -125,8 +122,6 @@ Wenn Sie eine <abbr title="Command Line Interface – Kommandozeilen-Schnittstel
 
 ## Anforderungen
 
-Python 3.8+
-
 FastAPI steht auf den Schultern von Giganten:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> für die Webanteile.
@@ -144,7 +139,7 @@ $ pip install fastapi
 
 </div>
 
-Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Sie benötigen außerdem einen <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Verbindungsschnittstelle">ASGI</abbr>-Server. Für die Produktumgebung beispielsweise <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> oder <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -340,7 +335,7 @@ Das machen Sie mit modernen Standard-Python-Typen.
 
 Sie müssen keine neue Syntax, Methoden oder Klassen einer bestimmten Bibliothek usw. lernen.
 
-Nur Standard-**Python 3.8+**.
+Nur Standard-**Python+**.
 
 Zum Beispiel für ein `int`:
 
@@ -454,7 +449,7 @@ Um mehr darüber zu erfahren, siehe den Abschnitt <a href="https://fastapi.tiang
 
 Wird von Pydantic verwendet:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - für E-Mail-Validierung.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - für E-Mail-Validierung.
 * <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - für die Verwaltung von Einstellungen.
 * <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - für zusätzliche Typen, mit Pydantic zu verwenden.
 
@@ -462,7 +457,7 @@ Wird von Starlette verwendet:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - erforderlich, wenn Sie die Standardkonfiguration für Templates verwenden möchten.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - erforderlich für `SessionMiddleware` Unterstützung.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - erforderlich für Starlette's `SchemaGenerator` Unterstützung (Sie brauchen das wahrscheinlich nicht mit FastAPI).
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - erforderlich, wenn Sie `UJSONResponse` verwenden möchten.

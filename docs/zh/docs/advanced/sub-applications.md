@@ -10,9 +10,7 @@
 
 首先，创建主（顶层）**FastAPI** 应用及其*路径操作*：
 
-```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
 
 ### 子应用
 
@@ -20,9 +18,7 @@
 
 子应用只是另一个标准 FastAPI 应用，但这个应用是被**挂载**的应用：
 
-```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
 
 ### 挂载子应用
 
@@ -30,9 +26,7 @@
 
 本例的子应用挂载在 `/subapi` 路径下：
 
-```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
 
 ### 查看文档
 
@@ -70,4 +64,4 @@ $ uvicorn main:app --reload
 
 并且子应用还可以再挂载子应用，一切都会正常运行，FastAPI 可以自动处理所有 `root_path`。
 
-关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](./behind-a-proxy.md){.internal-link target=_blank}一章。
+关于 `root_path` 及如何显式使用 `root_path` 的内容，详见[使用代理](behind-a-proxy.md){.internal-link target=_blank}一章。
