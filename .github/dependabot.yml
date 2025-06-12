@@ -12,9 +12,5 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    groups:
-      python-packages:
-        patterns:
-          - "*"
     commit-message:
       prefix: ⬆

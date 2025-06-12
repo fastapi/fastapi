@@ -325,7 +325,7 @@ def test_openapi_schema():
                             {
                                 "title": "Grant Type",
                                 "anyOf": [
-                                    {"pattern": "password", "type": "string"},
+                                    {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
                             }

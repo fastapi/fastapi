@@ -10,16 +10,17 @@
 
 또한, 기본 값을 `None`으로 설정해 본문 매개변수를 선택사항으로 선언할 수 있습니다.
 
-```Python hl_lines="19-21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[19:21] *}
 
-!!! note "참고"
-    이 경우에는 본문으로 부터 가져온 `	item`은 기본값이 `None`이기 때문에, 선택사항이라는 점을 유의해야 합니다.
+/// note | 참고
+
+이 경우에는 본문으로 부터 가져온 `	item`은 기본값이 `None`이기 때문에, 선택사항이라는 점을 유의해야 합니다.
+
+///
 
 ## 다중 본문 매개변수
 
-이전 예제에서 보듯이, *경로 동작*은 아래와 같이 `Item` 속성을 가진 JSON 본문을 예상합니다:
+이전 예제에서 보듯이, *경로 작동*은 아래와 같이 `Item` 속성을 가진 JSON 본문을 예상합니다:
 
 ```JSON
 {
@@ -32,9 +33,7 @@
 
 하지만, 다중 본문 매개변수 역시 선언할 수 있습니다. 예. `item`과 `user`:
 
-```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[22] *}
 
 이 경우에, **FastAPI**는 이 함수 안에 한 개 이상의 본문 매개변수(Pydantic 모델인 두 매개변수)가 있다고 알 것입니다.
 
@@ -55,8 +54,11 @@
 }
 ```
 
-!!! note "참고"
-    이전과 같이 `item`이 선언 되었더라도, 본문 내의 `item` 키가 있을 것이라고 예측합니다.
+/// note | 참고
+
+이전과 같이 `item`이 선언 되었더라도, 본문 내의 `item` 키가 있을 것이라고 예측합니다.
+
+///
 
 FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를 특별한 내용으로 받도록 할 것입니다.
 
@@ -73,9 +75,7 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 하지만, **FastAPI**의 `Body`를 사용해 다른 본문 키로 처리하도록 제어할 수 있습니다:
 
 
-```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 이 경우에는 **FastAPI**는 본문을 이와 같이 예측할 것입니다:
 
@@ -104,9 +104,7 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 
 기본적으로 단일 값은 쿼리 매개변수로 해석되므로, 명시적으로 `Query`를 추가할 필요가 없고, 아래처럼 할 수 있습니다:
 
-```Python hl_lines="27"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[27] *}
 
 이렇게:
 
@@ -114,8 +112,11 @@ FastAPI는 요청을 자동으로 변환해, 매개변수의 `item`과 `user`를
 q: Optional[str] = None
 ```
 
-!!! info "정보"
-    `Body` 또한 `Query`, `Path` 그리고 이후에 볼 다른 것들처럼 동일한 추가 검증과 메타데이터 매개변수를 갖고 있습니다.
+/// info | 정보
+
+`Body` 또한 `Query`, `Path` 그리고 이후에 볼 다른 것들처럼 동일한 추가 검증과 메타데이터 매개변수를 갖고 있습니다.
+
+///
 
 ## 단일 본문 매개변수 삽입하기
 
@@ -125,9 +126,7 @@ Pydantic 모델 `Item`의 `item`을 본문 매개변수로 오직 한개만 갖�
 
 하지만, 만약 모델 내용에 `item `키를 가진 JSON으로 예측하길 원한다면, 추가적인 본문 매개변수를 선언한 것처럼 `Body`의 특별한 매개변수인 `embed`를 사용할 수 있습니다:
 
-```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 아래 처럼:
 
@@ -161,9 +160,9 @@ item: Item = Body(..., embed=True)
 
 ## 정리
 
-요청이 단 한개의 본문을 가지고 있더라도, *경로 동작 함수*로 다중 본문 매개변수를 추가할 수 있습니다.
+요청이 단 한개의 본문을 가지고 있더라도, *경로 작동 함수*로 다중 본문 매개변수를 추가할 수 있습니다.
 
-하지만, **FastAPI**는 이를 처리하고, 함수에 올바른 데이터를 제공하며, *경로 동작*으로 올바른 스키마를 검증하고 문서화 합니다.
+하지만, **FastAPI**는 이를 처리하고, 함수에 올바른 데이터를 제공하며, *경로 작동*으로 올바른 스키마를 검증하고 문서화 합니다.
 
 또한, 단일 값을 본문의 일부로 받도록 선언할 수 있습니다.
 

@@ -4,8 +4,11 @@ It is easy to assume that HTTPS is something that is just "enabled" or not.
 
 But it is way more complex than that.
 
-!!! tip
-    If you are in a hurry or don't care, continue with the next sections for step by step instructions to set everything up with different techniques.
+/// tip
+
+If you are in a hurry or don't care, continue with the next sections for step by step instructions to set everything up with different techniques.
+
+///
 
 To **learn the basics of HTTPS**, from a consumer perspective, check <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>.
 
@@ -68,8 +71,11 @@ In the DNS server(s) you would configure a record (an "`A record`") to point **y
 
 You would probably do this just once, the first time, when setting everything up.
 
-!!! tip
-    This Domain Name part is way before HTTPS, but as everything depends on the domain and the IP address, it's worth mentioning it here.
+/// tip
+
+This Domain Name part is way before HTTPS, but as everything depends on the domain and the IP address, it's worth mentioning it here.
+
+///
 
 ### DNS
 
@@ -79,7 +85,7 @@ First, the browser would check with the **DNS servers** what is the **IP for the
 
 The DNS servers would tell the browser to use some specific **IP address**. That would be the public IP address used by your server, that you configured in the DNS servers.
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
 ### TLS Handshake Start
 
@@ -87,7 +93,7 @@ The browser would then communicate with that IP address on **port 443** (the HTT
 
 The first part of the communication is just to establish the connection between the client and the server and to decide the cryptographic keys they will use, etc.
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 This interaction between the client and the server to establish the TLS connection is called the **TLS handshake**.
 
@@ -105,7 +111,7 @@ Using the **SNI extension** discussed above, the TLS Termination Proxy would che
 
 In this case, it would use the certificate for `someapp.example.com`.
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 The client already **trusts** the entity that generated that TLS certificate (in this case Let's Encrypt, but we'll see about that later), so it can **verify** that the certificate is valid.
 
@@ -115,8 +121,11 @@ After this, the client and the server have an **encrypted TCP connection**, this
 
 And that's what **HTTPS** is, it's just plain **HTTP** inside a **secure TLS connection** instead of a pure (unencrypted) TCP connection.
 
-!!! tip
-    Notice that the encryption of the communication happens at the **TCP level**, not at the HTTP level.
+/// tip
+
+Notice that the encryption of the communication happens at the **TCP level**, not at the HTTP level.
+
+///
 
 ### HTTPS Request
 
@@ -124,19 +133,19 @@ Now that the client and server (specifically the browser and the TLS Termination
 
 So, the client sends an **HTTPS request**. This is just an HTTP request through an encrypted TLS connection.
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
 ### Decrypt the Request
 
 The TLS Termination Proxy would use the encryption agreed to **decrypt the request**, and would transmit the **plain (decrypted) HTTP request** to the process running the application (for example a process with Uvicorn running the FastAPI application).
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
 ### HTTP Response
 
 The application would process the request and send a **plain (unencrypted) HTTP response** to the TLS Termination Proxy.
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
 ### HTTPS Response
 
@@ -144,7 +153,7 @@ The TLS Termination Proxy would then **encrypt the response** using the cryptogr
 
 Next, the browser would verify that the response is valid and encrypted with the right cryptographic key, etc. It would then **decrypt the response** and process it.
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 The client (browser) will know that the response comes from the correct server because it is using the cryptography they agreed using the **HTTPS certificate** before.
 
@@ -154,7 +163,7 @@ In the same server (or servers), there could be **multiple applications**, for e
 
 Only one process can be handling the specific IP and port (the TLS Termination Proxy in our example) but the other applications/processes can be running on the server(s) too, as long as they don't try to use the same **combination of public IP and port**.
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 That way, the TLS Termination Proxy could handle HTTPS and certificates for **multiple domains**, for multiple applications, and then transmit the requests to the right application in each case.
 
@@ -164,7 +173,7 @@ At some point in the future, each certificate would **expire** (about 3 months a
 
 And then, there would be another program (in some cases it's another program, in some cases it could be the same TLS Termination Proxy) that would talk to Let's Encrypt, and renew the certificate(s).
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 The **TLS certificates** are **associated with a domain name**, not with an IP address.
 
