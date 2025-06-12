@@ -1,0 +1,82 @@
+import asyncio
+import random
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, FastAPI, Request
+from fastapi.responses import PlainTextResponse
+
+
+@dataclass
+class Client(ABC):
+    timeout: int = 3
+
+    async def _connect(self):
+        await asyncio.sleep(min(random.randint(1, 5), self.timeout))
+
+    @abstractmethod
+    async def request(self) -> str:
+        raise NotImplementedError
+
+
+class CityClient(Client):
+    async def request(self) -> str:
+        await self._connect()
+
+        return "Response"
+
+
+@dataclass
+class VillageClient(Client):
+    ip: str = "192.168.0.1"
+
+    async def request(self) -> str:
+        await self._connect()
+
+        return f"Response, {self.ip}"
+
+
+CityClientDep = Annotated[CityClient, Depends(CityClient)]
+
+VillageClientDep = Annotated[VillageClient, Depends(VillageClient)]
+
+
+geo_router = APIRouter(prefix="/geo", tags=["Geo"])
+
+
+@geo_router.get(
+    "",
+    response_class=PlainTextResponse,
+    summary="Fetches and returns geodata.",
+)
+async def get(
+    client: CityClientDep,
+) -> str:
+    return await client.request()
+
+
+@geo_router.get(
+    "/extended",
+    response_class=PlainTextResponse,
+    summary="Fetches and returns geodata with user's metadata.",
+)
+async def get_extended(
+    request: Request,
+    client: CityClientDep,
+) -> str:
+    geodata = await client.request()
+
+    metadata = request.headers.get("User-Agent", default="")
+    return f"{geodata}. Trace from the Browser wars: {metadata}."
+
+
+def main() -> FastAPI:
+    app = FastAPI(
+        title="DI != DI",
+    )
+
+    for router in (geo_router,):
+        app.include_router(router, prefix="/api")
+
+    return app
