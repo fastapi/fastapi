@@ -402,7 +402,11 @@ def test_openapi_schema(mod: ModuleType):
                         )
                         | IsDict(
                             # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Secret", "type": "string"}
+                            {
+                                "title": "Client Secret",
+                                "type": "string",
+                                "format": "password",
+                            }
                         ),
                     },
                 },
