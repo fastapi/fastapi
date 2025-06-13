@@ -24,6 +24,23 @@ hide:
 
 ### Translations
 
+* 🌐 Add Korean translation for `docs/ko/docs/advanced/sub-applications.md`. PR [#4543](https://github.com/fastapi/fastapi/pull/4543) by [@NinaHwang](https://github.com/NinaHwang).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/schema-extra-example.md`. PR [#13769](https://github.com/fastapi/fastapi/pull/13769) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* ✏️ Remove redundant words in docs/zh/docs/python-types.md. PR [#13774](https://github.com/fastapi/fastapi/pull/13774) by [@CharleeWa](https://github.com/CharleeWa).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/query-param-models.md`. PR [#13748](https://github.com/fastapi/fastapi/pull/13748) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Bengali translation for `docs/bn/docs/environment-variables.md`. PR [#13629](https://github.com/fastapi/fastapi/pull/13629) by [@SakibSibly](https://github.com/SakibSibly).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/query-params-str-validations.md` page. PR [#13546](https://github.com/fastapi/fastapi/pull/13546) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/cookie-param-models.md`. PR [#13616](https://github.com/fastapi/fastapi/pull/13616) by [@EgorOnishchuk](https://github.com/EgorOnishchuk).
+* 🌐 Add Korean translation for `docs/ko/docs/tutorial/extra-models.md`. PR [#13063](https://github.com/fastapi/fastapi/pull/13063) by [@timothy-jeong](https://github.com/timothy-jeong).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/path-params-numeric-validations.md` page. PR [#13548](https://github.com/fastapi/fastapi/pull/13548) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/middleware.md` page. PR [#13520](https://github.com/fastapi/fastapi/pull/13520) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/background-tasks.md` page. PR [#13502](https://github.com/fastapi/fastapi/pull/13502) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/cors.md` page. PR [#13519](https://github.com/fastapi/fastapi/pull/13519) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Update Korean translation for `docs/ko/docs/advanced/events.md`. PR [#13487](https://github.com/fastapi/fastapi/pull/13487) by [@bom1215](https://github.com/bom1215).
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/handling-errors.md` page. PR [#13420](https://github.com/fastapi/fastapi/pull/13420) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🌐 Add Russian translation for `docs/ru/docs/tutorial/request-form-models.md`. PR [#13552](https://github.com/fastapi/fastapi/pull/13552) by [@EgorOnishchuk](https://github.com/EgorOnishchuk).
+* 📝 Fix internal anchor link in Spanish deployment docs. PR [#13737](https://github.com/fastapi/fastapi/pull/13737) by [@fabianfalon](https://github.com/fabianfalon).
+* 🌐 Update Korean translation for `docs/ko/docs/virtual-environments.md`. PR [#13630](https://github.com/fastapi/fastapi/pull/13630) by [@sungchan1](https://github.com/sungchan1).
 * 🌐 Add Russian translation for `docs/ru/docs/tutorial/header-param-models.md`. PR [#13526](https://github.com/fastapi/fastapi/pull/13526) by [@minaton-ru](https://github.com/minaton-ru).
 * 🌐 Update Chinese translation for `docs/zh/docs/tutorial/index.md`. PR [#13374](https://github.com/fastapi/fastapi/pull/13374) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
 * 🌐 Update Chinese translation for `docs/zh/docs/deployment/manually.md`. PR [#13324](https://github.com/fastapi/fastapi/pull/13324) by [@Zhongheng-Cheng](https://github.com/Zhongheng-Cheng).
@@ -32,6 +49,17 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove Porter. PR [#13783](https://github.com/fastapi/fastapi/pull/13783) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13781](https://github.com/fastapi/fastapi/pull/13781) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13757](https://github.com/fastapi/fastapi/pull/13757) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump griffe-typingdoc from 0.2.7 to 0.2.8. PR [#13751](https://github.com/fastapi/fastapi/pull/13751) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🍱 Update sponsors: Dribia badge size. PR [#13773](https://github.com/fastapi/fastapi/pull/13773) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: add Dribia. PR [#13771](https://github.com/fastapi/fastapi/pull/13771) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump typer from 0.15.3 to 0.16.0. PR [#13752](https://github.com/fastapi/fastapi/pull/13752) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#13754](https://github.com/fastapi/fastapi/pull/13754) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Sponsors. PR [#13750](https://github.com/fastapi/fastapi/pull/13750) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13749](https://github.com/fastapi/fastapi/pull/13749) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13736](https://github.com/fastapi/fastapi/pull/13736) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 🔧 Update sponsors: Add InterviewPal. PR [#13728](https://github.com/fastapi/fastapi/pull/13728) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Remove Google Analytics. PR [#13727](https://github.com/fastapi/fastapi/pull/13727) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove MongoDB. PR [#13725](https://github.com/fastapi/fastapi/pull/13725) by [@tiangolo](https://github.com/tiangolo).
