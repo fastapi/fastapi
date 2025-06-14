@@ -2,9 +2,7 @@
 
 🕐❔ 👆 📣 🎏 🔢 🔢 👈 🚫 🍕 ➡ 🔢, 👫 🔁 🔬 "🔢" 🔢.
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params/tutorial001.py!}
-```
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 🔢 ⚒ 🔑-💲 👫 👈 🚶 ⏮️ `?` 📛, 🎏 `&` 🦹.
 
@@ -63,38 +61,21 @@ http://127.0.0.1:8000/items/?skip=20
 
 🎏 🌌, 👆 💪 📣 📦 🔢 🔢, ⚒ 👫 🔢 `None`:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial002.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial002_py310.py!}
-    ```
+{* ../../docs_src/query_params/tutorial002.py hl[9] *}
 
 👉 💼, 🔢 🔢 `q` 🔜 📦, &amp; 🔜 `None` 🔢.
 
-!!! check
-    👀 👈 **FastAPI** 🙃 🥃 👀 👈 ➡ 🔢 `item_id` ➡ 🔢 &amp; `q` 🚫,, ⚫️ 🔢 🔢.
+/// check
+
+👀 👈 **FastAPI** 🙃 🥃 👀 👈 ➡ 🔢 `item_id` ➡ 🔢 &amp; `q` 🚫,, ⚫️ 🔢 🔢.
+
+///
 
 ## 🔢 🔢 🆎 🛠️
 
 👆 💪 📣 `bool` 🆎, &amp; 👫 🔜 🗜:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params/tutorial003.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params/tutorial003_py310.py!}
-    ```
+{* ../../docs_src/query_params/tutorial003.py hl[9] *}
 
 👉 💼, 🚥 👆 🚶:
 
@@ -137,17 +118,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 👫 🔜 🔬 📛:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="8  10"
-    {!> ../../../docs_src/query_params/tutorial004.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="6  8"
-    {!> ../../../docs_src/query_params/tutorial004_py310.py!}
-    ```
+{* ../../docs_src/query_params/tutorial004.py hl[8,10] *}
 
 ## ✔ 🔢 🔢
 
@@ -157,9 +128,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 ✋️ 🕐❔ 👆 💚 ⚒ 🔢 🔢 ✔, 👆 💪 🚫 📣 🙆 🔢 💲:
 
-```Python hl_lines="6-7"
-{!../../../docs_src/query_params/tutorial005.py!}
-```
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 📥 🔢 🔢 `needy` ✔ 🔢 🔢 🆎 `str`.
 
@@ -203,17 +172,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 &amp; ↗️, 👆 💪 🔬 🔢 ✔, ✔️ 🔢 💲, &amp; 🍕 📦:
 
-=== "🐍 3️⃣.6️⃣ &amp; 🔛"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params/tutorial006.py!}
-    ```
-
-=== "🐍 3️⃣.1️⃣0️⃣ &amp; 🔛"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params/tutorial006_py310.py!}
-    ```
+{* ../../docs_src/query_params/tutorial006.py hl[10] *}
 
 👉 💼, 📤 3️⃣ 🔢 🔢:
 
@@ -221,5 +180,8 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`, `int` ⏮️ 🔢 💲 `0`.
 * `limit`, 📦 `int`.
 
-!!! tip
-    👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#predefined-values){.internal-link target=_blank}.
+/// tip
+
+👆 💪 ⚙️ `Enum`Ⓜ 🎏 🌌 ⏮️ [➡ 🔢](path-params.md#_7){.internal-link target=_blank}.
+
+///
