@@ -1185,6 +1185,7 @@ def test_openapi_schema():
                         }
                     },
                 },
+            },
             "/query/list": {
                 "get": {
                     "summary": "Get Query List",
