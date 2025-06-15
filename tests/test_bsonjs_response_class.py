@@ -1,6 +1,6 @@
-import bsonjs
 import json
 
+import bsonjs
 from fastapi import FastAPI
 from fastapi.responses import BSONJSResponse
 from fastapi.testclient import TestClient
