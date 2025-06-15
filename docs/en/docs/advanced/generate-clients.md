@@ -10,7 +10,7 @@ There are many tools to generate clients from **OpenAPI**.
 
 A common tool is <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>.
 
-If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>.
+If you are building a **TypeScript client**, another open-source alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">@hey-api/openapi-ts</a>.
 
 ## Client and SDK Generators - Sponsor
 
@@ -23,7 +23,7 @@ And it shows their true commitment to FastAPI and its **community** (you), as th
 For example, you might want to try:
 
 * <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
-* <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
+* <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
 * <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
 There are also several other companies offering similar services that you can search and find online. 🤓
@@ -50,11 +50,11 @@ And that same information from the models that is included in OpenAPI is what ca
 
 ### Generate a TypeScript Client
 
-Now that we have the app with the models, we can generate the client code for the frontend.
+Now that we have the app with the models, we can generate a TypeScript client.
 
-#### Install `openapi-ts`
+#### Install `@hey-api/openapi-ts`
 
-You can install `openapi-ts` in your frontend code with:
+You can install `@hey-api/openapi-ts` in your TypeScript project with:
 
 <div class="termy">
 
@@ -81,18 +81,18 @@ It could look like this:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts -i http://localhost:8000/openapi.json -o ./src/client"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
+    "@hey-api/openapi-ts": "^0.73.0",
+    "typescript": "^5.8.3"
   }
 }
 ```
 
-After having that NPM `generate-client` script there, you can run it with:
+After having that npm `generate-client` script there, you can run it with:
 
 <div class="termy">
 
@@ -100,12 +100,12 @@ After having that NPM `generate-client` script there, you can run it with:
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
+> openapi-ts -i http://localhost:8000/openapi.json -o ./src/client
 ```
 
 </div>
 
-That command will generate code in `./src/client` and will use `axios` (the frontend HTTP library) internally.
+That command will generate code in `./src/client` and will use [`Fetch API`](https://developer.mozilla.org/docs/Web/API/Fetch_API) internally.
 
 ### Try Out the Client Code
 
@@ -229,7 +229,7 @@ Now as the end result is in a file `openapi.json`, you would modify the `package
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts -i ./openapi.json -o ./src/client"
   },
   "author": "",
   "license": "",
