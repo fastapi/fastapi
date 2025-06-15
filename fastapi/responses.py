@@ -28,7 +28,7 @@ except ImportError:  # pragma: nocover
 
 
 try:
-    import bsonjs  # type: ignore[import-untyped]
+    import bsonjs  # type: ignore
 except ImportError:  # pragma: nocover
     bsonjs = None
 
