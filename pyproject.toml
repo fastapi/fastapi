@@ -96,7 +96,7 @@ all = [
     # For BSONResponse
     "bson >=0.5.10",
     # For BSONJSResponse
-    "python-bsonjs >=0.6.0",
+    "python-bsonjs >=0.6.0; python_version >= '3.9'",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
