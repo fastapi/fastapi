@@ -1,5 +1,7 @@
 from typing import Any
 
+import json
+
 from starlette.responses import FileResponse as FileResponse  # noqa
 from starlette.responses import HTMLResponse as HTMLResponse  # noqa
 from starlette.responses import JSONResponse as JSONResponse  # noqa
@@ -24,6 +26,12 @@ try:
     import bson  # type: ignore[import-untyped]
 except ImportError:  # pragma: nocover
     bson = None
+
+
+try:
+    import bsonjs  # type: ignore[import-untyped]
+except ImportError:  # pragma: nocover
+    bsonjs = None
 
 
 class UJSONResponse(JSONResponse):
@@ -69,3 +77,18 @@ class BSONResponse(Response):
     def render(self, content: Any) -> Any:
         assert bson is not None, "bson must be installed to use BSONResponse"
         return bson.dumps(content)
+
+
+class BSONJSResponse(BSONResponse):
+    """
+    BSON response using the C-backed python-bsonjs library to serialize BSON
+
+    Read more about it in the
+    [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+    """
+
+    media_type = "application/bson"
+
+    def render(self, content: Any) -> Any:
+        assert bsonjs is not None, "bsonjs must be installed to use BSONJSResponse"
+        return bsonjs.loads(json.dumps(content))

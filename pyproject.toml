@@ -46,6 +46,7 @@ dependencies = [
     "starlette>=0.40.0,<0.47.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "python-bsonjs>=0.5.0",
 ]
 
 [project.urls]
@@ -94,6 +95,8 @@ all = [
     "orjson >=3.2.1",
     # For BSONResponse
     "bson >=0.5.10",
+    # For BSONJSResponse
+    "python-bsonjs >=0.6.0",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
