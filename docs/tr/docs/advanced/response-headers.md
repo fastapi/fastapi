@@ -6,9 +6,7 @@
 
 Ardından *geçici* yanıt nesnesinde başlıkları belirleyebilirsiniz.
 
-```Python hl_lines="1  7-8"
-{!../../../docs_src/response_headers/tutorial002.py!}
-```
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 Sonunda normalde döndürdüğünüz gibi herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli, vb).
 
@@ -24,16 +22,16 @@ Doğrudan bir `Response` döndürürken başlıklar oluşturabilirsiniz.
 
 Bunun için [Return a Response Directly](response-directly.md){.internal-link target=_blank} sayfasında açıklandığı gibi bir yanıt oluşturup başlıkları ekleyin:
 
-```Python hl_lines="10-12"
-{!../../../docs_src/response_headers/tutorial001.py!}
-```
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
-!!! note "Teknik Detaylar"
+/// note | "Teknik Detaylar"
     Projenize dahil etmek için `from starlette.responses import Response` veya `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
     **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
 
     `Response` sıklıkla başlıkları ve çerezleri belirlemek için kullanılabileceği için, **FastAPI** ayrıca `fastapi.Response`'ı da sağlar.
+
+///
 
 ## Özelleştirilmiş Başlıklar
 
