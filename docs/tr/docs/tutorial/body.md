@@ -8,28 +8,21 @@ API'lar genellikle her zaman bir **yanıt** gövdesi iletmek zorundadır. Fakat,
 
 Bütün güç ve avantajlarından faydalınılarak <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> modelleri, **istek** gövdeleri oluşturmak için kullanılır.
 
-!!! info "Bilgi"
-    Veri göndermek için `POST` (en yaygın), `PUT`, `DELETE` veya `PATCH` kullanılır.
+/// info | Bilgi
 
-    Bir gövde göndermek için `GET` isteği kullanılmasının, spesifikasyonlar üzerinde beklenmedik etkilere sahip olmasına rağmen, bu olay, özellikle fazlasıyla karmaşık veya olağandışı durumlar için FastAPI tarafından desteklenir.
+Veri göndermek için `POST` (en yaygın), `PUT`, `DELETE` veya `PATCH` kullanılır.
 
-    Bahsedilen durumun uygulanması tavsiye edilmediğinden dolayı `GET` isteği kullanılırken Swagger UI destekli interaktif doküman, gövde için ek alan göstermeyecektir. Ayrıca aradaki proxyler de bunu desteklemeyebilir.
+Bir gövde göndermek için `GET` isteği kullanılmasının, spesifikasyonlar üzerinde beklenmedik etkilere sahip olmasına rağmen, bu olay, özellikle fazlasıyla karmaşık veya olağandışı durumlar için FastAPI tarafından desteklenir.
+
+Bahsedilen durumun uygulanması tavsiye edilmediğinden dolayı `GET` isteği kullanılırken Swagger UI destekli interaktif doküman, gövde için ek alan göstermeyecektir. Ayrıca aradaki proxyler de bunu desteklemeyebilir.
+
+///
 
 ## Pydantic'in `BaseModel`'ini Projeye Dahil Edelim
 
 Öncelikle, `BaseModel` sınıfını `pydantic` paketinden projemize dahil edelim:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## Veri Modelimizi Oluşturalım
 
@@ -37,17 +30,7 @@ Sonra, `BaseModel` sınıfını miras alacak bir veri modeli sınıfı tanımlay
 
 Özellikler için standart Python tipleri kullanmayı ihmal etmeyelim:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="5-9"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="7-11"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 Sorgu parametrelerinde olduğu gibi, bir model özelliği, varsayılan değere sahipse o özellik zorunlu değildir, eğer sahip değilse zorunludur. Özellikler, `None` kullanılarak  isteğe bağlı hale getirilebilirler.
 
@@ -75,17 +58,7 @@ Sorgu parametrelerinde olduğu gibi, bir model özelliği, varsayılan değere s
 
 Gövdeyi, bir *yol operasyonu* olarak eklemek için yol ve sorgu parametrelerinde yaptığımız gibi tanımlayabiliriz:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...sonrasında yarattığımız `Item` modelini gövde tipi olarak tanımlayalım.
 
@@ -134,32 +107,25 @@ Halbuki, aynı editör desteğini, <a href="https://www.jetbrains.com/pycharm/" 
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip "İpucu"
-    Eğer, editörünüz olarak <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> uygulamasını kullanıyorsanız <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> eklentisinden de faydalanabilirsiniz.
+/// tip | İpucu
 
-    Bu eklenti, aşağıdaki özellikler ile birlikte Pydantic modelleri için editör desteğini güçlendirir:
+Eğer, editörünüz olarak <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> uygulamasını kullanıyorsanız <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a> eklentisinden de faydalanabilirsiniz.
 
-    * oto-tamamlama
-    * tip uyarıları
-    * düzenleme
-    * arama
-    * inceleme
+Bu eklenti, aşağıdaki özellikler ile birlikte Pydantic modelleri için editör desteğini güçlendirir:
+
+* oto-tamamlama
+* tip uyarıları
+* düzenleme
+* arama
+* inceleme
+
+///
 
 ## Modeli Kullanalım
 
 Fonksiyon içerisinde direkt olarak modelin tüm özelliklerine erişebilirsiniz:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/body/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/body/tutorial002.py!}
-    ```
+{* ../../docs_src/body/tutorial002_py310.py *}
 
 ## İstek Gövdesi + Yol Parametreleri
 
@@ -167,17 +133,7 @@ Yol parametrelerini ve istek gövdesini aynı anda tanımlayabilirsiniz.
 
 **FastAPI**, yol parametreleri ile eşleşen fonksiyon parametrelerinin **yol kısmından elde edileceklerinin** ve Pydantic modelleri olarak tanımlanan fonksiyon parametrelerinin **istek gövdesinden elde edileceklerinin** bilincindedir.
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/body/tutorial003_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/body/tutorial003.py!}
-    ```
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
 ## İstek Gövdesi + Yol ve Sorgu Parametreleri
 
@@ -185,17 +141,7 @@ Ayrıca, **gövde**, **yol** ve **sorgu** parametrelerinin hepsini aynı anda ta
 
 **FastAPI** her birini ayırt edecek ve veriyi doğru yerden elde edecektir.
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial004_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial004.py!}
-    ```
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 Fonksiyon parametreleri şu şekilde ayırt edilecektir:
 
@@ -203,10 +149,11 @@ Fonksiyon parametreleri şu şekilde ayırt edilecektir:
 * Eğer parametre, **tekil tipten** (`int`, `float`, `str`, `bool`, vb. gibi) ise **sorgu** parametresi olarak yorumlanacaktır.
 * Eğer parametre, bir **Pydantic modeli** ise istek **gövdesi** olarak yorumlanacaktır.
 
-!!! note "Not"
-    FastAPI, `q` değerinin zorunlu olmadığını `= None` varsayılan değerini aldığı için fark edecektir.
+/// note | Not
 
-    `Union[str, None]` kısmındaki `Union` anahtar kelimesi FastAPI tarafından kullanılmamasına rağmen kullandığınız editörün size daha iyi destek vermesini ve hataları belirlemesini sağlayacaktır.
+FastAPI, `q` değerinin zorunlu olmadığını `= None` varsayılan değerini aldığı için fark edecektir.
+
+`Union[str, None]` kısmındaki `Union` anahtar kelimesi FastAPI tarafından kullanılmamasına rağmen kullandığınız editörün size daha iyi destek vermesini ve hataları belirlemesini sağlayacaktır.
 
 ## Pydantic Olmadan
 
