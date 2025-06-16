@@ -6,7 +6,7 @@ API'a, bir istemciden (mesela tarayıcıdan) veri göndermek istenilen durumlard
 
 API'lar genellikle her zaman bir **yanıt** gövdesi iletmek zorundadır. Fakat, istemcilerin **istek** gövdesi gönderme gibi bir zorunluluğu yoktur.
 
-Bütün güç ve avantajlarından faydalınılarak <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> modelleri, **istek** gövdeleri oluşturmak için kullanılır.
+Bütün güç ve avantajlarından faydalınılarak <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> modelleri, **istek** gövdeleri oluşturmak için kullanılır.
 
 /// info | Bilgi
 
