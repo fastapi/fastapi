@@ -10,9 +10,7 @@
 
 首先，创建主（顶层）**FastAPI** 应用及其*路径操作*：
 
-```Python hl_lines="3  6-8"
-{!../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
 
 ### 子应用
 
@@ -20,9 +18,7 @@
 
 子应用只是另一个标准 FastAPI 应用，但这个应用是被**挂载**的应用：
 
-```Python hl_lines="11  14-16"
-{!../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
 
 ### 挂载子应用
 
@@ -30,9 +26,7 @@
 
 本例的子应用挂载在 `/subapi` 路径下：
 
-```Python hl_lines="11  19"
-{!../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
 
 ### 查看文档
 

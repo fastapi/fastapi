@@ -20,35 +20,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 * 返回类型为 `HTTPBasicCredentials` 的对象：
     * 包含发送的 `username` 与 `password`
 
-//// tab | Python 3.9+
-
-```Python hl_lines="4  8  12"
-{!> ../../docs_src/security/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="2  7  11"
-{!> ../../docs_src/security/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="2  6  10"
-{!> ../../docs_src/security/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
 
 第一次打开 URL（或在 API 文档中点击 **Execute** 按钮）时，浏览器要求输入用户名与密码：
 
@@ -68,35 +40,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 然后我们可以使用 `secrets.compare_digest()` 来确保 `credentials.username` 是 `"stanleyjobson"`，且 `credentials.password` 是`"swordfish"`。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  12-24"
-{!> ../../docs_src/security/tutorial007_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  12-24"
-{!> ../../docs_src/security/tutorial007_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="1  11-21"
-{!> ../../docs_src/security/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
 
 这类似于：
 
@@ -160,32 +104,4 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 检测到凭证不正确后，返回 `HTTPException` 及状态码 401（与无凭证时返回的内容一样），并添加请求头 `WWW-Authenticate`，让浏览器再次显示登录提示：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="26-30"
-{!> ../../docs_src/security/tutorial007_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="26-30"
-{!> ../../docs_src/security/tutorial007_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="23-27"
-{!> ../../docs_src/security/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
