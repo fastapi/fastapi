@@ -32,15 +32,11 @@ Prenons un exemple simple, on considère une structure de fichier similaire à c
 
 Dans le fichier `main.py` il y aurait:
 
-```Python
-{!../../../docs_src/async_tests/main.py!}
-```
+{* ../../docs_src/async_tests/main.py *}
 
 Le fichier `test_main.py` contiendrait les tests pour `main.py`, et pourrait désormais ressembler à :
 
-```Python
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py *}
 
 ## Lancez les
 
@@ -60,9 +56,7 @@ $ pytest
 
 Le marqueur `@pytest.mark.anyio` informe pytest que la fonction de test doit être appelée de manière asynchrone:
 
-```Python hl_lines="7"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[7] *}
 
 /// tip
 
@@ -72,9 +66,7 @@ Notez que la fonction de test est maintenant une `async def` plutôt qu'une simp
 
 Puis on crée un `AsyncClient` avec l'application, et on lui envoie des requêtes, en utilisant `await`.
 
-```Python hl_lines="9-12"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
 
 C'est l'équivalent de:
 
