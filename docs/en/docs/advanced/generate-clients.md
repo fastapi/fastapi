@@ -24,7 +24,7 @@ For example, you might want to try:
 
 * <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
 * <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
-* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi/?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
+* <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
 There are also several other companies offering similar services that you can search and find online. 🤓
 
@@ -206,13 +206,7 @@ But for the generated client we could **modify** the OpenAPI operation IDs right
 
 We could download the OpenAPI JSON to a file `openapi.json` and then we could **remove that prefixed tag** with a script like this:
 
-//// tab | Python
-
-```Python
-{!> ../../docs_src/generate_clients/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

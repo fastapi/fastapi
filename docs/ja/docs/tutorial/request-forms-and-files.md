@@ -12,17 +12,13 @@
 
 ## `File`と`Form`のインポート
 
-```Python hl_lines="1"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[1] *}
 
 ## `File`と`Form`のパラメータの定義
 
 ファイルやフォームのパラメータは`Body`や`Query`の場合と同じように作成します:
 
-```Python hl_lines="8"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[8] *}
 
 ファイルとフォームフィールドがフォームデータとしてアップロードされ、ファイルとフォームフィールドを受け取ります。
 

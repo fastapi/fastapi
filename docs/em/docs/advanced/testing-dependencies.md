@@ -28,9 +28,7 @@
 
 &amp; ⤴️ **FastAPI** 🔜 🤙 👈 🔐 ↩️ ⏮️ 🔗.
 
-```Python hl_lines="28-29  32"
-{!../../docs_src/dependency_testing/tutorial001.py!}
-```
+{* ../../docs_src/dependency_testing/tutorial001.py hl[28:29,32] *}
 
 /// tip
 

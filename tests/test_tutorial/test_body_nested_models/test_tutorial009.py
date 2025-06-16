@@ -1,13 +1,23 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py39
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.body_nested_models.tutorial009 import app
 
-    client = TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial009",
+        pytest.param("tutorial009_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_nested_models.{request.param}")
+
+    client = TestClient(mod.app)
     return client
 
 

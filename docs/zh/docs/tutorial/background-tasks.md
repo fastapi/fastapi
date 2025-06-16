@@ -117,8 +117,6 @@
 
 它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
 
-要查看示例，查阅 [Project Generators](../project-generation.md){.internal-link target=_blank}，它们都包括已经配置的Celery。
-
 但是，如果您需要从同一个**FastAPI**应用程序访问变量和对象，或者您需要执行小型后台任务（如发送电子邮件通知），您只需使用 `BackgroundTasks` 即可。
 
 ## 回顾

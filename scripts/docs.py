@@ -35,6 +35,7 @@ non_translated_sections = [
     "newsletter.md",
     "management-tasks.md",
     "management.md",
+    "contributing.md",
 ]
 
 docs_path = Path("docs")

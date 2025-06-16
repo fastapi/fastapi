@@ -31,9 +31,7 @@
 
 以下のように、*path operation関数*と同じパラメータを全て取ることができる関数にすぎません:
 
-```Python hl_lines="8 9"
-{!../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[8,9] *}
 
 これだけです。
 
@@ -55,17 +53,13 @@
 
 ### `Depends`のインポート
 
-```Python hl_lines="3"
-{!../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### "dependant"での依存関係の宣言
 
 *path operation関数*のパラメータに`Body`や`Query`などを使用するのと同じように、新しいパラメータに`Depends`を使用することができます:
 
-```Python hl_lines="13  18"
-{!../../docs_src/dependencies/tutorial001.py!}
-```
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 関数のパラメータに`Depends`を使用するのは`Body`や`Query`などと同じですが、`Depends`の動作は少し異なります。
 
