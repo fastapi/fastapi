@@ -57,25 +57,7 @@
 - **متدهای HTTP خاص** (`POST`, `PUT`) یا تمام متدها با `"*"`
 - **هدرهای HTTP خاص** یا همه‌ی آن‌ها با `"*"`
 
-```python
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-origins = [
-    "http://localhost:8080",
-    "https://example.com",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 ---
 
