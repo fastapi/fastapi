@@ -504,9 +504,9 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
-                status_code
-            ), f"Status code {status_code} must not have a response body"
+            assert is_body_allowed_for_status_code(status_code), (
+                f"Status code {status_code} must not have a response body"
+            )
             response_name = "Response_" + self.unique_id
             self.response_field = create_model_field(
                 name=response_name,
@@ -537,9 +537,9 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(
-                    additional_status_code
-                ), f"Status code {additional_status_code} must not have a response body"
+                assert is_body_allowed_for_status_code(additional_status_code), (
+                    f"Status code {additional_status_code} must not have a response body"
+                )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -844,9 +844,9 @@ class APIRouter(routing.Router):
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -1256,9 +1256,9 @@ class APIRouter(routing.Router):
         """
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009

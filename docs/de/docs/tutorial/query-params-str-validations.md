@@ -315,22 +315,6 @@ Wenn Sie einen Parameter erforderlich machen wollen, während Sie `Query` verwen
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Erforderlich mit Ellipse (`...`)
-
-Es gibt eine Alternative, die explizit deklariert, dass ein Wert erforderlich ist. Sie können als Default das <abbr title='Zeichenfolge, die einen Wert direkt darstellt, etwa 1, "hallowelt", True, None'>Literal</abbr> `...` setzen:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b_an_py39.py hl[9] *}
-
-/// info
-
-Falls Sie das `...` bisher noch nicht gesehen haben: Es ist ein spezieller einzelner Wert, <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">Teil von Python und wird „Ellipsis“ genannt</a> (Deutsch: Ellipse).
-
-Es wird von Pydantic und FastAPI verwendet, um explizit zu deklarieren, dass ein Wert erforderlich ist.
-
-///
-
-Dies wird **FastAPI** wissen lassen, dass dieser Parameter erforderlich ist.
-
 ### Erforderlich, kann `None` sein
 
 Sie können deklarieren, dass ein Parameter `None` akzeptiert, aber dennoch erforderlich ist. Das zwingt Clients, den Wert zu senden, selbst wenn er `None` ist.
