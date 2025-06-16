@@ -30,9 +30,7 @@ Utilisez l'objet `TestClient` comme vous le faites avec `httpx`.
 
 Rédigez des `assert` simples avec les expressions Python standards que vous devez vérifier (encore une fois, un standard `pytest`).
 
-```Python hl_lines="2  12  15-18"
-{!../../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip
 
@@ -78,9 +76,7 @@ Disons que vous avez une structure de fichier comme décrite dans [Applications 
 Dans le fichier `main.py` vous avez votre app **FastAPI**:
 
 
-```Python
-{!../../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### Fichier de test
 
@@ -96,9 +92,7 @@ Puis, vous pourriez avoir un fichier `test_main.py` avec vos tests. Il pourrait 
 
 Étant donné que ce fichier est dans le même paquet, vous avez la possibilité d'utiliser un import relatif pour importer l'objet `app` du module `main` (`main.py`):
 
-```Python hl_lines="3"
-{!../../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
 
 ...et avoir le code pour les tests comme avant.
 
@@ -129,7 +123,7 @@ Les deux *opérations de chemin* demandent un en-tête `X-Token`.
 //// tab | Python 3.10+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
+{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
 ```
 
 ////
@@ -137,7 +131,7 @@ Les deux *opérations de chemin* demandent un en-tête `X-Token`.
 //// tab | Python 3.9+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
+{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
 ```
 
 ////
@@ -145,7 +139,7 @@ Les deux *opérations de chemin* demandent un en-tête `X-Token`.
 //// tab | Python 3.8+
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_an/main.py!}
+{!> ../../docs_src/app_testing/app_b_an/main.py!}
 ```
 
 ////
@@ -159,7 +153,7 @@ Preferez utiliser la version `Annotated` si possible.
 ///
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b_py310/main.py!}
+{!> ../../docs_src/app_testing/app_b_py310/main.py!}
 ```
 
 ////
@@ -173,7 +167,7 @@ Preferez utiliser la version `Annotated` si possible.
 ///
 
 ```Python
-{!> ../../../docs_src/app_testing/app_b/main.py!}
+{!> ../../docs_src/app_testing/app_b/main.py!}
 ```
 
 ////
@@ -182,9 +176,7 @@ Preferez utiliser la version `Annotated` si possible.
 
 Vous auriez la possibilité de mettre à jour `test_main.py` avec les tests étendus:
 
-```Python
-{!> ../../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 Lorsque vous avez besoin du client pour passer des informations dans la requête et que vous ne savez pas comment faire, vous pouvez chercher (Google) comment faire avec `httpx`, ou même avec `requests`, étant donné que le design de HTTPX est basé sur le design de Requests.
 
