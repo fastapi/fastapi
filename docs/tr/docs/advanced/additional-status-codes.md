@@ -14,53 +14,25 @@ Aynı zamanda, yeni öğeler kabul etmek istiyorsunuz ve bu öğereler mevcut de
 
 Bunun için `JSONResponse`'ı projenize dahil edin ve içeriğinizi doğrudan `JSONResponse` içerisinde istediğiniz `status_code` ile birlikte yanıt olarak döndürün:
 
-=== "Python 3.10+"
+{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py310.py!}
-    ```
+/// warning | Uyarı
 
-=== "Python 3.9+"
+Yukarıdaki örnekte olduğu gibi bir `Response` döndürdüğünüzde, doğrudan döndürülecektir.
 
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an_py39.py!}
-    ```
+Bu yanıt herhangi bir modelle dönüştürülme işlemine tabi tutulmayacaktır.
 
-=== "Python 3.8+"
+Yanıtın, istediğiniz veriye sahip olduğundan ve (eğer `JSONResponse` kullanıyorsanız) değerlerin geçerli JSON olduğundan emin olun.
 
-    ```Python hl_lines="4  26"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_an.py!}
-    ```
+///
 
-=== "Python 3.10+ non-Annotated"
+/// note | Teknik Detaylar
 
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
+Projenize dahil etmek için `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
-    ```Python hl_lines="2  23"
-    {!> ../../../docs_src/additional_status_codes/tutorial001_py310.py!}
-    ```
+**FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
 
-=== "Python 3.8+ non-Annotated"
-
-    !!! tip "İpucu"
-        Mümkün mertebe 'Annotated' sınıfını kullanmaya çalışın.
-
-    ```Python hl_lines="4  25"
-    {!> ../../../docs_src/additional_status_codes/tutorial001.py!}
-    ```
-
-!!! warning "Uyarı"
-    Yukarıdaki örnekte olduğu gibi bir `Response` döndürdüğünüzde, doğrudan döndürülecektir.
-
-    Bu yanıt herhangi bir modelle dönüştürülme işlemine tabi tutulmayacaktır.
-
-    Yanıtın, istediğiniz veriye sahip olduğundan ve (eğer `JSONResponse` kullanıyorsanız) değerlerin geçerli JSON olduğundan emin olun.
-
-!!! note "Teknik Detaylar"
-    Projenize dahil etmek için `from starlette.responses import JSONResponse` kullanabilirsiniz.
-
-    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
+///
 
 ## OpenAPI ve API Dokümantasyonu
 
