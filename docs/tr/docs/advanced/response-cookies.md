@@ -6,9 +6,7 @@
 
 Ardından *geçici* yanıt nesnesinde çerezleri belirleyebilirsiniz.
 
-```Python hl_lines="1  8-9"
-{!../../../docs_src/response_cookies/tutorial002.py!}
-```
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 Sonunda normalde döndürdüğünüz gibi herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli, vb).
 
@@ -26,16 +24,15 @@ Bunun için [Return a Response Directly](response-directly.md){.internal-link ta
 
 Ardından çerezleri belirleyin ve yanıtı döndürün:
 
-```Python hl_lines="10-12"
-{!../../../docs_src/response_cookies/tutorial001.py!}
-```
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
-!!! tip "İpucu"
+/// tip | İpucu
     `Response` parametresini kullanmak yerine yanıtı doğrudan döndürürseniz, FastAPI yanıtı doğrudan döndürecektir.
 
     Yanıtı doğrudan döndürürken, verinizin doğru türde olduğundan emin olmalısınız. Örneğin, bir `JSONResponse` döndürüyorsanız, verinizin JSON ile uyumlu olduğundan emin olmalısınız.
 
     Ayrıca, bir `response_model` tarafından filtrelenmesi gereken verileri göndermediğinizden emin olmalısınız.
+///
 
 ## Daha Fazla Bilgi
 
