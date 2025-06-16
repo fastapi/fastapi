@@ -28,21 +28,7 @@ Es gibt auch mehrere andere Unternehmen, welche ähnliche Dienste anbieten und d
 
 Beginnen wir mit einer einfachen FastAPI-Anwendung:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../docs_src/generate_clients/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
 Beachten Sie, dass die *Pfadoperationen* die Modelle definieren, welche diese für die Request- und Response-<abbr title="Die eigentlichen Nutzdaten, abzüglich der Metadaten">Payload</abbr> verwenden, indem sie die Modelle `Item` und `ResponseMessage` verwenden.
 
@@ -147,21 +133,7 @@ In vielen Fällen wird Ihre FastAPI-Anwendung größer sein und Sie werden wahrs
 
 Beispielsweise könnten Sie einen Abschnitt für **Items (Artikel)** und einen weiteren Abschnitt für **Users (Benutzer)** haben, und diese könnten durch Tags getrennt sein:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="21  26  34"
-{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="23  28  36"
-{!> ../../docs_src/generate_clients/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
 ### Einen TypeScript-Client mit Tags generieren
 
@@ -208,21 +180,7 @@ Hier verwendet sie beispielsweise den ersten Tag (Sie werden wahrscheinlich nur 
 
 Anschließend können Sie diese benutzerdefinierte Funktion als Parameter `generate_unique_id_function` an **FastAPI** übergeben:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6-7  10"
-{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8-9  12"
-{!> ../../docs_src/generate_clients/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
 ### Einen TypeScript-Client mit benutzerdefinierten Operation-IDs generieren
 
@@ -244,13 +202,7 @@ Aber für den generierten Client könnten wir die OpenAPI-Operation-IDs direkt v
 
 Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dann mit einem Skript wie dem folgenden **den vorangestellten Tag entfernen**:
 
-//// tab | Python
-
-```Python
-{!> ../../docs_src/generate_clients/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

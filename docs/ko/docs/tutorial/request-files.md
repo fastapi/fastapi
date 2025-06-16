@@ -16,17 +16,13 @@
 
 `fastapi` 에서 `File` 과 `UploadFile` 을 임포트 합니다:
 
-```Python hl_lines="1"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[1] *}
 
 ## `File` 매개변수 정의
 
 `Body` 및 `Form` 과 동일한 방식으로 파일의 매개변수를 생성합니다:
 
-```Python hl_lines="7"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[7] *}
 
 /// info | 정보
 
@@ -54,9 +50,7 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
 
 `File` 매개변수를 `UploadFile` 타입으로 정의합니다:
 
-```Python hl_lines="12"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[12] *}
 
 `UploadFile` 을 사용하는 것은 `bytes` 과 비교해 다음과 같은 장점이 있습니다:
 
@@ -142,9 +136,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 이 기능을 사용하기 위해 , `bytes` 의 `List` 또는 `UploadFile` 를 선언하기 바랍니다:
 
-```Python hl_lines="10  15"
-{!../../docs_src/request_files/tutorial002.py!}
-```
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 선언한대로, `bytes` 의 `list` 또는 `UploadFile` 들을 전송받을 것입니다.
 

@@ -22,21 +22,7 @@
 
 먼저 `pydantic`에서 `BaseModel`를 임포트해야 합니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="2"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## 여러분의 데이터 모델 만들기
 
@@ -44,21 +30,7 @@
 
 모든 어트리뷰트에 대해 표준 파이썬 타입을 사용합니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="5-9"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7-11"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 쿼리 매개변수를 선언할 때와 같이, 모델 어트리뷰트가 기본 값을 가지고 있어도 이는 필수가 아닙니다. 그외에는 필수입니다. 그저 `None`을 사용하여 선택적으로 만들 수 있습니다.
 
@@ -86,21 +58,7 @@
 
 여러분의 *경로 작동*에 추가하기 위해, 경로 매개변수 그리고 쿼리 매개변수에서 선언했던 것과 같은 방식으로 선언하면 됩니다.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="16"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...그리고 만들어낸 모델인 `Item`으로 타입을 선언합니다.
 
@@ -167,21 +125,7 @@
 
 함수 안에서 모델 객체의 모든 어트리뷰트에 직접 접근 가능합니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/body/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="21"
-{!> ../../docs_src/body/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial002_py310.py hl[19] *}
 
 ## 요청 본문 + 경로 매개변수
 
@@ -189,21 +133,7 @@
 
 **FastAPI**는 경로 매개변수와 일치하는 함수 매개변수가 **경로에서 가져와야 한다**는 것을 인지하며, Pydantic 모델로 선언된 그 함수 매개변수는 **요청 본문에서 가져와야 한다**는 것을 인지할 것입니다.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="15-16"
-{!> ../../docs_src/body/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-18"
-{!> ../../docs_src/body/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
 ## 요청 본문 + 경로 + 쿼리 매개변수
 
@@ -211,21 +141,7 @@
 
 **FastAPI**는 각각을 인지하고 데이터를 옳바른 위치에 가져올 것입니다.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="16"
-{!> ../../docs_src/body/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 함수 매개변수는 다음을 따라서 인지하게 됩니다:
 
