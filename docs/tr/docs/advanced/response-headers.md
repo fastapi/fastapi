@@ -25,6 +25,7 @@ Bunun için [Return a Response Directly](response-directly.md){.internal-link ta
 {* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | "Teknik Detaylar"
+
     Projenize dahil etmek için `from starlette.responses import Response` veya `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
     **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
