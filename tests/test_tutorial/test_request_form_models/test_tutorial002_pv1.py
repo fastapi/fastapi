@@ -1,17 +1,27 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_pydanticv1
+from ...utils import needs_py39, needs_pydanticv1
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.request_form_models.tutorial002_pv1 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial002_pv1",
+        "tutorial002_pv1_an",
+        pytest.param("tutorial002_pv1_an_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.request_form_models.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_form(client: TestClient):
     response = client.post("/login/", data={"username": "Foo", "password": "secret"})
@@ -19,6 +29,7 @@ def test_post_body_form(client: TestClient):
     assert response.json() == {"username": "Foo", "password": "secret"}
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_extra_form(client: TestClient):
     response = client.post(
@@ -36,6 +47,7 @@ def test_post_body_extra_form(client: TestClient):
     }
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_form_no_password(client: TestClient):
     response = client.post("/login/", data={"username": "Foo"})
@@ -51,6 +63,7 @@ def test_post_body_form_no_password(client: TestClient):
     }
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_form_no_username(client: TestClient):
     response = client.post("/login/", data={"password": "secret"})
@@ -66,6 +79,7 @@ def test_post_body_form_no_username(client: TestClient):
     }
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_form_no_data(client: TestClient):
     response = client.post("/login/")
@@ -86,6 +100,7 @@ def test_post_body_form_no_data(client: TestClient):
     }
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_post_body_json(client: TestClient):
     response = client.post("/login/", json={"username": "Foo", "password": "secret"})
@@ -106,6 +121,7 @@ def test_post_body_json(client: TestClient):
     }
 
 
+# TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")

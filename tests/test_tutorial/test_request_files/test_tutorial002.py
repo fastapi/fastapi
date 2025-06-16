@@ -1,12 +1,35 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict
+from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from docs_src.request_files.tutorial002 import app
-
-client = TestClient(app)
+from ...utils import needs_py39
 
 
-def test_post_form_no_body():
+@pytest.fixture(
+    name="app",
+    params=[
+        "tutorial002",
+        "tutorial002_an",
+        pytest.param("tutorial002_py39", marks=needs_py39),
+        pytest.param("tutorial002_an_py39", marks=needs_py39),
+    ],
+)
+def get_app(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.request_files.{request.param}")
+
+    return mod.app
+
+
+@pytest.fixture(name="client")
+def get_client(app: FastAPI):
+    client = TestClient(app)
+    return client
+
+
+def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 422, response.text
     assert response.json() == IsDict(
@@ -34,7 +57,7 @@ def test_post_form_no_body():
     )
 
 
-def test_post_body_json():
+def test_post_body_json(client: TestClient):
     response = client.post("/files/", json={"file": "Foo"})
     assert response.status_code == 422, response.text
     assert response.json() == IsDict(
@@ -62,7 +85,7 @@ def test_post_body_json():
     )
 
 
-def test_post_files(tmp_path):
+def test_post_files(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
     path2 = tmp_path / "test2.txt"
@@ -81,7 +104,7 @@ def test_post_files(tmp_path):
     assert response.json() == {"file_sizes": [14, 15]}
 
 
-def test_post_upload_file(tmp_path):
+def test_post_upload_file(tmp_path, app: FastAPI):
     path = tmp_path / "test.txt"
     path.write_bytes(b"<file content>")
     path2 = tmp_path / "test2.txt"
@@ -100,14 +123,14 @@ def test_post_upload_file(tmp_path):
     assert response.json() == {"filenames": ["test.txt", "test2.txt"]}
 
 
-def test_get_root():
+def test_get_root(app: FastAPI):
     client = TestClient(app)
     response = client.get("/")
     assert response.status_code == 200, response.text
     assert b"<form" in response.content
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

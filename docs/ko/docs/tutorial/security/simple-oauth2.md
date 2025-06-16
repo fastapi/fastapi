@@ -32,7 +32,7 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 * `instagram_basic`은 페이스북/인스타그램에서 사용합니다.
 * `https://www.googleapis.com/auth/drive`는 Google에서 사용합니다.
 
-/// 정보
+/// info | 정보
 
 OAuth2에서 "범위"는 필요한 특정 권한을 선언하는 문자열입니다.
 
@@ -61,7 +61,7 @@ OAuth2의 경우 문자열일 뿐입니다.
 * `scope`는 선택적인 필드로 공백으로 구분된 문자열로 구성된 큰 문자열입니다.
 * `grant_type`(선택적으로 사용).
 
-/// 팁
+/// tip | 팁
 
 OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` 필드를 *요구*하지만 `OAuth2PasswordRequestForm`은 이를 강요하지 않습니다.
 
@@ -72,7 +72,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 * `client_id`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 * `client_secret`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 
-/// 정보
+/// info | 정보
 
 `OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
 
@@ -86,7 +86,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 ### 폼 데이터 사용하기
 
-/// 팁
+/// tip | 팁
 
 종속성 클래스 `OAuth2PasswordRequestForm`의 인스턴스에는 공백으로 구분된 긴 문자열이 있는 `scope` 속성이 없고 대신 전송된 각 범위에 대한 실제 문자열 목록이 있는 `scopes` 속성이 있습니다.
 
@@ -126,7 +126,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 따라서 해커는 다른 시스템에서 동일한 암호를 사용하려고 시도할 수 없습니다(많은 사용자가 모든 곳에서 동일한 암호를 사용하므로 이는 위험할 수 있습니다).
 
-//// tab | P파이썬 3.7 이상
+//// tab | 파이썬 3.7 이상
 
 {* ../../docs_src/security/tutorial003.py hl[80:83] *}
 
@@ -150,7 +150,7 @@ UserInDB(
 )
 ```
 
-/// 정보
+/// info | 정보
 
 `**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user_indict){.internal-link target=_blank}를 다시 읽어봅시다.
 
@@ -166,7 +166,7 @@ UserInDB(
 
 이 간단한 예제에서는 완전히 안전하지 않고, 동일한 `username`을 토큰으로 반환합니다.
 
-/// 팁
+/// tip | 팁
 
 다음 장에서는 패스워드 해싱 및 <abbr title="JSON Web Tokens">JWT</abbr> 토큰을 사용하여 실제 보안 구현을 볼 수 있습니다.
 
@@ -176,7 +176,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003.py hl[85] *}
 
-/// 팁
+/// tip | 팁
 
 사양에 따라 이 예제와 동일하게 `access_token` 및 `token_type`이 포함된 JSON을 반환해야 합니다.
 
@@ -202,7 +202,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003.py hl[58:66,69:72,90] *}
 
-/// 정보
+/// info | 정보
 
 여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.
 
