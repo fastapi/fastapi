@@ -29,9 +29,7 @@
 
 例えば、
 
-```Python hl_lines="6  11"
-{!../../docs_src/conditional_openapi/tutorial001.py!}
-```
+{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
 ここでは `openapi_url` の設定を、デフォルトの `"/openapi.json"` のまま宣言しています。
 

@@ -52,57 +52,7 @@ Lassen Sie uns nun die von **FastAPI** bereitgestellten Werkzeuge verwenden, um 
 
 Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als Abhängigkeit mit `Depends` in der *Pfadoperation* für `/token`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  78"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  78"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  79"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2  74"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4  76"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formularbody deklariert mit:
 
@@ -150,57 +100,7 @@ Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung „Incorrect u
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3  79-81"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3  79-81"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3  80-82"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1  75-77"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3  77-79"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
 ### Das Passwort überprüfen
 
@@ -226,57 +126,7 @@ Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter 
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="82-85"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="82-85"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="83-86"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="78-81"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="80-83"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
 #### Über `**user_dict`
 
@@ -318,57 +168,7 @@ Aber konzentrieren wir uns zunächst auf die spezifischen Details, die wir benö
 
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="87"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="87"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="88"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="83"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="85"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
 /// tip | Tipp
 
@@ -394,57 +194,7 @@ Beide Abhängigkeiten geben nur dann einen HTTP-Error zurück, wenn der Benutzer
 
 In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer existiert, korrekt authentifiziert wurde und aktiv ist:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="58-66  69-74  94"
-{!> ../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="58-66  69-74  94"
-{!> ../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="59-67  70-75  95"
-{!> ../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="56-64  67-70  88"
-{!> ../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="58-66  69-72  90"
-{!> ../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
 /// info
 

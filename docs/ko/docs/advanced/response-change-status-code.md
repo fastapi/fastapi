@@ -20,9 +20,7 @@
 
 그리고 이 *임시* 응답 객체에서 `status_code`를 설정할 수 있습니다.
 
-```Python hl_lines="1  9  12"
-{!../../docs_src/response_change_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 그리고 평소처럼 원하는 객체(`dict`, 데이터베이스 모델 등)를 반환할 수 있습니다.
 

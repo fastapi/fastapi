@@ -12,9 +12,7 @@
 
 务必确保每个操作路径的 `operation_id` 都是唯一的。
 
-```Python hl_lines="6"
-{!../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### 使用 *路径操作函数* 的函数名作为 operationId
 
@@ -22,9 +20,7 @@
 
 你应该在添加了所有 *路径操作* 之后执行此操作。
 
-```Python hl_lines="2 12 13 14 15 16 17 18 19 20 21 24"
-{!../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,12,13,14,15,16,17,18,19,20,21,24] *}
 
 /// tip
 
@@ -44,9 +40,7 @@
 
 使用参数 `include_in_schema` 并将其设置为 `False` ，来从生成的 OpenAPI 方案中排除一个 *路径操作*（这样一来，就从自动化文档系统中排除掉了）。
 
-```Python hl_lines="6"
-{!../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## docstring 的高级描述
 
@@ -57,6 +51,4 @@
 剩余部分不会出现在文档中，但是其他工具（比如 Sphinx）可以使用剩余部分。
 
 
-```Python hl_lines="19 20 21 22 23 24 25 26 27 28 29"
-{!../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19,20,21,22,23,24,25,26,27,28,29] *}
