@@ -43,25 +43,19 @@ Fügen wir beispielsweise <a href="https://github.com/Rebilly/ReDoc/blob/master/
 
 Schreiben Sie zunächst wie gewohnt Ihre ganze **FastAPI**-Anwendung:
 
-```Python hl_lines="1  4  7-9"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Das OpenAPI-Schema generieren
 
 Verwenden Sie dann dieselbe Hilfsfunktion, um das OpenAPI-Schema innerhalb einer `custom_openapi()`-Funktion zu generieren:
 
-```Python hl_lines="2  15-21"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Das OpenAPI-Schema ändern
 
 Jetzt können Sie die ReDoc-Erweiterung hinzufügen und dem `info`-„Objekt“ im OpenAPI-Schema ein benutzerdefiniertes `x-logo` hinzufügen:
 
-```Python hl_lines="22-24"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Zwischenspeichern des OpenAPI-Schemas
 
@@ -71,17 +65,13 @@ Auf diese Weise muss Ihre Anwendung das Schema nicht jedes Mal generieren, wenn 
 
 Es wird nur einmal generiert und dann wird dasselbe zwischengespeicherte Schema für die nächsten Requests verwendet.
 
-```Python hl_lines="13-14  25-26"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Die Methode überschreiben
 
 Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 
-```Python hl_lines="29"
-{!../../docs_src/extending_openapi/tutorial001.py!}
-```
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Testen
 

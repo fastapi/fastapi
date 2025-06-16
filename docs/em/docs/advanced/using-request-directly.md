@@ -29,9 +29,7 @@
 
 👈 👆 💪 🔐 📨 🔗.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/using_request_directly/tutorial001.py!}
-```
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 📣 *➡ 🛠️ 🔢* 🔢 ⏮️ 🆎 ➖ `Request` **FastAPI** 🔜 💭 🚶‍♀️ `Request` 👈 🔢.
 

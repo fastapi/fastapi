@@ -12,9 +12,7 @@
 
 그 후, 해당 경로에 마운트합니다.
 
-```Python hl_lines="2-3  23"
-{!../../docs_src/wsgi/tutorial001.py!}
-```
+{* ../../docs_src/wsgi/tutorial001.py hl[2:3,23] *}
 
 ## 확인하기
 

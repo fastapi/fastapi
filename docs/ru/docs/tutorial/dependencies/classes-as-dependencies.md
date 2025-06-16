@@ -6,57 +6,7 @@
 
 В предыдущем примере мы возвращали `словарь` из нашей зависимости:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="11"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
 Но затем мы получаем `словарь`  в параметре `commons`  *функции операции пути*. И мы знаем, что редакторы не могут обеспечить достаточную поддержку для `словаря`, поскольку они не могут знать их ключи и типы значений.
 
@@ -117,165 +67,15 @@ fluffy = Cat(name="Mr Fluffy")
 
 Теперь мы можем изменить зависимость `common_parameters`, указанную выше, на класс `CommonQueryParams`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-15"
-{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-15"
-{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="12-16"
-{!> ../../docs_src/dependencies/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="9-13"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="11-15"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
 
 Обратите внимание на метод `__init__`, используемый для создания экземпляра класса:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="13"
-{!> ../../docs_src/dependencies/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
 
 ...имеет те же параметры, что и ранее используемая функция `common_parameters`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="10"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="6"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
 
 Эти параметры и будут использоваться **FastAPI** для "решения" зависимости.
 
@@ -291,57 +91,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Теперь вы можете объявить свою зависимость, используя этот класс.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="20"
-{!> ../../docs_src/dependencies/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
 
 **FastAPI** вызывает класс `CommonQueryParams`. При этом создается "экземпляр" этого класса, который будет передан в качестве параметра `commons` в вашу функцию.
 
@@ -435,57 +185,7 @@ commons = Depends(CommonQueryParams)
 
 ...как тут:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="20"
-{!> ../../docs_src/dependencies/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
 
 Но объявление типа приветствуется, так как в этом случае ваш редактор будет знать, что будет передано в качестве параметра `commons`, и тогда он сможет помочь вам с автодополнением, проверкой типов и т.д:
 
@@ -572,57 +272,7 @@ commons: CommonQueryParams = Depends()
 
 Аналогичный пример будет выглядеть следующим образом:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="20"
-{!> ../../docs_src/dependencies/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | Подсказка
-
-Рекомендуется использовать версию с `Annotated` если возможно.
-
-///
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
 
 ...и **FastAPI** будет знать, что делать.
 

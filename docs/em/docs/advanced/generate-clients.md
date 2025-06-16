@@ -16,21 +16,7 @@
 
 ➡️ ▶️ ⏮️ 🙅 FastAPI 🈸:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="9-11  14-15  18  19  23"
-{!> ../../docs_src/generate_clients/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-```Python hl_lines="7-9  12-13  16-17  21"
-{!> ../../docs_src/generate_clients/tutorial001_py39.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial001.py hl[9:11,14:15,18,19,23] *}
 
 👀 👈 *➡ 🛠️* 🔬 🏷 👫 ⚙️ 📨 🚀 &amp; 📨 🚀, ⚙️ 🏷 `Item` &amp; `ResponseMessage`.
 
@@ -136,21 +122,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 🖼, 👆 💪 ✔️ 📄 **🏬** &amp; ➕1️⃣ 📄 **👩‍💻**, &amp; 👫 💪 👽 🔖:
 
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="23  28  36"
-{!> ../../docs_src/generate_clients/tutorial002.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-```Python hl_lines="21  26  34"
-{!> ../../docs_src/generate_clients/tutorial002_py39.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial002.py hl[23,28,36] *}
 
 ### 🏗 📕 👩‍💻 ⏮️ 🔖
 
@@ -197,21 +169,7 @@ FastAPI ⚙️ **😍 🆔** 🔠 *➡ 🛠️*, ⚫️ ⚙️ **🛠️ 🆔** 
 
 👆 💪 ⤴️ 🚶‍♀️ 👈 🛃 🔢 **FastAPI** `generate_unique_id_function` 🔢:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="8-9  12"
-{!> ../../docs_src/generate_clients/tutorial003.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-```Python hl_lines="6-7  10"
-{!> ../../docs_src/generate_clients/tutorial003_py39.py!}
-```
-
-////
+{* ../../docs_src/generate_clients/tutorial003.py hl[8:9,12] *}
 
 ### 🏗 📕 👩‍💻 ⏮️ 🛃 🛠️ 🆔
 
@@ -233,9 +191,7 @@ FastAPI ⚙️ **😍 🆔** 🔠 *➡ 🛠️*, ⚫️ ⚙️ **🛠️ 🆔** 
 
 👥 💪 ⏬ 🗄 🎻 📁 `openapi.json` &amp; ⤴️ 👥 💪 **❎ 👈 🔡 🔖** ⏮️ ✍ 💖 👉:
 
-```Python
-{!../../docs_src/generate_clients/tutorial004.py!}
-```
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 ⏮️ 👈, 🛠️ 🆔 🔜 📁 ⚪️➡️ 👜 💖 `items-get_items` `get_items`, 👈 🌌 👩‍💻 🚂 💪 🏗 🙅 👩‍🔬 📛.
 

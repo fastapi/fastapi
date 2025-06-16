@@ -24,35 +24,7 @@ This is supported since FastAPI version `0.113.0`. 🤓
 
 You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9-11  15"
-{!> ../../docs_src/request_form_models/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8-10  14"
-{!> ../../docs_src/request_form_models/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7-9  13"
-{!> ../../docs_src/request_form_models/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
 
 **FastAPI** will **extract** the data for **each field** from the **form data** in the request and give you the Pydantic model you defined.
 
@@ -76,35 +48,7 @@ This is supported since FastAPI version `0.114.0`. 🤓
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/request_form_models/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/request_form_models/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/request_form_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
 
 If a client tries to send some extra data, they will receive an **error** response.
 
