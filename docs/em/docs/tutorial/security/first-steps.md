@@ -20,9 +20,7 @@
 
 📁 🖼 📁 `main.py`:
 
-```Python
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 🏃 ⚫️
 
@@ -128,9 +126,7 @@ Oauth2️⃣ 🔧 👈 👩‍💻 ⚖️ 🛠️ 💪 🔬 💽 👈 🔓 👩�
 
 🕐❔ 👥 ✍ 👐 `OAuth2PasswordBearer` 🎓 👥 🚶‍♀️ `tokenUrl` 🔢. 👉 🔢 🔌 📛 👈 👩‍💻 (🕸 🏃 👩‍💻 🖥) 🔜 ⚙️ 📨 `username` &amp; `password` ✔ 🤚 🤝.
 
-```Python hl_lines="6"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[6] *}
 
 /// tip
 
@@ -168,9 +164,7 @@ oauth2_scheme(some, parameters)
 
 🔜 👆 💪 🚶‍♀️ 👈 `oauth2_scheme` 🔗 ⏮️ `Depends`.
 
-```Python hl_lines="10"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[10] *}
 
 👉 🔗 🔜 🚚 `str` 👈 🛠️ 🔢 `token` *➡ 🛠️ 🔢*.
 

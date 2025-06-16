@@ -118,9 +118,7 @@ PassLibのcontextには、検証だけが許された非推奨の古いハッシ
 
 さらに、ユーザーを認証して返す関数も作成します。
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[7,48,55:56,59:60,69:75] *}
 
 /// note | 備考
 
@@ -156,9 +154,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 新しいアクセストークンを生成するユーティリティ関数を作成します。
 
-```Python hl_lines="6  12-14  28-30  78-86"
-{!../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[6,12:14,28:30,78:86] *}
 
 ## 依存関係の更新
 
@@ -168,9 +164,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 トークンが無効な場合は、すぐにHTTPエラーを返します。
 
-```Python hl_lines="89-106"
-{!../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[89:106] *}
 
 ## `/token` パスオペレーションの更新
 
@@ -178,9 +172,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 JWTアクセストークンを作成し、それを返します。
 
-```Python hl_lines="115-130"
-{!../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[115:130] *}
 
 ### JWTの"subject" `sub` についての技術的な詳細
 

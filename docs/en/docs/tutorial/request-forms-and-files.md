@@ -16,69 +16,13 @@ $ pip install python-multipart
 
 ## Import `File` and `Form`
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
 
 ## Define `File` and `Form` parameters
 
 Create file and form parameters the same way you would for `Body` or `Query`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10-12"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-11"
-{!> ../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="8"
-{!> ../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
 
 The files and form fields will be uploaded as form data and you will receive the files and form fields.
 

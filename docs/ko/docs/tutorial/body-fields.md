@@ -6,57 +6,7 @@
 
 먼저 이를 임포트해야 합니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | 팁
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | 팁
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
 /// warning | 경고
 
@@ -68,57 +18,7 @@
 
 그 다음 모델 어트리뷰트와 함께 `Field`를 사용할 수 있습니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | 팁
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | 팁
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field`는 `Query`, `Path`와 `Body`와 같은 방식으로 동작하며, 모두 같은 매개변수들 등을 가집니다.
 

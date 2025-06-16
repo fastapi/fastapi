@@ -1,14 +1,25 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py39
 
-@pytest.fixture(name="app")
-def get_app():
-    from docs_src.request_forms_and_files.tutorial001 import app
 
-    return app
+@pytest.fixture(
+    name="app",
+    params=[
+        "tutorial001",
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py39", marks=needs_py39),
+    ],
+)
+def get_app(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.request_forms_and_files.{request.param}")
+
+    return mod.app
 
 
 @pytest.fixture(name="client")

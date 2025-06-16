@@ -35,9 +35,7 @@
 对于这些情况，在将数据传递给响应之前，你可以使用 `jsonable_encoder` 来转换你的数据。
 
 
-```Python hl_lines="4 6 20 21"
-{!../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[4,6,20,21] *}
 
 /// note | 技术细节
 
@@ -57,9 +55,7 @@
 
 你可以把你的 XML 内容放到一个字符串中，放到一个 `Response` 中，然后返回。
 
-```Python hl_lines="1  18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 说明
 
