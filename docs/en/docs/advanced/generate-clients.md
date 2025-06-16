@@ -12,6 +12,11 @@ A common tool is <a href="https://openapi-generator.tech/" class="external-link"
 
 If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>.
 
+## Other Generators
+
+If you're working with Dart, you can try [Dart OpenAPI Generator](https://pub.dev/packages/openapi_generator).
+
+
 ## Client and SDK Generators - Sponsor
 
 There are also some **company-backed** Client and SDK generators based on OpenAPI (FastAPI), in some cases they can offer you **additional features** on top of high-quality generated SDKs/clients.
