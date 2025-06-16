@@ -27,20 +27,25 @@ Ardından çerezleri belirleyin ve yanıtı döndürün:
 {* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | İpucu
-    `Response` parametresini kullanmak yerine yanıtı doğrudan döndürürseniz, FastAPI yanıtı doğrudan döndürecektir.
 
-    Yanıtı doğrudan döndürürken, verinizin doğru türde olduğundan emin olmalısınız. Örneğin, bir `JSONResponse` döndürüyorsanız, verinizin JSON ile uyumlu olduğundan emin olmalısınız.
+`Response` parametresini kullanmak yerine yanıtı doğrudan döndürürseniz, FastAPI yanıtı doğrudan döndürecektir.
 
-    Ayrıca, bir `response_model` tarafından filtrelenmesi gereken verileri göndermediğinizden emin olmalısınız.
+Yanıtı doğrudan döndürürken, verinizin doğru türde olduğundan emin olmalısınız. Örneğin, bir `JSONResponse` döndürüyorsanız, verinizin JSON ile uyumlu olduğundan emin olmalısınız.
+
+Ayrıca, bir `response_model` tarafından filtrelenmesi gereken verileri göndermediğinizden emin olmalısınız.
+
 ///
 
 ## Daha Fazla Bilgi
 
-!!! note "Teknik Detaylar"
-    Projenize dahil etmek için `from starlette.responses import Response` veya `from starlette.responses import JSONResponse` kullanabilirsiniz.
+/// note | Teknik Detaylar
 
-    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
+Projenize dahil etmek için `from starlette.responses import Response` veya `from starlette.responses import JSONResponse` kullanabilirsiniz.
 
-    `Response` sıklıkla başlıkları ve çerezleri belirlemek için kullanılabileceği için, **FastAPI** ayrıca `fastapi.Response`'ı da sağlar.
+**FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.responses`'ı `fastapi.responses` olarak sağlar. Ancak mevcut yanıtların çoğu doğrudan Starlette'den gelir. Aynı durum `status` için de geçerlidir.
+
+`Response` sıklıkla başlıkları ve çerezleri belirlemek için kullanılabileceği için, **FastAPI** ayrıca `fastapi.Response`'ı da sağlar.
+
+///
 
 Tüm mevcut parametreleri ve seçenekleri görmek için <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Starlette dokümantasyonunu</a> incelleyin.
