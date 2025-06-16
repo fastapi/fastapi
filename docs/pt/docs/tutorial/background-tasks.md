@@ -77,8 +77,6 @@ Se você precisa realizar cálculos pesados ​​em segundo plano e não necess
 
 Eles tendem a exigir configurações mais complexas, um gerenciador de fila de mensagens/tarefas, como RabbitMQ ou Redis, mas permitem que você execute tarefas em segundo plano em vários processos e, especialmente, em vários servidores.
 
-Para ver um exemplo, verifique os [Geradores de projeto](../project-generation.md){.internal-link target=\_blank}, todos incluem celery já configurado.
-
 Mas se você precisa acessar variáveis ​​e objetos do mesmo aplicativo **FastAPI**, ou precisa realizar pequenas tarefas em segundo plano (como enviar uma notificação por e-mail), você pode simplesmente usar `BackgroundTasks`.
 
 ## Recapitulando

@@ -8,9 +8,7 @@
 * `@app.delete()`
 * など。
 
-```Python hl_lines="17"
-{!../../docs_src/response_model/tutorial001.py!}
-```
+{* ../../docs_src/response_model/tutorial001.py hl[17] *}
 
 /// note | 備考
 
@@ -41,15 +39,11 @@ FastAPIは`response_model`を使って以下のことをします:
 
 ここでは`UserIn`モデルを宣言しています。それには平文のパスワードが含まれています:
 
-```Python hl_lines="9 11"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[9,11] *}
 
 そして、このモデルを使用して入力を宣言し、同じモデルを使って出力を宣言しています:
 
-```Python hl_lines="17 18"
-{!../../docs_src/response_model/tutorial002.py!}
-```
+{* ../../docs_src/response_model/tutorial002.py hl[17,18] *}
 
 これで、ブラウザがパスワードを使ってユーザーを作成する際に、APIがレスポンスで同じパスワードを返すようになりました。
 
@@ -67,21 +61,15 @@ FastAPIは`response_model`を使って以下のことをします:
 
 代わりに、平文のパスワードを持つ入力モデルと、パスワードを持たない出力モデルを作成することができます:
 
-```Python hl_lines="9 11 16"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 ここでは、*path operation関数*がパスワードを含む同じ入力ユーザーを返しているにもかかわらず:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...`response_model`を`UserOut`と宣言したことで、パスワードが含まれていません:
 
-```Python hl_lines="22"
-{!../../docs_src/response_model/tutorial003.py!}
-```
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 そのため、**FastAPI** は出力モデルで宣言されていない全てのデータをフィルタリングしてくれます（Pydanticを使用）。
 
@@ -99,9 +87,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 レスポンスモデルにはデフォルト値を設定することができます:
 
-```Python hl_lines="11 13 14"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[11,13,14] *}
 
 * `description: str = None`は`None`がデフォルト値です。
 * `tax: float = 10.5`は`10.5`がデフォルト値です。
@@ -115,9 +101,7 @@ FastAPIは`response_model`を使って以下のことをします:
 
 *path operation デコレータ*に`response_model_exclude_unset=True`パラメータを設定することができます:
 
-```Python hl_lines="24"
-{!../../docs_src/response_model/tutorial004.py!}
-```
+{* ../../docs_src/response_model/tutorial004.py hl[24] *}
 
 そして、これらのデフォルト値はレスポンスに含まれず、実際に設定された値のみが含まれます。
 
@@ -205,9 +189,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 ///
 
-```Python hl_lines="31 37"
-{!../../docs_src/response_model/tutorial005.py!}
-```
+{* ../../docs_src/response_model/tutorial005.py hl[31,37] *}
 
 /// tip | 豆知識
 
@@ -221,9 +203,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）`d
 
 もし`set`を使用することを忘れて、代わりに`list`や`tuple`を使用しても、FastAPIはそれを`set`に変換して正しく動作します:
 
-```Python hl_lines="31 37"
-{!../../docs_src/response_model/tutorial006.py!}
-```
+{* ../../docs_src/response_model/tutorial006.py hl[31,37] *}
 
 ## まとめ
 

@@ -18,35 +18,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이를 위해 `__call__` 메서드를 선언합니다:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="11"
-{!> ../../docs_src/dependencies/tutorial011_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 참고
-
-가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/dependencies/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
 
 이 경우, **FastAPI**는 추가 매개변수와 하위 의존성을 확인하기 위해 `__call__`을 사용하게 되며,
 나중에 *경로 연산 함수*에서 매개변수에 값을 전달할 때 이를 호출하게 됩니다.
@@ -55,35 +27,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이제 `__init__`을 사용하여 의존성을 "매개변수화"할 수 있는 인스턴스의 매개변수를 선언할 수 있습니다:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../docs_src/dependencies/tutorial011_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 참고
-
-가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/dependencies/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
 
 이 경우, **FastAPI**는 `__init__`에 전혀 관여하지 않으며, 우리는 이 메서드를 코드에서 직접 사용하게 됩니다.
 
@@ -91,35 +35,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 다음과 같이 이 클래스의 인스턴스를 생성할 수 있습니다:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18"
-{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial011_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 참고
-
-가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
-
-///
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
 
 이렇게 하면 `checker.fixed_content` 속성에 `"bar"`라는 값을 담아 의존성을 "매개변수화"할 수 있습니다.
 
@@ -136,35 +52,7 @@ checker(q="somequery")
 
 ...그리고 이때 반환되는 값을 *경로 연산 함수*의 `fixed_content_included` 매개변수로 전달합니다:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="22"
-{!> ../../docs_src/dependencies/tutorial011_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="21"
-{!> ../../docs_src/dependencies/tutorial011_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | 참고
-
-가능하다면 `Annotated` 버전을 사용하는 것이 좋습니다.
-
-///
-
-```Python hl_lines="20"
-{!> ../../docs_src/dependencies/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
 
 /// tip | 참고
 

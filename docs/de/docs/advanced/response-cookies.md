@@ -6,9 +6,7 @@ Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion*
 
 Und dann können Sie Cookies in diesem *vorübergehenden* Response-Objekt setzen.
 
-```Python hl_lines="1  8-9"
-{!../../docs_src/response_cookies/tutorial002.py!}
-```
+{* ../../docs_src/response_cookies/tutorial002.py hl[1,8:9] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -26,9 +24,7 @@ Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurüc
 
 Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 
-```Python hl_lines="10-12"
-{!../../docs_src/response_cookies/tutorial001.py!}
-```
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | Tipp
 

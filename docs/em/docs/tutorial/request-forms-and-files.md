@@ -12,17 +12,13 @@
 
 ## 🗄 `File` &amp; `Form`
 
-```Python hl_lines="1"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[1] *}
 
 ## 🔬 `File` &amp; `Form` 🔢
 
 ✍ 📁 &amp; 📨 🔢 🎏 🌌 👆 🔜 `Body` ⚖️ `Query`:
 
-```Python hl_lines="8"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[8] *}
 
 📁 &amp; 📨 🏑 🔜 📂 📨 📊 &amp; 👆 🔜 📨 📁 &amp; 📨 🏑.
 

@@ -8,7 +8,7 @@ Por isso é comum prover essas configurações como variáveis de ambiente que s
 
 ## Variáveis de Ambiente
 
-/// dica
+/// tip | Dica
 
 Se você já sabe o que são variáveis de ambiente e como utilizá-las, sinta-se livre para avançar para o próximo tópico.
 
@@ -67,7 +67,7 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// dica
+/// tip | Dica
 
 O segundo parâmetro em <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> é o valor padrão para o retorno.
 
@@ -124,7 +124,7 @@ Hello World from Python
 
 </div>
 
-/// dica
+/// tip | Dica
 
 Você pode ler mais sobre isso em: <a href="https://12factor.net/pt_br/config" class="external-link" target="_blank">The Twelve-Factor App: Configurações</a>.
 
@@ -180,9 +180,7 @@ Você pode utilizar todas as ferramentas e funcionalidades de validação que s�
 
 //// tab | Pydantic v2
 
-```Python hl_lines="2  5-8  11"
-{!> ../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 ////
 
@@ -194,13 +192,11 @@ Na versão 1 do Pydantic você importaria `BaseSettings` diretamente do módulo 
 
 ///
 
-```Python hl_lines="2  5-8  11"
-{!> ../../docs_src/settings/tutorial001_pv1.py!}
-```
+{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
 
 ////
 
-/// dica
+/// tip | Dica
 
 Se você quiser algo pronto para copiar e colar na sua aplicação, não use esse exemplo, mas sim o exemplo abaixo.
 
@@ -214,9 +210,7 @@ Depois ele irá converter e validar os dados. Assim, quando você utilizar aquel
 
 Depois, Você pode utilizar o novo objeto `settings` na sua aplicação:
 
-```Python hl_lines="18-20"
-{!../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Executando o servidor
 
@@ -232,7 +226,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 </div>
 
-/// dica
+/// tip | Dica
 
 Para definir múltiplas variáveis de ambiente para um único comando basta separá-las utilizando espaços, e incluir todas elas antes do comando.
 
@@ -250,17 +244,13 @@ Você também pode incluir essas configurações em um arquivo de um módulo sep
 
 Por exemplo, você pode adicionar um arquivo `config.py` com:
 
-```Python
-{!../../docs_src/settings/app01/config.py!}
-```
+{* ../../docs_src/settings/app01/config.py *}
 
 E utilizar essa configuração em `main.py`:
 
-```Python hl_lines="3  11-13"
-{!../../docs_src/settings/app01/main.py!}
-```
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
-/// dica
+/// tip | Dica
 
 Você também precisa incluir um arquivo `__init__.py` como visto em [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=\_blank}.
 
@@ -276,9 +266,7 @@ Isso é especialmente útil durante os testes, já que é bastante simples sobre
 
 Baseando-se no exemplo anterior, seu arquivo `config.py` seria parecido com isso:
 
-```Python hl_lines="10"
-{!../../docs_src/settings/app02/config.py!}
-```
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Perceba que dessa vez não criamos uma instância padrão `settings = Settings()`.
 
@@ -286,37 +274,9 @@ Perceba que dessa vez não criamos uma instância padrão `settings = Settings()
 
 Agora criamos a dependência que retorna um novo objeto `config.Settings()`.
 
-//// tab | Python 3.9+
+{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
 
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="6  12-13"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="5  11-12"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
-
-/// dica
+/// tip | Dica
 
 Vamos discutir sobre `@lru_cache` logo mais.
 
@@ -326,43 +286,13 @@ Por enquanto, você pode considerar `get_settings()` como uma função normal.
 
 E então podemos declarar essas configurações como uma dependência na função de operação da rota e utilizar onde for necessário.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17  19-21"
-{!> ../../docs_src/settings/app02_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="16  18-20"
-{!> ../../docs_src/settings/app02/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
 
 ### Configurações e testes
 
 Então seria muito fácil fornecer uma configuração diferente durante a execução dos testes sobrescrevendo a dependência de `get_settings`:
 
-```Python hl_lines="9-10  13  21"
-{!../../docs_src/settings/app02/test_main.py!}
-```
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 Na sobrescrita da dependência, definimos um novo valor para `admin_email` quando instanciamos um novo objeto `Settings`, e então retornamos esse novo objeto.
 
@@ -374,7 +304,7 @@ Se você tiver muitas configurações que variem bastante, talvez em ambientes d
 
 Essa prática é tão comum que possui um nome, essas variáveis de ambiente normalmente são colocadas em um arquivo `.env`, e esse arquivo é chamado de "dotenv".
 
-/// dica
+/// tip | Dica
 
 Um arquivo iniciando com um ponto final (`.`) é um arquivo oculto em sistemas baseados em Unix, como Linux e MacOS.
 
@@ -384,7 +314,7 @@ Mas um arquivo dotenv não precisa ter esse nome exato.
 
 Pydantic suporta a leitura desses tipos de arquivos utilizando uma biblioteca externa. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
 
-/// dica
+/// tip | Dica
 
 Para que isso funcione você precisa executar `pip install python-dotenv`.
 
@@ -405,11 +335,9 @@ E então adicionar o seguinte código em `config.py`:
 
 //// tab | Pydantic v2
 
-```Python hl_lines="9"
-{!> ../../docs_src/settings/app03_an/config.py!}
-```
+{* ../../docs_src/settings/app03_an/config.py hl[9] *}
 
-/// dica
+/// tip | Dica
 
 O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
 
@@ -419,11 +347,9 @@ O atributo `model_config` é usado apenas para configuração do Pydantic. Você
 
 //// tab | Pydantic v1
 
-```Python hl_lines="9-10"
-{!> ../../docs_src/settings/app03_an/config_pv1.py!}
-```
+{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
 
-/// dica
+/// tip | Dica
 
 A classe `Config` é usada apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
 
@@ -462,35 +388,7 @@ Iriamos criar um novo objeto a cada requisição, e estaríamos lendo o arquivo 
 
 Mas como estamos utilizando o decorador `@lru_cache` acima, o objeto `Settings` é criado apenas uma vez, na primeira vez que a função é chamada. ✔️
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  11"
-{!> ../../docs_src/settings/app03_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// dica
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="1  10"
-{!> ../../docs_src/settings/app03/main.py!}
-```
-
-////
+{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
 
 Dessa forma, todas as chamadas da função `get_settings()` nas dependências das próximas requisições, em vez de executar o código interno de `get_settings()` e instanciar um novo objeto `Settings`, irão retornar o mesmo objeto que foi retornado na primeira chamada, de novo e de novo.
 

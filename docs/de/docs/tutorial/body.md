@@ -22,21 +22,7 @@ Da aber davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Be
 
 Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="2"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## Erstellen Sie Ihr Datenmodell
 
@@ -44,21 +30,7 @@ Dann deklarieren Sie Ihr Datenmodell als eine Klasse, die von `BaseModel` erbt.
 
 Verwenden Sie Standard-Python-Typen für die Klassenattribute:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="5-9"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7-11"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 Wie auch bei Query-Parametern gilt, wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Ansonsten ist es erforderlich. Verwenden Sie `None`, um es als optional zu kennzeichnen.
 
@@ -86,21 +58,7 @@ Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre fol
 
 Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="16"
-{!> ../../docs_src/body/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ... und deklarieren Sie seinen Typ als das Modell, welches Sie erstellt haben, `Item`.
 
@@ -167,21 +125,7 @@ Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
 
 Innerhalb der Funktion können Sie alle Attribute des Modells direkt verwenden:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="19"
-{!> ../../docs_src/body/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="21"
-{!> ../../docs_src/body/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial002_py310.py hl[19] *}
 
 ## Requestbody- + Pfad-Parameter
 
@@ -189,21 +133,7 @@ Sie können Pfad- und Requestbody-Parameter gleichzeitig deklarieren.
 
 **FastAPI** erkennt, dass Funktionsparameter, die mit Pfad-Parametern übereinstimmen, **vom Pfad genommen** werden sollen, und dass Funktionsparameter, welche Pydantic-Modelle sind, **vom Requestbody genommen** werden sollen.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="15-16"
-{!> ../../docs_src/body/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17-18"
-{!> ../../docs_src/body/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
 ## Requestbody- + Pfad- + Query-Parameter
 
@@ -211,21 +141,7 @@ Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** 
 
 **FastAPI** wird jeden Parameter korrekt erkennen und die Daten vom richtigen Ort holen.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="16"
-{!> ../../docs_src/body/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 Die Funktionsparameter werden wie folgt erkannt:
 

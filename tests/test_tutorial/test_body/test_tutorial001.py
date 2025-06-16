@@ -1,15 +1,24 @@
+import importlib
 from unittest.mock import patch
 
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
+from ...utils import needs_py310
 
-@pytest.fixture
-def client():
-    from docs_src.body.tutorial001 import app
 
-    client = TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body.{request.param}")
+
+    client = TestClient(mod.app)
     return client
 
 

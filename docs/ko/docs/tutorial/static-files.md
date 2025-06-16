@@ -7,9 +7,7 @@
 * `StaticFiles` 임포트합니다.
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트" 합니다.
 
-```Python hl_lines="2  6"
-{!../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | 기술적 세부사항
 
