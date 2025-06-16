@@ -31,9 +31,7 @@
     * ⤴️ ⚫️ 📨 `response` 🏗 🔗 *➡ 🛠️*.
 * 👆 💪 ⤴️ 🔀 🌅 `response` ⏭ 🛬 ⚫️.
 
-```Python hl_lines="8-9  11  14"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip
 
@@ -59,9 +57,7 @@
 
 🖼, 👆 💪 🚮 🛃 🎚 `X-Process-Time` ⚗ 🕰 🥈 👈 ⚫️ ✊ 🛠️ 📨 &amp; 🏗 📨:
 
-```Python hl_lines="10  12-13"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## 🎏 🛠️
 

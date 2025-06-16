@@ -16,17 +16,13 @@
 
 🗄 `File` &amp; `UploadFile` ⚪️➡️ `fastapi`:
 
-```Python hl_lines="1"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[1] *}
 
 ## 🔬 `File` 🔢
 
 ✍ 📁 🔢 🎏 🌌 👆 🔜 `Body` ⚖️ `Form`:
 
-```Python hl_lines="7"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[7] *}
 
 /// info
 
@@ -54,9 +50,7 @@
 
 🔬 📁 🔢 ⏮️ 🆎 `UploadFile`:
 
-```Python hl_lines="12"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[12] *}
 
 ⚙️ `UploadFile` ✔️ 📚 📈 🤭 `bytes`:
 
@@ -139,29 +133,13 @@ contents = myfile.file.read()
 
 👆 💪 ⚒ 📁 📦 ⚙️ 🐩 🆎 ✍ &amp; ⚒ 🔢 💲 `None`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="7  14"
-{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` ⏮️ 🌖 🗃
 
 👆 💪 ⚙️ `File()` ⏮️ `UploadFile`, 🖼, ⚒ 🌖 🗃:
 
-```Python hl_lines="13"
-{!../../docs_src/request_files/tutorial001_03.py!}
-```
+{* ../../docs_src/request_files/tutorial001_03.py hl[13] *}
 
 ## 💗 📁 📂
 
@@ -171,21 +149,7 @@ contents = myfile.file.read()
 
 ⚙️ 👈, 📣 📇 `bytes` ⚖️ `UploadFile`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 👆 🔜 📨, 📣, `list` `bytes` ⚖️ `UploadFile`Ⓜ.
 
@@ -201,21 +165,7 @@ contents = myfile.file.read()
 
 &amp; 🎏 🌌 ⏭, 👆 💪 ⚙️ `File()` ⚒ 🌖 🔢, `UploadFile`:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="18"
-{!> ../../docs_src/request_files/tutorial003.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.9️⃣ &amp; 🔛
-
-```Python hl_lines="16"
-{!> ../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003.py hl[18] *}
 
 ## 🌃
 

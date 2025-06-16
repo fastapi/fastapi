@@ -6,57 +6,7 @@ So wie Sie zusätzliche Validation und Metadaten in Parametern der **Pfadoperati
 
 Importieren Sie es zuerst:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
 /// warning | Achtung
 
@@ -68,57 +18,7 @@ Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fas
 
 Dann können Sie `Field` mit Modellattributen deklarieren:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field` funktioniert genauso wie `Query`, `Path` und `Body`, es hat die gleichen Parameter, usw.
 

@@ -2,9 +2,7 @@
 
 👆 💪 📣 ➡ "🔢" ⚖️ "🔢" ⏮️ 🎏 ❕ ⚙️ 🐍 📁 🎻:
 
-```Python hl_lines="6-7"
-{!../../docs_src/path_params/tutorial001.py!}
-```
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 💲 ➡ 🔢 `item_id` 🔜 🚶‍♀️ 👆 🔢 ❌ `item_id`.
 
@@ -18,9 +16,7 @@
 
 👆 💪 📣 🆎 ➡ 🔢 🔢, ⚙️ 🐩 🐍 🆎 ✍:
 
-```Python hl_lines="7"
-{!../../docs_src/path_params/tutorial002.py!}
-```
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 👉 💼, `item_id` 📣 `int`.
 
@@ -121,17 +117,13 @@
 
 ↩️ *➡ 🛠️* 🔬 ✔, 👆 💪 ⚒ 💭 👈 ➡ `/users/me` 📣 ⏭ 1️⃣ `/users/{user_id}`:
 
-```Python hl_lines="6  11"
-{!../../docs_src/path_params/tutorial003.py!}
-```
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 ⏪, ➡ `/users/{user_id}` 🔜 🏏 `/users/me`, "💭" 👈 ⚫️ 📨 🔢 `user_id` ⏮️ 💲 `"me"`.
 
 ➡, 👆 🚫🔜 ↔ ➡ 🛠️:
 
-```Python hl_lines="6  11"
-{!../../docs_src/path_params/tutorial003b.py!}
-```
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 🥇 🕐 🔜 🕧 ⚙️ ↩️ ➡ 🏏 🥇.
 
@@ -147,9 +139,7 @@
 
 ⤴️ ✍ 🎓 🔢 ⏮️ 🔧 💲, ❔ 🔜 💪 ☑ 💲:
 
-```Python hl_lines="1  6-9"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// info
 
@@ -167,9 +157,7 @@
 
 ⤴️ ✍ *➡ 🔢* ⏮️ 🆎 ✍ ⚙️ 🔢 🎓 👆 ✍ (`ModelName`):
 
-```Python hl_lines="16"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### ✅ 🩺
 
@@ -185,17 +173,13 @@
 
 👆 💪 🔬 ⚫️ ⏮️ *🔢 👨‍🎓* 👆 ✍ 🔢 `ModelName`:
 
-```Python hl_lines="17"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### 🤚 *🔢 💲*
 
 👆 💪 🤚 ☑ 💲 ( `str` 👉 💼) ⚙️ `model_name.value`, ⚖️ 🏢, `your_enum_member.value`:
 
-```Python hl_lines="20"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip
 
@@ -209,9 +193,7 @@
 
 👫 🔜 🗜 👫 🔗 💲 (🎻 👉 💼) ⏭ 🛬 👫 👩‍💻:
 
-```Python hl_lines="18  21  23"
-{!../../docs_src/path_params/tutorial005.py!}
-```
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 👆 👩‍💻 👆 🔜 🤚 🎻 📨 💖:
 
@@ -250,9 +232,7 @@
 
 , 👆 💪 ⚙️ ⚫️ ⏮️:
 
-```Python hl_lines="6"
-{!../../docs_src/path_params/tutorial004.py!}
-```
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip
 

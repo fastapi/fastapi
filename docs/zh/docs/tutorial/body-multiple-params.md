@@ -8,57 +8,7 @@
 
 你还可以通过将默认值设置为 `None` 来将请求体参数声明为可选参数：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="17-19"
-{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note
 
@@ -81,21 +31,7 @@
 
 但是你也可以声明多个请求体参数，例如 `item` 和 `user`：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
 在这种情况下，**FastAPI** 将注意到该函数中有多个请求体参数（两个 Pydantic 模型参数）。
 
@@ -137,57 +73,7 @@
 但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。
 
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 
@@ -222,57 +108,7 @@ q: str = None
 
 比如：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="25"
-{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[27] *}
 
 /// info
 
@@ -294,57 +130,7 @@ item: Item = Body(embed=True)
 
 比如：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-尽可能选择使用 `Annotated` 的版本。
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 

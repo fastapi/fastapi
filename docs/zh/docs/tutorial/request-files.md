@@ -16,17 +16,13 @@
 
 从 `fastapi` 导入 `File` 和 `UploadFile`：
 
-```Python hl_lines="1"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[1] *}
 
 ## 定义 `File` 参数
 
 创建文件（`File`）参数的方式与 `Body` 和 `Form` 一样：
 
-```Python hl_lines="7"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[7] *}
 
 /// info | 说明
 
@@ -54,9 +50,7 @@
 
 定义文件参数时使用 `UploadFile`：
 
-```Python hl_lines="12"
-{!../../docs_src/request_files/tutorial001.py!}
-```
+{* ../../docs_src/request_files/tutorial001.py hl[12] *}
 
 `UploadFile` 与 `bytes` 相比有更多优势：
 
@@ -138,29 +132,13 @@ contents = myfile.file.read()
 
 您可以通过使用标准类型注解并将 None 作为默认值的方式将一个文件参数设为可选:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="7  14"
-{!> ../../docs_src/request_files/tutorial001_02_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  17"
-{!> ../../docs_src/request_files/tutorial001_02.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial001_02_py310.py hl[7,14] *}
 
 ## 带有额外元数据的 `UploadFile`
 
 您也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
-```Python hl_lines="13"
-{!../../docs_src/request_files/tutorial001_03.py!}
-```
+{* ../../docs_src/request_files/tutorial001_03.py hl[13] *}
 
 ## 多文件上传
 
@@ -170,21 +148,7 @@ FastAPI 支持同时上传多个文件。
 
 上传多个文件时，要声明含 `bytes` 或 `UploadFile` 的列表（`List`）：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/request_files/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/request_files/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial002_py39.py hl[8,13] *}
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
 
@@ -201,21 +165,7 @@ FastAPI 支持同时上传多个文件。
 
 和之前的方式一样, 您可以为 `File()` 设置额外参数, 即使是 `UploadFile`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/request_files/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/request_files/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/request_files/tutorial003_py39.py hl[16] *}
 
 ## 小结
 

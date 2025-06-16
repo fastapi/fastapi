@@ -22,9 +22,8 @@ Python підтримує додаткові "підказки типу" ("type 
 
 Давайте почнемо з простого прикладу:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 Виклик цієї програми виводить:
 
@@ -38,9 +37,8 @@ John Doe
 * Конвертує кожну літеру кожного слова у верхній регістр за допомогою `title()`.
 * <abbr title="З’єднує їх, як одне ціле. З вмістом один за одним.">Конкатенує</abbr> їх разом із пробілом по середині.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### Редагуйте це
 
@@ -82,9 +80,8 @@ John Doe
 
 Це "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 Це не те саме, що оголошення значень за замовчуванням, як це було б з:
 
@@ -112,9 +109,8 @@ John Doe
 
 Перевірте цю функцію, вона вже має анотацію типу:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 Оскільки редактор знає типи змінних, ви не тільки отримаєте автозаповнення, ви також отримаєте перевірку помилок:
 
@@ -122,9 +118,8 @@ John Doe
 
 Тепер ви знаєте, щоб виправити це, вам потрібно перетворити `age` у строку з допомогою `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## Оголошення типів
 
@@ -143,9 +138,8 @@ John Doe
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### Generic-типи з параметрами типів
 
@@ -406,15 +400,13 @@ John Doe
 
 Скажімо, у вас є клас `Person` з імʼям:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Потім ви можете оголосити змінну типу `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 І знову ж таки, ви отримуєте всю підтримку редактора:
 

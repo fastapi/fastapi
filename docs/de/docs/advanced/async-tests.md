@@ -32,15 +32,11 @@ Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größ
 
 Die Datei `main.py` hätte als Inhalt:
 
-```Python
-{!../../docs_src/async_tests/main.py!}
-```
+{* ../../docs_src/async_tests/main.py *}
 
 Die Datei `test_main.py` hätte die Tests für `main.py`, das könnte jetzt so aussehen:
 
-```Python
-{!../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py *}
 
 ## Es ausführen
 

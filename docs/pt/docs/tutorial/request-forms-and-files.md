@@ -12,17 +12,13 @@ Por exemplo: `pip install python-multipart`.
 
 ## Importe `File` e `Form`
 
-```Python hl_lines="1"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[1] *}
 
 ## Defina parâmetros de `File` e `Form`
 
 Crie parâmetros de arquivo e formulário da mesma forma que você faria para `Body` ou `Query`:
 
-```Python hl_lines="8"
-{!../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[8] *}
 
 Os arquivos e campos de formulário serão carregados como dados de formulário e você receberá os arquivos e campos de formulário.
 
