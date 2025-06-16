@@ -30,9 +30,7 @@ Isso ocorre por que, por padrão, o FastAPI irá verificar cada item dentro do d
 
 Mas se você tem certeza que o conteúdo que você está retornando é **serializável com JSON**, você pode passá-lo diretamente para a classe de resposta e evitar o trabalho extra que o FastAPI teria ao passar o conteúdo pelo `jsonable_encoder` antes de passar para a classe de resposta.
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial001b.py!}
-```
+{* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
 
 /// info | Informação
 
@@ -57,9 +55,7 @@ Para retornar uma resposta com HTML diretamente do **FastAPI**, utilize `HTMLRes
 * Importe `HTMLResponse`
 * Passe `HTMLResponse` como o parâmetro de `response_class` do seu *decorador de operação de rota*.
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial002.py!}
-```
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// info | Informação
 
@@ -77,9 +73,7 @@ Como visto em [Retornando uma Resposta Diretamente](response-directly.md){.inter
 
 O mesmo exemplo de antes, retornando uma `HTMLResponse`, poderia parecer com:
 
-```Python hl_lines="2  7  19"
-{!../../docs_src/custom_response/tutorial003.py!}
-```
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | Aviso
 
@@ -103,9 +97,7 @@ A `response_class` será usada apenas para documentar o OpenAPI da *operação d
 
 Por exemplo, poderia ser algo como:
 
-```Python hl_lines="7  21  23"
-{!../../docs_src/custom_response/tutorial004.py!}
-```
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 Neste exemplo, a função `generate_html_response()` já cria e retorna uma `Response` em vez de retornar o HTML em uma `str`.
 
@@ -144,9 +136,7 @@ Ela aceita os seguintes parâmetros:
 
 O FastAPI (Starlette, na verdade) irá incluir o cabeçalho Content-Length automaticamente. Ele também irá incluir o cabeçalho Content-Type, baseado no `media_type` e acrescentando uma codificação para tipos textuais.
 
-```Python hl_lines="1  18"
-{!../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse`
 
@@ -156,9 +146,7 @@ Usa algum texto ou sequência de bytes e retorna uma resposta HTML. Como você l
 
 Usa algum texto ou sequência de bytes para retornar uma resposta de texto não formatado.
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial005.py!}
-```
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse`
 
@@ -192,9 +180,7 @@ Essa resposta requer a instalação do pacote `ujson`, com o comando `pip instal
 
 ///
 
-```Python hl_lines="2  7"
-{!../../docs_src/custom_response/tutorial001.py!}
-```
+{* ../../docs_src/custom_response/tutorial001.py hl[2,7] *}
 
 /// tip | Dica
 
@@ -208,17 +194,13 @@ Retorna um redirecionamento HTTP. Utiliza o código de status 307 (Redirecioname
 
 Você pode retornar uma `RedirectResponse` diretamente:
 
-```Python hl_lines="2  9"
-{!../../docs_src/custom_response/tutorial006.py!}
-```
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 Ou você pode utilizá-la no parâmetro `response_class`:
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial006b.py!}
-```
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 Se você fizer isso, então você pode retornar a URL diretamente da sua *função de operação de rota*
 
@@ -228,17 +210,13 @@ Neste caso, o `status_code` utilizada será o padrão de `RedirectResponse`, que
 
 Você também pode utilizar o parâmetro `status_code` combinado com o parâmetro `response_class`:
 
-```Python hl_lines="2  7  9"
-{!../../docs_src/custom_response/tutorial006c.py!}
-```
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse`
 
 Recebe uma gerador assíncrono ou um gerador/iterador comum e retorna o corpo da requisição continuamente (stream).
 
-```Python hl_lines="2  14"
-{!../../docs_src/custom_response/tutorial007.py!}
-```
+{* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
 #### Utilizando `StreamingResponse` com objetos semelhantes a arquivos
 
@@ -279,15 +257,11 @@ Recebe um conjunto de argumentos do construtor diferente dos outros tipos de res
 
 Respostas de Arquivos incluem o tamanho do arquivo, data da última modificação e ETags apropriados, nos cabeçalhos `Content-Length`, `Last-Modified` e `ETag`, respectivamente.
 
-```Python hl_lines="2  10"
-{!../../docs_src/custom_response/tutorial009.py!}
-```
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 Você também pode usar o parâmetro `response_class`:
 
-```Python hl_lines="2  8  10"
-{!../../docs_src/custom_response/tutorial009b.py!}
-```
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 Nesse caso, você pode retornar o caminho do arquivo diretamente da sua *função de operação de rota*.
 
@@ -301,9 +275,7 @@ Vamos supor também que você queira retornar um JSON indentado e formatado, ent
 
 Você poderia criar uma classe `CustomORJSONResponse`. A principal coisa a ser feita é sobrecarregar o método render da classe Response, `Response.render(content)`, que retorna o conteúdo em bytes, para retornar o conteúdo que você deseja:
 
-```Python hl_lines="9-14  17"
-{!../../docs_src/custom_response/tutorial009c.py!}
-```
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 Agora em vez de retornar:
 
@@ -329,9 +301,7 @@ O padrão que define isso é o `default_response_class`.
 
 No exemplo abaixo, o **FastAPI** irá utilizar `ORJSONResponse` por padrão, em todas as *operações de rota*, em vez de `JSONResponse`.
 
-```Python hl_lines="2  4"
-{!../../docs_src/custom_response/tutorial010.py!}
-```
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | Dica
 

@@ -6,29 +6,7 @@ Para atualizar um item, você pode usar a operação <a href="https://developer.
 
 Você pode usar `jsonable_encoder` para converter os dados de entrada em dados que podem ser armazenados como JSON (por exemplo, com um banco de dados NoSQL). Por exemplo, convertendo `datetime` em `str`.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-33"
-{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` é usado para receber dados que devem substituir os dados existentes.
 
@@ -84,29 +62,7 @@ Isso gera um `dict` com apenas os dados definidos ao criar o modelo `item`, excl
 
 Então, você pode usar isso para gerar um `dict` com apenas os dados definidos (enviados na solicitação), omitindo valores padrão:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="32"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
 ### Usando o parâmetro `update` do Pydantic
 
@@ -122,29 +78,7 @@ Os exemplos aqui usam `.copy()` para compatibilidade com o Pydantic v1, mas voc�
 
 Como `stored_item_model.model_copy(update=update_data)`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="33"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
 ### Recapitulando as atualizações parciais
 
@@ -161,29 +95,7 @@ Resumindo, para aplicar atualizações parciais você pode:
 * Salvar os dados no seu banco de dados.
 * Retornar o modelo atualizado.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-35"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
 /// tip | Dica
 

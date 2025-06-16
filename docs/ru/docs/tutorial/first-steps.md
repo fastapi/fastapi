@@ -2,9 +2,7 @@
 
 Самый простой FastAPI файл может выглядеть так:
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Скопируйте в файл `main.py`.
 
@@ -133,9 +131,7 @@ OpenAPI описывает схему API. Эта схема содержит о
 
 ### Шаг 1: импортируйте `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` это класс в Python, который предоставляет всю функциональность для API.
 
@@ -149,9 +145,7 @@ OpenAPI описывает схему API. Эта схема содержит о
 
 ### Шаг 2: создайте экземпляр `FastAPI`
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Переменная `app` является экземпляром класса `FastAPI`.
 
@@ -171,9 +165,7 @@ $ uvicorn main:app --reload
 
 Если создать такое приложение:
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 И поместить его в `main.py`, тогда вызов `uvicorn` будет таким:
 
@@ -250,9 +242,7 @@ https://example.com/items/foo
 
 #### Определите *декоратор операции пути (path operation decorator)*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 Декоратор `@app.get("/")` указывает **FastAPI**, что функция, прямо под ним, отвечает за обработку запросов, поступающих по адресу:
 
@@ -306,9 +296,7 @@ https://example.com/items/foo
 * **операция**: `get`.
 * **функция**: функция ниже "декоратора" (ниже `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Это обычная Python функция.
 
@@ -320,9 +308,7 @@ https://example.com/items/foo
 
 Вы также можете определить ее как обычную функцию вместо `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Технические детали
 
@@ -332,9 +318,7 @@ https://example.com/items/foo
 
 ### Шаг 5: верните результат
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Вы можете вернуть `dict`, `list`, отдельные значения `str`, `int` и т.д.
 

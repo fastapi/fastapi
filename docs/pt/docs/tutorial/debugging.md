@@ -6,9 +6,7 @@ Você pode conectar o depurador no seu editor, por exemplo, com o Visual Studio 
 
 Em seu aplicativo FastAPI, importe e execute `uvicorn` diretamente:
 
-```Python hl_lines="1  15"
-{!../../docs_src/debugging/tutorial001.py!}
-```
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### Sobre `__name__ == "__main__"`
 

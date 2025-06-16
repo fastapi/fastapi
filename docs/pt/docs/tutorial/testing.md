@@ -30,9 +30,7 @@ Use o objeto `TestClient` da mesma forma que você faz com `httpx`.
 
 Escreva instruções `assert` simples com as expressões Python padrão que você precisa verificar (novamente, `pytest` padrão).
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Dica
 
@@ -78,9 +76,7 @@ Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicativ
 No arquivo `main.py` você tem seu aplicativo **FastAPI**:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### Arquivo de teste
 
@@ -96,9 +92,7 @@ Então você poderia ter um arquivo `test_main.py` com seus testes. Ele poderia 
 
 Como esse arquivo está no mesmo pacote, você pode usar importações relativas para importar o objeto `app` do módulo `main` (`main.py`):
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
 
 ...e ter o código para os testes como antes.
 
@@ -182,9 +176,7 @@ Prefira usar a versão `Annotated` se possível.
 
 Você pode então atualizar `test_main.py` com os testes estendidos:
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX é baseado no design do Requests.
 
