@@ -1,7 +1,4 @@
----
-hide:
-  - navigation
----
+# FastAPI
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -14,11 +11,11 @@ hide:
     <em>FastAPI 框架，高性能，易于学习，高效编码，生产可用</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -32,11 +29,11 @@ hide:
 
 **文档**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**源码**： <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**源码**： <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 3.8+ 并基于标准的 Python 类型提示。
+FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框架，使用 Python 并基于标准的 Python 类型提示。
 
 关键特性:
 
@@ -73,7 +70,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 「_[...] 最近我一直在使用 **FastAPI**。[...] 实际上我正在计划将其用于我所在的**微软**团队的所有**机器学习服务**。其中一些服务正被集成进核心 **Windows** 产品和一些 **Office** 产品。_」
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>微软</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>微软</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -97,7 +94,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 「_老实说，你的作品看起来非常可靠和优美。在很多方面，这就是我想让 **Hug** 成为的样子 - 看到有人实现了它真的很鼓舞人心。_」
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> 作者</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> 作者</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -119,7 +116,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 ## 依赖
 
-Python 3.8 及更高版本
+Python 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
@@ -138,7 +135,7 @@ $ pip install fastapi
 
 </div>
 
-你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
+你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -335,7 +332,7 @@ def update_item(item_id: int, item: Item):
 
 你不需要去学习新的语法、了解特定库的方法或类，等等。
 
-只需要使用标准的 **Python 3.8 及更高版本**。
+只需要使用标准的 **Python 及更高版本**。
 
 举个例子，比如声明 `int` 类型：
 
@@ -449,7 +446,7 @@ item: Item
 
 用于 Pydantic：
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 用于 email 校验。
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 用于 email 校验。
 
 用于 Starlette：
 

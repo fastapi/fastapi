@@ -6,7 +6,11 @@ from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import PYDANTIC_V2, PYDANTIC_VERSION, Undefined
+from ._compat import (
+    PYDANTIC_V2,
+    PYDANTIC_VERSION_MINOR_TUPLE,
+    Undefined,
+)
 
 _Unset: Any = Undefined
 
@@ -91,7 +95,7 @@ class Param(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -105,7 +109,7 @@ class Param(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
@@ -479,7 +483,7 @@ class Body(FieldInfo):
         *,
         default_factory: Union[Callable[[], Any], None] = _Unset,
         annotation: Optional[Any] = None,
-        embed: bool = False,
+        embed: Union[bool, None] = None,
         media_type: str = "application/json",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
@@ -547,7 +551,7 @@ class Body(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -556,12 +560,12 @@ class Body(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
@@ -642,7 +646,6 @@ class Form(Body):
             default=default,
             default_factory=default_factory,
             annotation=annotation,
-            embed=True,
             media_type=media_type,
             alias=alias,
             alias_priority=alias_priority,

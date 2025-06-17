@@ -1,7 +1,4 @@
----
-hide:
-  - navigation
----
+# FastAPI
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -14,11 +11,11 @@ hide:
      <em>תשתית FastAPI, ביצועים גבוהים, קלה ללמידה, מהירה לתכנות, מוכנה לסביבת ייצור</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -32,7 +29,7 @@ hide:
 
 **תיעוד**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**קוד**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**קוד**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
@@ -73,7 +70,7 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -97,7 +94,7 @@ FastAPI היא תשתית רשת מודרנית ומהירה (ביצועים ג�
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -138,7 +135,7 @@ $ pip install fastapi
 
 </div>
 
-תצטרכו גם שרת ASGI כגון <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> או <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+תצטרכו גם שרת ASGI כגון <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> או <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div dir="ltr" class="termy">
 
@@ -449,7 +446,7 @@ item: Item
 
 בשימוש Pydantic:
 
--   <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - לאימות כתובות אימייל.
+-   <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - לאימות כתובות אימייל.
 
 בשימוש Starlette:
 

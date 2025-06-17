@@ -4,8 +4,11 @@ Wenn Sie eine Anwendung oder eine Web-API erstellen, ist es selten der Fall, das
 
 **FastAPI** bietet ein praktisches Werkzeug zur Strukturierung Ihrer Anwendung bei gleichzeitiger Wahrung der Flexibilität.
 
-!!! info
-     Wenn Sie von Flask kommen, wäre dies das Äquivalent zu Flasks Blueprints.
+/// info
+
+Wenn Sie von Flask kommen, wäre dies das Äquivalent zu Flasks Blueprints.
+
+///
 
 ## Eine Beispiel-Dateistruktur
 
@@ -26,16 +29,19 @@ Nehmen wir an, Sie haben eine Dateistruktur wie diese:
 │       └── admin.py
 ```
 
-!!! tip "Tipp"
-    Es gibt mehrere `__init__.py`-Dateien: eine in jedem Verzeichnis oder Unterverzeichnis.
+/// tip | Tipp
 
-    Das ermöglicht den Import von Code aus einer Datei in eine andere.
+Es gibt mehrere `__init__.py`-Dateien: eine in jedem Verzeichnis oder Unterverzeichnis.
 
-    In `app/main.py` könnten Sie beispielsweise eine Zeile wie diese haben:
+Das ermöglicht den Import von Code aus einer Datei in eine andere.
 
-    ```
-    from app.routers import items
-    ```
+In `app/main.py` könnten Sie beispielsweise eine Zeile wie diese haben:
+
+```
+from app.routers import items
+```
+
+///
 
 * Das Verzeichnis `app` enthält alles. Und es hat eine leere Datei `app/__init__.py`, es handelt sich also um ein „Python-Package“ (eine Sammlung von „Python-Modulen“): `app`.
 * Es enthält eine Datei `app/main.py`. Da sie sich in einem Python-Package (einem Verzeichnis mit einer Datei `__init__.py`) befindet, ist sie ein „Modul“ dieses Packages: `app.main`.
@@ -46,7 +52,7 @@ Nehmen wir an, Sie haben eine Dateistruktur wie diese:
 * Es gibt auch ein Unterverzeichnis `app/internal/` mit einer weiteren Datei `__init__.py`, es handelt sich also um ein weiteres „Python-Subpackage“: `app.internal`.
 * Und die Datei `app/internal/admin.py` ist ein weiteres Submodul: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 Die gleiche Dateistruktur mit Kommentaren:
 
@@ -80,7 +86,7 @@ Sie können die *Pfadoperationen* für dieses Modul mit `APIRouter` erstellen.
 Sie importieren ihn und erstellen eine „Instanz“ auf die gleiche Weise wie mit der Klasse `FastAPI`:
 
 ```Python hl_lines="1  3" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 ### *Pfadoperationen* mit `APIRouter`
@@ -90,7 +96,7 @@ Und dann verwenden Sie ihn, um Ihre *Pfadoperationen* zu deklarieren.
 Verwenden Sie ihn auf die gleiche Weise wie die Klasse `FastAPI`:
 
 ```Python hl_lines="6  11  16" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 Sie können sich `APIRouter` als eine „Mini-`FastAPI`“-Klasse vorstellen.
@@ -99,8 +105,11 @@ Alle die gleichen Optionen werden unterstützt.
 
 Alle die gleichen `parameters`, `responses`, `dependencies`, `tags`, usw.
 
-!!! tip "Tipp"
-    In diesem Beispiel heißt die Variable `router`, aber Sie können ihr einen beliebigen Namen geben.
+/// tip | Tipp
+
+In diesem Beispiel heißt die Variable `router`, aber Sie können ihr einen beliebigen Namen geben.
+
+///
 
 Wir werden diesen `APIRouter` in die Hauptanwendung `FastAPI` einbinden, aber zuerst kümmern wir uns um die Abhängigkeiten und einen anderen `APIRouter`.
 
@@ -112,31 +121,43 @@ Also fügen wir sie in ihr eigenes `dependencies`-Modul (`app/dependencies.py`) 
 
 Wir werden nun eine einfache Abhängigkeit verwenden, um einen benutzerdefinierten `X-Token`-Header zu lesen:
 
-=== "Python 3.9+"
+//// tab | Python 3.9+
 
-    ```Python hl_lines="3  6-8" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
-    ```
+```Python hl_lines="3  6-8" title="app/dependencies.py"
+{!> ../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+```
 
-=== "Python 3.8+"
+////
 
-    ```Python hl_lines="1  5-7" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
-    ```
+//// tab | Python 3.8+
 
-=== "Python 3.8+ nicht annotiert"
+```Python hl_lines="1  5-7" title="app/dependencies.py"
+{!> ../../docs_src/bigger_applications/app_an/dependencies.py!}
+```
 
-    !!! tip "Tipp"
-        Bevorzugen Sie die `Annotated`-Version, falls möglich.
+////
 
-    ```Python hl_lines="1  4-6" title="app/dependencies.py"
-    {!> ../../../docs_src/bigger_applications/app/dependencies.py!}
-    ```
+//// tab | Python 3.8+ nicht annotiert
 
-!!! tip "Tipp"
-    Um dieses Beispiel zu vereinfachen, verwenden wir einen erfundenen Header.
+/// tip | Tipp
 
-    Aber in der Praxis werden Sie mit den integrierten [Sicherheits-Werkzeugen](security/index.md){.internal-link target=_blank} bessere Ergebnisse erzielen.
+Bevorzugen Sie die `Annotated`-Version, falls möglich.
+
+///
+
+```Python hl_lines="1  4-6" title="app/dependencies.py"
+{!> ../../docs_src/bigger_applications/app/dependencies.py!}
+```
+
+////
+
+/// tip | Tipp
+
+Um dieses Beispiel zu vereinfachen, verwenden wir einen erfundenen Header.
+
+Aber in der Praxis werden Sie mit den integrierten [Sicherheits-Werkzeugen](security/index.md){.internal-link target=_blank} bessere Ergebnisse erzielen.
+
+///
 
 ## Ein weiteres Modul mit `APIRouter`.
 
@@ -161,7 +182,7 @@ Wir wissen, dass alle *Pfadoperationen* in diesem Modul folgendes haben:
 Anstatt also alles zu jeder *Pfadoperation* hinzuzufügen, können wir es dem `APIRouter` hinzufügen.
 
 ```Python hl_lines="5-10  16  21" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 Da der Pfad jeder *Pfadoperation* mit `/` beginnen muss, wie in:
@@ -180,8 +201,11 @@ Wir können auch eine Liste von `tags` und zusätzliche `responses` hinzufügen,
 
 Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperationen* im Router hinzugefügt und für jeden an sie gerichteten Request ausgeführt/aufgelöst werden.
 
-!!! tip "Tipp"
-    Beachten Sie, dass ähnlich wie bei [Abhängigkeiten in *Pfadoperation-Dekoratoren*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} kein Wert an Ihre *Pfadoperation-Funktion* übergeben wird.
+/// tip | Tipp
+
+Beachten Sie, dass ähnlich wie bei [Abhängigkeiten in *Pfadoperation-Dekoratoren*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} kein Wert an Ihre *Pfadoperation-Funktion* übergeben wird.
+
+///
 
 Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
@@ -198,11 +222,17 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
     * Zuerst werden die Router-Abhängigkeiten ausgeführt, dann die [`dependencies` im Dekorator](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} und dann die normalen Parameterabhängigkeiten.
     * Sie können auch [`Security`-Abhängigkeiten mit `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank} hinzufügen.
 
-!!! tip "Tipp"
-    `dependencies` im `APIRouter` können beispielsweise verwendet werden, um eine Authentifizierung für eine ganze Gruppe von *Pfadoperationen* zu erfordern. Selbst wenn die Abhängigkeiten nicht jeder einzeln hinzugefügt werden.
+/// tip | Tipp
 
-!!! check
-    Die Parameter `prefix`, `tags`, `responses` und `dependencies` sind (wie in vielen anderen Fällen) nur ein Feature von **FastAPI**, um Ihnen dabei zu helfen, Codeverdoppelung zu vermeiden.
+`dependencies` im `APIRouter` können beispielsweise verwendet werden, um eine Authentifizierung für eine ganze Gruppe von *Pfadoperationen* zu erfordern. Selbst wenn die Abhängigkeiten nicht jeder einzeln hinzugefügt werden.
+
+///
+
+/// check
+
+Die Parameter `prefix`, `tags`, `responses` und `dependencies` sind (wie in vielen anderen Fällen) nur ein Feature von **FastAPI**, um Ihnen dabei zu helfen, Codeverdoppelung zu vermeiden.
+
+///
 
 ### Die Abhängigkeiten importieren
 
@@ -213,13 +243,16 @@ Und wir müssen die Abhängigkeitsfunktion aus dem Modul `app.dependencies` impo
 Daher verwenden wir einen relativen Import mit `..` für die Abhängigkeiten:
 
 ```Python hl_lines="3" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 #### Wie relative Importe funktionieren
 
-!!! tip "Tipp"
-    Wenn Sie genau wissen, wie Importe funktionieren, fahren Sie mit dem nächsten Abschnitt unten fort.
+/// tip | Tipp
+
+Wenn Sie genau wissen, wie Importe funktionieren, fahren Sie mit dem nächsten Abschnitt unten fort.
+
+///
 
 Ein einzelner Punkt `.`, wie in:
 
@@ -237,7 +270,7 @@ Aber diese Datei existiert nicht, unsere Abhängigkeiten befinden sich in einer 
 
 Erinnern Sie sich, wie unsere Anwendungs-/Dateistruktur aussieht:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
@@ -283,13 +316,16 @@ Wir fügen weder das Präfix `/items` noch `tags=["items"]` zu jeder *Pfadoperat
 Aber wir können immer noch _mehr_ `tags` hinzufügen, die auf eine bestimmte *Pfadoperation* angewendet werden, sowie einige zusätzliche `responses`, die speziell für diese *Pfadoperation* gelten:
 
 ```Python hl_lines="30-31" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-!!! tip "Tipp"
-    Diese letzte Pfadoperation wird eine Kombination von Tags haben: `["items", "custom"]`.
+/// tip | Tipp
 
-    Und sie wird auch beide Responses in der Dokumentation haben, eine für `404` und eine für `403`.
+Diese letzte Pfadoperation wird eine Kombination von Tags haben: `["items", "custom"]`.
+
+Und sie wird auch beide Responses in der Dokumentation haben, eine für `404` und eine für `403`.
+
+///
 
 ## Das Haupt-`FastAPI`.
 
@@ -308,7 +344,7 @@ Sie importieren und erstellen wie gewohnt eine `FastAPI`-Klasse.
 Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies.md){.internal-link target=_blank} deklarieren, die mit den Abhängigkeiten für jeden `APIRouter` kombiniert werden:
 
 ```Python hl_lines="1  3  7" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### Den `APIRouter` importieren
@@ -316,7 +352,7 @@ Und wir können sogar [globale Abhängigkeiten](dependencies/global-dependencies
 Jetzt importieren wir die anderen Submodule, die `APIRouter` haben:
 
 ```Python hl_lines="4-5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 Da es sich bei den Dateien `app/routers/users.py` und `app/routers/items.py` um Submodule handelt, die Teil desselben Python-Packages `app` sind, können wir einen einzelnen Punkt `.` verwenden, um sie mit „relativen Imports“ zu importieren.
@@ -345,20 +381,23 @@ Wir könnten sie auch wie folgt importieren:
 from app.routers import items, users
 ```
 
-!!! info
-    Die erste Version ist ein „relativer Import“:
+/// info
 
-    ```Python
-    from .routers import items, users
-    ```
+Die erste Version ist ein „relativer Import“:
 
-    Die zweite Version ist ein „absoluter Import“:
+```Python
+from .routers import items, users
+```
 
-    ```Python
-    from app.routers import items, users
-    ```
+Die zweite Version ist ein „absoluter Import“:
 
-    Um mehr über Python-Packages und -Module zu erfahren, lesen Sie <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">die offizielle Python-Dokumentation über Module</a>.
+```Python
+from app.routers import items, users
+```
+
+Um mehr über Python-Packages und -Module zu erfahren, lesen Sie <a href="https://docs.python.org/3/tutorial/modules.html" class="external-link" target="_blank">die offizielle Python-Dokumentation über Module</a>.
+
+///
 
 ### Namenskollisionen vermeiden
 
@@ -378,7 +417,7 @@ würde der `router` von `users` den von `items` überschreiben und wir könnten 
 Um also beide in derselben Datei verwenden zu können, importieren wir die Submodule direkt:
 
 ```Python hl_lines="5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 
@@ -387,29 +426,38 @@ Um also beide in derselben Datei verwenden zu können, importieren wir die Submo
 Inkludieren wir nun die `router` aus diesen Submodulen `users` und `items`:
 
 ```Python hl_lines="10-11" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-!!! info
-    `users.router` enthält den `APIRouter` in der Datei `app/routers/users.py`.
+/// info
 
-    Und `items.router` enthält den `APIRouter` in der Datei `app/routers/items.py`.
+`users.router` enthält den `APIRouter` in der Datei `app/routers/users.py`.
+
+Und `items.router` enthält den `APIRouter` in der Datei `app/routers/items.py`.
+
+///
 
 Mit `app.include_router()` können wir jeden `APIRouter` zur Hauptanwendung `FastAPI` hinzufügen.
 
 Es wird alle Routen von diesem Router als Teil von dieser inkludieren.
 
-!!! note "Technische Details"
-    Tatsächlich wird intern eine *Pfadoperation* für jede *Pfadoperation* erstellt, die im `APIRouter` deklariert wurde.
+/// note | Technische Details
 
-    Hinter den Kulissen wird es also tatsächlich so funktionieren, als ob alles dieselbe einzige Anwendung wäre.
+Tatsächlich wird intern eine *Pfadoperation* für jede *Pfadoperation* erstellt, die im `APIRouter` deklariert wurde.
 
-!!! check
-    Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Performanz machen.
+Hinter den Kulissen wird es also tatsächlich so funktionieren, als ob alles dieselbe einzige Anwendung wäre.
 
-    Dies dauert Mikrosekunden und geschieht nur beim Start.
+///
 
-    Es hat also keinen Einfluss auf die Leistung. ⚡
+/// check
+
+Bei der Einbindung von Routern müssen Sie sich keine Gedanken über die Performanz machen.
+
+Dies dauert Mikrosekunden und geschieht nur beim Start.
+
+Es hat also keinen Einfluss auf die Leistung. ⚡
+
+///
 
 ### Einen `APIRouter` mit benutzerdefinierten `prefix`, `tags`, `responses` und `dependencies` einfügen
 
@@ -420,7 +468,7 @@ Sie enthält einen `APIRouter` mit einigen administrativen *Pfadoperationen*, di
 In diesem Beispiel wird es ganz einfach sein. Nehmen wir jedoch an, dass wir, da sie mit anderen Projekten in der Organisation geteilt wird, sie nicht ändern und kein `prefix`, `dependencies`, `tags`, usw. direkt zum `APIRouter` hinzufügen können:
 
 ```Python hl_lines="3" title="app/internal/admin.py"
-{!../../../docs_src/bigger_applications/app/internal/admin.py!}
+{!../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
 Aber wir möchten immer noch ein benutzerdefiniertes `prefix` festlegen, wenn wir den `APIRouter` einbinden, sodass alle seine *Pfadoperationen* mit `/admin` beginnen, wir möchten es mit den `dependencies` sichern, die wir bereits für dieses Projekt haben, und wir möchten `tags` und `responses` hinzufügen.
@@ -428,7 +476,7 @@ Aber wir möchten immer noch ein benutzerdefiniertes `prefix` festlegen, wenn wi
 Wir können das alles deklarieren, ohne den ursprünglichen `APIRouter` ändern zu müssen, indem wir diese Parameter an `app.include_router()` übergeben:
 
 ```Python hl_lines="14-17" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 Auf diese Weise bleibt der ursprüngliche `APIRouter` unverändert, sodass wir dieselbe `app/internal/admin.py`-Datei weiterhin mit anderen Projekten in der Organisation teilen können.
@@ -451,21 +499,24 @@ Wir können *Pfadoperationen* auch direkt zur `FastAPI`-App hinzufügen.
 Hier machen wir es ... nur um zu zeigen, dass wir es können 🤷:
 
 ```Python hl_lines="21-23" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 und es wird korrekt funktionieren, zusammen mit allen anderen *Pfadoperationen*, die mit `app.include_router()` hinzugefügt wurden.
 
-!!! info "Sehr technische Details"
-    **Hinweis**: Dies ist ein sehr technisches Detail, das Sie wahrscheinlich **einfach überspringen** können.
+/// info | Sehr technische Details
 
-    ---
+**Hinweis**: Dies ist ein sehr technisches Detail, das Sie wahrscheinlich **einfach überspringen** können.
 
-    Die `APIRouter` sind nicht „gemountet“, sie sind nicht vom Rest der Anwendung isoliert.
+---
 
-    Das liegt daran, dass wir deren *Pfadoperationen* in das OpenAPI-Schema und die Benutzeroberflächen einbinden möchten.
+Die `APIRouter` sind nicht „gemountet“, sie sind nicht vom Rest der Anwendung isoliert.
 
-    Da wir sie nicht einfach isolieren und unabhängig vom Rest „mounten“ können, werden die *Pfadoperationen* „geklont“ (neu erstellt) und nicht direkt einbezogen.
+Das liegt daran, dass wir deren *Pfadoperationen* in das OpenAPI-Schema und die Benutzeroberflächen einbinden möchten.
+
+Da wir sie nicht einfach isolieren und unabhängig vom Rest „mounten“ können, werden die *Pfadoperationen* „geklont“ (neu erstellt) und nicht direkt einbezogen.
+
+///
 
 ## Es in der automatischen API-Dokumentation ansehen
 

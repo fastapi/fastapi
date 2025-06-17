@@ -1,7 +1,4 @@
----
-hide:
-  - navigation
----
+# FastAPI
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -14,11 +11,11 @@ hide:
     <em>FastAPI framework, hiệu năng cao, dễ học, dễ code, sẵn sàng để tạo ra sản phẩm</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -32,11 +29,11 @@ hide:
 
 **Tài liệu**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**Mã nguồn**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**Mã nguồn**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python 3.8+ dựa trên tiêu chuẩn Python type hints.
+FastAPI là một web framework hiện đại, hiệu năng cao để xây dựng web APIs với Python dựa trên tiêu chuẩn Python type hints.
 
 Những tính năng như:
 
@@ -72,7 +69,7 @@ Những tính năng như:
 
 "_[...] Tôi đang sử dụng **FastAPI** vô cùng nhiều vào những ngày này. [...] Tôi thực sự đang lên kế hoạch sử dụng nó cho tất cả các nhóm **dịch vụ ML tại Microsoft**. Một vài trong số đó đang tích hợp vào sản phẩm lõi của **Window** và một vài sản phẩm cho **Office**._"
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -96,7 +93,7 @@ Những tính năng như:
 
 "_Thành thật, những gì bạn đã xây dựng nhìn siêu chắc chắn và bóng bẩy. Theo nhiều cách, nó là những gì tôi đã muốn Hug trở thành - thật sự truyền cảm hứng để thấy ai đó xây dựng nó._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - người tạo ra <strong><a href="https://www.hug.rest/" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - người tạo ra <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -124,8 +121,6 @@ Nếu bạn đang xây dựng một <abbr title="Giao diện dòng lệnh">CLI</
 **Typer** là một người anh em của FastAPI. Và nó được dự định trở thành **giao diện dòng lệnh cho FastAPI**. ⌨️ 🚀
 
 ## Yêu cầu
-
-Python 3.8+
 
 FastAPI đứng trên vai những người khổng lồ:
 
@@ -341,7 +336,7 @@ Bạn định nghĩa bằng cách sử dụng các kiểu dữ liệu chuẩn c�
 
 Bạn không phải học một cú pháp mới, các phương thức và class của một thư viện cụ thể nào.
 
-Chỉ cần sử dụng các chuẩn của **Python 3.8+**.
+Chỉ cần sử dụng các chuẩn của **Python**.
 
 Ví dụ, với một tham số kiểu `int`:
 
@@ -457,7 +452,7 @@ Independent TechEmpower benchmarks cho thấy các ứng dụng **FastAPI** ch�
 
 Sử dụng bởi Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - cho email validation.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - cho email validation.
 
 Sử dụng Starlette:
 

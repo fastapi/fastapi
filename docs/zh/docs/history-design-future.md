@@ -1,6 +1,6 @@
 # 历史、设计、未来
 
-不久前，<a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">曾有 **FastAPI** 用户问过</a>：
+不久前，<a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">曾有 **FastAPI** 用户问过</a>：
 
 > 这个项目有怎样的历史？好像它只用了几周就从默默无闻变得众所周知……
 

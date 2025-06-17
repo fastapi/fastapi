@@ -1282,7 +1282,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     embed: Annotated[
-        bool,
+        Union[bool, None],
         Doc(
             """
             When `embed` is `True`, the parameter will be expected in a JSON body as a
@@ -1294,7 +1294,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Body - Multiple Parameters](https://fastapi.tiangolo.com/tutorial/body-multiple-params/#embed-a-single-body-parameter).
             """
         ),
-    ] = False,
+    ] = None,
     media_type: Annotated[
         str,
         Doc(
@@ -2298,7 +2298,7 @@ def Security(  # noqa: N802
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
-            intentionaly vague and interpretable. It normally refers to permissions,
+            intentionally vague and interpretable. It normally refers to permissions,
             in cases to roles.
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
@@ -2343,7 +2343,7 @@ def Security(  # noqa: N802
     ```python
     from typing import Annotated
 
-    from fastapi import Depends, FastAPI
+    from fastapi import Security, FastAPI
 
     from .db import User
     from .security import get_current_active_user

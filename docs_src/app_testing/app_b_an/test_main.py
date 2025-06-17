@@ -61,5 +61,5 @@ def test_create_existing_item():
             "description": "There goes my stealer",
         },
     )
-    assert response.status_code == 400
+    assert response.status_code == 409
     assert response.json() == {"detail": "Item already exists"}
