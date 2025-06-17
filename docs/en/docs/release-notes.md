@@ -13,6 +13,7 @@ hide:
 
 ### Refactors
 
+* ✨ Add `refreshUrl` parameter in `OAuth2PasswordBearer`. PR [#11460](https://github.com/fastapi/fastapi/pull/11460) by [@snosratiershad](https://github.com/snosratiershad).
 * 🚸 Set format to password for fields `password` and `client_secret` in `OAuth2PasswordRequestForm`, make docs show password fields for passwords. PR [#11032](https://github.com/fastapi/fastapi/pull/11032) by [@Thodoris1999](https://github.com/Thodoris1999).
 * ✅ Simplify tests for `settings`. PR [#13505](https://github.com/fastapi/fastapi/pull/13505) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * ✅ Simplify tests for `validate_response_recursive`. PR [#13507](https://github.com/fastapi/fastapi/pull/13507) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
