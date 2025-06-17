@@ -751,9 +751,15 @@ def request_params_to_args(
     first_field = fields[0]
     fields_to_extract = fields
     single_not_embedded_field = False
+    default_convert_underscores = True
     if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         single_not_embedded_field = True
+        # If headers are in a Pydantic model, the way to disable convert_underscores
+        # would be with Header(convert_underscores=False) at the Pydantic model level
+        default_convert_underscores = getattr(
+            first_field.field_info, "convert_underscores", True
+        )
 
     params_to_process: Dict[str, Any] = {}
 
@@ -764,7 +770,9 @@ def request_params_to_args(
         if isinstance(received_params, Headers):
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
-            convert_underscores = getattr(field.field_info, "convert_underscores", True)
+            convert_underscores = getattr(
+                field.field_info, "convert_underscores", default_convert_underscores
+            )
             if convert_underscores:
                 alias = (
                     field.alias
