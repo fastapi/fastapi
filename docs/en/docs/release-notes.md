@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.115.13
+
 ### Fixes
 
 * 🐛 Fix truncating the model's description with form feed (`\f`) character for Pydantic V2. PR [#13698](https://github.com/fastapi/fastapi/pull/13698) by [@YuriiMotov](https://github.com/YuriiMotov).
