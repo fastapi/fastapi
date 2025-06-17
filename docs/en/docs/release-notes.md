@@ -17,6 +17,7 @@ hide:
 
 ### Docs
 
+* 📝 Clarify guidance on using `async def` without `await`. PR [#13642](https://github.com/fastapi/fastapi/pull/13642) by [@swastikpradhan1999](https://github.com/swastikpradhan1999).
 * 📝 Update exclude-parameters-from-openapi documentation links. PR [#13600](https://github.com/fastapi/fastapi/pull/13600) by [@timonrieger](https://github.com/timonrieger).
 * 📝 Clarify the middleware execution order in docs. PR [#13699](https://github.com/fastapi/fastapi/pull/13699) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🍱 Update Drawio diagrams SVGs, single file per diagram, sans-serif font. PR [#13706](https://github.com/fastapi/fastapi/pull/13706) by [@tiangolo](https://github.com/tiangolo).
