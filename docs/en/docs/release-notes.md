@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update Speakeasy URL to Speakeasy Sandbox. PR [#13697](https://github.com/fastapi/fastapi/pull/13697) by [@ndimares](https://github.com/ndimares).
+
 ## 0.115.13
 
 ### Fixes
