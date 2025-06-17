@@ -56,6 +56,7 @@ hide:
 
 ### Internal
 
+* 🔨 Resolve Pydantic deprecation warnings in internal script. PR [#13696](https://github.com/fastapi/fastapi/pull/13696) by [@emmanuel-ferdman](https://github.com/emmanuel-ferdman).
 * 🔧 Update sponsors: remove Porter. PR [#13783](https://github.com/fastapi/fastapi/pull/13783) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13781](https://github.com/fastapi/fastapi/pull/13781) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13757](https://github.com/fastapi/fastapi/pull/13757) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
