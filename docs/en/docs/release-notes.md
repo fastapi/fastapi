@@ -24,6 +24,7 @@ hide:
 
 ### Docs
 
+* 📝 Add annotations to HTTP middleware example. PR [#11530](https://github.com/fastapi/fastapi/pull/11530) by [@Kilo59](https://github.com/Kilo59).
 * 📝 Clarify in CORS docs that wildcards and credentials are mutually exclusive. PR [#9829](https://github.com/fastapi/fastapi/pull/9829) by [@dfioravanti](https://github.com/dfioravanti).
 * ✏️ Fix typo in docstring. PR [#13532](https://github.com/fastapi/fastapi/pull/13532) by [@comp64](https://github.com/comp64).
 * 📝 Clarify guidance on using `async def` without `await`. PR [#13642](https://github.com/fastapi/fastapi/pull/13642) by [@swastikpradhan1999](https://github.com/swastikpradhan1999).
