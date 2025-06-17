@@ -13,6 +13,7 @@ hide:
 
 ### Refactors
 
+* ✅ Simplify tests for `settings`. PR [#13505](https://github.com/fastapi/fastapi/pull/13505) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * ✅ Simplify tests for `validate_response_recursive`. PR [#13507](https://github.com/fastapi/fastapi/pull/13507) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 
 ### Upgrades
