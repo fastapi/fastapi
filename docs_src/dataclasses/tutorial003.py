@@ -33,7 +33,7 @@ def get_authors():  # (8)
             "items": [
                 {
                     "name": "Island In The Moon",
-                    "description": "A place to be be playin' and havin' fun",
+                    "description": "A place to be playin' and havin' fun",
                 },
                 {"name": "Holy Buddies"},
             ],

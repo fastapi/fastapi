@@ -6,41 +6,7 @@
 
 Спочатку імпортуйте `Cookie`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
 
 ## Визначення параметрів `Cookie`
 
@@ -48,48 +14,20 @@
 
 Перше значення це значення за замовчуванням, ви можете також передати всі додаткові параметри валідації чи анотації:
 
-=== "Python 3.10+"
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-    ```
+/// note | Технічні Деталі
 
-=== "Python 3.9+"
+`Cookie` це "сестра" класів `Path` і `Query`. Вони наслідуються від одного батьківського класу `Param`.
+Але пам'ятайте, що коли ви імпортуєте `Query`, `Path`, `Cookie` та інше з `fastapi`, це фактично функції, що повертають спеціальні класи.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-    ```
+///
 
-=== "Python 3.6+"
+/// info
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-    ```
+Для визначення cookies ви маєте використовувати `Cookie`, тому що в іншому випадку параметри будуть інтерпритовані, як параметри запиту.
 
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Бажано використовувати `Annotated` версію, якщо це можливо.
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/cookie_params/tutorial001.py!}
-    ```
-
-!!! note "Технічні Деталі"
-    `Cookie` це "сестра" класів `Path` і `Query`. Вони наслідуються від одного батьківського класу `Param`.
-    Але пам'ятайте, що коли ви імпортуєте `Query`, `Path`, `Cookie` та інше з `fastapi`, це фактично функції, що повертають спеціальні класи.
-
-!!! info
-    Для визначення cookies ви маєте використовувати `Cookie`, тому що в іншому випадку параметри будуть інтерпритовані, як параметри запиту.
+///
 
 ## Підсумки
 

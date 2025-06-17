@@ -7,7 +7,7 @@ __pycache__
 htmlcov
 dist
 site
-.coverage
+.coverage*
 coverage.xml
 .netlify
 test.db

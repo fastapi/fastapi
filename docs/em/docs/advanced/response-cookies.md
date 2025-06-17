@@ -6,9 +6,7 @@
 
 &amp; ⤴️ 👆 💪 ⚒ 🍪 👈 *🔀* 📨 🎚.
 
-```Python hl_lines="1  8-9"
-{!../../../docs_src/response_cookies/tutorial002.py!}
-```
+{* ../../docs_src/response_cookies/tutorial002.py hl[1,8:9] *}
 
 &amp; ⤴️ 👆 💪 📨 🙆 🎚 👆 💪, 👆 🛎 🔜 ( `dict`, 💽 🏷, ♒️).
 
@@ -26,24 +24,28 @@
 
 ⤴️ ⚒ 🍪 ⚫️, &amp; ⤴️ 📨 ⚫️:
 
-```Python hl_lines="10-12"
-{!../../../docs_src/response_cookies/tutorial001.py!}
-```
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
-!!! tip
-    ✔️ 🤯 👈 🚥 👆 📨 📨 🔗 ↩️ ⚙️ `Response` 🔢, FastAPI 🔜 📨 ⚫️ 🔗.
+/// tip
 
-    , 👆 🔜 ✔️ ⚒ 💭 👆 💽 ☑ 🆎. 🤶 Ⓜ. ⚫️ 🔗 ⏮️ 🎻, 🚥 👆 🛬 `JSONResponse`.
+✔️ 🤯 👈 🚥 👆 📨 📨 🔗 ↩️ ⚙️ `Response` 🔢, FastAPI 🔜 📨 ⚫️ 🔗.
 
-     &amp; 👈 👆 🚫 📨 🙆 📊 👈 🔜 ✔️ ⛽ `response_model`.
+, 👆 🔜 ✔️ ⚒ 💭 👆 💽 ☑ 🆎. 🤶 Ⓜ. ⚫️ 🔗 ⏮️ 🎻, 🚥 👆 🛬 `JSONResponse`.
+
+ &amp; 👈 👆 🚫 📨 🙆 📊 👈 🔜 ✔️ ⛽ `response_model`.
+
+///
 
 ### 🌅 ℹ
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.responses import Response` ⚖️ `from starlette.responses import JSONResponse`.
+/// note | 📡 ℹ
 
-    **FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.responses import Response` ⚖️ `from starlette.responses import JSONResponse`.
 
-     &amp; `Response` 💪 ⚙️ 🛎 ⚒ 🎚 &amp; 🍪, **FastAPI** 🚚 ⚫️ `fastapi.Response`.
+**FastAPI** 🚚 🎏 `starlette.responses` `fastapi.responses` 🏪 👆, 👩‍💻. ✋️ 🌅 💪 📨 👟 🔗 ⚪️➡️ 💃.
+
+ &amp; `Response` 💪 ⚙️ 🛎 ⚒ 🎚 &amp; 🍪, **FastAPI** 🚚 ⚫️ `fastapi.Response`.
+
+///
 
 👀 🌐 💪 🔢 &amp; 🎛, ✅ <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">🧾 💃</a>.

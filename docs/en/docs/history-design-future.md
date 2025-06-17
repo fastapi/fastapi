@@ -1,6 +1,6 @@
 # History, Design and Future
 
-Some time ago, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">a **FastAPI** user asked</a>:
+Some time ago, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">a **FastAPI** user asked</a>:
 
 > What’s the history of this project? It seems to have come from nowhere to awesome in a few weeks [...]
 
@@ -54,7 +54,7 @@ All in a way that provided the best development experience for all the developer
 
 ## Requirements
 
-After testing several alternatives, I decided that I was going to use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> for its advantages.
+After testing several alternatives, I decided that I was going to use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> for its advantages.
 
 Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
 

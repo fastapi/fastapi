@@ -4,26 +4,30 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .utils import needs_pydanticv2
+from .utils import PYDANTIC_V2, needs_pydanticv2
 
 
 class SubItem(BaseModel):
     subname: str
     sub_description: Optional[str] = None
     tags: List[str] = []
+    if PYDANTIC_V2:
+        model_config = {"json_schema_serialization_defaults_required": True}
 
 
 class Item(BaseModel):
     name: str
     description: Optional[str] = None
     sub: Optional[SubItem] = None
+    if PYDANTIC_V2:
+        model_config = {"json_schema_serialization_defaults_required": True}
 
 
 def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
     app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
 
-    @app.post("/items/")
-    def create_item(item: Item):
+    @app.post("/items/", responses={402: {"model": Item}})
+    def create_item(item: Item) -> Item:
         return item
 
     @app.post("/items-list/")
@@ -170,7 +174,23 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Item-Output"
+                                    }
+                                }
+                            },
+                        },
+                        "402": {
+                            "description": "Payment Required",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Item-Output"
+                                    }
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",
@@ -370,7 +390,19 @@ def test_openapi_schema_no_separate():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
+                        },
+                        "402": {
+                            "description": "Payment Required",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",

@@ -1,0 +1,40 @@
+name: Update Topic Repos
+
+on:
+  schedule:
+    - cron: "0 12 1 * *"
+  workflow_dispatch:
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  topic-repos:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+      - name: Install GitHub Actions dependencies
+        run: uv pip install -r requirements-github-actions.txt
+      - name: Update Topic Repos
+        run: python ./scripts/topic_repos.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}

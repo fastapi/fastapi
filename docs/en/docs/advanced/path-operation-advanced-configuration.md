@@ -2,16 +2,17 @@
 
 ## OpenAPI operationId
 
-!!! warning
-    If you are not an "expert" in OpenAPI, you probably don't need this.
+/// warning
+
+If you are not an "expert" in OpenAPI, you probably don't need this.
+
+///
 
 You can set the OpenAPI `operationId` to be used in your *path operation* with the parameter `operation_id`.
 
 You would have to make sure that it is unique for each operation.
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### Using the *path operation function* name as the operationId
 
@@ -19,25 +20,27 @@ If you want to use your APIs' function names as `operationId`s, you can iterate 
 
 You should do it after adding all your *path operations*.
 
-```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
 
-!!! tip
-    If you manually call `app.openapi()`, you should update the `operationId`s before that.
+/// tip
 
-!!! warning
-    If you do this, you have to make sure each one of your *path operation functions* has a unique name.
+If you manually call `app.openapi()`, you should update the `operationId`s before that.
 
-    Even if they are in different modules (Python files).
+///
+
+/// warning
+
+If you do this, you have to make sure each one of your *path operation functions* has a unique name.
+
+Even if they are in different modules (Python files).
+
+///
 
 ## Exclude from OpenAPI
 
 To exclude a *path operation* from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`:
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## Advanced description from docstring
 
@@ -47,9 +50,7 @@ Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate
 
 It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
 
-```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
 
 ## Additional Responses
 
@@ -59,14 +60,17 @@ That defines the metadata about the main response of a *path operation*.
 
 You can also declare additional responses with their models, status codes, etc.
 
-There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 ## OpenAPI Extra
 
 When you declare a *path operation* in your application, **FastAPI** automatically generates the relevant metadata about that *path operation* to be included in the OpenAPI schema.
 
-!!! note "Technical details"
-    In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
+/// note | Technical details
+
+In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
+
+///
 
 It has all the information about the *path operation* and is used to generate the automatic documentation.
 
@@ -74,10 +78,13 @@ It includes the `tags`, `parameters`, `requestBody`, `responses`, etc.
 
 This *path operation*-specific OpenAPI schema is normally generated automatically by **FastAPI**, but you can also extend it.
 
-!!! tip
-    This is a low level extension point.
+/// tip
 
-    If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](./additional-responses.md){.internal-link target=_blank}.
+This is a low level extension point.
+
+If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+
+///
 
 You can extend the OpenAPI schema for a *path operation* using the parameter `openapi_extra`.
 
@@ -85,9 +92,7 @@ You can extend the OpenAPI schema for a *path operation* using the parameter `op
 
 This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 If you open the automatic API docs, your extension will show up at the bottom of the specific *path operation*.
 
@@ -134,9 +139,7 @@ For example, you could decide to read and validate the request with your own cod
 
 You could do that with `openapi_extra`:
 
-```Python hl_lines="20-37  39-40"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 In this example, we didn't declare any Pydantic model. In fact, the request body is not even <abbr title="converted from some plain format, like bytes, into Python objects">parsed</abbr> as JSON, it is read directly as `bytes`, and the function `magic_data_reader()` would be in charge of parsing it in some way.
 
@@ -150,20 +153,23 @@ And you could do this even if the data type in the request is not JSON.
 
 For example, in this application we don't use FastAPI's integrated functionality to extract the JSON Schema from Pydantic models nor the automatic validation for JSON. In fact, we are declaring the request content type as YAML, not JSON:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="17-22  24"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_schema_json()`.
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
+
+////
+
+/// info
+
+In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_json_schema()`.
+
+///
 
 Nevertheless, although we are not using the default integrated functionality, we are still using a Pydantic model to manually generate the JSON Schema for the data that we want to receive in YAML.
 
@@ -171,22 +177,28 @@ Then we use the request directly, and extract the body as `bytes`. This means th
 
 And then in our code, we parse that YAML content directly, and then we are again using the same Pydantic model to validate the YAML content:
 
-=== "Pydantic v2"
+//// tab | Pydantic v2
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-    ```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
 
-=== "Pydantic v1"
+////
 
-    ```Python hl_lines="26-33"
-    {!> ../../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py!}
-    ```
+//// tab | Pydantic v1
 
-!!! info
-    In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
 
-!!! tip
-    Here we re-use the same Pydantic model.
+////
 
-    But the same way, we could have validated it in some other way.
+/// info
+
+In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
+
+///
+
+/// tip
+
+Here we reuse the same Pydantic model.
+
+But the same way, we could have validated it in some other way.
+
+///

@@ -1,13 +1,29 @@
+import importlib
+
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.path_operation_configuration.tutorial005 import app
-
-from ...utils import needs_pydanticv1, needs_pydanticv2
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
 
 
-def test_query_params_str_validations():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial005",
+        pytest.param("tutorial005_py39", marks=needs_py39),
+        pytest.param("tutorial005_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(
+        f"docs_src.path_operation_configuration.{request.param}"
+    )
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_query_params_str_validations(client: TestClient):
     response = client.post("/items/", json={"name": "Foo", "price": 42})
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -20,7 +36,7 @@ def test_query_params_str_validations():
 
 
 @needs_pydanticv2
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -34,9 +50,7 @@ def test_openapi_schema():
                             "description": "The created item",
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/Item-Output"
-                                    }
+                                    "schema": {"$ref": "#/components/schemas/Item"}
                                 }
                             },
                         },
@@ -57,7 +71,7 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -67,7 +81,7 @@ def test_openapi_schema():
         },
         "components": {
             "schemas": {
-                "Item-Input": {
+                "Item": {
                     "title": "Item",
                     "required": ["name", "price"],
                     "type": "object",
@@ -76,30 +90,6 @@ def test_openapi_schema():
                         "description": {
                             "title": "Description",
                             "anyOf": [{"type": "string"}, {"type": "null"}],
-                        },
-                        "price": {"title": "Price", "type": "number"},
-                        "tax": {
-                            "title": "Tax",
-                            "anyOf": [{"type": "number"}, {"type": "null"}],
-                        },
-                        "tags": {
-                            "title": "Tags",
-                            "uniqueItems": True,
-                            "type": "array",
-                            "items": {"type": "string"},
-                            "default": [],
-                        },
-                    },
-                },
-                "Item-Output": {
-                    "title": "Item",
-                    "required": ["name", "description", "price", "tax", "tags"],
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "description": {
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                            "title": "Description",
                         },
                         "price": {"title": "Price", "type": "number"},
                         "tax": {
@@ -149,7 +139,7 @@ def test_openapi_schema():
 
 # TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
-def test_openapi_schema_pv1():
+def test_openapi_schema_pv1(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

@@ -4,6 +4,6 @@
     <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1>Item ID: {{ id }}</h1>
+    <h1><a href="{{ url_for('read_item', id=id) }}">Item ID: {{ id }}</a></h1>
 </body>
 </html>

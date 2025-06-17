@@ -34,9 +34,9 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 # Cache for `create_cloned_field`
-_CLONED_TYPES_CACHE: MutableMapping[
-    Type[BaseModel], Type[BaseModel]
-] = WeakKeyDictionary()
+_CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
+    WeakKeyDictionary()
+)
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
@@ -53,16 +53,16 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     }:
         return True
     current_status_code = int(status_code)
-    return not (current_status_code < 200 or current_status_code in {204, 304})
+    return not (current_status_code < 200 or current_status_code in {204, 205, 304})
 
 
 def get_path_param_names(path: str) -> Set[str]:
     return set(re.findall("{(.*?)}", path))
 
 
-def create_response_field(
+def create_model_field(
     name: str,
-    type_: Type[Any],
+    type_: Any,
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     required: Union[bool, UndefinedType] = Undefined,
@@ -71,9 +71,6 @@ def create_response_field(
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
-    """
-    Create a new response field. Raises if type_ is invalid.
-    """
     class_validators = class_validators or {}
     if PYDANTIC_V2:
         field_info = field_info or FieldInfo(
@@ -117,7 +114,7 @@ def create_cloned_field(
     if PYDANTIC_V2:
         return field
     # cloned_types caches already cloned types to support recursive models and improve
-    # performance by avoiding unecessary cloning
+    # performance by avoiding unnecessary cloning
     if cloned_types is None:
         cloned_types = _CLONED_TYPES_CACHE
 
@@ -135,7 +132,7 @@ def create_cloned_field(
                 use_type.__fields__[f.name] = create_cloned_field(
                     f, cloned_types=cloned_types
                 )
-    new_field = create_response_field(name=field.name, type_=use_type)
+    new_field = create_model_field(name=field.name, type_=use_type)
     new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
     new_field.alias = field.alias  # type: ignore[misc]
     new_field.class_validators = field.class_validators  # type: ignore[attr-defined]
@@ -152,7 +149,8 @@ def create_cloned_field(
         ]
     if field.key_field:  # type: ignore[attr-defined]
         new_field.key_field = create_cloned_field(  # type: ignore[attr-defined]
-            field.key_field, cloned_types=cloned_types  # type: ignore[attr-defined]
+            field.key_field,  # type: ignore[attr-defined]
+            cloned_types=cloned_types,
         )
     new_field.validators = field.validators  # type: ignore[attr-defined]
     new_field.pre_validators = field.pre_validators  # type: ignore[attr-defined]
@@ -172,17 +170,17 @@ def generate_operation_id_for_path(
         DeprecationWarning,
         stacklevel=2,
     )
-    operation_id = name + path
+    operation_id = f"{name}{path}"
     operation_id = re.sub(r"\W", "_", operation_id)
-    operation_id = operation_id + "_" + method.lower()
+    operation_id = f"{operation_id}_{method.lower()}"
     return operation_id
 
 
 def generate_unique_id(route: "APIRoute") -> str:
-    operation_id = route.name + route.path_format
+    operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
     assert route.methods
-    operation_id = operation_id + "_" + list(route.methods)[0].lower()
+    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
     return operation_id
 
 
@@ -220,9 +218,3 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
-
-
-def match_pydantic_error_url(error_type: str) -> Any:
-    from dirty_equals import IsStr
-
-    return IsStr(regex=rf"^https://errors\.pydantic\.dev/.*/v/{error_type}")

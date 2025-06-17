@@ -1,14 +1,23 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
+from ...utils import needs_py39, needs_py310, needs_pydanticv2
 
 
-@pytest.fixture(name="client")
-def get_client() -> TestClient:
-    from docs_src.separate_openapi_schemas.tutorial002 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial002",
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        pytest.param("tutorial002_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest) -> TestClient:
+    mod = importlib.import_module(f"docs_src.separate_openapi_schemas.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 

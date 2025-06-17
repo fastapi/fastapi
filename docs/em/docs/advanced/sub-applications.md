@@ -10,9 +10,7 @@
 
 🥇, ✍ 👑, 🔝-🎚, **FastAPI** 🈸, &amp; 🚮 *➡ 🛠️*:
 
-```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
 
 ### 🎧-🈸
 
@@ -20,9 +18,7 @@
 
 👉 🎧-🈸 ➕1️⃣ 🐩 FastAPI 🈸, ✋️ 👉 1️⃣ 👈 🔜 "🗻":
 
-```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
 
 ### 🗻 🎧-🈸
 
@@ -30,9 +26,7 @@
 
 👉 💼, ⚫️ 🔜 📌 ➡ `/subapi`:
 
-```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
 
 ### ✅ 🏧 🛠️ 🩺
 
@@ -70,4 +64,4 @@ $ uvicorn main:app --reload
 
 &amp; 🎧-🈸 💪 ✔️ 🚮 👍 📌 🎧-🈸 &amp; 🌐 🔜 👷 ☑, ↩️ FastAPI 🍵 🌐 👉 `root_path`Ⓜ 🔁.
 
-👆 🔜 💡 🌅 🔃 `root_path` &amp; ❔ ⚙️ ⚫️ 🎯 📄 🔃 [⛅ 🗳](./behind-a-proxy.md){.internal-link target=_blank}.
+👆 🔜 💡 🌅 🔃 `root_path` &amp; ❔ ⚙️ ⚫️ 🎯 📄 🔃 [⛅ 🗳](behind-a-proxy.md){.internal-link target=_blank}.

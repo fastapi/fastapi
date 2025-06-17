@@ -26,6 +26,8 @@
     position: relative;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+    /* Custom line-height */
+    line-height: 1.2;
 }
 
 [data-termynal]:before {

@@ -4,32 +4,25 @@ When you need to send data from a client (let's say, a browser) to your API, you
 
 A **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.
 
-Your API almost always has to send a **response** body. But clients don't necessarily need to send **request** bodies all the time.
+Your API almost always has to send a **response** body. But clients don't necessarily need to send **request bodies** all the time, sometimes they only request a path, maybe with some query parameters, but don't send a body.
 
-To declare a **request** body, you use <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
+To declare a **request** body, you use <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> models with all their power and benefits.
 
-!!! info
-    To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
+/// info
 
-    Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+To send data, you should use one of: `POST` (the more common), `PUT`, `DELETE` or `PATCH`.
 
-    As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+Sending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.
+
+As it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using `GET`, and proxies in the middle might not support it.
+
+///
 
 ## Import Pydantic's `BaseModel`
 
 First, you need to import `BaseModel` from `pydantic`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="2"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="4"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
 ## Create your data model
 
@@ -37,17 +30,8 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-=== "Python 3.10+"
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-    ```Python hl_lines="5-9"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="7-11"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
 
 The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
 
@@ -75,17 +59,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial001.py!}
-    ```
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...and declare its type as the model you created, `Item`.
 
@@ -108,7 +82,7 @@ The JSON Schemas of your models will be part of your OpenAPI generated schema, a
 
 <img src="/img/tutorial/body/image01.png">
 
-And will be also used in the API docs inside each *path operation* that needs them:
+And will also be used in the API docs inside each *path operation* that needs them:
 
 <img src="/img/tutorial/body/image02.png">
 
@@ -134,32 +108,25 @@ But you would get the same editor support with <a href="https://www.jetbrains.co
 
 <img src="/img/tutorial/body/image05.png">
 
-!!! tip
-    If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+/// tip
 
-    It improves editor support for Pydantic models, with:
+If you use <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> as your editor, you can use the <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
 
-    * auto-completion
-    * type checks
-    * refactoring
-    * searching
-    * inspections
+It improves editor support for Pydantic models, with:
+
+* auto-completion
+* type checks
+* refactoring
+* searching
+* inspections
+
+///
 
 ## Use the model
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/body/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="21"
-    {!> ../../../docs_src/body/tutorial002.py!}
-    ```
+{* ../../docs_src/body/tutorial002_py310.py *}
 
 ## Request body + path parameters
 
@@ -167,17 +134,8 @@ You can declare path parameters and request body at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-=== "Python 3.10+"
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-    ```Python hl_lines="15-16"
-    {!> ../../../docs_src/body/tutorial003_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="17-18"
-    {!> ../../../docs_src/body/tutorial003.py!}
-    ```
 
 ## Request body + path + query parameters
 
@@ -185,17 +143,7 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 
 **FastAPI** will recognize each of them and take the data from the correct place.
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="16"
-    {!> ../../../docs_src/body/tutorial004_py310.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body/tutorial004.py!}
-    ```
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 The function parameters will be recognized as follows:
 
@@ -203,10 +151,15 @@ The function parameters will be recognized as follows:
 * If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.
 * If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**.
 
-!!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
+/// note
 
-    The `Union` in `Union[str, None]` is not used by FastAPI, but will allow your editor to give you better support and detect errors.
+FastAPI will know that the value of `q` is not required because of the default value `= None`.
+
+The `str | None` (Python 3.10+) or `Union` in `Union[str, None]` (Python 3.8+) is not used by FastAPI to determine that the value is not required, it will know it's not required because it has a default value of `= None`.
+
+But adding the type annotations will allow your editor to give you better support and detect errors.
+
+///
 
 ## Without Pydantic
 

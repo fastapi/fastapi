@@ -14,7 +14,7 @@ GitHub : <a href="https://github.com/tiangolo/full-stack-fastapi-postgresql" cla
 * Déploiement Docker en mode <a href="https://docs.docker.com/engine/swarm/" class="external-link" target="_blank">Swarm</a>
 * Intégration **Docker Compose** et optimisation pour développement local.
 * Serveur web Python **prêt au déploiement** utilisant Uvicorn et Gunicorn.
-* Backend Python <a href="https://github.com/tiangolo/fastapi" class="external-link" target="_blank">**FastAPI**</a> :
+* Backend Python <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**</a> :
     * **Rapide** : Très hautes performances, comparables à **NodeJS** ou **Go** (grâce à Starlette et Pydantic).
     * **Intuitif** : Excellent support des éditeurs. <abbr title="aussi appelée auto-complétion, autocomplétion, IntelliSense...">Complétion</abbr> partout. Moins de temps passé à déboguer.
     * **Facile** : Fait pour être facile à utiliser et apprendre. Moins de temps passé à lire de la documentation.

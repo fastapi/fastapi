@@ -28,7 +28,7 @@ def examples(
                 "value": {"data": "Data in Body examples, example2"},
             },
         },
-    )
+    ),
 ):
     return item
 
@@ -155,13 +155,26 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "allOf": [{"$ref": "#/components/schemas/Item"}],
-                                    "title": "Item",
-                                    "examples": [
-                                        {"data": "Data in Body examples, example1"}
-                                    ],
-                                },
+                                "schema": IsDict(
+                                    {
+                                        "$ref": "#/components/schemas/Item",
+                                        "examples": [
+                                            {"data": "Data in Body examples, example1"}
+                                        ],
+                                    }
+                                )
+                                | IsDict(
+                                    {
+                                        # TODO: remove when deprecating Pydantic v1
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Item",
+                                        "examples": [
+                                            {"data": "Data in Body examples, example1"}
+                                        ],
+                                    }
+                                ),
                                 "examples": {
                                     "Example One": {
                                         "summary": "Example One Summary",

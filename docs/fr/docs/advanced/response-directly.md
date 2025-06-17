@@ -14,8 +14,11 @@ Cela peut être utile, par exemple, pour retourner des en-têtes personnalisés 
 
 En fait, vous pouvez retourner n'importe quelle `Response` ou n'importe quelle sous-classe de celle-ci.
 
-!!! Note
-    `JSONResponse` est elle-même une sous-classe de `Response`.
+/// note | Remarque
+
+`JSONResponse` est elle-même une sous-classe de `Response`.
+
+///
 
 Et quand vous retournez une `Response`, **FastAPI** la transmet directement.
 
@@ -31,14 +34,15 @@ Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONRespons
 
 Pour ces cas, vous pouvez spécifier un appel à `jsonable_encoder` pour convertir vos données avant de les passer à une réponse :
 
-```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-!!! note "Détails techniques"
-    Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
+/// note | Détails techniques
 
-    **FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
+Vous pouvez aussi utiliser `from starlette.responses import JSONResponse`.
+
+**FastAPI** fournit le même objet `starlette.responses` que `fastapi.responses` juste par commodité pour le développeur. Mais la plupart des réponses disponibles proviennent directement de Starlette.
+
+///
 
 ## Renvoyer une `Response` personnalisée
 
@@ -50,9 +54,7 @@ Disons que vous voulez retourner une réponse <a href="https://en.wikipedia.org/
 
 Vous pouvez mettre votre contenu XML dans une chaîne de caractères, la placer dans une `Response`, et la retourner :
 
-```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Notes
 

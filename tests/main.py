@@ -1,5 +1,5 @@
 import http
-from typing import FrozenSet, Optional
+from typing import FrozenSet, List, Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -192,3 +192,13 @@ def get_enum_status_code():
 @app.get("/query/frozenset")
 def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
     return ",".join(map(str, sorted(query)))
+
+
+@app.get("/query/list")
+def get_query_list(device_ids: List[int] = Query()) -> List[int]:
+    return device_ids
+
+
+@app.get("/query/list-default")
+def get_query_list_default(device_ids: List[int] = Query(default=[])) -> List[int]:
+    return device_ids

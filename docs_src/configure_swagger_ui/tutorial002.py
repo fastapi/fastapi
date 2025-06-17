@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-app = FastAPI(swagger_ui_parameters={"syntaxHighlight.theme": "obsidian"})
+app = FastAPI(swagger_ui_parameters={"syntaxHighlight": {"theme": "obsidian"}})
 
 
 @app.get("/users/{username}")

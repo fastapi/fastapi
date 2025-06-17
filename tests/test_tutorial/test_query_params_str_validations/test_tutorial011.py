@@ -1,26 +1,47 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.query_params_str_validations.tutorial011 import app
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310
 
 
-def test_multi_query_values():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial011",
+        pytest.param("tutorial011_py39", marks=needs_py310),
+        pytest.param("tutorial011_py310", marks=needs_py310),
+        "tutorial011_an",
+        pytest.param("tutorial011_an_py39", marks=needs_py39),
+        pytest.param("tutorial011_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(
+        f"docs_src.query_params_str_validations.{request.param}"
+    )
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_multi_query_values(client: TestClient):
     url = "/items/?q=foo&q=bar"
     response = client.get(url)
     assert response.status_code == 200, response.text
     assert response.json() == {"q": ["foo", "bar"]}
 
 
-def test_query_no_values():
+def test_query_no_values(client: TestClient):
     url = "/items/"
     response = client.get(url)
     assert response.status_code == 200, response.text
     assert response.json() == {"q": None}
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

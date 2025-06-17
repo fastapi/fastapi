@@ -8,10 +8,17 @@ With it, you can use <a href="https://docs.pytest.org/" class="external-link" ta
 
 ## Using `TestClient`
 
-!!! info
-    To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+/// info
 
-    E.g. `pip install httpx`.
+To use `TestClient`, first install <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install httpx
+```
+
+///
 
 Import `TestClient`.
 
@@ -23,24 +30,31 @@ Use the `TestClient` object the same way as you do with `httpx`.
 
 Write simple `assert` statements with the standard Python expressions that you need to check (again, standard `pytest`).
 
-```Python hl_lines="2  12  15-18"
-{!../../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
-!!! tip
-    Notice that the testing functions are normal `def`, not `async def`.
+/// tip
 
-    And the calls to the client are also normal calls, not using `await`.
+Notice that the testing functions are normal `def`, not `async def`.
 
-    This allows you to use `pytest` directly without complications.
+And the calls to the client are also normal calls, not using `await`.
 
-!!! note "Technical Details"
-    You could also use `from starlette.testclient import TestClient`.
+This allows you to use `pytest` directly without complications.
 
-    **FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.
+///
 
-!!! tip
-    If you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} in the advanced tutorial.
+/// note | Technical Details
+
+You could also use `from starlette.testclient import TestClient`.
+
+**FastAPI** provides the same `starlette.testclient` as `fastapi.testclient` just as a convenience for you, the developer. But it comes directly from Starlette.
+
+///
+
+/// tip
+
+If you want to call `async` functions in your tests apart from sending requests to your FastAPI application (e.g. asynchronous database functions), have a look at the [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} in the advanced tutorial.
+
+///
 
 ## Separating tests
 
@@ -50,7 +64,7 @@ And your **FastAPI** application might also be composed of several files/modules
 
 ### **FastAPI** app file
 
-Let's say you have a file structure as described in [Bigger Applications](./bigger-applications.md){.internal-link target=_blank}:
+Let's say you have a file structure as described in [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .
@@ -62,9 +76,7 @@ Let's say you have a file structure as described in [Bigger Applications](./bigg
 In the file `main.py` you have your **FastAPI** app:
 
 
-```Python
-{!../../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### Testing file
 
@@ -80,9 +92,8 @@ Then you could have a file `test_main.py` with your tests. It could live on the 
 
 Because this file is in the same package, you can use relative imports to import the object `app` from the `main` module (`main.py`):
 
-```Python hl_lines="3"
-{!../../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
+
 
 ...and have the code for the tests just like before.
 
@@ -110,49 +121,64 @@ It has a `POST` operation that could return several errors.
 
 Both *path operations* require an `X-Token` header.
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py310/main.py!}
-    ```
+```Python
+{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
+```
 
-=== "Python 3.9+"
+////
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an_py39/main.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+```Python
+{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_an/main.py!}
-    ```
+////
 
-=== "Python 3.10+ non-Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+```Python
+{!> ../../docs_src/app_testing/app_b_an/main.py!}
+```
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b_py310/main.py!}
-    ```
+////
 
-=== "Python 3.6+ non-Annotated"
+//// tab | Python 3.10+ non-Annotated
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python
-    {!> ../../../docs_src/app_testing/app_b/main.py!}
-    ```
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python
+{!> ../../docs_src/app_testing/app_b_py310/main.py!}
+```
+
+////
+
+//// tab | Python 3.8+ non-Annotated
+
+/// tip
+
+Prefer to use the `Annotated` version if possible.
+
+///
+
+```Python
+{!> ../../docs_src/app_testing/app_b/main.py!}
+```
+
+////
 
 ### Extended testing file
 
 You could then update `test_main.py` with the extended tests:
 
-```Python
-{!> ../../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
+
 
 Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
 
@@ -168,14 +194,19 @@ E.g.:
 
 For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX documentation</a>.
 
-!!! info
-    Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
+/// info
 
-    If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` described in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
+
+If you have a Pydantic model in your test and you want to send its data to the application during testing, you can use the `jsonable_encoder` described in [JSON Compatible Encoder](encoder.md){.internal-link target=_blank}.
+
+///
 
 ## Run it
 
-After that, you just need to install `pytest`:
+After that, you just need to install `pytest`.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
 
 <div class="termy">
 

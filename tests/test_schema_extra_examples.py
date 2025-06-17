@@ -40,7 +40,7 @@ def create_app():
                 {"data": "Data in Body examples, example1"},
                 {"data": "Data in Body examples, example2"},
             ],
-        )
+        ),
     ):
         return item
 
@@ -54,7 +54,7 @@ def create_app():
                     {"data": "examples example_examples 1"},
                     {"data": "examples example_examples 2"},
                 ],
-            )
+            ),
         ):
             return item
 
