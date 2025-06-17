@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Clarify the middleware execution order in docs. PR [#13699](https://github.com/fastapi/fastapi/pull/13699) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🍱 Update Drawio diagrams SVGs, single file per diagram, sans-serif font. PR [#13706](https://github.com/fastapi/fastapi/pull/13706) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for "Help FastAPI", simplify and reduce "sponsor" section. PR [#13670](https://github.com/fastapi/fastapi/pull/13670) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
