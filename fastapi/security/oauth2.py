@@ -457,11 +457,26 @@ class OAuth2PasswordBearer(OAuth2):
                 """
             ),
         ] = True,
+        refreshUrl: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The URL to refresh the token and obtain a new one.
+                """
+            ),
+        ] = None,
     ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
-            password=cast(Any, {"tokenUrl": tokenUrl, "scopes": scopes})
+            password=cast(
+                Any,
+                {
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
+            )
         )
         super().__init__(
             flows=flows,
