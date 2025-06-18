@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import Optional
+from typing import Optional, Sequence, Union
 
 import pytest
 from fastapi._compat import PYDANTIC_V2, Undefined
@@ -316,3 +316,18 @@ def test_encode_deque_encodes_child_models():
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
+
+
+def test_encode_sequence():
+    class SequenceModel(Sequence[str]):
+        def __init__(self, items: list[str]):
+            self._items = items
+
+        def __getitem__(self, index: Union[int, slice]) -> Union[str, Sequence[str]]:
+            return self._items[index]
+
+        def __len__(self) -> int:
+            return len(self._items)
+
+    seq = SequenceModel(["item1", "item2", "item3"])
+    assert jsonable_encoder(seq) == ["item1", "item2", "item3"]
