@@ -11,6 +11,10 @@ hide:
 
 * 📝 Update Speakeasy URL to Speakeasy Sandbox. PR [#13697](https://github.com/fastapi/fastapi/pull/13697) by [@ndimares](https://github.com/ndimares).
 
+### Translations
+
+* 🌐 Add Russian translation for `docs/ru/docs/advanced/index.md`. PR [#13797](https://github.com/fastapi/fastapi/pull/13797) by [@NavesSapnis](https://github.com/NavesSapnis).
+
 ## 0.115.13
 
 ### Fixes
