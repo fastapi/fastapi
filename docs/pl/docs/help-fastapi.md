@@ -20,9 +20,9 @@ Możesz zapisać się do rzadkiego [newslettera o **FastAPI i jego przyjaciołac
 * Przełomowymi zmianami 🚨
 * Poradami i sztuczkami ✅
 
-## Śledź FastAPI na Twitterze
+## Śledź FastAPI na X (Twitter)
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Śledź @fastapi na **Twitterze**</a> aby być na bieżąco z najnowszymi wiadomościami o **FastAPI**. 🐦
+<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Śledź @fastapi na **X (Twitter)**</a> aby być na bieżąco z najnowszymi wiadomościami o **FastAPI**. 🐦
 
 ## Dodaj gwiazdkę **FastAPI** na GitHubie
 
@@ -47,10 +47,10 @@ Możesz:
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **GitHubie**</a>.
     * Zobacz inne projekty open source, które stworzyłem, a mogą być dla Ciebie pomocne.
     * Śledź mnie, aby dostać powiadomienie, gdy utworzę nowy projekt open source.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **Twitterze**</a> lub na <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodonie</a>.
+* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Śledzić mnie na **X (Twitter)**</a> lub na <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodonie</a>.
     * Napisz mi, w jaki sposób korzystasz z FastAPI (uwielbiam o tym czytać).
     * Dowiedz się, gdy ogłoszę coś nowego lub wypuszczę nowe narzędzia.
-    * Możesz także <a href="https://twitter.com/fastapi" class="external-link" target="_blank">śledzić @fastapi na Twitterze</a> (to oddzielne konto).
+    * Możesz także <a href="https://twitter.com/fastapi" class="external-link" target="_blank">śledzić @fastapi na X (Twitter)</a> (to oddzielne konto).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Nawiąż ze mną kontakt na **Linkedinie**</a>.
     * Dowiedz się, gdy ogłoszę coś nowego lub wypuszczę nowe narzędzia (chociaż częściej korzystam z Twittera 🤷‍♂).
 * Czytaj moje posty (lub śledź mnie) na <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> lub na <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
