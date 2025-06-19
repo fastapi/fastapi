@@ -75,7 +75,12 @@ def test_header_param_model_invalid(client: TestClient):
                         "type": "missing",
                         "loc": ["header", "save_data"],
                         "msg": "Field required",
-                        "input": {"x_tag": [], "host": "testserver"},
+                        "input": {
+                            "x_tag": [],
+                            "host": "testserver",
+                            "if_modified_since": None,
+                            "traceparent": None,
+                        },
                     }
                 )
                 | IsDict(
