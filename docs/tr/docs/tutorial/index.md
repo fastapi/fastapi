@@ -73,10 +73,12 @@ Editörünüzde kullanmak, FastAPI'ın faydalarını size gerçekten gösteren �
 
 FastAPI'ı yüklemenin ilk adımı:
 
+Kurulum yapmadan önce [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturun, etkinleştirin ve sonra **FastAPI yükleyin** :
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
@@ -84,9 +86,9 @@ $ pip install fastapi
 </div>
 
 !!! Not
-`pip install fastapi` ile kurulum yaptığınızda, bazı varsayılan isteğe bağlı standart bağımlılıklarla birlikte gelir.
+`pip install "fastapi[standard]"` ile kurulum yaptığınızda, bazı varsayılan isteğe bağlı standart bağımlılıklarla birlikte gelir.
 
-    Bu isteğe bağlı bağımlılıklara sahip olmak istemiyorsanız, bunun yerine `pip install fastapi-slim` ile yükleyebilirsiniz.
+Bu isteğe bağlı bağımlılıklara sahip olmak istemiyorsanız, bunun yerine `pip install fastapi` ile yükleyebilirsiniz.
 
 ## Gelişmiş Kullanıcı Kılavuzu
 
