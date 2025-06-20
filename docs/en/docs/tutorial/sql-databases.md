@@ -105,6 +105,12 @@ We will create the database tables when the application starts.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
 
+/// warning
+
+`app.on_event` has been deprecated, and it is recomended to use <a href="https://fastapi.tiangolo.com/advanced/events/?h=lif">lifespan events</a> in production. `app.on_event("startup")` is used here for simplicity.
+
+///
+
 Here we create the tables on an application startup event.
 
 For production you would probably use a migration script that runs before you start your app. 🤓
