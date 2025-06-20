@@ -1,6 +1,7 @@
 import json
-import pytest
 import sys
+
+import pytest
 
 
 @pytest.mark.skipif(
@@ -8,7 +9,6 @@ import sys
 )
 def test_bsonjs_serialized_data():
     import bsonjs
-
     from fastapi import FastAPI
     from fastapi.responses import BSONJSResponse
     from fastapi.testclient import TestClient
