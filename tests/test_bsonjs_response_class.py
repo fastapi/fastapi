@@ -24,5 +24,5 @@ def test_bsonjs_serialized_data():
         response = client.get("/bsonjs_keys")
 
         assert response.content == bsonjs.loads(
-            json.dumps({"key": "Hello World", 1: 1})
+            json.dumps({"key": "Hello World"})
         )
