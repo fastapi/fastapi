@@ -7,12 +7,40 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* Misprint. PR [#13800](https://github.com/fastapi/fastapi/pull/13800) by [@NavesSapnis](https://github.com/NavesSapnis).
+* 📝 Update Speakeasy URL to Speakeasy Sandbox. PR [#13697](https://github.com/fastapi/fastapi/pull/13697) by [@ndimares](https://github.com/ndimares).
+
+### Translations
+
+* 🌐 Add Russian translation for `docs/ru/docs/advanced/index.md`. PR [#13797](https://github.com/fastapi/fastapi/pull/13797) by [@NavesSapnis](https://github.com/NavesSapnis).
+
+## 0.115.13
+
+### Fixes
+
+* 🐛 Fix truncating the model's description with form feed (`\f`) character for Pydantic V2. PR [#13698](https://github.com/fastapi/fastapi/pull/13698) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Refactors
+
+* ✨ Add `refreshUrl` parameter in `OAuth2PasswordBearer`. PR [#11460](https://github.com/fastapi/fastapi/pull/11460) by [@snosratiershad](https://github.com/snosratiershad).
+* 🚸 Set format to password for fields `password` and `client_secret` in `OAuth2PasswordRequestForm`, make docs show password fields for passwords. PR [#11032](https://github.com/fastapi/fastapi/pull/11032) by [@Thodoris1999](https://github.com/Thodoris1999).
+* ✅ Simplify tests for `settings`. PR [#13505](https://github.com/fastapi/fastapi/pull/13505) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* ✅ Simplify tests for `validate_response_recursive`. PR [#13507](https://github.com/fastapi/fastapi/pull/13507) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+
 ### Upgrades
 
 * ⬆️ Update ReDoc to version 2.x. PR [#9700](https://github.com/fastapi/fastapi/pull/9700) by [@joakimnordling](https://github.com/joakimnordling).
 
 ### Docs
 
+* 📝 Add annotations to HTTP middleware example. PR [#11530](https://github.com/fastapi/fastapi/pull/11530) by [@Kilo59](https://github.com/Kilo59).
+* 📝 Clarify in CORS docs that wildcards and credentials are mutually exclusive. PR [#9829](https://github.com/fastapi/fastapi/pull/9829) by [@dfioravanti](https://github.com/dfioravanti).
+* ✏️ Fix typo in docstring. PR [#13532](https://github.com/fastapi/fastapi/pull/13532) by [@comp64](https://github.com/comp64).
+* 📝 Clarify guidance on using `async def` without `await`. PR [#13642](https://github.com/fastapi/fastapi/pull/13642) by [@swastikpradhan1999](https://github.com/swastikpradhan1999).
+* 📝 Update exclude-parameters-from-openapi documentation links. PR [#13600](https://github.com/fastapi/fastapi/pull/13600) by [@timonrieger](https://github.com/timonrieger).
+* 📝 Clarify the middleware execution order in docs. PR [#13699](https://github.com/fastapi/fastapi/pull/13699) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🍱 Update Drawio diagrams SVGs, single file per diagram, sans-serif font. PR [#13706](https://github.com/fastapi/fastapi/pull/13706) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for "Help FastAPI", simplify and reduce "sponsor" section. PR [#13670](https://github.com/fastapi/fastapi/pull/13670) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Remove unnecessary bullet from docs. PR [#13641](https://github.com/fastapi/fastapi/pull/13641) by [@Adamowoc](https://github.com/Adamowoc).
@@ -24,6 +52,8 @@ hide:
 
 ### Translations
 
+* 🌐 Add Russian Translation for `docs/ru/docs/advanced/response-change-status-code.md`. PR [#13791](https://github.com/fastapi/fastapi/pull/13791) by [@NavesSapnis](https://github.com/NavesSapnis).
+* 🌐 Add Persian translation for `docs/fa/docs/learn/index.md`. PR [#13518](https://github.com/fastapi/fastapi/pull/13518) by [@Mohammad222PR](https://github.com/Mohammad222PR).
 * 🌐 Add Korean translation for `docs/ko/docs/advanced/sub-applications.md`. PR [#4543](https://github.com/fastapi/fastapi/pull/4543) by [@NinaHwang](https://github.com/NinaHwang).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/schema-extra-example.md`. PR [#13769](https://github.com/fastapi/fastapi/pull/13769) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * ✏️ Remove redundant words in docs/zh/docs/python-types.md. PR [#13774](https://github.com/fastapi/fastapi/pull/13774) by [@CharleeWa](https://github.com/CharleeWa).
@@ -49,6 +79,7 @@ hide:
 
 ### Internal
 
+* 🔨 Resolve Pydantic deprecation warnings in internal script. PR [#13696](https://github.com/fastapi/fastapi/pull/13696) by [@emmanuel-ferdman](https://github.com/emmanuel-ferdman).
 * 🔧 Update sponsors: remove Porter. PR [#13783](https://github.com/fastapi/fastapi/pull/13783) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13781](https://github.com/fastapi/fastapi/pull/13781) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13757](https://github.com/fastapi/fastapi/pull/13757) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
