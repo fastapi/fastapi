@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing! 🎉
 
-Please refer to the complete guide at:  
+Please refer to the complete guide at:
 👉 [Development - Contributing](https://fastapi.tiangolo.com/contributing/)
 
 ---
