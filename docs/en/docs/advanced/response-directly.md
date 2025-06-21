@@ -58,7 +58,7 @@ You could put your XML content in a string, put that in a `Response`, and return
 
 ## Notes
 
-When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
+When you return a `Response` directly its data is not validated, converted (serialized), or documented automatically.
 
 But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
