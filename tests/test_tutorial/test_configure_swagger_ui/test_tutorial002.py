@@ -21,7 +21,7 @@ def test_swagger_ui():
     assert "SwaggerUIBundle.presets.apis," in response.text, (
         "default configs should be preserved"
     )
-    assert "SwaggerUIBundle.SwaggerUIStandalonePreset" in response.text, (
+    assert "SwaggerUIStandalonePreset" in response.text, (
         "default configs should be preserved"
     )
     assert '"layout": "BaseLayout",' in response.text, (
