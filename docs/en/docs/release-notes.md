@@ -14,6 +14,9 @@ hide:
 
 ### Translations
 
+* ✏️ Fix typo in `docs/ja/docs/tutorial/encoder.md`. PR [#13815](https://github.com/fastapi/fastapi/pull/13815) by [@ruzia](https://github.com/ruzia).
+* ✏️ Fix typo in `docs/ja/docs/tutorial/handling-errors.md`. PR [#13814](https://github.com/fastapi/fastapi/pull/13814) by [@ruzia](https://github.com/ruzia).
+* ✏️ Fix typo in `docs/ja/docs/tutorial/body-fields.md`. PR [#13802](https://github.com/fastapi/fastapi/pull/13802) by [@ruzia](https://github.com/ruzia).
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/index.md`. PR [#13797](https://github.com/fastapi/fastapi/pull/13797) by [@NavesSapnis](https://github.com/NavesSapnis).
 
 ## 0.115.13
