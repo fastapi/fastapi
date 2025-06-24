@@ -118,7 +118,7 @@ Danach könnte Ihre Dateistruktur wie folgt aussehen:
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9,15] *}
 
 ### Die statischen Dateien testen
 
@@ -144,7 +144,7 @@ Wie bei der Verwendung eines benutzerdefinierten CDN besteht der erste Schritt d
 
 Um diese zu deaktivieren, setzen Sie deren URLs beim Erstellen Ihrer `FastAPI`-App auf `None`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[13] *}
 
 ### Die benutzerdefinierten Dokumentationen, mit statischen Dateien, hinzufügen
 
@@ -160,7 +160,7 @@ Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um di
 
 Und genau so für ReDoc ...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[4:8,18:27,30:32,35:42] *}
 
 /// tip | Tipp
 
@@ -176,7 +176,7 @@ Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „U
 
 Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[45:47] *}
 
 ### Benutzeroberfläche, mit statischen Dateien, testen
 
