@@ -44,7 +44,7 @@ def test_redoc():
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
-    assert "redoc@next" in response.text
+    assert "redoc@2" in response.text
 
 
 def test_enum_status_code_response():
@@ -1162,6 +1162,91 @@ def test_openapi_schema():
                         "200": {
                             "description": "Successful Response",
                             "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/query/list": {
+                "get": {
+                    "summary": "Get Query List",
+                    "operationId": "get_query_list_query_list_get",
+                    "parameters": [
+                        {
+                            "name": "device_ids",
+                            "in": "query",
+                            "required": True,
+                            "schema": {
+                                "type": "array",
+                                "items": {"type": "integer"},
+                                "title": "Device Ids",
+                            },
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {"type": "integer"},
+                                        "title": "Response Get Query List Query List Get",
+                                    }
+                                }
+                            },
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/query/list-default": {
+                "get": {
+                    "summary": "Get Query List Default",
+                    "operationId": "get_query_list_default_query_list_default_get",
+                    "parameters": [
+                        {
+                            "name": "device_ids",
+                            "in": "query",
+                            "required": False,
+                            "schema": {
+                                "type": "array",
+                                "items": {"type": "integer"},
+                                "default": [],
+                                "title": "Device Ids",
+                            },
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {"type": "integer"},
+                                        "title": "Response Get Query List Default Query List Default Get",
+                                    }
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",

@@ -1,15 +1,25 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
+
+from ...utils import needs_py39
 
 
-@pytest.fixture(name="app")
-def get_app():
-    from docs_src.request_forms_and_files.tutorial001 import app
+@pytest.fixture(
+    name="app",
+    params=[
+        "tutorial001",
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py39", marks=needs_py39),
+    ],
+)
+def get_app(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.request_forms_and_files.{request.param}")
 
-    return app
+    return mod.app
 
 
 @pytest.fixture(name="client")
@@ -29,21 +39,18 @@ def test_post_form_no_body(client: TestClient):
                     "loc": ["body", "file"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "fileb"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -82,14 +89,12 @@ def test_post_form_no_file(client: TestClient):
                     "loc": ["body", "file"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "fileb"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -123,21 +128,18 @@ def test_post_body_json(client: TestClient):
                     "loc": ["body", "file"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "fileb"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
@@ -181,14 +183,12 @@ def test_post_file_no_token(tmp_path, app: FastAPI):
                     "loc": ["body", "fileb"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "token"],
                     "msg": "Field required",
                     "input": None,
-                    "url": match_pydantic_error_url("missing"),
                 },
             ]
         }
