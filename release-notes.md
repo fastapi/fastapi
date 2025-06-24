@@ -14,6 +14,10 @@
 * 🎨 Add minor UI tweaks in Skeletons and other components. PR [#1507](https://github.com/fastapi/full-stack-fastapi-template/pull/1507) by [@alejsdev](https://github.com/alejsdev).
 * 🎨 Add minor UI tweaks. PR [#1506](https://github.com/fastapi/full-stack-fastapi-template/pull/1506) by [@alejsdev](https://github.com/alejsdev).
 
+### Docs
+
+* ✏️ Fix small typo in `deployment.md`. PR [#1679](https://github.com/fastapi/full-stack-fastapi-template/pull/1679) by [@cassmtnr](https://github.com/cassmtnr).
+
 ### Internal
 
 * ⬆ Bump bcrypt from 4.0.1 to 4.3.0 in /backend. PR [#1601](https://github.com/fastapi/full-stack-fastapi-template/pull/1601) by [@dependabot[bot]](https://github.com/apps/dependabot).
