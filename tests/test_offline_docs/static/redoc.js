@@ -1,0 +1,3 @@
+function bar() {
+    return "bar"
+}
