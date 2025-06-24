@@ -143,7 +143,7 @@ async def get_asynchronous_method_gen_dependency(
 
 @app.get("/partial-function-dependency")
 async def get_partial_function_dependency(
-    value: str = Depends(partial(function_dependency, "partial-function-dependency"))
+    value: str = Depends(partial(function_dependency, "partial-function-dependency")),
 ) -> str:
     return value
 
@@ -159,21 +159,21 @@ async def get_partial_async_function_dependency(
 
 @app.get("/partial-gen-dependency")
 async def get_partial_gen_dependency(
-    value: str = Depends(partial(gen_dependency, "partial-gen-dependency"))
+    value: str = Depends(partial(gen_dependency, "partial-gen-dependency")),
 ) -> str:
     return value
 
 
 @app.get("/partial-async-gen-dependency")
 async def get_partial_async_gen_dependency(
-    value: str = Depends(partial(async_gen_dependency, "partial-async-gen-dependency"))
+    value: str = Depends(partial(async_gen_dependency, "partial-async-gen-dependency")),
 ) -> str:
     return value
 
 
 @app.get("/partial-callable-dependency")
 async def get_partial_callable_dependency(
-    value: str = Depends(partial(callable_dependency, "partial-callable-dependency"))
+    value: str = Depends(partial(callable_dependency, "partial-callable-dependency")),
 ) -> str:
     return value
 
