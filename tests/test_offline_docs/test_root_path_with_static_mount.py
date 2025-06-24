@@ -110,7 +110,7 @@ def test_redoc_docs_with_static_assets(
     @app.get("/")
     async def custom_redoc_html(req: Request):
         """
-        Sets up a localized version of the Swagger (OpenAPI) docs that can be run without assets from the Internet.
+        Sets up a localized version of the Redoc docs that can be run without assets from the Internet.
         """
         root_path = req.scope.get("root_path", "").rstrip("/")
         return get_redoc_html(
