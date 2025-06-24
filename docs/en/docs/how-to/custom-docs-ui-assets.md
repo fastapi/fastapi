@@ -118,7 +118,7 @@ After that, your file structure could look like:
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9,15] *}
 
 ### Test the static files
 
@@ -144,7 +144,7 @@ The same as when using a custom CDN, the first step is to disable the automatic 
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[13] *}
 
 ### Include the custom docs for static files
 
@@ -160,7 +160,7 @@ Again, you can reuse FastAPI's internal functions to create the HTML pages for t
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[4:8,18:27,30:32,35:42] *}
 
 /// tip
 
@@ -176,7 +176,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[45:47] *}
 
 ### Test Static Files UI
 
