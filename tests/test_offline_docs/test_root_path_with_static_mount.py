@@ -1,8 +1,7 @@
 import pytest
-
 from fastapi import FastAPI, Request
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
-from fastapi.openapi.docs import get_swagger_ui_html, get_redoc_html
 from fastapi.testclient import TestClient
 
 
@@ -13,7 +12,7 @@ from fastapi.testclient import TestClient
         ("/api", False),
         ("", True),
         ("", False),
-    ]
+    ],
 )
 def test_swagger_docs_with_static_assets(
     root_path: str,
@@ -22,27 +21,25 @@ def test_swagger_docs_with_static_assets(
     app_kwargs = {}
     client_kwargs = {}
     if not using_test_client:
-        app_kwargs = {
-            "root_path": root_path
-        }
+        app_kwargs = {"root_path": root_path}
     if using_test_client:
-        client_kwargs = {
-            "root_path": root_path
-        }
-    
+        client_kwargs = {"root_path": root_path}
+
     app = FastAPI(
         title="FastAPI",
         docs_url=None,
         redoc_url=None,
         **app_kwargs,
     )
-    
-    app.mount("/static", StaticFiles(directory="tests/test_offline_docs/static"), name="static")
+
+    app.mount(
+        "/static",
+        StaticFiles(directory="tests/test_offline_docs/static"),
+        name="static",
+    )
 
     @app.get("/")
-    async def custom_swagger_ui_html(
-        req: Request
-    ):
+    async def custom_swagger_ui_html(req: Request):
         """
         Sets up a localized version of the Swagger (OpenAPI) docs that can be run without assets from the Internet.
         """
@@ -53,7 +50,6 @@ def test_swagger_docs_with_static_assets(
             swagger_js_url=f"{root_path}/static/swagger.js",
             swagger_css_url=f"{root_path}/static/swagger.css",
         )
-
 
     client = TestClient(app, **client_kwargs)
 
@@ -85,7 +81,7 @@ def test_swagger_docs_with_static_assets(
         ("/api", False),
         ("", True),
         ("", False),
-    ]
+    ],
 )
 def test_redoc_docs_with_static_assets(
     root_path: str,
@@ -94,27 +90,25 @@ def test_redoc_docs_with_static_assets(
     app_kwargs = {}
     client_kwargs = {}
     if not using_test_client:
-        app_kwargs = {
-            "root_path": root_path
-        }
+        app_kwargs = {"root_path": root_path}
     if using_test_client:
-        client_kwargs = {
-            "root_path": root_path
-        }
-    
+        client_kwargs = {"root_path": root_path}
+
     app = FastAPI(
         title="FastAPI",
         docs_url=None,
         redoc_url=None,
         **app_kwargs,
     )
-    
-    app.mount("/static", StaticFiles(directory="tests/test_offline_docs/static"), name="static")
+
+    app.mount(
+        "/static",
+        StaticFiles(directory="tests/test_offline_docs/static"),
+        name="static",
+    )
 
     @app.get("/")
-    async def custom_redoc_html(
-        req: Request
-    ):
+    async def custom_redoc_html(req: Request):
         """
         Sets up a localized version of the Swagger (OpenAPI) docs that can be run without assets from the Internet.
         """
