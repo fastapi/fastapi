@@ -17,7 +17,7 @@ async def custom_swagger_ui_html(req: Request):
     return get_swagger_ui_html(
         openapi_url=f"{root_path}/{app.openapi_url}",
         title=app.title + " - Swagger UI",
-        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
+        oauth2_redirect_url=f"{root_path}/{app.swagger_ui_oauth2_redirect_url}",
         swagger_js_url=f"{root_path}/static/swagger-ui-bundle.js",
         swagger_css_url=f"{root_path}/static/swagger-ui.css",
     )
