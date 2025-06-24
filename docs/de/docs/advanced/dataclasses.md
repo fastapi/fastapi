@@ -4,9 +4,7 @@ FastAPI basiert auf **Pydantic** und ich habe Ihnen gezeigt, wie Sie Pydantic-Mo
 
 Aber FastAPI unterstützt auf die gleiche Weise auch die Verwendung von <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a>:
 
-```Python hl_lines="1  7-12  19-20"
-{!../../../docs_src/dataclasses/tutorial001.py!}
-```
+{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
 
 Das ist dank **Pydantic** ebenfalls möglich, da es <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">`dataclasses` intern unterstützt</a>.
 
@@ -20,20 +18,21 @@ Und natürlich wird das gleiche unterstützt:
 
 Das funktioniert genauso wie mit Pydantic-Modellen. Und tatsächlich wird es unter der Haube mittels Pydantic auf die gleiche Weise bewerkstelligt.
 
-!!! info
-    Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
+/// info
 
-    Daher müssen Sie möglicherweise weiterhin Pydantic-Modelle verwenden.
+Bedenken Sie, dass Datenklassen nicht alles können, was Pydantic-Modelle können.
 
-    Wenn Sie jedoch eine Menge Datenklassen herumliegen haben, ist dies ein guter Trick, um sie für eine Web-API mithilfe von FastAPI zu verwenden. 🤓
+Daher müssen Sie möglicherweise weiterhin Pydantic-Modelle verwenden.
+
+Wenn Sie jedoch eine Menge Datenklassen herumliegen haben, ist dies ein guter Trick, um sie für eine Web-API mithilfe von FastAPI zu verwenden. 🤓
+
+///
 
 ## Datenklassen als `response_model`
 
 Sie können `dataclasses` auch im Parameter `response_model` verwenden:
 
-```Python hl_lines="1  7-13  19"
-{!../../../docs_src/dataclasses/tutorial002.py!}
-```
+{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
 
 Die Datenklasse wird automatisch in eine Pydantic-Datenklasse konvertiert.
 
@@ -49,9 +48,7 @@ In einigen Fällen müssen Sie möglicherweise immer noch Pydantics Version von 
 
 In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.dataclasses` ersetzen, was einen direkten Ersatz darstellt:
 
-```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../../docs_src/dataclasses/tutorial003.py!}
-```
+{* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
 
 1. Wir importieren `field` weiterhin von Standard-`dataclasses`.
 

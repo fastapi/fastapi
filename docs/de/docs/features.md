@@ -6,7 +6,7 @@
 
 ### Basiert auf offenen Standards
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch genannt Endpunkte, Routen">Pfad</abbr>-<abbr title="gemeint sind HTTP-Methoden wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Body-Anfragen, Sicherheit, usw.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch genannt Endpunkte, Routen">Pfad</abbr>-<abbr title="gemeint sind HTTP-Methoden wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Requestbodys, Sicherheit, usw.
 * Automatische Dokumentation der Datenmodelle mit <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (da OpenAPI selbst auf JSON Schema basiert).
 * Um diese Standards herum entworfen, nach sorgfältigem Studium. Statt einer nachträglichen Schicht darüber.
 * Dies ermöglicht auch automatische **Client-Code-Generierung** in vielen Sprachen.
@@ -64,10 +64,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` bedeutet:
+/// info
 
-    Nimm die Schlüssel-Wert-Paare des `second_user_data` <abbr title="Dictionary – Wörterbuch: In anderen Programmiersprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dicts</abbr> und übergib sie direkt als Schlüsselwort-Argumente. Äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`.
+`**second_user_data` bedeutet:
+
+Nimm die Schlüssel-Wert-Paare des `second_user_data` <abbr title="Dictionary – Wörterbuch: In anderen Programmiersprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dicts</abbr> und übergib sie direkt als Schlüsselwort-Argumente. Äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`.
+
+///
 
 ### Editor Unterstützung
 

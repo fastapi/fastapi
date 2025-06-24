@@ -4,12 +4,15 @@ As **FastAPI** is based on the **ASGI** standard, it's very easy to integrate an
 
 You can combine normal FastAPI *path operations* with GraphQL on the same application.
 
-!!! tip
-    **GraphQL** solves some very specific use cases.
+/// tip
 
-    It has **advantages** and **disadvantages** when compared to common **web APIs**.
+**GraphQL** solves some very specific use cases.
 
-    Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+It has **advantages** and **disadvantages** when compared to common **web APIs**.
+
+Make sure you evaluate if the **benefits** for your use case compensate the **drawbacks**. 🤓
+
+///
 
 ## GraphQL Libraries
 
@@ -32,9 +35,7 @@ Depending on your use case, you might prefer to use a different library, but if 
 
 Here's a small preview of how you could integrate Strawberry with FastAPI:
 
-```Python hl_lines="3  22  25-26"
-{!../../../docs_src/graphql/tutorial001.py!}
-```
+{* ../../docs_src/graphql/tutorial001.py hl[3,22,25] *}
 
 You can learn more about Strawberry in the <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry documentation</a>.
 
@@ -46,8 +47,11 @@ Previous versions of Starlette included a `GraphQLApp` class to integrate with <
 
 It was deprecated from Starlette, but if you have code that used it, you can easily **migrate** to <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, that covers the same use case and has an **almost identical interface**.
 
-!!! tip
-    If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+/// tip
+
+If you need GraphQL, I still would recommend you check out <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, as it's based on type annotations instead of custom classes and types.
+
+///
 
 ## Learn More
 

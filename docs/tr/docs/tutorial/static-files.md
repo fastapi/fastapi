@@ -7,14 +7,15 @@
 * `StaticFiles` sınıfını projenize dahil edin.
 * Bir `StaticFiles()` örneğini belirli bir yola bağlayın.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-!!! note "Teknik Detaylar"
-    Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
+/// note | Teknik Detaylar
 
-    **FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
+
+**FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+
+///
 
 ### Bağlama (Mounting) Nedir?
 

@@ -6,8 +6,11 @@ There are many posts, articles, tools, and projects, related to **FastAPI**.
 
 Here's an incomplete list of some of them.
 
-!!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+/// tip
+
+If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+
+///
 
 {% for section_name, section_content in external_links.items() %}
 
@@ -25,9 +28,12 @@ Here's an incomplete list of some of them.
 {% endfor %}
 {% endfor %}
 
-## Projects
+## GitHub Repositories
 
-Latest GitHub projects with the topic `fastapi`:
+Most starred GitHub repositories with the topic `fastapi`:
 
-<div class="github-topic-projects">
-</div>
+{% for repo in topic_repos %}
+
+<a href={{repo.html_url}} target="_blank">★ {{repo.stars}} - {{repo.name}}</a> by <a href={{repo.owner_html_url}} target="_blank">@{{repo.owner_login}}</a>.
+
+{% endfor %}

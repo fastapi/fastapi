@@ -6,9 +6,7 @@
 
 把输入数据转换为以 JSON 格式存储的数据（比如，使用 NoSQL 数据库时），可以使用 `jsonable_encoder`。例如，把 `datetime` 转换为 `str`。
 
-```Python hl_lines="30-35"
-{!../../../docs_src/body_updates/tutorial001.py!}
-```
+{* ../../docs_src/body_updates/tutorial001.py hl[30:35] *}
 
 `PUT` 用于接收替换现有数据的数据。
 
@@ -34,15 +32,17 @@
 
 即，只发送要更新的数据，其余数据保持不变。
 
-!!! note "笔记"
+/// note | 笔记
 
-    `PATCH` 没有 `PUT` 知名，也怎么不常用。
+`PATCH` 没有 `PUT` 知名，也怎么不常用。
 
-    很多人甚至只用 `PUT` 实现部分更新。
+很多人甚至只用 `PUT` 实现部分更新。
 
-    **FastAPI** 对此没有任何限制，可以**随意**互换使用这两种操作。
+**FastAPI** 对此没有任何限制，可以**随意**互换使用这两种操作。
 
-    但本指南也会分别介绍这两种操作各自的用途。
+但本指南也会分别介绍这两种操作各自的用途。
+
+///
 
 ### 使用 Pydantic 的 `exclude_unset` 参数
 
@@ -54,9 +54,7 @@
 
 然后再用它生成一个只含已设置（在请求中所发送）数据，且省略了默认值的 `dict`：
 
-```Python hl_lines="34"
-{!../../../docs_src/body_updates/tutorial002.py!}
-```
+{* ../../docs_src/body_updates/tutorial002.py hl[34] *}
 
 ### 使用 Pydantic 的 `update` 参数
 
@@ -64,9 +62,7 @@
 
 例如，`stored_item_model.copy(update=update_data)`：
 
-```Python hl_lines="35"
-{!../../../docs_src/body_updates/tutorial002.py!}
-```
+{* ../../docs_src/body_updates/tutorial002.py hl[35] *}
 
 ### 更新部分数据小结
 
@@ -83,19 +79,21 @@
 * 把数据保存至数据库；
 * 返回更新后的模型。
 
-```Python hl_lines="30-37"
-{!../../../docs_src/body_updates/tutorial002.py!}
-```
+{* ../../docs_src/body_updates/tutorial002.py hl[30:37] *}
 
-!!! tip "提示"
+/// tip | 提示
 
-    实际上，HTTP `PUT` 也可以完成相同的操作。
-    但本节以 `PATCH` 为例的原因是，该操作就是为了这种用例创建的。
+实际上，HTTP `PUT` 也可以完成相同的操作。
+但本节以 `PATCH` 为例的原因是，该操作就是为了这种用例创建的。
 
-!!! note "笔记"
+///
 
-    注意，输入模型仍需验证。
+/// note | 笔记
 
-    因此，如果希望接收的部分更新数据可以省略其他所有属性，则要把模型中所有的属性标记为可选（使用默认值或 `None`）。
+注意，输入模型仍需验证。
 
-    为了区分用于**更新**所有可选值的模型与用于**创建**包含必选值的模型，请参照[更多模型](extra-models.md){.internal-link target=_blank} 一节中的思路。
+因此，如果希望接收的部分更新数据可以省略其他所有属性，则要把模型中所有的属性标记为可选（使用默认值或 `None`）。
+
+为了区分用于**更新**所有可选值的模型与用于**创建**包含必选值的模型，请参照[更多模型](extra-models.md){.internal-link target=_blank} 一节中的思路。
+
+///

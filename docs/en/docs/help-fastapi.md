@@ -66,7 +66,7 @@ I love to hear about how **FastAPI** is being used, what you have liked in it, i
 ## Vote for FastAPI
 
 * <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Vote for **FastAPI** in Slant</a>.
-* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
+* <a href="https://alternativeto.net/software/fastapi/about/" class="external-link" target="_blank">Vote for **FastAPI** in AlternativeTo</a>.
 * <a href="https://stackshare.io/pypi-fastapi" class="external-link" target="_blank">Say you use **FastAPI** on StackShare</a>.
 
 ## Help others with questions in GitHub
@@ -170,12 +170,15 @@ And if there's any other style or consistency need, I'll ask directly for that, 
 
 * Then **comment** saying that you did that, that's how I will know you really checked it.
 
-!!! info
-    Unfortunately, I can't simply trust PRs that just have several approvals.
+/// info
 
-    Several times it has happened that there are PRs with 3, 5 or more approvals, probably because the description is appealing, but when I check the PRs, they are actually broken, have a bug, or don't solve the problem they claim to solve. 😅
+Unfortunately, I can't simply trust PRs that just have several approvals.
 
-    So, it's really important that you actually read and run the code, and let me know in the comments that you did. 🤓
+Several times it has happened that there are PRs with 3, 5 or more approvals, probably because the description is appealing, but when I check the PRs, they are actually broken, have a bug, or don't solve the problem they claim to solve. 😅
+
+So, it's really important that you actually read and run the code, and let me know in the comments that you did. 🤓
+
+///
 
 * If the PR can be simplified in a way, you can ask for that, but there's no need to be too picky, there might be a lot of subjective points of view (and I will have my own as well 🙈), so it's better if you can focus on the fundamental things.
 
@@ -226,10 +229,13 @@ If you can help me with that, **you are helping me maintain FastAPI** and making
 
 Join the 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord chat server</a> 👥 and hang out with others in the FastAPI community.
 
-!!! tip
-    For questions, ask them in <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
+/// tip
 
-    Use the chat only for other general conversations.
+For questions, ask them in <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussions</a>, there's a much better chance you will receive help by the [FastAPI Experts](fastapi-people.md#fastapi-experts){.internal-link target=_blank}.
+
+Use the chat only for other general conversations.
+
+///
 
 ### Don't use the chat for questions
 
@@ -243,20 +249,7 @@ On the other side, there are thousands of users in the chat systems, so there's 
 
 ## Sponsor the author
 
-You can also financially support the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>.
-
-There you could buy me a coffee ☕️ to say thanks. 😄
-
-And you can also become a Silver or Gold sponsor for FastAPI. 🏅🎉
-
-## Sponsor the tools that power FastAPI
-
-As you have seen in the documentation, FastAPI stands on the shoulders of giants, Starlette and Pydantic.
-
-You can also sponsor:
-
-* <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
-* <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
+If your **product/company** depends on or is related to **FastAPI** and you want to reach its users, you can sponsor the author (me) through <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>. Depending on the tier, you could get some extra benefits, like a badge in the docs. 🎁
 
 ---
 

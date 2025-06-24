@@ -6,6 +6,8 @@ A maioria dessas ideias será mais ou menos **independente**, e na maioria dos c
 
 Se algo parecer interessante e útil para o seu projeto, vá em frente e dê uma olhada. Caso contrário, você pode simplesmente ignorá-lo.
 
-!!! tip
+/// tip
 
-    Se você deseja **aprender FastAPI** de forma estruturada (recomendado), leia capítulo por capítulo [Tutorial - Guia de Usuário](../tutorial/index.md){.internal-link target=_blank} em vez disso.
+Se você deseja **aprender FastAPI** de forma estruturada (recomendado), leia capítulo por capítulo [Tutorial - Guia de Usuário](../tutorial/index.md){.internal-link target=_blank} em vez disso.
+
+///

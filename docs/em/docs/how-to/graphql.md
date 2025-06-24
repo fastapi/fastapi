@@ -4,12 +4,15 @@
 
 👆 💪 🌀 😐 FastAPI *➡ 🛠️* ⏮️ 🕹 🔛 🎏 🈸.
 
-!!! tip
-    **🕹** ❎ 📶 🎯 ⚙️ 💼.
+/// tip
 
-    ⚫️ ✔️ **📈** &amp; **⚠** 🕐❔ 🔬 ⚠ **🕸 🔗**.
+**🕹** ❎ 📶 🎯 ⚙️ 💼.
 
-    ⚒ 💭 👆 🔬 🚥 **💰** 👆 ⚙️ 💼 ⚖ **👐**. 👶
+⚫️ ✔️ **📈** &amp; **⚠** 🕐❔ 🔬 ⚠ **🕸 🔗**.
+
+⚒ 💭 👆 🔬 🚥 **💰** 👆 ⚙️ 💼 ⚖ **👐**. 👶
+
+///
 
 ## 🕹 🗃
 
@@ -32,9 +35,7 @@
 
 📥 🤪 🎮 ❔ 👆 💪 🛠️ 🍓 ⏮️ FastAPI:
 
-```Python hl_lines="3  22  25-26"
-{!../../../docs_src/graphql/tutorial001.py!}
-```
+{* ../../docs_src/graphql/tutorial001.py hl[3,22,25:26] *}
 
 👆 💪 💡 🌅 🔃 🍓 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓 🧾</a>.
 
@@ -46,8 +47,11 @@
 
 ⚫️ 😢 ⚪️➡️ 💃, ✋️ 🚥 👆 ✔️ 📟 👈 ⚙️ ⚫️, 👆 💪 💪 **↔** <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">💃-Graphene3️⃣</a>, 👈 📔 🎏 ⚙️ 💼 &amp; ✔️ **🌖 🌓 🔢**.
 
-!!! tip
-    🚥 👆 💪 🕹, 👤 🔜 👍 👆 ✅ 👅 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓</a>, ⚫️ ⚓️ 🔛 🆎 ✍ ↩️ 🛃 🎓 &amp; 🆎.
+/// tip
+
+🚥 👆 💪 🕹, 👤 🔜 👍 👆 ✅ 👅 <a href="https://strawberry.rocks/" class="external-link" target="_blank">🍓</a>, ⚫️ ⚓️ 🔛 🆎 ✍ ↩️ 🛃 🎓 &amp; 🆎.
+
+///
 
 ## 💡 🌅
 

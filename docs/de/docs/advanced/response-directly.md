@@ -14,8 +14,11 @@ Das kann beispielsweise nützlich sein, um benutzerdefinierte Header oder Cookie
 
 Tatsächlich können Sie jede `Response` oder jede Unterklasse davon zurückgeben.
 
-!!! tip "Tipp"
-    `JSONResponse` selbst ist eine Unterklasse von `Response`.
+/// tip | Tipp
+
+`JSONResponse` selbst ist eine Unterklasse von `Response`.
+
+///
 
 Und wenn Sie eine `Response` zurückgeben, wird **FastAPI** diese direkt weiterleiten.
 
@@ -31,14 +34,15 @@ Sie können beispielsweise kein Pydantic-Modell in eine `JSONResponse` einfügen
 
 In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu konvertieren, bevor Sie sie an eine Response übergeben:
 
-```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-!!! note "Technische Details"
-    Sie können auch `from starlette.responses import JSONResponse` verwenden.
+/// note | Technische Details
 
-    **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+Sie können auch `from starlette.responses import JSONResponse` verwenden.
+
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+
+///
 
 ## Eine benutzerdefinierte `Response` zurückgeben
 
@@ -50,9 +54,7 @@ Nehmen wir an, Sie möchten eine <a href="https://en.wikipedia.org/wiki/XML" cla
 
 Sie könnten Ihren XML-Inhalt als String in eine `Response` einfügen und sie zurückgeben:
 
-```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Anmerkungen
 

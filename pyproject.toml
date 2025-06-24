@@ -29,6 +29,7 @@ classifiers = [
     "Framework :: FastAPI",
     "Framework :: Pydantic",
     "Framework :: Pydantic :: 1",
+    "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
@@ -37,11 +38,12 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.37.2,<0.38.0",
+    "starlette>=0.40.0,<0.47.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
@@ -50,19 +52,21 @@ dependencies = [
 Homepage = "https://github.com/fastapi/fastapi"
 Documentation = "https://fastapi.tiangolo.com/"
 Repository = "https://github.com/fastapi/fastapi"
+Issues = "https://github.com/fastapi/fastapi/issues"
+Changelog = "https://fastapi.tiangolo.com/release-notes/"
 
 [project.optional-dependencies]
 
 standard = [
-    "fastapi-cli >=0.0.2",
+    "fastapi-cli[standard] >=0.0.5",
     # For the test client
     "httpx >=0.23.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.18",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # TODO: this should be part of some pydantic optional extra dependencies
@@ -73,13 +77,13 @@ standard = [
 ]
 
 all = [
-    "fastapi-cli >=0.0.2",
+    "fastapi-cli[standard] >=0.0.5",
     # # For the test client
     "httpx >=0.23.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.18",
     # For Starlette's SessionMiddleware, not commonly used with FastAPI
     "itsdangerous >=1.1.0",
     # For Starlette's schema generation, would not be used with FastAPI
@@ -89,7 +93,7 @@ all = [
     # For ORJSONResponse
     "orjson >=3.2.1",
     # To validate email fields
-    "email_validator >=2.0.0",
+    "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
     # Settings management
@@ -97,6 +101,9 @@ all = [
     # Extra Pydantic data types
     "pydantic-extra-types >=2.0.0",
 ]
+
+[project.scripts]
+fastapi = "fastapi.cli:main"
 
 [tool.pdm]
 version = { source = "file", path = "fastapi/__init__.py" }
@@ -114,35 +121,6 @@ source-includes = [
 
 [tool.tiangolo._internal-slim-build.packages.fastapi-slim.project]
 name = "fastapi-slim"
-
-[tool.tiangolo._internal-slim-build.packages.fastapi]
-include-optional-dependencies = ["standard"]
-
-[tool.tiangolo._internal-slim-build.packages.fastapi.project.optional-dependencies]
-all = [
-    # # For the test client
-    "httpx >=0.23.0",
-    # For templates
-    "jinja2 >=2.11.2",
-    # For forms and file uploads
-    "python-multipart >=0.0.7",
-    # For Starlette's SessionMiddleware, not commonly used with FastAPI
-    "itsdangerous >=1.1.0",
-    # For Starlette's schema generation, would not be used with FastAPI
-    "pyyaml >=5.3.1",
-    # For UJSONResponse
-    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
-    # For ORJSONResponse
-    "orjson >=3.2.1",
-    # To validate email fields
-    "email_validator >=2.0.0",
-    # Uvicorn with uvloop
-    "uvicorn[standard] >=0.12.0",
-    # Settings management
-    "pydantic-settings >=2.0.0",
-    # Extra Pydantic data types
-    "pydantic-extra-types >=2.0.0",
-]
 
 [tool.mypy]
 strict = true
@@ -173,42 +151,43 @@ xfail_strict = true
 junit_family = "xunit2"
 filterwarnings = [
     "error",
-    # TODO: needed by asyncio in Python 3.9.7 https://bugs.python.org/issue45097, try to remove on 3.9.8
-    'ignore:The loop argument is deprecated since Python 3\.8, and scheduled for removal in Python 3\.10:DeprecationWarning:asyncio',
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # TODO: remove after upgrading HTTPX to a version newer than 0.23.0
-    # Including PR: https://github.com/encode/httpx/pull/2309
-    "ignore:'cgi' is deprecated:DeprecationWarning",
     # For passlib
     "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
-    "ignore::trio.TrioDeprecationWarning",
-    # TODO remove pytest-cov
-    'ignore::pytest.PytestDeprecationWarning:pytest_cov',
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
     # https://github.com/sqlalchemy/sqlalchemy/commit/59521abcc0676e936b31a523bd968fc157fef0c2
     'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
-    # TODO: remove after upgrading python-jose to a version that explicitly supports Python 3.12
-    # also, if it won't receive an update, consider replacing python-jose with some alternative
-    # related issues:
-    #   - https://github.com/mpdavis/python-jose/issues/332
-    #   - https://github.com/mpdavis/python-jose/issues/334
-    'ignore:datetime\.datetime\.utcnow\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:jose',
+    # Trio 24.1.0 raises a warning from attrs
+    # Ref: https://github.com/python-trio/trio/pull/3054
+    # Remove once there's a new version of Trio
+    'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
+    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
+    'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
 ]
 
 [tool.coverage.run]
 parallel = true
+data_file = "coverage/.coverage"
 source = [
     "docs_src",
     "tests",
     "fastapi"
 ]
 context = '${CONTEXT}'
+dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
 ]
+
+[tool.coverage.report]
+show_missing = true
+sort = "-Cover"
+
+[tool.coverage.html]
+show_contexts = true
 
 [tool.ruff.lint]
 select = [
@@ -266,3 +245,7 @@ known-third-party = ["fastapi", "pydantic", "starlette"]
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.
 keep-runtime-typing = true
+
+[tool.inline-snapshot]
+# default-flags=["fix"]
+# default-flags=["create"]

@@ -67,10 +67,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` şu anlama geliyor:
+/// info
 
-    Key-Value çiftini direkt olarak  `second_user_data` dictionarysine kaydet , yaptığın şey buna eşit olacak: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` şu anlama geliyor:
+
+Key-Value çiftini direkt olarak  `second_user_data` dictionarysine kaydet , yaptığın şey buna eşit olacak: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Editor desteği
 

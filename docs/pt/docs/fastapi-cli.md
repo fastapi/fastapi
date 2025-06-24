@@ -80,5 +80,8 @@ Isso irá escutar no endereço de IP `0.0.0.0`, o que significa todos os endere�
 
 Em muitos casos você pode ter (e deveria ter) um "proxy de saída" tratando HTTPS no topo, isso dependerá de como você fará o deploy da sua aplicação, seu provedor pode fazer isso pra você ou talvez seja necessário fazer você mesmo.
 
-!!! tip
-    Você pode aprender mais sobre em [documentação de deployment](deployment/index.md){.internal-link target=_blank}.
+/// tip
+
+Você pode aprender mais sobre em [documentação de deployment](deployment/index.md){.internal-link target=_blank}.
+
+///

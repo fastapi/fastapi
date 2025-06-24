@@ -55,3 +55,15 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+
+  # https://github.com/marketplace/actions/alls-green#why
+  test-redistribute-alls-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - test-redistribute
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

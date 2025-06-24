@@ -12,7 +12,7 @@
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
     <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
@@ -93,7 +93,7 @@ The key features are:
 
 "_Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted **Hug** to be - it's really inspiring to see someone build that._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -128,21 +128,25 @@ FastAPI stands on the shoulders of giants:
 
 ## Installation
 
+Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
+**Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
+
 ## Example
 
 ### Create it
 
-* Create a file `main.py` with:
+Create a file `main.py` with:
 
 ```Python
 from typing import Union
@@ -386,7 +390,7 @@ Coming back to the previous code example, **FastAPI** will:
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
     * As the `q` parameter is declared with `= None`, it is optional.
     * Without the `None` it would be required (as is the body in the case with `PUT`).
-* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
+* For `PUT` requests to `/items/{item_id}`, read the body as JSON:
     * Check that it has a required attribute `name` that should be a `str`.
     * Check that it has a required attribute `price` that has to be a `float`.
     * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
@@ -448,11 +452,15 @@ To understand more about it, see the section <a href="https://fastapi.tiangolo.c
 
 ## Dependencies
 
+FastAPI depends on Pydantic and Starlette.
+
+### `standard` Dependencies
+
+When you install FastAPI with `pip install "fastapi[standard]"` it comes with the `standard` group of optional dependencies:
+
 Used by Pydantic:
 
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - for email validation.
-* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
-* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - for email validation.
 
 Used by Starlette:
 
@@ -462,33 +470,26 @@ Used by Starlette:
 
 Used by FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli` - to provide the `fastapi` command.
 
-When you install `fastapi` it comes these standard dependencies.
+### Without `standard` Dependencies
 
-Additional optional dependencies:
+If you don't want to include the `standard` optional dependencies, you can install with `pip install fastapi` instead of `pip install "fastapi[standard]"`.
+
+### Additional Optional Dependencies
+
+There are some additional dependencies you might want to install.
+
+Additional optional Pydantic dependencies:
+
+* <a href="https://docs.pydantic.dev/latest/usage/pydantic_settings/" target="_blank"><code>pydantic-settings</code></a> - for settings management.
+* <a href="https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/" target="_blank"><code>pydantic-extra-types</code></a> - for extra types to be used with Pydantic.
+
+Additional optional FastAPI dependencies:
 
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
-
-## `fastapi-slim`
-
-If you don't want the extra standard optional dependencies, install `fastapi-slim` instead.
-
-When you install with:
-
-```bash
-pip install fastapi
-```
-
-...it includes the same code and dependencies as:
-
-```bash
-pip install "fastapi-slim[standard]"
-```
-
-The standard extra dependencies are the ones mentioned above.
 
 ## License
 
