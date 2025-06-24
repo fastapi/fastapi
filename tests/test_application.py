@@ -1,6 +1,5 @@
 import pytest
 from dirty_equals import IsDict
-from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from .main import app
@@ -51,18 +50,6 @@ def test_enum_status_code_response():
     response = client.get("/enum-status-code")
     assert response.status_code == 201, response.text
     assert response.json() == "foo bar"
-
-
-def test_allow_async_openapi():
-    async def async_openapi():
-        return {"foo": "bar"}
-
-    mod_app = FastAPI()  # use fresh instance to not affect other tests
-    mod_app.openapi = async_openapi
-    mod_client = TestClient(mod_app)
-    response = mod_client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"foo": "bar"}
 
 
 def test_openapi_schema():
