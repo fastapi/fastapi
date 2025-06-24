@@ -16,23 +16,25 @@
 **FastAPI**将采用该模型，生成其`JSON Schema`并将其包含在`OpenAPI`中的正确位置。
 
 例如，要声明另一个具有状态码 `404` 和`Pydantic`模型 `Message` 的响应，可以写：
-```Python hl_lines="18  22"
-{!../../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
+/// note
 
-!!! Note
-	请记住，您必须直接返回 `JSONResponse` 。
+请记住，您必须直接返回 `JSONResponse` 。
 
-!!! Info
-	`model` 密钥不是OpenAPI的一部分。
-	**FastAPI**将从那里获取`Pydantic`模型，生成` JSON Schema` ，并将其放在正确的位置。
-	- 正确的位置是：
-		- 在键 `content` 中，其具有另一个`JSON`对象（ `dict` ）作为值，该`JSON`对象包含：
-			- 媒体类型的密钥，例如 `application/json` ，它包含另一个`JSON`对象作为值，该对象包含：
-				- 一个键` schema` ，它的值是来自模型的`JSON Schema`，正确的位置在这里。
-					- **FastAPI**在这里添加了对OpenAPI中另一个地方的全局JSON模式的引用，而不是直接包含它。这样，其他应用程序和客户端可以直接使用这些JSON模式，提供更好的代码生成工具等。
+///
 
+/// info
+
+`model` 密钥不是OpenAPI的一部分。
+**FastAPI**将从那里获取`Pydantic`模型，生成` JSON Schema` ，并将其放在正确的位置。
+- 正确的位置是：
+    - 在键 `content` 中，其具有另一个`JSON`对象（ `dict` ）作为值，该`JSON`对象包含：
+        - 媒体类型的密钥，例如 `application/json` ，它包含另一个`JSON`对象作为值，该对象包含：
+            - 一个键` schema` ，它的值是来自模型的`JSON Schema`，正确的位置在这里。
+                - **FastAPI**在这里添加了对OpenAPI中另一个地方的全局JSON模式的引用，而不是直接包含它。这样，其他应用程序和客户端可以直接使用这些JSON模式，提供更好的代码生成工具等。
+
+///
 
 **在OpenAPI中为该路径操作生成的响应将是：**
 
@@ -159,16 +161,20 @@
 
 例如，您可以添加一个额外的媒体类型` image/png` ，声明您的路径操作可以返回JSON对象（媒体类型 `application/json` ）或PNG图像：
 
-```Python hl_lines="19-24  28"
-{!../../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-!!! Note
-	- 请注意，您必须直接使用 `FileResponse` 返回图像。
+/// note
 
-!!! Info
-	- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
-	- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
+- 请注意，您必须直接使用 `FileResponse` 返回图像。
+
+///
+
+/// info
+
+- 除非在 `responses` 参数中明确指定不同的媒体类型，否则**FastAPI**将假定响应与主响应类具有相同的媒体类型（默认为` application/json` ）。
+- 但是如果您指定了一个自定义响应类，并将 `None `作为其媒体类型，**FastAPI**将使用 `application/json` 作为具有关联模型的任何其他响应。
+
+///
 
 ## 组合信息
 您还可以联合接收来自多个位置的响应信息，包括 `response_model `、 `status_code` 和 `responses `参数。
@@ -181,9 +187,7 @@
 
 以及一个状态码为 `200` 的响应，它使用您的 `response_model` ，但包含自定义的 `example` ：
 
-```Python hl_lines="20-31"
-{!../../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 所有这些都将被合并并包含在您的OpenAPI中，并在API文档中显示：
 
@@ -209,9 +213,7 @@ new_dict = {**old_dict, "new key": "new value"}
 ```
 您可以使用该技术在路径操作中重用一些预定义的响应，并将它们与其他自定义响应相结合。
 **例如：**
-```Python hl_lines="13-17  26"
-{!../../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 ## 有关OpenAPI响应的更多信息
 
 要了解您可以在响应中包含哪些内容，您可以查看OpenAPI规范中的以下部分：
