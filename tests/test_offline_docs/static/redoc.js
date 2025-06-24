@@ -1,3 +1,0 @@
-function bar() {
-    return "bar"
-}
