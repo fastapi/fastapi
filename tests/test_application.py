@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from .main import app
@@ -42,7 +43,7 @@ def test_redoc():
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
-    assert "redoc@next" in response.text
+    assert "redoc@2" in response.text
 
 
 def test_enum_status_code_response():
@@ -55,7 +56,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/api_route": {
@@ -266,10 +267,17 @@ def test_openapi_schema():
                     "operationId": "get_path_param_id_path_param__item_id__get",
                     "parameters": [
                         {
-                            "required": True,
-                            "schema": {"title": "Item Id", "type": "string"},
                             "name": "item_id",
                             "in": "path",
+                            "required": True,
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Item Id",
+                                }
+                            )
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict({"title": "Item Id", "type": "string"}),
                         }
                     ],
                 }
@@ -969,10 +977,17 @@ def test_openapi_schema():
                     "operationId": "get_query_type_optional_query_int_optional_get",
                     "parameters": [
                         {
-                            "required": False,
-                            "schema": {"title": "Query", "type": "integer"},
                             "name": "query",
                             "in": "query",
+                            "required": False,
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "title": "Query",
+                                }
+                            )
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict({"title": "Query", "type": "integer"}),
                         }
                     ],
                 }
@@ -1134,6 +1149,91 @@ def test_openapi_schema():
                         "200": {
                             "description": "Successful Response",
                             "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/query/list": {
+                "get": {
+                    "summary": "Get Query List",
+                    "operationId": "get_query_list_query_list_get",
+                    "parameters": [
+                        {
+                            "name": "device_ids",
+                            "in": "query",
+                            "required": True,
+                            "schema": {
+                                "type": "array",
+                                "items": {"type": "integer"},
+                                "title": "Device Ids",
+                            },
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {"type": "integer"},
+                                        "title": "Response Get Query List Query List Get",
+                                    }
+                                }
+                            },
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/query/list-default": {
+                "get": {
+                    "summary": "Get Query List Default",
+                    "operationId": "get_query_list_default_query_list_default_get",
+                    "parameters": [
+                        {
+                            "name": "device_ids",
+                            "in": "query",
+                            "required": False,
+                            "schema": {
+                                "type": "array",
+                                "items": {"type": "integer"},
+                                "default": [],
+                                "title": "Device Ids",
+                            },
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {"type": "integer"},
+                                        "title": "Response Get Query List Default Query List Default Get",
+                                    }
+                                }
+                            },
                         },
                         "422": {
                             "description": "Validation Error",

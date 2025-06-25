@@ -1,3 +1,4 @@
+from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 
 from docs_src.behind_a_proxy.tutorial003 import app
@@ -11,17 +12,28 @@ def test_main():
     assert response.json() == {"message": "Hello World", "root_path": "/api/v1"}
 
 
-def test_openapi():
+def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "servers": [
             {"url": "/api/v1"},
-            {"url": "https://stag.example.com", "description": "Staging environment"},
             {
-                "url": "https://prod.example.com",
+                "url": IsOneOf(
+                    "https://stag.example.com/",
+                    # TODO: remove when deprecating Pydantic v1
+                    "https://stag.example.com",
+                ),
+                "description": "Staging environment",
+            },
+            {
+                "url": IsOneOf(
+                    "https://prod.example.com/",
+                    # TODO: remove when deprecating Pydantic v1
+                    "https://prod.example.com",
+                ),
                 "description": "Production environment",
             },
         ],

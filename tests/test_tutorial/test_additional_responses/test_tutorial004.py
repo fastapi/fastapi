@@ -1,6 +1,7 @@
 import os
 import shutil
 
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.additional_responses.tutorial004 import app
@@ -27,7 +28,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
@@ -67,7 +68,16 @@ def test_openapi_schema():
                         },
                         {
                             "required": False,
-                            "schema": {"title": "Img", "type": "boolean"},
+                            "schema": IsDict(
+                                {
+                                    "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                                    "title": "Img",
+                                }
+                            )
+                            | IsDict(
+                                # TODO: remove when deprecating Pydantic v1
+                                {"title": "Img", "type": "boolean"}
+                            ),
                             "name": "img",
                             "in": "query",
                         },

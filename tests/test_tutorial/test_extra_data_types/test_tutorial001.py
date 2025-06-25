@@ -1,11 +1,30 @@
+import importlib
+
+import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.extra_data_types.tutorial001 import app
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310
 
 
-def test_extra_types():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        pytest.param("tutorial001_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.extra_data_types.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_extra_types(client: TestClient):
     item_id = "ff97dd87-a4a5-4a12-b412-cde99f33e00e"
     data = {
         "start_datetime": "2018-12-22T14:00:00+00:00",
@@ -26,11 +45,11 @@ def test_extra_types():
     assert response.json() == expected_response
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/{item_id}": {
@@ -66,13 +85,27 @@ def test_openapi_schema():
                         }
                     ],
                     "requestBody": {
+                        "required": True,
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
-                                }
+                                "schema": IsDict(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                                            }
+                                        ],
+                                        "title": "Body",
+                                    }
+                                )
+                                | IsDict(
+                                    # TODO: remove when deprecating Pydantic v1
+                                    {
+                                        "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                                    }
+                                )
                             }
-                        }
+                        },
                     },
                 }
             }
@@ -93,17 +126,40 @@ def test_openapi_schema():
                             "type": "string",
                             "format": "date-time",
                         },
-                        "repeat_at": {
-                            "title": "Repeat At",
-                            "type": "string",
-                            "format": "time",
-                        },
-                        "process_after": {
-                            "title": "Process After",
-                            "type": "number",
-                            "format": "time-delta",
-                        },
+                        "repeat_at": IsDict(
+                            {
+                                "title": "Repeat At",
+                                "anyOf": [
+                                    {"type": "string", "format": "time"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Repeat At",
+                                "type": "string",
+                                "format": "time",
+                            }
+                        ),
+                        "process_after": IsDict(
+                            {
+                                "title": "Process After",
+                                "type": "string",
+                                "format": "duration",
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {
+                                "title": "Process After",
+                                "type": "number",
+                                "format": "time-delta",
+                            }
+                        ),
                     },
+                    "required": ["start_datetime", "end_datetime", "process_after"],
                 },
                 "ValidationError": {
                     "title": "ValidationError",

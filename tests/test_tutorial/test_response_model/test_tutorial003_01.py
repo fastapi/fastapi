@@ -1,11 +1,27 @@
+import importlib
+
+import pytest
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
-from docs_src.response_model.tutorial003_01 import app
-
-client = TestClient(app)
+from ...utils import needs_py310
 
 
-def test_post_user():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial003_01",
+        pytest.param("tutorial003_01_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.response_model.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_post_user(client: TestClient):
     response = client.post(
         "/user/",
         json={
@@ -23,11 +39,11 @@ def test_post_user():
     }
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/user/": {
@@ -69,7 +85,11 @@ def test_openapi_schema():
             "schemas": {
                 "BaseUser": {
                     "title": "BaseUser",
-                    "required": ["username", "email"],
+                    "required": IsOneOf(
+                        ["username", "email", "full_name"],
+                        # TODO: remove when deprecating Pydantic v1
+                        ["username", "email"],
+                    ),
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},
@@ -78,7 +98,16 @@ def test_openapi_schema():
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": {"title": "Full Name", "type": "string"},
+                        "full_name": IsDict(
+                            {
+                                "title": "Full Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Full Name", "type": "string"}
+                        ),
                     },
                 },
                 "HTTPValidationError": {
@@ -103,7 +132,16 @@ def test_openapi_schema():
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": {"title": "Full Name", "type": "string"},
+                        "full_name": IsDict(
+                            {
+                                "title": "Full Name",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Full Name", "type": "string"}
+                        ),
                         "password": {"title": "Password", "type": "string"},
                     },
                 },

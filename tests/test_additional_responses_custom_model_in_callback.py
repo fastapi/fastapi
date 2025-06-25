@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, HttpUrl
@@ -32,7 +33,7 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/": {
@@ -42,13 +43,24 @@ def test_openapi_schema():
                     "parameters": [
                         {
                             "required": True,
-                            "schema": {
-                                "title": "Callback Url",
-                                "maxLength": 2083,
-                                "minLength": 1,
-                                "type": "string",
-                                "format": "uri",
-                            },
+                            "schema": IsDict(
+                                {
+                                    "title": "Callback Url",
+                                    "minLength": 1,
+                                    "type": "string",
+                                    "format": "uri",
+                                }
+                            )
+                            # TODO: remove when deprecating Pydantic v1
+                            | IsDict(
+                                {
+                                    "title": "Callback Url",
+                                    "maxLength": 2083,
+                                    "minLength": 1,
+                                    "type": "string",
+                                    "format": "uri",
+                                }
+                            ),
                             "name": "callback_url",
                             "in": "query",
                         }
