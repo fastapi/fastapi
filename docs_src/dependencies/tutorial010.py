@@ -10,5 +10,4 @@ class MySuperContextManager:
 
 
 @app.get("/")
-async def get_root(db: Annotated[DBSession, Depends(MySuperContextManager)]):
-    ...
+async def get_root(db: Annotated[DBSession, Depends(MySuperContextManager)]): ...
