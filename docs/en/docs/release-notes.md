@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix support for unions when using `Form`. PR [#13827](https://github.com/fastapi/fastapi/pull/13827) by [@patrick91](https://github.com/patrick91).
+
 ### Docs
 
 * Misprint. PR [#13800](https://github.com/fastapi/fastapi/pull/13800) by [@NavesSapnis](https://github.com/NavesSapnis).
