@@ -21,6 +21,10 @@ hide:
 * ✏️ Fix typo in `docs/ja/docs/tutorial/body-fields.md`. PR [#13802](https://github.com/fastapi/fastapi/pull/13802) by [@ruzia](https://github.com/ruzia).
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/index.md`. PR [#13797](https://github.com/fastapi/fastapi/pull/13797) by [@NavesSapnis](https://github.com/NavesSapnis).
 
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13823](https://github.com/fastapi/fastapi/pull/13823) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
 ## 0.115.13
 
 ### Fixes
