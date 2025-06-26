@@ -19,7 +19,7 @@ Any function that is valid to use with:
 
 would be valid to use as a **FastAPI** dependency.
 
-In fact, FastAPI uses those two decorators internally.
+In fact, FastAPI uses similar decorator internally.
 
 ///
 
@@ -128,6 +128,19 @@ You can re-raise the same exception using `raise`:
 {* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
 
 Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
+
+## Modifying response in dependencies after `yield`
+
+If you want to read or change response in a dependency with `yield` after `yield`, you can get your endpoint's response
+if you assign `yield` to it:
+
+{* ../../docs_src/dependencies/tutorial008e.py hl[13:14] *}
+
+/// warning
+
+You cannot use dependency-injected `Response` to modify response in dependency after `yield`.
+
+///
 
 ## Execution of dependencies with `yield`
 
@@ -266,7 +279,7 @@ Another way to create a context manager is with:
 
 using them to decorate a function with a single `yield`.
 
-That's what **FastAPI** uses internally for dependencies with `yield`.
+A similar decorator is what **FastAPI** uses internally for dependencies with `yield`.
 
 But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
 
