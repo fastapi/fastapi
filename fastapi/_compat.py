@@ -93,13 +93,18 @@ if PYDANTIC_V2:
 
         @property
         def alias(self) -> str:
-            match self.mode:
-                case "validation" if self.field_info.validation_alias is not None:
-                    a = self.field_info.validation_alias
-                case "serialization" if self.field_info.serialization_alias is not None:
-                    a = self.field_info.serialization_alias
-                case _:
-                    a = self.field_info.alias
+            if (
+                self.mode == "validation"
+                and self.field_info.validation_alias is not None
+            ):
+                a = self.field_info.validation_alias
+            elif (
+                self.mode == "serialization"
+                and self.field_info.serialization_alias is not None
+            ):
+                a = self.field_info.serialization_alias
+            else:
+                a = self.field_info.alias
             return a if a is not None else self.name
 
         @property
