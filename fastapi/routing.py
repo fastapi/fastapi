@@ -459,6 +459,7 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        is_auto_options: bool = False,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -567,6 +568,7 @@ class APIRoute(routing.Route):
             embed_body_fields=self._embed_body_fields,
         )
         self.app = request_response(self.get_route_handler())
+        self.is_auto_options = is_auto_options
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
@@ -911,6 +913,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        add_auto_options_route: Optional[bool] = False,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -959,6 +962,37 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
+        if add_auto_options_route:
+            self._update_auto_options_routes(route, path)
+
+    def _update_auto_options_routes(self, new_route: APIRoute, path: str) -> None:
+        auto_options_index: Optional[int] = None
+        allowed_methods: Set[str] = set()
+        for index, route in enumerate(self.routes):
+            if isinstance(route, APIRoute):
+                if route.path == new_route.path:
+                    if hasattr(route, "is_auto_options") and route.is_auto_options:
+                        auto_options_index = index
+                    else:
+                        allowed_methods.update(route.methods)
+
+        if auto_options_index is not None:
+            self.routes.pop(auto_options_index)
+
+        if "OPTIONS" not in new_route.methods:
+
+            async def options_route() -> Response:
+                return Response(headers={"Allow": ", ".join(allowed_methods)})
+
+            self.routes.append(
+                APIRoute(
+                    self.prefix + path,
+                    endpoint=options_route,
+                    methods=["OPTIONS"],
+                    include_in_schema=True,
+                    is_auto_options=True,
+                )
+            )
 
     def api_route(
         self,
@@ -989,6 +1023,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: Optional[bool] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -1017,6 +1052,7 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                add_auto_options_route=add_auto_options_route,
             )
             return func
 
@@ -1694,6 +1730,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -1738,6 +1782,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def put(
@@ -2071,6 +2116,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2120,6 +2173,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def post(
@@ -2453,6 +2507,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2502,6 +2564,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def delete(
@@ -2835,6 +2898,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -2879,6 +2950,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def options(
@@ -3212,6 +3284,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3256,6 +3336,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def head(
@@ -3589,6 +3670,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3638,6 +3727,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def patch(
@@ -3971,6 +4061,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4020,6 +4118,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def trace(
@@ -4353,6 +4452,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4402,6 +4509,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     @deprecated(
