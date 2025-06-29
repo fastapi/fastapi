@@ -22,7 +22,7 @@
 
 ## Подписаться на FastAPI в X (Twitter)
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Подписаться на @fastapi в **X (Twitter)**</a> для получения наисвежайших новостей о **FastAPI**. 🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">Подписаться на @fastapi в **X (Twitter)**</a> для получения наисвежайших новостей о **FastAPI**. 🐦
 
 ## Добавить **FastAPI** звезду на GitHub
 
@@ -47,10 +47,10 @@
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Подписаться на меня на **GitHub**</a>.
     * Посмотреть другие мои проекты с открытым кодом, которые могут быть полезны Вам.
     * Подписавшись на меня Вы сможете получать уведомления, что я создал новый проект с открытым кодом,.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Подписаться на меня в **X (Twitter)**</a> или в <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Подписаться на меня в **X (Twitter)**</a> или в <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
     * Поделиться со мной, как Вы используете FastAPI (я обожаю читать про это).
     * Получать уведомления, когда я делаю объявления и представляю новые инструменты.
-    * Вы также можете <a href="https://twitter.com/fastapi" class="external-link" target="_blank">подписаться на @fastapi в X (Twitter)</a> (это отдельный аккаунт).
+    * Вы также можете <a href="https://x.com/fastapi" class="external-link" target="_blank">подписаться на @fastapi в X (Twitter)</a> (это отдельный аккаунт).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Подписаться на меня в **Linkedin**</a>.
     * Получать уведомления, когда я делаю объявления и представляю новые инструменты (правда чаще всего я использую X (Twitter) 🤷‍♂).
 * Читать, что я пишу (или подписаться на меня) в <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> или в <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
@@ -59,7 +59,7 @@
 
 ## Оставить сообщение в X (Twitter) о **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Оставьте сообщение в X (Twitter) о **FastAPI**</a> и позвольте мне и другим узнать - почему он Вам нравится. 🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Оставьте сообщение в X (Twitter) о **FastAPI**</a> и позвольте мне и другим узнать - почему он Вам нравится. 🎉
 
 Я люблю узнавать о том, как **FastAPI** используется, что Вам понравилось в нём, в каких проектах/компаниях Вы используете его и т.п.
 

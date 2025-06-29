@@ -22,7 +22,7 @@ You can subscribe to the (infrequent) [**FastAPI and friends** newsletter](newsl
 
 ## Follow FastAPI on X (Twitter)
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Follow @fastapi on **X (Twitter)**</a> to get the latest news about **FastAPI**. 🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">Follow @fastapi on **X (Twitter)**</a> to get the latest news about **FastAPI**. 🐦
 
 ## Star **FastAPI** in GitHub
 
@@ -47,10 +47,10 @@ You can:
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Follow me on **GitHub**</a>.
     * See other Open Source projects I have created that could help you.
     * Follow me to see when I create a new Open Source project.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Follow me on **X (Twitter)**</a> or <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Follow me on **X (Twitter)**</a> or <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
     * Tell me how you use FastAPI (I love to hear that).
     * Hear when I make announcements or release new tools.
-    * You can also <a href="https://twitter.com/fastapi" class="external-link" target="_blank">follow @fastapi on X (Twitter)</a> (a separate account).
+    * You can also <a href="https://x.com/fastapi" class="external-link" target="_blank">follow @fastapi on X (Twitter)</a> (a separate account).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Follow me on **LinkedIn**</a>.
     * Hear when I make announcements or release new tools (although I use X (Twitter) more often 🤷‍♂).
 * Read what I write (or follow me) on <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> or <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
@@ -59,7 +59,7 @@ You can:
 
 ## Tweet about **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> and let me and others know why you like it. 🎉
 
 I love to hear about how **FastAPI** is being used, what you have liked in it, in which project/company are you using it, etc.
 
