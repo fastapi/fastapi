@@ -26,6 +26,61 @@ def test_model_field_default_required():
     assert field.default is Undefined
 
 
+@needs_pydanticv2
+def test_model_field_alias():
+    field_info = FieldInfo(annotation=str, alias="foo")
+    field = ModelField(name="bar", field_info=field_info)
+    assert field.alias == "foo"
+
+
+@needs_pydanticv2
+def test_model_field_serialization_alias():
+    field_info = FieldInfo(annotation=str, serialization_alias="foo")
+
+    field = ModelField(name="bar", field_info=field_info, mode="validation")
+    assert field.alias == "bar"
+
+    field = ModelField(name="bar", field_info=field_info, mode="serialization")
+    assert field.alias == "foo"
+
+
+@needs_pydanticv2
+def test_model_field_validation_alias():
+    field_info = FieldInfo(annotation=str, validation_alias="foo")
+
+    field = ModelField(name="bar", field_info=field_info, mode="validation")
+    assert field.alias == "foo"
+
+    field = ModelField(name="bar", field_info=field_info, mode="serialization")
+    assert field.alias == "bar"
+
+
+@needs_pydanticv2
+def test_model_field_both_specialized_alias():
+    field_info = FieldInfo(
+        annotation=str, validation_alias="bar", serialization_alias="baz"
+    )
+
+    field = ModelField(name="foo", field_info=field_info, mode="validation")
+    assert field.alias == "bar"
+
+    field = ModelField(name="foo", field_info=field_info, mode="serialization")
+    assert field.alias == "baz"
+
+
+@needs_pydanticv2
+def test_model_field_alias_and_both_specialized_alias():
+    field_info = FieldInfo(
+        annotation=str, alias="bar", validation_alias="baz", serialization_alias="qux"
+    )
+
+    field = ModelField(name="foo", field_info=field_info, mode="validation")
+    assert field.alias == "baz"
+
+    field = ModelField(name="foo", field_info=field_info, mode="serialization")
+    assert field.alias == "qux"
+
+
 @needs_pydanticv1
 def test_upload_file_dummy_with_info_plain_validator_function():
     # For coverage
