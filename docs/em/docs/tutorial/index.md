@@ -6,33 +6,7 @@
 
 ⚫️ 🏗 👷 🔮 🔗.
 
-👆 💪 👟 🔙 &amp; 👀 ⚫️❔ ⚫️❔ 👆 💪.
-
-## 🏃 📟
-
-🌐 📟 🍫 💪 📁 &amp; ⚙️ 🔗 (👫 🤙 💯 🐍 📁).
-
-🏃 🙆 🖼, 📁 📟 📁 `main.py`, &amp; ▶️ `uvicorn` ⏮️:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-⚫️ **🏆 💡** 👈 👆 ✍ ⚖️ 📁 📟, ✍ ⚫️ &amp; 🏃 ⚫️ 🌐.
-
-⚙️ ⚫️ 👆 👨‍🎨 ⚫️❔ 🤙 🎦 👆 💰 FastAPI, 👀 ❔ 🐥 📟 👆 ✔️ ✍, 🌐 🆎 ✅, ✍, ♒️.
-
----
+👆 💪 👟 🔙 &amp; �� ⚫️❔ ⚫️❔ 👆 💪.
 
 ## ❎ FastAPI
 
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
  &amp; 🎏 🔠 📦 🔗 👈 👆 💚 ⚙️.
 
 ///
+
+## 🏃 📟
+
+🌐 📟 🍫 💪 📁 &amp; ⚙️ 🔗 (👫 🤙 💯 🐍 📁).
+
+🏃 🙆 🖼, 📁 📟 📁 `main.py`, &amp; ▶️ `uvicorn` ⏮️:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+⚫️ **🏆 💡** 👈 👆 ✍ ⚖️ 📁 📟, ✍ ⚫️ &amp; 🏃 ⚫️ 🌐.
+
+⚙️ ⚫️ 👆 👨‍🎨 ⚫️❔ 🤙 🎦 👆 💰 FastAPI, 👀 ❔ 🐥 📟 👆 ✔️ ✍, 🌐 🆎 ✅, ✍, ♒️.
+
+---
 
 ## 🏧 👩‍💻 🦮
 
