@@ -22,7 +22,7 @@ FastAPI, 다른 사용자, 개발자를 응원하고 싶으신가요?
 
 ## 트위터에서 FastAPI 팔로우하기
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">**Twitter**의 @fastapi를 팔로우</a>하여 **FastAPI** 에 대한 최신 뉴스를 얻을 수 있습니다. 🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">**X (Twitter)**의 @fastapi를 팔로우</a>하여 **FastAPI** 에 대한 최신 뉴스를 얻을 수 있습니다. 🐦
 
 ## Star **FastAPI** in GitHub
 
@@ -47,19 +47,19 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 watch 버�
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub**에서 팔로우하기.</a>.
     * 당신에게 도움이 될 저의 다른 오픈소스 프로젝트를 확인하십시오.
     * 새로운 오픈소스 프로젝트를 만들었을 때 확인하려면 팔로우 하십시오.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">**Twitter**</a> 또는 <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>에서 팔로우하기.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">**X (Twitter)**</a> 또는 <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>에서 팔로우하기.
     * FastAPI의 사용 용도를 알려주세요 (그것을 듣는 것을 좋아합니다).
     * 발표나 새로운 툴 출시 소식을 받아보십시오.
-    * <a href="https://twitter.com/fastapi" class="external-link" target="_blank">**Twitter**의 @fastapi를 팔로우</a> (별도 계정에서) 할 수 있습니다.
+    * <a href="https://x.com/fastapi" class="external-link" target="_blank">**X (Twitter)**의 @fastapi를 팔로우</a> (별도 계정에서) 할 수 있습니다.
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**LinkedIn**에서 팔로우하기.</a>.
-    * 새로운 툴의 발표나 출시 소식을 받아보십시오. (단, Twitter를 더 자주 사용합니다 🤷‍♂).
+    * 새로운 툴의 발표나 출시 소식을 받아보십시오. (단, X (Twitter)를 더 자주 사용합니다 🤷‍♂).
 * <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> 또는 <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>에서 제가 작성한 내용을 읽어 보십시오 (또는 팔로우).
     * 다른 기사나 아이디어들을 읽고, 제가 만들어왔던 툴에 대해서도 읽으십시오.
     * 새로운 기사를 읽기 위해 팔로우 하십시오.
 
 ## **FastAPI**에 대한 트윗
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**에 대해 트윗</a> 하고 FastAPI가 마음에 드는 이유를 알려주세요. 🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">**FastAPI**에 대해 트윗</a> 하고 FastAPI가 마음에 드는 이유를 알려주세요. 🎉
 
 **FastAPI**가 어떻게 사용되고 있는지, 어떤 점이 마음에 들었는지, 어떤 프로젝트/회사에서 사용하고 있는지 등에 대해 듣고 싶습니다.
 
