@@ -1,15 +1,27 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
-app = FastAPI()
 
 items = {}
 
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     items["foo"] = {"name": "Fighters"}
     items["bar"] = {"name": "Tenders"}
+    yield
+    # clean up items or other work
+    ...
+
+
+app = FastAPI(lifespan=lifespan)
+
+# startup event and shutdown event are deprecated, you should use lifespan instead
+# @app.on_event("startup")
+# async def startup_event():
+#     items["foo"] = {"name": "Fighters"}
+#     items["bar"] = {"name": "Tenders"}
 
 
 @app.get("/items/{item_id}")
