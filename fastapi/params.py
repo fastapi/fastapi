@@ -763,10 +763,15 @@ class File(Form):
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
+        use_cache: bool = True,
+        parallelizable: bool = True,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
+        self.parallelizable = parallelizable
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
@@ -781,6 +786,9 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
+        parallelizable: bool = True,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(
+            dependency=dependency, use_cache=use_cache, parallelizable=parallelizable
+        )
         self.scopes = scopes or []

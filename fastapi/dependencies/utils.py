@@ -173,6 +173,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        parallelizable=depends.parallelizable,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -200,6 +201,7 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         security_requirements=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
+        parallelizable=dependant.parallelizable,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -279,6 +281,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    parallelizable: bool = True,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -289,6 +292,7 @@ def get_dependant(
         path=path,
         security_scopes=security_scopes,
         use_cache=use_cache,
+        parallelizable=parallelizable,
     )
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
@@ -586,8 +590,9 @@ class DependencySolveException(Exception):
 
 
 def is_context_sensitive(dependant: Dependant) -> bool:
-    if dependant.call is not None and (
-        is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call)
+    if dependant.parallelizable is False or (
+        dependant.call is not None
+        and (is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call))
     ):
         return True
     return any(is_context_sensitive(sub) for sub in dependant.dependencies)
@@ -730,6 +735,21 @@ async def solve_dependencies(
         ensure_cache(resolved)
         return sub_dependant.name, resolved, None, None
 
+    def unpack_results(
+        results: list[
+            Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+        ],
+    ) -> None:
+        for name, value, sub_errors, sub_exception in results:
+            # Ensures order of exception based on dependency order.
+            if sub_exception:
+                raise sub_exception
+            if sub_errors:
+                errors.extend(sub_errors)
+                continue
+            if name is not None:
+                values[name] = value
+
     sequential_deps = []
     parallel_deps = []
     for sub in dependant.dependencies:
@@ -738,27 +758,23 @@ async def solve_dependencies(
         else:
             parallel_deps.append(sub)
 
-    results = []
-
+    sequential_results: list[
+        Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+    ] = []
     for sub in sequential_deps:
-        result = await resolve_sub_dependant(sub)
-        results.append(result)
+        s_result = await resolve_sub_dependant(sub)
+        sequential_results.append(s_result)
+    unpack_results(sequential_results)
 
+    parallel_results: list[
+        Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+    ] = []
     if parallel_deps:
-        parallel_results = await asyncio.gather(
+        p_result = await asyncio.gather(
             *[resolve_sub_dependant(sub) for sub in parallel_deps]
         )
-        results.extend(parallel_results)
-
-    for name, result, sub_errors, sub_exception in results:
-        # Ensures order of exception based on dependency order.
-        if sub_exception:
-            raise sub_exception
-        if sub_errors:
-            errors.extend(sub_errors)
-            continue
-        if name is not None:
-            values[name] = result
+        parallel_results.extend(p_result)
+    unpack_results(parallel_results)
 
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
