@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-updates.md`. PR [#13804](https://github.com/fastapi/fastapi/pull/13804) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+
 ## 0.115.14
 
 ### Fixes
