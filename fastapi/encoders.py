@@ -14,14 +14,26 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 from uuid import UUID
 
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
+from pydantic_extra_types.color import Color
+from pydantic_extra_types.coordinate import Coordinate
 from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
@@ -58,6 +70,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
+    Coordinate: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -261,7 +274,7 @@ def jsonable_encoder(
         return obj
     if isinstance(obj, UndefinedType):
         return None
-    if isinstance(obj, dict):
+    if isinstance(obj, Mapping):
         encoded_dict = {}
         allowed_keys = set(obj.keys())
         if include is not None:
@@ -296,7 +309,8 @@ def jsonable_encoder(
                 )
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
+
+    if isinstance(obj, (Sequence, GeneratorType)):
         encoded_list = []
         for item in obj:
             encoded_list.append(
