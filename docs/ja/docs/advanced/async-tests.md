@@ -17,7 +17,7 @@ AnyIO はそのための便利なプラグインを提供しており、特定�
 
 FastAPIアプリケーションが`async def`ではなく通常の`def`関数を使用していても、内部的には非同期アプリケーションのままです。
 
-`TestClient` は、標準の pytest を使用して通常の `def` テスト関数内で非同期 FastAPI アプリケーションを呼び出すために内部でマジックをしてくれますが、非同期関数内で使用する場合は、このマジックはもはや機能しません。 
+`TestClient` は、標準の pytest を使用して通常の `def` テスト関数内で非同期 FastAPI アプリケーションを呼び出すために内部でマジックをしてくれますが、非同期関数内で使用する場合は、このマジックはもはや機能しません。
 
 `TestClient` は <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> をベースとしており、幸い、これを直接使用して API をテストできます。
 
