@@ -1,12 +1,62 @@
-# 手动运行服务器 - Uvicorn
+# 手动运行服务器
 
-在远程服务器计算机上运行 **FastAPI** 应用程序所需的主要东西是 ASGI 服务器程序，例如 **Uvicorn**。
+## 使用 `fastapi run` 命令
 
-有 3 个主要可选方案：
+简而言之，使用 `fastapi run` 来运行您的 FastAPI 应用程序：
+
+<div class="termy">
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>2306215</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+```
+
+</div>
+
+这在大多数情况下都能正常运行。😎
+
+例如，您可以使用该命令在容器、服务器等环境中启动您的 **FastAPI** 应用。
+
+## ASGI 服务器
+
+让我们深入了解一些细节。
+
+FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称为 <abbr title="Asynchronous Server Gateway Interface，异步服务器网关接口">ASGI</abbr>。FastAPI 本质上是一个 ASGI Web 框架。
+
+要在远程服务器上运行 **FastAPI** 应用（或任何其他 ASGI 应用），您需要一个 ASGI 服务器程序，例如 **Uvicorn**。它是 `fastapi` 命令默认使用的 ASGI 服务器。
+
+除此之外，还有其他一些可选的 ASGI 服务器，例如：
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>：高性能 ASGI 服务器。
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>：与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>：为 Django Channels 构建的 ASGI 服务器。
+* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>：基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
+* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>：NGINX Unit 是一个轻量级且灵活的 Web 应用运行时环境。
 
 ## 服务器主机和服务器程序
 
@@ -21,11 +71,13 @@
 
 ## 安装服务器程序
 
-您可以使用以下命令安装 ASGI 兼容服务器：
+当您安装 FastAPI 时，它自带一个生产环境服务器——Uvicorn，并且您可以使用 `fastapi run` 命令来启动它。
 
-//// tab | Uvicorn
+不过，您也可以手动安装 ASGI 服务器。
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>，一个快如闪电 ASGI 服务器，基于 uvloop 和 httptools 构建。
+请确保您创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装服务器应用程序。
+
+例如，要安装 Uvicorn，可以运行以下命令：
 
 <div class="termy">
 
@@ -37,39 +89,21 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
+类似的流程也适用于任何其他 ASGI 服务器程序。
+
 /// tip
 
-通过添加`standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
+通过添加 `standard` 选项，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
-其中包括`uvloop`，它是`asyncio`的高性能替代品，它提供了巨大的并发性能提升。
+其中包括 `uvloop`，这是 `asyncio` 的高性能替代方案，能够显著提升并发性能。
+
+当您使用 `pip install "fastapi[standard]"` 安装 FastAPI 时，实际上也会安装 `uvicorn[standard]`。
 
 ///
 
-////
-
-//// tab | Hypercorn
-
-* <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>，一个也与 HTTP/2 兼容的 ASGI 服务器。
-
-<div class="termy">
-
-```console
-$ pip install hypercorn
-
----> 100%
-```
-
-</div>
-
-...或任何其他 ASGI 服务器。
-
-////
-
 ## 运行服务器程序
 
-您可以按照之前教程中的相同方式运行应用程序，但不使用`--reload`选项，例如：
-
-//// tab | Uvicorn
+如果您手动安装了 ASGI 服务器，通常需要以特定格式传递一个导入字符串，以便服务器能够正确导入您的 FastAPI 应用：
 
 <div class="termy">
 
@@ -81,79 +115,43 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 </div>
 
-////
+/// note
 
-//// tab | Hypercorn
+命令 `uvicorn main:app` 的含义如下：
 
-<div class="termy">
+* `main`：指的是 `main.py` 文件（即 Python “模块”）。
+* `app`：指的是 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
 
-```console
-$ hypercorn main:app --bind 0.0.0.0:80
+它等价于以下导入语句：
 
-Running on 0.0.0.0:8080 over http (CTRL + C to quit)
+```Python
+from main import app
 ```
-
-</div>
-
-////
-
-/// warning
-
-如果您正在使用`--reload`选项，请记住删除它。
-
- `--reload` 选项消耗更多资源，并且更不稳定。
-
- 它在**开发**期间有很大帮助，但您**不应该**在**生产环境**中使用它。
 
 ///
 
-## Hypercorn with Trio
+每种 ASGI 服务器程序通常都会有类似的命令，您可以在它们的官方文档中找到更多信息。
 
-Starlette 和 **FastAPI** 基于 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>， 所以它们才能同时与 Python 的标准库 <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> 和<a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> 兼容。
+/// warning
 
-尽管如此，Uvicorn 目前仅与 asyncio 兼容，并且通常使用 <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a >, 它是`asyncio`的高性能替代品。
+Uvicorn 和其他服务器支持 `--reload` 选项，该选项在开发过程中非常有用。
 
-但如果你想直接使用**Trio**，那么你可以使用**Hypercorn**，因为它支持它。 ✨
+但 `--reload` 选项会消耗更多资源，且相对不稳定。
 
-### 安装具有 Trio 的 Hypercorn
+它对于**开发阶段**非常有帮助，但在**生产环境**中**不应该**使用。
 
-首先，您需要安装具有 Trio 支持的 Hypercorn：
-
-<div class="termy">
-
-```console
-$ pip install "hypercorn[trio]"
----> 100%
-```
-
-</div>
-
-### Run with Trio
-
-然后你可以传递值`trio`给命令行选项`--worker-class`:
-
-<div class="termy">
-
-```console
-$ hypercorn main:app --worker-class trio
-```
-
-</div>
-
-这将通过您的应用程序启动 Hypercorn，并使用 Trio 作为后端。
-
-现在您可以在应用程序内部使用 Trio。 或者更好的是，您可以使用 AnyIO，使您的代码与 Trio 和 asyncio 兼容。 🎉
+///
 
 ## 部署概念
 
-这些示例运行服务器程序（例如 Uvicorn），启动**单个进程**，在所有 IP（`0.0.0.0`)上监听预定义端口（例如`80`)。
+这些示例运行服务器程序（例如 Uvicorn），启动**单个进程**，在所有 IP（`0.0.0.0`）上监听预定义端口（例如`80`）。
 
 这是基本思路。 但您可能需要处理一些其他事情，例如：
 
 * 安全性 - HTTPS
 * 启动时运行
 * 重新启动
-* Replication（运行的进程数）
+* 复制（运行的进程数）
 * 内存
 * 开始前的步骤
 

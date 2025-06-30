@@ -133,9 +133,9 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
+    assert callable(depends.dependency), (
+        "A parameter-less dependency must have a callable dependency"
+    )
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -302,9 +302,9 @@ def get_dependant(
             type_annotation=param_details.type_annotation,
             dependant=dependant,
         ):
-            assert (
-                param_details.field is None
-            ), f"Cannot specify multiple FastAPI annotations for {param_name!r}"
+            assert param_details.field is None, (
+                f"Cannot specify multiple FastAPI annotations for {param_name!r}"
+            )
             continue
         assert param_details.field is not None
         if isinstance(param_details.field.field_info, params.Body):
@@ -439,9 +439,9 @@ def analyze_param(
         ),
     ):
         assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
-        assert (
-            field_info is None
-        ), f"Cannot specify FastAPI annotation for type {type_annotation!r}"
+        assert field_info is None, (
+            f"Cannot specify FastAPI annotation for type {type_annotation!r}"
+        )
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else RequiredParam
@@ -494,9 +494,9 @@ def analyze_param(
             field_info=field_info,
         )
         if is_path_param:
-            assert is_scalar_field(
-                field=field
-            ), "Path params must be of one of the supported types"
+            assert is_scalar_field(field=field), (
+                "Path params must be of one of the supported types"
+            )
         elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
@@ -521,9 +521,9 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert (
-            field_info_in == params.ParamTypes.cookie
-        ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
+        assert field_info_in == params.ParamTypes.cookie, (
+            f"non-body parameters must be in path, query, header or cookie: {field.name}"
+        )
         dependant.cookie_params.append(field)
 
 
@@ -750,9 +750,15 @@ def request_params_to_args(
     first_field = fields[0]
     fields_to_extract = fields
     single_not_embedded_field = False
+    default_convert_underscores = True
     if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         single_not_embedded_field = True
+        # If headers are in a Pydantic model, the way to disable convert_underscores
+        # would be with Header(convert_underscores=False) at the Pydantic model level
+        default_convert_underscores = getattr(
+            first_field.field_info, "convert_underscores", True
+        )
 
     params_to_process: Dict[str, Any] = {}
 
@@ -763,7 +769,9 @@ def request_params_to_args(
         if isinstance(received_params, Headers):
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
-            convert_underscores = getattr(field.field_info, "convert_underscores", True)
+            convert_underscores = getattr(
+                field.field_info, "convert_underscores", default_convert_underscores
+            )
             if convert_underscores:
                 alias = (
                     field.alias
@@ -782,9 +790,9 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
+        assert isinstance(field_info, params.Param), (
+            "Params must be subclasses of Param"
+        )
         loc: Tuple[str, ...] = (field_info.in_.value,)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=params_to_process, values=values, loc=loc
@@ -794,9 +802,9 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(
-            field_info, params.Param
-        ), "Params must be subclasses of Param"
+        assert isinstance(field_info, params.Param), (
+            "Params must be subclasses of Param"
+        )
         loc = (field_info.in_.value, field.alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
@@ -806,6 +814,25 @@ def request_params_to_args(
         else:
             values[field.name] = v_
     return values, errors
+
+
+def is_union_of_base_models(field_type: Any) -> bool:
+    """Check if field type is a Union where all members are BaseModel subclasses."""
+    from fastapi.types import UnionType
+
+    origin = get_origin(field_type)
+
+    # Check if it's a Union type (covers both typing.Union and types.UnionType in Python 3.10+)
+    if origin is not Union and origin is not UnionType:
+        return False
+
+    union_args = get_args(field_type)
+
+    for arg in union_args:
+        if not lenient_issubclass(arg, BaseModel):
+            return False
+
+    return True
 
 
 def _should_embed_body_fields(fields: List[ModelField]) -> bool:
@@ -821,10 +848,12 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     # If it explicitly specifies it is embedded, it has to be embedded
     if getattr(first_field.field_info, "embed", None):
         return True
-    # If it's a Form (or File) field, it has to be a BaseModel to be top level
+    # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
-    if isinstance(first_field.field_info, params.Form) and not lenient_issubclass(
-        first_field.type_, BaseModel
+    if (
+        isinstance(first_field.field_info, params.Form)
+        and not lenient_issubclass(first_field.type_, BaseModel)
+        and not is_union_of_base_models(first_field.type_)
     ):
         return True
     return False
