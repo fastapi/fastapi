@@ -118,7 +118,7 @@ Depois disso, sua estrutura de arquivos deve se parecer com:
 * Importe `StaticFiles`.
 * "Monte" a instância `StaticFiles()` em um caminho específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9,15] *}
 
 ### Teste os arquivos estáticos
 
@@ -144,7 +144,7 @@ Da mesma forma que ao usar um CDN personalizado, o primeiro passo é desativar a
 
 Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[13] *}
 
 ### Incluir a documentação personalizada para arquivos estáticos
 
@@ -160,7 +160,7 @@ Novamente, você pode reutilizar as funções internas do FastAPI para criar as 
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[4:8,18:27,30:32,35:42] *}
 
 /// tip | Dica
 
@@ -176,7 +176,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[45:47] *}
 
 ### Teste a UI de Arquivos Estáticos
 
