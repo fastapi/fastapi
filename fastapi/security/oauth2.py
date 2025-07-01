@@ -85,7 +85,7 @@ class OAuth2PasswordRequestForm:
         ],
         password: Annotated[
             str,
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
@@ -130,7 +130,7 @@ class OAuth2PasswordRequestForm:
         ] = None,
         client_secret: Annotated[
             Union[str, None],
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 If there's a `client_password` (and a `client_id`), they can be sent
@@ -457,11 +457,26 @@ class OAuth2PasswordBearer(OAuth2):
                 """
             ),
         ] = True,
+        refreshUrl: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The URL to refresh the token and obtain a new one.
+                """
+            ),
+        ] = None,
     ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
-            password=cast(Any, {"tokenUrl": tokenUrl, "scopes": scopes})
+            password=cast(
+                Any,
+                {
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
+            )
         )
         super().__init__(
             flows=flows,
