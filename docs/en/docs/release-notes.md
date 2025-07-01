@@ -11,6 +11,14 @@ hide:
 
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-updates.md`. PR [#13804](https://github.com/fastapi/fastapi/pull/13804) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 
+### Internal
+
+* 👥 Update FastAPI People - Sponsors. PR [#13846](https://github.com/fastapi/fastapi/pull/13846) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#13848](https://github.com/fastapi/fastapi/pull/13848) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump mkdocs-material from 9.6.1 to 9.6.15. PR [#13849](https://github.com/fastapi/fastapi/pull/13849) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13843](https://github.com/fastapi/fastapi/pull/13843) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13845](https://github.com/fastapi/fastapi/pull/13845) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.115.14
 
 ### Fixes
