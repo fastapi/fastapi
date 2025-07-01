@@ -64,7 +64,7 @@ validation_error_response_definition = {
         }
     },
 }
-
+my_code = { "name" : "test" }
 status_code_ranges: Dict[str, str] = {
     "1XX": "Information",
     "2XX": "Success",
