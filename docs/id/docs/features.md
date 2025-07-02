@@ -137,14 +137,14 @@ Ditambah semua fitur keamanan dari Starlette (termasuk **session cookies**).
 Semua fitur ini dibangun sebagai alat dan komponen yang dapat digunakan kembali, mudah diintegrasikan dengan sistem Anda, penyimpanan data, basis data relasional, dan NoSQL, dll.
 
 
-### Injeksi Ketergantungan (Dependency Injection)
+### Injeksi Dependensi (Dependency Injection)
 
-FastAPI menyertakan sistem <abbr title='juga dikenal sebagai "komponen", "resource", "service", "provider"'><strong>Injeksi Ketergantungan</strong></abbr> yang sangat mudah digunakan namun sangat kuat.
+FastAPI menyertakan sistem <abbr title='juga dikenal sebagai "komponen", "resource", "service", "provider"'><strong>Injeksi Dependensi</strong></abbr> yang sangat mudah digunakan namun sangat kuat.
 
-* Bahkan ketergantungan dapat memiliki ketergantungan yang lain, menciptakan hierarki atau **"grafik" ketergantungan**.
+* Bahkan dependensi dapat memiliki dependensi yang lain, menciptakan hierarki atau **"grafik" dependensi**.
 * Semua **ditangani secara otomatis** oleh framework.
-* Semua ketergantungan dapat meminta data dari request dan **menambah batasan operasi path** serta dokumentasi otomatis.
-* **Validasi otomatis** bahkan untuk **parameter path operation** yang didefinisikan dalam ketergantungan.
+* Semua dependensi dapat meminta data dari request dan **menambah batasan operasi path** serta dokumentasi otomatis.
+* **Validasi otomatis** bahkan untuk **parameter path operation** yang didefinisikan dalam dependensi.
 * Dukungan untuk sistem otentikasi pengguna yang kompleks, **koneksi basis data**, dll.
 * **Tidak ada kompromi** dengan basis data, frontend, dll., tetapi integrasi yang mudah dengan semuanya.
 
@@ -153,7 +153,7 @@ FastAPI menyertakan sistem <abbr title='juga dikenal sebagai "komponen", "resour
 
 Atau dengan kata lain, tidak perlu "plug-in", cukup impor dan gunakan kode yang Anda butuhkan.
 
-Setiap integrasi dirancang agar sangat mudah digunakan (dengan ketergantungan) sehingga Anda dapat membuat "plug-in" untuk aplikasi Anda hanya dalam 2 baris kode menggunakan struktur dan sintaks yang sama dengan yang digunakan untuk **path operations** Anda.
+Setiap integrasi dirancang agar sangat mudah digunakan (dengan dependensi) sehingga Anda dapat membuat "plug-in" untuk aplikasi Anda hanya dalam 2 baris kode menggunakan struktur dan sintaks yang sama dengan yang digunakan untuk **path operations** Anda.
 
 
 ### Teruji
