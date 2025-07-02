@@ -23,7 +23,7 @@ In fact, FastAPI uses those two decorators internally.
 
 ///
 
-    And if you have a context manager already, you can use it as a dependency, too.
+And if you have a context manager already, you can use it as a dependency, too.
 
 ## A database dependency with `yield`
 
@@ -242,21 +242,17 @@ When the `with` block finishes, it makes sure to close the file, even if there w
 
 When you create a dependency with `yield`, **FastAPI** will internally create a context manager for it, and combine it with some other related tools.
 
-## Context Managers as dependencies
+### Context Managers as dependencies
 
 You don’t have to create a Context Manager to use FastAPI dependencies.
 
 But sometimes you might want to use a dependency both inside and outside FastAPI. For example, you might want to connect to a database in a DB migration script. You can create a Context Manager manually then:
 
-```Python
-{!../../../docs_src/dependencies/tutorial010_ctx.py!}
-```
+{* ../../docs_src/dependencies/tutorial010_ctx.py *}
 
 This way you can use it with `Depends()` in your app, and as a regular Context Manager everywhere else:
 
-```Python
-{!../../../docs_src/dependencies/tutorial010_ctx_usage.py!}
-```
+{* ../../docs_src/dependencies/tutorial010_ctx_usage.py *}
 
 
 ### Defining Context Managers as classes
