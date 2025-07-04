@@ -22,7 +22,7 @@ Es una especificación bastante extensa y cubre varios casos de uso complejos.
 
 Incluye formas de autenticarse usando un "tercero".
 
-Eso es lo que todos los sistemas con "iniciar sesión con Facebook, Google, Twitter, GitHub" utilizan internamente.
+Eso es lo que todos los sistemas con "iniciar sesión con Facebook, Google, X (Twitter), GitHub" utilizan internamente.
 
 ### OAuth 1
 
@@ -79,7 +79,7 @@ OpenAPI define los siguientes esquemas de seguridad:
   * Autenticación básica HTTP.
   * Digest HTTP, etc.
 * `oauth2`: todas las formas de OAuth2 para manejar la seguridad (llamadas "flujos").
-  * Varios de estos flujos son apropiados para construir un proveedor de autenticación OAuth 2.0 (como Google, Facebook, Twitter, GitHub, etc.):
+  * Varios de estos flujos son apropiados para construir un proveedor de autenticación OAuth 2.0 (como Google, Facebook, X (Twitter), GitHub, etc.):
     * `implicit`
     * `clientCredentials`
     * `authorizationCode`
@@ -90,7 +90,7 @@ OpenAPI define los siguientes esquemas de seguridad:
 
 /// tip | Consejo
 
-Integrar otros proveedores de autenticación/autorización como Google, Facebook, Twitter, GitHub, etc. también es posible y relativamente fácil.
+Integrar otros proveedores de autenticación/autorización como Google, Facebook, X (Twitter), GitHub, etc. también es posible y relativamente fácil.
 
 El problema más complejo es construir un proveedor de autenticación/autorización como esos, pero **FastAPI** te da las herramientas para hacerlo fácilmente, mientras hace el trabajo pesado por ti.
 

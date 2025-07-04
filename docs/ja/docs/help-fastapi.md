@@ -31,18 +31,18 @@ GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリ�
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub** でフォロー</a>。
     * 他のオープンソースプロジェクトを確認できます。何かの助けになるものが見つかるかもしれません。
     * 新たなオープンソースプロジェクトを作成したときに通知されます。
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">**Twitter** でフォロー</a>。
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">**X (Twitter)** でフォロー</a>。
     * FastAPIの使用用途を教えてください (聞いてみたいです)。
     * 新たなツールの発表やリリースが聞けます。
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**Linkedin** でつながる</a>。
-    * 新たなツールの発表やリリースが聞けます (ただしTwitterの方が利用頻度が高いですが 🤷‍♂)。
+    * 新たなツールの発表やリリースが聞けます (ただしX (Twitter)の方が利用頻度が高いですが 🤷‍♂)。
 * <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> や <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> で著作物を読む (またはフォロー)。
     * アイデアや作成ツールについての記事が読めます。
     * 新規記事の執筆を通知してくれます。
 
 ## **FastAPI** に関するツイート
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/fastapi/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
+<a href="https://x.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/fastapi/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
 
 **FastAPI** がどのように使われ、どこが気に入られ、どんなプロジェクト/会社で使われているかなどについて知りたいです。
 
