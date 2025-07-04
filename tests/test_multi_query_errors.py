@@ -1,5 +1,6 @@
 from typing import List
 
+from dirty_equals import IsDict
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 
@@ -14,22 +15,6 @@ def read_items(q: List[int] = Query(default=None)):
 client = TestClient(app)
 
 
-multiple_errors = {
-    "detail": [
-        {
-            "loc": ["query", "q", 0],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        },
-        {
-            "loc": ["query", "q", 1],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer",
-        },
-    ]
-}
-
-
 def test_multi_query():
     response = client.get("/items/?q=5&q=6")
     assert response.status_code == 200, response.text
@@ -39,14 +24,47 @@ def test_multi_query():
 def test_multi_query_incorrect():
     response = client.get("/items/?q=five&q=six")
     assert response.status_code == 422, response.text
-    assert response.json() == multiple_errors
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["query", "q", 0],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "five",
+                },
+                {
+                    "type": "int_parsing",
+                    "loc": ["query", "q", 1],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "six",
+                },
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["query", "q", 0],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                },
+                {
+                    "loc": ["query", "q", 1],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                },
+            ]
+        }
+    )
 
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/items/": {

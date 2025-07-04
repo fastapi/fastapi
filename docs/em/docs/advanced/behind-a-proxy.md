@@ -39,8 +39,11 @@ browser --> proxy
 proxy --> server
 ```
 
-!!! tip
-    📢 `0.0.0.0` 🛎 ⚙️ ⛓ 👈 📋 👂 🔛 🌐 📢 💪 👈 🎰/💽.
+/// tip
+
+📢 `0.0.0.0` 🛎 ⚙️ ⛓ 👈 📋 👂 🔛 🌐 📢 💪 👈 🎰/💽.
+
+///
 
 🩺 🎚 🔜 💪 🗄 🔗 📣 👈 👉 🛠️ `server` 🔎 `/api/v1` (⛅ 🗳). 🖼:
 
@@ -77,10 +80,13 @@ $ uvicorn main:app --root-path /api/v1
 
 🚥 👆 ⚙️ Hypercorn, ⚫️ ✔️ 🎛 `--root-path`.
 
-!!! note "📡 ℹ"
-    🔫 🔧 🔬 `root_path` 👉 ⚙️ 💼.
+/// note | 📡 ℹ
 
-     &amp; `--root-path` 📋 ⏸ 🎛 🚚 👈 `root_path`.
+🔫 🔧 🔬 `root_path` 👉 ⚙️ 💼.
+
+ &amp; `--root-path` 📋 ⏸ 🎛 🚚 👈 `root_path`.
+
+///
 
 ### ✅ ⏮️ `root_path`
 
@@ -88,9 +94,7 @@ $ uvicorn main:app --root-path /api/v1
 
 📥 👥 ✅ ⚫️ 📧 🎦 🎯.
 
-```Python hl_lines="8"
-{!../../../docs_src/behind_a_proxy/tutorial001.py!}
-```
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 ⤴️, 🚥 👆 ▶️ Uvicorn ⏮️:
 
@@ -117,9 +121,7 @@ $ uvicorn main:app --root-path /api/v1
 
 👐, 🚥 👆 🚫 ✔️ 🌌 🚚 📋 ⏸ 🎛 💖 `--root-path` ⚖️ 🌓, 👆 💪 ⚒ `root_path` 🔢 🕐❔ 🏗 👆 FastAPI 📱:
 
-```Python hl_lines="3"
-{!../../../docs_src/behind_a_proxy/tutorial002.py!}
-```
+{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
 
 🚶‍♀️ `root_path` `FastAPI` 🔜 🌓 🚶‍♀️ `--root-path` 📋 ⏸ 🎛 Uvicorn ⚖️ Hypercorn.
 
@@ -168,8 +170,11 @@ Uvicorn 🔜 ⌛ 🗳 🔐 Uvicorn `http://127.0.0.1:8000/app`, &amp; ⤴️ ⚫
 
 👉 💬 Traefik 👂 🔛 ⛴ 9️⃣9️⃣9️⃣9️⃣ &amp; ⚙️ ➕1️⃣ 📁 `routes.toml`.
 
-!!! tip
-    👥 ⚙️ ⛴ 9️⃣9️⃣9️⃣9️⃣ ↩️ 🐩 🇺🇸🔍 ⛴ 8️⃣0️⃣ 👈 👆 🚫 ✔️ 🏃 ⚫️ ⏮️ 📡 (`sudo`) 😌.
+/// tip
+
+👥 ⚙️ ⛴ 9️⃣9️⃣9️⃣9️⃣ ↩️ 🐩 🇺🇸🔍 ⛴ 8️⃣0️⃣ 👈 👆 🚫 ✔️ 🏃 ⚫️ ⏮️ 📡 (`sudo`) 😌.
+
+///
 
 🔜 ✍ 👈 🎏 📁 `routes.toml`:
 
@@ -235,8 +240,11 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-!!! tip
-    👀 👈 ✋️ 👆 🔐 ⚫️ `http://127.0.0.1:8000/app` ⚫️ 🎦 `root_path` `/api/v1`, ✊ ⚪️➡️ 🎛 `--root-path`.
+/// tip
+
+👀 👈 ✋️ 👆 🔐 ⚫️ `http://127.0.0.1:8000/app` ⚫️ 🎦 `root_path` `/api/v1`, ✊ ⚪️➡️ 🎛 `--root-path`.
+
+///
 
 &amp; 🔜 📂 📛 ⏮️ ⛴ Traefik, ✅ ➡ 🔡: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
@@ -279,8 +287,11 @@ $ uvicorn main:app --root-path /api/v1
 
 ## 🌖 💽
 
-!!! warning
-    👉 🌅 🏧 ⚙️ 💼. 💭 🆓 🚶 ⚫️.
+/// warning
+
+👉 🌅 🏧 ⚙️ 💼. 💭 🆓 🚶 ⚫️.
+
+///
 
 🔢, **FastAPI** 🔜 ✍ `server` 🗄 🔗 ⏮️ 📛 `root_path`.
 
@@ -290,9 +301,7 @@ $ uvicorn main:app --root-path /api/v1
 
 🖼:
 
-```Python hl_lines="4-7"
-{!../../../docs_src/behind_a_proxy/tutorial003.py!}
-```
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 🔜 🏗 🗄 🔗 💖:
 
@@ -319,28 +328,32 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-!!! tip
-    👀 🚘-🏗 💽 ⏮️ `url` 💲 `/api/v1`, ✊ ⚪️➡️ `root_path`.
+/// tip
+
+👀 🚘-🏗 💽 ⏮️ `url` 💲 `/api/v1`, ✊ ⚪️➡️ `root_path`.
+
+///
 
 🩺 🎚 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> ⚫️ 🔜 👀 💖:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-!!! tip
-    🩺 🎚 🔜 🔗 ⏮️ 💽 👈 👆 🖊.
+/// tip
+
+🩺 🎚 🔜 🔗 ⏮️ 💽 👈 👆 🖊.
+
+///
 
 ### ❎ 🏧 💽 ⚪️➡️ `root_path`
 
 🚥 👆 🚫 💚 **FastAPI** 🔌 🏧 💽 ⚙️ `root_path`, 👆 💪 ⚙️ 🔢 `root_path_in_servers=False`:
 
-```Python hl_lines="9"
-{!../../../docs_src/behind_a_proxy/tutorial004.py!}
-```
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
 
 &amp; ⤴️ ⚫️ 🏆 🚫 🔌 ⚫️ 🗄 🔗.
 
 ## 🗜 🎧-🈸
 
-🚥 👆 💪 🗻 🎧-🈸 (🔬 [🎧 🈸 - 🗻](./sub-applications.md){.internal-link target=_blank}) ⏪ ⚙️ 🗳 ⏮️ `root_path`, 👆 💪 ⚫️ 🛎, 👆 🔜 ⌛.
+🚥 👆 💪 🗻 🎧-🈸 (🔬 [🎧 🈸 - 🗻](sub-applications.md){.internal-link target=_blank}) ⏪ ⚙️ 🗳 ⏮️ `root_path`, 👆 💪 ⚫️ 🛎, 👆 🔜 ⌛.
 
 FastAPI 🔜 🔘 ⚙️ `root_path` 🎆, ⚫️ 🔜 👷. 👶

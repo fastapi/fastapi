@@ -1,4 +1,5 @@
 import pytest
+from dirty_equals import IsDict
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
@@ -59,83 +60,146 @@ def test_security_oauth2_password_bearer_no_header():
     assert response.json() == {"detail": "Not authenticated"}
 
 
-required_params = {
-    "detail": [
+def test_strict_login_no_data():
+    response = client.post("/login")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
-            "loc": ["body", "grant_type"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "username"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-        {
-            "loc": ["body", "password"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        },
-    ]
-}
-
-grant_type_required = {
-    "detail": [
-        {
-            "loc": ["body", "grant_type"],
-            "msg": "field required",
-            "type": "value_error.missing",
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "grant_type"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "username"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "password"],
+                    "msg": "Field required",
+                    "input": None,
+                },
+            ]
         }
-    ]
-}
-
-grant_type_incorrect = {
-    "detail": [
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
         {
-            "loc": ["body", "grant_type"],
-            "msg": 'string does not match regex "password"',
-            "type": "value_error.str.regex",
-            "ctx": {"pattern": "password"},
+            "detail": [
+                {
+                    "loc": ["body", "grant_type"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["body", "username"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+                {
+                    "loc": ["body", "password"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                },
+            ]
         }
-    ]
-}
+    )
+
+
+def test_strict_login_no_grant_type():
+    response = client.post("/login", data={"username": "johndoe", "password": "secret"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "grant_type"],
+                    "msg": "Field required",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "grant_type"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 @pytest.mark.parametrize(
-    "data,expected_status,expected_response",
-    [
-        (None, 422, required_params),
-        ({"username": "johndoe", "password": "secret"}, 422, grant_type_required),
-        (
-            {"username": "johndoe", "password": "secret", "grant_type": "incorrect"},
-            422,
-            grant_type_incorrect,
-        ),
-        (
-            {"username": "johndoe", "password": "secret", "grant_type": "password"},
-            200,
-            {
-                "grant_type": "password",
-                "username": "johndoe",
-                "password": "secret",
-                "scopes": [],
-                "client_id": None,
-                "client_secret": None,
-            },
-        ),
+    argnames=["grant_type"],
+    argvalues=[
+        pytest.param("incorrect", id="incorrect value"),
+        pytest.param("passwordblah", id="password with suffix"),
+        pytest.param("blahpassword", id="password with prefix"),
     ],
 )
-def test_strict_login(data, expected_status, expected_response):
-    response = client.post("/login", data=data)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+def test_strict_login_incorrect_grant_type(grant_type: str):
+    response = client.post(
+        "/login",
+        data={"username": "johndoe", "password": "secret", "grant_type": grant_type},
+    )
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "string_pattern_mismatch",
+                    "loc": ["body", "grant_type"],
+                    "msg": "String should match pattern '^password$'",
+                    "input": grant_type,
+                    "ctx": {"pattern": "^password$"},
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "grant_type"],
+                    "msg": 'string does not match regex "^password$"',
+                    "type": "value_error.str.regex",
+                    "ctx": {"pattern": "^password$"},
+                }
+            ]
+        }
+    )
+
+
+def test_strict_login_correct_grant_type():
+    response = client.post(
+        "/login",
+        data={"username": "johndoe", "password": "secret", "grant_type": "password"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "grant_type": "password",
+        "username": "johndoe",
+        "password": "secret",
+        "scopes": [],
+        "client_id": None,
+        "client_secret": None,
+    }
 
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/login": {
@@ -193,14 +257,32 @@ def test_openapi_schema():
                     "properties": {
                         "grant_type": {
                             "title": "Grant Type",
-                            "pattern": "password",
+                            "pattern": "^password$",
                             "type": "string",
                         },
                         "username": {"title": "Username", "type": "string"},
                         "password": {"title": "Password", "type": "string"},
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": {"title": "Client Id", "type": "string"},
-                        "client_secret": {"title": "Client Secret", "type": "string"},
+                        "client_id": IsDict(
+                            {
+                                "title": "Client Id",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Id", "type": "string"}
+                        ),
+                        "client_secret": IsDict(
+                            {
+                                "title": "Client Secret",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            }
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Client Secret", "type": "string"}
+                        ),
                     },
                 },
                 "ValidationError": {

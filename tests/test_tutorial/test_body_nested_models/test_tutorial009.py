@@ -1,37 +1,67 @@
+import importlib
+
+import pytest
+from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.body_nested_models.tutorial009 import app
-
-client = TestClient(app)
+from ...utils import needs_py39
 
 
-def test_post_body():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial009",
+        pytest.param("tutorial009_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_nested_models.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_post_body(client: TestClient):
     data = {"2": 2.2, "3": 3.3}
     response = client.post("/index-weights/", json=data)
     assert response.status_code == 200, response.text
     assert response.json() == data
 
 
-def test_post_invalid_body():
+def test_post_invalid_body(client: TestClient):
     data = {"foo": 2.2, "3": 3.3}
     response = client.post("/index-weights/", json=data)
     assert response.status_code == 422, response.text
-    assert response.json() == {
-        "detail": [
-            {
-                "loc": ["body", "__key__"],
-                "msg": "value is not a valid integer",
-                "type": "type_error.integer",
-            }
-        ]
-    }
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["body", "foo", "[key]"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "foo",
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "__key__"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                }
+            ]
+        }
+    )
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/index-weights/": {

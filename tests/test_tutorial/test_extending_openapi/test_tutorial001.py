@@ -15,11 +15,12 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "openapi": "3.0.2",
+        "openapi": "3.1.0",
         "info": {
             "title": "Custom title",
+            "summary": "This is a very custom OpenAPI schema",
+            "description": "Here's a longer description of the custom **OpenAPI** schema",
             "version": "2.5.0",
-            "description": "This is a very custom OpenAPI schema",
             "x-logo": {
                 "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
             },
