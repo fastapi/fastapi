@@ -118,7 +118,7 @@ Después de eso, tu estructura de archivos podría verse así:
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9,15] *}
 
 ### Prueba los archivos estáticos
 
@@ -144,7 +144,7 @@ Igual que cuando usas un CDN personalizado, el primer paso es desactivar la docu
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[13] *}
 
 ### Incluye la documentación personalizada para archivos estáticos
 
@@ -160,7 +160,7 @@ Nuevamente, puedes reutilizar las funciones internas de FastAPI para crear las p
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[4:8,18:27,30:32,35:42] *}
 
 /// tip | Consejo
 
@@ -176,7 +176,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[45:47] *}
 
 ### Prueba la UI de Archivos Estáticos
 
