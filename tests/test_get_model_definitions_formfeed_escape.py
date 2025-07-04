@@ -164,12 +164,9 @@ class SortedTypeSet(Set[Type[Any]]):
 @pytest.mark.parametrize("sort_reversed", [True, False])
 def test_model_description_escaped_with_formfeed(sort_reversed: bool):
     """
-    Ensure that openapi model descriptions that originate from Pydantic docstrings always truncate the docstring to text
-    that falls before the formfeed (\f) character. This feature was introduced in (https://github.com/tiangolo/fastapi/pull/3032).
-    When originally introduced, there was a possibility that the truncation may be ignored depending on the order in which
-    the models got processed. This created non-deterministic errors, since Pydantic model processing uses unordered sets
-    and model ordering may differ from one invocation to the next.
-    This test verifies that (\f) escape of docstrings works in all possible orderings of our two Pydantic model classes.
+    Regression test for bug fixed by https://github.com/fastapi/fastapi/pull/6039.
+
+    Test `get_model_definitions` with models passed in different order.
     """
     all_fields = fastapi.openapi.utils.get_fields_from_routes(app.routes)
 
