@@ -63,6 +63,7 @@ class BaseModelWithConfig(BaseModel):
 
         class Config:
             extra = "allow"
+            smart_union = True
 
 
 class Contact(BaseModelWithConfig):
@@ -160,11 +161,11 @@ class Schema(BaseModelWithConfig):
     type: Optional[str] = None
     enum: Optional[List[Any]] = None
     const: Optional[Any] = None
-    multipleOf: Optional[float] = Field(default=None, gt=0)
-    maximum: Optional[float] = None
-    exclusiveMaximum: Optional[float] = None
-    minimum: Optional[float] = None
-    exclusiveMinimum: Optional[float] = None
+    multipleOf: Optional[Union[float, int]] = Field(default=None, gt=0)
+    maximum: Optional[Union[float, int]] = None
+    exclusiveMaximum: Optional[Union[float, int]] = None
+    minimum: Optional[Union[float, int]] = None
+    exclusiveMinimum: Optional[Union[float, int]] = None
     maxLength: Optional[int] = Field(default=None, ge=0)
     minLength: Optional[int] = Field(default=None, ge=0)
     pattern: Optional[str] = None
