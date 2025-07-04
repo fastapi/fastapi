@@ -63,6 +63,7 @@ class BaseModelWithConfig(BaseModel):
 
         class Config:
             extra = "allow"
+            smart_union = True
 
 
 class Contact(BaseModelWithConfig):
