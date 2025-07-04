@@ -40,7 +40,7 @@
 
 Вы также можете использовать `from starlette.responses import JSONResponse`.
 
-**FastAPI** предоставляет `starlette.responses` через `fastapi.responses` просто для вашего удобства, как разработчика. Но большинство доступных ответов поступают напрямую из Starlette.
+**FastAPI** предоставляет `starlette.responses` через `fastapi.responses` просто для вашего удобства, как разработчика. Но большинство доступных Response-классов поступают напрямую из Starlette.
 
 ///
 
