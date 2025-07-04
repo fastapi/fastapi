@@ -8,11 +8,9 @@
 
 ## Pydantic `schema_extra`
 
-您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://pydantic-docs.helpmanual.io/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
+您可以使用 `Config` 和 `schema_extra` 为Pydantic模型声明一个示例，如<a href="https://docs.pydantic.dev/latest/concepts/json_schema/#schema-customization" class="external-link" target="_blank">Pydantic 文档：定制 Schema </a>中所述:
 
-```Python hl_lines="15-23"
-{!../../../docs_src/schema_extra_example/tutorial001.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:21] *}
 
 这些额外的信息将按原样添加到输出的JSON模式中。
 
@@ -20,12 +18,13 @@
 
 在 `Field`, `Path`, `Query`, `Body` 和其他你之后将会看到的工厂函数，你可以为JSON 模式声明额外信息，你也可以通过给工厂函数传递其他的任意参数来给JSON 模式声明额外信息，比如增加 `example`:
 
-```Python hl_lines="4  10-13"
-{!../../../docs_src/schema_extra_example/tutorial002.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
 
-!!! warning
-    请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
+/// warning
+
+请记住，传递的那些额外参数不会添加任何验证，只会添加注释，用于文档的目的。
+
+///
 
 ## `Body` 额外参数
 
@@ -33,9 +32,7 @@
 
 比如，你可以将请求体的一个 `example` 传递给 `Body`:
 
-```Python hl_lines="20-25"
-{!../../../docs_src/schema_extra_example/tutorial003.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:27] *}
 
 ## 文档 UI 中的例子
 

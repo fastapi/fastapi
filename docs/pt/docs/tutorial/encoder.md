@@ -20,17 +20,7 @@ Você pode usar a função `jsonable_encoder` para resolver isso.
 
 A função recebe um objeto, como um modelo Pydantic e retorna uma versão compatível com JSON:
 
-=== "Python 3.6 e acima"
-
-    ```Python hl_lines="5  22"
-    {!> ../../../docs_src/encoder/tutorial001.py!}
-    ```
-
-=== "Python 3.10 e acima"
-
-    ```Python hl_lines="4  21"
-    {!> ../../../docs_src/encoder/tutorial001_py310.py!}
-    ```
+{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
 
 Neste exemplo, ele converteria o modelo Pydantic em um `dict`, e o `datetime` em um `str`.
 
@@ -38,5 +28,8 @@ O resultado de chamar a função é algo que pode ser codificado com o padrão d
 
 A função não retorna um grande `str` contendo os dados no formato JSON (como uma string). Mas sim, retorna uma estrutura de dados padrão do Python (por exemplo, um `dict`) com valores e subvalores compatíveis com JSON.
 
-!!! nota
-    `jsonable_encoder` é realmente usado pelo **FastAPI** internamente para converter dados. Mas também é útil em muitos outros cenários.
+/// note | Nota
+
+`jsonable_encoder` é realmente usado pelo **FastAPI** internamente para converter dados. Mas também é útil em muitos outros cenários.
+
+///
