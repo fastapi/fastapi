@@ -1,11 +1,14 @@
 from typing import Any, Iterator, Set, Type
 
+import fastapi._compat
 import fastapi.openapi.utils
-import fastapi.utils
 import pydantic.schema
+import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
+
+from .utils import needs_pydanticv1
 
 
 class Address(BaseModel):
@@ -31,8 +34,7 @@ client = TestClient(app)
 
 
 @app.get("/facilities/{facility_id}")
-def get_facility(facility_id: str) -> Facility:
-    ...
+def get_facility(facility_id: str) -> Facility: ...
 
 
 openapi_schema = {
@@ -40,11 +42,11 @@ openapi_schema = {
         "schemas": {
             "Address": {
                 # NOTE: the description of this model shows only the public-facing text, before the `\f` in docstring
-                "description": "This is a public " "description of an Address\n",
+                "description": "This is a public description of an Address\n",
                 "properties": {
                     "city": {"title": "City", "type": "string"},
-                    "line_1": {"title": "Line " "1", "type": "string"},
-                    "state_province": {"title": "State " "Province", "type": "string"},
+                    "line_1": {"title": "Line 1", "type": "string"},
+                    "state_province": {"title": "State Province", "type": "string"},
                 },
                 "required": ["line_1", "city", "state_province"],
                 "title": "Address",
@@ -78,7 +80,7 @@ openapi_schema = {
                         "type": "array",
                     },
                     "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error " "Type", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
                 },
                 "required": ["loc", "msg", "type"],
                 "title": "ValidationError",
@@ -87,7 +89,7 @@ openapi_schema = {
         }
     },
     "info": {"title": "FastAPI", "version": "0.1.0"},
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "paths": {
         "/facilities/{facility_id}": {
             "get": {
@@ -97,7 +99,7 @@ openapi_schema = {
                         "in": "path",
                         "name": "facility_id",
                         "required": True,
-                        "schema": {"title": "Facility " "Id", "type": "string"},
+                        "schema": {"title": "Facility Id", "type": "string"},
                     }
                 ],
                 "responses": {
@@ -107,7 +109,7 @@ openapi_schema = {
                                 "schema": {"$ref": "#/components/schemas/Facility"}
                             }
                         },
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     },
                     "422": {
                         "content": {
@@ -117,7 +119,7 @@ openapi_schema = {
                                 }
                             }
                         },
-                        "description": "Validation " "Error",
+                        "description": "Validation Error",
                     },
                 },
                 "summary": "Get Facility",
@@ -158,34 +160,28 @@ class SortedTypeSet(Set[Type[Any]]):
         yield from members_sorted
 
 
-def test_model_description_escaped_with_formfeed():
+@needs_pydanticv1
+@pytest.mark.parametrize("sort_reversed", [True, False])
+def test_model_description_escaped_with_formfeed(sort_reversed: bool):
     """
     Ensure that openapi model descriptions that originate from Pydantic docstrings always truncate the docstring to text
     that falls before the formfeed (\f) character. This feature was introduced in (https://github.com/tiangolo/fastapi/pull/3032).
     When originally introduced, there was a possibility that the truncation may be ignored depending on the order in which
     the models got processed. This created non-deterministic errors, since Pydantic model processing uses unordered sets
     and model ordering may differ from one invocation to the next.
-
     This test verifies that (\f) escape of docstrings works in all possible orderings of our two Pydantic model classes.
     """
-    flat_models = fastapi.openapi.utils.get_flat_models_from_routes(app.routes)
+    all_fields = fastapi.openapi.utils.get_fields_from_routes(app.routes)
+
+    flat_models = fastapi._compat.get_flat_models_from_fields(
+        all_fields, known_models=set()
+    )
     model_name_map = pydantic.schema.get_model_name_map(flat_models)
 
     expected_address_description = "This is a public description of an Address\n"
 
-    models_when_sorted_asc = fastapi.utils.get_model_definitions(
-        flat_models=SortedTypeSet(flat_models, sort_reversed=False),
+    models = fastapi._compat.get_model_definitions(
+        flat_models=SortedTypeSet(flat_models, sort_reversed=sort_reversed),
         model_name_map=model_name_map,
     )
-    assert (
-        models_when_sorted_asc["Address"]["description"] == expected_address_description
-    )
-
-    models_when_sorted_desc = fastapi.utils.get_model_definitions(
-        flat_models=SortedTypeSet(flat_models, sort_reversed=True),
-        model_name_map=model_name_map,
-    )
-    assert (
-        models_when_sorted_desc["Address"]["description"]
-        == expected_address_description
-    )
+    assert models["Address"]["description"] == expected_address_description
