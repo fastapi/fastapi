@@ -216,7 +216,7 @@ Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port*
 
 Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 Und natürlich würden auf derselben Maschine neben Ihrer Anwendung wahrscheinlich auch **andere Prozesse** laufen.
 
