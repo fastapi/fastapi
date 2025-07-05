@@ -2,7 +2,6 @@ import importlib
 
 import pytest
 from dirty_equals import IsDict
-
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39, needs_py310
@@ -30,8 +29,12 @@ def get_client(request: pytest.FixtureRequest):
     [
         ("/items", None, 200, {"X-Token values": None}),
         ("/items", {"x-token": "foo"}, 200, {"X-Token values": ["foo"]}),
-        ("/items", [("x-token", "foo"), ("x-token", "bar")],
-         200, {"X-Token values": ["foo", "bar"]}),
+        (
+            "/items",
+            [("x-token", "foo"), ("x-token", "bar")],
+            200,
+            {"X-Token values": ["foo", "bar"]},
+        ),
     ],
 )
 def test(path, headers, expected_status, expected_response, client: TestClient):
