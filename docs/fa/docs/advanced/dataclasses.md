@@ -1,24 +1,26 @@
 # استفاده از Dataclass ها
 
-FastAPI براساس و روی امکانات **Pydantic** ساخته شده, و تا به اینجا من به شما نشان می دادم که چگونه  request ها و response های خود را بر اساس مدل های Pydantic بسازید.
+FastAPI براساس و روی امکانات **Pydantic** ساخته شده, و تا الان به شما نشون دادم که چطور  request ها و response های خود را بر اساس مدل های Pydantic بسازید.
 
-اما فست از گزینه  <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> به شکل مشابه پشتیبانی می کنه:
+اما FastAPI از گزینه  <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> به شکل مشابه پشتیبانی می کنه:
 
 {* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
 
-این امکان هنوز با تکیه بر  **Pydantic** پشتیبانی میشه, با استفاده از امکان پیش فرض  <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">  `ها dataclass`</a>.
+این امکان هنوز با تکیه بر  **Pydantic** پشتیبانی میشه، با استفاده از امکان پیش فرض  <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">  `dataclasses`</a>.
 
-بنابراین حتی با وجود اینکه کد بالا به صورت مستقیم از Pydantic استفاده نمی کنه , FastAPI از Pydantic استفاده می کنه تا Dataclass های استاندارد رو به Dataclass های سبک Pydantic تبدیل کنه.
+بنابراین حتی با وجود اینکه کد بالا به صورت مستقیم از Pydantic استفاده نمی کنه، FastAPI از Pydantic استفاده می کنه تا Dataclass های استاندارد رو به Dataclass های سبک Pydantic تبدیل کنه.
 
-و البته از امکانات مشابه پشتیبانی می کنه:
+و البته از امکانات مشابه هم پشتیبانی می کنه:
 
 * اعتبار سنجی داده
 * serialize کردن داده
 * مستند کردن داده، و غیره...
 
-این مشابه مدل های Pydantic کار می کنه. و با استفاده از Pydantic و در لایه های پایین به روش مشابه این کارو انجام میده.
+این مشابه مدل های Pydantic کار می کنه. و با استفاده از Pydantic در لایه های پایین به روش مشابه این کارو انجام میده.
 
 /// info 
+
+**نکته:**
 
 به خاطر بسپار که Dataclass تمام قابلیت ها Pydantic رو نداره.
 
@@ -34,62 +36,74 @@ FastAPI براساس و روی امکانات **Pydantic** ساخته شده, و
 
 {* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
 
-The dataclass will be automatically converted to a Pydantic dataclass.
+با استفاده از روش بالا dataclass به صورت اتوماتیک تبدیل که dataclass عه Pydantic میشه.
 
-This way, its schema will show up in the API docs user interface:
+با این روش طرح و ساختار خروجی توی رابط کاربری مستندات API نشون داده میشه:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
-## Dataclasses in Nested Data Structures
+## Dataclass ها در ساختار های داده تو در تو
 
-You can also combine `dataclasses` with other type annotations to make nested data structures.
+همچنین برای ساختن ساختار های داده تو در تو شما می تونید `dataclass` ها رو با روش های دیگر نشانه گذاری داده ترکیب کنید.
 
-In some cases, you might still have to use Pydantic's version of `dataclasses`. For example, if you have errors with the automatically generated API documentation.
+در برخی موارد ممکنه شما هنوز نیاز به استفاده از  `dataclass` های نسخه Pydantic داشته باشید. برای نمونه، اگر خطایی با مستندات API که به طور اتوماتیک تولید میشه وجود داشته باشه.
 
-In that case, you can simply swap the standard `dataclasses` with `pydantic.dataclasses`, which is a drop-in replacement:
+در این مورد شما می تونید به راحتی `dataclasses` را با `pydantic.dataclasses`, جایگزین کنید، که در کل یک جایگزینی مستقیم است:
 
 {* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
 
-1. We still import `field` from standard `dataclasses`.
+1. ما هنوز `field` را از ماژول استاندارد `dataclasses` ایمپورت می کنیم.
 
-2. `pydantic.dataclasses` is a drop-in replacement for `dataclasses`.
+2. `pydantic.dataclasses` یک جایگزینی بی دردسر برای `dataclasses` است.
 
-3. The `Author` dataclass includes a list of `Item` dataclasses.
+3. dataclass عه `Author`  شامل لیستی از dataclass های `Item` است.
 
-4. The `Author` dataclass is used as the `response_model` parameter.
+4. dataclass عه `Author` به عنوان پارامتر ورودی `response_model` استفاده شده.
 
-5. You can use other standard type annotations with dataclasses as the request body.
+5. شما می تونید از روش های دیگر نشانه گذاری داده همراه dataclass ها برای محتوای request استفاده کنید.
 
-    In this case, it's a list of `Item` dataclasses.
+    در این مورد، لیست dataclass های `Item` است.
 
-6. Here we are returning a dictionary that contains `items` which is a list of dataclasses.
+6. اینجا ما دیکشنری پایتون که شامل `items` هست رو باز می گردانیم که لیستی از dataclass  هاست.
 
-    FastAPI is still capable of <abbr title="converting the data to a format that can be transmitted">serializing</abbr> the data to JSON.
+    FastAPI هنوز قابلیت <abbr title="converting the data to a format that can be transmitted">serializing</abbr> داده به JSON را دارد.
 
-7. Here the `response_model` is using a type annotation of a list of `Author` dataclasses.
+7. اینجا `response_model` از نشانه گذاری list برای dataclass های `Author` استفاده می کنه.
 
-    Again, you can combine `dataclasses` with standard type annotations.
+    یاد آوری دوباره، شما می تونید `dataclasses` با نشانه گذاری استاندارد ترکیب کنید.
 
-8. Notice that this *path operation function* uses regular `def` instead of `async def`.
+8. دقت کن *`get_authors()` <- path operation function* از کلمه کلیدی `def` به جای `async def` استفاده می کنه.
 
-    As always, in FastAPI you can combine `def` and `async def` as needed.
+    طبق معمول, تو FastAPI شما می تونید دو حالت  `def` و `async def` در کنار هم براساس نیاز استفاده کنید.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    اگه نیاز به یادآوری داری که کدوم رو استفاده کنم, تو بخش  _"عجله دارم؟"_ در مستندات [`async` و `await`](../async.md#in-a-hurry){.internal-link target=_blank} رو چک کن.
 
-9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
+9. این *path operation function* به عنوان خروجی dataclass ها رو بر نمی گردونه (با اینکه می تونه), اما به جاش لیستی از دیکشنری های پایتون با مقادیر dataclass رو بر می گردونه.
 
-    FastAPI will use the `response_model` parameter (that includes dataclasses) to convert the response.
+    FastAPI از پارامتر `response_model` برای تبدیل response استفاده خواهد کرد (شامل dataclass ها هم میشه).
 
-You can combine `dataclasses` with other type annotations in many different combinations to form complex data structures.
+شما می تونید `dataclasses` با انواع دیگه نشانه گذاری تو شکل ها و ساختار های مختلف ترکیب کنید تا ساختارهای داده پیچیده بسازید.
 
-Check the in-code annotation tips above to see more specific details.
+برای جزئیات بیشتر می تونید راهنماهای نشانه گذاری که داخل کد های بالایی هست رو بررسی کنین.
 
-## Learn More
+## یادگیری بیشتر
 
-You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
+شما همچنین می تونید `dataclasses` رو با مدل های دیگر Pydantic ترکیب کنید، از اون ها ارث بری کنید، اونارو اضافه کنین به مدل های خودتون، و غیره
 
-To learn more, check the <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
+برای یاگیری بیشتر مراجعه کنید به  <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">ها dataclass بخش Pydantic مستندات</a>.
 
-## Version
+## نسخه
 
-This is available since FastAPI version `0.67.0`. 🔖
+این امکان از نسخه `0.67.0` FastAPI در دسترس و قابل استفاده است. 🔖
+
+## لغت نامه
+
+بعضی اصطلاحات معنی مستقیم ندارن، بیشتر یه مفهوم هستن تا یه ترجمه کلمه‌به‌کلمه. اینجا دقیق تر مفهوم رو تو محتوای برنامه نویسی و پایتون توضیح می دم.
+
+type annotation: مفهومی است که برای اعتبار سنجی، تبدیل نوع داده و ازش تو تولید مستندات API و چند امکان دیگه استفاده میشه، این مفهوم ‍`نشانه گذاری` ترجمه شده.
+
+path operation fucntion: یه فانکشن پایتون هست که وقتی به آدرس مثل ‍‍`/hello` تو مروگر درخواست داده میشه اون فانکشن اجرا میشه، برای مثال: 
+
+    @app.get('/hello')  -> path operation decorator
+    def hello():        -> path operation function
+       ...
