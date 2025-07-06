@@ -8,16 +8,16 @@ jaystone776:
   count: 46
   avatarUrl: https://avatars.githubusercontent.com/u/11191137?u=299205a95e9b6817a43144a48b643346a5aac5cc&v=4
   url: https://github.com/jaystone776
+valentinDruzhinin:
+  login: valentinDruzhinin
+  count: 29
+  avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
+  url: https://github.com/valentinDruzhinin
 ceb10n:
   login: ceb10n
   count: 27
   avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
   url: https://github.com/ceb10n
-valentinDruzhinin:
-  login: valentinDruzhinin
-  count: 24
-  avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
-  url: https://github.com/valentinDruzhinin
 tokusumi:
   login: tokusumi
   count: 23
@@ -108,6 +108,11 @@ ptt3199:
   count: 7
   avatarUrl: https://avatars.githubusercontent.com/u/51350651?u=2c3d947a80283e32bf616d4c3af139a6be69680f&v=4
   url: https://github.com/ptt3199
+NinaHwang:
+  login: NinaHwang
+  count: 6
+  avatarUrl: https://avatars.githubusercontent.com/u/79563565?u=241f2cb6d38a2d379536608a8ea5a22ed4b1a3ea&v=4
+  url: https://github.com/NinaHwang
 batlopes:
   login: batlopes
   count: 6
@@ -138,11 +143,6 @@ Attsun1031:
   count: 5
   avatarUrl: https://avatars.githubusercontent.com/u/1175560?v=4
   url: https://github.com/Attsun1031
-NinaHwang:
-  login: NinaHwang
-  count: 5
-  avatarUrl: https://avatars.githubusercontent.com/u/79563565?u=241f2cb6d38a2d379536608a8ea5a22ed4b1a3ea&v=4
-  url: https://github.com/NinaHwang
 tiangolo:
   login: tiangolo
   count: 5
@@ -296,7 +296,7 @@ pe-brian:
 maxscheijen:
   login: maxscheijen
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/47034840?u=eb98f37882528ea349ca4e5255fa64ac3fef0294&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/47034840?v=4
   url: https://github.com/maxscheijen
 ilacftemp:
   login: ilacftemp
@@ -343,6 +343,11 @@ Rishat-F:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/66554797?v=4
   url: https://github.com/Rishat-F
+ruzia:
+  login: ruzia
+  count: 3
+  avatarUrl: https://avatars.githubusercontent.com/u/24503?v=4
+  url: https://github.com/ruzia
 izaguerreiro:
   login: izaguerreiro
   count: 2
@@ -523,3 +528,8 @@ EgorOnishchuk:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/120256301?v=4
   url: https://github.com/EgorOnishchuk
+NavesSapnis:
+  login: NavesSapnis
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/79222417?u=b5b10291b8e9130ca84fd20f0a641e04ed94b6b1&v=4
+  url: https://github.com/NavesSapnis
