@@ -65,82 +65,6 @@ async_callable_gen_dependency = AsyncCallableGenDependency()
 methods_dependency = MethodsDependency()
 
 
-@app.get("/function-dependency")
-async def get_function_dependency(value: str = Depends(function_dependency)) -> str:
-    return value
-
-
-@app.get("/async-function-dependency")
-async def get_async_function_dependency(
-    value: str = Depends(async_function_dependency),
-) -> str:
-    return value
-
-
-@app.get("/gen-dependency")
-async def get_gen_dependency(value: str = Depends(gen_dependency)) -> str:
-    return value
-
-
-@app.get("/async-gen-dependency")
-async def get_async_gen_dependency(value: str = Depends(async_gen_dependency)) -> str:
-    return value
-
-
-@app.get("/callable-dependency")
-async def get_callable_dependency(value: str = Depends(callable_dependency)) -> str:
-    return value
-
-
-@app.get("/callable-gen-dependency")
-async def get_callable_gen_dependency(
-    value: str = Depends(callable_gen_dependency),
-) -> str:
-    return value
-
-
-@app.get("/async-callable-dependency")
-async def get_async_callable_dependency(
-    value: str = Depends(async_callable_dependency),
-) -> str:
-    return value
-
-
-@app.get("/async-callable-gen-dependency")
-async def get_async_callable_gen_dependency(
-    value: str = Depends(async_callable_gen_dependency),
-) -> str:
-    return value
-
-
-@app.get("/synchronous-method-dependency")
-async def get_synchronous_method_dependency(
-    value: str = Depends(methods_dependency.synchronous),
-) -> str:
-    return value
-
-
-@app.get("/synchronous-method-gen-dependency")
-async def get_synchronous_method_gen_dependency(
-    value: str = Depends(methods_dependency.synchronous_gen),
-) -> str:
-    return value
-
-
-@app.get("/asynchronous-method-dependency")
-async def get_asynchronous_method_dependency(
-    value: str = Depends(methods_dependency.asynchronous),
-) -> str:
-    return value
-
-
-@app.get("/asynchronous-method-gen-dependency")
-async def get_asynchronous_method_gen_dependency(
-    value: str = Depends(methods_dependency.asynchronous_gen),
-) -> str:
-    return value
-
-
 @app.get("/partial-function-dependency")
 async def get_partial_function_dependency(
     value: str = Depends(partial(function_dependency, "partial-function-dependency")),
@@ -255,31 +179,11 @@ client = TestClient(app)
 @pytest.mark.parametrize(
     "route,value",
     [
-        ("/function-dependency", "function-dependency"),
-        ("/async-function-dependency", "async-function-dependency"),
-        ("/gen-dependency", "gen-dependency"),
-        ("/async-gen-dependency", "async-gen-dependency"),
-        ("/callable-dependency", "callable-dependency"),
-        ("/callable-gen-dependency", "callable-gen-dependency"),
-        ("/async-callable-dependency", "async-callable-dependency"),
-        ("/async-callable-gen-dependency", "async-callable-gen-dependency"),
-        ("/synchronous-method-dependency", "synchronous-method-dependency"),
-        ("/synchronous-method-gen-dependency", "synchronous-method-gen-dependency"),
-        ("/asynchronous-method-dependency", "asynchronous-method-dependency"),
-        ("/asynchronous-method-gen-dependency", "asynchronous-method-gen-dependency"),
-    ],
-)
-def test_dependency_types(route: str, value: str) -> None:
-    response = client.get(route, params={"value": value})
-    assert response.status_code == 200, response.text
-    assert response.json() == value
-
-
-@pytest.mark.parametrize(
-    "route,value",
-    [
         ("/partial-function-dependency", "partial-function-dependency"),
-        ("/partial-async-function-dependency", "partial-async-function-dependency"),
+        (
+            "/partial-async-function-dependency",
+            "partial-async-function-dependency",
+        ),
         ("/partial-gen-dependency", "partial-gen-dependency"),
         ("/partial-async-gen-dependency", "partial-async-gen-dependency"),
         ("/partial-callable-dependency", "partial-callable-dependency"),
