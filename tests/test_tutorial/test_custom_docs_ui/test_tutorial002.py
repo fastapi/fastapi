@@ -42,6 +42,7 @@ def client(params: Params, monkeypatch):
 
     monkeypatch.setenv("ROOT_PATH", params["app_root_path"])
     from docs_src.custom_docs_ui import tutorial002
+
     importlib.reload(tutorial002)
     app = tutorial002.app
 
