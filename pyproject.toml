@@ -58,7 +58,26 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 [project.optional-dependencies]
 
 standard = [
-    "fastapi-cli[standard] >=0.0.5",
+    "fastapi-cli[standard] >=0.0.8",
+    # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=3.1.5",
+    # For forms and file uploads
+    "python-multipart >=0.0.18",
+    # To validate email fields
+    "email-validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # TODO: this should be part of some pydantic optional extra dependencies
+    # # Settings management
+    # "pydantic-settings >=2.0.0",
+    # # Extra Pydantic data types
+    # "pydantic-extra-types >=2.0.0",
+]
+
+standard-no-fastapi-cloud-cli = [
+    "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.8",
     # For the test client
     "httpx >=0.23.0",
     # For templates
@@ -77,7 +96,7 @@ standard = [
 ]
 
 all = [
-    "fastapi-cli[standard] >=0.0.5",
+    "fastapi-cli[standard] >=0.0.8",
     # # For the test client
     "httpx >=0.23.0",
     # For templates
