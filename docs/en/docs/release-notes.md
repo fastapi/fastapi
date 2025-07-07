@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.116.0
+
 ### Features
 
 * ✨ Add support for deploying to FastAPI Cloud with `fastapi deploy`. PR [#13870](https://github.com/fastapi/fastapi/pull/13870) by [@tiangolo](https://github.com/tiangolo).
