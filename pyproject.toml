@@ -96,7 +96,7 @@ standard-no-fastapi-cloud-cli = [
 ]
 
 all = [
-    "fastapi-cli[standard] >=0.0.5",
+    "fastapi-cli[standard] >=0.0.8",
     # # For the test client
     "httpx >=0.23.0",
     # For templates
