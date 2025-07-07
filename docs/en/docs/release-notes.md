@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for deploying to FastAPI Cloud with `fastapi deploy`. PR [#13870](https://github.com/fastapi/fastapi/pull/13870) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/response-directly.md`. PR [#13801](https://github.com/fastapi/fastapi/pull/13801) by [@NavesSapnis](https://github.com/NavesSapnis).
