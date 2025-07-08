@@ -343,7 +343,9 @@ def get_openapi_path(
                 if hasattr(current_response_class, "default_status_code"):
                     status_code = str(current_response_class.default_status_code)
                 else:
-                    response_signature = inspect.signature(current_response_class.__init__)
+                    response_signature = inspect.signature(
+                        current_response_class.__init__
+                    )
                     status_code_param = response_signature.parameters.get("status_code")
                     if status_code_param is not None:
                         if isinstance(status_code_param.default, int):
