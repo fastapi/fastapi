@@ -364,10 +364,6 @@ def get_websocket_app(
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
-            # TODO: remove this scope later, after a few releases
-            # This scope fastapi_astack is no longer used by FastAPI, kept for
-            # compatibility, just in case
-            websocket.scope["fastapi_astack"] = async_exit_stack
             solved_result = await solve_dependencies(
                 request=websocket,
                 dependant=dependant,
