@@ -516,7 +516,6 @@ class APIRoute(routing.Route):
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
             # will always be created.
-            # TODO: remove when deprecating Pydantic v1
             self.secure_cloned_response_field: Optional[ModelField] = (
                 create_cloned_field(self.response_field)
             )
