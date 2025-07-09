@@ -282,7 +282,7 @@ if PYDANTIC_V2:
     def create_body_model(
         *, fields: Sequence[ModelField], model_name: str
     ) -> Type[BaseModel]:
-        field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
+        field_params = {f.alias: (f.field_info.annotation, f.field_info) for f in fields}
         BodyModel: Type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
         return BodyModel
 
@@ -524,7 +524,7 @@ else:
     ) -> Type[BaseModel]:
         BodyModel = create_model(model_name)
         for f in fields:
-            BodyModel.__fields__[f.name] = f  # type: ignore[index]
+            BodyModel.__fields__[f.alias] = f  # type: ignore[index]
         return BodyModel
 
     def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
