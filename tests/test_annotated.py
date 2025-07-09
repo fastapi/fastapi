@@ -1,5 +1,6 @@
 import pytest
-from fastapi import FastAPI, Query
+from dirty_equals import IsDict
+from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -28,178 +29,46 @@ async def unrelated(foo: Annotated[str, object()]):
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/default": {
-            "get": {
-                "summary": "Default",
-                "operationId": "default_default_get",
-                "parameters": [
-                    {
-                        "required": False,
-                        "schema": {"title": "Foo", "type": "string", "default": "foo"},
-                        "name": "foo",
-                        "in": "query",
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-        "/required": {
-            "get": {
-                "summary": "Required",
-                "operationId": "required_required_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Foo", "minLength": 1, "type": "string"},
-                        "name": "foo",
-                        "in": "query",
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-        "/multiple": {
-            "get": {
-                "summary": "Multiple",
-                "operationId": "multiple_multiple_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Foo", "minLength": 1, "type": "string"},
-                        "name": "foo",
-                        "in": "query",
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-        "/unrelated": {
-            "get": {
-                "summary": "Unrelated",
-                "operationId": "unrelated_unrelated_get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Foo", "type": "string"},
-                        "name": "foo",
-                        "in": "query",
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-    },
-    "components": {
-        "schemas": {
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-        }
-    },
-}
 foo_is_missing = {
     "detail": [
-        {
-            "loc": ["query", "foo"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
+        IsDict(
+            {
+                "loc": ["query", "foo"],
+                "msg": "Field required",
+                "type": "missing",
+                "input": None,
+            }
+        )
+        # TODO: remove when deprecating Pydantic v1
+        | IsDict(
+            {
+                "loc": ["query", "foo"],
+                "msg": "field required",
+                "type": "value_error.missing",
+            }
+        )
     ]
 }
 foo_is_short = {
     "detail": [
-        {
-            "ctx": {"limit_value": 1},
-            "loc": ["query", "foo"],
-            "msg": "ensure this value has at least 1 characters",
-            "type": "value_error.any_str.min_length",
-        }
+        IsDict(
+            {
+                "ctx": {"min_length": 1},
+                "loc": ["query", "foo"],
+                "msg": "String should have at least 1 character",
+                "type": "string_too_short",
+                "input": "",
+            }
+        )
+        # TODO: remove when deprecating Pydantic v1
+        | IsDict(
+            {
+                "ctx": {"limit_value": 1},
+                "loc": ["query", "foo"],
+                "msg": "ensure this value has at least 1 characters",
+                "type": "value_error.any_str.min_length",
+            }
+        )
     ]
 }
 
@@ -217,10 +86,227 @@ foo_is_short = {
         ("/multiple?foo=", 422, foo_is_short),
         ("/unrelated?foo=bar", 200, {"foo": "bar"}),
         ("/unrelated", 422, foo_is_missing),
-        ("/openapi.json", 200, openapi_schema),
     ],
 )
 def test_get(path, expected_status, expected_response):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+
+
+def test_multiple_path():
+    app = FastAPI()
+
+    @app.get("/test1")
+    @app.get("/test2")
+    async def test(var: Annotated[str, Query()] = "bar"):
+        return {"foo": var}
+
+    client = TestClient(app)
+    response = client.get("/test1")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test1", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+    response = client.get("/test2")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+    response = client.get("/test2", params={"var": "baz"})
+    assert response.status_code == 200
+    assert response.json() == {"foo": "baz"}
+
+
+def test_nested_router():
+    app = FastAPI()
+
+    router = APIRouter(prefix="/nested")
+
+    @router.get("/test")
+    async def test(var: Annotated[str, Query()] = "bar"):
+        return {"foo": var}
+
+    app.include_router(router)
+
+    client = TestClient(app)
+
+    response = client.get("/nested/test")
+    assert response.status_code == 200
+    assert response.json() == {"foo": "bar"}
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == {
+        "openapi": "3.1.0",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/default": {
+                "get": {
+                    "summary": "Default",
+                    "operationId": "default_default_get",
+                    "parameters": [
+                        {
+                            "required": False,
+                            "schema": {
+                                "title": "Foo",
+                                "type": "string",
+                                "default": "foo",
+                            },
+                            "name": "foo",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/required": {
+                "get": {
+                    "summary": "Required",
+                    "operationId": "required_required_get",
+                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": {
+                                "title": "Foo",
+                                "minLength": 1,
+                                "type": "string",
+                            },
+                            "name": "foo",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/multiple": {
+                "get": {
+                    "summary": "Multiple",
+                    "operationId": "multiple_multiple_get",
+                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": {
+                                "title": "Foo",
+                                "minLength": 1,
+                                "type": "string",
+                            },
+                            "name": "foo",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+            "/unrelated": {
+                "get": {
+                    "summary": "Unrelated",
+                    "operationId": "unrelated_unrelated_get",
+                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": {"title": "Foo", "type": "string"},
+                            "name": "foo",
+                            "in": "query",
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                }
+            },
+        },
+        "components": {
+            "schemas": {
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": ["loc", "msg", "type"],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            },
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"},
+                    },
+                },
+            }
+        },
+    }
