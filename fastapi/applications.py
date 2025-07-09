@@ -40,7 +40,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -748,7 +748,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -902,7 +902,7 @@ class FastAPI(Starlette):
                 A state object for the application. This is the same object for the
                 entire application, it doesn't change from request to request.
 
-                You normally woudln't use this in FastAPI, for most of the cases you
+                You normally wouldn't use this in FastAPI, for most of the cases you
                 would instead use FastAPI dependencies.
 
                 This is simply inherited from Starlette.
@@ -1019,7 +1019,7 @@ class FastAPI(Starlette):
                     oauth2_redirect_url = root_path + oauth2_redirect_url
                 return get_swagger_ui_html(
                     openapi_url=openapi_url,
-                    title=self.title + " - Swagger UI",
+                    title=f"{self.title} - Swagger UI",
                     oauth2_redirect_url=oauth2_redirect_url,
                     init_oauth=self.swagger_ui_init_oauth,
                     swagger_ui_parameters=self.swagger_ui_parameters,
@@ -1043,7 +1043,7 @@ class FastAPI(Starlette):
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
                 return get_redoc_html(
-                    openapi_url=openapi_url, title=self.title + " - ReDoc"
+                    openapi_url=openapi_url, title=f"{self.title} - ReDoc"
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
@@ -1056,7 +1056,7 @@ class FastAPI(Starlette):
     def add_api_route(
         self,
         path: str,
-        endpoint: Callable[..., Coroutine[Any, Any, Response]],
+        endpoint: Callable[..., Any],
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
@@ -1720,7 +1720,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2093,7 +2093,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2471,7 +2471,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2849,7 +2849,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3222,7 +3222,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3595,7 +3595,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3968,7 +3968,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4346,7 +4346,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4425,7 +4425,7 @@ class FastAPI(Starlette):
 
         app = FastAPI()
 
-        @app.put("/items/{item_id}")
+        @app.trace("/items/{item_id}")
         def trace_item(item_id: str):
             return None
         ```
@@ -4515,14 +4515,17 @@ class FastAPI(Starlette):
 
         ```python
         import time
+        from typing import Awaitable, Callable
 
-        from fastapi import FastAPI, Request
+        from fastapi import FastAPI, Request, Response
 
         app = FastAPI()
 
 
         @app.middleware("http")
-        async def add_process_time_header(request: Request, call_next):
+        async def add_process_time_header(
+            request: Request, call_next: Callable[[Request], Awaitable[Response]]
+        ) -> Response:
             start_time = time.time()
             response = await call_next(request)
             process_time = time.time() - start_time

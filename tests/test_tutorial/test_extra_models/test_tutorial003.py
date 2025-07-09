@@ -1,12 +1,27 @@
+import importlib
+
+import pytest
 from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 
-from docs_src.extra_models.tutorial003 import app
-
-client = TestClient(app)
+from ...utils import needs_py310
 
 
-def test_get_car():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial003",
+        pytest.param("tutorial003_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.extra_models.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_get_car(client: TestClient):
     response = client.get("/items/item1")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -15,7 +30,7 @@ def test_get_car():
     }
 
 
-def test_get_plane():
+def test_get_plane(client: TestClient):
     response = client.get("/items/item2")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -25,7 +40,7 @@ def test_get_plane():
     }
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

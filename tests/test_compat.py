@@ -1,11 +1,14 @@
-from typing import FrozenSet, List, Optional, Set, Union
+from typing import Any, Dict, FrozenSet, List, Optional, Set, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
+    get_cached_model_fields,
+    get_model_fields,
     is_bytes_sequence_annotation,
+    is_scalar_field,
     is_sequence_field,
     is_uploadfile_sequence_annotation,
 )
@@ -113,3 +116,27 @@ def test_model_optional_union_v2():
     field_info_str = FieldInfo(annotation=str)
     field_str = ModelField(name="foo", field_info=field_info_str)
     assert is_sequence_field(field_str) is False
+
+
+def test_is_pv1_scalar_field():
+    # For coverage
+    class Model(BaseModel):
+        foo: Union[str, Dict[str, Any]]
+
+    fields = get_model_fields(Model)
+    assert not is_scalar_field(fields[0])
+
+
+def test_get_model_fields_cached():
+    class Model(BaseModel):
+        foo: str
+
+    non_cached_fields = get_model_fields(Model)
+    non_cached_fields2 = get_model_fields(Model)
+    cached_fields = get_cached_model_fields(Model)
+    cached_fields2 = get_cached_model_fields(Model)
+    for f1, f2 in zip(cached_fields, cached_fields2):
+        assert f1 is f2
+
+    assert non_cached_fields is not non_cached_fields2
+    assert cached_fields is cached_fields2

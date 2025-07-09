@@ -8,17 +8,21 @@
 * `@app.delete()`
 * など。
 
-```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
-!!! note "備考"
-    `status_code`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数*のものではありません。
+/// note | 備考
+
+`status_code`は「デコレータ」メソッド（`get`、`post`など）のパラメータであることに注意してください。すべてのパラメータやボディのように、*path operation関数*のものではありません。
+
+///
 
 `status_code`パラメータはHTTPステータスコードを含む数値を受け取ります。
 
-!!! info "情報"
-    `status_code`は代わりに、Pythonの<a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>のように、`IntEnum`を受け取ることもできます。
+/// info | 情報
+
+`status_code`は代わりに、Pythonの<a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>のように、`IntEnum`を受け取ることもできます。
+
+///
 
 これは:
 
@@ -27,15 +31,21 @@
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image01.png">
 
-!!! note "備考"
-    いくつかのレスポンスコード（次のセクションを参照）は、レスポンスにボディがないことを示しています。
+/// note | 備考
 
-    FastAPIはこれを知っていて、レスポンスボディがないというOpenAPIドキュメントを生成します。
+いくつかのレスポンスコード（次のセクションを参照）は、レスポンスにボディがないことを示しています。
+
+FastAPIはこれを知っていて、レスポンスボディがないというOpenAPIドキュメントを生成します。
+
+///
 
 ## HTTPステータスコードについて
 
-!!! note "備考"
-    すでにHTTPステータスコードが何であるかを知っている場合は、次のセクションにスキップしてください。
+/// note | 備考
+
+すでにHTTPステータスコードが何であるかを知っている場合は、次のセクションにスキップしてください。
+
+///
 
 HTTPでは、レスポンスの一部として３桁の数字のステータスコードを送信します。
 
@@ -54,16 +64,17 @@ HTTPでは、レスポンスの一部として３桁の数字のステータス�
     * クライアントからの一般的なエラーについては、`400`を使用することができます。
 * `500`以上はサーバーエラーのためのものです。これらを直接使うことはほとんどありません。アプリケーションコードやサーバーのどこかで何か問題が発生した場合、これらのステータスコードのいずれかが自動的に返されます。
 
-!!! tip "豆知識"
-    それぞれのステータスコードとどのコードが何のためのコードなのかについて詳細は<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> HTTP レスポンスステータスコードについてのドキュメント</a>を参照してください。
+/// tip | 豆知識
+
+それぞれのステータスコードとどのコードが何のためのコードなのかについて詳細は<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> HTTP レスポンスステータスコードについてのドキュメント</a>を参照してください。
+
+///
 
 ## 名前を覚えるための近道
 
 先ほどの例をもう一度見てみましょう:
 
-```Python hl_lines="6"
-{!../../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201`は「作成完了」のためのステータスコードです。
 
@@ -71,18 +82,19 @@ HTTPでは、レスポンスの一部として３桁の数字のステータス�
 
 `fastapi.status`の便利な変数を利用することができます。
 
-```Python hl_lines="1 6"
-{!../../../docs_src/response_status_code/tutorial002.py!}
-```
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 それらは便利です。それらは同じ番号を保持しており、その方法ではエディタの自動補完を使用してそれらを見つけることができます。
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png">
 
-!!! note "技術詳細"
-    また、`from starlette import status`を使うこともできます。
+/// note | 技術詳細
 
-    **FastAPI** は、`開発者の利便性を考慮して、fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+また、`from starlette import status`を使うこともできます。
+
+**FastAPI** は、`開発者の利便性を考慮して、fastapi.status`と同じ`starlette.status`を提供しています。しかし、これはStarletteから直接提供されています。
+
+///
 
 ## デフォルトの変更
 
