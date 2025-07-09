@@ -1,18 +1,36 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.security.tutorial003 import app
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310
 
 
-def test_login():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial003",
+        pytest.param("tutorial003_py310", marks=needs_py310),
+        "tutorial003_an",
+        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.security.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_login(client: TestClient):
     response = client.post("/token", data={"username": "johndoe", "password": "secret"})
     assert response.status_code == 200, response.text
     assert response.json() == {"access_token": "johndoe", "token_type": "bearer"}
 
 
-def test_login_incorrect_password():
+def test_login_incorrect_password(client: TestClient):
     response = client.post(
         "/token", data={"username": "johndoe", "password": "incorrect"}
     )
@@ -20,20 +38,20 @@ def test_login_incorrect_password():
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_login_incorrect_username():
+def test_login_incorrect_username(client: TestClient):
     response = client.post("/token", data={"username": "foo", "password": "secret"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
 
 
-def test_no_token():
+def test_no_token(client: TestClient):
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_token():
+def test_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer johndoe"})
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -45,14 +63,14 @@ def test_token():
     }
 
 
-def test_incorrect_token():
+def test_incorrect_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Invalid authentication credentials"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_incorrect_token_type():
+def test_incorrect_token_type(client: TestClient):
     response = client.get(
         "/users/me", headers={"Authorization": "Notexistent testtoken"}
     )
@@ -61,13 +79,13 @@ def test_incorrect_token_type():
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
-def test_inactive_user():
+def test_inactive_user(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer alice"})
     assert response.status_code == 400, response.text
     assert response.json() == {"detail": "Inactive user"}
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -131,7 +149,7 @@ def test_openapi_schema():
                             {
                                 "title": "Grant Type",
                                 "anyOf": [
-                                    {"pattern": "password", "type": "string"},
+                                    {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
                             }
@@ -140,12 +158,16 @@ def test_openapi_schema():
                             # TODO: remove when deprecating Pydantic v1
                             {
                                 "title": "Grant Type",
-                                "pattern": "password",
+                                "pattern": "^password$",
                                 "type": "string",
                             }
                         ),
                         "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string"},
+                        "password": {
+                            "title": "Password",
+                            "type": "string",
+                            "format": "password",
+                        },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
                         "client_id": IsDict(
                             {
@@ -161,11 +183,16 @@ def test_openapi_schema():
                             {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "format": "password",
                             }
                         )
                         | IsDict(
                             # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Secret", "type": "string"}
+                            {
+                                "title": "Client Secret",
+                                "type": "string",
+                                "format": "password",
+                            }
                         ),
                     },
                 },

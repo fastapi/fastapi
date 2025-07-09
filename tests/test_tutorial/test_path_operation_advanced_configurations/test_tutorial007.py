@@ -1,6 +1,5 @@
 import pytest
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from ...utils import needs_pydanticv2
 
@@ -64,7 +63,6 @@ def test_post_invalid(client: TestClient):
                 "loc": ["tags", 3],
                 "msg": "Input should be a valid string",
                 "input": {"sneaky": "object"},
-                "url": match_pydantic_error_url("string_type"),
             }
         ]
     }
