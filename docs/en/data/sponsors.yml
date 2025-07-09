@@ -5,26 +5,14 @@ gold:
   - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
     title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
     img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
-  - url: https://www.porter.run
-    title: Deploy FastAPI on AWS with a few clicks
-    img: https://fastapi.tiangolo.com/img/sponsors/porter.png
-  - url: https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor
-    title: Automate FastAPI documentation generation with Bump.sh
-    img: https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg
   - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
     title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
     img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
   - url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge
     title: Auth, user management and more for your B2B product
     img: https://fastapi.tiangolo.com/img/sponsors/propelauth.png
-  - url: https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website
-    title: Coherence
-    img: https://fastapi.tiangolo.com/img/sponsors/coherence.png
-  - url: https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral
-    title: Simplify Full Stack Development with FastAPI & MongoDB
-    img: https://fastapi.tiangolo.com/img/sponsors/mongodb.png
   - url: https://zuplo.link/fastapi-gh
-    title: 'Zuplo: Scale, Protect, Document, and Monetize your FastAPI'
+    title: 'Zuplo: Deploy, Secure, Document, and Monetize your FastAPI'
     img: https://fastapi.tiangolo.com/img/sponsors/zuplo.png
   - url: https://liblab.com?utm_source=fastapi
     title: liblab - Generate SDKs from FastAPI
@@ -32,14 +20,17 @@ gold:
   - url: https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi
     title: Deploy & scale any full-stack web app on Render. Focus on building apps, not infra.
     img: https://fastapi.tiangolo.com/img/sponsors/render.svg
+  - url: https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi
+    title: Cut Code Review Time & Bugs in Half with CodeRabbit
+    img: https://fastapi.tiangolo.com/img/sponsors/coderabbit.png
+  - url: https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source
+    title: The Gold Standard in Retail Account Linking
+    img: https://fastapi.tiangolo.com/img/sponsors/subtotal.svg
 silver:
-  - url: https://github.com/deepset-ai/haystack/
-    title: Build powerful search from composable, open source building blocks
-    img: https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg
   - url: https://databento.com/
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
-  - url: https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship
+  - url: https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship
     title: SDKs for your API | Speakeasy
     img: https://fastapi.tiangolo.com/img/sponsors/speakeasy.png
   - url: https://www.svix.com/
@@ -51,10 +42,19 @@ silver:
   - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
     title: Fine-Grained Authorization for FastAPI
     img: https://fastapi.tiangolo.com/img/sponsors/permit.png
+  - url: https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring
+    title: InterviewPal - AI Interview Coach for Engineers and Devs
+    img: https://fastapi.tiangolo.com/img/sponsors/interviewpal.png
+  - url: https://dribia.com/en/
+    title: Dribia - Data Science within your reach
+    img: https://fastapi.tiangolo.com/img/sponsors/dribia.png
 bronze:
   - url: https://www.exoflare.com/open-source/?utm_source=FastAPI&utm_campaign=open_source
     title: Biosecurity risk assessments made easy.
     img: https://fastapi.tiangolo.com/img/sponsors/exoflare.png
-  - url: https://testdriven.io/courses/tdd-fastapi/
-    title: Learn to build high-quality web apps with best practices
-    img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  # - url: https://testdriven.io/courses/tdd-fastapi/
+  #   title: Learn to build high-quality web apps with best practices
+  #   img: https://fastapi.tiangolo.com/img/sponsors/testdriven.svg
+  - url: https://lambdatest.com/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
+    title: LambdaTest, AI-Powered Cloud-based Test Orchestration Platform
+    img: https://fastapi.tiangolo.com/img/sponsors/lambdatest.png
