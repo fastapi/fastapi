@@ -2,9 +2,7 @@
 
 最简单的 FastAPI 文件可能像下面这样：
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 将其复制到 `main.py` 文件中。
 
@@ -13,33 +11,48 @@
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
-
-/// note
-
-`uvicorn main:app` 命令含义如下:
-
-* `main`：`main.py` 文件（一个 Python「模块」）。
-* `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
-* `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
-
-///
 
 在输出中，会有一行信息像下面这样：
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
-
 
 该行显示了你的应用在本机所提供服务的 URL 地址。
 
@@ -65,7 +78,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 前往 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>。
 
-你将会看到可选的自动生成文档 （由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供)：
+你将会看到可选的自动生成文档 （由 <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a> 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -79,9 +92,9 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### API「模式」
 
-在这种场景下，OpenAPI 是一种规定如何定义 API 模式的规范。
+在这种场景下，<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> 是一种规定如何定义 API 模式的规范。
 
-定义的 OpenAPI 模式将包括你的 API 路径，以及它们可能使用的参数等等。
+「模式」的定义包括你的 API 路径，以及它们可能使用的参数等等。
 
 #### 数据「模式」
 
@@ -95,7 +108,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 #### 查看 `openapi.json`
 
-如果你对原始的 OpenAPI 模式长什么样子感到好奇，其实它只是一个自动生成的包含了所有 API 描述的 JSON。
+如果你对原始的 OpenAPI 模式长什么样子感到好奇，FastAPI 自动生成了包含所有 API 描述的 JSON（模式）。
 
 你可以直接在：<a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a> 看到它。
 
@@ -103,7 +116,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -134,59 +147,25 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 ### 步骤 1：导入 `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 是一个为你的 API 提供了所有功能的 Python 类。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 Starlette 的功能。
+你可以通过 `FastAPI` 使用所有的 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 的功能。
 
 ///
 
 ### 步骤 2：创建一个 `FastAPI`「实例」
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 这里的变量 `app` 会是 `FastAPI` 类的一个「实例」。
 
 这个实例将是创建你所有 API 的主要交互对象。
-
-这个 `app` 同样在如下命令中被 `uvicorn` 所引用：
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-如果你像下面这样创建应用：
-
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
-
-将代码放入 `main.py` 文件中，然后你可以像下面这样运行 `uvicorn`：
-
-<div class="termy">
-
-```console
-$ uvicorn main:my_awesome_api --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
 
 ### 步骤 3：创建一个*路径操作*
 
@@ -251,16 +230,14 @@ https://example.com/items/foo
 
 #### 定义一个*路径操作装饰器*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 告诉 **FastAPI** 在它下方的函数负责处理如下访问请求：
 
 * 请求路径为 `/`
 * 使用 <abbr title="HTTP GET 方法"><code>get</code> 操作</abbr>
 
-/// info | "`@decorator` Info"
+/// info | `@decorator` Info
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -289,13 +266,13 @@ https://example.com/items/foo
 
 /// tip
 
-您可以随意使用任何一个操作（HTTP方法）。
+你可以随意使用任何一个操作（HTTP方法）。
 
 **FastAPI** 没有强制要求操作有任何特定的含义。
 
 此处提供的信息仅作为指导，而不是要求。
 
-比如，当使用 GraphQL 时通常你所有的动作都通过 `post` 一种方法执行。
+比如，当使用 GraphQL 时通常你所有的动作都通过 `POST` 一种方法执行。
 
 ///
 
@@ -307,9 +284,7 @@ https://example.com/items/foo
 * **操作**：是 `get`。
 * **函数**：是位于「装饰器」下方的函数（位于 `@app.get("/")` 下方）。
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 这是一个 Python 函数。
 
@@ -321,21 +296,17 @@ https://example.com/items/foo
 
 你也可以将其定义为常规函数而不使用 `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
-如果你不知道两者的区别，请查阅 [Async: *"In a hurry?"*](https://fastapi.tiangolo.com/async/#in-a-hurry){.internal-link target=_blank}。
+如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#_1){.internal-link target=_blank}。
 
 ///
 
 ### 步骤 5：返回内容
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 你可以返回一个 `dict`、`list`，像 `str`、`int` 一样的单个值，等等。
 
@@ -347,6 +318,6 @@ https://example.com/items/foo
 
 * 导入 `FastAPI`。
 * 创建一个 `app` 实例。
-* 编写一个**路径操作装饰器**（如 `@app.get("/")`）。
-* 编写一个**路径操作函数**（如上面的 `def root(): ...`）。
-* 运行开发服务器（如 `uvicorn main:app --reload`）。
+* 编写一个**路径操作装饰器**，如 `@app.get("/")`。
+* 定义一个**路径操作函数**，如 `def root(): ...`。
+* 使用命令 `fastapi dev` 运行开发服务器。

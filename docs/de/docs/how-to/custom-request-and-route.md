@@ -6,7 +6,7 @@ Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.
 
 Wenn Sie beispielsweise den Requestbody lesen oder manipulieren möchten, bevor er von Ihrer Anwendung verarbeitet wird.
 
-/// danger | "Gefahr"
+/// danger | Gefahr
 
 Dies ist eine „fortgeschrittene“ Funktion.
 
@@ -30,7 +30,7 @@ Und eine `APIRoute`-Unterklasse zur Verwendung dieser benutzerdefinierten Reques
 
 ### Eine benutzerdefinierte `GzipRequest`-Klasse erstellen
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Dies ist nur ein einfaches Beispiel, um zu demonstrieren, wie es funktioniert. Wenn Sie Gzip-Unterstützung benötigen, können Sie die bereitgestellte [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank} verwenden.
 
@@ -42,9 +42,7 @@ Wenn der Header kein `gzip` enthält, wird nicht versucht, den Body zu dekomprim
 
 Auf diese Weise kann dieselbe Routenklasse gzip-komprimierte oder unkomprimierte Requests verarbeiten.
 
-```Python hl_lines="8-15"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
 ### Eine benutzerdefinierte `GzipRoute`-Klasse erstellen
 
@@ -56,11 +54,9 @@ Diese Methode gibt eine Funktion zurück. Und diese Funktion empfängt einen Req
 
 Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` zu erstellen.
 
-```Python hl_lines="18-26"
-{!../../docs_src/custom_request_and_route/tutorial001.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-`dict` ist, welches die mit dem Request verbundenen Metadaten enthält.
 
@@ -84,7 +80,7 @@ Aufgrund unserer Änderungen in `GzipRequest.body` wird der Requestbody jedoch b
 
 ## Zugriff auf den Requestbody in einem Exceptionhandler
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#den-requestvalidationerror-body-verwenden){.internal-link target=_blank}).
 
@@ -96,26 +92,18 @@ Wir können denselben Ansatz auch verwenden, um in einem Exceptionhandler auf de
 
 Alles, was wir tun müssen, ist, den Request innerhalb eines `try`/`except`-Blocks zu handhaben:
 
-```Python hl_lines="13  15"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
 
 Wenn eine Exception auftritt, befindet sich die `Request`-Instanz weiterhin im Gültigkeitsbereich, sodass wir den Requestbody lesen und bei der Fehlerbehandlung verwenden können:
 
-```Python hl_lines="16-18"
-{!../../docs_src/custom_request_and_route/tutorial002.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
 ## Benutzerdefinierte `APIRoute`-Klasse in einem Router
 
 Sie können auch den Parameter `route_class` eines `APIRouter` festlegen:
 
-```Python hl_lines="26"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 In diesem Beispiel verwenden die *Pfadoperationen* unter dem `router` die benutzerdefinierte `TimedRoute`-Klasse und haben in der Response einen zusätzlichen `X-Response-Time`-Header mit der Zeit, die zum Generieren der Response benötigt wurde:
 
-```Python hl_lines="13-20"
-{!../../docs_src/custom_request_and_route/tutorial003.py!}
-```
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

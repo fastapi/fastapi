@@ -52,7 +52,7 @@ from app.routers import items
 * 📤 📁 `app/internal/` ⏮️ ➕1️⃣ 📁 `__init__.py`, ⚫️ ➕1️⃣ "🐍 📦": `app.internal`.
 *  &amp; 📁 `app/internal/admin.py` ➕1️⃣ 🔁: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 🎏 📁 📊 ⏮️ 🏤:
 
@@ -244,7 +244,7 @@ from .dependencies import get_token_header
 
 💭 ❔ 👆 📱/📁 📊 👀 💖:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
@@ -414,7 +414,7 @@ from .routers.users import router
 
 ⚫️ 🔜 🔌 🌐 🛣 ⚪️➡️ 👈 📻 🍕 ⚫️.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 ⚫️ 🔜 🤙 🔘 ✍ *➡ 🛠️* 🔠 *➡ 🛠️* 👈 📣 `APIRouter`.
 
@@ -477,7 +477,7 @@ from .routers.users import router
 
 &amp; ⚫️ 🔜 👷 ☑, 👯‍♂️ ⏮️ 🌐 🎏 *➡ 🛠️* 🚮 ⏮️ `app.include_router()`.
 
-/// info | "📶 📡 ℹ"
+/// info | 📶 📡 ℹ
 
 **🗒**: 👉 📶 📡 ℹ 👈 👆 🎲 💪 **🚶**.
 

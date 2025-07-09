@@ -2,9 +2,7 @@
 
 가장 단순한 FastAPI 파일은 다음과 같이 보일 것입니다:
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 위 코드를 `main.py`에 복사합니다.
 
@@ -24,7 +22,7 @@ $ uvicorn main:app --reload
 
 </div>
 
-/// note | "참고"
+/// note | 참고
 
 `uvicorn main:app` 명령은 다음을 의미합니다:
 
@@ -133,13 +131,11 @@ API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케
 
 ### 1 단계: `FastAPI` 임포트
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI`는 당신의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
@@ -149,9 +145,7 @@ API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케
 
 ### 2 단계: `FastAPI` "인스턴스" 생성
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 여기에서 `app` 변수는 `FastAPI` 클래스의 "인스턴스"가 됩니다.
 
@@ -171,9 +165,7 @@ $ uvicorn main:app --reload
 
 아래처럼 앱을 만든다면:
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 이를 `main.py` 파일에 넣고, `uvicorn`을 아래처럼 호출해야 합니다:
 
@@ -205,7 +197,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | "정보"
+/// info | 정보
 
 "경로"는 일반적으로 "엔드포인트" 또는 "라우트"라고도 불립니다.
 
@@ -250,16 +242,14 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 
 #### *경로 작동 데코레이터* 정의
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")`은 **FastAPI**에게 바로 아래에 있는 함수가 다음으로 이동하는 요청을 처리한다는 것을 알려줍니다.
 
 * 경로 `/`
 * <abbr title="HTTP GET 메소드"><code>get</code> 작동</abbr> 사용
 
-/// info | "`@decorator` 정보"
+/// info | `@decorator` 정보
 
 이 `@something` 문법은 파이썬에서 "데코레이터"라 부릅니다.
 
@@ -286,7 +276,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip | "팁"
+/// tip | 팁
 
 각 작동(HTTP 메소드)을 원하는 대로 사용해도 됩니다.
 
@@ -306,9 +296,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * **작동**: 은 `get`입니다.
 * **함수**: 는 "데코레이터" 아래에 있는 함수입니다 (`@app.get("/")` 아래).
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 이것은 파이썬 함수입니다.
 
@@ -320,11 +308,9 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 `async def`을 이용하는 대신 일반 함수로 정의할 수 있습니다:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
-/// note | "참고"
+/// note | 참고
 
 차이점을 모르겠다면 [Async: *"바쁘신 경우"*](../async.md#_1){.internal-link target=_blank}을 확인하세요.
 
@@ -332,9 +318,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 ### 5 단계: 콘텐츠 반환
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 `dict`, `list`, 단일값을 가진 `str`, `int` 등을 반환할 수 있습니다.
 

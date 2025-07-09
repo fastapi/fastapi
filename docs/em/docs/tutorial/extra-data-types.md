@@ -55,36 +55,8 @@
 
 📥 🖼 *➡ 🛠️* ⏮️ 🔢 ⚙️ 🔛 🆎.
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="1  3  12-16"
-{!> ../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="1  2  11-15"
-{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 🗒 👈 🔢 🔘 🔢 ✔️ 👫 🐠 💽 🆎, &amp; 👆 💪, 🖼, 🎭 😐 📅 🎭, 💖:
 
-//// tab | 🐍 3️⃣.6️⃣ &amp; 🔛
-
-```Python hl_lines="18-19"
-{!> ../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
-
-//// tab | 🐍 3️⃣.1️⃣0️⃣ &amp; 🔛
-
-```Python hl_lines="17-18"
-{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

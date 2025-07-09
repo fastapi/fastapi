@@ -6,35 +6,7 @@
 
 그런 경우에, 애플리케이션의 모든 *경로 작동*에 적용될 것입니다:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial012.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
 
 그리고 [*경로 작동 데코레이터*에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md){.internal-link target=_blank}에 대한 아이디어는 여전히 적용되지만 여기에서는 앱에 있는 모든 *경로 작동*에 적용됩니다.
 

@@ -20,9 +20,7 @@
 
 📁 🖼 📁 `main.py`:
 
-```Python
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 🏃 ⚫️
 
@@ -56,7 +54,7 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "✔ 🔼 ❗"
+/// check | ✔ 🔼 ❗
 
 👆 ⏪ ✔️ ✨ 🆕 "✔" 🔼.
 
@@ -128,9 +126,7 @@ Oauth2️⃣ 🔧 👈 👩‍💻 ⚖️ 🛠️ 💪 🔬 💽 👈 🔓 👩�
 
 🕐❔ 👥 ✍ 👐 `OAuth2PasswordBearer` 🎓 👥 🚶‍♀️ `tokenUrl` 🔢. 👉 🔢 🔌 📛 👈 👩‍💻 (🕸 🏃 👩‍💻 🖥) 🔜 ⚙️ 📨 `username` &amp; `password` ✔ 🤚 🤝.
 
-```Python hl_lines="6"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[6] *}
 
 /// tip
 
@@ -168,15 +164,13 @@ oauth2_scheme(some, parameters)
 
 🔜 👆 💪 🚶‍♀️ 👈 `oauth2_scheme` 🔗 ⏮️ `Depends`.
 
-```Python hl_lines="10"
-{!../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001.py hl[10] *}
 
 👉 🔗 🔜 🚚 `str` 👈 🛠️ 🔢 `token` *➡ 🛠️ 🔢*.
 
 **FastAPI** 🔜 💭 👈 ⚫️ 💪 ⚙️ 👉 🔗 🔬 "💂‍♂ ⚖" 🗄 🔗 (&amp; 🏧 🛠️ 🩺).
 
-/// info | "📡 ℹ"
+/// info | 📡 ℹ
 
 **FastAPI** 🔜 💭 👈 ⚫️ 💪 ⚙️ 🎓 `OAuth2PasswordBearer` (📣 🔗) 🔬 💂‍♂ ⚖ 🗄 ↩️ ⚫️ 😖 ⚪️➡️ `fastapi.security.oauth2.OAuth2`, ❔ 🔄 😖 ⚪️➡️ `fastapi.security.base.SecurityBase`.
 

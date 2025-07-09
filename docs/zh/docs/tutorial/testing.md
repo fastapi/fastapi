@@ -8,7 +8,7 @@
 
 ## 使用 `TestClient`
 
-/// info | "信息"
+/// info | 信息
 
 要使用 `TestClient`，先要安装 <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
@@ -26,11 +26,9 @@
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
-/// tip | "提示"
+/// tip | 提示
 
 注意测试函数是普通的 `def`，不是 `async def`。
 
@@ -40,7 +38,7 @@
 
 ///
 
-/// note | "技术细节"
+/// note | 技术细节
 
 你也可以用 `from starlette.testclient import TestClient`。
 
@@ -48,7 +46,7 @@
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 除了发送请求之外，如果你还想测试时在FastAPI应用中调用 `async` 函数（例如异步数据库函数）， 可以在高级教程中看下 [Async Tests](../advanced/async-tests.md){.internal-link target=_blank} 。
 
@@ -74,9 +72,7 @@
 在 `main.py` 文件中你有一个 **FastAPI** app:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### 测试文件
 
@@ -92,9 +88,7 @@
 
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
 
 ...然后测试代码和之前一样的。
 
@@ -148,7 +142,7 @@
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "提示"
+/// tip | 提示
 
 Prefer to use the `Annotated` version if possible.
 
@@ -162,7 +156,7 @@ Prefer to use the `Annotated` version if possible.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "提示"
+/// tip | 提示
 
 Prefer to use the `Annotated` version if possible.
 
@@ -178,9 +172,7 @@ Prefer to use the `Annotated` version if possible.
 
 然后您可以使用扩展后的测试更新`test_main.py`：
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx`做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。
 
@@ -196,7 +188,7 @@ Prefer to use the `Annotated` version if possible.
 
 关于如何传数据给后端的更多信息 (使用`httpx` 或 `TestClient`)，请查阅 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX 文档</a>.
 
-/// info | "信息"
+/// info | 信息
 
 注意 `TestClient` 接收可以被转化为JSON的数据，而不是Pydantic模型。
 

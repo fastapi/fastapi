@@ -2298,7 +2298,7 @@ def Security(  # noqa: N802
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
-            intentionaly vague and interpretable. It normally refers to permissions,
+            intentionally vague and interpretable. It normally refers to permissions,
             in cases to roles.
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).

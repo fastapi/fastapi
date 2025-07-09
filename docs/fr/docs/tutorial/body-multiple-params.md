@@ -8,57 +8,7 @@ Tout d'abord, sachez que vous pouvez mélanger les déclarations des paramètres
 
 Vous pouvez également déclarer des paramètres body comme étant optionnels, en leur assignant une valeur par défaut à `None` :
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="17-19"
-{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note
 
@@ -81,21 +31,7 @@ Dans l'exemple précédent, les opérations de routage attendaient un body JSON 
 
 Mais vous pouvez également déclarer plusieurs paramètres provenant de body, par exemple `item` et `user` simultanément :
 
-//// tab | Python 3.10+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
 Dans ce cas, **FastAPI** détectera qu'il y a plus d'un paramètre dans le body (chacun correspondant à un modèle Pydantic).
 
@@ -135,57 +71,8 @@ Par exemple, en étendant le modèle précédent, vous pouvez vouloir ajouter un
 Si vous le déclarez tel quel, comme c'est une valeur [scalaire](https://docs.github.com/fr/graphql/reference/scalars), **FastAPI** supposera qu'il s'agit d'un paramètre de requête (`Query`).
 
 Mais vous pouvez indiquer à **FastAPI** de la traiter comme une variable de body en utilisant `Body` :
-//// tab | Python 3.10+
 
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 Dans ce cas, **FastAPI** s'attendra à un body semblable à :
 
@@ -225,57 +112,7 @@ q: str | None = None
 
 Par exemple :
 
-//// tab | Python 3.10+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="25"
-{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[27] *}
 
 /// info
 
@@ -297,57 +134,7 @@ item: Item = Body(embed=True)
 
 Voici un exemple complet :
 
-//// tab | Python 3.10+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Préférez utiliser la version `Annotated` si possible.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
 Dans ce cas **FastAPI** attendra un body semblable à :
 

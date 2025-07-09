@@ -8,7 +8,7 @@ APIはほとんどの場合 **レスポンス** ボディを送らなければ�
 
 **リクエスト** ボディを宣言するために <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> モデルを使用します。そして、その全てのパワーとメリットを利用します。
 
-/// info | "情報"
+/// info | 情報
 
 データを送るには、`POST` (もっともよく使われる)、`PUT`、`DELETE` または `PATCH` を使うべきです。
 
@@ -22,9 +22,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 ます初めに、 `pydantic` から `BaseModel` をインポートする必要があります:
 
-```Python hl_lines="2"
-{!../../docs_src/body/tutorial001.py!}
-```
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## データモデルの作成
 
@@ -32,9 +30,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 すべての属性にpython標準の型を使用します:
 
-```Python hl_lines="5-9"
-{!../../docs_src/body/tutorial001.py!}
-```
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 クエリパラメータの宣言と同様に、モデル属性がデフォルト値をもつとき、必須な属性ではなくなります。それ以外は必須になります。オプショナルな属性にしたい場合は `None` を使用してください。
 
@@ -62,9 +58,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 *パスオペレーション* に加えるために、パスパラメータやクエリパラメータと同じ様に宣言します:
 
-```Python hl_lines="16"
-{!../../docs_src/body/tutorial001.py!}
-```
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...そして、作成したモデル `Item` で型を宣言します。
 
@@ -113,7 +107,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 <img src="/img/tutorial/body/image05.png">
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a>エディタを使用している場合は、<a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>が使用可能です。
 
@@ -131,9 +125,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 関数内部で、モデルの全ての属性に直接アクセスできます:
 
-```Python hl_lines="19"
-{!../../docs_src/body/tutorial002.py!}
-```
+{* ../../docs_src/body/tutorial002.py hl[19] *}
 
 ## リクエストボディ + パスパラメータ
 
@@ -141,9 +133,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 **FastAPI** はパスパラメータである関数パラメータは**パスから受け取り**、Pydanticモデルによって宣言された関数パラメータは**リクエストボディから受け取る**ということを認識します。
 
-```Python hl_lines="15-16"
-{!../../docs_src/body/tutorial003.py!}
-```
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 ## リクエストボディ + パスパラメータ + クエリパラメータ
 
@@ -151,9 +141,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 **FastAPI** はそれぞれを認識し、適切な場所からデータを取得します。
 
-```Python hl_lines="16"
-{!../../docs_src/body/tutorial004.py!}
-```
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 関数パラメータは以下の様に認識されます:
 
@@ -161,7 +149,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 * パラメータが**単数型** (`int`、`float`、`str`、`bool` など)の場合は**クエリ**パラメータとして解釈されます。
 * パラメータが **Pydantic モデル**型で宣言された場合、リクエスト**ボディ**として解釈されます。
 
-/// note | "備考"
+/// note | 備考
 
 FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわかります。
 

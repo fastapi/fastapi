@@ -18,11 +18,9 @@
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します。
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 テスト関数は `async def` ではなく、通常の `def` であることに注意してください。
 
@@ -32,7 +30,7 @@
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.testclient import TestClient` も使用できます。
 
@@ -40,7 +38,7 @@
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
 
@@ -56,17 +54,13 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 **FastAPI** アプリに `main.py` ファイルがあるとします:
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### テストファイル
 
 次に、テストを含む `test_main.py` ファイルを作成し、`main` モジュール (`main.py`) から `app` をインポートします:
 
-```Python
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py *}
 
 ## テスト: 例の拡張
 
@@ -83,29 +77,13 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 これらの *path operation* には `X-Token` ヘッダーが必要です。
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_py310/main.py *}
 
 ### 拡張版テストファイル
 
 次に、先程のものに拡張版のテストを加えた、`test_main_b.py` を作成します。
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx` での実現方法を検索 (Google) できます。
 
@@ -121,7 +99,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 (`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
 
-/// info | "情報"
+/// info | 情報
 
 `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 

@@ -20,35 +20,7 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py *}
 
 ## Ausführen
 
@@ -82,7 +54,7 @@ Sie werden etwa Folgendes sehen:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Authorize-Button!"
+/// check | Authorize-Button!
 
 Sie haben bereits einen glänzenden, neuen „Authorize“-Button.
 
@@ -94,7 +66,7 @@ Und wenn Sie darauf klicken, erhalten Sie ein kleines Anmeldeformular zur Eingab
 
 <img src="/img/tutorial/security/image02.png">
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Es spielt keine Rolle, was Sie in das Formular eingeben, es wird noch nicht funktionieren. Wir kommen dahin.
 
@@ -154,37 +126,9 @@ In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen br
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-//// tab | Python 3.9+
+{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
 
-```Python hl_lines="8"
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="7"
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6"
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
-
-/// tip | "Tipp"
+/// tip | Tipp
 
 Hier bezieht sich `tokenUrl="token"` auf eine relative URL `token`, die wir noch nicht erstellt haben. Da es sich um eine relative URL handelt, entspricht sie `./token`.
 
@@ -220,41 +164,13 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="11"
-{!> ../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 
 **FastAPI** weiß, dass es diese Abhängigkeit verwenden kann, um ein „Sicherheitsschema“ im OpenAPI-Schema (und der automatischen API-Dokumentation) zu definieren.
 
-/// info | "Technische Details"
+/// info | Technische Details
 
 **FastAPI** weiß, dass es die Klasse `OAuth2PasswordBearer` (deklariert in einer Abhängigkeit) verwenden kann, um das Sicherheitsschema in OpenAPI zu definieren, da es von `fastapi.security.oauth2.OAuth2` erbt, das wiederum von `fastapi.security.base.SecurityBase` erbt.
 

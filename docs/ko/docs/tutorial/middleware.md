@@ -11,7 +11,7 @@
 * **응답** 또는 다른 필요한 코드를 실행시키는 동작을 할 수 있습니다.
 * **응답**를 반환합니다.
 
-/// note | "기술 세부사항"
+/// note | 기술 세부사항
 
 만약 `yield`를 사용한 의존성을 가지고 있다면, 미들웨어가 실행되고 난 후에 exit이 실행됩니다.
 
@@ -31,11 +31,9 @@
     * 그런 다음, *경로 작업*에 의해 생성된 `response` 를 반환합니다.
 * `response`를 반환하기 전에 추가로 `response`를 수정할 수 있습니다.
 
-```Python hl_lines="8-9  11  14"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
-/// tip | "팁"
+/// tip | 팁
 
 사용자 정의 헤더는 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-' 접두사를 사용</a>하여 추가할 수 있습니다.
 
@@ -43,7 +41,7 @@
 
 ///
 
-/// note | "기술적 세부사항"
+/// note | 기술적 세부사항
 
 `from starlette.requests import request`를 사용할 수도 있습니다.
 
@@ -59,9 +57,7 @@
 
 예를 들어, 요청을 수행하고 응답을 생성하는데 까지 걸린 시간 값을 가지고 있는 `X-Process-Time` 같은 사용자 정의 헤더를 추가할 수 있습니다.
 
-```Python hl_lines="10  12-13"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## 다른 미들웨어
 

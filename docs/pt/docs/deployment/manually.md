@@ -7,45 +7,33 @@ Em resumo, utilize o comando `fastapi run` para inicializar sua aplicação Fast
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:single">main.py</u>
-<font color="#3465A4">INFO    </font> Using path <font color="#3465A4">main.py</font>
-<font color="#3465A4">INFO    </font> Resolved absolute path <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
-<font color="#3465A4">INFO    </font> Searching for package file structure from directories with <font color="#3465A4">__init__.py</font> files
-<font color="#3465A4">INFO    </font> Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
 
- ╭─ <font color="#8AE234"><b>Python module file</b></font> ─╮
- │                      │
- │  🐍 main.py          │
- │                      │
- ╰──────────────────────╯
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
 
-<font color="#3465A4">INFO    </font> Importing module <font color="#4E9A06">main</font>
-<font color="#3465A4">INFO    </font> Found importable FastAPI app
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
- ╭─ <font color="#8AE234"><b>Importable FastAPI app</b></font> ─╮
- │                          │
- │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
- │                          │
- ╰──────────────────────────╯
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-<font color="#3465A4">INFO    </font> Using import string <font color="#8AE234"><b>main:app</b></font>
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
 
- <font color="#4E9A06">╭─────────── FastAPI CLI - Production mode ───────────╮</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  Serving at: http://0.0.0.0:8000                    │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  API docs: http://0.0.0.0:8000/docs                 │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  Running in production mode, for development use:   │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">│  </font><font color="#8AE234"><b>fastapi dev</b></font><font color="#4E9A06">                                        │</font>
- <font color="#4E9A06">│                                                     │</font>
- <font color="#4E9A06">╰─────────────────────────────────────────────────────╯</font>
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
 
-<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">2306215</font>]
-<font color="#4E9A06">INFO</font>:     Waiting for application startup.
-<font color="#4E9A06">INFO</font>:     Application startup complete.
-<font color="#4E9A06">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8000</b> (Press CTRL+C to quit)
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>2306215</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
 ```
 
 </div>
@@ -102,7 +90,7 @@ $ pip install "uvicorn[standard]"
 
 Um processo semelhante se aplicaria a qualquer outro programa de servidor ASGI.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Adicionando o `standard`, o Uvicorn instalará e usará algumas dependências extras recomendadas.
 
@@ -126,7 +114,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 </div>
 
-/// note | "Nota"
+/// note | Nota
 
 O comando `uvicorn main:app` refere-se a:
 
@@ -143,7 +131,7 @@ from main import app
 
 Cada programa de servidor ASGI alternativo teria um comando semelhante, você pode ler mais na documentação respectiva.
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Uvicorn e outros servidores suportam a opção `--reload` que é útil durante o desenvolvimento.
 

@@ -26,9 +26,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-```Python hl_lines="18  22"
-{!../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note
 
@@ -177,9 +175,7 @@ You can use this same `responses` parameter to add different media types for the
 
 For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
-```Python hl_lines="19-24  28"
-{!../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
 /// note
 
@@ -207,9 +203,7 @@ For example, you can declare a response with a status code `404` that uses a Pyd
 
 And a response with a status code `200` that uses your `response_model`, but includes a custom `example`:
 
-```Python hl_lines="20-31"
-{!../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 It will all be combined and included in your OpenAPI, and shown in the API docs:
 
@@ -243,9 +237,7 @@ You can use that technique to reuse some predefined responses in your *path oper
 
 For example:
 
-```Python hl_lines="13-17  26"
-{!../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## More information about OpenAPI responses
 

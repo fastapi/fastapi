@@ -8,7 +8,7 @@
 
 ## `jsonable_encoder`の使用
 
-JSON互換のデータのみを受信するデータベース`fase_db`があるとしましょう。
+JSON互換のデータのみを受信するデータベース`fake_db`があるとしましょう。
 
 例えば、`datetime`オブジェクトはJSONと互換性がないので、このデーターベースには受け取られません。
 
@@ -20,9 +20,7 @@ JSON互換のデータのみを受信するデータベース`fase_db`がある�
 
 Pydanticモデルのようなオブジェクトを受け取り、JSON互換版を返します:
 
-```Python hl_lines="5 22"
-{!../../docs_src/encoder/tutorial001.py!}
-```
+{* ../../docs_src/encoder/tutorial001.py hl[5,22] *}
 
 この例では、Pydanticモデルを`dict`に、`datetime`を`str`に変換します。
 
@@ -30,7 +28,7 @@ Pydanticモデルのようなオブジェクトを受け取り、JSON互換版�
 
 これはJSON形式のデータを含む大きな`str`を（文字列として）返しません。JSONと互換性のある値とサブの値を持つPython標準のデータ構造（例：`dict`）を返します。
 
-/// note | "備考"
+/// note | 備考
 
 `jsonable_encoder`は実際には **FastAPI** が内部的にデータを変換するために使用します。しかしこれは他の多くのシナリオで有用です。
 

@@ -6,57 +6,7 @@
 
 Сперва импортируйте `Header`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/header_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/header_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
 ## Объявление параметров `Header`
 
@@ -64,59 +14,9 @@
 
 Первое значение является значением по умолчанию, вы можете передать все дополнительные параметры валидации или аннотации:
 
-//// tab | Python 3.10+
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/header_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial001.py!}
-```
-
-////
-
-/// note | "Технические детали"
+/// note | Технические детали
 
 `Header` - это "родственный" класс `Path`, `Query` и `Cookie`. Он также наследуется от того же общего класса `Param`.
 
@@ -124,7 +24,7 @@
 
 ///
 
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Чтобы объявить заголовки, важно использовать `Header`, иначе параметры интерпретируются как query-параметры.
 
@@ -146,59 +46,9 @@
 
 Если по какой-либо причине вам необходимо отключить автоматическое преобразование подчеркиваний в дефисы, установите для параметра `convert_underscores` в `Header` значение `False`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11"
-{!> ../../docs_src/header_params/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12"
-{!> ../../docs_src/header_params/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="8"
-{!> ../../docs_src/header_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial002.py!}
-```
-
-////
-
-/// warning | "Внимание"
+/// warning | Внимание
 
 Прежде чем установить для `convert_underscores` значение `False`, имейте в виду, что некоторые HTTP-прокси и серверы запрещают использование заголовков с подчеркиванием.
 
@@ -214,71 +64,7 @@
 
 Например, чтобы объявить заголовок `X-Token`, который может появляться более одного раза, вы можете написать:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/header_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="7"
-{!> ../../docs_src/header_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="9"
-{!> ../../docs_src/header_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
 Если вы взаимодействуете с этой *операцией пути*, отправляя два HTTP-заголовка, таких как:
 

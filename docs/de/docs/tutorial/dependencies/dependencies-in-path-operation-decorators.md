@@ -14,39 +14,11 @@ Der *Pfadoperation-Dekorator* erhält ein optionales Argument `dependencies`.
 
 Es sollte eine `list`e von `Depends()` sein:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
 
@@ -72,69 +44,13 @@ Sie können dieselben Abhängigkeits-*Funktionen* verwenden, die Sie normalerwei
 
 Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhängigkeiten deklarieren:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7  12"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6  11"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 
 ### Exceptions auslösen
 
 Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeiten:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  14"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
 
 ### Rückgabewerte
 
@@ -142,35 +58,7 @@ Und sie können Werte zurückgeben oder nicht, die Werte werden nicht verwendet.
 
 Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Sie bereits an anderer Stelle verwenden, wiederverwenden, und auch wenn der Wert nicht verwendet wird, wird die Abhängigkeit ausgeführt:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  15"
-{!> ../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9  14"
-{!> ../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
 
 ## Abhängigkeiten für eine Gruppe von *Pfadoperationen*
 

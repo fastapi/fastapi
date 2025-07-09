@@ -46,9 +46,7 @@
 * 🎯 🇺🇸🔍 👩‍🔬 (`POST`, `PUT`) ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
 * 🎯 🇺🇸🔍 🎚 ⚖️ 🌐 👫 ⏮️ 🃏 `"*"`.
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 🔢 🔢 ⚙️ `CORSMiddleware` 🛠️ 🚫 🔢, 👆 🔜 💪 🎯 🛠️ 🎯 🇨🇳, 👩‍🔬, ⚖️ 🎚, ✔ 🖥 ✔ ⚙️ 👫 ✖️-🆔 🔑.
 
@@ -78,7 +76,7 @@
 
 🌖 ℹ 🔃 <abbr title="Cross-Origin Resource Sharing">⚜</abbr>, ✅ <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">🦎 ⚜ 🧾</a>.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.middleware.cors import CORSMiddleware`.
 

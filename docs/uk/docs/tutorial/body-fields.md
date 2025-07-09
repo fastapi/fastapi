@@ -6,57 +6,7 @@
 
 Спочатку вам потрібно імпортувати це:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Варто користуватись `Annotated` версією, якщо це можливо.
-
-///
-
-```Python hl_lines="2"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Варто користуватись `Annotated` версією, якщо це можливо.
-
-///
-
-```Python hl_lines="4"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
 /// warning
 
@@ -68,61 +18,11 @@
 
 Ви можете використовувати `Field` з атрибутами моделі:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Варто користуватись `Annotated` версією, якщо це можливо..
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Варто користуватись `Annotated` версією, якщо це можливо..
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field` працює так само, як `Query`, `Path` і `Body`, у нього такі самі параметри тощо.
 
-/// note | "Технічні деталі"
+/// note | Технічні деталі
 
 Насправді, `Query`, `Path` та інші, що ви побачите далі, створюють об'єкти підкласів загального класу `Param`, котрий сам є підкласом класу `FieldInfo` з Pydantic.
 

@@ -34,19 +34,15 @@ $ pip install websockets
 
 但这是一种专注于 WebSockets 的服务器端并提供一个工作示例的最简单方式：
 
-```Python hl_lines="2  6-38  41-43"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
 
 ## 创建 `websocket`
 
 在您的 **FastAPI** 应用程序中，创建一个 `websocket`：
 
-```Python hl_lines="1  46-47"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
 
-/// note | "技术细节"
+/// note | 技术细节
 
 您也可以使用 `from starlette.websockets import WebSocket`。
 
@@ -58,9 +54,7 @@ $ pip install websockets
 
 在您的 WebSocket 路由中，您可以使用 `await` 等待消息并发送消息。
 
-```Python hl_lines="48-52"
-{!../../docs_src/websockets/tutorial001.py!}
-```
+{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
 
 您可以接收和发送二进制、文本和 JSON 数据。
 
@@ -109,57 +103,7 @@ $ uvicorn main:app --reload
 
 它们的工作方式与其他 FastAPI 端点/ *路径操作* 相同：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="68-69  82"
-{!> ../../docs_src/websockets/tutorial002_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="68-69  82"
-{!> ../../docs_src/websockets/tutorial002_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="69-70  83"
-{!> ../../docs_src/websockets/tutorial002_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ 非带注解版本
-
-/// tip
-
-如果可能，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="66-67  79"
-{!> ../../docs_src/websockets/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ 非带注解版本
-
-/// tip
-
-如果可能，请尽量使用 `Annotated` 版本。
-
-///
-
-```Python hl_lines="68-69  81"
-{!> ../../docs_src/websockets/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
 
 /// info
 
@@ -200,21 +144,7 @@ $ uvicorn main:app --reload
 
 当 WebSocket 连接关闭时，`await websocket.receive_text()` 将引发 `WebSocketDisconnect` 异常，您可以捕获并处理该异常，就像本示例中的示例一样。
 
-//// tab | Python 3.9+
-
-```Python hl_lines="79-81"
-{!> ../../docs_src/websockets/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="81-83"
-{!> ../../docs_src/websockets/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/websockets/tutorial003_py39.py hl[79:81] *}
 
 尝试以下操作：
 

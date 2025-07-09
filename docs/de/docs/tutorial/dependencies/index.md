@@ -30,57 +30,7 @@ Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection
 Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
-//// tab | Python 3.10+
-
-```Python hl_lines="8-9"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-11"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-12"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6-7"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8-11"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
 
 Das war's schon.
 
@@ -112,113 +62,13 @@ Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fasta
 
 ### `Depends` importieren
 
-//// tab | Python 3.10+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
 ### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr>
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="13  18"
-{!> ../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="15  20"
-{!> ../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16  21"
-{!> ../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="11  16"
-{!> ../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="15  20"
-{!> ../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
 
 Obwohl Sie `Depends` in den Parametern Ihrer Funktion genauso verwenden wie `Body`, `Query`, usw., funktioniert `Depends` etwas anders.
 
@@ -230,7 +80,7 @@ Sie **rufen diese nicht direkt auf** (fügen Sie am Ende keine Klammern hinzu), 
 
 Und diese Funktion akzeptiert Parameter auf die gleiche Weise wie *Pfadoperation-Funktionen*.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen, Sie als Abhängigkeiten verwenden können.
 
@@ -275,31 +125,9 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Da wir jedoch `Annotated` verwenden, können wir diesen `Annotated`-Wert in einer Variablen speichern und an mehreren Stellen verwenden:
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
 
-```Python hl_lines="12  16  21"
-{!> ../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="14  18  23"
-{!> ../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15  19  24"
-{!> ../../docs_src/dependencies/tutorial001_02_an.py!}
-```
-
-////
-
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das ist schlicht Standard-Python, es wird als „Typalias“ bezeichnet und ist eigentlich nicht **FastAPI**-spezifisch.
 
@@ -321,7 +149,7 @@ Und Sie können Abhängigkeiten mit `async def` innerhalb normaler `def`-*Pfadop
 
 Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
 

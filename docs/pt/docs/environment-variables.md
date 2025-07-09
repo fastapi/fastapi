@@ -1,6 +1,6 @@
 # Variáveis de Ambiente
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você já sabe o que são "variáveis de ambiente" e como usá-las, pode pular esta seção.
 
@@ -63,7 +63,7 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 O segundo argumento para <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> é o valor padrão a ser retornado.
 
@@ -151,7 +151,7 @@ Hello World from Python
 
 </div>
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você pode ler mais sobre isso em <a href="https://12factor.net/config" class="external-link" target="_blank">The Twelve-Factor App: Config</a>.
 

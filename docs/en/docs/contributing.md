@@ -34,7 +34,7 @@ And if you update that local FastAPI source code when you run that Python file a
 
 That way, you don't have to "install" your local version to be able to test every change.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
 
@@ -107,7 +107,7 @@ $ cd docs/en/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -245,7 +245,7 @@ $ cd docs/es/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -289,6 +289,7 @@ Now you can translate it all and see how it looks as you save the file.
 * `newsletter.md`
 * `management-tasks.md`
 * `management.md`
+* `contributing.md`
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
@@ -380,7 +381,7 @@ Serving at: http://127.0.0.1:8008
 
 * Do not change anything enclosed in "``" (inline code).
 
-* In lines starting with `///` translate only the ` "... Text ..."` part. Leave the rest unchanged.
+* In lines starting with `///` translate only the text part after `|`. Leave the rest unchanged.
 
 * You can translate info boxes like `/// warning` with for example `/// warning | Achtung`. But do not change the word immediately after the `///`, it determines the color of the info box.
 

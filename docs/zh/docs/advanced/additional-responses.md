@@ -16,9 +16,7 @@
 **FastAPI**将采用该模型，生成其`JSON Schema`并将其包含在`OpenAPI`中的正确位置。
 
 例如，要声明另一个具有状态码 `404` 和`Pydantic`模型 `Message` 的响应，可以写：
-```Python hl_lines="18  22"
-{!../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note
 
@@ -163,9 +161,7 @@
 
 例如，您可以添加一个额外的媒体类型` image/png` ，声明您的路径操作可以返回JSON对象（媒体类型 `application/json` ）或PNG图像：
 
-```Python hl_lines="19-24  28"
-{!../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
 /// note
 
@@ -191,9 +187,7 @@
 
 以及一个状态码为 `200` 的响应，它使用您的 `response_model` ，但包含自定义的 `example` ：
 
-```Python hl_lines="20-31"
-{!../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 所有这些都将被合并并包含在您的OpenAPI中，并在API文档中显示：
 
@@ -219,9 +213,7 @@ new_dict = {**old_dict, "new key": "new value"}
 ```
 您可以使用该技术在路径操作中重用一些预定义的响应，并将它们与其他自定义响应相结合。
 **例如：**
-```Python hl_lines="13-17  26"
-{!../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 ## 有关OpenAPI响应的更多信息
 
 要了解您可以在响应中包含哪些内容，您可以查看OpenAPI规范中的以下部分：

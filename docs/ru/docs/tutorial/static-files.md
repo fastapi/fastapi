@@ -7,11 +7,9 @@
 * Импортируйте `StaticFiles`.
 * "Примонтируйте" экземпляр `StaticFiles()` с указанием определенной директории.
 
-```Python hl_lines="2  6"
-{!../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Вы также можете использовать `from starlette.staticfiles import StaticFiles`.
 

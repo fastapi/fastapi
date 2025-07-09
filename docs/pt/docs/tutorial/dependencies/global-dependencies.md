@@ -6,35 +6,7 @@ De forma semelhante a [adicionar dependências (`dependencies`) em *decoradores 
 
 Nesse caso, elas serão aplicadas a todas as *operações de rota* da aplicação:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial012.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
 
 E todos os conceitos apresentados na sessão sobre [adicionar dependências em *decoradores de operação de rota*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} ainda se aplicam, mas nesse caso, para todas as *operações de rota* da aplicação.
 

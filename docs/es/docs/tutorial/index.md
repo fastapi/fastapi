@@ -1,81 +1,102 @@
-# Tutorial - Guía de Usuario
+# Tutorial - Guía del Usuario
 
-Este tutorial te muestra cómo usar **FastAPI** con la mayoría de sus características paso a paso.
+Este tutorial te muestra cómo usar **FastAPI** con la mayoría de sus funcionalidades, paso a paso.
 
-Cada sección se basa gradualmente en las anteriores, pero está estructurada en temas separados, así puedes ir directamente a cualquier tema en concreto para resolver tus necesidades específicas sobre la API.
+Cada sección se basa gradualmente en las anteriores, pero está estructurada para separar temas, de manera que puedas ir directamente a cualquier sección específica para resolver tus necesidades específicas de API.
 
-Funciona también como una referencia futura, para que puedas volver y ver exactamente lo que necesitas.
+También está diseñado para funcionar como una referencia futura para que puedas volver y ver exactamente lo que necesitas.
 
 ## Ejecuta el código
 
-Todos los bloques de código se pueden copiar y usar directamente (en realidad son archivos Python probados).
+Todos los bloques de código pueden ser copiados y usados directamente (de hecho, son archivos Python probados).
 
-Para ejecutar cualquiera de los ejemplos, copia el código en un archivo llamado `main.py`, y ejecuta `uvicorn` de la siguiente manera en tu terminal:
+Para ejecutar cualquiera de los ejemplos, copia el código a un archivo `main.py`, y comienza `fastapi dev` con:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:single">main.py</u>
+<font color="#3465A4">INFO    </font> Using path <font color="#3465A4">main.py</font>
+<font color="#3465A4">INFO    </font> Resolved absolute path <font color="#75507B">/home/user/code/awesomeapp/</font><font color="#AD7FA8">main.py</font>
+<font color="#3465A4">INFO    </font> Searching for package file structure from directories with <font color="#3465A4">__init__.py</font> files
+<font color="#3465A4">INFO    </font> Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+ ╭─ <font color="#8AE234"><b>Python module file</b></font> ─╮
+ │                      │
+ │  🐍 main.py          │
+ │                      │
+ ╰──────────────────────╯
+
+<font color="#3465A4">INFO    </font> Importing module <font color="#4E9A06">main</font>
+<font color="#3465A4">INFO    </font> Found importable FastAPI app
+
+ ╭─ <font color="#8AE234"><b>Importable FastAPI app</b></font> ─╮
+ │                          │
+ │  <span style="background-color:#272822"><font color="#FF4689">from</font></span><span style="background-color:#272822"><font color="#F8F8F2"> main </font></span><span style="background-color:#272822"><font color="#FF4689">import</font></span><span style="background-color:#272822"><font color="#F8F8F2"> app</font></span><span style="background-color:#272822">  </span>  │
+ │                          │
+ ╰──────────────────────────╯
+
+<font color="#3465A4">INFO    </font> Using import string <font color="#8AE234"><b>main:app</b></font>
+
+ <span style="background-color:#C4A000"><font color="#2E3436">╭────────── FastAPI CLI - Development mode ───────────╮</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Serving at: http://127.0.0.1:8000                  │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  API docs: http://127.0.0.1:8000/docs               │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  Running in development mode, for production use:   │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│  </font></span><span style="background-color:#C4A000"><font color="#555753"><b>fastapi run</b></font></span><span style="background-color:#C4A000"><font color="#2E3436">                                        │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">│                                                     │</font></span>
+ <span style="background-color:#C4A000"><font color="#2E3436">╰─────────────────────────────────────────────────────╯</font></span>
+
+<font color="#4E9A06">INFO</font>:     Will watch for changes in these directories: [&apos;/home/user/code/awesomeapp&apos;]
+<font color="#4E9A06">INFO</font>:     Uvicorn running on <b>http://127.0.0.1:8000</b> (Press CTRL+C to quit)
+<font color="#4E9A06">INFO</font>:     Started reloader process [<font color="#34E2E2"><b>2265862</b></font>] using <font color="#34E2E2"><b>WatchFiles</b></font>
+<font color="#4E9A06">INFO</font>:     Started server process [<font color="#06989A">2265873</font>]
+<font color="#4E9A06">INFO</font>:     Waiting for application startup.
+<font color="#4E9A06">INFO</font>:     Application startup complete.
+</pre>
 ```
 
 </div>
 
-Se **RECOMIENDA** que escribas o copies el código, lo edites y lo ejecutes localmente.
+Es **ALTAMENTE recomendable** que escribas o copies el código, lo edites y lo ejecutes localmente.
 
-Usarlo en tu editor de código es lo que realmente te muestra los beneficios de FastAPI, al ver la poca cantidad de código que tienes que escribir, todas las verificaciones de tipo, auto-completado, etc.
+Usarlo en tu editor es lo que realmente te muestra los beneficios de FastAPI, al ver cuán poco código tienes que escribir, todos los chequeos de tipos, autocompletado, etc.
 
 ---
 
-## Instala FastAPI
+## Instalar FastAPI
 
 El primer paso es instalar FastAPI.
 
-Para el tutorial, es posible que quieras instalarlo con todas las dependencias y características opcionales:
+Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, actívalo, y luego **instala FastAPI**:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-...eso también incluye `uvicorn` que puedes usar como el servidor que ejecuta tu código.
+/// note | Nota
 
-/// note | "Nota"
+Cuando instalas con `pip install "fastapi[standard]"` viene con algunas dependencias opcionales estándar por defecto.
 
-También puedes instalarlo parte por parte.
-
-Esto es lo que probablemente harías una vez que desees implementar tu aplicación en producción:
-
-```
-pip install fastapi
-```
-
-También debes instalar `uvicorn` para que funcione como tu servidor:
-
-```
-pip install "uvicorn[standard]"
-```
-
-Y lo mismo para cada una de las dependencias opcionales que quieras utilizar.
+Si no quieres tener esas dependencias opcionales, en su lugar puedes instalar `pip install fastapi`.
 
 ///
 
-## Guía Avanzada de Usuario
+## Guía Avanzada del Usuario
 
-También hay una **Guía Avanzada de Usuario** que puedes leer luego de este **Tutorial - Guía de Usuario**.
+También hay una **Guía Avanzada del Usuario** que puedes leer después de esta **Tutorial - Guía del Usuario**.
 
-La **Guía Avanzada de Usuario**, se basa en este tutorial, utiliza los mismos conceptos y enseña algunas características adicionales.
+La **Guía Avanzada del Usuario** se basa en esta, utiliza los mismos conceptos y te enseña algunas funcionalidades adicionales.
 
-Pero primero deberías leer el **Tutorial - Guía de Usuario** (lo que estas leyendo ahora mismo).
+Pero primero deberías leer la **Tutorial - Guía del Usuario** (lo que estás leyendo ahora mismo).
 
-La guía esa diseñada para que puedas crear una aplicación completa con solo el **Tutorial - Guía de Usuario**, y luego extenderlo de diferentes maneras, según tus necesidades, utilizando algunas de las ideas adicionales de la **Guía Avanzada de Usuario**.
+Está diseñada para que puedas construir una aplicación completa solo con la **Tutorial - Guía del Usuario**, y luego extenderla de diferentes maneras, dependiendo de tus necesidades, utilizando algunas de las ideas adicionales de la **Guía Avanzada del Usuario**.

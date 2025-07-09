@@ -25,9 +25,7 @@
 
 ### Импортируйте `HTTPException`
 
-```Python hl_lines="1"
-{!../../docs_src/handling_errors/tutorial001.py!}
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### Вызовите `HTTPException` в своем коде
 
@@ -41,9 +39,7 @@
 
 В данном примере, когда клиент запрашивает элемент по несуществующему ID, возникает исключение со статус-кодом `404`:
 
-```Python hl_lines="11"
-{!../../docs_src/handling_errors/tutorial001.py!}
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### Возвращаемый ответ
 
@@ -63,7 +59,7 @@
 }
 ```
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 При вызове `HTTPException` в качестве параметра `detail` можно передавать любое значение, которое может быть преобразовано в JSON, а не только `str`.
 
@@ -81,9 +77,7 @@
 
 Но в случае, если это необходимо для продвинутого сценария, можно добавить пользовательские заголовки:
 
-```Python hl_lines="14"
-{!../../docs_src/handling_errors/tutorial002.py!}
-```
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## Установка пользовательских обработчиков исключений
 
@@ -95,9 +89,7 @@
 
 Можно добавить собственный обработчик исключений с помощью `@app.exception_handler()`:
 
-```Python hl_lines="5-7  13-18  24"
-{!../../docs_src/handling_errors/tutorial003.py!}
-```
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 Здесь, если запросить `/unicorns/yolo`, то *операция пути* вызовет `UnicornException`.
 
@@ -109,7 +101,7 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Также можно использовать `from starlette.requests import Request` и `from starlette.responses import JSONResponse`.
 
@@ -135,9 +127,7 @@
 
 Обработчик исключения получит объект `Request` и исключение.
 
-```Python hl_lines="2  14-16"
-{!../../docs_src/handling_errors/tutorial004.py!}
-```
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
 
 Теперь, если перейти к `/items/foo`, то вместо стандартной JSON-ошибки с:
 
@@ -166,7 +156,7 @@ path -> item_id
 
 #### `RequestValidationError` или `ValidationError`
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
 
@@ -188,11 +178,9 @@ path -> item_id
 
 Например, для этих ошибок можно вернуть обычный текстовый ответ вместо JSON:
 
-```Python hl_lines="3-4  9-11  22"
-{!../../docs_src/handling_errors/tutorial004.py!}
-```
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Можно также использовать `from starlette.responses import PlainTextResponse`.
 
@@ -206,9 +194,7 @@ path -> item_id
 
 Вы можете использовать его при разработке приложения для регистрации тела и его отладки, возврата пользователю и т.д.
 
-```Python hl_lines="14"
-{!../../docs_src/handling_errors/tutorial005.py!}
-```
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 Теперь попробуйте отправить недействительный элемент, например:
 
@@ -266,8 +252,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Если вы хотите использовать исключение вместе с теми же обработчиками исключений по умолчанию из **FastAPI**, вы можете импортировать и повторно использовать обработчики исключений по умолчанию из `fastapi.exception_handlers`:
 
-```Python hl_lines="2-5  15  21"
-{!../../docs_src/handling_errors/tutorial006.py!}
-```
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 В этом примере вы просто `выводите в терминал` ошибку с очень выразительным сообщением, но идея вам понятна. Вы можете использовать исключение, а затем просто повторно использовать стандартные обработчики исключений.

@@ -6,7 +6,7 @@ Le [Tutoriel - Guide de l'utilisateur](../tutorial/index.md){.internal-link targ
 
 Dans les sections suivantes, vous verrez des options, configurations et fonctionnalités supplémentaires.
 
-/// note | "Remarque"
+/// note | Remarque
 
 Les sections de ce chapitre ne sont **pas nécessairement "avancées"**.
 
