@@ -350,6 +350,10 @@ def get_openapi_path(
                     if status_code_param is not None:
                         if isinstance(status_code_param.default, int):
                             status_code = str(status_code_param.default)
+                        else:
+                            status_code = "200"
+                    else:
+                        status_code = "200"
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
