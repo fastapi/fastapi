@@ -251,7 +251,7 @@ if PYDANTIC_V2:
         ) or field_annotation_is_optional_sequence(field.field_info.annotation)
 
     def field_annotation_is_optional_sequence(
-        annotation: Union[Type[Any], None]
+        annotation: Union[Type[Any], None],
     ) -> bool:
         origin = get_origin(annotation)
         if origin is Union:
