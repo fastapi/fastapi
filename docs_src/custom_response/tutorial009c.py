@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, ClassVar
 
 import orjson
 from fastapi import FastAPI, Response
@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 class CustomORJSONResponse(Response):
-    media_type = "application/json"
+    media_type: ClassVar[str] = "application/json"
 
     def render(self, content: Any) -> bytes:
         assert orjson is not None, "orjson must be installed"
