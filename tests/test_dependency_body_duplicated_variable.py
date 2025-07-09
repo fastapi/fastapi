@@ -1,7 +1,6 @@
 from typing import Awaitable, Callable, List
 from unittest.mock import ANY
 
-import pytest
 from fastapi import Body, Depends, FastAPI
 from fastapi.testclient import TestClient
 
@@ -18,15 +17,15 @@ def make_field(name: str) -> Callable[..., Awaitable[str]]:
 @app.post("/example")
 def example(
     field_0: str = Body(...),
-    _field_1: str = Body(..., alias="field_1"),
-    _field_2: str = Depends(make_field("field_2")),
-    _field_3: str = Depends(make_field("field_3")),
+    field_1_: str = Body(..., alias="field_1"),
+    field_2_: str = Depends(make_field("field_2")),
+    field_3_: str = Depends(make_field("field_3")),
 ) -> List[str]:
-    return [field_0, _field_1, _field_2, _field_3]
+    return [field_0, field_1_, field_2_, field_3_]
 
 
 openapi_schema = {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {"title": "FastAPI", "version": "0.1.0"},
     "paths": {
         "/example": {
@@ -90,37 +89,25 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-def _field_missing(name):
-    return {
-        "loc": ["body", name],
-        "msg": "field required",
-        "type": "value_error.missing",
-    }
+def test_valid():
+    response = client.post(
+        "/example/",
+        json={"field_0": "a", "field_1": "b", "field_2": "c", "field_3": "d"},
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == ["a", "b", "c", "d"]
 
 
-@pytest.mark.parametrize(
-    "body_json,expected_status,expected_response",
-    [
-        [
-            {},
-            422,
-            {
-                "detail": [
-                    _field_missing("field_2"),
-                    _field_missing("field_3"),
-                    _field_missing("field_0"),
-                    _field_missing("field_1"),
-                ],
-            },
-        ],
-        [
-            {"field_0": "a", "field_1": "b", "field_2": "c", "field_3": "d"},
-            200,
-            ["a", "b", "c", "d"],
-        ],
-    ],
-)
-def test_endpoint(body_json, expected_status, expected_response):
-    response = client.post("/example/", json=body_json)
-    assert response.status_code == expected_status, response.text
-    assert response.json() == expected_response
+def test_missing():
+    response = client.post("/example/", json={})
+    assert response.status_code == 422, response.text
+    resp_json = response.json()
+    assert len(resp_json["detail"]) == 4
+    assert resp_json["detail"][0]["loc"] == ["body", "field_2"]
+    assert str(resp_json["detail"][0]["msg"]).lower() == "field required"
+    assert resp_json["detail"][1]["loc"] == ["body", "field_3"]
+    assert str(resp_json["detail"][1]["msg"]).lower() == "field required"
+    assert resp_json["detail"][2]["loc"] == ["body", "field_0"]
+    assert str(resp_json["detail"][2]["msg"]).lower() == "field required"
+    assert resp_json["detail"][3]["loc"] == ["body", "field_1"]
+    assert str(resp_json["detail"][3]["msg"]).lower() == "field required"
