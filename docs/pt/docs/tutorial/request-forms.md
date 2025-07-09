@@ -6,7 +6,11 @@ Quando você precisar receber campos de formulário ao invés de JSON, você pod
 
 Para usar formulários, primeiro instale <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-Ex: `pip install python-multipart`.
+Lembre-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar a dependência, por exemplo:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 

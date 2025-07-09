@@ -1,10 +1,26 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.header_params.tutorial001 import app
+from ...utils import needs_py310
 
-client = TestClient(app)
+
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+        "tutorial001_an",
+        pytest.param("tutorial001_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.header_params.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
 
 
 @pytest.mark.parametrize(
@@ -15,13 +31,13 @@ client = TestClient(app)
         ("/items", {"User-Agent": "FastAPI test"}, 200, {"User-Agent": "FastAPI test"}),
     ],
 )
-def test(path, headers, expected_status, expected_response):
+def test(path, headers, expected_status, expected_response, client: TestClient):
     response = client.get(path, headers=headers)
     assert response.status_code == expected_status
     assert response.json() == expected_response
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {
