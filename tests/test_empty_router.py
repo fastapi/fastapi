@@ -1,5 +1,6 @@
 import pytest
 from fastapi import APIRouter, FastAPI
+from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -31,5 +32,5 @@ def test_use_empty():
 
 def test_include_empty():
     # if both include and router.path are empty - it should raise exception
-    with pytest.raises(Exception):
+    with pytest.raises(FastAPIError):
         app.include_router(router)

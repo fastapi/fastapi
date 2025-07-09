@@ -4,16 +4,17 @@ O **FastAPI** permite que você declare informações adicionais e validações 
 
 Vamos utilizar essa aplicação como exemplo:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial001.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[9] *}
 
 O parâmetro de consulta `q` é do tipo `Union[str, None]`, o que significa que é do tipo `str` mas que também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
-!!! note "Observação"
-    O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
+/// note | Observação
 
-    O `Union` em `Union[str, None]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
+O FastAPI saberá que o valor de `q` não é obrigatório por causa do valor padrão `= None`.
+
+O `Union` em `Union[str, None]` não é usado pelo FastAPI, mas permitirá que seu editor lhe dê um melhor suporte e detecte erros.
+
+///
 
 ## Validação adicional
 
@@ -23,17 +24,13 @@ Nós iremos forçar que mesmo o parâmetro `q` seja opcional, sempre que informa
 
 Para isso, primeiro importe `Query` de `fastapi`:
 
-```Python hl_lines="3"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[3] *}
 
 ## Use `Query` como o valor padrão
 
 Agora utilize-o como valor padrão do seu parâmetro, definindo o parâmetro `max_length` para 50:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial002.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 Note que substituímos o valor padrão de `None` para `Query(default=None)`, o primeiro parâmetro de `Query` serve para o mesmo propósito: definir o valor padrão do parâmetro.
 
@@ -51,22 +48,25 @@ q: Union[str, None] = None
 
 Mas o declara explicitamente como um parâmetro de consulta.
 
-!!! info "Informação"
-    Tenha em mente que o FastAPI se preocupa com a parte:
+/// info | Informação
 
-    ```Python
-    = None
-    ```
+Tenha em mente que o FastAPI se preocupa com a parte:
 
-    Ou com:
+```Python
+= None
+```
 
-    ```Python
-    = Query(default=None)
-    ```
+Ou com:
 
-    E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
+```Python
+= Query(default=None)
+```
 
-    O `Union` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
+E irá utilizar o `None` para detectar que o parâmetro de consulta não é obrigatório.
+
+O `Union` é apenas para permitir que seu editor de texto lhe dê um melhor suporte.
+
+///
 
 Então, podemos passar mais parâmetros para `Query`. Neste caso, o parâmetro `max_length` que se aplica a textos:
 
@@ -80,17 +80,13 @@ Isso irá validar os dados, mostrar um erro claro quando os dados forem inválid
 
 Você também pode incluir um parâmetro `min_length`:
 
-```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial003.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## Adicionando expressões regulares
 
 Você pode definir uma <abbr title="Uma expressão regular, regex ou regexp é uma sequência de caracteres que define um parâmetro de busca para textos.">expressão regular</abbr> que combine com um padrão esperado pelo parâmetro:
 
-```Python hl_lines="11"
-{!../../../docs_src/query_params_str_validations/tutorial004.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 Essa expressão regular específica verifica se o valor recebido no parâmetro:
 
@@ -108,12 +104,13 @@ Da mesma maneira que você utiliza `None` como o primeiro argumento para ser uti
 
 Vamos dizer que você queira que o parâmetro de consulta `q` tenha um `min_length` de `3`, e um valor padrão de `"fixedquery"`, então declararíamos assim:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial005.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[7] *}
 
-!!! note "Observação"
-    O parâmetro torna-se opcional quando possui um valor padrão.
+/// note | Observação
+
+O parâmetro torna-se opcional quando possui um valor padrão.
+
+///
 
 ## Torne-o obrigatório
 
@@ -137,12 +134,13 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 Então, quando você precisa declarar um parâmetro obrigatório utilizando o `Query`, você pode utilizar `...` como o primeiro argumento:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[7] *}
 
-!!! info "Informação"
-    Se você nunca viu os `...` antes: é um valor único especial, faz <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte do Python e é chamado "Ellipsis"</a>.
+/// info | Informação
+
+Se você nunca viu os `...` antes: é um valor único especial, faz <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte do Python e é chamado "Ellipsis"</a>.
+
+///
 
 Dessa forma o **FastAPI** saberá que o parâmetro é obrigatório.
 
@@ -152,9 +150,7 @@ Quando você declara explicitamente um parâmetro com `Query` você pode declar�
 
 Por exemplo, para declarar que o parâmetro `q` pode aparecer diversas vezes na URL, você escreveria:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial011.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 Então, com uma URL assim:
 
@@ -175,8 +171,11 @@ Assim, a resposta para essa URL seria:
 }
 ```
 
-!!! tip "Dica"
-    Para declarar um parâmetro de consulta com o tipo `list`, como no exemplo acima, você precisa usar explicitamente o `Query`, caso contrário será interpretado como um corpo da requisição.
+/// tip | Dica
+
+Para declarar um parâmetro de consulta com o tipo `list`, como no exemplo acima, você precisa usar explicitamente o `Query`, caso contrário será interpretado como um corpo da requisição.
+
+///
 
 A documentação interativa da API irá atualizar de acordo, permitindo múltiplos valores:
 
@@ -186,9 +185,7 @@ A documentação interativa da API irá atualizar de acordo, permitindo múltipl
 
 E você também pode definir uma lista (`list`) de valores padrão caso nenhum seja informado:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial012.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 Se você for até:
 
@@ -211,14 +208,15 @@ O valor padrão de `q` será: `["foo", "bar"]` e sua resposta será:
 
 Você também pode utilizar o tipo `list` diretamente em vez de `List[str]`:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial013.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[7] *}
 
-!!! note "Observação"
-    Tenha em mente que neste caso, o FastAPI não irá validar os conteúdos da lista.
+/// note | Observação
 
-    Por exemplo, um `List[int]` iria validar (e documentar) que os contéudos da lista são números inteiros. Mas apenas `list` não.
+Tenha em mente que neste caso, o FastAPI não irá validar os conteúdos da lista.
+
+Por exemplo, um `List[int]` iria validar (e documentar) que os contéudos da lista são números inteiros. Mas apenas `list` não.
+
+///
 
 ## Declarando mais metadados
 
@@ -226,22 +224,21 @@ Você pode adicionar mais informações sobre o parâmetro.
 
 Essa informações serão inclusas no esquema do OpenAPI e utilizado pela documentação interativa e ferramentas externas.
 
-!!! note "Observação"
-    Tenha em mente que cada ferramenta oferece diferentes níveis de suporte ao OpenAPI.
+/// note | Observação
 
-    Algumas delas não exibem todas as informações extras que declaramos, ainda que na maioria dos casos, esses recursos estão planejados para desenvolvimento.
+Tenha em mente que cada ferramenta oferece diferentes níveis de suporte ao OpenAPI.
+
+Algumas delas não exibem todas as informações extras que declaramos, ainda que na maioria dos casos, esses recursos estão planejados para desenvolvimento.
+
+///
 
 Você pode adicionar um `title`:
 
-```Python hl_lines="10"
-{!../../../docs_src/query_params_str_validations/tutorial007.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 E uma `description`:
 
-```Python hl_lines="13"
-{!../../../docs_src/query_params_str_validations/tutorial008.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[13] *}
 
 ## Apelidos (alias) de parâmetros
 
@@ -261,9 +258,7 @@ Mas ainda você precisa que o nome seja exatamente `item-query`...
 
 Então você pode declarar um `alias`, e esse apelido (alias) que será utilizado para encontrar o valor do parâmetro:
 
-```Python hl_lines="9"
-{!../../../docs_src/query_params_str_validations/tutorial009.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Parâmetros descontinuados
 
@@ -273,9 +268,7 @@ Você tem que deixá-lo ativo por um tempo, já que existem clientes o utilizand
 
 Então você passa o parâmetro `deprecated=True` para `Query`:
 
-```Python hl_lines="18"
-{!../../../docs_src/query_params_str_validations/tutorial010.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[18] *}
 
 Na documentação aparecerá assim:
 

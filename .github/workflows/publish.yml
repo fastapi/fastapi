@@ -8,39 +8,35 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package:
+          - fastapi
+          - fastapi-slim
+    permissions:
+      id-token: write
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.6"
-      - uses: actions/cache@v2
-        id: cache
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-publish
-      - name: Install Flit
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pip install flit
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: flit install --symlink
-      - name: Publish
+          python-version: "3.10"
+          # Issue ref: https://github.com/actions/setup-python/issues/436
+          # cache: "pip"
+          # cache-dependency-path: pyproject.toml
+      - name: Install build dependencies
+        run: pip install build
+      - name: Build distribution
         env:
-          FLIT_USERNAME: ${{ secrets.FLIT_USERNAME }}
-          FLIT_PASSWORD: ${{ secrets.FLIT_PASSWORD }}
-        run: bash scripts/publish.sh
+          TIANGOLO_BUILD_PACKAGE: ${{ matrix.package }}
+        run: python -m build
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@v1.12.4
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      # - name: Notify
-      #   env:
-      #     GITTER_TOKEN: ${{ secrets.GITTER_TOKEN }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     TAG: ${{ github.event.release.name }}
-      #   run: bash scripts/notify.sh

@@ -1,6 +1,5 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
 set -x
 
-autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place docs_src fastapi tests scripts --exclude=__init__.py
-black fastapi tests docs_src scripts
-isort fastapi tests docs_src scripts
+ruff check fastapi tests docs_src scripts --fix
+ruff format fastapi tests docs_src scripts
