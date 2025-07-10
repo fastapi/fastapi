@@ -7,6 +7,18 @@ hide:
 
 ## Latest Changes
 
+## 0.116.0
+
+### Features
+
+* ✨ Add support for deploying to FastAPI Cloud with `fastapi deploy`. PR [#13870](https://github.com/fastapi/fastapi/pull/13870) by [@tiangolo](https://github.com/tiangolo).
+
+Installing `fastapi[standard]` now includes `fastapi-cloud-cli`.
+
+This will allow you to deploy to [FastAPI Cloud](https://fastapicloud.com) with the `fastapi deploy` command.
+
+If you want to install `fastapi` with the standard dependencies but without `fastapi-cloud-cli`, you can install instead `fastapi[standard-no-fastapi-cloud-cli]`.
+
 ### Translations
 
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/response-directly.md`. PR [#13801](https://github.com/fastapi/fastapi/pull/13801) by [@NavesSapnis](https://github.com/NavesSapnis).
