@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from .utils import needs_py39
+from .utils import needs_py310
 
 
-@needs_py39
+@needs_py310
 def test_typing():
     types = {
         list[int]: [1, 2, 3],
