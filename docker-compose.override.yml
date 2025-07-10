@@ -10,7 +10,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "80:80"
+      - "8089:80"
       - "8090:8080"
     # Duplicate the command from docker-compose.yml to add --api.insecure=true
     command:
