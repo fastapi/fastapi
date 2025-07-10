@@ -241,7 +241,7 @@ def get_request_handler(
         response: Union[Response, None] = None
         async with AsyncExitStack() as file_stack:
             try:
-                body: Any = None
+                body: Any = Undefined
                 if body_field:
                     if is_body_form:
                         body = await request.form()
