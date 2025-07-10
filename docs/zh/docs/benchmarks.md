@@ -1,6 +1,6 @@
 # 基准测试
 
-第三方机构 TechEmpower 的基准测试表明在 Uvicorn 下运行的 **FastAPI** 应用程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">可用的最快的 Python 框架之一</a>，仅次与 Starlette 和 Uvicorn 本身 (由 FastAPI 内部使用）。(*)
+第三方机构 TechEmpower 的基准测试表明在 Uvicorn 下运行的 **FastAPI** 应用程序是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">可用的最快的 Python 框架之一</a>，仅次于 Starlette 和 Uvicorn 本身 (由 FastAPI 内部使用）。(*)
 
 但是在查看基准得分和对比时，请注意以下几点。
 
