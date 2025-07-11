@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.116.1
+
 ### Upgrades
 
 * ⬆️ Upgrade Starlette supported version range to `>=0.40.0,<0.48.0`. PR [#13884](https://github.com/fastapi/fastapi/pull/13884) by [@tiangolo](https://github.com/tiangolo).
