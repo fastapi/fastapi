@@ -365,10 +365,6 @@ def get_websocket_app(
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
-            # TODO: remove this scope later, after a few releases
-            # This scope fastapi_astack is no longer used by FastAPI, kept for
-            # compatibility, just in case
-            websocket.scope["fastapi_astack"] = async_exit_stack
             solved_result = await solve_dependencies(
                 request=websocket,
                 dependant=dependant,
@@ -521,7 +517,6 @@ class APIRoute(routing.Route):
             # would pass the validation and be returned as is.
             # By being a new field, no inheritance will be passed as is. A new model
             # will always be created.
-            # TODO: remove when deprecating Pydantic v1
             self.secure_cloned_response_field: Optional[ModelField] = (
                 create_cloned_field(self.response_field)
             )
