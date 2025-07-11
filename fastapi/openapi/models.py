@@ -227,10 +227,12 @@ class Example(TypedDict, total=False):
         class Config:
             extra = "allow"
 
+
 class DefaultErrorSchema(BaseModel):
     status: int
     description: Optional[str] = None
     model: BaseModel
+
 
 class ParameterInType(Enum):
     query = "query"

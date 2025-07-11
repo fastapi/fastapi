@@ -419,14 +419,16 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             all_route_params = get_flat_params(route.dependant)
-            if(default_error_schema is not None):
+            if default_error_schema is not None:
                 operation["responses"][default_error_schema["status"]] = {
                     "description": default_error_schema["description"],
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": REF_PREFIX + default_error_schema["name"] }
+                            "schema": {
+                                "$ref": REF_PREFIX + default_error_schema["name"]
+                            }
                         },
-                    }
+                    },
                 }
                 definitions.update(
                     {
@@ -434,7 +436,7 @@ def get_openapi_path(
                             "title": default_error_schema["name"],
                             "type": "object",
                             "properties": default_error_schema["properties"],
-                            "required": default_error_schema["required"]
+                            "required": default_error_schema["required"],
                         }
                     }
                 )
@@ -547,7 +549,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
-                default_error_schema=default_error_schema
+                default_error_schema=default_error_schema,
             )
             if result:
                 path, security_schemes, path_definitions = result
