@@ -25,7 +25,7 @@ Documentação interativa da API e navegação _web_ da interface de usuário. C
 
 ### Apenas Python moderno
 
-Tudo é baseado no padrão das declarações de **tipos do Python 3.6** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
+Tudo é baseado no padrão das declarações de **tipos do Python 3.8** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
 
 Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md){.internal-link target=_blank}.
 
@@ -63,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` quer dizer:
+/// info
 
-    Passe as chaves e valores do dicionário `second_user_data` diretamente como argumentos chave-valor, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` quer dizer:
+
+Passe as chaves e valores do dicionário `second_user_data` diretamente como argumentos chave-valor, equivalente a: `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### Suporte de editores
 
@@ -167,7 +170,7 @@ Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI
 * Suporte a **GraphQL**.
 * Tarefas em processo _background_.
 * Eventos na inicialização e encerramento.
-* Cliente de testes construído sobre `requests`.
+* Cliente de testes construído sobre HTTPX.
 * Respostas em **CORS**, GZip, Static Files, Streaming.
 * Suporte a **Session e Cookie**.
 * 100% de cobertura de testes.
@@ -175,7 +178,7 @@ Com **FastAPI**, você terá todos os recursos do **Starlette** (já que FastAPI
 
 ## Recursos do Pydantic
 
-**FastAPI** é totalmente compatível com (e baseado no) <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Então, qualquer código Pydantic adicional que você tiver, também funcionará.
+**FastAPI** é totalmente compatível com (e baseado no) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Então, qualquer código Pydantic adicional que você tiver, também funcionará.
 
 Incluindo bibliotecas externas também baseadas no Pydantic, como <abbr title="Object-Relational Mapper">ORM</abbr>s e <abbr title="Object-Document Mapper">ODM</abbr>s para bancos de dados.
 
@@ -190,8 +193,6 @@ Com **FastAPI** você terá todos os recursos do **Pydantic** (já que FastAPI u
     * Se você conhece os tipos do Python, você sabe como usar o Pydantic.
 * Vai bem com o/a seu/sua **<abbr title="Ambiente de Desenvolvimento Integrado, similar a um editor de código">IDE</abbr>/<abbr title="Um programa que confere erros de código">linter</abbr>/cérebro**:
     * Como as estruturas de dados do Pydantic são apenas instâncias de classes que você define, a auto completação, _linting_, _mypy_ e a sua intuição devem funcionar corretamente com seus dados validados.
-* **Rápido**:
-    * em <a href="https://pydantic-docs.helpmanual.io/#benchmarks-tag" class="external-link" target="_blank">_benchmarks_</a>, o Pydantic é mais rápido que todas as outras bibliotecas testadas.
 * Valida **estruturas complexas**:
     * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
     * Validadores permitem que esquemas de dados complexos sejam limpos e facilmente definidos, conferidos e documentados como JSON Schema.

@@ -8,12 +8,13 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-```Python hl_lines="19-21"
-{!../../../docs_src/body_multiple_params/tutorial001.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
-!!! note
-    Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
+/// note
+
+Notice that, in this case, the `item` that would be taken from the body is optional. As it has a `None` default value.
+
+///
 
 ## Multiple body parameters
 
@@ -30,11 +31,10 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-```Python hl_lines="22"
-{!../../../docs_src/body_multiple_params/tutorial002.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-In this case, **FastAPI** will notice that there are more than one body parameters in the function (two parameters that are Pydantic models).
+
+In this case, **FastAPI** will notice that there is more than one body parameter in the function (there are two parameters that are Pydantic models).
 
 So, it will then use the parameter names as keys (field names) in the body, and expect a body like:
 
@@ -53,11 +53,13 @@ So, it will then use the parameter names as keys (field names) in the body, and 
 }
 ```
 
-!!! note
-    Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
+/// note
 
+Notice that even though the `item` was declared the same way as before, it is now expected to be inside of the body with a key `item`.
 
-**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives it's specific content and the same for `user`.
+///
+
+**FastAPI** will do the automatic conversion from the request, so that the parameter `item` receives its specific content and the same for `user`.
 
 It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
 
@@ -71,13 +73,10 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-```Python hl_lines="23"
-{!../../../docs_src/body_multiple_params/tutorial003.py!}
-```
 
 In this case, **FastAPI** will expect a body like:
-
 
 ```JSON
 {
@@ -104,18 +103,25 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
-q: Optional[str] = None
+q: Union[str, None] = None
 ```
 
-as in:
+Or in Python 3.10 and above:
 
-```Python hl_lines="28"
-{!../../../docs_src/body_multiple_params/tutorial004.py!}
+```Python
+q: str | None = None
 ```
 
-!!! info
-    `Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+For example:
 
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+
+
+/// info
+
+`Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+
+///
 
 ## Embed a single body parameter
 
@@ -126,14 +132,13 @@ By default, **FastAPI** will then expect its body directly.
 But if you want it to expect a JSON with a key `item` and inside of it the model contents, as it does when you declare extra body parameters, you can use the special `Body` parameter `embed`:
 
 ```Python
-item: Item = Body(..., embed=True)
+item: Item = Body(embed=True)
 ```
 
 as in:
 
-```Python hl_lines="17"
-{!../../../docs_src/body_multiple_params/tutorial005.py!}
-```
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+
 
 In this case **FastAPI** will expect a body like:
 

@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Union
 
 from fastapi import FastAPI, Query
 
@@ -6,6 +6,6 @@ app = FastAPI()
 
 
 @app.get("/items/")
-async def read_items(q: Optional[List[str]] = Query(None)):
+async def read_items(q: Union[List[str], None] = Query(default=None)):
     query_items = {"q": q}
     return query_items

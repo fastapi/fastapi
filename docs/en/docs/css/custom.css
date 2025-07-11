@@ -4,8 +4,23 @@
   display: block;
 }
 
+.termy {
+  /* For right to left languages */
+  direction: ltr;
+}
+
 .termy [data-termynal] {
   white-space: pre-wrap;
+}
+
+.termy .linenos {
+  display: none;
+}
+
+a.external-link {
+  /* For right to left languages */
+  direction: ltr;
+  display: inline-block;
 }
 
 a.external-link::after {
@@ -94,7 +109,7 @@ a.announce-link:hover {
 .announce-wrapper .sponsor-badge {
   display: block;
   position: absolute;
-  top: -5px;
+  top: -10px;
   right: 0;
   font-size: 0.5rem;
   color: #999;
@@ -117,4 +132,51 @@ a.announce-link:hover {
 
 .twitter {
   color: #00acee;
+}
+
+/* Right to left languages */
+code {
+  direction: ltr;
+  display: inline-block;
+}
+
+.illustration {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+/* Screenshots */
+/*
+Simulate a browser window frame.
+Inspired by Termynal's CSS tricks with modifications
+*/
+
+.screenshot {
+  display: block;
+  background-color: #d3e0de;
+  border-radius: 4px;
+  padding: 45px 5px 5px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.screenshot img {
+  display: block;
+  border-radius: 2px;
+}
+
+.screenshot:before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  /* A little hack to display the window buttons in one pseudo element. */
+  background: #d9515d;
+  -webkit-box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+          box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
 }

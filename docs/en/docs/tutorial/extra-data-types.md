@@ -36,7 +36,7 @@ Here are some of the additional data types you can use:
 * `datetime.timedelta`:
     * A Python `datetime.timedelta`.
     * In requests and responses will be represented as a `float` of total seconds.
-    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://pydantic-docs.helpmanual.io/#json-serialisation" class="external-link" target="_blank">see the docs for more info</a>.
+    * Pydantic also allows representing it as a "ISO 8601 time diff encoding", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">see the docs for more info</a>.
 * `frozenset`:
     * In requests and responses, treated the same as a `set`:
         * In requests, a list will be read, eliminating duplicates and converting it to a `set`.
@@ -49,18 +49,14 @@ Here are some of the additional data types you can use:
 * `Decimal`:
     * Standard Python `Decimal`.
     * In requests and responses, handled the same as a `float`.
-* You can check all the valid pydantic data types here: <a href="https://pydantic-docs.helpmanual.io/usage/types" class="external-link" target="_blank">Pydantic data types</a>.
+* You can check all the valid Pydantic data types here: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
 
 ## Example
 
 Here's an example *path operation* with parameters using some of the above types.
 
-```Python hl_lines="1  3  12-16"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 Note that the parameters inside the function have their natural data type, and you can, for example, perform normal date manipulations, like:
 
-```Python hl_lines="18-19"
-{!../../../docs_src/extra_data_types/tutorial001.py!}
-```
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}

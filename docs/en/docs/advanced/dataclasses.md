@@ -4,11 +4,9 @@ FastAPI is built on top of **Pydantic**, and I have been showing you how to use 
 
 But FastAPI also supports using <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> the same way:
 
-```Python hl_lines="1  7-12  19-20"
-{!../../../docs_src/dataclasses/tutorial001.py!}
-```
+{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
 
-This is still thanks to **Pydantic**, as it has <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
+This is still supported thanks to **Pydantic**, as it has <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
 
 So, even with the code above that doesn't use Pydantic explicitly, FastAPI is using Pydantic to convert those standard dataclasses to Pydantic's own flavor of dataclasses.
 
@@ -20,20 +18,21 @@ And of course, it supports the same:
 
 This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
 
-!!! info
-    Have in mind that dataclasses can't do everything Pydantic models can do.
+/// info
 
-    So, you might still need to use Pydantic models.
+Keep in mind that dataclasses can't do everything Pydantic models can do.
 
-    But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+So, you might still need to use Pydantic models.
+
+But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+
+///
 
 ## Dataclasses in `response_model`
 
 You can also use `dataclasses` in the `response_model` parameter:
 
-```Python hl_lines="1  7-13  19"
-{!../../../docs_src/dataclasses/tutorial002.py!}
-```
+{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
 
 The dataclass will be automatically converted to a Pydantic dataclass.
 
@@ -49,9 +48,7 @@ In some cases, you might still have to use Pydantic's version of `dataclasses`. 
 
 In that case, you can simply swap the standard `dataclasses` with `pydantic.dataclasses`, which is a drop-in replacement:
 
-```{ .python .annotate hl_lines="1  5  8-11  14-17  23-25  28" }
-{!../../../docs_src/dataclasses/tutorial003.py!}
-```
+{* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
 
 1. We still import `field` from standard `dataclasses`.
 
@@ -77,7 +74,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
     As always, in FastAPI you can combine `def` and `async def` as needed.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank" class="internal-link">`async` and `await`</a>.
+    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
 
@@ -91,7 +88,7 @@ Check the in-code annotation tips above to see more specific details.
 
 You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
 
-To learn more, check the <a href="https://pydantic-docs.helpmanual.io/usage/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
+To learn more, check the <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
 
 ## Version
 

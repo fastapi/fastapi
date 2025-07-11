@@ -25,7 +25,7 @@ But for now, let's check these important **conceptual ideas**. These concepts al
 
 ## Security - HTTPS
 
-In the [previous chapter about HTTPS](./https.md){.internal-link target=_blank} we learned about how HTTPS provides encryption for your API.
+In the [previous chapter about HTTPS](https.md){.internal-link target=_blank} we learned about how HTTPS provides encryption for your API.
 
 We also saw that HTTPS is normally provided by a component **external** to your application server, a **TLS Termination Proxy**.
 
@@ -65,7 +65,7 @@ The word **program** is commonly used to describe many things:
 
 * The **code** that you write, the **Python files**.
 * The **file** that can be **executed** by the operating system, for example: `python`, `python.exe` or `uvicorn`.
-* A particular program while it is **running** on the operating system, using the CPU, and storing things on memory. This is also called a **process**.
+* A particular program while it is **running** on the operating system, using the CPU, and storing things in memory. This is also called a **process**.
 
 ### What is a Process
 
@@ -94,7 +94,7 @@ In most cases, when you create a web API, you want it to be **always running**, 
 
 ### In a Remote Server
 
-When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is to run Uvicorn (or similar) manually, the same way you do when developing locally.
+When you set up a remote server (a cloud server, a virtual machine, etc.) the simplest thing you can do is use `fastapi run` (which uses Uvicorn) or something  similar, manually, the same way you do when developing locally.
 
 And it will work and will be useful **during development**.
 
@@ -151,10 +151,13 @@ And still, you would probably not want the application to stay dead because ther
 
 But in those cases with really bad errors that crash the running **process**, you would want an external component that is in charge of **restarting** the process, at least a couple of times...
 
-!!! tip
-    ...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
+/// tip
 
-    So let's focus on the main cases, where it could crash entirely in some particular cases **in the future**, and it still makes sense to restart it.
+...Although if the whole application is just **crashing immediately** it probably doesn't make sense to keep restarting it forever. But in those cases, you will probably notice it during development, or at least right after deployment.
+
+So let's focus on the main cases, where it could crash entirely in some particular cases **in the future**, and it still makes sense to restart it.
+
+///
 
 You would probably want to have the thing in charge of restarting your application as an **external component**, because by that point, the same application with Uvicorn and Python already crashed, so there's nothing in the same code of the same app that could do anything about it.
 
@@ -175,7 +178,7 @@ For example, this could be handled by:
 
 ## Replication - Processes and Memory
 
-With a FastAPI application, using a server program like Uvicorn, running it once in **one process** can serve multiple clients concurrently.
+With a FastAPI application, using a server program like the `fastapi` command that runs Uvicorn, running it once in **one process** can serve multiple clients concurrently.
 
 But in many cases, you will want to run several worker processes at the same time.
 
@@ -187,7 +190,7 @@ When you run **multiple processes** of the same API program, they are commonly c
 
 ### Worker Processes and Ports
 
-Remember from the docs [About HTTPS](./https.md){.internal-link target=_blank} that only one process can be listening on one combination of port and IP address in a server?
+Remember from the docs [About HTTPS](https.md){.internal-link target=_blank} that only one process can be listening on one combination of port and IP address in a server?
 
 This is still true.
 
@@ -213,7 +216,7 @@ This Manager Process would probably be the one listening on the **port** in the 
 
 Those worker processes would be the ones running your application, they would perform the main computations to receive a **request** and return a **response**, and they would load anything you put in variables in RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 And of course, the same machine would probably have **other processes** running as well, apart from your application.
 
@@ -229,19 +232,20 @@ The main constraint to consider is that there has to be a **single** component h
 
 Here are some possible combinations and strategies:
 
-* **Gunicorn** managing **Uvicorn workers**
-    * Gunicorn would be the **process manager** listening on the **IP** and **port**, the replication would be by having **multiple Uvicorn worker processes**
-* **Uvicorn** managing **Uvicorn workers**
-    * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**
+* **Uvicorn** with `--workers`
+    * One Uvicorn **process manager** would listen on the **IP** and **port**, and it would start **multiple Uvicorn worker processes**.
 * **Kubernetes** and other distributed **container systems**
-    * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running
-* **Cloud services** that handle this for your
+    * Something in the **Kubernetes** layer would listen on the **IP** and **port**. The replication would be by having **multiple containers**, each with **one Uvicorn process** running.
+* **Cloud services** that handle this for you
     * The cloud service will probably **handle replication for you**. It would possibly let you define **a process to run**, or a **container image** to use, in any case, it would most probably be **a single Uvicorn process**, and the cloud service would be in charge of replicating it.
 
-!!! tip
-    Don't worry if some of these items about **containers**, Docker, or Kubernetes don't make a lot of sense yet.
+/// tip
 
-    I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
+Don't worry if some of these items about **containers**, Docker, or Kubernetes don't make a lot of sense yet.
+
+I'll tell you more about container images, Docker, Kubernetes, etc. in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Previous Steps Before Starting
 
@@ -253,14 +257,17 @@ But in most cases, you will want to perform these steps only **once**.
 
 So, you will want to have a **single process** to perform those **previous steps**, before starting the application.
 
-And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it on **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
+And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it in **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
 
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 
-!!! tip
-    Also, have in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+/// tip
 
-    In that case, you wouldn't have to worry about any of this. 🤷
+Also, keep in mind that depending on your setup, in some cases you **might not even need any previous steps** before starting your application.
+
+In that case, you wouldn't have to worry about any of this. 🤷
+
+///
 
 ### Examples of Previous Steps Strategies
 
@@ -272,8 +279,11 @@ Here are some possible ideas:
 * A bash script that runs the previous steps and then starts your application
     * You would still need a way to start/restart *that* bash script, detect errors, etc.
 
-!!! tip
-    I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](./docker.md){.internal-link target=_blank}.
+/// tip
+
+I'll give you more concrete examples for doing this with containers in a future chapter: [FastAPI in Containers - Docker](docker.md){.internal-link target=_blank}.
+
+///
 
 ## Resource Utilization
 
@@ -297,7 +307,7 @@ You can use simple tools like `htop` to see the CPU and RAM used in your server 
 
 ## Recap
 
-You have been reading here some of the main concepts that you would probably need to have in mind when deciding how to deploy your application:
+You have been reading here some of the main concepts that you would probably need to keep in mind when deciding how to deploy your application:
 
 * Security - HTTPS
 * Running on startup

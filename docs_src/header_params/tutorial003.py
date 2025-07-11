@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Union
 
 from fastapi import FastAPI, Header
 
@@ -6,5 +6,5 @@ app = FastAPI()
 
 
 @app.get("/items/")
-async def read_items(x_token: Optional[List[str]] = Header(None)):
+async def read_items(x_token: Union[List[str], None] = Header(default=None)):
     return {"X-Token values": x_token}

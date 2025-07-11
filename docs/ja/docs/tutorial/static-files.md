@@ -2,33 +2,20 @@
 
 `StaticFiles` を使用して、ディレクトリから静的ファイルを自動的に提供できます。
 
-## `aiofiles` をインストール
-
-まず、`aiofiles` をインストールする必要があります:
-
-<div class="termy">
-
-```console
-$ pip install aiofiles
-
----> 100%
-```
-
-</div>
-
 ## `StaticFiles` の使用
 
 * `StaticFiles` をインポート。
 * `StaticFiles()` インスタンスを生成し、特定のパスに「マウント」。
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-!!! note "技術詳細"
-    `from starlette.staticfiles import StaticFiles` も使用できます。
+/// note | 技術詳細
 
-    **FastAPI**は、開発者の利便性のために、`starlette.staticfiles` と同じ `fastapi.staticfiles` を提供します。しかし、実際にはStarletteから直接渡されています。
+`from starlette.staticfiles import StaticFiles` も使用できます。
+
+**FastAPI**は、開発者の利便性のために、`starlette.staticfiles` と同じ `fastapi.staticfiles` を提供します。しかし、実際にはStarletteから直接渡されています。
+
+///
 
 ### 「マウント」とは
 

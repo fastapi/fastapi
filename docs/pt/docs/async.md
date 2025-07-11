@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    Você só pode usar `await` dentro de funções criadas com `async def`.
+/// note
+
+Você só pode usar `await` dentro de funções criadas com `async def`.
+
+///
 
 ---
 
@@ -94,7 +97,7 @@ Para "síncrono" (contrário de "assíncrono") também é utilizado o termo "seq
 
 Essa idéia de código **assíncrono** descrito acima é algo às vezes chamado de **"concorrência"**. E é diferente de **"paralelismo"**.
 
-**Concorrência** e **paralelismo** ambos são relacionados a "diferentes coisas acontecendo mais ou menos ao mesmo tempo". 
+**Concorrência** e **paralelismo** ambos são relacionados a "diferentes coisas acontecendo mais ou menos ao mesmo tempo".
 
 Mas os detalhes entre *concorrência* e *paralelismo* são bem diferentes.
 
@@ -134,7 +137,7 @@ Mas então, embora você ainda não tenha os hambúrgueres, seu trabalho no caix
 
 Mas enquanto você se afasta do balcão e senta na mesa com o número da sua chamada, você pode trocar sua atenção para seu _crush_ :heart_eyes:, e "trabalhar" nisso. Então você está novamente fazendo algo muito "produtivo", como flertar com seu _crush_ :heart_eyes:.
 
-Então o caixa diz que "seus hambúrgueres estão prontos" colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles. 
+Então o caixa diz que "seus hambúrgueres estão prontos" colocando seu número no balcão, mas você não corre que nem um maluco imediatamente quando o número exibido é o seu. Você sabe que ninguém irá roubar seus hambúrgueres porquê você tem o número de chamada, e os outros tem os números deles.
 
 Então você espera que seu _crush_ :heart_eyes: termine a história que estava contando (terminar o trabalho atual / tarefa sendo processada), sorri gentilmente e diz que você está indo buscar os hambúrgueres.
 
@@ -261,7 +264,7 @@ Mas você também pode explorar os benefícios do paralelismo e multiprocessamen
 
 Isso, mais o simples fato que Python é a principal linguagem para **Data Science**, Machine Learning e especialmente Deep Learning, faz do FastAPI uma ótima escolha para APIs web e aplicações com Data Science / Machine Learning (entre muitas outras).
 
-Para ver como alcançar esse paralelismo em produção veja a seção sobre [Deployment](deployment.md){.internal-link target=_blank}.
+Para ver como alcançar esse paralelismo em produção veja a seção sobre [Deployment](deployment/index.md){.internal-link target=_blank}.
 
 ## `async` e `await`
 
@@ -356,12 +359,15 @@ Tudo isso é o que deixa o FastAPI poderoso (através do Starlette) e que o faz 
 
 ## Detalhes muito técnicos
 
-!!! warning
-    Você pode provavelmente pular isso.
-    
-    Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
-    
-    Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+/// warning
+
+Você pode provavelmente pular isso.
+
+Esses são detalhes muito técnicos de como **FastAPI** funciona por baixo do capô.
+
+Se você tem algum conhecimento técnico (corrotinas, threads, blocking etc) e está curioso sobre como o FastAPI controla o `async def` vs normal `def`, vá em frente.
+
+///
 
 ### Funções de operação de rota
 
@@ -369,7 +375,7 @@ Quando você declara uma *função de operação de rota* com `def` normal ao in
 
 Se você está chegando de outro framework assíncrono que não faz o trabalho descrito acima e você está acostumado a definir triviais *funções de operação de rota* com simples `def` para ter um mínimo ganho de performance (cerca de 100 nanosegundos), por favor observe que no **FastAPI** o efeito pode ser bem o oposto. Nesses casos, é melhor usar `async def` a menos que suas *funções de operação de rota* utilizem código que performem bloqueamento <abbr title="Input/Output: disco lendo ou escrevendo, comunicações de rede.">IO</abbr>.
 
-Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](/#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
+Ainda, em ambas as situações, as chances são que o **FastAPI** será [ainda mais rápido](index.md#performance){.internal-link target=_blank} do que (ou ao menos comparável a) seus frameworks antecessores.
 
 ### Dependências
 

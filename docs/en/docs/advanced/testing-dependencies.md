@@ -28,16 +28,17 @@ To override a dependency for testing, you put as a key the original dependency (
 
 And then **FastAPI** will call that override instead of the original dependency.
 
-```Python hl_lines="26-27  30"
-{!../../../docs_src/dependency_testing/tutorial001.py!}
-```
+{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
-!!! tip
-    You can set a dependency override for a dependency used anywhere in your **FastAPI** application.
+/// tip
 
-    The original dependency could be used in a *path operation function*, a *path operation decorator* (when you don't use the return value), a `.include_router()` call, etc.
+You can set a dependency override for a dependency used anywhere in your **FastAPI** application.
 
-    FastAPI will still be able to override it.
+The original dependency could be used in a *path operation function*, a *path operation decorator* (when you don't use the return value), a `.include_router()` call, etc.
+
+FastAPI will still be able to override it.
+
+///
 
 Then you can reset your overrides (remove them) by setting `app.dependency_overrides` to be an empty `dict`:
 
@@ -45,5 +46,8 @@ Then you can reset your overrides (remove them) by setting `app.dependency_overr
 app.dependency_overrides = {}
 ```
 
-!!! tip
-    If you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside the test function) and reset it at the end (at the end of the test function).
+/// tip
+
+If you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside the test function) and reset it at the end (at the end of the test function).
+
+///

@@ -1,4 +1,4 @@
-# Security Intro
+# Security
 
 There are many ways to handle security, authentication and authorization.
 
@@ -26,15 +26,17 @@ That's what all the systems with "login with Facebook, Google, Twitter, GitHub" 
 
 ### OAuth 1
 
-There was an OAuth 1, which is very different from OAuth2, and more complex, as it included directly specifications on how to encrypt the communication.
+There was an OAuth 1, which is very different from OAuth2, and more complex, as it included direct specifications on how to encrypt the communication.
 
 It is not very popular or used nowadays.
 
 OAuth2 doesn't specify how to encrypt the communication, it expects you to have your application served with HTTPS.
 
-!!! tip
-    In the section about **deployment** you will see how to set up HTTPS for free, using Traefik and Let's Encrypt.
+/// tip
 
+In the section about **deployment** you will see how to set up HTTPS for free, using Traefik and Let's Encrypt.
+
+///
 
 ## OpenID Connect
 
@@ -87,10 +89,13 @@ OpenAPI defines the following security schemes:
     * This automatic discovery is what is defined in the OpenID Connect specification.
 
 
-!!! tip
-    Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
+/// tip
 
-    The most complex problem is building an authentication/authorization provider like those, but **FastAPI** gives you the tools to do it easily, while doing the heavy lifting for you.
+Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
+
+The most complex problem is building an authentication/authorization provider like those, but **FastAPI** gives you the tools to do it easily, while doing the heavy lifting for you.
+
+///
 
 ## **FastAPI** utilities
 

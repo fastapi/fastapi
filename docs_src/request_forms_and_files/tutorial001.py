@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.post("/files/")
 async def create_file(
-    file: bytes = File(...), fileb: UploadFile = File(...), token: str = Form(...)
+    file: bytes = File(), fileb: UploadFile = File(), token: str = Form()
 ):
     return {
         "file_size": len(file),

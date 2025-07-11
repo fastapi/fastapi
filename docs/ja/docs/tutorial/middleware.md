@@ -11,10 +11,13 @@
 * その**レスポンス**に対して何かを実行したり、必要なコードを実行したりできます。
 * そして、**レスポンス**を返します。
 
-!!! note "技術詳細"
-    `yield` を使った依存関係をもつ場合は、終了コードはミドルウェアの *後に* 実行されます。
+/// note | 技術詳細
 
-    バックグラウンドタスク (後述) がある場合は、それらは全てのミドルウェアの *後に* 実行されます。
+`yield` を使った依存関係をもつ場合は、終了コードはミドルウェアの *後に* 実行されます。
+
+バックグラウンドタスク (後述) がある場合は、それらは全てのミドルウェアの *後に* 実行されます。
+
+///
 
 ## ミドルウェアの作成
 
@@ -28,19 +31,23 @@
     * 次に、対応する*path operation*によって生成された `response` を返します。
 * その後、`response` を返す前にさらに `response` を変更することもできます。
 
-```Python hl_lines="8-9  11  14"
-{!../../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
-!!! tip "豆知識"
-    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-'プレフィックスを使用</a>してカスタムの独自ヘッダーを追加できます。
+/// tip | 豆知識
 
-    ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank}) 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-'プレフィックスを使用</a>してカスタムの独自ヘッダーを追加できます。
 
-!!! note "技術詳細"
-    `from starlette.requests import Request` を使用することもできます。
+ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank})
 
-    **FastAPI**は、開発者の便利のためにこれを提供していますが、Starletteから直接きています。
+///
+
+/// note | 技術詳細
+
+`from starlette.requests import Request` を使用することもできます。
+
+**FastAPI**は、開発者の便利のためにこれを提供していますが、Starletteから直接きています。
+
+///
 
 ### `response` の前後
 
@@ -50,9 +57,7 @@
 
 例えば、リクエストの処理とレスポンスの生成にかかった秒数を含むカスタムヘッダー `X-Process-Time` を追加できます:
 
-```Python hl_lines="10  12-13"
-{!../../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## その他のミドルウェア
 
