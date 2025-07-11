@@ -6,8 +6,6 @@ from typing import TypedDict
 import pytest
 from fastapi.testclient import TestClient
 
-ROOT_PATH = "/api"
-
 
 class Params(TypedDict):
     app_root_path: str

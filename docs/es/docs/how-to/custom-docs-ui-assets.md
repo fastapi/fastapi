@@ -18,7 +18,7 @@ El primer paso es desactivar la documentación automática, ya que por defecto, 
 
 Para desactivarlos, establece sus URLs en `None` cuando crees tu aplicación de `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[11] *}
 
 ### Incluye la documentación personalizada
 
@@ -34,7 +34,7 @@ Puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[3:7,14:23,26:28,31:38] *}
 
 /// tip | Consejo
 
@@ -50,7 +50,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[41:43] *}
 
 ### Pruébalo
 
