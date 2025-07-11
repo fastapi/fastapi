@@ -12,5 +12,5 @@ pyyaml >=5.3.1,<7.0.0
 passlib[bcrypt] >=1.7.2,<2.0.0
 inline-snapshot>=0.21.1
 # types
-types-ujson ==5.10.0.20240515
+types-ujson ==5.10.0.20250326
 types-orjson ==3.6.2
