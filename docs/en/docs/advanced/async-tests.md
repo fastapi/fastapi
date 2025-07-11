@@ -32,15 +32,11 @@ For a simple example, let's consider a file structure similar to the one describ
 
 The file `main.py` would have:
 
-```Python
-{!../../../docs_src/async_tests/main.py!}
-```
+{* ../../docs_src/async_tests/main.py *}
 
 The file `test_main.py` would have the tests for `main.py`, it could look like this now:
 
-```Python
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py *}
 
 ## Run it
 
@@ -60,18 +56,17 @@ $ pytest
 
 The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:
 
-```Python hl_lines="7"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[7] *}
 
-!!! tip
-    Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+/// tip
+
+Note that the test function is now `async def` instead of just `def` as before when using the `TestClient`.
+
+///
 
 Then we can create an `AsyncClient` with the app, and send async requests to it, using `await`.
 
-```Python hl_lines="9-10"
-{!../../../docs_src/async_tests/test_main.py!}
-```
+{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
 
 This is the equivalent to:
 
@@ -81,12 +76,24 @@ response = client.get('/')
 
 ...that we used to make our requests with the `TestClient`.
 
-!!! tip
-    Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+/// tip
+
+Note that we're using async/await with the new `AsyncClient` - the request is asynchronous.
+
+///
+
+/// warning
+
+If your application relies on lifespan events, the `AsyncClient` won't trigger these events. To ensure they are triggered, use `LifespanManager` from <a href="https://github.com/florimondmanca/asgi-lifespan#usage" class="external-link" target="_blank">florimondmanca/asgi-lifespan</a>.
+
+///
 
 ## Other Asynchronous Function Calls
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
-!!! tip
-    If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>) Remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+/// tip
+
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+
+///
