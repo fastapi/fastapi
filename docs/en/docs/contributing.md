@@ -181,6 +181,28 @@ as Uvicorn by default will use the port `8000`, the documentation on port `8008`
 
 ### Translations
 
+/// warning | Attention
+
+**Update on Translations**
+
+We're updating the way we handle documentation translations.
+
+Until now, we invited community members to translate pages via pull requests, which were then reviewed by at least two native speakers. While this has helped bring FastAPI to many more users, we’ve also run into several challenges - some languages have only a few translated pages, others are outdated and hard to maintain over time.
+To improve this, we’re working on automation tools to manage translations more efficiently. Once ready, documentation will be machine-translated and still reviewed by at least two native speakers before publishing. This will allow us to keep translations up-to-date while reducing the review burden on maintainers.
+
+What’s changing now:
+
+* We’re no longer accepting new community-submitted translation PRs.
+
+* Existing open PRs will be reviewed and can still be merged if completed within the next 3 weeks (since July 11 2025).
+
+* In the future, we will only support languages where at least three active native speakers are available to review and maintain translations.
+
+This transition will help us keep translations more consistent and timely while better supporting our contributors. Thank you to everyone who has contributed so far — your help has been invaluable!
+
+///
+
+
 Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
 
 Here are the steps to help with translations.
