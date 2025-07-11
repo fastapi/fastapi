@@ -18,7 +18,7 @@ The first step is to disable the automatic docs, as by default, those use the de
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[11] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[12] *}
 
 ### Include the custom docs
 
@@ -34,7 +34,7 @@ You can reuse FastAPI's internal functions to create the HTML pages for the docs
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[3:7,14:23,26:28,31:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[4:8,15:24,27:29,32:39] *}
 
 /// tip
 
@@ -50,7 +50,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[41:43] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[42:44] *}
 
 ### Test it
 

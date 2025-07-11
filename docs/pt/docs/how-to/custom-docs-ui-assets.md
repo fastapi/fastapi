@@ -18,7 +18,7 @@ O primeiro passo é desativar a documentação automática, pois por padrão, el
 
 Para desativá-los, defina suas URLs como `None` ao criar seu aplicativo `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[11] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[12] *}
 
 ### Incluir a documentação personalizada
 
@@ -34,7 +34,7 @@ Você pode reutilizar as funções internas do FastAPI para criar as páginas HT
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[3:7,14:23,26:28,31:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[4:8,15:24,27:29,32:39] *}
 
 /// tip | Dica
 
@@ -50,7 +50,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[41:43] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[42:44] *}
 
 ### Teste
 
