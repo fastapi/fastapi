@@ -10,7 +10,7 @@ from fastapi._compat import (
     with_info_plain_validator_function,
 )
 from fastapi.logger import logger
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, BaseModel, Field, validator
 from typing_extensions import Annotated, Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
@@ -438,6 +438,15 @@ class OpenAPI(BaseModelWithConfig):
     security: Optional[List[Dict[str, List[str]]]] = None
     tags: Optional[List[Tag]] = None
     externalDocs: Optional[ExternalDocumentation] = None
+
+    @validator("tags")
+    def check_tags(cls, tags):  # type: ignore
+        unique_names = set()
+        assert not any(
+            t.name in unique_names or unique_names.add(t.name)
+            for t in tags  # type: ignore
+        ), "Tag names must be unique"
+        return tags
 
 
 _model_rebuild(Schema)
