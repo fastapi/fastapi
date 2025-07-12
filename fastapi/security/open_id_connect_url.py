@@ -12,6 +12,13 @@ class OpenIdConnect(SecurityBase):
     """
     OpenID Connect authentication class. An instance of it would be used as a
     dependency.
+
+    Note:
+    This class **does not perform any token validation or decoding**.
+    It only extracts the `Authorization` header and includes metadata in the OpenAPI docs.
+
+    You must implement the actual authentication logic separately (e.g., verifying
+    the token signature, claims, and user handling).
     """
 
     def __init__(
