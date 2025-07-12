@@ -272,4 +272,4 @@ Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu verei
 
 Und Sie können sichere Standardprotokolle wie OAuth2 auf relativ einfache Weise verwenden und implementieren.
 
-Im **Handbuch für fortgeschrittene Benutzer** erfahren Sie mehr darüber, wie Sie OAuth2-„Scopes“ für ein feingranuliertes Berechtigungssystem verwenden, das denselben Standards folgt. OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, Twitter, usw. verwendet wird, um Drittanbieteranwendungen zu autorisieren, im Namen ihrer Benutzer mit ihren APIs zu interagieren.
+Im **Handbuch für fortgeschrittene Benutzer** erfahren Sie mehr darüber, wie Sie OAuth2-„Scopes“ für ein feingranuliertes Berechtigungssystem verwenden, das denselben Standards folgt. OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, X (Twitter), usw. verwendet wird, um Drittanbieteranwendungen zu autorisieren, im Namen ihrer Benutzer mit ihren APIs zu interagieren.
