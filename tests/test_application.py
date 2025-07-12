@@ -46,6 +46,13 @@ def test_redoc():
     assert "redoc@2" in response.text
 
 
+def test_scalar():
+    response = client.get("/scalar")
+    assert response.status_code == 200, response.text
+    assert response.headers["content-type"] == "text/html; charset=utf-8"
+    assert "@scalar/api-reference" in response.text
+
+
 def test_enum_status_code_response():
     response = client.get("/enum-status-code")
     assert response.status_code == 201, response.text
