@@ -51,3 +51,4 @@ jobs:
         run: python ./scripts/people.py
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          SLEEP_INTERVAL: ${{ vars.PEOPLE_SLEEP_INTERVAL }}
