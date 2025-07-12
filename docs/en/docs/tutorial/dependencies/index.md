@@ -156,6 +156,12 @@ If you don't know, check the [Async: *"In a hurry?"*](../../async.md#in-a-hurry)
 
 ///
 
+/// warning
+
+If you need to rely on `ContextVar` values across multiple steps in a request, **use an async dependency** or another approach. This is because sync dependencies are executed in the mainthread*, while `async` dependencies run in the same thread pool as the one handling the request. As `ContextVar` provides thread-local storage, any value set inside a sync dependency will not be available in the rest of the request handling.
+
+///
+
 ## Integrated with OpenAPI
 
 All the request declarations, validations and requirements of your dependencies (and sub-dependencies) will be integrated in the same OpenAPI schema.
