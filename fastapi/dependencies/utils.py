@@ -966,7 +966,7 @@ def get_body_field(
     first_param = flat_dependant.body_params[0]
     if not embed_body_fields:
         return first_param
-    model_name = "Body_" + name
+    model_name = f"Body_{name}"
     BodyModel = create_body_model(
         fields=flat_dependant.body_params, model_name=model_name
     )
