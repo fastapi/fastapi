@@ -1,6 +1,10 @@
 name: FastAPI People
 
 on:
+  # TODO: remove this
+  push:
+    branches:
+      - people
   schedule:
     - cron: "0 14 1 * *"
   workflow_dispatch:
