@@ -1,4 +1,3 @@
-import asyncio
 import dataclasses
 import email.message
 import inspect
