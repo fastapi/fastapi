@@ -13,11 +13,9 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 
 ## `백그라운드 작업` 사용
 
-먼저 아래와 같이 `BackgroundTasks`를 임포트하고, `BackgroundTasks`를 _경로 동작 함수_ 에서 매개변수로 가져오고 정의합니다.
+먼저 아래와 같이 `BackgroundTasks`를 임포트하고, `BackgroundTasks`를 _경로 작동 함수_ 에서 매개변수로 가져오고 정의합니다.
 
-```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** 는 `BackgroundTasks` 개체를 생성하고, 매개 변수로 전달합니다.
 
@@ -33,17 +31,13 @@ FastAPI에서는 응답을 반환한 후에 실행할 백그라운드 작업을 
 
 그리고 이 작업은 `async`와 `await`를 사용하지 않으므로 일반 `def` 함수로 선언합니다.
 
-```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## 백그라운드 작업 추가
 
-_경로 동작 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _백그라운드 작업_ 개체에 전달합니다.
+_경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _백그라운드 작업_ 개체에 전달합니다.
 
-```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` 함수는 다음과 같은 인자를 받습니다 :
 
@@ -53,27 +47,17 @@ _경로 동작 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 ## 의존성 주입
 
-`BackgroundTasks`를 의존성 주입 시스템과 함께 사용하면 _경로 동작 함수_, 종속성, 하위 종속성 등 여러 수준에서 BackgroundTasks 유형의 매개변수를 선언할 수 있습니다.
+`BackgroundTasks`를 의존성 주입 시스템과 함께 사용하면 _경로 작동 함수_, 종속성, 하위 종속성 등 여러 수준에서 BackgroundTasks 유형의 매개변수를 선언할 수 있습니다.
 
 **FastAPI**는 각 경우에 수행할 작업과 동일한 개체를 내부적으로 재사용하기에, 모든 백그라운드 작업이 함께 병합되고 나중에 백그라운드에서 실행됩니다.
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 이 예제에서는 응답이 반환된 후에 `log.txt` 파일에 메시지가 기록됩니다.
 
 요청에 쿼리가 있는 경우 백그라운드 작업의 로그에 기록됩니다.
 
-그리고 _경로 동작 함수_ 에서 생성된 또 다른 백그라운드 작업은 경로 매개 변수를 활용하여 사용하여 메시지를 작성합니다.
+그리고 _경로 작동 함수_ 에서 생성된 또 다른 백그라운드 작업은 경로 매개 변수를 활용하여 사용하여 메시지를 작성합니다.
 
 ## 기술적 세부사항
 
@@ -81,7 +65,7 @@ _경로 동작 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 `BackgroundTasks` 클래스는 FastAPI에서 직접 임포트하거나 포함하기 때문에 실수로 `BackgroundTask` (끝에 `s`가 없음)을 임포트하더라도 starlette.background에서 `BackgroundTask`를 가져오는 것을 방지할 수 있습니다.
 
-(`BackgroundTask`가 아닌) `BackgroundTasks`를 사용하면, _경로 동작 함수_ 매개변수로 사용할 수 있게 되고 나머지는 **FastAPI**가 대신 처리하도록 할 수 있습니다. 이것은 `Request` 객체를 직접 사용하는 것과 같은 방식입니다.
+(`BackgroundTask`가 아닌) `BackgroundTasks`를 사용하면, _경로 작동 함수_ 매개변수로 사용할 수 있게 되고 나머지는 **FastAPI**가 대신 처리하도록 할 수 있습니다. 이것은 `Request` 객체를 직접 사용하는 것과 같은 방식입니다.
 
 FastAPI에서 `BackgroundTask`를 단독으로 사용하는 것은 여전히 가능합니다. 하지만 객체를 코드에서 생성하고, 이 객체를 포함하는 Starlette `Response`를 반환해야 합니다.
 
@@ -93,10 +77,8 @@ FastAPI에서 `BackgroundTask`를 단독으로 사용하는 것은 여전히 가
 
 RabbitMQ 또는 Redis와 같은 메시지/작업 큐 시스템 보다 복잡한 구성이 필요한 경향이 있지만, 여러 작업 프로세스를 특히 여러 서버의 백그라운드에서 실행할 수 있습니다.
 
-예제를 보시려면 [프로젝트 생성기](../project-generation.md){.internal-link target=\_blank} 를 참고하세요. 해당 예제에는 이미 구성된 `Celery`가 포함되어 있습니다.
-
 그러나 동일한 FastAPI 앱에서 변수 및 개체에 접근해야햐는 작은 백그라운드 수행이 필요한 경우 (예 : 알림 이메일 보내기) 간단하게 `BackgroundTasks`를 사용해보세요.
 
 ## 요약
 
-백그라운드 작업을 추가하기 위해 _경로 동작 함수_ 에 매개변수로 `BackgroundTasks`를 가져오고 사용합니다.
+백그라운드 작업을 추가하기 위해 _경로 작동 함수_ 에 매개변수로 `BackgroundTasks`를 가져오고 사용합니다.
