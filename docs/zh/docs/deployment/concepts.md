@@ -220,7 +220,7 @@
 
 这些工作进程将是运行您的应用程序的进程，它们将执行主要计算以接收 **请求** 并返回 **响应**，并且它们将加载您放入 RAM 中的变量中的任何内容。
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 当然，除了您的应用程序之外，同一台机器可能还运行**其他进程**。
 
