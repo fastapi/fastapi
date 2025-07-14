@@ -10,6 +10,7 @@ from typing import (
     Any,
     AsyncIterator,
     Callable,
+    Collection,
     Coroutine,
     Dict,
     List,
@@ -908,7 +909,7 @@ class APIRouter(routing.Router):
     def route(
         self,
         path: str,
-        methods: Optional[List[str]] = None,
+        methods: Optional[Collection[str]] = None,
         name: Optional[str] = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
