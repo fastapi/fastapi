@@ -1,7 +1,7 @@
 import http.client
 import inspect
 import warnings
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union
 
 from fastapi import routing
 from fastapi._compat import (
