@@ -1,6 +1,6 @@
 # Full Stack FastAPI Template
 
-_Templates_, embora tipicamente venham com alguma configuração específico, são desenhados para serem flexíveis e customizáveis. Isso permite que você os modifique e adapte para as especificações do seu projeto, fazendo-os um excelente ponto de partida. 🏁
+_Templates_, embora tipicamente venham com alguma configuração específica, são desenhados para serem flexíveis e customizáveis. Isso permite que você os modifique e adapte para as especificações do seu projeto, fazendo-os um excelente ponto de partida. 🏁
 
 Você pode usar esse _template_ para começar, já que ele inclui várias configurações iniciais, segurança, banco de dados, e alguns _endpoints_ de API já feitos para você.
 
