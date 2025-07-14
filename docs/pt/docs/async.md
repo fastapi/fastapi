@@ -87,7 +87,7 @@ Esse "esperar por algo" normalmente se refere a operações <abbr title="Entrada
 
 Quanto o tempo de execução é consumido majoritariamente pela espera de operações <abbr title="Entrada e Saída">I/O</abbr>, essas operações são chamadas operações "limitadas por I/O".
 
-Isso é chamado de "assíncrono" porque o computador / programa não tem que ser "sincronizado" com a tarefa lenta, esperando pelo momento extato em que a tarefa finaliza, enquanto não faz nada, para ser capaz de pegar o resultado da tarefa e dar continuidade ao trabalho.
+Isso é chamado de "assíncrono" porque o computador / programa não tem que ser "sincronizado" com a tarefa lenta, esperando pelo momento exato em que a tarefa finaliza, enquanto não faz nada, para ser capaz de pegar o resultado da tarefa e dar continuidade ao trabalho.
 
 Ao invés disso, sendo um sistema "assíncrono", uma vez finalizada, a tarefa pode esperar na fila um pouco (alguns microssegundos) para que o computador / programa finalize o que quer que esteja fazendo, e então volte para pegar o resultado e continue trabalhando com ele.
 
@@ -151,7 +151,7 @@ Você vai com seu _crush_ na lanchonete paralela.
 
 Você fica na fila enquanto vários (vamos dizer 8) caixas que também são cozinheiros pegam os pedidos das pessoas na sua frente.
 
-Todo mundo na sua frente estão esperando seus hambúrgueres ficare prontos antes de deixar o caixa porque cada um dos 8 caixas vai e prepara o hambúrguer logo após receber o pedido, antes de pegar o próximo pedido.
+Todo mundo na sua frente está esperando seus hambúrgueres ficarem prontos antes de deixar o caixa porque cada um dos 8 caixas vai e prepara o hambúrguer logo após receber o pedido, antes de pegar o próximo pedido.
 
 Então é finalmente sua vez, você pede 2 hambúrgueres muito saborosos para você e seu _crush_.
 
