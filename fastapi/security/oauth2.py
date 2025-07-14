@@ -7,7 +7,7 @@ from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 
 # TODO: import from typing when deprecating Python 3.9
 from typing_extensions import Annotated, Doc
@@ -381,7 +381,9 @@ class OAuth2(SecurityBase):
         if not authorization:
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
                 return None
