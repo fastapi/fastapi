@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, FrozenSet, List, Optional, Set, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -9,6 +9,7 @@ from fastapi._compat import (
     get_model_fields,
     is_bytes_sequence_annotation,
     is_scalar_field,
+    is_sequence_field,
     is_uploadfile_sequence_annotation,
 )
 from fastapi.testclient import TestClient
@@ -94,6 +95,27 @@ def test_is_uploadfile_sequence_annotation():
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+
+
+@needs_pydanticv2
+def test_model_optional_union_v2():
+    # For coverage
+    types = [
+        Optional[List[str]],
+        Union[List[int], List[float]],
+        Optional[Set[int]],
+        Union[Set[int], Set[float]],
+        Optional[FrozenSet[int]],
+        Union[List[int], None],
+    ]
+    for annotation in types:
+        field_info = FieldInfo(annotation=annotation)
+        field = ModelField(name="foo", field_info=field_info)
+        assert is_sequence_field(field) is True
+
+    field_info_str = FieldInfo(annotation=str)
+    field_str = ModelField(name="foo", field_info=field_info_str)
+    assert is_sequence_field(field_str) is False
 
 
 def test_is_pv1_scalar_field():
