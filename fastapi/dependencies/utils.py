@@ -212,13 +212,27 @@ def get_flat_dependant(
 def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
+
+    return [field for field, _ in _get_flat_fields_from_params_with_origin(fields)]
+
+
+def _get_flat_fields_from_params_with_origin(
+    fields: Sequence[ModelField],
+) -> Sequence[Tuple[ModelField, ModelField]]:
+    """Same as :func:`_get_flat_fields_from_params`, but returns the result
+    as tuples ``(flat_field, origin_field)``.
+    """
     result = []
     for field in fields:
         if lenient_issubclass(field.type_, BaseModel):
-            fields_to_extract = get_cached_model_fields(field.type_)
-            result.extend(fields_to_extract)
+            result.extend(
+                [
+                    (model_field, field)
+                    for model_field in get_cached_model_fields(field.type_)
+                ]
+            )
         else:
-            result.append(field)
+            result.append((field, field))
     return result
 
 
@@ -750,18 +764,7 @@ def request_params_to_args(
     if not fields:
         return values, errors
 
-    fields_to_extract = []
-    for field in fields:
-        if lenient_issubclass(field.type_, BaseModel):
-            fields_to_extract.extend(
-                [
-                    (model_field, field)
-                    for model_field in get_cached_model_fields(field.type_)
-                ]
-            )
-        else:
-            fields_to_extract.append((field, field))
-
+    fields_to_extract = _get_flat_fields_from_params_with_origin(fields)
     params_to_process: Dict[str, Any] = {}
 
     processed_keys = set()
