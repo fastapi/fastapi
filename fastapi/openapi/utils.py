@@ -23,7 +23,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
-from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.models import DefaultErrorSchema, OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.types import ModelNameMap
@@ -261,6 +261,7 @@ def get_openapi_path(
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
     separate_input_output_schemas: bool = True,
+    default_error_schema: Optional[DefaultErrorSchema] = None,
 ) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]:
     path = {}
     security_schemes: Dict[str, Any] = {}
@@ -418,7 +419,28 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
             all_route_params = get_flat_params(route.dependant)
-            if (all_route_params or route.body_field) and not any(
+            if default_error_schema is not None:
+                operation["responses"][default_error_schema["status"]] = {
+                    "description": default_error_schema["description"],
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": REF_PREFIX + default_error_schema["name"]
+                            }
+                        },
+                    },
+                }
+                definitions.update(
+                    {
+                        default_error_schema["name"]: {
+                            "title": default_error_schema["name"],
+                            "type": "object",
+                            "properties": default_error_schema["properties"],
+                            "required": default_error_schema["required"],
+                        }
+                    }
+                )
+            elif (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
             ):
@@ -482,6 +504,7 @@ def get_openapi(
     summary: Optional[str] = None,
     description: Optional[str] = None,
     routes: Sequence[BaseRoute],
+    default_error_schema: Optional[DefaultErrorSchema] = None,
     webhooks: Optional[Sequence[BaseRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
     servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
@@ -526,6 +549,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                default_error_schema=default_error_schema,
             )
             if result:
                 path, security_schemes, path_definitions = result
