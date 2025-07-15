@@ -1,4 +1,3 @@
-import warnings
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -6,14 +5,11 @@ app = FastAPI()
 
 items = {}
 
-# startup event and shutdown event are deprecated, you should use lifespan instead
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore", DeprecationWarning)
 
-    @app.on_event("startup")
-    async def startup_event():
-        items["foo"] = {"name": "Fighters"}
-        items["bar"] = {"name": "Tenders"}
+@app.on_event("startup")
+async def startup_event():
+    items["foo"] = {"name": "Fighters"}
+    items["bar"] = {"name": "Tenders"}
 
 
 @app.get("/items/{item_id}")
