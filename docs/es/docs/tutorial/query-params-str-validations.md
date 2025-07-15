@@ -321,22 +321,6 @@ Así que, cuando necesites declarar un valor como requerido mientras usas `Query
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Requerido con Puntos suspensivos (`...`)
-
-Hay una manera alternativa de declarar explícitamente que un valor es requerido. Puedes establecer el valor por defecto al valor literal `...`:
-
-{* ../../docs_src/query_params_str_validations/tutorial006b_an_py39.py hl[9] *}
-
-/// info | Información
-
-Si no habías visto eso `...` antes: es un valor especial único, es <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">parte de Python y se llama "Ellipsis"</a>.
-
-Se usa por Pydantic y FastAPI para declarar explícitamente que un valor es requerido.
-
-///
-
-Esto le permitirá a **FastAPI** saber que este parámetro es requerido.
-
 ### Requerido, puede ser `None`
 
 Puedes declarar que un parámetro puede aceptar `None`, pero que aún así es requerido. Esto obligaría a los clientes a enviar un valor, incluso si el valor es `None`.

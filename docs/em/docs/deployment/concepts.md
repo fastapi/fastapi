@@ -216,7 +216,7 @@
 
 👈 👨‍🏭 🛠️ 🔜 🕐 🏃‍♂ 👆 🈸, 👫 🔜 🎭 👑 📊 📨 **📨** &amp; 📨 **📨**, &amp; 👫 🔜 📐 🕳 👆 🚮 🔢 💾.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 &amp; ↗️, 🎏 🎰 🔜 🎲 ✔️ **🎏 🛠️** 🏃 👍, ↖️ ⚪️➡️ 👆 🈸.
 
