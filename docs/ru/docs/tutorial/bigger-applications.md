@@ -52,7 +52,7 @@ from app.routers import items
 * Подкаталог `app/internal/`, содержащий файл `__init__.py`, является ещё одним суб-пакетом: `app.internal`.
 * А файл `app/internal/admin.py` является ещё одним суб-модулем: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 Та же самая файловая структура приложения, но с комментариями:
 
@@ -269,7 +269,7 @@ from .dependencies import get_token_header
 
 Вспомните, как выглядит файловая структура нашего приложения:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 

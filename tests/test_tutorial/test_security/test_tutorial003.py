@@ -149,7 +149,7 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "title": "Grant Type",
                                 "anyOf": [
-                                    {"pattern": "password", "type": "string"},
+                                    {"pattern": "^password$", "type": "string"},
                                     {"type": "null"},
                                 ],
                             }
@@ -158,12 +158,16 @@ def test_openapi_schema(client: TestClient):
                             # TODO: remove when deprecating Pydantic v1
                             {
                                 "title": "Grant Type",
-                                "pattern": "password",
+                                "pattern": "^password$",
                                 "type": "string",
                             }
                         ),
                         "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string"},
+                        "password": {
+                            "title": "Password",
+                            "type": "string",
+                            "format": "password",
+                        },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
                         "client_id": IsDict(
                             {
@@ -179,11 +183,16 @@ def test_openapi_schema(client: TestClient):
                             {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "format": "password",
                             }
                         )
                         | IsDict(
                             # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Secret", "type": "string"}
+                            {
+                                "title": "Client Secret",
+                                "type": "string",
+                                "format": "password",
+                            }
                         ),
                     },
                 },
