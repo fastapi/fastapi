@@ -136,7 +136,7 @@
 
 该异常也内置了默认异常处理器。
 
-覆盖默认异常处理器时需要导入 `RequestValidationError`，并用 `@app.excption_handler(RequestValidationError)` 装饰异常处理器。
+覆盖默认异常处理器时需要导入 `RequestValidationError`，并用 `@app.exception_handler(RequestValidationError)` 装饰异常处理器。
 
 这样，异常处理器就可以接收 `Request` 与异常。
 
