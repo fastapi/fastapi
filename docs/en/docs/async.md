@@ -40,7 +40,7 @@ def results():
 
 ---
 
-If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`.
+If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`, even if you don't need to use `await` inside.
 
 ---
 

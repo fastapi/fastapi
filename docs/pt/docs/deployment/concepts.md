@@ -216,7 +216,7 @@ Este Processo de Gerenciador provavelmente seria o que escutaria na **porta** no
 
 Esses processos de trabalho seriam aqueles que executariam seu aplicativo, eles executariam os cálculos principais para receber uma **solicitação** e retornar uma **resposta**, e carregariam qualquer coisa que você colocasse em variáveis ​​na RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 E, claro, a mesma máquina provavelmente teria **outros processos** em execução, além do seu aplicativo.
 
