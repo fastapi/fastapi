@@ -2,10 +2,12 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from .main import app
+from .utils import needs_pydanticv1, needs_pydanticv2
 
 client = TestClient(app)
 
 
+@needs_pydanticv2
 def test_query():
     response = client.get("/query")
     assert response.status_code == 422
@@ -20,8 +22,14 @@ def test_query():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_with_pydantic_v1():
+    response = client.get("/query")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -40,6 +48,7 @@ def test_query_query_baz():
     assert response.json() == "foo bar baz"
 
 
+@needs_pydanticv2
 def test_query_not_declared_baz():
     response = client.get("/query?not_declared=baz")
     assert response.status_code == 422
@@ -54,8 +63,14 @@ def test_query_not_declared_baz():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_not_declared_baz_with_pydantic_v1():
+    response = client.get("/query?not_declared=baz")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -86,6 +101,7 @@ def test_query_optional_not_declared_baz():
     assert response.json() == "foo bar"
 
 
+@needs_pydanticv2
 def test_query_int():
     response = client.get("/query/int")
     assert response.status_code == 422
@@ -100,8 +116,14 @@ def test_query_int():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_with_pydantic_v1():
+    response = client.get("/query/int")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -120,6 +142,7 @@ def test_query_int_query_42():
     assert response.json() == "foo bar 42"
 
 
+@needs_pydanticv2
 def test_query_int_query_42_5():
     response = client.get("/query/int?query=42.5")
     assert response.status_code == 422
@@ -134,8 +157,14 @@ def test_query_int_query_42_5():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_query_42_5_with_pydantic_v1():
+    response = client.get("/query/int?query=42.5")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -148,6 +177,7 @@ def test_query_int_query_42_5():
     )
 
 
+@needs_pydanticv2
 def test_query_int_query_baz():
     response = client.get("/query/int?query=baz")
     assert response.status_code == 422
@@ -162,8 +192,14 @@ def test_query_int_query_baz():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_query_baz_with_pydantic_v1():
+    response = client.get("/query/int?query=baz")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -176,6 +212,7 @@ def test_query_int_query_baz():
     )
 
 
+@needs_pydanticv2
 def test_query_int_not_declared_baz():
     response = client.get("/query/int?not_declared=baz")
     assert response.status_code == 422
@@ -190,8 +227,14 @@ def test_query_int_not_declared_baz():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_not_declared_baz_with_pydantic_v1():
+    response = client.get("/query/int?not_declared=baz")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -216,6 +259,7 @@ def test_query_int_optional_query_50():
     assert response.json() == "foo bar 50"
 
 
+@needs_pydanticv2
 def test_query_int_optional_query_foo():
     response = client.get("/query/int/optional?query=foo")
     assert response.status_code == 422
@@ -230,8 +274,14 @@ def test_query_int_optional_query_foo():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_optional_query_foo_with_pydantic_v1():
+    response = client.get("/query/int/optional?query=foo")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -256,6 +306,7 @@ def test_query_int_default_query_50():
     assert response.json() == "foo bar 50"
 
 
+@needs_pydanticv2
 def test_query_int_default_query_foo():
     response = client.get("/query/int/default?query=foo")
     assert response.status_code == 422
@@ -270,8 +321,14 @@ def test_query_int_default_query_foo():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_int_default_query_foo_with_pydantic_v1():
+    response = client.get("/query/int/default?query=foo")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -296,6 +353,7 @@ def test_query_param_query_50():
     assert response.json() == "foo bar 50"
 
 
+@needs_pydanticv2
 def test_query_param_required():
     response = client.get("/query/param-required")
     assert response.status_code == 422
@@ -310,8 +368,14 @@ def test_query_param_required():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_param_required_with_pydantic_v1():
+    response = client.get("/query/param-required")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -330,6 +394,7 @@ def test_query_param_required_query_50():
     assert response.json() == "foo bar 50"
 
 
+@needs_pydanticv2
 def test_query_param_required_int():
     response = client.get("/query/param-required/int")
     assert response.status_code == 422
@@ -344,8 +409,14 @@ def test_query_param_required_int():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_param_required_int_with_pydantic_v1():
+    response = client.get("/query/param-required/int")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
@@ -364,6 +435,7 @@ def test_query_param_required_int_query_50():
     assert response.json() == "foo bar 50"
 
 
+@needs_pydanticv2
 def test_query_param_required_int_query_foo():
     response = client.get("/query/param-required/int?query=foo")
     assert response.status_code == 422
@@ -378,8 +450,14 @@ def test_query_param_required_int_query_foo():
                 }
             ]
         }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
+    )
+
+
+@needs_pydanticv1
+def test_query_param_required_int_query_foo_with_pydantic_v1():
+    response = client.get("/query/param-required/int?query=foo")
+    assert response.status_code == 422
+    assert response.json() == IsDict(
         {
             "detail": [
                 {
