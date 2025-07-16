@@ -52,7 +52,7 @@ from app.routers import items
 * 还有一个子目录 `app/internal/` 包含另一个 `__init__.py` 文件，因此它是又一个「Python 子包」：`app.internal`。
 * `app/internal/admin.py` 是另一个子模块：`app.internal.admin`。
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.svg">
+<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.drawio.svg">
 
 带有注释的同一文件结构：
 
@@ -244,7 +244,7 @@ from .dependencies import get_token_header
 
 请记住我们的程序/文件结构是怎样的：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.svg">
+<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 

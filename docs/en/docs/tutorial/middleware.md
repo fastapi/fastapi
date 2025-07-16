@@ -71,6 +71,7 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
+
 /// note | Technical Details
 
 As you noticed the decorator `@app.middleware('http')` contains a parameter called `http`. This parameter defines the type of server events to be handled by the middleware, and hence the name `http` middleware.
@@ -100,6 +101,29 @@ The middleware is connected to the FastAPI application using `app.add_middleware
 You can read more about Starlette middleware in [Starlette documentation](https://www.starlette.io/middleware).
 
 ///
+
+## Multiple middleware execution order
+
+When you add multiple middlewares using either `@app.middleware()` decorator or `app.add_middleware()` method, each new middleware wraps the application, forming a stack. The last middleware added is the *outermost*, and the first is the *innermost*.
+
+On the request path, the *outermost* middleware runs first.
+
+On the response path, it runs last.
+
+For example:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+This results in the following execution order:
+
+* **Request**: MiddlewareB → MiddlewareA → route
+
+* **Response**: route → MiddlewareA → MiddlewareB
+
+This stacking behavior ensures that middlewares are executed in a predictable and controllable order.
 
 ## Other middlewares
 

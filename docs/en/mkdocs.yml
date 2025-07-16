@@ -6,7 +6,7 @@ theme:
   name: material
   custom_dir: ../en/overrides
   palette:
-  - media: "(prefers-color-scheme)"
+  - media: (prefers-color-scheme)
     toggle:
       icon: material/lightbulb-auto
       name: Switch to light mode
@@ -27,7 +27,6 @@ theme:
   features:
   - content.code.annotate
   - content.code.copy
-  # - content.code.select
   - content.footnote.tooltips
   - content.tabs.link
   - content.tooltips
@@ -35,7 +34,6 @@ theme:
   - navigation.indexes
   - navigation.instant
   - navigation.instant.prefetch
-  # - navigation.instant.preview
   - navigation.instant.progress
   - navigation.path
   - navigation.tabs
@@ -46,7 +44,6 @@ theme:
   - search.share
   - search.suggest
   - toc.follow
-
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -55,11 +52,7 @@ theme:
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
-  # Material for MkDocs
-  search:
-  # Configured in mkdocs.insiders.yml
-  # social:
-  # Other plugins
+  search: null
   macros:
     include_yaml:
     - external_links: ../en/data/external_links.yml
@@ -103,7 +96,6 @@ plugins:
           signature_crossrefs: true
           show_symbol_type_heading: true
           show_symbol_type_toc: true
-
 nav:
 - FastAPI: index.md
 - features.md
@@ -258,33 +250,27 @@ nav:
   - benchmarks.md
   - management.md
 - release-notes.md
-
 markdown_extensions:
-  # Python Markdown
-  abbr:
-  attr_list:
-  footnotes:
-  md_in_html:
-  tables:
+  abbr: null
+  attr_list: null
+  footnotes: null
+  md_in_html: null
+  tables: null
   toc:
     permalink: true
-
-  # Python Markdown Extensions
-  pymdownx.betterem:
-  pymdownx.caret:
+  pymdownx.betterem: null
+  pymdownx.caret: null
   pymdownx.highlight:
     line_spans: __span
-  pymdownx.inlinehilite:
-  pymdownx.keys:
-  pymdownx.mark:
+  pymdownx.inlinehilite: null
+  pymdownx.keys: null
+  pymdownx.mark: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_code_format
-  pymdownx.tilde:
-
-  # pymdownx blocks
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+  pymdownx.tilde: null
   pymdownx.blocks.admonition:
     types:
     - note
@@ -295,34 +281,14 @@ markdown_extensions:
     - tip
     - hint
     - warning
-    # Custom types
     - info
     - check
-  pymdownx.blocks.details:
+  pymdownx.blocks.details: null
   pymdownx.blocks.tab:
-    alternate_style: True
-
-  # Other extensions
-  mdx_include:
-  markdown_include_variants:
-
+    alternate_style: true
+  mdx_include: null
+  markdown_include_variants: null
 extra:
-  analytics:
-    provider: google
-    property: G-YNEVN69SC3
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: This page was helpful
-          data: 1
-          note: >-
-            Thanks for your feedback!
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: 0
-          note: >-
-            Thanks for your feedback!
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/fastapi/fastapi
@@ -331,14 +297,9 @@ extra:
   - icon: fontawesome/brands/twitter
     link: https://twitter.com/fastapi
   - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/tiangolo
-  - icon: fontawesome/brands/dev
-    link: https://dev.to/tiangolo
-  - icon: fontawesome/brands/medium
-    link: https://medium.com/@tiangolo
+    link: https://www.linkedin.com/company/fastapi
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
-
   alternate:
   - link: /
     name: en - English
@@ -390,14 +351,11 @@ extra:
     name: zh-hant - 繁體中文
   - link: /em/
     name: 😉
-
 extra_css:
 - css/termynal.css
 - css/custom.css
-
 extra_javascript:
 - js/termynal.js
 - js/custom.js
-
 hooks:
 - ../../scripts/mkdocs_hooks.py
