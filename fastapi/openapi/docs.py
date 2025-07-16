@@ -229,7 +229,7 @@ def get_redoc_html(
     config_string = ""
     if redoc_ui_parameters:
         for key, value in redoc_ui_parameters.items():
-            config_string += f" {key}=\"{value}\""
+            config_string += f' {key}="{value}"'
 
     html = f"""
     <!DOCTYPE html>
