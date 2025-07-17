@@ -826,18 +826,13 @@ class FastAPI(Starlette):
 
                 ```python
                 from fastapi import FastAPI
-                from typing import Dict, Any
-                from typing import Optional
-                from fastapi.openapi.models import Doc
-                from typing_extensions import Annotated
 
-                external_docs: Annotated[Optional[Dict[str, Any]], Doc()] = {
+                external_docs = {
                     "description": "Detailed API Reference",
                     "url": "https://example.com/api-docs",
                 }
 
                 app = FastAPI(openapi_external_docs=external_docs)
-
                 ```
 
                 ### Explanation:
