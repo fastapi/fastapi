@@ -6,29 +6,7 @@ To update an item you can use the <a href="https://developer.mozilla.org/en-US/d
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-33"
-{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` is used to receive data that should replace the existing data.
 
@@ -84,29 +62,7 @@ That would generate a `dict` with only the data that was set when creating the `
 
 Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="32"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
 ### Using Pydantic's `update` parameter
 
@@ -122,29 +78,7 @@ The examples here use `.copy()` for compatibility with Pydantic v1, but you shou
 
 Like `stored_item_model.model_copy(update=update_data)`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="33"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
 ### Partial updates recap
 
@@ -155,35 +89,13 @@ In summary, to apply partial updates you would:
 * Put that data in a Pydantic model.
 * Generate a `dict` without default values from the input model (using `exclude_unset`).
     * This way you can update only the values actually set by the user, instead of overriding values already stored with default values in your model.
-* Create a copy of the stored model, updating it's attributes with the received partial updates (using the `update` parameter).
+* Create a copy of the stored model, updating its attributes with the received partial updates (using the `update` parameter).
 * Convert the copied model to something that can be stored in your DB (for example, using the `jsonable_encoder`).
     * This is comparable to using the model's `.model_dump()` method again, but it makes sure (and converts) the values to data types that can be converted to JSON, for example, `datetime` to `str`.
 * Save the data to your DB.
 * Return the updated model.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-35"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
 /// tip
 

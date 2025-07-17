@@ -401,7 +401,7 @@ All das ist es, was FastAPI (via Starlette) befeuert und es eine so beeindrucken
 
 ## Sehr technische Details
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Das folgende können Sie wahrscheinlich überspringen.
 

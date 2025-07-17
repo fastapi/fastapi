@@ -36,7 +36,7 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Durch das Hinzufügen von `standard` installiert und verwendet Uvicorn einige empfohlene zusätzliche Abhängigkeiten.
 
@@ -96,7 +96,7 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 ////
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Denken Sie daran, die Option `--reload` zu entfernen, wenn Sie diese verwendet haben.
 

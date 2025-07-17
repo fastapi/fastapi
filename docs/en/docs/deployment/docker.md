@@ -167,22 +167,22 @@ def read_item(item_id: int, q: Union[str, None] = None):
 Now in the same project directory create a file `Dockerfile` with:
 
 ```{ .dockerfile .annotate }
-# (1)
+# (1)!
 FROM python:3.9
 
-# (2)
+# (2)!
 WORKDIR /code
 
-# (3)
+# (3)!
 COPY ./requirements.txt /code/requirements.txt
 
-# (4)
+# (4)!
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (5)
+# (5)!
 COPY ./app /code/app
 
-# (6)
+# (6)!
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
@@ -231,6 +231,38 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 Review what each line does by clicking each number bubble in the code. 👆
 
 ///
+
+/// warning
+
+Make sure to **always** use the **exec form** of the `CMD` instruction, as explained below.
+
+///
+
+#### Use `CMD` - Exec Form
+
+The <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker instruction can be written using two forms:
+
+✅ **Exec** form:
+
+```Dockerfile
+# ✅ Do this
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+```
+
+⛔️ **Shell** form:
+
+```Dockerfile
+# ⛔️ Don't do this
+CMD fastapi run app/main.py --port 80
+```
+
+Make sure to always use the **exec** form to ensure that FastAPI can shutdown gracefully and [lifespan events](../advanced/events.md){.internal-link target=_blank} are triggered.
+
+You can read more about it in the <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker docs for shell and exec form</a>.
+
+This can be quite noticeable when using `docker compose`. See this Docker Compose FAQ section for more technical details: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>.
+
+#### Directory Structure
 
 You should now have a directory structure like:
 
@@ -368,10 +400,10 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (1)
+# (1)!
 COPY ./main.py /code/
 
-# (2)
+# (2)!
 CMD ["fastapi", "run", "main.py", "--port", "80"]
 ```
 
@@ -424,11 +456,11 @@ Without using containers, making applications run on startup and with restarts c
 
 ## Replication - Number of Processes
 
-If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Gunicorn with workers) in each container.
+If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Uvicorn with workers) in each container.
 
 One of those distributed container management systems like Kubernetes normally has some integrated way of handling **replication of containers** while still supporting **load balancing** for the incoming requests. All at the **cluster level**.
 
-In those cases, you would probably want to build a **Docker image from scratch** as [explained above](#dockerfile), installing your dependencies, and running **a single Uvicorn process** instead of running something like Gunicorn with Uvicorn workers.
+In those cases, you would probably want to build a **Docker image from scratch** as [explained above](#dockerfile), installing your dependencies, and running **a single Uvicorn process** instead of using multiple Uvicorn workers.
 
 ### Load Balancer
 
@@ -458,37 +490,44 @@ And normally this **load balancer** would be able to handle requests that go to 
 
 In this type of scenario, you probably would want to have **a single (Uvicorn) process per container**, as you would already be handling replication at the cluster level.
 
-So, in this case, you **would not** want to have a process manager like Gunicorn with Uvicorn workers, or Uvicorn using its own Uvicorn workers. You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
+So, in this case, you **would not** want to have a multiple workers in the container, for example with the `--workers` command line option.You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
 
-Having another process manager inside the container (as would be with Gunicorn or Uvicorn managing Uvicorn workers) would only add **unnecessary complexity** that you are most probably already taking care of with your cluster system.
+Having another process manager inside the container (as would be with multiple workers) would only add **unnecessary complexity** that you are most probably already taking care of with your cluster system.
 
 ### Containers with Multiple Processes and Special Cases
 
-Of course, there are **special cases** where you could want to have **a container** with a **Gunicorn process manager** starting several **Uvicorn worker processes** inside.
+Of course, there are **special cases** where you could want to have **a container** with several **Uvicorn worker processes** inside.
 
-In those cases, you can use the **official Docker image** that includes **Gunicorn** as a process manager running multiple **Uvicorn worker processes**, and some default settings to adjust the number of workers based on the current CPU cores automatically. I'll tell you more about it below in [Official Docker Image with Gunicorn - Uvicorn](#official-docker-image-with-gunicorn-uvicorn).
+In those cases, you can use the `--workers` command line option to set the number of workers that you want to run:
+
+```{ .dockerfile .annotate }
+FROM python:3.9
+
+WORKDIR /code
+
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./app /code/app
+
+# (1)!
+CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
+```
+
+1. Here we use the `--workers` command line option to set the number of workers to 4.
 
 Here are some examples of when that could make sense:
 
 #### A Simple App
 
-You could want a process manager in the container if your application is **simple enough** that you don't need (at least not yet) to fine-tune the number of processes too much, and you can just use an automated default (with the official Docker image), and you are running it on a **single server**, not a cluster.
+You could want a process manager in the container if your application is **simple enough** that can run it on a **single server**, not a cluster.
 
 #### Docker Compose
 
 You could be deploying to a **single server** (not a cluster) with **Docker Compose**, so you wouldn't have an easy way to manage replication of containers (with Docker Compose) while preserving the shared network and **load balancing**.
 
 Then you could want to have **a single container** with a **process manager** starting **several worker processes** inside.
-
-#### Prometheus and Other Reasons
-
-You could also have **other reasons** that would make it easier to have a **single container** with **multiple processes** instead of having **multiple containers** with **a single process** in each of them.
-
-For example (depending on your setup) you could have some tool like a Prometheus exporter in the same container that should have access to **each of the requests** that come.
-
-In this case, if you had **multiple containers**, by default, when Prometheus came to **read the metrics**, it would get the ones for **a single container each time** (for the container that handled that particular request), instead of getting the **accumulated metrics** for all the replicated containers.
-
-Then, in that case, it could be simpler to have **one container** with **multiple processes**, and a local tool (e.g. a Prometheus exporter) on the same container collecting Prometheus metrics for all the internal processes and exposing those metrics on that single container.
 
 ---
 
@@ -509,7 +548,7 @@ And then you can set those same memory limits and requirements in your configura
 
 If your application is **simple**, this will probably **not be a problem**, and you might not need to specify hard memory limits. But if you are **using a lot of memory** (for example with **machine learning** models), you should check how much memory you are consuming and adjust the **number of containers** that runs in **each machine** (and maybe add more machines to your cluster).
 
-If you run **multiple processes per container** (for example with the official Docker image) you will have to make sure that the number of processes started doesn't **consume more memory** than what is available.
+If you run **multiple processes per container** you will have to make sure that the number of processes started doesn't **consume more memory** than what is available.
 
 ## Previous Steps Before Starting and Containers
 
@@ -529,79 +568,25 @@ If in your use case there's no problem in running those previous steps **multipl
 
 ### Single Container
 
-If you have a simple setup, with a **single container** that then starts multiple **worker processes** (or also just one process), then you could run those previous steps in the same container, right before starting the process with the app. The official Docker image supports this internally.
+If you have a simple setup, with a **single container** that then starts multiple **worker processes** (or also just one process), then you could run those previous steps in the same container, right before starting the process with the app.
 
-## Official Docker Image with Gunicorn - Uvicorn
+### Base Docker Image
 
-There is an official Docker image that includes Gunicorn running with Uvicorn workers, as detailed in a previous chapter: [Server Workers - Gunicorn with Uvicorn](server-workers.md){.internal-link target=_blank}.
+There used to be an official FastAPI Docker image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. But it is now deprecated. ⛔️
 
-This image would be useful mainly in the situations described above in: [Containers with Multiple Processes and Special Cases](#containers-with-multiple-processes-and-special-cases).
+You should probably **not** use this base Docker image (or any other similar one).
 
-* <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+If you are using **Kubernetes** (or others) and you are already setting **replication** at the cluster level, with multiple **containers**. In those cases, you are better off **building an image from scratch** as described above: [Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).
 
-/// warning
+And if you need to have multiple workers, you can simply use the `--workers` command line option.
 
-There's a high chance that you **don't** need this base image or any other similar one, and would be better off by building the image from scratch as [described above in: Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).
+/// note | Technical Details
 
-///
+The Docker image was created when Uvicorn didn't support managing and restarting dead workers, so it was needed to use Gunicorn with Uvicorn, which added quite some complexity, just to have Gunicorn manage and restart the Uvicorn worker processes.
 
-This image has an **auto-tuning** mechanism included to set the **number of worker processes** based on the CPU cores available.
-
-It has **sensible defaults**, but you can still change and update all the configurations with **environment variables** or configuration files.
-
-It also supports running <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**previous steps before starting**</a> with a script.
-
-/// tip
-
-To see all the configurations and options, go to the Docker image page: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+But now that Uvicorn (and the `fastapi` command) support using `--workers`, there's no reason to use a base Docker image instead of building your own (it's pretty much the same amount of code 😅).
 
 ///
-
-### Number of Processes on the Official Docker Image
-
-The **number of processes** on this image is **computed automatically** from the CPU **cores** available.
-
-This means that it will try to **squeeze** as much **performance** from the CPU as possible.
-
-You can also adjust it with the configurations using **environment variables**, etc.
-
-But it also means that as the number of processes depends on the CPU the container is running, the **amount of memory consumed** will also depend on that.
-
-So, if your application consumes a lot of memory (for example with machine learning models), and your server has a lot of CPU cores **but little memory**, then your container could end up trying to use more memory than what is available, and degrading performance a lot (or even crashing). 🚨
-
-### Create a `Dockerfile`
-
-Here's how you would create a `Dockerfile` based on this image:
-
-```Dockerfile
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app
-```
-
-### Bigger Applications
-
-If you followed the section about creating [Bigger Applications with Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}, your `Dockerfile` might instead look like:
-
-```Dockerfile hl_lines="7"
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app/app
-```
-
-### When to Use
-
-You should probably **not** use this official base image (or any other similar one) if you are using **Kubernetes** (or others) and you are already setting **replication** at the cluster level, with multiple **containers**. In those cases, you are better off **building an image from scratch** as described above: [Build a Docker Image for FastAPI](#build-a-docker-image-for-fastapi).
-
-This image would be useful mainly in the special cases described above in [Containers with Multiple Processes and Special Cases](#containers-with-multiple-processes-and-special-cases). For example, if your application is **simple enough** that setting a default number of processes based on the CPU works well, you don't want to bother with manually configuring the replication at the cluster level, and you are not running more than one container with your app. Or if you are deploying with **Docker Compose**, running on a single server, etc.
 
 ## Deploy the Container Image
 
@@ -615,98 +600,9 @@ For example:
 * With another tool like Nomad
 * With a cloud service that takes your container image and deploys it
 
-## Docker Image with Poetry
+## Docker Image with `uv`
 
-If you use <a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a> to manage your project's dependencies, you could use Docker multi-stage building:
-
-```{ .dockerfile .annotate }
-# (1)
-FROM python:3.9 as requirements-stage
-
-# (2)
-WORKDIR /tmp
-
-# (3)
-RUN pip install poetry
-
-# (4)
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-
-# (5)
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-
-# (6)
-FROM python:3.9
-
-# (7)
-WORKDIR /code
-
-# (8)
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
-
-# (9)
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-# (10)
-COPY ./app /code/app
-
-# (11)
-CMD ["fastapi", "run", "app/main.py", "--port", "80"]
-```
-
-1. This is the first stage, it is named `requirements-stage`.
-
-2. Set `/tmp` as the current working directory.
-
-    Here's where we will generate the file `requirements.txt`
-
-3. Install Poetry in this Docker stage.
-
-4. Copy the `pyproject.toml` and `poetry.lock` files to the `/tmp` directory.
-
-    Because it uses `./poetry.lock*` (ending with a `*`), it won't crash if that file is not available yet.
-
-5. Generate the `requirements.txt` file.
-
-6. This is the final stage, anything here will be preserved in the final container image.
-
-7. Set the current working directory to `/code`.
-
-8. Copy the `requirements.txt` file to the `/code` directory.
-
-    This file only lives in the previous Docker stage, that's why we use `--from-requirements-stage` to copy it.
-
-9. Install the package dependencies in the generated `requirements.txt` file.
-
-10. Copy the `app` directory to the `/code` directory.
-
-11. Use the `fastapi run` command to run your app.
-
-/// tip
-
-Click the bubble numbers to see what each line does.
-
-///
-
-A **Docker stage** is a part of a `Dockerfile` that works as a **temporary container image** that is only used to generate some files to be used later.
-
-The first stage will only be used to **install Poetry** and to **generate the `requirements.txt`** with your project dependencies from Poetry's `pyproject.toml` file.
-
-This `requirements.txt` file will be used with `pip` later in the **next stage**.
-
-In the final container image **only the final stage** is preserved. The previous stage(s) will be discarded.
-
-When using Poetry, it would make sense to use **Docker multi-stage builds** because you don't really need to have Poetry and its dependencies installed in the final container image, you **only need** to have the generated `requirements.txt` file to install your project dependencies.
-
-Then in the next (and final) stage you would build the image more or less in the same way as described before.
-
-### Behind a TLS Termination Proxy - Poetry
-
-Again, if you are running your container behind a TLS Termination Proxy (load balancer) like Nginx or Traefik, add the option `--proxy-headers` to the command:
-
-```Dockerfile
-CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
-```
+If you are using <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> to install and manage your project, you can follow their <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker guide</a>.
 
 ## Recap
 
@@ -719,8 +615,6 @@ Using container systems (e.g. with **Docker** and **Kubernetes**) it becomes fai
 * Memory
 * Previous steps before starting
 
-In most cases, you probably won't want to use any base image, and instead **build a container image from scratch** one based on the official Python Docker image.
+In most cases, you probably won't want to use any base image, and instead **build a container image from scratch** based on the official Python Docker image.
 
 Taking care of the **order** of instructions in the `Dockerfile` and the **Docker cache** you can **minimize build times**, to maximize your productivity (and avoid boredom). 😎
-
-In certain special cases, you might want to use the official Docker image for FastAPI. 🤓

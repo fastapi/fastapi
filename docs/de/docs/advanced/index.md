@@ -6,7 +6,7 @@ Das Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link t
 
 In den nächsten Abschnitten sehen Sie weitere Optionen, Konfigurationen und zusätzliche Funktionen.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die nächsten Abschnitte sind **nicht unbedingt „fortgeschritten“**.
 

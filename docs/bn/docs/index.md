@@ -5,14 +5,17 @@
     <em>FastAPI উচ্চক্ষমতা সম্পন্ন, সহজে শেখার এবং দ্রুত কোড করে প্রোডাকশনের জন্য ফ্রামওয়ার্ক।</em>
 </p>
 <p align="center">
-<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi" target="_blank">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
 </a>
 </p>
 
@@ -85,7 +88,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "\_সত্যিই, আপনি যা তৈরি করেছেন তা খুব মজবুত এবং পরিপূর্ন৷ অনেক উপায়ে, আমি যা **Hug** এ করতে চেয়েছিলাম - তা কাউকে তৈরি করতে দেখে আমি সত্যিই অনুপ্রানিত৷\_"
 
-<div style="text-align: right; margin-right: 10%;">টিমোথি ক্রসলে - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> স্রষ্টা</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">টিমোথি ক্রসলে - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> স্রষ্টা</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -439,7 +442,7 @@ item: Item
 
 Pydantic দ্বারা ব্যবহৃত:
 
-- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - ইমেল যাচাইকরণের জন্য।
+- <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - ইমেল যাচাইকরণের জন্য।
 
 স্টারলেট দ্বারা ব্যবহৃত:
 

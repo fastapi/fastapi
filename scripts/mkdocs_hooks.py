@@ -11,6 +11,7 @@ from mkdocs.structure.pages import Page
 non_translated_sections = [
     "reference/",
     "release-notes.md",
+    "fastapi-people.md",
     "external-links.md",
     "newsletter.md",
     "management-tasks.md",

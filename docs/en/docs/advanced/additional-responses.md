@@ -18,7 +18,7 @@ But for those additional responses you have to make sure you return a `Response`
 
 You can pass to your *path operation decorators* a parameter `responses`.
 
-It receives a `dict`, the keys are status codes for each response, like `200`, and the values are other `dict`s with the information for each of them.
+It receives a `dict`: the keys are status codes for each response (like `200`), and the values are other `dict`s with the information for each of them.
 
 Each of those response `dict`s can have a key `model`, containing a Pydantic model, just like `response_model`.
 
@@ -26,9 +26,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-```Python hl_lines="18  22"
-{!../../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note
 
@@ -177,9 +175,7 @@ You can use this same `responses` parameter to add different media types for the
 
 For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
-```Python hl_lines="19-24  28"
-{!../../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
 /// note
 
@@ -207,9 +203,7 @@ For example, you can declare a response with a status code `404` that uses a Pyd
 
 And a response with a status code `200` that uses your `response_model`, but includes a custom `example`:
 
-```Python hl_lines="20-31"
-{!../../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 It will all be combined and included in your OpenAPI, and shown in the API docs:
 
@@ -243,13 +237,11 @@ You can use that technique to reuse some predefined responses in your *path oper
 
 For example:
 
-```Python hl_lines="13-17  26"
-{!../../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## More information about OpenAPI responses
 
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responsesObject" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responseObject" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.

@@ -6,7 +6,11 @@ When you need to receive form fields instead of JSON, you can use `Form`.
 
 To use forms, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-E.g. `pip install python-multipart`.
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 
@@ -14,69 +18,13 @@ E.g. `pip install python-multipart`.
 
 Import `Form` from `fastapi`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
 ## Define `Form` parameters
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../../docs_src/request_forms/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8"
-{!> ../../../docs_src/request_forms/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="7"
-{!> ../../../docs_src/request_forms/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.
 
@@ -102,7 +50,7 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded`.
 
