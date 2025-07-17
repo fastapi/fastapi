@@ -834,14 +834,6 @@ class FastAPI(Starlette):
 
                 app = FastAPI(openapi_external_docs=external_docs)
                 ```
-
-                ### Explanation:
-                - `description`: Provides a short description explaining what this external documentation covers.
-                - `url`: Points to the full external documentation.
-
-                **Notes**:
-                - This field is **optional**; if not included, no external documentation will be linked.
-                - You can use this feature to link to full API documentation, tutorials, or any other
                 """
             ),
         ] = None,
