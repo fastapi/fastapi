@@ -817,8 +817,7 @@ class FastAPI(Starlette):
                 This field allows you to provide additional external documentation links.
                 If provided, it must be a dictionary containing:
 
-                * `description`: A brief description of the external documentation, which may use
-                [CommonMark syntax](https://commonmark.org/) for rich text formatting.
+                * `description`: A brief description of the external documentation.
                 * `url`: The URL pointing to the external documentation. The value **MUST**
                 be a valid URL format.
 
