@@ -124,7 +124,7 @@ Oauth2️⃣ 👫 🎻.
 
 ///
 
-{* ../../docs_src/security/tutorial005.py hl[4,139,169] *}
+{* ../../docs_src/security/tutorial005.py hl[4,140,169] *}
 
 /// info | 📡 ℹ
 
