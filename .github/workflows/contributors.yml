@@ -1,0 +1,53 @@
+name: FastAPI People Contributors
+
+on:
+  schedule:
+    - cron: "0 3 1 * *"
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
+        required: false
+        default: "false"
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  job:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+      - name: Install Dependencies
+        run: uv pip install -r requirements-github-actions.txt
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
+      - name: FastAPI People Contributors
+        run: python ./scripts/contributors.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}
