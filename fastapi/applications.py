@@ -814,9 +814,8 @@ class FastAPI(Starlette):
             Optional[Dict[str, Any]],
             Doc(
                 """
-                This field allows you to provide additional external documentation links
-                for an API operation or component. It’s an optional field and can be added
-                to an operation or a tag. If provided, it must be a dictionary containing:
+                This field allows you to provide additional external documentation links.
+                If provided, it must be a dictionary containing:
 
                 * `description`: A brief description of the external documentation, which may use
                 [CommonMark syntax](https://commonmark.org/) for rich text formatting.
