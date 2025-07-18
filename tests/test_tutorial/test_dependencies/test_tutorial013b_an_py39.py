@@ -80,9 +80,9 @@ def test_dependency_usage(database_connection_mocks):
                 users_connection = connection
                 break
 
-        assert (
-            users_connection is not None
-        ), "No connection was found for users endpoint"
+        assert users_connection is not None, (
+            "No connection was found for users endpoint"
+        )
 
         response = test_client.get("/groups")
         assert response.status_code == 200
@@ -94,9 +94,9 @@ def test_dependency_usage(database_connection_mocks):
                 groups_connection = connection
                 break
 
-        assert (
-            groups_connection is not None
-        ), "No connection was found for groups endpoint"
+        assert groups_connection is not None, (
+            "No connection was found for groups endpoint"
+        )
         assert groups_connection.get_records_count == 1
 
         items_connection = None
@@ -105,9 +105,9 @@ def test_dependency_usage(database_connection_mocks):
                 items_connection = connection
                 break
 
-        assert (
-            items_connection is not None
-        ), "No connection was found for items endpoint"
+        assert items_connection is not None, (
+            "No connection was found for items endpoint"
+        )
 
         response = test_client.get("/items")
         assert response.status_code == 200

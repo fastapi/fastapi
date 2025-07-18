@@ -33,9 +33,9 @@ class LifespanDependant:
         elif self.name is not None:
             self.cache_key = (self.caller, self.name)
         else:
-            assert (
-                self.index is not None
-            ), "Lifespan dependency must have an associated name or index."
+            assert self.index is not None, (
+                "Lifespan dependency must have an associated name or index."
+            )
             self.cache_key = (self.caller, self.index)
 
 
