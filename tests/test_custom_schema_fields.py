@@ -55,17 +55,12 @@ item_schema = {
             "title": "Name",
             "type": "string",
         },
-        "description": (
-            {
-                "title": "Description",
-                "type": IsList("string", "null", check_order=False),
-            }
-            if PYDANTIC_V2
-            else {
-                "title": "Description",
-                "type": "string",
-            }
-        ),
+        "description": {
+            "title": "Description",
+            "type": (
+                IsList("string", "null", check_order=False) if PYDANTIC_V2 else "string"
+            ),
+        },
     },
 }
 
