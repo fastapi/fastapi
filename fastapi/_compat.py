@@ -108,8 +108,6 @@ if PYDANTIC_V2:
             return self.field_info.annotation
 
         def __post_init__(self) -> None:
-            from pydantic import PydanticDeprecatedSince20
-
             try:
                 self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                     Annotated[self.field_info.annotation, self.field_info]
