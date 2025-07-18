@@ -114,7 +114,7 @@ if PYDANTIC_V2:
                 self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                     Annotated[self.field_info.annotation, self.field_info]
                 )
-            except PydanticDeprecatedSince20:
+            except UserWarning:
                 pass
 
         def get_default(self) -> Any:
