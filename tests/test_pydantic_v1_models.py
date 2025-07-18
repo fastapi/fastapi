@@ -97,3 +97,25 @@ class TestRequestBody:
     def test_model__invalid(self):
         response = client.post("/request_body", json={"name": "myname"})
         assert response.status_code == 422, response.text
+
+
+@needs_pydanticv2
+class TestSchema:
+    def test_can_generate(self):
+        spec = app.openapi()
+        schema = spec["paths"]["/request_body"]["post"]["requestBody"]["content"][
+            "application/json"
+        ]["schema"]
+        # Check that the schema is not empty and contains the expected properties
+        assert "$ref" in schema
+        ref = schema["$ref"].split("/")[-1]
+        assert ref in spec["components"]["schemas"]
+        item_schema = spec["components"]["schemas"][ref]
+        assert item_schema["properties"]["name"]["type"] == "string"
+        assert item_schema["properties"]["description"]["type"] == "string"
+        assert item_schema["properties"]["price"]["type"] == "number"
+        assert item_schema["properties"]["tax"]["type"] == "number"
+        assert item_schema["properties"]["tags"]["type"] == "array"
+        assert "required" in item_schema
+        assert "name" in item_schema["required"]
+        assert "price" in item_schema["required"]
