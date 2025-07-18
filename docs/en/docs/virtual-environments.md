@@ -668,7 +668,7 @@ After activating the virtual environment, the `PATH` variable would look somethi
 /home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin
@@ -692,7 +692,7 @@ and use that one.
 C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts
@@ -748,7 +748,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 That means that the `python` program that will be used is the one **in the virtual environment**.
 
-you use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
+You use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
 
 The way that command works is that it will go and check in the `PATH` environment variable, going through **each path in order**, looking for the program called `python`. Once it finds it, it will **show you the path** to that program.
 
