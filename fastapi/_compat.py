@@ -239,7 +239,11 @@ if PYDANTIC_V2:
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
-        return field_annotation_is_scalar(field.field_info.annotation)
+        from fastapi import params
+
+        return field_annotation_is_scalar(
+            field.field_info.annotation
+        ) and not isinstance(field.field_info, params.Body)
 
     def is_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_sequence(field.field_info.annotation)
@@ -402,12 +406,6 @@ else:
     def is_pv1_scalar_field(field: ModelField) -> bool:
         from fastapi import params
 
-        if (
-            lenient_issubclass(field.type_, BaseModel)
-            and "__root__" in field.type_.__fields__
-        ):
-            return is_pv1_scalar_field(field.type_.__fields__["__root__"])
-
         field_info = field.field_info
         if not (
             field.shape == SHAPE_SINGLETON  # type: ignore[attr-defined]
@@ -501,12 +499,21 @@ else:
         )
 
     def is_scalar_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_scalar(inner)
+
         return is_pv1_scalar_field(field)
 
     def is_sequence_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_sequence(inner)
+
         return field.shape in sequence_shapes or _annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
+        if (inner := root_model_inner_type(field.type_)) is not None:
+            return field_annotation_is_scalar_sequence(inner)
+
         return is_pv1_scalar_sequence_field(field)
 
     def is_bytes_field(field: ModelField) -> bool:
@@ -564,6 +571,9 @@ def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_sequence(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
@@ -595,13 +605,20 @@ def field_annotation_is_root_model(annotation: Union[Type[Any], None]) -> bool:
     return root_model_inner_type(annotation) is not None
 
 
+def field_annotation_has_submodel_fields(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_has_submodel_fields(inner)
+
+    return lenient_issubclass(annotation, BaseModel)
+
+
 def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_complex(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
-
-    if inner := root_model_inner_type(annotation):
-        return field_annotation_is_complex(inner)
 
     return (
         _annotation_is_complex(annotation)
@@ -612,11 +629,17 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
 
 
 def field_annotation_is_scalar(annotation: Any) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_scalar(inner)
+
     # handle Ellipsis here to make tuple[int, ...] work nicely
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
 def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> bool:
+    if (inner := root_model_inner_type(annotation)) is not None:
+        return field_annotation_is_scalar_sequence(inner)
+
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_scalar_sequence = False

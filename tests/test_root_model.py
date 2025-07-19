@@ -2,10 +2,11 @@ from typing import Any, Dict, List, Type, Union
 
 import pytest
 from dirty_equals import IsDict
-from fastapi import Body, FastAPI, Path, Query
+from fastapi import Body, FastAPI, Header, Path, Query
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated, get_origin
 
 app = FastAPI()
 
@@ -85,47 +86,47 @@ else:
 
 
 @app.get("/query/basic")
-def query_basic(q: Basic = Query()):
+def query_basic(q: Annotated[Basic, Query()]):
     return {"q": q}
 
 
 @app.get("/query/fieldwrap")
-def query_fieldwrap(q: FieldWrap = Query()):
+def query_fieldwrap(q: Annotated[FieldWrap, Query()]):
     return {"q": q}
 
 
 @app.get("/query/customparsed")
-def query_customparsed(q: CustomParsed = Query()):
+def query_customparsed(q: Annotated[CustomParsed, Query()]):
     return {"q": q.parse()}
 
 
 @app.get("/path/basic/{p}")
-def path_basic(p: Basic = Path()):
+def path_basic(p: Annotated[Basic, Path()]):
     return {"p": p}
 
 
 @app.get("/path/fieldwrap/{p}")
-def path_fieldwrap(p: FieldWrap = Path()):
+def path_fieldwrap(p: Annotated[FieldWrap, Path()]):
     return {"p": p}
 
 
 @app.get("/path/customparsed/{p}")
-def path_customparsed(p: CustomParsed = Path()):
+def path_customparsed(p: Annotated[CustomParsed, Path()]):
     return {"p": p.parse()}
 
 
 @app.post("/body/basic")
-def body_basic(b: Basic = Body()):
+def body_basic(b: Annotated[Basic, Body()]):
     return {"b": b}
 
 
 @app.post("/body/fieldwrap")
-def body_fieldwrap(b: FieldWrap = Body()):
+def body_fieldwrap(b: Annotated[FieldWrap, Body()]):
     return {"b": b}
 
 
 @app.post("/body/customparsed")
-def body_customparsed(b: CustomParsed = Body()):
+def body_customparsed(b: Annotated[CustomParsed, Body()]):
     return {"b": b.parse()}
 
 
@@ -145,17 +146,17 @@ def body_default_customparsed(b: CustomParsed):
 
 
 @app.get("/echo/basic")
-def echo_basic(q: Basic = Query()) -> Basic:
+def echo_basic(q: Annotated[Basic, Query()]) -> Basic:
     return q
 
 
 @app.get("/echo/fieldwrap")
-def echo_fieldwrap(q: FieldWrap = Query()) -> FieldWrap:
+def echo_fieldwrap(q: Annotated[FieldWrap, Query()]) -> FieldWrap:
     return q
 
 
 @app.get("/echo/customparsed")
-def echo_customparsed(q: CustomParsed = Query()) -> CustomParsed:
+def echo_customparsed(q: Annotated[CustomParsed, Query()]) -> CustomParsed:
     return q
 
 
@@ -192,6 +193,72 @@ def test_root_model_200(url: str, response_json: Any, request_body: Any):
     response = client.post(url, json=request_body) if request_body else client.get(url)
     assert response.status_code == 200, response.text
     assert response.json() == response_json
+
+
+@pytest.mark.parametrize("inner", [int, str, bytes, List[int], List[str], List[bytes]])
+def test2_root_model_200__basic(inner: Type):
+    is_primitive = get_origin(inner) is not list
+
+    app_basic = FastAPI()
+
+    if PYDANTIC_V2:
+        from pydantic import RootModel
+
+        Model = RootModel[inner]
+    else:
+
+        class Model(BaseModel):
+            __root__: inner
+
+    if is_primitive:
+
+        @app_basic.get("/path/{p}")
+        def path_basic2(p: Annotated[Model, Path()]) -> Model:
+            return p
+    else:
+        with pytest.raises(
+            AssertionError, match="Path params must be of one of the supported types"
+        ):
+
+            @app_basic.get("/path/{p}")
+            def path_basic2(p: Annotated[Model, Path()]) -> Model:
+                return p  # pragma: nocover
+
+    @app_basic.get("/query")
+    def query_basic2(q: Annotated[Model, Query()]) -> Model:
+        return q
+
+    @app_basic.get("/header")
+    def path_basic2(h: Annotated[Model, Header()]) -> Model:
+        return h
+
+    @app_basic.post("/body")
+    def body_basic2(b: Annotated[Model, Body()]) -> Model:
+        return b
+
+    client2 = TestClient(app_basic)
+
+    expected = {
+        int: 42,
+        str: "42",
+        bytes: "42",
+        List[int]: [42, 43],
+        List[str]: ["42", "43"],
+        List[bytes]: ["42", "43"],
+    }[inner]
+
+    if is_primitive:
+        assert client2.get("/path/42").json() == expected
+        assert client2.get("/query?q=42").json() == expected
+        assert client2.get("/header", headers={"h": "42"}).json() == expected
+    else:
+        assert client2.get("/path/42").json()["detail"] == "Not Found"
+        assert client2.get("/query?q=42&q=43").json() == expected
+        assert (
+            client2.get("/header", headers=[("h", "42"), ("h", "43")]).json()
+            == expected
+        )
+    assert client2.post("/body", json=expected).json() == expected
 
 
 def test_root_model_union():
