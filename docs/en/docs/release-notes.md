@@ -9,6 +9,41 @@ hide:
 
 ### Translations
 
+* 🌐 Add Bangali translation for `docs/bn/about/index.md`. PR [#13882](https://github.com/fastapi/fastapi/pull/13882) by [@sajjadrahman56](https://github.com/sajjadrahman56).
+
+### Internal
+
+* 👥 Update FastAPI People - Experts. PR [#13889](https://github.com/fastapi/fastapi/pull/13889) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update FastAPI People sleep interval, use external settings. PR [#13888](https://github.com/fastapi/fastapi/pull/13888) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.116.1
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette supported version range to `>=0.40.0,<0.48.0`. PR [#13884](https://github.com/fastapi/fastapi/pull/13884) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Add notification about impending changes in Translations to `docs/en/docs/contributing.md`. PR [#13886](https://github.com/fastapi/fastapi/pull/13886) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13871](https://github.com/fastapi/fastapi/pull/13871) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.116.0
+
+### Features
+
+* ✨ Add support for deploying to FastAPI Cloud with `fastapi deploy`. PR [#13870](https://github.com/fastapi/fastapi/pull/13870) by [@tiangolo](https://github.com/tiangolo).
+
+Installing `fastapi[standard]` now includes `fastapi-cloud-cli`.
+
+This will allow you to deploy to [FastAPI Cloud](https://fastapicloud.com) with the `fastapi deploy` command.
+
+If you want to install `fastapi` with the standard dependencies but without `fastapi-cloud-cli`, you can install instead `fastapi[standard-no-fastapi-cloud-cli]`.
+
+### Translations
+
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/response-directly.md`. PR [#13801](https://github.com/fastapi/fastapi/pull/13801) by [@NavesSapnis](https://github.com/NavesSapnis).
 * 🌐 Add Russian translation for `docs/ru/docs/advanced/additional-status-codes.md`. PR [#13799](https://github.com/fastapi/fastapi/pull/13799) by [@NavesSapnis](https://github.com/NavesSapnis).
 * 🌐 Add Ukrainian translation for `docs/uk/docs/tutorial/body-updates.md`. PR [#13804](https://github.com/fastapi/fastapi/pull/13804) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
