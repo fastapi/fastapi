@@ -10,7 +10,7 @@ Varsayılan durum kodunun dışında ek durum kodları döndürmek istiyorsanız
 
 Örneğin, öğeleri güncellemeye izin veren ve başarılı olduğunda her şeyin yolunda olduğunu belirten "200" HTTP durum kodunu döndüren bir *yol operasyonu* oluşturmak istediğinizi varsayalım.
 
-Aynı zamanda, yeni öğeler kabul etmek istiyorsunuz ve bu öğereler mevcut değilse öğeleri oluşturmak ve "Oluşturuldu" anlamına gelen 201 HTTP durum kodunu döndürmek istiyorsunuz.
+Aynı zamanda, yeni öğeler kabul etmek istiyorsunuz ve bu öğeler mevcut değilse öğeleri oluşturmak ve "Oluşturuldu" anlamına gelen 201 HTTP durum kodunu döndürmek istiyorsunuz.
 
 Bunun için `JSONResponse`'ı projenize dahil edin ve içeriğinizi doğrudan `JSONResponse` içerisinde istediğiniz `status_code` ile birlikte yanıt olarak döndürün:
 
