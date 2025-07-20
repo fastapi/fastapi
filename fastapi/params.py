@@ -2,10 +2,15 @@ import warnings
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import PYDANTIC_V2, Undefined
+from ._compat import (
+    PYDANTIC_V2,
+    PYDANTIC_VERSION_MINOR_TUPLE,
+    Undefined,
+)
 
 _Unset: Any = Undefined
 
@@ -61,20 +66,21 @@ class Param(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
-        self.deprecated = deprecated
         if example is not _Unset:
             warnings.warn(
-                "`example` has been depreacated, please use `examples` instead",
+                "`example` has been deprecated, please use `examples` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
         self.include_in_schema = include_in_schema
+        self.openapi_examples = openapi_examples
         kwargs = dict(
             default=default,
             default_factory=default_factory,
@@ -89,7 +95,7 @@ class Param(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -98,11 +104,15 @@ class Param(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
+            self.deprecated = deprecated
+        else:
+            kwargs["deprecated"] = deprecated
         if PYDANTIC_V2:
             kwargs.update(
                 {
@@ -170,7 +180,8 @@ class Path(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -204,6 +215,7 @@ class Path(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,
@@ -254,7 +266,8 @@ class Query(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -286,6 +299,7 @@ class Query(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,
@@ -337,7 +351,8 @@ class Header(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -370,6 +385,7 @@ class Header(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,
@@ -420,7 +436,8 @@ class Cookie(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -452,6 +469,7 @@ class Cookie(Param):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,
@@ -465,7 +483,7 @@ class Body(FieldInfo):
         *,
         default_factory: Union[Callable[[], Any], None] = _Unset,
         annotation: Optional[Any] = None,
-        embed: bool = False,
+        embed: Union[bool, None] = None,
         media_type: str = "application/json",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
@@ -502,22 +520,23 @@ class Body(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
-        self.deprecated = deprecated
         if example is not _Unset:
             warnings.warn(
-                "`example` has been depreacated, please use `examples` instead",
+                "`example` has been deprecated, please use `examples` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
         self.include_in_schema = include_in_schema
+        self.openapi_examples = openapi_examples
         kwargs = dict(
             default=default,
             default_factory=default_factory,
@@ -532,7 +551,7 @@ class Body(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -541,11 +560,15 @@ class Body(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
+            self.deprecated = deprecated
+        else:
+            kwargs["deprecated"] = deprecated
         if PYDANTIC_V2:
             kwargs.update(
                 {
@@ -613,7 +636,8 @@ class Form(Body):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -622,7 +646,6 @@ class Form(Body):
             default=default,
             default_factory=default_factory,
             annotation=annotation,
-            embed=True,
             media_type=media_type,
             alias=alias,
             alias_priority=alias_priority,
@@ -647,6 +670,7 @@ class Form(Body):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,
@@ -696,7 +720,8 @@ class File(Form):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        deprecated: Optional[bool] = None,
+        openapi_examples: Optional[Dict[str, Example]] = None,
+        deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
         **extra: Any,
@@ -729,6 +754,7 @@ class File(Form):
             deprecated=deprecated,
             example=example,
             examples=examples,
+            openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
             **extra,

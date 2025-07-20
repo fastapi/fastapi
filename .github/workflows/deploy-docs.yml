@@ -6,6 +6,15 @@ on:
     types:
       - completed
 
+permissions:
+  deployments: write
+  issues: write
+  pull-requests: write
+  statuses: write
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
@@ -14,36 +23,55 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+      - name: Install GitHub Actions dependencies
+        run: uv pip install -r requirements-github-actions.txt
+      - name: Deploy Docs Status Pending
+        run: python ./scripts/deploy_docs_status.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.run_id }}
       - name: Clean site
         run: |
           rm -rf ./site
           mkdir ./site
-      - name: Download Artifact Docs
-        id: download
-        uses: dawidd6/action-download-artifact@v2.27.0
+      - uses: actions/download-artifact@v4
         with:
-          if_no_artifact_found: ignore
-          github_token: ${{ secrets.FASTAPI_PREVIEW_DOCS_DOWNLOAD_ARTIFACTS }}
-          workflow: build-docs.yml
-          run_id: ${{ github.event.workflow_run.id }}
-          name: docs-site
           path: ./site/
-      - name: Deploy to Netlify
-        if: steps.download.outputs.found_artifact == 'true'
-        id: netlify
-        uses: nwtgck/actions-netlify@v2.0.0
-        with:
-          publish-dir: './site'
-          production-deploy: ${{ github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' }}
-          github-token: ${{ secrets.FASTAPI_PREVIEW_DOCS_NETLIFY }}
-          enable-commit-comment: false
+          pattern: docs-site-*
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Deploy to Cloudflare Pages
+        # hashFiles returns an empty string if there are no files
+        if: hashFiles('./site/*')
+        id: deploy
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Comment Deploy
-        if: steps.netlify.outputs.deploy-url != ''
-        uses: ./.github/actions/comment-docs-preview-in-pr
+          PROJECT_NAME: fastapitiangolo
+          BRANCH: ${{ ( github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.head_branch == 'master' && 'main' ) || ( github.event.workflow_run.head_sha ) }}
+        uses: cloudflare/wrangler-action@v3
         with:
-          token: ${{ secrets.FASTAPI_PREVIEW_DOCS_COMMENT_DEPLOY }}
-          deploy_url: "${{ steps.netlify.outputs.deploy-url }}"
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
+      - name: Comment Deploy
+        run: python ./scripts/deploy_docs_status.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.run_id }}
+          IS_DONE: "true"
