@@ -8,7 +8,7 @@ Ancak bazı durumlarda varsayılan durum kodundan farklı bir durum kodu döndü
 
 Diyelim ki, varsayılan olarak her şeyin yolunda olduğunu belirten `200` HTTP durum kodunu döndürmek istiyorsunuz.
 
-Ancak veri mevcut değilse, oluşturmak ve "Oluşturuldu" anlamına gelen `201` HTTP durum kodunu döndürmek istiyorsunuz.
+Ancak veri mevcut değilse, onu oluşturmak istiyor ve "Oluşturuldu" anlamına gelen `201` HTTP durum kodunu döndürmek istiyorsunuz.
 
 Ancak yine de döndürdüğünüz verileri bir `response_model` ile filtrelemek ve dönüştürmek istiyorsunuz.
 
