@@ -1,9 +1,12 @@
 # Réponses supplémentaires dans OpenAPI
 
-!!! Attention
-    Ceci concerne un sujet plutôt avancé.
+/// warning | Attention
 
-    Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+Ceci concerne un sujet plutôt avancé.
+
+Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+
+///
 
 Vous pouvez déclarer des réponses supplémentaires, avec des codes HTTP, des types de médias, des descriptions, etc.
 
@@ -23,24 +26,28 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
-```Python hl_lines="18 22"
-{!../../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-!!! Remarque
-    Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
+/// note | Remarque
 
-!!! Info
-    La clé `model` ne fait pas partie d'OpenAPI.
+Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
-    **FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+///
 
-    Le bon endroit est :
+/// info
 
-    * Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
-        * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
-            * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
-                * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+La clé `model` ne fait pas partie d'OpenAPI.
+
+**FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+
+Le bon endroit est :
+
+* Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
+    * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
+        * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
+            * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+
+///
 
 Les réponses générées au format OpenAPI pour cette *opération de chemin* seront :
 
@@ -168,17 +175,21 @@ Vous pouvez utiliser ce même paramètre `responses` pour ajouter différents ty
 
 Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *opération de chemin* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
 
-```Python hl_lines="19-24 28"
-{!../../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-!!! Remarque
-    Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
+/// note | Remarque
 
-!!! Info
-    À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
-    Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+///
+
+/// info
+
+À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+
+Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+
+///
 
 ## Combinaison d'informations
 
@@ -192,9 +203,7 @@ Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui util
 
 Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
-```Python hl_lines="20-31"
-{!../../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 
@@ -206,7 +215,7 @@ Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de 
 
 Dans ces cas, vous pouvez utiliser la technique Python "d'affection par décomposition" (appelé _unpacking_ en anglais) d'un `dict` avec `**dict_to_unpack` :
 
-``` Python
+```Python
 old_dict = {
     "old key": "old value",
     "second old key": "second old value",
@@ -216,7 +225,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
 
-``` Python
+```Python
 {
     "old key": "old value",
     "second old key": "second old value",
@@ -228,9 +237,7 @@ Vous pouvez utiliser cette technique pour réutiliser certaines réponses préd�
 
 Par exemple:
 
-```Python hl_lines="13-17 26"
-{!../../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## Plus d'informations sur les réponses OpenAPI
 

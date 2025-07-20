@@ -1,3 +1,9 @@
+# FastAPI
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -5,11 +11,11 @@
     <em>فریم‌ورک FastAPI، کارایی بالا، یادگیری آسان، کدنویسی سریع، آماده برای استفاده در محیط پروداکشن</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/tiangolo/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/tiangolo/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -23,18 +29,18 @@
 
 **مستندات**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**کد منبع**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**کد منبع**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی بالا) برای ایجاد APIهای متنوع (وب، وب‌سوکت و غبره) با زبان پایتون نسخه +۳.۶ است. این فریم‌ورک با رعایت کامل راهنمای نوع داده (Type Hint) ایجاد شده است.
 
 ویژگی‌های کلیدی این فریم‌ورک عبارتند از:
 
-* **<abbr title="Fast">سرعت</abbr>**: کارایی بسیار بالا و قابل مقایسه با  **NodeJS** و **Go** (با تشکر از Starlette و Pydantic). [یکی از سریع‌ترین فریم‌ورک‌های پایتونی موجود](#performance).
+* **<abbr title="Fast">سرعت</abbr>**: کارایی بسیار بالا و قابل مقایسه با  **NodeJS** و **Go** (با تشکر از Starlette و Pydantic). [یکی از سریع‌ترین فریم‌ورک‌های پایتونی موجود](#_10).
 
-* **<abbr title="Fast to code">کدنویسی سریع</abbr>**: افزایش ۲۰۰ تا ۳۰۰ درصدی سرعت توسعه فابلیت‌های جدید. *
+* **<abbr title="Fast to code">کدنویسی سریع</abbr>**: افزایش ۲۰۰ تا ۳۰۰ درصدی سرعت توسعه قابلیت‌های جدید. *
 * **<abbr title="Fewer bugs">باگ کمتر</abbr>**: کاهش ۴۰ درصدی خطاهای انسانی (برنامه‌نویسی). *
-* **<abbr title="Intuitive">غریزی</abbr>**: پشتیبانی فوق‌العاده در محیط‌های توسعه یکپارچه (IDE). <abbr title="یا اتوکامپلیت، اتوکامپلشن، اینتلیسنس">تکمیل</abbr> در همه بخش‌های کد. کاهش زمان رفع باگ.
+* **<abbr title="Intuitive">هوشمندانه</abbr>**: پشتیبانی فوق‌العاده در محیط‌های توسعه یکپارچه (IDE). <abbr title="یا اتوکامپلیت، اتوکامپلشن، اینتلیسنس">تکمیل</abbr> در همه بخش‌های کد. کاهش زمان رفع باگ.
 * **<abbr title="Easy">آسان</abbr>**: طراحی شده برای یادگیری و استفاده آسان. کاهش زمان مورد نیاز برای مراجعه به مستندات.
 * **<abbr title="Short">کوچک</abbr>**: کاهش تکرار در کد. چندین قابلیت برای هر پارامتر (منظور پارامترهای ورودی تابع هندلر می‌باشد، به بخش <a href="https://fastapi.tiangolo.com/#recap">خلاصه</a> در همین صفحه مراجعه شود). باگ کمتر.
 * **<abbr title="Robust">استوار</abbr>**: ایجاد کدی آماده برای استفاده در محیط پروداکشن و تولید خودکار <abbr title="Interactive documentation">مستندات تعاملی</abbr>
@@ -60,7 +66,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <div style="text-align: left; direction: ltr;"><em> [...] I'm using <strong>FastAPI</strong> a ton these days. [...] I'm actually planning to use it for all of my team's <strong>ML services at Microsoft</strong>. Some of them are getting integrated into the core <strong>Windows</strong> product and some <strong>Office</strong> products."</em></div>
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -84,7 +90,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <div style="text-align: left; direction: ltr;">"<em>Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted <strong>Hug</strong> to be - it's really inspiring to see someone build that."</em></div>
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -111,7 +117,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 FastAPI مبتنی بر ابزارهای قدرتمند زیر است:
 
 * فریم‌ورک <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> برای بخش وب.
-* کتابخانه <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
+* کتابخانه <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
 
 ## نصب
 
@@ -125,7 +131,7 @@ $ pip install fastapi
 
 </div>
 
-نصب یک سرور پروداکشن نظیر <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> یا <a href="https://gitlab.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> نیز جزء نیازمندی‌هاست.
+نصب یک سرور پروداکشن نظیر <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> یا <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> نیز جزء نیازمندی‌هاست.
 
 <div class="termy">
 
@@ -140,7 +146,7 @@ $ pip install "uvicorn[standard]"
 ## مثال
 
 ### ایجاد کنید
-* فایلی به نام  `main.py` با محتوای زیر ایجاد کنید :
+* فایلی به نام `main.py` با محتوای زیر ایجاد کنید:
 
 ```Python
 from typing import Union
@@ -163,7 +169,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <details markdown="1">
 <summary>همچنین می‌توانید از <code>async def</code>... نیز استفاده کنید</summary>
 
-اگر در کدتان از `async` / `await` استفاده می‌کنید, از  `async def` برای تعریف تابع خود استفاده کنید:
+اگر در کدتان از `async` / `await` استفاده می‌کنید، از `async def` برای تعریف تابع خود استفاده کنید:
 
 ```Python hl_lines="9  14"
 from typing import Optional
@@ -211,7 +217,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>درباره دستور <code>uvicorn main:app --reload</code>...</summary>
 
-دستور  `uvicorn main:app` شامل موارد زیر است:
+دستور `uvicorn main:app` شامل موارد زیر است:
 
 * `main`: فایل `main.py` (ماژول پایتون ایجاد شده).
 * `app`: شیء ایجاد شده در فایل `main.py` در خط `app = FastAPI()`.
@@ -232,7 +238,7 @@ INFO:     Application startup complete.
 تا اینجا شما APIای ساختید که:
 
 * درخواست‌های HTTP به _مسیرهای_ `/` و `/items/{item_id}` را دریافت می‌کند.
-* هردو  _مسیر_ <abbr title="operations در OpenAPI">عملیات</abbr> (یا HTTP _متد_) `GET` را پشتیبانی می‌کنند.
+* هردو  _مسیر_ <abbr title="operations در OpenAPI">عملیات</abbr> (یا HTTP _متد_) `GET` را پشتیبانی می‌کند.
 * _مسیر_ `/items/{item_id}` شامل  <abbr title="Path Parameter">_پارامتر مسیر_</abbr> `item_id` از نوع `int` است.
 * _مسیر_ `/items/{item_id}` شامل  <abbr title="Query Parameter">_پارامتر پرسمان_</abbr> اختیاری `q` از نوع `str` است.
 
@@ -254,7 +260,7 @@ INFO:     Application startup complete.
 
 ## تغییر مثال
 
-حال فایل  `main.py` را مطابق زیر ویرایش کنید تا بتوانید <abbr title="Body">بدنه</abbr> یک درخواست `PUT` را دریافت کنید.
+حال فایل `main.py` را مطابق زیر ویرایش کنید تا بتوانید <abbr title="Body">بدنه</abbr> یک درخواست `PUT` را دریافت کنید.
 
 به کمک Pydantic بدنه درخواست را با <abbr title="Type">انواع</abbr> استاندارد پایتون تعریف کنید.
 
@@ -298,11 +304,11 @@ def update_item(item_id: int, item: Item):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* روی دکمه "Try it out" کلیک کنید, اکنون می‌توانید پارامترهای مورد نیاز هر API را مشخص کرده و به صورت مستقیم با آنها تعامل کنید:
+* روی دکمه "Try it out" کلیک کنید، اکنون می‌توانید پارامترهای مورد نیاز هر API را مشخص کرده و به صورت مستقیم با آنها تعامل کنید:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* سپس روی دکمه "Execute" کلیک کنید, خواهید دید که واسط کاریری با APIهای تعریف شده ارتباط برقرار کرده، پارامترهای مورد نیاز را به آن‌ها ارسال می‌کند، سپس نتایج را دریافت کرده و در صفحه نشان می‌دهد:
+* سپس روی دکمه "Execute" کلیک کنید، خواهید دید که واسط کاربری با APIهای تعریف شده ارتباط برقرار کرده، پارامترهای مورد نیاز را به آن‌ها ارسال می‌کند، سپس نتایج را دریافت کرده و در صفحه نشان می‌دهد:
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -342,7 +348,7 @@ item: Item
     * تکمیل کد.
     * بررسی انواع داده.
 * اعتبارسنجی داده:
-    * خطاهای خودکار و مشخص در هنگام نامعتبر بودن داده
+    * خطاهای خودکار و مشخص در هنگام نامعتبر بودن داده.
     * اعتبارسنجی، حتی برای اشیاء JSON تو در تو.
 * <abbr title="serialization, parsing, marshalling">تبدیل</abbr> داده ورودی: که از شبکه رسیده به انواع و داد‌ه‌ پایتونی. این داده‌ شامل:
     * JSON.
@@ -366,22 +372,22 @@ item: Item
 
 به مثال قبلی باز می‌گردیم، در این مثال **FastAPI** موارد زیر را انجام می‌دهد:
 
-* اعتبارسنجی اینکه پارامتر `item_id` در مسیر درخواست‌های `GET` و `PUT` موجود است .
+* اعتبارسنجی اینکه پارامتر `item_id` در مسیر درخواست‌های `GET` و `PUT` موجود است.
 * اعتبارسنجی اینکه پارامتر `item_id` در درخواست‌های `GET` و `PUT` از نوع `int` است.
     * اگر غیر از این موارد باشد، سرویس‌گیرنده خطای مفید و مشخصی دریافت خواهد کرد.
 * بررسی وجود پارامتر پرسمان اختیاری `q` (مانند `http://127.0.0.1:8000/items/foo?q=somequery`) در درخواست‌های `GET`.
-    * از آنجا که پارامتر `q` با  `= None` مقداردهی شده است, این پارامتر اختیاری است.
+    * از آنجا که پارامتر `q` با  `= None` مقداردهی شده است، این پارامتر اختیاری است.
     * اگر از مقدار اولیه `None` استفاده نکنیم، این پارامتر الزامی خواهد بود (همانند بدنه درخواست در درخواست `PUT`).
-* برای درخواست‌های `PUT` به آدرس `/items/{item_id}`, بدنه درخواست باید از نوع JSON تعریف شده باشد:
+* برای درخواست‌های `PUT` به آدرس `/items/{item_id}`، بدنه درخواست باید از نوع JSON تعریف شده باشد:
     * بررسی اینکه بدنه شامل فیلدی با نام `name` و از نوع `str` است.
     * بررسی اینکه بدنه شامل فیلدی با نام `price` و از نوع `float` است.
-    * بررسی اینکه بدنه شامل فیلدی اختیاری با نام `is_offer` است, که در صورت وجود باید از نوع `bool` باشد.
+    * بررسی اینکه بدنه شامل فیلدی اختیاری با نام `is_offer` است، که در صورت وجود باید از نوع `bool` باشد.
     * تمامی این موارد برای اشیاء JSON در هر عمقی قابل بررسی می‌باشد.
 * تبدیل از/به JSON به صورت خودکار.
-* مستندسازی همه چیز با استفاده از OpenAPI, که می‌توان از آن برای موارد زیر استفاده کرد:
+* مستندسازی همه چیز با استفاده از OpenAPI، که می‌توان از آن برای موارد زیر استفاده کرد:
     * سیستم مستندات تعاملی.
     * تولید خودکار کد سرویس‌گیرنده‌ در زبان‌های برنامه‌نویسی بیشمار.
-* فراهم سازی ۲ مستند تعاملی مبتنی بر وب به صورت پیش‌فرض .
+* فراهم سازی ۲ مستند تعاملی مبتنی بر وب به صورت پیش‌فرض.
 
 ---
 
@@ -413,7 +419,7 @@ item: Item
 
 **هشدار اسپویل**: بخش آموزش - راهنمای کاربر شامل موارد زیر است:
 
-* اعلان **پارامترهای** موجود در بخش‌های دیگر درخواست، شامل: **سرآیند‌ (هدر)ها**, **کوکی‌ها**, **فیلد‌های فرم** و **فایل‌ها**.
+* اعلان **پارامترهای** موجود در بخش‌های دیگر درخواست، شامل: **سرآیند‌ (هدر)ها**، **کوکی‌ها**، **فیلد‌های فرم** و **فایل‌ها**.
 * چگونگی تنظیم **<abbr title="Validation Constraints">محدودیت‌های اعتبارسنجی</abbr>** به عنوان مثال `maximum_length` یا `regex`.
 * سیستم **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** قوی و کاربردی.
 * امنیت و تایید هویت, شامل پشتیبانی از **OAuth2** مبتنی بر **JWT tokens** و **HTTP Basic**.
@@ -428,7 +434,7 @@ item: Item
 
 ## کارایی
 
-معیار (بنچمارک‌)های مستقل TechEmpower حاکی از آن است که برنامه‌های **FastAPI** که تحت Uvicorn اجرا می‌شود، <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">یکی از سریع‌ترین فریم‌ورک‌های مبتنی بر پایتون</a>, است که کمی ضعیف‌تر از Starlette و Uvicorn عمل می‌کند (فریم‌ورک و سروری که FastAPI بر اساس آنها ایجاد شده است) (*)
+معیار (بنچمارک‌)های مستقل TechEmpower حاکی از آن است که برنامه‌های **FastAPI** که تحت Uvicorn اجرا می‌شود، <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">یکی از سریع‌ترین فریم‌ورک‌های مبتنی بر پایتون</a>، است که کمی ضعیف‌تر از Starlette و Uvicorn عمل می‌کند (فریم‌ورک و سروری که FastAPI بر اساس آنها ایجاد شده است) (*)
 
 برای درک بهتری از این موضوع به بخش <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">بنچ‌مارک‌ها</a> مراجعه کنید.
 
@@ -436,24 +442,23 @@ item: Item
 
 استفاده شده توسط Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - برای <abbr title="تبدیل داده‌های موجود در درخواست‌های HTTP به داده پایتونی">"تجزیه (parse)"</abbr> سریع‌تر JSON .
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - برای اعتبارسنجی آدرس‌های ایمیل.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - برای اعتبارسنجی آدرس‌های ایمیل.
 
 استفاده شده توسط Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>HTTPX</code></a> - در صورتی که می‌خواهید از `TestClient` استفاده کنید.
 * <a href="https://github.com/Tinche/aiofiles" target="_blank"><code>aiofiles</code></a> - در صورتی که می‌خواهید از `FileResponse` و `StaticFiles` استفاده کنید.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - در صورتی که بخواهید از پیکربندی پیش‌فرض برای قالب‌ها استفاده کنید.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - در صورتی که بخواهید با استفاده از `request.form()` از قابلیت <abbr title="تبدیل رشته متنی موجود در درخواست HTTP به انواع داده پایتون">"تجزیه (parse)"</abbr> فرم استفاده کنید.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - در صورتی که بخواهید با استفاده از `request.form()` از قابلیت <abbr title="تبدیل رشته متنی موجود در درخواست HTTP به انواع داده پایتون">"تجزیه (parse)"</abbr> فرم استفاده کنید.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - در صورتی که بخواید از `SessionMiddleware` پشتیبانی کنید.
-* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - برای پشتیبانی `SchemaGenerator` در Starlet (به احتمال زیاد برای کار کردن با FastAPI به آن نیازی پیدا نمی‌کنید.).
+* <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - برای پشتیبانی `SchemaGenerator` در Starlet (به احتمال زیاد برای کار کردن با FastAPI به آن نیازی پیدا نمی‌کنید).
 * <a href="https://graphene-python.org/" target="_blank"><code>graphene</code></a> - در صورتی که از  `GraphQLApp` پشتیبانی می‌کنید.
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 استفاده شده توسط FastAPI / Starlette:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - برای سرور اجرا کننده برنامه وب.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - در صورتی که بخواهید از `ORJSONResponse` استفاده کنید.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 
 می‌توان همه این موارد را با استفاده از دستور `pip install fastapi[all]`. به صورت یکجا نصب کرد.
 
