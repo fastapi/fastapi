@@ -14,7 +14,7 @@ Eğer bir `response_model` belirlediyseniz, döndürdüğünüz nesneyi filtrele
 
 **FastAPI** bu *geçici* yanıtı çerezleri (ayrıca durum kodunu ve başlıkları) çıkarmak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
 
-Bağımlılıklarda da `Response` parametresini belirtebilir ve çezerlezi belirleyebilirsiniz.
+Bağımlılıklarda da `Response` parametresini belirtebilir ve çerezleri belirleyebilirsiniz.
 
 ## Bir `Response`'u Doğrudan Döndürün
 
