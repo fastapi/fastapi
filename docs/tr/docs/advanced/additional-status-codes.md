@@ -22,7 +22,7 @@ Yukarıdaki örnekte olduğu gibi bir `Response` döndürdüğünüzde, doğruda
 
 Bu yanıt herhangi bir modelle dönüştürülme işlemine tabi tutulmayacaktır.
 
-Yanıtın, istediğiniz veriye sahip olduğundan ve (eğer `JSONResponse` kullanıyorsanız) değerlerin geçerli JSON olduğundan emin olun.
+Yanıtın, istediğiniz veriye sahip olduğundan ve (eğer `JSONResponse` kullanıyorsanız) değerlerin geçerli bir JSON formatında olduğundan emin olun.
 
 ///
 
