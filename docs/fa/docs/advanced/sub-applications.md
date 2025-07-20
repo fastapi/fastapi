@@ -12,9 +12,7 @@
 ابتدا برنامه اصلی سطح بالا، **FastAPI** و path operations آن را ایجاد کنید:
 
 
-```Python hl_lines="3  6-8"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
 
 ### زیر برنامه
 
@@ -22,17 +20,13 @@
 
 این زیر برنامه فقط یکی دیگر از برنامه های استاندارد FastAPI است، اما این برنامه ای است که متصل می شود:
 
-```Python hl_lines="11  14-16"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
 
 ### اتصال زیر برنامه
 
 در برنامه سطح بالا `app` اتصال زیر برنامه `subapi` در این نمونه `/subapi` در مسیر قرار میدهد و میشود:
 
-```Python hl_lines="11  19"
-{!../../../docs_src/sub_applications/tutorial001.py!}
-```
+{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
 
 ### اسناد API خودکار را بررسی کنید
 
@@ -69,4 +63,4 @@ $ uvicorn main:app --reload
 
 و زیر برنامه ها نیز می تواند زیر برنامه های متصل شده خود را داشته باشد و همه چیز به درستی کار کند، زیرا FastAPI تمام این مسیرهای `root_path` را به طور خودکار مدیریت می کند.
 
-در بخش [پشت پراکسی](./behind-a-proxy.md){.internal-link target=_blank}. درباره `root_path` و نحوه استفاده درست از آن بیشتر خواهید آموخت.
+در بخش [پشت پراکسی](behind-a-proxy.md){.internal-link target=_blank}. درباره `root_path` و نحوه استفاده درست از آن بیشتر خواهید آموخت.
