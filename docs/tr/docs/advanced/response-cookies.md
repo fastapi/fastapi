@@ -12,7 +12,7 @@ Sonunda normalde döndürdüğünüz gibi herhangi bir nesneyi döndürebilirsin
 
 Eğer bir `response_model` belirlediyseniz, döndürdüğünüz nesneyi filtrelemek ve dönüştürmek için kullanılacaktır.
 
-**FastAPI** bu *geçici* yanıtı çerezleri (ayrıca durum kodunu ve başlıkları) çıkarmak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
+**FastAPI** bu *geçici* yanıtı çerezleri (ayrıca durum kodunu ve başlıkları) almak için kullanacak ve döndürdüğünüz değeri herhangi bir `response_model` tarafından filtreleyerek son yanıta koyacaktır.
 
 Bağımlılıklarda da `Response` parametresini belirtebilir ve çerezleri belirleyebilirsiniz.
 
