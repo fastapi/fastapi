@@ -16,7 +16,7 @@ Bu durumlar için bir `Response` parametresi kullanabilirsiniz.
 
 ## Bir `Response` Parametresi Kullanın
 
-*yol operasyonu fonksiyonunuzda* `Response` türünde bir parametre belirleyebilirsiniz (çerezler ve headers için yapabileceğiniz gibi).
+*yol operasyonu fonksiyonunuzda* `Response` türünde bir parametre belirleyebilirsiniz (çerezler ve başlıklar için yapabileceğiniz gibi).
 
 Ardından *geçici* yanıt nesnesinde `status_code` belirtebilirsiniz.
 
