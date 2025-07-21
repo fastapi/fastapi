@@ -97,7 +97,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
 const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
   function VisibilityTrigger(props, ref) {
     const { t } = useTranslation()
-    
+
     return (
       <IconButton
         tabIndex={-1}
@@ -155,7 +155,7 @@ export const PasswordStrengthMeter = forwardRef<
 
 function getColorPalette(percent: number) {
   const { t } = useTranslation()
-  
+
   switch (true) {
     case percent < 33:
       return { label: t("auth.passwordStrengthLow"), colorPalette: "red" }

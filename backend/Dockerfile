@@ -42,4 +42,3 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # CMD ["fastapi", "run", "--workers", "1", "app/main.py"]
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--proxy-headers", "--forwarded-allow-ips", "*"]
-

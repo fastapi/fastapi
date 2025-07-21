@@ -5,7 +5,7 @@ import DeleteConfirmation from "./DeleteConfirmation"
 
 const DeleteAccount = () => {
   const { t } = useTranslation()
-  
+
   return (
     <Container maxW="full">
       <Heading size="sm" py={4}>

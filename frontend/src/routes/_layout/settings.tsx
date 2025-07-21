@@ -11,14 +11,14 @@ import useAuth from "@/hooks/useAuth"
 function UserSettings() {
   const { user: currentUser } = useAuth()
   const { t } = useTranslation()
-  
+
   const tabsConfig = [
     { value: "my-profile", title: t("user.profile"), component: UserInformation },
     { value: "password", title: t("user.changePassword"), component: ChangePassword },
     { value: "appearance", title: t("user.appearance"), component: Appearance },
     { value: "danger-zone", title: t("user.deleteAccount"), component: DeleteAccount },
   ]
-  
+
   const finalTabs = currentUser?.is_superuser
     ? tabsConfig.slice(0, 3)
     : tabsConfig

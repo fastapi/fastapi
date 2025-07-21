@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 # Update the .env file with the answers from the .copier-answers.yml file
 # without using Jinja2 templates in the .env file, this way the code works as is

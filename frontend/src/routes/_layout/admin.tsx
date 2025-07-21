@@ -117,7 +117,7 @@ function UsersTable() {
 
 function Admin() {
   const { t } = useTranslation()
-  
+
   return (
     <Container maxW="full">
       <Heading size="lg" pt={12}>

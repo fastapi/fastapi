@@ -4,7 +4,7 @@ import { SkeletonText } from "../ui/skeleton"
 
 const PendingItems = () => {
   const { t } = useTranslation()
-  
+
   return (
     <Table.Root size={{ base: "sm", md: "md" }}>
       <Table.Header>

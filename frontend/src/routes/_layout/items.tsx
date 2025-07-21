@@ -135,7 +135,7 @@ function ItemsTable() {
 
 function Items() {
   const { t } = useTranslation()
-  
+
   return (
     <Container maxW="full">
       <Heading size="lg" pt={12}>

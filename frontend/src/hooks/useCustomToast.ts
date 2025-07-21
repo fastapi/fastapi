@@ -5,7 +5,7 @@ import { toaster } from "@/components/ui/toaster"
 
 const useCustomToast = () => {
   const { t } = useTranslation()
-  
+
   const showSuccessToast = (description: string) => {
     toaster.create({
       title: t("common.success"),
