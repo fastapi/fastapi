@@ -16,6 +16,7 @@ import {
   useControllableState,
 } from "@chakra-ui/react"
 import { forwardRef, useRef } from "react"
+import { useTranslation } from "react-i18next"
 import { FiEye, FiEyeOff } from "react-icons/fi"
 import { Field } from "./field"
 import { InputGroup } from "./input-group"
@@ -95,6 +96,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
 
 const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
   function VisibilityTrigger(props, ref) {
+    const { t } = useTranslation()
+    
     return (
       <IconButton
         tabIndex={-1}
@@ -104,7 +107,7 @@ const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
         size="sm"
         variant="ghost"
         height="calc(100% - {spacing.2})"
-        aria-label="Toggle password visibility"
+        aria-label={t("auth.togglePasswordVisibility")}
         color="inherit"
         {...props}
       />
@@ -151,12 +154,14 @@ export const PasswordStrengthMeter = forwardRef<
 })
 
 function getColorPalette(percent: number) {
+  const { t } = useTranslation()
+  
   switch (true) {
     case percent < 33:
-      return { label: "Low", colorPalette: "red" }
+      return { label: t("auth.passwordStrengthLow"), colorPalette: "red" }
     case percent < 66:
-      return { label: "Medium", colorPalette: "orange" }
+      return { label: t("auth.passwordStrengthMedium"), colorPalette: "orange" }
     default:
-      return { label: "High", colorPalette: "green" }
+      return { label: t("auth.passwordStrengthHigh"), colorPalette: "green" }
   }
 }

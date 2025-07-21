@@ -10,6 +10,7 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 
 import {
   type ApiError,
@@ -23,6 +24,7 @@ import { emailPattern, handleError } from "@/utils"
 import { Field } from "../ui/field"
 
 const UserInformation = () => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
   const { showSuccessToast } = useCustomToast()
   const [editMode, setEditMode] = useState(false)
@@ -50,7 +52,7 @@ const UserInformation = () => {
     mutationFn: (data: UserUpdateMe) =>
       UsersService.updateUserMe({ requestBody: data }),
     onSuccess: () => {
-      showSuccessToast("User updated successfully.")
+      showSuccessToast(t("messages.success.userUpdated"))
     },
     onError: (err: ApiError) => {
       handleError(err)
@@ -73,14 +75,14 @@ const UserInformation = () => {
     <>
       <Container maxW="full">
         <Heading size="sm" py={4}>
-          User Information
+          {t("user.userInformation")}
         </Heading>
         <Box
           w={{ sm: "full", md: "sm" }}
           as="form"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Field label="Full name">
+          <Field label={t("user.fullName")}>
             {editMode ? (
               <Input
                 {...register("full_name", { maxLength: 30 })}
@@ -101,14 +103,14 @@ const UserInformation = () => {
           </Field>
           <Field
             mt={4}
-            label="Email"
+            label={t("user.email")}
             invalid={!!errors.email}
             errorText={errors.email?.message}
           >
             {editMode ? (
               <Input
                 {...register("email", {
-                  required: "Email is required",
+                  required: t("forms.emailRequired"),
                   pattern: emailPattern,
                 })}
                 type="email"
@@ -128,7 +130,7 @@ const UserInformation = () => {
               loading={editMode ? isSubmitting : false}
               disabled={editMode ? !isDirty || !getValues("email") : false}
             >
-              {editMode ? "Save" : "Edit"}
+              {editMode ? t("common.save") : t("common.edit")}
             </Button>
             {editMode && (
               <Button
@@ -137,7 +139,7 @@ const UserInformation = () => {
                 onClick={onCancel}
                 disabled={isSubmitting}
               >
-                Cancel
+                {t("common.cancel")}
               </Button>
             )}
           </Flex>

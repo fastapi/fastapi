@@ -5,6 +5,7 @@ import {
   redirect,
 } from "@tanstack/react-router"
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { FiLock, FiMail } from "react-icons/fi"
 
 import type { Body_login_login_access_token as AccessToken } from "@/client"
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/login")({
 
 function Login() {
   const { loginMutation, error, resetError } = useAuth()
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -68,7 +70,7 @@ function Login() {
       >
         <Image
           src={Logo}
-          alt="FastAPI logo"
+          alt={t("common.logo")}
           height="auto"
           maxW="2xs"
           alignSelf="center"
@@ -82,10 +84,10 @@ function Login() {
             <Input
               id="username"
               {...register("username", {
-                required: "Username is required",
+                required: t("forms.usernameRequired"),
                 pattern: emailPattern,
               })}
-              placeholder="Email"
+              placeholder={t("user.email")}
               type="email"
             />
           </InputGroup>
@@ -93,20 +95,20 @@ function Login() {
         <PasswordInput
           type="password"
           startElement={<FiLock />}
-          {...register("password", passwordRules())}
-          placeholder="Password"
+          {...register("password", passwordRules(t))}
+          placeholder={t("auth.password")}
           errors={errors}
         />
         <RouterLink to="/recover-password" className="main-link">
-          Forgot Password?
+          {t("auth.forgotPassword")}
         </RouterLink>
         <Button variant="solid" type="submit" loading={isSubmitting} size="md">
-          Log In
+          {t("auth.logIn")}
         </Button>
         <Text>
-          Don't have an account?{" "}
+          {t("auth.noAccount")}{" "}
           <RouterLink to="/signup" className="main-link">
-            Sign Up
+            {t("auth.signUp")}
           </RouterLink>
         </Text>
       </Container>

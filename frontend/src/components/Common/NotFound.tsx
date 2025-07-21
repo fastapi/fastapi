@@ -1,7 +1,10 @@
 import { Button, Center, Flex, Text } from "@chakra-ui/react"
 import { Link } from "@tanstack/react-router"
+import { useTranslation } from "react-i18next"
 
 const NotFound = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       <Flex
@@ -20,10 +23,10 @@ const NotFound = () => {
               lineHeight="1"
               mb={4}
             >
-              404
+              {t('notFound.title')}
             </Text>
             <Text fontSize="2xl" fontWeight="bold" mb={2}>
-              Oops!
+              {t('notFound.subtitle')}
             </Text>
           </Flex>
         </Flex>
@@ -35,7 +38,7 @@ const NotFound = () => {
           textAlign="center"
           zIndex={1}
         >
-          The page you are looking for was not found.
+          {t('notFound.description')}
         </Text>
         <Center zIndex={1}>
           <Link to="/">
@@ -45,7 +48,7 @@ const NotFound = () => {
               mt={4}
               alignSelf="center"
             >
-              Go Back
+              {t('notFound.goHome')}
             </Button>
           </Link>
         </Center>

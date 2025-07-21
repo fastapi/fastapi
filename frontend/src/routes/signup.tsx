@@ -5,6 +5,7 @@ import {
   redirect,
 } from "@tanstack/react-router"
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { FiLock, FiUser } from "react-icons/fi"
 
 import type { UserRegister } from "@/client"
@@ -33,6 +34,7 @@ interface UserRegisterForm extends UserRegister {
 
 function SignUp() {
   const { signUpMutation } = useAuth()
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -68,7 +70,7 @@ function SignUp() {
         >
           <Image
             src={Logo}
-            alt="FastAPI logo"
+            alt={t("common.logo")}
             height="auto"
             maxW="2xs"
             alignSelf="center"
@@ -83,9 +85,9 @@ function SignUp() {
                 id="full_name"
                 minLength={3}
                 {...register("full_name", {
-                  required: "Full Name is required",
+                  required: t("forms.fullNameRequired"),
                 })}
-                placeholder="Full Name"
+                placeholder={t("user.fullName")}
                 type="text"
               />
             </InputGroup>
@@ -96,10 +98,10 @@ function SignUp() {
               <Input
                 id="email"
                 {...register("email", {
-                  required: "Email is required",
+                  required: t("forms.emailRequired"),
                   pattern: emailPattern,
                 })}
-                placeholder="Email"
+                placeholder={t("user.email")}
                 type="email"
               />
             </InputGroup>
@@ -107,24 +109,24 @@ function SignUp() {
           <PasswordInput
             type="password"
             startElement={<FiLock />}
-            {...register("password", passwordRules())}
-            placeholder="Password"
+            {...register("password", passwordRules(t))}
+            placeholder={t("auth.password")}
             errors={errors}
           />
           <PasswordInput
             type="confirm_password"
             startElement={<FiLock />}
-            {...register("confirm_password", confirmPasswordRules(getValues))}
-            placeholder="Confirm Password"
+            {...register("confirm_password", confirmPasswordRules(getValues, t))}
+            placeholder={t("auth.confirmPassword")}
             errors={errors}
           />
           <Button variant="solid" type="submit" loading={isSubmitting}>
-            Sign Up
+            {t("auth.signUp")}
           </Button>
           <Text>
-            Already have an account?{" "}
+            {t("auth.haveAccount")}{" "}
             <RouterLink to="/login" className="main-link">
-              Log In
+              {t("auth.logIn")}
             </RouterLink>
           </Text>
         </Container>

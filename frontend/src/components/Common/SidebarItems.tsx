@@ -1,16 +1,11 @@
 import { Box, Flex, Icon, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { Link as RouterLink } from "@tanstack/react-router"
+import { useTranslation } from "react-i18next"
 import { FiBriefcase, FiHome, FiSettings, FiUsers } from "react-icons/fi"
 import type { IconType } from "react-icons/lib"
 
 import type { UserPublic } from "@/client"
-
-const items = [
-  { icon: FiHome, title: "Dashboard", path: "/" },
-  { icon: FiBriefcase, title: "Items", path: "/items" },
-  { icon: FiSettings, title: "User Settings", path: "/settings" },
-]
 
 interface SidebarItemsProps {
   onClose?: () => void
@@ -18,20 +13,27 @@ interface SidebarItemsProps {
 
 interface Item {
   icon: IconType
-  title: string
+  titleKey: string
   path: string
 }
 
 const SidebarItems = ({ onClose }: SidebarItemsProps) => {
   const queryClient = useQueryClient()
   const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
+  const { t } = useTranslation()
+
+  const items: Item[] = [
+    { icon: FiHome, titleKey: "navigation.dashboard", path: "/" },
+    { icon: FiBriefcase, titleKey: "navigation.items", path: "/items" },
+    { icon: FiSettings, titleKey: "navigation.userSettings", path: "/settings" },
+  ]
 
   const finalItems: Item[] = currentUser?.is_superuser
-    ? [...items, { icon: FiUsers, title: "Admin", path: "/admin" }]
+    ? [...items, { icon: FiUsers, titleKey: "navigation.admin", path: "/admin" }]
     : items
 
-  const listItems = finalItems.map(({ icon, title, path }) => (
-    <RouterLink key={title} to={path} onClick={onClose}>
+  const listItems = finalItems.map(({ icon, titleKey, path }) => (
+    <RouterLink key={titleKey} to={path} onClick={onClose}>
       <Flex
         gap={4}
         px={4}
@@ -43,7 +45,7 @@ const SidebarItems = ({ onClose }: SidebarItemsProps) => {
         fontSize="sm"
       >
         <Icon as={icon} alignSelf="center" />
-        <Text ml={2}>{title}</Text>
+        <Text ml={2}>{t(titleKey)}</Text>
       </Flex>
     </RouterLink>
   ))
@@ -51,7 +53,7 @@ const SidebarItems = ({ onClose }: SidebarItemsProps) => {
   return (
     <>
       <Text fontSize="xs" px={4} py={2} fontWeight="bold">
-        Menu
+        {t('navigation.menu')}
       </Text>
       <Box>{listItems}</Box>
     </>

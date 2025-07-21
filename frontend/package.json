@@ -18,11 +18,14 @@
     "@tanstack/react-router": "1.19.1",
     "axios": "1.9.0",
     "form-data": "4.0.2",
+    "i18next": "^25.3.2",
+    "i18next-browser-languagedetector": "^8.2.0",
     "next-themes": "^0.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^5.0.0",
     "react-hook-form": "7.49.3",
+    "react-i18next": "^15.6.0",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {

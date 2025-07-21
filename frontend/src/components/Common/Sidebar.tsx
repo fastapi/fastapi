@@ -1,6 +1,7 @@
 import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { FaBars } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi"
 
@@ -20,6 +21,7 @@ const Sidebar = () => {
   const queryClient = useQueryClient()
   const currentUser = queryClient.getQueryData<UserPublic>(["currentUser"])
   const { logout } = useAuth()
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
   return (
@@ -36,7 +38,7 @@ const Sidebar = () => {
             variant="ghost"
             color="inherit"
             display={{ base: "flex", md: "none" }}
-            aria-label="Open Menu"
+            aria-label={t('navigation.menu')}
             position="absolute"
             zIndex="100"
             m={4}
@@ -61,12 +63,12 @@ const Sidebar = () => {
                   py={2}
                 >
                   <FiLogOut />
-                  <Text>Log Out</Text>
+                  <Text>{t('navigation.logout')}</Text>
                 </Flex>
               </Box>
               {currentUser?.email && (
                 <Text fontSize="sm" p={2} truncate maxW="sm">
-                  Logged in as: {currentUser.email}
+                  {t('auth.email')}: {currentUser.email}
                 </Text>
               )}
             </Flex>

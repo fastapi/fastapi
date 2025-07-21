@@ -2,6 +2,7 @@ import { Container, Heading, Input, Text } from "@chakra-ui/react"
 import { useMutation } from "@tanstack/react-query"
 import { createFileRoute, redirect } from "@tanstack/react-router"
 import { type SubmitHandler, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
 import { FiMail } from "react-icons/fi"
 
 import { type ApiError, LoginService } from "@/client"
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/recover-password")({
 })
 
 function RecoverPassword() {
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -45,7 +47,7 @@ function RecoverPassword() {
   const mutation = useMutation({
     mutationFn: recoverPassword,
     onSuccess: () => {
-      showSuccessToast("Password recovery email sent successfully.")
+      showSuccessToast(t("auth.passwordRecoveryEmailSent"))
       reset()
     },
     onError: (err: ApiError) => {
@@ -69,26 +71,26 @@ function RecoverPassword() {
       centerContent
     >
       <Heading size="xl" color="ui.main" textAlign="center" mb={2}>
-        Password Recovery
+        {t("auth.passwordRecovery")}
       </Heading>
       <Text textAlign="center">
-        A password recovery email will be sent to the registered account.
+        {t("auth.passwordRecoveryDescription")}
       </Text>
       <Field invalid={!!errors.email} errorText={errors.email?.message}>
         <InputGroup w="100%" startElement={<FiMail />}>
           <Input
             id="email"
             {...register("email", {
-              required: "Email is required",
+              required: t("forms.emailRequired"),
               pattern: emailPattern,
             })}
-            placeholder="Email"
+            placeholder={t("user.email")}
             type="email"
           />
         </InputGroup>
       </Field>
       <Button variant="solid" type="submit" loading={isSubmitting}>
-        Continue
+        {t("common.continue")}
       </Button>
     </Container>
   )
