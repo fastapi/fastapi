@@ -16,7 +16,7 @@ class Item(BaseModel):
     "/items/",
     openapi_extra={
         "requestBody": {
-            "content": {"application/x-yaml": {"schema": Item.schema()}},
+            "content": {"application/x-yaml": {"schema": Item.model_json_schema()}},
             "required": True,
         },
     },
@@ -28,7 +28,7 @@ async def create_item(request: Request):
     except yaml.YAMLError:
         raise HTTPException(status_code=422, detail="Invalid YAML")
     try:
-        item = Item.parse_obj(data)
+        item = Item.model_validate(data)
     except ValidationError as e:
-        raise HTTPException(status_code=422, detail=e.errors())
+        raise HTTPException(status_code=422, detail=e.errors(include_url=False))
     return item

@@ -26,29 +26,27 @@ JWT 字符串没有加密，任何人都能用它恢复原始信息。
 
 如需深入了解 JWT 令牌，了解它的工作方式，请参阅 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
 
-## 安装 `python-jose`
+## 安装 `PyJWT`
 
-安装 `python-jose`，在 Python 中生成和校验 JWT 令牌：
+安装 `PyJWT`，在 Python 中生成和校验 JWT 令牌：
 
 <div class="termy">
 
 ```console
-$ pip install python-jose[cryptography]
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a> 需要安装配套的加密后端。
+/// info | 说明
 
-本教程推荐的后端是：<a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>。
+如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
 
-!!! tip "提示"
+您可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 获得更多信息。
 
-    本教程以前使用 <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>。
-
-    但后来换成了 Python-jose，因为 Python-jose 支持 PyJWT 的所有功能，还支持与其它工具集成时可能会用到的一些其它功能。
+///
 
 ## 密码哈希
 
@@ -62,7 +60,7 @@ $ pip install python-jose[cryptography]
 
 原因很简单，假如数据库被盗，窃贼无法获取用户的明文密码，得到的只是哈希值。
 
-这样一来，窃贼就无法在其它应用中使用窃取的密码，要知道，很多用户在所有系统中都使用相同的密码，风险超大）。
+这样一来，窃贼就无法在其它应用中使用窃取的密码（要知道，很多用户在所有系统中都使用相同的密码，风险超大）。
 
 ## 安装 `passlib`
 
@@ -84,13 +82,15 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-!!! tip "提示"
+/// tip | 提示
 
-    `passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
+`passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
 
-    例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
+例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
 
-    并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
+并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
+
+///
 
 ## 密码哈希与校验
 
@@ -98,13 +98,15 @@ $ pip install passlib[bcrypt]
 
 创建用于密码哈希和身份校验的 PassLib **上下文**。
 
-!!! tip "提示"
+/// tip | 提示
 
-    PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
+PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
 
-    例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
+例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
 
-    同时，这些功能都是兼容的。
+同时，这些功能都是兼容的。
+
+///
 
 接下来，创建三个工具函数，其中一个函数用于哈希用户的密码。
 
@@ -112,13 +114,13 @@ $ pip install passlib[bcrypt]
 
 第三个函数用于身份验证，并返回用户。
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
 
-!!! note "笔记"
+/// note | 笔记
 
-    查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
+查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
+
+///
 
 ## 处理 JWT 令牌
 
@@ -148,9 +150,7 @@ $ openssl rand -hex 32
 
 创建生成新的访问令牌的工具函数。
 
-```Python hl_lines="6  12-14  28-30  78-86"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[6,12:14,28:30,78:86] *}
 
 ## 更新依赖项
 
@@ -160,9 +160,7 @@ $ openssl rand -hex 32
 
 如果令牌无效，则直接返回 HTTP 错误。
 
-```Python hl_lines="89-106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
 
 ## 更新 `/token` *路径操作*
 
@@ -170,9 +168,7 @@ $ openssl rand -hex 32
 
 创建并返回真正的 JWT 访问令牌。
 
-```Python hl_lines="115-128"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
 ### JWT `sub` 的技术细节
 
@@ -210,9 +206,11 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 用户名: `johndoe` 密码: `secret`
 
-!!! check "检查"
+/// check | 检查
 
-    注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
+注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
+
+///
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image08.png">
 
@@ -233,9 +231,11 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image10.png">
 
-!!! note "笔记"
+/// note | 笔记
 
-    注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
+注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
+
+///
 
 ## `scopes` 高级用法
 
@@ -261,7 +261,7 @@ OAuth2 支持**`scopes`**（作用域）。
 
 开发者可以灵活选择最适合项目的安全机制。
 
-还可以直接使用 `passlib` 和 `python-jose` 等维护良好、使用广泛的包，这是因为 **FastAPI** 不需要任何复杂机制，就能集成外部的包。
+还可以直接使用 `passlib` 和 `PyJWT` 等维护良好、使用广泛的包，这是因为 **FastAPI** 不需要任何复杂机制，就能集成外部的包。
 
 而且，**FastAPI** 还提供了一些工具，在不影响灵活、稳定和安全的前提下，尽可能地简化安全机制。
 
