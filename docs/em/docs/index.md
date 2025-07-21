@@ -1,3 +1,9 @@
+# FastAPI
+
+<style>
+.md-content .md-typeset h1 { display: none; }
+</style>
+
 <p align="center">
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
@@ -5,11 +11,11 @@
     <em>FastAPI 🛠️, ↕ 🎭, ⏩ 💡, ⏩ 📟, 🔜 🏭</em>
 </p>
 <p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/tiangolo/fastapi.svg" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -23,15 +29,15 @@
 
 **🧾**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
-**ℹ 📟**: <a href="https://github.com/tiangolo/fastapi" target="_blank">https://github.com/tiangolo/fastapi</a>
+**ℹ 📟**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
 ---
 
-FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️⃣ ➕ ⚓️ 🔛 🐩 🐍 🆎 🔑.
+FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️⃣ ➕ ⚓️ 🔛 🐩 🐍 🆎 🔑.
 
 🔑 ⚒:
 
-* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#performance).
+* **⏩**: 📶 ↕ 🎭, 🔛 🇷🇪 ⏮️ **✳** &amp; **🚶** (👏 💃 &amp; Pydantic). [1️⃣ ⏩ 🐍 🛠️ 💪](#_15).
 * **⏩ 📟**: 📈 🚅 🛠️ ⚒ 🔃 2️⃣0️⃣0️⃣ 💯 3️⃣0️⃣0️⃣ 💯. *
 * **👩‍❤‍👨 🐛**: 📉 🔃 4️⃣0️⃣ 💯 🗿 (👩‍💻) 📉 ❌. *
 * **🏋️**: 👑 👨‍🎨 🐕‍🦺. <abbr title="also known as auto-complete, autocompletion, IntelliSense">🛠️</abbr> 🌐. 🌘 🕰 🛠️.
@@ -63,7 +69,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️
 
 "_[...] 👤 ⚙️ **FastAPI** 📚 👫 📆. [...] 👤 🤙 📆 ⚙️ ⚫️ 🌐 👇 🏉 **⚗ 🐕‍🦺 🤸‍♂**. 👫 💆‍♂ 🛠️ 🔘 🐚 **🖥** 🏬 &amp; **📠** 🏬._"
 
-<div style="text-align: right; margin-right: 10%;">🧿 🇵🇰 - <strong>🤸‍♂</strong> <a href="https://github.com/tiangolo/fastapi/pull/26" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">🧿 🇵🇰 - <strong>🤸‍♂</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -87,7 +93,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️
 
 "_🤙, ⚫️❔ 👆 ✔️ 🏗 👀 💎 💠 &amp; 🇵🇱. 📚 🌌, ⚫️ ⚫️❔ 👤 💚 **🤗** - ⚫️ 🤙 😍 👀 👱 🏗 👈._"
 
-<div style="text-align: right; margin-right: 10%;">✡ 🗄 - <strong><a href="https://www.hug.rest/" target="_blank">🤗</a> 👼</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">✡ 🗄 - <strong><a href="https://github.com/hugapi/hug" target="_blank">🤗</a> 👼</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -120,14 +126,14 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.7️
 FastAPI 🧍 🔛 ⌚ 🐘:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🕸 🍕.
-* <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
 
 ## 👷‍♂
 
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
@@ -445,22 +451,21 @@ item: Item
 
 ⚙️ Pydantic:
 
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ⏩ 🎻 <abbr title="converting the string that comes from an HTTP request into Python data">"🎻"</abbr>.
-* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email_validator</code></a> - 📧 🔬.
+* <a href="https://github.com/JoshData/python-email-validator" target="_blank"><code>email-validator</code></a> - 📧 🔬.
 
 ⚙️ 💃:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - ✔ 🚥 👆 💚 ⚙️ `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - ✔ 🚥 👆 💚 ⚙️ 🔢 📄 📳.
-* <a href="https://andrew-d.github.io/python-multipart/" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - ✔ 🚥 👆 💚 🐕‍🦺 📨 <abbr title="converting the string that comes from an HTTP request into Python data">"✍"</abbr>, ⏮️ `request.form()`.
 * <a href="https://pythonhosted.org/itsdangerous/" target="_blank"><code>itsdangerous</code></a> - ✔ `SessionMiddleware` 🐕‍🦺.
 * <a href="https://pyyaml.org/wiki/PyYAMLDocumentation" target="_blank"><code>pyyaml</code></a> - ✔ 💃 `SchemaGenerator` 🐕‍🦺 (👆 🎲 🚫 💪 ⚫️ ⏮️ FastAPI).
-* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 ⚙️ FastAPI / 💃:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
+* <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 
 👆 💪 ❎ 🌐 👫 ⏮️ `pip install "fastapi[all]"`.
 
