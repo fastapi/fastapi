@@ -2,14 +2,23 @@ docs:
   - all:
     - changed-files:
       - any-glob-to-any-file:
-        - '**/*.md'
+        - docs/en/docs/**
+        - docs_src/**
       - all-globs-to-all-files:
-        - '!frontend/**'
-        - '!backend/**'
-        - '!.github/**'
-        - '!scripts/**'
-        - '!.gitignore'
-        - '!.pre-commit-config.yaml'
+        - '!fastapi/**'
+        - '!pyproject.toml'
+        - '!docs/en/data/sponsors.yml'
+        - '!docs/en/overrides/main.html'
+
+lang-all:
+  - all:
+    - changed-files:
+      - any-glob-to-any-file:
+        - docs/*/docs/**
+      - all-globs-to-all-files:
+        - '!docs/en/docs/**'
+        - '!fastapi/**'
+        - '!pyproject.toml'
 
 internal:
   - all:
@@ -19,7 +28,11 @@ internal:
         - scripts/**
         - .gitignore
         - .pre-commit-config.yaml
+        - pdm_build.py
+        - requirements*.txt
+        - docs/en/data/sponsors.yml
+        - docs/en/overrides/main.html
       - all-globs-to-all-files:
-        - '!./**/*.md'
-        - '!frontend/**'
-        - '!backend/**'
+        - '!docs/*/docs/**'
+        - '!fastapi/**'
+        - '!pyproject.toml'

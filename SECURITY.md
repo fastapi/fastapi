@@ -1,14 +1,16 @@
 # Security Policy
 
-Security is very important for this project and its community. 🔒
+Security is very important for FastAPI and its community. 🔒
 
 Learn more about it below. 👇
 
 ## Versions
 
-The latest version or release is supported.
+The latest version of FastAPI is supported.
 
-You are encouraged to write tests for your application and update your versions frequently after ensuring that your tests are passing. This way you will benefit from the latest features, bug fixes, and **security fixes**.
+You are encouraged to [write tests](https://fastapi.tiangolo.com/tutorial/testing/) for your application and update your FastAPI version frequently after ensuring that your tests are passing. This way you will benefit from the latest features, bug fixes, and **security fixes**.
+
+You can learn more about [FastAPI versions and how to pin and upgrade them](https://fastapi.tiangolo.com/deployment/versions/) for your project in the docs.
 
 ## Reporting a Vulnerability
 
@@ -26,4 +28,4 @@ It's better to discuss privately and try to find a solution first, to limit the 
 
 Thanks for your help!
 
-The community and I thank you for that. 🙇
+The FastAPI community and I thank you for that. 🙇

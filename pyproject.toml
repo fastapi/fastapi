@@ -1,0 +1,270 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "fastapi"
+dynamic = ["version"]
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
+]
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: AsyncIO",
+    "Framework :: FastAPI",
+    "Framework :: Pydantic",
+    "Framework :: Pydantic :: 1",
+    "Framework :: Pydantic :: 2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = [
+    "starlette>=0.40.0,<0.48.0",
+    "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
+    "typing-extensions>=4.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/fastapi/fastapi"
+Documentation = "https://fastapi.tiangolo.com/"
+Repository = "https://github.com/fastapi/fastapi"
+Issues = "https://github.com/fastapi/fastapi/issues"
+Changelog = "https://fastapi.tiangolo.com/release-notes/"
+
+[project.optional-dependencies]
+
+standard = [
+    "fastapi-cli[standard] >=0.0.8",
+    # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=3.1.5",
+    # For forms and file uploads
+    "python-multipart >=0.0.18",
+    # To validate email fields
+    "email-validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # TODO: this should be part of some pydantic optional extra dependencies
+    # # Settings management
+    # "pydantic-settings >=2.0.0",
+    # # Extra Pydantic data types
+    # "pydantic-extra-types >=2.0.0",
+]
+
+standard-no-fastapi-cloud-cli = [
+    "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.8",
+    # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=3.1.5",
+    # For forms and file uploads
+    "python-multipart >=0.0.18",
+    # To validate email fields
+    "email-validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # TODO: this should be part of some pydantic optional extra dependencies
+    # # Settings management
+    # "pydantic-settings >=2.0.0",
+    # # Extra Pydantic data types
+    # "pydantic-extra-types >=2.0.0",
+]
+
+all = [
+    "fastapi-cli[standard] >=0.0.8",
+    # # For the test client
+    "httpx >=0.23.0",
+    # For templates
+    "jinja2 >=3.1.5",
+    # For forms and file uploads
+    "python-multipart >=0.0.18",
+    # For Starlette's SessionMiddleware, not commonly used with FastAPI
+    "itsdangerous >=1.1.0",
+    # For Starlette's schema generation, would not be used with FastAPI
+    "pyyaml >=5.3.1",
+    # For UJSONResponse
+    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    # For ORJSONResponse
+    "orjson >=3.2.1",
+    # To validate email fields
+    "email-validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # Settings management
+    "pydantic-settings >=2.0.0",
+    # Extra Pydantic data types
+    "pydantic-extra-types >=2.0.0",
+]
+
+[project.scripts]
+fastapi = "fastapi.cli:main"
+
+[tool.pdm]
+version = { source = "file", path = "fastapi/__init__.py" }
+distribution = true
+
+[tool.pdm.build]
+source-includes = [
+    "tests/",
+    "docs_src/",
+    "requirements*.txt",
+    "scripts/",
+    # For a test
+    "docs/en/docs/img/favicon.png",
+    ]
+
+[tool.tiangolo._internal-slim-build.packages.fastapi-slim.project]
+name = "fastapi-slim"
+
+[tool.mypy]
+strict = true
+
+[[tool.mypy.overrides]]
+module = "fastapi.concurrency"
+warn_unused_ignores = false
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "fastapi.tests.*"
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "docs_src.*"
+disallow_incomplete_defs = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
+
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--ignore=docs_src",
+]
+xfail_strict = true
+junit_family = "xunit2"
+filterwarnings = [
+    "error",
+    'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
+    # For passlib
+    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
+    # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
+    "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
+    # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
+    # https://github.com/sqlalchemy/sqlalchemy/commit/59521abcc0676e936b31a523bd968fc157fef0c2
+    'ignore:datetime\.datetime\.utcfromtimestamp\(\) is deprecated and scheduled for removal in a future version\..*:DeprecationWarning:sqlalchemy',
+    # Trio 24.1.0 raises a warning from attrs
+    # Ref: https://github.com/python-trio/trio/pull/3054
+    # Remove once there's a new version of Trio
+    'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
+    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
+    'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
+]
+
+[tool.coverage.run]
+parallel = true
+data_file = "coverage/.coverage"
+source = [
+    "docs_src",
+    "tests",
+    "fastapi"
+]
+context = '${CONTEXT}'
+dynamic_context = "test_function"
+omit = [
+    "docs_src/response_model/tutorial003_04.py",
+    "docs_src/response_model/tutorial003_04_py310.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+sort = "-Cover"
+
+[tool.coverage.html]
+show_contexts = true
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+    "W191",  # indentation contains tabs
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"docs_src/dependencies/tutorial007.py" = ["F821"]
+"docs_src/dependencies/tutorial008.py" = ["F821"]
+"docs_src/dependencies/tutorial009.py" = ["F821"]
+"docs_src/dependencies/tutorial010.py" = ["F821"]
+"docs_src/custom_response/tutorial007.py" = ["B007"]
+"docs_src/dataclasses/tutorial003.py" = ["I001"]
+"docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
+"docs_src/path_operation_advanced_configuration/tutorial007_pv1.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
+"docs_src/dependencies/tutorial008_an.py" = ["F821"]
+"docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]
+"docs_src/query_params_str_validations/tutorial012_an.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial012_an_py39.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013_an.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013_an_py39.py" = ["B006"]
+"docs_src/security/tutorial004.py" = ["B904"]
+"docs_src/security/tutorial004_an.py" = ["B904"]
+"docs_src/security/tutorial004_an_py310.py" = ["B904"]
+"docs_src/security/tutorial004_an_py39.py" = ["B904"]
+"docs_src/security/tutorial004_py310.py" = ["B904"]
+"docs_src/security/tutorial005.py" = ["B904"]
+"docs_src/security/tutorial005_an.py" = ["B904"]
+"docs_src/security/tutorial005_an_py310.py" = ["B904"]
+"docs_src/security/tutorial005_an_py39.py" = ["B904"]
+"docs_src/security/tutorial005_py310.py" = ["B904"]
+"docs_src/security/tutorial005_py39.py" = ["B904"]
+"docs_src/dependencies/tutorial008b.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
+
+
+[tool.ruff.lint.isort]
+known-third-party = ["fastapi", "pydantic", "starlette"]
+
+[tool.ruff.lint.pyupgrade]
+# Preserve types, even if a file imports `from __future__ import annotations`.
+keep-runtime-typing = true
+
+[tool.inline-snapshot]
+# default-flags=["fix"]
+# default-flags=["create"]

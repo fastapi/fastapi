@@ -1,39 +1,16 @@
 version: 2
 updates:
   # GitHub Actions
-  - package-ecosystem: github-actions
-    directory: /
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: daily
+      interval: "daily"
     commit-message:
       prefix: ⬆
-  # Python uv
-  - package-ecosystem: uv
-    directory: /backend
+  # Python
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
-      interval: daily
-    commit-message:
-      prefix: ⬆
-  # npm
-  - package-ecosystem: npm
-    directory: /frontend
-    schedule:
-      interval: daily
-    commit-message:
-      prefix: ⬆
-  # Docker
-  - package-ecosystem: docker
-    directories:
-      - /backend
-      - /frontend
-    schedule:
-      interval: weekly
-    commit-message:
-      prefix: ⬆
-  # Docker Compose
-  - package-ecosystem: docker-compose
-    directory: /
-    schedule:
-      interval: weekly
+      interval: "monthly"
     commit-message:
       prefix: ⬆

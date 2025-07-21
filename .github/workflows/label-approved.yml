@@ -1,0 +1,49 @@
+name: Label Approved
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  label-approved:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        version: "0.4.15"
+        enable-cache: true
+        cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+    - name: Install GitHub Actions dependencies
+      run: uv pip install -r requirements-github-actions.txt
+    - name: Label Approved
+      run: python ./scripts/label_approved.py
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG: >
+          {
+            "approved-1":
+              {
+                "number": 1,
+                "await_label": "awaiting-review"
+              }
+          }

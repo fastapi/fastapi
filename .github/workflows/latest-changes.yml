@@ -12,15 +12,13 @@ on:
         description: PR number
         required: true
       debug_enabled:
-        description: "Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)"
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
-        default: "false"
+        default: 'false'
 
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
     steps:
       - name: Dump GitHub context
         env:
@@ -29,12 +27,18 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # To allow latest-changes to commit to the main branch
-          token: ${{ secrets.LATEST_CHANGES }}
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
       - uses: tiangolo/latest-changes@0.3.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          latest_changes_file: ./release-notes.md
-          latest_changes_header: "## Latest Changes"
-          end_regex: "^## "
+          latest_changes_file: docs/en/docs/release-notes.md
+          latest_changes_header: '## Latest Changes'
+          end_regex: '^## '
           debug_logs: true
-          label_header_prefix: "### "
+          label_header_prefix: '### '

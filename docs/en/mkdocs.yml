@@ -1,0 +1,361 @@
+INHERIT: ../en/mkdocs.maybe-insiders.yml
+site_name: FastAPI
+site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+site_url: https://fastapi.tiangolo.com/
+theme:
+  name: material
+  custom_dir: ../en/overrides
+  palette:
+  - media: (prefers-color-scheme)
+    toggle:
+      icon: material/lightbulb-auto
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: teal
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to system preference
+  features:
+  - content.code.annotate
+  - content.code.copy
+  - content.footnote.tooltips
+  - content.tabs.link
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.instant
+  - navigation.instant.prefetch
+  - navigation.instant.progress
+  - navigation.path
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+  icon:
+    repo: fontawesome/brands/github-alt
+  logo: img/icon-white.svg
+  favicon: img/favicon.png
+  language: en
+repo_name: fastapi/fastapi
+repo_url: https://github.com/fastapi/fastapi
+plugins:
+  search: null
+  macros:
+    include_yaml:
+    - external_links: ../en/data/external_links.yml
+    - github_sponsors: ../en/data/github_sponsors.yml
+    - people: ../en/data/people.yml
+    - contributors: ../en/data/contributors.yml
+    - translators: ../en/data/translators.yml
+    - translation_reviewers: ../en/data/translation_reviewers.yml
+    - skip_users: ../en/data/skip_users.yml
+    - members: ../en/data/members.yml
+    - sponsors_badge: ../en/data/sponsors_badge.yml
+    - sponsors: ../en/data/sponsors.yml
+    - topic_repos: ../en/data/topic_repos.yml
+  redirects:
+    redirect_maps:
+      deployment/deta.md: deployment/cloud.md
+      advanced/graphql.md: how-to/graphql.md
+      advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
+      advanced/conditional-openapi.md: how-to/conditional-openapi.md
+      advanced/extending-openapi.md: how-to/extending-openapi.md
+      advanced/testing-database.md: how-to/testing-database.md
+  mkdocstrings:
+    handlers:
+      python:
+        options:
+          extensions:
+          - griffe_typingdoc
+          show_root_heading: true
+          show_if_no_docstring: true
+          preload_modules:
+          - httpx
+          - starlette
+          inherited_members: true
+          members_order: source
+          separate_signature: true
+          unwrap_annotated: true
+          filters:
+          - '!^_'
+          merge_init_into_class: true
+          docstring_section_style: spacy
+          signature_crossrefs: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+nav:
+- FastAPI: index.md
+- features.md
+- Learn:
+  - learn/index.md
+  - python-types.md
+  - async.md
+  - environment-variables.md
+  - virtual-environments.md
+  - Tutorial - User Guide:
+    - tutorial/index.md
+    - tutorial/first-steps.md
+    - tutorial/path-params.md
+    - tutorial/query-params.md
+    - tutorial/body.md
+    - tutorial/query-params-str-validations.md
+    - tutorial/path-params-numeric-validations.md
+    - tutorial/query-param-models.md
+    - tutorial/body-multiple-params.md
+    - tutorial/body-fields.md
+    - tutorial/body-nested-models.md
+    - tutorial/schema-extra-example.md
+    - tutorial/extra-data-types.md
+    - tutorial/cookie-params.md
+    - tutorial/header-params.md
+    - tutorial/cookie-param-models.md
+    - tutorial/header-param-models.md
+    - tutorial/response-model.md
+    - tutorial/extra-models.md
+    - tutorial/response-status-code.md
+    - tutorial/request-forms.md
+    - tutorial/request-form-models.md
+    - tutorial/request-files.md
+    - tutorial/request-forms-and-files.md
+    - tutorial/handling-errors.md
+    - tutorial/path-operation-configuration.md
+    - tutorial/encoder.md
+    - tutorial/body-updates.md
+    - Dependencies:
+      - tutorial/dependencies/index.md
+      - tutorial/dependencies/classes-as-dependencies.md
+      - tutorial/dependencies/sub-dependencies.md
+      - tutorial/dependencies/dependencies-in-path-operation-decorators.md
+      - tutorial/dependencies/global-dependencies.md
+      - tutorial/dependencies/dependencies-with-yield.md
+    - Security:
+      - tutorial/security/index.md
+      - tutorial/security/first-steps.md
+      - tutorial/security/get-current-user.md
+      - tutorial/security/simple-oauth2.md
+      - tutorial/security/oauth2-jwt.md
+    - tutorial/middleware.md
+    - tutorial/cors.md
+    - tutorial/sql-databases.md
+    - tutorial/bigger-applications.md
+    - tutorial/background-tasks.md
+    - tutorial/metadata.md
+    - tutorial/static-files.md
+    - tutorial/testing.md
+    - tutorial/debugging.md
+  - Advanced User Guide:
+    - advanced/index.md
+    - advanced/path-operation-advanced-configuration.md
+    - advanced/additional-status-codes.md
+    - advanced/response-directly.md
+    - advanced/custom-response.md
+    - advanced/additional-responses.md
+    - advanced/response-cookies.md
+    - advanced/response-headers.md
+    - advanced/response-change-status-code.md
+    - advanced/advanced-dependencies.md
+    - Advanced Security:
+      - advanced/security/index.md
+      - advanced/security/oauth2-scopes.md
+      - advanced/security/http-basic-auth.md
+    - advanced/using-request-directly.md
+    - advanced/dataclasses.md
+    - advanced/middleware.md
+    - advanced/sub-applications.md
+    - advanced/behind-a-proxy.md
+    - advanced/templates.md
+    - advanced/websockets.md
+    - advanced/events.md
+    - advanced/testing-websockets.md
+    - advanced/testing-events.md
+    - advanced/testing-dependencies.md
+    - advanced/async-tests.md
+    - advanced/settings.md
+    - advanced/openapi-callbacks.md
+    - advanced/openapi-webhooks.md
+    - advanced/wsgi.md
+    - advanced/generate-clients.md
+  - fastapi-cli.md
+  - Deployment:
+    - deployment/index.md
+    - deployment/versions.md
+    - deployment/https.md
+    - deployment/manually.md
+    - deployment/concepts.md
+    - deployment/cloud.md
+    - deployment/server-workers.md
+    - deployment/docker.md
+  - How To - Recipes:
+    - how-to/index.md
+    - how-to/general.md
+    - how-to/graphql.md
+    - how-to/custom-request-and-route.md
+    - how-to/conditional-openapi.md
+    - how-to/extending-openapi.md
+    - how-to/separate-openapi-schemas.md
+    - how-to/custom-docs-ui-assets.md
+    - how-to/configure-swagger-ui.md
+    - how-to/testing-database.md
+- Reference (Code API):
+  - reference/index.md
+  - reference/fastapi.md
+  - reference/parameters.md
+  - reference/status.md
+  - reference/uploadfile.md
+  - reference/exceptions.md
+  - reference/dependencies.md
+  - reference/apirouter.md
+  - reference/background.md
+  - reference/request.md
+  - reference/websockets.md
+  - reference/httpconnection.md
+  - reference/response.md
+  - reference/responses.md
+  - reference/middleware.md
+  - OpenAPI:
+    - reference/openapi/index.md
+    - reference/openapi/docs.md
+    - reference/openapi/models.md
+  - reference/security/index.md
+  - reference/encoders.md
+  - reference/staticfiles.md
+  - reference/templating.md
+  - reference/testclient.md
+- fastapi-people.md
+- Resources:
+  - resources/index.md
+  - help-fastapi.md
+  - contributing.md
+  - project-generation.md
+  - external-links.md
+  - newsletter.md
+  - management-tasks.md
+- About:
+  - about/index.md
+  - alternatives.md
+  - history-design-future.md
+  - benchmarks.md
+  - management.md
+- release-notes.md
+markdown_extensions:
+  abbr: null
+  attr_list: null
+  footnotes: null
+  md_in_html: null
+  tables: null
+  toc:
+    permalink: true
+  pymdownx.betterem: null
+  pymdownx.caret: null
+  pymdownx.highlight:
+    line_spans: __span
+  pymdownx.inlinehilite: null
+  pymdownx.keys: null
+  pymdownx.mark: null
+  pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+  pymdownx.tilde: null
+  pymdownx.blocks.admonition:
+    types:
+    - note
+    - attention
+    - caution
+    - danger
+    - error
+    - tip
+    - hint
+    - warning
+    - info
+    - check
+  pymdownx.blocks.details: null
+  pymdownx.blocks.tab:
+    alternate_style: true
+  mdx_include: null
+  markdown_include_variants: null
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/fastapi/fastapi
+  - icon: fontawesome/brands/discord
+    link: https://discord.gg/VQjSZaeJmf
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/fastapi
+  - icon: fontawesome/brands/linkedin
+    link: https://www.linkedin.com/company/fastapi
+  - icon: fontawesome/solid/globe
+    link: https://tiangolo.com
+  alternate:
+  - link: /
+    name: en - English
+  - link: /az/
+    name: az - azərbaycan dili
+  - link: /bn/
+    name: bn - বাংলা
+  - link: /de/
+    name: de - Deutsch
+  - link: /es/
+    name: es - español
+  - link: /fa/
+    name: fa - فارسی
+  - link: /fr/
+    name: fr - français
+  - link: /he/
+    name: he - עברית
+  - link: /hu/
+    name: hu - magyar
+  - link: /id/
+    name: id - Bahasa Indonesia
+  - link: /it/
+    name: it - italiano
+  - link: /ja/
+    name: ja - 日本語
+  - link: /ko/
+    name: ko - 한국어
+  - link: /nl/
+    name: nl - Nederlands
+  - link: /pl/
+    name: pl - Polski
+  - link: /pt/
+    name: pt - português
+  - link: /ru/
+    name: ru - русский язык
+  - link: /tr/
+    name: tr - Türkçe
+  - link: /uk/
+    name: uk - українська мова
+  - link: /ur/
+    name: ur - اردو
+  - link: /vi/
+    name: vi - Tiếng Việt
+  - link: /yo/
+    name: yo - Yorùbá
+  - link: /zh/
+    name: zh - 简体中文
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
+  - link: /em/
+    name: 😉
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- js/termynal.js
+- js/custom.js
+hooks:
+- ../../scripts/mkdocs_hooks.py

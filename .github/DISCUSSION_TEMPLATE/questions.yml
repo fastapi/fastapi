@@ -3,7 +3,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in this project! 🚀
+        Thanks for your interest in FastAPI! 🚀
 
         Please follow these instructions, fill every question, and do every step. 🙏
 
@@ -11,9 +11,9 @@ body:
 
         I end up not being able to add new features, fix bugs, review pull requests, etc. as fast as I wish because I have to spend too much time handling questions.
 
-        All that, on top of all the incredible help provided by a bunch of community members, that give a lot of their time to come here and help others.
+        All that, on top of all the incredible help provided by a bunch of community members, the [FastAPI Experts](https://fastapi.tiangolo.com/fastapi-people/#experts), that give a lot of their time to come here and help others.
 
-        That's a lot of work, but if more users came to help others like them just a little bit more, it would be much less effort for them (and you and me 😅).
+        That's a lot of work they are doing, but if more FastAPI users came to help others like them just a little bit more, it would be much less effort for them (and you and me 😅).
 
         By asking questions in a structured way (following this) it will be much easier to help you.
 
@@ -30,11 +30,17 @@ body:
           required: true
         - label: I used the GitHub search to find a similar question and didn't find it.
           required: true
-        - label: I searched in the documentation/README.
+        - label: I searched the FastAPI documentation, with the integrated search.
           required: true
-        - label: I already searched in Google "How to do X" and didn't find any information.
+        - label: I already searched in Google "How to X in FastAPI" and didn't find any information.
           required: true
-        - label: I already read and followed all the tutorial in the docs/README and didn't find an answer.
+        - label: I already read and followed all the tutorial in the docs and didn't find an answer.
+          required: true
+        - label: I already checked if it is not related to FastAPI but to [Pydantic](https://github.com/pydantic/pydantic).
+          required: true
+        - label: I already checked if it is not related to FastAPI but to [Swagger UI](https://github.com/swagger-api/swagger-ui).
+          required: true
+        - label: I already checked if it is not related to FastAPI but to [ReDoc](https://github.com/Redocly/redoc).
           required: true
   - type: checkboxes
     id: help
@@ -45,6 +51,7 @@ body:
 
           * Read open questions until I find 2 where I can help someone and add a comment to help there.
           * I already hit the "watch" button in this repository to receive notifications and I commit to help at least 2 people that ask questions in the future.
+          * Review one Pull Request by downloading the code and following [all the review process](https://fastapi.tiangolo.com/help-fastapi/#review-pull-requests).
 
       options:
         - label: I commit to help with one of those options 👆
@@ -59,8 +66,15 @@ body:
         If I (or someone) can copy it, run it, and see it right away, there's a much higher chance I (or someone) will be able to help you.
 
       placeholder: |
-        Write your example code here.
-      render: Text
+        from fastapi import FastAPI
+
+        app = FastAPI()
+
+
+        @app.get("/")
+        def read_root():
+            return {"Hello": "World"}
+      render: python
     validations:
       required: true
   - type: textarea
@@ -73,8 +87,8 @@ body:
         Write a short description telling me what you are doing, what you expect to happen, and what is currently happening.
       placeholder: |
         * Open the browser and call the endpoint `/`.
-        * It returns a JSON with `{"message": "Hello World"}`.
-        * But I expected it to return `{"message": "Hello Morty"}`.
+        * It returns a JSON with `{"Hello": "World"}`.
+        * But I expected it to return `{"Hello": "Sara"}`.
     validations:
       required: true
   - type: dropdown
@@ -95,6 +109,32 @@ body:
     attributes:
       label: Operating System Details
       description: You can add more details about your operating system here, in particular if you chose "Other".
+  - type: input
+    id: fastapi-version
+    attributes:
+      label: FastAPI Version
+      description: |
+        What FastAPI version are you using?
+
+        You can find the FastAPI version with:
+
+        ```bash
+        python -c "import fastapi; print(fastapi.__version__)"
+        ```
+    validations:
+      required: true
+  - type: input
+    id: pydantic-version
+    attributes:
+      label: Pydantic Version
+      description: |
+        What Pydantic version are you using?
+
+        You can find the Pydantic version with:
+
+        ```bash
+        python -c "import pydantic; print(pydantic.version.VERSION)"
+        ```
     validations:
       required: true
   - type: input
