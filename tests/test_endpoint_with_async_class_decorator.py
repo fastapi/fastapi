@@ -15,10 +15,12 @@ class SomeDecorator:
 
 app = FastAPI()
 
+
 @app.get("/")
 @SomeDecorator
 async def route1():
     return {"working": True}
+
 
 client = TestClient(app)
 
