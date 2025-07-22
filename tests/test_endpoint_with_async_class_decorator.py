@@ -13,6 +13,8 @@ class SomeDecorator:
         return await self.route(*args, **kwargs)
 
 
+app = FastAPI()
+
 @app.get("/")
 @SomeDecorator
 async def route1():
