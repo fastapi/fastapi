@@ -668,7 +668,7 @@ After activating the virtual environment, the `PATH` variable would look somethi
 /home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin
@@ -692,7 +692,7 @@ and use that one.
 C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts

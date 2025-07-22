@@ -52,7 +52,7 @@ from app.routers import items
 * Há também um subdiretório `app/internal/` com outro arquivo `__init__.py`, então ele é outro "subpacote Python":`app.internal`.
 * E o arquivo `app/internal/admin.py` é outro submódulo: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 A mesma estrutura de arquivos com comentários:
 
@@ -270,7 +270,7 @@ Mas esse arquivo não existe, nossas dependências estão em um arquivo em `app/
 
 Lembre-se de como nossa estrutura app/file se parece:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
