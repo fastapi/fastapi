@@ -127,32 +127,32 @@ class Termynal {
     }
 
     generateRestart() {
-    const restart = document.createElement('a');
-    restart.href = 'javascript:void(0)';  
-    restart.setAttribute('data-terminal-control', '');
-    restart.innerHTML = "restart ↻";
-    restart.onclick = (e) => {
-        e.preventDefault();
-        this.container.innerHTML = '';
-        this.init();
-    };
-    return restart;
-}
+        const restart = document.createElement('a');
+        restart.href = 'javascript:void(0)';  
+        restart.setAttribute('data-terminal-control', '');
+        restart.innerHTML = "restart ↻";
+        restart.onclick = (e) => {
+            e.preventDefault();
+            this.container.innerHTML = '';
+            this.init();
+        };
+        return restart;
+    }
 
     generateFinish() {
-    const finish = document.createElement('a');
-    finish.href = 'javascript:void(0)'; 
-    finish.setAttribute('data-terminal-control', '');
-    finish.innerHTML = "fast →";
-    finish.onclick = (e) => {
-        e.preventDefault();
-        this.lineDelay = 0;
-        this.typeDelay = 0;
-        this.startDelay = 0;
-    };
-    this.finishElement = finish;
-    return finish;
-}
+        const finish = document.createElement('a');
+        finish.href = 'javascript:void(0)'; 
+        finish.setAttribute('data-terminal-control', '');
+        finish.innerHTML = "fast →";
+        finish.onclick = (e) => {
+            e.preventDefault();
+            this.lineDelay = 0;
+            this.typeDelay = 0;
+            this.startDelay = 0;
+        };
+        this.finishElement = finish;
+        return finish;
+    }
 
     addRestart() {
         const restart = this.generateRestart()
