@@ -615,6 +615,6 @@ Using container systems (e.g. with **Docker** and **Kubernetes**) it becomes fai
 * Memory
 * Previous steps before starting
 
-In most cases, you probably won't want to use any base image, and instead **build a container image from scratch** one based on the official Python Docker image.
+In most cases, you probably won't want to use any base image, and instead **build a container image from scratch** based on the official Python Docker image.
 
 Taking care of the **order** of instructions in the `Dockerfile` and the **Docker cache** you can **minimize build times**, to maximize your productivity (and avoid boredom). 😎

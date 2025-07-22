@@ -4,7 +4,7 @@ Se você está construindo uma aplicação ou uma API web, é raro que você pos
 
 **FastAPI** oferece uma ferramenta conveniente para estruturar sua aplicação, mantendo toda a flexibilidade.
 
-/// info | "Informação"
+/// info | Informação
 
 Se você vem do Flask, isso seria o equivalente aos Blueprints do Flask.
 
@@ -29,7 +29,7 @@ Digamos que você tenha uma estrutura de arquivos como esta:
 │       └── admin.py
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Existem vários arquivos `__init__.py` presentes em cada diretório ou subdiretório.
 
@@ -52,7 +52,7 @@ from app.routers import items
 * Há também um subdiretório `app/internal/` com outro arquivo `__init__.py`, então ele é outro "subpacote Python":`app.internal`.
 * E o arquivo `app/internal/admin.py` é outro submódulo: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 A mesma estrutura de arquivos com comentários:
 
@@ -86,7 +86,7 @@ Você pode criar as *operações de rotas* para esse módulo usando o `APIRouter
 você o importa e cria uma "instância" da mesma maneira que faria com a classe `FastAPI`:
 
 ```Python hl_lines="1  3" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 ### *Operações de Rota* com `APIRouter`
@@ -96,7 +96,7 @@ E então você o utiliza para declarar suas *operações de rota*.
 Utilize-o da mesma maneira que utilizaria a classe  `FastAPI`:
 
 ```Python hl_lines="6  11  16" title="app/routers/users.py"
-{!../../../docs_src/bigger_applications/app/routers/users.py!}
+{!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
 Você pode pensar em `APIRouter` como uma classe "mini `FastAPI`".
@@ -105,7 +105,7 @@ Todas as mesmas opções são suportadas.
 
 Todos os mesmos `parameters`, `responses`, `dependencies`, `tags`, etc.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Neste exemplo, a variável é chamada de `router`, mas você pode nomeá-la como quiser.
 
@@ -124,7 +124,7 @@ Agora usaremos uma dependência simples para ler um cabeçalho `X-Token` persona
 //// tab | Python 3.9+
 
 ```Python hl_lines="3  6-8" title="app/dependencies.py"
-{!> ../../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
+{!> ../../docs_src/bigger_applications/app_an_py39/dependencies.py!}
 ```
 
 ////
@@ -132,26 +132,26 @@ Agora usaremos uma dependência simples para ler um cabeçalho `X-Token` persona
 //// tab | Python 3.8+
 
 ```Python hl_lines="1  5-7" title="app/dependencies.py"
-{!> ../../../docs_src/bigger_applications/app_an/dependencies.py!}
+{!> ../../docs_src/bigger_applications/app_an/dependencies.py!}
 ```
 
 ////
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated` se possível.
 
 ///
 
 ```Python hl_lines="1  4-6" title="app/dependencies.py"
-{!> ../../../docs_src/bigger_applications/app/dependencies.py!}
+{!> ../../docs_src/bigger_applications/app/dependencies.py!}
 ```
 
 ////
 
-/// tip | "Dica"
+/// tip | Dica
 
 Estamos usando um cabeçalho inventado para simplificar este exemplo.
 
@@ -182,7 +182,7 @@ Sabemos que todas as *operações de rota* neste módulo têm o mesmo:
 Então, em vez de adicionar tudo isso a cada *operação de rota*, podemos adicioná-lo ao `APIRouter`.
 
 ```Python hl_lines="5-10  16  21" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 Como o caminho de cada *operação de rota* deve começar com `/`, como em:
@@ -201,7 +201,7 @@ Também podemos adicionar uma lista de `tags` e `responses` extras que serão ap
 
 E podemos adicionar uma lista de `dependencies` que serão adicionadas a todas as *operações de rota* no roteador e serão executadas/resolvidas para cada solicitação feita a elas.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Observe que, assim como [dependências em *decoradores de operação de rota*](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, nenhum valor será passado para sua *função de operação de rota*.
 
@@ -222,7 +222,7 @@ O resultado final é que os caminhos dos itens agora são:
     * As dependências do roteador são executadas primeiro, depois as [`dependencies` no decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} e, em seguida, as dependências de parâmetros normais.
     * Você também pode adicionar [dependências de `Segurança` com `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Ter `dependências` no `APIRouter` pode ser usado, por exemplo, para exigir autenticação para um grupo inteiro de *operações de rota*. Mesmo que as dependências não sejam adicionadas individualmente a cada uma delas.
 
@@ -243,12 +243,12 @@ E precisamos obter a função de dependência do módulo `app.dependencies`, o a
 Então usamos uma importação relativa com `..` para as dependências:
 
 ```Python hl_lines="3" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
 #### Como funcionam as importações relativas
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você sabe perfeitamente como funcionam as importações, continue para a próxima seção abaixo.
 
@@ -270,7 +270,7 @@ Mas esse arquivo não existe, nossas dependências estão em um arquivo em `app/
 
 Lembre-se de como nossa estrutura app/file se parece:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
@@ -316,10 +316,10 @@ Não estamos adicionando o prefixo `/items` nem `tags=["items"]` a cada *operaç
 Mas ainda podemos adicionar _mais_ `tags` que serão aplicadas a uma *operação de rota* específica, e também algumas `respostas` extras específicas para essa *operação de rota*:
 
 ```Python hl_lines="30-31" title="app/routers/items.py"
-{!../../../docs_src/bigger_applications/app/routers/items.py!}
+{!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-/// tip | "Dica"
+/// tip | Dica
 
 Esta última operação de caminho terá a combinação de tags: `["items", "custom"]`.
 
@@ -344,7 +344,7 @@ Você importa e cria uma classe `FastAPI` normalmente.
 E podemos até declarar [dependências globais](dependencies/global-dependencies.md){.internal-link target=_blank} que serão combinadas com as dependências para cada `APIRouter`:
 
 ```Python hl_lines="1  3  7" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### Importe o `APIRouter`
@@ -352,7 +352,7 @@ E podemos até declarar [dependências globais](dependencies/global-dependencies
 Agora importamos os outros submódulos que possuem `APIRouter`s:
 
 ```Python hl_lines="4-5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 Como os arquivos `app/routers/users.py` e `app/routers/items.py` são submódulos que fazem parte do mesmo pacote Python `app`, podemos usar um único ponto `.` para importá-los usando "importações relativas".
@@ -381,7 +381,7 @@ Também poderíamos importá-los como:
 from app.routers import items, users
 ```
 
-/// info | "Informação"
+/// info | Informação
 
 A primeira versão é uma "importação relativa":
 
@@ -417,7 +417,7 @@ o `router` de `users` sobrescreveria o de `items` e não poderíamos usá-los ao
 Então, para poder usar ambos no mesmo arquivo, importamos os submódulos diretamente:
 
 ```Python hl_lines="5" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 ### Incluir o `APIRouter`s para `usuários` e `itens`
@@ -425,10 +425,10 @@ Então, para poder usar ambos no mesmo arquivo, importamos os submódulos direta
 Agora, vamos incluir os `roteadores` dos submódulos `usuários` e `itens`:
 
 ```Python hl_lines="10-11" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-/// info | "Informação"
+/// info | Informação
 
 `users.router` contém o `APIRouter` dentro do arquivo `app/routers/users.py`.
 
@@ -440,7 +440,7 @@ Com `app.include_router()` podemos adicionar cada `APIRouter` ao aplicativo prin
 
 Ele incluirá todas as rotas daquele roteador como parte dele.
 
-/// note | "Detalhe Técnico"
+/// note | Detalhe Técnico
 
 Na verdade, ele criará internamente uma *operação de rota* para cada *operação de rota* que foi declarada no `APIRouter`.
 
@@ -467,7 +467,7 @@ Ele contém um `APIRouter` com algumas *operações de rota* de administração 
 Para este exemplo, será super simples. Mas digamos que, como ele é compartilhado com outros projetos na organização, não podemos modificá-lo e adicionar um `prefix`, `dependencies`, `tags`, etc. diretamente ao `APIRouter`:
 
 ```Python hl_lines="3" title="app/internal/admin.py"
-{!../../../docs_src/bigger_applications/app/internal/admin.py!}
+{!../../docs_src/bigger_applications/app/internal/admin.py!}
 ```
 
 Mas ainda queremos definir um `prefixo` personalizado ao incluir o `APIRouter` para que todas as suas *operações de rota* comecem com `/admin`, queremos protegê-lo com as `dependências` que já temos para este projeto e queremos incluir `tags` e `responses`.
@@ -475,7 +475,7 @@ Mas ainda queremos definir um `prefixo` personalizado ao incluir o `APIRouter` p
 Podemos declarar tudo isso sem precisar modificar o `APIRouter` original passando esses parâmetros para `app.include_router()`:
 
 ```Python hl_lines="14-17" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 Dessa forma, o `APIRouter` original permanecerá inalterado, para que possamos compartilhar o mesmo arquivo `app/internal/admin.py` com outros projetos na organização.
@@ -498,12 +498,12 @@ Também podemos adicionar *operações de rota* diretamente ao aplicativo `FastA
 Aqui fazemos isso... só para mostrar que podemos 🤷:
 
 ```Python hl_lines="21-23" title="app/main.py"
-{!../../../docs_src/bigger_applications/app/main.py!}
+{!../../docs_src/bigger_applications/app/main.py!}
 ```
 
 e funcionará corretamente, junto com todas as outras *operações de rota* adicionadas com `app.include_router()`.
 
-/// info | "Detalhes Técnicos"
+/// info | Detalhes Técnicos
 
 **Observação**: este é um detalhe muito técnico que você provavelmente pode **simplesmente pular**.
 

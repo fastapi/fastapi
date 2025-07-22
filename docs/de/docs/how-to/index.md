@@ -6,7 +6,7 @@ Die meisten dieser Ideen sind mehr oder weniger **unabhängig**, und in den meis
 
 Wenn etwas für Ihr Projekt interessant und nützlich erscheint, lesen Sie es, andernfalls überspringen Sie es einfach.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie strukturiert **FastAPI lernen** möchten (empfohlen), lesen Sie stattdessen Kapitel für Kapitel das [Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank}.
 

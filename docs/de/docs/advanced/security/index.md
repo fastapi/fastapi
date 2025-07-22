@@ -4,7 +4,7 @@
 
 Neben den in [Tutorial – Benutzerhandbuch: Sicherheit](../../tutorial/security/index.md){.internal-link target=_blank} behandelten Funktionen gibt es noch einige zusätzliche Funktionen zur Handhabung der Sicherheit.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die nächsten Abschnitte sind **nicht unbedingt „fortgeschritten“**.
 
