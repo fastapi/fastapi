@@ -39,6 +39,7 @@ from fastapi.dependencies.utils import (
     get_dependant,
     get_flat_dependant,
     get_parameterless_sub_dependant,
+    get_path_hash_val,
     get_typed_return_annotation,
     solve_dependencies,
 )
@@ -47,6 +48,7 @@ from fastapi.exceptions import (
     FastAPIError,
     RequestValidationError,
     ResponseValidationError,
+    RouteAlreadyExistsError,
     WebSocketRequestValidationError,
 )
 from fastapi.types import DecoratedCallable, IncEx
@@ -567,6 +569,7 @@ class APIRoute(routing.Route):
             name=self.unique_id,
             embed_body_fields=self._embed_body_fields,
         )
+        self.hash_val = get_path_hash_val(self.path, self.methods)
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -859,6 +862,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.added_routes: Set[str] = set()
 
     def route(
         self,
@@ -959,6 +963,9 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
         )
+        if route.hash_val in self.added_routes:
+            raise RouteAlreadyExistsError(route.name)
+        self.added_routes.add(route.hash_val)
         self.routes.append(route)
 
     def api_route(
@@ -1042,6 +1049,10 @@ class APIRouter(routing.Router):
             dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
+        hash_val = get_path_hash_val(route.path)
+        if hash_val in self.added_routes:
+            raise RouteAlreadyExistsError(route.name)
+        self.added_routes.add(hash_val)
         self.routes.append(route)
 
     def websocket(
@@ -1332,6 +1343,10 @@ class APIRouter(routing.Router):
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
+                hash_val = get_path_hash_val(prefix + route.path, route.methods)
+                if hash_val in self.added_routes:
+                    raise RouteAlreadyExistsError(route.name)
+                self.added_routes.add(hash_val)
                 self.add_route(
                     prefix + route.path,
                     route.endpoint,
