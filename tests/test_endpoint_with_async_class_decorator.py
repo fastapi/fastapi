@@ -13,20 +13,14 @@ class SomeDecorator:
         return await self.route(*args, **kwargs)
 
 
-data = {"working": True}
-
-
+@app.get("/")
 @SomeDecorator
-async def route():
-    return data
-
-
-app = FastAPI()
-app.get("/")(route)
+async def route1():
+    return {"working": True}
 
 client = TestClient(app)
 
 
 def test_endpoint_with_async_class_decorator():
     response = client.get("/")
-    assert data == response.json()
+    assert response.json() == {"working": True}
