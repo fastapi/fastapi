@@ -705,7 +705,7 @@ class OAuth2ClientCredentials(OAuth2):
                     headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
-                return None  # pragma: nocover
+                return None
         return param
 
 
