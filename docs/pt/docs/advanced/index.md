@@ -6,7 +6,7 @@ O [Tutorial - Guia de Usuário](../tutorial/index.md){.internal-link target=_bla
 
 Na próxima seção você verá outras opções, configurações, e recursos adicionais.
 
-/// tip | "Dica"
+/// tip | Dica
 
 As próximas seções **não são necessáriamente "avançadas"**
 

@@ -4,7 +4,7 @@ FastAPI 어플리케이션을 배포할 때 일반적인 접근 방법은 **리�
 
 리눅스 컨테이너를 사용하는 데에는 **보안**, **반복 가능성**, **단순함** 등의 장점이 있습니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 시간에 쫓기고 있고 이미 이런것들을 알고 있다면 [`Dockerfile`👇](#build-a-docker-image-for-fastapi)로 점프할 수 있습니다.
 
@@ -133,7 +133,7 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-/// info | "정보"
+/// info | 정보
 
 패키지 종속성을 정의하고 설치하기 위한 방법과 도구는 다양합니다.
 
@@ -231,7 +231,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     프로그램이 `/code`에서 시작하고 그 속에 `./app` 디렉터리가 여러분의 코드와 함께 들어있기 때문에, **Uvicorn**은 이를 보고 `app`을 `app.main`으로부터 **불러 올** 것입니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 각 코드 라인을 코드의 숫자 버블을 클릭하여 리뷰할 수 있습니다. 👆
 
@@ -305,7 +305,7 @@ $ docker build -t myimage .
 
 </div>
 
-/// tip | "팁"
+/// tip | 팁
 
 맨 끝에 있는 `.` 에 주목합시다. 이는 `./`와 동등하며, 도커에게 컨테이너 이미지를 빌드하기 위한 디렉터리를 알려줍니다.
 
@@ -409,7 +409,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 
 **HTTPS**와 **인증서**의 **자동** 취득을 다루는 것은 다른 컨테이너가 될 수 있는데, 예를 들어 <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>을 사용하는 것입니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 Traefik은 도커, 쿠버네티스, 그리고 다른 도구와 통합되어 있어 여러분의 컨테이너를 포함하는 HTTPS를 셋업하고 설정하는 것이 매우 쉽습니다.
 
@@ -441,7 +441,7 @@ Traefik은 도커, 쿠버네티스, 그리고 다른 도구와 통합되어 있�
 
 이 요소가 요청들의 **로드**를 읽어들이고 각 워커에게 (바라건대) **균형적으로** 분배한다면, 이 요소는 일반적으로 **로드 밸런서**라고 불립니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 HTTPS를 위해 사용된 **TLS 종료 프록시** 요소 또한 **로드 밸런서**가 될 수 있습니다.
 
@@ -524,7 +524,7 @@ HTTPS를 위해 사용된 **TLS 종료 프록시** 요소 또한 **로드 밸런
 
 만약 여러분이 **여러개의 컨테이너**를 가지고 있다면, 아마도 각각의 컨테이너는 **하나의 프로세스**를 가지고 있을 것입니다(예를 들어, **쿠버네티스** 클러스터에서). 그러면 여러분은 복제된 워커 컨테이너를 실행하기 **이전에**, 하나의 컨테이너에 있는 **이전의 단계들을** 수행하는 단일 프로세스를 가지는 **별도의 컨테이너들**을 가지고 싶을 것입니다.
 
-/// info | "정보"
+/// info | 정보
 
 만약 여러분이 쿠버네티스를 사용하고 있다면, 아마도 이는 <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>일 것입니다.
 
@@ -544,7 +544,7 @@ HTTPS를 위해 사용된 **TLS 종료 프록시** 요소 또한 **로드 밸런
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-/// warning | "경고"
+/// warning | 경고
 
 여러분이 이 베이스 이미지 또는 다른 유사한 이미지를 필요로 하지 **않을** 높은 가능성이 있으며, [위에서 설명된 것처럼: FastAPI를 위한 도커 이미지 빌드하기](#build-a-docker-image-for-fastapi) 처음부터 이미지를 빌드하는 것이 더 나을 수 있습니다.
 
@@ -556,7 +556,7 @@ HTTPS를 위해 사용된 **TLS 종료 프록시** 요소 또한 **로드 밸런
 
 또한 스크립트를 통해 <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**시작하기 전 사전 단계**</a>를 실행하는 것을 지원합니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 모든 설정과 옵션을 보려면, 도커 이미지 페이지로 이동합니다: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
@@ -687,7 +687,7 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 11. `uvicorn` 커맨드를 실행하여, `app.main`에서 불러온 `app` 객체를 사용하도록 합니다.
 
-/// tip | "팁"
+/// tip | 팁
 
 버블 숫자를 클릭해 각 줄이 하는 일을 알아볼 수 있습니다.
 

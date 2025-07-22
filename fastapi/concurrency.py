@@ -9,7 +9,7 @@ if sys.version_info >= (3, 10):  # pragma: no cover
 else:  # pragma: no cover
     from typing_extensions import ParamSpec
 
-import anyio
+import anyio.to_thread
 from anyio import CapacityLimiter
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
@@ -49,7 +49,7 @@ async def contextmanager_in_threadpool(
     except Exception as e:
         ok = bool(
             await run_in_threadpool(
-                cm.__exit__, type(e), e, None, _limiter=exit_limiter
+                cm.__exit__, type(e), e, e.__traceback__, _limiter=exit_limiter
             )
         )
         if not ok:

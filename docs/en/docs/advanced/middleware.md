@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares to handle server errors and custom exception handlers work properly.
+But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares handle server errors and custom exception handlers work properly.
 
 For that, you use `app.add_middleware()` (as in the example for CORS).
 
@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
 
@@ -55,19 +55,15 @@ For the next examples, you could also use `from starlette.middleware.something i
 
 Enforces that all incoming requests must either be `https` or `wss`.
 
-Any incoming requests to `http` or `ws` will be redirected to the secure scheme instead.
+Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware`
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 The following arguments are supported:
 
@@ -81,9 +77,7 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 
 The middleware will handle both standard and streaming responses.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 The following arguments are supported:
 

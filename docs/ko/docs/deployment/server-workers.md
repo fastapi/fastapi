@@ -17,7 +17,7 @@
 
 지금부터 <a href="https://gunicorn.org/" class="external-link" target="_blank">**구니콘**</a>을 **유비콘 워커 프로세스**와 함께 사용하는 방법을 알려드리겠습니다.
 
-/// info | "정보"
+/// info | 정보
 
 만약 도커와 쿠버네티스 같은 컨테이너를 사용하고 있다면 다음 챕터 [FastAPI와 컨테이너 - 도커](docker.md){.internal-link target=_blank}에서 더 많은 정보를 얻을 수 있습니다.
 

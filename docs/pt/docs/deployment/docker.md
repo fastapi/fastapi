@@ -4,7 +4,7 @@ Ao fazer o deploy de aplicações FastAPI uma abordagem comum é construir uma *
 
 Usando contêineres Linux você tem diversas vantagens incluindo **segurança**, **replicabilidade**, **simplicidade**, entre outras.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Está com pressa e já sabe dessas coisas? Pode ir direto para [`Dockerfile` abaixo 👇](#construindo-uma-imagem-docker-para-fastapi).
 

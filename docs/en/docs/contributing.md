@@ -34,7 +34,7 @@ And if you update that local FastAPI source code when you run that Python file a
 
 That way, you don't have to "install" your local version to be able to test every change.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
 
@@ -107,7 +107,7 @@ $ cd docs/en/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -181,6 +181,28 @@ as Uvicorn by default will use the port `8000`, the documentation on port `8008`
 
 ### Translations
 
+/// warning | Attention
+
+**Update on Translations**
+
+We're updating the way we handle documentation translations.
+
+Until now, we invited community members to translate pages via pull requests, which were then reviewed by at least two native speakers. While this has helped bring FastAPI to many more users, we’ve also run into several challenges - some languages have only a few translated pages, others are outdated and hard to maintain over time.
+To improve this, we’re working on automation tools 🤖 to manage translations more efficiently. Once ready, documentation will be machine-translated and still reviewed by at least two native speakers ✅ before publishing. This will allow us to keep translations up-to-date while reducing the review burden on maintainers.
+
+What’s changing now:
+
+* 🚫 We’re no longer accepting new community-submitted translation PRs.
+
+* ⏳ Existing open PRs will be reviewed and can still be merged if completed within the next 3 weeks (since July 11 2025).
+
+* 🌐 In the future, we will only support languages where at least three active native speakers are available to review and maintain translations.
+
+This transition will help us keep translations more consistent and timely while better supporting our contributors 🙌. Thank you to everyone who has contributed so far — your help has been invaluable! 💖
+
+///
+
+
 Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
 
 Here are the steps to help with translations.
@@ -245,7 +267,7 @@ $ cd docs/es/
 Then run `mkdocs` in that directory:
 
 ```console
-$ mkdocs serve --dev-addr 8008
+$ mkdocs serve --dev-addr 127.0.0.1:8008
 ```
 
 ///
@@ -289,6 +311,7 @@ Now you can translate it all and see how it looks as you save the file.
 * `newsletter.md`
 * `management-tasks.md`
 * `management.md`
+* `contributing.md`
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
@@ -380,7 +403,7 @@ Serving at: http://127.0.0.1:8008
 
 * Do not change anything enclosed in "``" (inline code).
 
-* In lines starting with `///` translate only the ` "... Text ..."` part. Leave the rest unchanged.
+* In lines starting with `///` translate only the text part after `|`. Leave the rest unchanged.
 
 * You can translate info boxes like `/// warning` with for example `/// warning | Achtung`. But do not change the word immediately after the `///`, it determines the color of the info box.
 
