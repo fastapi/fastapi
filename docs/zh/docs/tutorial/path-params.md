@@ -137,7 +137,7 @@ FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-
 
 /// info | 说明
 
-Python 3.4 及之后版本支持<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">枚举（即 enums）</a>。
+Python 3.4 及之后版本支持<a href="https://docs.python.org/zh-cn/3/library/enum.html" class="external-link" target="_blank">枚举（即 enums）</a>。
 
 ///
 
