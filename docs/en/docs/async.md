@@ -40,7 +40,7 @@ def results():
 
 ---
 
-If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`.
+If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`, even if you don't need to use `await` inside.
 
 ---
 
@@ -387,7 +387,7 @@ In previous versions of NodeJS / Browser JavaScript, you would have used "callba
 
 ## Coroutines
 
-**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
+**Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
 
 But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
 

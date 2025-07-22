@@ -393,7 +393,7 @@ Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) e
 
 ## Détails très techniques
 
-/// warning | "Attention !"
+/// warning | Attention !
 
 Vous pouvez probablement ignorer cela.
 

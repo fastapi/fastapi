@@ -1,3 +1,5 @@
 # For mkdocstrings and tests
-httpx >=0.23.0,<0.25.0
+httpx >=0.23.0,<0.28.0
 django
+# For linting and generating docs versions
+ruff ==0.11.2

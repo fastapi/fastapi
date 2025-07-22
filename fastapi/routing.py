@@ -9,6 +9,7 @@ from typing import (
     Any,
     AsyncIterator,
     Callable,
+    Collection,
     Coroutine,
     Dict,
     List,
@@ -33,8 +34,10 @@ from fastapi._compat import (
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    _should_embed_body_fields,
     get_body_field,
     get_dependant,
+    get_flat_dependant,
     get_parameterless_sub_dependant,
     get_typed_return_annotation,
     solve_dependencies,
@@ -49,7 +52,7 @@ from fastapi.exceptions import (
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
-    create_response_field,
+    create_model_field,
     generate_unique_id,
     get_value_or_default,
     is_body_allowed_for_status_code,
@@ -225,6 +228,7 @@ def get_request_handler(
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = asyncio.iscoroutinefunction(dependant.call)
@@ -291,27 +295,36 @@ def get_request_handler(
                     body=body,
                     dependency_overrides_provider=dependency_overrides_provider,
                     async_exit_stack=async_exit_stack,
+                    embed_body_fields=embed_body_fields,
                 )
-                values, errors, background_tasks, sub_response, _ = solved_result
+                errors = solved_result.errors
                 if not errors:
                     raw_response = await run_endpoint_function(
-                        dependant=dependant, values=values, is_coroutine=is_coroutine
+                        dependant=dependant,
+                        values=solved_result.values,
+                        is_coroutine=is_coroutine,
                     )
                     if isinstance(raw_response, Response):
                         if raw_response.background is None:
-                            raw_response.background = background_tasks
+                            raw_response.background = solved_result.background_tasks
                         response = raw_response
                     else:
-                        response_args: Dict[str, Any] = {"background": background_tasks}
+                        response_args: Dict[str, Any] = {
+                            "background": solved_result.background_tasks
+                        }
                         # If status_code was set, use it, otherwise use the default from the
                         # response class, in the case of redirect it's 307
                         current_status_code = (
-                            status_code if status_code else sub_response.status_code
+                            status_code
+                            if status_code
+                            else solved_result.response.status_code
                         )
                         if current_status_code is not None:
                             response_args["status_code"] = current_status_code
-                        if sub_response.status_code:
-                            response_args["status_code"] = sub_response.status_code
+                        if solved_result.response.status_code:
+                            response_args["status_code"] = (
+                                solved_result.response.status_code
+                            )
                         content = await serialize_response(
                             field=response_field,
                             response_content=raw_response,
@@ -326,7 +339,7 @@ def get_request_handler(
                         response = actual_response_class(content, **response_args)
                         if not is_body_allowed_for_status_code(response.status_code):
                             response.body = b""
-                        response.headers.raw.extend(sub_response.headers.raw)
+                        response.headers.raw.extend(solved_result.response.headers.raw)
             if errors:
                 validation_error = RequestValidationError(
                     _normalize_errors(errors), body=body
@@ -346,7 +359,9 @@ def get_request_handler(
 
 
 def get_websocket_app(
-    dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
+    dependant: Dependant,
+    dependency_overrides_provider: Optional[Any] = None,
+    embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async with AsyncExitStack() as async_exit_stack:
@@ -359,12 +374,14 @@ def get_websocket_app(
                 dependant=dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
             )
-            values, errors, _, _2, _3 = solved_result
-            if errors:
-                raise WebSocketRequestValidationError(_normalize_errors(errors))
+            if solved_result.errors:
+                raise WebSocketRequestValidationError(
+                    _normalize_errors(solved_result.errors)
+                )
             assert dependant.call is not None, "dependant.call must be a function"
-            await dependant.call(**values)
+            await dependant.call(**solved_result.values)
 
     return app
 
@@ -390,11 +407,15 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
         self.app = websocket_session(
             get_websocket_app(
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
+                embed_body_fields=self._embed_body_fields,
             )
         )
 
@@ -484,11 +505,11 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
-                status_code
-            ), f"Status code {status_code} must not have a response body"
+            assert is_body_allowed_for_status_code(status_code), (
+                f"Status code {status_code} must not have a response body"
+            )
             response_name = "Response_" + self.unique_id
-            self.response_field = create_response_field(
+            self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
                 mode="serialization",
@@ -517,11 +538,13 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(
-                    additional_status_code
-                ), f"Status code {additional_status_code} must not have a response body"
+                assert is_body_allowed_for_status_code(additional_status_code), (
+                    f"Status code {additional_status_code} must not have a response body"
+                )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
-                response_field = create_response_field(name=response_name, type_=model)
+                response_field = create_model_field(
+                    name=response_name, type_=model, mode="serialization"
+                )
                 response_fields[additional_status_code] = response_field
         if response_fields:
             self.response_fields: Dict[Union[int, str], ModelField] = response_fields
@@ -535,7 +558,15 @@ class APIRoute(routing.Route):
                 0,
                 get_parameterless_sub_dependant(depends=depends, path=self.path_format),
             )
-        self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+        self._flat_dependant = get_flat_dependant(self.dependant)
+        self._embed_body_fields = _should_embed_body_fields(
+            self._flat_dependant.body_params
+        )
+        self.body_field = get_body_field(
+            flat_dependant=self._flat_dependant,
+            name=self.unique_id,
+            embed_body_fields=self._embed_body_fields,
+        )
         self.app = request_response(self.get_route_handler())
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
@@ -552,6 +583,7 @@ class APIRoute(routing.Route):
             response_model_exclude_defaults=self.response_model_exclude_defaults,
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
+            embed_body_fields=self._embed_body_fields,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
@@ -783,7 +815,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -813,9 +845,9 @@ class APIRouter(routing.Router):
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -831,7 +863,7 @@ class APIRouter(routing.Router):
     def route(
         self,
         path: str,
-        methods: Optional[List[str]] = None,
+        methods: Optional[Collection[str]] = None,
         name: Optional[str] = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
@@ -1225,9 +1257,9 @@ class APIRouter(routing.Router):
         """
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009
@@ -1595,7 +1627,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -1972,7 +2004,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2354,7 +2386,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2736,7 +2768,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3113,7 +3145,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3490,7 +3522,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3872,7 +3904,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4254,7 +4286,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,

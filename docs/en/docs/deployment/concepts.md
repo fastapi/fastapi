@@ -65,7 +65,7 @@ The word **program** is commonly used to describe many things:
 
 * The **code** that you write, the **Python files**.
 * The **file** that can be **executed** by the operating system, for example: `python`, `python.exe` or `uvicorn`.
-* A particular program while it is **running** on the operating system, using the CPU, and storing things on memory. This is also called a **process**.
+* A particular program while it is **running** on the operating system, using the CPU, and storing things in memory. This is also called a **process**.
 
 ### What is a Process
 
@@ -216,7 +216,7 @@ This Manager Process would probably be the one listening on the **port** in the 
 
 Those worker processes would be the ones running your application, they would perform the main computations to receive a **request** and return a **response**, and they would load anything you put in variables in RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 And of course, the same machine would probably have **other processes** running as well, apart from your application.
 
@@ -257,7 +257,7 @@ But in most cases, you will want to perform these steps only **once**.
 
 So, you will want to have a **single process** to perform those **previous steps**, before starting the application.
 
-And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it on **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
+And you will have to make sure that it's a single process running those previous steps *even* if afterwards, you start **multiple processes** (multiple workers) for the application itself. If those steps were run by **multiple processes**, they would **duplicate** the work by running it in **parallel**, and if the steps were something delicate like a database migration, they could cause conflicts with each other.
 
 Of course, there are some cases where there's no problem in running the previous steps multiple times, in that case, it's a lot easier to handle.
 

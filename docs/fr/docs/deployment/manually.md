@@ -39,7 +39,7 @@ $ pip install "uvicorn[standard]"
 
 </div>
 
-/// tip | "Astuce"
+/// tip | Astuce
 
 En ajoutant `standard`, Uvicorn va installer et utiliser quelques dépendances supplémentaires recommandées.
 
