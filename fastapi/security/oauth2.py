@@ -640,7 +640,7 @@ class OAuth2ClientCredentials(OAuth2):
             Optional[Dict[str, str]],
             Doc(
                 """
-                The OAuth2 scopes that would be required by the *"path" operations* that
+                The OAuth2 scopes that would be required by the *path operations* that
                 use this dependency.
                 """
             ),
