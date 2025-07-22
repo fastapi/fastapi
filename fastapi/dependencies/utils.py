@@ -61,7 +61,6 @@ from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import (
     FormData,
     Headers,
