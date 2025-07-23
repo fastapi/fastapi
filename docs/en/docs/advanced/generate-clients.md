@@ -81,7 +81,7 @@ It could look like this:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts --input http://localhost:8000/api/openapi.json --output ./src/client"
   },
   "author": "",
   "license": "",
@@ -100,12 +100,12 @@ After having that NPM `generate-client` script there, you can run it with:
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
+> openapi-ts --input http://localhost:8000/api/openapi.json --output ./src/client
 ```
 
 </div>
 
-That command will generate code in `./src/client` and will use `axios` (the frontend HTTP library) internally.
+That command will generate code in `./src/client`.
 
 ### Try Out the Client Code
 
