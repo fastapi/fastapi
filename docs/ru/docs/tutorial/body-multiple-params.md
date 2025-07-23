@@ -8,59 +8,9 @@
 
 Вы также можете объявить параметры тела запроса как необязательные, установив значение по умолчанию, равное `None`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-20"
-{!> ../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="17-19"
-{!> ../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать версию с `Annotated`, если это возможно.
-
-///
-
-```Python hl_lines="19-21"
-{!> ../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
-
-/// note | "Заметка"
+/// note | Заметка
 
 Заметьте, что в данном случае параметр `item`, который будет взят из тела запроса, необязателен. Так как было установлено значение `None` по умолчанию.
 
@@ -81,21 +31,7 @@
 
 Но вы также можете объявить множество параметров тела запроса, например `item` и `user`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
 В этом случае **FastAPI** заметит, что в функции есть более одного параметра тела (два параметра, которые являются моделями Pydantic).
 
@@ -116,7 +52,7 @@
 }
 ```
 
-/// note | "Внимание"
+/// note | Внимание
 
 Обратите внимание, что хотя параметр `item` был объявлен таким же способом, как и раньше, теперь предпологается, что он находится внутри тела с ключом `item`.
 
@@ -136,57 +72,7 @@
 
 Но вы можете указать **FastAPI** обрабатывать его, как ещё один ключ тела запроса, используя `Body`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../docs_src/body_multiple_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="20"
-{!> ../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="22"
-{!> ../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 В этом случае, **FastAPI** будет ожидать тело запроса в формате:
 
@@ -226,59 +112,9 @@ q: str | None = None
 
 Например:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[27] *}
 
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="28"
-{!> ../../docs_src/body_multiple_params/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="25"
-{!> ../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="27"
-{!> ../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
-
-/// info | "Информация"
+/// info | Информация
 
 `Body` также имеет все те же дополнительные параметры валидации и метаданных, как у `Query`,`Path` и других, которые вы увидите позже.
 
@@ -298,57 +134,7 @@ item: Item = Body(embed=True)
 
 так же, как в этом примере:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../docs_src/body_multiple_params/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Заметка"
-
-Рекомендуется использовать `Annotated` версию, если это возможно.
-
-///
-
-```Python hl_lines="17"
-{!> ../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
 В этом случае **FastAPI** будет ожидать тело запроса в формате:
 

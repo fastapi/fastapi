@@ -12,7 +12,7 @@ Bu  pythonda tip belirteçleri için **hızlı bir başlangıç / bilgi tazeleme
 
 **FastAPI** kullanmayacak olsanız bile tür belirteçleri hakkında bilgi edinmenizde fayda var.
 
-/// note | "Not"
+/// note | Not
 
 Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız, sonraki bölüme geçin.
 
@@ -22,9 +22,8 @@ Python uzmanıysanız ve tip belirteçleri ilgili her şeyi zaten biliyorsanız,
 
 Basit bir örnek ile başlayalım:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 Programın çıktısı:
 
@@ -38,9 +37,8 @@ Fonksiyon sırayla şunları yapar:
 * `title()` ile değişkenlerin ilk karakterlerini büyütür.
 * Değişkenleri aralarında bir boşlukla beraber <abbr title="Onları bir bütün olarak sırayla birleştirir.">Birleştirir</abbr>.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### Düzenle
 
@@ -82,9 +80,8 @@ Bu kadar.
 
 İşte bunlar "tip belirteçleri":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 Bu, aşağıdaki gibi varsayılan değerleri bildirmekle aynı şey değildir:
 
@@ -112,9 +109,8 @@ Aradığınızı bulana kadar seçenekleri kaydırabilirsiniz:
 
 Bu fonksiyon, zaten tür belirteçlerine sahip:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 Editör değişkenlerin tiplerini bildiğinden, yalnızca otomatik tamamlama değil, hata kontrolleri de sağlar:
 
@@ -122,9 +118,8 @@ Editör değişkenlerin tiplerini bildiğinden, yalnızca otomatik tamamlama de�
 
 Artık `age` değişkenini `str(age)` olarak kullanmanız gerektiğini biliyorsunuz:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## Tip bildirme
 
@@ -143,9 +138,8 @@ Yalnızca `str` değil, tüm standart Python tiplerinin bildirebilirsiniz.
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### Tip parametreleri ile Generic tipler
 
@@ -161,9 +155,8 @@ Bu tür tip belirteçlerini desteklemek için özel olarak mevcuttur.
 
 From `typing`, import `List` (büyük harf olan `L` ile):
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
+
 
 Değişkenin tipini yine iki nokta üstüste (`:`) ile belirleyin.
 
@@ -171,11 +164,10 @@ tip olarak `List` kullanın.
 
 Liste, bazı dahili tipleri içeren bir tür olduğundan, bunları köşeli parantez içine alırsınız:
 
-```Python hl_lines="4"
-{!../../docs_src/python_types/tutorial006.py!}
-```
+{* ../../docs_src/python_types/tutorial006.py hl[4] *}
 
-/// tip | "Ipucu"
+
+/// tip | Ipucu
 
 Köşeli parantez içindeki bu dahili tiplere "tip parametreleri" denir.
 
@@ -199,9 +191,8 @@ Ve yine, editör bunun bir `str` ​​olduğunu biliyor ve bunun için destek s
 
 `Tuple` ve `set`lerin tiplerini bildirmek için de aynısını yapıyoruz:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial007.py!}
-```
+{* ../../docs_src/python_types/tutorial007.py hl[1,4] *}
+
 
 Bu şu anlama geliyor:
 
@@ -216,9 +207,8 @@ Bir `dict` tanımlamak için virgülle ayrılmış iki parametre verebilirsiniz.
 
 İkinci parametre ise `dict` değerinin `value` değeri içindir:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial008.py!}
-```
+{* ../../docs_src/python_types/tutorial008.py hl[1,4] *}
+
 
 Bu şu anlama gelir:
 
@@ -255,15 +245,13 @@ Bir değişkenin tipini bir sınıf ile bildirebilirsiniz.
 
 Diyelim ki  `name` değerine sahip `Person` sınıfınız var:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Sonra bir değişkeni 'Person' tipinde tanımlayabilirsiniz:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 Ve yine bütün editör desteğini alırsınız:
 
@@ -283,9 +271,8 @@ Ve ortaya çıkan nesne üzerindeki bütün editör desteğini alırsınız.
 
 Resmi Pydantic dokümanlarından alınmıştır:
 
-```Python
-{!../../docs_src/python_types/tutorial011.py!}
-```
+{* ../../docs_src/python_types/tutorial011.py *}
+
 
 /// info
 

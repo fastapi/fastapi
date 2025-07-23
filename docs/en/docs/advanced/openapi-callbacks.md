@@ -31,9 +31,7 @@ It will have a *path operation* that will receive an `Invoice` body, and a query
 
 This part is pretty normal, most of the code is probably already familiar to you:
 
-```Python hl_lines="9-13  36-53"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
 /// tip
 
@@ -92,9 +90,7 @@ Temporarily adopting this point of view (of the *external developer*) can help y
 
 First create a new `APIRouter` that will contain one or more callbacks.
 
-```Python hl_lines="3  25"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
 
 ### Create the callback *path operation*
 
@@ -105,9 +101,7 @@ It should look just like a normal FastAPI *path operation*:
 * It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
 * And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
 
-```Python hl_lines="16-18  21-22  28-32"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
 
 There are 2 main differences from a normal *path operation*:
 
@@ -175,9 +169,7 @@ At this point you have the *callback path operation(s)* needed (the one(s) that 
 
 Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
 
-```Python hl_lines="35"
-{!../../docs_src/openapi_callbacks/tutorial001.py!}
-```
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
 
 /// tip
 

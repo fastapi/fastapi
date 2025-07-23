@@ -55,36 +55,8 @@
 
 Вот пример *операции пути* с параметрами, который демонстрирует некоторые из вышеперечисленных типов.
 
-//// tab | Python 3.8 и выше
-
-```Python hl_lines="1  3  12-16"
-{!> ../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
-
-//// tab | Python 3.10 и выше
-
-```Python hl_lines="1  2  11-15"
-{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Обратите внимание, что параметры внутри функции имеют свой естественный тип данных, и вы, например, можете выполнять обычные манипуляции с датами, такие как:
 
-//// tab | Python 3.8 и выше
-
-```Python hl_lines="18-19"
-{!> ../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
-
-//// tab | Python 3.10 и выше
-
-```Python hl_lines="17-18"
-{!> ../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "Not"
+/// note | Not
 
 Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
 

@@ -46,9 +46,7 @@
 * 特定のHTTPメソッド (`POST`、`PUT`) またはワイルドカード `"*"` を使用してすべて許可。
 * 特定のHTTPヘッダー、またはワイルドカード `"*"`を使用してすべて許可。
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 `CORSMiddleware` 実装のデフォルトのパラメータはCORSに関して制限を与えるものになっているので、ブラウザにドメインを跨いで特定のオリジン、メソッド、またはヘッダーを使用可能にするためには、それらを明示的に有効にする必要があります
 
@@ -78,7 +76,7 @@
 
 <abbr title="Cross-Origin Resource Sharing (オリジン間リソース共有)">CORS</abbr>についてより詳しい情報は、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a> を参照して下さい。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 `from starlette.middleware.cors import CORSMiddleware` も使用できます。
 

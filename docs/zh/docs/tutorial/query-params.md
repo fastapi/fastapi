@@ -2,9 +2,7 @@
 
 声明的参数不是路径参数时，路径操作函数会把该参数自动解释为**查询**参数。
 
-```Python hl_lines="9"
-{!../../docs_src/query_params/tutorial001.py!}
-```
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 查询字符串是键值对的集合，这些键值对位于 URL 的 `?` 之后，以 `&` 分隔。
 
@@ -63,31 +61,17 @@ http://127.0.0.1:8000/items/?skip=20
 
 同理，把默认值设为 `None` 即可声明**可选的**查询参数：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
-/// check | "检查"
+/// check | 检查
 
 注意，**FastAPI** 可以识别出 `item_id` 是路径参数，`q` 不是路径参数，而是查询参数。
 
 ///
 
-/// note | "笔记"
+/// note | 笔记
 
 因为默认值为 `= None`，FastAPI 把 `q` 识别为可选参数。
 
@@ -100,21 +84,7 @@ FastAPI 不使用 `Optional[str]` 中的 `Optional`（只使用 `str`），但 `
 参数还可以声明为 `bool` 类型，FastAPI 会自动转换参数类型：
 
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7"
-{!> ../../docs_src/query_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9"
-{!> ../../docs_src/query_params/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
 本例中，访问：
 
@@ -157,21 +127,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 FastAPI 通过参数名进行检测：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="6 8"
-{!> ../../docs_src/query_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="8 10"
-{!> ../../docs_src/query_params/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
 ## 必选查询参数
 
@@ -181,9 +137,7 @@ FastAPI 通过参数名进行检测：
 
 如果要把查询参数设置为**必选**，就不要声明默认值：
 
-```Python hl_lines="6-7"
-{!../../docs_src/query_params/tutorial005.py!}
-```
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 这里的查询参数 `needy` 是类型为 `str` 的必选查询参数。
 
@@ -227,21 +181,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 当然，把一些参数定义为必选，为另一些参数设置默认值，再把其它参数定义为可选，这些操作都是可以的：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8"
-{!> ../../docs_src/query_params/tutorial006_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../docs_src/query_params/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
 
 本例中有 3 个查询参数：
 
@@ -249,7 +189,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 * `skip`，默认值为 `0` 的 `int` 类型参数
 * `limit`，可选的 `int` 类型参数
 
-/// tip | "提示"
+/// tip | 提示
 
 还可以像在[路径参数](path-params.md#_8){.internal-link target=_blank} 中那样使用 `Enum`。
 

@@ -20,35 +20,7 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 * Isso retorna um objeto do tipo `HTTPBasicCredentials`:
     * Isto contém o `username` e o `password` enviado.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="4  8  12"
-{!> ../../docs_src/security/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="2  7  11"
-{!> ../../docs_src/security/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="2  6  10"
-{!> ../../docs_src/security/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
 
 Quando você tentar abrir a URL pela primeira vez (ou clicar no botão "Executar" nos documentos) o navegador vai pedir pelo seu usuário e senha:
 
@@ -68,35 +40,7 @@ Para lidar com isso, primeiramente nós convertemos o `username` e o `password` 
 
 Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `credentials.username` é `"stanleyjobson"`, e que o `credentials.password` é `"swordfish"`.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  12-24"
-{!> ../../docs_src/security/tutorial007_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  12-24"
-{!> ../../docs_src/security/tutorial007_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="1  11-21"
-{!> ../../docs_src/security/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
 
 Isso seria parecido com:
 
@@ -161,32 +105,4 @@ Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação
 
 Após detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="26-30"
-{!> ../../docs_src/security/tutorial007_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="26-30"
-{!> ../../docs_src/security/tutorial007_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Prefira utilizar a versão `Annotated` se possível.
-
-///
-
-```Python hl_lines="23-27"
-{!> ../../docs_src/security/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}

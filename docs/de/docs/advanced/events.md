@@ -30,15 +30,13 @@ Beginnen wir mit einem Beispiel und sehen es uns dann im Detail an.
 
 Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
-```Python hl_lines="16  19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das Dictionary mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird unmittelbar vor dem *Herunterfahren* ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Das *Herunterfahren* würde erfolgen, wenn Sie die Anwendung **stoppen**.
 
@@ -50,9 +48,7 @@ Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach
 
 Das Erste, was auffällt, ist, dass wir eine asynchrone Funktion mit `yield` definieren. Das ist sehr ähnlich zu Abhängigkeiten mit `yield`.
 
-```Python hl_lines="14-19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 Der erste Teil der Funktion, vor dem `yield`, wird ausgeführt **bevor** die Anwendung startet.
 
@@ -64,9 +60,7 @@ Wie Sie sehen, ist die Funktion mit einem `@asynccontextmanager` versehen.
 
 Dadurch wird die Funktion in einen sogenannten „**asynchronen Kontextmanager**“ umgewandelt.
 
-```Python hl_lines="1  13"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Ein **Kontextmanager** in Python ist etwas, das Sie in einer `with`-Anweisung verwenden können, zum Beispiel kann `open()` als Kontextmanager verwendet werden:
 
@@ -88,13 +82,11 @@ In unserem obigen Codebeispiel verwenden wir ihn nicht direkt, sondern übergebe
 
 Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontextmanager**, wir können ihm also unseren neuen asynchronen Kontextmanager `lifespan` übergeben.
 
-```Python hl_lines="22"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternative Events (deprecated)
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben. Wenn Sie einen `lifespan`-Parameter übergeben, werden die `startup`- und `shutdown`-Eventhandler nicht mehr aufgerufen. Es ist entweder alles `lifespan` oder alles Events, nicht beides.
 
@@ -112,9 +104,7 @@ Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
 Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `startup`:
 
-```Python hl_lines="8"
-{!../../docs_src/events/tutorial001.py!}
-```
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 In diesem Fall initialisiert die Eventhandler-Funktion `startup` die „Datenbank“ der Items (nur ein `dict`) mit einigen Werten.
 
@@ -126,9 +116,7 @@ Und Ihre Anwendung empfängt erst dann Anfragen, wenn alle `startup`-Eventhandle
 
 Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
 
-```Python hl_lines="6"
-{!../../docs_src/events/tutorial002.py!}
-```
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.
 
@@ -138,7 +126,7 @@ In der Funktion `open()` bedeutet `mode="a"` „append“ („anhängen“), sod
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass wir in diesem Fall eine Standard-Python-Funktion `open()` verwenden, die mit einer Datei interagiert.
 

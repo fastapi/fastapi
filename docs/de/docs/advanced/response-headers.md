@@ -6,9 +6,7 @@ Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion*
 
 Und dann können Sie Header in diesem *vorübergehenden* Response-Objekt festlegen.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/response_headers/tutorial002.py!}
-```
+{* ../../docs_src/response_headers/tutorial002.py hl[1,7:8] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -24,11 +22,9 @@ Sie können auch Header hinzufügen, wenn Sie eine `Response` direkt zurückgebe
 
 Erstellen Sie eine Response wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} beschrieben und übergeben Sie die Header als zusätzlichen Parameter:
 
-```Python hl_lines="10-12"
-{!../../docs_src/response_headers/tutorial001.py!}
-```
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 

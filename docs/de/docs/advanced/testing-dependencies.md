@@ -28,59 +28,9 @@ Um eine Abhängigkeit für das Testen zu überschreiben, geben Sie als Schlüsse
 
 Und dann ruft **FastAPI** diese Überschreibung anstelle der ursprünglichen Abhängigkeit auf.
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
-```Python hl_lines="26-27  30"
-{!> ../../docs_src/dependency_testing/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="28-29  32"
-{!> ../../docs_src/dependency_testing/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="29-30  33"
-{!> ../../docs_src/dependency_testing/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="24-25  28"
-{!> ../../docs_src/dependency_testing/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="28-29  32"
-{!> ../../docs_src/dependency_testing/tutorial001.py!}
-```
-
-////
-
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können eine Überschreibung für eine Abhängigkeit festlegen, die an einer beliebigen Stelle in Ihrer **FastAPI**-Anwendung verwendet wird.
 
@@ -96,7 +46,7 @@ Anschließend können Sie Ihre Überschreibungen zurücksetzen (entfernen), inde
 app.dependency_overrides = {}
 ```
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie eine Abhängigkeit nur während einiger Tests überschreiben möchten, können Sie die Überschreibung zu Beginn des Tests (innerhalb der Testfunktion) festlegen und am Ende (am Ende der Testfunktion) zurücksetzen.
 

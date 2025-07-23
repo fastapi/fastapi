@@ -6,29 +6,7 @@ Um einen Artikel zu aktualisieren, können Sie die <a href="https://developer.mo
 
 Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (in z. B. einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-33"
-{!> ../../docs_src/body_updates/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-35"
-{!> ../../docs_src/body_updates/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-35"
-{!> ../../docs_src/body_updates/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` wird verwendet, um Daten zu empfangen, die die existierenden Daten ersetzen sollen.
 
@@ -54,7 +32,7 @@ Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/
 
 Das bedeutet, sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 `PATCH` wird seltener verwendet und ist weniger bekannt als `PUT`.
 
@@ -84,29 +62,7 @@ Das wird ein `dict` erstellen, mit nur den Daten, die gesetzt wurden als das `it
 
 Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) gesendeten Daten enthält, ohne Defaultwerte:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="32"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="34"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="34"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
 ### Pydantics `update`-Parameter verwenden
 
@@ -122,29 +78,7 @@ Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1,
 
 Wie in `stored_item_model.model_copy(update=update_data)`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="33"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="35"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="35"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
 ### Rekapitulation zum teilweisen Ersetzen
 
@@ -161,31 +95,9 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 * Speichern Sie die Daten in Ihrer Datenbank.
 * Geben Sie das aktualisierte Modell zurück.
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
-```Python hl_lines="28-35"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-37"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-37"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
-
-/// tip | "Tipp"
+/// tip | Tipp
 
 Sie können tatsächlich die gleiche Technik mit einer HTTP `PUT` Operation verwenden.
 
@@ -193,7 +105,7 @@ Aber dieses Beispiel verwendet `PATCH`, da dieses für solche Anwendungsfälle g
 
 ///
 
-/// note | "Hinweis"
+/// note | Hinweis
 
 Beachten Sie, dass das hereinkommende Modell immer noch validiert wird.
 

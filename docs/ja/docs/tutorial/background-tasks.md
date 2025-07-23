@@ -15,9 +15,7 @@
 
 まず初めに、`BackgroundTasks` をインポートし、` BackgroundTasks` の型宣言と共に、*path operation 関数* のパラメーターを定義します:
 
-```Python hl_lines="1  13"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** は、`BackgroundTasks` 型のオブジェクトを作成し、そのパラメーターに渡します。
 
@@ -33,17 +31,13 @@
 
 また、書き込み操作では `async` と `await` を使用しないため、通常の `def` で関数を定義します。
 
-```Python hl_lines="6-9"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## バックグラウンドタスクの追加
 
 *path operations 関数* 内で、`.add_task()` メソッドを使用してタスク関数を *background tasks* オブジェクトに渡します。
 
-```Python hl_lines="14"
-{!../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` は以下の引数を受け取ります:
 
@@ -57,9 +51,7 @@
 
 **FastAPI** は、それぞれの場合の処理​​方法と同じオブジェクトの再利用方法を知っているため、すべてのバックグラウンドタスクがマージされ、バックグラウンドで後で実行されます。
 
-```Python hl_lines="13  15  22  25"
-{!../../docs_src/background_tasks/tutorial002.py!}
-```
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 この例では、レスポンスが送信された *後* にメッセージが `log.txt` ファイルに書き込まれます。
 
@@ -84,8 +76,6 @@
 大量のバックグラウンド計算が必要であり、必ずしも同じプロセスで実行する必要がない場合 (たとえば、メモリや変数などを共有する必要がない場合)、<a href="https://www.celeryproject.org/" class="external-link" target="_blank">Celery</a> のようなより大きな他のツールを使用するとメリットがあるかもしれません。
 
 これらは、より複雑な構成、RabbitMQ や Redis などのメッセージ/ジョブキューマネージャーを必要とする傾向がありますが、複数のプロセス、特に複数のサーバーでバックグラウンドタスクを実行できます。
-
-例を確認するには、[Project Generators](../project-generation.md){.internal-link target=_blank} を参照してください。これらにはすべて、Celery が構築済みです。
 
 ただし、同じ **FastAPI** アプリから変数とオブジェクトにアクセスする必要がある場合、または小さなバックグラウンドタスク (電子メール通知の送信など) を実行する必要がある場合は、単に `BackgroundTasks` を使用できます。
 

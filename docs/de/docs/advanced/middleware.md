@@ -43,7 +43,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** enthält mehrere Middlewares für gängige Anwendungsfälle. Wir werden als Nächstes sehen, wie man sie verwendet.
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Für die nächsten Beispiele könnten Sie auch `from starlette.middleware.something import SomethingMiddleware` verwenden.
 
@@ -57,17 +57,13 @@ Erzwingt, dass alle eingehenden Requests entweder `https` oder `wss` sein müsse
 
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial001.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware`
 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
-```Python hl_lines="2  6-8"
-{!../../docs_src/advanced_middleware/tutorial002.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 Die folgenden Argumente werden unterstützt:
 
@@ -81,9 +77,7 @@ Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`
 
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
-```Python hl_lines="2  6"
-{!../../docs_src/advanced_middleware/tutorial003.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Die folgenden Argumente werden unterstützt:
 

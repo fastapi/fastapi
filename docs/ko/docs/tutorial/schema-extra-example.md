@@ -8,35 +8,15 @@
 
 생성된 JSON 스키마에 추가될 Pydantic 모델을 위한 `examples`을 선언할 수 있습니다.
 
-//// tab | Python 3.10+ Pydantic v2
+//// tab | Pydantic v2
 
-```Python hl_lines="13-24"
-{!> ../../docs_src/schema_extra_example/tutorial001_py310.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
 ////
 
-//// tab | Python 3.10+ Pydantic v1
+//// tab | Pydantic v1
 
-```Python hl_lines="13-23"
-{!> ../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Pydantic v2
-
-```Python hl_lines="15-26"
-{!> ../../docs_src/schema_extra_example/tutorial001.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Pydantic v1
-
-```Python hl_lines="15-25"
-{!> ../../docs_src/schema_extra_example/tutorial001_pv1.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
 
 ////
 
@@ -58,7 +38,7 @@ Pydantic v1에서 <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-c
 
 ////
 
-/// tip | "팁"
+/// tip | 팁
 
 JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가하기 위해 같은 기술을 사용할 수 있습니다.
 
@@ -66,7 +46,7 @@ JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가
 
 ///
 
-/// info | "정보"
+/// info | 정보
 
 (FastAPI 0.99.0부터 쓰이기 시작한) OpenAPI 3.1.0은 **JSON 스키마** 표준의 일부인 `examples`에 대한 지원을 추가했습니다.
 
@@ -80,21 +60,7 @@ JSON 스키마를 확장하고 여러분의 별도의 자체 데이터를 추가
 
 Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 선언할 수 있습니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="2  8-11"
-{!> ../../docs_src/schema_extra_example/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  10-13"
-{!> ../../docs_src/schema_extra_example/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
 
 ## JSON Schema에서의 `examples` - OpenAPI
 
@@ -114,57 +80,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 여기, `Body()`에 예상되는 예제 데이터 하나를 포함한 `examples`를 넘겼습니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="22-29"
-{!> ../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="22-29"
-{!> ../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="23-30"
-{!> ../../docs_src/schema_extra_example/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="18-25"
-{!> ../../docs_src/schema_extra_example/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="20-27"
-{!> ../../docs_src/schema_extra_example/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
 
 ### 문서 UI 예시
 
@@ -176,57 +92,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 물론 여러 `examples`를 넘길 수 있습니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23-38"
-{!> ../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23-38"
-{!> ../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24-39"
-{!> ../../docs_src/schema_extra_example/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="19-34"
-{!> ../../docs_src/schema_extra_example/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="21-36"
-{!> ../../docs_src/schema_extra_example/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
 
 이와 같이 하면 이 예제는 그 본문 데이터를 위한 내부 **JSON 스키마**의 일부가 될 것입니다.
 
@@ -267,57 +133,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 이를 다음과 같이 사용할 수 있습니다:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23-49"
-{!> ../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23-49"
-{!> ../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24-50"
-{!> ../../docs_src/schema_extra_example/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="19-45"
-{!> ../../docs_src/schema_extra_example/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Annotated가 없는 경우
-
-/// tip | "팁"
-
-가능하다면 `Annotated`가 달린 버전을 권장합니다.
-
-///
-
-```Python hl_lines="21-47"
-{!> ../../docs_src/schema_extra_example/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
 
 ### 문서 UI에서의 OpenAPI 예시
 
@@ -327,7 +143,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 ## 기술적 세부 사항
 
-/// tip | "팁"
+/// tip | 팁
 
 이미 **FastAPI**의 **0.99.0 혹은 그 이상** 버전을 사용하고 있다면, 이 세부 사항을 **스킵**해도 상관 없을 것입니다.
 
@@ -337,7 +153,7 @@ Pydantic 모델과 같이 `Field()`를 사용할 때 추가적인 `examples`를 
 
 ///
 
-/// warning | "경고"
+/// warning | 경고
 
 표준 **JSON 스키마**와 **OpenAPI**에 대한 아주 기술적인 세부사항입니다.
 
@@ -361,7 +177,7 @@ OpenAPI는 또한 `example`과 `examples` 필드를 명세서의 다른 부분�
     * `File()`
     * `Form()`
 
-/// info | "정보"
+/// info | 정보
 
 이 예전 OpenAPI-특화 `examples` 매개변수는 이제 FastAPI `0.103.0`부터 `openapi_examples`입니다.
 
@@ -377,7 +193,7 @@ OpenAPI는 또한 `example`과 `examples` 필드를 명세서의 다른 부분�
 
 JSON 스키마의 새로운 `examples` 필드는 예제 속 **단순한 `list`**이며, (위에서 상술한 것처럼) OpenAPI의 다른 곳에 존재하는 dict으로 된 추가적인 메타데이터가 아닙니다.
 
-/// info | "정보"
+/// info | 정보
 
 더 쉽고 새로운 JSON 스키마와의 통합과 함께 OpenAPI 3.1.0가 배포되었지만, 잠시동안 자동 문서 생성을 제공하는 도구인 Swagger UI는 OpenAPI 3.1.0을 지원하지 않았습니다 (5.0.0 버전부터 지원합니다 🎉).
 

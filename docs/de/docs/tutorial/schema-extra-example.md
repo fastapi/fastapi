@@ -8,35 +8,15 @@ Hier sind mehrere Möglichkeiten, das zu tun.
 
 Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, welche dem generierten JSON-Schema hinzugefügt werden.
 
-//// tab | Python 3.10+ Pydantic v2
+//// tab | Pydantic v2
 
-```Python hl_lines="13-24"
-{!> ../../docs_src/schema_extra_example/tutorial001_py310.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
 
 ////
 
-//// tab | Python 3.10+ Pydantic v1
+//// tab | Pydantic v1
 
-```Python hl_lines="13-23"
-{!> ../../docs_src/schema_extra_example/tutorial001_py310_pv1.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Pydantic v2
-
-```Python hl_lines="15-26"
-{!> ../../docs_src/schema_extra_example/tutorial001.py!}
-```
-
-////
-
-//// tab | Python 3.8+ Pydantic v1
-
-```Python hl_lines="15-25"
-{!> ../../docs_src/schema_extra_example/tutorial001_pv1.py!}
-```
+{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
 
 ////
 
@@ -58,7 +38,7 @@ Sie können `schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Date
 
 ////
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Mit derselben Technik können Sie das JSON-Schema erweitern und Ihre eigenen benutzerdefinierten Zusatzinformationen hinzufügen.
 
@@ -80,21 +60,7 @@ Mehr erfahren Sie am Ende dieser Seite.
 
 Wenn Sie `Field()` mit Pydantic-Modellen verwenden, können Sie ebenfalls zusätzliche `examples` deklarieren:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="2  8-11"
-{!> ../../docs_src/schema_extra_example/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  10-13"
-{!> ../../docs_src/schema_extra_example/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
 
 ## `examples` im JSON-Schema – OpenAPI
 
@@ -114,57 +80,7 @@ können Sie auch eine Gruppe von `examples` mit zusätzlichen Informationen dekl
 
 Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body()` erwarteten Daten enthält:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="22-29"
-{!> ../../docs_src/schema_extra_example/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="22-29"
-{!> ../../docs_src/schema_extra_example/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="23-30"
-{!> ../../docs_src/schema_extra_example/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="18-25"
-{!> ../../docs_src/schema_extra_example/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="20-27"
-{!> ../../docs_src/schema_extra_example/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
 
 ### Beispiel in der Dokumentations-Benutzeroberfläche
 
@@ -176,57 +92,7 @@ Mit jeder der oben genannten Methoden würde es in `/docs` so aussehen:
 
 Sie können natürlich auch mehrere `examples` übergeben:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23-38"
-{!> ../../docs_src/schema_extra_example/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23-38"
-{!> ../../docs_src/schema_extra_example/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24-39"
-{!> ../../docs_src/schema_extra_example/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="19-34"
-{!> ../../docs_src/schema_extra_example/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="21-36"
-{!> ../../docs_src/schema_extra_example/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
 
 Wenn Sie das tun, werden die Beispiele Teil des internen **JSON-Schemas** für diese Body-Daten.
 
@@ -267,57 +133,7 @@ Jedes spezifische Beispiel-`dict` in den `examples` kann Folgendes enthalten:
 
 Sie können es so verwenden:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="23-49"
-{!> ../../docs_src/schema_extra_example/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23-49"
-{!> ../../docs_src/schema_extra_example/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24-50"
-{!> ../../docs_src/schema_extra_example/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="19-45"
-{!> ../../docs_src/schema_extra_example/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="21-47"
-{!> ../../docs_src/schema_extra_example/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
 
 ### OpenAPI-Beispiele in der Dokumentations-Benutzeroberfläche
 
@@ -327,7 +143,7 @@ Wenn `openapi_examples` zu `Body()` hinzugefügt wird, würde `/docs` so aussehe
 
 ## Technische Details
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie bereits **FastAPI** Version **0.99.0 oder höher** verwenden, können Sie diese Details wahrscheinlich **überspringen**.
 
@@ -337,7 +153,7 @@ Sie können dies als eine kurze **Geschichtsstunde** zu OpenAPI und JSON Schema 
 
 ///
 
-/// warning | "Achtung"
+/// warning | Achtung
 
 Dies sind sehr technische Details zu den Standards **JSON Schema** und **OpenAPI**.
 

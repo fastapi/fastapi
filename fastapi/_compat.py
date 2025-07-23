@@ -16,18 +16,18 @@ from typing import (
     Tuple,
     Type,
     Union,
+    cast,
 )
 
 from fastapi.exceptions import RequestErrorModel
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as P_VERSION
+from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
-# Reassign variable to make it reexported for mypy
-PYDANTIC_VERSION = P_VERSION
-PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
+PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
+PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 
 sequence_annotation_to_type = {
@@ -45,6 +45,8 @@ sequence_annotation_to_type = {
 }
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
+
+Url: Type[Any]
 
 if PYDANTIC_V2:
     from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -230,6 +232,10 @@ if PYDANTIC_V2:
         field_mapping, definitions = schema_generator.generate_definitions(
             inputs=inputs
         )
+        for item_def in cast(Dict[str, Dict[str, Any]], definitions).values():
+            if "description" in item_def:
+                item_description = cast(str, item_def["description"]).split("\f")[0]
+                item_def["description"] = item_description
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:

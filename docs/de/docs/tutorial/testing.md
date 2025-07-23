@@ -26,11 +26,9 @@ Verwenden Sie das `TestClient`-Objekt auf die gleiche Weise wie `httpx`.
 
 Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken, die Sie überprüfen müssen (wiederum, Standard-`pytest`).
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass die Testfunktionen normal `def` und nicht `async def` sind.
 
@@ -40,7 +38,7 @@ Dadurch können Sie `pytest` ohne Komplikationen direkt nutzen.
 
 ///
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
@@ -48,7 +46,7 @@ Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
 ///
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Wenn Sie in Ihren Tests neben dem Senden von Anfragen an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md){.internal-link target=_blank} im Handbuch für fortgeschrittene Benutzer.
 
@@ -74,9 +72,8 @@ Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigge
 In der Datei `main.py` haben Sie Ihre **FastAPI**-Anwendung:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
+
 
 ### Testdatei
 
@@ -92,9 +89,8 @@ Dann könnten Sie eine Datei `test_main.py` mit Ihren Tests haben. Sie könnte s
 
 Da sich diese Datei im selben Package befindet, können Sie relative Importe verwenden, um das Objekt `app` aus dem `main`-Modul (`main.py`) zu importieren:
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
+
 
 ... und haben den Code für die Tests wie zuvor.
 
@@ -148,7 +144,7 @@ Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
 //// tab | Python 3.10+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -162,7 +158,7 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 //// tab | Python 3.8+ nicht annotiert
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
@@ -178,9 +174,8 @@ Bevorzugen Sie die `Annotated`-Version, falls möglich.
 
 Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisieren:
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
+
 
 Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie nicht wissen, wie das geht, können Sie suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
 

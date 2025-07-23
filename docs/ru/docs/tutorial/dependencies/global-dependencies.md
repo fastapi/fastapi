@@ -6,35 +6,7 @@
 
 В этом случае они будут применяться ко всем *операциям пути* в приложении:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16"
-{!> ../../docs_src/dependencies/tutorial012_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Подсказка"
-
-Рекомендуется использовать 'Annotated' версию, если это возможно.
-
-///
-
-```Python hl_lines="15"
-{!> ../../docs_src/dependencies/tutorial012.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial012_an_py39.py hl[16] *}
 
 Все способы [добавления зависимостей в *декораторах операций пути*](dependencies-in-path-operation-decorators.md){.internal-link target=_blank} по-прежнему применимы, но в данном случае зависимости применяются ко всем *операциям пути* приложения.
 

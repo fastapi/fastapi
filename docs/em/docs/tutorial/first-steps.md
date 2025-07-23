@@ -2,9 +2,7 @@
 
 🙅 FastAPI 📁 💪 👀 💖 👉:
 
-```Python
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 📁 👈 📁 `main.py`.
 
@@ -133,13 +131,11 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 🔁 1️⃣: 🗄 `FastAPI`
 
-```Python hl_lines="1"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 🐍 🎓 👈 🚚 🌐 🛠️ 👆 🛠️.
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 `FastAPI` 🎓 👈 😖 🔗 ⚪️➡️ `Starlette`.
 
@@ -149,9 +145,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 🔁 2️⃣: ✍ `FastAPI` "👐"
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 📥 `app` 🔢 🔜 "👐" 🎓 `FastAPI`.
 
@@ -171,9 +165,7 @@ $ uvicorn main:app --reload
 
 🚥 👆 ✍ 👆 📱 💖:
 
-```Python hl_lines="3"
-{!../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 &amp; 🚮 ⚫️ 📁 `main.py`, ⤴️ 👆 🔜 🤙 `uvicorn` 💖:
 
@@ -250,16 +242,14 @@ https://example.com/items/foo
 
 #### 🔬 *➡ 🛠️ 👨‍🎨*
 
-```Python hl_lines="6"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 💬 **FastAPI** 👈 🔢 ▶️️ 🔛 🈚 🚚 📨 👈 🚶:
 
 * ➡ `/`
 * ⚙️ <abbr title="an HTTP GET method"><code>get</code> 🛠️</abbr>
 
-/// info | "`@decorator` ℹ"
+/// info | `@decorator` ℹ
 
 👈 `@something` ❕ 🐍 🤙 "👨‍🎨".
 
@@ -306,9 +296,7 @@ https://example.com/items/foo
 * **🛠️**: `get`.
 * **🔢**: 🔢 🔛 "👨‍🎨" (🔛 `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 👉 🐍 🔢.
 
@@ -320,9 +308,7 @@ https://example.com/items/foo
 
 👆 💪 🔬 ⚫️ 😐 🔢 ↩️ `async def`:
 
-```Python hl_lines="7"
-{!../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
@@ -332,9 +318,7 @@ https://example.com/items/foo
 
 ### 🔁 5️⃣: 📨 🎚
 
-```Python hl_lines="8"
-{!../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 👆 💪 📨 `dict`, `list`, ⭐ 💲 `str`, `int`, ♒️.
 

@@ -4,7 +4,7 @@
 
 [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank} sayfasında ele alınanların dışında güvenlikle ilgili bazı ek özellikler vardır.
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
 

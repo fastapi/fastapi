@@ -22,9 +22,7 @@ Se você é um especialista em Python e já sabe tudo sobre type hints, pule par
 
 Vamos começar com um exemplo simples:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
 
 A chamada deste programa gera:
 
@@ -38,9 +36,7 @@ A função faz o seguinte:
 * Converte a primeira letra de cada uma em maiúsculas com `title()`.
 * <abbr title = "Agrupa-os, como um. Com o conteúdo de um após o outro.">Concatena</abbr> com um espaço no meio.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Edite-o
 
@@ -82,9 +78,7 @@ para:
 
 Esses são os "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Isso não é o mesmo que declarar valores padrão como seria com:
 
@@ -112,9 +106,7 @@ Com isso, você pode rolar, vendo as opções, até encontrar o que "soa familia
 
 Verifique esta função, ela já possui type hints:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Como o editor conhece os tipos de variáveis, você não obtém apenas o preenchimento automático, mas também as verificações de erro:
 
@@ -122,9 +114,7 @@ Como o editor conhece os tipos de variáveis, você não obtém apenas o preench
 
 Agora você sabe que precisa corrigí-lo, converta `age` em uma string com `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Declarando Tipos
 
@@ -143,9 +133,7 @@ Você pode usar, por exemplo:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Tipos genéricos com parâmetros de tipo
 
@@ -321,7 +309,7 @@ Você pode declarar que um valor pode ter um tipo, como `str`, mas que ele tamb�
 
 No Python 3.6 e superior (incluindo o Python 3.10) você pode declará-lo importando e utilizando `Optional` do módulo `typing`.
 
-```Python hl_lines="1 4"
+```Python hl_lines="1  4"
 {!../../docs_src/python_types/tutorial009.py!}
 ```
 
@@ -370,9 +358,7 @@ Isso é apenas sobre palavras e nomes. Mas estas palavras podem afetar como os s
 
 Por exemplo, vamos pegar esta função:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
 
 O paâmetro `name` é definido como `Optional[str]`, mas ele **não é opcional**, você não pode chamar a função sem o parâmetro:
 
@@ -388,9 +374,7 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 A boa notícia é, quando você estiver no Python 3.10 você não precisará se preocupar mais com isso, pois você poderá simplesmente utilizar o `|` para definir uniões de tipos:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
 
 E então você não precisará mais se preocupar com nomes como `Optional` e `Union`. 😎
 
@@ -452,15 +436,11 @@ Você também pode declarar uma classe como o tipo de uma variável.
 
 Digamos que você tenha uma classe `Person`, com um nome:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Então você pode declarar que uma variável é do tipo `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 E então, novamente, você recebe todo o suporte do editor:
 

@@ -52,7 +52,7 @@ from app.routers import items
 * There's also a subdirectory `app/internal/` with another file `__init__.py`, so it's another "Python subpackage": `app.internal`.
 * And the file `app/internal/admin.py` is another submodule: `app.internal.admin`.
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 The same file structure with comments:
 
@@ -270,7 +270,7 @@ But that file doesn't exist, our dependencies are in a file at `app/dependencies
 
 Remember how our app/file structure looks like:
 
-<img src="/img/tutorial/bigger-applications/package.svg">
+<img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
@@ -440,7 +440,7 @@ With `app.include_router()` we can add each `APIRouter` to the main `FastAPI` ap
 
 It will include all the routes from that router as part of it.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 It will actually internally create a *path operation* for each *path operation* that was declared in the `APIRouter`.
 
@@ -503,7 +503,7 @@ Here we do it... just to show that we can 🤷:
 
 and it will work correctly, together with all the other *path operations* added with `app.include_router()`.
 
-/// info | "Very Technical Details"
+/// info | Very Technical Details
 
 **Note**: this is a very technical detail that you probably can **just skip**.
 

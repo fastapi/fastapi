@@ -4,7 +4,7 @@ Como o **FastAPI** é baseado no padrão **ASGI**, é muito fácil integrar qual
 
 Você pode combinar *operações de rota* normais do FastAPI com GraphQL na mesma aplicação.
 
-/// tip | "Dica"
+/// tip | Dica
 
 **GraphQL** resolve alguns casos de uso muito específicos.
 
@@ -35,9 +35,7 @@ Dependendo do seu caso de uso, você pode preferir usar uma biblioteca diferente
 
 Aqui está uma pequena prévia de como você poderia integrar Strawberry com FastAPI:
 
-```Python hl_lines="3  22  25-26"
-{!../../docs_src/graphql/tutorial001.py!}
-```
+{* ../../docs_src/graphql/tutorial001.py hl[3,22,25:26] *}
 
 Você pode aprender mais sobre Strawberry na <a href="https://strawberry.rocks/" class="external-link" target="_blank">documentação do Strawberry</a>.
 
@@ -49,7 +47,7 @@ Versões anteriores do Starlette incluiam uma classe `GraphQLApp` para integrar 
 
 Ela foi descontinuada do Starlette, mas se você tem código que a utilizava, você pode facilmente **migrar** para <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>, que cobre o mesmo caso de uso e tem uma **interface quase idêntica**.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você precisa de GraphQL, eu ainda recomendaria que você desse uma olhada no <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a>, pois ele é baseado em type annotations em vez de classes e tipos personalizados.
 

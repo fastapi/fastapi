@@ -2,7 +2,7 @@
 
 Существует несколько параметров, которые вы можете передать вашему *декоратору операций пути* для его настройки.
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 Помните, что эти параметры передаются непосредственно *декоратору операций пути*, а не вашей *функции-обработчику операций пути*.
 
@@ -16,33 +16,11 @@
 
 Но если вы не помните, для чего нужен каждый числовой код, вы можете использовать сокращенные константы в параметре `status`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1  15"
-{!> ../../docs_src/path_operation_configuration/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3  17"
-{!> ../../docs_src/path_operation_configuration/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3  17"
-{!> ../../docs_src/path_operation_configuration/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
 
 Этот код состояния будет использован в ответе и будет добавлен в схему OpenAPI.
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Вы также можете использовать `from starlette import status`.
 
@@ -54,29 +32,7 @@
 
 Вы можете добавлять теги к вашим *операциям пути*, добавив параметр `tags` с `list` заполненным `str`-значениями (обычно в нём только одна строка):
 
-//// tab | Python 3.10+
-
-```Python hl_lines="15  20  25"
-{!> ../../docs_src/path_operation_configuration/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17  22  27"
-{!> ../../docs_src/path_operation_configuration/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="17  22  27"
-{!> ../../docs_src/path_operation_configuration/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
 
 Они будут добавлены в схему OpenAPI и будут использованы в автоматической документации интерфейса:
 
@@ -90,37 +46,13 @@
 
 **FastAPI** поддерживает это так же, как и в случае с обычными строками:
 
-```Python hl_lines="1  8-10  13  18"
-{!../../docs_src/path_operation_configuration/tutorial002b.py!}
-```
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Краткое и развёрнутое содержание
 
 Вы можете добавить параметры `summary` и `description`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-19"
-{!> ../../docs_src/path_operation_configuration/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="20-21"
-{!> ../../docs_src/path_operation_configuration/tutorial003_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="20-21"
-{!> ../../docs_src/path_operation_configuration/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
 
 ## Описание из строк документации
 
@@ -128,29 +60,7 @@
 
 Вы можете использовать <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> в строке документации, и он будет интерпретирован и отображён корректно (с учетом отступа в строке документации).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="17-25"
-{!> ../../docs_src/path_operation_configuration/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="19-27"
-{!> ../../docs_src/path_operation_configuration/tutorial004_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-27"
-{!> ../../docs_src/path_operation_configuration/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
 Он будет использован в интерактивной документации:
 
@@ -160,37 +70,15 @@
 
 Вы можете указать описание ответа с помощью параметра `response_description`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
 
-```Python hl_lines="19"
-{!> ../../docs_src/path_operation_configuration/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="21"
-{!> ../../docs_src/path_operation_configuration/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="21"
-{!> ../../docs_src/path_operation_configuration/tutorial005.py!}
-```
-
-////
-
-/// info | "Дополнительная информация"
+/// info | Дополнительная информация
 
 Помните, что `response_description` относится конкретно к ответу, а `description` относится к *операции пути* в целом.
 
 ///
 
-/// check | "Технические детали"
+/// check | Технические детали
 
 OpenAPI указывает, что каждой *операции пути* необходимо описание ответа.
 
@@ -204,9 +92,7 @@ OpenAPI указывает, что каждой *операции пути* не
 
 Если вам необходимо пометить *операцию пути* как <abbr title="устаревшее, не рекомендовано к использованию">устаревшую</abbr>, при этом не удаляя её, передайте параметр `deprecated`:
 
-```Python hl_lines="16"
-{!../../docs_src/path_operation_configuration/tutorial006.py!}
-```
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 Он будет четко помечен как устаревший в интерактивной документации:
 

@@ -25,10 +25,7 @@
 
 ### 导入 `HTTPException`
 
-```Python hl_lines="1"
-{!../../docs_src/handling_errors/tutorial001.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### 触发 `HTTPException`
 
@@ -42,10 +39,7 @@
 
 本例中，客户端用 `ID` 请求的 `item` 不存在时，触发状态码为 `404` 的异常：
 
-```Python hl_lines="11"
-{!../../docs_src/handling_errors/tutorial001.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### 响应结果
 
@@ -67,7 +61,7 @@
 
 ```
 
-/// tip | "提示"
+/// tip | 提示
 
 触发 `HTTPException` 时，可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。
 
@@ -85,10 +79,7 @@
 
 但对于某些高级应用场景，还是需要添加自定义响应头：
 
-```Python hl_lines="14"
-{!../../docs_src/handling_errors/tutorial002.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## 安装自定义异常处理器
 
@@ -100,10 +91,7 @@
 
 此时，可以用 `@app.exception_handler()` 添加自定义异常控制器：
 
-```Python hl_lines="5-7  13-18  24"
-{!../../docs_src/handling_errors/tutorial003.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 请求 `/unicorns/yolo` 时，路径操作会触发 `UnicornException`。
 
@@ -116,7 +104,7 @@
 
 ```
 
-/// note | "技术细节"
+/// note | 技术细节
 
 `from starlette.requests import Request` 和 `from starlette.responses import JSONResponse` 也可以用于导入 `Request` 和 `JSONResponse`。
 
@@ -142,10 +130,7 @@
 
 这样，异常处理器就可以接收 `Request` 与异常。
 
-```Python hl_lines="2  14-16"
-{!../../docs_src/handling_errors/tutorial004.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
 
 访问 `/items/foo`，可以看到默认的 JSON 错误信息：
 
@@ -176,7 +161,7 @@ path -> item_id
 
 ### `RequestValidationError` vs `ValidationError`
 
-/// warning | "警告"
+/// warning | 警告
 
 如果您觉得现在还用不到以下技术细节，可以先跳过下面的内容。
 
@@ -198,12 +183,9 @@ path -> item_id
 
 例如，只为错误返回纯文本响应，而不是返回 JSON 格式的内容：
 
-```Python hl_lines="3-4  9-11  22"
-{!../../docs_src/handling_errors/tutorial004.py!}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
-```
-
-/// note | "技术细节"
+/// note | 技术细节
 
 还可以使用 `from starlette.responses import PlainTextResponse`。
 
@@ -217,10 +199,7 @@ path -> item_id
 
 开发时，可以用这个请求体生成日志、调试错误，并返回给用户。
 
-```Python hl_lines="14"
-{!../../docs_src/handling_errors/tutorial005.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 现在试着发送一个无效的 `item`，例如：
 
@@ -283,10 +262,7 @@ FastAPI 支持先对异常进行某些处理，然后再使用 **FastAPI** 中�
 
 从 `fastapi.exception_handlers` 中导入要复用的默认异常处理器：
 
-```Python hl_lines="2-5  15  21"
-{!../../docs_src/handling_errors/tutorial006.py!}
-
-```
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 虽然，本例只是输出了夸大其词的错误信息。
 

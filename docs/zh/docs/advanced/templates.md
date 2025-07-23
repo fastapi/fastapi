@@ -27,24 +27,22 @@ $ pip install jinja2
 * 在返回模板的*路径操作*中声明 `Request` 参数
 * 使用 `templates` 渲染并返回 `TemplateResponse`， 传递模板的名称、request对象以及一个包含多个键值对（用于Jinja2模板）的"context"字典，
 
-```Python hl_lines="4  11  15-16"
-{!../../docs_src/templates/tutorial001.py!}
-```
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:16] *}
 
-/// note | "笔记"
+/// note | 笔记
 
 在FastAPI 0.108.0，Starlette 0.29.0之前，`name`是第一个参数。
 并且，在此之前，`request`对象是作为context的一部分以键值对的形式传递的。
 
 ///
 
-/// tip | "提示"
+/// tip | 提示
 
 通过声明 `response_class=HTMLResponse`，API 文档就能识别响应的对象是 HTML。
 
 ///
 
-/// note | "技术细节"
+/// note | 技术细节
 
 您还可以使用 `from starlette.templating import Jinja2Templates`。
 

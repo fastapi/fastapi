@@ -8,7 +8,7 @@
 * **输出模型**不应含密码
 * **数据库模型**需要加密的密码
 
-/// danger | "危险"
+/// danger | 危险
 
 千万不要存储用户的明文密码。始终存储可以进行验证的**安全哈希值**。
 
@@ -20,21 +20,7 @@
 
 下面的代码展示了不同模型处理密码字段的方式，及使用位置的大致思路：
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
-{!> ../../docs_src/extra_models/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
-{!> ../../docs_src/extra_models/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.dict()` 简介
 
@@ -146,7 +132,7 @@ UserInDB(
 )
 ```
 
-/// warning | "警告"
+/// warning | 警告
 
 辅助的附加函数只是为了演示可能的数据流，但它们显然不能提供任何真正的安全机制。
 
@@ -170,21 +156,7 @@ FastAPI 可以做得更好。
 
 通过这种方式，可以只声明模型之间的区别（分别包含明文密码、哈希密码，以及无密码的模型）。
 
-//// tab | Python 3.10+
-
-```Python hl_lines="7  13-14  17-18  21-22"
-{!> ../../docs_src/extra_models/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  15-16  19-20  23-24"
-{!> ../../docs_src/extra_models/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` 或者 `anyOf`
 
@@ -194,27 +166,13 @@ FastAPI 可以做得更好。
 
 为此，请使用 Python 标准类型提示 <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>：
 
-/// note | "笔记"
+/// note | 笔记
 
 定义 <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a> 类型时，要把详细的类型写在前面，然后是不太详细的类型。下例中，更详细的 `PlaneItem` 位于 `Union[PlaneItem，CarItem]` 中的 `CarItem` 之前。
 
 ///
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1  14-15  18-20  33"
-{!> ../../docs_src/extra_models/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  14-15  18-20  33"
-{!> ../../docs_src/extra_models/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
 ## 模型列表
 
@@ -222,21 +180,7 @@ FastAPI 可以做得更好。
 
 为此，请使用标准的 Python `typing.List`：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="18"
-{!> ../../docs_src/extra_models/tutorial004_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  20"
-{!> ../../docs_src/extra_models/tutorial004.py!}
-```
-
-////
+{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
 ## 任意 `dict` 构成的响应
 
@@ -246,21 +190,7 @@ FastAPI 可以做得更好。
 
 此时，可以使用 `typing.Dict`：
 
-//// tab | Python 3.9+
-
-```Python hl_lines="6"
-{!> ../../docs_src/extra_models/tutorial005_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  8"
-{!> ../../docs_src/extra_models/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
 
 ## 小结
 

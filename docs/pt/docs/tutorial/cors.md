@@ -46,9 +46,7 @@ Você também pode especificar se o seu backend permite:
 * Métodos HTTP específicos (`POST`, `PUT`) ou todos eles com o curinga `"*"`.
 * Cabeçalhos HTTP específicos ou todos eles com o curinga `"*"`.
 
-```Python hl_lines="2  6-11  13-19"
-{!../../docs_src/cors/tutorial001.py!}
-```
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 Os parâmetros padrão usados ​​pela implementação `CORSMiddleware` são restritivos por padrão, então você precisará habilitar explicitamente as origens, métodos ou cabeçalhos específicos para que os navegadores tenham permissão para usá-los em um contexto de domínios diferentes.
 
@@ -78,7 +76,7 @@ Qualquer solicitação com um cabeçalho `Origin`. Neste caso, o middleware pass
 
 Para mais informações <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, acesse <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.middleware.cors import CORSMiddleware`.
 

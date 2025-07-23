@@ -6,29 +6,7 @@
 
 Вы можете использовать функцию `jsonable_encoder` для преобразования входных данных в JSON, так как нередки случаи, когда работать можно только с простыми типами данных (например, для хранения в NoSQL-базе данных).
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-33"
-{!> ../../docs_src/body_updates/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-35"
-{!> ../../docs_src/body_updates/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="30-35"
-{!> ../../docs_src/body_updates/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` используется для получения данных, которые должны полностью заменить существующие данные.
 
@@ -54,7 +32,7 @@
 
 Это означает, что можно передавать только те данные, которые необходимо обновить, оставляя остальные нетронутыми.
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 `PATCH` менее распространен и известен, чем `PUT`.
 
@@ -74,29 +52,7 @@
 
 В результате будет сгенерирован словарь, содержащий только те данные, которые были заданы при создании модели `item`, без учета значений по умолчанию. Затем вы можете использовать это для создания словаря только с теми данными, которые были установлены (отправлены в запросе), опуская значения по умолчанию:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="32"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="34"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="34"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
 ### Использование параметра `update` в Pydantic
 
@@ -104,29 +60,7 @@
 
 Например, `stored_item_model.copy(update=update_data)`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="33"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="35"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="35"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
 ### Кратко о частичном обновлении
 
@@ -143,31 +77,9 @@
 * Сохранить данные в своей БД.
 * Вернуть обновленную модель.
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
-```Python hl_lines="28-35"
-{!> ../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-37"
-{!> ../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="30-37"
-{!> ../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
-
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Эту же технику можно использовать и для операции HTTP `PUT`.
 
@@ -175,7 +87,7 @@
 
 ///
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Обратите внимание, что входная модель по-прежнему валидируется.
 

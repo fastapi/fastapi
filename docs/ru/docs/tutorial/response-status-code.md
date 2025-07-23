@@ -8,11 +8,9 @@
 * `@app.delete()`
 * и других.
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
-/// note | "Примечание"
+/// note | Примечание
 
 Обратите внимание, что `status_code` является атрибутом метода-декоратора (`get`, `post` и т.д.), а не *функции-обработчика пути* в отличие от всех остальных параметров и тела запроса.
 
@@ -20,7 +18,7 @@
 
 Параметр `status_code` принимает число, обозначающее HTTP код статуса ответа.
 
-/// info | "Информация"
+/// info | Информация
 
 В качестве значения параметра `status_code` также может использоваться `IntEnum`, например, из библиотеки <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> в Python.
 
@@ -33,7 +31,7 @@
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
-/// note | "Примечание"
+/// note | Примечание
 
 Некоторые коды статуса ответа (см. следующий раздел) указывают на то, что ответ не имеет тела.
 
@@ -43,7 +41,7 @@ FastAPI знает об этом и создаст документацию Open
 
 ## Об HTTP кодах статуса ответа
 
-/// note | "Примечание"
+/// note | Примечание
 
 Если вы уже знаете, что представляют собой HTTP коды статуса ответа, можете перейти к следующему разделу.
 
@@ -66,7 +64,7 @@ FastAPI знает об этом и создаст документацию Open
     * Для общих ошибок со стороны клиента можно просто использовать код `400`.
 * `5XX` – статус-коды, сообщающие о серверной ошибке. Они почти никогда не используются разработчиками напрямую. Когда что-то идет не так в какой-то части кода вашего приложения или на сервере, он автоматически вернёт один из 5XX кодов.
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 Чтобы узнать больше о HTTP кодах статуса и о том, для чего каждый из них предназначен, ознакомьтесь с <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank">документацией <abbr title="Mozilla Developer Network">MDN</abbr> об HTTP кодах статуса ответа</a>.
 
@@ -76,9 +74,7 @@ FastAPI знает об этом и создаст документацию Open
 
 Рассмотрим предыдущий пример еще раз:
 
-```Python hl_lines="6"
-{!../../docs_src/response_status_code/tutorial001.py!}
-```
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` – это код статуса "Создано".
 
@@ -86,15 +82,13 @@ FastAPI знает об этом и создаст документацию Open
 
 Для удобства вы можете использовать переменные из `fastapi.status`.
 
-```Python hl_lines="1  6"
-{!../../docs_src/response_status_code/tutorial002.py!}
-```
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 Они содержат те же числовые значения, но позволяют использовать подсказки редактора для выбора кода статуса:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Вы также можете использовать `from starlette import status` вместо `from fastapi import status`.
 

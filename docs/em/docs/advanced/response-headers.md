@@ -6,9 +6,7 @@
 
 &amp; ⤴️ 👆 💪 ⚒ 🎚 👈 *🔀* 📨 🎚.
 
-```Python hl_lines="1  7-8"
-{!../../docs_src/response_headers/tutorial002.py!}
-```
+{* ../../docs_src/response_headers/tutorial002.py hl[1,7:8] *}
 
 &amp; ⤴️ 👆 💪 📨 🙆 🎚 👆 💪, 👆 🛎 🔜 ( `dict`, 💽 🏷, ♒️).
 
@@ -24,11 +22,9 @@
 
 ✍ 📨 🔬 [📨 📨 🔗](response-directly.md){.internal-link target=_blank} &amp; 🚶‍♀️ 🎚 🌖 🔢:
 
-```Python hl_lines="10-12"
-{!../../docs_src/response_headers/tutorial001.py!}
-```
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
-/// note | "📡 ℹ"
+/// note | 📡 ℹ
 
 👆 💪 ⚙️ `from starlette.responses import Response` ⚖️ `from starlette.responses import JSONResponse`.
 

@@ -4,13 +4,13 @@ FastAPIは、いくつかの<abbr title='時々"exit"、"cleanup"、"teardown"�
 
 これを行うには、`return`の代わりに`yield`を使い、その後に追加のステップを書きます。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `yield`は必ず一度だけ使用するようにしてください。
 
 ///
 
-/// info | "情報"
+/// info | 情報
 
 これを動作させるには、**Python 3.7** 以上を使用するか、**Python 3.6** では"backports"をインストールする必要があります:
 
@@ -22,7 +22,7 @@ pip install async-exit-stack async-generator
 
 ///
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 以下と一緒に使用できる関数なら何でも有効です:
 
@@ -41,23 +41,17 @@ pip install async-exit-stack async-generator
 
 レスポンスを送信する前に`yield`文を含む前のコードのみが実行されます。
 
-```Python hl_lines="2 3 4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2,3,4] *}
 
 生成された値は、*path operations*や他の依存関係に注入されるものです:
 
-```Python hl_lines="4"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 `yield`文に続くコードは、レスポンスが送信された後に実行されます:
 
-```Python hl_lines="5 6"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5,6] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `async`や通常の関数を使用することができます。
 
@@ -75,9 +69,7 @@ pip install async-exit-stack async-generator
 
 同様に、`finally`を用いて例外があったかどうかにかかわらず、終了ステップを確実に実行することができます。
 
-```Python hl_lines="3 5"
-{!../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## `yield`を持つサブ依存関係
 
@@ -87,9 +79,7 @@ pip install async-exit-stack async-generator
 
 例えば、`dependency_c`は`dependency_b`と`dependency_b`に依存する`dependency_a`に、依存することができます:
 
-```Python hl_lines="4 12 20"
-{!../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[4,12,20] *}
 
 そして、それらはすべて`yield`を使用することができます。
 
@@ -97,9 +87,7 @@ pip install async-exit-stack async-generator
 
 そして、`dependency_b`は`dependency_a`（ここでは`dep_a`という名前）の値を終了コードで利用できるようにする必要があります。
 
-```Python hl_lines="16 17 24 25"
-{!../../docs_src/dependencies/tutorial008.py!}
-```
+{* ../../docs_src/dependencies/tutorial008.py hl[16,17,24,25] *}
 
 同様に、`yield`と`return`が混在した依存関係を持つこともできます。
 
@@ -109,7 +97,7 @@ pip install async-exit-stack async-generator
 
 **FastAPI** は、全てが正しい順序で実行されていることを確認します。
 
-/// note | "技術詳細"
+/// note | 技術詳細
 
 これはPythonの<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>のおかげで動作します。
 
@@ -137,7 +125,7 @@ pip install async-exit-stack async-generator
 
 レスポンスを返したり、レスポンスを変更したり、`HTTPException`を発生させたりする*前に*処理したいカスタム例外がある場合は、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成してください。
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 `HTTPException`を含む例外は、`yield`の*前*でも発生させることができます。ただし、後ではできません。
 
@@ -183,7 +171,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | "情報"
+/// info | 情報
 
 **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 
@@ -191,7 +179,7 @@ participant tasks as Background tasks
 
 ///
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 この図は`HTTPException`を示していますが、[カスタム例外ハンドラ](../handling-errors.md#_4){.internal-link target=_blank}を作成することで、他の例外を発生させることもできます。そして、その例外は依存関係の終了コードではなく、そのカスタム例外ハンドラによって処理されます。
 
@@ -221,7 +209,7 @@ with open("./somefile.txt") as f:
 
 ### `yield`を持つ依存関係でのコンテキストマネージャの使用
 
-/// warning | "注意"
+/// warning | 注意
 
 これは多かれ少なかれ、「高度な」発想です。
 
@@ -233,11 +221,9 @@ Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#conte
 
 また、依存関数の中で`with`や`async with`文を使用することによって`yield`を持つ **FastAPI** の依存関係の中でそれらを使用することができます:
 
-```Python hl_lines="1 2 3 4 5 6 7 8 9 13"
-{!../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1,2,3,4,5,6,7,8,9,13] *}
 
-/// tip | "豆知識"
+/// tip | 豆知識
 
 コンテキストマネージャを作成するもう一つの方法はwithです:
 

@@ -1,6 +1,6 @@
 # Retornos Adicionais no OpenAPI
 
-/// warning | "Aviso"
+/// warning | Aviso
 
 Este é um tema bem avançado.
 
@@ -26,17 +26,15 @@ O **FastAPI** pegará este modelo, gerará o esquema JSON dele e incluirá no lo
 
 Por exemplo, para declarar um outro retorno com o status code `404` e um modelo do Pydantic chamado `Message`, você pode escrever:
 
-```Python hl_lines="18  22"
-{!../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-/// note | "Nota"
+/// note | Nota
 
 Lembre-se que você deve retornar o `JSONResponse` diretamente.
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 A chave `model` não é parte do OpenAPI.
 
@@ -177,17 +175,15 @@ Você pode utilizar o mesmo parâmetro `responses` para adicionar diferentes med
 
 Por exemplo, você pode adicionar um media type adicional de `image/png`, declarando que a sua *operação de caminho* pode retornar um objeto JSON (com o media type `application/json`) ou uma imagem PNG:
 
-```Python hl_lines="19-24  28"
-{!../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-/// note | "Nota"
+/// note | Nota
 
 Note que você deve retornar a imagem utilizando um `FileResponse` diretamente.
 
 ///
 
-/// info | "Informação"
+/// info | Informação
 
 A menos que você especifique um media type diferente explicitamente em seu parâmetro `responses`, o FastAPI assumirá que o retorno possui o mesmo media type contido na classe principal de retorno (padrão `application/json`).
 
@@ -207,9 +203,7 @@ Por exemplo, você pode declarar um retorno com o código de status `404` que ut
 
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
-```Python hl_lines="20-31"
-{!../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Isso será combinado e incluído em seu OpenAPI, e disponibilizado na documentação da sua API:
 
@@ -243,9 +237,7 @@ Você pode utilizar essa técnica para reutilizar alguns retornos predefinidos n
 
 Por exemplo:
 
-```Python hl_lines="13-17  26"
-{!../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
 ## Mais informações sobre retornos OpenAPI
 

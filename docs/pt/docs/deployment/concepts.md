@@ -151,7 +151,7 @@ E ainda assim, você provavelmente não gostaria que o aplicativo permanecesse i
 
 Mas nos casos com erros realmente graves que travam o **processo** em execução, você vai querer um componente externo que seja responsável por **reiniciar** o processo, pelo menos algumas vezes...
 
-/// tip | "Dica"
+/// tip | Dica
 
 ...Embora se o aplicativo inteiro estiver **travando imediatamente**, provavelmente não faça sentido reiniciá-lo para sempre. Mas nesses casos, você provavelmente notará isso durante o desenvolvimento, ou pelo menos logo após a implantação.
 
@@ -216,7 +216,7 @@ Este Processo de Gerenciador provavelmente seria o que escutaria na **porta** no
 
 Esses processos de trabalho seriam aqueles que executariam seu aplicativo, eles executariam os cálculos principais para receber uma **solicitação** e retornar uma **resposta**, e carregariam qualquer coisa que você colocasse em variáveis ​​na RAM.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 E, claro, a mesma máquina provavelmente teria **outros processos** em execução, além do seu aplicativo.
 
@@ -239,7 +239,7 @@ Aqui estão algumas combinações e estratégias possíveis:
 * **Serviços de nuvem** que cuidam disso para você
     * O serviço de nuvem provavelmente **cuidará da replicação para você**. Ele possivelmente deixaria você definir **um processo para executar**, ou uma **imagem de contêiner** para usar, em qualquer caso, provavelmente seria **um único processo Uvicorn**, e o serviço de nuvem seria responsável por replicá-lo.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Não se preocupe se alguns desses itens sobre **contêineres**, Docker ou Kubernetes ainda não fizerem muito sentido.
 
@@ -261,7 +261,7 @@ E você terá que se certificar de que é um único processo executando essas et
 
 Claro, há alguns casos em que não há problema em executar as etapas anteriores várias vezes; nesse caso, é muito mais fácil de lidar.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Além disso, tenha em mente que, dependendo da sua configuração, em alguns casos você **pode nem precisar de nenhuma etapa anterior** antes de iniciar sua aplicação.
 
@@ -279,7 +279,7 @@ Aqui estão algumas ideias possíveis:
 * Um script bash que roda os passos anteriores e então inicia seu aplicativo
     * Você ainda precisaria de uma maneira de iniciar/reiniciar *aquele* script bash, detectar erros, etc.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Darei exemplos mais concretos de como fazer isso com contêineres em um capítulo futuro: [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}.
 

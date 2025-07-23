@@ -8,7 +8,7 @@ Com ele, você pode usar o <a href="https://docs.pytest.org/" class="external-li
 
 ## Usando `TestClient`
 
-/// info | "Informação"
+/// info | Informação
 
 Para usar o `TestClient`, primeiro instale o <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a>.
 
@@ -30,11 +30,9 @@ Use o objeto `TestClient` da mesma forma que você faz com `httpx`.
 
 Escreva instruções `assert` simples com as expressões Python padrão que você precisa verificar (novamente, `pytest` padrão).
 
-```Python hl_lines="2  12  15-18"
-{!../../docs_src/app_testing/tutorial001.py!}
-```
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
-/// tip | "Dica"
+/// tip | Dica
 
 Observe que as funções de teste são `def` normais, não `async def`.
 
@@ -44,7 +42,7 @@ Isso permite que você use `pytest` diretamente sem complicações.
 
 ///
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.testclient import TestClient`.
 
@@ -52,7 +50,7 @@ Você também pode usar `from starlette.testclient import TestClient`.
 
 ///
 
-/// tip | "Dica"
+/// tip | Dica
 
 Se você quiser chamar funções `async` em seus testes além de enviar solicitações ao seu aplicativo FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md){.internal-link target=_blank} no tutorial avançado.
 
@@ -78,9 +76,7 @@ Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicativ
 No arquivo `main.py` você tem seu aplicativo **FastAPI**:
 
 
-```Python
-{!../../docs_src/app_testing/main.py!}
-```
+{* ../../docs_src/app_testing/main.py *}
 
 ### Arquivo de teste
 
@@ -96,9 +92,7 @@ Então você poderia ter um arquivo `test_main.py` com seus testes. Ele poderia 
 
 Como esse arquivo está no mesmo pacote, você pode usar importações relativas para importar o objeto `app` do módulo `main` (`main.py`):
 
-```Python hl_lines="3"
-{!../../docs_src/app_testing/test_main.py!}
-```
+{* ../../docs_src/app_testing/test_main.py hl[3] *}
 
 ...e ter o código para os testes como antes.
 
@@ -152,7 +146,7 @@ Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
 
 //// tab | Python 3.10+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated` se possível.
 
@@ -166,7 +160,7 @@ Prefira usar a versão `Annotated` se possível.
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Prefira usar a versão `Annotated` se possível.
 
@@ -182,9 +176,7 @@ Prefira usar a versão `Annotated` se possível.
 
 Você pode então atualizar `test_main.py` com os testes estendidos:
 
-```Python
-{!> ../../docs_src/app_testing/app_b/test_main.py!}
-```
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX é baseado no design do Requests.
 
@@ -200,7 +192,7 @@ Por exemplo:
 
 Para mais informações sobre como passar dados para o backend (usando `httpx` ou `TestClient`), consulte a <a href="https://www.python-httpx.org" class="external-link" target="_blank">documentação do HTTPX</a>.
 
-/// info | "Informação"
+/// info | Informação
 
 Observe que o `TestClient` recebe dados que podem ser convertidos para JSON, não para modelos Pydantic.
 

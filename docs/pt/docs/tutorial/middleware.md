@@ -11,7 +11,7 @@ Um "middleware" é uma função que manipula cada **requisição** antes de ser 
 * Ele pode fazer algo com essa **resposta** ou executar qualquer código necessário.
 * Então ele retorna a **resposta**.
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Se você tiver dependências com `yield`, o código de saída será executado *depois* do middleware.
 
@@ -31,11 +31,9 @@ A função middleware recebe:
     * Então ela retorna a `response` gerada pela *operação de rota* correspondente.
 * Você pode então modificar ainda mais o `response` antes de retorná-lo.
 
-```Python hl_lines="8-9  11  14"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
-/// tip | "Dica"
+/// tip | Dica
 
 Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo 'X-'</a>.
 
@@ -43,7 +41,7 @@ Mas se você tiver cabeçalhos personalizados desejando que um cliente em um nav
 
 ///
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.requests import Request`.
 
@@ -59,9 +57,7 @@ E também depois que a `response` é gerada, antes de retorná-la.
 
 Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a solicitação e gerar uma resposta:
 
-```Python hl_lines="10  12-13"
-{!../../docs_src/middleware/tutorial001.py!}
-```
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 ## Outros middlewares
 

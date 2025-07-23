@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "참고"
+/// note | 참고
 
 `async def`로 생성된 함수 내부에서만 `await`를 사용할 수 있습니다.
 
@@ -369,7 +369,7 @@ FastAPI를 사용하지 않더라도, 높은 호환성 및 <a href="https://anyi
 
 ## 매우 세부적인 기술적 사항
 
-/// warning | "경고"
+/// warning | 경고
 
 이 부분은 넘어가도 됩니다.
 

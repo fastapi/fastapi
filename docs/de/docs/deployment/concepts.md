@@ -151,7 +151,7 @@ Und dennoch möchten Sie wahrscheinlich nicht, dass die Anwendung tot bleibt, we
 
 Aber in den Fällen mit wirklich schwerwiegenden Fehlern, die den laufenden **Prozess** zum Absturz bringen, benötigen Sie eine externe Komponente, die den Prozess **neu startet**, zumindest ein paar Mal ...
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 ... Obwohl es wahrscheinlich keinen Sinn macht, sie immer wieder neu zu starten, wenn die gesamte Anwendung einfach **sofort abstürzt**. Aber in diesen Fällen werden Sie es wahrscheinlich während der Entwicklung oder zumindest direkt nach dem Deployment bemerken.
 
@@ -216,7 +216,7 @@ Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port*
 
 Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
 
-<img src="/img/deployment/concepts/process-ram.svg">
+<img src="/img/deployment/concepts/process-ram.drawio.svg">
 
 Und natürlich würden auf derselben Maschine neben Ihrer Anwendung wahrscheinlich auch **andere Prozesse** laufen.
 
@@ -241,7 +241,7 @@ Hier sind einige mögliche Kombinationen und Strategien:
 * **Cloud-Dienste**, welche das für Sie erledigen
     * Der Cloud-Dienst wird wahrscheinlich **die Replikation für Sie übernehmen**. Er würde Sie möglicherweise **einen auszuführenden Prozess** oder ein **zu verwendendes Container-Image** definieren lassen, in jedem Fall wäre es höchstwahrscheinlich **ein einzelner Uvicorn-Prozess**, und der Cloud-Dienst wäre auch verantwortlich für die Replikation.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Machen Sie sich keine Sorgen, wenn einige dieser Punkte zu **Containern**, Docker oder Kubernetes noch nicht viel Sinn ergeben.
 
@@ -263,7 +263,7 @@ Und Sie müssen sicherstellen, dass es sich um einen einzelnen Prozess handelt, 
 
 Natürlich gibt es Fälle, in denen es kein Problem darstellt, die Vorab-Schritte mehrmals auszuführen. In diesem Fall ist die Handhabung viel einfacher.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Bedenken Sie außerdem, dass Sie, abhängig von Ihrer Einrichtung, in manchen Fällen **gar keine Vorab-Schritte** benötigen, bevor Sie die Anwendung starten.
 
@@ -281,7 +281,7 @@ Hier sind einige mögliche Ideen:
 * Ein Bash-Skript, das die Vorab-Schritte ausführt und dann Ihre Anwendung startet
     * Sie benötigen immer noch eine Möglichkeit, *dieses* Bash-Skript zu starten/neu zu starten, Fehler zu erkennen, usw.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
 

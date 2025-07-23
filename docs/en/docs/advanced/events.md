@@ -30,9 +30,7 @@ Let's start with an example and then see it in detail.
 
 We create an async function `lifespan()` with `yield` like this:
 
-```Python hl_lines="16  19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 Here we are simulating the expensive *startup* operation of loading the model by putting the (fake) model function in the dictionary with machine learning models before the `yield`. This code will be executed **before** the application **starts taking requests**, during the *startup*.
 
@@ -50,9 +48,7 @@ Maybe you need to start a new version, or you just got tired of running it. 🤷
 
 The first thing to notice, is that we are defining an async function with `yield`. This is very similar to Dependencies with `yield`.
 
-```Python hl_lines="14-19"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 The first part of the function, before the `yield`, will be executed **before** the application starts.
 
@@ -64,9 +60,7 @@ If you check, the function is decorated with an `@asynccontextmanager`.
 
 That converts the function into something called an "**async context manager**".
 
-```Python hl_lines="1  13"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 A **context manager** in Python is something that you can use in a `with` statement, for example, `open()` can be used as a context manager:
 
@@ -88,9 +82,7 @@ In our code example above, we don't use it directly, but we pass it to FastAPI f
 
 The `lifespan` parameter of the `FastAPI` app takes an **async context manager**, so we can pass our new `lifespan` async context manager to it.
 
-```Python hl_lines="22"
-{!../../docs_src/events/tutorial003.py!}
-```
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternative Events (deprecated)
 
@@ -112,9 +104,7 @@ These functions can be declared with `async def` or normal `def`.
 
 To add a function that should be run before the application starts, declare it with the event `"startup"`:
 
-```Python hl_lines="8"
-{!../../docs_src/events/tutorial001.py!}
-```
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 In this case, the `startup` event handler function will initialize the items "database" (just a `dict`) with some values.
 
@@ -126,9 +116,7 @@ And your application won't start receiving requests until all the `startup` even
 
 To add a function that should be run when the application is shutting down, declare it with the event `"shutdown"`:
 
-```Python hl_lines="6"
-{!../../docs_src/events/tutorial002.py!}
-```
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 

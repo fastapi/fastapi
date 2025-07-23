@@ -22,9 +22,8 @@ Nếu bạn là một chuyên gia về Python, và bạn đã biết mọi thứ
 
 Hãy bắt đầu với một ví dụ đơn giản:
 
-```Python
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py *}
+
 
 Kết quả khi gọi chương trình này:
 
@@ -38,9 +37,8 @@ Hàm thực hiện như sau:
 * Chuyển đổi kí tự đầu tiên của mỗi biến sang kiểu chữ hoa với `title()`.
 * <abbr title="Đặt chúng lại với nhau thành một. Với các nội dung lần lượt.">Nối</abbr> chúng lại với nhau bằng một kí tự trắng ở giữa.
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial001.py!}
-```
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+
 
 ### Sửa đổi
 
@@ -82,9 +80,8 @@ Chính là nó.
 
 Những thứ đó là "type hints":
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial002.py!}
-```
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+
 
 Đó không giống như khai báo những giá trị mặc định giống như:
 
@@ -112,9 +109,8 @@ Với cái đó, bạn có thể cuộn, nhìn thấy các lựa chọn, cho đ�
 
 Kiểm tra hàm này, nó đã có gợi ý kiểu dữ liệu:
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial003.py!}
-```
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+
 
 Bởi vì trình soạn thảo biết kiểu dữ liệu của các biến, bạn không chỉ có được completion, bạn cũng được kiểm tra lỗi:
 
@@ -122,9 +118,8 @@ Bởi vì trình soạn thảo biết kiểu dữ liệu của các biến, bạ
 
 Bây giờ bạn biết rằng bạn phải sửa nó, chuyển `age` sang một xâu với `str(age)`:
 
-```Python hl_lines="2"
-{!../../docs_src/python_types/tutorial004.py!}
-```
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+
 
 ## Khai báo các kiểu dữ liệu
 
@@ -143,9 +138,8 @@ Bạn có thể sử dụng, ví dụ:
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../docs_src/python_types/tutorial005.py!}
-```
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+
 
 ### Các kiểu dữ liệu tổng quát với tham số kiểu dữ liệu
 
@@ -374,9 +368,8 @@ Nó chỉ là về các từ và tên. Nhưng những từ đó có thể ảnh 
 
 Cho một ví dụ, hãy để ý hàm này:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c.py!}
-```
+{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
+
 
 Tham số `name` được định nghĩa là `Optional[str]`, nhưng nó **không phải là tùy chọn**, bạn không thể gọi hàm mà không có tham số:
 
@@ -392,9 +385,8 @@ say_hi(name=None)  # This works, None is valid 🎉
 
 Tin tốt là, khi bạn sử dụng Python 3.10, bạn sẽ không phải lo lắng về điều đó, bạn sẽ có thể sử dụng `|` để định nghĩa hợp của các kiểu dữ liệu một cách đơn giản:
 
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009c_py310.py!}
-```
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
+
 
 Và sau đó, bạn sẽ không phải lo rằng những cái tên như `Optional` và `Union`. 😎
 
@@ -457,15 +449,13 @@ Bạn cũng có thể khai báo một lớp như là kiểu dữ liệu của m�
 
 Hãy nói rằng bạn muốn có một lớp `Person` với một tên:
 
-```Python hl_lines="1-3"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Sau đó bạn có thể khai báo một biến có kiểu là `Person`:
 
-```Python hl_lines="6"
-{!../../docs_src/python_types/tutorial010.py!}
-```
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+
 
 Và lại một lần nữa, bạn có được tất cả sự hỗ trợ từ trình soạn thảo:
 

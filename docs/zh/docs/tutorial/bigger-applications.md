@@ -52,7 +52,7 @@ from app.routers import items
 * 还有一个子目录 `app/internal/` 包含另一个 `__init__.py` 文件，因此它是又一个「Python 子包」：`app.internal`。
 * `app/internal/admin.py` 是另一个子模块：`app.internal.admin`。
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.svg">
+<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.drawio.svg">
 
 带有注释的同一文件结构：
 
@@ -244,7 +244,7 @@ from .dependencies import get_token_header
 
 请记住我们的程序/文件结构是怎样的：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.svg">
+<img src="https://fastapi.tiangolo.com/img/tutorial/bigger-applications/package.drawio.svg">
 
 ---
 
@@ -414,7 +414,7 @@ from .routers.users import router
 
 它将包含来自该路由器的所有路由作为其一部分。
 
-/// note | "技术细节"
+/// note | 技术细节
 
 实际上，它将在内部为声明在 `APIRouter` 中的每个*路径操作*创建一个*路径操作*。
 
@@ -477,7 +477,7 @@ from .routers.users import router
 
 它将与通过 `app.include_router()` 添加的所有其他*路径操作*一起正常运行。
 
-/// info | "特别的技术细节"
+/// info | 特别的技术细节
 
 **注意**：这是一个非常技术性的细节，你也许可以**直接跳过**。
 
