@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import pytest
 from dirty_equals import HasRepr, IsDict
@@ -10,7 +10,7 @@ from .utils import needs_pydanticv2
 
 
 @pytest.fixture(name="client")
-def get_client():
+def get_client() -> TestClient:
     from pydantic import BaseModel, ValidationInfo, field_validator
 
     app = FastAPI()
@@ -27,7 +27,7 @@ def get_client():
         foo: ModelB
 
         @field_validator("name")
-        def lower_username(cls, name: str, info: ValidationInfo):
+        def lower_username(cls, name: str, info: ValidationInfo) -> str:
             if not name.endswith("A"):
                 raise ValueError("name must end in A")
             return name
@@ -36,7 +36,9 @@ def get_client():
         return ModelC(username="test-user", password="test-password")
 
     @app.get("/model/{name}", response_model=ModelA)
-    async def get_model_a(name: str, model_c=Depends(get_model_c)):
+    async def get_model_a(
+        name: str, model_c: ModelC = Depends(get_model_c)
+    ) -> Dict[str, Any]:
         return {"name": name, "description": "model-a-desc", "foo": model_c}
 
     client = TestClient(app)
@@ -44,7 +46,7 @@ def get_client():
 
 
 @needs_pydanticv2
-def test_filter_sub_model(client: TestClient):
+def test_filter_sub_model(client: TestClient) -> None:
     response = client.get("/model/modelA")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -55,7 +57,7 @@ def test_filter_sub_model(client: TestClient):
 
 
 @needs_pydanticv2
-def test_validator_is_cloned(client: TestClient):
+def test_validator_is_cloned(client: TestClient) -> None:
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
     assert err.value.errors() == [
@@ -72,7 +74,7 @@ def test_validator_is_cloned(client: TestClient):
 
 
 @needs_pydanticv2
-def test_openapi_schema(client: TestClient):
+def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

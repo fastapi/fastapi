@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from fastapi import Depends, FastAPI
 from pydantic import BaseModel, validator
@@ -20,7 +20,7 @@ class ModelA(BaseModel):
     model_b: ModelB
 
     @validator("name")
-    def lower_username(cls, name: str, values):
+    def lower_username(cls, name: str, values: Dict[str, Any]) -> str:
         if not name.endswith("A"):
             raise ValueError("name must end in A")
         return name
@@ -31,5 +31,7 @@ async def get_model_c() -> ModelC:
 
 
 @app.get("/model/{name}", response_model=ModelA)
-async def get_model_a(name: str, model_c=Depends(get_model_c)):
+async def get_model_a(
+    name: str, model_c: ModelC = Depends(get_model_c)
+) -> Dict[str, Any]:
     return {"name": name, "description": "model-a-desc", "model_b": model_c}
