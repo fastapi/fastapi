@@ -173,6 +173,7 @@ nav:
       - advanced/security/http-basic-auth.md
     - advanced/using-request-directly.md
     - advanced/dataclasses.md
+    - advanced/django-orm.md
     - advanced/middleware.md
     - advanced/sub-applications.md
     - advanced/behind-a-proxy.md
