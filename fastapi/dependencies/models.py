@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Any, Callable, List, Optional, Sequence, Tuple
+from typing import Any, Callable, List, Optional, Sequence, Set, Tuple
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -22,12 +22,12 @@ class Dependant:
     security_requirements: List[SecurityRequirement] = field(default_factory=list)
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
-    request_param_names: List[str] = field(default_factory=list)
-    websocket_param_names: List[str] = field(default_factory=list)
-    http_connection_param_names: List[str] = field(default_factory=list)
-    response_param_names: List[str] = field(default_factory=list)
-    background_tasks_param_names: List[str] = field(default_factory=list)
-    security_scopes_param_names: List[str] = field(default_factory=list)
+    request_param_names: Set[str] = field(default_factory=set)
+    websocket_param_names: Set[str] = field(default_factory=set)
+    http_connection_param_names: Set[str] = field(default_factory=set)
+    response_param_names: Set[str] = field(default_factory=set)
+    background_tasks_param_names: Set[str] = field(default_factory=set)
+    security_scopes_param_names: Set[str] = field(default_factory=set)
     security_scopes: Optional[List[str]] = None
     use_cache: bool = True
     path: Optional[str] = None

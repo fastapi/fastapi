@@ -318,22 +318,22 @@ def add_non_field_param_to_dependency(
     *, param_name: str, type_annotation: Any, dependant: Dependant
 ) -> Optional[bool]:
     if lenient_issubclass(type_annotation, Request):
-        dependant.request_param_names.append(param_name)
+        dependant.request_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, WebSocket):
-        dependant.websocket_param_names.append(param_name)
+        dependant.websocket_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, HTTPConnection):
-        dependant.http_connection_param_names.append(param_name)
+        dependant.http_connection_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, Response):
-        dependant.response_param_names.append(param_name)
+        dependant.response_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, StarletteBackgroundTasks):
-        dependant.background_tasks_param_names.append(param_name)
+        dependant.background_tasks_param_names.add(param_name)
         return True
     elif lenient_issubclass(type_annotation, SecurityScopes):
-        dependant.security_scopes_param_names.append(param_name)
+        dependant.security_scopes_param_names.add(param_name)
         return True
     return None
 
