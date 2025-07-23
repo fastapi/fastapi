@@ -26,6 +26,9 @@ gold:
   - url: https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source
     title: The Gold Standard in Retail Account Linking
     img: https://fastapi.tiangolo.com/img/sponsors/subtotal.svg
+  - url: https://vibe.mobb.ai/?utm_source=Fast+APi&utm_medium=Image&utm_campaign=MVS
+    title: Secure Your AI-Generated Code to Unlock Dev Productivity
+    img: https://fastapi.tiangolo.com/img/sponsors/mobbai.png
 silver:
   - url: https://databento.com/
     title: Pay as you go for market data
