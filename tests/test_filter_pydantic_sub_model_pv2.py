@@ -1,7 +1,7 @@
 from typing import Optional
 
 import pytest
-from dirty_equals import HasRepr, IsDict, IsOneOf
+from dirty_equals import HasRepr, IsDict
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
@@ -68,14 +68,6 @@ def test_validator_is_cloned(client: TestClient):
                 "ctx": {"error": HasRepr("ValueError('name must end in A')")},
             }
         )
-        | IsDict(
-            # TODO remove when deprecating Pydantic v1
-            {
-                "loc": ("response", "name"),
-                "msg": "name must end in A",
-                "type": "value_error",
-            }
-        )
     ]
 
 
@@ -137,23 +129,14 @@ def test_openapi_schema(client: TestClient):
                 },
                 "ModelA": {
                     "title": "ModelA",
-                    "required": IsOneOf(
-                        ["name", "description", "foo"],
-                        # TODO remove when deprecating Pydantic v1
-                        ["name", "foo"],
-                    ),
+                    "required": ["name", "foo"],
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": IsDict(
-                            {
-                                "title": "Description",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        |
-                        # TODO remove when deprecating Pydantic v1
-                        IsDict({"title": "Description", "type": "string"}),
+                        "description": {
+                            "title": "Description",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "foo": {"$ref": "#/components/schemas/ModelB"},
                     },
                 },
