@@ -71,13 +71,8 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
-
-try:
-    from typing_extensions import TypeAliasType
-except ImportError:  # pragma: no cover
-    TypeAliasType = None  # type: ignore[misc,assignment]
-
+from typing_extensions import get_args, get_origin
+from typing_inspection.introspection import AnnotationSource, inspect_annotation
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -360,22 +355,22 @@ def analyze_param(
 ) -> ParamDetails:
     field_info = None
     depends = None
-    type_annotation: Any = Any
-    use_annotation: Any = Any
-    if TypeAliasType is not None and isinstance(annotation, TypeAliasType):
-        # unpack in case py3.12 type syntax is used
-        annotation = annotation.__value__
+    type: Any = Any
+    meta: list[Any] = []
     if annotation is not inspect.Signature.empty:
-        use_annotation = annotation
-        type_annotation = annotation
+        inspected = inspect_annotation(
+            annotation,
+            annotation_source=AnnotationSource.BARE,
+            unpack_type_aliases="lenient",
+        )
+        meta = inspected.metadata
+        type = inspected.type
+    else:
+        annotation = Any
     # Extract Annotated info
-    if get_origin(use_annotation) is Annotated:
-        annotated_args = get_args(annotation)
-        type_annotation = annotated_args[0]
+    if meta:
         fastapi_annotations = [
-            arg
-            for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            arg for arg in meta if isinstance(arg, (FieldInfo, params.Depends))
         ]
         fastapi_specific_annotations = [
             arg
@@ -392,7 +387,7 @@ def analyze_param(
         if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
-                field_info=fastapi_annotation, annotation=use_annotation
+                field_info=fastapi_annotation, annotation=annotation
             )
             assert (
                 field_info.default is Undefined or field_info.default is RequiredParam
@@ -427,17 +422,17 @@ def analyze_param(
         )
         field_info = value
         if PYDANTIC_V2:
-            field_info.annotation = type_annotation
+            field_info.annotation = type
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
         # Copy `depends` before mutating it
         depends = copy(depends)
-        depends.dependency = type_annotation
+        depends.dependency = type
 
     # Handle non-param type annotations like Request
     if lenient_issubclass(
-        type_annotation,
+        type,
         (
             Request,
             WebSocket,
@@ -447,9 +442,9 @@ def analyze_param(
             SecurityScopes,
         ),
     ):
-        assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
+        assert depends is None, f"Cannot specify `Depends` for type {type!r}"
         assert field_info is None, (
-            f"Cannot specify FastAPI annotation for type {type_annotation!r}"
+            f"Cannot specify FastAPI annotation for type {type!r}"
         )
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
@@ -458,15 +453,15 @@ def analyze_param(
             # We might check here that `default_value is RequiredParam`, but the fact is that the same
             # parameter might sometimes be a path parameter and sometimes not. See
             # `tests/test_infer_param_optionality.py` for an example.
-            field_info = params.Path(annotation=use_annotation)
+            field_info = params.Path(annotation=annotation)
         elif is_uploadfile_or_nonable_uploadfile_annotation(
-            type_annotation
-        ) or is_uploadfile_sequence_annotation(type_annotation):
-            field_info = params.File(annotation=use_annotation, default=default_value)
-        elif not field_annotation_is_scalar(annotation=type_annotation):
-            field_info = params.Body(annotation=use_annotation, default=default_value)
+            type
+        ) or is_uploadfile_sequence_annotation(type):
+            field_info = params.File(annotation=annotation, default=default_value)
+        elif not field_annotation_is_scalar(annotation=type):
+            field_info = params.Body(annotation=annotation, default=default_value)
         else:
-            field_info = params.Query(annotation=use_annotation, default=default_value)
+            field_info = params.Query(annotation=annotation, default=default_value)
 
     field = None
     # It's a field_info, not a dependency
@@ -483,7 +478,7 @@ def analyze_param(
         ):
             field_info.in_ = params.ParamTypes.query
         use_annotation_from_field_info = get_annotation_from_field_info(
-            use_annotation,
+            annotation,
             field_info,
             param_name,
         )
@@ -517,7 +512,7 @@ def analyze_param(
                 )
             )
 
-    return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
+    return ParamDetails(type_annotation=type, depends=depends, field=field)
 
 
 def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
