@@ -448,7 +448,7 @@ class FastAPI(Starlette):
             Optional[Dict[str, Any]],
             Doc(
                 """
-                Parameters to configure ReDoc documentation (by default at `/redocs`).
+                Parameters to configure ReDoc documentation (by default at `/redoc`).
                 Use kebab-case for [parameters](https://redocly.com/docs/redoc/config).
                 """
             ),
