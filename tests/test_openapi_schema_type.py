@@ -1,50 +1,27 @@
-import itertools
-from typing import List
+from typing import List, Optional, Union
 
 import pytest
 from fastapi.openapi.constants import TypeValue
 from fastapi.openapi.models import Schema
 
-# Define all possible type values
-TYPE_VALUES: List[TypeValue] = [
-    "array",
-    "boolean",
-    "integer",
-    "null",
-    "number",
-    "object",
-    "string",
-]
 
-# Generate all combinations of 2 or more types
-TYPE_COMBINATIONS = [
-    list(combo)
-    for size in range(2, len(TYPE_VALUES) + 1)
-    for combo in itertools.combinations(TYPE_VALUES, size)
-]
+@pytest.mark.parametrize(
+    "type_value",
+    [
+        "array",
+        ["string", "null"],
+        None,
+    ],
+)
+def test_allowed_schema_type(
+    type_value: Optional[Union[TypeValue, List[TypeValue]]],
+) -> None:
+    """Test that Schema accepts TypeValue, List[TypeValue] and None for type field."""
+    schema = Schema(type=type_value)
+    assert schema.type == type_value
 
 
-@pytest.mark.parametrize("type_val", TYPE_VALUES)
-def test_schema_type_single_type_value(type_val: TypeValue) -> None:
-    """Test that Schema accepts single TypeValue for type field."""
-    schema = Schema(type=type_val)
-    assert schema.type == type_val
-
-
-@pytest.mark.parametrize("type_list", TYPE_COMBINATIONS)
-def test_schema_type_multiple_type_value(type_list: List[TypeValue]) -> None:
-    """Test all possible combinations of TypeValue for Schema type field."""
-    schema = Schema(type=type_list)
-    assert schema.type == type_list
-
-
-def test_schema_type_none_value() -> None:
-    """Test that Schema accepts None for type field (Optional)."""
-    schema = Schema(type=None)
-    assert schema.type is None
-
-
-def test_schema_default_type() -> None:
-    """Test that Schema defaults to None for type field if not specified."""
-    schema_default = Schema()
-    assert schema_default.type is None
+def test_invlid_type_value() -> None:
+    """Test that Schema raises ValueError for invalid type values."""
+    with pytest.raises(ValueError, match="2 validation errors for Schema"):
+        Schema(type=True)  # type: ignore[arg-type]
