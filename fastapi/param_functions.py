@@ -2217,9 +2217,9 @@ def File(  # noqa: N802
     )
 
 
-def Depends(  # noqa: N802
+def Depends[T](  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Optional[Callable[..., T]],
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2244,7 +2244,7 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
-) -> Any:
+) -> T:
     """
     Declare a FastAPI dependency.
 
@@ -2277,9 +2277,9 @@ def Depends(  # noqa: N802
     return params.Depends(dependency=dependency, use_cache=use_cache)
 
 
-def Security(  # noqa: N802
+def Security[T](  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Optional[Callable[..., T]],
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2321,7 +2321,7 @@ def Security(  # noqa: N802
             """
         ),
     ] = True,
-) -> Any:
+) -> T:
     """
     Declare a FastAPI Security dependency.
 
