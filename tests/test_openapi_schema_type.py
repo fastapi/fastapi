@@ -21,7 +21,7 @@ def test_allowed_schema_type(
     assert schema.type == type_value
 
 
-def test_invlid_type_value() -> None:
+def test_invalid_type_value() -> None:
     """Test that Schema raises ValueError for invalid type values."""
     with pytest.raises(ValueError, match="2 validation errors for Schema"):
         Schema(type=True)  # type: ignore[arg-type]
