@@ -3,7 +3,7 @@ from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],
@@ -188,7 +188,7 @@ def get_redoc_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
+    ] = "https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js",
     redoc_favicon_url: Annotated[
         str,
         Doc(

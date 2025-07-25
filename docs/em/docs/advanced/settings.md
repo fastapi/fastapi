@@ -8,44 +8,51 @@
 
 ## 🌐 🔢
 
-!!! tip
-    🚥 👆 ⏪ 💭 ⚫️❔ "🌐 🔢" &amp; ❔ ⚙️ 👫, 💭 🆓 🚶 ⏭ 📄 🔛.
+/// tip
+
+🚥 👆 ⏪ 💭 ⚫️❔ "🌐 🔢" &amp; ❔ ⚙️ 👫, 💭 🆓 🚶 ⏭ 📄 🔛.
+
+///
 
 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">🌐 🔢</a> (💭 "🇨🇻 {") 🔢 👈 🖖 🏞 🐍 📟, 🏃‍♂ ⚙️, &amp; 💪 ✍ 👆 🐍 📟 (⚖️ 🎏 📋 👍).
 
 👆 💪 ✍ &amp; ⚙️ 🌐 🔢 🐚, 🍵 💆‍♂ 🐍:
 
-=== "💾, 🇸🇻, 🚪 🎉"
+//// tab | 💾, 🇸🇻, 🚪 🎉
 
-    <div class="termy">
+<div class="termy">
 
-    ```console
-    // You could create an env var MY_NAME with
-    $ export MY_NAME="Wade Wilson"
+```console
+// You could create an env var MY_NAME with
+$ export MY_NAME="Wade Wilson"
 
-    // Then you could use it with other programs, like
-    $ echo "Hello $MY_NAME"
+// Then you could use it with other programs, like
+$ echo "Hello $MY_NAME"
 
-    Hello Wade Wilson
-    ```
+Hello Wade Wilson
+```
 
-    </div>
+</div>
 
-=== "🚪 📋"
+////
 
-    <div class="termy">
+//// tab | 🚪 📋
 
-    ```console
-    // Create an env var MY_NAME
-    $ $Env:MY_NAME = "Wade Wilson"
+<div class="termy">
 
-    // Use it with other programs, like
-    $ echo "Hello $Env:MY_NAME"
+```console
+// Create an env var MY_NAME
+$ $Env:MY_NAME = "Wade Wilson"
 
-    Hello Wade Wilson
-    ```
+// Use it with other programs, like
+$ echo "Hello $Env:MY_NAME"
 
-    </div>
+Hello Wade Wilson
+```
+
+</div>
+
+////
 
 ### ✍ 🇨🇻 {🐍
 
@@ -60,10 +67,13 @@ name = os.getenv("MY_NAME", "World")
 print(f"Hello {name} from Python")
 ```
 
-!!! tip
-    🥈 ❌ <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 🔢 💲 📨.
+/// tip
 
-    🚥 🚫 🚚, ⚫️ `None` 🔢, 📥 👥 🚚 `"World"` 🔢 💲 ⚙️.
+🥈 ❌ <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 🔢 💲 📨.
+
+🚥 🚫 🚚, ⚫️ `None` 🔢, 📥 👥 🚚 `"World"` 🔢 💲 ⚙️.
+
+///
 
 ⤴️ 👆 💪 🤙 👈 🐍 📋:
 
@@ -114,8 +124,11 @@ Hello World from Python
 
 </div>
 
-!!! tip
-    👆 💪 ✍ 🌅 🔃 ⚫️ <a href="https://12factor.net/config" class="external-link" target="_blank">1️⃣2️⃣-⚖ 📱: 📁</a>.
+/// tip
+
+👆 💪 ✍ 🌅 🔃 ⚫️ <a href="https://12factor.net/config" class="external-link" target="_blank">1️⃣2️⃣-⚖ 📱: 📁</a>.
+
+///
 
 ### 🆎 &amp; 🔬
 
@@ -125,7 +138,7 @@ Hello World from Python
 
 ## Pydantic `Settings`
 
-👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://pydantic-docs.helpmanual.io/usage/settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
+👐, Pydantic 🚚 👑 🚙 🍵 👫 ⚒ 👟 ⚪️➡️ 🌐 🔢 ⏮️ <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: ⚒ 🧾</a>.
 
 ### ✍ `Settings` 🎚
 
@@ -135,12 +148,13 @@ Hello World from Python
 
 👆 💪 ⚙️ 🌐 🎏 🔬 ⚒ &amp; 🧰 👆 ⚙️ Pydantic 🏷, 💖 🎏 📊 🆎 &amp; 🌖 🔬 ⏮️ `Field()`.
 
-```Python hl_lines="2  5-8  11"
-{!../../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
-!!! tip
-    🚥 👆 💚 🕳 ⏩ 📁 &amp; 📋, 🚫 ⚙️ 👉 🖼, ⚙️ 🏁 1️⃣ 🔛.
+/// tip
+
+🚥 👆 💚 🕳 ⏩ 📁 &amp; 📋, 🚫 ⚙️ 👉 🖼, ⚙️ 🏁 1️⃣ 🔛.
+
+///
 
 ⤴️, 🕐❔ 👆 ✍ 👐 👈 `Settings` 🎓 (👉 💼, `settings` 🎚), Pydantic 🔜 ✍ 🌐 🔢 💼-😛 🌌,, ↖-💼 🔢 `APP_NAME` 🔜 ✍ 🔢 `app_name`.
 
@@ -150,9 +164,7 @@ Hello World from Python
 
 ⤴️ 👆 💪 ⚙️ 🆕 `settings` 🎚 👆 🈸:
 
-```Python hl_lines="18-20"
-{!../../../docs_src/settings/tutorial001.py!}
-```
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### 🏃 💽
 
@@ -168,8 +180,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 </div>
 
-!!! tip
-    ⚒ 💗 🇨🇻 {👁 📋 🎏 👫 ⏮️ 🚀, &amp; 🚮 👫 🌐 ⏭ 📋.
+/// tip
+
+⚒ 💗 🇨🇻 {👁 📋 🎏 👫 ⏮️ 🚀, &amp; 🚮 👫 🌐 ⏭ 📋.
+
+///
 
 &amp; ⤴️ `admin_email` ⚒ 🔜 ⚒ `"deadpool@example.com"`.
 
@@ -183,18 +198,17 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 🖼, 👆 💪 ✔️ 📁 `config.py` ⏮️:
 
-```Python
-{!../../../docs_src/settings/app01/config.py!}
-```
+{* ../../docs_src/settings/app01/config.py *}
 
 &amp; ⤴️ ⚙️ ⚫️ 📁 `main.py`:
 
-```Python hl_lines="3  11-13"
-{!../../../docs_src/settings/app01/main.py!}
-```
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
-!!! tip
-    👆 🔜 💪 📁 `__init__.py` 👆 👀 🔛 [🦏 🈸 - 💗 📁](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+/// tip
+
+👆 🔜 💪 📁 `__init__.py` 👆 👀 🔛 [🦏 🈸 - 💗 📁](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+
+///
 
 ## ⚒ 🔗
 
@@ -206,9 +220,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 👟 ⚪️➡️ ⏮️ 🖼, 👆 `config.py` 📁 💪 👀 💖:
 
-```Python hl_lines="10"
-{!../../../docs_src/settings/app02/config.py!}
-```
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 👀 👈 🔜 👥 🚫 ✍ 🔢 👐 `settings = Settings()`.
 
@@ -216,28 +228,25 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 🔜 👥 ✍ 🔗 👈 📨 🆕 `config.Settings()`.
 
-```Python hl_lines="5  11-12"
-{!../../../docs_src/settings/app02/main.py!}
-```
+{* ../../docs_src/settings/app02/main.py hl[5,11:12] *}
 
-!!! tip
-    👥 🔜 🔬 `@lru_cache` 🍖.
+/// tip
 
-    🔜 👆 💪 🤔 `get_settings()` 😐 🔢.
+👥 🔜 🔬 `@lru_cache` 🍖.
+
+🔜 👆 💪 🤔 `get_settings()` 😐 🔢.
+
+///
 
 &amp; ⤴️ 👥 💪 🚚 ⚫️ ⚪️➡️ *➡ 🛠️ 🔢* 🔗 &amp; ⚙️ ⚫️ 🙆 👥 💪 ⚫️.
 
-```Python hl_lines="16  18-20"
-{!../../../docs_src/settings/app02/main.py!}
-```
+{* ../../docs_src/settings/app02/main.py hl[16,18:20] *}
 
 ### ⚒ &amp; 🔬
 
 ⤴️ ⚫️ 🔜 📶 ⏩ 🚚 🎏 ⚒ 🎚 ⏮️ 🔬 🏗 🔗 🔐 `get_settings`:
 
-```Python hl_lines="9-10  13  21"
-{!../../../docs_src/settings/app02/test_main.py!}
-```
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 🔗 🔐 👥 ⚒ 🆕 💲 `admin_email` 🕐❔ 🏗 🆕 `Settings` 🎚, &amp; ⤴️ 👥 📨 👈 🆕 🎚.
 
@@ -249,15 +258,21 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uvicorn main:app
 
 👉 💡 ⚠ 🥃 👈 ⚫️ ✔️ 📛, 👫 🌐 🔢 🛎 🥉 📁 `.env`, &amp; 📁 🤙 "🇨🇻".
 
-!!! tip
-    📁 ▶️ ⏮️ ❣ (`.`) 🕵‍♂ 📁 🖥-💖 ⚙️, 💖 💾 &amp; 🇸🇻.
+/// tip
 
-    ✋️ 🇨🇻 📁 🚫 🤙 ✔️ ✔️ 👈 ☑ 📁.
+📁 ▶️ ⏮️ ❣ (`.`) 🕵‍♂ 📁 🖥-💖 ⚙️, 💖 💾 &amp; 🇸🇻.
 
-Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
+✋️ 🇨🇻 📁 🚫 🤙 ✔️ ✔️ 👈 ☑ 📁.
 
-!!! tip
-    👉 👷, 👆 💪 `pip install python-dotenv`.
+///
+
+Pydantic ✔️ 🐕‍🦺 👂 ⚪️➡️ 👉 🆎 📁 ⚙️ 🔢 🗃. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic ⚒: 🇨🇻 (.🇨🇻) 🐕‍🦺</a>.
+
+/// tip
+
+👉 👷, 👆 💪 `pip install python-dotenv`.
+
+///
 
 ###  `.env` 📁
 
@@ -272,14 +287,15 @@ APP_NAME="ChimichangApp"
 
 &amp; ⤴️ ℹ 👆 `config.py` ⏮️:
 
-```Python hl_lines="9-10"
-{!../../../docs_src/settings/app03/config.py!}
-```
+{* ../../docs_src/settings/app03/config.py hl[9:10] *}
 
 📥 👥 ✍ 🎓 `Config` 🔘 👆 Pydantic `Settings` 🎓, &amp; ⚒ `env_file` 📁 ⏮️ 🇨🇻 📁 👥 💚 ⚙️.
 
-!!! tip
-     `Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://pydantic-docs.helpmanual.io/usage/model_config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
+/// tip
+
+`Config` 🎓 ⚙️ Pydantic 📳. 👆 💪 ✍ 🌖 <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic 🏷 📁</a>
+
+///
 
 ### 🏗 `Settings` 🕴 🕐 ⏮️ `lru_cache`
 
@@ -304,9 +320,7 @@ def get_settings():
 
 ✋️ 👥 ⚙️ `@lru_cache` 👨‍🎨 🔛 🔝, `Settings` 🎚 🔜 ✍ 🕴 🕐, 🥇 🕰 ⚫️ 🤙. 👶 👶
 
-```Python hl_lines="1  10"
-{!../../../docs_src/settings/app03/main.py!}
-```
+{* ../../docs_src/settings/app03/main.py hl[1,10] *}
 
 ⤴️ 🙆 🏁 🤙 `get_settings()` 🔗 ⏭ 📨, ↩️ 🛠️ 🔗 📟 `get_settings()` &amp; 🏗 🆕 `Settings` 🎚, ⚫️ 🔜 📨 🎏 🎚 👈 📨 🔛 🥇 🤙, 🔄 &amp; 🔄.
 

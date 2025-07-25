@@ -13,16 +13,17 @@ Seulement le minimum nécessaire pour les utiliser avec **FastAPI** sera couvert
 
 Mais même si vous n'utilisez pas ou n'utiliserez jamais **FastAPI**, vous pourriez bénéficier d'apprendre quelques choses sur ces dernières.
 
-!!! note
-    Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annotations de type, passez au chapitre suivant.
+/// note
+
+Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annotations de type, passez au chapitre suivant.
+
+///
 
 ## Motivations
 
 Prenons un exemple simple :
 
-```Python
-{!../../../docs_src/python_types/tutorial001.py!}
-```
+{*../../docs_src/python_types/tutorial001.py*}
 
 Exécuter ce programe affiche :
 
@@ -36,9 +37,7 @@ La fonction :
 * Convertit la première lettre de chaque paramètre en majuscules grâce à `title()`.
 * Concatène les résultats avec un espace entre les deux.
 
-```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial001.py!}
-```
+{*../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Limitations
 
@@ -81,9 +80,7 @@ C'est tout.
 
 Ce sont des annotations de types :
 
-```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial002.py!}
-```
+{*../../docs_src/python_types/tutorial002.py hl[1] *}
 
 À ne pas confondre avec la déclaration de valeurs par défaut comme ici :
 
@@ -111,9 +108,7 @@ Vous pouvez donc dérouler les options jusqu'à trouver la méthode à laquelle 
 
 Cette fonction possède déjà des annotations de type :
 
-```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial003.py!}
-```
+{*../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'auto-complétion, mais aussi de la détection d'erreurs :
 
@@ -121,9 +116,7 @@ Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'aut
 
 Maintenant que vous avez connaissance du problème, convertissez `age` en <abbr title="string">chaîne de caractères</abbr> grâce à `str(age)` :
 
-```Python hl_lines="2"
-{!../../../docs_src/python_types/tutorial004.py!}
-```
+{*../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Déclarer des types
 
@@ -142,9 +135,7 @@ Comme par exemple :
 * `bool`
 * `bytes`
 
-```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial005.py!}
-```
+{*../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Types génériques avec des paramètres de types
 
@@ -160,9 +151,7 @@ Par exemple, définissons une variable comme `list` de `str`.
 
 Importez `List` (avec un `L` majuscule) depuis `typing`.
 
-```Python hl_lines="1"
-{!../../../docs_src/python_types/tutorial006.py!}
-```
+{*../../docs_src/python_types/tutorial006.py hl[1] *}
 
 Déclarez la variable, en utilisant la syntaxe des deux-points (`:`).
 
@@ -170,14 +159,15 @@ Et comme type, mettez `List`.
 
 Les listes étant un type contenant des types internes, mettez ces derniers entre crochets (`[`, `]`) :
 
-```Python hl_lines="4"
-{!../../../docs_src/python_types/tutorial006.py!}
-```
+{*../../docs_src/python_types/tutorial006.py hl[4] *}
 
-!!! tip "Astuce"
-    Ces types internes entre crochets sont appelés des "paramètres de type".
+/// tip | Astuce
 
-    Ici, `str` est un paramètre de type passé à `List`.
+Ces types internes entre crochets sont appelés des "paramètres de type".
+
+Ici, `str` est un paramètre de type passé à `List`.
+
+///
 
 Ce qui signifie : "la variable `items` est une `list`, et chacun de ses éléments a pour type `str`.
 
@@ -195,9 +185,7 @@ Et pourtant, l'éditeur sait qu'elle est de type `str` et pourra donc vous aider
 
 C'est le même fonctionnement pour déclarer un `tuple` ou un `set` :
 
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial007.py!}
-```
+{*../../docs_src/python_types/tutorial007.py hl[1,4] *}
 
 Dans cet exemple :
 
@@ -210,9 +198,7 @@ Pour définir un `dict`, il faut lui passer 2 paramètres, séparés par une vir
 
 Le premier paramètre de type est pour les clés et le second pour les valeurs du dictionnaire (`dict`).
 
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial008.py!}
-```
+{*../../docs_src/python_types/tutorial008.py hl[1,4] *}
 
 Dans cet exemple :
 
@@ -224,9 +210,7 @@ Dans cet exemple :
 
 Vous pouvez aussi utiliser `Optional` pour déclarer qu'une variable a un type, comme `str` mais qu'il est "optionnel" signifiant qu'il pourrait aussi être `None`.
 
-```Python hl_lines="1  4"
-{!../../../docs_src/python_types/tutorial009.py!}
-```
+{*../../docs_src/python_types/tutorial009.py hl[1,4] *}
 
 Utiliser `Optional[str]` plutôt que `str` permettra à l'éditeur de vous aider à détecter les erreurs où vous supposeriez qu'une valeur est toujours de type `str`, alors qu'elle pourrait aussi être `None`.
 
@@ -249,15 +233,12 @@ Vous pouvez aussi déclarer une classe comme type d'une variable.
 
 Disons que vous avez une classe `Person`, avec une variable `name` :
 
-```Python hl_lines="1-3"
-{!../../../docs_src/python_types/tutorial010.py!}
-```
+{*../../docs_src/python_types/tutorial010.py hl[1:3] *}
+
 
 Vous pouvez ensuite déclarer une variable de type `Person` :
 
-```Python hl_lines="6"
-{!../../../docs_src/python_types/tutorial010.py!}
-```
+{*../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Et vous aurez accès, encore une fois, au support complet offert par l'éditeur :
 
@@ -265,7 +246,7 @@ Et vous aurez accès, encore une fois, au support complet offert par l'éditeur 
 
 ## Les modèles Pydantic
 
-<a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
 
 Vous déclarez la forme de la donnée avec des classes et des attributs.
 
@@ -277,12 +258,13 @@ Ainsi, votre éditeur vous offrira un support adapté pour l'objet résultant.
 
 Extrait de la documentation officielle de **Pydantic** :
 
-```Python
-{!../../../docs_src/python_types/tutorial011.py!}
-```
+{*../../docs_src/python_types/tutorial011.py*}
 
-!!! info
-    Pour en savoir plus à propos de <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+/// info
+
+Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+
+///
 
 **FastAPI** est basé entièrement sur **Pydantic**.
 
@@ -310,5 +292,8 @@ Tout cela peut paraître bien abstrait, mais ne vous inquiétez pas, vous verrez
 
 Ce qu'il faut retenir c'est qu'en utilisant les types standard de Python, à un seul endroit (plutôt que d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
-!!! info
-    Si vous avez déjà lu le tutoriel et êtes revenus ici pour voir plus sur les types, une bonne ressource est la <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" de `mypy`</a>.
+/// info
+
+Si vous avez déjà lu le tutoriel et êtes revenus ici pour voir plus sur les types, une bonne ressource est la <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" de `mypy`</a>.
+
+///
