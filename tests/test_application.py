@@ -12,6 +12,7 @@ client = TestClient(app)
     [
         ("/api_route", 200, {"message": "Hello World"}),
         ("/non_decorated_route", 200, {"message": "Hello World"}),
+        ("/multiple-methods", 200, {"message": "Hello World"}),
         ("/nonexistent", 404, {"detail": "Not Found"}),
     ],
 )
@@ -1163,6 +1164,28 @@ def test_openapi_schema():
                     },
                 }
             },
+            "/multiple-methods": {
+                "get": {
+                    "summary": "Multiple Methods",
+                    "operationId": "multiple_methods_multiple_methods_get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                },
+                "post": {
+                    "summary": "Multiple Methods",
+                    "operationId": "multiple_methods_multiple_methods_post",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                },
+            },
             "/query/list": {
                 "get": {
                     "summary": "Get Query List",
@@ -1251,6 +1274,17 @@ def test_openapi_schema():
         },
         "components": {
             "schemas": {
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                        }
+                    },
+                },
                 "ValidationError": {
                     "title": "ValidationError",
                     "required": ["loc", "msg", "type"],
@@ -1265,17 +1299,6 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
                     },
                 },
             }
