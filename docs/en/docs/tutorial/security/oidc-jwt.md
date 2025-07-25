@@ -16,28 +16,40 @@ First, you will need to select an OpenID provider if you do not have one already
 ## Setup OpenID provder
 
 First, we will need to configure an Applicaton (i.e. Relying Party in OpenID-speak) in the OpenID provider. This application allows the **FastAPI** client that logs in to the OpenID Connect provider:
-!!! check "Step 1 - Create Application"
-    * Create an Application of type SPA
-    * Select Authorization Code, Refresh Token, Require PKCE
-    * Configure sign-in redirect URIs: `http://localhost:8080/docs/oauth2-redirect`
-    * Configure sign-out redirect URIs: `http://localhost:8080/docs/`
-    * *Write down the client id*
+
+/// check | Step 1 - Create Application
+
+* Create an Application of type SPA
+* Select Authorization Code, Refresh Token, Require PKCE
+* Configure sign-in redirect URIs: `http://localhost:8080/docs/oauth2-redirect`
+* Configure sign-out redirect URIs: `http://localhost:8080/docs/`
+* *Write down the client id*
+
+///
 
 Then, we will select an authorization server to verify user identities and issue tokens for secure authentication and authorization of login requests:
-!!! check "Step 2 - Configure authorization server to return a custom claim"
-    * Select/create a custom authorization server for the abovementioned application
-    * Create a custom claim with the name "`groups`".
-    * Map the values to the groups of which the authenticated user is member of
-    * *Write down issuer URL*
-    * *Write down audience*
+
+/// check | Step 2 - Configure authorization server to return a custom claim
+
+* Select/create a custom authorization server for the abovementioned application
+* Create a custom claim with the name "`groups`".
+* Map the values to the groups of which the authenticated user is member of
+* *Write down issuer URL*
+* *Write down audience*
+
+///
 
 Finally, we will need to create a user and a group named "`Foo`" to
-!!! check "Step 3 - Create a user and group"
-    * Create a group called "`Foo`"
-    * Create a user
-    * Assign the "`Foo`"` group to the user
-    * Assign the application of step 1 to the user
-    * *Write down user/password as you will need to authenticate with it later*
+
+/// check | Step 3 - Create a user and group
+
+* Create a group called "`Foo`"
+* Create a user
+* Assign the "`Foo`"` group to the user
+* Assign the application of step 1 to the user
+* *Write down user/password as you will need to authenticate with it later*
+
+///
 
 ## Configure your **FastAPI** Application
 
@@ -46,18 +58,25 @@ We assume a running pip environment with **FastAPI** installed (see [here](../..
 This example contains a `AccessTokenValidator` that validates the JWT access tokens using the jwks url that is part of the oidc well known configuration. It requires a Python JavaScript Object Signing and Encryprion (JOSE) library, a HTTP client to fetch keysets and some cache utilities.
 
 
-!!! check "Step 4 - Install AccessTokenValidator Dependencies"
-    ```console
-    pip install jose cachetools types-cachetools httpx
-    ```
+/// check | Step 4 - Install AccessTokenValidator Dependencies
+
+```console
+pip install jose cachetools types-cachetools httpx
+```
+
+///
 
 You need to fill in the values in the .env file that you wrote down from the previous steps:
-!!! check "Step 5 - Configure **FastAPI** environment"
-    ```
-    client_id = "Client Id of Step 1 here"
-    issuer = "Issuer URL of Step 2 here"
-    audience = "Audience of Step 2 here"
-    ```
+
+/// check | Step 5 - Configure **FastAPI** environment
+
+```
+client_id = "Client Id of Step 1 here"
+issuer = "Issuer URL of Step 2 here"
+audience = "Audience of Step 2 here"
+```
+
+///
 
 This was the final step of the configuration.
 
@@ -71,15 +90,19 @@ Finally we come to the actual **FastAPI** code:
     {!> ../../../docs_src/security/tutorial008_an_py39.py!}
     ```
 
-!!! check "some small tweaks necessary?"
-    * line 118, set usePkceWithAuthorizationCodeGrant if you require PKCE authentication (configured when you set up your application)
-    * line 116, add additional scopes to "openid" if your authorization requires this
+/// check | some small tweaks necessary?
 
+* line 118, set usePkceWithAuthorizationCodeGrant if you require PKCE authentication (configured when you set up your application)
+* line 116, add additional scopes to "openid" if your authorization requires this
+
+///
 
 If you save this file as `main.py`, you can run the app [as normal](../../index.md#run-it), for instance:
+
 ```bash
 uvicorn main:app --port 8080 --reload
 ```
+
 (*If you do not specify the correct port defined in Step 1, the authentication flow will fail*)
 
 
