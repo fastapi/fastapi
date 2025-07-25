@@ -85,7 +85,7 @@ This was the final step of the configuration.
 Finally we come to the actual **FastAPI** code:
 
 
-{* ../../docs_src/security/tutorial008_an_py39.py hl[112:124,127:129,134]}
+{* ../../docs_src/security/tutorial008_an_py39.py hl[112:124,127:129,134] *}
 
 
 /// check | some small tweaks necessary?
