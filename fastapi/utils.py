@@ -179,8 +179,15 @@ def generate_operation_id_for_path(
 def generate_unique_id(route: "APIRoute") -> str:
     operation_id = f"{route.name}{route.path_format}"
     operation_id = re.sub(r"\W", "_", operation_id)
+    # Ensure deterministic generation of the operation_id
+    # Sets are unordered, so converting directly to a list could give
+    # different results between runs, causing unstable OpenAPI specs.
+    # Sort the HTTP methods to guarantee a consistent order and pick the first
+    # one. This keeps the original behaviour (choosing one method) while
+    # making the result predictable.
     assert route.methods
-    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    method = sorted(route.methods)[0].lower()
+    operation_id = f"{operation_id}_{method}"
     return operation_id
 
 
