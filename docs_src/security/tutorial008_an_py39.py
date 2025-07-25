@@ -50,7 +50,9 @@ class AccessTokenValidator(HTTPBearer):
                 result = self.keyset_cache[self.uri] = response.text
         return result
 
-    async def __call__(self, request: Request, security_scopes: SecurityScopes) -> AccessTokenCredentials:  # type: ignore
+    async def __call__(
+        self, request: Request, security_scopes: SecurityScopes
+    ) -> AccessTokenCredentials:  # type: ignore
         """Validates the JWT Access Token. If security_scopes are given, they are validated against the roles_claim in the Access Token."""
         # 1. Unpack bearer token
         unverified_token = await super().__call__(request)
@@ -131,6 +133,6 @@ oauth2 = AccessTokenValidator(
 
 @app.get("/hello")
 async def hello(
-    token: Annotated[AccessTokenCredentials, Security(oauth2, scopes=["Foo"])]
+    token: Annotated[AccessTokenCredentials, Security(oauth2, scopes=["Foo"])],
 ) -> str:
     return "Hi!"
