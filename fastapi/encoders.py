@@ -22,8 +22,9 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
+from typing_extensions import Annotated, Doc
 
-from ._compat import PYDANTIC_V2, Url, _model_dump
+from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -85,7 +86,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]]
+    type_encoder_map: Dict[Any, Callable[[Any], Any]],
 ) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
     encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
         tuple
@@ -99,16 +100,107 @@ encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
 def jsonable_encoder(
-    obj: Any,
-    include: Optional[IncEx] = None,
-    exclude: Optional[IncEx] = None,
-    by_alias: bool = True,
-    exclude_unset: bool = False,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
-    sqlalchemy_safe: bool = True,
+    obj: Annotated[
+        Any,
+        Doc(
+            """
+            The input object to convert to JSON.
+            """
+        ),
+    ],
+    include: Annotated[
+        Optional[IncEx],
+        Doc(
+            """
+            Pydantic's `include` parameter, passed to Pydantic models to set the
+            fields to include.
+            """
+        ),
+    ] = None,
+    exclude: Annotated[
+        Optional[IncEx],
+        Doc(
+            """
+            Pydantic's `exclude` parameter, passed to Pydantic models to set the
+            fields to exclude.
+            """
+        ),
+    ] = None,
+    by_alias: Annotated[
+        bool,
+        Doc(
+            """
+            Pydantic's `by_alias` parameter, passed to Pydantic models to define if
+            the output should use the alias names (when provided) or the Python
+            attribute names. In an API, if you set an alias, it's probably because you
+            want to use it in the result, so you probably want to leave this set to
+            `True`.
+            """
+        ),
+    ] = True,
+    exclude_unset: Annotated[
+        bool,
+        Doc(
+            """
+            Pydantic's `exclude_unset` parameter, passed to Pydantic models to define
+            if it should exclude from the output the fields that were not explicitly
+            set (and that only had their default values).
+            """
+        ),
+    ] = False,
+    exclude_defaults: Annotated[
+        bool,
+        Doc(
+            """
+            Pydantic's `exclude_defaults` parameter, passed to Pydantic models to define
+            if it should exclude from the output the fields that had the same default
+            value, even when they were explicitly set.
+            """
+        ),
+    ] = False,
+    exclude_none: Annotated[
+        bool,
+        Doc(
+            """
+            Pydantic's `exclude_none` parameter, passed to Pydantic models to define
+            if it should exclude from the output any fields that have a `None` value.
+            """
+        ),
+    ] = False,
+    custom_encoder: Annotated[
+        Optional[Dict[Any, Callable[[Any], Any]]],
+        Doc(
+            """
+            Pydantic's `custom_encoder` parameter, passed to Pydantic models to define
+            a custom encoder.
+            """
+        ),
+    ] = None,
+    sqlalchemy_safe: Annotated[
+        bool,
+        Doc(
+            """
+            Exclude from the output any fields that start with the name `_sa`.
+
+            This is mainly a hack for compatibility with SQLAlchemy objects, they
+            store internal SQLAlchemy-specific state in attributes named with `_sa`,
+            and those objects can't (and shouldn't be) serialized to JSON.
+            """
+        ),
+    ] = True,
 ) -> Any:
+    """
+    Convert any object to something that can be encoded in JSON.
+
+    This is used internally by FastAPI to make sure anything you return can be
+    encoded as JSON before it is sent to the client.
+
+    You can also use it yourself, for example to convert objects before saving them
+    in a database that supports only JSON.
+
+    Read more about it in the
+    [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
+    """
     custom_encoder = custom_encoder or {}
     if custom_encoder:
         if type(obj) in custom_encoder:
@@ -167,6 +259,8 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
+    if isinstance(obj, UndefinedType):
+        return None
     if isinstance(obj, dict):
         encoded_dict = {}
         allowed_keys = set(obj.keys())

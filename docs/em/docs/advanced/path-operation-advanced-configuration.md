@@ -2,16 +2,17 @@
 
 ## 🗄 {
 
-!!! warning
-    🚥 👆 🚫 "🕴" 🗄, 👆 🎲 🚫 💪 👉.
+/// warning
+
+🚥 👆 🚫 "🕴" 🗄, 👆 🎲 🚫 💪 👉.
+
+///
 
 👆 💪 ⚒ 🗄 `operationId` ⚙️ 👆 *➡ 🛠️* ⏮️ 🔢 `operation_id`.
 
 👆 🔜 ✔️ ⚒ 💭 👈 ⚫️ 😍 🔠 🛠️.
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial001.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### ⚙️ *➡ 🛠️ 🔢* 📛 {
 
@@ -19,25 +20,27 @@
 
 👆 🔜 ⚫️ ⏮️ ❎ 🌐 👆 *➡ 🛠️*.
 
-```Python hl_lines="2  12-21  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial002.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,12:21,24] *}
 
-!!! tip
-    🚥 👆 ❎ 🤙 `app.openapi()`, 👆 🔜 ℹ `operationId`Ⓜ ⏭ 👈.
+/// tip
 
-!!! warning
-    🚥 👆 👉, 👆 ✔️ ⚒ 💭 🔠 1️⃣ 👆 *➡ 🛠️ 🔢* ✔️ 😍 📛.
+🚥 👆 ❎ 🤙 `app.openapi()`, 👆 🔜 ℹ `operationId`Ⓜ ⏭ 👈.
 
-    🚥 👫 🎏 🕹 (🐍 📁).
+///
+
+/// warning
+
+🚥 👆 👉, 👆 ✔️ ⚒ 💭 🔠 1️⃣ 👆 *➡ 🛠️ 🔢* ✔️ 😍 📛.
+
+🚥 👫 🎏 🕹 (🐍 📁).
+
+///
 
 ## 🚫 ⚪️➡️ 🗄
 
 🚫 *➡ 🛠️* ⚪️➡️ 🏗 🗄 🔗 (&amp; ➡️, ⚪️➡️ 🏧 🧾 ⚙️), ⚙️ 🔢 `include_in_schema` &amp; ⚒ ⚫️ `False`:
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial003.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## 🏧 📛 ⚪️➡️ #️⃣
 
@@ -47,9 +50,7 @@
 
 ⚫️ 🏆 🚫 🎦 🆙 🧾, ✋️ 🎏 🧰 (✅ 🐉) 🔜 💪 ⚙️ 🎂.
 
-```Python hl_lines="19-29"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial004.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
 
 ## 🌖 📨
 
@@ -59,14 +60,17 @@
 
 👆 💪 📣 🌖 📨 ⏮️ 👫 🏷, 👔 📟, ♒️.
 
-📤 🎂 📃 📥 🧾 🔃 ⚫️, 👆 💪 ✍ ⚫️ [🌖 📨 🗄](./additional-responses.md){.internal-link target=_blank}.
+📤 🎂 📃 📥 🧾 🔃 ⚫️, 👆 💪 ✍ ⚫️ [🌖 📨 🗄](additional-responses.md){.internal-link target=_blank}.
 
 ## 🗄 ➕
 
 🕐❔ 👆 📣 *➡ 🛠️* 👆 🈸, **FastAPI** 🔁 🏗 🔗 🗃 🔃 👈 *➡ 🛠️* 🔌 🗄 🔗.
 
-!!! note "📡 ℹ"
-    🗄 🔧 ⚫️ 🤙 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">🛠️ 🎚</a>.
+/// note | 📡 ℹ
+
+🗄 🔧 ⚫️ 🤙 <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">🛠️ 🎚</a>.
+
+///
 
 ⚫️ ✔️ 🌐 ℹ 🔃 *➡ 🛠️* &amp; ⚙️ 🏗 🏧 🧾.
 
@@ -74,10 +78,13 @@
 
 👉 *➡ 🛠️*-🎯 🗄 🔗 🛎 🏗 🔁 **FastAPI**, ✋️ 👆 💪 ↔ ⚫️.
 
-!!! tip
-    👉 🔅 🎚 ↔ ☝.
+/// tip
 
-    🚥 👆 🕴 💪 📣 🌖 📨, 🌅 🏪 🌌 ⚫️ ⏮️ [🌖 📨 🗄](./additional-responses.md){.internal-link target=_blank}.
+👉 🔅 🎚 ↔ ☝.
+
+🚥 👆 🕴 💪 📣 🌖 📨, 🌅 🏪 🌌 ⚫️ ⏮️ [🌖 📨 🗄](additional-responses.md){.internal-link target=_blank}.
+
+///
 
 👆 💪 ↔ 🗄 🔗 *➡ 🛠️* ⚙️ 🔢 `openapi_extra`.
 
@@ -85,9 +92,7 @@
 
 👉 `openapi_extra` 💪 👍, 🖼, 📣 [🗄 ↔](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-```Python hl_lines="6"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial005.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 🚥 👆 📂 🏧 🛠️ 🩺, 👆 ↔ 🔜 🎦 🆙 🔝 🎯 *➡ 🛠️*.
 
@@ -134,9 +139,7 @@
 
 👆 💪 👈 ⏮️ `openapi_extra`:
 
-```Python hl_lines="20-37  39-40"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial006.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[20:37,39:40] *}
 
 👉 🖼, 👥 🚫 📣 🙆 Pydantic 🏷. 👐, 📨 💪 🚫 <abbr title="converted from some plain format, like bytes, into Python objects">🎻</abbr> 🎻, ⚫️ ✍ 🔗 `bytes`, &amp; 🔢 `magic_data_reader()` 🔜 🈚 🎻 ⚫️ 🌌.
 
@@ -150,9 +153,7 @@
 
 🖼, 👉 🈸 👥 🚫 ⚙️ FastAPI 🛠️ 🛠️ ⚗ 🎻 🔗 ⚪️➡️ Pydantic 🏷 🚫 🏧 🔬 🎻. 👐, 👥 📣 📨 🎚 🆎 📁, 🚫 🎻:
 
-```Python hl_lines="17-22  24"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22,24] *}
 
 👐, 👐 👥 🚫 ⚙️ 🔢 🛠️ 🛠️, 👥 ⚙️ Pydantic 🏷 ❎ 🏗 🎻 🔗 💽 👈 👥 💚 📨 📁.
 
@@ -160,11 +161,12 @@
 
 &amp; ⤴️ 👆 📟, 👥 🎻 👈 📁 🎚 🔗, &amp; ⤴️ 👥 🔄 ⚙️ 🎏 Pydantic 🏷 ✔ 📁 🎚:
 
-```Python hl_lines="26-33"
-{!../../../docs_src/path_operation_advanced_configuration/tutorial007.py!}
-```
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
 
-!!! tip
-    📥 👥 🏤-⚙️ 🎏 Pydantic 🏷.
+/// tip
 
-    ✋️ 🎏 🌌, 👥 💪 ✔️ ✔ ⚫️ 🎏 🌌.
+📥 👥 🏤-⚙️ 🎏 Pydantic 🏷.
+
+✋️ 🎏 🌌, 👥 💪 ✔️ ✔ ⚫️ 🎏 🌌.
+
+///

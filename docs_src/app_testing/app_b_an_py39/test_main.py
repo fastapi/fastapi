@@ -21,7 +21,7 @@ def test_read_item_bad_token():
     assert response.json() == {"detail": "Invalid X-Token header"}
 
 
-def test_read_inexistent_item():
+def test_read_nonexistent_item():
     response = client.get("/items/baz", headers={"X-Token": "coneofsilence"})
     assert response.status_code == 404
     assert response.json() == {"detail": "Item not found"}
@@ -61,5 +61,5 @@ def test_create_existing_item():
             "description": "There goes my stealer",
         },
     )
-    assert response.status_code == 400
+    assert response.status_code == 409
     assert response.json() == {"detail": "Item already exists"}

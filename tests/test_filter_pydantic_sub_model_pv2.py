@@ -5,14 +5,13 @@ from dirty_equals import HasRepr, IsDict, IsOneOf
 from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from .utils import needs_pydanticv2
 
 
 @pytest.fixture(name="client")
 def get_client():
-    from pydantic import BaseModel, FieldValidationInfo, field_validator
+    from pydantic import BaseModel, ValidationInfo, field_validator
 
     app = FastAPI()
 
@@ -28,7 +27,7 @@ def get_client():
         foo: ModelB
 
         @field_validator("name")
-        def lower_username(cls, name: str, info: FieldValidationInfo):
+        def lower_username(cls, name: str, info: ValidationInfo):
             if not name.endswith("A"):
                 raise ValueError("name must end in A")
             return name
@@ -67,7 +66,6 @@ def test_validator_is_cloned(client: TestClient):
                 "msg": "Value error, name must end in A",
                 "input": "modelX",
                 "ctx": {"error": HasRepr("ValueError('name must end in A')")},
-                "url": match_pydantic_error_url("value_error"),
             }
         )
         | IsDict(

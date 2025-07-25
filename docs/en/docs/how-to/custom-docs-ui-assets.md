@@ -18,15 +18,13 @@ The first step is to disable the automatic docs, as by default, those use the de
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-```Python hl_lines="8"
-{!../../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Include the custom docs
 
 Now you can create the *path operations* for the custom docs.
 
-You can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+You can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -36,24 +34,23 @@ You can re-use FastAPI's internal functions to create the HTML pages for the doc
 
 And similarly for ReDoc...
 
-```Python hl_lines="2-6  11-19  22-24  27-33"
-{!../../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test it
 
 Now, to be able to test that everything works, create a *path operation*:
 
-```Python hl_lines="36-38"
-{!../../../docs_src/custom_docs_ui/tutorial001.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### Test it
 
@@ -101,7 +98,7 @@ You can probably right-click each link and select an option similar to `Save lin
 
 And **ReDoc** uses the file:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 After that, your file structure could look like:
 
@@ -121,9 +118,7 @@ After that, your file structure could look like:
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-```Python hl_lines="7  11"
-{!../../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Test the static files
 
@@ -134,14 +129,8 @@ You should see a very long JavaScript file for **ReDoc**.
 It could start with something like:
 
 ```JavaScript
-/*!
- * ReDoc - OpenAPI/Swagger-generated API Reference Documentation
- * -------------------------------------------------------------
- *   Version: "2.0.0-rc.18"
- *   Repo: https://github.com/Redocly/redoc
- */
-!function(e,t){"object"==typeof exports&&"object"==typeof m
-
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
 
@@ -155,15 +144,13 @@ The same as when using a custom CDN, the first step is to disable the automatic 
 
 To disable them, set their URLs to `None` when creating your `FastAPI` app:
 
-```Python hl_lines="9"
-{!../../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Include the custom docs for static files
 
 And the same way as with a custom CDN, now you can create the *path operations* for the custom docs.
 
-Again, you can re-use FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Again, you can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
 
 * `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
 * `title`: the title of your API.
@@ -173,24 +160,23 @@ Again, you can re-use FastAPI's internal functions to create the HTML pages for 
 
 And similarly for ReDoc...
 
-```Python hl_lines="2-6  14-22  25-27  30-36"
-{!../../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
-!!! tip
-    The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+/// tip
 
-    If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
 
-    Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+
+Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+
+///
 
 ### Create a *path operation* to test static files
 
 Now, to be able to test that everything works, create a *path operation*:
 
-```Python hl_lines="39-41"
-{!../../../docs_src/custom_docs_ui/tutorial002.py!}
-```
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Test Static Files UI
 
