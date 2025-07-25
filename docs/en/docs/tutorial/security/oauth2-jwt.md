@@ -120,7 +120,7 @@ And another one to authenticate and return a user.
 
 /// note
 
-If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 
