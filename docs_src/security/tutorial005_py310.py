@@ -8,7 +8,7 @@ from fastapi.security import (
     SecurityScopes,
 )
 from jwt.exceptions import InvalidTokenError
-from passlib.context import CryptContext
+from pwdlib import PasswordHash
 from pydantic import BaseModel, ValidationError
 
 # to get a string like this run:
@@ -57,7 +57,7 @@ class UserInDB(User):
     hashed_password: str
 
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+password_hash = PasswordHash.recommended()
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="token",
@@ -68,11 +68,11 @@ app = FastAPI()
 
 
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    return password_hash.verify(plain_password, hashed_password)
 
 
 def get_password_hash(password):
-    return pwd_context.hash(password)
+    return password_hash.hash(password)
 
 
 def get_user(db, username: str):
