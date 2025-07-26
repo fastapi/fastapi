@@ -22,7 +22,7 @@
 
 ## 在推特上关注 FastAPI
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">在 **Twitter** 上关注 @fastapi</a> 获取 **FastAPI** 的最新消息。🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">在 **X (Twitter)** 上关注 @fastapi</a> 获取 **FastAPI** 的最新消息。🐦
 
 ## 在 GitHub 上为 **FastAPI** 加星
 
@@ -47,19 +47,19 @@
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">在 **GitHub** 上关注我</a>
     * 了解其它我创建的开源项目，或许对您会有帮助
     * 关注我什么时候创建新的开源项目
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">在 **Twitter** 上关注我</a>
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">在 **X (Twitter)** 上关注我</a>
     * 告诉我您使用 FastAPI（我非常乐意听到这种消息）
     * 接收我发布公告或新工具的消息
-    * 您还可以关注<a href="https://twitter.com/fastapi" class="external-link" target="_blank">@fastapi on Twitter</a>，这是个独立的账号
+    * 您还可以关注<a href="https://x.com/fastapi" class="external-link" target="_blank">@fastapi on X (Twitter)</a>，这是个独立的账号
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">在**领英**上联系我</a>
-    * 接收我发布公告或新工具的消息（虽然我用 Twitter 比较多）
+    * 接收我发布公告或新工具的消息（虽然我用 X (Twitter) 比较多）
 * 阅读我在 <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> 或 <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> 上的文章，或关注我
     * 阅读我的其它想法、文章，了解我创建的工具
     * 关注我，这样就可以随时看到我发布的新文章
 
 ## Tweet about **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> 让我和大家知道您为什么喜欢 FastAPI。🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweet about **FastAPI**</a> 让我和大家知道您为什么喜欢 FastAPI。🎉
 
 知道有人使用 **FastAPI**，我会很开心，我也想知道您为什么喜欢 FastAPI，以及您在什么项目/哪些公司使用 FastAPI，等等。
 

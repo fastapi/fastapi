@@ -4,9 +4,9 @@ Sie können OAuth2-<abbr title="Geltungsbereiche">Scopes</abbr> direkt in **Fast
 
 Das ermöglicht es Ihnen, ein feingranuliertes Berechtigungssystem nach dem OAuth2-Standard in Ihre OpenAPI-Anwendung (und deren API-Dokumentation) zu integrieren.
 
-OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, Twitter usw. verwendet wird. Sie verwenden ihn, um Benutzern und Anwendungen spezifische Berechtigungen zu erteilen.
+OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, X (Twitter) usw. verwendet wird. Sie verwenden ihn, um Benutzern und Anwendungen spezifische Berechtigungen zu erteilen.
 
-Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder Twitter anmelden („log in with“), verwendet die entsprechende Anwendung OAuth2 mit Scopes.
+Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder X (Twitter) anmelden („log in with“), verwendet die entsprechende Anwendung OAuth2 mit Scopes.
 
 In diesem Abschnitt erfahren Sie, wie Sie Authentifizierung und Autorisierung mit demselben OAuth2, mit Scopes in Ihrer **FastAPI**-Anwendung verwalten.
 

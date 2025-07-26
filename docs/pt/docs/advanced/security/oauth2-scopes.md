@@ -4,9 +4,9 @@ Você pode utilizar escopos do OAuth2 diretamente com o **FastAPI**, eles são i
 
 Isso permitiria que você tivesse um sistema de permissionamento mais refinado, seguindo o padrão do OAuth2 integrado na sua aplicação OpenAPI (e as documentações da API).
 
-OAuth2 com escopos é o mecanismo utilizado por muitos provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, Twitter, etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
+OAuth2 com escopos é o mecanismo utilizado por muitos provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
 
-Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, Twitter, aquela aplicação está utilizando o OAuth2 com escopos.
+Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, X (Twitter), aquela aplicação está utilizando o OAuth2 com escopos.
 
 Nesta seção, você verá como gerenciar a autenticação e autorização com os mesmos escopos do OAuth2 em sua aplicação **FastAPI**.
 
