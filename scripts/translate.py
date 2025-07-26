@@ -227,6 +227,7 @@ def remove_removable(lang: str) -> None:
         print(f"Removed: {path}")
     print("Done removing all removable paths")
 
+
 @app.command()
 def remove_all_removable() -> None:
     all_removable = list_all_removable()
@@ -234,6 +235,7 @@ def remove_all_removable() -> None:
         removable_path.unlink()
         print(f"Removed: {removable_path}")
     print("Done removing all removable paths")
+
 
 if __name__ == "__main__":
     app()
