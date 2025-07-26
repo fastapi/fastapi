@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v6
         with:
           version: "0.4.15"
           enable-cache: true
@@ -51,3 +51,4 @@ jobs:
         run: python ./scripts/people.py
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          SLEEP_INTERVAL: ${{ vars.PEOPLE_SLEEP_INTERVAL }}
