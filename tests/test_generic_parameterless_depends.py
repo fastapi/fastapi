@@ -1,8 +1,7 @@
-from typing import TypeVar
+from typing import Annotated, TypeVar
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 app = FastAPI()
 

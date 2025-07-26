@@ -1,4 +1,4 @@
-from typing import Set, Union
+from typing import Union
 
 from fastapi import FastAPI, status
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: Union[float, None] = None
-    tags: Set[str] = set()
+    tags: set[str] = set()
 
 
 @app.post("/items/", response_model=Item, status_code=status.HTTP_201_CREATED)

@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 import pytest
 from fastapi import FastAPI
@@ -13,7 +13,7 @@ app = FastAPI()
 class Item:
     name: str
     price: Optional[float] = None
-    owner_ids: Optional[List[int]] = None
+    owner_ids: Optional[list[int]] = None
 
 
 @app.get("/items/invalid", response_model=Item)
@@ -26,7 +26,7 @@ def get_innerinvalid():
     return {"name": "double invalid", "price": "foo", "owner_ids": ["foo", "bar"]}
 
 
-@app.get("/items/invalidlist", response_model=List[Item])
+@app.get("/items/invalidlist", response_model=list[Item])
 def get_invalidlist():
     return [
         {"name": "foo"},

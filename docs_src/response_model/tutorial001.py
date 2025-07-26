@@ -1,4 +1,4 @@
-from typing import Any, List, Union
+from typing import Any, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -11,7 +11,7 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: Union[float, None] = None
-    tags: List[str] = []
+    tags: list[str] = []
 
 
 @app.post("/items/", response_model=Item)
@@ -19,7 +19,7 @@ async def create_item(item: Item) -> Any:
     return item
 
 
-@app.get("/items/", response_model=List[Item])
+@app.get("/items/", response_model=list[Item])
 async def read_items() -> Any:
     return [
         {"name": "Portal Gun", "price": 42.0},

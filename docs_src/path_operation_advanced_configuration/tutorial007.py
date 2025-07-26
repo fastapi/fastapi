@@ -1,5 +1,3 @@
-from typing import List
-
 import yaml
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, ValidationError
@@ -9,7 +7,7 @@ app = FastAPI()
 
 class Item(BaseModel):
     name: str
-    tags: List[str]
+    tags: list[str]
 
 
 @app.post(

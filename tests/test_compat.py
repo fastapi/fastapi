@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -44,7 +44,7 @@ def test_union_scalar_list():
     field = ModelField(
         name="foo",
         field_info=field_info,
-        type_=Union[str, List[int]],
+        type_=Union[str, list[int]],
         class_validators={},
         model_config=BaseConfig,
     )
@@ -66,7 +66,7 @@ def test_complex():
     app = FastAPI()
 
     @app.post("/")
-    def foo(foo: Union[str, List[int]]):
+    def foo(foo: Union[str, list[int]]):
         return foo
 
     client = TestClient(app)
@@ -85,7 +85,7 @@ def test_is_bytes_sequence_annotation_union():
     # TODO: in theory this would allow declaring types that could be lists of bytes
     # to be read from files and other types, but I'm not even sure it's a good idea
     # to support it as a first class "feature"
-    assert is_bytes_sequence_annotation(Union[List[str], List[bytes]])
+    assert is_bytes_sequence_annotation(Union[list[str], list[bytes]])
 
 
 def test_is_uploadfile_sequence_annotation():
@@ -93,13 +93,13 @@ def test_is_uploadfile_sequence_annotation():
     # TODO: in theory this would allow declaring types that could be lists of UploadFile
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
-    assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+    assert is_uploadfile_sequence_annotation(Union[list[str], list[UploadFile]])
 
 
 def test_is_pv1_scalar_field():
     # For coverage
     class Model(BaseModel):
-        foo: Union[str, Dict[str, Any]]
+        foo: Union[str, dict[str, Any]]
 
     fields = get_model_fields(Model)
     assert not is_scalar_field(fields[0])

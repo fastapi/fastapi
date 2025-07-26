@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Doc
+from typing_extensions import Doc
 
 
 class OpenIdConnect(SecurityBase):

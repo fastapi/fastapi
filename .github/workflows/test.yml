@@ -53,7 +53,6 @@ jobs:
           - "3.11"
           - "3.10"
           - "3.9"
-          - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
       fail-fast: false
     steps:
@@ -82,10 +81,6 @@ jobs:
       - name: Install Pydantic v2
         if: matrix.pydantic-version == 'pydantic-v2'
         run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
-      # TODO: Remove this once Python 3.8 is no longer supported
-      - name: Install older AnyIO in Python 3.8
-        if: matrix.python-version == '3.8'
-        run: uv pip install "anyio[trio]<4.0.0"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
@@ -110,7 +105,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.9'
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
         with:

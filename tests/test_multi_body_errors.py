@@ -1,5 +1,4 @@
 from decimal import Decimal
-from typing import List
 
 from dirty_equals import IsDict, IsOneOf
 from fastapi import FastAPI
@@ -15,7 +14,7 @@ class Item(BaseModel):
 
 
 @app.post("/items/")
-def save_item_no_body(item: List[Item]):
+def save_item_no_body(item: list[Item]):
     return {"item": item}
 
 

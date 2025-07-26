@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
@@ -10,7 +10,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str = Field(alias="aliased_name")
     price: Optional[float] = None
-    owner_ids: Optional[List[int]] = None
+    owner_ids: Optional[list[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)
@@ -23,7 +23,7 @@ def get_coerce():
     return Item(aliased_name="coerce", price="1.0")
 
 
-@app.get("/items/validlist", response_model=List[Item])
+@app.get("/items/validlist", response_model=list[Item])
 def get_validlist():
     return [
         Item(aliased_name="foo"),
@@ -32,7 +32,7 @@ def get_validlist():
     ]
 
 
-@app.get("/items/validdict", response_model=Dict[str, Item])
+@app.get("/items/validdict", response_model=dict[str, Item])
 def get_validdict():
     return {
         "k1": Item(aliased_name="foo"),
@@ -59,7 +59,7 @@ def get_coerce_exclude_unset():
 
 @app.get(
     "/items/validlist-exclude-unset",
-    response_model=List[Item],
+    response_model=list[Item],
     response_model_exclude_unset=True,
 )
 def get_validlist_exclude_unset():
@@ -72,7 +72,7 @@ def get_validlist_exclude_unset():
 
 @app.get(
     "/items/validdict-exclude-unset",
-    response_model=Dict[str, Item],
+    response_model=dict[str, Item],
     response_model_exclude_unset=True,
 )
 def get_validdict_exclude_unset():

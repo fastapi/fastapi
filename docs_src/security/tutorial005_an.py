@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from typing import List, Union
+from typing import Annotated, Union
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Security, status
@@ -11,7 +11,6 @@ from fastapi.security import (
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from pydantic import BaseModel, ValidationError
-from typing_extensions import Annotated
 
 # to get a string like this run:
 # openssl rand -hex 32
@@ -45,7 +44,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Union[str, None] = None
-    scopes: List[str] = []
+    scopes: list[str] = []
 
 
 class User(BaseModel):

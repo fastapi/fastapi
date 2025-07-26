@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from typing import List, Union
+from typing import Union
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Security, status
@@ -44,7 +44,7 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Union[str, None] = None
-    scopes: List[str] = []
+    scopes: list[str] = []
 
 
 class User(BaseModel):

@@ -1,5 +1,6 @@
+from typing import Annotated
+
 from fastapi import Depends, FastAPI, HTTPException
-from typing_extensions import Annotated
 
 app = FastAPI()
 

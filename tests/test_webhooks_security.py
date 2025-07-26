@@ -1,10 +1,10 @@
 from datetime import datetime
+from typing import Annotated
 
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBearer
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 app = FastAPI()
 

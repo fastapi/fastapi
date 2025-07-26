@@ -3,9 +3,10 @@ import secrets
 import subprocess
 import time
 from collections import Counter
+from collections.abc import Container
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Container, Union
+from typing import Any, Union
 
 import httpx
 import yaml

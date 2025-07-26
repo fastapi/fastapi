@@ -1,5 +1,3 @@
-from typing import List
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -17,6 +15,6 @@ items = [
 ]
 
 
-@app.get("/items/", response_model=List[Item])
+@app.get("/items/", response_model=list[Item])
 async def read_items():
     return items

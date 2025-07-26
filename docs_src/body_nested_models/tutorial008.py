@@ -1,5 +1,3 @@
-from typing import List
-
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
 
@@ -12,5 +10,5 @@ class Image(BaseModel):
 
 
 @app.post("/images/multiple/")
-async def create_multiple_images(images: List[Image]):
+async def create_multiple_images(images: list[Image]):
     return images

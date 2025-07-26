@@ -1,4 +1,4 @@
-from typing import List, Set, Union
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
@@ -16,15 +16,15 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: Union[float, None] = None
-    tags: Set[str] = set()
-    images: Union[List[Image], None] = None
+    tags: set[str] = set()
+    images: Union[list[Image], None] = None
 
 
 class Offer(BaseModel):
     name: str
     description: Union[str, None] = None
     price: float
-    items: List[Item]
+    items: list[Item]
 
 
 @app.post("/offers/")

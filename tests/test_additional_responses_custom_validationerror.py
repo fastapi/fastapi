@@ -1,5 +1,3 @@
-import typing
-
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
@@ -18,7 +16,7 @@ class Error(BaseModel):
 
 
 class JsonApiError(BaseModel):
-    errors: typing.List[Error]
+    errors: list[Error]
 
 
 @app.get(

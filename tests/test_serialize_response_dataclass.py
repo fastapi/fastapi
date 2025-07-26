@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -13,7 +13,7 @@ class Item:
     name: str
     date: datetime
     price: Optional[float] = None
-    owner_ids: Optional[List[int]] = None
+    owner_ids: Optional[list[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)
@@ -33,7 +33,7 @@ def get_coerce():
     return {"name": "coerce", "date": datetime(2021, 7, 26).isoformat(), "price": "1.0"}
 
 
-@app.get("/items/validlist", response_model=List[Item])
+@app.get("/items/validlist", response_model=list[Item])
 def get_validlist():
     return [
         {"name": "foo", "date": datetime(2021, 7, 26)},
@@ -47,7 +47,7 @@ def get_validlist():
     ]
 
 
-@app.get("/items/objectlist", response_model=List[Item])
+@app.get("/items/objectlist", response_model=list[Item])
 def get_objectlist():
     return [
         Item(name="foo", date=datetime(2021, 7, 26)),

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -18,7 +18,7 @@ def create_item(item: Item):
 
 
 @app.get("/items/")
-def read_items() -> List[Item]:
+def read_items() -> list[Item]:
     return [
         Item(
             name="Portal Gun",

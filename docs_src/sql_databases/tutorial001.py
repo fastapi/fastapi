@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
@@ -48,7 +48,7 @@ def read_heroes(
     session: Session = Depends(get_session),
     offset: int = 0,
     limit: int = Query(default=100, le=100),
-) -> List[Hero]:
+) -> list[Hero]:
     heroes = session.exec(select(Hero).offset(offset).limit(limit)).all()
     return heroes
 

@@ -1,5 +1,6 @@
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator, Dict, Union
+from typing import Union
 
 import pytest
 from fastapi import APIRouter, FastAPI, Request
@@ -28,7 +29,7 @@ def test_router_events(state: State) -> None:
     app = FastAPI()
 
     @app.get("/")
-    def main() -> Dict[str, str]:
+    def main() -> dict[str, str]:
         return {"message": "Hello World"}
 
     @app.on_event("startup")
@@ -96,7 +97,7 @@ def test_app_lifespan_state(state: State) -> None:
     app = FastAPI(lifespan=lifespan)
 
     @app.get("/")
-    def main() -> Dict[str, str]:
+    def main() -> dict[str, str]:
         return {"message": "Hello World"}
 
     assert state.app_startup is False
@@ -113,19 +114,19 @@ def test_app_lifespan_state(state: State) -> None:
 
 def test_router_nested_lifespan_state(state: State) -> None:
     @asynccontextmanager
-    async def lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+    async def lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
         state.app_startup = True
         yield {"app": True}
         state.app_shutdown = True
 
     @asynccontextmanager
-    async def router_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
         state.router_startup = True
         yield {"router": True}
         state.router_shutdown = True
 
     @asynccontextmanager
-    async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+    async def subrouter_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
         state.sub_router_startup = True
         yield {"sub_router": True}
         state.sub_router_shutdown = True
@@ -139,7 +140,7 @@ def test_router_nested_lifespan_state(state: State) -> None:
     app.include_router(router)
 
     @app.get("/")
-    def main(request: Request) -> Dict[str, str]:
+    def main(request: Request) -> dict[str, str]:
         assert request.state.app
         assert request.state.router
         assert request.state.sub_router
@@ -175,7 +176,7 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
     @asynccontextmanager
     async def lifespan(
         app: FastAPI,
-    ) -> AsyncGenerator[Dict[str, Union[str, bool]], None]:
+    ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
         yield {
             "app_specific": True,
             "overridden": "app",
@@ -184,7 +185,7 @@ def test_router_nested_lifespan_state_overriding_by_parent() -> None:
     @asynccontextmanager
     async def router_lifespan(
         app: FastAPI,
-    ) -> AsyncGenerator[Dict[str, Union[str, bool]], None]:
+    ) -> AsyncGenerator[dict[str, Union[str, bool]], None]:
         yield {
             "router_specific": True,
             "overridden": "router",  # should override parent
@@ -225,7 +226,7 @@ def test_merged_mixed_state_lifespans() -> None:
         yield
 
     @asynccontextmanager
-    async def router_lifespan(app: FastAPI) -> AsyncGenerator[Dict[str, bool], None]:
+    async def router_lifespan(app: FastAPI) -> AsyncGenerator[dict[str, bool], None]:
         yield {"router": True}
 
     @asynccontextmanager
