@@ -70,6 +70,8 @@ def create_model_field(
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
+    include_error_input: bool = True,
+    include_error_url: bool = False,
 ) -> ModelField:
     class_validators = class_validators or {}
     if PYDANTIC_V2:
@@ -80,7 +82,13 @@ def create_model_field(
         field_info = field_info or FieldInfo()
     kwargs = {"name": name, "field_info": field_info}
     if PYDANTIC_V2:
-        kwargs.update({"mode": mode})
+        kwargs.update(
+            {
+                "mode": mode,
+                "include_error_input": include_error_input,
+                "include_error_url": include_error_url,
+            }
+        )
     else:
         kwargs.update(
             {

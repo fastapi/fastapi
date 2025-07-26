@@ -752,6 +752,26 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        include_error_input: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) the field `input` in the validation error of all *path operations*.
+
+                This does not affect the generated OpenAPI (e.g. visible at `/docs`).
+                """
+            ),
+        ] = True,
+        include_error_url: Annotated[
+            bool,
+            Doc(
+                """
+                To include (or not) the field `url` in the validation error of all *path operations*.
+
+                This does not affect the generated OpenAPI (e.g. visible at `/docs`).
+                """
+            ),
+        ] = False,
         swagger_ui_parameters: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -941,6 +961,8 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             deprecated=deprecated,
             include_in_schema=include_in_schema,
+            include_error_input=include_error_input,
+            include_error_url=include_error_url,
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
         )
@@ -1076,6 +1098,8 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
+        include_error_input: bool = True,
+        include_error_url: bool = False,
         response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
@@ -1106,6 +1130,8 @@ class FastAPI(Starlette):
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
             include_in_schema=include_in_schema,
+            include_error_input=include_error_input,
+            include_error_url=include_error_url,
             response_class=response_class,
             name=name,
             openapi_extra=openapi_extra,
@@ -1134,6 +1160,8 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
+        include_error_input: bool = True,
+        include_error_url: bool = False,
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
@@ -1163,6 +1191,8 @@ class FastAPI(Starlette):
                 response_model_exclude_defaults=response_model_exclude_defaults,
                 response_model_exclude_none=response_model_exclude_none,
                 include_in_schema=include_in_schema,
+                include_error_input=include_error_input,
+                include_error_url=include_error_url,
                 response_class=response_class,
                 name=name,
                 openapi_extra=openapi_extra,
