@@ -106,7 +106,9 @@ def translate_page(*, lang: str, path: Path) -> None:
     original_content = path.read_text()
     old_translation: str | None = None
     if out_path.exists():
+        print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text()
+    print(f"Translating {path} to {lang} ({language})")
     agent = Agent("openai:gpt-4o")
 
     prompt_segments = [
@@ -131,13 +133,14 @@ def translate_page(*, lang: str, path: Path) -> None:
         ]
     )
     prompt = "\n\n".join(prompt_segments)
-
+    print(f"Running agent for {out_path}")
     result = agent.run_sync(prompt)
     out_content = f"{result.data.strip()}\n"
+    print(f"Saving translation to {out_path}")
     out_path.write_text(out_content)
 
 
-def iter_paths_to_translate() -> Iterable[Path]:
+def iter_all_en_paths() -> Iterable[Path]:
     """
     Iterate on the markdown files to translate in order of priority.
     """
@@ -161,13 +164,16 @@ def iter_paths_to_translate() -> Iterable[Path]:
         yield path
 
 
-@app.command()
-def translate_all(lang: str) -> None:
-    paths_to_process: list[Path] = []
-    for path in iter_paths_to_translate():
+def iter_en_paths_to_translate() -> Iterable[Path]:
+    for path in iter_all_en_paths():
         if str(path).replace("docs/en/docs/", "").startswith(non_translated_sections):
             continue
-        paths_to_process.append(path)
+        yield path
+
+
+@app.command()
+def translate_all(lang: str) -> None:
+    paths_to_process = list(iter_en_paths_to_translate())
     print("Original paths:")
     for p in paths_to_process:
         print(f"  - {p}")
