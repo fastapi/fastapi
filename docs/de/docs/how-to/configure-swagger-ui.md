@@ -61,7 +61,7 @@ FastAPI umfasst auch diese Nur-JavaScript-`presets`-Einstellungen:
 ```JavaScript
 presets: [
     SwaggerUIBundle.presets.apis,
-    SwaggerUIBundle.SwaggerUIStandalonePreset
+    SwaggerUIStandalonePreset
 ]
 ```
 
