@@ -317,32 +317,26 @@ Some of these files are updated very frequently and a translation would always b
 
 #### Request a New Language
 
-Let's say that you want to add translations for a language that is not yet translated, not even some pages. For example, Latin.
+Let's say that you want to request translations for a language that is not yet translated, not even some pages. For example, Latin.
 
 If there is no discussion for that language, you can start by requesting the new language. For that, you can follow these steps:
 
-1. Create a new discussion following the template.
+* Create a new discussion following the template.
+* Get a few native speakers to comment on the discussion and commit to help review translations for that language.
 
-2. In the discussion, explain why you want to add the new language, what you plan to do, and how you plan to maintain it.
+Once there are several people in the discussion, the FastAPI team can evaluate it and can make it an official translation.
 
-3. Show community interest by:
-   * Getting at least 2 other native speakers to comment on the discussion expressing interest in helping with translations.
+Then the docs will be automatically translated using AI, and the team of native speakers can review the translation, and help tweak the AI prompts.
 
-**Important**: Wait for maintainer approval before starting any translation work.
-
-Approval typically requires:
-
-* Meeting the minimum number of interested contributors.
-* A clear plan for maintaining the translations.
-* Agreement from existing maintainers.
-
-This will help to prevent duplicate translation efforts, build a collaborative translation community, and ensure that the translations are maintained over time.
-
-Once your language request is approved, you can proceed with creating translations as described below.
+Once there's a new translation, for example if docs are updated or there's a new section, there will be a comment in the same discussion with the link to the new translation to review.
 
 #### New Language
 
-Once you have the approval to start a new language, you can proceed. First, you need to know the 2-letter code for the language you want to translate.
+/// note
+
+These steps will be performed by the FastAPI team.
+
+///
 
 Checking the link from above (List of ISO 639-1 codes), you can see that the 2-letter code for Latin is `la`.
 

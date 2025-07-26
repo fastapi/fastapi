@@ -18,9 +18,7 @@ body:
           required: true
         - label: I searched existing discussions to ensure no one else proposed this language.
           required: true
-        - label: I am a native speaker of the language I want to translate to.
-          required: true
-        - label: I understand I need to wait for maintainer approval before starting.
+        - label: I am a native speaker of the language I want to help translate.
           required: true
   - type: input
     id: language
@@ -31,35 +29,17 @@ body:
     validations:
       required: true
   - type: textarea
-    id: motivation
-    attributes:
-      label: Motivation
-      description: |
-        Please explain:
-        1. Why you want to add this language
-        2. How you plan to maintain it long-term
-      placeholder: |
-        I want to add Latin translation because...
-        My plan for maintaining it is...
-    validations:
-      required: true
-  - type: textarea
-    id: contributors
-    attributes:
-      label: Community Support
-      description: |
-        You need at least 2 other native speakers to help with translations.
-        Ask them to comment on this discussion expressing their commitment.
-
-        List their GitHub usernames below once they've commented.
-      placeholder: |
-        The following native speakers have committed to help:
-        - @username1
-        - @username2
-    validations:
-      required: true
-  - type: textarea
     id: additional_info
     attributes:
       label: Additional Information
       description: Any other relevant information about your translation proposal
+  - type: markdown
+    attributes:
+      value: |
+        Translations are automatized with AI and then reviewed by native speakers. 🤖 🙋
+
+        This allows us to keep them consistent and up-to-date.
+
+        If there are several native speakers commenting on this discussion and
+        committing to help review new translations, the FastAPI team will review it
+        and potentially make it an official translation. 😎
