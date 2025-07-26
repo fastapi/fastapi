@@ -5,6 +5,7 @@ from typing import Iterable
 import typer
 import yaml
 from pydantic_ai import Agent
+from rich import print
 
 non_translated_sections = (
     "reference/",
@@ -28,7 +29,37 @@ The content is written in markdown, write the translation in markdown as well. D
 When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
 
 The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
+
+There are special blocks of notes, tips and others that look like:
+
+/// note
+
+To translate it, keep the same line and add the translation after a vertical bar.
+
+For example, if you were translating to Spanish, you would write:
+
+/// note | Nota
+
+Some examples in Spanish:
+
+Source:
+
+/// tip
+
+Result:
+
+/// tip | Consejo
+
+Source:
+
+/// details | Preview
+
+Result:
+
+/// details | Vista previa
 """
+
+app = typer.Typer()
 
 
 @lru_cache
@@ -46,6 +77,17 @@ def generate_lang_path(*, lang: str, path: Path) -> Path:
     return out_path
 
 
+def generate_en_path(*, lang: str, path: Path) -> Path:
+    en_docs_path = Path("docs/en/docs")
+    assert not str(path).startswith(str(en_docs_path)), (
+        f"Path must not be inside {en_docs_path}"
+    )
+    lang_docs_path = Path(f"docs/{lang}/docs")
+    out_path = Path(str(path).replace(str(lang_docs_path), str(en_docs_path)))
+    return out_path
+
+
+@app.command()
 def translate_page(*, lang: str, path: Path) -> None:
     langs = get_langs()
     language = langs[lang]
@@ -68,8 +110,8 @@ def translate_page(*, lang: str, path: Path) -> None:
     agent = Agent("openai:gpt-4o")
 
     prompt_segments = [
-        lang_prompt_content,
         general_prompt,
+        lang_prompt_content,
     ]
     if old_translation:
         prompt_segments.extend(
@@ -119,6 +161,7 @@ def iter_paths_to_translate() -> Iterable[Path]:
         yield path
 
 
+@app.command()
 def translate_all(lang: str) -> None:
     paths_to_process: list[Path] = []
     for path in iter_paths_to_translate():
@@ -151,12 +194,46 @@ def translate_all(lang: str) -> None:
         print(f"Done translating: {p}")
 
 
-def main(*, lang: str, path: Path = None) -> None:
-    if path:
-        translate_page(lang=lang, path=path)
-    else:
-        translate_all(lang=lang)
+@app.command()
+def list_removable(lang: str) -> list[Path]:
+    removable_paths: list[Path] = []
+    lang_paths = Path(f"docs/{lang}").rglob("*.md")
+    for path in lang_paths:
+        en_path = generate_en_path(lang=lang, path=path)
+        if not en_path.exists():
+            removable_paths.append(path)
+    print(removable_paths)
+    return removable_paths
 
+
+@app.command()
+def list_all_removable() -> list[Path]:
+    all_removable_paths: list[Path] = []
+    langs = get_langs()
+    for lang in langs:
+        if lang == "en":
+            continue
+        removable_paths = list_removable(lang)
+        all_removable_paths.extend(removable_paths)
+    print(all_removable_paths)
+    return all_removable_paths
+
+
+@app.command()
+def remove_removable(lang: str) -> None:
+    removable_paths = list_removable(lang)
+    for path in removable_paths:
+        path.unlink()
+        print(f"Removed: {path}")
+    print("Done removing all removable paths")
+
+@app.command()
+def remove_all_removable() -> None:
+    all_removable = list_all_removable()
+    for removable_path in all_removable:
+        removable_path.unlink()
+        print(f"Removed: {removable_path}")
+    print("Done removing all removable paths")
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()
