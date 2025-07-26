@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Type, Union
 from uuid import UUID
 
 from fastapi.types import IncEx
@@ -341,3 +341,7 @@ def jsonable_encoder(
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
     )
+
+
+DictIntStrAny = Dict[Union[int, str], Any]
+SetIntStr = Set[Union[int, str]]
