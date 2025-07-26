@@ -267,6 +267,7 @@ def list_outdated(lang: str) -> list[Path]:
     print(outdated_paths)
     return outdated_paths
 
+
 @app.command()
 def update_outdated(lang: str) -> None:
     outdated_paths = list_outdated(lang)
@@ -275,6 +276,7 @@ def update_outdated(lang: str) -> None:
         translate_page(lang=lang, path=path)
         print(f"Done updating: {path}")
     print("Done updating all outdated paths")
+
 
 if __name__ == "__main__":
     app()
