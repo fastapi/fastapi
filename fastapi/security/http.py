@@ -303,18 +303,23 @@ class HTTPBearer(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
+        # All fields besides the scheme are optional, as per https://www.rfc-editor.org/rfc/rfc6750.html#section-3.
+        unauthorized_headers = {"WWW-Authenticate": "Bearer"}
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
@@ -405,18 +410,23 @@ class HTTPDigest(HTTPBase):
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
+        # All fields besides the scheme are optional, as per https://datatracker.ietf.org/doc/html/rfc7616#section-3.3.
+        unauthorized_headers = {"WWW-Authenticate": "Digest"}
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
         if scheme.lower() != "digest":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
+                    headers=unauthorized_headers,
                 )
             else:
                 return None
