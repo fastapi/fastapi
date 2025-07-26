@@ -15,7 +15,7 @@ Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bev
 
 Wenn Sie Abhängigkeiten mit `yield` haben, wird der Exit-Code *nach* der Middleware ausgeführt.
 
-Wenn es Hintergrundaufgaben gab (später dokumentiert), werden sie *nach* allen Middlewares ausgeführt.
+Wenn es Hintergrundaufgaben gab (dies wird später im [Hintergrundaufgaben](background-tasks.md){.internal-link target=_blank}-Abschnitt behandelt), werden sie *nach* allen Middlewares ausgeführt.
 
 ///
 
@@ -35,9 +35,9 @@ Die Middleware-Funktion erhält:
 
 /// tip | Tipp
 
-Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
+Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des 'X-' Präfixes</a>.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihren CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in den <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
 
 ///
 
@@ -59,8 +59,37 @@ Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hi
 
 {* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
+/// tip | Tipp
+
+Hier verwenden wir <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> anstelle von `time.time()`, da es für diese Anwendungsfälle präziser sein kann. 🤓
+
+///
+
+## Ausführungsreihenfolge bei mehreren Middlewares
+
+Wenn Sie mehrere Middlewares hinzufügen, entweder mit dem `@app.middleware()` Dekorator oder der Methode `app.add_middleware()`, umschließt jede neue Middleware die Anwendung und bildet einen Stapel. Die zuletzt hinzugefügte Middleware ist die *äußerste*, und die erste ist die *innerste*.
+
+Auf dem Anforderungspfad läuft die *äußerste* Middleware zuerst.
+
+Auf dem Antwortpfad läuft sie zuletzt.
+
+Zum Beispiel:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+Dies führt zu folgender Ausführungsreihenfolge:
+
+* **Request**: MiddlewareB → MiddlewareA → Route
+
+* **Response**: Route → MiddlewareA → MiddlewareB
+
+Dieses Stapelverhalten stellt sicher, dass Middlewares in einer vorhersehbaren und kontrollierbaren Reihenfolge ausgeführt werden.
+
 ## Andere Middlewares
 
-Sie können später mehr über andere Middlewares in [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
+Sie können später mehr über andere Middlewares im [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
 
 In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing">CORS</abbr> mit einer Middleware behandeln können.
