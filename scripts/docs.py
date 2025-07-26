@@ -9,7 +9,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 import mkdocs.utils
 import typer
@@ -51,11 +51,11 @@ def is_mkdocs_insiders() -> bool:
     return "insiders" in version
 
 
-def get_en_config() -> Dict[str, Any]:
+def get_en_config() -> dict[str, Any]:
     return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
 
-def get_lang_paths() -> List[Path]:
+def get_lang_paths() -> list[Path]:
     return sorted(docs_path.iterdir())
 
 
@@ -287,14 +287,14 @@ def live(
     )
 
 
-def get_updated_config_content() -> Dict[str, Any]:
+def get_updated_config_content() -> dict[str, Any]:
     config = get_en_config()
     languages = [{"en": "/"}]
-    new_alternate: List[Dict[str, str]] = []
+    new_alternate: list[dict[str, str]] = []
     # Language names sourced from https://quickref.me/iso-639-1
     # Contributors may wish to update or change these, e.g. to fix capitalization.
     language_names_path = Path(__file__).parent / "../docs/language_names.yml"
-    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+    local_language_names: dict[str, str] = mkdocs.utils.yaml_load(
         language_names_path.read_text(encoding="utf-8")
     )
     for lang_path in get_lang_paths():

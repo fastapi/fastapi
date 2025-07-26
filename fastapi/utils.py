@@ -1,14 +1,11 @@
 import re
 import warnings
+from collections.abc import MutableMapping
 from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
-    Dict,
-    MutableMapping,
     Optional,
-    Set,
-    Type,
     Union,
     cast,
 )
@@ -34,7 +31,7 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 # Cache for `create_cloned_field`
-_CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
+_CLONED_TYPES_CACHE: MutableMapping[type[BaseModel], type[BaseModel]] = (
     WeakKeyDictionary()
 )
 
@@ -56,17 +53,17 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
     return not (current_status_code < 200 or current_status_code in {204, 205, 304})
 
 
-def get_path_param_names(path: str) -> Set[str]:
+def get_path_param_names(path: str) -> set[str]:
     return set(re.findall("{(.*?)}", path))
 
 
 def create_model_field(
     name: str,
     type_: Any,
-    class_validators: Optional[Dict[str, Validator]] = None,
+    class_validators: Optional[dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     required: Union[bool, UndefinedType] = Undefined,
-    model_config: Type[BaseConfig] = BaseConfig,
+    model_config: type[BaseConfig] = BaseConfig,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
@@ -109,7 +106,7 @@ def create_model_field(
 def create_cloned_field(
     field: ModelField,
     *,
-    cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
+    cloned_types: Optional[MutableMapping[type[BaseModel], type[BaseModel]]] = None,
 ) -> ModelField:
     if PYDANTIC_V2:
         return field
@@ -123,7 +120,7 @@ def create_cloned_field(
         original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, BaseModel):
-        original_type = cast(Type[BaseModel], original_type)
+        original_type = cast(type[BaseModel], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
             use_type = create_model(original_type.__name__, __base__=original_type)
@@ -184,7 +181,7 @@ def generate_unique_id(route: "APIRoute") -> str:
     return operation_id
 
 
-def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> None:
+def deep_dict_update(main_dict: dict[Any, Any], update_dict: dict[Any, Any]) -> None:
     for key, value in update_dict.items():
         if (
             key in main_dict

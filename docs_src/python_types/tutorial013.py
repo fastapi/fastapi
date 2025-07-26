@@ -1,4 +1,4 @@
-from typing_extensions import Annotated
+from typing import Annotated
 
 
 def say_hello(name: Annotated[str, "this is just metadata"]) -> str:

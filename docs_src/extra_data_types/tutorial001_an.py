@@ -1,9 +1,8 @@
 from datetime import datetime, time, timedelta
-from typing import Union
+from typing import Annotated, Union
 from uuid import UUID
 
 from fastapi import Body, FastAPI
-from typing_extensions import Annotated
 
 app = FastAPI()
 

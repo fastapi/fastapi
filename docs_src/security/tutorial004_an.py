@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from typing import Union
+from typing import Annotated, Union
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -7,7 +7,6 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 # to get a string like this run:
 # openssl rand -hex 32

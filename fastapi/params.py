@@ -1,10 +1,11 @@
 import warnings
+from collections.abc import Sequence
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import Annotated, Any, Callable, Optional, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import deprecated
 
 from ._compat import (
     PYDANTIC_V2,
@@ -58,7 +59,7 @@ class Param(FieldInfo):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -66,10 +67,10 @@ class Param(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         if example is not _Unset:
@@ -172,7 +173,7 @@ class Path(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -180,10 +181,10 @@ class Path(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -258,7 +259,7 @@ class Query(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -266,10 +267,10 @@ class Query(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -343,7 +344,7 @@ class Header(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -351,10 +352,10 @@ class Header(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -428,7 +429,7 @@ class Cookie(Param):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -436,10 +437,10 @@ class Cookie(Param):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -512,7 +513,7 @@ class Body(FieldInfo):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -520,10 +521,10 @@ class Body(FieldInfo):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.embed = embed
@@ -628,7 +629,7 @@ class Form(Body):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -636,10 +637,10 @@ class Form(Body):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -712,7 +713,7 @@ class File(Form):
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -720,10 +721,10 @@ class File(Form):
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(

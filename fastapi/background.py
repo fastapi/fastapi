@@ -1,7 +1,7 @@
-from typing import Any, Callable
+from typing import Annotated, Any, Callable
 
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from typing_extensions import Annotated, Doc, ParamSpec
+from typing_extensions import Doc, ParamSpec
 
 P = ParamSpec("P")
 

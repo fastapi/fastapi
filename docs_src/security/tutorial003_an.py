@@ -1,9 +1,8 @@
-from typing import Union
+from typing import Annotated, Union
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 fake_users_db = {
     "johndoe": {

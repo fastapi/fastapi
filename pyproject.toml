@@ -7,7 +7,7 @@ name = "fastapi"
 dynamic = ["version"]
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
@@ -46,6 +46,7 @@ dependencies = [
     "starlette>=0.40.0,<0.48.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "typing-inspection>=0.4.1",
 ]
 
 [project.urls]
@@ -199,6 +200,7 @@ dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04.py",
     "docs_src/response_model/tutorial003_04_py310.py",
+    "tests/test_dependency_pep695_py312.py"  # syntax error for version < py312
 ]
 
 [tool.coverage.report]

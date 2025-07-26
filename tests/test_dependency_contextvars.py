@@ -1,10 +1,11 @@
+from collections.abc import Awaitable
 from contextvars import ContextVar
-from typing import Any, Awaitable, Callable, Dict, Optional
+from typing import Any, Callable, Optional
 
 from fastapi import Depends, FastAPI, Request, Response
 from fastapi.testclient import TestClient
 
-legacy_request_state_context_var: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
+legacy_request_state_context_var: ContextVar[Optional[dict[str, Any]]] = ContextVar(
     "legacy_request_state_context_var", default=None
 )
 

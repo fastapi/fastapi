@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union, cast
+from typing import Annotated, Any, Optional, Union, cast
 
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
@@ -10,7 +10,7 @@ from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc
+from typing_extensions import Doc
 
 
 class OAuth2PasswordRequestForm:
@@ -322,7 +322,7 @@ class OAuth2(SecurityBase):
         self,
         *,
         flows: Annotated[
-            Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]],
+            Union[OAuthFlowsModel, dict[str, dict[str, Any]]],
             Doc(
                 """
                 The dictionary of OAuth2 flows.
@@ -419,7 +419,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            Optional[dict[str, str]],
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -536,7 +536,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            Optional[dict[str, str]],
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -626,7 +626,7 @@ class SecurityScopes:
     def __init__(
         self,
         scopes: Annotated[
-            Optional[List[str]],
+            Optional[list[str]],
             Doc(
                 """
                 This will be filled by FastAPI.
@@ -635,7 +635,7 @@ class SecurityScopes:
         ] = None,
     ):
         self.scopes: Annotated[
-            List[str],
+            list[str],
             Doc(
                 """
                 The list of all the scopes required by dependencies.

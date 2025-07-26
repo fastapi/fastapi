@@ -1,8 +1,7 @@
-from typing import List, Union
+from typing import Annotated, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-from typing_extensions import Annotated
 
 
 class HeroBase(SQLModel):
@@ -63,7 +62,7 @@ def create_hero(hero: HeroCreate, session: SessionDep):
     return db_hero
 
 
-@app.get("/heroes/", response_model=List[HeroPublic])
+@app.get("/heroes/", response_model=list[HeroPublic])
 def read_heroes(
     session: SessionDep,
     offset: int = 0,

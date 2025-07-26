@@ -1,9 +1,8 @@
-from typing import Union
+from typing import Annotated, Union
 
 from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 app = FastAPI()
 

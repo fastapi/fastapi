@@ -1,8 +1,7 @@
-from typing import List, Union
+from typing import Annotated, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-from typing_extensions import Annotated
 
 
 class Hero(SQLModel, table=True):
@@ -51,7 +50,7 @@ def read_heroes(
     session: SessionDep,
     offset: int = 0,
     limit: Annotated[int, Query(le=100)] = 100,
-) -> List[Hero]:
+) -> list[Hero]:
     heroes = session.exec(select(Hero).offset(offset).limit(limit)).all()
     return heroes
 

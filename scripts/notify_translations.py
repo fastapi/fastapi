@@ -3,7 +3,7 @@ import random
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Union, cast
+from typing import Any, Union, cast
 
 import httpx
 from github import Github
@@ -120,7 +120,7 @@ class CommentsEdge(BaseModel):
 
 
 class Comments(BaseModel):
-    edges: List[CommentsEdge]
+    edges: list[CommentsEdge]
 
 
 class CommentsDiscussion(BaseModel):
@@ -149,7 +149,7 @@ class AllDiscussionsLabelsEdge(BaseModel):
 
 
 class AllDiscussionsDiscussionLabels(BaseModel):
-    edges: List[AllDiscussionsLabelsEdge]
+    edges: list[AllDiscussionsLabelsEdge]
 
 
 class AllDiscussionsDiscussionNode(BaseModel):
@@ -160,7 +160,7 @@ class AllDiscussionsDiscussionNode(BaseModel):
 
 
 class AllDiscussionsDiscussions(BaseModel):
-    nodes: List[AllDiscussionsDiscussionNode]
+    nodes: list[AllDiscussionsDiscussionNode]
 
 
 class AllDiscussionsRepository(BaseModel):
@@ -205,7 +205,7 @@ def get_graphql_response(
     discussion_id: Union[str, None] = None,
     comment_id: Union[str, None] = None,
     body: Union[str, None] = None,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     headers = {"Authorization": f"token {settings.github_token.get_secret_value()}"}
     variables = {
         "after": after,
@@ -233,12 +233,12 @@ def get_graphql_response(
         logging.error(data["errors"])
         logging.error(response.text)
         raise RuntimeError(response.text)
-    return cast(Dict[str, Any], data)
+    return cast(dict[str, Any], data)
 
 
 def get_graphql_translation_discussions(
     *, settings: Settings
-) -> List[AllDiscussionsDiscussionNode]:
+) -> list[AllDiscussionsDiscussionNode]:
     data = get_graphql_response(
         settings=settings,
         query=all_discussions_query,
@@ -250,7 +250,7 @@ def get_graphql_translation_discussions(
 
 def get_graphql_translation_discussion_comments_edges(
     *, settings: Settings, discussion_number: int, after: Union[str, None] = None
-) -> List[CommentsEdge]:
+) -> list[CommentsEdge]:
     data = get_graphql_response(
         settings=settings,
         query=translation_discussion_query,
@@ -264,7 +264,7 @@ def get_graphql_translation_discussion_comments_edges(
 def get_graphql_translation_discussion_comments(
     *, settings: Settings, discussion_number: int
 ) -> list[Comment]:
-    comment_nodes: List[Comment] = []
+    comment_nodes: list[Comment] = []
     discussion_edges = get_graphql_translation_discussion_comments_edges(
         settings=settings, discussion_number=discussion_number
     )
@@ -348,7 +348,7 @@ def main() -> None:
 
     # Generate translation map, lang ID to discussion
     discussions = get_graphql_translation_discussions(settings=settings)
-    lang_to_discussion_map: Dict[str, AllDiscussionsDiscussionNode] = {}
+    lang_to_discussion_map: dict[str, AllDiscussionsDiscussionNode] = {}
     for discussion in discussions:
         for edge in discussion.labels.edges:
             label = edge.node.name

@@ -19,6 +19,7 @@ repos:
     -   id: ruff
         args:
         - --fix
+        exclude: tests/test_dependency_pep695_py312.py
     -   id: ruff-format
 ci:
     autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks

@@ -1,16 +1,15 @@
 import json
-from typing import List
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
-def dependency_list() -> List[str]:
+def dependency_list() -> list[str]:
     return []
 
 
-DepList = Annotated[List[str], Depends(dependency_list)]
+DepList = Annotated[list[str], Depends(dependency_list)]
 
 
 def create_dependency(name: str):
