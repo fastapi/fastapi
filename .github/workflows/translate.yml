@@ -17,7 +17,7 @@ on:
           - add-missing
           - update-and-add
           - remove-all-removable
-      lang:
+      language:
         description: Language to translate to as a letter code (e.g. "es" for Spanish)
         type: string
         required: false
@@ -73,5 +73,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          LANG: ${{ github.event.inputs.lang }}
+          LANGUAGE: ${{ github.event.inputs.language }}
           EN_PATH: ${{ github.event.inputs.en_path }}
