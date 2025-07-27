@@ -1,10 +1,13 @@
+import secrets
+import subprocess
 from functools import lru_cache
 from pathlib import Path
-from typing import Iterable
+from typing import Annotated, Iterable
 
 import git
 import typer
 import yaml
+from github import Github
 from pydantic_ai import Agent
 from rich import print
 
@@ -89,7 +92,11 @@ def generate_en_path(*, lang: str, path: Path) -> Path:
 
 
 @app.command()
-def translate_page(*, lang: str, path: Path) -> None:
+def translate_page(
+    *,
+    lang: Annotated[str, typer.Option(envvar="LANG")],
+    en_path: Annotated[Path, typer.Option(envvar="EN_PATH")],
+) -> None:
     langs = get_langs()
     language = langs[lang]
     lang_path = Path(f"docs/{lang}")
@@ -99,17 +106,17 @@ def translate_page(*, lang: str, path: Path) -> None:
     lang_prompt_content = lang_prompt_path.read_text()
 
     en_docs_path = Path("docs/en/docs")
-    assert str(path).startswith(str(en_docs_path)), (
+    assert str(en_path).startswith(str(en_docs_path)), (
         f"Path must be inside {en_docs_path}"
     )
-    out_path = generate_lang_path(lang=lang, path=path)
+    out_path = generate_lang_path(lang=lang, path=en_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    original_content = path.read_text()
+    original_content = en_path.read_text()
     old_translation: str | None = None
     if out_path.exists():
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text()
-    print(f"Translating {path} to {lang} ({language})")
+    print(f"Translating {en_path} to {lang} ({language})")
     agent = Agent("openai:gpt-4o")
 
     prompt_segments = [
@@ -173,7 +180,7 @@ def iter_en_paths_to_translate() -> Iterable[Path]:
 
 
 @app.command()
-def translate_all(lang: str) -> None:
+def translate_lang(lang: Annotated[str, typer.Option(envvar="LANG")]) -> None:
     paths_to_process = list(iter_en_paths_to_translate())
     print("Original paths:")
     for p in paths_to_process:
@@ -197,7 +204,7 @@ def translate_all(lang: str) -> None:
     print(f"Total paths to process: {len(missing_paths)}")
     for p in missing_paths:
         print(f"Translating: {p}")
-        translate_page(lang="es", path=p)
+        translate_page(lang="es", en_path=p)
         print(f"Done translating: {p}")
 
 
@@ -245,6 +252,18 @@ def remove_all_removable() -> None:
 
 
 @app.command()
+def list_missing(lang: str) -> list[Path]:
+    missing_paths: list[Path] = []
+    en_lang_paths = list(iter_en_paths_to_translate())
+    for path in en_lang_paths:
+        lang_path = generate_lang_path(lang=lang, path=path)
+        if not lang_path.exists():
+            missing_paths.append(path)
+    print(missing_paths)
+    return missing_paths
+
+
+@app.command()
 def list_outdated(lang: str) -> list[Path]:
     dir_path = Path(__file__).absolute().parent.parent
     repo = git.Repo(dir_path)
@@ -254,7 +273,6 @@ def list_outdated(lang: str) -> list[Path]:
     for path in en_lang_paths:
         lang_path = generate_lang_path(lang=lang, path=path)
         if not lang_path.exists():
-            outdated_paths.append(path)
             continue
         en_commit_datetime = list(repo.iter_commits(paths=path, max_count=1))[
             0
@@ -269,13 +287,67 @@ def list_outdated(lang: str) -> list[Path]:
 
 
 @app.command()
-def update_outdated(lang: str) -> None:
+def update_outdated(lang: Annotated[str, typer.Option(envvar="LANG")]) -> None:
     outdated_paths = list_outdated(lang)
     for path in outdated_paths:
         print(f"Updating lang: {lang} path: {path}")
-        translate_page(lang=lang, path=path)
+        translate_page(lang=lang, en_path=path)
         print(f"Done updating: {path}")
     print("Done updating all outdated paths")
+
+
+@app.command()
+def add_missing(lang: Annotated[str, typer.Option(envvar="LANG")]) -> None:
+    missing_paths = list_missing(lang)
+    for path in missing_paths:
+        print(f"Adding lang: {lang} path: {path}")
+        translate_page(lang=lang, en_path=path)
+        print(f"Done adding: {path}")
+    print("Done adding all missing paths")
+
+
+@app.command()
+def update_and_add(lang: Annotated[str, typer.Option(envvar="LANG")]) -> None:
+    print(f"Updating outdated translations for {lang}")
+    update_outdated(lang=lang)
+    print(f"Adding missing translations for {lang}")
+    add_missing(lang=lang)
+    print(f"Done updating and adding for {lang}")
+
+
+@app.command()
+def make_pr(
+    *,
+    lang: Annotated[str, typer.Option(envvar="LANG")],
+    github_token: Annotated[str, typer.Option(envvar="GITHUB_TOKEN")],
+    github_repository: Annotated[str, typer.Option(envvar="GITHUB_REPOSITORY")],
+) -> None:
+    print("Setting up GitHub Actions git user")
+    repo = git.Repo(Path(__file__).absolute().parent.parent)
+    if not repo.is_dirty(untracked_files=True):
+        print("Repository is clean, no changes to commit")
+        return
+    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "github-actions@github.com"], check=True
+    )
+    branch_name = f"translate-{lang}-{secrets.token_hex(4)}"
+    print(f"Creating a new branch {branch_name}")
+    subprocess.run(["git", "checkout", "-b", branch_name], check=True)
+    print("Adding updated files")
+    lang_path = Path(f"docs/{lang}")
+    subprocess.run(["git", "add", str(lang_path)], check=True)
+    print("Committing updated file")
+    message = f"🌐 Update translations - {lang}"
+    subprocess.run(["git", "commit", "-m", message], check=True)
+    print("Pushing branch")
+    subprocess.run(["git", "push", "origin", branch_name], check=True)
+    print("Creating PR")
+    g = Github(github_token)
+    gh_repo = g.get_repo(github_repository)
+    pr = gh_repo.create_pull(title=message, body=message, base="master", head=branch_name)
+    print(f"Created PR: {pr.number}")
+    print("Finished")
 
 
 if __name__ == "__main__":
