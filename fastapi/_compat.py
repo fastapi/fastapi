@@ -11,6 +11,7 @@ from typing import (
     FrozenSet,
     List,
     Mapping,
+    Optional,
     Sequence,
     Set,
     Tuple,
@@ -69,8 +70,8 @@ if PYDANTIC_V2:
             with_info_plain_validator_function as with_info_plain_validator_function,
         )
     except ImportError:  # pragma: no cover
-        from pydantic_core.core_schema import (
-            general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
+        from pydantic_core.core_schema import (  # noqa: F401
+            general_plain_validator_function as with_info_plain_validator_function,
         )
 
     RequiredParam = PydanticUndefined
@@ -146,19 +147,35 @@ if PYDANTIC_V2:
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
             exclude_none: bool = False,
+            context: Optional[Dict[str, Any]] = None,
         ) -> Any:
             # What calls this code passes a value that already called
             # self._type_adapter.validate_python(value)
-            return self._type_adapter.dump_python(
-                value,
-                mode=mode,
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
+            #
+            # context argument was introduced in pydantic 2.8
+            if PYDANTIC_VERSION >= "2.8":
+                return self._type_adapter.dump_python(
+                    value,
+                    mode=mode,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                    context=context,
+                )
+            else:
+                return self._type_adapter.dump_python(
+                    value,
+                    mode=mode,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
 
         def __hash__(self) -> int:
             # Each ModelField is unique for our purposes, to allow making a dict from
