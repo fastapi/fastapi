@@ -637,7 +637,14 @@ async def solve_dependencies(
         elif is_coroutine_callable(call):
             solved = await call(**solved_result.values)
         else:
-            solved = await run_in_threadpool(call, **solved_result.values)
+            called = await run_in_threadpool(call, **solved_result.values)
+            if hasattr(called, "__aenter__"):
+                solved = await async_exit_stack.enter_async_context(called)
+            elif hasattr(called, "__enter__"):
+                cm = contextmanager_in_threadpool(called)
+                solved = await async_exit_stack.enter_async_context(cm)
+            else:
+                solved = called
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant.cache_key not in dependency_cache:
