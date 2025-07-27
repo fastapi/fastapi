@@ -21,7 +21,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
    <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Импортируем объект приложения FastAPI из модуля с 
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Импортируем объект приложения FastAPI из модуля с
              помощью следующего кода:
 
              <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
