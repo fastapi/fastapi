@@ -345,7 +345,9 @@ def make_pr(
     print("Creating PR")
     g = Github(github_token)
     gh_repo = g.get_repo(github_repository)
-    pr = gh_repo.create_pull(title=message, body=message, base="master", head=branch_name)
+    pr = gh_repo.create_pull(
+        title=message, body=message, base="master", head=branch_name
+    )
     print(f"Created PR: {pr.number}")
     print("Finished")
 
