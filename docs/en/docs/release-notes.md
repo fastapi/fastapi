@@ -23,6 +23,8 @@ hide:
 
 ### Internal
 
+* ⚒️ Tweak translate script and CI. PR [#13939](https://github.com/fastapi/fastapi/pull/13939) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add CI to translate with LLMs. PR [#13937](https://github.com/fastapi/fastapi/pull/13937) by [@tiangolo](https://github.com/tiangolo).
 * ⚒️ Update translate script, show and update outdated translations. PR [#13933](https://github.com/fastapi/fastapi/pull/13933) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Refactor translate script with extra feedback (prints). PR [#13932](https://github.com/fastapi/fastapi/pull/13932) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update translations script to remove old (removed) files. PR [#13928](https://github.com/fastapi/fastapi/pull/13928) by [@tiangolo](https://github.com/tiangolo).
