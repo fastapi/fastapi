@@ -1,4 +1,6 @@
 import inspect
+import sys
+import typing
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -19,6 +21,7 @@ from typing import (
 )
 
 import anyio
+import typing_extensions
 from fastapi import params
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -71,13 +74,12 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import Annotated, TypeAliasType, TypeGuard, get_args, get_origin
 
 try:
-    from typing_extensions import TypeAliasType
+    from types import GenericAlias
 except ImportError:  # pragma: no cover
-    TypeAliasType = None  # type: ignore[misc,assignment]
-
+    GenericAlias = None  # type: ignore[misc,assignment]
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -362,7 +364,7 @@ def analyze_param(
     depends = None
     type_annotation: Any = Any
     use_annotation: Any = Any
-    if TypeAliasType is not None and isinstance(annotation, TypeAliasType):
+    if _is_typealiastype(annotation):
         # unpack in case py3.12 type syntax is used
         annotation = annotation.__value__
     if annotation is not inspect.Signature.empty:
@@ -1008,3 +1010,26 @@ def get_body_field(
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
     return final_field
+
+
+def _is_typealiastype(tp: Any, /) -> TypeGuard[TypeAliasType]:
+    in_typing = hasattr(typing, "TypeAliasType")
+    in_typing_extensions = hasattr(typing_extensions, "TypeAliasType")
+    is_typealiastype = False
+    if in_typing and in_typing_extensions:
+        if getattr(typing, "TypeAliasType", None) is getattr(
+            typing_extensions, "TypeAliasType", None
+        ):  # pragma: no cover
+            is_typealiastype = isinstance(tp, typing.TypeAliasType)  # type: ignore [attr-defined]
+        else:
+            is_typealiastype = isinstance(
+                tp,
+                (typing.TypeAliasType, typing_extensions.TypeAliasType),  # type: ignore [attr-defined]
+            )
+    elif in_typing and not in_typing_extensions:  # pragma: no cover
+        is_typealiastype = isinstance(tp, typing.TypeAliasType)  # type: ignore [attr-defined]
+    elif not in_typing and in_typing_extensions:
+        is_typealiastype = isinstance(tp, typing_extensions.TypeAliasType)
+    if sys.version_info[:2] == (3, 10):
+        return type(tp) is not GenericAlias and is_typealiastype
+    return is_typealiastype
