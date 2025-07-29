@@ -48,6 +48,9 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.14t"
+          - "3.14"
+          - "3.13t"
           - "3.13"
           - "3.12"
           - "3.11"
@@ -66,6 +69,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
         with:
