@@ -22,7 +22,7 @@ OAuth2是一个规范，它定义了几种处理身份认证和授权的方法�
 
 它包括了使用「第三方」进行身份认证的方法。
 
-这就是所有带有「使用 Facebook，Google，Twitter，GitHub 登录」的系统背后所使用的机制。
+这就是所有带有「使用 Facebook，Google，X (Twitter)，GitHub 登录」的系统背后所使用的机制。
 
 ### OAuth 1
 
@@ -79,7 +79,7 @@ OpenAPI 定义了以下安全方案：
     * HTTP Basic 认证方式。
     * HTTP Digest，等等。
 * `oauth2`：所有的 OAuth2 处理安全性的方式（称为「流程」）。
-    *以下几种流程适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，Twitter，GitHub 等）：
+    *以下几种流程适合构建 OAuth 2.0 身份认证的提供者（例如 Google，Facebook，X (Twitter)，GitHub 等）：
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
@@ -91,7 +91,7 @@ OpenAPI 定义了以下安全方案：
 
 /// tip
 
-集成其他身份认证/授权提供者（例如Google，Facebook，Twitter，GitHub等）也是可能的，而且较为容易。
+集成其他身份认证/授权提供者（例如Google，Facebook，X (Twitter)，GitHub等）也是可能的，而且较为容易。
 
 最复杂的问题是创建一个像这样的身份认证/授权提供程序，但是 **FastAPI** 为你提供了轻松完成任务的工具，同时为你解决了重活。
 
