@@ -26,6 +26,8 @@ non_translated_sections = (
 general_prompt = """
 For technical terms in English that don't have a common translation term use the original term in English.
 
+If you have instructions to translate specific terms or phrases in a specific way, please follow those instructions instead of keeping the old and outdated content.
+
 For code snippets or fragments, surrounded by backticks (`), don't translate the content, keep the original in English. For example, `list`, `dict`, keep them as is.
 
 The content is written in markdown, write the translation in markdown as well. Don't add triple backticks (`) around the generated translation content.
@@ -128,7 +130,8 @@ def translate_page(
             [
                 "There's an existing previous translation for this content that is probably outdated with old content or old instructions.",
                 "Update the translation given your current instructions and the original content.",
-                "If you have instructions to translate specific terms or phrases in a specific way, please follow those instructions instead of keeping the old and outdated content.",
+                "If a sentence or paragraph in the previous translation is not incorrect, keep it as is. A literal translation is not required — different wording is acceptable. ",
+                "Avoid making unnecessary changes to minimize the diff between the previous and updated translations. A line counts as updated if at least one character on that line has changed.",
                 "Previous translation:",
                 f"%%%\n{old_translation}%%%",
             ]
