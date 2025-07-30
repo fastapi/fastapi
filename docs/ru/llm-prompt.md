@@ -69,4 +69,4 @@ For the following technical terms, use these specific translations to ensure con
 * scratch the surface: поверхностно ознакомиться
 * tip: совет
 * Pydantic model: Pydantic-модель (`модель Pydantic` and `Pydantic модель` are also fine)
-* 
+*
