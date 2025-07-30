@@ -190,7 +190,7 @@ def test_query_method_with_path_parameters():
 
     @app.query("/items/{item_id}")
     def query_item(item_id: int, filters: QueryFilter):
-        return {"item_id": item_id, "filters": filters.model_dump()}
+        return {"item_id": item_id, "filters": filters}
 
     client = TestClient(app)
     response = client.request(
