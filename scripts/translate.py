@@ -129,10 +129,15 @@ def translate_page(
         prompt_segments.extend(
             [
                 "There's an existing previous translation for this content that is probably outdated with old content or old instructions.",
-                "Update the translation given your current instructions and the original content.",
-                "Preserve existing lines exactly unless the original content has changed or the translation violates the current instructions. Do not rewrite a line just to improve fluency or style. ",
-                "If you change a line, change only the minimum number of words necessary. Avoid rephrasing unless it's required by new instructions or source content. ",
-                "Avoid making unnecessary changes, try to minimize the diff between the previous and updated translations. A line counts as updated if at least one character on that line has changed. ",
+                "Update the translation only where necessary: ",
+                "- If the original English content has changed, reflect that in the translation. ",
+                "- If the previous translation violates current instructions, update it. ",
+                "- Otherwise, preserve the original translation **line-by-line** as-is. ",
+                "Do not: ",
+                "- Rephrase or rewrite correct lines just to improve the style. ",
+                "- Add or remove line breaks unless the English source changed. ",
+                "- Change formatting or whitespace unless absolutely required. ",
+                "Only change what must be changed. The goal is to minimize diffs for easier review. ",
                 "Previous translation:",
                 f"%%%\n{old_translation}%%%",
             ]
