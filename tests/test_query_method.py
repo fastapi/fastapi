@@ -7,10 +7,11 @@ This test file follows the FastAPI test patterns and should be compatible
 with the existing test suite.
 """
 
-from fastapi import FastAPI, Depends
+from typing import List, Optional
+
+from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing import List, Optional
 
 
 def test_query_method_basic():
