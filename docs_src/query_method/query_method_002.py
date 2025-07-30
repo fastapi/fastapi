@@ -7,9 +7,10 @@ This example demonstrates the power of the QUERY method for complex data filteri
 and field selection, similar to GraphQL but using standard HTTP.
 """
 
+from typing import Any, Dict, List, Optional
+
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
 
 app = FastAPI()
 
@@ -24,7 +25,7 @@ sample_data = [
             "id": 101,
             "name": "Dr. Smith",
             "email": "smith@university.edu",
-            "bio": "Mathematics professor with 20 years experience"
+            "bio": "Mathematics professor with 20 years experience",
         },
         "topics": [
             {
@@ -34,8 +35,8 @@ sample_data = [
                 "lessons": 15,
                 "exercises": [
                     {"id": 1, "title": "Linear Equations", "points": 10},
-                    {"id": 2, "title": "Quadratic Equations", "points": 15}
-                ]
+                    {"id": 2, "title": "Quadratic Equations", "points": 15},
+                ],
             },
             {
                 "id": 2,
@@ -44,13 +45,13 @@ sample_data = [
                 "lessons": 20,
                 "exercises": [
                     {"id": 3, "title": "Derivatives", "points": 20},
-                    {"id": 4, "title": "Integrals", "points": 25}
-                ]
-            }
+                    {"id": 4, "title": "Integrals", "points": 25},
+                ],
+            },
         ],
         "tags": ["mathematics", "algebra", "calculus"],
         "rating": 4.8,
-        "enrolled_students": 245
+        "enrolled_students": 245,
     },
     {
         "id": 2,
@@ -60,7 +61,7 @@ sample_data = [
             "id": 102,
             "name": "Dr. Johnson",
             "email": "johnson@university.edu",
-            "bio": "Physics professor specializing in quantum mechanics"
+            "bio": "Physics professor specializing in quantum mechanics",
         },
         "topics": [
             {
@@ -70,19 +71,20 @@ sample_data = [
                 "lessons": 25,
                 "exercises": [
                     {"id": 5, "title": "Wave Functions", "points": 30},
-                    {"id": 6, "title": "Uncertainty Principle", "points": 35}
-                ]
+                    {"id": 6, "title": "Uncertainty Principle", "points": 35},
+                ],
             }
         ],
         "tags": ["physics", "quantum", "mechanics"],
         "rating": 4.9,
-        "enrolled_students": 156
-    }
+        "enrolled_students": 156,
+    },
 ]
 
 
 class FieldSelector(BaseModel):
     """Define which fields to include in the response."""
+
     course_fields: Optional[List[str]] = None
     instructor_fields: Optional[List[str]] = None
     topic_fields: Optional[List[str]] = None
@@ -91,6 +93,7 @@ class FieldSelector(BaseModel):
 
 class QueryFilter(BaseModel):
     """Define filters for the query."""
+
     min_rating: Optional[float] = None
     max_rating: Optional[float] = None
     difficulty: Optional[str] = None
@@ -100,13 +103,16 @@ class QueryFilter(BaseModel):
 
 class CourseQuery(BaseModel):
     """Complete query schema for course data."""
+
     fields: Optional[FieldSelector] = None
     filters: Optional[QueryFilter] = None
     limit: Optional[int] = 10
     offset: Optional[int] = 0
 
 
-def filter_object(obj: Dict[str, Any], allowed_fields: Optional[List[str]] = None) -> Dict[str, Any]:
+def filter_object(
+    obj: Dict[str, Any], allowed_fields: Optional[List[str]] = None
+) -> Dict[str, Any]:
     """Filter an object to only include specified fields."""
     if allowed_fields is None:
         return obj
@@ -117,67 +123,86 @@ def apply_filters(data: List[Dict], filters: Optional[QueryFilter]) -> List[Dict
     """Apply filters to the data."""
     if not filters:
         return data
-    
+
     filtered_data = data.copy()
-    
+
     if filters.min_rating is not None:
-        filtered_data = [item for item in filtered_data if item.get("rating", 0) >= filters.min_rating]
-    
+        filtered_data = [
+            item
+            for item in filtered_data
+            if item.get("rating", 0) >= filters.min_rating
+        ]
+
     if filters.max_rating is not None:
-        filtered_data = [item for item in filtered_data if item.get("rating", 0) <= filters.max_rating]
-    
+        filtered_data = [
+            item
+            for item in filtered_data
+            if item.get("rating", 0) <= filters.max_rating
+        ]
+
     if filters.difficulty:
         filtered_data = [
-            item for item in filtered_data 
-            if any(topic.get("difficulty") == filters.difficulty for topic in item.get("topics", []))
+            item
+            for item in filtered_data
+            if any(
+                topic.get("difficulty") == filters.difficulty
+                for topic in item.get("topics", [])
+            )
         ]
-    
+
     if filters.tags:
         filtered_data = [
-            item for item in filtered_data 
+            item
+            for item in filtered_data
             if any(tag in item.get("tags", []) for tag in filters.tags)
         ]
-    
+
     if filters.instructor_name:
         filtered_data = [
-            item for item in filtered_data 
-            if filters.instructor_name.lower() in item.get("instructor", {}).get("name", "").lower()
+            item
+            for item in filtered_data
+            if filters.instructor_name.lower()
+            in item.get("instructor", {}).get("name", "").lower()
         ]
-    
+
     return filtered_data
 
 
-def apply_field_selection(data: List[Dict], fields: Optional[FieldSelector]) -> List[Dict]:
+def apply_field_selection(
+    data: List[Dict], fields: Optional[FieldSelector]
+) -> List[Dict]:
     """Apply field selection to shape the response."""
     if not fields:
         return data
-    
+
     result = []
     for item in data:
         filtered_item = filter_object(item, fields.course_fields)
-        
+
         # Filter instructor fields
         if "instructor" in item and fields.instructor_fields:
-            filtered_item["instructor"] = filter_object(item["instructor"], fields.instructor_fields)
-        
+            filtered_item["instructor"] = filter_object(
+                item["instructor"], fields.instructor_fields
+            )
+
         # Filter topic fields
         if "topics" in item and fields.topic_fields:
             filtered_topics = []
             for topic in item["topics"]:
                 filtered_topic = filter_object(topic, fields.topic_fields)
-                
+
                 # Filter exercise fields if requested
                 if "exercises" in topic and fields.exercise_fields:
                     filtered_topic["exercises"] = [
                         filter_object(exercise, fields.exercise_fields)
                         for exercise in topic["exercises"]
                     ]
-                
+
                 filtered_topics.append(filtered_topic)
             filtered_item["topics"] = filtered_topics
-        
+
         result.append(filtered_item)
-    
+
     return result
 
 
@@ -185,13 +210,13 @@ def apply_field_selection(data: List[Dict], fields: Optional[FieldSelector]) -> 
 def query_courses(query: CourseQuery):
     """
     Query courses with complex filtering and field selection.
-    
+
     This endpoint demonstrates the power of the QUERY method:
     - Send complex query parameters in the request body
     - Filter data based on multiple criteria
     - Select only the fields you need (like GraphQL)
     - Avoid URL length limitations
-    
+
     Example query:
     {
         "fields": {
@@ -209,27 +234,27 @@ def query_courses(query: CourseQuery):
     """
     # Start with all data
     filtered_data = sample_data.copy()
-    
+
     # Apply filters
     if query.filters:
         filtered_data = apply_filters(filtered_data, query.filters)
-    
+
     # Apply pagination
     offset = query.offset or 0
     limit = query.limit or 10
-    paginated_data = filtered_data[offset:offset + limit]
-    
+    paginated_data = filtered_data[offset : offset + limit]
+
     # Apply field selection
     if query.fields:
         paginated_data = apply_field_selection(paginated_data, query.fields)
-    
+
     return {
         "query": query.model_dump(),
         "total_results": len(filtered_data),
         "returned_results": len(paginated_data),
         "offset": offset,
         "limit": limit,
-        "data": paginated_data
+        "data": paginated_data,
     }
 
 
@@ -245,12 +270,9 @@ def read_root():
             "fields": {
                 "course_fields": ["id", "name", "rating"],
                 "instructor_fields": ["name"],
-                "topic_fields": ["title", "difficulty"]
+                "topic_fields": ["title", "difficulty"],
             },
-            "filters": {
-                "min_rating": 4.5,
-                "tags": ["mathematics"]
-            },
-            "limit": 5
-        }
+            "filters": {"min_rating": 4.5, "tags": ["mathematics"]},
+            "limit": 5,
+        },
     }
