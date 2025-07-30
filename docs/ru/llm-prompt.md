@@ -41,7 +41,6 @@ For the following technical terms, use these specific translations to ensure con
 * virtual environment: виртуальное окружение
 * framework: фреймворк
 * path (as in URL path): path (do not translate or clarify as `путь`)
-* media type: media type (do not translate)
 * form (as in HTML form): форма
 * media type: тип содержимого
 * request: HTTP-запрос
@@ -69,3 +68,5 @@ For the following technical terms, use these specific translations to ensure con
 * on the fly: на лету
 * scratch the surface: поверхностно ознакомиться
 * tip: совет
+* Pydantic model: Pydantic-модель (`модель Pydantic` and `Pydantic модель` are also fine)
+* 
