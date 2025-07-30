@@ -16,7 +16,7 @@ For the following technical terms, use these specific translations to ensure con
 * cookie sessions: сессии с использованием cookie
 * tested (adjective): протестированный
 * middleware: middleware (don't translate, but add `Промежуточный слой` if clarification is needed)
-* path operation: обработчик пути
+* path operation: операция пути (optionally clarify as `обработчик пути`)
 * path operation function: функция-обработчик пути
 * proprietary: проприетарный
 * benchmark: бенчмарк (add (`тест производительности`) if clarification is needed or use just `тест производительности`)
@@ -42,7 +42,7 @@ For the following technical terms, use these specific translations to ensure con
 * framework: фреймворк
 * path (as in URL path): path (do not translate or clarify as `путь`)
 * form (as in HTML form): форма
-* media type: тип содержимого
+* media type: тип содержимого (or `медиа-тип`)
 * request: HTTP-запрос
 * response: HTTP-ответ
 * type hints: аннотации типов
@@ -69,4 +69,4 @@ For the following technical terms, use these specific translations to ensure con
 * scratch the surface: поверхностно ознакомиться
 * tip: совет
 * Pydantic model: Pydantic-модель (`модель Pydantic` and `Pydantic модель` are also fine)
-*
+* declare: объявить
