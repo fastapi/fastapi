@@ -7,14 +7,12 @@ This test file follows the FastAPI test patterns and should be compatible
 with the existing test suite.
 """
 
+# Ensure compatibility across Python versions
 from typing import List, Optional
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-
-# Ensure compatibility across Python versions
-import sys
 
 
 def test_query_method_basic():
