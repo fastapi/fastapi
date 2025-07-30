@@ -13,6 +13,9 @@ from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
+# Ensure compatibility across Python versions
+import sys
+
 
 def test_query_method_basic():
     app = FastAPI()
