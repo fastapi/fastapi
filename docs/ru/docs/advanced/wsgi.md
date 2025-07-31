@@ -1,32 +1,32 @@
-# Включение WSGI - Flask, Django, другие
+# Включение WSGI - Flask, Django и другие
 
-Вы можете монтировать WSGI-приложения, как вы видели в [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}.
+Вы можете монтировать WSGI-приложения, как вы видели в разделе [Дополнительные приложения - Монтирования](sub-applications.md){.internal-link target=_blank}, [За прокси](behind-a-proxy.md){.internal-link target=_blank}.
 
-Для этого вы можете использовать `WSGIMiddleware` и использовать его для обёртки вашего WSGI-приложения, например, Flask, Django и т. д.
+Для этого вы можете использовать `WSGIMiddleware`, чтобы обернуть ваше WSGI-приложение, например, Flask, Django и т.д.
 
 ## Использование `WSGIMiddleware`
 
 Вам нужно импортировать `WSGIMiddleware`.
 
-Затем оберните WSGI (например, Flask) приложение с помощью middleware.
+Затем обернуть WSGI (например, Flask) приложение с помощью middleware (промежуточного слоя).
 
-И затем смонтируйте его под определённым путём.
+И затем смонтировать это под path.
 
 {* ../../docs_src/wsgi/tutorial001.py hl[2:3,3] *}
 
-## Проверка
+## Проверьте это
 
-Теперь каждый запрос по пути `/v1/` будет обрабатываться приложением Flask.
+Теперь каждый HTTP-запрос по path `/v1/` будет обработан приложением Flask.
 
-А остальные будут обрабатываться **FastAPI**.
+А остальные запросы будут обработаны **FastAPI**.
 
-Если вы запустите его и перейдёте на <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>, вы увидите ответ от Flask:
+Если вы запустите его и перейдете по ссылке <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a>, вы увидите ответ от Flask:
 
 ```txt
 Hello, World from Flask!
 ```
 
-А если вы перейдёте на <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>, вы увидите ответ от FastAPI:
+И если вы перейдете по ссылке <a href="http://localhost:8000/v2" class="external-link" target="_blank">http://localhost:8000/v2</a>, вы увидите ответ от FastAPI:
 
 ```JSON
 {
