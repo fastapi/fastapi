@@ -7,8 +7,32 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add discussion template for new language translation requests. PR [#13535](https://github.com/fastapi/fastapi/pull/13535) by [@alejsdev](https://github.com/alejsdev).
+
+### Translations
+
+*  🌐 Update Portuguese Translation for `docs/pt/docs/async.md`. PR [#13863](https://github.com/fastapi/fastapi/pull/13863) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
+* 📝 Fix highlight line in `docs/ja/docs/tutorial/body.md`. PR [#13927](https://github.com/fastapi/fastapi/pull/13927) by [@KoyoMiyazaki](https://github.com/KoyoMiyazaki).
+* 🌐 Add Persian translation for `docs/fa/docs/environment-variables.md`. PR [#13923](https://github.com/fastapi/fastapi/pull/13923) by [@Mohammad222PR](https://github.com/Mohammad222PR).
+* 🌐 Add Persian translation for `docs/fa/docs/python-types.md`. PR [#13524](https://github.com/fastapi/fastapi/pull/13524) by [@Mohammad222PR](https://github.com/Mohammad222PR).
+* 🌐 Update Portuguese Translation for `docs/pt/docs/project-generation.md`. PR [#13875](https://github.com/fastapi/fastapi/pull/13875) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
+* 🌐 Add Persian translation for `docs/fa/docs/async.md`. PR [#13541](https://github.com/fastapi/fastapi/pull/13541) by [@Mohammad222PR](https://github.com/Mohammad222PR).
+* 🌐 Add Bangali translation for `docs/bn/about/index.md`. PR [#13882](https://github.com/fastapi/fastapi/pull/13882) by [@sajjadrahman56](https://github.com/sajjadrahman56).
+
 ### Internal
 
+* ⚒️ Update translate script, update prompt to minimize generated diff. PR [#13947](https://github.com/fastapi/fastapi/pull/13947) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13943](https://github.com/fastapi/fastapi/pull/13943) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⚒️ Tweak translate script and CI. PR [#13939](https://github.com/fastapi/fastapi/pull/13939) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add CI to translate with LLMs. PR [#13937](https://github.com/fastapi/fastapi/pull/13937) by [@tiangolo](https://github.com/tiangolo).
+* ⚒️ Update translate script, show and update outdated translations. PR [#13933](https://github.com/fastapi/fastapi/pull/13933) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Refactor translate script with extra feedback (prints). PR [#13932](https://github.com/fastapi/fastapi/pull/13932) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update translations script to remove old (removed) files. PR [#13928](https://github.com/fastapi/fastapi/pull/13928) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13894](https://github.com/fastapi/fastapi/pull/13894) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Update httpx requirement to >=0.23.0,<0.29.0. PR [#13114](https://github.com/fastapi/fastapi/pull/13114) by [@yan12125](https://github.com/yan12125).
+* 🔧 Update sponsors: Add Mobb. PR [#13916](https://github.com/fastapi/fastapi/pull/13916) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Experts. PR [#13889](https://github.com/fastapi/fastapi/pull/13889) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update FastAPI People sleep interval, use external settings. PR [#13888](https://github.com/fastapi/fastapi/pull/13888) by [@tiangolo](https://github.com/tiangolo).
 
