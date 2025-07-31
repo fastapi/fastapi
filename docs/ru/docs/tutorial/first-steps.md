@@ -4,7 +4,7 @@
 
 {* ../../docs_src/first_steps/tutorial001.py *}
 
-Скопируйте этот код в файл `main.py`.
+Скопируйте это в файл `main.py`.
 
 Запустите live сервер:
 
@@ -13,42 +13,42 @@
 ```console
 $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Запуск сервера для разработки 🚀
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
-             Ищем структуру файлов пакета в директориях
-             с файлами <font color="#3465A4">__init__.py</font>
-             Импортирование из <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
    <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Импортируем объект приложения FastAPI из модуля с
-             помощью следующего кода:
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
 
              <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
 
-      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Используем строку импорта: <font color="#3465A4">main:app</font>
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
 
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Сервер запущен по адресу <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Документация по адресу <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
 
-      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Запуск в режиме разработки, для использования в продакшене:
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
              <b>fastapi run</b>
 
-             Логи:
+             Logs:
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Будем отслеживать изменения в этих директориях:
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
              <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn запущен по адресу <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>нажмите CTRL+C
-             для завершения<b>)</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Процесс перезагрузки запущен <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> с использованием WatchFiles
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Серверный процесс запущен <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Ожидание запуска приложения.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Запуск приложения завершен.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
 
-В выводе будет строка, похожая на:
+В окне вывода появится следующая строка:
 
 ```hl_lines="4"
 INFO:     Uvicorn запущен по адресу http://127.0.0.1:8000 (нажмите CTRL+C для завершения)
@@ -165,7 +165,7 @@ OpenAPI определяет схему API для вашего API. А эта �
 
 Здесь переменная `app` будет "экземпляром" класса `FastAPI`.
 
-Это будет главная точка взаимодействия для создания и работы с вашим API.
+Это единая точка входа для создания и взаимодействия с API.
 
 ### Шаг 3: создайте *операцию пути*
 
@@ -316,8 +316,8 @@ https://example.com/items/foo
 
 ## Резюме
 
-* Импортируйте `FastAPI`.
-* Создайте экземпляр `app`.
-* Напишите **декоратор операции пути** с помощью декораторов вроде `@app.get("/")`.
-* Определите **функцию операции пути**; например, `def root(): ...`.
-* Запустите сервер разработки с помощью команды `fastapi dev`.
+* Импортируем `FastAPI`.
+* Создаём экземпляр `app`.
+* Пишем **декоратор операции пути** (такой как `@app.get("/")`).
+* Пишем **функцию операции пути** (`def root(): ...`).
+* Запускаем сервер в режиме разработки (`fastapi dev`).
