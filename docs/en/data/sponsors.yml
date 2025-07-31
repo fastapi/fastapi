@@ -33,7 +33,7 @@ gold:
     title: Deploy enterprise applications at startup speed
     img: https://fastapi.tiangolo.com/img/sponsors/railway.png
 silver:
-  - url: https://databento.com/
+  - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
     img: https://fastapi.tiangolo.com/img/sponsors/databento.svg
   - url: https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship
