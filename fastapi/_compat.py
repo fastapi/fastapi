@@ -1,3 +1,4 @@
+import json
 from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
@@ -128,6 +129,22 @@ if PYDANTIC_V2:
             try:
                 return (
                     self._type_adapter.validate_python(value, from_attributes=True),
+                    None,
+                )
+            except ValidationError as exc:
+                return None, _regenerate_error_with_loc(
+                    errors=exc.errors(include_url=False), loc_prefix=loc
+                )
+
+        def validate_json(
+            self,
+            value: Any,
+            *,
+            loc: Tuple[Union[int, str], ...] = (),
+        ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+            try:
+                return (
+                    self._type_adapter.validate_json(value),
                     None,
                 )
             except ValidationError as exc:
@@ -291,6 +308,18 @@ if PYDANTIC_V2:
             ModelField(field_info=field_info, name=name)
             for name, field_info in model.model_fields.items()
         ]
+
+    def parse_json_field(
+        field: ModelField,
+        data: bytes,
+        values: Dict[str, Any],
+        loc: Tuple[str, ...] = (),
+    ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+        value, errors = field.validate_json(data)
+        if isinstance(errors, list):
+            new_errors = _regenerate_error_with_loc(errors=errors, loc_prefix=loc)
+            return None, new_errors
+        return value, errors
 
 else:
     from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
@@ -530,6 +559,17 @@ else:
     def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
         return list(model.__fields__.values())  # type: ignore[attr-defined]
 
+    def parse_json_field(
+        field: ModelField,
+        data: bytes,
+        values: Dict[str, Any],
+        loc: Tuple[str, ...] = (),
+    ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
+        parsed_value, errors = parse_json(data, loc)
+        if errors:
+            return None, errors
+        return field.validate(parsed_value, values, loc=loc)
+
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
@@ -662,3 +702,26 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 @lru_cache
 def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
     return get_model_fields(model)
+
+
+def parse_json(
+    data: bytes,
+    loc: Tuple[str, ...],
+) -> Tuple[Any, List[Dict[str, Any]]]:
+    try:
+        return json.loads(data), []
+    except json.JSONDecodeError as e:
+        return None, [
+            {
+                "type": "value_error.jsondecode",
+                "loc": loc + (e.pos,),
+                "msg": f"Invalid JSON: {e.msg}",
+                "ctx": {
+                    "msg": e.msg,
+                    "doc": data,
+                    "pos": e.pos,
+                    "lineno": e.lineno,
+                    "colno": e.colno,
+                },
+            }
+        ]

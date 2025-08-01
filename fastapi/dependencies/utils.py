@@ -42,15 +42,14 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    parse_json,
+    parse_json_field,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
 )
 from fastapi.background import BackgroundTasks
-from fastapi.concurrency import (
-    asynccontextmanager,
-    contextmanager_in_threadpool,
-)
+from fastapi.concurrency import asynccontextmanager, contextmanager_in_threadpool
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
@@ -573,7 +572,8 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    body: Optional[Union[Dict[str, Any], FormData]] = None,
+    body: Optional[Union[bytes, Dict[str, Any], FormData]] = None,
+    is_body_json: bool = False,
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
@@ -616,6 +616,7 @@ async def solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
+            is_body_json=is_body_json,
             background_tasks=background_tasks,
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
@@ -666,6 +667,7 @@ async def solve_dependencies(
         ) = await request_body_to_args(  # body_params checked above
             body_fields=dependant.body_params,
             received_body=body,
+            is_body_json=is_body_json,
             embed_body_fields=embed_body_fields,
         )
         values.update(body_values)
@@ -693,6 +695,24 @@ async def solve_dependencies(
         response=response,
         dependency_cache=dependency_cache,
     )
+
+
+def _validate_json_body_as_model_field(
+    *, field: ModelField, value: Any, values: Dict[str, Any], loc: Tuple[str, ...]
+) -> Tuple[Any, List[Any]]:
+    if value is None:
+        if field.required:
+            return None, [get_missing_field_error(loc=loc)]
+        else:
+            return deepcopy(field.default), []
+    v_, errors_ = parse_json_field(field, value, values=values, loc=loc)
+    if isinstance(errors_, ErrorWrapper):
+        return None, [errors_]
+    elif isinstance(errors_, list):
+        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        return None, new_errors
+    else:
+        return v_, []
 
 
 def _validate_value_with_model_field(
@@ -904,7 +924,8 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: List[ModelField],
-    received_body: Optional[Union[Dict[str, Any], FormData]],
+    received_body: Optional[Union[bytes, Dict[str, Any], FormData]],
+    is_body_json: bool,
     embed_body_fields: bool,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     values: Dict[str, Any] = {}
@@ -924,16 +945,28 @@ async def request_body_to_args(
 
     if single_not_embedded_field:
         loc: Tuple[str, ...] = ("body",)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=body_to_process, values=values, loc=loc
-        )
+        if is_body_json:
+            v_, errors_ = _validate_json_body_as_model_field(
+                field=first_field, value=body_to_process, values=values, loc=loc
+            )
+        else:
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=body_to_process, values=values, loc=loc
+            )
         return {first_field.name: v_}, errors_
+
+    if is_body_json and isinstance(received_body, bytes):
+        body_to_process, errors = parse_json(received_body, loc=("body",))
+
+    if errors:
+        return values, errors
+
     for field in body_fields:
         loc = ("body", field.alias)
         value: Optional[Any] = None
         if body_to_process is not None:
             try:
-                value = body_to_process.get(field.alias)
+                value = body_to_process.get(field.alias)  # type: ignore[union-attr]
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
