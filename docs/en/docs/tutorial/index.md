@@ -76,9 +76,11 @@ $ pip install "fastapi[standard]"
 
 /// note
 
-When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
+When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
 If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
+
+If you want to install the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ///
 
