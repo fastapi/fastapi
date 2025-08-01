@@ -71,7 +71,6 @@ def create_model_field(
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
-    class_validators = class_validators or {}
     if PYDANTIC_V2:
         field_info = field_info or FieldInfo(
             annotation=type_, default=default, alias=alias
@@ -85,7 +84,7 @@ def create_model_field(
         kwargs.update(
             {
                 "type_": type_,
-                "class_validators": class_validators,
+                "class_validators": class_validators or {},
                 "default": default,
                 "required": required,
                 "model_config": model_config,
