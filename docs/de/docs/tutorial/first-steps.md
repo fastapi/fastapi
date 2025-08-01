@@ -4,33 +4,49 @@ Die einfachste FastAPI-Datei könnte wie folgt aussehen:
 
 {* ../../docs_src/first_steps/tutorial001.py *}
 
-Kopieren Sie dies in eine Datei `main.py`.
+Kopieren Sie das in eine Datei `main.py`.
 
 Starten Sie den Live-Server:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
-
-/// note | Hinweis
-
-Der Befehl `uvicorn main:app` bezieht sich auf:
-
-* `main`: die Datei `main.py` (das sogenannte Python-„Modul“).
-* `app`: das Objekt, welches in der Datei `main.py` mit der Zeile `app = FastAPI()` erzeugt wurde.
-* `--reload`: lässt den Server nach Codeänderungen neu starten. Verwenden Sie das nur während der Entwicklung.
-
-///
 
 In der Konsolenausgabe sollte es eine Zeile geben, die ungefähr so aussieht:
 
@@ -42,7 +58,7 @@ Diese Zeile zeigt die URL, unter der Ihre Anwendung auf Ihrem lokalen Computer b
 
 ### Testen Sie es
 
-Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000.</a>
+Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
 Sie werden folgende JSON-Response sehen:
 
@@ -52,7 +68,7 @@ Sie werden folgende JSON-Response sehen:
 
 ### Interaktive API-Dokumentation
 
-Gehen Sie als Nächstes auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs </a>.
+Gehen Sie als Nächstes auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereitgestellt durch <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
@@ -76,7 +92,7 @@ Ein „Schema“ ist eine Definition oder Beschreibung von etwas. Nicht der eige
 
 #### API-„Schema“
 
-In diesem Fall ist  <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> eine Spezifikation, die vorschreibt, wie ein Schema für Ihre API zu definieren ist.
+In diesem Fall ist <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> eine Spezifikation, die vorschreibt, wie ein Schema für Ihre API zu definieren ist.
 
 Diese Schemadefinition enthält Ihre API-Pfade, die möglichen Parameter, welche diese entgegennehmen, usw.
 
@@ -137,7 +153,7 @@ Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generier
 
 /// note | Technische Details
 
-`FastAPI`  ist eine Klasse, die direkt von `Starlette` erbt.
+`FastAPI` ist eine Klasse, die direkt von `Starlette` erbt.
 
 Sie können alle <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>-Funktionalitäten auch mit `FastAPI` nutzen.
 
@@ -150,34 +166,6 @@ Sie können alle <a href="https://www.starlette.io/" class="external-link" targe
 In diesem Beispiel ist die Variable `app` eine „Instanz“ der Klasse `FastAPI`.
 
 Dies wird der Hauptinteraktionspunkt für die Erstellung all Ihrer APIs sein.
-
-Die Variable `app` ist dieselbe, auf die sich der Befehl `uvicorn` bezieht:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-Wenn Sie Ihre Anwendung wie folgt erstellen:
-
-{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
-
-Und in eine Datei `main.py` einfügen, dann würden Sie `uvicorn` wie folgt aufrufen:
-
-<div class="termy">
-
-```console
-$ uvicorn main:my_awesome_api --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
 
 ### Schritt 3: Erstellen einer *Pfadoperation*
 
@@ -246,8 +234,8 @@ Wir werden sie auch „**Operationen**“ nennen.
 
 Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von Anfragen zuständig ist, die an:
 
- * den Pfad `/`
- * unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
+* den Pfad `/`
+* unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
 
 /// info | `@decorator` Information
 
@@ -269,7 +257,7 @@ Sie können auch die anderen Operationen verwenden:
 * `@app.put()`
 * `@app.delete()`
 
-Oder die exotischeren:
+Und die exotischeren:
 
 * `@app.options()`
 * `@app.head()`
@@ -324,12 +312,12 @@ Sie können ein `dict`, eine `list`, einzelne Werte wie `str`, `int`, usw. zurü
 
 Sie können auch Pydantic-Modelle zurückgeben (dazu später mehr).
 
-Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert werden (einschließlich ORMs usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
+Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert werden (einschließlich ORMs, usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
 
 ## Zusammenfassung
 
 * Importieren Sie `FastAPI`.
 * Erstellen Sie eine `app` Instanz.
-* Schreiben Sie einen **Pfadoperation-Dekorator** (wie z. B. `@app.get("/")`).
-* Schreiben Sie eine **Pfadoperation-Funktion** (wie z. B. oben `def root(): ...`).
-* Starten Sie den Entwicklungsserver (z. B. `uvicorn main:app --reload`).
+* Schreiben Sie einen **Pfadoperation-Dekorator** unter Verwendung von Dekoratoren wie `@app.get("/")`.
+* Definieren Sie eine **Pfadoperation-Funktion**, zum Beispiel `def root(): ...`.
+* Starten Sie den Entwicklungsserver mit dem Befehl `fastapi dev`.

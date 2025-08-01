@@ -1,10 +1,10 @@
 # Eine Response direkt zurückgeben
 
-Wenn Sie eine **FastAPI** *Pfadoperation* erstellen, können Sie normalerweise beliebige Daten davon zurückgeben: ein `dict`, eine `list`e, ein Pydantic-Modell, ein Datenbankmodell, usw.
+Wenn Sie eine **FastAPI** *Pfadoperation* erstellen, können Sie normalerweise beliebige Daten davon zurückgeben: ein `dict`, eine `list`, ein Pydantic-Modell, ein Datenbankmodell, usw.
 
 Standardmäßig konvertiert **FastAPI** diesen Rückgabewert automatisch nach JSON, mithilfe des `jsonable_encoder`, der in [JSON-kompatibler Encoder](../tutorial/encoder.md){.internal-link target=_blank} erläutert wird.
 
-Dann würde es hinter den Kulissen diese JSON-kompatiblen Daten (z. B. ein `dict`) in eine `JSONResponse` einfügen, die zum Senden der Response an den Client verwendet würde.
+Dann würde es hinter den Kulissen diese JSON-kompatiblen Daten (z. B. ein `dict`) in eine `JSONResponse` einfügen, die zum Senden der Response an den Client verwendet wird.
 
 Sie können jedoch direkt eine `JSONResponse` von Ihren *Pfadoperationen* zurückgeben.
 
@@ -38,7 +38,7 @@ In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu
 
 /// note | Technische Details
 
-Sie können auch `from starlette.responses import JSONResponse` verwenden.
+Sie könnten auch `from starlette.responses import JSONResponse` verwenden.
 
 **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
 
