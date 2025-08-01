@@ -58,6 +58,10 @@ def test_openapi_schema():
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
+        "externalDocs": {
+            "description": "External API documentation.",
+            "url": "https://docs.example.com/api-general",
+        },
         "paths": {
             "/api_route": {
                 "get": {
