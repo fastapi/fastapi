@@ -1,10 +1,8 @@
 # Middleware (Промежуточный слой)
 
-Вы можете добавить промежуточный слой (middleware) в **FastAPI** приложение.
+Вы можете добавить middleware (промежуточный слой) в **FastAPI** приложение.
 
-"Middleware" это функция, которая выполняется с каждым запросом до его обработки какой-либо конкретной *операцией пути*.
-А также с каждым ответом перед его возвращением.
-
+"Middleware" это функция, которая выполняется с каждым **запросом** до его обработки какой-либо конкретной *операцией пути*. А также с каждым **ответом** перед его возвращением.
 
 * Она принимает каждый поступающий **запрос**.
 * Может что-то сделать с этим **запросом** или выполнить любой нужный код.
@@ -17,19 +15,19 @@
 
 Если у вас есть зависимости с `yield`, то код выхода (код после `yield`) будет выполняться *после* middleware.
 
-Если у вас имеются некие фоновые задачи (см. документацию), то они будут запущены после middleware.
+Если у вас имеются некие фоновые задачи (рассмотренные в разделе [Фоновые задачи](background-tasks.md){.internal-link target=_blank}), они будут запущены *после* всех middleware.
 
 ///
 
 ## Создание middleware
 
-Для создания middleware используйте декоратор `@app.middleware("http")`.
+Для создания middleware используйте декоратор `@app.middleware("http")` перед функцией.
 
 Функция middleware получает:
 
 * `request` (объект запроса).
-* Функцию `call_next`, которая получает `request` в качестве параметра.
-    * Эта функция передаёт `request` соответствующей *операции пути*.
+* Функцию `call_next`, которая принимает `request` в качестве параметра.
+    * Эта функция передает `request` соответствующей *операции пути*.
     * Затем она возвращает ответ `response`, сгенерированный *операцией пути*.
 * Также имеется возможность видоизменить `response`, перед тем как его вернуть.
 
@@ -37,9 +35,9 @@
 
 /// tip | Примечание
 
-Имейте в виду, что можно добавлять свои собственные заголовки <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">при помощи префикса 'X-'</a>.
+Имейте в виду, что собственные проприетарные заголовки можно добавлять <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">при помощи префикса 'X-'</a>.
 
-Если же вы хотите добавить собственные заголовки, которые клиент сможет увидеть в браузере, то вам потребуется добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, см. документацию <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+Если же у вас есть собственные заголовки, которые клиент в браузере должен видеть, вам нужно добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, см. документацию <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
 
 ///
 
@@ -47,13 +45,13 @@
 
 Вы также можете использовать `from starlette.requests import Request`.
 
-**FastAPI** предоставляет такой доступ для удобства разработчиков. Но, на самом деле, это `Request` из Starlette.
+**FastAPI** предоставляет это для удобства разработчиков. Но на самом деле это `Request` из Starlette.
 
 ///
 
 ### До и после `response`
 
-Вы можете добавить код, использующий `request` до передачи его какой-либо *операции пути*.
+Вы можете добавить код, использующий `request` до передачи его какой-либо *операцией пути*.
 
 А также после формирования `response`, до того, как вы его вернёте.
 
@@ -63,9 +61,32 @@
 
 /// tip | Примечание
 
-Мы используем <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> вместо `time.time()` для обеспечения большей точности наших примеров. 🤓
+Мы используем <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> вместо `time.time()`, потому что это может быть более точным для таких случаев. 🤓
 
 ///
+
+## Порядок выполнения нескольких middleware
+
+Когда вы добавляете несколько middleware с использованием декоратора `@app.middleware()` или метода `app.add_middleware()`, каждое новое middleware оборачивает приложение, формируя стек. Последнее добавленное middleware становится самым *внешним*, а первое — самым *внутренним*.
+
+На пути **запроса**, самое *внешнее* middleware выполняется первым.
+
+На пути **ответа** оно выполняется последним.
+
+Например:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+Это приводит к следующему порядку выполнения:
+
+* **Запрос**: MiddlewareB → MiddlewareA → маршрут
+
+* **Ответ**: маршрут → MiddlewareA → MiddlewareB
+
+Такое поведение с упаковкой обеспечивает выполнение middleware в предсказуемом и контролируемом порядке.
 
 ## Другие middleware
 
