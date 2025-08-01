@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump cairosvg from 2.7.1 to 2.8.2. PR [#13959](https://github.com/fastapi/fastapi/pull/13959) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pydantic-ai from 0.0.30 to 0.4.10. PR [#13958](https://github.com/fastapi/fastapi/pull/13958) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#13962](https://github.com/fastapi/fastapi/pull/13962) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump mkdocs-material from 9.6.15 to 9.6.16. PR [#13961](https://github.com/fastapi/fastapi/pull/13961) by [@dependabot[bot]](https://github.com/apps/dependabot).
