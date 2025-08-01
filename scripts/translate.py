@@ -34,6 +34,36 @@ The content is written in markdown, write the translation in markdown as well. D
 
 When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
 
+For example, if the original (English) content is:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+It should be exacly the same in the output document:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+If the original (English) content is:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
+It should be exacly the same in the output document:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
 The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
 
 There are special blocks of notes, tips and others that look like:
