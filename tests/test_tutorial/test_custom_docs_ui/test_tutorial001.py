@@ -36,6 +36,12 @@ def test_redoc_html(client: TestClient):
     assert "https://unpkg.com/redoc@2/bundles/redoc.standalone.js" in response.text
 
 
+def test_scalar_html(client: TestClient):
+    response = client.get("/scalar")
+    assert response.status_code == 200, response.text
+    assert "https://cdn.jsdelivr.net/npm/@scalar/api-reference" in response.text
+
+
 def test_api(client: TestClient):
     response = client.get("/users/john")
     assert response.status_code == 200, response.text
