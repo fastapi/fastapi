@@ -29,6 +29,7 @@ class Dependant:
     background_tasks_param_name: Optional[str] = None
     security_scopes_param_name: Optional[str] = None
     security_scopes: Optional[List[str]] = None
+    state_param_name: Optional[str] = None
     use_cache: bool = True
     path: Optional[str] = None
     cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
