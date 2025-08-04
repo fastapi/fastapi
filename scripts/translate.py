@@ -184,7 +184,7 @@ def translate_page(
     result = agent.run_sync(prompt)
     out_content = f"{result.data.strip()}\n"
     print(f"Saving translation to {out_path}")
-    out_path.write_text(out_content, encoding='utf-8', newline='\n')
+    out_path.write_text(out_content, encoding="utf-8", newline="\n")
 
 
 def iter_all_en_paths() -> Iterable[Path]:
