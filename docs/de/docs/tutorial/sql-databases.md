@@ -83,7 +83,7 @@ Die Verwendung von `check_same_thread=False` erlaubt FastAPI, dieselbe SQLite-Da
 
 Keine Sorge, so wie der Code strukturiert ist, werden wir später sicherstellen, dass wir **eine einzige SQLModel-*Session* pro Anfrage** verwenden, das ist eigentlich das, was `check_same_thread` erreichen möchte.
 
-### Die Tabellen erstellen 
+### Die Tabellen erstellen
 
 Dann fügen wir eine Funktion hinzu, die `SQLModel.metadata.create_all(engine)` verwendet, um die **Tabellen für alle *Tabellenmodelle* zu erstellen**.
 
