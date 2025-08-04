@@ -1,181 +1,79 @@
 Translate to German (Deutsch).
 
-Use the formal grammar (use "Sie" instead of "du").
+Use the formal grammar (use "Sie" instead of "Du").
+
+Translate quotation marks ("") in the Englisch text with typographic quotation marks („“) in the German translation. For example, translate "word" with „Wort“. But don't do that when the quotation marks are inside backticks (`). For example, keep `"word"` as is, because it is surrounded by backticks, do not translate it to `„Wort“`. Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
+
+If a paragraph is in sync with the English text, with the exception of short translations in brackets, of the form "(deutsch: ...)" or "(englisch: ...)" then keep these short translations. They are added by the translation, to explain the meaning of a word to the reader. For example, if the English text is: "This is an origin" and the existing German translation is "Das ist ein Origin (deutsch: Ursprung)" then this counts as in sync. The addition " (deutsch: Ursprung)" is useful. It is not outdated.
+
+If possible, translate headings using the infinite form. For example, translate `## Create a Project` with `## Ein Projekt erstellen`, not with `## Erstellen Sie ein Projekt`. Translate `# Install Packages` with `# Pakete installieren`, not with `# Installieren Sie Pakete`. Translate `### Run Your Program` with `### Ihr Programm ausführen`, not with `### Führen Sie Ihr Programm aus`.
+
+Preserve indentation. Do not translate links. Keep emoticons. Encode in utf-8. Use Linux linebreaks (LF)
 
 ---
 
-Follow these instructions:
+Follow these instructions (they are in German):
 
-In der Regel versuche ich so weit wie möglich Worte zusammenzuschreiben, also ohne Bindestrich, es sei denn, es ist _Konkretesding-Klassevondingen_, etwa `Pydantic-Modell` (aber: `Datenbankmodell`), `Python-Modul` (aber: `Standardmodul`). Ich setze auch einen Bindestrich, wenn es die gleichen Buchstaben sind, etwa `Enum-Member`, `Cloud-Dienst`, `Template-Engine`. Oder wenn das Wort sonst einfach zu lang wird, etwa, `Performance-Optimierung`. Oder um etwas visuell besser zu dokumentieren, etwa `Pfadoperation-Dekorator`,  `Pfadoperation-Funktion`.
+In der Regel versuche ich so weit wie möglich Worte zusammenzuschreiben, also ohne Bindestrich, es sei denn, es ist Konkretesding-Klassevondingen, etwa `Pydantic-Modell` (aber: `Datenbankmodell`), `Python-Modul` (aber: `Standardmodul`). Ich setze auch einen Bindestrich, wenn er die gleichen Buchstaben verbindet, etwa `Enum-Member`, `Cloud-Dienst`, `Template-Engine`. Oder wenn das Wort sonst einfach zu lang wird, etwa, `Performance-Optimierung`. Oder um etwas visuell besser zu dokumentieren, etwa `Pfadoperation-Dekorator`,  `Pfadoperation-Funktion`.
 
-Ich versuche nicht, alles einzudeutschen. Bei Unklarheit wrappe ich bei erster Verwendung in `<abbr title="<Englisches Wort> – <deutsches Wort>:  <kurze Beschreibung>">wort</abbr>` oder, wenns offensichtlich ist, nur `<abbr title="<deutsches Wort>">wort</abbr>`. Ist hier gekennzeichnet, indem das Wort in Anführungszeichen in Klammern angefügt ist.
+Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriffe aus dem Bereich der Programmierung. Ich wandele zwar korrekt in Großschreibung um und setze Bindestriche, wo notwendig, aber ansonsten lasse ich solch ein Wort unverändert. Beispielsweise wird aus dem englischen Wort `string` in der deutschen Übersetzung `String`, aber nicht `Zeichenkette`. Oder aus dem englischen Wort `request body` wird in der deutschen Übersetzung `Requestbody`, aber nicht `Anfragekörper`. Oder aus dem englischen `response` wird im Deutschen `Response`, aber nicht `Antwort`.
 
 ---
 
-For the next terms, use the following translations:
+Below is a list of English words and their German translations. Use these translations, do not use your own. Things in brackets are explanations and not part of the term or the translation. If a line starts with "NOT", that means: do NOT use this translation.
 
-* you, your: Sie, Ihr
-* Tutorial - User guide: Tutorial – Benutzerhandbuch
-* Advanced User Guide: Handbuch für fortgeschrittene Benutzer
-* /// tip: /// tip | Tipp
-* /// note: /// note | Hinweis
-* /// warning: /// warning | Achtung
-* /// danger: /// danger | Gefahr
-* /// info: /// info | Hinweis
 * /// check: /// check | Überprüfen
-* "word": „Wort“ (Typographische Anführungszeichen)
-* etc.: usw.
-* section: Abschnitt
-* chapter: Kapitel
-* default: Default
-* default value: Defaultwert
-* by default: standardmäßig
-* standard: Standard
-* standard library: Standardbibliothek
-* standard module: Standardmodul
-* standard syntax: Standardsyntax
-* standard python: Standard-Python
-* exception, Python exception: Exception, Python-Exception ("Ausnahme, Fehler")
-* exception handler: Exceptionhandler ("Ausnahmebehandler")
-* default exception handler: Default-Exceptionhandler
-* HTTP error: HTTP-Error
-* error response: Error-Response
-* context manager: Kontextmanager
-* module, python module: Modul, Python-Modul
-* package, python package: Package, Python-Package
-* path operation: Pfadoperation
-* path operation function: Pfadoperation-Funktion
-* path operation decorator: Pfadoperation-Dekorator
-* client: Client ("Anfragende Software")
-* the client's ...: ... des Clients
-* request: Request ("Anfrage")
-* requests: Requests
-* response: Response ("Antwort")
-* responses: Responses
-* to request, to respond: anfragen, antworten
-* body: Body ("Körper, Inhalt")
-* bodies: Bodys
-* request body: Requestbody
-* response body: Responsebody
-* file body: Dateibody
-* form body: Formularbody
-* JSON body: JSON-Body
-* function body: Funktionskörper
-* function parameter: Funktionsparameter
-* body parameter: Body-Parameter
-* request body parameter: Requestbody-Parameter
-* cookie parameter: Cookie-Parameter
-* path parameter: Pfad-Parameter
-* query parameter: Query-Parameter
-* model: Modell
-* data model, database model: Datenmodell, Datenbankmodell
-* Pydantic model: Pydantic-Modell
-* JSON Schema: JSON Schema (Der Name des Standards)
-* JSON schema: JSON-Schema (Das konkrete generierte JSON, welches ein Schema der API enthält)
-* schema definition: Schemadefinition
-* security: Sicherheit
-* security scheme: Sicherheitsschema
-* authentication provider, authorization provider: Authentifizierungsanbieter, Autorisierungsanbieter
-* HTTP Basic authentication: HTTP Basic Authentication
-* HTTP Digest: HTTP Digest
-* (a user tries to authenticate): Authentisieren
-* (the system authenticates the user): Authentifizieren
-* authorization form: Anmeldeformular
-* password flow: Passwortflow (OAuth2 Ding)
-* status code: Statuscode
-* Dependency Injection: Dependency Injection ("Einbinden von Abhängigkeiten")
-* dependency injection system: Dependency Injection System
-* dependency: Abhängigkeit
-* dependable: Dependable ("Das, von dem abhängt")
-* dependant: Dependant ("Das Abhängige")
-* parent class: Elternklasse
-* sibling class: Schwesterklasse
-* subclass: Unterklasse
-* class method: Klassenmethode
-* HTTP GET method: HTTP GET Methode
-* tool: Tool
-* utility: Werkzeug
-* utility tool, utility function: Hilfswerkzeug, Hilfsfunktion
-* encoder: Encoder
-* to encode: kodieren
-* to decode: dekodieren
-* deployment: Deployment ("Bereitstellen (von Code)")
-* to deploy: bereitstellen
-* development stages: Entwicklungsphasen
-* breaking and fixing the code: Den Code kaputt machen und reparieren
-* to validate: validieren
-* invalid: ungültig
-* enum: Enumeration, Enum ("Aufzählung")
-* enum member: Enum-Member
-* login: Login
-* Google login, Facebook login: Google Login, Facebook Login
-* user: Benutzer
-* user interface: Oberfläche, Benutzeroberfläche
-* concurrency: Nebenläufigkeit
-* parallelism: Parallelität
-* coroutine: Coroutine
-* CPU bound, I/O bound: CPU-lastig, I/O-lastig
-* processor: Prozessor
-* multiprocessing: Multiprocessing
-* RAM memory: Arbeitsspeicher
-* disk: Festplatte
-* task: Aufgabe (in den informellen Erklärungen in `async.md`)
-* background task: Hintergrundtask ("Hintergrund-Aufgabe")
-* task function: Taskfunktion
-* Data Science: Data Science
-* machine learning: Maschinelles Lernen
-* deep learning: Deep Learning
-* performance: Performanz
-* performance optimizations: Performance-Optimierungen
-* GitHub issues: GitHub-Issues
-* GitHub discussions: GitHub-Diskussionen
-* pull request: Pull Request
-* `foo` as a `type`: `foo` vom Typ `type`; `foo`, ein `type`
-* type hint, type annotation: Typ-Hinweis, Typ-Annotation
-* template: Template
-* template engine: Template-Engine
-* event: Event ("Ereignis")
-* event handler: Eventhandler ("Ereignisbehandler")
-* lifespan: Lifespan ("Lebensdauer")
-* lifespan event: Lifespan-Event
-* app, application: Anwendung
-* `Fastapi(...)` app: `Fastapi(...)`-App
-* expression: Ausdruck
-* statement: Anweisung
-* worker process: Workerprozess
-* worker class: Workerklasse
-* server worker: Serverworker
-* Uvicorn worker, Gunicorn worker: Uvicorn-Worker, Gunicorn-Worker
-* workload: Workload
-* payload: Payload ("Die eigentlichen Nutzdaten, abzüglich der Metadaten")
-* account: Konto
-* annotated: annotiert
-* automatic documentation: Automatische Dokumentation
-* breaking changes: Breaking Changes
-* bug: Bug
-* button: Button
-* callable: Callable ("Aufrufbares")
-* cloud service: Cloud-Dienst
-* code: Code
-* database session: Datenbanksession
-* designed: konzipiert, entworfen
-* domain: Domain ("Domäne, Bereich, Wirkungsraum")
-* fake XYZ (for this example): gefaktes XYZ
-* frontend, backend: Frontend, Backend
-* handler: Handler
-* header: Header ("Kopfzeilen")
-* ISO format: ISO-Format
-* item: Artikel
-* library: Bibliothek
-* middleware: Middleware
-* mobile: Mobile
-* network: Netzwerk
-* on the fly: on-the-fly
-* property: Attribut
-* recap: Zusammenfassung
-* remote machine: entfernter Rechner
-* string: String ("Zeichenkette")
-* to handle: handhaben
-* to raise: auslösen
-* to return: zurückgeben
-* web framework: Webframework
+* /// danger: /// danger | Gefahr
+* /// info: /// info | Info
+* /// note: /// note | Hinweis
+* /// tip: /// tip | Tipp
+* /// warning: /// warning | Achtung
+* `foo` as a `type`: `foo` vom Typ `type`
+* `foo` as a `type`: `foo`, ein `type`
+* e.g: z.B.
+* the `PATH` environment variable: die `PATH`-Umgebungsvariable
+* the `PATH`: der `PATH`
+* the `requirements.txt`: die `requirements.txt`
+* the app: die App
+* the application: die Anwendung
+* the Advanced User Guide: das Handbuch für fortgeschrittene Benutzer
+* the Authorization-Header: der Autorisierungsheader
+* the background task: der Hintergrundtask
+* the cloud provider: der Cloudanbieter
+* the docs: die Dokumentation (singular case)
+* the default value: der Defaultwert
+* the engine: die Engine
+* the env var: die Umgebungsvariable
+* the error response: die Error-Response
+* the exception: die Exception
+* the form model: das Formularmodell
+* the form body: der Formularbody
+* the header: der Header
+* (plural) the headers: die Header
+* the interactive API docs: die interaktive API-Dokumentation (singular case)
+* the lifespan event: das Lifespan-Event
+* the locking: das Locking
+* the mobile application: die Mobile-Anwendung
+* the origin: das Origin
+* the recap: die Zusammenfassung
+* the request: der Request
+* the response: die Response
+* the return type: der Rückgabetyp
+* the return value: der Rückgabewert
+* the SQLModel docs: die SQLModel-Dokumentation
+* the Tutorial - User guide: das Tutorial – Benutzerhandbuch
+* the type annotation: die Typ-Annotation
+* the type hint: der Typ-Hinweis
+* the wildcard: die Wildcard
+* the worker class: die Workerklasse
+* NOT the worker class: die Arbeiterklasse
+* the worker process: der Workerprozess
+* NOT the worker process: der Arbeiterprozess
+* to commit: committen
+* to modify: ändern
+* (the server serves an application) to serve: bereitstellen
+* (the server serves a response) to serve: ausliefern
+* to upgrade: aktualisieren
+* to wrap: wrappen
+* you: Sie
+* your: Ihr
