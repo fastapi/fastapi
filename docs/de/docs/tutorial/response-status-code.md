@@ -18,9 +18,9 @@ Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (
 
 Dem `status_code`-Parameter wird eine Zahl mit dem HTTP-Statuscode übergeben.
 
-/// info | Hinweis
+/// info | Info
 
-Alternativ kann `status_code` auch ein `IntEnum` erhalten, wie z.B. Pythons <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+Alternativ kann `status_code` auch ein `IntEnum` erhalten, wie etwa Pythons <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
 ///
 
@@ -35,7 +35,7 @@ Dies wird:
 
 Einige Responsecodes (siehe nächster Abschnitt) kennzeichnen, dass die Response keinen Body hat.
 
-FastAPI erkennt dies und erstellt OpenAPI-Dokumentationen, die zeigen, dass es keinen Responsebody gibt.
+FastAPI erkennt dies und erstellt eine OpenAPI-Dokumentation, die zeigt, dass es keinen Responsebody gibt.
 
 ///
 
@@ -47,7 +47,7 @@ Wenn Sie bereits wissen, was HTTP-Statuscodes sind, können Sie diesen Abschnitt
 
 ///
 
-In HTTP senden Sie einen nummerischen Statuscode mit 3 Ziffern als Teil der Response.
+In HTTP senden Sie einen numerischen Statuscode mit 3 Ziffern als Teil der Response.
 
 Diese Statuscodes haben einen zugeordneten Namen, um sie leichter zu erkennen, aber der wichtige Teil ist die Zahl.
 
@@ -57,7 +57,7 @@ Kurz gefasst:
 * **`200 - 299`** stehen für „Successful“-Responses („Erfolgreich“). Diese werden Sie am häufigsten verwenden.
     * `200` ist der Default-Statuscode, was bedeutet, alles ist „OK“.
     * Ein weiteres Beispiel wäre `201`, „Created“ („Erzeugt“). Dieser wird üblicherweise verwendet, nachdem ein neuer Datensatz in der Datenbank erstellt wurde.
-    * Ein spezieller Fall ist `204`, „No Content“ („Kein Inhalt“). Diese Response wird verwendet, wenn kein Inhalt an den Client zurückgeschickt werden soll, diese Response darf also keinen Body haben.
+    * Ein spezieller Fall ist `204`, „No Content“ („Kein Inhalt“). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der an den Client zurückgeschickt werden soll, und diese Response darf daher keinen Body haben.
 * **`300 - 399`** stehen für „Redirection“ („Umleitung“). Responses mit diesen Statuscodes können einen Body haben oder nicht, außer bei `304`, „Not Modified“ („Nicht verändert“), die keinen haben darf.
 * **`400 - 499`** stehen für „Client error“-Responses („Client-Fehler“). Diese sind die zweithäufigsten, die Sie vermutlich verwenden werden.
     * Ein Beispiel ist `404`, für eine „Not Found“-Response („Nicht gefunden“).
@@ -98,4 +98,4 @@ Sie könnten auch `from starlette import status` verwenden.
 
 ## Den Defaultwert ändern
 
-Später, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, werden Sie sehen, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.
+Später im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank} werden Sie sehen, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.

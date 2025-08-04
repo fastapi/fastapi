@@ -237,7 +237,7 @@ Sie können mehr darüber in der <a href="https://fastapi.tiangolo.com/fastapi-c
 
 </details>
 
-### Testen
+### Überprüfen
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
@@ -470,7 +470,7 @@ Wird von Starlette verwendet:
 
 Wird von FastAPI verwendet:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - für den Server, der Ihre Anwendung lädt und serviert. Dies beinhaltet `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) enthält, die für hoch performantes Servieren benötigt werden.
+* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - für den Server, der Ihre Anwendung lädt und bereitstellt. Dies beinhaltet `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) enthält, die für hoch performantes Bereitstellen benötigt werden.
 * `fastapi-cli[standard]` - um den `fastapi` Befehl bereitzustellen.
     * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> bereitzustellen.
 

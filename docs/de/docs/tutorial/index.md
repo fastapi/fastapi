@@ -1,14 +1,14 @@
 # Tutorial – Benutzerhandbuch
 
-Dieses Tutorial zeigt Ihnen, wie Sie **FastAPI** mit den meisten seiner Funktionen Schritt für Schritt verwenden können.
+Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** mit den meisten seiner Funktionen verwenden können.
 
-Jeder Abschnitt baut schrittweise auf den vorhergehenden auf, ist jedoch in einzelne Themen gegliedert, sodass Sie direkt zu einem bestimmten Thema übergehen können, um Ihre speziellen API-Anforderungen zu lösen.
+Jeder Abschnitt baut schrittweise auf den vorhergehenden auf, ist jedoch in einzelne Themen gegliedert, sodass Sie direkt zu einem bestimmten Thema übergehen können, um Ihre spezifischen API-Anforderungen zu lösen.
 
-Es ist auch so gestaltet, dass es als zukünftige Referenz dient, sodass Sie jederzeit zurückkommen und genau das sehen können, was Sie benötigen.
+Es ist auch so gestaltet, dass es als zukünftige Referenz dient, sodass Sie jederzeit zurückkommen und genau das sehen, was Sie benötigen.
 
 ## Den Code ausführen
 
-Alle Codeblöcke können kopiert und direkt verwendet werden (sie sind tatsächlich getestete Python-Dateien).
+Alle Codeblöcke können kopiert und direkt verwendet werden (es sind tatsächlich getestete Python-Dateien).
 
 Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py` und starten Sie `fastapi dev` mit:
 
@@ -76,7 +76,7 @@ $ pip install "fastapi[standard]"
 
 /// note | Hinweis
 
-Wenn Sie mit `pip install "fastapi[standard]"` installieren, werden einige optionale Standard-Abhängigkeiten mit installiert, einschließlich `fastapi-cloud-cli`, das es Ihnen ermöglicht, zu <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> bereitzustellen.
+Wenn Sie mit `pip install "fastapi[standard]"` installieren, werden einige optionale Standard-Abhängigkeiten mit installiert, einschließlich `fastapi-cloud-cli`, welches Ihnen das Deployment in der <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> ermöglicht.
 
 Wenn Sie diese optionalen Abhängigkeiten nicht haben möchten, können Sie stattdessen `pip install fastapi` installieren.
 
@@ -88,7 +88,7 @@ Wenn Sie die Standard-Abhängigkeiten, aber ohne das `fastapi-cloud-cli` install
 
 Es gibt auch ein **Handbuch für fortgeschrittene Benutzer**, das Sie nach diesem **Tutorial – Benutzerhandbuch** lesen können.
 
-Das **Handbuch für fortgeschrittene Benutzer** baut auf diesem auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
+Das **Handbuch für fortgeschrittene Benutzer** baut hierauf auf, verwendet dieselben Konzepte und bringt Ihnen einige zusätzliche Funktionen bei.
 
 Sie sollten jedoch zuerst das **Tutorial – Benutzerhandbuch** lesen (was Sie gerade tun).
 

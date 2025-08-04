@@ -1,6 +1,6 @@
 # Einen Server manuell ausführen
 
-## Verwenden Sie den `fastapi run` Befehl
+## Den `fastapi run` Befehl verwenden
 
 Kurz gesagt, nutzen Sie `fastapi run`, um Ihre FastAPI-Anwendung bereitzustellen:
 
@@ -9,31 +9,31 @@ Kurz gesagt, nutzen Sie `fastapi run`, um Ihre FastAPI-Anwendung bereitzustellen
 ```console
 $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
 
-  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starten des Produktionsservers 🚀
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting production server 🚀
 
-             Suchen nach Paketdateistruktur in Verzeichnissen
-             mit <font color="#3465A4">__init__.py</font> Dateien
-             Importieren von <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
    <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importieren des FastAPI-App-Objekts aus dem Modul mit
-             dem folgenden Code:
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
 
              <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
 
-      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Verwenden des Importstrings: <font color="#3465A4">main:app</font>
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
 
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server gestartet unter <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Dokumentation unter <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000/docs</u></font>
 
              Logs:
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Serverprozess gestartet <b>[</b><font color="#34E2E2"><b>2306215</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Warten auf den Anwendungsstart.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Anwendungsstart abgeschlossen.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn läuft unter <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Drücken Sie CTRL+C
-             um zu beenden<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>2306215</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://0.0.0.0:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
 ```
 
 </div>
@@ -46,23 +46,23 @@ Sie könnten diesen Befehl beispielsweise verwenden, um Ihre **FastAPI**-App in 
 
 Lassen Sie uns ein wenig tiefer in die Details eintauchen.
 
-FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
+FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Gateway-Schnittstelle">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
 
 Das Wichtigste, was Sie benötigen, um eine **FastAPI**-Anwendung (oder eine andere ASGI-Anwendung) auf einer entfernten Servermaschine auszuführen, ist ein ASGI-Serverprogramm wie **Uvicorn**, der standardmäßig im `fastapi`-Kommando enthalten ist.
 
 Es gibt mehrere Alternativen, einschließlich:
 
 * <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ein hochperformanter ASGI-Server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der mit HTTP/2 und Trio unter anderem kompatibel ist.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der unter anderem kompatibel mit HTTP/2 und Trio ist.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: der für Django Channels entwickelte ASGI-Server.
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Ein Rust HTTP-Server für Python-Anwendungen.
 * <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit ist eine leichte und vielseitige Laufzeitumgebung für Webanwendungen.
 
 ## Servermaschine und Serverprogramm
 
-Es gibt ein kleines Detail bei den Namen, an das Sie denken sollten. 💡
+Es gibt ein kleines Detail bei den Namen, das Sie beachten sollten. 💡
 
-Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud-Computer (die physische oder virtuelle Maschine) als auch das Programm zu bezeichnen, das auf dieser Maschine läuft (z. B. Uvicorn).
+Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud-Computer (die physische oder virtuelle Maschine) als auch das Programm zu bezeichnen, das auf dieser Maschine läuft (z.B. Uvicorn).
 
 Denken Sie einfach daran, dass sich "Server" im Allgemeinen auf eines dieser beiden Dinge beziehen kann.
 
@@ -118,10 +118,10 @@ $ uvicorn main:app --host 0.0.0.0 --port 80
 
 Der Befehl `uvicorn main:app` bezieht sich auf:
 
-* `main`: die Datei `main.py` (das Python-"Modul").
+* `main`: die Datei `main.py` (das Python-„Modul“).
 * `app`: das Objekt, das innerhalb von `main.py` mit der Zeile `app = FastAPI()` erstellt wurde.
 
-Es ist ähnlich wie:
+Es ist äquivalent zu:
 
 ```Python
 from main import app
@@ -141,9 +141,9 @@ Sie hilft während der **Entwicklung**, Sie sollten sie jedoch **nicht** in der 
 
 ///
 
-## Konzepte des Deployments
+## Deployment-Konzepte
 
-Diese Beispiele führen das Serverprogramm (z. B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z. B. `80`).
+Diese Beispiele führen das Serverprogramm (z.B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z. B. `80`).
 
 Das ist die Grundidee. Aber Sie möchten sich wahrscheinlich um einige zusätzliche Dinge kümmern, wie zum Beispiel:
 

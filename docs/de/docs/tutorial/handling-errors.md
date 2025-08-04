@@ -1,6 +1,6 @@
-# Fehlerbehandlung
+# Fehler behandeln
 
-Es gibt viele Situationen, in denen Sie einem Client, der Ihre API benutzt, einen Fehler mitteilen müssen.
+Es gibt viele Situationen, in denen Sie einem Client, der Ihre API nutzt, einen Fehler mitteilen müssen.
 
 Dieser Client könnte ein Browser mit einem Frontend sein, ein Code von jemand anderem, ein IoT-Gerät usw.
 
@@ -13,13 +13,13 @@ Sie könnten dem Client mitteilen müssen, dass:
 
 In diesen Fällen würden Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (von 400 bis 499) zurückgeben.
 
-Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese "200"-Statuscodes bedeuten, dass die Anfrage in irgendeiner Weise erfolgreich war.
+Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass die Anfrage in irgendeiner Weise erfolgreich war.
 
 Die Statuscodes im Bereich 400 bedeuten hingegen, dass es einen Fehler seitens des Clients gab.
 
 Erinnern Sie sich an all diese **"404 Not Found"** Fehler (und Witze)?
 
-## Verwenden Sie `HTTPException`
+## `HTTPException` verwenden
 
 Um HTTP-Responses mit Fehlern an den Client zurückzugeben, verwenden Sie `HTTPException`.
 
@@ -43,7 +43,7 @@ In diesem Beispiel lösen wir eine Exception mit einem Statuscode von `404` aus,
 
 ### Die resultierende Response
 
-Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`), erhält dieser Client einen HTTP-Statuscode 200 und eine JSON-Response von:
+Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`), erhält dieser Client einen HTTP-Statuscode 200 und diese JSON-Response:
 
 ```JSON
 {
@@ -51,7 +51,7 @@ Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`)
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der "not found" Error) und eine JSON-Response von:
+Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „not found“ Error) und eine JSON-Response wie:
 
 ```JSON
 {
@@ -109,13 +109,13 @@ Sie könnten auch `from starlette.requests import Request` und `from starlette.r
 
 ///
 
-## Überschreiben Sie die Default-Exception-Handler
+## Die Default-Exception-Handler überschreiben
 
 **FastAPI** hat einige Default-Exception-Handler.
 
 Diese Handler sind dafür verantwortlich, die standardmäßigen JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n und wenn die Anfrage ungültige Daten enthält.
 
-Sie können diese Exception-Handler durch Ihre eigenen überschreiben.
+Sie können diese Exception-Handler mit Ihren eigenen überschreiben.
 
 ### Überschreiben von Request-Validierungs-Exceptions
 
@@ -154,7 +154,7 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` vs `ValidationError`
+#### `RequestValidationError` vs. `ValidationError`
 
 /// warning | Achtung
 
@@ -166,7 +166,7 @@ Dies sind technische Details, die Sie überspringen können, wenn sie für Sie j
 
 **FastAPI** verwendet diesen so, dass, wenn Sie ein Pydantic-Modell in `response_model` verwenden und Ihre Daten einen Fehler haben, Sie den Fehler in Ihrem Log sehen.
 
-Aber der Client/Benutzer wird ihn nicht sehen. Stattdessen erhält der Client einen "Internal Server Error" mit einem HTTP-Statuscode `500`.
+Aber der Client/Benutzer wird ihn nicht sehen. Stattdessen erhält der Client einen „Internal Server Error“ mit einem HTTP-Statuscode `500`.
 
 Es sollte so sein, denn wenn Sie einen Pydantic `ValidationError` in Ihrer *Response* oder irgendwo anders in Ihrem Code haben (nicht im *Request* des Clients), ist es tatsächlich ein Fehler in Ihrem Code.
 
@@ -188,7 +188,7 @@ Sie könnten auch `from starlette.responses import PlainTextResponse` verwenden.
 
 ///
 
-### Verwenden Sie den `RequestValidationError`-Body
+### Verwenden des `RequestValidationError`-Bodys
 
 Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen Daten.
 
@@ -246,7 +246,7 @@ Um in diesem Beispiel beide `HTTPException`s im selben Code zu haben, wird die E
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### Verwalten Sie die Exceptionhandler von **FastAPI** wieder
+### Die Exceptionhandler von **FastAPI** wiederverwenden
 
 Wenn Sie die Exception zusammen mit den gleichen Default-Exceptionhandlern von **FastAPI** verwenden möchten, können Sie die Default-Exceptionhandler aus `fastapi.exception_handlers` importieren und wiederverwenden:
 

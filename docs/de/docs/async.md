@@ -139,7 +139,7 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Hinweis
+/// info | Info
 
 Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -205,7 +205,7 @@ Sie essen sie und sind fertig. ⏹
 
 Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 vor der Theke verbracht wurde. 😞
 
-/// info | Hinweis
+/// info | Info
 
 Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -369,7 +369,7 @@ Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class
 
 Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
 
-Ich habe eine weitere Bibliothek auf Basis von AnyIO erstellt, als dünne Schicht obendrauf, um die Typ-Annotationen etwas zu verbessern und bessere **Autovervollständigung**, **Inline-Fehler** usw. zu erhalten. Es hat auch eine freundliche Einführung und ein Tutorial, um Ihnen zu helfen, **Ihren eigenen asynchronen Code zu verstehen** und zu schreiben: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Es wäre besonders nützlich, wenn Sie **asynchronen Code mit regulärem** (blockierendem/synchronem) Code kombinieren müssen.
+Ich habe eine weitere Bibliothek auf Basis von AnyIO erstellt, als dünne Schicht obendrauf, um die Typ-Annotationen etwas zu verbessern und bessere **Autovervollständigung**, **Inline-Fehler** usw. zu erhalten. Sie hat auch eine freundliche Einführung und ein Tutorial, um Ihnen zu helfen, **Ihren eigenen asynchronen Code zu verstehen** und zu schreiben: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Sie ist insbesondere nützlich, wenn Sie **asynchronen Code mit regulärem** (blockierendem/synchronem) Code kombinieren müssen.
 
 ### Andere Formen von asynchronem Code
 
@@ -423,7 +423,7 @@ Dennoch besteht in beiden Fällen eine gute Chance, dass **FastAPI** [immer noch
 
 ### Abhängigkeiten
 
-Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md){.internal-link target=_blank}. Wenn eine Abhängigkeit eine Standard-`def`-Funktion anstelle eines `async def` ist, wird sie im externen Threadpool ausgeführt.
+Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md){.internal-link target=_blank}. Wenn eine Abhängigkeit eine normale `def`-Funktion anstelle einer `async def` ist, wird sie im externen Threadpool ausgeführt.
 
 ### Unterabhängigkeiten
 

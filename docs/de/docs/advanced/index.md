@@ -18,4 +18,4 @@ Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon l
 
 Sie können immer noch die meisten Funktionen in **FastAPI** mit den Kenntnissen aus dem Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank} nutzen.
 
-Und in den nächsten Abschnitten wird davon ausgegangen, dass Sie es bereits gelesen haben und dass Sie diese Hauptideen kennen.
+Und die nächsten Abschnitte setzen voraus, dass Sie es bereits gelesen haben und dass Sie diese Hauptideen kennen.

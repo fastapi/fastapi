@@ -54,13 +54,13 @@ In der Konsolenausgabe sollte es eine Zeile geben, die ungefähr so aussieht:
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Diese Zeile zeigt die URL, unter der Ihre Anwendung auf Ihrem lokalen Computer bereitgestellt wird.
+Diese Zeile zeigt die URL, unter der Ihre App auf Ihrem lokalen Computer bereitgestellt wird.
 
-### Testen Sie es
+### Überprüfen
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
-Sie werden folgende JSON-Response sehen:
+Sie werden die JSON-Response sehen:
 
 ```JSON
 {"message": "Hello World"}
@@ -143,9 +143,9 @@ Es gibt dutzende Alternativen, die alle auf OpenAPI basieren. Sie können jede d
 
 Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generieren, die mit Ihrer API kommunizieren. Zum Beispiel für Frontend-, Mobile- oder IoT-Anwendungen.
 
-## Rückblick, Schritt für Schritt
+## Zusammenfassung, Schritt für Schritt
 
-### Schritt 1: Importieren von `FastAPI`
+### Schritt 1: `FastAPI` importieren
 
 {* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 

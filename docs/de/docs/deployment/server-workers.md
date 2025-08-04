@@ -9,7 +9,7 @@ Schauen wir uns die Deployment-Konzepte von früher noch einmal an:
 * Arbeitsspeicher
 * Schritte vor dem Start
 
-Bis zu diesem Punkt, in allen Tutorials in der Dokumentation, haben Sie wahrscheinlich ein **Serverprogramm** ausgeführt, zum Beispiel mit dem `fastapi`-Befehl, der Uvicorn startet, und einen **einzelnen Prozess** ausgeführt.
+Bis zu diesem Punkt, in allen Tutorials in der Dokumentation, haben Sie wahrscheinlich ein **Serverprogramm** ausgeführt, zum Beispiel mit dem `fastapi`-Befehl, der Uvicorn startet, und einen **einzelnen Prozess** ausführt.
 
 Wenn Sie Anwendungen bereitstellen, möchten Sie wahrscheinlich eine gewisse **Replikation von Prozessen**, um **mehrere Kerne** zu nutzen und mehr Requests bearbeiten zu können.
 
@@ -17,7 +17,7 @@ Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md){.internal
 
 Hier zeige ich Ihnen, wie Sie **Uvicorn** mit **Workerprozessen** verwenden, indem Sie den `fastapi`-Befehl oder den `uvicorn`-Befehl direkt verwenden.
 
-/// info | Hinweis
+/// info | Info
 
 Wenn Sie Container verwenden, beispielsweise mit Docker oder Kubernetes, erzähle ich Ihnen mehr darüber im nächsten Kapitel: [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank}.
 

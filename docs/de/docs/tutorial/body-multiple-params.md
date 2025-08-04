@@ -114,7 +114,7 @@ Zum Beispiel:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | Hinweis
+/// info | Info
 
 `Body` hat die gleichen zusätzlichen Validierungs- und Metadaten-Parameter wie `Query`, `Path` und andere, die Sie später kennenlernen werden.
 

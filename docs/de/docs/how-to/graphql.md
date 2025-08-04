@@ -39,7 +39,7 @@ Hier ist eine kleine Vorschau, wie Sie Strawberry mit FastAPI integrieren könne
 
 Weitere Informationen zu Strawberry finden Sie in der <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry-Dokumentation</a>.
 
-Und auch die Dokumentation zu <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry mit FastAPI</a>.
+Und auch in der Dokumentation zu <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry mit FastAPI</a>.
 
 ## Ältere `GraphQLApp` von Starlette
 

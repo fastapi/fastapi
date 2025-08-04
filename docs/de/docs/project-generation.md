@@ -2,7 +2,7 @@
 
 Vorlagen, die normalerweise mit einem bestimmten Setup geliefert werden, sind so konzipiert, dass sie flexibel und anpassbar sind. Dies ermöglicht es Ihnen, sie zu modifizieren und an die Anforderungen Ihres Projekts anzupassen und sie somit zu einem hervorragenden Ausgangspunkt zu machen. 🏁
 
-Sie können diese Vorlage verwenden, um loszulegen, da sie bereits viele der anfänglichen Einrichtung, Sicherheit, Datenbank und einige API-Endpunkte für Sie vorbereitet hat.
+Sie können folgende Vorlage verwenden, um loszulegen, da sie bereits vieles der anfänglichen Einrichtung, Sicherheit, Datenbank und einige API-Endpunkte für Sie eingerichtet hat.
 
 GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
 

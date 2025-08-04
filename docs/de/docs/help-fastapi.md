@@ -30,7 +30,7 @@ Sie können FastAPI auf GitHub „starren“ (klicken Sie auf den Stern-Button o
 
 Durch das Hinzufügen eines Sterns können andere Benutzer es leichter finden und sehen, dass es für andere bereits nützlich war.
 
-## Beobachten Sie das GitHub-Repository für Releases
+## Das GitHub-Repository auf Releases überwachen
 
 Sie können FastAPI auf GitHub „beobachten“ (klicken Sie auf den „watch“-Button oben rechts): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
 
@@ -46,13 +46,13 @@ Sie können:
 
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Mir auf **GitHub** folgen</a>.
     * Andere Open-Source-Projekte sehen, die ich erstellt habe und die Ihnen helfen könnten.
-    * Mir folgen, um zu sehen, wann ich ein neues Open-Source-Projekt erstelle.
+    * Mir folgen, um zu sehen, wenn ich ein neues Open-Source-Projekt erstelle.
 * <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Mir auf **Twitter** folgen</a> oder <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
     * Mir mitteilen, wie Sie FastAPI verwenden (ich höre das gerne).
-    * Erfahren, wann ich Ankündigungen mache oder neue Tools veröffentliche.
+    * Mitbekommen, wenn ich Ankündigungen mache oder neue Tools veröffentliche.
     * Sie können auch <a href="https://twitter.com/fastapi" class="external-link" target="_blank">@fastapi auf Twitter folgen</a> (ein separates Konto).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Mir auf **LinkedIn** folgen</a>.
-    * Erfahren, wann ich Ankündigungen mache oder neue Tools veröffentliche (obwohl ich Twitter häufiger verwende 🤷‍♂).
+    * Mitbekommen, wenn ich Ankündigungen mache oder neue Tools veröffentliche (obwohl ich Twitter häufiger verwende 🤷‍♂).
 * Lesen, was ich schreibe (oder mir folgen) auf <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> oder <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Andere Ideen, Artikel lesen und mehr über die von mir erstellten Tools erfahren.
     * Mir folgen, um zu lesen, wenn ich etwas Neues veröffentliche.
@@ -160,9 +160,9 @@ Hier ist, was Sie beachten sollten und wie Sie einen Pull Request überprüfen:
 
 * Machen Sie sich keine Sorgen über Dinge wie den Stil von Commit-Nachrichten. Ich werde den Commit zusammenführen und manuell anpassen.
 
-* Also keine Sorgen über Stilregeln, es gibt bereits automatisierte Tools, die das überprüfen.
+* Außerdem, keine Sorgen über Stilregeln, es gibt bereits automatisierte Tools, die das überprüfen.
 
-Und wenn es irgendein anderer Stil- oder Konsistenzbedarf gibt, werde ich direkt danach fragen oder zusätzliche Commits mit den erforderlichen Änderungen hinzufügen.
+Und wenn es irgendeinen andereren Stil- oder Konsistenzbedarf gibt, werde ich direkt danach fragen oder zusätzliche Commits mit den erforderlichen Änderungen hinzufügen.
 
 ### Den Code überprüfen
 
@@ -170,7 +170,7 @@ Und wenn es irgendein anderer Stil- oder Konsistenzbedarf gibt, werde ich direkt
 
 * Schreiben Sie dann einen **Kommentar** und berichten, dass Sie das getan haben. So weiß ich, dass Sie ihn wirklich überprüft haben.
 
-/// info | Hinweis
+/// info | Info
 
 Leider kann ich PRs, nur weil sie von mehreren gutgeheißen wurden, nicht einfach vertrauen.
 
@@ -196,7 +196,7 @@ Daher ist es wirklich wichtig, dass Sie den Code wirklich lesen und ausführen u
 
 ## Einen Pull Request erstellen
 
-Sie können zum Quellcode mit Pull Requests [beitragen](contributing.md){.internal-link target=_blank}, zum Beispiel:
+Sie können [zum Quellcode mit Pull Requests beitragen](contributing.md){.internal-link target=_blank}, zum Beispiel:
 
 * Um einen Tippfehler zu beheben, den Sie in der Dokumentation gefunden haben.
 * Um einen Artikel, ein Video oder einen Podcast über FastAPI zu teilen, den Sie erstellt oder gefunden haben, indem Sie <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">diese Datei bearbeiten</a>.

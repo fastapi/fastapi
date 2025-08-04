@@ -29,19 +29,19 @@ Um dies zu erreichen, importieren Sie zuerst:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Hinweis
+/// info | Info
 
-FastAPI hat Unterstützung für `Annotated` hinzugefügt (und beginnt, es zu empfehlen) in der Version 0.95.0.
+FastAPI hat Unterstützung für `Annotated` hinzugefügt (und begonnen, es zu empfehlen) in der Version 0.95.0.
 
-Wenn Sie eine ältere Version haben, würden Sie Fehler beim Versuch, `Annotated` zu verwenden, erhalten.
+Wenn Sie eine ältere Version haben, würden Sie Fehler erhalten, beim Versuch, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
 ## Verwenden von `Annotated` im Typ für den `q`-Parameter
 
-Erinnern Sie sich, dass ich Ihnen zuvor gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern im [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} hinzuzufügen?
+Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
 
 Jetzt ist es soweit, dies mit FastAPI zu verwenden. 🚀
 
@@ -63,7 +63,7 @@ q: Union[str, None] = None
 
 ////
 
-Was wir tun werden, ist, dies mit `Annotated` zu umwickeln, sodass es zu:
+Was wir tun werden, ist, dies mit `Annotated` zu wrappen, sodass es zu:
 
 //// tab | Python 3.10+
 
@@ -179,7 +179,7 @@ Der **Default**wert des **Funktionsparameters** ist der **tatsächliche Default*
 
 Sie könnten **diese gleiche Funktion** in **anderen Stellen** ohne FastAPI **aufrufen**, und es würde **wie erwartet funktionieren**. Wenn es einen **erforderlichen** Parameter gibt (ohne Defaultwert), wird Ihr **Editor** Ihnen dies mit einem Fehler mitteilen, außerdem wird **Python** sich beschweren, wenn Sie es ausführen, ohne den erforderlichen Parameter zu übergeben.
 
-Wenn Sie `Annotated` nicht verwenden und stattdessen die **(alte) Defaultwert-Stilform** verwenden, müssen Sie sich daran **erinnern**, die Argumente der Funktion zu übergeben, wenn Sie diese Funktion ohne FastAPI in **anderen Stellen** aufrufen. Ansonsten sind die Werte anders als erwartet (z. B. `QueryInfo` oder etwas Ähnliches statt `str`). Ihr Editor kann Ihnen nicht helfen, und Python wird die Funktion ohne Klagen ausführen, nur wenn die Operationen innerhalb auf einen Fehler stoßen.
+Wenn Sie `Annotated` nicht verwenden und stattdessen die **(alte) Defaultwert-Stilform** verwenden, müssen Sie sich daran **erinnern**, die Argumente der Funktion zu übergeben, wenn Sie diese Funktion ohne FastAPI in **anderen Stellen** aufrufen. Ansonsten sind die Werte anders als erwartet (z. B. `QueryInfo` oder etwas Ähnliches statt `str`). Ihr Editor kann Ihnen nicht helfen, und Python wird die Funktion ohne Klagen ausführen und sich nur beschweren wenn die Operationen innerhalb auf einen Fehler stoßen.
 
 Da `Annotated` mehr als eine Metadaten-Annotation haben kann, könnten Sie dieselbe Funktion sogar mit anderen Tools verwenden, wie z. B. <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
@@ -249,21 +249,9 @@ q: str | None = None
 
 Aber jetzt deklarieren wir es mit `Query`, zum Beispiel so:
 
-//// tab | Annotiert
-
 ```Python
 q: Annotated[str | None, Query(min_length=3)] = None
 ```
-
-////
-
-//// tab | Nicht annotiert
-
-```Python
-q: str | None = Query(default=None, min_length=3)
-```
-
-////
 
 Wenn Sie einen Wert als erforderlich deklarieren müssen, während Sie `Query` verwenden, deklarieren Sie einfach keinen Defaultwert:
 
@@ -276,18 +264,6 @@ Sie können deklarieren, dass ein Parameter `None` akzeptieren kann, aber trotzd
 Um das zu tun, können Sie deklarieren, dass `None` ein gültiger Typ ist, einfach indem Sie keinen Defaultwert deklarieren:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
-
-/// tip | Tipp
-
-Pydantic, das die gesamte Datenvalidierung und Serialisierung in FastAPI übernimmt, hat ein spezielles Verhalten, wenn Sie `Optional` oder `Union[Something, None]` ohne Defaultwert verwenden. Sie können mehr darüber in der Pydantic-Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> erfahren.
-
-///
-
-/// tip | Tipp
-
-Denken Sie daran, dass Sie in den meisten Fällen, wenn etwas erforderlich ist, einfach den Defaultwert weglassen können. Sie müssen also normalerweise `...` nicht verwenden.
-
-///
 
 ## Query-Parameter-Liste / Mehrere Werte
 
@@ -322,7 +298,7 @@ Um einen Query-Parameter mit einem Typ `list` zu deklarieren, wie im obigen Beis
 
 ///
 
-Die interaktiven API-Dokumente werden entsprechend aktualisiert, um mehrere Werte zu erlauben:
+Die interaktive API-Dokumentation wird entsprechend aktualisiert, um mehrere Werte zu erlauben:
 
 <img src="/img/tutorial/query-params-str-validations/image02.png">
 
@@ -351,7 +327,7 @@ gehen, wird der Default für `q` sein: `["foo", "bar"]`, und Ihre Antwort wird s
 
 #### Nur `list` verwenden
 
-Sie können auch `list` direkt verwenden, anstelle von `List[str]`:
+Sie können auch `list` direkt verwenden, anstelle von `list[str]`:
 
 {* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
 
@@ -359,7 +335,7 @@ Sie können auch `list` direkt verwenden, anstelle von `List[str]`:
 
 Beachten Sie, dass FastAPI in diesem Fall den Inhalt der Liste nicht überprüft.
 
-Zum Beispiel würde `list[int]` überprüfen (und dokumentieren), dass der Inhalt der Liste Ganzzahlen ist. Aber `list` alleine würde das nicht.
+Zum Beispiel würde `list[int]` überprüfen (und dokumentieren), dass der Inhalt der Liste Ganzzahlen sind. Aber `list` alleine würde das nicht.
 
 ///
 
@@ -399,7 +375,7 @@ Aber `item-query` ist kein gültiger Name für eine Variable in Python.
 
 Der am ähnlichsten wäre `item_query`.
 
-Aber Sie brauchen es dennoch, um genau `item-query` zu sein...
+Aber Sie benötigen dennoch, dass er genau `item-query` ist...
 
 Dann können Sie ein `alias` deklarieren, und dieser Alias wird verwendet, um den Parameterwert zu finden:
 
@@ -411,7 +387,7 @@ Nehmen wir an, Ihnen gefällt dieser Parameter nicht mehr.
 
 Sie müssen ihn eine Weile dort belassen, da es Clients gibt, die ihn verwenden, aber Sie möchten, dass die Dokumentation ihn klar als <abbr title="obsolet, empfohlen, ihn nicht mehr zu verwenden">deprecated</abbr> anzeigt.
 
-Dann den Parameter `deprecated=True` an `Query` übergeben:
+Dann übergeben Sie den Parameter `deprecated=True` an `Query`:
 
 {* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
 
@@ -443,15 +419,15 @@ Zum Beispiel überprüft dieser benutzerdefinierte Validator, ob die Artikel-ID 
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Hinweis
+/// info | Info
 
-Dies ist verfügbar mit Pydantic Version 2 oder höher. 😎
+Dies ist verfügbar seit Pydantic Version 2 oder höher. 😎
 
 ///
 
 /// tip | Tipp
 
-Wenn Sie eine Art von Validierung durchführen müssen, die eine Kommunikation mit einer **externen Komponente** erfordert, wie z. B. einer Datenbank oder einer anderen API, sollten Sie stattdessen **FastAPI-Abhängigkeiten** verwenden. Sie werden später über diese lernen.
+Wenn Sie irgendeine Art von Validierung durchführen müssen, die eine Kommunikation mit einer **externen Komponente** erfordert, wie z. B. einer Datenbank oder einer anderen API, sollten Sie stattdessen **FastAPI-Abhängigkeiten** verwenden. Sie werden diese später kennenlernen.
 
 Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit denselben **Daten** überprüft werden können, die in der Anfrage bereitgestellt werden.
 
