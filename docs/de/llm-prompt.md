@@ -20,7 +20,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 
 ---
 
-Below is a list of English words and their German translations. Use these translations, do not use your own. Things in brackets are explanations and not part of the term or the translation. If a line starts with "NOT", that means: do NOT use this translation.
+Below is a list of English terms and their German translations. Use these translations, do not use your own. Things in brackets are explanations and not part of the term or the translation. If a line starts with "NOT", that means: do NOT use this translation.
 
 * /// check: /// check | Überprüfen
 * /// danger: /// danger | Gefahr
