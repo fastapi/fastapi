@@ -1,8 +1,8 @@
 # Virtuelle Umgebungen
 
-Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Pakete, die Sie für jedes Projekt installieren, zu isolieren.
+Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Pakete(englisch: Packages), die Sie für jedes Projekt installieren, zu isolieren.
 
-/// info | Hinweis
+/// info | Info
 
 Wenn Sie bereits über virtuelle Umgebungen Bescheid wissen, wie man sie erstellt und verwendet, möchten Sie diesen Abschnitt vielleicht überspringen. 🤓
 
@@ -18,7 +18,7 @@ Eine **virtuelle Umgebung** ist ein Verzeichnis mit einigen Dateien darin.
 
 ///
 
-/// info | Hinweis
+/// info | Info
 
 Diese Seite wird Ihnen beibringen, wie Sie **virtuelle Umgebungen** verwenden und wie sie funktionieren.
 
@@ -28,7 +28,7 @@ Wenn Sie bereit sind, ein **Tool zu verwenden, das alles für Sie verwaltet** (e
 
 ## Ein Projekt erstellen
 
-Zuerst erstellen Sie ein Verzeichnis für Ihr Projekt.
+Erstellen Sie zuerst ein Verzeichnis für Ihr Projekt.
 
 Was ich normalerweise mache, ist, dass ich ein Verzeichnis namens `code` in meinem Home/Benutzerverzeichnis erstelle.
 
@@ -37,15 +37,15 @@ Und darin erstelle ich ein Verzeichnis pro Projekt.
 <div class="termy">
 
 ```console
-// Gehen Sie zum Home-Verzeichnis
+// Zum Home-Verzeichnis wechseln
 $ cd
-// Erstellen Sie ein Verzeichnis für all Ihre Code-Projekte
+// Ein Verzeichnis für alle Ihre Codeprojekte erstellen
 $ mkdir code
-// Betreten Sie dieses Code-Verzeichnis
+// In dieses Codeverzeichnis gehen
 $ cd code
-// Erstellen Sie ein Verzeichnis für dieses Projekt
+// Ein Verzeichnis für dieses Projekt erstellen
 $ mkdir awesome-project
-// Betreten Sie dieses Projektverzeichnis
+// In dieses Projektverzeichnis gehen
 $ cd awesome-project
 ```
 
@@ -53,11 +53,11 @@ $ cd awesome-project
 
 ## Eine virtuelle Umgebung erstellen
 
-Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
+Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="Es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
 
 /// tip | Tipp
 
-Sie müssen dies **einmal pro Projekt** tun, nicht jedes Mal, wenn Sie daran arbeiten.
+Sie müssen dies nur **einmal pro Projekt** tun, nicht jedes Mal, wenn Sie daran arbeiten.
 
 ///
 
@@ -110,7 +110,7 @@ Dieser Befehl erstellt eine neue virtuelle Umgebung in einem Verzeichnis namens 
 
 /// details | `.venv` oder ein anderer Name
 
-Sie könnten die virtuelle Umgebung in einem anderen Verzeichnis erstellen, aber es gibt eine Konvention, sie `.venv` zu nennen.
+Sie könnten die virtuelle Umgebung in einem anderen Verzeichnis erstellen, aber es ist eine Konvention, sie `.venv` zu nennen.
 
 ///
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Jedes Mal, wenn Sie ein **neues Paket** in dieser Umgebung installieren, aktivieren Sie die Umgebung erneut.
 
-So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="Befehlszeilenschnittstelle">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
+So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="Command Line Interface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
 
 ///
 
@@ -176,7 +176,7 @@ So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="Befeh
 
 /// tip | Tipp
 
-Dies ist **optional**, aber es ist eine gute Möglichkeit, **zu überprüfen**, ob alles wie erwartet funktioniert und Sie die virtuelle Umgebung verwenden, die Sie beabsichtigt haben.
+Dies ist **optional**, aber es ist eine gute Möglichkeit, **zu überprüfen**, ob alles wie erwartet funktioniert und Sie die beabsichtigte virtuelle Umgebung verwenden.
 
 ///
 
@@ -216,11 +216,11 @@ Wenn es das `python`-Binary in `.venv\Scripts\python` anzeigt, innerhalb Ihres P
 
 /// tip | Tipp
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwenden, würden Sie es verwenden, um Dinge zu installieren anstelle von `pip`, sodass Sie nicht `pip` aktualisieren müssen. 😎
+Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwenden, würden Sie das verwenden, um Dinge zu installieren anstelle von `pip`, sodass Sie `pip` nicht aktualisieren müssen. 😎
 
 ///
 
-Wenn Sie `pip` verwenden, um Pakete zu installieren (es wird standardmäßig mit Python geliefert), sollten Sie es auf die neueste Version **upgraden**.
+Wenn Sie `pip` verwenden, um Pakete zu installieren (es wird standardmäßig mit Python geliefert), sollten Sie es auf die neueste Version **aktualisieren**.
 
 Viele exotische Fehler beim Installieren eines Pakets werden einfach dadurch gelöst, dass zuerst `pip` aktualisiert wird.
 
@@ -244,11 +244,11 @@ $ python -m pip install --upgrade pip
 
 ## `.gitignore` hinzufügen
 
-Wenn Sie **Git** verwenden (Sie sollten es tun), fügen Sie eine `.gitignore`-Datei hinzu, um alles in Ihrem `.venv` von Git auszuschließen.
+Wenn Sie **Git** verwenden (was Sie sollten), fügen Sie eine `.gitignore`-Datei hinzu, um alles in Ihrem `.venv` von Git auszuschließen.
 
 /// tip | Tipp
 
-Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwendet haben, um die virtuelle Umgebung zu erstellen, hat es dies bereits für Sie getan; Sie können diesen Schritt überspringen. 😎
+Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a> verwendet haben, um die virtuelle Umgebung zu erstellen, hat es dies bereits für Sie getan, Sie können diesen Schritt überspringen. 😎
 
 ///
 
@@ -268,11 +268,11 @@ $ echo "*" > .venv/.gitignore
 
 /// details | Was dieser Befehl bedeutet
 
-* `echo "*"`: wird den Text `*` im Terminal "drucken" (der nächste Teil ändert das ein wenig)
+* `echo "*"`: wird den Text `*` im Terminal „drucken“ (der nächste Teil ändert das ein wenig)
 * `>`: alles, was durch den Befehl links von `>` im Terminal ausgegeben wird, sollte nicht gedruckt, sondern stattdessen in die Datei geschrieben werden, die rechts von `>` kommt
 * `.gitignore`: der Name der Datei, in die der Text geschrieben werden soll
 
-Und `*` bedeutet für Git "alles". Also wird alles im `.venv`-Verzeichnis ignoriert.
+Und `*` bedeutet für Git „alles“. Also wird alles im `.venv`-Verzeichnis ignoriert.
 
 Dieser Befehl erstellt eine Datei `.gitignore` mit dem Inhalt:
 
@@ -378,7 +378,7 @@ pydantic==2.8.0
 
 ## Ihr Programm ausführen
 
-Nachdem Sie die virtuelle Umgebung aktiviert haben, können Sie Ihr Programm ausführen, und es wird das Python innerhalb Ihrer virtuellen Umgebung mit den dort installierten Paketen verwenden.
+Nachdem Sie die virtuelle Umgebung aktiviert haben, können Sie Ihr Programm ausführen, und es wird das Python innerhalb Ihrer virtuellen Umgebung mit den Paketen verwenden, die Sie dort installiert haben.
 
 <div class="termy">
 
@@ -392,7 +392,7 @@ Hello World
 
 ## Ihren Editor konfigurieren
 
-Sie würden wahrscheinlich einen Editor verwenden, stellen Sie sicher, dass Sie ihn so konfigurieren, dass er die gleiche virtuelle Umgebung verwendet, die Sie erstellt haben (es wird sie wahrscheinlich automatisch erkennen), sodass Sie Autovervollständigungen und Inline-Fehler erhalten können.
+Sie würden wahrscheinlich einen Editor verwenden, stellen Sie sicher, dass Sie ihn so konfigurieren, dass er die gleiche virtuelle Umgebung verwendet, die Sie erstellt haben (er wird sie wahrscheinlich automatisch erkennen), sodass Sie Autovervollständigungen und Inline-Fehler erhalten können.
 
 Zum Beispiel:
 
@@ -417,9 +417,9 @@ $ deactivate
 
 </div>
 
-Auf diese Weise, wenn Sie `python` ausführen, wird es nicht versuchen, es aus dieser virtuellen Umgebung mit den dort installierten Paketen auszuführen.
+Auf diese Weise, wenn Sie `python` ausführen, wird nicht versucht, es aus dieser virtuellen Umgebung mit den dort installierten Paketen auszuführen.
 
-## Bereit zu arbeiten
+## Bereit zu arbeit
 
 Jetzt sind Sie bereit, mit Ihrem Projekt zu arbeiten.
 
@@ -451,14 +451,14 @@ Zum Beispiel könnten Sie ein Projekt namens `philosophers-stone` erstellen, die
 
 ```mermaid
 flowchart LR
-    stone(philosophers-stone) -->|erfordert| harry-1[harry v1]
+    stone(philosophers-stone) -->|benötigt| harry-1[harry v1]
 ```
 
 Dann erstellen Sie zu einem späteren Zeitpunkt ein weiteres Projekt namens `prisoner-of-azkaban`, und dieses Projekt hängt ebenfalls von `harry` ab, aber dieses Projekt benötigt **`harry` Version `3`**.
 
 ```mermaid
 flowchart LR
-    azkaban(prisoner-of-azkaban) --> |erfordert| harry-3[harry v3]
+    azkaban(prisoner-of-azkaban) --> |benötigt| harry-3[harry v3]
 ```
 
 Aber jetzt ist das Problem, wenn Sie die Pakete global (in der globalen Umgebung) installieren anstatt in einer lokalen **virtuellen Umgebung**, müssen Sie wählen, welche Version von `harry` zu installieren ist.
@@ -481,11 +481,11 @@ flowchart LR
         harry-1[harry v1]
     end
     subgraph stone-project[philosophers-stone Projekt]
-        stone(philosophers-stone) -->|erfordert| harry-1
+        stone(philosophers-stone) -->|benötigt| harry-1
     end
 ```
 
-Aber dann, wenn Sie `prisoner-of-azkaban` ausführen möchten, müssen Sie `harry` Version `1` deinstallieren und `harry` Version `3` installieren (oder einfach die Version `3` installieren, würde die Version `1` automatisch deinstallieren).
+Aber dann, wenn Sie `prisoner-of-azkaban` ausführen möchten, müssen Sie `harry` Version `1` deinstallieren und `harry` Version `3` installieren (oder einfach die Version `3` installieren, was die Version `1` automatisch deinstallieren würde).
 
 <div class="termy">
 
@@ -510,13 +510,13 @@ flowchart LR
         stone(philosophers-stone) -.-x|⛔️| harry-1
     end
     subgraph azkaban-project[prisoner-of-azkaban Projekt]
-        azkaban(prisoner-of-azkaban) --> |erfordert| harry-3
+        azkaban(prisoner-of-azkaban) --> |benötigt| harry-3
     end
 ```
 
 /// tip | Tipp
 
-Es ist sehr häufig in Python-Paketen, zu versuchen, **Breaking Changes** in **neuen Versionen** zu vermeiden, aber es ist besser, auf Nummer sicher zu gehen und neue Versionen absichtlich zu installieren und sie zu testen, um sicherzustellen, dass alles korrekt funktioniert.
+Es ist sehr üblich in Python-Paketen, alles zu versuchen, **Breaking Changes** in **neuen Versionen** zu vermeiden, aber es ist besser, auf Nummer sicher zu gehen und neue Versionen absichtlich zu installieren und wenn Sie die Tests ausführen können, sicherzustellen, dass alles korrekt funktioniert.
 
 ///
 
@@ -548,26 +548,26 @@ Es wird auch Dateien für andere Pakete **herunterladen**, von denen FastAPI abh
 
 Dann wird es all diese Dateien **extrahieren** und sie in ein Verzeichnis auf Ihrem Rechner legen.
 
-Standardmäßig werden diese heruntergeladenen und extrahierten Dateien in das Verzeichnis gelegt, das mit Ihrer Python-Installation geliefert wird, das ist die **globale Umgebung**.
+Standardmäßig werden diese heruntergeladenen und extrahierten Dateien in das Verzeichnis gelegt, das mit Ihrer Python-Installation kommt, das ist die **globale Umgebung**.
 
 ## Was sind virtuelle Umgebungen
 
 Die Lösung für die Probleme, alle Pakete in der globalen Umgebung zu haben, besteht darin, eine **virtuelle Umgebung für jedes Projekt** zu verwenden, an dem Sie arbeiten.
 
-Eine virtuelle Umgebung ist ein **Verzeichnis**, das der globalen Umgebung sehr ähnlich ist, in dem Sie die Pakete für ein Projekt installieren können.
+Eine virtuelle Umgebung ist ein **Verzeichnis**, sehr ähnlich zu dem globalen, in dem Sie die Pakete für ein Projekt installieren können.
 
 Auf diese Weise hat jedes Projekt seine eigene virtuelle Umgebung (`.venv`-Verzeichnis) mit seinen eigenen Paketen.
 
 ```mermaid
 flowchart TB
     subgraph stone-project[philosophers-stone Projekt]
-        stone(philosophers-stone) --->|erfordert| harry-1
+        stone(philosophers-stone) --->|benötigt| harry-1
         subgraph venv1[.venv]
             harry-1[harry v1]
         end
     end
     subgraph azkaban-project[prisoner-of-azkaban Projekt]
-        azkaban(prisoner-of-azkaban) --->|erfordert| harry-3
+        azkaban(prisoner-of-azkaban) --->|benötigt| harry-3
         subgraph venv2[.venv]
             harry-3[harry v3]
         end
@@ -617,17 +617,17 @@ $ source .venv/Scripts/activate
 
 ////
 
-Dieser Befehl erstellt oder modifiziert einige [Umgebungsvariablen](environment-variables.md){.internal-link target=_blank}, die für die nächsten Befehle verfügbar sein werden.
+Dieser Befehl erstellt oder ändert einige [Umgebungsvariablen](environment-variables.md){.internal-link target=_blank}, die für die nächsten Befehle verfügbar sein werden.
 
 Eine dieser Variablen ist die `PATH`-Variable.
 
 /// tip | Tipp
 
-Sie können mehr über die `PATH`-Umgebungsvariable im [Abschnitt Umgebungsvariablen](environment-variables.md#path-environment-variable){.internal-link target=_blank} erfahren.
+Sie können mehr über die `PATH`-Umgebungsvariable im Abschnitt [Umgebungsvariablen](environment-variables.md#path-environment-variable){.internal-link target=_blank} erfahren.
 
 ///
 
-Das Aktivieren einer virtuellen Umgebung fügt ihren Pfad `.venv/bin` (auf Linux und macOS) oder `.venv\Scripts` (auf Windows) zur `PATH`-Umgebungsvariable hinzu.
+Das Aktivieren einer virtuellen Umgebung fügt deren Pfad `.venv/bin` (auf Linux und macOS) oder `.venv\Scripts` (auf Windows) zur `PATH`-Umgebungsvariable hinzu.
 
 Angenommen, die `PATH`-Variable sah vor dem Aktivieren der Umgebung so aus:
 
@@ -712,7 +712,7 @@ Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** 
 
 Das Aktivieren einer virtuellen Umgebung ändert auch ein paar andere Dinge, aber dies ist eines der wichtigsten Dinge, die es tut.
 
-## Überprüfung einer virtuellen Umgebung
+## Überprüfen einer virtuellen Umgebung
 
 Wenn Sie überprüfen, ob eine virtuelle Umgebung aktiv ist, zum Beispiel mit:
 
@@ -748,15 +748,15 @@ Das bedeutet, dass das `python`-Programm, das verwendet wird, das in der **virtu
 
 Sie verwenden `which` auf Linux und macOS und `Get-Command` in Windows PowerShell.
 
-Der Befehl funktioniert so, dass er in der `PATH`-Umgebungsvariable nachgeht und durch **jeden Pfad in der Reihenfolge** geht, um nach dem Programm namens `python` zu suchen. Sobald er es findet, zeigt er Ihnen den Pfad zu diesem Programm.
+So funktioniert dieser Befehl: Er wird in der `PATH`-Umgebungsvariable nachsehen und **jeden Pfad in der Reihenfolge durchgehen**, um das Programm namens `python` zu finden. Sobald er es findet, wird er Ihnen **den Pfad** zu diesem Programm anzeigen.
 
-Das Wichtigste ist, dass, wenn Sie `python` aufrufen, genau dieses "`python`" ausgeführt wird.
+Der wichtigste Punkt ist, dass, wenn Sie `python` aufrufen, genau dieses "`python`" ausgeführt wird.
 
 So können Sie überprüfen, ob Sie sich in der richtigen virtuellen Umgebung befinden.
 
 /// tip | Tipp
 
-Es ist einfach, eine virtuelle Umgebung zu aktivieren, eine Python-Version zu erhalten und dann **zu einem anderen Projekt zu wechseln**.
+Es ist einfach, eine virtuelle Umgebung zu aktivieren, ein Python zu bekommen und dann **zu einem anderen Projekt zu wechseln**.
 
 Und das zweite Projekt **würde nicht funktionieren**, weil Sie das **falsche Python** verwenden, aus einer virtuellen Umgebung für ein anderes Projekt.
 
@@ -804,16 +804,16 @@ Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// Sie müssen nicht im alten Verzeichnis sein, um zu deaktivieren, Sie können dies überall tun, sogar nachdem Sie zu einem anderen Projekt gewechselt haben 😎
+// Sie müssen nicht im alten Verzeichnis sein, um zu deaktivieren, Sie können dies überall tun, sogar nachdem Sie zum anderen Projekt gewechselt haben 😎
 $ deactivate
 
-// Aktivieren Sie die virtuelle Umgebung in prisoner-of-azkaban/.venv 🚀
+// Die virtuelle Umgebung in prisoner-of-azkaban/.venv 🚀 aktivieren
 $ source .venv/bin/activate
 
 // Jetzt, wenn Sie python ausführen, wird das Paket sirius in dieser virtuellen Umgebung gefunden ✨
 $ python main.py
 
-Ich schwöre feierlich 🐺
+I solemnly swear 🐺
 ```
 
 </div>
@@ -822,21 +822,21 @@ Ich schwöre feierlich 🐺
 
 Dies ist ein einfacher Leitfaden, um Ihnen den Einstieg zu erleichtern und Ihnen beizubringen, wie alles **unter der Haube** funktioniert.
 
-Es gibt viele **Alternativen** zur Verwaltung virtueller Umgebungen, Paketabhängigkeiten (Anforderungen), Projekte.
+Es gibt viele **Alternativen** zur Verwaltung von virtuellen Umgebungen, Paketabhängigkeiten (Anforderungen), Projekten.
 
 Sobald Sie bereit sind und ein Tool verwenden möchten, das **das gesamte Projekt verwaltet**, Paketabhängigkeiten, virtuelle Umgebungen usw., würde ich Ihnen vorschlagen, <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> auszuprobieren.
 
 `uv` kann viele Dinge tun, es kann:
 
-* **Python installieren** für Sie, einschließlich verschiedener Versionen
+* **Python für Sie installieren**, einschließlich verschiedener Versionen
 * Die **virtuelle Umgebung** für Ihre Projekte verwalten
 * **Pakete installieren**
 * Paket**abhängigkeiten und Versionen** für Ihr Projekt verwalten
-* Sicherstellen, dass Sie eine **exakte** Menge an Paketen und Versionen zur Installation haben, einschließlich ihrer Abhängigkeiten, damit Sie sicher sein können, dass Sie Ihr Projekt in der Produktionsumgebung genauso ausführen können wie auf Ihrem Rechner während der Entwicklung, dies wird **Sperren** genannt
+* Sicherstellen, dass Sie eine **exakte** Menge an Paketen und Versionen zur Installation haben, einschließlich ihrer Abhängigkeiten, damit Sie sicher sein können, dass Sie Ihr Projekt in der Produktionsumgebung genauso ausführen können wie auf Ihrem Rechner während der Entwicklung, dies wird **Locking** genannt
 * Und viele andere Dinge
 
 ## Fazit
 
 Wenn Sie das alles gelesen und verstanden haben, wissen Sie jetzt **viel mehr** über virtuelle Umgebungen als viele Entwickler da draußen. 🤓
 
-Das Wissen über diese Details wird wahrscheinlich nützlich in einer zukünftigen Zeit sein, wenn Sie etwas entwickeln, das komplex erscheint, aber Sie werden wissen, **wie alles unter der Haube funktioniert**. 😎
+Das Wissen über diese Details wird in Zukunft wahrscheinlich nützlich sein, wenn Sie etwas debuggen, das komplex erscheint, aber Sie werden wissen, **wie alles unter der Haube funktioniert**. 😎

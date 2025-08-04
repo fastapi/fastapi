@@ -1,26 +1,26 @@
 # Query-Parameter-Modelle
 
-Wenn Sie eine Gruppe von **Query-Parametern** haben, die in Zusammenhang stehen, können Sie ein **Pydantic-Modell** erstellen, um sie zu deklarieren.
+Wenn Sie eine Gruppe von **Query-Parametern** haben, die miteinander in Beziehung stehen, können Sie ein **Pydantic-Modell** erstellen, um diese zu deklarieren.
 
-Dadurch können Sie das **Modell** an **mehreren Stellen wiederverwenden** und auch Validierungen und Metadaten für alle Parameter auf einmal deklarieren. 😎
+Dadurch können Sie das **Modell an mehreren Stellen wiederverwenden** und gleichzeitig Validierungen und Metadaten für alle Parameter auf einmal deklarieren. 😎
 
 /// note | Hinweis
 
-Dies wird seit FastAPI-Version `0.115.0` unterstützt. 🤓
+Dies wird seit FastAPI Version `0.115.0` unterstützt. 🤓
 
 ///
 
 ## Query-Parameter mit einem Pydantic-Modell
 
-Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell** und deklarieren Sie dann den Parameter als `Query`:
+Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell** und dann den Parameter als `Query`:
 
 {* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** der Anfrage **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell übergeben.
+**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** der Anfrage extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
-## Überprüfen Sie die Dokumentation
+## Die Dokumentation überprüfen
 
-Sie können die Query-Parameter in der Dokumentationsoberfläche unter `/docs` sehen:
+Sie können die Query-Parameter in der Dokumentations-Oberfläche unter `/docs` einsehen:
 
 <div class="screenshot">
 <img src="/img/tutorial/query-param-models/image01.png">
@@ -28,21 +28,21 @@ Sie können die Query-Parameter in der Dokumentationsoberfläche unter `/docs` s
 
 ## Zusätzliche Query-Parameter verbieten
 
-In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Query-Parameter, die Sie empfangen möchten, **einschränken**.
+In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Query-Parameter, die Sie empfangen möchten, **beschränken**.
 
-Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu `verbieten`:
+Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` Felder zu `verbieten`:
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
 Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-Response**.
 
-Wenn der Client beispielsweise versucht, einen `tool` Query-Parameter mit einem Wert von `plumbus` zu senden, wie:
+Wenn der Client beispielsweise versucht, einen `tool` Query-Parameter mit dem Wert `plumbus` zu senden, wie:
 
 ```http
 https://example.com/items/?limit=10&tool=plumbus
 ```
 
-wird er eine **Error-Response** erhalten, die ihm mitteilt, dass der Query-Parameter `tool` nicht erlaubt ist:
+erhält er eine **Error-Response**, die ihm mitteilt, dass der Query-Parameter `tool` nicht erlaubt ist:
 
 ```json
 {

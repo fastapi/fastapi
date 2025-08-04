@@ -2,7 +2,7 @@
 
 Sie können den Debugger in Ihrem Editor verbinden, zum Beispiel mit Visual Studio Code oder PyCharm.
 
-## Aufruf von `uvicorn`
+## `uvicorn` aufrufen
 
 Importieren und führen Sie `uvicorn` direkt in Ihrer FastAPI-Anwendung aus:
 
@@ -10,7 +10,7 @@ Importieren und führen Sie `uvicorn` direkt in Ihrer FastAPI-Anwendung aus:
 
 ### Über `__name__ == "__main__"`
 
-Der Hauptzweck von `__name__ == "__main__"` ist, dass bestimmter Code ausgeführt wird, wenn Ihre Datei mit:
+Der Hauptzweck von `__name__ == "__main__"` ist, dass Code ausgeführt wird, wenn Ihre Datei mit folgendem Befehl aufgerufen wird:
 
 <div class="termy">
 
@@ -20,17 +20,17 @@ $ python myapp.py
 
 </div>
 
-aufgerufen wird, aber nicht ausgeführt wird, wenn eine andere Datei sie importiert, wie in:
+aber nicht ausgeführt wird, wenn eine andere Datei sie importiert, wie in diesem Fall:
 
 ```Python
 from myapp import app
 ```
 
-#### Mehr Details
+#### Weitere Details
 
 Angenommen, Ihre Datei heißt `myapp.py`.
 
-Wenn Sie sie mit:
+Wenn Sie sie mit folgendem Befehl ausführen:
 
 <div class="termy">
 
@@ -40,9 +40,9 @@ $ python myapp.py
 
 </div>
 
-ausführen, hat die interne Variable `__name__` in Ihrer Datei, die automatisch von Python erstellt wird, den Wert der Zeichenkette `"__main__"`.
+dann hat in Ihrer Datei die interne Variable `__name__`, die automatisch von Python erstellt wird, den Wert des Strings `"__main__"`.
 
-Also wird der Abschnitt:
+Daher wird der Abschnitt:
 
 ```Python
     uvicorn.run(app, host="0.0.0.0", port=8000)
@@ -52,17 +52,17 @@ ausgeführt.
 
 ---
 
-Das wird nicht passieren, wenn Sie dieses Modul (Datei) importieren.
+Dies wird nicht passieren, wenn Sie das Modul (die Datei) importieren.
 
-Wenn Sie also eine andere Datei `importer.py` mit folgendem Inhalt haben:
+Wenn Sie also eine weitere Datei `importer.py` mit folgendem Inhalt haben:
 
 ```Python
 from myapp import app
 
-# Weiterer Code
+# Hier mehr Code
 ```
 
-wird in diesem Fall die automatisch erstellte Variable innerhalb von `myapp.py` nicht den Wert `"__main__"` für die Variable `__name__` haben.
+wird in diesem Fall in `myapp.py` die automatisch erstellte Variable `__name__` nicht den Wert `"__main__"` haben.
 
 Daher wird die Zeile:
 
@@ -72,26 +72,26 @@ Daher wird die Zeile:
 
 nicht ausgeführt.
 
-/// info | Hinweis
+/// info | Info
 
-Für weitere Informationen schauen Sie in die <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">offiziellen Python-Dokumentationen</a>.
+Für weitere Informationen besuchen Sie bitte <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">die offizielle Python-Dokumentation</a>.
 
 ///
 
-## Führen Sie Ihren Code mit Ihrem Debugger aus
+## Ihren Code mit Ihrem Debugger ausführen
 
-Da Sie den Uvicorn-Server direkt aus Ihrem Code heraus ausführen, können Sie Ihr Python-Programm (Ihre FastAPI-Anwendung) direkt aus dem Debugger aufrufen.
+Da Sie den Uvicorn-Server direkt aus Ihrem Code ausführen, können Sie Ihr Python-Programm (Ihre FastAPI-Anwendung) direkt aus dem Debugger aufrufen.
 
 ---
 
 Zum Beispiel können Sie in Visual Studio Code:
 
 * Zum "Debug"-Panel gehen.
-* "Konfiguration hinzufügen..." wählen.
+* "Konfiguration hinzufügen..." auswählen.
 * "Python" auswählen.
 * Den Debugger mit der Option "`Python: Current File (Integrated Terminal)`" ausführen.
 
-Damit wird dann der Server mit Ihrem **FastAPI**-Code gestartet, an Ihren Breakpoints angehalten usw.
+Der Server wird dann mit Ihrem **FastAPI**-Code gestartet, an Ihren Haltepunkten angehalten, usw.
 
 So könnte es aussehen:
 
@@ -101,12 +101,12 @@ So könnte es aussehen:
 
 Wenn Sie Pycharm verwenden, können Sie:
 
-* Das "Run"-Menü öffnen.
+* Das Menü "Run" öffnen.
 * Die Option "Debug..." auswählen.
-* Es erscheint ein Kontextmenü.
-* Die Datei zum Debuggen auswählen (in diesem Fall `main.py`).
+* Ein Kontextmenü wird angezeigt.
+* Die zu debuggende Datei auswählen (in diesem Fall `main.py`).
 
-Damit wird dann der Server mit Ihrem **FastAPI**-Code gestartet, an Ihren Breakpoints angehalten usw.
+Der Server wird dann mit Ihrem **FastAPI**-Code gestartet, an Ihren Haltepunkten angehalten, usw.
 
 So könnte es aussehen:
 
