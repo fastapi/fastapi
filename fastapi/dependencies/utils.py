@@ -755,7 +755,7 @@ def request_params_to_args(
     params_to_process: Dict[str, Any] = {}
 
     fields_to_extract = [
-        cached_field
+        (field, cached_field)
         for field in fields
         if lenient_issubclass(field.type_, BaseModel)
         for cached_field in get_cached_model_fields(field.type_)
@@ -763,13 +763,15 @@ def request_params_to_args(
 
     processed_keys = set()
 
-    for field in fields_to_extract:
+    for parent_field, field in fields_to_extract:
         alias = None
         if isinstance(received_params, Headers):
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
             convert_underscores = getattr(
-                field.field_info, "convert_underscores", default_convert_underscores
+                parent_field.field_info,
+                "convert_underscores",
+                default_convert_underscores,
             )
             if convert_underscores:
                 alias = (
