@@ -750,20 +750,16 @@ def request_params_to_args(
     if not fields:
         return values, errors
 
-    fields_to_extract = fields
     default_convert_underscores = True
 
     params_to_process: Dict[str, Any] = {}
 
-    model_fields = [
-        field for field in fields if lenient_issubclass(field.type_, BaseModel)
+    fields_to_extract = [
+        cached_field
+        for field in fields
+        if lenient_issubclass(field.type_, BaseModel)
+        for cached_field in get_cached_model_fields(field.type_)
     ]
-    if model_fields:
-        fields_to_extract = [
-            cached_field
-            for field in model_fields
-            for cached_field in get_cached_model_fields(field.type_)
-        ]
 
     processed_keys = set()
 
