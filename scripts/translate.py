@@ -93,6 +93,24 @@ Source:
 Result:
 
 /// details | Vista previa
+
+For **every** Markdown header (all levels), add a custom anchor based on the original English header:
+
+- Convert the English header to lowercase, replace spaces and punctuation with hyphens (kebab-case).
+- Keep this anchor identical across all translations — do not translate it.
+- Even if the original English document doesn't have an anchor, always add the correct anchor in the translated version.
+- Use these fixed anchors for all internal links across languages.
+
+Example:
+
+Source (English):
+
+## Alternative API docs
+
+Result (Spanish):
+
+## <a id="alternative-api-docs"></a> Documentación de la API alternativa
+
 """
 
 app = typer.Typer()
