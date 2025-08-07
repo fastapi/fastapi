@@ -1,0 +1,82 @@
+# FastAPI
+> Modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard type hints.
+
+Key Features:
+  Fast: High performance, on par with Node.js and Go
+  Fast to code: Develop features 200–300% faster
+  Ready for production: Robust, secure, and tested
+  Intuitive: Great editor support, autocompletion, type hints
+  Standards-based: Built on OpenAPI and JSON Schema
+
+## FastAPI
+- [Official Documentation](https://fastapi.tiangolo.com/) - Complete guide and API reference
+- [Source Code](https://github.com/fastapi/fastapi) - GitHub repository
+
+## Features
+- [Based on Open Standards](https://fastapi.tiangolo.com/features/#based-on-open-standards) - OpenAPI and JSON Schema for automatic docs and client generation
+- [Automatic Interactive Docs](https://fastapi.tiangolo.com/features/#automatic-docs) - Swagger UI and ReDoc included by default
+- [Just Modern Python](https://fastapi.tiangolo.com/features/#just-modern-python) - Use standard Python type hints (no new syntax)
+- [Editor Support & Autocompletion](https://fastapi.tiangolo.com/features/#editor-support) - Full autocompletion in VS Code, PyCharm, etc.
+- [Short & Clean Code](https://fastapi.tiangolo.com/features/#short) - Reduce boilerplate with smart defaults
+- [Data Validation & Serialization](https://fastapi.tiangolo.com/features/#validation) - Powered by Pydantic, supports JSON, URLs, emails, UUIDs
+- [Security & Authentication](https://fastapi.tiangolo.com/features/#security-and-authentication) - OAuth2, JWT, API keys, HTTP Basic, session cookies
+- [Dependency Injection](https://fastapi.tiangolo.com/features/#dependency-injection) - Hierarchical, reusable dependencies with automatic docs
+- [Unlimited Plug-ins](https://fastapi.tiangolo.com/features/#unlimited-plug-ins) - Create reusable components in 2 lines
+- [Tested & Production-Ready](https://fastapi.tiangolo.com/features/#tested) - 100% test coverage, used by Microsoft, Uber, Netflix
+
+## Learn
+- [Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/) - Step-by-step guide to build a full API
+- [First Steps](https://fastapi.tiangolo.com/tutorial/intro/) - Create your first path operation
+- [Path Parameters](https://fastapi.tiangolo.com/tutorial/path-params/) - Extract values from the URL
+- [Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/) - Handle optional parameters
+- [Request Body](https://fastapi.tiangolo.com/tutorial/body/) - Receive JSON data with validation
+- [Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/) - Reuse logic (e.g., authentication)
+- [Security](https://fastapi.tiangolo.com/tutorial/security/) - OAuth2, JWT, API keys
+- [Testing](https://fastapi.tiangolo.com/tutorial/testing/) - Use `TestClient` for fast, reliable tests
+- [Databases](https://fastapi.tiangolo.com/tutorial/sql-databases/) - Integrate SQLAlchemy and async DBs
+- [Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/) - Run code after response
+
+## Reference
+- [API Reference](https://fastapi.tiangolo.com/reference/) - Full module and class documentation
+- [FastAPI Class](https://fastapi.tiangolo.com/reference/#fastapi.FastAPI) - Main application class
+- [Path Operations](https://fastapi.tiangolo.com/reference/#fastapi.routing.APIRoute) - `@app.get()`, `@app.post()`, etc.
+- [Response Types](https://fastapi.tiangolo.com/reference/#response) - `JSONResponse`, `ORJSONResponse`, `HTMLResponse`
+- [Dependencies](https://fastapi.tiangolo.com/reference/#fastapi.Depends) - Dependency injection system
+- [Security Utilities](https://fastapi.tiangolo.com/reference/#security) - OAuth2, API keys, HTTP auth
+- [Exception Handling](https://fastapi.tiangolo.com/reference/#fastapi.HTTPException) - Custom errors and status codes
+
+## FastAPI People
+- [Creator: Sebastián Ramírez (tiangolo)](https://fastapi.tiangolo.com/fastapi-people/) - Main developer and maintainer
+- [Team Members](https://fastapi.tiangolo.com/fastapi-people/#team) - Contributors with repository management access
+- [FastAPI Experts](https://fastapi.tiangolo.com/fastapi-people/#fastapi-experts) - Top contributors helping others in GitHub
+- [Sponsors](https://fastapi.tiangolo.com/fastapi-people/#sponsors) - Gold, Silver, Bronze, and individual sponsors
+- [Translators & Reviewers](https://fastapi.tiangolo.com/fastapi-people/) - Community translating docs into 20+ languages
+
+## Resources
+- [External Links](https://fastapi.tiangolo.com/resources/#external-links) - Articles, videos, tutorials
+- [FastAPI Cloud CLI](https://fastapi.tiangolo.com/fastapi-cloud-cli/) - Deploy FastAPI apps to the cloud
+- [Typer](https://typer.tiangolo.com/) - FastAPI’s little sibling for CLI apps
+- [Full-Stack FastAPI Templates](https://github.com/tiangolo/full-stack-fastapi-postgresql) - Production-ready projects
+- [Integrations](https://fastapi.tiangolo.com/resources/#integrations) - SQLAlchemy, JWT, WebSockets, GraphQL, etc.
+
+## About
+- [Project History](https://fastapi.tiangolo.com/about/#history-design-and-future) - How FastAPI was created
+- [Design Philosophy](https://fastapi.tiangolo.com/about/#history-design-and-future) - Why type hints and standards matter
+- [Future Plans](https://fastapi.tiangolo.com/about/#history-design-and-future) - Roadmap and community goals
+- [License (MIT)](https://github.com/fastapi/fastapi/blob/master/LICENSE) - Open source and free to use
+- [Sponsors](https://github.com/sponsors/tiangolo) - Support the project financially
+
+## Release Notes
+- [Changelog](https://fastapi.tiangolo.com/release-notes/) - Full list of updates by version
+- [Security Fixes](https://fastapi.tiangolo.com/release-notes/#security-fixes) - Important patches (e.g., CSRF fixes)
+- [New Features](https://fastapi.tiangolo.com/release-notes/#features) - Like `fastapi dev`, Pydantic v2 support
+- [Breaking Changes](https://fastapi.tiangolo.com/release-notes/#breaking-changes) - Upgrade guidance
+- [Performance Upgrades](https://fastapi.tiangolo.com/release-notes/#upgrades) - Faster serialization, better typing
+- [Dependency Updates](https://fastapi.tiangolo.com/release-notes/#internal) - Starlette, Pydantic, and more
+
+## FastAPI project metadata files
+- [LICENSE](https://github.com/fastapi/fastapi/blob/master/LICENSE) - MIT License
+- [README.md](https://github.com/fastapi/fastapi/blob/master/README.md) - Project overview and installation
+- [CONTRIBUTING.md](https://github.com/fastapi/fastapi/blob/master/CONTRIBUTING.md) - How to contribute code and translations
+- [CITATION.cff](https://github.com/fastapi/fastapi/blob/master/CITATION.cff) - Citation metadata for academic use
+- [SECURITY.md](https://github.com/fastapi/fastapi/blob/master/SECURITY.md) - Security policy and reporting guidelines
