@@ -8,7 +8,7 @@
       {% include ".icons/" ~ nav_item.meta.icon ~ ".svg" %}
     {% endif %}
   {% endif %}
-  {{ ref.title }}
+  {{ ref.title.split("{ #")[0] }}
 {% endmacro %}
 {% macro render(nav_item, ref) %}
   {% set ref = ref or nav_item %}

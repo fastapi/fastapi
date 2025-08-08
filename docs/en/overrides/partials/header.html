@@ -26,9 +26,9 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             {% if page.meta and page.meta.title %}
-              {{ page.meta.title }}
+              {{ page.meta.title.split("{ #")[0] }}
             {% else %}
-              {{ page.title }}
+              {{ page.title.split("{ #")[0] if page.title else page.title }}
             {% endif %}
           </span>
         </div>

@@ -16,7 +16,7 @@
     {% include ".icons/" ~ nav_item.meta.icon ~ ".svg" %}
   {% endif %}
   <span class="md-ellipsis">
-    {{ ref.title }}
+    {{ ref.title.split("{ #")[0] }}
     {% if nav_item.meta and nav_item.meta.subtitle %}
       <br>
       <small>{{ nav_item.meta.subtitle }}</small>
