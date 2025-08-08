@@ -27,6 +27,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
+from fastapi.openapi.models import DefaultErrorSchema
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable, IncEx
@@ -695,6 +696,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        default_error_schema: Optional[DefaultErrorSchema] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -871,6 +873,7 @@ class FastAPI(Starlette):
             ),
         ] = "3.1.0"
         self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.default_error_schema = default_error_schema
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -987,6 +990,7 @@ class FastAPI(Starlette):
                 terms_of_service=self.terms_of_service,
                 contact=self.contact,
                 license_info=self.license_info,
+                default_error_schema=self.default_error_schema,
                 routes=self.routes,
                 webhooks=self.webhooks.routes,
                 tags=self.openapi_tags,
