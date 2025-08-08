@@ -72,7 +72,7 @@ With just that Python type declaration, **FastAPI** will:
 * Validate the data.
     * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.
 * Give you the received data in the parameter `item`.
-    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.
+    * As you declared it in the function to be of type `Item`, you will also have editor support (completion, etc) for all of the attributes and their types.
 * Generate <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
 * Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
 
@@ -96,9 +96,9 @@ You also get error checks for incorrect type operations:
 
 <img src="/img/tutorial/body/image04.png">
 
-This is not by chance, the whole framework was built around that design.
+This is not by chance, the whole framework was built around this design.
 
-And it was thoroughly tested at the design phase, before any implementation, to ensure it would work with all the editors.
+And it was thoroughly tested at the design phase, before any implementation, to ensure it would work with all editors.
 
 There were even some changes to Pydantic itself to support this.
 
