@@ -34,6 +34,36 @@ The content is written in markdown, write the translation in markdown as well. D
 
 When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
 
+For example, if the original (English) content is:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+It should be exacly the same in the output document:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+If the original (English) content is:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
+It should be exacly the same in the output document:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
 The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
 
 There are special blocks of notes, tips and others that look like:
@@ -63,6 +93,24 @@ Source:
 Result:
 
 /// details | Vista previa
+
+For **every** Markdown header (all levels), add a custom anchor based on the original English header:
+
+- Convert the English header to lowercase, replace spaces and punctuation with hyphens (kebab-case).
+- Keep this anchor identical across all translations — do not translate it.
+- Even if the original English document doesn't have an anchor, always add the correct anchor in the translated version.
+- Use these fixed anchors for all internal links across languages.
+
+Example:
+
+Source (English):
+
+## Alternative API docs
+
+Result (Spanish):
+
+## <a id="alternative-api-docs"></a> Documentación de la API alternativa
+
 """
 
 app = typer.Typer()
@@ -70,7 +118,7 @@ app = typer.Typer()
 
 @lru_cache
 def get_langs() -> dict[str, str]:
-    return yaml.safe_load(Path("docs/language_names.yml").read_text())
+    return yaml.safe_load(Path("docs/language_names.yml").read_text(encoding="utf-8"))
 
 
 def generate_lang_path(*, lang: str, path: Path) -> Path:
@@ -105,7 +153,7 @@ def translate_page(
     lang_path.mkdir(exist_ok=True)
     lang_prompt_path = lang_path / "llm-prompt.md"
     assert lang_prompt_path.exists(), f"Prompt file not found: {lang_prompt_path}"
-    lang_prompt_content = lang_prompt_path.read_text()
+    lang_prompt_content = lang_prompt_path.read_text(encoding="utf-8")
 
     en_docs_path = Path("docs/en/docs")
     assert str(en_path).startswith(str(en_docs_path)), (
@@ -113,11 +161,11 @@ def translate_page(
     )
     out_path = generate_lang_path(lang=language, path=en_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    original_content = en_path.read_text()
+    original_content = en_path.read_text(encoding="utf-8")
     old_translation: str | None = None
     if out_path.exists():
         print(f"Found existing translation: {out_path}")
-        old_translation = out_path.read_text()
+        old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
     agent = Agent("openai:gpt-4o")
 
@@ -154,7 +202,7 @@ def translate_page(
     result = agent.run_sync(prompt)
     out_content = f"{result.data.strip()}\n"
     print(f"Saving translation to {out_path}")
-    out_path.write_text(out_content)
+    out_path.write_text(out_content, encoding="utf-8", newline="\n")
 
 
 def iter_all_en_paths() -> Iterable[Path]:
