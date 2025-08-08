@@ -1,4 +1,4 @@
-# Behind a Proxy
+# Behind a Proxy { #behind-a-proxy }
 
 In some situations, you might need to use a **proxy** server like Traefik or Nginx with a configuration that adds an extra path prefix that is not seen by your application.
 
@@ -10,7 +10,7 @@ The `root_path` is used to handle these specific cases.
 
 And it's also used internally when mounting sub-applications.
 
-## Proxy with a stripped path prefix
+## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
 
 Having a proxy with a stripped path prefix, in this case, means that you could declare a path at `/app` in your code, but then, you add a layer on top (the proxy) that would put your **FastAPI** application under a path like `/api/v1`.
 
@@ -66,7 +66,7 @@ The docs UI would also need the OpenAPI schema to declare that this API `server`
 
 In this example, the "Proxy" could be something like **Traefik**. And the server would be something like FastAPI CLI with **Uvicorn**, running your FastAPI application.
 
-### Providing the `root_path`
+### Providing the `root_path` { #providing-the-root-path }
 
 To achieve this, you can use the command line option `--root-path` like:
 
@@ -90,7 +90,7 @@ And the `--root-path` command line option provides that `root_path`.
 
 ///
 
-### Checking the current `root_path`
+### Checking the current `root_path` { #checking-the-current-root-path }
 
 You can get the current `root_path` used by your application for each request, it is part of the `scope` dictionary (that's part of the ASGI spec).
 
@@ -119,7 +119,7 @@ The response would be something like:
 }
 ```
 
-### Setting the `root_path` in the FastAPI app
+### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }
 
 Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
 
@@ -127,7 +127,7 @@ Alternatively, if you don't have a way to provide a command line option like `--
 
 Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
 
-### About `root_path`
+### About `root_path` { #about-root-path }
 
 Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
@@ -144,7 +144,7 @@ So, it won't expect to be accessed at `http://127.0.0.1:8000/api/v1/app`.
 
 Uvicorn will expect the proxy to access Uvicorn at `http://127.0.0.1:8000/app`, and then it would be the proxy's responsibility to add the extra `/api/v1` prefix on top.
 
-## About proxies with a stripped path prefix
+## About proxies with a stripped path prefix { #about-proxies-with-a-stripped-path-prefix }
 
 Keep in mind that a proxy with stripped path prefix is only one of the ways to configure it.
 
@@ -152,7 +152,7 @@ Probably in many cases the default will be that the proxy doesn't have a strippe
 
 In a case like that (without a stripped path prefix), the proxy would listen on something like `https://myawesomeapp.com`, and then if the browser goes to `https://myawesomeapp.com/api/v1/app` and your server (e.g. Uvicorn) listens on `http://127.0.0.1:8000` the proxy (without a stripped path prefix) would access Uvicorn at the same path: `http://127.0.0.1:8000/api/v1/app`.
 
-## Testing locally with Traefik
+## Testing locally with Traefik { #testing-locally-with-traefik }
 
 You can easily run the experiment locally with a stripped path prefix using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
 
@@ -231,7 +231,7 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-### Check the responses
+### Check the responses { #check-the-responses }
 
 Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, you will see the normal response:
 
@@ -267,7 +267,7 @@ And the version without the path prefix (`http://127.0.0.1:8000/app`), provided 
 
 That demonstrates how the Proxy (Traefik) uses the path prefix and how the server (Uvicorn) uses the `root_path` from the option `--root-path`.
 
-### Check the docs UI
+### Check the docs UI { #check-the-docs-ui }
 
 But here's the fun part. ✨
 
@@ -287,7 +287,7 @@ Right as we wanted it. ✔️
 
 This is because FastAPI uses this `root_path` to create the default `server` in OpenAPI with the URL provided by `root_path`.
 
-## Additional servers
+## Additional servers { #additional-servers }
 
 /// warning
 
@@ -346,7 +346,7 @@ The docs UI will interact with the server that you select.
 
 ///
 
-### Disable automatic server from `root_path`
+### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
 
@@ -354,7 +354,7 @@ If you don't want **FastAPI** to include an automatic server using the `root_pat
 
 and then it won't include it in the OpenAPI schema.
 
-## Mounting a sub-application
+## Mounting a sub-application { #mounting-a-sub-application }
 
 If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
 

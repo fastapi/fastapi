@@ -1,8 +1,8 @@
-# Body - Fields
+# Body - Fields { #body-fields }
 
 The same way you can declare additional validation and metadata in *path operation function* parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
-## Import `Field`
+## Import `Field` { #import-field }
 
 First, you have to import it:
 
@@ -15,7 +15,7 @@ Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as 
 
 ///
 
-## Declare model attributes
+## Declare model attributes { #declare-model-attributes }
 
 You can then use `Field` with model attributes:
 
@@ -41,7 +41,7 @@ Notice how each model's attribute with a type, default value and `Field` has the
 
 ///
 
-## Add extra information
+## Add extra information { #add-extra-information }
 
 You can declare extra information in `Field`, `Query`, `Body`, etc. And it will be included in the generated JSON Schema.
 
@@ -54,7 +54,7 @@ As these keys may not necessarily be part of the OpenAPI specification, some Ope
 
 ///
 
-## Recap
+## Recap { #recap }
 
 You can use Pydantic's `Field` to declare extra validations and metadata for model attributes.
 

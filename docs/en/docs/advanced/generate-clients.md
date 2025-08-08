@@ -1,10 +1,10 @@
-# Generate Clients
+# Generate Clients { #generate-clients }
 
 As **FastAPI** is based on the OpenAPI specification, you get automatic compatibility with many tools, including the automatic API docs (provided by Swagger UI).
 
 One particular advantage that is not necessarily obvious is that you can **generate clients** (sometimes called <abbr title="Software Development Kits">**SDKs**</abbr> ) for your API, for many different **programming languages**.
 
-## OpenAPI Client Generators
+## OpenAPI Client Generators { #openapi-client-generators }
 
 There are many tools to generate clients from **OpenAPI**.
 
@@ -12,7 +12,7 @@ A common tool is <a href="https://openapi-generator.tech/" class="external-link"
 
 If you are building a **frontend**, a very interesting alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>.
 
-## Client and SDK Generators - Sponsor
+## Client and SDK Generators - Sponsor { #client-and-sdk-generators-sponsor }
 
 There are also some **company-backed** Client and SDK generators based on OpenAPI (FastAPI), in some cases they can offer you **additional features** on top of high-quality generated SDKs/clients.
 
@@ -28,7 +28,7 @@ For example, you might want to try:
 
 There are also several other companies offering similar services that you can search and find online. 🤓
 
-## Generate a TypeScript Frontend Client
+## Generate a TypeScript Frontend Client { #generate-a-typescript-frontend-client }
 
 Let's start with a simple FastAPI application:
 
@@ -36,7 +36,7 @@ Let's start with a simple FastAPI application:
 
 Notice that the *path operations* define the models they use for request payload and response payload, using the models `Item` and `ResponseMessage`.
 
-### API Docs
+### API Docs { #api-docs }
 
 If you go to the API docs, you will see that it has the **schemas** for the data to be sent in requests and received in responses:
 
@@ -48,11 +48,11 @@ That information is available in the app's **OpenAPI schema**, and then shown in
 
 And that same information from the models that is included in OpenAPI is what can be used to **generate the client code**.
 
-### Generate a TypeScript Client
+### Generate a TypeScript Client { #generate-a-typescript-client }
 
 Now that we have the app with the models, we can generate the client code for the frontend.
 
-#### Install `openapi-ts`
+#### Install `openapi-ts` { #install-openapi-ts }
 
 You can install `openapi-ts` in your frontend code with:
 
@@ -66,7 +66,7 @@ $ npm install @hey-api/openapi-ts --save-dev
 
 </div>
 
-#### Generate Client Code
+#### Generate Client Code { #generate-client-code }
 
 To generate the client code you can use the command line application `openapi-ts` that would now be installed.
 
@@ -107,7 +107,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 That command will generate code in `./src/client` and will use `axios` (the frontend HTTP library) internally.
 
-### Try Out the Client Code
+### Try Out the Client Code { #try-out-the-client-code }
 
 Now you can import and use the client code, it could look like this, notice that you get autocompletion for the methods:
 
@@ -131,7 +131,7 @@ The response object will also have autocompletion:
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
-## FastAPI App with Tags
+## FastAPI App with Tags { #fastapi-app-with-tags }
 
 In many cases your FastAPI app will be bigger, and you will probably use tags to separate different groups of *path operations*.
 
@@ -139,7 +139,7 @@ For example, you could have a section for **items** and another section for **us
 
 {* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
-### Generate a TypeScript Client with Tags
+### Generate a TypeScript Client with Tags { #generate-a-typescript-client-with-tags }
 
 If you generate a client for a FastAPI app using tags, it will normally also separate the client code based on the tags.
 
@@ -152,7 +152,7 @@ In this case you have:
 * `ItemsService`
 * `UsersService`
 
-### Client Method Names
+### Client Method Names { #client-method-names }
 
 Right now the generated method names like `createItemItemsPost` don't look very clean:
 
@@ -166,7 +166,7 @@ OpenAPI requires that each operation ID is unique across all the *path operation
 
 But I'll show you how to improve that next. 🤓
 
-## Custom Operation IDs and Better Method Names
+## Custom Operation IDs and Better Method Names { #custom-operation-ids-and-better-method-names }
 
 You can **modify** the way these operation IDs are **generated** to make them simpler and have **simpler method names** in the clients.
 
@@ -174,7 +174,7 @@ In this case you will have to ensure that each operation ID is **unique** in som
 
 For example, you could make sure that each *path operation* has a tag, and then generate the operation ID based on the **tag** and the *path operation* **name** (the function name).
 
-### Custom Generate Unique ID Function
+### Custom Generate Unique ID Function { #custom-generate-unique-id-function }
 
 FastAPI uses a **unique ID** for each *path operation*, it is used for the **operation ID** and also for the names of any needed custom models, for requests or responses.
 
@@ -186,7 +186,7 @@ You can then pass that custom function to **FastAPI** as the `generate_unique_id
 
 {* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
-### Generate a TypeScript Client with Custom Operation IDs
+### Generate a TypeScript Client with Custom Operation IDs { #generate-a-typescript-client-with-custom-operation-ids }
 
 Now if you generate the client again, you will see that it has the improved method names:
 
@@ -194,7 +194,7 @@ Now if you generate the client again, you will see that it has the improved meth
 
 As you see, the method names now have the tag and then the function name, now they don't include information from the URL path and the HTTP operation.
 
-### Preprocess the OpenAPI Specification for the Client Generator
+### Preprocess the OpenAPI Specification for the Client Generator { #preprocess-the-openapi-specification-for-the-client-generator }
 
 The generated code still has some **duplicated information**.
 
@@ -218,7 +218,7 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 With that, the operation IDs would be renamed from things like `items-get_items` to just `get_items`, that way the client generator can generate simpler method names.
 
-### Generate a TypeScript Client with the Preprocessed OpenAPI
+### Generate a TypeScript Client with the Preprocessed OpenAPI { #generate-a-typescript-client-with-the-preprocessed-openapi }
 
 Now as the end result is in a file `openapi.json`, you would modify the `package.json` to use that local file, for example:
 
@@ -244,7 +244,7 @@ After generating the new client, you would now have **clean method names**, with
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
-## Benefits
+## Benefits { #benefits }
 
 When using the automatically generated clients you would get **autocompletion** for:
 
