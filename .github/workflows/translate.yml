@@ -1,0 +1,77 @@
+name: Translate
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: Run with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)
+        required: false
+        default: "false"
+      command:
+        description: Command to run
+        type: choice
+        options:
+          - translate-page
+          - translate-lang
+          - update-outdated
+          - add-missing
+          - update-and-add
+          - remove-all-removable
+      language:
+        description: Language to translate to as a letter code (e.g. "es" for Spanish)
+        type: string
+        required: false
+        default: ""
+      en_path:
+        description: File path in English to translate (e.g. docs/en/docs/index.md)
+        type: string
+        required: false
+        default: ""
+
+env:
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  job:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.4.15"
+          enable-cache: true
+          cache-dependency-glob: |
+            requirements**.txt
+            pyproject.toml
+      - name: Install Dependencies
+        run: uv pip install -r requirements-github-actions.txt -r requirements-translations.txt
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: FastAPI Translate
+        run: |
+          python ./scripts/translate.py ${{ github.event.inputs.command }}
+          python ./scripts/translate.py make-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LANGUAGE: ${{ github.event.inputs.language }}
+          EN_PATH: ${{ github.event.inputs.en_path }}
