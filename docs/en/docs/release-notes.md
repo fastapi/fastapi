@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13969](https://github.com/fastapi/fastapi/pull/13969) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump actions/download-artifact from 4 to 5. PR [#13975](https://github.com/fastapi/fastapi/pull/13975) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Experts. PR [#13963](https://github.com/fastapi/fastapi/pull/13963) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump ruff from 0.11.2 to 0.12.7. PR [#13957](https://github.com/fastapi/fastapi/pull/13957) by [@dependabot[bot]](https://github.com/apps/dependabot).
