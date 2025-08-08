@@ -1,0 +1,158 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% macro render_status(nav_item, type) %}
+  {% set class = "md-status md-status--" ~ type %}
+  {% if config.extra.status and config.extra.status[type] %}
+    <span class="{{ class }}" title="{{ config.extra.status[type] }}">
+    </span>
+  {% else %}
+    <span class="{{ class }}"></span>
+  {% endif %}
+{% endmacro %}
+{% macro render_content(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% if nav_item.meta and nav_item.meta.icon %}
+    {% include ".icons/" ~ nav_item.meta.icon ~ ".svg" %}
+  {% endif %}
+  <span class="md-ellipsis">
+    {{ ref.title }}
+    {% if nav_item.meta and nav_item.meta.subtitle %}
+      <br>
+      <small>{{ nav_item.meta.subtitle }}</small>
+    {% endif %}
+  </span>
+  {% if nav_item.meta and nav_item.meta.status %}
+    {{ render_status(nav_item, nav_item.meta.status) }}
+  {% endif %}
+{% endmacro %}
+{% macro render_pruned(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% set first = nav_item.children | first %}
+  {% if first and first.children %}
+    {{ render_pruned(first, ref) }}
+  {% else %}
+    <a href="{{ first.url | url }}" class="md-nav__link">
+      {{ render_content(ref) }}
+      {% if nav_item.children | length > 0 %}
+        <span class="md-nav__icon md-icon"></span>
+      {% endif %}
+    </a>
+  {% endif %}
+{% endmacro %}
+{% macro render(nav_item, path, level, parent) %}
+  {% set class = "md-nav__item" %}
+  {% if nav_item.active %}
+    {% set class = class ~ " md-nav__item--active" %}
+  {% endif %}
+  {% if nav_item.pages %}
+    {% if page in nav_item.pages %}
+      {% set nav_item = page %}
+    {% endif %}
+  {% endif %}
+  {% if nav_item.children %}
+    {% set _ = namespace(index = none) %}
+    {% if "navigation.indexes" in features %}
+      {% for item in nav_item.children %}
+        {% if item.is_index and _.index is none %}
+          {% set _.index = item %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set index = _.index %}
+    {% if "navigation.tabs" in features %}
+      {% if level == 1 and nav_item.active %}
+        {% set class = class ~ " md-nav__item--section" %}
+        {% set is_section = true %}
+      {% endif %}
+      {% if "navigation.sections" in features %}
+        {% if level == 2 and parent.active %}
+          {% set class = class ~ " md-nav__item--section" %}
+          {% set is_section = true %}
+        {% endif %}
+      {% endif %}
+    {% elif "navigation.sections" in features %}
+      {% if level == 1 %}
+        {% set class = class ~ " md-nav__item--section" %}
+        {% set is_section = true %}
+      {% endif %}
+    {% endif %}
+    {% if "navigation.prune" in features %}
+      {% if not is_section and not nav_item.active %}
+        {% set class = class ~ " md-nav__item--pruned" %}
+        {% set is_pruned = true %}
+      {% endif %}
+    {% endif %}
+    <li class="{{ class }} md-nav__item--nested">
+      {% if not is_pruned %}
+        {% set checked = "checked" if nav_item.active %}
+        {% if "navigation.expand" in features and not checked %}
+          {% set indeterminate = "md-toggle--indeterminate" %}
+        {% endif %}
+        <input class="md-nav__toggle md-toggle {{ indeterminate }}" type="checkbox" id="{{ path }}" {{ checked }}>
+        {% if not index %}
+          {% set tabindex = "0" if not is_section %}
+          <label class="md-nav__link" for="{{ path }}" id="{{ path }}_label" tabindex="{{ tabindex }}">
+            {{ render_content(nav_item) }}
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        {% else %}
+          {% set class = "md-nav__link--active" if index == page %}
+          <div class="md-nav__link md-nav__container">
+            <a href="{{ index.url | url }}" class="md-nav__link {{ class }}">
+              {{ render_content(index, nav_item) }}
+            </a>
+            {% if nav_item.children | length > 1 %}
+              {% set tabindex = "0" if not is_section %}
+              <label class="md-nav__link {{ class }}" for="{{ path }}" id="{{ path }}_label" tabindex="{{ tabindex }}">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            {% endif %}
+          </div>
+        {% endif %}
+        <nav class="md-nav" data-md-level="{{ level }}" aria-labelledby="{{ path }}_label" aria-expanded="{{ nav_item.active | tojson }}">
+          <label class="md-nav__title" for="{{ path }}">
+            <span class="md-nav__icon md-icon"></span>
+            {{ nav_item.title }}
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            {% for item in nav_item.children %}
+              {% if not index or item != index %}
+                {{ render(item, path ~ "_" ~ loop.index, level + 1, nav_item) }}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      {% else %}
+        {{ render_pruned(nav_item) }}
+      {% endif %}
+    </li>
+  {% elif nav_item == page %}
+    <li class="{{ class }}">
+      {% set toc = page.toc %}
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      {% set first = toc | first %}
+      {% if first and first.level == 1 %}
+        {% set toc = first.children %}
+      {% endif %}
+      {% if toc %}
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          {{ render_content(nav_item) }}
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      {% endif %}
+      <a href="{{ nav_item.url | url }}" class="md-nav__link md-nav__link--active">
+        {{ render_content(nav_item) }}
+      </a>
+      {% if toc %}
+        {% include "partials/toc.html" %}
+      {% endif %}
+    </li>
+  {% else %}
+    <li class="{{ class }}">
+      <a href="{{ nav_item.url | url }}" class="md-nav__link">
+        {{ render_content(nav_item) }}
+      </a>
+    </li>
+  {% endif %}
+{% endmacro %}
