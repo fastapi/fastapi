@@ -375,7 +375,9 @@ def encode_dict(
         if key not in allowed_keys:
             continue
 
-        if isinstance(key, primitive_types):
+        # use type() in, instead of isinstance
+        # we don't want to allow subclasses, they should be encoded still
+        if type(key) in primitive_types:
             encoded_key = key
         else:
             encoded_key = encode_value(
