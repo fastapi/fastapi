@@ -4,147 +4,199 @@
 
 Let's take this application as example:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial001.py!}
-    ```
+The query parameter `q` is of type `str | None`, that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
 
-=== "Python 3.10 and above"
+/// note
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial001_py310.py!}
-    ```
+FastAPI will know that the value of `q` is not required because of the default value `= None`.
 
-The query parameter `q` is of type `Union[str, None]` (or `str | None` in Python 3.10), that means that it's of type `str` but could also be `None`, and indeed, the default value is `None`, so FastAPI will know it's not required.
+Having `str | None` will allow your editor to give you better support and detect errors.
 
-!!! note
-    FastAPI will know that the value of `q` is not required because of the default value `= None`.
-
-    The `Union` in `Union[str, None]` will allow your editor to give you better support and detect errors.
+///
 
 ## Additional validation
 
 We are going to enforce that even though `q` is optional, whenever it is provided, **its length doesn't exceed 50 characters**.
 
-### Import `Query`
+### Import `Query` and `Annotated`
 
-To achieve that, first import `Query` from `fastapi`:
+To achieve that, first import:
 
-=== "Python 3.6 and above"
+* `Query` from `fastapi`
+* `Annotated` from `typing`
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-=== "Python 3.10 and above"
+/// info
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
-    ```
+FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
-## Use `Query` as the default value
+If you have an older version, you would get errors when trying to use `Annotated`.
 
-And now use it as the default value of your parameter, setting the parameter `max_length` to 50:
+Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} to at least 0.95.1 before using `Annotated`.
 
-=== "Python 3.6 and above"
+///
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002.py!}
-    ```
+## Use `Annotated` in the type for the `q` parameter
 
-=== "Python 3.10 and above"
+Remember I told you before that `Annotated` can be used to add metadata to your parameters in the [Python Types Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial002_py310.py!}
-    ```
+Now it's the time to use it with FastAPI. 🚀
 
-As we have to replace the default value `None` in the function with `Query()`, we can now set the default value with the parameter `Query(default=None)`, it serves the same purpose of defining that default value.
+We had this type annotation:
 
-So:
-
-```Python
-q: Union[str, None] = Query(default=None)
-```
-
-...makes the parameter optional, the same as:
-
-```Python
-q: Union[str, None] = None
-```
-
-And in Python 3.10 and above:
-
-```Python
-q: str | None = Query(default=None)
-```
-
-...makes the parameter optional, the same as:
+//// tab | Python 3.10+
 
 ```Python
 q: str | None = None
 ```
 
-But it declares it explicitly as being a query parameter.
+////
 
-!!! info
-    Have in mind that the most important part to make a parameter optional is the part:
+//// tab | Python 3.8+
 
-    ```Python
-    = None
-    ```
+```Python
+q: Union[str, None] = None
+```
 
-    or the:
+////
 
-    ```Python
-    = Query(default=None)
-    ```
+What we will do is wrap that with `Annotated`, so it becomes:
 
-    as it will use that `None` as the default value, and that way make the parameter **not required**.
+//// tab | Python 3.10+
 
-    The `Union[str, None]` part allows your editor to provide better support, but it is not what tells FastAPI that this parameter is not required.
+```Python
+q: Annotated[str | None] = None
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python
+q: Annotated[Union[str, None]] = None
+```
+
+////
+
+Both of those versions mean the same thing, `q` is a parameter that can be a `str` or `None`, and by default, it is `None`.
+
+Now let's jump to the fun stuff. 🎉
+
+## Add `Query` to `Annotated` in the `q` parameter
+
+Now that we have this `Annotated` where we can put more information (in this case some additional validation), add `Query` inside of `Annotated`, and set the parameter `max_length` to `50`:
+
+{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+
+Notice that the default value is still `None`, so the parameter is still optional.
+
+But now, having `Query(max_length=50)` inside of `Annotated`, we are telling FastAPI that we want it to have **additional validation** for this value, we want it to have maximum 50 characters. 😎
+
+/// tip
+
+Here we are using `Query()` because this is a **query parameter**. Later we will see others like `Path()`, `Body()`, `Header()`, and `Cookie()`, that also accept the same arguments as `Query()`.
+
+///
+
+FastAPI will now:
+
+* **Validate** the data making sure that the max length is 50 characters
+* Show a **clear error** for the client when the data is not valid
+* **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
+
+## Alternative (old): `Query` as the default value
+
+Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
+
+/// tip
+
+For new code and whenever possible, use `Annotated` as explained above. There are multiple advantages (explained below) and no disadvantages. 🍰
+
+///
+
+This is how you would use `Query()` as the default value of your function parameter, setting the parameter `max_length` to 50:
+
+{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+
+As in this case (without using `Annotated`) we have to replace the default value `None` in the function with `Query()`, we now need to set the default value with the parameter `Query(default=None)`, it serves the same purpose of defining that default value (at least for FastAPI).
+
+So:
+
+```Python
+q: str | None = Query(default=None)
+```
+
+...makes the parameter optional, with a default value of `None`, the same as:
+
+
+```Python
+q: str | None = None
+```
+
+But the `Query` version declares it explicitly as being a query parameter.
 
 Then, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:
 
 ```Python
-q: Union[str, None] = Query(default=None, max_length=50)
+q: str | None = Query(default=None, max_length=50)
 ```
 
 This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
+
+### `Query` as the default value or in `Annotated`
+
+Keep in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
+
+Instead, use the actual default value of the function parameter. Otherwise, it would be inconsistent.
+
+For example, this is not allowed:
+
+```Python
+q: Annotated[str, Query(default="rick")] = "morty"
+```
+
+...because it's not clear if the default value should be `"rick"` or `"morty"`.
+
+So, you would use (preferably):
+
+```Python
+q: Annotated[str, Query()] = "rick"
+```
+
+...or in older code bases you will find:
+
+```Python
+q: str = Query(default="rick")
+```
+
+### Advantages of `Annotated`
+
+**Using `Annotated` is recommended** instead of the default value in function parameters, it is **better** for multiple reasons. 🤓
+
+The **default** value of the **function parameter** is the **actual default** value, that's more intuitive with Python in general. 😌
+
+You could **call** that same function in **other places** without FastAPI, and it would **work as expected**. If there's a **required** parameter (without a default value), your **editor** will let you know with an error, **Python** will also complain if you run it without passing the required parameter.
+
+When you don't use `Annotated` and instead use the **(old) default value style**, if you call that function without FastAPI in **other places**, you have to **remember** to pass the arguments to the function for it to work correctly, otherwise the values will be different from what you expect (e.g. `QueryInfo` or something similar instead of `str`). And your editor won't complain, and Python won't complain running that function, only when the operations inside error out.
+
+Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
 ## Add more validations
 
 You can also add a parameter `min_length`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial003_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
 
 ## Add regular expressions
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> that the parameter should match:
+You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> `pattern` that the parameter should match:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial004_py310.py!}
-    ```
-
-This specific regular expression checks that the received parameter value:
+This specific regular expression pattern checks that the received parameter value:
 
 * `^`: starts with the following characters, doesn't have characters before.
 * `fixedquery`: has the exact value `fixedquery`.
@@ -152,22 +204,37 @@ This specific regular expression checks that the received parameter value:
 
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
-But whenever you need them and go and learn them, know that you can already use them directly in **FastAPI**.
+Now you know that whenever you need them you can use them in **FastAPI**.
+
+### Pydantic v1 `regex` instead of `pattern`
+
+Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
+
+You could still see some code using it:
+
+//// tab | Pydantic v1
+
+{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
+
+////
+
+But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
 
 ## Default values
 
-The same way that you can pass `None` as the value for the `default` parameter, you can pass other values.
+You can, of course, use default values other than `None`.
 
 Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial005.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
 
-!!! note
-    Having a default value also makes the parameter optional.
+/// note
 
-## Make it required
+Having a default value of any type, including `None`, makes the parameter optional (not required).
+
+///
+
+## Required parameters
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -178,91 +245,38 @@ q: str
 instead of:
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
 But we are now declaring it with `Query`, for example like:
 
+//// tab | Annotated
+
 ```Python
-q: Union[str, None] = Query(default=None, min_length=3)
+q: Annotated[str | None, Query(min_length=3)] = None
 ```
+
+////
 
 So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Required with Ellipsis (`...`)
-
-There's an alternative way to explicitly declare that a value is required. You can set the `default` parameter to the literal value `...`:
-
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial006b.py!}
-```
-
-!!! info
-    If you hadn't seen that `...` before: it is a special single value, it is <a href="https://docs.python.org/3/library/constants.html#Ellipsis" class="external-link" target="_blank">part of Python and is called "Ellipsis"</a>.
-
-    It is used by Pydantic and FastAPI to explicitly declare that a value is required.
-
-This will let **FastAPI** know that this parameter is required.
-
-### Required with `None`
+### Required, can be `None`
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
-To do that, you can declare that `None` is a valid type but still use `default=...`:
+To do that, you can declare that `None` is a valid type but simply do not declare a default value:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial006c_py310.py!}
-    ```
-
-!!! tip
-    Pydantic, which is what powers all the data validation and serialization in FastAPI, has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://pydantic-docs.helpmanual.io/usage/models/#required-optional-fields" class="external-link" target="_blank">Required Optional fields</a>.
-
-### Use Pydantic's `Required` instead of Ellipsis (`...`)
-
-If you feel uncomfortable using `...`, you can also import and use `Required` from Pydantic:
-
-```Python hl_lines="2  8"
-{!../../../docs_src/query_params_str_validations/tutorial006d.py!}
-```
-
-!!! tip
-    Remember that in most of the cases, when something is required, you can simply omit the `default` parameter, so you normally don't have to use `...` nor `Required`.
+{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
 ## Query parameter list / multiple values
 
-When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in other way, to receive multiple values.
+When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
 
 For example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial011_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
 
 Then, with a URL like:
 
@@ -283,8 +297,11 @@ So, the response to that URL would be:
 }
 ```
 
-!!! tip
-    To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
+/// tip
+
+To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body.
+
+///
 
 The interactive API docs will update accordingly, to allow multiple values:
 
@@ -292,19 +309,9 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 ### Query parameter list / multiple values with defaults
 
-And you can also define a default `list` of values if none are provided:
+You can also define a default `list` of values if none are provided:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial012_py39.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
 
 If you go to:
 
@@ -323,18 +330,19 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using `list`
+#### Using just `list`
 
-You can also use `list` directly instead of `List[str]` (or `list[str]` in Python 3.9+):
+You can also use `list` directly instead of `list[str]`:
 
-```Python hl_lines="7"
-{!../../../docs_src/query_params_str_validations/tutorial013.py!}
-```
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
 
-!!! note
-    Have in mind that in this case, FastAPI won't check the contents of the list.
+/// note
 
-    For example, `List[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
+Keep in mind that in this case, FastAPI won't check the contents of the list.
+
+For example, `list[int]` would check (and document) that the contents of the list are integers. But `list` alone wouldn't.
+
+///
 
 ## Declare more metadata
 
@@ -342,38 +350,21 @@ You can add more information about the parameter.
 
 That information will be included in the generated OpenAPI and used by the documentation user interfaces and external tools.
 
-!!! note
-    Have in mind that different tools might have different levels of OpenAPI support.
+/// note
 
-    Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
+Keep in mind that different tools might have different levels of OpenAPI support.
+
+Some of them might not show all the extra information declared yet, although in most of the cases, the missing feature is already planned for development.
+
+///
 
 You can add a `title`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial007_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
 
 And a `description`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/query_params_str_validations/tutorial008_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
 
 ## Alias parameters
 
@@ -393,17 +384,7 @@ But you still need it to be exactly `item-query`...
 
 Then you can declare an `alias`, and that alias is what will be used to find the parameter value:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/query_params_str_validations/tutorial009_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
 
 ## Deprecating parameters
 
@@ -413,37 +394,79 @@ You have to leave it there a while because there are clients using it, but you w
 
 Then pass the parameter `deprecated=True` to `Query`:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/query_params_str_validations/tutorial010_py310.py!}
-    ```
+{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
 
 The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude from OpenAPI
+## Exclude parameters from OpenAPI
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014.py!}
-    ```
+## Custom Validation
 
-=== "Python 3.10 and above"
+There could be cases where you need to do some **custom validation** that can't be done with the parameters shown above.
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/query_params_str_validations/tutorial014_py310.py!}
-    ```
+In those cases, you can use a **custom validator function** that is applied after the normal validation (e.g. after validating that the value is a `str`).
+
+You can achieve that using <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator" class="external-link" target="_blank">Pydantic's `AfterValidator`</a> inside of `Annotated`.
+
+/// tip
+
+Pydantic also has <a href="https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator" class="external-link" target="_blank">`BeforeValidator`</a> and others. 🤓
+
+///
+
+For example, this custom validator checks that the item ID starts with `isbn-` for an <abbr title="ISBN means International Standard Book Number">ISBN</abbr> book number or with `imdb-` for an <abbr title="IMDB (Internet Movie Database) is a website with information about movies">IMDB</abbr> movie URL ID:
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+
+/// info
+
+This is available with Pydantic version 2 or above. 😎
+
+///
+
+/// tip
+
+If you need to do any type of validation that requires communicating with any **external component**, like a database or another API, you should instead use **FastAPI Dependencies**, you will learn about them later.
+
+These custom validators are for things that can be checked with **only** the **same data** provided in the request.
+
+///
+
+### Understand that Code
+
+The important point is just using **`AfterValidator` with a function inside `Annotated`**. Feel free to skip this part. 🤸
+
+---
+
+But if you're curious about this specific code example and you're still entertained, here are some extra details.
+
+#### String with `value.startswith()`
+
+Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+
+#### A Random Item
+
+With `data.items()` we get an <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">iterable object</abbr> with tuples containing the key and value for each dictionary item.
+
+We convert this iterable object into a proper `list` with `list(data.items())`.
+
+Then with `random.choice()` we can get a **random value** from the list, so, we get a tuple with `(id, name)`. It will be something like `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+
+Then we **assign those two values** of the tuple to the variables `id` and `name`.
+
+So, if the user didn't provide an item ID, they will still receive a random suggestion.
+
+...we do all this in a **single simple line**. 🤯 Don't you love Python? 🐍
+
+{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 
 ## Recap
 
@@ -460,8 +483,10 @@ Validations specific for strings:
 
 * `min_length`
 * `max_length`
-* `regex`
+* `pattern`
+
+Custom validations using `AfterValidator`.
 
 In these examples you saw how to declare validations for `str` values.
 
-See the next chapters to see how to declare validations for other types, like numbers.
+See the next chapters to learn how to declare validations for other types, like numbers.

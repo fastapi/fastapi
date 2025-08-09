@@ -1,0 +1,6 @@
+PyGithub>=2.3.0,<3.0.0
+pydantic>=2.5.3,<3.0.0
+pydantic-settings>=2.1.0,<3.0.0
+httpx>=0.27.0,<0.29.0
+pyyaml >=5.3.1,<7.0.0
+smokeshow

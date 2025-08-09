@@ -4,9 +4,11 @@ Ao fazer o deploy de aplicações FastAPI uma abordagem comum é construir uma *
 
 Usando contêineres Linux você tem diversas vantagens incluindo **segurança**, **replicabilidade**, **simplicidade**, entre outras.
 
-!!! Dica
-    Está com pressa e já sabe dessas coisas? Pode ir direto para [`Dockerfile` abaixo 👇](#build-a-docker-image-for-fastapi).
+/// tip | Dica
 
+Está com pressa e já sabe dessas coisas? Pode ir direto para [`Dockerfile` abaixo 👇](#construindo-uma-imagem-docker-para-fastapi).
+
+///
 
 <details>
 <summary>Visualização do Dockerfile 👀</summary>
@@ -109,7 +111,7 @@ Isso pode depender principalmente da ferramenta que você usa para **instalar** 
 
 O caminho mais comum de fazer isso é ter um arquivo `requirements.txt` com os nomes dos pacotes e suas versões, um por linha.
 
-Você, naturalmente, usaria as mesmas ideias que você leu em [Sobre Versões do FastAPI](./versions.md){.internal-link target=_blank} para definir os intervalos de versões.
+Você, naturalmente, usaria as mesmas ideias que você leu em [Sobre Versões do FastAPI](versions.md){.internal-link target=_blank} para definir os intervalos de versões.
 
 Por exemplo, seu `requirements.txt` poderia parecer com:
 
@@ -131,10 +133,13 @@ Successfully installed fastapi pydantic uvicorn
 
 </div>
 
-!!! info
-    Há outros formatos e ferramentas para definir e instalar dependências de pacote.
+/// info
 
-    Eu vou mostrar um exemplo depois usando Poetry em uma seção abaixo. 👇
+Há outros formatos e ferramentas para definir e instalar dependências de pacote.
+
+Eu vou mostrar um exemplo depois usando Poetry em uma seção abaixo. 👇
+
+///
 
 ### Criando o Código do **FastAPI**
 
@@ -200,8 +205,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     A opção `--no-cache-dir` diz ao `pip` para não salvar os pacotes baixados localmente, pois isso só aconteceria se `pip` fosse executado novamente para instalar os mesmos pacotes, mas esse não é o caso quando trabalhamos com contêineres.
 
-    !!! note
-        `--no-cache-dir` é apenas relacionado ao `pip`, não tem nada a ver com Docker ou contêineres.
+    /// note
+
+    `--no-cache-dir` é apenas relacionado ao `pip`, não tem nada a ver com Docker ou contêineres.
+
+    ///
 
     A opção `--upgrade` diz ao `pip` para atualizar os pacotes se eles já estiverem instalados.
 
@@ -223,8 +231,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     Porque o programa será iniciado em `/code` e dentro dele está o diretório `./app` com seu código, o **Uvicorn** será capaz de ver e **importar** `app` de `app.main`.
 
-!!! tip
-    Revise o que cada linha faz clicando em cada bolha com o número no código. 👆
+/// tip
+
+Revise o que cada linha faz clicando em cada bolha com o número no código. 👆
+
+///
 
 Agora você deve ter uma estrutura de diretório como:
 
@@ -294,10 +305,13 @@ $ docker build -t myimage .
 
 </div>
 
-!!! tip
-    Note o `.` no final, é equivalente a `./`, ele diz ao Docker o diretório a ser usado para construir a imagem do contêiner.
+/// tip
 
-    Nesse caso, é o mesmo diretório atual (`.`).
+Note o `.` no final, é equivalente a `./`, ele diz ao Docker o diretório a ser usado para construir a imagem do contêiner.
+
+Nesse caso, é o mesmo diretório atual (`.`).
+
+///
 
 ### Inicie o contêiner Docker
 
@@ -374,7 +388,7 @@ Então ajuste o comando Uvicorn para usar o novo módulo `main` em vez de `app.m
 
 ## Conceitos de Implantação
 
-Vamos falar novamente sobre alguns dos mesmos [Conceitos de Implantação](./concepts.md){.internal-link target=_blank} em termos de contêineres.
+Vamos falar novamente sobre alguns dos mesmos [Conceitos de Implantação](concepts.md){.internal-link target=_blank} em termos de contêineres.
 
 Contêineres são principalmente uma ferramenta para simplificar o processo de **construção e implantação** de um aplicativo, mas eles não impõem uma abordagem particular para lidar com esses **conceitos de implantação** e existem várias estratégias possíveis.
 
@@ -395,8 +409,11 @@ Se nos concentrarmos apenas na **imagem do contêiner** para um aplicativo FastA
 
 Isso poderia ser outro contêiner, por exemplo, com <a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>, lidando com **HTTPS** e aquisição **automática** de **certificados**.
 
-!!! tip
-    Traefik tem integrações com Docker, Kubernetes e outros, portanto, é muito fácil configurar e configurar o HTTPS para seus contêineres com ele.
+/// tip
+
+Traefik tem integrações com Docker, Kubernetes e outros, portanto, é muito fácil configurar e configurar o HTTPS para seus contêineres com ele.
+
+///
 
 Alternativamente, o HTTPS poderia ser tratado por um provedor de nuvem como um de seus serviços (enquanto ainda executasse o aplicativo em um contêiner).
 
@@ -424,8 +441,11 @@ Quando usando contêineres, normalmente você terá algum componente **escutando
 
 Como esse componente assumiria a **carga** de solicitações e distribuiria isso entre os trabalhadores de uma maneira (esperançosamente) **balanceada**, ele também é comumente chamado de **Balanceador de Carga**.
 
-!!! tip
-    O mesmo componente **Proxy de Terminação TLS** usado para HTTPS provavelmente também seria um **Balanceador de Carga**.
+/// tip
+
+O mesmo componente **Proxy de Terminação TLS** usado para HTTPS provavelmente também seria um **Balanceador de Carga**.
+
+///
 
 E quando trabalhar com contêineres, o mesmo sistema que você usa para iniciar e gerenciá-los já terá ferramentas internas para transmitir a **comunicação de rede** (por exemplo, solicitações HTTP) do **balanceador de carga** (que também pode ser um **Proxy de Terminação TLS**) para o(s) contêiner(es) com seu aplicativo.
 
@@ -504,8 +524,11 @@ Se você estiver usando contêineres (por exemplo, Docker, Kubernetes), existem 
 
 Se você tiver **múltiplos contêineres**, provavelmente cada um executando um **único processo** (por exemplo, em um cluster do **Kubernetes**), então provavelmente você gostaria de ter um **contêiner separado** fazendo o trabalho dos **passos anteriores** em um único contêiner, executando um único processo, **antes** de executar os contêineres trabalhadores replicados.
 
-!!! info
-    Se você estiver usando o Kubernetes, provavelmente será um <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+/// info
+
+Se você estiver usando o Kubernetes, provavelmente será um <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>.
+
+///
 
 Se no seu caso de uso não houver problema em executar esses passos anteriores **em paralelo várias vezes** (por exemplo, se você não estiver executando migrações de banco de dados, mas apenas verificando se o banco de dados está pronto), então você também pode colocá-los em cada contêiner logo antes de iniciar o processo principal.
 
@@ -515,14 +538,17 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 ## Imagem Oficial do Docker com Gunicorn - Uvicorn
 
-Há uma imagem oficial do Docker que inclui o Gunicorn executando com trabalhadores Uvicorn, conforme detalhado em um capítulo anterior: [Server Workers - Gunicorn com Uvicorn](./server-workers.md){.internal-link target=_blank}.
+Há uma imagem oficial do Docker que inclui o Gunicorn executando com trabalhadores Uvicorn, conforme detalhado em um capítulo anterior: [Server Workers - Gunicorn com Uvicorn](server-workers.md){.internal-link target=_blank}.
 
-Essa imagem seria útil principalmente nas situações descritas acima em: [Contêineres com Múltiplos Processos e Casos Especiais](#contêineres-com-múltiplos-processos-e-casos-Especiais).
+Essa imagem seria útil principalmente nas situações descritas acima em: [Contêineres com Múltiplos Processos e Casos Especiais](#conteineres-com-multiplos-processos-e-casos-especiais).
 
 * <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
 
-!!! warning
-    Existe uma grande chance de que você **não** precise dessa imagem base ou de qualquer outra semelhante, e seria melhor construir a imagem do zero, como [descrito acima em: Construa uma Imagem Docker para o FastAPI](#construa-uma-imagem-docker-para-o-fastapi).
+/// warning
+
+Existe uma grande chance de que você **não** precise dessa imagem base ou de qualquer outra semelhante, e seria melhor construir a imagem do zero, como [descrito acima em: Construa uma Imagem Docker para o FastAPI](#construindo-uma-imagem-docker-para-fastapi).
+
+///
 
 Essa imagem tem um mecanismo de **auto-ajuste** incluído para definir o **número de processos trabalhadores** com base nos núcleos de CPU disponíveis.
 
@@ -530,8 +556,11 @@ Isso tem **padrões sensíveis**, mas você ainda pode alterar e atualizar todas
 
 Há também suporte para executar <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**passos anteriores antes de iniciar**</a> com um script.
 
-!!! tip
-    Para ver todas as configurações e opções, vá para a página da imagem Docker:  <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+/// tip
+
+Para ver todas as configurações e opções, vá para a página da imagem Docker:  <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+
+///
 
 ### Número de Processos na Imagem Oficial do Docker
 
@@ -579,7 +608,7 @@ COPY ./app /app/app
 
 Você provavelmente **não** deve usar essa imagem base oficial (ou qualquer outra semelhante) se estiver usando **Kubernetes** (ou outros) e já estiver definindo **replicação** no nível do cluster, com vários **contêineres**. Nesses casos, é melhor **construir uma imagem do zero** conforme descrito acima: [Construindo uma Imagem Docker para FastAPI](#construindo-uma-imagem-docker-para-fastapi).
 
-Essa imagem seria útil principalmente nos casos especiais descritos acima em [Contêineres com Múltiplos Processos e Casos Especiais](#contêineres-com-múltiplos-processos-e-casos-Especiais). Por exemplo, se sua aplicação for **simples o suficiente** para que a configuração padrão de número de processos com base na CPU funcione bem, você não quer se preocupar com a configuração manual da replicação no nível do cluster e não está executando mais de um contêiner com seu aplicativo. Ou se você estiver implantando com **Docker Compose**, executando em um único servidor, etc.
+Essa imagem seria útil principalmente nos casos especiais descritos acima em [Contêineres com Múltiplos Processos e Casos Especiais](#conteineres-com-multiplos-processos-e-casos-especiais). Por exemplo, se sua aplicação for **simples o suficiente** para que a configuração padrão de número de processos com base na CPU funcione bem, você não quer se preocupar com a configuração manual da replicação no nível do cluster e não está executando mais de um contêiner com seu aplicativo. Ou se você estiver implantando com **Docker Compose**, executando em um único servidor, etc.
 
 ## Deploy da Imagem do Contêiner
 
@@ -660,8 +689,11 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
 11. Execute o comando `uvicorn`, informando-o para usar o objeto `app` importado de `app.main`.
 
-!!! tip
-    Clique nos números das bolhas para ver o que cada linha faz.
+/// tip
+
+Clique nos números das bolhas para ver o que cada linha faz.
+
+///
 
 Um **estágio do Docker** é uma parte de um `Dockerfile` que funciona como uma **imagem temporária do contêiner** que só é usada para gerar alguns arquivos para serem usados posteriormente.
 

@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares to handle server errors and custom exception handlers work properly.
+But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares handle server errors and custom exception handlers work properly.
 
 For that, you use `app.add_middleware()` (as in the example for CORS).
 
@@ -43,28 +43,27 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
-!!! note "Technical Details"
-    For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+/// note | Technical Details
 
-    **FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+
+**FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+
+///
 
 ## `HTTPSRedirectMiddleware`
 
 Enforces that all incoming requests must either be `https` or `wss`.
 
-Any incoming requests to `http` or `ws` will be redirected to the secure scheme instead.
+Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial001.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware`
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
-```Python hl_lines="2  6-8"
-{!../../../docs_src/advanced_middleware/tutorial002.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 The following arguments are supported:
 
@@ -78,13 +77,12 @@ Handles GZip responses for any request that includes `"gzip"` in the `Accept-Enc
 
 The middleware will handle both standard and streaming responses.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/advanced_middleware/tutorial003.py!}
-```
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 The following arguments are supported:
 
 * `minimum_size` - Do not GZip responses that are smaller than this minimum size in bytes. Defaults to `500`.
+* `compresslevel` - Used during GZip compression. It is an integer ranging from 1 to 9. Defaults to `9`. Lower value results in faster compression but larger file sizes, while higher value results in slower compression but smaller file sizes.
 
 ## Other middlewares
 
@@ -92,7 +90,6 @@ There are many other ASGI middlewares.
 
 For example:
 
-* <a href="https://docs.sentry.io/platforms/python/asgi/" class="external-link" target="_blank">Sentry</a>
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 

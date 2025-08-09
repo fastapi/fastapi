@@ -14,27 +14,31 @@ on:
       debug_enabled:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
-        default: false
+        default: 'false'
 
 jobs:
   latest-changes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v4
         with:
-          # To allow latest-changes to commit to master
-          token: ${{ secrets.ACTIONS_TOKEN }}
+          # To allow latest-changes to commit to the main branch
+          token: ${{ secrets.FASTAPI_LATEST_CHANGES }}
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
-          token: ${{ secrets.ACTIONS_TOKEN }}
-          standard_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker://tiangolo/latest-changes:0.0.3
+      - uses: tiangolo/latest-changes@0.4.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           latest_changes_file: docs/en/docs/release-notes.md
-          latest_changes_header: '## Latest Changes\n\n'
+          latest_changes_header: '## Latest Changes'
+          end_regex: '^## '
           debug_logs: true
+          label_header_prefix: '### '
