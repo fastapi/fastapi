@@ -236,6 +236,9 @@ def encode_value(
     sqlalchemy_safe: bool = True,
 ) -> Any:
     if custom_encoder:
+        if type(obj) in custom_encoder:
+            return custom_encoder[type(obj)](obj)
+
         for encoder_type, encoder_instance in custom_encoder.items():
             if isinstance(obj, encoder_type):
                 return encoder_instance(obj)
