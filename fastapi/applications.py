@@ -65,25 +65,6 @@ class FastAPI(Starlette):
     def __init__(
         self: AppType,
         *,
-        title: str = "FastAPI",
-        description: str = "",
-        version: str = "0.1.0",
-        openapi_url: Optional[str] = "/openapi.json",
-        openapi_tags: Optional[List[Dict[str, Any]]] = None,
-        servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
-        dependencies: Optional[Sequence[Depends]] = None,
-        default_response_class: Type[Response] = Default(JSONResponse),
-        docs_url: Optional[str] = "/docs",
-        redoc_url: Optional[str] = "/redoc",
-        stoplight_elements_url: Optional[str] = "/elements",
-        swagger_ui_oauth2_redirect_url: Optional[str] = "/docs/oauth2-redirect",
-        swagger_ui_init_oauth: Optional[Dict[str, Any]] = None,
-        middleware: Optional[Sequence[Middleware]] = None,
-        exception_handlers: Optional[
-            Dict[
-                Union[int, Type[Exception]],
-                Callable[[Request, Any], Coroutine[Any, Any, Response]],
-            ]
         debug: Annotated[
             bool,
             Doc(
@@ -95,7 +76,7 @@ class FastAPI(Starlette):
                 [Starlette docs for Applications](https://www.starlette.io/applications/#instantiating-the-application).
                 """
             ),
-        ]= False,
+        ] = False,
         routes: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -117,7 +98,7 @@ class FastAPI(Starlette):
                 like `app.get()`, `app.post()`, etc.
                 """
             ),
-        ]= None,
+        ] = None,
         title: Annotated[
             str,
             Doc(
@@ -138,7 +119,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= "FastAPI",
+        ] = "FastAPI",
         summary: Annotated[
             Optional[str],
             Doc(
@@ -159,7 +140,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         description: Annotated[
             str,
             Doc(
@@ -197,7 +178,7 @@ class FastAPI(Starlette):
                 ```
                 '''
             ),
-        ]= "",
+        ] = "",
         version: Annotated[
             str,
             Doc(
@@ -221,7 +202,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= "0.1.0",
+        ] = "0.1.0",
         openapi_url: Annotated[
             Optional[str],
             Doc(
@@ -244,7 +225,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= "/openapi.json",
+        ] = "/openapi.json",
         openapi_tags: Annotated[
             Optional[List[Dict[str, Any]]],
             Doc(
@@ -304,7 +285,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         servers: Annotated[
             Optional[List[Dict[str, Union[str, Any]]]],
             Doc(
@@ -341,16 +322,14 @@ class FastAPI(Starlette):
 
                 app = FastAPI(
                     servers=[
-                        {"url": "https://stag.example.com",
-                            "description": "Staging environment"},
-                        {"url": "https://prod.example.com",
-                            "description": "Production environment"},
+                        {"url": "https://stag.example.com", "description": "Staging environment"},
+                        {"url": "https://prod.example.com", "description": "Production environment"},
                     ]
                 )
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -368,12 +347,11 @@ class FastAPI(Starlette):
 
                 from .dependencies import func_dep_1, func_dep_2
 
-                app = FastAPI(dependencies=[Depends(
-                    func_dep_1), Depends(func_dep_2)])
+                app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2)])
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         default_response_class: Annotated[
             Type[Response],
             Doc(
@@ -393,7 +371,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= Default(JSONResponse),
+        ] = Default(JSONResponse),
         redirect_slashes: Annotated[
             bool,
             Doc(
@@ -418,7 +396,7 @@ class FastAPI(Starlette):
                 to `/items/`.
                 """
             ),
-        ]= True,
+        ] = True,
         docs_url: Annotated[
             Optional[str],
             Doc(
@@ -442,7 +420,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= "/docs",
+        ] = "/docs",
         redoc_url: Annotated[
             Optional[str],
             Doc(
@@ -462,12 +440,11 @@ class FastAPI(Starlette):
                 ```python
                 from fastapi import FastAPI
 
-                app = FastAPI(docs_url="/documentation",
-                              redoc_url="redocumentation")
+                app = FastAPI(docs_url="/documentation", redoc_url="redocumentation")
                 ```
                 """
             ),
-        ]= "/redoc",
+        ] = "/redoc",
         swagger_ui_oauth2_redirect_url: Annotated[
             Optional[str],
             Doc(
@@ -480,7 +457,31 @@ class FastAPI(Starlette):
                 with Swagger UI.
                 """
             ),
-        ]= "/docs/oauth2-redirect",
+        ] = "/docs/oauth2-redirect",
+        stoplight_elements_url: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The path to the alternative automatic interactive API documentation
+                provided by Stoplight Elements.
+
+                The default URL is `/elements`. You can disable it by setting it to `None`.
+
+                If `openapi_url` is set to `None`, this will be automatically disabled.
+
+                Read more in the
+                [FastAPI docs for Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/#docs-urls).
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(docs_url="/documentation", stoplight_elements_url="elementsdocs")
+                ```
+                """
+            ),
+        ] = "/elements",
         swagger_ui_init_oauth: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -491,7 +492,7 @@ class FastAPI(Starlette):
                 [Swagger UI docs](https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/).
                 """
             ),
-        ]= None,
+        ] = None,
         middleware: Annotated[
             Optional[Sequence[Middleware]],
             Doc(
@@ -505,7 +506,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Middleware](https://fastapi.tiangolo.com/tutorial/middleware/).
                 """
             ),
-        ]= None,
+        ] = None,
         exception_handlers: Annotated[
             Optional[
                 Dict[
@@ -524,7 +525,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/).
                 """
             ),
-        ]= None,
+        ] = None,
         on_startup: Annotated[
             Optional[Sequence[Callable[[], Any]]],
             Doc(
@@ -536,7 +537,7 @@ class FastAPI(Starlette):
                 Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
                 """
             ),
-        ]= None,
+        ] = None,
         on_shutdown: Annotated[
             Optional[Sequence[Callable[[], Any]]],
             Doc(
@@ -549,7 +550,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
                 """
             ),
-        ]= None,
+        ] = None,
         lifespan: Annotated[
             Optional[Lifespan[AppType]],
             Doc(
@@ -561,7 +562,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
                 """
             ),
-        ]= None,
+        ] = None,
         terms_of_service: Annotated[
             Optional[str],
             Doc(
@@ -580,7 +581,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         contact: Annotated[
             Optional[Dict[str, Union[str, Any]]],
             Doc(
@@ -613,7 +614,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         license_info: Annotated[
             Optional[Dict[str, Union[str, Any]]],
             Doc(
@@ -647,7 +648,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= None,
+        ] = None,
         openapi_prefix: Annotated[
             str,
             Doc(
@@ -662,7 +663,7 @@ class FastAPI(Starlette):
                 automatic.
                 """
             ),
-        ]= "",
+        ] = "",
         root_path: Annotated[
             str,
             Doc(
@@ -682,7 +683,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= "",
+        ] = "",
         root_path_in_servers: Annotated[
             bool,
             Doc(
@@ -702,7 +703,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]= True,
+        ] = True,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -718,7 +719,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
                 """
             ),
-        ]= None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -731,7 +732,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]= None,
+        ] = None,
         webhooks: Annotated[
             Optional[routing.APIRouter],
             Doc(
@@ -747,7 +748,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ]= None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -761,7 +762,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]= None,
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -775,7 +776,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]= True,
+        ] = True,
         swagger_ui_parameters: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -787,7 +788,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Configure Swagger UI](https://fastapi.tiangolo.com/how-to/configure-swagger-ui/).
                 """
             ),
-        ]= None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -802,7 +803,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]= Default(generate_unique_id),
+        ] = Default(generate_unique_id),
         separate_input_output_schemas: Annotated[
             bool,
             Doc(
@@ -833,7 +834,7 @@ class FastAPI(Starlette):
                 another one for output.
                 """
             ),
-        ]= True,
+        ] = True,
         **extra: Annotated[
             Any,
             Doc(
@@ -857,8 +858,8 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
-        self.stoplight_elements_url = stoplight_elements_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
+        self.stoplight_elements_url = stoplight_elements_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
@@ -1100,30 +1101,30 @@ class FastAPI(Starlette):
         path: str,
         endpoint: Callable[..., Any],
         *,
-        response_model: Any=Default(None),
-        status_code: Optional[int]=None,
-        tags: Optional[List[Union[str, Enum]]]=None,
-        dependencies: Optional[Sequence[Depends]]=None,
-        summary: Optional[str]=None,
-        description: Optional[str]=None,
-        response_description: str="Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]]=None,
-        deprecated: Optional[bool]=None,
-        methods: Optional[List[str]]=None,
-        operation_id: Optional[str]=None,
-        response_model_include: Optional[IncEx]=None,
-        response_model_exclude: Optional[IncEx]=None,
-        response_model_by_alias: bool=True,
-        response_model_exclude_unset: bool=False,
-        response_model_exclude_defaults: bool=False,
-        response_model_exclude_none: bool=False,
-        include_in_schema: bool=True,
-        response_class: Union[Type[Response], DefaultPlaceholder]=Default(
+        response_model: Any = Default(None),
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
+        dependencies: Optional[Sequence[Depends]] = None,
+        summary: Optional[str] = None,
+        description: Optional[str] = None,
+        response_description: str = "Successful Response",
+        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        deprecated: Optional[bool] = None,
+        methods: Optional[List[str]] = None,
+        operation_id: Optional[str] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
+        include_in_schema: bool = True,
+        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
-        name: Optional[str]=None,
-        openapi_extra: Optional[Dict[str, Any]]=None,
-        generate_unique_id_function: Callable[[routing.APIRoute], str]=Default(
+        name: Optional[str] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
     ) -> None:
@@ -1158,28 +1159,28 @@ class FastAPI(Starlette):
         self,
         path: str,
         *,
-        response_model: Any=Default(None),
-        status_code: Optional[int]=None,
-        tags: Optional[List[Union[str, Enum]]]=None,
-        dependencies: Optional[Sequence[Depends]]=None,
-        summary: Optional[str]=None,
-        description: Optional[str]=None,
-        response_description: str="Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]]=None,
-        deprecated: Optional[bool]=None,
-        methods: Optional[List[str]]=None,
-        operation_id: Optional[str]=None,
-        response_model_include: Optional[IncEx]=None,
-        response_model_exclude: Optional[IncEx]=None,
-        response_model_by_alias: bool=True,
-        response_model_exclude_unset: bool=False,
-        response_model_exclude_defaults: bool=False,
-        response_model_exclude_none: bool=False,
-        include_in_schema: bool=True,
-        response_class: Type[Response]=Default(JSONResponse),
-        name: Optional[str]=None,
-        openapi_extra: Optional[Dict[str, Any]]=None,
-        generate_unique_id_function: Callable[[routing.APIRoute], str]=Default(
+        response_model: Any = Default(None),
+        status_code: Optional[int] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
+        dependencies: Optional[Sequence[Depends]] = None,
+        summary: Optional[str] = None,
+        description: Optional[str] = None,
+        response_description: str = "Successful Response",
+        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        deprecated: Optional[bool] = None,
+        methods: Optional[List[str]] = None,
+        operation_id: Optional[str] = None,
+        response_model_include: Optional[IncEx] = None,
+        response_model_exclude: Optional[IncEx] = None,
+        response_model_by_alias: bool = True,
+        response_model_exclude_unset: bool = False,
+        response_model_exclude_defaults: bool = False,
+        response_model_exclude_none: bool = False,
+        include_in_schema: bool = True,
+        response_class: Type[Response] = Default(JSONResponse),
+        name: Optional[str] = None,
+        openapi_extra: Optional[Dict[str, Any]] = None,
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
@@ -1218,9 +1219,9 @@ class FastAPI(Starlette):
         self,
         path: str,
         endpoint: Callable[..., Any],
-        name: Optional[str]=None,
+        name: Optional[str] = None,
         *,
-        dependencies: Optional[Sequence[Depends]]=None,
+        dependencies: Optional[Sequence[Depends]] = None,
     ) -> None:
         self.router.add_api_websocket_route(
             path,
@@ -1246,7 +1247,7 @@ class FastAPI(Starlette):
                 A name for the WebSocket. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         *,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
@@ -1259,7 +1260,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).
                 """
             ),
-        ]=None,
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Decorate a WebSocket function.
@@ -1299,7 +1300,7 @@ class FastAPI(Starlette):
         router: Annotated[routing.APIRouter, Doc("The `APIRouter` to include.")],
         *,
         prefix: Annotated[str, Doc(
-            "An optional path prefix for the router.")]="",
+            "An optional path prefix for the router.")] = "",
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -1313,7 +1314,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -1341,7 +1342,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]=None,
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -1357,7 +1358,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Bigger Applications](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -1382,7 +1383,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]=None,
+        ] = None,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -1408,7 +1409,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]=True,
+        ] = True,
         default_response_class: Annotated[
             Type[Response],
             Doc(
@@ -1436,7 +1437,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -1452,7 +1453,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -1467,7 +1468,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> None:
         """
         Include an `APIRouter` in the same app.
@@ -1546,7 +1547,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -1559,7 +1560,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -1572,7 +1573,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -1584,7 +1585,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -1597,7 +1598,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -1615,7 +1616,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -1625,7 +1626,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -1635,7 +1636,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -1645,7 +1646,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -1665,7 +1666,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -1677,7 +1678,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -1689,7 +1690,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -1701,7 +1702,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -1719,7 +1720,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -1736,7 +1737,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -1753,7 +1754,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -1766,7 +1767,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -1779,7 +1780,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -1787,7 +1788,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -1803,7 +1804,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -1815,7 +1816,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -1830,7 +1831,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -1919,7 +1920,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -1932,7 +1933,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -1945,7 +1946,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -1957,7 +1958,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -1970,7 +1971,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -1988,7 +1989,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -1998,7 +1999,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2008,7 +2009,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -2018,7 +2019,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -2038,7 +2039,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -2050,7 +2051,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -2062,7 +2063,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -2074,7 +2075,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -2092,7 +2093,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -2109,7 +2110,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -2126,7 +2127,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2139,7 +2140,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -2152,7 +2153,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -2160,7 +2161,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -2176,7 +2177,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -2188,7 +2189,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -2203,7 +2204,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2297,7 +2298,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -2310,7 +2311,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -2323,7 +2324,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -2335,7 +2336,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -2348,7 +2349,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -2366,7 +2367,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -2376,7 +2377,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2386,7 +2387,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -2396,7 +2397,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -2416,7 +2417,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -2428,7 +2429,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -2440,7 +2441,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -2452,7 +2453,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -2470,7 +2471,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -2487,7 +2488,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -2504,7 +2505,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2517,7 +2518,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -2530,7 +2531,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -2538,7 +2539,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -2554,7 +2555,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -2566,7 +2567,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -2581,7 +2582,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2675,7 +2676,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -2688,7 +2689,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -2701,7 +2702,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -2713,7 +2714,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -2726,7 +2727,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -2744,7 +2745,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -2754,7 +2755,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2764,7 +2765,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -2774,7 +2775,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -2794,7 +2795,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -2806,7 +2807,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -2818,7 +2819,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -2830,7 +2831,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -2848,7 +2849,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -2865,7 +2866,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -2882,7 +2883,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -2895,7 +2896,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -2908,7 +2909,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -2916,7 +2917,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -2932,7 +2933,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -2944,7 +2945,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -2959,7 +2960,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -3048,7 +3049,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -3061,7 +3062,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -3074,7 +3075,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -3086,7 +3087,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -3099,7 +3100,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -3117,7 +3118,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -3127,7 +3128,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3137,7 +3138,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -3147,7 +3148,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -3167,7 +3168,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -3179,7 +3180,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -3191,7 +3192,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -3203,7 +3204,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -3221,7 +3222,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -3238,7 +3239,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -3255,7 +3256,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3268,7 +3269,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -3281,7 +3282,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -3289,7 +3290,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -3305,7 +3306,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -3317,7 +3318,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -3332,7 +3333,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3421,7 +3422,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -3434,7 +3435,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -3447,7 +3448,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -3459,7 +3460,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -3472,7 +3473,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -3490,7 +3491,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -3500,7 +3501,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3510,7 +3511,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -3520,7 +3521,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -3540,7 +3541,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -3552,7 +3553,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -3564,7 +3565,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -3576,7 +3577,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -3594,7 +3595,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -3611,7 +3612,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -3628,7 +3629,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -3641,7 +3642,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -3654,7 +3655,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -3662,7 +3663,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -3678,7 +3679,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -3690,7 +3691,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -3705,7 +3706,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3794,7 +3795,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -3807,7 +3808,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -3820,7 +3821,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -3832,7 +3833,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -3845,7 +3846,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -3863,7 +3864,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -3873,7 +3874,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3883,7 +3884,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -3893,7 +3894,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -3913,7 +3914,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -3925,7 +3926,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -3937,7 +3938,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -3949,7 +3950,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -3967,7 +3968,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -3984,7 +3985,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -4001,7 +4002,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4014,7 +4015,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -4027,7 +4028,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -4035,7 +4036,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -4051,7 +4052,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -4063,7 +4064,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -4078,7 +4079,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4172,7 +4173,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
                 """
             ),
-        ]=Default(None),
+        ] = Default(None),
         status_code: Annotated[
             Optional[int],
             Doc(
@@ -4185,7 +4186,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
                 """
             ),
-        ]=None,
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
@@ -4198,7 +4199,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/#tags).
                 """
             ),
-        ]=None,
+        ] = None,
         dependencies: Annotated[
             Optional[Sequence[Depends]],
             Doc(
@@ -4210,7 +4211,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Dependencies in path operation decorators](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-in-path-operation-decorators/).
                 """
             ),
-        ]=None,
+        ] = None,
         summary: Annotated[
             Optional[str],
             Doc(
@@ -4223,7 +4224,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         description: Annotated[
             Optional[str],
             Doc(
@@ -4241,7 +4242,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/).
                 """
             ),
-        ]=None,
+        ] = None,
         response_description: Annotated[
             str,
             Doc(
@@ -4251,7 +4252,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]="Successful Response",
+        ] = "Successful Response",
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -4261,7 +4262,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         deprecated: Annotated[
             Optional[bool],
             Doc(
@@ -4271,7 +4272,7 @@ class FastAPI(Starlette):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ]=None,
+        ] = None,
         operation_id: Annotated[
             Optional[str],
             Doc(
@@ -4291,7 +4292,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_include: Annotated[
             Optional[IncEx],
             Doc(
@@ -4303,7 +4304,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_exclude: Annotated[
             Optional[IncEx],
             Doc(
@@ -4315,7 +4316,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=None,
+        ] = None,
         response_model_by_alias: Annotated[
             bool,
             Doc(
@@ -4327,7 +4328,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_include-and-response_model_exclude).
                 """
             ),
-        ]=True,
+        ] = True,
         response_model_exclude_unset: Annotated[
             bool,
             Doc(
@@ -4345,7 +4346,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_defaults: Annotated[
             bool,
             Doc(
@@ -4362,7 +4363,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#use-the-response_model_exclude_unset-parameter).
                 """
             ),
-        ]=False,
+        ] = False,
         response_model_exclude_none: Annotated[
             bool,
             Doc(
@@ -4379,7 +4380,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Response Model - Return Type](https://fastapi.tiangolo.com/tutorial/response-model/#response_model_exclude_none).
                 """
             ),
-        ]=False,
+        ] = False,
         include_in_schema: Annotated[
             bool,
             Doc(
@@ -4392,7 +4393,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
-        ]=True,
+        ] = True,
         response_class: Annotated[
             Type[Response],
             Doc(
@@ -4405,7 +4406,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/#redirectresponse).
                 """
             ),
-        ]=Default(JSONResponse),
+        ] = Default(JSONResponse),
         name: Annotated[
             Optional[str],
             Doc(
@@ -4413,7 +4414,7 @@ class FastAPI(Starlette):
                 Name for this *path operation*. Only used internally.
                 """
             ),
-        ]=None,
+        ] = None,
         callbacks: Annotated[
             Optional[List[BaseRoute]],
             Doc(
@@ -4429,7 +4430,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Callbacks](https://fastapi.tiangolo.com/advanced/openapi-callbacks/).
                 """
             ),
-        ]=None,
+        ] = None,
         openapi_extra: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -4441,7 +4442,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for Path Operation Advanced Configuration](https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/#custom-openapi-path-operation-schema).
                 """
             ),
-        ]=None,
+        ] = None,
         generate_unique_id_function: Annotated[
             Callable[[routing.APIRoute], str],
             Doc(
@@ -4456,7 +4457,7 @@ class FastAPI(Starlette):
                 [FastAPI docs about how to Generate Clients](https://fastapi.tiangolo.com/advanced/generate-clients/#custom-generate-unique-id-function).
                 """
             ),
-        ]=Default(generate_unique_id),
+        ] = Default(generate_unique_id),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4500,7 +4501,7 @@ class FastAPI(Starlette):
         )
 
     def websocket_route(
-        self, path: str, name: Union[str, None]=None
+        self, path: str, name: Union[str, None] = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_websocket_route(path, func, name=name)
@@ -4508,7 +4509,7 @@ class FastAPI(Starlette):
 
         return decorator
 
-    @ deprecated(
+    @deprecated(
         """
         on_event is deprecated, use lifespan event handlers instead.
 
@@ -4619,8 +4620,7 @@ class FastAPI(Starlette):
         async def unicorn_exception_handler(request: Request, exc: UnicornException):
             return JSONResponse(
                 status_code=418,
-                content={
-                    "message": f"Oops! {exc.name} did something. There goes a rainbow..."},
+                content={"message": f"Oops! {exc.name} did something. There goes a rainbow..."},
             )
         ```
         """
