@@ -973,8 +973,7 @@ class FastAPI(Starlette):
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
-        self.exception_handlers.setdefault(
-            HTTPException, http_exception_handler)
+        self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
@@ -1052,8 +1051,7 @@ class FastAPI(Starlette):
                     swagger_ui_parameters=self.swagger_ui_parameters,
                 )
 
-            self.add_route(self.docs_url, swagger_ui_html,
-                           include_in_schema=False)
+            self.add_route(self.docs_url, swagger_ui_html, include_in_schema=False)
 
             if self.swagger_ui_oauth2_redirect_url:
 
@@ -1299,8 +1297,7 @@ class FastAPI(Starlette):
         self,
         router: Annotated[routing.APIRouter, Doc("The `APIRouter` to include.")],
         *,
-        prefix: Annotated[str, Doc(
-            "An optional path prefix for the router.")] = "",
+        prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(
