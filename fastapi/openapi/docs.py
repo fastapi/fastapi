@@ -394,15 +394,15 @@ def get_stoplight_elements_html(
     <body>
 
         <elements-api
-            {f'apiDescriptionUrl="{openapi_url}"' if openapi_url != '' else ''}
-            {f'apiDescriptionDocument="{api_description_document}"' if api_description_document != '' else ''}
-            {f'basePath="{base_path}"' if base_path != '' else ''}
-            {'hideInternal="true"' if hide_internal is True else ''}
-            {'hideTryIt="true"' if hide_try_it is True else ''}
-            {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy != '' else ''}
+            {f'apiDescriptionUrl="{openapi_url}"' if openapi_url != "" else ""}
+            {f'apiDescriptionDocument="{api_description_document}"' if api_description_document != "" else ""}
+            {f'basePath="{base_path}"' if base_path != "" else ""}
+            {'hideInternal="true"' if hide_internal is True else ""}
+            {'hideTryIt="true"' if hide_try_it is True else ""}
+            {f'tryItCorsProxy="{try_it_cors_proxy}"' if try_it_cors_proxy != "" else ""}
             tryItCredentialPolicy="{try_it_credential_policy.value}"
             layout="{layout.value}"
-            {f'logo="{logo}"' if logo != '' else ''}
+            {f'logo="{logo}"' if logo != "" else ""}
             router="{router.value}"
         />
 
