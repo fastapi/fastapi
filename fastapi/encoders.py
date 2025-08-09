@@ -240,7 +240,7 @@ def encode_value(
             if isinstance(obj, encoder_type):
                 return encoder_instance(obj)
 
-    if isinstance(obj, (str, int, float, NoneType)):
+    if isinstance(obj, (str, int, float, NoneType)): # type: ignore[arg-type, misc]
         return obj
 
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
@@ -305,7 +305,7 @@ def encode_value(
         )
 
     if dataclasses.is_dataclass(obj):
-        obj_dict = dataclasses.asdict(obj)  # type: ignore
+        obj_dict = dataclasses.asdict(obj)
         return encode_dict(
             obj_dict,
             include=include,
