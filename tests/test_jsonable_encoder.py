@@ -102,21 +102,20 @@ def test_encode_dict_with_nonprimative_keys():
             return hash(self.value)
 
     assert jsonable_encoder(
-        {CustomString("foo"): "bar"},
-        custom_encoder={CustomString: lambda v: v.value}
+        {CustomString("foo"): "bar"}, custom_encoder={CustomString: lambda v: v.value}
     ) == {"foo": "bar"}
+
 
 def test_encode_dict_with_custom_encoder_keys():
     assert jsonable_encoder(
-        {"foo": "bar"},
-        custom_encoder={str: lambda v: "_" + v}
+        {"foo": "bar"}, custom_encoder={str: lambda v: "_" + v}
     ) == {"_foo": "_bar"}
 
 
 def test_encode_dict_with_sqlalchemy_safe():
     obj = {"_sa_foo": "foo", "bar": "bar"}
     assert jsonable_encoder(obj, sqlalchemy_safe=True) == {"bar": "bar"}
-    assert jsonable_encoder(obj, sqlalchemy_safe=False ) == obj
+    assert jsonable_encoder(obj, sqlalchemy_safe=False) == obj
 
 
 def test_encode_dict_with_exclude_none():
