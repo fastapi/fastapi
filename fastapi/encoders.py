@@ -375,19 +375,14 @@ def encode_dict(
         if key not in allowed_keys:
             continue
 
-        # use type() in, instead of isinstance
-        # we don't want to allow subclasses, they should be encoded still
-        if type(key) in primitive_types:
-            encoded_key = key
-        else:
-            encoded_key = encode_value(
-                key,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_none=exclude_none,
-                custom_encoder=custom_encoder,
-                sqlalchemy_safe=sqlalchemy_safe,
-            )
+        encoded_key = encode_value(
+            key,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
 
         encoded_value = encode_value(
             value,

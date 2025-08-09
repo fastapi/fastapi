@@ -95,10 +95,22 @@ def test_encode_dict_with_nonprimative_keys():
         def __init__(self, value: str) -> None:
             self.value = value
 
+        def __eq__(self, other) -> bool:
+            return isinstance(other, CustomString) and self.value == other.value
+
+        def __hash__(self):
+            return hash(self.value)
+
     assert jsonable_encoder(
         {CustomString("foo"): "bar"},
         custom_encoder={CustomString: lambda v: v.value}
     ) == {"foo": "bar"}
+
+def test_encode_dict_with_custom_encoder_keys():
+    assert jsonable_encoder(
+        {"foo": "bar"},
+        custom_encoder={str: lambda v: "_" + v}
+    ) == {"_foo": "_bar"}
 
 
 def test_encode_dict_with_sqlalchemy_safe():
