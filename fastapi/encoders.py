@@ -101,9 +101,6 @@ def generate_encoders_by_class_tuples(
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 NoneType = type(None)
-primitive_types = (str, int, float, NoneType)
-iterable_types = (list, set, frozenset, GeneratorType, tuple, deque)
-
 
 def jsonable_encoder(
     obj: Annotated[
@@ -242,10 +239,10 @@ def encode_value(
             if isinstance(obj, encoder_type):
                 return encoder_instance(obj)
 
-    if isinstance(obj, primitive_types):
+    if isinstance(obj, (str, int, float, NoneType)):
         return obj
 
-    if isinstance(obj, iterable_types):
+    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
         encoded_list = []
         for item in obj:
             value = encode_value(
