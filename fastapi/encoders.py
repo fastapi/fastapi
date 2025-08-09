@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Callable, Dict, Optional, Tuple, Type, Union
 from uuid import UUID
 
 from fastapi.types import IncEx
@@ -101,6 +101,7 @@ def generate_encoders_by_class_tuples(
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 NoneType = type(None)
+
 
 def jsonable_encoder(
     obj: Annotated[
