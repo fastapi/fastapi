@@ -88,6 +88,30 @@ def test_encode_dict():
     }
 
 
+def test_encode_dict_with_nonprimative_keys():
+    class CustomString:
+        value: str
+
+        def __init__(self, value: str) -> None:
+            self.value = value
+
+    assert jsonable_encoder(
+        {CustomString("foo"): "bar"},
+        custom_encoder={CustomString: lambda v: v.value}
+    ) == {"foo": "bar"}
+
+
+def test_encode_dict_with_sqlalchemy_safe():
+    obj = {"_sa_foo": "foo", "bar": "bar"}
+    assert jsonable_encoder(obj, sqlalchemy_safe=True) == {"bar": "bar"}
+    assert jsonable_encoder(obj, sqlalchemy_safe=False ) == obj
+
+
+def test_encode_dict_with_exclude_none():
+    assert jsonable_encoder({"foo": None}, exclude_none=True) == {}
+    assert jsonable_encoder({"foo": None}, exclude_none=False) == {"foo": None}
+
+
 def test_encode_class():
     person = Person(name="Foo")
     pet = Pet(owner=person, name="Firulais")
