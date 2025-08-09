@@ -240,7 +240,7 @@ def encode_value(
             if isinstance(obj, encoder_type):
                 return encoder_instance(obj)
 
-    if isinstance(obj, (str, int, float, NoneType)): # type: ignore[arg-type, misc]
+    if isinstance(obj, (str, int, float, NoneType)):  # type: ignore[arg-type, misc]
         return obj
 
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
