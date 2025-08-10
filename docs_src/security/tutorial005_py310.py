@@ -118,7 +118,8 @@ async def get_current_user(
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-        token_scopes = payload.get("scopes", [])
+        scope: str = payload.get("scope", "")
+        token_scopes = scope.split(" ")
         token_data = TokenData(scopes=token_scopes, username=username)
     except (InvalidTokenError, ValidationError):
         raise credentials_exception
@@ -152,7 +153,7 @@ async def login_for_access_token(
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username, "scopes": form_data.scopes},
+        data={"sub": user.username, "scope": " ".join(form_data.scopes)},
         expires_delta=access_token_expires,
     )
     return Token(access_token=access_token, token_type="bearer")
