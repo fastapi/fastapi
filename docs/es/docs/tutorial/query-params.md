@@ -147,8 +147,7 @@ http://127.0.0.1:8000/items/foo-item
         "needy"
       ],
       "msg": "Field required",
-      "input": null,
-      "url": "https://errors.pydantic.dev/2.1/v/missing"
+      "input": null
     }
   ]
 }
