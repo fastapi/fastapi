@@ -1,4 +1,5 @@
 import json
+from contextlib import asynccontextmanager, contextmanager
 from typing import Dict
 
 import pytest
@@ -10,6 +11,8 @@ app = FastAPI()
 state = {
     "/async": "asyncgen not started",
     "/sync": "generator not started",
+    "/async_ctxmgr": "asyncgen_ctxmgr not started",
+    "/sync_ctxmgr": "generator_ctxmgr not started",
     "/async_raise": "asyncgen raise not started",
     "/sync_raise": "generator raise not started",
     "context_a": "not started a",
@@ -47,6 +50,20 @@ def generator_state(state: Dict[str, str] = Depends(get_state)):
     state["/sync"] = "generator started"
     yield state["/sync"]
     state["/sync"] = "generator completed"
+
+
+@asynccontextmanager
+async def asyncgen_state_ctxmgr(state: Dict[str, str] = Depends(get_state)):
+    state["/async_ctxmgr"] = "asyncgen_ctxmgr started"
+    yield state["/async_ctxmgr"]
+    state["/async_ctxmgr"] = "asyncgen_ctxmgr completed"
+
+
+@contextmanager
+def generator_state_ctxmgr(state: Dict[str, str] = Depends(get_state)):
+    state["/sync_ctxmgr"] = "generator_ctxmgr started"
+    yield state["/sync_ctxmgr"]
+    state["/sync_ctxmgr"] = "generator_ctxmgr completed"
 
 
 async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
@@ -94,6 +111,16 @@ async def get_async(state: str = Depends(asyncgen_state)):
 
 @app.get("/sync")
 async def get_sync(state: str = Depends(generator_state)):
+    return state
+
+
+@app.get("/async_ctxmgr")
+async def get_async_ctxmgr(state: str = Depends(asyncgen_state_ctxmgr)):
+    return state
+
+
+@app.get("/sync_ctxmgr")
+async def get_sync_ctxmgr(state: str = Depends(generator_state_ctxmgr)):
     return state
 
 
@@ -228,6 +255,22 @@ def test_sync_state():
     assert response.status_code == 200, response.text
     assert response.json() == "generator started"
     assert state["/sync"] == "generator completed"
+
+
+def test_async_ctxmgr_state():
+    assert state["/async_ctxmgr"] == "asyncgen_ctxmgr not started"
+    response = client.get("/async_ctxmgr")
+    assert response.status_code == 200, response.text
+    assert response.json() == "asyncgen_ctxmgr started"
+    assert state["/async_ctxmgr"] == "asyncgen_ctxmgr completed"
+
+
+def test_sync_ctxmgr_state():
+    assert state["/sync_ctxmgr"] == "generator_ctxmgr not started"
+    response = client.get("/sync_ctxmgr")
+    assert response.status_code == 200, response.text
+    assert response.json() == "generator_ctxmgr started"
+    assert state["/sync_ctxmgr"] == "generator_ctxmgr completed"
 
 
 def test_async_raise_other():
