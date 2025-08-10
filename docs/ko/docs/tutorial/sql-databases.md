@@ -55,7 +55,7 @@ $ pip install sqlmodel
 
 `SQLModel`을 가져오고 데이터베이스 모델을 생성합니다:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:12] hl[8:12] *}
 
 `Hero` 클래스는 Pydantic 모델과 매우 유사합니다 (실제로 내부적으로 *Pydantic 모델이기도 합니다*).
 
@@ -77,8 +77,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 **하나의 단일 engine 객체**를 통해 코드 전체에서 동일한 데이터베이스에 연결할 수 있습니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
-
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[15:19] hl[15:16,18:19] *}
 `check_same_thread=False`를 사용하면 FastAPI에서 여러 스레드에서 동일한 SQLite 데이터베이스를 사용할 수 있습니다. 이는 **하나의 단일 요청**이 **여러 스레드**를 사용할 수 있기 때문에 필요합니다(예: 의존성에서 사용되는 경우).
 
 걱정하지 마세요. 코드가 구조화된 방식으로 인해, 이후에 **각 요청마다 단일 SQLModel *세션*을 사용**하도록 보장할 것입니다. 실제로 그것이 `check_same_thread`가 하려는 것입니다.
@@ -87,7 +86,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 그 다음 `SQLModel.metadata.create_all(engine)`을 사용하여 모든 *테이블 모델*의 **테이블을 생성**하는 함수를 추가합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:23] hl[22:23] *}
 
 ### 세션 의존성 생성하기
 
@@ -97,13 +96,13 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 그런 다음 이 의존성을 사용하는 코드를 간소화하기 위해 `Annotated` 의존성 `SessionDep`을 생성합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[26:31]  hl[26:28,31] *}
 
 ### 시작 시 데이터베이스 테이블 생성하기
 
 애플리케이션 시작 시 데이터베이스 테이블을 생성합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[34:42] hl[34:37, 42] *}
 
 여기서는 애플리케이션 시작 이벤트 시 테이블을 생성합니다.
 
@@ -123,7 +122,7 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 
 마찬가지로, 함수의 **반환 타입**으로 선언하면 해당 데이터의 구조가 자동으로 생성되는 API 문서의 UI에 나타납니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[45:50] hl[45:50] *}
 
 </details>
 
@@ -133,19 +132,19 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 
 `select()`를 사용하여 데이터베이스에서 `Hero`를 **조회**할 수 있습니다. 결과에 페이지네이션을 적용하기 위해 `limit`와 `offset`을 포함할 수 있습니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[53:60] hl[56:57,59] *}
 
 ### 단일 Hero 조회하기
 
 단일 `Hero`를 **조회**할 수도 있습니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[63:68] hl[65] *}
 
 ### Hero 삭제하기
 
 `Hero`를 **삭제**하는 것도 가능합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[71:78] hl[76] *}
 
 ### 애플리케이션 실행하기
 
@@ -194,7 +193,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:10] hl[8:10] *}
 
 #### `Hero` - *테이블 모델*
 
@@ -210,7 +209,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:15] hl[13:15] *}
 
 #### `HeroPublic` - 공개 *데이터 모델*
 
@@ -237,7 +236,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:19] hl[18:19] *}
 
 #### `HeroCreate` - hero 생성용 *데이터 모델*
 
@@ -261,7 +260,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:23] hl[22:23] *}
 
 #### `HeroUpdate` - hero 수정용 *데이터 모델*
 
@@ -279,7 +278,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:29] hl[26:29] *}
 
 ### `HeroCreate`로 생성하고 `HeroPublic` 반환하기
 
@@ -291,7 +290,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 그런 다음 함수를 통해 동일한 *테이블 모델* `Hero`를 반환합니다. 하지만 `response_model`로 `HeroPublic` *데이터 모델*을 선언했기 때문에, **FastAPI**는 `HeroPublic`을 사용하여 데이터를 검증하고 직렬화합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[61:67] hl[61:63] *}
 
 /// tip | 팁
 
@@ -307,13 +306,13 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 이전과 동일하게 `Hero`를 **조회**할 수 있습니다. 이번에도 `response_model=list[HeroPublic]`을 사용하여 데이터가 올바르게 검증되고 직렬화되도록 보장합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[70:77] hl[70] *}
 
 ### `HeroPublic`으로 단일 Hero 조회하기
 
 단일 hero을 **조회**할 수도 있습니다:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[80:85] hl[82] *}
 
 ### `HeroUpdate`로 Hero 수정하기
 
@@ -323,7 +322,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 그런 다음, `hero_db.sqlmodel_update(hero_data)`를 사용하여 `hero_data`의 데이터를 `hero_db`에 업데이트합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[88:98] hl[88:89,93:94] *}
 
 ### Hero 다시 삭제하기
 
@@ -331,7 +330,7 @@ hero **삭제**는 이전과 거의 동일합니다.
 
 이번에는 모든 것을 리팩토링하고 싶은 욕구를 만족시키지 못할 것 같습니다. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[101:108] hl[106] *}
 
 ### 애플리케이션 다시 실행하기
 
