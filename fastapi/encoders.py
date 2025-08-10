@@ -219,7 +219,7 @@ def jsonable_encoder(
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
-                encoders.update(custom_encoder)
+                encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
             obj,
             mode="json",
