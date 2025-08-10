@@ -254,7 +254,7 @@ You will see the JSON response as:
 You already created an API that:
 
 * Receives HTTP requests in the _paths_ `/` and `/items/{item_id}`.
-* Both _paths_ take `GET` <em>operations</em> (also known as HTTP _methods_).
+* Both _paths_ take `GET` _operations_ (also known as HTTP _methods_).
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
 * The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 
