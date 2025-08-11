@@ -121,7 +121,9 @@ if PYDANTIC_V2:
         @property
         def is_sequence(self) -> bool:
             if not hasattr(self, "_is_sequence"):
-                self._is_sequence = field_annotation_is_sequence(self.field_info.annotation)
+                self._is_sequence = field_annotation_is_sequence(
+                    self.field_info.annotation
+                )
             return self._is_sequence
 
         def validate(
