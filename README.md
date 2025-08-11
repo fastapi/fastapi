@@ -58,7 +58,7 @@ The key features are:
 <a href="https://vibe.mobb.ai/?utm_source=Fast+APi&utm_medium=Image&utm_campaign=MVS" target="_blank" title="Secure Your AI-Generated Code to Unlock Dev Productivity"><img src="https://fastapi.tiangolo.com/img/sponsors/mobbai.png"></a>
 <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a>
 <a href="https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a>
-<a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy.png"></a>
+<a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy-1.png"></a>
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
 <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" target="_blank" title="Stainless | Generate best-in-class SDKs"><img src="https://fastapi.tiangolo.com/img/sponsors/stainless.png"></a>
 <a href="https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Fine-Grained Authorization for FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/permit.png"></a>
@@ -361,28 +361,28 @@ item: Item
 ...and with that single declaration you get:
 
 * Editor support, including:
-    * Completion.
-    * Type checks.
+  * Completion.
+  * Type checks.
 * Validation of data:
-    * Automatic and clear errors when the data is invalid.
-    * Validation even for deeply nested JSON objects.
+  * Automatic and clear errors when the data is invalid.
+  * Validation even for deeply nested JSON objects.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of input data: coming from the network to Python data and types. Reading from:
-    * JSON.
-    * Path parameters.
-    * Query parameters.
-    * Cookies.
-    * Headers.
-    * Forms.
-    * Files.
+  * JSON.
+  * Path parameters.
+  * Query parameters.
+  * Cookies.
+  * Headers.
+  * Forms.
+  * Files.
 * <abbr title="also known as: serialization, parsing, marshalling">Conversion</abbr> of output data: converting from Python data and types to network data (as JSON):
-    * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
-    * `datetime` objects.
-    * `UUID` objects.
-    * Database models.
-    * ...and many more.
+  * Convert Python types (`str`, `int`, `float`, `bool`, `list`, etc).
+  * `datetime` objects.
+  * `UUID` objects.
+  * Database models.
+  * ...and many more.
 * Automatic interactive API documentation, including 2 alternative user interfaces:
-    * Swagger UI.
-    * ReDoc.
+  * Swagger UI.
+  * ReDoc.
 
 ---
 
@@ -390,19 +390,19 @@ Coming back to the previous code example, **FastAPI** will:
 
 * Validate that there is an `item_id` in the path for `GET` and `PUT` requests.
 * Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
-    * If it is not, the client will see a useful, clear error.
+  * If it is not, the client will see a useful, clear error.
 * Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
-    * As the `q` parameter is declared with `= None`, it is optional.
-    * Without the `None` it would be required (as is the body in the case with `PUT`).
+  * As the `q` parameter is declared with `= None`, it is optional.
+  * Without the `None` it would be required (as is the body in the case with `PUT`).
 * For `PUT` requests to `/items/{item_id}`, read the body as JSON:
-    * Check that it has a required attribute `name` that should be a `str`.
-    * Check that it has a required attribute `price` that has to be a `float`.
-    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
-    * All this would also work for deeply nested JSON objects.
+  * Check that it has a required attribute `name` that should be a `str`.
+  * Check that it has a required attribute `price` that has to be a `float`.
+  * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
+  * All this would also work for deeply nested JSON objects.
 * Convert from and to JSON automatically.
 * Document everything with OpenAPI, that can be used by:
-    * Interactive documentation systems.
-    * Automatic client code generation systems, for many languages.
+  * Interactive documentation systems.
+  * Automatic client code generation systems, for many languages.
 * Provide 2 interactive documentation web interfaces directly.
 
 ---
@@ -442,11 +442,11 @@ For a more complete example including more features, see the <a href="https://fa
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).
 * **GraphQL** integration with <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> and other libraries.
 * Many extra features (thanks to Starlette) as:
-    * **WebSockets**
-    * extremely easy tests based on HTTPX and `pytest`
-    * **CORS**
-    * **Cookie Sessions**
-    * ...and more.
+  * **WebSockets**
+  * extremely easy tests based on HTTPX and `pytest`
+  * **CORS**
+  * **Cookie Sessions**
+  * ...and more.
 
 ## Performance
 
@@ -476,7 +476,7 @@ Used by FastAPI:
 
 * <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
 * `fastapi-cli[standard]` - to provide the `fastapi` command.
-    * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+  * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
 ### Without `standard` Dependencies
 
