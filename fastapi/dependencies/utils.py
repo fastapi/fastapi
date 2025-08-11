@@ -717,8 +717,7 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or field.alias
-    is_sequence = is_sequence_field(field)
-    if is_sequence and isinstance(values, (ImmutableMultiDict, Headers)):
+    if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
@@ -729,7 +728,7 @@ def _get_multidict_value(
             and isinstance(value, str)  # For type checks
             and value == ""
         )
-        or (is_sequence and len(value) == 0)
+        or (is_sequence_field(field) and len(value) == 0)
     ):
         if field.required:
             return

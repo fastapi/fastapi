@@ -118,6 +118,12 @@ if PYDANTIC_V2:
                 return Undefined
             return self.field_info.get_default(call_default_factory=True)
 
+        @property
+        def is_sequence(self) -> bool:
+            if not hasattr(self, "_is_sequence"):
+                self._is_sequence = field_annotation_is_sequence(self.field_info.annotation)
+            return self._is_sequence
+
         def validate(
             self,
             value: Any,
@@ -246,7 +252,7 @@ if PYDANTIC_V2:
         ) and not isinstance(field.field_info, params.Body)
 
     def is_sequence_field(field: ModelField) -> bool:
-        return field_annotation_is_sequence(field.field_info.annotation)
+        return field.is_sequence
 
     def is_scalar_sequence_field(field: ModelField) -> bool:
         return field_annotation_is_scalar_sequence(field.field_info.annotation)
