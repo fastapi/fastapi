@@ -12,7 +12,7 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/items/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
+async def read_item(request: Request, id: str) -> HTMLResponse:
     return templates.TemplateResponse(
         request=request, name="item.html", context={"id": id}
     )

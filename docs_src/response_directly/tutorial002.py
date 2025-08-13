@@ -4,7 +4,7 @@ app = FastAPI()
 
 
 @app.get("/legacy/")
-def get_legacy_data():
+def get_legacy_data() -> Response:
     data = """<?xml version="1.0"?>
     <shampoo>
     <Header>

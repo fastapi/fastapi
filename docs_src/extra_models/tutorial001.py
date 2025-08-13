@@ -26,11 +26,11 @@ class UserInDB(BaseModel):
     full_name: Union[str, None] = None
 
 
-def fake_password_hasher(raw_password: str):
+def fake_password_hasher(raw_password: str) -> str:
     return "supersecret" + raw_password
 
 
-def fake_save_user(user_in: UserIn):
+def fake_save_user(user_in: UserIn) -> UserInDB:
     hashed_password = fake_password_hasher(user_in.password)
     user_in_db = UserInDB(**user_in.dict(), hashed_password=hashed_password)
     print("User saved! ..not really")
@@ -38,6 +38,6 @@ def fake_save_user(user_in: UserIn):
 
 
 @app.post("/user/", response_model=UserOut)
-async def create_user(user_in: UserIn):
+async def create_user(user_in: UserIn) -> UserInDB:
     user_saved = fake_save_user(user_in)
     return user_saved
