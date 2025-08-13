@@ -1,24 +1,32 @@
-# Generate Clients
+# Generating SDKs
 
-As **FastAPI** is based on the OpenAPI specification, you get automatic compatibility with many tools, including the automatic API docs (provided by Swagger UI).
+Because **FastAPI** is based on the **OpenAPI** specification, its APIs can be described in a standard format that many tools understand.
 
-One particular advantage that is not necessarily obvious is that you can **generate clients** (sometimes called <abbr title="Software Development Kits">**SDKs**</abbr> ) for your API, for many different **programming languages**.
+This makes it easy to generate up-to-date **documentation**, client libraries (<abbr title="Software Development Kits">**SDKs**</abbr>) in multiple languages, and **testing** or **automation workflows** that stay in sync with your code.
 
-## OpenAPI Client Generators
+In this guide, you’ll learn how to generate a **TypeScript SDK** for your FastAPI backend.
 
-There are many tools to generate clients from **OpenAPI**.
+## Open Source SDK Generators
 
-A common tool is <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>.
+A versatile option is the <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, which supports **many programming languages** and can generate SDKs from your OpenAPI specification.
 
-If you are building a **TypeScript client**, another open-source alternative is <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">@hey-api/openapi-ts</a>.
+For **TypeScript clients**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> (sponsored by FastAPI) is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
 
-## Client and SDK Generators - Sponsor
+You can discover more SDK generators on <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
 
-There are also some **company-backed** Client and SDK generators based on OpenAPI (FastAPI), in some cases they can offer you **additional features** on top of high-quality generated SDKs/clients.
+/// tip
 
-Some of them also ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
+FastAPI automatically generates **OpenAPI 3.1** specifications, so any tool you use must support this version.
 
-And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
+///
+
+## SDK Generators from FastAPI Sponsors
+
+This section highlights **venture-backed** and **company-supported** solutions from companies that sponsor FastAPI. These products provide **additional features** and **integrations** on top of high-quality generated SDKs.
+
+By ✨ [**sponsoring FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, these companies help ensure the framework and its **ecosystem** remain healthy and **sustainable**.
+
+Their sponsorship also demonstrates a strong commitment to the FastAPI **community** (you), showing that they care not only about offering a **great service** but also about supporting a **robust and thriving framework**, FastAPI. 🙇
 
 For example, you might want to try:
 
@@ -26,9 +34,15 @@ For example, you might want to try:
 * <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
 * <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
-There are also several other companies offering similar services that you can search and find online. 🤓
+Some of these solutions may also be open source or offer free tiers, so you can try them without a financial commitment. Other commercial SDK generators are available and can be found online. 🤓
 
-## Generate a TypeScript Frontend Client
+## Create a TypeScript SDK
+
+/// tip
+
+Parts of this tutorial might not be up-to-date. If you spot a problem, please open a <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">GitHub issue</a>.
+
+///
 
 Let's start with a simple FastAPI application:
 
@@ -38,78 +52,31 @@ Notice that the *path operations* define the models they use for request payload
 
 ### API Docs
 
-If you go to the API docs, you will see that it has the **schemas** for the data to be sent in requests and received in responses:
+If you go to `/docs`, you will see that it has the **schemas** for the data to be sent in requests and received in responses:
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
 You can see those schemas because they were declared with the models in the app.
 
-That information is available in the app's **OpenAPI schema**, and then shown in the API docs (by Swagger UI).
+That information is available in the app's **OpenAPI schema**, and then shown in the API docs.
 
-And that same information from the models that is included in OpenAPI is what can be used to **generate the client code**.
+That same information from the models that is included in OpenAPI is what can be used to **generate the client code**.
 
-### Generate a TypeScript Client
+### Hey API
 
-Now that we have the app with the models, we can generate a TypeScript client.
+Once we have a FastAPI app with the models, we can use Hey API to generate a TypeScript client. The fastest way to do that is via npx.
 
-#### Install `@hey-api/openapi-ts`
-
-You can install `@hey-api/openapi-ts` in your TypeScript project with:
-
-<div class="termy">
-
-```console
-$ npm install @hey-api/openapi-ts --save-dev
-
----> 100%
+```sh
+npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 ```
 
-</div>
+This will generate a TypeScript SDK in `./src/client`.
 
-#### Generate Client Code
+You can learn how to <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">install `@hey-api/openapi-ts`</a> and read about the <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">generated output</a> on their website.
 
-To generate the client code you can use the command line application `openapi-ts` that would now be installed.
+### Using the SDK
 
-Because it is installed in the local project, you probably wouldn't be able to call that command directly, but you would put it on your `package.json` file.
-
-It could look like this:
-
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts -i http://localhost:8000/openapi.json -o ./src/client"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.73.0",
-    "typescript": "^5.8.3"
-  }
-}
-```
-
-After having that npm `generate-client` script there, you can run it with:
-
-<div class="termy">
-
-```console
-$ npm run generate-client
-
-frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi-ts -i http://localhost:8000/openapi.json -o ./src/client
-```
-
-</div>
-
-That command will generate code in `./src/client` and will use [`Fetch API`](https://developer.mozilla.org/docs/Web/API/Fetch_API) internally.
-
-### Try Out the Client Code
-
-Now you can import and use the client code, it could look like this, notice that you get autocompletion for the methods:
+Now you can import and use the client code. It could look like this, notice that you get autocompletion for the methods:
 
 <img src="/img/tutorial/generate-clients/image02.png">
 
@@ -220,24 +187,10 @@ With that, the operation IDs would be renamed from things like `items-get_items`
 
 ### Generate a TypeScript Client with the Preprocessed OpenAPI
 
-Now as the end result is in a file `openapi.json`, you would modify the `package.json` to use that local file, for example:
+Since the end result is now in an `openapi.json` file, you need to update your input location:
 
-```JSON  hl_lines="7"
-{
-  "name": "frontend-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "generate-client": "openapi-ts -i ./openapi.json -o ./src/client"
-  },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@hey-api/openapi-ts": "^0.27.38",
-    "typescript": "^4.6.2"
-  }
-}
+```sh
+npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 ```
 
 After generating the new client, you would now have **clean method names**, with all the **autocompletion**, **inline errors**, etc:
