@@ -1,4 +1,4 @@
-# Full Stack FastAPI Template
+# Full Stack FastAPI Template { #full-stack-fastapi-template }
 
 Templates, while typically come with a specific setup, are designed to be flexible and customizable. This allows you to modify and adapt them to your project's requirements, making them an excellent starting point. 🏁
 
@@ -6,7 +6,7 @@ You can use this template to get started, as it includes a lot of the initial se
 
 GitHub Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
 
-## Full Stack FastAPI Template - Technology Stack and Features
+## Full Stack FastAPI Template - Technology Stack and Features { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com) for the Python backend API.
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) for the Python SQL database interactions (ORM).

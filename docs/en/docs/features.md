@@ -1,17 +1,17 @@
-# Features
+# Features { #features }
 
-## FastAPI features
+## FastAPI features { #fastapi-features }
 
 **FastAPI** gives you the following:
 
-### Based on open standards
+### Based on open standards { #based-on-open-standards }
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, request bodies, security, etc.
 * Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
 
-### Automatic docs
+### Automatic docs { #automatic-docs }
 
 Interactive API documentation and exploration web user interfaces. As the framework is based on OpenAPI, there are multiple options, 2 included by default.
 
@@ -23,7 +23,7 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Just Modern Python
+### Just Modern Python { #just-modern-python }
 
 It's all based on standard **Python type** declarations (thanks to Pydantic). No new syntax to learn. Just standard modern Python.
 
@@ -71,7 +71,7 @@ Pass the keys and values of the `second_user_data` dict directly as key-value ar
 
 ///
 
-### Editor support
+### Editor support { #editor-support }
 
 All the framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
@@ -95,13 +95,13 @@ You will get completion in code you might even consider impossible before. As fo
 
 No more typing the wrong key names, coming back and forth between docs, or scrolling up and down to find if you finally used `username` or `user_name`.
 
-### Short
+### Short { #short }
 
 It has sensible **defaults** for everything, with optional configurations everywhere. All the parameters can be fine-tuned to do what you need and to define the API you need.
 
 But by default, it all **"just works"**.
 
-### Validation
+### Validation { #validation }
 
 * Validation for most (or all?) Python **data types**, including:
     * JSON objects (`dict`).
@@ -117,7 +117,7 @@ But by default, it all **"just works"**.
 
 All the validation is handled by the well-established and robust **Pydantic**.
 
-### Security and authentication
+### Security and authentication { #security-and-authentication }
 
 Security and authentication integrated. Without any compromise with databases or data models.
 
@@ -134,7 +134,7 @@ Plus all the security features from Starlette (including **session cookies**).
 
 All built as reusable tools and components that are easy to integrate with your systems, data stores, relational and NoSQL databases, etc.
 
-### Dependency Injection
+### Dependency Injection { #dependency-injection }
 
 FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
 
@@ -145,19 +145,19 @@ FastAPI includes an extremely easy to use, but extremely powerful <abbr title='a
 * Support for complex user authentication systems, **database connections**, etc.
 * **No compromise** with databases, frontends, etc. But easy integration with all of them.
 
-### Unlimited "plug-ins"
+### Unlimited "plug-ins" { #unlimited-plug-ins }
 
 Or in other way, no need for them, import and use the code you need.
 
 Any integration is designed to be so simple to use (with dependencies) that you can create a "plug-in" for your application in 2 lines of code using the same structure and syntax used for your *path operations*.
 
-### Tested
+### Tested { #tested }
 
 * 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
 * 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
 * Used in production applications.
 
-## Starlette features
+## Starlette features { #starlette-features }
 
 **FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
@@ -175,7 +175,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 * 100% test coverage.
 * 100% type annotated codebase.
 
-## Pydantic features
+## Pydantic features { #pydantic-features }
 
 **FastAPI** is fully compatible with (and based on) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. So, any additional Pydantic code you have, will also work.
 
