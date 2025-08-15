@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update `docs/en/docs/advanced/generate-clients.md`. PR [#13793](https://github.com/fastapi/fastapi/pull/13793) by [@mrlubos](https://github.com/mrlubos).
 * 📝 Add discussion template for new language translation requests. PR [#13535](https://github.com/fastapi/fastapi/pull/13535) by [@alejsdev](https://github.com/alejsdev).
 
 ### Translations
