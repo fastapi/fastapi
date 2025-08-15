@@ -169,7 +169,7 @@ def generate_readme_content() -> str:
     frontmatter_end = match_pre.end()
     pre_end = match_start.end()
     post_start = match_end.start()
-    template = Template(index_sponsors_template)
+    template = Template(index_sponsors_template, autoescape=True)
     message = template.render(sponsors=sponsors)
     pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
