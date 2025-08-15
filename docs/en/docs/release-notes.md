@@ -24,6 +24,7 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13983](https://github.com/fastapi/fastapi/pull/13983) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump actions/checkout from 4 to 5. PR [#13986](https://github.com/fastapi/fastapi/pull/13986) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update Speakeasy sponsor graphic. PR [#13971](https://github.com/fastapi/fastapi/pull/13971) by [@chailandau](https://github.com/chailandau).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13969](https://github.com/fastapi/fastapi/pull/13969) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
