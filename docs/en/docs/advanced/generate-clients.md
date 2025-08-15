@@ -4,13 +4,13 @@ Because **FastAPI** is based on the **OpenAPI** specification, its APIs can be d
 
 This makes it easy to generate up-to-date **documentation**, client libraries (<abbr title="Software Development Kits">**SDKs**</abbr>) in multiple languages, and **testing** or **automation workflows** that stay in sync with your code.
 
-In this guide, you’ll learn how to generate a **TypeScript SDK** for your FastAPI backend.
+In this guide, you'll learn how to generate a **TypeScript SDK** for your FastAPI backend.
 
 ## Open Source SDK Generators
 
 A versatile option is the <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, which supports **many programming languages** and can generate SDKs from your OpenAPI specification.
 
-For **TypeScript clients**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> (sponsored by FastAPI) is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
+For **TypeScript clients**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
 
 You can discover more SDK generators on <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
 
@@ -37,12 +37,6 @@ For example, you might want to try:
 Some of these solutions may also be open source or offer free tiers, so you can try them without a financial commitment. Other commercial SDK generators are available and can be found online. 🤓
 
 ## Create a TypeScript SDK
-
-/// tip
-
-Parts of this tutorial might not be up-to-date. If you spot a problem, please open a <a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">GitHub issue</a>.
-
-///
 
 Let's start with a simple FastAPI application:
 
@@ -100,7 +94,7 @@ The response object will also have autocompletion:
 
 ## FastAPI App with Tags
 
-In many cases your FastAPI app will be bigger, and you will probably use tags to separate different groups of *path operations*.
+In many cases, your FastAPI app will be bigger, and you will probably use tags to separate different groups of *path operations*.
 
 For example, you could have a section for **items** and another section for **users**, and they could be separated by tags:
 
@@ -110,18 +104,18 @@ For example, you could have a section for **items** and another section for **us
 
 If you generate a client for a FastAPI app using tags, it will normally also separate the client code based on the tags.
 
-This way you will be able to have things ordered and grouped correctly for the client code:
+This way, you will be able to have things ordered and grouped correctly for the client code:
 
 <img src="/img/tutorial/generate-clients/image06.png">
 
-In this case you have:
+In this case, you have:
 
 * `ItemsService`
 * `UsersService`
 
 ### Client Method Names
 
-Right now the generated method names like `createItemItemsPost` don't look very clean:
+Right now, the generated method names like `createItemItemsPost` don't look very clean:
 
 ```TypeScript
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
@@ -137,13 +131,13 @@ But I'll show you how to improve that next. 🤓
 
 You can **modify** the way these operation IDs are **generated** to make them simpler and have **simpler method names** in the clients.
 
-In this case you will have to ensure that each operation ID is **unique** in some other way.
+In this case, you will have to ensure that each operation ID is **unique** in some other way.
 
 For example, you could make sure that each *path operation* has a tag, and then generate the operation ID based on the **tag** and the *path operation* **name** (the function name).
 
 ### Custom Generate Unique ID Function
 
-FastAPI uses a **unique ID** for each *path operation*, it is used for the **operation ID** and also for the names of any needed custom models, for requests or responses.
+FastAPI uses a **unique ID** for each *path operation*, which is used for the **operation ID** and also for the names of any needed custom models, for requests or responses.
 
 You can customize that function. It takes an `APIRoute` and outputs a string.
 
@@ -155,7 +149,7 @@ You can then pass that custom function to **FastAPI** as the `generate_unique_id
 
 ### Generate a TypeScript Client with Custom Operation IDs
 
-Now if you generate the client again, you will see that it has the improved method names:
+Now, if you generate the client again, you will see that it has the improved method names:
 
 <img src="/img/tutorial/generate-clients/image07.png">
 
@@ -169,7 +163,7 @@ We already know that this method is related to the **items** because that word i
 
 We will probably still want to keep it for OpenAPI in general, as that will ensure that the operation IDs are **unique**.
 
-But for the generated client we could **modify** the OpenAPI operation IDs right before generating the clients, just to make those method names nicer and **cleaner**.
+But for the generated client, we could **modify** the OpenAPI operation IDs right before generating the clients, just to make those method names nicer and **cleaner**.
 
 We could download the OpenAPI JSON to a file `openapi.json` and then we could **remove that prefixed tag** with a script like this:
 
@@ -199,7 +193,7 @@ After generating the new client, you would now have **clean method names**, with
 
 ## Benefits
 
-When using the automatically generated clients you would get **autocompletion** for:
+When using the automatically generated clients, you would get **autocompletion** for:
 
 * Methods.
 * Request payloads in the body, query parameters, etc.
@@ -209,6 +203,6 @@ You would also have **inline errors** for everything.
 
 And whenever you update the backend code, and **regenerate** the frontend, it would have any new *path operations* available as methods, the old ones removed, and any other change would be reflected on the generated code. 🤓
 
-This also means that if something changed it will be **reflected** on the client code automatically. And if you **build** the client it will error out if you have any **mismatch** in the data used.
+This also means that if something changed, it will be **reflected** on the client code automatically. And if you **build** the client, it will error out if you have any **mismatch** in the data used.
 
 So, you would **detect many errors** very early in the development cycle instead of having to wait for the errors to show up to your final users in production and then trying to debug where the problem is. ✨
