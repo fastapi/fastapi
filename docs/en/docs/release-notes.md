@@ -7,8 +7,16 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update `docs/en/docs/advanced/generate-clients.md`. PR [#13793](https://github.com/fastapi/fastapi/pull/13793) by [@mrlubos](https://github.com/mrlubos).
+* 📝 Add discussion template for new language translation requests. PR [#13535](https://github.com/fastapi/fastapi/pull/13535) by [@alejsdev](https://github.com/alejsdev).
+
 ### Translations
 
+*  🌐 Update Portuguese Translation for `docs/pt/docs/async.md`. PR [#13863](https://github.com/fastapi/fastapi/pull/13863) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
+* 📝 Fix highlight line in `docs/ja/docs/tutorial/body.md`. PR [#13927](https://github.com/fastapi/fastapi/pull/13927) by [@KoyoMiyazaki](https://github.com/KoyoMiyazaki).
+* 🌐 Add Persian translation for `docs/fa/docs/environment-variables.md`. PR [#13923](https://github.com/fastapi/fastapi/pull/13923) by [@Mohammad222PR](https://github.com/Mohammad222PR).
 * 🌐 Add Persian translation for `docs/fa/docs/python-types.md`. PR [#13524](https://github.com/fastapi/fastapi/pull/13524) by [@Mohammad222PR](https://github.com/Mohammad222PR).
 * 🌐 Update Portuguese Translation for `docs/pt/docs/project-generation.md`. PR [#13875](https://github.com/fastapi/fastapi/pull/13875) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
 * 🌐 Add Persian translation for `docs/fa/docs/async.md`. PR [#13541](https://github.com/fastapi/fastapi/pull/13541) by [@Mohammad222PR](https://github.com/Mohammad222PR).
@@ -16,6 +24,31 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13983](https://github.com/fastapi/fastapi/pull/13983) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump actions/checkout from 4 to 5. PR [#13986](https://github.com/fastapi/fastapi/pull/13986) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update Speakeasy sponsor graphic. PR [#13971](https://github.com/fastapi/fastapi/pull/13971) by [@chailandau](https://github.com/chailandau).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13969](https://github.com/fastapi/fastapi/pull/13969) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump actions/download-artifact from 4 to 5. PR [#13975](https://github.com/fastapi/fastapi/pull/13975) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Experts. PR [#13963](https://github.com/fastapi/fastapi/pull/13963) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump ruff from 0.11.2 to 0.12.7. PR [#13957](https://github.com/fastapi/fastapi/pull/13957) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump cairosvg from 2.7.1 to 2.8.2. PR [#13959](https://github.com/fastapi/fastapi/pull/13959) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pydantic-ai from 0.0.30 to 0.4.10. PR [#13958](https://github.com/fastapi/fastapi/pull/13958) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#13962](https://github.com/fastapi/fastapi/pull/13962) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump mkdocs-material from 9.6.15 to 9.6.16. PR [#13961](https://github.com/fastapi/fastapi/pull/13961) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump tiangolo/latest-changes from 0.3.2 to 0.4.0. PR [#13952](https://github.com/fastapi/fastapi/pull/13952) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Sponsors. PR [#13956](https://github.com/fastapi/fastapi/pull/13956) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#13955](https://github.com/fastapi/fastapi/pull/13955) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: Databento link and sponsors_badge data. PR [#13954](https://github.com/fastapi/fastapi/pull/13954) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: Add Railway. PR [#13953](https://github.com/fastapi/fastapi/pull/13953) by [@tiangolo](https://github.com/tiangolo).
+* ⚒️ Update translate script, update prompt to minimize generated diff. PR [#13947](https://github.com/fastapi/fastapi/pull/13947) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13943](https://github.com/fastapi/fastapi/pull/13943) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⚒️ Tweak translate script and CI. PR [#13939](https://github.com/fastapi/fastapi/pull/13939) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Add CI to translate with LLMs. PR [#13937](https://github.com/fastapi/fastapi/pull/13937) by [@tiangolo](https://github.com/tiangolo).
+* ⚒️ Update translate script, show and update outdated translations. PR [#13933](https://github.com/fastapi/fastapi/pull/13933) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Refactor translate script with extra feedback (prints). PR [#13932](https://github.com/fastapi/fastapi/pull/13932) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update translations script to remove old (removed) files. PR [#13928](https://github.com/fastapi/fastapi/pull/13928) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13894](https://github.com/fastapi/fastapi/pull/13894) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Update httpx requirement to >=0.23.0,<0.29.0. PR [#13114](https://github.com/fastapi/fastapi/pull/13114) by [@yan12125](https://github.com/yan12125).
 * 🔧 Update sponsors: Add Mobb. PR [#13916](https://github.com/fastapi/fastapi/pull/13916) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Experts. PR [#13889](https://github.com/fastapi/fastapi/pull/13889) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update FastAPI People sleep interval, use external settings. PR [#13888](https://github.com/fastapi/fastapi/pull/13888) by [@tiangolo](https://github.com/tiangolo).
