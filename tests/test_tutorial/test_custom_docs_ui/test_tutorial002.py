@@ -36,6 +36,13 @@ def test_redoc_html(client: TestClient):
     assert "/static/redoc.standalone.js" in response.text
 
 
+def test_elements_html(client: TestClient):
+    response = client.get("/elements")
+    assert response.status_code == 200, response.text
+    assert "/static/web-components.min.js" in response.text
+    assert "/static/styles.min.css" in response.text
+
+
 def test_api(client: TestClient):
     response = client.get("/users/john")
     assert response.status_code == 200, response.text
