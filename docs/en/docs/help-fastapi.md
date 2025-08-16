@@ -160,7 +160,7 @@ Here's what to keep in mind and how to review a pull request:
 
 * Don't worry too much about things like commit message styles, I will squash and merge customizing the commit manually.
 
-* Also don't worry about style rules, there are already automatized tools checking that.
+* Also don't worry about style rules, there are already automated tools checking that.
 
 And if there's any other style or consistency need, I'll ask directly for that, or I'll add commits on top with the needed changes.
 
