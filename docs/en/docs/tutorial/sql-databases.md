@@ -218,7 +218,7 @@ It has the same fields as `HeroBase`, so it won't include `secret_name`.
 
 Finally, the identity of our heroes is protected! 🥷
 
-It also re-declares `id: int`. By doing this, we are making a **contract** with the API clients, so that they can always expect the `id` to be there and to be an `int` (it will never be `None`).
+It also redeclares `id: int`. By doing this, we are making a **contract** with the API clients, so that they can always expect the `id` to be there and to be an `int` (it will never be `None`).
 
 /// tip
 
@@ -266,9 +266,9 @@ We didn't have a way to **update a hero** in the previous version of the app, bu
 
 The `HeroUpdate` *data model* is somewhat special, it has **all the same fields** that would be needed to create a new hero, but all the fields are **optional** (they all have a default value). This way, when you update a hero, you can send just the fields that you want to update.
 
-Because all the **fields actually change** (the type now includes `None` and they now have a default value of `None`), we need to **re-declare** them.
+Because all the **fields actually change** (the type now includes `None` and they now have a default value of `None`), we need to **redeclare** them.
 
-We don't really need to inherit from `HeroBase` because we are re-declaring all the fields. I'll leave it inheriting just for consistency, but this is not necessary. It's more a matter of personal taste. 🤷
+We don't really need to inherit from `HeroBase` because we are redeclaring all the fields. I'll leave it inheriting just for consistency, but this is not necessary. It's more a matter of personal taste. 🤷
 
 The fields of `HeroUpdate` are:
 
