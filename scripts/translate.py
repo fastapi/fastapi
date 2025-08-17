@@ -34,6 +34,36 @@ The content is written in markdown, write the translation in markdown as well. D
 
 When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
 
+For example, if the original (English) content is:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+It should be exacly the same in the output document:
+
+```bash
+# Print greeting
+echo "Hello, World!"
+```
+
+If the original (English) content is:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
+It should be exacly the same in the output document:
+
+```console
+$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+        Searching for package file structure
+```
+
 The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
 
 There are special blocks of notes, tips and others that look like:
@@ -63,6 +93,81 @@ Source:
 Result:
 
 /// details | Vista previa
+
+Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
+
+Examples of how to translate a heading:
+
+Source (English):
+
+## Alternative API docs { #alternative-api-docs }
+
+Result (Spanish):
+
+## Documentación de la API alternativa { #alternative-api-docs }
+
+Source (English):
+
+### Example { #example }
+
+Result (German):
+
+### Beispiel { #example }
+
+
+Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a> tags):
+
+1) For relative URLs only translate link text. Do not translate the URL or its parts
+
+Example:
+
+Source (English):
+
+[One of the fastest Python frameworks available](#performance)
+
+Result (German):
+
+[Eines der schnellsten verfügbaren Python-Frameworks](#performance)
+
+2) For absolute URLs pointing to https://fastapi.tiangolo.com, only translate link text and change the URL by adding language code (https://fastapi.tiangolo.com/{language_code}[rest part of the url]).
+
+Example:
+
+Source (English):
+
+<a href="https://fastapi.tiangolo.com/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentation</a>
+
+Result (Spanish):
+
+<a href="https://fastapi.tiangolo.com/es/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentación</a>
+
+2.1) Do not add language codes for URLs that point to static assets (e.g., images, CSS, JavaScript).
+
+Example:
+
+Source (English):
+
+<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Something</a>
+
+Result (Spanish):
+
+<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
+
+
+3) For internal links, only translate link text.
+
+Example:
+
+Source (English):
+
+[Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+
+Result (German):
+
+[Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+
+4) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
+
 """
 
 app = typer.Typer()
@@ -70,7 +175,7 @@ app = typer.Typer()
 
 @lru_cache
 def get_langs() -> dict[str, str]:
-    return yaml.safe_load(Path("docs/language_names.yml").read_text())
+    return yaml.safe_load(Path("docs/language_names.yml").read_text(encoding="utf-8"))
 
 
 def generate_lang_path(*, lang: str, path: Path) -> Path:
@@ -105,7 +210,7 @@ def translate_page(
     lang_path.mkdir(exist_ok=True)
     lang_prompt_path = lang_path / "llm-prompt.md"
     assert lang_prompt_path.exists(), f"Prompt file not found: {lang_prompt_path}"
-    lang_prompt_content = lang_prompt_path.read_text()
+    lang_prompt_content = lang_prompt_path.read_text(encoding="utf-8")
 
     en_docs_path = Path("docs/en/docs")
     assert str(en_path).startswith(str(en_docs_path)), (
@@ -113,11 +218,11 @@ def translate_page(
     )
     out_path = generate_lang_path(lang=language, path=en_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    original_content = en_path.read_text()
+    original_content = en_path.read_text(encoding="utf-8")
     old_translation: str | None = None
     if out_path.exists():
         print(f"Found existing translation: {out_path}")
-        old_translation = out_path.read_text()
+        old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
     agent = Agent("openai:gpt-4o")
 
@@ -154,7 +259,7 @@ def translate_page(
     result = agent.run_sync(prompt)
     out_content = f"{result.data.strip()}\n"
     print(f"Saving translation to {out_path}")
-    out_path.write_text(out_content)
+    out_path.write_text(out_content, encoding="utf-8", newline="\n")
 
 
 def iter_all_en_paths() -> Iterable[Path]:
