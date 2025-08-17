@@ -1,6 +1,6 @@
 # Virtuelle Umgebungen
 
-Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Pakete(englisch: Packages), die Sie für jedes Projekt installieren, zu isolieren.
+Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Pakete (englisch: Packages), die Sie für jedes Projekt installieren, zu isolieren.
 
 /// info | Info
 
@@ -419,7 +419,7 @@ $ deactivate
 
 Auf diese Weise, wenn Sie `python` ausführen, wird nicht versucht, es aus dieser virtuellen Umgebung mit den dort installierten Paketen auszuführen.
 
-## Bereit zu arbeit
+## Bereit zu arbeiten
 
 Jetzt sind Sie bereit, mit Ihrem Projekt zu arbeiten.
 
@@ -437,7 +437,7 @@ Um mit FastAPI zu arbeiten, müssen Sie <a href="https://www.python.org/" class=
 
 Danach müssen Sie FastAPI und alle anderen Pakete, die Sie verwenden möchten, **installieren**.
 
-Um Pakete zu installieren, würden Sie normalerweise den `pip` Befehl verwenden, der mit Python geliefert wird (oder ähnliche Alternativen).
+Um Pakete zu installieren, würden Sie normalerweise den `pip`-Befehl verwenden, der mit Python geliefert wird (oder ähnliche Alternativen).
 
 Wenn Sie jedoch `pip` direkt verwenden, werden die Pakete in Ihrer **globalen Python-Umgebung** (der globalen Installation von Python) installiert.
 

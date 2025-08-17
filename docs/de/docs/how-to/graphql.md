@@ -29,7 +29,7 @@ Hier sind einige der **GraphQL**-Bibliotheken, die **ASGI**-Unterstützung haben
 
 ## GraphQL mit Strawberry
 
-Wenn Sie mit **GraphQL** arbeiten möchten oder müssen, ist <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> die **empfohlene** Bibliothek, da deren Design dem Design von **FastAPI** am nächsten kommt und alles auf **Typannotationen** basiert.
+Wenn Sie mit **GraphQL** arbeiten möchten oder müssen, ist <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> die **empfohlene** Bibliothek, da deren Design dem Design von **FastAPI** am nächsten kommt und alles auf **Typ-Annotationen** basiert.
 
 Abhängig von Ihrem Anwendungsfall könnten Sie eine andere Bibliothek vorziehen, aber wenn Sie mich fragen würden, würde ich Ihnen wahrscheinlich empfehlen, **Strawberry** auszuprobieren.
 
@@ -49,7 +49,7 @@ Das wurde von Starlette deprecated, aber wenn Sie Code haben, der das verwendet,
 
 /// tip | Tipp
 
-Wenn Sie GraphQL benötigen, würde ich Ihnen trotzdem empfehlen, sich <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> anzuschauen, da es auf Typannotationen basiert, statt auf benutzerdefinierten Klassen und Typen.
+Wenn Sie GraphQL benötigen, würde ich Ihnen trotzdem empfehlen, sich <a href="https://strawberry.rocks/" class="external-link" target="_blank">Strawberry</a> anzuschauen, da es auf Typ-Annotationen basiert, statt auf benutzerdefinierten Klassen und Typen.
 
 ///
 

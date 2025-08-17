@@ -241,7 +241,7 @@ Das ist auch bei den meisten Webanwendungen der Fall.
 
 Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so gute Internetverbindungen die Requests übermitteln.
 
-Und dann warten 🕙, bis die Responses zurückkommen.
+Und dann wieder warten 🕙, bis die Responses zurückkommen.
 
 Dieses „Warten“ 🕙 wird in Mikrosekunden gemessen, aber zusammenfassend lässt sich sagen, dass am Ende eine Menge gewartet wird.
 

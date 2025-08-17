@@ -99,7 +99,7 @@ Dann erstellen wir eine `Annotated`-Abhängigkeit `SessionDep`, um den Rest des 
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
 
-### Erstellen Sie die Datenbanktabellen beim Start
+### Die Datenbanktabellen beim Start erstellen
 
 Wir werden die Datenbanktabellen erstellen, wenn die Anwendung startet.
 
@@ -330,7 +330,7 @@ Wir werden dieses Mal nicht dem Wunsch nachgeben, alles zu refaktorisieren. 😅
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
 
-### Führen Sie die App erneut aus
+### Die App erneut ausführen
 
 Sie können die App erneut ausführen:
 

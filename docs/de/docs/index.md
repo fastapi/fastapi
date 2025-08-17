@@ -372,7 +372,7 @@ item: Item
     * Dateien.
 * <abbr title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</abbr> von Ausgabedaten: Konvertierung von Python-Daten und -Typen zu Netzwerkdaten (als JSON):
     * Konvertieren von Python-Typen (`str`, `int`, `float`, `bool`, `list`, usw.).
-    * `Datetime`-Objekte.
+    * `datetime`-Objekte.
     * `UUID`-Objekte.
     * Datenbankmodelle.
     * ... und viele mehr.

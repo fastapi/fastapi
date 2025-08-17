@@ -162,7 +162,7 @@ Hier ist, was Sie beachten sollten und wie Sie einen Pull Request überprüfen:
 
 * Außerdem, keine Sorgen über Stilregeln, es gibt bereits automatisierte Tools, die das überprüfen.
 
-Und wenn es irgendeinen andereren Stil- oder Konsistenzbedarf gibt, werde ich direkt danach fragen oder zusätzliche Commits mit den erforderlichen Änderungen hinzufügen.
+Und wenn es irgendeinen anderen Stil- oder Konsistenzbedarf gibt, werde ich direkt danach fragen oder zusätzliche Commits mit den erforderlichen Änderungen hinzufügen.
 
 ### Den Code überprüfen
 
@@ -218,8 +218,8 @@ Es gibt viel zu tun, und das meiste davon können **SIE** tun.
 
 Die Hauptaufgaben, die Sie jetzt erledigen können, sind:
 
-* [Anderen bei Fragen auf GitHub helfen](#andere-bei-fragen-auf-github-helfen){.internal-link target=_blank} (siehe Abschnitt oben).
-* [Pull Requests prüfen](#pull-requests-prufen){.internal-link target=_blank} (siehe Abschnitt oben).
+* [Anderen bei Fragen auf GitHub helfen](#help-others-with-questions-in-github){.internal-link target=_blank} (siehe Abschnitt oben).
+* [Pull Requests prüfen](#review-pull-requests){.internal-link target=_blank} (siehe Abschnitt oben).
 
 Diese beiden Aufgaben sind die Dinge, die **am meisten Zeit verbrauchen**. Das ist die Hauptarbeit bei der Wartung von FastAPI.
 
