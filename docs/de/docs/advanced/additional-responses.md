@@ -1,4 +1,4 @@
-# Zusätzliche Responses in OpenAPI
+# Zusätzliche Responses in OpenAPI { #additional-responses-in-openapi }
 
 /// warning | Achtung
 
@@ -14,7 +14,7 @@ Diese zusätzlichen Responses werden in das OpenAPI-Schema aufgenommen, sodass s
 
 Für diese zusätzlichen Responses müssen Sie jedoch sicherstellen, dass Sie eine `Response`, wie etwa `JSONResponse`, direkt zurückgeben, mit Ihrem Statuscode und Inhalt.
 
-## Zusätzliche Response mit `model`
+## Zusätzliche Response mit `model` { #additional-response-with-model }
 
 Sie können Ihren *Pfadoperation-Dekoratoren* einen Parameter `responses` übergeben.
 
@@ -34,7 +34,7 @@ Beachten Sie, dass Sie die `JSONResponse` direkt zurückgeben müssen.
 
 ///
 
-/// info
+/// info | Info
 
 Der `model`-Schlüssel ist nicht Teil von OpenAPI.
 
@@ -169,7 +169,7 @@ Die Schemas werden von einer anderen Stelle innerhalb des OpenAPI-Schemas refere
 }
 ```
 
-## Zusätzliche Medientypen für die Haupt-Response
+## Zusätzliche Medientypen für die Haupt-Response { #additional-media-types-for-the-main-response }
 
 Sie können denselben `responses`-Parameter verwenden, um verschiedene Medientypen für dieselbe Haupt-Response hinzuzufügen.
 
@@ -183,7 +183,7 @@ Beachten Sie, dass Sie das Bild direkt mit einer `FileResponse` zurückgeben mü
 
 ///
 
-/// info
+/// info | Info
 
 Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (Standardmäßig `application/json`).
 
@@ -191,7 +191,7 @@ Wenn Sie jedoch eine benutzerdefinierte Response-Klasse mit `None` als Medientyp
 
 ///
 
-## Informationen kombinieren
+## Informationen kombinieren { #combining-information }
 
 Sie können auch Response-Informationen von mehreren Stellen kombinieren, einschließlich der Parameter `response_model`, `status_code` und `responses`.
 
@@ -209,7 +209,7 @@ Es wird alles kombiniert und in Ihre OpenAPI eingebunden und in der API-Dokument
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Vordefinierte und benutzerdefinierte Responses kombinieren
+## Vordefinierte und benutzerdefinierte Responses kombinieren { #combine-predefined-responses-and-custom-ones }
 
 Möglicherweise möchten Sie einige vordefinierte Responses haben, die für viele *Pfadoperationen* gelten, Sie möchten diese jedoch mit benutzerdefinierten Responses kombinieren, die für jede *Pfadoperation* erforderlich sind.
 
@@ -239,7 +239,7 @@ Zum Beispiel:
 
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
-## Weitere Informationen zu OpenAPI-Responses
+## Weitere Informationen zu OpenAPI-Responses { #more-information-about-openapi-responses }
 
 Um zu sehen, was genau Sie in die Responses aufnehmen können, können Sie die folgenden Abschnitte in der OpenAPI-Spezifikation überprüfen:
 
