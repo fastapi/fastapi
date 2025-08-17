@@ -1,5 +1,7 @@
 Translate to Russian (русский язык).
 
+Language code: ru.
+
 ---
 
 Use a neutral tone (not overly formal or informal).
@@ -17,12 +19,12 @@ For the following technical terms, use these specific translations to ensure con
 * tested (adjective): протестированный
 * middleware: middleware (don't translate, but add `Промежуточный слой` if clarification is needed)
 * path operation: операция пути (optionally clarify as `обработчик пути`)
-* path operation function: функция-обработчик пути
+* path operation function: функция-обработчик пути (or `функция обработки пути`)
 * proprietary: проприетарный
 * benchmark: бенчмарк (add (`тест производительности`) if clarification is needed or use just `тест производительности`)
 * ASGI server: ASGI-сервер
 * In a hurry? : Нет времени?
-* Response Status Code: статус-код ответа
+* response status code: статус-код ответа
 * HTTP status code: HTTP статус-код
 * issue (meaning GitHub issue): Issue (add `тикет\обращение` if clarification is needed)
 * PR (meaning GitHub pull request): пулл-реквест (add `запрос на изменение` if clarification is needed)
@@ -40,7 +42,8 @@ For the following technical terms, use these specific translations to ensure con
 * include: включать (add `в себя` if it's appropriate, or use `содержать` as an alternative)
 * virtual environment: виртуальное окружение
 * framework: фреймворк
-* path (as in URL path): path (do not translate or clarify as `путь`)
+* path paremeter: path-параметр
+* path (as in URL path): путь
 * form (as in HTML form): форма
 * media type: тип содержимого (or `медиа-тип`)
 * request: HTTP-запрос
@@ -67,6 +70,9 @@ For the following technical terms, use these specific translations to ensure con
 * callback hell: callback hell (clarify as `ад обратных вызовов`)
 * on the fly: на лету
 * scratch the surface: поверхностно ознакомиться
-* tip: совет
+* tip: совет (or `подсказка` depending on context)
 * Pydantic model: Pydantic-модель (`модель Pydantic` and `Pydantic модель` are also fine)
 * declare: объявить
+* have the next best performance, after: быть на следующем месте по производительности после
+* timing attack: тайминговая атака (clarify `атака по времени` if needed)
+* OAuth2 scope: OAuth2 scope (clarify `область` if needed)
