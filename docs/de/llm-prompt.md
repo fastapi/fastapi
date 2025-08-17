@@ -34,6 +34,7 @@ Below is a list of English terms and their German translations. Use these transl
 * `foo` as a `type`: `foo` vom Typ `type`
 * `foo` as a `type`: `foo`, ein `type`
 * e.g: z.B.
+* etc.: usw.
 * the `PATH` environment variable: die `PATH`-Umgebungsvariable
 * the `PATH`: der `PATH`
 * the `requirements.txt`: die `requirements.txt`
