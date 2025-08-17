@@ -1,5 +1,7 @@
 Translate to German (Deutsch).
 
+Language code: de.
+
 Use the formal grammar (use "Sie" instead of "Du").
 
 Translate quotation marks ("") in the Englisch text with typographic quotation marks („“) in the German translation. For example, translate "word" with „Wort“. But don't do that when the quotation marks are inside backticks (`). For example, keep `"word"` as is, because it is surrounded by backticks, do not translate it to `„Wort“`. Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
