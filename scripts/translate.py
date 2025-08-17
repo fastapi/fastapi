@@ -96,10 +96,6 @@ Result:
 
 Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
 
-
-
-
-
 Examples of how to translate a heading:
 
 Source (English):
@@ -119,10 +115,11 @@ Result (German):
 ### Beispiel { #example }
 
 
-Do not translate or change link targets when translating. Especially do not change targets of links pointing to headings. Translate the link text but do not change the link target.
+Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a> tags):
 
+1) For relative URLs only translate link text. Do not translate the URL or its parts
 
-Example of how to translate a link to a heading in the same document:
+Example:
 
 Source (English):
 
@@ -132,8 +129,34 @@ Result (German):
 
 [Eines der schnellsten verfügbaren Python-Frameworks](#performance)
 
+2) For absolute URLs pointing to https://fastapi.tiangolo.com, only translate link text and change the URL by adding language code (https://fastapi.tiangolo.com/{language_code}[rest part of the url]).
 
-Example of how to translate a link to a heading in another document:
+Example:
+
+Source (English):
+
+<a href="https://fastapi.tiangolo.com/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentation</a>
+
+Result (Spanish):
+
+<a href="https://fastapi.tiangolo.com/es/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentación</a>
+
+2.1) Do not add language codes for URLs that point to static assets (e.g., images, CSS, JavaScript).
+
+Example:
+
+Source (English):
+
+<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Something</a>
+
+Result (Spanish):
+
+<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
+
+
+3) For internal links, only translate link text.
+
+Example:
 
 Source (English):
 
@@ -142,6 +165,8 @@ Source (English):
 Result (German):
 
 [Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+
+4) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
 
 """
 
