@@ -94,22 +94,54 @@ Result:
 
 /// details | Vista previa
 
-For **every** Markdown header (all levels), add a custom anchor based on the original English header:
+Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
 
-- Convert the English header to lowercase, replace spaces and punctuation with hyphens (kebab-case).
-- Keep this anchor identical across all translations — do not translate it.
-- Even if the original English document doesn't have an anchor, always add the correct anchor in the translated version.
-- Use these fixed anchors for all internal links across languages.
 
-Example:
+
+
+
+Examples of how to translate a heading:
 
 Source (English):
 
-## Alternative API docs
+## Alternative API docs { #alternative-api-docs }
 
 Result (Spanish):
 
-## <a id="alternative-api-docs"></a> Documentación de la API alternativa
+## Documentación de la API alternativa { #alternative-api-docs }
+
+Source (English):
+
+### Example { #example }
+
+Result (German):
+
+### Beispiel { #example }
+
+
+Do not translate or change link targets when translating. Especially do not change targets of links pointing to headings. Translate the link text but do not change the link target.
+
+
+Example of how to translate a link to a heading in the same document:
+
+Source (English):
+
+[One of the fastest Python frameworks available](#performance)
+
+Result (German):
+
+[Eines der schnellsten verfügbaren Python-Frameworks](#performance)
+
+
+Example of how to translate a link to a heading in another document:
+
+Source (English):
+
+[Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+
+Result (German):
+
+[Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
 
 """
 
