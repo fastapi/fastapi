@@ -117,7 +117,7 @@ SQLModel wird Migrationstools haben, die Alembic wrappen, aber im Moment können
 
 ### Einen Helden erstellen
 
-Da jedes SQLModel-Modell auch ein Pydantic-Modell ist, können Sie es in denselben **Typ-Annotationen** verwenden, die Sie für Pydantic-Modelle verwenden könnten.
+Da jedes SQLModel-Modell auch ein Pydantic-Modell ist, können Sie es in denselben **Typannotationen** verwenden, die Sie für Pydantic-Modelle verwenden könnten.
 
 Wenn Sie beispielsweise einen Parameter vom Typ `Hero` deklarieren, wird er aus dem **JSON-Body** gelesen.
 

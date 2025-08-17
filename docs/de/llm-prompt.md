@@ -66,8 +66,8 @@ Below is a list of English terms and their German translations. Use these transl
 * the return value: der Rückgabewert
 * the SQLModel docs: die SQLModel-Dokumentation
 * the Tutorial - User guide: das Tutorial – Benutzerhandbuch
-* the type annotation: die Typ-Annotation
-* the type hint: der Typ-Hinweis
+* the type annotation: die Typannotation
+* the type hint: der Typhinweis
 * the wildcard: die Wildcard
 * the worker class: die Workerklasse
 * NOT the worker class: die Arbeiterklasse
