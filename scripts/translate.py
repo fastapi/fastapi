@@ -30,7 +30,8 @@ If you have instructions to translate specific terms or phrases in a specific wa
 
 For code snippets or fragments, surrounded by backticks (`), don't translate the content, keep the original in English. For example, `list`, `dict`, keep them as is.
 
-The content is written in markdown, write the translation in markdown as well. Don't add triple backticks (`) around the generated translation content.
+The content is written in markdown, write the translation in markdown as well. Don't add triple backticks (`) around the generated translation content. Speak, do not add "```markdown" at the very start of the translation and do not add "```" at the very end of the translation.
+
 
 When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
 
