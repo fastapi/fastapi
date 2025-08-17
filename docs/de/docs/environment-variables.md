@@ -1,4 +1,4 @@
-# Umgebungsvariablen
+# Umgebungsvariablen { #environment-variables }
 
 /// tip | Tipp
 
@@ -10,7 +10,7 @@ Eine Umgebungsvariable (auch bekannt als „**env var**“) ist eine Variable, d
 
 Umgebungsvariablen können nützlich sein, um **Einstellungen** der Anwendung zu handhaben, als Teil der **Installation** von Python usw.
 
-## Erstellen und Verwenden von Umgebungsvariablen
+## Erstellen und Verwenden von Umgebungsvariablen { #create-and-use-env-vars }
 
 Sie können Umgebungsvariablen in der **Shell (Terminal)** erstellen und verwenden, ohne Python zu benötigen:
 
@@ -50,7 +50,7 @@ Hello Wade Wilson
 
 ////
 
-## Umgebungsvariablen in Python lesen
+## Umgebungsvariablen in Python lesen { #read-env-vars-in-python }
 
 Sie können auch Umgebungsvariablen **außerhalb** von Python erstellen, im Terminal (oder mit jeder anderen Methode) und sie dann **in Python** lesen.
 
@@ -157,7 +157,7 @@ Sie können mehr darüber lesen auf <a href="https://12factor.net/config" class=
 
 ///
 
-## Typen und Validierung
+## Typen und Validierung { #types-and-validation }
 
 Diese Umgebungsvariablen können nur **Textstrings** handhaben, da sie extern zu Python sind und kompatibel mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen, wie Linux, Windows, macOS) sein müssen.
 
@@ -165,7 +165,7 @@ Das bedeutet, dass **jeder Wert**, der in Python von einer Umgebungsvariable gel
 
 Sie werden mehr darüber lernen, wie man Umgebungsvariablen zur Handhabung von **Anwendungseinstellungen** verwendet, im [Handbuch für fortgeschrittene Benutzer – Einstellungen und Umgebungsvariablen](./advanced/settings.md){.internal-link target=_blank}.
 
-## `PATH` Umgebungsvariable
+## `PATH` Umgebungsvariable { #path-environment-variable }
 
 Es gibt eine **spezielle** Umgebungsvariable namens **`PATH`**, die von den Betriebssystemen (Linux, macOS, Windows) verwendet wird, um Programme zu finden, die ausgeführt werden sollen.
 
@@ -209,7 +209,7 @@ Zum Beispiel, wenn Sie `python` im Terminal eingeben, sucht das Betriebssystem n
 
 Wenn es es findet, wird es **benutzt**. Andernfalls sucht es weiter in den **anderen Verzeichnissen**.
 
-### Installation von Python und Aktualisierung des `PATH`
+### Installation von Python und Aktualisierung des `PATH` { #installing-python-and-updating-the-path }
 
 Wenn Sie Python installieren, könnten Sie gefragt werden, ob Sie die `PATH`-Umgebungsvariable aktualisieren möchten.
 
@@ -287,7 +287,7 @@ $ C:\opt\custompython\bin\python
 
 Diese Informationen werden nützlich sein, wenn Sie über [Virtuelle Umgebungen](virtual-environments.md){.internal-link target=_blank} lernen.
 
-## Fazit
+## Fazit { #conclusion }
 
 Mit diesem Wissen sollten Sie ein grundlegendes Verständnis davon haben, was **Umgebungsvariablen** sind und wie man sie in Python verwendet.
 
