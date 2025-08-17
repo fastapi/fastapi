@@ -1,8 +1,8 @@
-# CORS (Cross-Origin Resource Sharing)
+# CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS or "Cross-Origin Resource Sharing"</a> refers to the situations when a frontend running in a browser has JavaScript code that communicates with a backend, and the backend is in a different "origin" than the frontend.
 
-## Origin
+## Origin { #origin }
 
 An origin is the combination of protocol (`http`, `https`), domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`), and port (`80`, `443`, `8080`).
 
@@ -14,7 +14,7 @@ So, all these are different origins:
 
 Even if they are all in `localhost`, they use different protocols or ports, so, they are different "origins".
 
-## Steps
+## Steps { #steps }
 
 So, let's say you have a frontend running in your browser at `http://localhost:8080`, and its JavaScript is trying to communicate with a backend running at `http://localhost` (because we don't specify a port, the browser will assume the default port `80`).
 
@@ -24,7 +24,7 @@ To achieve this, the `:80`-backend must have a list of "allowed origins".
 
 In this case, the list would have to include `http://localhost:8080` for the `:8080`-frontend to work correctly.
 
-## Wildcards
+## Wildcards { #wildcards }
 
 It's also possible to declare the list as `"*"` (a "wildcard") to say that all are allowed.
 
@@ -32,7 +32,7 @@ But that will only allow certain types of communication, excluding everything th
 
 So, for everything to work correctly, it's better to specify explicitly the allowed origins.
 
-## Use `CORSMiddleware`
+## Use `CORSMiddleware` { #use-corsmiddleware }
 
 You can configure it in your **FastAPI** application using the `CORSMiddleware`.
 
@@ -66,17 +66,17 @@ The following arguments are supported:
 
 The middleware responds to two particular types of HTTP request...
 
-### CORS preflight requests
+### CORS preflight requests { #cors-preflight-requests }
 
 These are any `OPTIONS` request with `Origin` and `Access-Control-Request-Method` headers.
 
 In this case the middleware will intercept the incoming request and respond with appropriate CORS headers, and either a `200` or `400` response for informational purposes.
 
-### Simple requests
+### Simple requests { #simple-requests }
 
 Any request with an `Origin` header. In this case the middleware will pass the request through as normal, but will include appropriate CORS headers on the response.
 
-## More info
+## More info { #more-info }
 
 For more info about <abbr title="Cross-Origin Resource Sharing">CORS</abbr>, check the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS documentation</a>.
 

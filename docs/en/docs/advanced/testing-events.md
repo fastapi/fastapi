@@ -1,4 +1,4 @@
-# Testing Events: startup - shutdown
+# Testing Events: startup - shutdown { #testing-events-startup-shutdown }
 
 When you need your event handlers (`startup` and `shutdown`) to run in your tests, you can use the `TestClient` with a `with` statement:
 
