@@ -6,9 +6,9 @@ Translate quotation marks ("") in the Englisch text with typographic quotation m
 
 If a paragraph is in sync with the English text, with the exception of short translations in brackets, of the form "(deutsch: ...)" or "(englisch: ...)" then keep these short translations. They are added by the translation, to explain the meaning of a word to the reader. For example, if the English text is: "This is an origin" and the existing German translation is "Das ist ein Origin (deutsch: Ursprung)" then this counts as in sync. The addition " (deutsch: Ursprung)" is useful. It is not outdated.
 
-If possible, translate headings using the infinite form. For example, translate `## Create a Project` with `## Ein Projekt erstellen`, not with `## Erstellen Sie ein Projekt`. Translate `# Install Packages` with `# Pakete installieren`, not with `# Installieren Sie Pakete`. Translate `### Run Your Program` with `### Ihr Programm ausführen`, not with `### Führen Sie Ihr Programm aus`.
+If possible, translate headings using the infinite form. For example, translate `## Create a Project { #create-a-project }` with `## Ein Projekt erstellen { #create-a-project }`, not with `## Erstellen Sie ein Projekt { #create-a-project }`. Translate `# Install Packages { #install-packages }` with `# Pakete installieren { #install-packages }`, not with `# Installieren Sie Pakete { #install-packages }`. Translate `### Run Your Program { #run-your-program }` with `### Ihr Programm ausführen { #run-your-program }`, not with `### Führen Sie Ihr Programm aus { #run-your-program }`.
 
-Preserve indentation. Do not translate links. Keep emoticons. Encode in utf-8. Use Linux linebreaks (LF)
+Preserve indentation. Do not translate link targets. Keep emoticons. Encode in utf-8. Use Linux linebreaks (LF)
 
 ---
 
@@ -25,6 +25,7 @@ Below is a list of English terms and their German translations. Use these transl
 * /// check: /// check | Überprüfen
 * /// danger: /// danger | Gefahr
 * /// info: /// info | Info
+* /// note | Technical Details: /// note | Technische Details
 * /// note: /// note | Hinweis
 * /// tip: /// tip | Tipp
 * /// warning: /// warning | Achtung
