@@ -1,12 +1,12 @@
-# Response-Header
+# Response-Header { #response-headers }
 
-## Verwenden Sie einen `Response`-Parameter
+## Einen `Response`-Parameter verwenden { #use-a-response-parameter }
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren (wie Sie es auch für Cookies tun können).
 
 Und dann können Sie Header in diesem *vorübergehenden* Response-Objekt festlegen.
 
-{* ../../docs_src/response_headers/tutorial002.py hl[1,7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -16,7 +16,7 @@ Und wenn Sie ein `response_model` deklariert haben, wird es weiterhin zum Filter
 
 Sie können den Parameter `Response` auch in Abhängigkeiten deklarieren und darin Header (und Cookies) festlegen.
 
-## Eine `Response` direkt zurückgeben
+## Eine `Response` direkt zurückgeben { #return-a-response-directly }
 
 Sie können auch Header hinzufügen, wenn Sie eine `Response` direkt zurückgeben.
 
@@ -34,7 +34,7 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-## Benutzerdefinierte Header
+## Benutzerdefinierte Header { #custom-headers }
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">mittels des Präfix 'X-'</a> hinzugefügt werden können.
 
