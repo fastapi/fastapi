@@ -1,6 +1,6 @@
-# Testen mit Ersatz für Abhängigkeiten
+# Testen mit Überschreibungen für Abhängigkeiten { #testing-dependencies-with-overrides }
 
-## Abhängigkeiten beim Testen überschreiben
+## Abhängigkeiten beim Testen überschreiben { #overriding-dependencies-during-testing }
 
 Es gibt einige Szenarien, in denen Sie beim Testen möglicherweise eine Abhängigkeit überschreiben möchten.
 
@@ -8,7 +8,7 @@ Sie möchten nicht, dass die ursprüngliche Abhängigkeit ausgeführt wird (und 
 
 Stattdessen möchten Sie eine andere Abhängigkeit bereitstellen, die nur während Tests (möglicherweise nur bei einigen bestimmten Tests) verwendet wird und einen Wert bereitstellt, der dort verwendet werden kann, wo der Wert der ursprünglichen Abhängigkeit verwendet wurde.
 
-### Anwendungsfälle: Externer Service
+### Anwendungsfälle: Externer Service { #use-cases-external-service }
 
 Ein Beispiel könnte sein, dass Sie einen externen Authentifizierungsanbieter haben, mit dem Sie sich verbinden müssen.
 
@@ -20,7 +20,7 @@ Sie möchten den externen Anbieter wahrscheinlich einmal testen, ihn aber nicht 
 
 In diesem Fall können Sie die Abhängigkeit, die diesen Anbieter aufruft, überschreiben und eine benutzerdefinierte Abhängigkeit verwenden, die einen Scheinbenutzer zurückgibt, nur für Ihre Tests.
 
-### Verwenden Sie das Attribut `app.dependency_overrides`.
+### Das Attribut `app.dependency_overrides` verwenden { #use-the-app-dependency-overrides-attribute }
 
 Für diese Fälle verfügt Ihre **FastAPI**-Anwendung über das Attribut `app.dependency_overrides`, bei diesem handelt sich um ein einfaches `dict`.
 

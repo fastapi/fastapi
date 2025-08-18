@@ -59,6 +59,7 @@ Below is a list of English terms and their German translations. Use these transl
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
 * the origin: das Origin
+* the override: Die Überschreibung
 * the payload: die Payload
 * the recap: die Zusammenfassung
 * the request: der Request
