@@ -1,6 +1,6 @@
-# Handbuch für fortgeschrittene Benutzer
+# Handbuch für fortgeschrittene Benutzer { #advanced-user-guide }
 
-## Zusatzfunktionen
+## Zusatzfunktionen { #additional-features }
 
 Das Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank} sollte ausreichen, um Ihnen einen Überblick über alle Hauptfunktionen von **FastAPI** zu geben.
 
@@ -14,7 +14,7 @@ Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon l
 
 ///
 
-## Lesen Sie zuerst das Tutorial
+## Lesen Sie zuerst das Tutorial { #read-the-tutorial-first }
 
 Sie können immer noch die meisten Funktionen in **FastAPI** mit den Kenntnissen aus dem Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank} nutzen.
 
