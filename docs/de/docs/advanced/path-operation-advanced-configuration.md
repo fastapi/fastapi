@@ -1,6 +1,6 @@
-# Fortgeschrittene Konfiguration der Pfadoperation
+# Fortgeschrittene Konfiguration der Pfadoperation { #path-operation-advanced-configuration }
 
-## OpenAPI operationId
+## OpenAPI operationId { #openapi-operationid }
 
 /// warning | Achtung
 
@@ -14,13 +14,13 @@ Sie müssten sicherstellen, dass sie für jede Operation eindeutig ist.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
-### Verwendung des Namens der *Pfadoperation-Funktion* als operationId
+### Verwendung des Namens der *Pfadoperation-Funktion* als operationId { #using-the-path-operation-function-name-as-the-operationid }
 
 Wenn Sie die Funktionsnamen Ihrer API als `operationId`s verwenden möchten, können Sie über alle iterieren und die `operation_id` jeder *Pfadoperation* mit deren `APIRoute.name` überschreiben.
 
 Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,12:21,24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
 
 /// tip | Tipp
 
@@ -36,13 +36,13 @@ Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
 
 ///
 
-## Von OpenAPI ausschließen
+## Von OpenAPI ausschließen { #exclude-from-openapi }
 
 Um eine *Pfadoperation* aus dem generierten OpenAPI-Schema (und damit aus den automatischen Dokumentationssystemen) auszuschließen, verwenden Sie den Parameter `include_in_schema` und setzen Sie ihn auf `False`:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
-## Fortgeschrittene Beschreibung mittels Docstring
+## Fortgeschrittene Beschreibung mittels Docstring { #advanced-description-from-docstring }
 
 Sie können die verwendeten Zeilen aus dem Docstring einer *Pfadoperation-Funktion* einschränken, die für OpenAPI verwendet werden.
 
@@ -52,7 +52,7 @@ Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) 
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
 
-## Zusätzliche Responses
+## Zusätzliche Responses { #additional-responses }
 
 Sie haben wahrscheinlich gesehen, wie man das `response_model` und den `status_code` für eine *Pfadoperation* deklariert.
 
@@ -62,7 +62,7 @@ Sie können auch zusätzliche Responses mit deren Modellen, Statuscodes usw. dek
 
 Es gibt hier in der Dokumentation ein ganzes Kapitel darüber, Sie können es unter [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} lesen.
 
-## OpenAPI-Extra
+## OpenAPI-Extra { #openapi-extra }
 
 Wenn Sie in Ihrer Anwendung eine *Pfadoperation* deklarieren, generiert **FastAPI** automatisch die relevanten Metadaten dieser *Pfadoperation*, die in das OpenAPI-Schema aufgenommen werden sollen.
 
@@ -88,9 +88,9 @@ Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequem
 
 Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie den Parameter `openapi_extra` verwenden.
 
-### OpenAPI-Erweiterungen
+### OpenAPI-Erweiterungen { #openapi-extensions }
 
-Dieses `openapi_extra` kann beispielsweise hilfreich sein, um <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions" class="external-link" target="_blank">OpenAPI-Erweiterungen</a> zu deklarieren:
+Dieses `openapi_extra` kann beispielsweise hilfreich sein, um [OpenAPI-Erweiterungen](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) zu deklarieren:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
@@ -129,7 +129,7 @@ Und wenn Sie die resultierende OpenAPI sehen (unter `/openapi.json` in Ihrer API
 }
 ```
 
-### Benutzerdefiniertes OpenAPI-*Pfadoperation*-Schema
+### Benutzerdefiniertes OpenAPI-*Pfadoperation*-Schema { #custom-openapi-path-operation-schema }
 
 Das Dictionary in `openapi_extra` wird mit dem automatisch generierten OpenAPI-Schema für die *Pfadoperation* zusammengeführt (mittels Deep Merge).
 
@@ -139,13 +139,13 @@ Sie könnten sich beispielsweise dafür entscheiden, den Request mit Ihrem eigen
 
 Das könnte man mit `openapi_extra` machen:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[20:37,39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
-In diesem Beispiel haben wir kein Pydantic-Modell deklariert. Tatsächlich wird der Requestbody nicht einmal als JSON <abbr title="von einem einfachen Format, wie Bytes, in Python-Objekte konvertieren">geparst</abbr>, sondern direkt als `bytes` gelesen und die Funktion `magic_data_reader ()` wäre dafür verantwortlich, ihn in irgendeiner Weise zu parsen.
+In diesem Beispiel haben wir kein Pydantic-Modell deklariert. Tatsächlich wird der Requestbody nicht einmal als JSON <abbr title="von einem einfachen Format, wie Bytes, in Python-Objekte konvertieren">geparst</abbr>, sondern direkt als `bytes` gelesen und die Funktion `magic_data_reader()` wäre dafür verantwortlich, ihn in irgendeiner Weise zu parsen.
 
 Dennoch können wir das zu erwartende Schema für den Requestbody deklarieren.
 
-### Benutzerdefinierter OpenAPI-Content-Type
+### Benutzerdefinierter OpenAPI-Content-Type { #custom-openapi-content-type }
 
 Mit demselben Trick könnten Sie ein Pydantic-Modell verwenden, um das JSON-Schema zu definieren, das dann im benutzerdefinierten Abschnitt des OpenAPI-Schemas für die *Pfadoperation* enthalten ist.
 
@@ -155,17 +155,17 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22,24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22,24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
 
 ////
 
-/// info
+/// info | Info
 
 In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
 
@@ -189,7 +189,7 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 
 ////
 
-/// info
+/// info | Info
 
 In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.
 
