@@ -1,12 +1,12 @@
-# Response-Cookies
+# Response-Cookies { #response-cookies }
 
-## Einen `Response`-Parameter verwenden
+## Einen `Response`-Parameter verwenden { #use-a-response-parameter }
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren.
 
 Und dann können Sie Cookies in diesem *vorübergehenden* Response-Objekt setzen.
 
-{* ../../docs_src/response_cookies/tutorial002.py hl[1,8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -16,7 +16,7 @@ Und wenn Sie ein `response_model` deklariert haben, wird es weiterhin zum Filter
 
 Sie können den `Response`-Parameter auch in Abhängigkeiten deklarieren und darin Cookies (und Header) setzen.
 
-## Eine `Response` direkt zurückgeben
+## Eine `Response` direkt zurückgeben { #return-a-response-directly }
 
 Sie können Cookies auch erstellen, wenn Sie eine `Response` direkt in Ihrem Code zurückgeben.
 
@@ -36,7 +36,7 @@ Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten ge
 
 ///
 
-### Mehr Informationen
+### Mehr Informationen { #more-info }
 
 /// note | Technische Details
 
