@@ -1,14 +1,14 @@
-# Lifespan-Events
+# Lifespan-Events { #lifespan-events }
 
 Sie können Logik (Code) definieren, die ausgeführt werden soll, bevor die Anwendung **hochfährt**. Dies bedeutet, dass dieser Code **einmal** ausgeführt wird, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**.
 
 Auf die gleiche Weise können Sie Logik (Code) definieren, die ausgeführt werden soll, wenn die Anwendung **heruntergefahren** wird. In diesem Fall wird dieser Code **einmal** ausgeführt, **nachdem** möglicherweise **viele Requests** bearbeitet wurden.
 
-Da dieser Code ausgeführt wird, bevor die Anwendung **beginnt**, Requests entgegenzunehmen, und unmittelbar, nachdem sie die Bearbeitung von Requests **abgeschlossen hat**, deckt er die gesamte **Lebensdauer – „Lifespan“** – der Anwendung ab (das Wort „Lifespan“ wird gleich wichtig sein 😉).
+Da dieser Code ausgeführt wird, bevor die Anwendung **beginnt**, Requests entgegenzunehmen, und unmittelbar, nachdem sie die Bearbeitung von Requests **abgeschlossen hat**, deckt er den gesamten Anwendungs-**Lifespan** (deutsch: Lebensdauer) ab (das Wort „Lifespan“ wird gleich wichtig sein 😉).
 
-Dies kann sehr nützlich sein, um **Ressourcen** einzurichten, die Sie in der gesamten Anwendung verwenden wollen und die von Requests **gemeinsam genutzt** werden und/oder die Sie anschließend **aufräumen** müssen. Zum Beispiel ein Pool von Datenbankverbindungen oder das Laden eines gemeinsam genutzten Modells für maschinelles Lernen.
+Dies kann sehr nützlich sein, um **Ressourcen** einzurichten, die Sie in der gesamten App verwenden wollen und die von Requests **gemeinsam genutzt** werden und/oder die Sie anschließend **aufräumen** müssen. Zum Beispiel ein Pool von Datenbankverbindungen oder das Laden eines gemeinsam genutzten Modells für maschinelles Lernen.
 
-## Anwendungsfall
+## Anwendungsfall { #use-case }
 
 Beginnen wir mit einem Beispiel-**Anwendungsfall** und schauen uns dann an, wie wir ihn mit dieser Methode implementieren können.
 
@@ -22,7 +22,7 @@ Sie könnten das auf der obersten Ebene des Moduls/der Datei machen, aber das w�
 
 Das wollen wir besser machen: Laden wir das Modell, bevor die Requests bearbeitet werden, aber unmittelbar bevor die Anwendung beginnt, Requests zu empfangen, und nicht, während der Code geladen wird.
 
-## Lifespan
+## Lifespan { #lifespan }
 
 Sie können diese Logik beim *Hochfahren* und *Herunterfahren* mithilfe des `lifespan`-Parameters der `FastAPI`-App und eines „Kontextmanagers“ definieren (ich zeige Ihnen gleich, was das ist).
 
@@ -34,7 +34,7 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das Dictionary mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
 
-Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird unmittelbar vor dem *Herunterfahren* ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
+Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Herunterfahren*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
 /// tip | Tipp
 
@@ -44,7 +44,7 @@ Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach
 
 ///
 
-### Lifespan-Funktion
+### Lifespan-Funktion { #lifespan-function }
 
 Das Erste, was auffällt, ist, dass wir eine asynchrone Funktion mit `yield` definieren. Das ist sehr ähnlich zu Abhängigkeiten mit `yield`.
 
@@ -54,7 +54,7 @@ Der erste Teil der Funktion, vor dem `yield`, wird ausgeführt **bevor** die Anw
 
 Und der Teil nach `yield` wird ausgeführt, **nachdem** die Anwendung beendet ist.
 
-### Asynchroner Kontextmanager
+### Asynchroner Kontextmanager { #async-context-manager }
 
 Wie Sie sehen, ist die Funktion mit einem `@asynccontextmanager` versehen.
 
@@ -84,7 +84,7 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 
 {* ../../docs_src/events/tutorial003.py hl[22] *}
 
-## Alternative Events (deprecated)
+## Alternative Events (veraltet) { #alternative-events-deprecated }
 
 /// warning | Achtung
 
@@ -96,11 +96,11 @@ Sie können diesen Teil wahrscheinlich überspringen.
 
 Es gibt eine alternative Möglichkeit, diese Logik zu definieren, sodass sie beim *Hochfahren* und beim *Herunterfahren* ausgeführt wird.
 
-Sie können <abbr title="Eventhandler – Ereignisbehandler: Funktion, die bei jedem Eintreten eines bestimmten Ereignisses ausgeführt wird">Eventhandler</abbr> (Funktionen) definieren, die ausgeführt werden sollen, bevor die Anwendung hochgefahren wird oder wenn die Anwendung heruntergefahren wird.
+Sie können Eventhandler (Funktionen) definieren, die ausgeführt werden sollen, bevor die Anwendung hochgefahren wird oder wenn die Anwendung heruntergefahren wird.
 
 Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
-### `startup`-Event
+### `startup`-Event { #startup-event }
 
 Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `startup`:
 
@@ -112,7 +112,7 @@ Sie können mehr als eine Eventhandler-Funktion hinzufügen.
 
 Und Ihre Anwendung empfängt erst dann Anfragen, wenn alle `startup`-Eventhandler abgeschlossen sind.
 
-### `shutdown`-Event
+### `shutdown`-Event { #shutdown-event }
 
 Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
 
@@ -120,7 +120,7 @@ Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführ
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.
 
-/// info
+/// info | Info
 
 In der Funktion `open()` bedeutet `mode="a"` „append“ („anhängen“), sodass die Zeile nach dem, was sich in dieser Datei befindet, hinzugefügt wird, ohne den vorherigen Inhalt zu überschreiben.
 
@@ -138,7 +138,7 @@ Daher deklarieren wir die Eventhandler-Funktion mit Standard-`def` statt mit `as
 
 ///
 
-### `startup` und `shutdown` zusammen
+### `startup` und `shutdown` zusammen { #startup-and-shutdown-together }
 
 Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Hochfahren* und *Herunterfahren* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
 
@@ -146,13 +146,13 @@ Bei getrennten Funktionen, die keine gemeinsame Logik oder Variablen haben, ist 
 
 Aus diesem Grund wird jetzt empfohlen, stattdessen `lifespan` wie oben erläutert zu verwenden.
 
-## Technische Details
+## Technische Details { #technical-details }
 
 Nur ein technisches Detail für die neugierigen Nerds. 🤓
 
 In der technischen ASGI-Spezifikation ist dies Teil des <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protokolls</a> und definiert Events namens `startup` und `shutdown`.
 
-/// info
+/// info | Info
 
 Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlettes Lifespan-Dokumentation</a>.
 
@@ -160,6 +160,6 @@ Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihr
 
 ///
 
-## Unteranwendungen
+## Unteranwendungen { #sub-applications }
 
 🚨 Beachten Sie, dass diese Lifespan-Events (Hochfahren und Herunterfahren) nur für die Hauptanwendung ausgeführt werden, nicht für [Unteranwendungen – Mounts](sub-applications.md){.internal-link target=_blank}.
