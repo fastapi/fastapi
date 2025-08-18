@@ -59,12 +59,14 @@ Below is a list of English terms and their German translations. Use these transl
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
 * the origin: das Origin
+* the payload: die Payload
 * the recap: die Zusammenfassung
 * the request: der Request
 * the response: die Response
 * the return type: der Rückgabetyp
 * the return value: der Rückgabewert
 * the SQLModel docs: die SQLModel-Dokumentation
+* the SDK: das SDK
 * the Tutorial - User guide: das Tutorial – Benutzerhandbuch
 * the type annotation: die Typannotation
 * the type hint: der Typhinweis
