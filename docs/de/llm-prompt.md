@@ -49,6 +49,7 @@ Below is a list of English terms and their German translations. Use these transl
 * the engine: die Engine
 * the env var: die Umgebungsvariable
 * the error response: die Error-Response
+* the event: das Event
 * the exception: die Exception
 * the form model: das Formularmodell
 * the form body: der Formularbody

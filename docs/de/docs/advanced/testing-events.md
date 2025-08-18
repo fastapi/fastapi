@@ -1,4 +1,4 @@
-# Events testen: Hochfahren – Herunterfahren
+# Events testen: Hochfahren – Herunterfahren { #testing-events-startup-shutdown }
 
 Wenn Sie in Ihren Tests Ihre Event-Handler (`startup` und `shutdown`) ausführen wollen, können Sie den `TestClient` mit einer `with`-Anweisung verwenden:
 
