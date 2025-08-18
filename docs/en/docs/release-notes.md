@@ -14,6 +14,7 @@ hide:
 
 ### Translations
 
+* 📝 Fix code include for Pydantic models example in `docs/zh/docs/python-types.md`. PR [#13997](https://github.com/fastapi/fastapi/pull/13997) by [@anfreshman](https://github.com/anfreshman).
 *  🌐 Update Portuguese Translation for `docs/pt/docs/async.md`. PR [#13863](https://github.com/fastapi/fastapi/pull/13863) by [@EdmilsonRodrigues](https://github.com/EdmilsonRodrigues).
 * 📝 Fix highlight line in `docs/ja/docs/tutorial/body.md`. PR [#13927](https://github.com/fastapi/fastapi/pull/13927) by [@KoyoMiyazaki](https://github.com/KoyoMiyazaki).
 * 🌐 Add Persian translation for `docs/fa/docs/environment-variables.md`. PR [#13923](https://github.com/fastapi/fastapi/pull/13923) by [@Mohammad222PR](https://github.com/Mohammad222PR).
