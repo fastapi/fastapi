@@ -1,4 +1,4 @@
-# Templates
+# Templates { #templates }
 
 Sie können jede gewünschte Template-Engine mit **FastAPI** verwenden.
 
@@ -6,9 +6,9 @@ Eine häufige Wahl ist Jinja2, dasselbe, was auch von Flask und anderen Tools ve
 
 Es gibt Werkzeuge zur einfachen Konfiguration, die Sie direkt in Ihrer **FastAPI**-Anwendung verwenden können (bereitgestellt von Starlette).
 
-## Abhängigkeiten installieren
+## Abhängigkeiten installieren { #install-dependencies }
 
-Installieren Sie `jinja2`:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `jinja2` installieren:
 
 <div class="termy">
 
@@ -20,7 +20,7 @@ $ pip install jinja2
 
 </div>
 
-## Verwendung von `Jinja2Templates`
+## Verwendung von `Jinja2Templates` { #using-jinja2templates }
 
 * Importieren Sie `Jinja2Templates`.
 * Erstellen Sie ein `templates`-Objekt, das Sie später wiederverwenden können.
@@ -47,11 +47,11 @@ Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationso
 
 Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 
-**FastAPI** bietet dasselbe `starlette.templating` auch via `fastapi.templating` an, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber direkt von Starlette. Das Gleiche gilt für `Request` und `StaticFiles`.
+**FastAPI** bietet dasselbe `starlette.templating` auch via `fastapi.templating` an, als Annehmlichkeit für Sie, den Entwickler. Aber die meisten der verfügbaren Responses kommen direkt von Starlette. Das Gleiche gilt für `Request` und `StaticFiles`.
 
 ///
 
-## Templates erstellen
+## Templates erstellen { #writing-templates }
 
 Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. folgendem Inhalt:
 
@@ -59,7 +59,7 @@ Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. f
 {!../../docs_src/templates/templates/item.html!}
 ```
 
-### Template-Kontextwerte
+### Template-Kontextwerte { #template-context-values }
 
 Im HTML, welches enthält:
 
@@ -71,7 +71,7 @@ Item ID: {{ id }}
 
 {% endraw %}
 
-... wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
+...wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
 
 ```Python
 {"id": id}
@@ -83,7 +83,7 @@ Mit beispielsweise einer ID `42` würde das wie folgt gerendert werden:
 Item ID: 42
 ```
 
-### Template-`url_for`-Argumente
+### Template-`url_for`-Argumente { #template-url-for-arguments }
 
 Sie können `url_for()` auch innerhalb des Templates verwenden, es nimmt als Argumente dieselben Argumente, die von Ihrer *Pfadoperation-Funktion* verwendet werden.
 
@@ -97,7 +97,7 @@ Der Abschnitt mit:
 
 {% endraw %}
 
-... generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
+...generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
 
 Mit beispielsweise der ID `42` würde dies Folgendes ergeben:
 
@@ -105,7 +105,7 @@ Mit beispielsweise der ID `42` würde dies Folgendes ergeben:
 <a href="/items/42">
 ```
 
-## Templates und statische Dateien
+## Templates und statische Dateien { #templates-and-static-files }
 
 Sie können `url_for()` innerhalb des Templates auch beispielsweise mit den `StaticFiles` verwenden, die Sie mit `name="static"` gemountet haben.
 
@@ -121,6 +121,6 @@ In diesem Beispiel würde das zu einer CSS-Datei unter `static/styles.css` verli
 
 Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer **FastAPI**-Anwendung unter der URL `/static/styles.css` bereitgestellt.
 
-## Mehr Details
+## Mehr Details { #more-details }
 
 Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in der <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette Dokumentation zu Templates</a>.
