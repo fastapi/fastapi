@@ -4,7 +4,7 @@ By default, **FastAPI** will return the responses using a `JSONResponse`, puttin
 
 It will use the default status code or the one you set in your *path operation*.
 
-## Additional status codes { #additional-status-codes }
+## Additional status codes { #additional-status-codes_1 }
 
 If you want to return additional status codes apart from the main one, you can do that by returning a `Response` directly, like a `JSONResponse`, and set the additional status code directly.
 

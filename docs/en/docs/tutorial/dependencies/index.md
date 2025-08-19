@@ -243,7 +243,7 @@ admin_user --> activate_user
 paying_user --> pro_items
 ```
 
-## Integrated with **OpenAPI** { #integrated-with-openapi }
+## Integrated with **OpenAPI** { #integrated-with-openapi_1 }
 
 All these dependencies, while declaring their requirements, also add parameters, validations, etc. to your *path operations*.
 

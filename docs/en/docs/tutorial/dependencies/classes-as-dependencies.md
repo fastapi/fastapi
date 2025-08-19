@@ -38,7 +38,7 @@ something(some_argument, some_keyword_argument="foo")
 
 then it is a "callable".
 
-## Classes as dependencies { #classes-as-dependencies }
+## Classes as dependencies { #classes-as-dependencies_1 }
 
 You might notice that to create an instance of a Python class, you use that same syntax.
 
