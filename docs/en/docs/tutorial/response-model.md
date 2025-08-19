@@ -344,7 +344,7 @@ It is equivalent to `set(["name", "description"])`.
 
 ///
 
-#### Using `list`s instead of `set`s { #using-list-s-instead-of-set-s }
+#### Using `list`s instead of `set`s { #using-lists-instead-of-sets }
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 

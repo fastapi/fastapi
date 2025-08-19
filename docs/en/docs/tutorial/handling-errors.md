@@ -226,7 +226,7 @@ You will receive a response telling you that the data is invalid containing the 
 }
 ```
 
-#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapi-s-httpexception-vs-starlette-s-httpexception }
+#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI** has its own `HTTPException`.
 

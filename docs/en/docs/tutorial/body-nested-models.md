@@ -14,7 +14,7 @@ This will make `tags` be a list, although it doesn't declare the type of the ele
 
 But Python has a specific way to declare lists with internal types, or "type parameters":
 
-### Import typing's `List` { #import-typing-s-list }
+### Import typing's `List` { #import-typings-list }
 
 In Python 3.9 and above you can use the standard `list` to declare these type annotations as we'll see below. 💡
 
@@ -204,7 +204,7 @@ You couldn't get this kind of editor support if you were working directly with `
 
 But you don't have to worry about them either, incoming dicts are converted automatically and your output is converted automatically to JSON too.
 
-## Bodies of arbitrary `dict`s { #bodies-of-arbitrary-dict-s }
+## Bodies of arbitrary `dict`s { #bodies-of-arbitrary-dicts }
 
 You can also declare a body as a `dict` with keys of some type and values of some other type.
 

@@ -44,7 +44,7 @@ But this guide shows you, more or less, how they are intended to be used.
 
 ///
 
-### Using Pydantic's `exclude_unset` parameter { #using-pydantic-s-exclude-unset-parameter }
+### Using Pydantic's `exclude_unset` parameter { #using-pydantics-exclude-unset-parameter }
 
 If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.model_dump()`.
 
@@ -64,7 +64,7 @@ Then you can use this to generate a `dict` with only the data that was set (sent
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-### Using Pydantic's `update` parameter { #using-pydantic-s-update-parameter }
+### Using Pydantic's `update` parameter { #using-pydantics-update-parameter }
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
 
