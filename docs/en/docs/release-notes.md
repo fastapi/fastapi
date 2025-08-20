@@ -25,6 +25,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump `mkdocs-macros-plugin` from 1.3.7 to 1.3.9. PR [#14003](https://github.com/fastapi/fastapi/pull/14003) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13999](https://github.com/fastapi/fastapi/pull/13999) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13983](https://github.com/fastapi/fastapi/pull/13983) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump actions/checkout from 4 to 5. PR [#13986](https://github.com/fastapi/fastapi/pull/13986) by [@dependabot[bot]](https://github.com/apps/dependabot).
