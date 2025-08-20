@@ -1,4 +1,4 @@
-# Serverworker – Uvicorn mit Workern
+# Serverworker – Uvicorn mit Workern { #server-workers-uvicorn-with-workers }
 
 Schauen wir uns die Deployment-Konzepte von früher noch einmal an:
 
@@ -25,7 +25,7 @@ Insbesondere wenn die Anwendung auf **Kubernetes** läuft, werden Sie wahrschein
 
 ///
 
-## Mehrere Worker
+## Mehrere Worker { #multiple-workers }
 
 Sie können mehrere Worker mit der `--workers`-Befehlszeilenoption starten:
 
@@ -111,7 +111,7 @@ Die einzige neue Option hier ist `--workers`, die Uvicorn anweist, 4 Workerproze
 
 Sie können auch sehen, dass die **PID** jedes Prozesses angezeigt wird, `27365` für den übergeordneten Prozess (dies ist der **Prozessmanager**) und eine für jeden Workerprozess: `27368`, `27369`, `27370` und `27367`.
 
-## Deployment-Konzepte
+## Deployment-Konzepte { #deployment-concepts }
 
 Hier haben Sie gesehen, wie Sie mehrere **Worker** verwenden, um die Ausführung der Anwendung zu **parallelisieren**, **mehrere Kerne** der CPU zu nutzen und in der Lage zu sein, **mehr Requests** zu bedienen.
 
@@ -124,13 +124,13 @@ In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern 
 * **Arbeitsspeicher**
 * **Schritte vor dem Start**
 
-## Container und Docker
+## Container und Docker { #containers-and-docker }
 
 Im nächsten Kapitel über [FastAPI in Containern – Docker](docker.md){.internal-link target=_blank} werde ich einige Strategien erläutern, die Sie für den Umgang mit den anderen **Deployment-Konzepten** verwenden können.
 
 Ich zeige Ihnen, wie Sie **Ihr eigenes Image von Grund auf erstellen**, um einen einzelnen Uvicorn-Prozess auszuführen. Es ist ein einfacher Vorgang und wahrscheinlich das, was Sie tun möchten, wenn Sie ein verteiltes Containerverwaltungssystem wie **Kubernetes** verwenden.
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Sie können mehrere Workerprozesse mit der `--workers`-CLI-Option über die `fastapi`- oder `uvicorn`-Befehle nutzen, um **Multikern-CPUs** auszunutzen und **mehrere Prozesse parallel** auszuführen.
 
