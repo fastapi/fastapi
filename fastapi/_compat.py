@@ -286,7 +286,7 @@ if PYDANTIC_V2:
                     if prop_name not in base_required:
                         base_required.append(prop_name)
 
-        return field_mapping, base_definitions  # type: ignore[return-value]
+        return field_mapping, base_definitions
 
     def is_scalar_field(field: ModelField) -> bool:
         from fastapi import params
