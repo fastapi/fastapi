@@ -4,7 +4,7 @@ Language code: de.
 
 Use the formal grammar (use "Sie" instead of "Du").
 
-Translate quotation marks ("") in the Englisch text with typographic quotation marks („“) in the German translation. For example, translate "word" with „Wort“. But don't do that when the quotation marks are inside backticks (`). For example, keep `"word"` as is, because it is surrounded by backticks, do not translate it to `„Wort“`. Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
+Translate quotation marks ("") in the English text with typographic quotation marks („“) in the German translation. For example, translate "word" with „Wort“. But don't do that when the quotation marks are inside backticks (`). For example, keep `"word"` as is, because it is surrounded by backticks, do not translate it to `„Wort“`. Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
 
 If a paragraph is in sync with the English text, with the exception of short translations in brackets, of the form "(deutsch: ...)" or "(englisch: ...)" then keep these short translations. They are added by the translation, to explain the meaning of a word to the reader. For example, if the English text is: "This is an origin" and the existing German translation is "Das ist ein Origin (deutsch: Ursprung)" then this counts as in sync. The addition " (deutsch: Ursprung)" is useful. It is not outdated.
 
