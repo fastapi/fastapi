@@ -1,4 +1,4 @@
-# GraphQL
+# GraphQL { #graphql }
 
 Da **FastAPI** auf dem **ASGI**-Standard basiert, ist es sehr einfach, jede **GraphQL**-Bibliothek zu integrieren, die auch mit ASGI kompatibel ist.
 
@@ -14,7 +14,7 @@ Stellen Sie sicher, dass Sie prüfen, ob die **Vorteile** für Ihren Anwendungsf
 
 ///
 
-## GraphQL-Bibliotheken
+## GraphQL-Bibliotheken { #graphql-libraries }
 
 Hier sind einige der **GraphQL**-Bibliotheken, die **ASGI**-Unterstützung haben. Sie könnten sie mit **FastAPI** verwenden:
 
@@ -27,7 +27,7 @@ Hier sind einige der **GraphQL**-Bibliotheken, die **ASGI**-Unterstützung haben
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
     * Mit <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>
 
-## GraphQL mit Strawberry
+## GraphQL mit Strawberry { #graphql-with-strawberry }
 
 Wenn Sie mit **GraphQL** arbeiten möchten oder müssen, ist <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> die **empfohlene** Bibliothek, da deren Design dem Design von **FastAPI** am nächsten kommt und alles auf **Typannotationen** basiert.
 
@@ -41,7 +41,7 @@ Weitere Informationen zu Strawberry finden Sie in der <a href="https://strawberr
 
 Und auch in der Dokumentation zu <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry mit FastAPI</a>.
 
-## Ältere `GraphQLApp` von Starlette
+## Ältere `GraphQLApp` von Starlette { #older-graphqlapp-from-starlette }
 
 Frühere Versionen von Starlette enthielten eine `GraphQLApp`-Klasse zur Integration mit <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
 
@@ -53,7 +53,7 @@ Wenn Sie GraphQL benötigen, würde ich Ihnen trotzdem empfehlen, sich <a href="
 
 ///
 
-## Mehr darüber lernen
+## Mehr darüber lernen { #learn-more }
 
 Weitere Informationen zu **GraphQL** finden Sie in der <a href="https://graphql.org/" class="external-link" target="_blank">offiziellen GraphQL-Dokumentation</a>.
 
