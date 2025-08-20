@@ -130,7 +130,19 @@ Result (German):
 
 [Eines der schnellsten verfügbaren Python-Frameworks](#performance)
 
-2) For absolute URLs pointing to https://fastapi.tiangolo.com, only translate link text and change the URL by adding language code (https://fastapi.tiangolo.com/{language_code}[rest part of the url]).
+2) For absolute URLs which DO NOT start EXACTLY with "https://fastapi.tiangolo.com", only translate link text and leave the URL unchanged.
+
+Example:
+
+Source (English):
+
+<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel docs</a>
+
+Result (German):
+
+<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel-Dokumentation</a>
+
+3) For absolute URLs which DO start EXACTLY with "https://fastapi.tiangolo.com", only translate link text and change the URL by adding language code (https://fastapi.tiangolo.com/{language_code}[rest part of the url]).
 
 Example:
 
@@ -142,7 +154,7 @@ Result (Spanish):
 
 <a href="https://fastapi.tiangolo.com/es/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentación</a>
 
-2.1) Do not add language codes for URLs that point to static assets (e.g., images, CSS, JavaScript).
+3.1) Do not add language codes for URLs that point to static assets (e.g., images, CSS, JavaScript).
 
 Example:
 
@@ -155,7 +167,7 @@ Result (Spanish):
 <a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
 
 
-3) For internal links, only translate link text.
+4) For internal links, only translate link text.
 
 Example:
 
@@ -167,7 +179,7 @@ Result (German):
 
 [Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
 
-4) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
+5) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
 
 """
 
