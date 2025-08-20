@@ -44,6 +44,8 @@ Below is a list of English terms and their German translations. Use these transl
 * the Authorization-Header: der Autorisierungsheader
 * the background task: der Hintergrundtask
 * the cloud provider: der Cloudanbieter
+* the CLI: Das CLI
+* the command line interface: Das Kommandozeileninterface
 * the docs: die Dokumentation (singular case)
 * the default value: der Defaultwert
 * the engine: die Engine
