@@ -170,9 +170,9 @@ So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="Comma
 
 ///
 
-## Überprüfen, ob die virtuelle Umgebung aktiv ist { #check-the-virtual-environment-is-active }
+## Testen, ob die virtuelle Umgebung aktiv ist { #check-the-virtual-environment-is-active }
 
-Überprüfen Sie, dass die virtuelle Umgebung aktiv ist (der vorherige Befehl funktioniert hat).
+Testen Sie, dass die virtuelle Umgebung aktiv ist (der vorherige Befehl funktioniert hat).
 
 /// tip | Tipp
 
@@ -712,9 +712,9 @@ Ein wichtiger Punkt ist, dass es den Pfad der virtuellen Umgebung am **Anfang** 
 
 Das Aktivieren einer virtuellen Umgebung ändert auch ein paar andere Dinge, aber dies ist eines der wichtigsten Dinge, die es tut.
 
-## Überprüfen einer virtuellen Umgebung { #checking-a-virtual-environment }
+## Testen einer virtuellen Umgebung { #checking-a-virtual-environment }
 
-Wenn Sie überprüfen, ob eine virtuelle Umgebung aktiv ist, zum Beispiel mit:
+Wenn Sie testen, ob eine virtuelle Umgebung aktiv ist, zum Beispiel mit:
 
 //// tab | Linux, macOS, Windows Bash
 
@@ -744,7 +744,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ////
 
-Das bedeutet, dass das `python`-Programm, das verwendet wird, das in der **virtuellen Umgebung** ist.
+bedeutet das, dass das `python`-Programm, das verwendet wird, das in der **virtuellen Umgebung** ist.
 
 Sie verwenden `which` auf Linux und macOS und `Get-Command` in Windows PowerShell.
 

@@ -164,7 +164,7 @@ Hier ist, was Sie beachten sollten und wie Sie einen Pull Request überprüfen:
 
 Und wenn es irgendeinen anderen Stil- oder Konsistenzbedarf gibt, werde ich direkt danach fragen oder zusätzliche Commits mit den erforderlichen Änderungen hinzufügen.
 
-### Den Code überprüfen { #check-the-code }
+### Den Code testen { #check-the-code }
 
 * Prüfen und lesen Sie den Code, fragen Sie sich, ob er Sinn macht, **führen Sie ihn lokal aus** und testen Sie, ob er das Problem tatsächlich löst.
 

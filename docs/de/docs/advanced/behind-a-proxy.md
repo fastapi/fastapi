@@ -90,7 +90,7 @@ Und die Kommandozeilenoption `--root-path` stellt diesen `root_path` bereit.
 
 ///
 
-### Überprüfen des aktuellen `root_path` { #checking-the-current-root-path }
+### Testen des aktuellen `root_path` { #checking-the-current-root-path }
 
 Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede Anfrage verwendet wird. Er ist Teil des `scope`-Dictionarys (das ist Teil der ASGI-Spezifikation).
 
@@ -231,7 +231,7 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-### Die Responses betrachten { #check-the-responses }
+### Die Responses testen { #check-the-responses }
 
 Wenn Sie nun zur URL mit dem Port für Uvicorn gehen: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, sehen Sie die normale Response:
 
@@ -267,7 +267,7 @@ Und die von Uvicorn direkt bereitgestellte Version ohne Pfadpräfix (`http://127
 
 Dies demonstriert, wie der Proxy (Traefik) das Pfadpräfix verwendet und wie der Server (Uvicorn) den `root_path` aus der Option `--root-path` verwendet.
 
-### Es in der Dokumentationsoberfläche betrachten { #check-the-docs-ui }
+### Es in der Dokumentationsoberfläche testen { #check-the-docs-ui }
 
 Jetzt folgt der spaßige Teil. ✨
 

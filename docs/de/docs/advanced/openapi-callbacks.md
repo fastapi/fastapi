@@ -177,7 +177,7 @@ Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `
 
 ///
 
-### Es in der Dokumentation ansehen { #check-the-docs }
+### Es in der Dokumentation testen { #check-the-docs }
 
 Jetzt können Sie Ihre Anwendung starten und zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
 

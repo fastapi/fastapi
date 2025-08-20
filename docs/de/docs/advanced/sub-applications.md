@@ -28,7 +28,7 @@ In diesem Fall wird sie im Pfad `/subapi` gemountet:
 
 {* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
 
-### Die automatische API-Dokumentation überprüfen { #check-the-automatic-api-docs }
+### Die automatische API-Dokumentation testen { #check-the-automatic-api-docs }
 
 Führen Sie nun den `fastapi`-Befehl mit Ihrer Datei aus:
 

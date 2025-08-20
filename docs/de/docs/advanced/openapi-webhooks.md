@@ -46,7 +46,7 @@ Beachten Sie, dass Sie bei Webhooks tatsächlich keinen *Pfad* (wie `/items/`) d
 
 Das liegt daran, dass erwartet wird, dass **Ihre Benutzer** den tatsächlichen **URL-Pfad**, an dem sie den Webhook-Request empfangen möchten, auf andere Weise definieren (z.B. über ein Web-Dashboard).
 
-### Die Dokumentation überprüfen { #check-the-docs }
+### Die Dokumentation testen { #check-the-docs }
 
 Jetzt können Sie Ihre App starten und zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
 
