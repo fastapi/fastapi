@@ -8,6 +8,8 @@ Translate quotation marks ("") in the English text with typographic quotation ma
 
 If a word in an existing translation has an explanation in brackets after it, of the form "(deutsch: foo)" or "(englisch: bar)", then keep that explanation, even if it is not in the english text. It was manually added by the reviewer of the translation, to explain the meaning of a word to the reader of the translation. For example, if the English text is: "This is an origin" and the translation is "Das ist ein Origin (deutsch: Ursprung)" then the " (deutsch: Ursprung)" explains the meaning of the word "Origin" to the reader and you should therefore keep this part. This rule only applies when the part in brackets starts with "deutsch:" or with "englisch:" For example if the English text is "Hello World!" and the translation is "Hallo Welt (schon wieder)", then remove the " (schon wieder)" and translate with "Hallo Welt" instead of "Hallo Welt (schon wieder)", because the part in brackets does not start with "deutsch:" and not with "englisch:".
 
+If a word or text snippet in the English text is wrapped in an `abbr` HTML-element, translate the text inside its `title` attribute. For example, translate `Hello <abbr title="World">Universe</abbr>` with `Hallo <abbr title="Welt">Universum</abbr>`, translate `The files are served from a <abbr title="Content Delivery Network: A service that provides static files">CDN</abbr>` with `Die Dateien werden von einem <abbr title="Content Delivery Network: Ein Dienst, der statische Dateien bereitstellt">CDN</abbr> bereitgestellt`.
+
 If possible, translate headings using the infinite form. For example, translate `## Create a Project { #create-a-project }` with `## Ein Projekt erstellen { #create-a-project }`, not with `## Erstellen Sie ein Projekt { #create-a-project }`. Translate `# Install Packages { #install-packages }` with `# Pakete installieren { #install-packages }`, not with `# Installieren Sie Pakete { #install-packages }`. Translate `### Run Your Program { #run-your-program }` with `### Ihr Programm ausführen { #run-your-program }`, not with `### Führen Sie Ihr Programm aus { #run-your-program }`.
 
 Preserve indentation. Do not translate link targets. Keep emoticons. Encode in utf-8. Use Linux linebreaks (LF)
@@ -22,7 +24,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 
 ---
 
-Below is a list of English terms and their German translations. Use these translations, do not use your own. Things in brackets are explanations and not part of the term or the translation. If a line starts with "NOT", that means: do NOT use this translation.
+Below is a list of English terms and their German translations (separated by `: `). Use these translations, do not use your own. words inside brackets are explanations and not part of the term or the translation. If a list item starts with "NOT", that means: do NOT use this translation.
 
 * /// check: /// check | Testen
 * /// danger: /// danger | Gefahr
@@ -46,7 +48,7 @@ Below is a list of English terms and their German translations. Use these transl
 * the cloud provider: der Cloudanbieter
 * the CLI: Das CLI
 * the command line interface: Das Kommandozeileninterface
-* the docs: die Dokumentation (singular case)
+* the docs: die Dokumentation (use singular case)
 * the default value: der Defaultwert
 * the engine: die Engine
 * the env var: die Umgebungsvariable
@@ -56,8 +58,7 @@ Below is a list of English terms and their German translations. Use these transl
 * the form model: das Formularmodell
 * the form body: der Formularbody
 * the header: der Header
-* the headers (plural): die Header
-* the interactive API docs: die interaktive API-Dokumentation (singular case)
+* the headers (plural case): die Header
 * the lifespan event: das Lifespan-Event
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
