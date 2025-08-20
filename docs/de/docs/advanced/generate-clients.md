@@ -20,7 +20,7 @@ Einige von diesen ✨ [**sponsern FastAPI**](../help-fastapi.md#den-autor-sponse
 
 Und es zeigt deren wahres Engagement für FastAPI und seine **Community** (Sie), da diese Ihnen nicht nur einen **guten Service** bieten möchten, sondern auch sicherstellen möchten, dass Sie über ein **gutes und gesundes Framework** verfügen, FastAPI. 🙇
 
-Beispielsweise könnten Sie <a href="https://speakeasy.com/?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> ausprobieren.
+Beispielsweise könnten Sie <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a> ausprobieren.
 
 Es gibt auch mehrere andere Unternehmen, welche ähnliche Dienste anbieten und die Sie online suchen und finden können. 🤓
 
