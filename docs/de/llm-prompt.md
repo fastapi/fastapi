@@ -54,7 +54,7 @@ Below is a list of English terms and their German translations. Use these transl
 * the form model: das Formularmodell
 * the form body: der Formularbody
 * the header: der Header
-* (plural) the headers: die Header
+* the headers (plural): die Header
 * the interactive API docs: die interaktive API-Dokumentation (singular case)
 * the lifespan event: das Lifespan-Event
 * the locking: das Locking
@@ -79,8 +79,9 @@ Below is a list of English terms and their German translations. Use these transl
 * NOT the worker process: der Arbeiterprozess
 * to commit: committen
 * to modify: ändern
-* (the server serves an application) to serve: bereitstellen
-* (the server serves a response) to serve: ausliefern
+* to serve (an application): bereitstellen
+* to serve (a response): ausliefern
+* NOT to serve: bedienen
 * to upgrade: aktualisieren
 * to wrap: wrappen
 * you: Sie
