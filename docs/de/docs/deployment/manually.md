@@ -1,6 +1,6 @@
-# Einen Server manuell ausführen
+# Einen Server manuell ausführen { #run-a-server-manually }
 
-## Den `fastapi run` Befehl verwenden
+## Den `fastapi run` Befehl verwenden { #use-the-fastapi-run-command }
 
 Kurz gesagt, nutzen Sie `fastapi run`, um Ihre FastAPI-Anwendung bereitzustellen:
 
@@ -42,11 +42,11 @@ Das würde in den meisten Fällen funktionieren. 😎
 
 Sie könnten diesen Befehl beispielsweise verwenden, um Ihre **FastAPI**-App in einem Container, auf einem Server usw. zu starten.
 
-## ASGI-Server
+## ASGI-Server { #asgi-servers }
 
 Lassen Sie uns ein wenig tiefer in die Details eintauchen.
 
-FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchronous Server Gateway Interface – Asynchrone Server-Gateway-Schnittstelle">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
+FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
 
 Das Wichtigste, was Sie benötigen, um eine **FastAPI**-Anwendung (oder eine andere ASGI-Anwendung) auf einer entfernten Servermaschine auszuführen, ist ein ASGI-Serverprogramm wie **Uvicorn**, der standardmäßig im `fastapi`-Kommando enthalten ist.
 
@@ -58,7 +58,7 @@ Es gibt mehrere Alternativen, einschließlich:
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Ein Rust HTTP-Server für Python-Anwendungen.
 * <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit ist eine leichte und vielseitige Laufzeitumgebung für Webanwendungen.
 
-## Servermaschine und Serverprogramm
+## Servermaschine und Serverprogramm { #server-machine-and-server-program }
 
 Es gibt ein kleines Detail bei den Namen, das Sie beachten sollten. 💡
 
@@ -68,7 +68,7 @@ Denken Sie einfach daran, dass sich "Server" im Allgemeinen auf eines dieser bei
 
 Wenn man sich auf die entfernte Maschine bezieht, wird sie üblicherweise als **Server**, aber auch als **Maschine**, **VM** (virtuelle Maschine) oder **Knoten** bezeichnet. Diese Begriffe beziehen sich auf irgendeine Art von entfernten Rechner, normalerweise unter Linux, auf dem Sie Programme ausführen.
 
-## Das Serverprogramm installieren
+## Das Serverprogramm installieren { #install-the-server-program }
 
 Wenn Sie FastAPI installieren, wird es mit einem Produktionsserver, Uvicorn, geliefert, und Sie können ihn mit dem `fastapi run` Befehl starten.
 
@@ -100,7 +100,7 @@ Wenn Sie FastAPI mit etwas wie `pip install "fastapi[standard]"` installieren, e
 
 ///
 
-## Das Serverprogramm ausführen
+## Das Serverprogramm ausführen { #run-the-server-program }
 
 Wenn Sie einen ASGI-Server manuell installiert haben, müssen Sie normalerweise einen Importstring in einem speziellen Format übergeben, damit er Ihre FastAPI-Anwendung importiert:
 
@@ -141,9 +141,9 @@ Sie hilft während der **Entwicklung**, Sie sollten sie jedoch **nicht** in der 
 
 ///
 
-## Deployment-Konzepte
+## Deployment-Konzepte { #deployment-concepts }
 
-Diese Beispiele führen das Serverprogramm (z.B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z. B. `80`).
+Diese Beispiele führen das Serverprogramm (z.B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z.B. `80`).
 
 Das ist die Grundidee. Aber Sie möchten sich wahrscheinlich um einige zusätzliche Dinge kümmern, wie zum Beispiel:
 
