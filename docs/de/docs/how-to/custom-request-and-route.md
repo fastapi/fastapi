@@ -1,4 +1,4 @@
-# Benutzerdefinierte Request- und APIRoute-Klasse
+# Benutzerdefinierte Request- und APIRoute-Klasse { #custom-request-and-apiroute-class }
 
 In einigen Fällen möchten Sie möglicherweise die von den Klassen `Request` und `APIRoute` verwendete Logik überschreiben.
 
@@ -14,7 +14,7 @@ Wenn Sie gerade erst mit **FastAPI** beginnen, möchten Sie diesen Abschnitt vie
 
 ///
 
-## Anwendungsfälle
+## Anwendungsfälle { #use-cases }
 
 Einige Anwendungsfälle sind:
 
@@ -22,13 +22,13 @@ Einige Anwendungsfälle sind:
 * Dekomprimierung gzip-komprimierter Requestbodys.
 * Automatisches Loggen aller Requestbodys.
 
-## Handhaben von benutzerdefinierten Requestbody-Kodierungen
+## Handhaben von benutzerdefinierten Requestbody-Kodierungen { #handling-custom-request-body-encodings }
 
 Sehen wir uns an, wie Sie eine benutzerdefinierte `Request`-Unterklasse verwenden, um gzip-Requests zu dekomprimieren.
 
 Und eine `APIRoute`-Unterklasse zur Verwendung dieser benutzerdefinierten Requestklasse.
 
-### Eine benutzerdefinierte `GzipRequest`-Klasse erstellen
+### Eine benutzerdefinierte `GzipRequest`-Klasse erstellen { #create-a-custom-gziprequest-class }
 
 /// tip | Tipp
 
@@ -44,7 +44,7 @@ Auf diese Weise kann dieselbe Routenklasse gzip-komprimierte oder unkomprimierte
 
 {* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
-### Eine benutzerdefinierte `GzipRoute`-Klasse erstellen
+### Eine benutzerdefinierte `GzipRoute`-Klasse erstellen { #create-a-custom-gziproute-class }
 
 Als Nächstes erstellen wir eine benutzerdefinierte Unterklasse von `fastapi.routing.APIRoute`, welche `GzipRequest` nutzt.
 
@@ -78,11 +78,11 @@ Danach ist die gesamte Verarbeitungslogik dieselbe.
 
 Aufgrund unserer Änderungen in `GzipRequest.body` wird der Requestbody jedoch bei Bedarf automatisch dekomprimiert, wenn er von **FastAPI** geladen wird.
 
-## Zugriff auf den Requestbody in einem Exceptionhandler
+## Zugriff auf den Requestbody in einem Exceptionhandler { #accessing-the-request-body-in-an-exception-handler }
 
 /// tip | Tipp
 
-Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#den-requestvalidationerror-body-verwenden){.internal-link target=_blank}).
+Um dasselbe Problem zu lösen, ist es wahrscheinlich viel einfacher, den `body` in einem benutzerdefinierten Handler für `RequestValidationError` zu verwenden ([Fehlerbehandlung](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
 
 Dieses Beispiel ist jedoch immer noch gültig und zeigt, wie mit den internen Komponenten interagiert wird.
 
@@ -98,7 +98,7 @@ Wenn eine Exception auftritt, befindet sich die `Request`-Instanz weiterhin im G
 
 {* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
-## Benutzerdefinierte `APIRoute`-Klasse in einem Router
+## Benutzerdefinierte `APIRoute`-Klasse in einem Router { #custom-apiroute-class-in-a-router }
 
 Sie können auch den Parameter `route_class` eines `APIRouter` festlegen:
 
