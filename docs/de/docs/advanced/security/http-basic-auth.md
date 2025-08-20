@@ -1,6 +1,6 @@
-# HTTP Basic Auth
+# HTTP Basic Auth { #http-basic-auth }
 
-Für die einfachsten Fälle können Sie <abbr title="HTTP-Basisauthentifizierung">HTTP Basic Auth</abbr> verwenden.
+Für die einfachsten Fälle können Sie HTTP Basic Auth (deutsch: HTTP-Basisauthentifizierung) verwenden.
 
 Bei HTTP Basic Auth erwartet die Anwendung einen Header, der einen Benutzernamen und ein Passwort enthält.
 
@@ -12,7 +12,7 @@ Dadurch wird der Browser angewiesen, die integrierte Eingabeaufforderung für ei
 
 Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser diese automatisch im Header.
 
-## Einfaches HTTP Basic Auth
+## Einfaches HTTP Basic Auth { #simple-http-basic-auth }
 
 * Importieren Sie `HTTPBasic` und `HTTPBasicCredentials`.
 * Erstellen Sie mit `HTTPBasic` ein „`security`-Schema“.
@@ -21,11 +21,12 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
     * Es enthält den gesendeten `username` und das gesendete `password`.
 
 {* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+
 Wenn Sie versuchen, die URL zum ersten Mal zu öffnen (oder in der Dokumentation auf den Button „Execute“ zu klicken), wird der Browser Sie nach Ihrem Benutzernamen und Passwort fragen:
 
 <img src="/img/tutorial/security/image12.png">
 
-## Den Benutzernamen überprüfen
+## Den Benutzernamen überprüfen { #check-the-username }
 
 Hier ist ein vollständigeres Beispiel.
 
@@ -51,7 +52,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 Aber durch die Verwendung von `secrets.compare_digest()` ist dieser Code sicher vor einer Art von Angriffen, die „Timing-Angriffe“ genannt werden.
 
-### Timing-Angriffe
+### Timing-Angriffe { #timing-attacks }
 
 Aber was ist ein „Timing-Angriff“?
 
@@ -79,19 +80,19 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die Antwort „Incorrect username or password“ erfolgt.
 
-#### Die Zeit zum Antworten hilft den Angreifern
+#### Die Zeit zum Antworten hilft den Angreifern { #the-time-to-answer-helps-the-attackers }
 
 Wenn die Angreifer zu diesem Zeitpunkt feststellen, dass der Server einige Mikrosekunden länger braucht, um die Antwort „Incorrect username or password“ zu senden, wissen sie, dass sie _etwas_ richtig gemacht haben, einige der Anfangsbuchstaben waren richtig.
 
 Und dann können sie es noch einmal versuchen, wohl wissend, dass es wahrscheinlich eher etwas mit `stanleyjobsox` als mit `johndoe` zu tun hat.
 
-#### Ein „professioneller“ Angriff
+#### Ein „professioneller“ Angriff { #a-professional-attack }
 
 Natürlich würden die Angreifer das alles nicht von Hand versuchen, sondern ein Programm dafür schreiben, möglicherweise mit Tausenden oder Millionen Tests pro Sekunde. Und würden jeweils nur einen zusätzlichen richtigen Buchstaben erhalten.
 
 Aber so hätten die Angreifer in wenigen Minuten oder Stunden mit der „Hilfe“ unserer Anwendung den richtigen Benutzernamen und das richtige Passwort erraten, indem sie die Zeitspanne zur Hilfe nehmen, die diese zur Beantwortung benötigt.
 
-#### Das Problem beheben mittels `secrets.compare_digest()`
+#### Das Problem beheben mittels `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
 Aber in unserem Code verwenden wir tatsächlich `secrets.compare_digest()`.
 
@@ -99,7 +100,7 @@ Damit wird, kurz gesagt, der Vergleich von `stanleyjobsox` mit `stanleyjobson` g
 
 So ist Ihr Anwendungscode, dank der Verwendung von `secrets.compare_digest()`, vor dieser ganzen Klasse von Sicherheitsangriffen geschützt.
 
-### Den Error zurückgeben
+### Den Error zurückgeben { #return-the-error }
 
 Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben Sie eine `HTTPException` mit dem Statuscode 401 zurück (derselbe, der auch zurückgegeben wird, wenn keine Anmeldeinformationen angegeben werden) und fügen den Header `WWW-Authenticate` hinzu, damit der Browser die Anmeldeaufforderung erneut anzeigt:
 
