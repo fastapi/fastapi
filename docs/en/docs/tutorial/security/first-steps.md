@@ -112,7 +112,7 @@ So, let's review it from that simplified point of view:
     * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.
     * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.
 
-## **FastAPI**'s `OAuth2PasswordBearer` { #fastapi-s-oauth2passwordbearer }
+## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
 **FastAPI** provides several tools, at different levels of abstraction, to implement these security features.
 

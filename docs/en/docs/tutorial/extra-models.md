@@ -33,7 +33,7 @@ The examples here use `.dict()` for compatibility with Pydantic v1, but you shou
 
 ### About `**user_in.dict()` { #about-user-in-dict }
 
-#### Pydantic's `.dict()` { #pydantic-s-dict }
+#### Pydantic's `.dict()` { #pydantics-dict }
 
 `user_in` is a Pydantic model of class `UserIn`.
 

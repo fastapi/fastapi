@@ -183,7 +183,7 @@ This old OpenAPI-specific `examples` parameter is now `openapi_examples` since F
 
 ///
 
-### JSON Schema's `examples` field { #json-schema-s-examples-field }
+### JSON Schema's `examples` field { #json-schemas-examples-field }
 
 But then JSON Schema added an <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> field to a new version of the specification.
 

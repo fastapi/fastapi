@@ -4,7 +4,7 @@ Standardmäßig liefert **FastAPI** die Responses als `JSONResponse` zurück und
 
 Es wird der Default-Statuscode oder derjenige verwendet, den Sie in Ihrer *Pfadoperation* festgelegt haben.
 
-## Zusätzliche Statuscodes { #additional-status-codes }
+## Zusätzliche Statuscodes { #additional-status-codes_1 }
 
 Wenn Sie neben dem Hauptstatuscode weitere Statuscodes zurückgeben möchten, können Sie dies tun, indem Sie direkt eine `Response` zurückgeben, wie etwa eine `JSONResponse`, und den zusätzlichen Statuscode direkt festlegen.
 

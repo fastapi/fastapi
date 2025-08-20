@@ -156,7 +156,7 @@ Hier ist, was Sie beachten sollten und wie Sie einen Pull Request überprüfen:
 
 * Es besteht auch eine gute Chance, dass der Pull Request nicht wirklich benötigt wird, da das Problem auf **andere Weise** gelöst werden kann. Dann können Sie das vorschlagen oder danach fragen.
 
-### Keine Panik wegen des Stils { #don-t-worry-about-style }
+### Keine Panik wegen des Stils { #dont-worry-about-style }
 
 * Machen Sie sich keine Sorgen über Dinge wie den Stil von Commit-Nachrichten. Ich werde den Commit zusammenführen und manuell anpassen.
 
@@ -237,7 +237,7 @@ Nutzen Sie den Chat nur für andere allgemeine Gespräche.
 
 ///
 
-### Den Chat nicht für Fragen verwenden { #don-t-use-the-chat-for-questions }
+### Den Chat nicht für Fragen verwenden { #dont-use-the-chat-for-questions }
 
 Bedenken Sie, dass Sie in Chats, die „freie Konversation“ erlauben, leicht Fragen stellen können, die zu allgemein und schwer zu beantworten sind, sodass Sie möglicherweise keine Antworten erhalten.
 

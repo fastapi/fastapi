@@ -18,7 +18,7 @@ As it is discouraged, the interactive docs with Swagger UI won't show the docume
 
 ///
 
-## Import Pydantic's `BaseModel` { #import-pydantic-s-basemodel }
+## Import Pydantic's `BaseModel` { #import-pydantics-basemodel }
 
 First, you need to import `BaseModel` from `pydantic`:
 

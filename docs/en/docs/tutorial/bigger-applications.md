@@ -420,7 +420,7 @@ So, to be able to use both of them in the same file, we import the submodules di
 {!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-### Include the `APIRouter`s for `users` and `items` { #include-the-apirouter-s-for-users-and-items }
+### Include the `APIRouter`s for `users` and `items` { #include-the-apirouters-for-users-and-items }
 
 Now, let's include the `router`s from the submodules `users` and `items`:
 

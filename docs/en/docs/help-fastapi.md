@@ -156,7 +156,7 @@ Here's what to keep in mind and how to review a pull request:
 
 * There's also a good chance that the pull request is not actually needed because the problem can be solved in a **different way**. Then you can suggest or ask about that.
 
-### Don't worry about style { #don-t-worry-about-style }
+### Don't worry about style { #dont-worry-about-style }
 
 * Don't worry too much about things like commit message styles, I will squash and merge customizing the commit manually.
 
@@ -237,7 +237,7 @@ Use the chat only for other general conversations.
 
 ///
 
-### Don't use the chat for questions { #don-t-use-the-chat-for-questions }
+### Don't use the chat for questions { #dont-use-the-chat-for-questions }
 
 Keep in mind that as chats allow more "free conversation", it's easy to ask questions that are too general and more difficult to answer, so, you might not receive answers.
 

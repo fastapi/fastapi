@@ -226,7 +226,7 @@ You will receive a response telling you that the data is invalid containing the 
 }
 ```
 
-#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapi-s-httpexception-vs-starlette-s-httpexception }
+#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI** has its own `HTTPException`.
 
@@ -246,7 +246,7 @@ In this example, to be able to have both `HTTPException`s in the same code, Star
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### Reuse **FastAPI**'s exception handlers { #reuse-fastapi-s-exception-handlers }
+### Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }
 
 If you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:
 

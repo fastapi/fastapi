@@ -43,7 +43,7 @@ Some of the options you could use as a TLS Termination Proxy are:
 * Nginx
 * HAProxy
 
-## Let's Encrypt { #let-s-encrypt }
+## Let's Encrypt { #lets-encrypt }
 
 Before Let's Encrypt, these **HTTPS certificates** were sold by trusted third parties.
 
