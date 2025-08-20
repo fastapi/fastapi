@@ -114,27 +114,18 @@ We want to specifically correct the behavior when it is used in the context of a
 In some cases, we can resolve the problem by changing or removing the default,
 but we don't always have that option -
 particularly when the model is used in other places than the form
-(model reuse is one of the benefits of building FastAPI on top of pydantic, after all!).
 
-The recommended approach, however, is to duplicate your model:
+The recommended approach is to duplicate your model:
 
 /// note
 
 Take care to ensure that your duplicate models don't diverge,
-particularly if you are using sqlmodel,
-where you will end up with `MyModel`, `MyModelCreate`, and `MyModelCreateForm`.
-
-Also remember to make sure that anywhere else you use this model adds the appropriate
-switching logic and static type annotations to accommodate receiving both the original class
-and the model we make as a workaround for form handling.
+e.g. if you are using sqlmodel,
+where you may end up with `MyModel`, `MyModelCreate`, and `MyModelCreateForm`.
 
 ///
 
 {* ../../docs_src/request_form_models/tutorial004_an_py39.py hl[7,13:25] *}
-
-And with that, one of our models should behave as expected when used with a form,
-and you can switch between it and other permutations of the model for JSON input
-or any other format you may need to handle!
 
 ## Summary
 
