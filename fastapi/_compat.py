@@ -20,6 +20,7 @@ from typing import (
 )
 
 from fastapi.exceptions import RequestErrorModel
+from fastapi.openapi.constants import REF_TEMPLATE as REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -210,21 +211,17 @@ if PYDANTIC_V2:
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
         return {}
 
-    def get_definitions(
+    def _get_definitions_with_override_mode(
         *,
         fields: List[ModelField],
         schema_generator: GenerateJsonSchema,
-        model_name_map: ModelNameMap,
-        separate_input_output_schemas: bool = True,
+        override_mode: Union[Literal["validation", "serialization"], None] = None,
     ) -> Tuple[
         Dict[
             Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
         ],
         Dict[str, Dict[str, Any]],
     ]:
-        override_mode: Union[Literal["validation"], None] = (
-            None if separate_input_output_schemas else "validation"
-        )
         inputs = [
             (field, override_mode or field.mode, field._type_adapter.core_schema)
             for field in fields
@@ -237,6 +234,59 @@ if PYDANTIC_V2:
                 item_description = cast(str, item_def["description"]).split("\f")[0]
                 item_def["description"] = item_description
         return field_mapping, definitions  # type: ignore[return-value]
+
+    def get_definitions(
+        *,
+        fields: List[ModelField],
+        schema_generator: GenerateJsonSchema,
+        model_name_map: ModelNameMap,
+        separate_input_output_schemas: bool = True,
+    ) -> Tuple[
+        Dict[
+            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        ],
+        Dict[str, Dict[str, Any]],
+    ]:
+        if separate_input_output_schemas:
+            # No override mode
+            return _get_definitions_with_override_mode(
+                fields=fields,
+                schema_generator=schema_generator,
+                override_mode=None,
+            )
+
+        # Set override to 'validation' as baseline
+        field_mapping, base_definitions = _get_definitions_with_override_mode(
+            fields=fields,
+            schema_generator=schema_generator,
+            override_mode="validation",
+        )
+
+        # Set override to 'serialization' to be able to add computed fields to the output
+        # Create a new schema generator as it can't be reused
+        schema_generator_2 = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+        _, extra_definitions = _get_definitions_with_override_mode(
+            fields=fields,
+            schema_generator=schema_generator_2,
+            override_mode="serialization",
+        )
+
+        # Merge
+        for extra_name, extra_schema in extra_definitions.items():
+            base_schema = base_definitions.get(extra_name)
+            if not base_schema:
+                continue
+            base_props = base_schema["properties"]
+            base_required = base_schema.get("required", [])
+            # Add extra properties to the base schema
+            for prop_name, prop_schema in extra_schema["properties"].items():
+                if prop_name not in base_props:
+                    base_props[prop_name] = prop_schema
+                    # Mark computed fields as required
+                    if prop_name not in base_required:
+                        base_required.append(prop_name)
+
+        return field_mapping, base_definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
         from fastapi import params
