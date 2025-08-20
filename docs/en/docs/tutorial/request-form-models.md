@@ -107,33 +107,34 @@ and [the field will be omitted altogether if unchecked](https://developer.mozill
 When dealing with form models with defaults,
 we need to take special care to handle cases where the field being *unset* has a specific meaning.
 
+We also don't want to just treat any time the value is unset as ``False`` -
+that would defeat the purpose of the default!
+We want to specifically correct the behavior when it is used in the context of a *form.*
+
 In some cases, we can resolve the problem by changing or removing the default,
 but we don't always have that option -
 particularly when the model is used in other places than the form
 (model reuse is one of the benefits of building FastAPI on top of pydantic, after all!).
 
-To do this, you can use a [`model_validator`](https://docs.pydantic.dev/latest/concepts/validators/#model-validators)
-in the `before` mode - before the defaults from the model are applied,
-to differentiate between an explicit `False` value and an unset value.
-
-We also don't want to just treat any time the value is unset as ``False`` -
-that would defeat the purpose of the default!
-We want to specifically correct the behavior when it is used in the context of a *form.*
-
-So we can additionally use the `'fastapi_field'` passed to the
-[validation context](https://docs.pydantic.dev/latest/concepts/validators/#validation-context)
-to determine whether our model is being validated from form input.
+The recommended approach, however, is to duplicate your model:
 
 /// note
 
-Validation context is a pydantic v2 only feature!
+Take care to ensure that your duplicate models don't diverge,
+particularly if you are using sqlmodel,
+where you will end up with `MyModel`, `MyModelCreate`, and `MyModelCreateForm`.
+
+Also remember to make sure that anywhere else you use this model adds the appropriate
+switching logic and static type annotations to accommodate receiving both the original class
+and the model we make as a workaround for form handling.
 
 ///
 
 {* ../../docs_src/request_form_models/tutorial004_an_py39.py hl[7,13:25] *}
 
-And with that, our form model should behave as expected when it is used with a form,
-JSON input, or elsewhere in the program!
+And with that, one of our models should behave as expected when used with a form,
+and you can switch between it and other permutations of the model for JSON input
+or any other format you may need to handle!
 
 ## Summary
 

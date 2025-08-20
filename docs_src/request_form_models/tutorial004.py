@@ -1,24 +1,20 @@
+from typing import cast
+
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from jinja2 import DictLoader, Environment
-from pydantic import BaseModel, ValidationInfo, model_validator
+from pydantic import BaseModel, model_validator
 
 
 class MyModel(BaseModel):
     checkbox: bool = True
 
-    @model_validator(mode="before")
-    def handle_defaults(cls, value: dict, info: ValidationInfo) -> dict:
-        # if this model is being used outside of fastapi, return normally
-        if info.context is None or "fastapi_field" not in info.context:
-            return value
 
-        # check if we are being validated from form input,
-        # and if so, treat the unset checkbox as False
-        field_info = info.context["fastapi_field"].field_info
-        is_form = type(field_info).__name__ == "Form"
-        if is_form and "checkbox" not in value:
+class MyModelForm(MyModel):
+    @model_validator(mode="before")
+    def handle_defaults(cls, value: dict) -> dict:
+        if "checkbox" not in value:
             value["checkbox"] = False
         return value
 
@@ -56,5 +52,6 @@ async def show_form(request: Request):
 
 
 @app.post("/form")
-async def submit_form(data: MyModel = Form()) -> MyModel:
+async def submit_form(data: MyModelForm = Form()) -> MyModel:
+    data = cast(MyModel, data)
     return data

@@ -126,9 +126,7 @@ if PYDANTIC_V2:
         ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]:
             try:
                 return (
-                    self._type_adapter.validate_python(
-                        value, from_attributes=True, context={"fastapi_field": self}
-                    ),
+                    self._type_adapter.validate_python(value, from_attributes=True),
                     None,
                 )
             except ValidationError as exc:

@@ -1,3 +1,5 @@
+from typing import cast
+
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -8,10 +10,10 @@ from pydantic import BaseModel, root_validator
 class MyModel(BaseModel):
     checkbox: bool = True
 
+
+class MyModelForm(BaseModel):
     @root_validator(pre=True)
     def handle_defaults(cls, value: dict) -> dict:
-        # We can't tell if we're being validated by fastAPI,
-        # so we have to just YOLO this.
         if "checkbox" not in value:
             value["checkbox"] = False
         return value
@@ -50,5 +52,6 @@ async def show_form(request: Request):
 
 
 @app.post("/form")
-async def submit_form(data: MyModel = Form()) -> MyModel:
+async def submit_form(data: MyModelForm = Form()) -> MyModel:
+    data = cast(MyModel, data)
     return data
