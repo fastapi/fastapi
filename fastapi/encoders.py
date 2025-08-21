@@ -350,7 +350,7 @@ def encode_value(
 
 
 def encode_dict(
-    obj: Any,
+    obj: Dict[Any, Any],
     include: Optional[IncEx] = None,
     exclude: Optional[IncEx] = None,
     by_alias: bool = True,
@@ -375,7 +375,6 @@ def encode_dict(
             continue
         if key not in allowed_keys:
             continue
-
         encoded_key = encode_value(
             key,
             by_alias=by_alias,
