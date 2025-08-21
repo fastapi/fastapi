@@ -369,12 +369,13 @@ def encode_dict(
         allowed_keys -= set(exclude)
 
     for key, value in obj.items():
-        if sqlalchemy_safe and isinstance(key, str) and key.startswith("_sa"):
+        if key not in allowed_keys:
             continue
         if value is None and exclude_none:
             continue
-        if key not in allowed_keys:
+        if sqlalchemy_safe and isinstance(key, str) and key.startswith("_sa"):
             continue
+
         encoded_key = encode_value(
             key,
             by_alias=by_alias,
