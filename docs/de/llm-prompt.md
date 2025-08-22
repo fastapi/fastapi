@@ -124,6 +124,8 @@ Below is a list of English terms and their German translations, separated by a c
 * the command line interface: Das Kommandozeileninterface
 * the docs: die Dokumentation (use singular case)
 * the default value: der Defaultwert
+* NOT the default value: der Standardwert
+* the default declaration: die Default-Deklaration
 * the engine: die Engine
 * the env var: die Umgebungsvariable
 * the error response: die Error-Response
