@@ -40,6 +40,7 @@ Below is a list of English terms and their German translations, separated by a c
 * the `PATH` environment variable: die `PATH`-Umgebungsvariable
 * the `PATH`: der `PATH`
 * the `requirements.txt`: die `requirements.txt`
+* the API Router: der API-Router
 * the app: die App
 * the application: die Anwendung
 * the Advanced User Guide: das Handbuch für fortgeschrittene Benutzer
@@ -47,6 +48,7 @@ Below is a list of English terms and their German translations, separated by a c
 * the background task: der Hintergrundtask
 * the cloud provider: der Cloudanbieter
 * the CLI: Das CLI
+* the configurations (plural case): die Einstellungen
 * the command line interface: Das Kommandozeileninterface
 * the docs: die Dokumentation (use singular case)
 * the default value: der Defaultwert
@@ -73,6 +75,7 @@ Below is a list of English terms and their German translations, separated by a c
 * the return value: der Rückgabewert
 * the SQLModel docs: die SQLModel-Dokumentation
 * the SDK: das SDK
+* the tag: der Tag
 * the Tutorial - User guide: das Tutorial – Benutzerhandbuch
 * the type annotation: die Typannotation
 * the type hint: der Typhinweis
