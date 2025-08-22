@@ -1,4 +1,4 @@
-# Query-Parameter-Modelle
+# Query-Parameter-Modelle { #query-parameter-models }
 
 Wenn Sie eine Gruppe von **Query-Parametern** haben, die miteinander in Beziehung stehen, können Sie ein **Pydantic-Modell** erstellen, um diese zu deklarieren.
 
@@ -10,7 +10,7 @@ Dies wird seit FastAPI Version `0.115.0` unterstützt. 🤓
 
 ///
 
-## Query-Parameter mit einem Pydantic-Modell
+## Query-Parameter mit einem Pydantic-Modell { #query-parameters-with-a-pydantic-model }
 
 Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell** und dann den Parameter als `Query`:
 
@@ -18,7 +18,7 @@ Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell**
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** der Anfrage extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
-## Die Dokumentation überprüfen
+## Die Dokumentation überprüfen { #check-the-docs }
 
 Sie können die Query-Parameter in der Dokumentations-Oberfläche unter `/docs` einsehen:
 
@@ -26,7 +26,7 @@ Sie können die Query-Parameter in der Dokumentations-Oberfläche unter `/docs` 
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## Zusätzliche Query-Parameter verbieten
+## Zusätzliche Query-Parameter verbieten { #forbid-extra-query-parameters }
 
 In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möchten Sie möglicherweise die Query-Parameter, die Sie empfangen möchten, **beschränken**.
 
@@ -57,7 +57,7 @@ erhält er eine **Error-Response**, die ihm mitteilt, dass der Query-Parameter `
 }
 ```
 
-## Zusammenfassung
+## Zusammenfassung { #summary }
 
 Sie können **Pydantic-Modelle** verwenden, um **Query-Parameter** in **FastAPI** zu deklarieren. 😎
 
