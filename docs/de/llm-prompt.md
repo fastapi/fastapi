@@ -88,5 +88,7 @@ Below is a list of English terms and their German translations, separated by a c
 * NOT to serve: bedienen
 * to upgrade: aktualisieren
 * to wrap: wrappen
+* X is case-sensitive: Groß-/Klein­schrei­bung ist relevant in X
+* X is case-insensitive: Groß-/Klein­schrei­bung ist nicht relevant in X
 * you: Sie
 * your: Ihr
