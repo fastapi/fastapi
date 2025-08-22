@@ -1,6 +1,6 @@
 # Virtuelle Umgebungen { #virtual-environments }
 
-Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Pakete (englisch: Packages), die Sie für jedes Projekt installieren, zu isolieren.
+Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Packages (deutsch: Pakete), die Sie für jedes Projekt installieren, zu isolieren.
 
 /// info | Info
 

@@ -4,7 +4,7 @@ Wenn Sie in ihrer Funktion Parameter deklarieren, die nicht Teil der Pfad-Parame
 
 {* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
-Query-Parameter (Deutsch: Abfrage-Parameter) sind die Schlüssel-Wert-Paare, die nach dem `?` in einer URL aufgelistet sind, getrennt durch `&`-Zeichen.
+Query-Parameter (deutsch: Abfrage-Parameter) sind die Schlüssel-Wert-Paare, die nach dem `?` in einer URL aufgelistet sind, getrennt durch `&`-Zeichen.
 
 Zum Beispiel sind in der URL:
 
