@@ -1,8 +1,8 @@
-# CORS (Cross-Origin Resource Sharing)
+# CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder „Cross-Origin Resource Sharing“</a> (deutsch: Ursprungsübergreifende Ressourcenfreigabe) bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
 
-## Origin
+## Origin { #origin }
 
 Ein Origin (deutsch: Ursprung) ist die Kombination aus Protokoll (`http`, `https`), Domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`) und Port (`80`, `443`, `8080`).
 
@@ -14,7 +14,7 @@ Alle folgenden sind also unterschiedliche Origins:
 
 Auch wenn sie alle in `localhost` sind, verwenden sie unterschiedliche Protokolle oder Ports, daher sind sie unterschiedliche „Origins“.
 
-## Schritte
+## Schritte { #steps }
 
 Angenommen, Sie haben ein Frontend, das in Ihrem Browser unter `http://localhost:8080` läuft, und dessen JavaScript versucht, mit einem Backend zu kommunizieren, das unter `http://localhost` läuft (da wir keinen Port angegeben haben, geht der Browser vom Default-Port `80` aus).
 
@@ -24,7 +24,7 @@ Um dies zu erreichen, muss das `:80`-Backend eine Liste von „erlaubten Origins
 
 In diesem Fall müsste die Liste `http://localhost:8080` enthalten, damit das `:8080`-Frontend korrekt funktioniert.
 
-## Wildcards
+## Wildcards { #wildcards }
 
 Es ist auch möglich, die Liste als `"*"` (ein „Wildcard“) zu deklarieren, um anzuzeigen, dass alle erlaubt sind.
 
@@ -32,7 +32,7 @@ Aber das erlaubt nur bestimmte Arten der Kommunikation und schließt alles aus, 
 
 Um sicherzustellen, dass alles korrekt funktioniert, ist es besser, die erlaubten Origins explizit anzugeben.
 
-## `CORSMiddleware` verwenden
+## `CORSMiddleware` verwenden { #use-corsmiddleware }
 
 Sie können das in Ihrer **FastAPI**-Anwendung mit der `CORSMiddleware` konfigurieren.
 
@@ -65,17 +65,17 @@ Die folgenden Argumente werden unterstützt:
 
 Die Middleware antwortet auf zwei besondere Arten von HTTP-Requests...
 
-### CORS-Preflight-Requests
+### CORS-Preflight-Requests { #cors-preflight-requests }
 
 Dies sind alle `OPTIONS`-Requests mit `Origin`- und `Access-Control-Request-Method`-Headern.
 
 In diesem Fall wird die Middleware den eingehenden Request abfangen und mit entsprechenden CORS-Headern, und entweder einer `200`- oder `400`-Response zu Informationszwecken antworten.
 
-### Einfache Requests
+### Einfache Requests { #simple-requests }
 
 Jeder Request mit einem `Origin`-Header. In diesem Fall wird die Middleware den Request wie gewohnt durchlassen, aber entsprechende CORS-Header in die Response aufnehmen.
 
-## Weitere Informationen
+## Weitere Informationen { #more-info }
 
 Weitere Informationen zu <abbr title="Cross-Origin Resource Sharing">CORS</abbr> finden Sie in der <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS-Dokumentation</a>.
 
