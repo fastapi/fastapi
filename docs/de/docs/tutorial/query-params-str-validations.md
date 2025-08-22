@@ -1,4 +1,4 @@
-# Query-Parameter und String-Validierungen
+# Query-Parameter und String-Validierungen { #query-parameters-and-string-validations }
 
 **FastAPI** ermöglicht es Ihnen, zusätzliche Informationen und Validierungen für Ihre Parameter zu deklarieren.
 
@@ -16,11 +16,11 @@ Die Verwendung von `str | None` ermöglicht es Ihrem Editor, Ihnen bessere Unter
 
 ///
 
-## Zusätzliche Validierung
+## Zusätzliche Validierung { #additional-validation }
 
 Wir werden sicherstellen, dass, obwohl `q` optional ist, wann immer es bereitgestellt wird, **seine Länge 50 Zeichen nicht überschreitet**.
 
-### `Query` und `Annotated` importieren
+### `Query` und `Annotated` importieren { #import-query-and-annotated }
 
 Um dies zu erreichen, importieren Sie zuerst:
 
@@ -39,7 +39,7 @@ Stellen Sie sicher, dass Sie [die FastAPI-Version aktualisieren](../deployment/v
 
 ///
 
-## Verwenden von `Annotated` im Typ für den `q`-Parameter
+## Verwenden von `Annotated` im Typ für den `q`-Parameter { #use-annotated-in-the-type-for-the-q-parameter }
 
 Erinnern Sie sich, dass ich Ihnen zuvor in [Python-Typen-Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank} gesagt habe, dass `Annotated` verwendet werden kann, um Metadaten zu Ihren Parametern hinzuzufügen?
 
@@ -85,7 +85,7 @@ Beide dieser Versionen bedeuten dasselbe: `q` ist ein Parameter, der ein `str` o
 
 Jetzt springen wir zu den spannenden Dingen. 🎉
 
-## `Query` zu `Annotated` im `q`-Parameter hinzufügen
+## `Query` zu `Annotated` im `q`-Parameter hinzufügen { #add-query-to-annotated-in-the-q-parameter }
 
 Da wir nun `Annotated` haben, in das wir mehr Informationen (in diesem Fall einige zusätzliche Validierungen) einfügen können, fügen Sie `Query` innerhalb von `Annotated` hinzu und setzen Sie den Parameter `max_length` auf `50`:
 
@@ -107,7 +107,7 @@ FastAPI wird nun:
 * Einen **klaren Fehler** für den Client anzeigen, wenn die Daten ungültig sind
 * Den Parameter in der OpenAPI-Schema-*Pfadoperation* **dokumentieren** (sodass er in der **automatischen Dokumentation** angezeigt wird)
 
-## Alternative (alt): `Query` als Defaultwert
+## Alternative (alt): `Query` als Defaultwert { #alternative-old-query-as-the-default-value }
 
 Frühere Versionen von FastAPI (vor <abbr title="vor 2023-03">0.95.0</abbr>) erforderten, dass Sie `Query` als den Defaultwert Ihres Parameters verwendeten, anstatt es innerhalb von `Annotated` zu platzieren. Es besteht eine hohe Wahrscheinlichkeit, dass Sie Code sehen, der es so verwendet, also werde ich es Ihnen erklären.
 
@@ -145,7 +145,7 @@ q: str | None = Query(default=None, max_length=50)
 
 Dies wird die Daten validieren, einen klaren Fehler anzeigen, wenn die Daten nicht gültig sind, und den Parameter in der OpenAPI-Schema-*Pfadoperation* dokumentieren.
 
-### `Query` als Defaultwert oder in `Annotated`
+### `Query` als Defaultwert oder in `Annotated` { #query-as-the-default-value-or-in-annotated }
 
 Beachten Sie, dass wenn Sie `Query` innerhalb von `Annotated` verwenden, Sie den `default`-Parameter für `Query` nicht verwenden dürfen.
 
@@ -171,7 +171,7 @@ q: Annotated[str, Query()] = "rick"
 q: str = Query(default="rick")
 ```
 
-### Vorzüge von `Annotated`
+### Vorzüge von `Annotated` { #advantages-of-annotated }
 
 **Es wird empfohlen, `Annotated` zu verwenden**, anstelle des Defaultwertes in Funktionsparametern, es ist aus mehreren Gründen **besser**. 🤓
 
@@ -183,13 +183,13 @@ Wenn Sie `Annotated` nicht verwenden und stattdessen die **(alte) Defaultwert-St
 
 Da `Annotated` mehr als eine Metadaten-Annotation haben kann, könnten Sie dieselbe Funktion sogar mit anderen Tools verwenden, wie z. B. <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
-## Mehr Validierungen hinzufügen
+## Mehr Validierungen hinzufügen { #add-more-validations }
 
 Sie können auch einen `min_length`-Parameter hinzufügen:
 
 {* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
 
-## Reguläre Ausdrücke hinzufügen
+## Reguläre Ausdrücke hinzufügen { #add-regular-expressions }
 
 Sie können einen <abbr title="Ein regulärer Ausdruck, regex oder regexp genannt, ist eine Sequenz von Zeichen, die ein Suchmuster für Zeichenfolgen definiert.">regulären Ausdruck</abbr> `pattern` definieren, mit dem der Parameter übereinstimmen muss:
 
@@ -205,7 +205,7 @@ Wenn Sie sich mit all diesen **„regulärer Ausdruck“**-Ideen verloren fühle
 
 Aber nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, wenn Sie sie brauchen.
 
-### Pydantic v1 `regex` statt `pattern`
+### Pydantic v1 `regex` statt `pattern` { #pydantic-v1-regex-instead-of-pattern }
 
 Vor Pydantic Version 2 und FastAPI 0.100.0, hieß der Parameter `regex` statt `pattern`, aber das ist jetzt obsolet.
 
@@ -219,7 +219,7 @@ Sie könnten immer noch Code sehen, der den alten Namen verwendet:
 
 Beachten Sie aber, dass das obsolet ist und auf den neuen Parameter `pattern` aktualisiert werden sollte. 🤓
 
-## Defaultwerte
+## Defaultwerte { #default-values }
 
 Natürlich können Sie Defaultwerte verwenden, die nicht `None` sind.
 
@@ -233,7 +233,7 @@ Ein Defaultwert irgendeines Typs, einschließlich `None`, macht den Parameter op
 
 ///
 
-## Erforderliche Parameter
+## Erforderliche Parameter { #required-parameters }
 
 Wenn wir keine weiteren Validierungen oder Metadaten deklarieren müssen, können wir den `q` Query-Parameter erforderlich machen, indem wir einfach keinen Defaultwert deklarieren, wie:
 
@@ -257,7 +257,7 @@ Wenn Sie einen Wert als erforderlich deklarieren müssen, während Sie `Query` v
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Erforderlich, kann `None` sein
+### Erforderlich, kann `None` sein { #required-can-be-none }
 
 Sie können deklarieren, dass ein Parameter `None` akzeptieren kann, aber trotzdem erforderlich ist. Dadurch müssten Clients den Wert senden, selbst wenn der Wert `None` ist.
 
@@ -265,7 +265,7 @@ Um das zu tun, können Sie deklarieren, dass `None` ein gültiger Typ ist, einfa
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
-## Query-Parameter-Liste / Mehrere Werte
+## Query-Parameter-Liste / Mehrere Werte { #query-parameter-list-multiple-values }
 
 Wenn Sie einen Query-Parameter explizit mit `Query` definieren, können Sie ihn auch so deklarieren, dass er eine Liste von Werten empfängt, oder anders gesagt, dass er mehrere Werte empfangen kann.
 
@@ -302,7 +302,7 @@ Die interaktive API-Dokumentation wird entsprechend aktualisiert, um mehrere Wer
 
 <img src="/img/tutorial/query-params-str-validations/image02.png">
 
-### Query-Parameter-Liste / Mehrere Werte mit Defaults
+### Query-Parameter-Liste / Mehrere Werte mit Defaults { #query-parameter-list-multiple-values-with-defaults }
 
 Sie können auch eine Default-`list` von Werten definieren, wenn keine bereitgestellt werden:
 
@@ -325,7 +325,7 @@ gehen, wird der Default für `q` sein: `["foo", "bar"]`, und Ihre Antwort wird s
 }
 ```
 
-#### Nur `list` verwenden
+#### Nur `list` verwenden { #using-just-list }
 
 Sie können auch `list` direkt verwenden, anstelle von `list[str]`:
 
@@ -339,7 +339,7 @@ Zum Beispiel würde `list[int]` überprüfen (und dokumentieren), dass der Inhal
 
 ///
 
-## Mehr Metadaten deklarieren
+## Mehr Metadaten deklarieren { #declare-more-metadata }
 
 Sie können mehr Informationen über den Parameter hinzufügen.
 
@@ -361,7 +361,7 @@ Und eine `description`:
 
 {* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
 
-## Alias-Parameter
+## Alias-Parameter { #alias-parameters }
 
 Stellen Sie sich vor, Sie möchten, dass der Parameter `item-query` ist.
 
@@ -381,7 +381,7 @@ Dann können Sie ein `alias` deklarieren, und dieser Alias wird verwendet, um de
 
 {* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
 
-## Parameter als deprecated ausweisen
+## Parameter als deprecated ausweisen { #deprecating-parameters }
 
 Nehmen wir an, Ihnen gefällt dieser Parameter nicht mehr.
 
@@ -395,13 +395,13 @@ Die Dokumentation wird es so anzeigen:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Parameter von OpenAPI ausschließen
+## Parameter von OpenAPI ausschließen { #exclude-parameters-from-openapi }
 
 Um einen Query-Parameter aus dem generierten OpenAPI-Schema auszuschließen (und somit aus den automatischen Dokumentationssystemen), setzen Sie den Parameter `include_in_schema` von `Query` auf `False`:
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
-## Benutzerdefinierte Validierung
+## Benutzerdefinierte Validierung { #custom-validation }
 
 Es kann Fälle geben, in denen Sie eine **benutzerdefinierte Validierung** durchführen müssen, die nicht mit den oben gezeigten Parametern durchgeführt werden kann.
 
@@ -433,7 +433,7 @@ Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit d
 
 ///
 
-### Verstehen Sie dieses Codebeispiel
+### Verstehen Sie dieses Codebeispiel { #understand-that-code }
 
 Der wichtige Punkt ist einfach die Verwendung von **`AfterValidator` mit einer Funktion innerhalb von `Annotated`**. Fühlen Sie sich frei, diesen Teil zu überspringen. 🤸
 
@@ -441,13 +441,13 @@ Der wichtige Punkt ist einfach die Verwendung von **`AfterValidator` mit einer F
 
 Aber wenn Sie neugierig auf dieses spezielle Codebeispiel sind und immer noch Spaß haben, hier sind einige zusätzliche Details.
 
-#### Zeichenkette mit `value.startswith()`
+#### Zeichenkette mit `value.startswith()` { #string-with-value-startswith }
 
 Haben Sie bemerkt? Eine Zeichenkette mit `value.startswith()` kann ein Tuple übernehmen, und es wird jeden Wert im Tuple überprüfen:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 
-#### Ein zufälliges Item
+#### Ein zufälliges Item { #a-random-item }
 
 Mit `data.items()` erhalten wir ein <abbr title="Etwas, das man mit einer for-Schleife durchlaufen kann, wie eine Liste, Set, usw.">iterierbares Objekt</abbr> mit Tupeln, die Schlüssel und Wert für jedes Dictionary-Element enthalten.
 
@@ -463,7 +463,7 @@ Wenn der Benutzer also keine Artikel-ID bereitgestellt hat, erhält er trotzdem 
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Sie können zusätzliche Validierungen und Metadaten für Ihre Parameter deklarieren.
 
