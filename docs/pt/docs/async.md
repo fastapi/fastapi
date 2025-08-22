@@ -348,7 +348,7 @@ Mas antes disso, controlar código assíncrono era bem mais complexo e difícil.
 
 Nas versões anteriores do Python, você poderia utilizar threads ou <a href="http://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Mas o código é bem mais complexo de entender, debugar, e pensar sobre.
 
-Nas versões anteriores do NodeJS / Navegador JavaScript, você utilizaria "callbacks". O que leva ao  <a href="http://callbackhell.com/" class="external-link" target="_blank">inferno do callback</a>.
+Nas versões anteriores do NodeJS / Navegador JavaScript, você utilizaria "callbacks". O que leva ao "inferno do callback".
 
 ## Corrotinas
 

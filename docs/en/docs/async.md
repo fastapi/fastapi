@@ -383,7 +383,7 @@ But before that, handling asynchronous code was quite more complex and difficult
 
 In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to "callback hell".
 
 ## Coroutines
 
