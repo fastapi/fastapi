@@ -141,7 +141,17 @@ Below is a list of English terms and their German translations, separated by a c
 * the model object: das Modellobjekt
 * the origin: das Origin
 * the override: Die Überschreibung
+* the parameter: der Parameter
+* the function parameter: der Funktionsparameter
+* the default parameter: der Defaultparameter
+* the body parameter: der Body-Parameter
+* the request body parameter: der Requestbody-Parameter
+* the path parameter: der Pfad-Parameter
+* the query parameter: der Query-Parameter
+* the cookie parameter: der Cookie-Parameter
+* the header parameter: der Header-Parameter
 * the payload: die Payload
+* the query: die Query
 * the recap: die Zusammenfassung
 * the request: der Request
 * the response: die Response
