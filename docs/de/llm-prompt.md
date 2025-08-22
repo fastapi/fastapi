@@ -150,6 +150,7 @@ Below is a list of English terms and their German translations, separated by a c
 * the query parameter: der Query-Parameter
 * the cookie parameter: der Cookie-Parameter
 * the header parameter: der Header-Parameter
+* the form parameter: der Formular-Parameter
 * the payload: die Payload
 * the query: die Query
 * the recap: die Zusammenfassung
