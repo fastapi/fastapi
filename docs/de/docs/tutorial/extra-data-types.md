@@ -1,4 +1,4 @@
-# Zusätzliche Datentypen
+# Zusätzliche Datentypen { #extra-data-types }
 
 Bisher haben Sie gängige Datentypen verwendet, wie zum Beispiel:
 
@@ -17,7 +17,7 @@ Und Sie haben immer noch dieselbe Funktionalität wie bisher gesehen:
 * Datenvalidierung.
 * Automatische Annotation und Dokumentation.
 
-## Andere Datentypen
+## Andere Datentypen { #other-data-types }
 
 Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 
@@ -36,11 +36,11 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `datetime.timedelta`:
     * Ein Python-`datetime.timedelta`.
     * Wird in Requests und Responses als `float` der Gesamtsekunden dargestellt.
-    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#json_encoders" class="external-link" target="_blank">Weitere Informationen finden Sie in der Dokumentation</a>.
+    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">siehe die Dokumentation für weitere Informationen</a>.
 * `frozenset`:
     * Wird in Requests und Responses wie ein `set` behandelt:
         * Bei Requests wird eine Liste gelesen, Duplikate entfernt und in ein `set` umgewandelt.
-        * Bei Responses wird das `set` in eine `list`e umgewandelt.
+        * Bei Responses wird das `set` in eine `list` umgewandelt.
         * Das generierte Schema zeigt an, dass die `set`-Werte eindeutig sind (unter Verwendung von JSON Schemas `uniqueItems`).
 * `bytes`:
     * Standard-Python-`bytes`.
@@ -51,7 +51,7 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
     * In Requests und Responses wird es wie ein `float` behandelt.
 * Sie können alle gültigen Pydantic-Datentypen hier überprüfen: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
 
-## Beispiel
+## Beispiel { #example }
 
 Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der oben genannten Typen verwenden.
 
