@@ -181,6 +181,22 @@ Result (German):
 
 5) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
 
+5.1) If an existing translation has a link with an anchor fragment different to the anchor fragment in the English source, then this is an error. Fix this by using the anchor fragment of the English source.
+
+Example:
+
+Source (English):
+
+[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}
+
+Existing wrong translation (German) – notice the wrongly translated anchor fragment:
+
+[Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#einzelne-werte-im-body){.internal-link target=_blank}.
+
+Result (German) – you fix the anchor fragment:
+
+[Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+
 """
 
 app = typer.Typer()
