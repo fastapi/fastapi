@@ -4,25 +4,97 @@ Language code: de.
 
 Use the formal grammar (use "Sie" instead of "Du").
 
-Translate quotation marks ("") in the English text with typographic quotation marks („“) in the German translation. For example, translate "word" with „Wort“. But don't do that when the quotation marks are inside backticks (`). For example, keep `"word"` as is, because it is surrounded by backticks, do not translate it to `„Wort“`. Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
 
-In sentences, keep translations in brackets. DO NOT REMOVE THEM. They start with the exact text `(deutsch: `, speak, an opening bracket (`(`), followed by the text `deutsch`, followed by a colon (`:`), followed by a space (` `). And they end with a closing bracket (`)`) For example, keep `(deutsch: Anfragekörper)`, keep `(deutsch: Arbeiter)`, keep `(deutsch: Bereitstellen der Anwendung)`. Keep them even if they are not in the English text. Keep them, even if you think they are bad translations. The only exception to this rule is when you remove the whole sentence from the translation, because the whole sentence was removed in the English text. In that case also remove that translation in brackets. The reasoning for this rule is that these are one-time translations for English words which the human editor has added to the translation, in order to explain that word to the human readers of the translation. So these additions should be kept, even though they are not part of the English text.
+Translate quotation marks ("") in the English text with typographic quotation marks („“) in the German translation.
 
-If a word or text snippet in the English text is wrapped in an `abbr` HTML-element, translate the text inside its `title` attribute. For example, translate `Hello <abbr title="World">Universe</abbr>` with `Hallo <abbr title="Welt">Universum</abbr>`, translate `The files are served from a <abbr title="Content Delivery Network: A service that provides static files">CDN</abbr>` with `Die Dateien werden von einem <abbr title="Content Delivery Network: Ein Dienst, der statische Dateien bereitstellt">CDN</abbr> bereitgestellt`.
+Example:
 
-If possible, translate headings using the infinite form. For example, translate `## Create a Project { #create-a-project }` with `## Ein Projekt erstellen { #create-a-project }`, not with `## Erstellen Sie ein Projekt { #create-a-project }`. Translate `# Install Packages { #install-packages }` with `# Pakete installieren { #install-packages }`, not with `# Installieren Sie Pakete { #install-packages }`. Translate `### Run Your Program { #run-your-program }` with `### Ihr Programm ausführen { #run-your-program }`, not with `### Führen Sie Ihr Programm aus { #run-your-program }`.
+Source (English):
 
-Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux linebreaks (LF)
+"word"
 
----
+Result (German):
 
-Follow these instructions (they are in German):
+„Wort“
+
+But don't do that when the quotation marks are themselves surrounded by backticks (`).
+
+Example:
+
+Source (English):
+
+`"word"`
+
+Result (German) – You don't translate the word, and you don't change the quotation marks:
+
+`"word"`
+
+Do not wrap words or sentences, which don't have any quotation marks in the English text, with normal quotation marks or with typographic quotation marks in the German translation.
+
+
+In sentences, keep translations in brackets. DO NOT REMOVE THEM. Translations in brackets start with the exact text `(deutsch: `, speak, an opening bracket (`(`), followed by the text `deutsch`, followed by a colon (`:`), followed by a space (` `). And they end with a closing bracket (`)`) For example, keep `(deutsch: Anfragekörper)`, keep `(deutsch: Arbeiter)`, keep `(deutsch: Bereitstellen der Anwendung)`. Keep them even if they are not in the English text. Keep them, even if you think they are bad translations. The only exception to this rule is when you remove the whole sentence from the translation, because the whole sentence was removed in the English text. In that case also remove that translation in brackets. The reasoning for this rule is that these are one-time translations for English words which the human editor has added to the translation, in order to explain that word to the human readers of the translation. So these additions should be kept, even though they are not part of the English text.
+
+
+In `abbr` HTML-elements, translate the content of the `title` attribute.
+
+Example:
+
+Source (English):
+
+<abbr title="obsolete, recommended not to use it">deprecated</abbr>
+
+Result (German):
+
+<abbr title="veraltet, von der Verwendung wird abgeraten">deprecated</abbr>
+
+
+Translate headings using the infinite form.
+
+Examples:
+
+Source (English):
+
+## Create a Project { #create-a-project }
+
+Translate with (German):
+
+## Ein Projekt erstellen { #create-a-project }
+
+Do NOT translate with (German):
+
+## Erstellen Sie ein Projekt { #create-a-project }
+
+Source (English):
+
+# Install Packages { #install-packages }
+
+Translate with (German):
+
+# Pakete installieren { #install-packages }
+
+Do NOT translate with (German):
+
+# Installieren Sie Pakete { #install-packages }
+
+Source (English):
+
+### Run Your Program { #run-your-program }
+
+Translate with (German):
+
+### Ihr Programm ausführen { #run-your-program }
+
+Do NOT translate with (German):
+
+### Führen Sie Ihr Programm aus { #run-your-program }
+
+
+Follow these German instructions:
 
 In der Regel versuche ich so weit wie möglich Worte zusammenzuschreiben, also ohne Bindestrich, es sei denn, es ist Konkretesding-Klassevondingen, etwa `Pydantic-Modell` (aber: `Datenbankmodell`), `Python-Modul` (aber: `Standardmodul`). Ich setze auch einen Bindestrich, wenn er die gleichen Buchstaben verbindet, etwa `Enum-Member`, `Cloud-Dienst`, `Template-Engine`. Oder wenn das Wort sonst einfach zu lang wird, etwa, `Performance-Optimierung`. Oder um etwas visuell besser zu dokumentieren, etwa `Pfadoperation-Dekorator`,  `Pfadoperation-Funktion`.
 
 Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriffe aus dem Bereich der Programmierung. Ich wandele zwar korrekt in Großschreibung um und setze Bindestriche, wo notwendig, aber ansonsten lasse ich solch ein Wort unverändert. Beispielsweise wird aus dem englischen Wort `string` in der deutschen Übersetzung `String`, aber nicht `Zeichenkette`. Oder aus dem englischen Wort `request body` wird in der deutschen Übersetzung `Requestbody`, aber nicht `Anfragekörper`. Oder aus dem englischen `response` wird im Deutschen `Response`, aber nicht `Antwort`.
 
----
 
 Below is a list of English terms and their German translations, separated by a colon (`:`). Use these translations, do not use your own. Words inside brackets are explanations for you, they are not part of the term or the translation. If a list item starts with `NOT`, then that means: do NOT use this translation. Nouns, starting with the word `the`, have their German genus – `der`, `die`, `das` – included, to help you to grammatically decline them in the translation, and they are given in singular case unless they have `(plural case)` attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word `to`.
 
@@ -95,3 +167,6 @@ Below is a list of English terms and their German translations, separated by a c
 * X is case-insensitive: Groß-/Klein­schrei­bung ist nicht relevant in X
 * you: Sie
 * your: Ihr
+
+
+Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)
