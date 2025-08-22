@@ -197,6 +197,22 @@ Result (German) – you fix the anchor fragment:
 
 [Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
 
+5.2) Do not add anchor fragments at will, even if this makes sense. If the English source has no anchor, don't add one.
+
+Example:
+
+Source (English):
+
+Create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}
+
+Wrong translation (German) – Anchor added to the URL.
+
+Erstelle eine [virtuelle Umgebung](../virtual-environments.md#create-a-virtual-environment){.internal-link target=_blank}
+
+Good translation (German) – URL stays like in the English source.
+
+Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}
+
 """
 
 app = typer.Typer()
