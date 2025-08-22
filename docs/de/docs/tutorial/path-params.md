@@ -1,6 +1,6 @@
-# Pfad-Parameter
+# Pfad-Parameter { #path-parameters }
 
-Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python-<abbr title="Format-String – Formatierter String: Der String enthält Variablen, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert der Variable ersetzt">Format-Strings</abbr> verwendet wird:
+Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python-Formatstrings verwendet wird:
 
 {* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
@@ -12,7 +12,7 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 {"item_id":"foo"}
 ```
 
-## Pfad-Parameter mit Typen
+## Pfad-Parameter mit Typen { #path-parameters-with-types }
 
 Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typannotationen:
 
@@ -26,7 +26,7 @@ Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerp
 
 ///
 
-## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr>
+## Daten-<abbr title="Auch bekannt als: Serialisierung, Parsen, Marshalling">Konversion</abbr> { #data-conversion }
 
 Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> öffnen, sehen Sie als Response:
 
@@ -42,7 +42,7 @@ Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr
 
 ///
 
-## Datenvalidierung
+## Datenvalidierung { #data-validation }
 
 Wenn Sie aber im Browser <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> besuchen, erhalten Sie eine hübsche HTTP-Fehlermeldung:
 
@@ -77,7 +77,7 @@ Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mi
 
 ///
 
-## Dokumentation
+## Dokumentation { #documentation }
 
 Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> in Ihrem Browser öffnen, sehen Sie eine automatische, interaktive API-Dokumentation:
 
@@ -91,7 +91,7 @@ Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
 ///
 
-## Nützliche Standards. Alternative Dokumentation
+## Nützliche Standards. Alternative Dokumentation { #standards-based-benefits-alternative-documentation }
 
 Und weil das generierte Schema vom <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>-Standard kommt, gibt es viele kompatible Tools.
 
@@ -101,15 +101,15 @@ Zum Beispiel bietet **FastAPI** selbst eine alternative API-Dokumentation (verwe
 
 Und viele weitere kompatible Tools. Inklusive Codegenerierung für viele Sprachen.
 
-## Pydantic
+## Pydantic { #pydantic }
 
-Die ganze Datenvalidierung wird hinter den Kulissen von <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> durchgeführt, Sie profitieren also von dessen Vorteilen. Und Sie wissen, dass Sie in guten Händen sind.
+Die ganze Datenvalidierung wird hinter den Kulissen von <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> durchgeführt, Sie profitieren also von dessen Vorteilen. Und Sie wissen, dass Sie in guten Händen sind.
 
 Sie können für Typ Deklarationen auch `str`, `float`, `bool` und viele andere komplexe Datentypen verwenden.
 
 Mehrere davon werden wir in den nächsten Kapiteln erkunden.
 
-## Die Reihenfolge ist wichtig
+## Die Reihenfolge ist wichtig { #order-matters }
 
 Wenn Sie *Pfadoperationen* erstellen, haben Sie manchmal einen fixen Pfad.
 
@@ -129,11 +129,11 @@ Sie können eine Pfadoperation auch nicht erneut definieren:
 
 Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinstimmt.
 
-## Vordefinierte Parameterwerte
+## Vordefinierte Parameterwerte { #predefined-values }
 
 Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
 
-### Erstellen Sie eine `Enum`-Klasse
+### Erstellen Sie eine `Enum`-Klasse { #create-an-enum-class }
 
 Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
 
@@ -149,35 +149,35 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
 
 ///
 
-/// tip | Tipp
+/// tip
 
 Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
 
 ///
 
-### Deklarieren Sie einen *Pfad-Parameter*
+### Deklarieren Sie einen *Pfad-Parameter* { #declare-a-path-parameter }
 
 Dann erstellen Sie einen *Pfad-Parameter*, der als Typ die gerade erstellte Enum-Klasse hat (`ModelName`):
 
 {* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
-### Testen Sie es in der API-Dokumentation
+### Testen Sie es in der API-Dokumentation { #check-the-docs }
 
 Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann die interaktive Dokumentation sie als Auswahl-Drop-Down anzeigen:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Mit Python-*<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten
+### Mit Python-*<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten { #working-with-python-enumerations }
 
 Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der möglichen Werte einer Enumeration">Member</abbr> eines Enums* sein.
 
-#### *Enum-Member* vergleichen
+#### *Enum-Member* vergleichen { #compare-enumeration-members }
 
 Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
 
 {* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
-#### *Enum-Wert* erhalten
+#### *Enum-Wert* erhalten { #get-the-enumeration-value }
 
 Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
 
@@ -189,7 +189,7 @@ Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen
 
 ///
 
-#### *Enum-Member* zurückgeben
+#### *Enum-Member* zurückgeben { #return-enumeration-members }
 
 Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschachtelt in einem JSON-Body (z. B. als `dict`).
 
@@ -206,7 +206,7 @@ In Ihrem Client erhalten Sie eine JSON-Response, wie etwa:
 }
 ```
 
-## Pfad Parameter die Pfade enthalten
+## Pfad Parameter die Pfade enthalten { #path-parameters-containing-paths }
 
 Angenommen, Sie haben eine *Pfadoperation* mit einem Pfad `/files/{file_path}`.
 
@@ -214,7 +214,7 @@ Aber `file_path` soll selbst einen *Pfad* enthalten, etwa `home/johndoe/myfile.t
 
 Sprich, die URL für diese Datei wäre etwas wie: `/files/home/johndoe/myfile.txt`.
 
-### OpenAPI Unterstützung
+### OpenAPI Unterstützung { #openapi-support }
 
 OpenAPI bietet nicht die Möglichkeit, dass ein *Pfad-Parameter* seinerseits einen *Pfad* enthalten kann, das würde zu Szenarios führen, die schwierig zu testen und zu definieren sind.
 
@@ -222,7 +222,7 @@ Trotzdem können Sie das in **FastAPI** tun, indem Sie eines der internen Tools 
 
 Die Dokumentation würde weiterhin funktionieren, allerdings wird nicht dokumentiert werden, dass der Parameter ein Pfad sein sollte.
 
-### Pfad Konverter
+### Pfad Konverter { #path-convertor }
 
 Mittels einer Option direkt von Starlette können Sie einen *Pfad-Parameter* deklarieren, der einen Pfad enthalten soll, indem Sie eine URL wie folgt definieren:
 
@@ -244,7 +244,7 @@ In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelte
 
 ///
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typdeklarationen:
 
