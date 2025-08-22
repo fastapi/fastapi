@@ -105,8 +105,8 @@ Below is a list of English terms and their German translations, separated by a c
 * /// note: /// note | Hinweis
 * /// tip: /// tip | Tipp
 * /// warning: /// warning | Achtung
-* `foo` as a `type`: `foo` vom Typ `type`
-* `foo` as a `type`: `foo`, ein `type`
+* you: Sie
+* your: Ihr
 * e.g: z.B.
 * etc.: usw.
 * the `PATH` environment variable: die `PATH`-Umgebungsvariable
@@ -175,10 +175,12 @@ Below is a list of English terms and their German translations, separated by a c
 * NOT to serve: bedienen
 * to upgrade: aktualisieren
 * to wrap: wrappen
+* `foo` as a `type`: `foo` vom Typ `type`
+* `foo` as a `type`: `foo`, ein `type`
+* FastAPI's X: FastAPIs X
+* Starlette's Y: Starlettes Y
 * X is case-sensitive: Groß-/Klein­schrei­bung ist relevant in X
 * X is case-insensitive: Groß-/Klein­schrei­bung ist nicht relevant in X
-* you: Sie
-* your: Ihr
 
 
 Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)
