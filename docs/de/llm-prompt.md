@@ -62,6 +62,7 @@ Below is a list of English terms and their German translations, separated by a c
 * the lifespan event: das Lifespan-Event
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
+* the model object: das Modellobjekt
 * the origin: das Origin
 * the override: Die Überschreibung
 * the payload: die Payload
