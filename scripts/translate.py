@@ -24,32 +24,32 @@ non_translated_sections = (
 
 
 general_prompt = """
-For technical terms in English that don't have a common translation term use the original term in English.
-
-If you have instructions to translate specific terms or phrases in a specific way, please follow those instructions instead of keeping the old and outdated content.
+For technical terms in English that don't have a common translation term, use the original term in English.
 
 For code snippets or fragments, surrounded by backticks (`), don't translate the content, keep the original in English. For example, `list`, `dict`, keep them as is.
 
-The content is written in markdown, write the translation in markdown as well. Don't add triple backticks (`) around the generated translation content. Speak, do not add "```markdown" at the very start of the translation and do not add "```" at the very end of the translation.
+The content is written in Markdown, write the translation in Markdown as well.
 
 
-When there's an example of code, the console or a terminal, normally surrounded by triple backticks and a keyword like "console" or "bash" (e.g. ```console), do not translate the content, keep the original in English.
+When there is a code block, surrounded by triple backticks, do not translate its content, except for comments in the language which the code block uses.
 
-For example, if the original (English) content is:
+Examples:
 
-```bash
-# Print greeting
-echo "Hello, World!"
-```
-
-It should be exacly the same in the output document:
+Source (English) – The code block is a bash code example with one comment:
 
 ```bash
 # Print greeting
 echo "Hello, World!"
 ```
 
-If the original (English) content is:
+Result (German):
+
+```bash
+# Gruß ausgeben
+echo "Hello, World!"
+```
+
+Source (English) – The code block is a console example containing HTML tags. No comments, nothing to change here:
 
 ```console
 $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
@@ -57,15 +57,87 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
         Searching for package file structure
 ```
 
-It should be exacly the same in the output document:
+Result (German):
 
 ```console
 $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
         Searching for package file structure
 ```
+
+Source (English) – The code block is a console example containing 5 comments:
+
+```console
+// Go to the home directory
+$ cd
+// Create a directory for all your code projects
+$ mkdir code
+// Enter into that code directory
+$ cd code
+// Create a directory for this project
+$ mkdir awesome-project
+// Enter into that project directory
+$ cd awesome-project
+```
+
+Result (German):
+
+```console
+// Gehe zum Home-Verzeichnis
+$ cd
+// Erstelle ein Verzeichnis für alle Ihre Code-Projekte
+$ mkdir code
+// Gehe in dieses Code-Verzeichnis
+$ cd code
+// Erstelle ein Verzeichnis für dieses Projekt
+$ mkdir awesome-project
+// Gehe in dieses Projektverzeichnis
+$ cd awesome-project
+```
+
+If there is an existing translation and its Mermaid diagram is in sync with the Mermaid diagram in the English source, except a few translated words, then use the Mermaid diagram of the existing translation. The human editor of the translation translated these words in the Mermaid diagram. Keep these translations, do not revert them back to the English source.
+
+Example:
+
+Source (English):
+
+```mermaid
+flowchart LR
+    subgraph global[global env]
+        harry-1[harry v1]
+    end
+    subgraph stone-project[philosophers-stone project]
+        stone(philosophers-stone) -->|requires| harry-1
+    end
+```
+
+Existing translation (German) – has three translations:
+
+```mermaid
+flowchart LR
+    subgraph global[globale Umgebung]
+        harry-1[harry v1]
+    end
+    subgraph stone-project[philosophers-stone-Projekt]
+        stone(philosophers-stone) -->|benötigt| harry-1
+    end
+```
+
+Result (German) – You change nothing:
+
+```mermaid
+flowchart LR
+    subgraph global[globale Umgebung]
+        harry-1[harry v1]
+    end
+    subgraph stone-project[philosophers-stone-Projekt]
+        stone(philosophers-stone) -->|benötigt| harry-1
+    end
+```
+
 
 The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
+
 
 There are special blocks of notes, tips and others that look like:
 
@@ -94,6 +166,24 @@ Source:
 Result:
 
 /// details | Vista previa
+
+
+Do not convert occurrences of four slashes in a row at the start of a line (`////`) to a level four Markdown heading (`####`). The four slashes are a special syntax, which, for example, declares some text to be part of a tab in the final rendered document.
+
+Example:
+
+Source (English):
+
+//// tab | Linux, macOS, Windows Bash
+
+Wrong Result (German):
+
+#### tab | Linux, macOS, Windows Bash
+
+Correct Result (German):
+
+//// tab | Linux, macOS, Windows Bash
+
 
 Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
 
@@ -166,7 +256,6 @@ Result (Spanish):
 
 <a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
 
-
 4) For internal links, only translate link text.
 
 Example:
@@ -212,6 +301,7 @@ Erstelle eine [virtuelle Umgebung](../virtual-environments.md#create-a-virtual-e
 Good translation (German) – URL stays like in the English source.
 
 Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}
+
 
 """
 
@@ -269,7 +359,7 @@ def translate_page(
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai:gpt-4o")
+    agent = Agent("openai:gpt-5")
 
     prompt_segments = [
         general_prompt,
@@ -302,7 +392,7 @@ def translate_page(
     prompt = "\n\n".join(prompt_segments)
     print(f"Running agent for {out_path}")
     result = agent.run_sync(prompt)
-    out_content = f"{result.data.strip()}\n"
+    out_content = f"{result.output.strip()}\n"
     print(f"Saving translation to {out_path}")
     out_path.write_text(out_content, encoding="utf-8", newline="\n")
 

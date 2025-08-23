@@ -4,7 +4,7 @@ Wenn Sie in Ihrer Funktion andere Parameter deklarieren, die nicht Teil der Pfad
 
 {* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
-Die Query (deutsch: Abfrage) ist die Menge von Schlüssel-Wert-Paaren, die nach dem `?` in einer URL folgen und durch `&`-Zeichen getrennt sind.
+Die <abbr title="Abfrage">Query</abbr> ist die Menge von Schlüssel-Wert-Paaren, die nach dem `?` in einer URL folgen und durch `&`-Zeichen getrennt sind.
 
 Zum Beispiel sind in der URL:
 

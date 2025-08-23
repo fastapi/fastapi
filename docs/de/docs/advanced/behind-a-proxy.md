@@ -2,9 +2,9 @@
 
 In manchen Situationen müssen Sie möglicherweise einen **Proxy**-Server wie Traefik oder Nginx verwenden, mit einer Konfiguration, die ein zusätzliches Pfadpräfix hinzufügt, das von Ihrer Anwendung nicht gesehen wird.
 
-In diesen Fällen können Sie `root_path` verwenden, um Ihre Anwendung zu konfigurieren.
+In diesen Fällen können Sie <abbr title="Wurzelpfad">`root_path`</abbr> verwenden, um Ihre Anwendung zu konfigurieren.
 
-Der `root_path` (deutsch: Wurzelpfad) ist ein Mechanismus, der von der ASGI-Spezifikation bereitgestellt wird (auf der FastAPI via Starlette aufbaut).
+Der `root_path` ist ein Mechanismus, der von der ASGI-Spezifikation bereitgestellt wird (auf der FastAPI via Starlette aufbaut).
 
 Der `root_path` wird verwendet, um diese speziellen Fälle zu handhaben.
 
@@ -64,7 +64,7 @@ Die Benutzeroberfläche der Dokumentation würde benötigen, dass das OpenAPI-Sc
 }
 ```
 
-In diesem Beispiel könnte der „Proxy“ etwa **Traefik** sein. Und der Server wäre etwas wie **Uvicorn**, auf dem Ihre FastAPI-Anwendung ausgeführt wird.
+In diesem Beispiel könnte der „Proxy“ etwa **Traefik** sein. Und der Server wäre etwas wie FastAPI CLI mit **Uvicorn**, auf dem Ihre FastAPI-Anwendung ausgeführt wird.
 
 ### Bereitstellung des `root_path` { #providing-the-root-path }
 

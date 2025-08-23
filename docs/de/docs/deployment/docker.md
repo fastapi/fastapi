@@ -60,7 +60,7 @@ Und der **Container** selbst (im Gegensatz zum **Containerimage**) ist die tats�
 
 Docker ist eines der wichtigsten Tools zum Erstellen und Verwalten von **Containerimages** und **Containern**.
 
-Und es gibt einen öffentlichen <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a> (deutsch: Umschlagplatz) mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
+Und es gibt einen öffentlichen <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker <abbr title="Umschlagplatz">Hub</abbr></a> mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
 
 Beispielsweise gibt es ein offizielles <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python-Image</a>.
 

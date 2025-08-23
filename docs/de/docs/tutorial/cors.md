@@ -1,10 +1,10 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder „Cross-Origin Resource Sharing“</a> (deutsch: Ursprungsübergreifende Ressourcenfreigabe) bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder „<abbr title="Ursprungsübergreifende Ressourcenfreigabe">Cross-Origin Resource Sharing</abbr>“</a> bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
 
 ## Origin { #origin }
 
-Ein Origin (deutsch: Ursprung) ist die Kombination aus Protokoll (`http`, `https`), Domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`) und Port (`80`, `443`, `8080`).
+Ein <abbr title="Ursprung">Origin</abbr> ist die Kombination aus Protokoll (`http`, `https`), Domain (`myapp.com`, `localhost`, `localhost.tiangolo.com`) und Port (`80`, `443`, `8080`).
 
 Alle folgenden sind also unterschiedliche Origins:
 

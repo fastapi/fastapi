@@ -4,7 +4,7 @@ So wie Sie mit `Query` für Query-Parameter zusätzliche Validierungen und Metad
 
 ## `Path` importieren { #import-path }
 
-Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`.
+Importieren Sie zuerst `Path` von `fastapi`, und importieren Sie `Annotated`:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
@@ -32,7 +32,7 @@ Ein Pfad-Parameter ist immer erforderlich, da er Teil des Pfads sein muss. Selbs
 
 ///
 
-## Sortieren Sie die Parameter, wie Sie möchten { #order-the-parameters-as-you-need }
+## Die Parameter sortieren, wie Sie möchten { #order-the-parameters-as-you-need }
 
 /// tip | Tipp
 
@@ -70,7 +70,7 @@ Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` ver
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
 
-## Sortieren Sie die Parameter wie Sie möchten: Tricks { #order-the-parameters-as-you-need-tricks }
+## Die Parameter sortieren, wie Sie möchten: Tricks { #order-the-parameters-as-you-need-tricks }
 
 /// tip | Tipp
 
@@ -105,7 +105,7 @@ Bedenken Sie, dass Sie, wenn Sie `Annotated` verwenden, da Sie keine Funktionspa
 
 Mit `Query` und `Path` (und anderen, die Sie später sehen werden) können Sie Zahlenbeschränkungen deklarieren.
 
-Hier, mit `ge=1`, muss `item_id` eine ganze Zahl sein, die „`g`reater than or `e`qual to“ `1` ist (deutsch: größer oder gleich).
+Hier, mit `ge=1`, muss `item_id` eine ganze Zahl sein, die „`g`reater than or `e`qual to“ (größer oder gleich) `1` ist.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
 
@@ -113,14 +113,14 @@ Hier, mit `ge=1`, muss `item_id` eine ganze Zahl sein, die „`g`reater than or 
 
 Das Gleiche gilt für:
 
-* `gt`: `g`reater `t`han (deutsch: größer als)
-* `le`: `l`ess than or `e`qual (deutsch: kleiner oder gleich)
+* `gt`: `g`reater `t`han (größer als)
+* `le`: `l`ess than or `e`qual (kleiner oder gleich)
 
 {* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
 
 ## Validierung von Zahlen: Floats, größer und kleiner { #number-validations-floats-greater-than-and-less-than }
 
-Zahlenvalidierung funktioniert auch für `float`-Werte (deutsch: Fließkommazahlen).
+Zahlenvalidierung funktioniert auch für <abbr title="Fließkommazahlen">`float`</abbr>-Werte.
 
 Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
 
@@ -136,10 +136,10 @@ Mit `Query`, `Path` (und anderen, die Sie noch nicht gesehen haben) können Sie 
 
 Und Sie können auch Zahlenvalidierungen deklarieren:
 
-* `gt`: `g`reater `t`han (deutsch: größer als)
-* `ge`: `g`reater than or `e`qual (deutsch: größer oder gleich)
-* `lt`: `l`ess `t`han (deutsch: kleiner als)
-* `le`: `l`ess than or `e`qual (deutsch: kleiner oder gleich)
+* `gt`: `g`reater `t`han (größer als)
+* `ge`: `g`reater than or `e`qual (größer oder gleich)
+* `lt`: `l`ess `t`han (kleiner als)
+* `le`: `l`ess than or `e`qual (kleiner oder gleich)
 
 /// info | Info
 

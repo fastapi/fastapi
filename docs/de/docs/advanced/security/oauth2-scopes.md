@@ -1,6 +1,6 @@
 # OAuth2-Scopes { #oauth2-scopes }
 
-Sie können OAuth2-Scopes (deutsch: Geltungsbereiche) direkt in **FastAPI** verwenden, sie sind nahtlos integriert.
+Sie können OAuth2-<abbr title="Geltungsbereiche">Scopes</abbr> direkt in **FastAPI** verwenden, sie sind nahtlos integriert.
 
 Das ermöglicht es Ihnen, ein feingranuliertes Berechtigungssystem nach dem OAuth2-Standard in Ihre OpenAPI-Anwendung (und deren API-Dokumentation) zu integrieren.
 

@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/de"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI-Framework, hochperformant, leicht zu erlernen, schnell zu programmieren, einsatzbereit</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Dokumentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Dokumentation**: <a href="https://fastapi.tiangolo.com/de" target="_blank">https://fastapi.tiangolo.com/de</a>
 
 **Quellcode**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -63,7 +63,7 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Andere Sponsoren</a>
+<a href="https://fastapi.tiangolo.com/de/fastapi-people/#sponsors" class="external-link" target="_blank">Andere Sponsoren</a>
 
 ## Meinungen { #opinions }
 
@@ -128,7 +128,7 @@ FastAPI steht auf den Schultern von Giganten:
 
 ## Installation { #installation }
 
-Erstellen und aktivieren Sie eine <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtuelle Umgebung</a> und installieren Sie dann FastAPI:
+Erstellen und aktivieren Sie eine <a href="https://fastapi.tiangolo.com/de/virtual-environments/" class="external-link" target="_blank">virtuelle Umgebung</a> und installieren Sie dann FastAPI:
 
 <div class="termy">
 
@@ -191,7 +191,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Hinweis**:
 
-Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _„In Eile?“_ über <a href="https://fastapi.tiangolo.com/async/#in-eile" target="_blank">`async` und `await` in der Dokumentation</a> an.
+Wenn Sie das nicht kennen, schauen Sie sich den Abschnitt _„In Eile?“_ über <a href="https://fastapi.tiangolo.com/de/async/#in-a-hurry" target="_blank">`async` und `await` in der Dokumentation</a> an.
 
 </details>
 
@@ -233,7 +233,7 @@ Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App
 
 Standardmäßig wird `fastapi dev` mit aktiviertem Auto-Reload für die lokale Entwicklung gestartet.
 
-Sie können mehr darüber in der <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI-Dokumentation</a> lesen.
+Sie können mehr darüber in der <a href="https://fastapi.tiangolo.com/de/fastapi-cli/" target="_blank">FastAPI CLI-Dokumentation</a> lesen.
 
 </details>
 
@@ -251,8 +251,8 @@ Sie haben bereits eine API erstellt, welche:
 
 * HTTP-Anfragen auf den _Pfaden_ `/` und `/items/{item_id}` entgegennimmt.
 * Beide _Pfade_ erhalten `GET` <em>Operationen</em> (auch bekannt als HTTP _Methoden_).
-* Der _Pfad_ `/items/{item_id}` hat einen _Pfadparameter_ `item_id`, der ein `int` sein sollte.
-* Der _Pfad_ `/items/{item_id}` hat einen optionalen `str` _Query Parameter_ `q`.
+* Der _Pfad_ `/items/{item_id}` hat einen _Pfad-Parameter_ `item_id`, der ein `int` sein sollte.
+* Der _Pfad_ `/items/{item_id}` hat einen optionalen `str` _Query-Parameter_ `q`.
 
 ### Interaktive API-Dokumentation { #interactive-api-docs }
 
@@ -365,7 +365,7 @@ item: Item
 * <abbr title="auch bekannt als: Serialisierung, Parsen, Marshalling">Konvertierung</abbr> von Eingabedaten: Aus dem Netzwerk kommend, zu Python-Daten und -Typen. Lesen von:
     * JSON.
     * Pfad-Parametern.
-    * Abfrage-Parametern.
+    * Query-Parametern.
     * Cookies.
     * Header-Feldern.
     * Formularen.
@@ -427,7 +427,7 @@ Versuchen Sie, diese Zeile zu ändern:
 
 ![Editor Unterstützung](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial – Benutzerhandbuch</a>.
+Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="https://fastapi.tiangolo.com/de/tutorial/">Tutorial – Benutzerhandbuch</a>.
 
 **Spoiler-Alarm**: Das Tutorial – Benutzerhandbuch enthält:
 
@@ -448,7 +448,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 
 Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn laufen, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur hinter Starlette und Uvicorn selbst (intern von FastAPI verwendet). (*)
 
-Um mehr darüber zu erfahren, siehe den Abschnitt <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Um mehr darüber zu erfahren, siehe den Abschnitt <a href="https://fastapi.tiangolo.com/de/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
 ## Abhängigkeiten { #dependencies }
 

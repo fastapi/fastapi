@@ -4,7 +4,7 @@ Sie können Logik (Code) definieren, die ausgeführt werden soll, bevor die Anwe
 
 Auf die gleiche Weise können Sie Logik (Code) definieren, die ausgeführt werden soll, wenn die Anwendung **heruntergefahren** wird. In diesem Fall wird dieser Code **einmal** ausgeführt, **nachdem** möglicherweise **viele Requests** bearbeitet wurden.
 
-Da dieser Code ausgeführt wird, bevor die Anwendung **beginnt**, Requests entgegenzunehmen, und unmittelbar, nachdem sie die Bearbeitung von Requests **abgeschlossen hat**, deckt er den gesamten Anwendungs-**Lifespan** (deutsch: Lebensdauer) ab (das Wort „Lifespan“ wird gleich wichtig sein 😉).
+Da dieser Code ausgeführt wird, bevor die Anwendung **beginnt**, Requests entgegenzunehmen, und unmittelbar, nachdem sie die Bearbeitung von Requests **abgeschlossen hat**, deckt er den gesamten Anwendungs-<abbr title="Lebensdauer">**Lifespan**</abbr> ab (das Wort „Lifespan“ wird gleich wichtig sein 😉).
 
 Dies kann sehr nützlich sein, um **Ressourcen** einzurichten, die Sie in der gesamten App verwenden wollen und die von Requests **gemeinsam genutzt** werden und/oder die Sie anschließend **aufräumen** müssen. Zum Beispiel ein Pool von Datenbankverbindungen oder das Laden eines gemeinsam genutzten Modells für maschinelles Lernen.
 
@@ -38,7 +38,7 @@ Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird aus
 
 /// tip | Tipp
 
-Das *Herunterfahren* würde erfolgen, wenn Sie die Anwendung **stoppen**.
+Das `shutdown` würde erfolgen, wenn Sie die Anwendung **stoppen**.
 
 Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach satt, sie auszuführen. 🤷
 

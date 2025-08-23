@@ -1,6 +1,6 @@
 # HTTP Basic Auth { #http-basic-auth }
 
-Für die einfachsten Fälle können Sie HTTP Basic Auth (deutsch: HTTP-Basisauthentifizierung) verwenden.
+Für die einfachsten Fälle können Sie <abbr title="HTTP-Basisauthentifizierung">HTTP Basic Auth</abbr> verwenden.
 
 Bei HTTP Basic Auth erwartet die Anwendung einen Header, der einen Benutzernamen und ein Passwort enthält.
 

@@ -50,7 +50,7 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 
 ## Zusammenfassung und Beschreibung { #summary-and-description }
 
-Sie können eine `summary` (deutsch: Zusammenfassung) und eine `description` (deutsch: Beschreibung) hinzufügen:
+Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr title="Beschreibung">`description`</abbr> hinzufügen:
 
 {* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
 

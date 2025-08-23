@@ -1,6 +1,6 @@
 # Virtuelle Umgebungen { #virtual-environments }
 
-Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die Packages (deutsch: Pakete), die Sie für jedes Projekt installieren, zu isolieren.
+Wenn Sie an Python-Projekten arbeiten, sollten Sie wahrscheinlich eine **virtuelle Umgebung** (oder einen ähnlichen Mechanismus) verwenden, um die <abbr title="Python Installationspakete">Packages</abbr>, die Sie für jedes Projekt installieren, zu isolieren.
 
 /// info | Info
 
@@ -37,15 +37,15 @@ Und darin erstelle ich ein Verzeichnis pro Projekt.
 <div class="termy">
 
 ```console
-// Zum Home-Verzeichnis wechseln
+// Gehe zum Home-Verzeichnis
 $ cd
-// Ein Verzeichnis für alle Ihre Codeprojekte erstellen
+// Erstelle ein Verzeichnis für alle Ihre Code-Projekte
 $ mkdir code
-// In dieses Codeverzeichnis gehen
+// Gehe in dieses Code-Verzeichnis
 $ cd code
-// Ein Verzeichnis für dieses Projekt erstellen
+// Erstelle ein Verzeichnis für dieses Projekt
 $ mkdir awesome-project
-// In dieses Projektverzeichnis gehen
+// Gehe in dieses Projektverzeichnis
 $ cd awesome-project
 ```
 
@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Eine virtuelle Umgebung erstellen { #create-a-virtual-environment }
 
-Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="Es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
+Wenn Sie zum **ersten Mal** an einem Python-Projekt arbeiten, erstellen Sie eine virtuelle Umgebung **<abbr title="es gibt andere Optionen, dies ist eine einfache Richtlinie">innerhalb Ihres Projekts</abbr>**.
 
 /// tip | Tipp
 
@@ -166,7 +166,7 @@ $ source .venv/Scripts/activate
 
 Jedes Mal, wenn Sie ein **neues Paket** in dieser Umgebung installieren, aktivieren Sie die Umgebung erneut.
 
-So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="Command Line Interface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
+So stellen Sie sicher, dass, wenn Sie ein **Terminalprogramm (<abbr title="command line interface – Kommandozeileninterface">CLI</abbr>)** verwenden, das durch dieses Paket installiert wurde, Sie das aus Ihrer virtuellen Umgebung verwenden und nicht eines, das global installiert ist, wahrscheinlich mit einer anderen Version als der, die Sie benötigen.
 
 ///
 
@@ -480,7 +480,7 @@ flowchart LR
     subgraph global[globale Umgebung]
         harry-1[harry v1]
     end
-    subgraph stone-project[philosophers-stone Projekt]
+    subgraph stone-project[philosophers-stone-Projekt]
         stone(philosophers-stone) -->|benötigt| harry-1
     end
 ```
@@ -506,10 +506,10 @@ flowchart LR
         style harry-1 fill:#ccc,stroke-dasharray: 5 5
         harry-3[harry v3]
     end
-    subgraph stone-project[philosophers-stone Projekt]
+    subgraph stone-project[philosophers-stone-Projekt]
         stone(philosophers-stone) -.-x|⛔️| harry-1
     end
-    subgraph azkaban-project[prisoner-of-azkaban Projekt]
+    subgraph azkaban-project[prisoner-of-azkaban-Projekt]
         azkaban(prisoner-of-azkaban) --> |benötigt| harry-3
     end
 ```
@@ -560,13 +560,13 @@ Auf diese Weise hat jedes Projekt seine eigene virtuelle Umgebung (`.venv`-Verze
 
 ```mermaid
 flowchart TB
-    subgraph stone-project[philosophers-stone Projekt]
+    subgraph stone-project[philosophers-stone-Projekt]
         stone(philosophers-stone) --->|benötigt| harry-1
         subgraph venv1[.venv]
             harry-1[harry v1]
         end
     end
-    subgraph azkaban-project[prisoner-of-azkaban Projekt]
+    subgraph azkaban-project[prisoner-of-azkaban-Projekt]
         azkaban(prisoner-of-azkaban) --->|benötigt| harry-3
         subgraph venv2[.venv]
             harry-3[harry v3]
@@ -750,7 +750,7 @@ Sie verwenden `which` auf Linux und macOS und `Get-Command` in Windows PowerShel
 
 So funktioniert dieser Befehl: Er wird in der `PATH`-Umgebungsvariable nachsehen und **jeden Pfad in der Reihenfolge durchgehen**, um das Programm namens `python` zu finden. Sobald er es findet, wird er Ihnen **den Pfad** zu diesem Programm anzeigen.
 
-Der wichtigste Punkt ist, dass, wenn Sie `python` aufrufen, genau dieses "`python`" ausgeführt wird.
+Der wichtigste Punkt ist, dass, wenn Sie `python` aufrufen, genau dieses „`python`“ ausgeführt wird.
 
 So können Sie überprüfen, ob Sie sich in der richtigen virtuellen Umgebung befinden.
 
@@ -797,7 +797,7 @@ Traceback (most recent call last):
 
 </div>
 
-Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-azkaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
+Wenn Sie jedoch die virtuelle Umgebung deaktivieren und die neue für `prisoner-of-askaban` aktivieren, wird beim Ausführen von `python` das Python aus der virtuellen Umgebung in `prisoner-of-azkaban` verwendet.
 
 <div class="termy">
 

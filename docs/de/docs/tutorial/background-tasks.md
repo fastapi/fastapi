@@ -1,6 +1,6 @@
 # Hintergrundtasks { #background-tasks }
 
-Sie können Hintergrundtasks (deutsch: Hintergrund-Aufgaben) definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
+Sie können <abbr title="Hintergrund-Aufgaben">Hintergrundtasks</abbr> definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
 
 Das ist nützlich für Vorgänge, die nach einem Request ausgeführt werden müssen, bei denen der Client jedoch nicht unbedingt auf den Abschluss des Vorgangs warten muss, bevor er die Response erhält.
 
@@ -71,7 +71,7 @@ Indem Sie nur `BackgroundTasks` (und nicht `BackgroundTask`) verwenden, ist es d
 
 Es ist immer noch möglich, `BackgroundTask` allein in FastAPI zu verwenden, aber Sie müssen das Objekt in Ihrem Code erstellen und eine Starlette-`Response` zurückgeben, die es enthält.
 
-Weitere Details finden Sie in der <a href="https://www.starlette.io/background/" class="external-link" target="_blank">offiziellen Starlette-Dokumentation für Hintergrundtasks</a>.
+Weitere Details finden Sie in <a href="https://www.starlette.io/background/" class="external-link" target="_blank">Starlettes offizieller Dokumentation für Hintergrundtasks</a>.
 
 ## Vorbehalt { #caveat }
 
@@ -79,7 +79,7 @@ Wenn Sie umfangreiche Hintergrundberechnungen durchführen müssen und diese nic
 
 Sie erfordern in der Regel komplexere Konfigurationen und einen Nachrichten-/Job-Queue-Manager wie RabbitMQ oder Redis, ermöglichen Ihnen jedoch die Ausführung von Hintergrundtasks in mehreren Prozessen und insbesondere auf mehreren Servern.
 
-Wenn Sie jedoch über dieselbe **FastAPI**-Anwendung auf Variablen und Objekte zugreifen oder kleine Hintergrundtasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
+Wenn Sie jedoch über dieselbe **FastAPI**-App auf Variablen und Objekte zugreifen oder kleine Hintergrundtasks ausführen müssen (z. B. das Senden einer E-Mail-Benachrichtigung), können Sie einfach `BackgroundTasks` verwenden.
 
 ## Zusammenfassung { #recap }
 

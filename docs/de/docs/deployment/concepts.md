@@ -186,7 +186,7 @@ In vielen Fällen möchten Sie jedoch mehrere Workerprozesse gleichzeitig ausfü
 
 Wenn Sie mehr Clients haben, als ein einzelner Prozess verarbeiten kann (z. B. wenn die virtuelle Maschine nicht sehr groß ist) und die CPU des Servers **mehrere Kerne** hat, dann könnten **mehrere Prozesse** gleichzeitig mit derselben Anwendung laufen und alle Requests unter sich verteilen.
 
-Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als **Worker** (deutsch: Arbeiter) bezeichnet.
+Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als <abbr title="Arbeiter">**Worker**</abbr> bezeichnet.
 
 ### Workerprozesse und Ports { #worker-processes-and-ports }
 

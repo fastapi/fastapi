@@ -91,7 +91,7 @@ Dann fügen wir eine Funktion hinzu, die `SQLModel.metadata.create_all(engine)` 
 
 ### Eine Session-Abhängigkeit erstellen
 
-Eine **`Session`** (deutsch: Sitzung) speichert die **Objekte im Speicher** und verfolgt alle Änderungen, die an den Daten vorgenommen werden müssen, dann **verwendet sie die `engine`**, um mit der Datenbank zu kommunizieren.
+Eine <abbr title="Sitzung">**`Session`**</abbr> speichert die **Objekte im Speicher** und verfolgt alle Änderungen, die an den Daten vorgenommen werden müssen, dann **verwendet sie die `engine`**, um mit der Datenbank zu kommunizieren.
 
 Wir werden eine FastAPI **Abhängigkeit** mit `yield` erstellen, die eine neue `Session` für jede Anfrage bereitstellt. Das ist es, was sicherstellt, dass wir eine einzige Session pro Anfrage verwenden. 🤓
 

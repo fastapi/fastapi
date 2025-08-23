@@ -20,7 +20,7 @@ Es ist das beliebteste Python-Framework und genießt großes Vertrauen. Es wird 
 
 Es ist relativ eng mit relationalen Datenbanken (wie MySQL oder PostgreSQL) gekoppelt, daher ist es nicht sehr einfach, eine NoSQL-Datenbank (wie Couchbase, MongoDB, Cassandra, usw.) als Hauptspeicherengine zu verwenden.
 
-Es wurde erstellt, um den HTML-Code im Backend zu generieren, nicht um APIs zu erstellen, die von einem modernen Frontend (wie React, Vue.js und Angular) oder von anderen Systemen (wie <abbr title="Internet of Things">IoT</abbr>-Geräten) verwendet werden, um mit ihm zu kommunizieren.
+Es wurde erstellt, um den HTML-Code im Backend zu generieren, nicht um APIs zu erstellen, die von einem modernen Frontend (wie React, Vue.js und Angular) oder von anderen Systemen (wie <abbr title="Internet of Things – Internet der Dinge">IoT</abbr>-Geräten) verwendet werden, um mit ihm zu kommunizieren.
 
 ### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
@@ -145,7 +145,7 @@ Ohne ein Datenvalidierungssystem müssten Sie alle Prüfungen manuell im Code du
 
 Für diese Funktionen wurde Marshmallow entwickelt. Es ist eine großartige Bibliothek und ich habe sie schon oft genutzt.
 
-Aber sie wurde erstellt, bevor Typhinweise in Python existierten. Um also ein <abbr title="die Definition, wie Daten geformt sein werden sollen">Schema</abbr> zu definieren, müssen Sie bestimmte Werkzeuge und Klassen verwenden, die von Marshmallow bereitgestellt werden.
+Aber sie wurde erstellt, bevor Typhinweise in Python existierten. Um also ein <abbr title="die Definition, wie Daten geformt sein sollen">Schema</abbr> zu definieren, müssen Sie bestimmte Werkzeuge und Klassen verwenden, die von Marshmallow bereitgestellt werden.
 
 /// check | Inspirierte **FastAPI**
 
@@ -474,7 +474,7 @@ Es ist der empfohlene Server für Starlette und **FastAPI**.
 
 Hauptwebserver zum Ausführen von **FastAPI**-Anwendungen.
 
-Sie können ihn mit Gunicorn kombinieren, um einen asynchronen Multiprozess-Server zu erhalten.
+Sie können auch die Kommandozeilenoption `--workers` verwenden, um einen asynchronen Multiprozess-Server zu erhalten.
 
 Weitere Details finden Sie im Abschnitt [Deployment](deployment/index.md){.internal-link target=_blank}.
 
