@@ -91,7 +91,7 @@ Wenn Sie:
 
 Übergeben Sie `*`, als den ersten Parameter der Funktion.
 
-Python wird nichts mit diesem `*` machen, aber es wird wissen, dass alle folgenden Parameter als Schlüsselwortargumente (Schlüssel-Wert-Paare) verwendet werden sollen, auch bekannt als <abbr title="Von: K-ey W-ord Arg-uments">`kwargs`</abbr>. Selbst wenn diese keinen Defaultwert haben.
+Python wird nichts mit diesem `*` machen, aber es wird wissen, dass alle folgenden Parameter als Schlüsselwortargumente (Schlüssel-Wert-Paare) verwendet werden sollen, auch bekannt als <abbr title="Von: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Selbst wenn diese keinen Defaultwert haben.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
@@ -122,11 +122,11 @@ Das Gleiche gilt für:
 
 Zahlenvalidierung funktioniert auch für `float`-Werte (deutsch: Fließkommazahlen).
 
-Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than">`gt`</abbr> und nicht nur <abbr title="greater than or equal">`ge`</abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
+Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
 
 Also wäre `0.5` ein gültiger Wert. Aber `0.0` oder `0` nicht.
 
-Und das Gleiche gilt für <abbr title="less than">`lt`</abbr>.
+Und das Gleiche gilt für <abbr title="less than"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 

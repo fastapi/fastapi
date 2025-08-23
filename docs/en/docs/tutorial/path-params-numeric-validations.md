@@ -91,7 +91,7 @@ If you want to:
 
 Pass `*`, as the first parameter of the function.
 
-Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments">`kwargs`</abbr>. Even if they don't have a default value.
+Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
@@ -122,11 +122,11 @@ The same applies for:
 
 Number validations also work for `float` values.
 
-Here's where it becomes important to be able to declare <abbr title="greater than">`gt`</abbr> and not just <abbr title="greater than or equal">`ge`</abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
+Here's where it becomes important to be able to declare <abbr title="greater than"><code>gt</code></abbr> and not just <abbr title="greater than or equal"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.
 
 So, `0.5` would be a valid value. But `0.0` or `0` would not.
 
-And the same for <abbr title="less than">`lt`</abbr>.
+And the same for <abbr title="less than"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 
