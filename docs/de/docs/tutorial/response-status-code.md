@@ -1,4 +1,4 @@
-# Response-Statuscode
+# Response-Statuscode { #response-status-code }
 
 Genauso wie Sie ein Responsemodell angeben können, können Sie auch den HTTP-Statuscode für die Response mit dem Parameter `status_code` in jeder der *Pfadoperationen* deklarieren:
 
@@ -39,7 +39,7 @@ FastAPI erkennt dies und erstellt eine OpenAPI-Dokumentation, die zeigt, dass es
 
 ///
 
-## Über HTTP-Statuscodes
+## Über HTTP-Statuscodes { #about-http-status-codes }
 
 /// note | Hinweis
 
@@ -66,11 +66,11 @@ Kurz gefasst:
 
 /// tip | Tipp
 
-Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet wird, sehen Sie sich die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> Dokumentation über HTTP-Statuscodes</a> an.
+Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet wird, sehen Sie sich die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a> an.
 
 ///
 
-## Abkürzung zur Erinnerung an die Namen
+## Abkürzung zur Erinnerung an die Namen { #shortcut-to-remember-the-names }
 
 Lassen Sie uns das vorherige Beispiel noch einmal anschauen:
 
@@ -96,6 +96,6 @@ Sie könnten auch `from starlette import status` verwenden.
 
 ///
 
-## Den Defaultwert ändern
+## Den Defaultwert ändern { #changing-the-default }
 
 Später im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank} werden Sie sehen, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.
