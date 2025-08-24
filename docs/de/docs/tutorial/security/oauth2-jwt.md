@@ -1,4 +1,4 @@
-# OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens
+# OAuth2 mit Passwort (und Hashing), Bearer mit JWT-Tokens { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
 Da wir nun über den gesamten Sicherheitsablauf verfügen, machen wir die Anwendung tatsächlich sicher, indem wir <abbr title="JSON Web Tokens">JWT</abbr>-Tokens und sicheres Passwort-Hashing verwenden.
 
@@ -6,7 +6,7 @@ Diesen Code können Sie tatsächlich in Ihrer Anwendung verwenden, die Passwort-
 
 Wir bauen auf dem vorherigen Kapitel auf.
 
-## Über JWT
+## Über JWT { #about-jwt }
 
 JWT bedeutet „JSON Web Tokens“.
 
@@ -26,33 +26,31 @@ Nach einer Woche läuft der Token ab und der Benutzer wird nicht autorisiert und
 
 Wenn Sie mit JWT-Tokens spielen und sehen möchten, wie sie funktionieren, schauen Sie sich <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> an.
 
-## `python-jose` installieren.
+## `PyJWT` installieren { #install-pyjwt }
 
-Wir müssen <abbr title="JOSE: JavaScript Object Signing and Encryption">`python-jose`</abbr> installieren, um die JWT-Tokens in Python zu generieren und zu verifizieren:
+Wir müssen `PyJWT` installieren, um die JWT-Tokens in Python zu generieren und zu verifizieren.
+
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und dann `pyjwt` installieren:
 
 <div class="termy">
 
 ```console
-$ pip install "python-jose[cryptography]"
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">python-jose</a> erfordert zusätzlich ein kryptografisches Backend.
+/// info | Info
 
-Hier verwenden wir das empfohlene: <a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>.
+Wenn Sie planen, digitale Signaturalgorithmen wie RSA oder ECDSA zu verwenden, sollten Sie die Kryptografie-Abhängigkeit `pyjwt[crypto]` installieren.
 
-/// tip | Tipp
-
-Dieses Tutorial verwendete zuvor <a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>.
-
-Es wurde jedoch aktualisiert, stattdessen python-jose zu verwenden, da dieses alle Funktionen von PyJWT sowie einige Extras bietet, die Sie später möglicherweise benötigen, wenn Sie Integrationen mit anderen Tools erstellen.
+Weitere Informationen finden Sie in der <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT-Installationsdokumentation</a>.
 
 ///
 
-## Passwort-Hashing
+## Passwort-Hashing { #password-hashing }
 
 „Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
@@ -60,13 +58,13 @@ Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
-### Warum Passwort-Hashing verwenden?
+### Warum Passwort-Hashing verwenden? { #why-use-password-hashing }
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-## `passlib` installieren
+## `passlib` installieren { #install-passlib }
 
 PassLib ist ein großartiges Python-Package, um Passwort-Hashes zu handhaben.
 
@@ -74,7 +72,7 @@ Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen z
 
 Der empfohlene Algorithmus ist „Bcrypt“.
 
-Installieren Sie also PassLib mit Bcrypt:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren, und installieren Sie dann PassLib mit Bcrypt:
 
 <div class="termy">
 
@@ -96,7 +94,7 @@ Und Ihre Benutzer könnten sich gleichzeitig über Ihre Django-Anwendung oder Ih
 
 ///
 
-## Die Passwörter hashen und überprüfen
+## Die Passwörter hashen und überprüfen { #hash-and-verify-the-passwords }
 
 Importieren Sie die benötigten Tools aus `passlib`.
 
@@ -118,7 +116,7 @@ Und eine weitere, um zu überprüfen, ob ein empfangenes Passwort mit dem gespei
 
 Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[7,48,55:56,59:60,69:75] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
 
 /// note | Hinweis
 
@@ -126,7 +124,7 @@ Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie,
 
 ///
 
-## JWT-Token verarbeiten
+## JWT-Token verarbeiten { #handle-jwt-tokens }
 
 Importieren Sie die installierten Module.
 
@@ -154,9 +152,9 @@ Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die Response verw
 
 Erstellen Sie eine Hilfsfunktion, um einen neuen Zugriffstoken zu generieren.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[6,12:14,28:30,78:86] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
 
-## Die Abhängigkeiten aktualisieren
+## Die Abhängigkeiten aktualisieren { #update-the-dependencies }
 
 Aktualisieren Sie `get_current_user`, um den gleichen Token wie zuvor zu erhalten, dieses Mal jedoch unter Verwendung von JWT-Tokens.
 
@@ -164,17 +162,17 @@ Dekodieren Sie den empfangenen Token, validieren Sie ihn und geben Sie den aktue
 
 Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[89:106] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
 
-## Die *Pfadoperation* `/token` aktualisieren
+## Die *Pfadoperation* `/token` aktualisieren { #update-the-token-path-operation }
 
 Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufzeit des Tokens.
 
 Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[117:132] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
-### Technische Details zum JWT-„Subjekt“ `sub`
+### Technische Details zum JWT-„Subjekt“ `sub` { #technical-details-about-the-jwt-subject-sub }
 
 Die JWT-Spezifikation besagt, dass es einen Schlüssel `sub` mit dem Subjekt des Tokens gibt.
 
@@ -196,7 +194,7 @@ Deshalb, um ID-Kollisionen zu vermeiden, könnten Sie beim Erstellen des JWT-Tok
 
 Der wesentliche Punkt ist, dass der `sub`-Schlüssel in der gesamten Anwendung eine eindeutige Kennung haben sollte, und er sollte ein String sein.
 
-## Testen
+## Testen { #check-it }
 
 Führen Sie den Server aus und gehen Sie zur Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -209,9 +207,9 @@ Melden Sie sich bei der Anwendung auf die gleiche Weise wie zuvor an.
 Verwenden Sie die Anmeldeinformationen:
 
 Benutzername: `johndoe`
-Passwort: `secret`.
+Passwort: `secret`
 
-/// check
+/// check | Testen
 
 Beachten Sie, dass im Code nirgendwo das Klartext-Passwort "`secret`" steht, wir haben nur die gehashte Version.
 
@@ -238,11 +236,11 @@ Wenn Sie die Developer Tools öffnen, können Sie sehen, dass die gesendeten Dat
 
 /// note | Hinweis
 
-Beachten Sie den Header `Authorization` mit einem Wert, der mit `Bearer` beginnt.
+Beachten Sie den Header `Authorization` mit einem Wert, der mit `Bearer ` beginnt.
 
 ///
 
-## Fortgeschrittene Verwendung mit `scopes`
+## Fortgeschrittene Verwendung mit `scopes` { #advanced-usage-with-scopes }
 
 OAuth2 hat ein Konzept von <abbr title="Geltungsbereiche">„Scopes“</abbr>.
 
@@ -252,7 +250,7 @@ Anschließend können Sie diesen Token einem Benutzer direkt oder einem Dritten 
 
 Wie Sie sie verwenden und wie sie in **FastAPI** integriert sind, erfahren Sie später im **Handbuch für fortgeschrittene Benutzer**.
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Mit dem, was Sie bis hier gesehen haben, können Sie eine sichere **FastAPI**-Anwendung mithilfe von Standards wie OAuth2 und JWT einrichten.
 
@@ -266,7 +264,7 @@ Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenm
 
 Es gibt Ihnen die volle Flexibilität, diejenigen auszuwählen, die am besten zu Ihrem Projekt passen.
 
-Und Sie können viele gut gepflegte und weit verbreitete Packages wie `passlib` und `python-jose` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
+Und Sie können viele gut gepflegte und weit verbreitete Packages wie `passlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
 
 Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu vereinfachen, ohne Kompromisse bei Flexibilität, Robustheit oder Sicherheit einzugehen.
 
