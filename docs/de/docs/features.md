@@ -6,7 +6,7 @@
 
 ### Basiert auf offenen Standards { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch genannt Endpunkte, Routen">Pfad</abbr>-<abbr title="gemeint sind HTTP-Methoden wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Requestbodys, Sicherheit, usw.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>-<abbr title="auch bekannt als HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Requestbodys, Sicherheit, usw.
 * Automatische Dokumentation der Datenmodelle mit <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (da OpenAPI selbst auf JSON Schema basiert).
 * Um diese Standards herum entworfen, nach sorgfältigem Studium. Statt einer nachträglichen Schicht darüber.
 * Dies ermöglicht auch automatische **Client-Code-Generierung** in vielen Sprachen.
@@ -25,7 +25,7 @@ Interaktive API-Dokumentation und erkundbare Web-Benutzeroberflächen. Da das Fr
 
 ### Nur modernes Python { #just-modern-python }
 
-Alles basiert auf **Python 3.8 Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
+Alles basiert auf Standard-**Python-Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
 Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python-Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
 
@@ -126,8 +126,8 @@ Alle in OpenAPI definierten Sicherheitsschemas, inklusive:
 * HTTP Basic.
 * **OAuth2** (auch mit **JWT Tokens**). Siehe dazu das Tutorial zu [OAuth2 mit JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank}.
 * API Schlüssel in:
-    * Header-Feldern.
-    * Anfrageparametern.
+    * Headern.
+    * Query-Parametern.
     * Cookies, usw.
 
 Zusätzlich alle Sicherheitsfunktionen von Starlette (inklusive **Session Cookies**).
@@ -157,7 +157,7 @@ Jede Integration wurde so entworfen, dass sie so einfach zu nutzen ist (mit Abh�
 * 100 % <abbr title="Python-Typannotationen, mit denen Ihr Editor und andere externe Werkzeuge Sie besser unterstützen können">Typen annotiert</abbr>.
 * Verwendet in Produktionsanwendungen.
 
-## Starlette's Merkmale { #starlette-features }
+## Starlette Merkmale { #starlette-features }
 
 **FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Das bedeutet, wenn Sie eigenen Starlette Quellcode haben, funktioniert der.
 
@@ -175,11 +175,11 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 * 100 % Testabdeckung.
 * 100 % Typen annotierte Codebasis.
 
-## Pydantic's Merkmale { #pydantic-features }
+## Pydantic Merkmale { #pydantic-features }
 
 **FastAPI** ist vollkommen kompatibel (und basiert auf) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Das bedeutet, wenn Sie eigenen Pydantic Quellcode haben, funktioniert der.
 
-Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper">ORM</abbr>s, <abbr title="Object-Document Mapper">ODM</abbr>s für Datenbanken.
+Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper – Objektrelationaler Abbilder">ORM</abbr>s, <abbr title="Object-Document Mapper – Objekt-Dokument-Abbilder">ODM</abbr>s für Datenbanken.
 
 Daher können Sie in vielen Fällen das Objekt einer Anfrage **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
 
@@ -190,7 +190,7 @@ Mit **FastAPI** bekommen Sie alle Funktionen von **Pydantic** (da FastAPI für d
 * **Kein Kopfzerbrechen**:
     * Keine neue Schemadefinition-Mikrosprache zu lernen.
     * Wenn Sie Pythons Typen kennen, wissen Sie, wie man Pydantic verwendet.
-* Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrierte Entwicklungsumgebung, ähnlich zu einem Code-Editor">IDE</abbr>/<abbr title="Ein Programm, das Fehler im Quellcode sucht">Linter</abbr>/Gehirn**:
+* Gutes Zusammenspiel mit Ihrer/Ihrem **<abbr title="Integrated Development Environment – Integrierte Entwicklungsumgebung: Ähnlich einem Code-Editor">IDE</abbr>/<abbr title="Ein Programm, das Fehler im Quellcode sucht">Linter</abbr>/Gehirn**:
     * Weil Pydantics Datenstrukturen einfach nur Instanzen ihrer definierten Klassen sind; Autovervollständigung, Linting, mypy und Ihre Intuition sollten alle einwandfrei mit Ihren validierten Daten funktionieren.
 * Validierung von **komplexen Strukturen**:
     * Benutzung von hierarchischen Pydantic-Modellen, Python-`typing`s `List` und `Dict`, etc.

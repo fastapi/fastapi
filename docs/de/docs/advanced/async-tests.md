@@ -14,9 +14,9 @@ Wenn wir in unseren Tests asynchrone Funktionen aufrufen möchten, müssen unser
 
 Auch wenn Ihre **FastAPI**-Anwendung normale `def`-Funktionen anstelle von `async def` verwendet, handelt es sich darunter immer noch um eine `async`-Anwendung.
 
-Der `TestClient` macht unter der Haube magisches, um die asynchrone FastAPI-Anwendung in Ihren normalen `def`-Testfunktionen, mithilfe von Standard-Pytest aufzurufen. Aber diese Magie funktioniert nicht mehr, wenn wir sie in asynchronen Funktionen verwenden. Durch die asynchrone Ausführung unserer Tests können wir den `TestClient` nicht mehr in unseren Testfunktionen verwenden.
+Der `TestClient` betreibt unter der Haube etwas Magie, um die asynchrone FastAPI-Anwendung in Ihren normalen `def`-Testfunktionen, mithilfe von Standard-Pytest aufzurufen. Aber diese Magie funktioniert nicht mehr, wenn wir sie in asynchronen Funktionen verwenden. Durch die asynchrone Ausführung unserer Tests können wir den `TestClient` nicht mehr in unseren Testfunktionen verwenden.
 
-Der `TestClient` basiert auf <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> und glücklicherweise können wir ihn direkt verwenden, um die API zu testen.
+Der `TestClient` basiert auf <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> und glücklicherweise können wir es direkt verwenden, um die API zu testen.
 
 ## Beispiel { #example }
 
@@ -52,7 +52,7 @@ $ pytest
 
 </div>
 
-## Details { #in-detail }
+## Im Detail { #in-detail }
 
 Der Marker `@pytest.mark.anyio` teilt pytest mit, dass diese Testfunktion asynchron aufgerufen werden soll:
 

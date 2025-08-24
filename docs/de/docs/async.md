@@ -40,7 +40,7 @@ def results():
 
 ---
 
-Wenn Ihre Anwendung (irgendwie) mit nichts anderem kommunizieren und auf dessen Antwort warten muss, verwenden Sie `async def`, auch wenn Sie `await` im Inneren nicht verwenden müssen.
+Wenn Ihre Anwendung (irgendwie) nicht mit etwas anderem kommunizieren und auf dessen Antwort warten muss, verwenden Sie `async def`, auch wenn Sie `await` im Inneren nicht verwenden müssen.
 
 ---
 
@@ -316,16 +316,16 @@ Damit `await` funktioniert, muss es sich in einer Funktion befinden, die diese A
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Mach Sie hier etwas Asynchrones, um die Burger zu erstellen
+    # Mache hier etwas Asynchrones, um die Burger zu erstellen
     return burgers
 ```
 
 ... statt mit `def`:
 
 ```Python hl_lines="2"
-# Die ist nicht asynchron
+# Dies ist nicht asynchron
 def get_sequential_burgers(number: int):
-    # Mach Sie hier etwas Sequentielles, um die Burger zu erstellen
+    # Mache hier etwas Sequentielles, um die Burger zu erstellen
     return burgers
 ```
 
@@ -363,9 +363,9 @@ Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie d
 
 ### Schreiben Sie Ihren eigenen asynchronen Code { #write-your-own-async-code }
 
-Starlette (und **FastAPI**) basiert auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, es ist sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a>, als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (und **FastAPI**) basieren auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> ist.
 
-Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschritten nebenläufigen und parallelen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
+Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschrittenen nebenläufigen und parallelen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
 
 Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
 
@@ -441,4 +441,4 @@ Wenn Ihre Hilfsfunktion eine normale Funktion mit `def` ist, wird sie direkt auf
 
 Nochmal, es handelt sich hier um sehr technische Details, die Ihnen helfen, falls Sie danach gesucht haben.
 
-Andernfalls liegen Sie richtig, wenn Sie sich an die Richtlinien aus dem obigen Abschnitt halten: <a href="#in-eile">In Eile?</a>.
+Andernfalls liegen Sie richtig, wenn Sie sich an die Richtlinien aus dem obigen Abschnitt halten: <a href="#in-a-hurry">In Eile?</a>.

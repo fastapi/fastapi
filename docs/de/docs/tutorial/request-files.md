@@ -155,7 +155,7 @@ Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
 {* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
-Sie erhalten, wie deklariert, eine `list`e von `bytes` oder `UploadFile`s.
+Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
 /// note | Technische Details
 

@@ -91,7 +91,7 @@ Natürlich stammen der eigentliche `Content-Type`-Header, der Statuscode, usw., 
 
 Wenn Sie die Response innerhalb der Funktion überschreiben und gleichzeitig den „Medientyp“ in OpenAPI dokumentieren möchten, können Sie den `response_class`-Parameter verwenden UND ein `Response`-Objekt zurückgeben.
 
-Die `response_class` wird dann nur zur Dokumentation der OpenAPI-Pfadoperation* verwendet, Ihre `Response` wird jedoch unverändert verwendet.
+Die `response_class` wird dann nur zur Dokumentation der OpenAPI-*Pfadoperation* verwendet, Ihre `Response` wird jedoch unverändert verwendet.
 
 #### Eine `HTMLResponse` direkt zurückgeben { #return-an-htmlresponse-directly }
 

@@ -16,7 +16,7 @@ Und dann mounten Sie das auf einem Pfad.
 
 ## Testen { #check-it }
 
-Jetzt wird jede Anfrage unter dem Pfad `/v1/` von der Flask-Anwendung verarbeitet.
+Jetzt wird jeder Request unter dem Pfad `/v1/` von der Flask-Anwendung verarbeitet.
 
 Und der Rest wird von **FastAPI** gehandhabt.
 

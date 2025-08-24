@@ -35,9 +35,9 @@ Die Middleware-Funktion erhält:
 
 /// tip | Tipp
 
-Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des 'X-' Präfixes</a>.
+Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des `X-`-Präfixes</a>.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihren CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
 
 ///
 
@@ -92,4 +92,4 @@ Dieses Stapelverhalten stellt sicher, dass Middlewares in einer vorhersehbaren u
 
 Sie können später mehr über andere Middlewares im [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
 
-In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing">CORS</abbr> mit einer Middleware behandeln können.
+In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> mit einer Middleware behandeln können.

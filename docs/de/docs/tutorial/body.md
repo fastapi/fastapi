@@ -8,7 +8,7 @@ Ihre API muss fast immer einen **Response**body senden. Aber Clients müssen nic
 
 Um einen **Request**body zu deklarieren, verwenden Sie <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>-Modelle mit all deren Fähigkeiten und Vorzügen.
 
-/// info | Hinweis
+/// info | Info
 
 Um Daten zu senden, sollten Sie eines von: `POST` (meistverwendet), `PUT`, `DELETE` oder `PATCH` verwenden.
 
@@ -18,13 +18,13 @@ Da davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger-Benutze
 
 ///
 
-## Importieren Sie Pydantics `BaseModel` { #import-pydantics-basemodel }
+## Pydantics `BaseModel` importieren { #import-pydantics-basemodel }
 
 Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## Erstellen Sie Ihr Datenmodell { #create-your-data-model }
+## Ihr Datenmodell erstellen { #create-your-data-model }
 
 Dann deklarieren Sie Ihr Datenmodell als eine Klasse, die von `BaseModel` erbt.
 
@@ -54,7 +54,7 @@ Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre fol
 }
 ```
 
-## Deklarieren Sie es als Parameter { #declare-it-as-a-parameter }
+## Als Parameter deklarieren { #declare-it-as-a-parameter }
 
 Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
 
@@ -73,7 +73,7 @@ Mit nur dieser Python-Typdeklaration wird **FastAPI**:
 * Ihnen die erhaltenen Daten im Parameter `item` übergeben.
     * Da Sie ihn in der Funktion als vom Typ `Item` deklariert haben, erhalten Sie auch die volle Unterstützung des Editors (Autovervollständigung, usw.) für alle Attribute und deren Typen.
 * <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a>-Definitionen für Ihr Modell generieren, die Sie auch überall sonst verwenden können, wenn es für Ihr Projekt Sinn macht.
-* Diese Schemas werden Teil des generierten OpenAPI-Schemas und werden von den UIs der automatischen Dokumentation genutzt.
+* Diese Schemas werden Teil des generierten OpenAPI-Schemas und werden von den <abbr title="User Interfaces – Benutzeroberflächen">UIs</abbr> der automatischen Dokumentation genutzt.
 
 ## Automatische Dokumentation { #automatic-docs }
 

@@ -63,7 +63,7 @@ Falls Sie aus irgendeinem Grund diese automatische Umwandlung deaktivieren müss
 
 /// warning | Achtung
 
-Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass einige HTTP-Proxies und -Server die Verwendung von Headers mit Unterstrichen nicht zulassen.
+Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass einige HTTP-Proxies und -Server die Verwendung von Headern mit Unterstrichen nicht zulassen.
 
 ///
 

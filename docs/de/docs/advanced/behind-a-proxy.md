@@ -297,7 +297,7 @@ Dies ist ein fortgeschrittener Anwendungsfall. Überspringen Sie das gerne.
 
 Standardmäßig erstellt **FastAPI** einen `server` im OpenAPI-Schema mit der URL für den `root_path`.
 
-Sie können aber auch andere alternative `server` bereitstellen, beispielsweise wenn Sie möchten, dass *dieselbe* Dokumentationsoberfläche mit einer Staging- und Produktionsumgebung interagiert.
+Sie können aber auch andere alternative `servers` bereitstellen, beispielsweise wenn Sie möchten, dass *dieselbe* Dokumentationsoberfläche mit einer Staging- und Produktionsumgebung interagiert.
 
 Wenn Sie eine benutzerdefinierte Liste von Servern (`servers`) übergeben und es einen `root_path` gibt (da Ihre API hinter einem Proxy läuft), fügt **FastAPI** einen „Server“ mit diesem `root_path` am Anfang der Liste ein.
 

@@ -149,7 +149,7 @@ Dennoch können wir das zu erwartende Schema für den Requestbody deklarieren.
 
 Mit demselben Trick könnten Sie ein Pydantic-Modell verwenden, um das JSON-Schema zu definieren, das dann im benutzerdefinierten Abschnitt des OpenAPI-Schemas für die *Pfadoperation* enthalten ist.
 
-Und Sie könnten dies auch tun, wenn der Datentyp in der Anfrage nicht JSON ist.
+Und Sie könnten dies auch tun, wenn der Datentyp im Request nicht JSON ist.
 
 In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Funktionalität von FastAPI zum Extrahieren des JSON-Schemas aus Pydantic-Modellen noch die automatische Validierung für JSON. Tatsächlich deklarieren wir den Request-Content-Type als YAML und nicht als JSON:
 

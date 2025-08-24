@@ -190,7 +190,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 2. Setze das aktuelle Arbeitsverzeichnis auf `/code`.
 
-    Hier plazieren wir die Datei `requirements.txt` und das Verzeichnis `app`.
+    Hier platzieren wir die Datei `requirements.txt` und das Verzeichnis `app`.
 
 3. Kopiere die Datei mit den Paketanforderungen in das Verzeichnis `/code`.
 
@@ -277,7 +277,7 @@ Sie sollten jetzt eine Verzeichnisstruktur wie diese haben:
 
 #### Hinter einem TLS-Terminierungsproxy { #behind-a-tls-termination-proxy }
 
-Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn (durch das FastAPI CLI), den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
+Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn (durch das FastAPI-CLI), den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
 
 ```Dockerfile
 CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
@@ -411,7 +411,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 2. Verwenden Sie `fastapi run`, um Ihre Anwendung in der einzelnen Datei `main.py` bereitzustellen.
 
-Indem Sie die Datei an `fastapi run` übergeben, wird automatisch erkannt, dass es sich um eine einzelne Datei handelt und nicht um den Teil eines Packages, und es wird wissen, wie es zu importieren ist und Ihre FastAPI-App auszuliefern. 😎
+Indem Sie die Datei an `fastapi run` übergeben, wird automatisch erkannt, dass es sich um eine einzelne Datei handelt und nicht um den Teil eines Packages, und es wird wissen, wie es zu importieren ist und Ihre FastAPI-App bereitzustellen. 😎
 
 ## Deployment-Konzepte { #deployment-concepts }
 
@@ -488,9 +488,9 @@ Und normalerweise wäre dieser **Load Balancer** in der Lage, Requests zu verarb
 
 ### Ein Prozess pro Container { #one-process-per-container }
 
-In einem solchen Szenario möchten Sie wahrscheinlich **einen einzelnen (Uvicorn-)Prozess pro Container** haben, da Sie die Replikation bereits auf Cluster ebene durchführen würden.
+In einem solchen Szenario möchten Sie wahrscheinlich **einen einzelnen (Uvicorn-)Prozess pro Container** haben, da Sie die Replikation bereits auf Cluster-Ebene durchführen würden.
 
-In diesem Fall möchten Sie also **nicht** mehrere Worker im Container haben, z.B. mit der `--workers` Befehlszeilenoption. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
+In diesem Fall möchten Sie also **nicht** mehrere Worker im Container haben, z. B. mit der `--workers` Befehlszeilenoption. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
 
 Ein weiterer Prozessmanager im Container (wie es bei mehreren Workern der Fall wäre) würde nur **unnötige Komplexität** hinzufügen, um welche Sie sich höchstwahrscheinlich bereits mit Ihrem Clustersystem kümmern.
 
@@ -556,7 +556,7 @@ Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächl
 
 ### Mehrere Container { #multiple-containers }
 
-Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
+Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
 /// info | Info
 

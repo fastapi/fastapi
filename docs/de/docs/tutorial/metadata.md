@@ -1,6 +1,6 @@
 # Metadaten und Dokumentations-URLs { #metadata-and-docs-urls }
 
-Sie können mehrere Metadaten-Einstellungen in Ihrer **FastAPI**-Anwendung anpassen.
+Sie können mehrere Metadaten-Konfigurationen in Ihrer **FastAPI**-Anwendung anpassen.
 
 ## Metadaten für die API { #metadata-for-api }
 

@@ -8,7 +8,7 @@ In diesem Abschnitt werden wir sehen, wie man andere Middlewares verwendet.
 
 ## ASGI-Middleware hinzufügen { #adding-asgi-middlewares }
 
-Da **FastAPI** auf Starlette basiert und die <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>-Spezifikation implementiert, können Sie jede ASGI-Middleware verwenden.
+Da **FastAPI** auf Starlette basiert und die <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>-Spezifikation implementiert, können Sie jede ASGI-Middleware verwenden.
 
 Eine Middleware muss nicht speziell für FastAPI oder Starlette gemacht sein, um zu funktionieren, solange sie der ASGI-Spezifikation genügt.
 
@@ -69,7 +69,7 @@ Die folgenden Argumente werden unterstützt:
 
 * `allowed_hosts` – Eine Liste von Domain-Namen, die als Hostnamen zulässig sein sollten. Wildcard-Domains wie `*.example.com` werden unterstützt, um Subdomains zu matchen. Um jeden Hostnamen zu erlauben, verwenden Sie entweder `allowed_hosts=["*"]` oder lassen Sie diese Middleware weg.
 
-Wenn ein eingehender Request nicht korrekt validiert wird, wird eine „400“-Response gesendet.
+Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-Response gesendet.
 
 ## `GZipMiddleware` { #gzipmiddleware }
 

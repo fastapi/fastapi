@@ -12,7 +12,7 @@ Sie können jetzt Produktionsanwendungen mit **FastAPI** erstellen (und das tun 
 
 Als Erstes sollten Sie die Version von **FastAPI**, die Sie verwenden, an die höchste Version „pinnen“, von der Sie wissen, dass sie für Ihre Anwendung korrekt funktioniert.
 
-Angenommen, Sie verwenden in Ihrer Anwendung die Version `0.112.0`.
+Angenommen, Sie verwenden in Ihrer App die Version `0.112.0`.
 
 Wenn Sie eine `requirements.txt`-Datei verwenden, können Sie die Version wie folgt angeben:
 
@@ -64,7 +64,7 @@ Nicht abwärtskompatible Änderungen und neue Funktionen werden in „MINOR“-V
 
 ## Upgrade der FastAPI-Versionen { #upgrading-the-fastapi-versions }
 
-Sie sollten Tests für Ihre Anwendung hinzufügen.
+Sie sollten Tests für Ihre App hinzufügen.
 
 Mit **FastAPI** ist das sehr einfach (dank Starlette), schauen Sie sich die Dokumentation an: [Testen](../tutorial/testing.md){.internal-link target=_blank}
 
@@ -87,6 +87,7 @@ Pydantic integriert die Tests für **FastAPI** in seine eigenen Tests, sodass ne
 Sie können Pydantic an jede für Sie geeignete Version über `1.0.0` anpinnen.
 
 Zum Beispiel:
+
 ```txt
 pydantic>=2.7.0,<3.0.0
 ```

@@ -106,7 +106,7 @@ In diesem Fall sind die JSON-Attribute und deren Datentypen, usw. gemeint.
 
 OpenAPI definiert ein API-Schema für Ihre API. Dieses Schema enthält Definitionen (oder „Schemas“) der Daten, die von Ihrer API unter Verwendung von **JSON Schema**, dem Standard für JSON-Datenschemata, gesendet und empfangen werden.
 
-#### Überprüfen Sie die `openapi.json` { #check-the-openapi-json }
+#### Die `openapi.json` testen { #check-the-openapi-json }
 
 Falls Sie wissen möchten, wie das rohe OpenAPI-Schema aussieht: FastAPI generiert automatisch ein JSON (Schema) mit den Beschreibungen Ihrer gesamten API.
 
@@ -185,7 +185,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// info | Info
 
 Ein „Pfad“ wird häufig auch als „Endpunkt“ oder „Route“ bezeichnet.
 
@@ -235,9 +235,9 @@ Wir werden sie auch „**Operationen**“ nennen.
 Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von Anfragen zuständig ist, die an:
 
 * den Pfad `/`
-* unter der Verwendung der <abbr title="eine HTTP GET Methode"><code>get</code>-Operation</abbr> gehen
+* unter der Verwendung der <abbr title="eine HTTP-GET-Methode"><code>get</code>-Operation</abbr> gehen
 
-/// info | `@decorator` Information
+/// info | `@decorator` Info
 
 Diese `@something`-Syntax wird in Python „Dekorator“ genannt.
 
@@ -288,7 +288,7 @@ Das ist unsere „**Pfadoperation-Funktion**“:
 
 Dies ist eine Python-Funktion.
 
-Sie wird von **FastAPI** immer dann aufgerufen, wenn sie eine Anfrage an die URL "`/`" mittels einer `GET`-Operation erhält.
+Sie wird von **FastAPI** immer dann aufgerufen, wenn sie eine Anfrage an die URL „`/`“ mittels einer `GET`-Operation erhält.
 
 In diesem Fall handelt es sich um eine `async`-Funktion.
 
@@ -300,7 +300,7 @@ Sie könnten sie auch als normale Funktion anstelle von `async def` definieren:
 
 /// note | Hinweis
 
-Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *„In Eile?“*](../async.md#in-eile){.internal-link target=_blank}.
+Wenn Sie den Unterschied nicht kennen, lesen Sie [Async: *„In Eile?“*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ///
 

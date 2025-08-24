@@ -111,7 +111,7 @@ Diese funktionieren auf die gleiche Weise wie für andere FastAPI-Endpunkte/*Pfa
 
 {* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// info | Info
 
 Da es sich um einen WebSocket handelt, macht es keinen Sinn, eine `HTTPException` auszulösen, stattdessen lösen wir eine `WebSocketException` aus.
 
@@ -150,7 +150,7 @@ Damit können Sie den WebSocket verbinden und dann Nachrichten senden und empfan
 
 <img src="/img/tutorial/websockets/image05.png">
 
-## Verbindungsabbrüche und mehreren Clients handhaben { #handling-disconnections-and-multiple-clients }
+## Verbindungsabbrüche und mehrere Clients handhaben { #handling-disconnections-and-multiple-clients }
 
 Wenn eine WebSocket-Verbindung geschlossen wird, löst `await websocket.receive_text()` eine `WebSocketDisconnect`-Exception aus, die Sie dann wie in folgendem Beispiel abfangen und behandeln können.
 

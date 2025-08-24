@@ -110,7 +110,7 @@ In diesem Fall initialisiert die Eventhandler-Funktion `startup` die „Datenban
 
 Sie können mehr als eine Eventhandler-Funktion hinzufügen.
 
-Und Ihre Anwendung empfängt erst dann Anfragen, wenn alle `startup`-Eventhandler abgeschlossen sind.
+Und Ihre Anwendung empfängt erst dann Requests, wenn alle `startup`-Eventhandler abgeschlossen sind.
 
 ### `shutdown`-Event { #shutdown-event }
 

@@ -13,7 +13,7 @@ Einige wichtige Konzepte sind:
 
 Wir werden sehen, wie diese sich auf das **Deployment** auswirken.
 
-Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu bedienen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
+Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu versorgen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
 
 Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen bereitstellen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
 

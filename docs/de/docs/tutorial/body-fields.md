@@ -1,6 +1,6 @@
 # Body – Felder { #body-fields }
 
-So wie Sie zusätzliche Validation und Metadaten in Parametern der *Pfadoperation-Funktion* mittels `Query`, `Path` und `Body` deklarieren, können Sie auch innerhalb von Pydantic-Modellen zusätzliche Validierung und Metadaten deklarieren, mittels Pydantics `Field`.
+So wie Sie zusätzliche Validierung und Metadaten in Parametern der *Pfadoperation-Funktion* mittels `Query`, `Path` und `Body` deklarieren, können Sie auch innerhalb von Pydantic-Modellen zusätzliche Validierung und Metadaten deklarieren, mittels Pydantics `Field`.
 
 ## `Field` importieren { #import-field }
 

@@ -20,7 +20,7 @@ $ pip install jinja2
 
 </div>
 
-## Verwendung von `Jinja2Templates` { #using-jinja2templates }
+## `Jinja2Templates` verwenden { #using-jinja2templates }
 
 * Importieren Sie `Jinja2Templates`.
 * Erstellen Sie ein `templates`-Objekt, das Sie später wiederverwenden können.
@@ -119,8 +119,8 @@ In diesem Beispiel würde das zu einer CSS-Datei unter `static/styles.css` verli
 {!../../docs_src/templates/static/styles.css!}
 ```
 
-Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer **FastAPI**-Anwendung unter der URL `/static/styles.css` bereitgestellt.
+Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer **FastAPI**-Anwendung unter der URL `/static/styles.css` ausgeliefert.
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in der <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette Dokumentation zu Templates</a>.
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlettes Dokumentation zu Templates</a>.

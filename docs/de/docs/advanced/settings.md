@@ -118,7 +118,7 @@ Und dann würde die Einstellung `admin_email` auf `"deadpool@example.com"` geset
 
 Der `app_name` wäre `"ChimichangApp"`.
 
-Und `items_per_user` würde seinen Standardwert von `50` behalten.
+Und `items_per_user` würde seinen Defaultwert von `50` behalten.
 
 ## Einstellungen in einem anderen Modul { #settings-in-another-module }
 

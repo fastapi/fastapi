@@ -41,7 +41,7 @@ Der auf die `yield`-Anweisung folgende Code wird ausgeführt, nachdem die Respon
 
 /// tip | Tipp
 
-Sie können `async`hrone oder reguläre Funktionen verwenden.
+Sie können `async`- oder reguläre Funktionen verwenden.
 
 **FastAPI** wird bei jeder das Richtige tun, so wie auch bei normalen Abhängigkeiten.
 

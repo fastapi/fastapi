@@ -184,7 +184,7 @@ Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, u
 
 ## Die `scopes` verifizieren { #verify-the-scopes }
 
-Wir überprüfen nun, ob das empfangenen Token alle Scopes enthält, die von dieser Abhängigkeit und deren Verwendern (einschließlich *Pfadoperationen*) gefordert werden. Andernfalls lösen wir eine `HTTPException` aus.
+Wir überprüfen nun, ob das empfangene Token alle Scopes enthält, die von dieser Abhängigkeit und deren Verwendern (einschließlich *Pfadoperationen*) gefordert werden. Andernfalls lösen wir eine `HTTPException` aus.
 
 Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen Scopes als `str` enthält.
 

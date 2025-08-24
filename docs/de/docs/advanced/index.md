@@ -14,7 +14,7 @@ Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon l
 
 ///
 
-## Lesen Sie zuerst das Tutorial { #read-the-tutorial-first }
+## Das Tutorial zuerst lesen { #read-the-tutorial-first }
 
 Sie können immer noch die meisten Funktionen in **FastAPI** mit den Kenntnissen aus dem Haupt-[Tutorial – Benutzerhandbuch](../tutorial/index.md){.internal-link target=_blank} nutzen.
 

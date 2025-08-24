@@ -33,7 +33,7 @@
 
 ---
 
-FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python auf Basis von Standard-Python-Type-Hinweisen.
+FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python auf Basis von Standard-Python-Typhinweisen.
 
 Seine Schlüssel-Merkmale sind:
 

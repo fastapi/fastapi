@@ -52,9 +52,9 @@ Um beispielsweise `deepLinking` zu deaktivieren, könnten Sie folgende Einstellu
 
 Um alle anderen möglichen Konfigurationen zu sehen, die Sie verwenden können, lesen Sie die offizielle <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Dokumentation für die Parameter der Swagger-Oberfläche</a>.
 
-## JavaScript-basierte Einstellungen { #javascript-only-settings }
+## Nur-JavaScript-Einstellungen { #javascript-only-settings }
 
-Die Swagger-Oberfläche erlaubt, dass andere Konfigurationen auch **JavaScript**-Objekte sein können (z. B. JavaScript-Funktionen).
+Die Swagger-Oberfläche erlaubt, dass andere Konfigurationen auch **Nur-JavaScript**-Objekte sein können (z. B. JavaScript-Funktionen).
 
 FastAPI umfasst auch diese Nur-JavaScript-`presets`-Einstellungen:
 

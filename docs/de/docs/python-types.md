@@ -1,6 +1,6 @@
 # Einführung in Python-Typen { #python-types-intro }
 
-Python hat Unterstützung für optionale „Typhinweise“ (auch "Typannotationen" genannt).
+Python hat Unterstützung für optionale „Typhinweise“ (auch „Typannotationen“ genannt).
 
 Diese **„Typhinweise“** oder -annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
 
@@ -38,7 +38,7 @@ Die Funktion macht Folgendes:
 
 {* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
-### Bearbeiten Sie es { #edit-it }
+### Es bearbeiten { #edit-it }
 
 Es ist ein sehr einfaches Programm.
 
@@ -368,7 +368,7 @@ say_hi()  # Oh, nein, das löst einen Fehler aus! 😱
 Der `name` Parameter wird **immer noch benötigt** (nicht *optional*), weil er keinen Default-Wert hat. `name` akzeptiert aber dennoch `None` als Wert:
 
 ```Python
-say_hi(name=None)  # Das funktioniert, None is gültig 🎉
+say_hi(name=None)  # Das funktioniert, None ist gültig 🎉
 ```
 
 Die gute Nachricht ist, dass Sie sich darüber keine Sorgen mehr machen müssen, wenn Sie Python 3.10 verwenden, da Sie einfach `|` verwenden können, um Vereinigungen von Typen zu definieren:
@@ -449,7 +449,7 @@ Beachten Sie, das bedeutet: „`one_person` ist eine **Instanz** der Klasse `Per
 
 Es bedeutet nicht: „`one_person` ist die **Klasse** genannt `Person`“.
 
-## Pydantic Modelle { #pydantic-models }
+## Pydantic-Modelle { #pydantic-models }
 
 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> ist eine Python-Bibliothek für die Validierung von Daten.
 
@@ -495,17 +495,17 @@ Um mehr über <a href="https://docs.pydantic.dev/" class="external-link" target=
 
 **FastAPI** basiert vollständig auf Pydantic.
 
-Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
+Viel mehr von all dem werden Sie in praktischer Anwendung im [Tutorial – Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank} sehen.
 
 /// tip | Tipp
 
-Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Something, None]` ohne einen Default-Wert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required fields</a> mehr erfahren.
+Pydantic verhält sich speziell, wenn Sie `Optional` oder `Union[Something, None]` ohne einen Defaultwert verwenden. Sie können darüber in der Pydantic Dokumentation unter <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Erforderliche optionale Felder</a> mehr erfahren.
 
 ///
 
 ## Typhinweise mit Metadaten-Annotationen { #type-hints-with-metadata-annotations }
 
-Python bietet auch die Möglichkeit, **zusätzliche Metadaten** in Typhinweisen unterzubringen, mittels `Annotated`.
+Python bietet auch die Möglichkeit, **zusätzliche <abbr title="Daten über die Daten, in diesem Fall Informationen über den Typ, z. B. eine Beschreibung.">Metadaten</abbr>** in Typhinweisen unterzubringen, mittels `Annotated`.
 
 //// tab | Python 3.9+
 
@@ -565,7 +565,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 * Die API mit OpenAPI zu **dokumentieren**:
     * Die dann von den Benutzeroberflächen der automatisch generierten interaktiven Dokumentation verwendet wird.
 
-Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial - Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank}.
+Das mag alles abstrakt klingen. Machen Sie sich keine Sorgen. Sie werden all das in Aktion sehen im [Tutorial – Benutzerhandbuch](tutorial/index.md){.internal-link target=_blank}.
 
 Das Wichtigste ist, dass **FastAPI** durch die Verwendung von Standard-Python-Typen an einer einzigen Stelle (anstatt weitere Klassen, Dekoratoren usw. hinzuzufügen) einen Großteil der Arbeit für Sie erledigt.
 

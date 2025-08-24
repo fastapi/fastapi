@@ -1,6 +1,6 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** ist ein Kommandozeilenprogramm, mit dem Sie Ihre FastAPI-App ausliefern, Ihr FastAPI-Projekt verwalten und mehr.
+**FastAPI CLI** ist ein Kommandozeilenprogramm, mit dem Sie Ihre FastAPI-App bereitstellen, Ihr FastAPI-Projekt verwalten und mehr.
 
 Wenn Sie FastAPI installieren (z. B. mit `pip install "fastapi[standard]"`), wird ein Package namens `fastapi-cli` mitgeliefert, das den Befehl `fastapi` im Terminal bereitstellt.
 
@@ -48,7 +48,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 Das Kommandozeilenprogramm namens `fastapi` ist die **FastAPI-CLI**.
 
-FastAPI-CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt automatisch die `FastAPI`-Instanz (häufig `app` genannt), bestimmt den korrekten Importprozess und liefert diese dann aus.
+FastAPI-CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt automatisch die `FastAPI`-Instanz (häufig `app` genannt), bestimmt den korrekten Importprozess und stellt sie dann bereit.
 
 Für die Produktion würden Sie stattdessen `fastapi run` verwenden. 🚀
 

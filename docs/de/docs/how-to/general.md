@@ -28,12 +28,12 @@ Um Daten in etwas JSON-kompatibles zu konvertieren, lesen Sie die Dokumentation 
 
 ## OpenAPI-Metadaten – Dokumentation { #openapi-metadata-docs }
 
-Um Metadaten zu Ihrem OpenAPI-Schema hinzuzufügen, einschließlich einer Lizenz, Version, Kontakt, usw., lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentationen](../tutorial/metadata.md){.internal-link target=_blank}.
+Um Metadaten zu Ihrem OpenAPI-Schema hinzuzufügen, einschließlich einer Lizenz, Version, Kontakt, usw., lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentation](../tutorial/metadata.md){.internal-link target=_blank}.
 
 ## Benutzerdefinierte OpenAPI-URL { #openapi-custom-url }
 
-Um die OpenAPI-URL anzupassen (oder zu entfernen), lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentationen](../tutorial/metadata.md#openapi-url){.internal-link target=_blank}.
+Um die OpenAPI-URL anzupassen (oder zu entfernen), lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentation](../tutorial/metadata.md#openapi-url){.internal-link target=_blank}.
 
 ## URLs der OpenAPI-Dokumentationen { #openapi-docs-urls }
 
-Um die URLs zu aktualisieren, die für die automatisch generierten Dokumentations-Oberflächen verwendet werden, lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentationen](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
+Um die URLs zu aktualisieren, die für die automatisch generierten Dokumentations-Oberflächen verwendet werden, lesen Sie die Dokumentation unter [Tutorial – Metadaten und URLs der Dokumentation](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.

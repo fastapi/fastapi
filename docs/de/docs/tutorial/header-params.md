@@ -24,7 +24,7 @@ Aber denken Sie daran, dass bei der Nutzung von `Query`, `Path`, `Header` und an
 
 ///
 
-/// info
+/// info | Info
 
 Um Header zu deklarieren, müssen Sie `Header` verwenden, da die Parameter sonst als Query-Parameter interpretiert werden würden.
 

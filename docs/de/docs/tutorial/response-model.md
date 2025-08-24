@@ -9,7 +9,7 @@ Hierbei können Sie **Typannotationen** genauso verwenden, wie Sie es bei Werten
 FastAPI wird diesen Rückgabetyp verwenden, um:
 
 * Die zurückzugebenden Daten zu **validieren**.
-    * Wenn die Daten ungültig sind (Sie haben z. B. ein Feld vergessen), bedeutet das, *Ihr* Anwendungscode ist fehlerhaft, er gibt nicht zurück, was er sollte, und daher wird ein <abbr title="Server-Fehler">Server-Error</abbr> ausgegeben, statt falscher Daten. So können Sie und ihre Clients sicher sein, dass diese die erwarteten Daten, in der richtigen Form erhalten.
+    * Wenn die Daten ungültig sind (Sie haben z. B. ein Feld vergessen), bedeutet das, *Ihr* Anwendungscode ist fehlerhaft, er gibt nicht zurück, was er sollte, und daher wird ein <abbr title="Server-Fehler">Server-Error</abbr> ausgegeben, statt falscher Daten. So können Sie und Ihre Clients sicher sein, dass diese die erwarteten Daten, in der richtigen Form erhalten.
 * In der OpenAPI *Pfadoperation* ein **JSON-Schema** für die Response hinzuzufügen.
     * Dieses wird von der **automatischen Dokumentation** verwendet.
     * Es wird auch von automatisch Client-Code-generierenden Tools verwendet.
@@ -61,9 +61,9 @@ So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber F
 
 Wenn sowohl Rückgabetyp als auch `response_model` deklariert sind, hat `response_model` die Priorität und wird von FastAPI bevorzugt verwendet.
 
-So können Sie korrekte Typannotationen zu ihrer Funktion hinzufügen, die von ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
+So können Sie korrekte Typannotationen zu Ihrer Funktion hinzufügen, die von Ihrem Editor und Tools wie mypy verwendet werden. Und dennoch übernimmt FastAPI die Validierung und Dokumentation, usw., der Daten anhand von `response_model`.
 
-Sie können auch `response_model=None` verwenden, um das Erstellen eines Responsemodells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
+Sie können auch `response_model=None` verwenden, um das Erstellen eines Responsemodells für diese *Pfadoperation* zu unterbinden. Sie könnten das tun wollen, wenn Sie Dinge annotieren, die nicht gültige Pydantic-Felder sind. Ein Beispiel dazu werden Sie in einer der Abschnitte unten sehen.
 
 ## Dieselben Eingabedaten zurückgeben { #return-the-same-input-data }
 
@@ -151,7 +151,7 @@ Wie funktioniert das? Schauen wir uns das mal an. 🤓
 
 Sehen wir uns zunächst an, wie Editor, mypy und andere Tools dies sehen würden.
 
-`BaseUser` verfügt über die Basis-Felder. Dann erbt `UserIn` von `BaseUser` und fügt das Feld `Passwort` hinzu, sodass dass es nun alle Felder beider Modelle hat.
+`BaseUser` verfügt über die Basis-Felder. Dann erbt `UserIn` von `BaseUser` und fügt das Feld `password` hinzu, sodass es nun alle Felder beider Modelle hat.
 
 Wir annotieren den Funktionsrückgabetyp als `BaseUser`, geben aber tatsächlich eine `UserIn`-Instanz zurück.
 
@@ -277,7 +277,7 @@ verwenden, wie in der <a href="https://docs.pydantic.dev/1.10/usage/exporting_mo
 
 #### Daten mit Werten für Felder mit Defaultwerten { #data-with-values-for-fields-with-defaults }
 
-Aber wenn ihre Daten Werte für Modellfelder mit Defaultwerten haben, wie etwa der Artikel mit der ID `bar`:
+Aber wenn Ihre Daten Werte für Modellfelder mit Defaultwerten haben, wie etwa der Artikel mit der ID `bar`:
 
 ```Python hl_lines="3  5"
 {
@@ -328,7 +328,7 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
 
 Es wird dennoch empfohlen, dass Sie die Ideen von oben verwenden, also mehrere Klassen statt dieser Parameter.
 
-Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
+Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI Ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
 
 Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
 

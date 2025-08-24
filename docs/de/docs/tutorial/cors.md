@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder „<abbr title="Ursprungsübergreifende Ressourcenfreigabe">Cross-Origin Resource Sharing</abbr>“</a> bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder „<abbr title="Ressourcenfreigabe zwischen Ursprüngen">Cross-Origin Resource Sharing</abbr>“</a> bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
 
 ## Origin { #origin }
 
@@ -77,7 +77,7 @@ Jeder Request mit einem `Origin`-Header. In diesem Fall wird die Middleware den 
 
 ## Weitere Informationen { #more-info }
 
-Weitere Informationen zu <abbr title="Cross-Origin Resource Sharing">CORS</abbr> finden Sie in der <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS-Dokumentation</a>.
+Weitere Informationen zu <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> finden Sie in der <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS-Dokumentation</a>.
 
 /// note | Technische Details
 

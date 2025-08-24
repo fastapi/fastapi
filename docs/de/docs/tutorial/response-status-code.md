@@ -33,7 +33,7 @@ Dies wird:
 
 /// note | Hinweis
 
-Einige Responsecodes (siehe nächster Abschnitt) kennzeichnen, dass die Response keinen Body hat.
+Einige Responsecodes (siehe nächsten Abschnitt) kennzeichnen, dass die Response keinen Body hat.
 
 FastAPI erkennt dies und erstellt eine OpenAPI-Dokumentation, die zeigt, dass es keinen Responsebody gibt.
 

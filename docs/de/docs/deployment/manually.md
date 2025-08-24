@@ -46,7 +46,7 @@ Sie könnten diesen Befehl beispielsweise verwenden, um Ihre **FastAPI**-App in 
 
 Lassen Sie uns ein wenig tiefer in die Details eintauchen.
 
-FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
+FastAPI verwendet einen Standard zum Erstellen von Python-Webframeworks und -Servern, der als <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr> bekannt ist. FastAPI ist ein ASGI-Webframework.
 
 Das Wichtigste, was Sie benötigen, um eine **FastAPI**-Anwendung (oder eine andere ASGI-Anwendung) auf einer entfernten Servermaschine auszuführen, ist ein ASGI-Serverprogramm wie **Uvicorn**, der standardmäßig im `fastapi`-Kommando enthalten ist.
 
@@ -64,7 +64,7 @@ Es gibt ein kleines Detail bei den Namen, das Sie beachten sollten. 💡
 
 Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud-Computer (die physische oder virtuelle Maschine) als auch das Programm zu bezeichnen, das auf dieser Maschine läuft (z. B. Uvicorn).
 
-Denken Sie einfach daran, dass sich "Server" im Allgemeinen auf eines dieser beiden Dinge beziehen kann.
+Denken Sie einfach daran, dass sich „Server“ im Allgemeinen auf eines dieser beiden Dinge beziehen kann.
 
 Wenn man sich auf die entfernte Maschine bezieht, wird sie üblicherweise als **Server**, aber auch als **Maschine**, **VM** (virtuelle Maschine) oder **Knoten** bezeichnet. Diese Begriffe beziehen sich auf irgendeine Art von entfernten Rechner, normalerweise unter Linux, auf dem Sie Programme ausführen.
 

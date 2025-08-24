@@ -122,11 +122,11 @@ Das Gleiche gilt für:
 
 Zahlenvalidierung funktioniert auch für <abbr title="Fließkommazahlen">`float`</abbr>-Werte.
 
-Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
+Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than – größer als"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal – größer oder gleich"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
 
 Also wäre `0.5` ein gültiger Wert. Aber `0.0` oder `0` nicht.
 
-Und das Gleiche gilt für <abbr title="less than"><code>lt</code></abbr>.
+Und das Gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 

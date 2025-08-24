@@ -58,7 +58,7 @@ Aber was ist ein „Timing-Angriff“?
 
 Stellen wir uns vor, dass einige Angreifer versuchen, den Benutzernamen und das Passwort zu erraten.
 
-Und sie senden eine Anfrage mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
+Und sie senden einen Request mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
 
 Dann würde der Python-Code in Ihrer Anwendung etwa so aussehen:
 
@@ -78,11 +78,11 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die Antwort „Incorrect username or password“ erfolgt.
+Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die Response „Incorrect username or password“ erfolgt.
 
 #### Die Zeit zum Antworten hilft den Angreifern { #the-time-to-answer-helps-the-attackers }
 
-Wenn die Angreifer zu diesem Zeitpunkt feststellen, dass der Server einige Mikrosekunden länger braucht, um die Antwort „Incorrect username or password“ zu senden, wissen sie, dass sie _etwas_ richtig gemacht haben, einige der Anfangsbuchstaben waren richtig.
+Wenn die Angreifer zu diesem Zeitpunkt feststellen, dass der Server einige Mikrosekunden länger braucht, um die Response „Incorrect username or password“ zu senden, wissen sie, dass sie _etwas_ richtig gemacht haben, einige der Anfangsbuchstaben waren richtig.
 
 Und dann können sie es noch einmal versuchen, wohl wissend, dass es wahrscheinlich eher etwas mit `stanleyjobsox` als mit `johndoe` zu tun hat.
 

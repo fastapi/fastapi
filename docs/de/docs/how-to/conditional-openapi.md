@@ -10,7 +10,7 @@ Dadurch wird Ihrer API keine zusätzliche Sicherheit hinzugefügt, die *Pfadoper
 
 Wenn Ihr Code eine Sicherheitslücke aufweist, ist diese weiterhin vorhanden.
 
-Das Verstecken der Dokumentation macht es nur schwieriger zu verstehen, wie mit Ihrer API interagiert werden kann, und könnte es auch schwieriger machen, diese in der Produktion zu debuggen. Man könnte es einfach als eine Form von <a href="https://de.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a> betrachten.
+Das Verstecken der Dokumentation macht es nur schwieriger zu verstehen, wie mit Ihrer API interagiert werden kann, und könnte es auch schwieriger machen, diese in der Produktion zu debuggen. Man könnte es einfach als eine Form von <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank"><abbr title="Sicherheit durch Verschleierung">Security through Obscurity</abbr></a> betrachten.
 
 Wenn Sie Ihre API sichern möchten, gibt es mehrere bessere Dinge, die Sie tun können, zum Beispiel:
 

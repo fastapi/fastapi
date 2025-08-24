@@ -20,7 +20,7 @@ Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion dekl
 
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
-/// check
+/// check | Testen
 
 Dadurch erhalten Sie Editor-Unterstützung innerhalb Ihrer Funktion, mit Fehlerprüfungen, Codevervollständigung, usw.
 
@@ -34,7 +34,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 {"item_id":3}
 ```
 
-/// check
+/// check | Testen
 
 Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
 
@@ -67,7 +67,7 @@ Der Pfad-Parameter `item_id` hatte den Wert `"foo"`, was kein `int` ist.
 
 Die gleiche Fehlermeldung würde angezeigt werden, wenn Sie ein `float` (also eine Kommazahl) statt eines `int`s übergeben würden, wie etwa in: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check
+/// check | Testen
 
 Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalidierung.
 
@@ -83,7 +83,7 @@ Wenn Sie die Seite <a href="http://127.0.0.1:8000/docs" class="external-link" ta
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check
+/// check | Testen
 
 Wiederum, mit dieser gleichen Python-Typdeklaration gibt Ihnen **FastAPI** eine automatische, interaktive Dokumentation (verwendet die Swagger-Benutzeroberfläche).
 
@@ -131,9 +131,9 @@ Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinsti
 
 ## Vordefinierte Parameterwerte { #predefined-values }
 
-Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration, oder kurz Enum – Aufzählung">`Enum`</abbr> verwenden.
+Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration – Aufzählung">`Enum`</abbr> verwenden.
 
-### Erstellen Sie eine `Enum`-Klasse { #create-an-enum-class }
+### Eine `Enum`-Klasse erstellen { #create-an-enum-class }
 
 Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
 
@@ -143,25 +143,25 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
 
 {* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
-/// info
+/// info | Info
 
 <a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
 
 ///
 
-/// tip
+/// tip | Tipp
 
 Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das sind Namen von <abbr title="Genau genommen, Deep-Learning-Modellarchitekturen">Modellen</abbr> für maschinelles Lernen.
 
 ///
 
-### Deklarieren Sie einen *Pfad-Parameter* { #declare-a-path-parameter }
+### Einen *Pfad-Parameter* deklarieren { #declare-a-path-parameter }
 
 Dann erstellen Sie einen *Pfad-Parameter*, der als Typ die gerade erstellte Enum-Klasse hat (`ModelName`):
 
 {* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
-### Testen Sie es in der API-Dokumentation { #check-the-docs }
+### Die API-Dokumentation testen { #check-the-docs }
 
 Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann die interaktive Dokumentation sie als Auswahl-Drop-Down anzeigen:
 

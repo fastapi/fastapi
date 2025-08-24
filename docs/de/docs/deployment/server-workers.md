@@ -113,9 +113,9 @@ Sie können auch sehen, dass die **PID** jedes Prozesses angezeigt wird, `27365`
 
 ## Deployment-Konzepte { #deployment-concepts }
 
-Hier haben Sie gesehen, wie Sie mehrere **Worker** verwenden, um die Ausführung der Anwendung zu **parallelisieren**, **mehrere Kerne** der CPU zu nutzen und in der Lage zu sein, **mehr Requests** zu bedienen.
+Hier haben Sie gesehen, wie Sie mehrere **Worker** verwenden, um die Ausführung der Anwendung zu **parallelisieren**, **mehrere Kerne** der CPU zu nutzen und in der Lage zu sein, **mehr Requests** zu bearbeiten.
 
-In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern hauptsächlich beim **Replikation**-Teil und ein wenig bei **Neustarts** helfen, aber Sie müssen sich trotzdem um die anderen kümmern:
+In der Liste der Deployment-Konzepte von oben würde die Verwendung von Workern hauptsächlich bei der **Replikation** und ein wenig bei **Neustarts** helfen, aber Sie müssen sich trotzdem um die anderen kümmern:
 
 * **Sicherheit – HTTPS**
 * **Beim Hochfahren ausführen**

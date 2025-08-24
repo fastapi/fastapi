@@ -58,7 +58,7 @@ Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
-### Warum Passwort-Hashing verwenden? { #why-use-password-hashing }
+### Warum Passwort-Hashing verwenden { #why-use-password-hashing }
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
@@ -211,7 +211,7 @@ Passwort: `secret`
 
 /// check | Testen
 
-Beachten Sie, dass im Code nirgendwo das Klartext-Passwort "`secret`" steht, wir haben nur die gehashte Version.
+Beachten Sie, dass im Code nirgendwo das Klartext-Passwort „`secret`“ steht, wir haben nur die gehashte Version.
 
 ///
 

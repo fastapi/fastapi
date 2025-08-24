@@ -415,7 +415,7 @@ Pydantic unterstützt auch <a href="https://docs.pydantic.dev/latest/concepts/va
 
 ///
 
-Zum Beispiel überprüft dieser benutzerdefinierte Validator, ob die Artikel-ID mit `isbn-` für eine <abbr title="ISBN bedeutet International Standard Book Number">ISBN</abbr>-Buchnummer oder mit `imdb-` für eine <abbr title="IMDB (Internet Movie Database) ist eine Website mit Informationen über Filme">IMDB</abbr>-Film-URL-ID beginnt:
+Zum Beispiel überprüft dieser benutzerdefinierte Validator, ob die Artikel-ID mit `isbn-` für eine <abbr title="ISBN bedeutet Internationale Standardbuchnummer">ISBN</abbr>-Buchnummer oder mit `imdb-` für eine <abbr title="IMDB (Internet Movie Database) ist eine Website mit Informationen über Filme">IMDB</abbr>-Film-URL-ID beginnt:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -433,7 +433,7 @@ Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit d
 
 ///
 
-### Verstehen Sie dieses Codebeispiel { #understand-that-code }
+### Dieses Codebeispiel verstehen { #understand-that-code }
 
 Der wichtige Punkt ist einfach die Verwendung von **`AfterValidator` mit einer Funktion innerhalb von `Annotated`**. Fühlen Sie sich frei, diesen Teil zu überspringen. 🤸
 

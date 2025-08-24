@@ -17,7 +17,7 @@ Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 
 ///
 
-### Was ist „Mounten“? { #what-is-mounting }
+### Was ist „Mounten“ { #what-is-mounting }
 
 „Mounten“ bedeutet das Hinzufügen einer vollständigen „unabhängigen“ Anwendung an einem bestimmten Pfad, die sich dann um die Handhabung aller Unterpfade kümmert.
 

@@ -2,13 +2,13 @@
 
 Die API-Dokumentation verwendet **Swagger UI** und **ReDoc**, und jede dieser Dokumentationen benötigt einige JavaScript- und CSS-Dateien.
 
-Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network: Content Delivery Network: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird häufig verwendet, um diese Dateien vom Server bereitzustellen, der näher am Client liegt, wodurch die Leistung verbessert wird.">CDN</abbr> bereitgestellt.
+Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird häufig verwendet, um diese Dateien vom Server bereitzustellen, der näher am Client liegt, wodurch die Leistung verbessert wird.">CDN</abbr> bereitgestellt.
 
 Es ist jedoch möglich, das anzupassen, ein bestimmtes CDN festzulegen oder die Dateien selbst bereitzustellen.
 
 ## Benutzerdefiniertes CDN für JavaScript und CSS { #custom-cdn-for-javascript-and-css }
 
-Nehmen wir an, Sie möchten ein anderes <abbr title="Content Delivery Network">CDN</abbr> verwenden, zum Beispiel möchten Sie `https://unpkg.com/` verwenden.
+Nehmen wir an, Sie möchten ein anderes <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk">CDN</abbr> verwenden, zum Beispiel möchten Sie `https://unpkg.com/` verwenden.
 
 Das kann nützlich sein, wenn Sie beispielsweise in einem Land leben, in dem bestimmte URLs eingeschränkt sind.
 
@@ -29,8 +29,8 @@ Sie können die internen Funktionen von FastAPI wiederverwenden, um die HTML-Sei
 * `openapi_url`: die URL, unter welcher die HTML-Seite für die Dokumentation das OpenAPI-Schema für Ihre API abrufen kann. Sie können hier das Attribut `app.openapi_url` verwenden.
 * `title`: der Titel Ihrer API.
 * `oauth2_redirect_url`: Sie können hier `app.swagger_ui_oauth2_redirect_url` verwenden, um die Standardeinstellung zu verwenden.
-* `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
-* `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
+* `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
+* `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
 
 Und ähnlich für ReDoc...
 
