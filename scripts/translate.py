@@ -168,21 +168,39 @@ Result:
 /// details | Vista previa
 
 
-Do not convert occurrences of four slashes in a row at the start of a line (`////`) to a level four Markdown heading (`####`). The four slashes are a special syntax, which, for example, declares some text to be part of a tab in the final rendered document.
+There are special blocks surrounded by four slashes (`////`). They mark text, which will be rendered as part of a tab in the final document. The scheme is:
 
-Example:
+//// tab | {tab title}
+{tab content, may span many lines}
+////
+
+Keep everything before the vertical bar (`|`) as is, including the vertical bar. Translate the tab title. Translate the tab content, applying the rules you know. Keep the four block closing slashes as is.
+
+Examples:
 
 Source (English):
 
+//// tab | Python 3.8+ non-Annotated
+Hello
+////
+
+Result (German):
+
+//// tab | Python 3.8+ nicht annotiert
+Hallo
+////
+
+Source (English) – Here there is nothing to translate in the tab title:
+
 //// tab | Linux, macOS, Windows Bash
+Hello again
+////
 
-Wrong Result (German):
-
-#### tab | Linux, macOS, Windows Bash
-
-Correct Result (German):
+Result (German):
 
 //// tab | Linux, macOS, Windows Bash
+Hallo wieder
+////
 
 
 Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
