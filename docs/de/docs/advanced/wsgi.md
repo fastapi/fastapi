@@ -14,7 +14,7 @@ Und dann mounten Sie das auf einem Pfad.
 
 {* ../../docs_src/wsgi/tutorial001.py hl[2:3,3] *}
 
-## Es testen { #check-it }
+## Testen { #check-it }
 
 Jetzt wird jede Anfrage unter dem Pfad `/v1/` von der Flask-Anwendung verarbeitet.
 

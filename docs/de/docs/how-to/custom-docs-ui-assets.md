@@ -52,7 +52,7 @@ Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperati
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
-### Es testen { #test-it }
+### Testen { #test-it }
 
 Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zu laden. Die Assets werden nun vom neuen CDN geladen.
 

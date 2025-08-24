@@ -196,7 +196,7 @@ Deshalb, um ID-Kollisionen zu vermeiden, könnten Sie beim Erstellen des JWT-Tok
 
 Der wesentliche Punkt ist, dass der `sub`-Schlüssel in der gesamten Anwendung eine eindeutige Kennung haben sollte, und er sollte ein String sein.
 
-## Es testen
+## Testen
 
 Führen Sie den Server aus und gehen Sie zur Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 

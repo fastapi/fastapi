@@ -352,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-## Es testen { #check-it }
+## Testen { #check-it }
 
 Sie sollten es in der URL Ihres Docker-Containers überprüfen können, zum Beispiel: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> oder <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (oder gleichwertig, unter Verwendung Ihres Docker-Hosts).
 

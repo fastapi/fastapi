@@ -73,7 +73,7 @@ Jetzt können Sie die Methode `.openapi()` durch Ihre neue Funktion ersetzen.
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
-### Es testen { #check-it }
+### Testen { #check-it }
 
 Sobald Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> gehen, werden Sie sehen, dass Ihr benutzerdefiniertes Logo verwendet wird (in diesem Beispiel das Logo von **FastAPI**):
 
