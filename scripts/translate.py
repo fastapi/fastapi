@@ -2,7 +2,9 @@ import secrets
 import subprocess
 from functools import lru_cache
 from pathlib import Path
-from typing import Annotated, Iterable
+from os import sep as pathsep
+from typing import Annotated
+from collections.abc import Iterable
 
 import git
 import typer
@@ -12,7 +14,7 @@ from pydantic_ai import Agent
 from rich import print
 
 non_translated_sections = (
-    "reference/",
+    f"reference{pathsep}",
     "release-notes.md",
     "fastapi-people.md",
     "external-links.md",
@@ -354,9 +356,10 @@ def generate_en_path(*, lang: str, path: Path) -> Path:
 @app.command()
 def translate_page(
     *,
-    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
-    en_path: Annotated[Path, typer.Option(envvar="EN_PATH")],
+    language: Annotated[str, typer.Option(envvar="LANGUAGE", help="Target language, e.g. `es`, `fr`, `de`")],
+    en_path: Annotated[Path, typer.Option(envvar="EN_PATH", help="Path to the English source, relative to the FastAPI root directory, e.g. `docs/en/docs/index.md`")],
 ) -> None:
+    assert language != "en", "`en` is the source language, choose another language as translation target"
     langs = get_langs()
     language_name = langs[language]
     lang_path = Path(f"docs/{language}")
@@ -440,39 +443,59 @@ def iter_all_en_paths() -> Iterable[Path]:
 
 
 def iter_en_paths_to_translate() -> Iterable[Path]:
+    en_docs_root = Path("docs/en/docs/")
     for path in iter_all_en_paths():
-        if str(path).replace("docs/en/docs/", "").startswith(non_translated_sections):
-            continue
-        yield path
+        relpath = path.relative_to(en_docs_root)
+        if not str(relpath).startswith(non_translated_sections):
+            yield path
 
 
 @app.command()
-def translate_lang(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
-    paths_to_process = list(iter_en_paths_to_translate())
-    print("Original paths:")
-    for p in paths_to_process:
-        print(f"  - {p}")
-    print(f"Total original paths: {len(paths_to_process)}")
+def translate_lang(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE", help="Target language, e.g. `es`, `fr`, `de`")],
+    mode: Annotated[str, typer.Option(help="Which files of the target language to translate, one of: `missing`, `existing`, `all`")] = "missing",
+    verbose: Annotated[bool, typer.Option(help="Print all paths")] = False,
+    preview: Annotated[bool, typer.Option(help="Show what will be done, but do not translate")] = False
+) -> None:
+    allowed_modes = ["missing", "existing", "all"]
+    assert mode in allowed_modes, f"`mode` parameter must be one of {", ".join(f"`{mode}`" for mode in allowed_modes)}"
+
+    translatable_paths = list(iter_en_paths_to_translate())
     missing_paths: list[Path] = []
-    skipped_paths: list[Path] = []
-    for p in paths_to_process:
+    existing_paths: list[Path] = []
+    for p in translatable_paths:
         lang_path = generate_lang_path(lang=language, path=p)
-        if lang_path.exists():
-            skipped_paths.append(p)
-            continue
-        missing_paths.append(p)
-    print("Paths to skip:")
-    for p in skipped_paths:
-        print(f"  - {p}")
-    print(f"Total paths to skip: {len(skipped_paths)}")
-    print("Paths to process:")
-    for p in missing_paths:
-        print(f"  - {p}")
-    print(f"Total paths to process: {len(missing_paths)}")
-    for p in missing_paths:
-        print(f"Translating: {p}")
-        translate_page(language="es", en_path=p)
-        print(f"Done translating: {p}")
+        (existing_paths if lang_path.exists() else missing_paths).append(p)
+
+    def print_pathinfo(title: str, paths: list[Path], verbose: bool = verbose):
+        print(f"{len(paths)} {title}", end="")
+        if verbose and paths:
+            print(":")
+            for p in paths:
+                print(f"  - {p}")
+        else:
+            print()
+    print_pathinfo("translatable paths", translatable_paths)
+    print_pathinfo("paths with a translation", existing_paths)
+    print_pathinfo("paths with no translation", missing_paths)
+
+    print(f"Mode: translate {mode}")
+    if mode == 'missing' or (mode == "all" and len(existing_paths) == 0):
+        tbd_paths = missing_paths
+        action = "translate"
+    elif mode == "existing" or (mode == "all" and len(missing_paths) == 0):
+        tbd_paths = existing_paths
+        action = "update"
+    else:
+        tbd_paths = translatable_paths
+        action = "translate/update"
+    print(f"{len(tbd_paths)} paths to {action}")
+
+    if not preview:
+        for c, p in enumerate(tbd_paths):
+            print(f"({c+1}/{len(tbd_paths)}) Translating: {p}")
+            translate_page(language=language, en_path=p)
+            print(f"Done translating: {p}")
 
 
 @app.command()
