@@ -3,36 +3,22 @@
 Language code: de.
 
 
-2) Use the formal grammar (use "Sie" instead of "Du").
+2) Use the formal grammar (use `Sie` instead of `Du`).
 
 
-3) Translate quotation marks ("") in the English source with typographic quotation marks („“) in the German translation.
+3) Translate quotation marks ("") in the English source with typographic quotation marks („“).
 
 Example:
 
 Source (English):
 
-"word"
+"hello world"
 
 Result (German):
 
-„Wort“
+„Hallo Welt“
 
-But do not do that when the quotation marks are surrounded by backticks (`), speak, when they are inside a code snippet, see earlier defined rule.
-
-Three Examples:
-
-Source (English) – These are three code snippets:
-
-`"word"`
-`"me"`
-`"items"`
-
-Result (German) – you change nothing:
-
-`"word"`
-`"me"`
-`"items"`
+However, when the quotation marks are inside code snippets or code blocks then do not change them. See the earlier defined rules about code snippets and code blocks.
 
 Do not randomly add normal or typographic quotation marks into the German translation.
 
