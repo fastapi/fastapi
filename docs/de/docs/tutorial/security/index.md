@@ -1,4 +1,4 @@
-# Sicherheit
+# Sicherheit { #security }
 
 Es gibt viele Wege, Sicherheit, Authentifizierung und Autorisierung zu handhaben.
 
@@ -10,11 +10,11 @@ In vielen Frameworks und Systemen erfordert allein die Handhabung von Sicherheit
 
 Aber schauen wir uns zunächst ein paar kleine Konzepte an.
 
-## In Eile?
+## In Eile? { #in-a-hurry }
 
 Wenn Ihnen diese Begriffe egal sind und Sie einfach *jetzt* Sicherheit mit Authentifizierung basierend auf Benutzername und Passwort hinzufügen müssen, fahren Sie mit den nächsten Kapiteln fort.
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2 ist eine Spezifikation, die verschiedene Möglichkeiten zur Handhabung von Authentifizierung und Autorisierung definiert.
 
@@ -24,7 +24,7 @@ Sie umfasst Möglichkeiten zur Authentifizierung mithilfe eines „Dritten“ (�
 
 Das ist es, was alle diese „Login mit Facebook, Google, Twitter, GitHub“-Systeme unter der Haube verwenden.
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 Es gab ein OAuth 1, das sich stark von OAuth2 unterscheidet und komplexer ist, da es direkte Spezifikationen enthält, wie die Kommunikation verschlüsselt wird.
 
@@ -38,7 +38,7 @@ Im Abschnitt über **Deployment** erfahren Sie, wie Sie HTTPS mithilfe von Traef
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect ist eine weitere Spezifikation, die auf **OAuth2** basiert.
 
@@ -48,7 +48,7 @@ Beispielsweise verwendet der Google Login OpenID Connect (welches seinerseits OA
 
 Aber der Facebook Login unterstützt OpenID Connect nicht. Es hat seine eigene Variante von OAuth2.
 
-### OpenID (nicht „OpenID Connect“)
+### OpenID (nicht „OpenID Connect“) { #openid-not-openid-connect }
 
 Es gab auch eine „OpenID“-Spezifikation. Sie versuchte das Gleiche zu lösen wie **OpenID Connect**, basierte aber nicht auf OAuth2.
 
@@ -56,7 +56,7 @@ Es handelte sich also um ein komplett zusätzliches System.
 
 Heutzutage ist es nicht sehr populär und wird kaum verwendet.
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI (früher bekannt als Swagger) ist die offene Spezifikation zum Erstellen von APIs (jetzt Teil der Linux Foundation).
 
@@ -97,7 +97,7 @@ Das komplexeste Problem besteht darin, einen Authentifizierungs-/Autorisierungsa
 
 ///
 
-## **FastAPI** Tools
+## **FastAPI** Tools { #fastapi-utilities }
 
 FastAPI stellt für jedes dieser Sicherheitsschemas im Modul `fastapi.security` verschiedene Tools bereit, die die Verwendung dieser Sicherheitsmechanismen vereinfachen.
 
