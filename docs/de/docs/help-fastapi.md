@@ -249,7 +249,7 @@ Auf der anderen Seite gibt es Tausende von Benutzern in den Chat-Systemen, sodas
 
 ## Den Autor sponsern { #sponsor-the-author }
 
-Wenn Ihr **Produkt/Firma** auf **FastAPI** angewiesen ist oder in Zusammenhang steht und Sie seine Benutzer erreichen möchten, können Sie den Autor (mich) über <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub-Sponsoren</a> unterstützen. Je nach Stufe können Sie einige zusätzliche Vorteile erhalten, wie z.B. ein Abzeichen in der Dokumentation. 🎁
+Wenn Ihr **Produkt/Firma** auf **FastAPI** angewiesen ist oder in Zusammenhang steht und Sie seine Benutzer erreichen möchten, können Sie den Autor (mich) über <a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub-Sponsoren</a> unterstützen. Je nach Stufe können Sie einige zusätzliche Vorteile erhalten, wie z. B. ein Abzeichen in der Dokumentation. 🎁
 
 ---
 

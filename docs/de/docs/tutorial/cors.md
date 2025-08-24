@@ -52,8 +52,8 @@ Die von der `CORSMiddleware`-Implementierung verwendeten Defaultparameter sind s
 
 Die folgenden Argumente werden unterstützt:
 
-* `allow_origins` - Eine Liste von Origins, die Cross-Origin-Requests machen dürfen. z.B. `['https://example.org', 'https://www.example.org']`. Sie können `['*']` verwenden, um jedes Origin zuzulassen.
-* `allow_origin_regex` - Ein Regex-String zum Abgleichen gegen Origins, die Cross-Origin-Requests machen dürfen. z.B. `'https://.*\.example\.org'`.
+* `allow_origins` - Eine Liste von Origins, die Cross-Origin-Requests machen dürfen. z. B. `['https://example.org', 'https://www.example.org']`. Sie können `['*']` verwenden, um jedes Origin zuzulassen.
+* `allow_origin_regex` - Ein Regex-String zum Abgleichen gegen Origins, die Cross-Origin-Requests machen dürfen. z. B. `'https://.*\.example\.org'`.
 * `allow_methods` - Eine Liste von HTTP-Methoden, die für Cross-Origin-Requests erlaubt sein sollen. Standardmäßig `['GET']`. Sie können `['*']` verwenden, um alle Standardmethoden zu erlauben.
 * `allow_headers` - Eine Liste von HTTP-Requestheadern, die für Cross-Origin-Requests unterstützt werden sollten. Standardmäßig `[]`. Sie können `['*']` verwenden, um alle Header zu erlauben. Die Header `Accept`, `Accept-Language`, `Content-Language` und `Content-Type` sind immer für <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">einfache CORS-Requests</a> erlaubt.
 * `allow_credentials` - Anzeigen, dass Cookies für Cross-Origin-Requests unterstützt werden sollten. Standardmäßig `False`.

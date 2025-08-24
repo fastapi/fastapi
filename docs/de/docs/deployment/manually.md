@@ -62,7 +62,7 @@ Es gibt mehrere Alternativen, einschließlich:
 
 Es gibt ein kleines Detail bei den Namen, das Sie beachten sollten. 💡
 
-Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud-Computer (die physische oder virtuelle Maschine) als auch das Programm zu bezeichnen, das auf dieser Maschine läuft (z.B. Uvicorn).
+Das Wort „**Server**“ wird häufig verwendet, um sowohl den entfernten/Cloud-Computer (die physische oder virtuelle Maschine) als auch das Programm zu bezeichnen, das auf dieser Maschine läuft (z. B. Uvicorn).
 
 Denken Sie einfach daran, dass sich "Server" im Allgemeinen auf eines dieser beiden Dinge beziehen kann.
 
@@ -143,7 +143,7 @@ Sie hilft während der **Entwicklung**, Sie sollten sie jedoch **nicht** in der 
 
 ## Deployment-Konzepte { #deployment-concepts }
 
-Diese Beispiele führen das Serverprogramm (z.B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z.B. `80`).
+Diese Beispiele führen das Serverprogramm (z. B. Uvicorn) aus, starten **einen einzelnen Prozess** und überwachen alle IPs (`0.0.0.0`) an einem vordefinierten Port (z. B. `80`).
 
 Das ist die Grundidee. Aber Sie möchten sich wahrscheinlich um einige zusätzliche Dinge kümmern, wie zum Beispiel:
 

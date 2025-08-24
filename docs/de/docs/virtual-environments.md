@@ -150,7 +150,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Oder wenn Sie Bash für Windows verwenden (z.B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Oder wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
 <div class="termy">
 
@@ -522,7 +522,7 @@ Es ist sehr üblich in Python-Paketen, alles zu versuchen, **Breaking Changes** 
 
 Stellen Sie sich das jetzt mit **vielen** anderen **Paketen** vor, von denen alle Ihre **Projekte abhängen**. Das ist sehr schwierig zu verwalten. Und Sie würden wahrscheinlich einige Projekte mit einigen **inkompatiblen Versionen** der Pakete ausführen und nicht wissen, warum etwas nicht funktioniert.
 
-Darüber hinaus könnte es je nach Ihrem Betriebssystem (z.B. Linux, Windows, macOS) bereits mit installiertem Python geliefert worden sein. Und in diesem Fall hatte es wahrscheinlich einige Pakete mit bestimmten Versionen **installiert**, die von Ihrem System benötigt werden. Wenn Sie Pakete in der globalen Python-Umgebung installieren, könnten Sie einige der Programme, die mit Ihrem Betriebssystem geliefert wurden, **kaputtmachen**.
+Darüber hinaus könnte es je nach Ihrem Betriebssystem (z. B. Linux, Windows, macOS) bereits mit installiertem Python geliefert worden sein. Und in diesem Fall hatte es wahrscheinlich einige Pakete mit bestimmten Versionen **installiert**, die von Ihrem System benötigt werden. Wenn Sie Pakete in der globalen Python-Umgebung installieren, könnten Sie einige der Programme, die mit Ihrem Betriebssystem geliefert wurden, **kaputtmachen**.
 
 ## Wo werden Pakete installiert { #where-are-packages-installed }
 
@@ -605,7 +605,7 @@ $ .venv\Scripts\Activate.ps1
 
 //// tab | Windows Bash
 
-Oder wenn Sie Bash für Windows verwenden (z.B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
+Oder wenn Sie Bash für Windows verwenden (z. B. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
 
 <div class="termy">
 

@@ -6,7 +6,7 @@ Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, 
 
 Wenn Sie jedoch direkt eine `Response` (oder eine Unterklasse wie `JSONResponse`) zurückgeben, werden die Daten nicht automatisch konvertiert (selbst wenn Sie ein `response_model` deklariert haben), und die Dokumentation wird nicht automatisch generiert (zum Beispiel wird der spezifische „Medientyp“, der im HTTP-Header `Content-Type` angegeben ist, nicht Teil der generierten OpenAPI).
 
-Sie können jedoch auch die `Response`, die Sie verwenden möchten (z.B. jede `Response`-Unterklasse), im *Pfadoperation-Dekorator* mit dem `response_class`-Parameter deklarieren.
+Sie können jedoch auch die `Response`, die Sie verwenden möchten (z. B. jede `Response`-Unterklasse), im *Pfadoperation-Dekorator* mit dem `response_class`-Parameter deklarieren.
 
 Der Inhalt, den Sie von Ihrer *Pfadoperation-Funktion* zurückgeben, wird in diese `Response` eingefügt.
 
@@ -132,7 +132,7 @@ Sie akzeptiert die folgenden Parameter:
 * `content` – Ein `str` oder `bytes`.
 * `status_code` – Ein `int`-HTTP-Statuscode.
 * `headers` – Ein `dict` von Strings.
-* `media_type` – Ein `str`, der den Medientyp angibt. Z.B. `"text/html"`.
+* `media_type` – Ein `str`, der den Medientyp angibt. Z. B. `"text/html"`.
 
 FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem media_type basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
@@ -160,7 +160,7 @@ Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjs
 
 /// info | Info
 
-Dazu muss `orjson` installiert werden, z.B. mit `pip install orjson`.
+Dazu muss `orjson` installiert werden, z. B. mit `pip install orjson`.
 
 ///
 
@@ -170,7 +170,7 @@ Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajs
 
 /// info | Info
 
-Dazu muss `ujson` installiert werden, z.B. mit `pip install ujson`.
+Dazu muss `ujson` installiert werden, z. B. mit `pip install ujson`.
 
 ///
 
@@ -220,7 +220,7 @@ Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator und str
 
 #### Verwendung von `StreamingResponse` mit dateiähnlichen Objekten { #using-streamingresponse-with-file-like-objects }
 
-Wenn Sie ein dateiähnliches (file-like) Objekt haben (z.B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiähnliche Objekt zu iterieren.
+Wenn Sie ein dateiähnliches (file-like) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiähnliche Objekt zu iterieren.
 
 Auf diese Weise müssen Sie nicht alles zuerst in den Arbeitsspeicher lesen und können diese Generatorfunktion an `StreamingResponse` übergeben und zurückgeben.
 

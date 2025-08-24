@@ -544,7 +544,7 @@ Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, de
 
 Wenn Sie **einen einzelnen Prozess pro Container** ausführen, wird von jedem dieser Container (mehr als einer, wenn sie repliziert werden) eine mehr oder weniger klar definierte, stabile und begrenzte Menge an Arbeitsspeicher verbraucht.
 
-Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z.B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von diesen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
+Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z. B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von diesen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
 
 Wenn Ihre Anwendung **einfach** ist, wird dies wahrscheinlich **kein Problem darstellen** und Sie müssen möglicherweise keine festen Speichergrenzen angeben. Wenn Sie jedoch **viel Speicher verbrauchen** (z. B. bei **Modellen für maschinelles Lernen**), sollten Sie überprüfen, wie viel Speicher Sie verbrauchen, und die **Anzahl der Container** anpassen, die in **jeder Maschine** ausgeführt werden (und möglicherweise weitere Maschinen zu Ihrem Cluster hinzufügen).
 
@@ -552,11 +552,11 @@ Wenn Sie **mehrere Prozesse pro Container** ausführen, müssen Sie sicherstelle
 
 ## Schritte vor dem Start und Container { #previous-steps-before-starting-and-containers }
 
-Wenn Sie Container (z.B. Docker, Kubernetes) verwenden, können Sie hauptsächlich zwei Ansätze verwenden.
+Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächlich zwei Ansätze verwenden.
 
 ### Mehrere Container { #multiple-containers }
 
-Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z.B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
+Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
 /// info | Info
 
@@ -606,7 +606,7 @@ Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target=
 
 ## Zusammenfassung { #recap }
 
-Mithilfe von Containersystemen (z.B. mit **Docker** und **Kubernetes**) ist es ziemlich einfach, alle **Deployment-Konzepte** zu handhaben:
+Mithilfe von Containersystemen (z. B. mit **Docker** und **Kubernetes**) ist es ziemlich einfach, alle **Deployment-Konzepte** zu handhaben:
 
 * HTTPS
 * Beim Hochfahren ausführen
