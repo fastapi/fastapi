@@ -123,7 +123,7 @@ flowchart LR
     end
 ```
 
-Result (German) – You change nothing:
+Result (German) – you change nothing:
 
 ```mermaid
 flowchart LR

@@ -28,7 +28,7 @@ Source (English) – These are three code snippets:
 `"me"`
 `"items"`
 
-Result (German) – You change nothing:
+Result (German) – you change nothing:
 
 `"word"`
 `"me"`
