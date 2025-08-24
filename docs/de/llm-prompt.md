@@ -105,7 +105,7 @@ Result (German):
 
 <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>
 <abbr title="Programm das auf Fehler im Code prüft">Linter</abbr>
-<abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">„Parsing“</abbr>
+<abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">„Parsen“</abbr>
 <abbr title="vor 2023-03">0.95.0</abbr>
 <abbr title="2023-08-26">zum Zeitpunkt als das hier geschrieben wurde</abbr>
 
@@ -118,6 +118,29 @@ Source (English):
 Result (German):
 
 {translation of explanation}
+
+If the term, which the HTML abbr element wraps, stays English in the translation, but it also has a translation, whose knowledge improves the explanation, then let the title attribute be that translation, followed by a colon (`:`), followed by the translation of the title attribute.
+
+Examples:
+
+Source (English):
+
+<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>
+
+Result (German):
+
+<abbr title="Einbringen von Abhängigkeiten: auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>
+
+Conversion scheme title attribute:
+
+Source (English):
+
+{explanation}
+
+Result (German):
+
+{translation of term which abbr wraps}: {translation of explanation}
+
 
 4.3) If the title attribute gives the full phrase for an abbrevation, followed by a colon (`:`) or a comma (`,`), followed by an explanation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase, followed by a colon (`:`), followed by the translation of the explanation.
 
@@ -252,6 +275,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the origin: das Origin
 * the override: Die Überschreibung
 * the parameter: der Parameter
+* the parameters (plural case): die Parameter
 * the function parameter: der Funktionsparameter
 * the default parameter: der Defaultparameter
 * the body parameter: der Body-Parameter
