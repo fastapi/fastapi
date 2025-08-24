@@ -247,6 +247,8 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
 * the model object: das Modellobjekt
+* the mounting: das Mounten
+* mounted: gemountet
 * the origin: das Origin
 * the override: Die Überschreibung
 * the parameter: der Parameter
