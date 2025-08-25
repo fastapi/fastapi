@@ -89,7 +89,7 @@ Result (German):
 
 {full phrase}
 
-4.1.2) If the phrase can be translated that translation has the same starting letters, then just use the translation.
+4.1.2) If the phrase can be translated and that translation has the same starting letters, then just use the translation.
 
 Examples:
 
@@ -141,7 +141,7 @@ Result (German):
 
 {translation of explanation}
 
-If the term, which the HTML abbr element wraps, stays English in the translation, but it also has a translation, whose knowledge improves the explanation, then let the title attribute be that translation, followed by a colon (`:`), followed by the translation of the title attribute.
+4.2.1) If the term, which the HTML abbr element wraps, stays English in the translation, but it also has a translation, whose knowledge improves the explanation, then let the title attribute be that translation, followed by a colon (`:`), followed by the translation of the title attribute.
 
 Examples:
 
