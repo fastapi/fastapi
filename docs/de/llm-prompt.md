@@ -6,26 +6,40 @@ Language code: de.
 2) Use the formal grammar (use `Sie` instead of `Du`).
 
 
-3) Translate quotation marks ("") in the English source with typographic quotation marks („“).
+3) Convert quotation marks (") to typographic quotation marks („“).
 
 Example:
 
 Source (English):
 
-"hello world"
+"Hello world"
 
 Result (German):
 
 „Hallo Welt“
 
-However, when the quotation marks are inside code snippets or code blocks then do not change them. See the earlier defined rules about code snippets and code blocks.
+3.1) Inside inline code (= surrounded by backticks), leave quotation marks (") as is, as they usually mark string literals and typographic quotation marks („“) can not be used for that.
 
-Do not randomly add normal or typographic quotation marks into the German translation.
+Example:
+
+Source (English) – contains four inline codes, three of them contain a string literal:
+
+Inline code: `i am inline code`
+Inline code containing a string literal: `i am inline code "I am a string literal"`
+Inline code containing only a short string literal: `"foo"`
+`"__main__"`
+
+Result (German) – as all the quotation marks (") are inside inline code, you keep them as is, as you always should with content inside inline code:
+
+Inline-Code: `i am inline code`
+Inline-Code der ein Stringliteral enthält: `i am inline code "I am a string literal"`
+Inline-Code der nur ein kurzes Stringliteral enthält: `"foo"`
+`"__main__"`
 
 
 4) Translate HTML abbr elements as follows:
 
-4.1) If the title attribute gives the full phrase for an abbrevation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase.
+4.1) If the title attribute gives the full phrase for an abbreviation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase.
 
 Examples:
 
@@ -51,7 +65,7 @@ Result (German):
 
 {full phrase} – {translation of full phrase}
 
-If the phrase can not be translated or it is the same in the translation, then keep the title attribute as is.
+4.1.1) If the phrase can not be translated, or it is the same in the translation, then keep the title attribute as is.
 
 Examples:
 
@@ -74,6 +88,28 @@ Source (English):
 Result (German):
 
 {full phrase}
+
+4.1.2) If the phrase can be translated that translation has the same starting letters, then just use the translation.
+
+Examples:
+
+Source (English):
+
+<abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>
+
+Result (German):
+
+<abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>
+
+Conversion scheme title attribute:
+
+Source (English):
+
+{full phrase}
+
+Result (German):
+
+{translation of full phrase}
 
 4.2) If the title attribute explains something in its own words, then translate it, if possible.
 
@@ -128,7 +164,7 @@ Result (German):
 {translation of term which abbr wraps}: {translation of explanation}
 
 
-4.3) If the title attribute gives the full phrase for an abbrevation, followed by a colon (`:`) or a comma (`,`), followed by an explanation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase, followed by a colon (`:`), followed by the translation of the explanation.
+4.3) If the title attribute gives the full phrase for an abbreviation, followed by a colon (`:`) or a comma (`,`), followed by an explanation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase, followed by a colon (`:`), followed by the translation of the explanation.
 
 Examples:
 
@@ -162,7 +198,7 @@ Result (German):
 
 {full phrase} – {translation of full phrase}: {translation of explanation}
 
-4.4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
+4.4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
 
 
 5) Translate headings using the infinite form.
@@ -224,7 +260,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * /// warning: /// warning | Achtung
 * you: Sie
 * your: Ihr
-* e.g: z.B.
+* e.g: z. B.
 * etc.: usw.
 * the `PATH` environment variable: die `PATH`-Umgebungsvariable
 * the `PATH`: der `PATH`
@@ -234,10 +270,10 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the application: die Anwendung
 * the Advanced User Guide: das Handbuch für fortgeschrittene Benutzer
 * the Authorization-Header: der Autorisierungsheader
+* the `Authorization`-Header: der `Authorization`-Header
 * the background task: der Hintergrundtask
 * the cloud provider: der Cloudanbieter
 * the CLI: Das CLI
-* the configurations (plural case): die Einstellungen
 * the command line interface: Das Kommandozeileninterface
 * the docs: die Dokumentation (use singular case)
 * the default value: der Defaultwert
@@ -252,6 +288,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the form body: der Formularbody
 * the header: der Header
 * the headers (plural case): die Header
+* in headers (plural case): in Headern
 * the lifespan event: das Lifespan-Event
 * the locking: das Locking
 * the mobile application: die Mobile-Anwendung
@@ -302,6 +339,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * Starlette's Y: Starlettes Y
 * X is case-sensitive: Groß-/Klein­schrei­bung ist relevant in X
 * X is case-insensitive: Groß-/Klein­schrei­bung ist nicht relevant in X
+* standard Python: Standard-Python
 
 
 8) Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)
