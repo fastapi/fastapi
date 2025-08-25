@@ -194,10 +194,12 @@ if PYDANTIC_V2:
         ],
         separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
-        computed_fields = field._type_adapter.core_schema.get("schema", {}).get("computed_fields", [])
+        computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
+            "computed_fields", []
+        )
         override_mode: Union[Literal["validation"], None] = (
             None
-            if (separate_input_output_schemas or len(computed_fields))
+            if (separate_input_output_schemas or len(computed_fields) > 0)
             else "validation"
         )
         # This expects that GenerateJsonSchema was already used to generate the definitions
