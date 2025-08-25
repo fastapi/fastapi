@@ -2,9 +2,9 @@
 
 You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
-## Install `WebSockets` { #install-websockets }
+## Install `websockets` { #install-websockets }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library which makes it easy to use "WebSockets", the JavaScript standard):
 
 <div class="termy">
 

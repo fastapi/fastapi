@@ -234,7 +234,7 @@ Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbei
 
     Es handelt sich also hier um eine Generatorfunktion, die die „generierende“ Arbeit intern auf etwas anderes überträgt.
 
-    Auf diese Weise können wir das Ganze in einen `with`-Block einfügen und so sicherstellen, dass das dateiähnliche Objekt nach Abschluss geschlossen wird.
+    Auf diese Weise können wir das Ganze in einen `with`-Block einfügen und so sicherstellen, dass das dateiartige Objekt nach Abschluss geschlossen wird.
 
 /// tip | Tipp
 

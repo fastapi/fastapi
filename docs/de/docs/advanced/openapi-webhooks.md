@@ -4,7 +4,7 @@ Es gibt Fälle, in denen Sie Ihren API-**Benutzern** mitteilen möchten, dass Ih
 
 Das bedeutet, dass anstelle des normalen Prozesses, bei dem Ihre Benutzer Requests an Ihre API senden, **Ihre API** (oder Ihre App) **Requests an deren System** (an deren API, deren App) senden könnte.
 
-Das wird normalerweise als **Webhook** bezeichnet.
+Das wird normalerweise als **Web<abbr title="Haken, Einhängepunkt">hook</abbr>** bezeichnet.
 
 ## Webhooks-Schritte { #webhooks-steps }
 
@@ -12,13 +12,13 @@ Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, 
 
 Sie definieren auch auf irgendeine Weise, in welchen **Momenten** Ihre App diese Requests oder Events senden wird.
 
-Und **Ihre Benutzer** definieren auf irgendeine Weise (zum Beispiel irgendwo in einem Web-Dashboard) die **URL**, an die Ihre App diese Requests senden soll.
+Und **Ihre Benutzer** definieren auf irgendeine Weise (zum Beispiel irgendwo in einem Web-<abbr title="Benutzeroberfläche zur Visualisierung und zum Management von Informationen">Dashboard</abbr>) die **URL**, an die Ihre App diese Requests senden soll.
 
 Die gesamte **Logik** zur Registrierung der URLs für Webhooks und der Code zum tatsächlichen Senden dieser Requests liegt bei Ihnen. Sie schreiben es so, wie Sie möchten, in **Ihrem eigenen Code**.
 
 ## Webhooks mit **FastAPI** und OpenAPI dokumentieren { #documenting-webhooks-with-fastapi-and-openapi }
 
-Mit **FastAPI**, mithilfe von OpenAPI, können Sie die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre App senden kann (z. B. `POST`, `PUT`, usw.) und die Request**bodies** definieren, die Ihre App senden würde.
+Mit **FastAPI**, mithilfe von OpenAPI, können Sie die Namen dieser Webhooks, die Arten von HTTP-Operationen, die Ihre App senden kann (z. B. `POST`, `PUT`, usw.) und die Request**bodys** definieren, die Ihre App senden würde.
 
 Dies kann es Ihren Benutzern viel einfacher machen, **deren APIs zu implementieren**, um Ihre **Webhook**-Requests zu empfangen. Möglicherweise können diese sogar einen Teil ihres eigenen API-Codes automatisch generieren.
 

@@ -312,6 +312,8 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the query: die Query
 * the recap: die Zusammenfassung
 * the request: der Request
+* the requestbody: der Requestbody
+* the requestbodies (plural case): die Requestbodys
 * the response: die Response
 * the return type: der Rückgabetyp
 * the return value: der Rückgabewert

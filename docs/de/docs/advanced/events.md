@@ -96,7 +96,7 @@ Sie können diesen Teil wahrscheinlich überspringen.
 
 Es gibt eine alternative Möglichkeit, diese Logik zu definieren, sodass sie beim *Hochfahren* und beim *Herunterfahren* ausgeführt wird.
 
-Sie können Eventhandler (Funktionen) definieren, die ausgeführt werden sollen, bevor die Anwendung hochgefahren wird oder wenn die Anwendung heruntergefahren wird.
+Sie können <abbr title="Eventhandler – Ereignisbehandler: Funktion, die beim Eintreten eines bestimmten Ereignisses ausgeführt wird">Eventhandler</abbr> (Funktionen) definieren, die ausgeführt werden sollen, bevor die Anwendung hochgefahren wird oder wenn die Anwendung heruntergefahren wird.
 
 Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
