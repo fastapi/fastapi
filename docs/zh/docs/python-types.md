@@ -240,7 +240,29 @@ John Doe
 
 下面的例子来自 Pydantic 官方文档：
 
-{* ../../docs_src/python_types/tutorial010.py *}
+//// tab | Python 3.10+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py310.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011.py!}
+```
+
+////
 
 
 /// info
