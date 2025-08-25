@@ -2,7 +2,7 @@
 
 If you have a group of **cookies** that are related, you can create a **Pydantic model** to declare them. 🍪
 
-This would allow you to **re-use the model** in **multiple places** and also to declare validations and metadata for all the parameters at once. 😎
+This would allow you to **reuse the model** in **multiple places** and also to declare validations and metadata for all the parameters at once. 😎
 
 /// note
 
