@@ -19,9 +19,14 @@ Interactive API documentation and exploration web user interfaces. As the framew
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Alternative API documentation with <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
+* Alternative API documentation with Redoc or Scalar
+* <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank"><strong>ReDoc</strong></a>.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
+
+* <a href="https://github.com/scalar/scalar" class="external-link" target="_blank"><strong>Scalar</strong></a>.
+
+![Scalar](https://fastapi.tiangolo.com/img/index/index-08-scalar-02.png)
 
 ### Just Modern Python
 

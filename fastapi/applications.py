@@ -24,6 +24,7 @@ from fastapi.exceptions import RequestValidationError, WebSocketRequestValidatio
 from fastapi.logger import logger
 from fastapi.openapi.docs import (
     get_redoc_html,
+    get_scalar_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
@@ -415,7 +416,7 @@ class FastAPI(Starlette):
                 ```python
                 from fastapi import FastAPI
 
-                app = FastAPI(docs_url="/documentation", redoc_url=None)
+                app = FastAPI(docs_url="/documentation", redoc_url=None, scalar_url=None)
                 ```
                 """
             ),
@@ -444,6 +445,30 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "/redoc",
+        scalar_url: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The path to the alternative automatic interactive API documentation
+                provided by Scalar.
+
+                The default URL is `/scalar`. You can disable it by setting it to `None`.
+
+                If `openapi_url` is set to `None`, this will be automatically disabled.
+
+                Read more in the
+                [FastAPI docs for Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/#docs-urls).
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(docs_url="/documentation", scalar_url="scalar-docs")
+                ```
+                """
+            ),
+        ] = "/scalar",
         swagger_ui_oauth2_redirect_url: Annotated[
             Optional[str],
             Doc(
@@ -833,6 +858,7 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.scalar_url = scalar_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -1047,6 +1073,17 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+
+        if self.openapi_url and self.scalar_url:
+
+            async def scalar_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                openapi_url = root_path + self.openapi_url
+                return get_scalar_html(
+                    openapi_url=openapi_url, title=self.title + " - Scalar"
+                )
+
+            self.add_route(self.scalar_url, scalar_html, include_in_schema=False)
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:

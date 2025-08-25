@@ -42,6 +42,8 @@ body:
           required: true
         - label: I already checked if it is not related to FastAPI but to [ReDoc](https://github.com/Redocly/redoc).
           required: true
+        - label: I already checked if it is not related to FastAPI but to [Scalar](https://github.com/scalar/scalar).
+          required: true
   - type: checkboxes
     id: help
     attributes:

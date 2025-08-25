@@ -100,6 +100,10 @@ And **ReDoc** uses the file:
 
 * <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
+And **Scalar** uses the file:
+
+* <a href="https://cdn.jsdelivr.net/npm/@scalar/api-reference" class="external-link" target="_blank">`scalar.standalone.js`</a>
+
 After that, your file structure could look like:
 
 ```
@@ -109,6 +113,7 @@ After that, your file structure could look like:
 │   ├── main.py
 └── static
     ├── redoc.standalone.js
+    ├── scalar.standalone.js
     ├── swagger-ui-bundle.js
     └── swagger-ui.css
 ```
