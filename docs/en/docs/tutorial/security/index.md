@@ -104,3 +104,5 @@ FastAPI provides several tools for each of these security schemes in the `fastap
 In the next chapters you will see how to add security to your API using those tools provided by **FastAPI**.
 
 And you will also see how it gets automatically integrated into the interactive documentation system.
+
+- [APIKey Header](api-key.md)
