@@ -1,4 +1,4 @@
-# FastAPI in Containern - Docker { #fastapi-in-containers-docker }
+# FastAPI in Containern – Docker { #fastapi-in-containers-docker }
 
 Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten bereitstellen.
 
@@ -238,7 +238,7 @@ Stellen Sie sicher, dass Sie **immer** die **exec form** der Anweisung `CMD` ver
 
 ///
 
-#### `CMD` - Exec Form verwenden { #use-cmd-exec-form }
+#### `CMD` – Exec Form verwenden { #use-cmd-exec-form }
 
 Die <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker-Anweisung kann in zwei Formen geschrieben werden:
 
@@ -454,7 +454,7 @@ In den meisten (oder allen) Fällen gibt es eine einfache Option, um die Ausfüh
 
 Ohne die Verwendung von Containern kann es umständlich und schwierig sein, Anwendungen beim Hochfahren auszuführen und neu zu starten. Bei der **Arbeit mit Containern** ist diese Funktionalität jedoch in den meisten Fällen standardmäßig enthalten. ✨
 
-## Replikation - Anzahl der Prozesse { #replication-number-of-processes }
+## Replikation – Anzahl der Prozesse { #replication-number-of-processes }
 
 Wenn Sie einen <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</abbr> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Uvicorn mit Workern) zu verwenden.
 
@@ -476,7 +476,7 @@ Die gleiche **TLS-Terminierungsproxy**-Komponente, die für HTTPS verwendet wird
 
 Und wenn Sie mit Containern arbeiten, verfügt das gleiche System, mit dem Sie diese starten und verwalten, bereits über interne Tools, um die **Netzwerkkommunikation** (z. B. HTTP-Requests) von diesem **Load Balancer** (das könnte auch ein **TLS-Terminierungsproxy** sein) zu den Containern mit Ihrer Anwendung weiterzuleiten.
 
-### Ein Load Balancer - mehrere Workercontainer { #one-load-balancer-multiple-worker-containers }
+### Ein Load Balancer – mehrere Workercontainer { #one-load-balancer-multiple-worker-containers }
 
 Bei der Arbeit mit **Kubernetes** oder ähnlichen verteilten Containerverwaltungssystemen würde die Verwendung ihrer internen Netzwerkmechanismen es dem einzelnen **Load Balancer**, der den Haupt-**Port** überwacht, ermöglichen, Kommunikation (Requests) an möglicherweise **mehrere Container** weiterzuleiten, in denen Ihre Anwendung ausgeführt wird.
 

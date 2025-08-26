@@ -6,7 +6,7 @@ Sie können diese Vorlage verwenden, um loszulegen, da sie bereits vieles der an
 
 GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
 
-## Full Stack FastAPI Template - Technologiestack und Funktionen { #full-stack-fastapi-template-technology-stack-and-features }
+## Full Stack FastAPI Template – Technologiestack und Funktionen { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/de) für die Python-Backend-API.
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) für die Interaktion mit der Python-SQL-Datenbank (ORM).

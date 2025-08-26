@@ -4,7 +4,7 @@ Sie können praktisch **jeden Cloudanbieter** verwenden, um Ihre FastAPI-Anwendu
 
 In den meisten Fällen bieten die großen Cloudanbieter Anleitungen zum Bereitstellen von FastAPI an.
 
-## Cloudanbieter - Sponsoren { #cloud-providers-sponsors }
+## Cloudanbieter – Sponsoren { #cloud-providers-sponsors }
 
 Einige Cloudanbieter ✨ [**sponsern FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, dies stellt die kontinuierliche und gesunde **Entwicklung** von FastAPI und seinem **Ökosystem** sicher.
 

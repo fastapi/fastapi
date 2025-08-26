@@ -257,6 +257,40 @@ Do NOT translate with (German) – notice the added period:
 
 ## Ein weiteres Modul mit `APIRouter`. { #another-module-with-apirouter }
 
+5.2) Replace occurrences of literal ` - ` (a space followed by a dash followed by a space) with ` – ` (a space followed by a long dash followed by a space) in the translated part of the heading.
+
+Example:
+
+Source (English):
+
+# FastAPI in Containers - Docker { #fastapi-in-containers-docker }
+
+Translate with (German) – notice the long dash:
+
+# FastAPI in Containern – Docker { #fastapi-in-containers-docker }
+
+Do NOT translate with (German):
+
+# FastAPI in Containern - Docker { #fastapi-in-containers-docker }
+
+5.2.1) Do not apply rule 5.2 when there is no space before or after the dash.
+
+Example:
+
+Source (English):
+
+## Type hints and annotations { #type-hints-and-annotations }
+
+Translate with (German) – use a short dash:
+
+## Typhinweise und -annotationen { #type-hints-and-annotations }
+
+Do NOT translate with (German):
+
+## Typhinweise und –annotationen { #type-hints-and-annotations }
+
+Rule 5.2 does not apply to the untranslated part of the heading, which is inside curly brackets.
+
 
 6) Follow these German instructions:
 

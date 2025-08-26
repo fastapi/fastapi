@@ -185,7 +185,7 @@ Und jede Modellklasse, die `table=True` nicht hat, ist ein **Datenmodell**, dies
 
 Mit SQLModel können wir **Vererbung** verwenden, um **doppelte Felder** in allen Fällen zu **vermeiden**.
 
-#### `HeroBase` - die Basisklasse { #herobase-the-base-class }
+#### `HeroBase` – die Basisklasse { #herobase-the-base-class }
 
 Fangen wir mit einem `HeroBase`-Modell an, das alle **Felder hat, die von allen Modellen geteilt werden**:
 
@@ -194,7 +194,7 @@ Fangen wir mit einem `HeroBase`-Modell an, das alle **Felder hat, die von allen 
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
 
-#### `Hero` - das *Tabellenmodell* { #hero-the-table-model }
+#### `Hero` – das *Tabellenmodell* { #hero-the-table-model }
 
 Dann erstellen wir `Hero`, das tatsächliche *Tabellenmodell*, mit den **zusätzlichen Feldern**, die nicht immer in den anderen Modellen enthalten sind:
 
@@ -210,7 +210,7 @@ Da `Hero` von `HeroBase` erbt, hat es **auch** die **Felder**, die in `HeroBase`
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
 
-#### `HeroPublic` - das öffentliche *Datenmodell* { #heropublic-the-public-data-model }
+#### `HeroPublic` – das öffentliche *Datenmodell* { #heropublic-the-public-data-model }
 
 Als nächstes erstellen wir ein `HeroPublic`-Modell, das an die API-Clients **zurückgegeben** wird.
 
@@ -236,7 +236,7 @@ Alle Felder in `HeroPublic` sind dieselben wie in `HeroBase`, mit `id`, das als 
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
 
-#### `HeroCreate` - das *Datenmodell* zum Erstellen eines Helden { #herocreate-the-data-model-to-create-a-hero }
+#### `HeroCreate` – das *Datenmodell* zum Erstellen eines Helden { #herocreate-the-data-model-to-create-a-hero }
 
 Nun erstellen wir ein `HeroCreate`-Modell, das die Daten der Clients **validiert**.
 
@@ -260,7 +260,7 @@ Die Felder von `HeroCreate` sind:
 
 {* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
 
-#### `HeroUpdate` - das *Datenmodell* zum Aktualisieren eines Helden { #heroupdate-the-data-model-to-update-a-hero }
+#### `HeroUpdate` – das *Datenmodell* zum Aktualisieren eines Helden { #heroupdate-the-data-model-to-update-a-hero }
 
 In der vorherigen Version der App hatten wir keine Möglichkeit, einen Helden **zu aktualisieren**, aber jetzt mit **mehreren Modellen** können wir es. 🎉
 
