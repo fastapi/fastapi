@@ -211,7 +211,7 @@ In Versionen von FastAPI vor 0.99.0 (0.99.0 und höher verwenden das neuere Open
 
 Aber jetzt, da FastAPI 0.99.0 und höher, OpenAPI 3.1.0 verwendet, das JSON Schema 2020-12 verwendet, und Swagger UI 5.0.0 und höher, ist alles konsistenter und die Beispiele sind in JSON Schema enthalten.
 
-### Swagger-Benutzeroberfläche und OpenAPI-spezifische `examples`. { #swagger-ui-and-openapi-specific-examples }
+### Swagger-Benutzeroberfläche und OpenAPI-spezifische `examples` { #swagger-ui-and-openapi-specific-examples }
 
 Da die Swagger-Benutzeroberfläche derzeit nicht mehrere JSON Schema Beispiele unterstützt (Stand: 26.08.2023), hatten Benutzer keine Möglichkeit, mehrere Beispiele in der Dokumentation anzuzeigen.
 

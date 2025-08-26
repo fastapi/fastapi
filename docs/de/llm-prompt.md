@@ -241,6 +241,22 @@ Do NOT translate with (German):
 
 ### Führen Sie Ihr Programm aus { #run-your-program }
 
+5.1) Make sure that the translated part of the heading does not end with a period.
+
+Example:
+
+Source (English):
+
+## Another module with `APIRouter` { #another-module-with-apirouter }
+
+Translate with (German):
+
+## Ein weiteres Modul mit `APIRouter` { #another-module-with-apirouter }
+
+Do NOT translate with (German) – notice the added period:
+
+## Ein weiteres Modul mit `APIRouter`. { #another-module-with-apirouter }
+
 
 6) Follow these German instructions:
 

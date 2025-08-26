@@ -44,7 +44,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 ///
 
-## Code, um `username` und `password` entgegenzunehmen. { #code-to-get-the-username-and-password }
+## Code, um `username` und `password` entgegenzunehmen { #code-to-get-the-username-and-password }
 
 Lassen Sie uns nun die von **FastAPI** bereitgestellten Werkzeuge verwenden, um das zu erledigen.
 

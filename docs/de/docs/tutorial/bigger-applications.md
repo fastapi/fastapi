@@ -159,7 +159,7 @@ Aber in der Praxis werden Sie mit den integrierten [Sicherheits-Werkzeugen](secu
 
 ///
 
-## Ein weiteres Modul mit `APIRouter`. { #another-module-with-apirouter }
+## Ein weiteres Modul mit `APIRouter` { #another-module-with-apirouter }
 
 Nehmen wir an, Sie haben im Modul unter `app/routers/items.py` auch die Endpunkte, die für die Verarbeitung von Artikeln („Items“) aus Ihrer Anwendung vorgesehen sind.
 
