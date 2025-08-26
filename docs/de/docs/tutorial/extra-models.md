@@ -116,7 +116,7 @@ gleichwertig zu:
 UserInDB(**user_in.dict())
 ```
 
-...weil `user_in.dict()` ein `dict` ist, und dann lassen wir Python es „entpacken“, indem wir es an `UserInDB` mit vorangestelltem `**` übergeben.
+... weil `user_in.dict()` ein `dict` ist, und dann lassen wir Python es „entpacken“, indem wir es an `UserInDB` mit vorangestelltem `**` übergeben.
 
 Auf diese Weise erhalten wir ein Pydantic-Modell aus den Daten eines anderen Pydantic-Modells.
 
@@ -128,7 +128,7 @@ Und dann fügen wir das zusätzliche Schlüsselwort-Argument `hashed_password=ha
 UserInDB(**user_in.dict(), hashed_password=hashed_password)
 ```
 
-...was so ist wie:
+... was so ist wie:
 
 ```Python
 UserInDB(

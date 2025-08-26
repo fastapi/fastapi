@@ -121,7 +121,7 @@ Einige Beispiele für Tools, die diese Aufgabe übernehmen können, sind:
 * Systemd
 * Supervisor
 * Es wird intern von einem Cloud-Anbieter im Rahmen seiner Dienste verwaltet
-* Andere...
+* Andere ...
 
 In den nächsten Kapiteln werde ich Ihnen konkretere Beispiele geben.
 
@@ -174,7 +174,7 @@ Dies könnte zum Beispiel erledigt werden durch:
 * Systemd
 * Supervisor
 * Intern von einem Cloud-Anbieter im Rahmen seiner Dienste
-* Andere...
+* Andere ...
 
 ## Replikation – Prozesse und Arbeitsspeicher { #replication-processes-and-memory }
 

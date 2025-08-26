@@ -87,7 +87,7 @@ Da Sie den Uvicorn-Server direkt aus Ihrem Code ausführen, können Sie Ihr Pyth
 Zum Beispiel können Sie in Visual Studio Code:
 
 * Zum „Debug“-Panel gehen.
-* „Konfiguration hinzufügen...“ auswählen.
+* „Konfiguration hinzufügen ...“ auswählen.
 * „Python“ auswählen.
 * Den Debugger mit der Option „`Python: Current File (Integrated Terminal)`“ ausführen.
 
@@ -102,7 +102,7 @@ So könnte es aussehen:
 Wenn Sie Pycharm verwenden, können Sie:
 
 * Das Menü „Run“ öffnen.
-* Die Option „Debug...“ auswählen.
+* Die Option „Debug ...“ auswählen.
 * Ein Kontextmenü wird angezeigt.
 * Die zu debuggende Datei auswählen (in diesem Fall `main.py`).
 

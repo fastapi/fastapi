@@ -173,7 +173,7 @@ Wenn Sie die vorherige App überprüfen, können Sie in der UI sehen, dass sie b
 
 Das sollten wir nicht zulassen, sie könnten eine `id` überschreiben, die wir bereits in der DB zugewiesen haben. Die Entscheidung über die `id` sollte vom **Backend** oder der **Datenbank** getroffen werden, **nicht vom Client**.
 
-Außerdem erstellen wir einen `secret_name` für den Helden, aber bisher geben wir ihn überall zurück, das ist nicht sehr **geheim**... 😅
+Außerdem erstellen wir einen `secret_name` für den Helden, aber bisher geben wir ihn überall zurück, das ist nicht sehr **geheim** ... 😅
 
 Wir werden diese Dinge beheben, indem wir ein paar **zusätzliche Modelle** hinzufügen. Hier wird SQLModel glänzen. ✨
 

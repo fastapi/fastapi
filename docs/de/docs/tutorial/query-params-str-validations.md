@@ -129,7 +129,7 @@ Also:
 q: str | None = Query(default=None)
 ```
 
-...macht den Parameter optional mit einem Defaultwert von `None`, genauso wie:
+... macht den Parameter optional mit einem Defaultwert von `None`, genauso wie:
 
 ```Python
 q: str | None = None
@@ -157,7 +157,7 @@ Zum Beispiel ist das nicht erlaubt:
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-...denn es ist nicht klar, ob der Defaultwert `"rick"` oder `"morty"` sein soll.
+... denn es ist nicht klar, ob der Defaultwert `"rick"` oder `"morty"` sein soll.
 
 Sie würden also (bevorzugt) schreiben:
 
@@ -165,7 +165,7 @@ Sie würden also (bevorzugt) schreiben:
 q: Annotated[str, Query()] = "rick"
 ```
 
-...oder in älteren Codebasen finden Sie:
+... oder in älteren Codebasen finden Sie:
 
 ```Python
 q: str = Query(default="rick")
@@ -375,7 +375,7 @@ Aber `item-query` ist kein gültiger Name für eine Variable in Python.
 
 Der am ähnlichsten wäre `item_query`.
 
-Aber Sie benötigen dennoch, dass er genau `item-query` ist...
+Aber Sie benötigen dennoch, dass er genau `item-query` ist ...
 
 Dann können Sie ein `alias` deklarieren, und dieser Alias wird verwendet, um den Parameterwert zu finden:
 
@@ -459,7 +459,7 @@ Dann **weisen wir diese beiden Werte** des Tupels den Variablen `id` und `name` 
 
 Wenn der Benutzer also keine Artikel-ID bereitgestellt hat, erhält er trotzdem einen zufälligen Vorschlag.
 
-...wir tun all dies in einer **einzelnen einfachen Zeile**. 🤯 Lieben Sie nicht auch Python? 🐍
+... wir tun all dies in einer **einzelnen einfachen Zeile**. 🤯 Lieben Sie nicht auch Python? 🐍
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 

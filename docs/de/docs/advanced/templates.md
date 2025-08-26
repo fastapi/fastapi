@@ -71,7 +71,7 @@ Item ID: {{ id }}
 
 {% endraw %}
 
-...wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
+... wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
 
 ```Python
 {"id": id}
@@ -97,7 +97,7 @@ Der Abschnitt mit:
 
 {% endraw %}
 
-...generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
+... generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
 
 Mit beispielsweise der ID `42` würde dies Folgendes ergeben:
 

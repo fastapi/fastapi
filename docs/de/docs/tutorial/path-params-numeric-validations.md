@@ -87,7 +87,7 @@ Wenn Sie:
 * sie in einer anderen Reihenfolge haben
 * nicht `Annotated` verwenden
 
-...möchten, dann hat Python eine kleine Spezial-Syntax dafür.
+... möchten, dann hat Python eine kleine Spezial-Syntax dafür.
 
 Übergeben Sie `*`, als den ersten Parameter der Funktion.
 

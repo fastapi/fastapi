@@ -63,7 +63,7 @@ Die folgenden Argumente werden unterstützt:
 * `expose_headers` - Angabe der Responseheader, auf die der Browser zugreifen können soll. Standardmäßig `[]`.
 * `max_age` - Legt eine maximale Zeit in Sekunden fest, die Browser CORS-Responses zwischenspeichern dürfen. Standardmäßig `600`.
 
-Die Middleware antwortet auf zwei besondere Arten von HTTP-Requests...
+Die Middleware antwortet auf zwei besondere Arten von HTTP-Requests ...
 
 ### CORS-Preflight-Requests { #cors-preflight-requests }
 

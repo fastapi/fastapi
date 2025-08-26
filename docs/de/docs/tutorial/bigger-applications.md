@@ -193,7 +193,7 @@ async def read_item(item_id: str):
     ...
 ```
 
-...darf das Präfix kein abschließendes `/` enthalten.
+... darf das Präfix kein abschließendes `/` enthalten.
 
 Das Präfix lautet in diesem Fall also `/items`.
 
@@ -212,7 +212,7 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 * `/items/`
 * `/items/{item_id}`
 
-...wie wir es beabsichtigt hatten.
+... wie wir es beabsichtigt hatten.
 
 * Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String `"items"` enthält.
     * Diese „Tags“ sind besonders nützlich für die automatischen interaktiven Dokumentationssysteme (unter Verwendung von OpenAPI).

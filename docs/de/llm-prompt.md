@@ -37,9 +37,32 @@ Inline-Code der nur ein kurzes Stringliteral enthält: `"foo"`
 `"__main__"`
 
 
-4) Translate HTML abbr elements as follows:
+4) make sure there is a space between an ellipsis and a word following or preceding it.
 
-4.1) If the title attribute gives the full phrase for an abbreviation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase.
+Examples:
+
+Source (English):
+
+...as we intended.
+...this would work:
+...etc.
+others...
+More to come...
+
+Result (German):
+
+... wie wir es beabsichtigt hatten.
+... das würde funktionieren:
+... usw.
+Andere ...
+Später mehr ...
+
+4.1) Rule 4 does not apply in URLs, code blocks, inline code. Do not change the spaces there.
+
+
+5) Translate HTML abbr elements as follows:
+
+5.1) If the title attribute gives the full phrase for an abbreviation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase.
 
 Examples:
 
@@ -65,7 +88,7 @@ Result (German):
 
 {full phrase} – {translation of full phrase}
 
-4.1.1) If the phrase can not be translated, or it is the same in the translation, then keep the title attribute as is.
+5.1.1) If the phrase can not be translated, or it is the same in the translation, then keep the title attribute as is.
 
 Examples:
 
@@ -89,7 +112,7 @@ Result (German):
 
 {full phrase}
 
-4.1.2) If the phrase can be translated and that translation has the same starting letters, then just use the translation.
+5.1.2) If the phrase can be translated and that translation has the same starting letters, then just use the translation.
 
 Examples:
 
@@ -111,7 +134,7 @@ Result (German):
 
 {translation of full phrase}
 
-4.2) If the title attribute explains something in its own words, then translate it, if possible.
+5.2) If the title attribute explains something in its own words, then translate it, if possible.
 
 Examples:
 
@@ -141,7 +164,7 @@ Result (German):
 
 {translation of explanation}
 
-4.2.1) If the term, which the HTML abbr element wraps, stays English in the translation, but it also has a translation, whose knowledge improves the explanation, then let the title attribute be that translation, followed by a colon (`:`), followed by the translation of the title attribute.
+5.2.1) If the term, which the HTML abbr element wraps, stays English in the translation, but it also has a translation, whose knowledge improves the explanation, then let the title attribute be that translation, followed by a colon (`:`), followed by the translation of the title attribute.
 
 Examples:
 
@@ -164,7 +187,7 @@ Result (German):
 {translation of term which abbr wraps}: {translation of explanation}
 
 
-4.3) If the title attribute gives the full phrase for an abbreviation, followed by a colon (`:`) or a comma (`,`), followed by an explanation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase, followed by a colon (`:`), followed by the translation of the explanation.
+5.3) If the title attribute gives the full phrase for an abbreviation, followed by a colon (`:`) or a comma (`,`), followed by an explanation, then keep the phrase, append a long dash (`–`), followed by the translation of the phrase, followed by a colon (`:`), followed by the translation of the explanation.
 
 Examples:
 
@@ -198,10 +221,10 @@ Result (German):
 
 {full phrase} – {translation of full phrase}: {translation of explanation}
 
-4.4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
+5.4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
 
 
-5) Translate headings using the infinite form.
+6) Translate headings using the infinite form.
 
 Examples:
 
@@ -241,7 +264,7 @@ Do NOT translate with (German):
 
 ### Führen Sie Ihr Programm aus { #run-your-program }
 
-5.1) Make sure that the translated part of the heading does not end with a period.
+6.1) Make sure that the translated part of the heading does not end with a period.
 
 Example:
 
@@ -257,7 +280,7 @@ Do NOT translate with (German) – notice the added period:
 
 ## Ein weiteres Modul mit `APIRouter`. { #another-module-with-apirouter }
 
-5.2) Replace occurrences of literal ` - ` (a space followed by a dash followed by a space) with ` – ` (a space followed by a long dash followed by a space) in the translated part of the heading.
+6.2) Replace occurrences of literal ` - ` (a space followed by a dash followed by a space) with ` – ` (a space followed by a long dash followed by a space) in the translated part of the heading.
 
 Example:
 
@@ -273,7 +296,7 @@ Do NOT translate with (German):
 
 # FastAPI in Containern - Docker { #fastapi-in-containers-docker }
 
-5.2.1) Do not apply rule 5.2 when there is no space before or after the dash.
+6.2.1) Do not apply rule 6.2 when there is no space before or after the dash.
 
 Example:
 
@@ -289,17 +312,17 @@ Do NOT translate with (German):
 
 ## Typhinweise und –annotationen { #type-hints-and-annotations }
 
-Rule 5.2 does not apply to the untranslated part of the heading, which is inside curly brackets.
+Rule 6.2 does not apply to the untranslated part of the heading inside curly brackets, which you shall not translate.
 
 
-6) Follow these German instructions:
+7) Follow these German instructions:
 
 In der Regel versuche ich so weit wie möglich Worte zusammenzuschreiben, also ohne Bindestrich, es sei denn, es ist Konkretesding-Klassevondingen, etwa `Pydantic-Modell` (aber: `Datenbankmodell`), `Python-Modul` (aber: `Standardmodul`). Ich setze auch einen Bindestrich, wenn er die gleichen Buchstaben verbindet, etwa `Enum-Member`, `Cloud-Dienst`, `Template-Engine`. Oder wenn das Wort sonst einfach zu lang wird, etwa, `Performance-Optimierung`. Oder um etwas visuell besser zu dokumentieren, etwa `Pfadoperation-Dekorator`,  `Pfadoperation-Funktion`.
 
 Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriffe aus dem Bereich der Programmierung. Ich wandele zwar korrekt in Großschreibung um und setze Bindestriche, wo notwendig, aber ansonsten lasse ich solch ein Wort unverändert. Beispielsweise wird aus dem englischen Wort `string` in der deutschen Übersetzung `String`, aber nicht `Zeichenkette`. Oder aus dem englischen Wort `request body` wird in der deutschen Übersetzung `Requestbody`, aber nicht `Anfragekörper`. Oder aus dem englischen `response` wird im Deutschen `Response`, aber nicht `Antwort`.
 
 
-7) Below is a list of English terms and their German translations, separated by a colon (`:`). Use these translations, do not use your own. Words inside brackets are explanations for you, they are not part of the term or the translation. If a list item starts with `NOT`, then that means: do NOT use this translation. Nouns, starting with the word `the`, have their German genus – `der`, `die`, `das` – included, to help you to grammatically decline them in the translation, and they are given in singular case unless they have `(plural case)` attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word `to`.
+8) Below is a list of English terms and their German translations, separated by a colon (`:`). Use these translations, do not use your own. Words inside brackets are explanations for you, they are not part of the term or the translation. If a list item starts with `NOT`, then that means: do NOT use this translation. Nouns, starting with the word `the`, have their German genus – `der`, `die`, `das` – included, to help you to grammatically decline them in the translation, and they are given in singular case unless they have `(plural case)` attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word `to`.
 
 * /// check: /// check | Testen
 * /// danger: /// danger | Gefahr
@@ -394,4 +417,4 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * standard Python: Standard-Python
 
 
-8) Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)
+9) Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)

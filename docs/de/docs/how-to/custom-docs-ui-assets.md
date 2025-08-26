@@ -32,7 +32,7 @@ Sie können die internen Funktionen von FastAPI wiederverwenden, um die HTML-Sei
 * `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
 * `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
 
-Und ähnlich für ReDoc...
+Und ähnlich für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
@@ -89,7 +89,7 @@ Ihre neue Dateistruktur könnte so aussehen:
 
 Laden Sie die für die Dokumentation benötigten statischen Dateien herunter und legen Sie diese im Verzeichnis `static/` ab.
 
-Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und eine Option wie etwa `Link speichern unter...` auswählen.
+Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und eine Option wie etwa „Link speichern unter ...“ auswählen.
 
 **Swagger UI** verwendet folgende Dateien:
 
@@ -158,7 +158,7 @@ Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um di
 * `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. **Das ist die, welche jetzt von Ihrer eigenen Anwendung bereitgestellt wird**.
 * `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. **Das ist die, welche jetzt von Ihrer eigenen Anwendung bereitgestellt wird**.
 
-Und ähnlich für ReDoc...
+Und ähnlich für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 

@@ -227,7 +227,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>Was der Befehl <code>fastapi dev main.py</code> macht...</summary>
+<summary>Was der Befehl <code>fastapi dev main.py</code> macht ...</summary>
 
 Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
