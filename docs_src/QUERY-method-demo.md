@@ -78,20 +78,20 @@ from fastapi.openapi.utils import get_openapi
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
-    
+
     openapi_schema = get_openapi(
         title="FastAPI with QUERY Method",
         version="1.0.0",
         description="API supporting HTTP QUERY method",
         routes=app.routes,
     )
-    
+
     # Add custom extensions for QUERY method
     for path, methods in openapi_schema["paths"].items():
         if "post" in methods and "query-method" in methods["post"].get("tags", []):
             methods["post"]["x-http-method"] = "QUERY"
             methods["post"]["description"] += "\n\n**Note**: This endpoint uses HTTP QUERY method semantics (safe, cacheable, idempotent) but is documented as POST due to OpenAPI limitations."
-    
+
     app.openapi_schema = openapi_schema
     return app.openapi_schema
 
@@ -163,7 +163,7 @@ def test_query_search():
             "sort_by": "relevance",
             "limit": 50
         }
-        
+
         # Test with POST workaround
         response = client.post("/search", json=query_data)
         assert response.status_code == 200
