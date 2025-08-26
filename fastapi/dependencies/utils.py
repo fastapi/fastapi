@@ -714,7 +714,10 @@ def _validate_value_with_model_field(
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: Union[str, None] = None,
+    form_input: bool = False,
 ) -> Any:
     alias = alias or field.alias
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
@@ -724,14 +727,14 @@ def _get_multidict_value(
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
+            (isinstance(field.field_info, params.Form) or form_input)
             and isinstance(value, str)  # For type checks
             and value == ""
         )
         or (is_sequence_field(field) and len(value) == 0)
     ):
-        if field.required:
-            return
+        if form_input or field.required:
+            return None
         else:
             return deepcopy(field.default)
     return value
@@ -864,11 +867,12 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
+    field_aliases = {field.alias for field in body_fields}
     first_field = body_fields[0]
     first_field_info = first_field.field_info
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        value = _get_multidict_value(field, received_body, form_input=True)
         if (
             isinstance(first_field_info, params.File)
             and is_bytes_field(field)
@@ -896,8 +900,10 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
+
+    # preserve extra keys not in model body fields for validation
     for key, value in received_body.items():
-        if key not in values:
+        if key not in field_aliases:
             values[key] = value
     return values
 
