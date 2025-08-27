@@ -9,6 +9,5 @@ class MySuperContextManager:
         self.db.close()
 
 
-async def get_db():
-    with MySuperContextManager() as db:
-        yield db
+@app.get("/")
+async def get_root(db: Annotated[DBSession, Depends(MySuperContextManager)]): ...

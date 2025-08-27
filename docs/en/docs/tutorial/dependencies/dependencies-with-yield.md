@@ -23,6 +23,8 @@ In fact, FastAPI uses those two decorators internally.
 
 ///
 
+And if you have a context manager already, you can use it as a dependency, too.
+
 ## A database dependency with `yield`
 
 For example, you could use this to create a database session and close it after finishing.
@@ -240,7 +242,20 @@ When the `with` block finishes, it makes sure to close the file, even if there w
 
 When you create a dependency with `yield`, **FastAPI** will internally create a context manager for it, and combine it with some other related tools.
 
-### Using context managers in dependencies with `yield`
+### Context Managers as dependencies
+
+You don’t have to create a Context Manager to use FastAPI dependencies.
+
+But sometimes you might want to use a dependency both inside and outside FastAPI. For example, you might want to connect to a database in a DB migration script. You can create a Context Manager manually then:
+
+{* ../../docs_src/dependencies/tutorial010_ctx.py *}
+
+This way you can use it with `Depends()` in your app, and as a regular Context Manager everywhere else:
+
+{* ../../docs_src/dependencies/tutorial010_ctx_usage.py *}
+
+
+### Defining Context Managers as classes
 
 /// warning
 
@@ -250,26 +265,14 @@ If you are just starting with **FastAPI** you might want to skip it for now.
 
 ///
 
-In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
+You can also create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
-You can also use them inside of **FastAPI** dependencies with `yield` by using
-`with` or `async with` statements inside of the dependency function:
+Like the Context Managers created with `contextlib`, you can use them inside of **FastAPI** dependencies directly:
 
 {* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
-/// tip
+/// note | Technical Details
 
-Another way to create a context manager is with:
-
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
-
-using them to decorate a function with a single `yield`.
-
-That's what **FastAPI** uses internally for dependencies with `yield`.
-
-But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
-
-FastAPI will do it for you internally.
+Internally, FastAPI calls the dependency function and then checks if the result has either an `__enter__()` or an `__aenter__()` method. If that’s the case, it will treat it as a context manager.
 
 ///
