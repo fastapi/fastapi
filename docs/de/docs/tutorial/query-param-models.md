@@ -18,7 +18,7 @@ Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell**
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** der Anfrage extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
-## Die Dokumentation überprüfen { #check-the-docs }
+## Die Dokumentation testen { #check-the-docs }
 
 Sie können die Query-Parameter in der Dokumentations-Oberfläche unter `/docs` einsehen:
 

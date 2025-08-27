@@ -80,7 +80,7 @@ Lesen Sie mehr zu Tags unter [Pfadoperation-Konfiguration](path-operation-config
 
 ///
 
-### Die Dokumentation ansehen { #check-the-docs }
+### Die Dokumentation testen { #check-the-docs }
 
 Wenn Sie nun die Dokumentation ansehen, werden dort alle zusätzlichen Metadaten angezeigt:
 

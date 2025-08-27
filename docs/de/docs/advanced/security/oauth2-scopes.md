@@ -233,7 +233,7 @@ Da die `SecurityScopes` alle von den Verwendern der Abhängigkeiten deklarierten
 
 Diese werden für jede *Pfadoperation* unabhängig überprüft.
 
-## Testen { #check-it }
+## Es testen { #check-it }
 
 Wenn Sie die API-Dokumentation öffnen, können Sie sich authentisieren und angeben, welche Scopes Sie autorisieren möchten.
 

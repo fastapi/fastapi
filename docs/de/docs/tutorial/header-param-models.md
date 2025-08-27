@@ -18,7 +18,7 @@ Deklarieren Sie die erforderlichen **Header-Parameter** in einem **Pydantic-Mode
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Headern** des Requests extrahieren und Ihnen das von Ihnen definierte Pydantic-Modell geben.
 
-## Die Dokumentation überprüfen { #check-the-docs }
+## Die Dokumentation testen { #check-the-docs }
 
 Sie können die erforderlichen Header in der Dokumentationsoberfläche unter `/docs` sehen:
 

@@ -56,7 +56,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 Diese Zeile zeigt die URL, unter der Ihre App auf Ihrem lokalen Computer bereitgestellt wird.
 
-### Überprüfen { #check-it }
+### Es testen { #check-it }
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 

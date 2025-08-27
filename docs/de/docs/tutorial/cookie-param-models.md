@@ -24,7 +24,7 @@ Deklarieren Sie die **Cookie**-Parameter, die Sie benötigen, in einem **Pydanti
 
 **FastAPI** wird die Daten für **jedes Feld** aus den im Request empfangenen **Cookies** **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell bereitstellen.
 
-## Die Dokumentation überprüfen { #check-the-docs }
+## Die Dokumentation testen { #check-the-docs }
 
 Sie können die definierten Cookies in der Dokumentationsoberfläche unter `/docs` sehen:
 

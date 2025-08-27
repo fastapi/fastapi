@@ -517,7 +517,7 @@ Da wir sie nicht einfach isolieren und unabhängig vom Rest „mounten“ könne
 
 ///
 
-## Es in der automatischen API-Dokumentation ansehen { #check-the-automatic-api-docs }
+## Es in der automatischen API-Dokumentation testen { #check-the-automatic-api-docs }
 
 Führen Sie nun Ihre App aus:
 
