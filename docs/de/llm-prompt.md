@@ -357,6 +357,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * the error response: die Error-Response
 * the event: das Event
 * the exception: die Exception
+* the exception handler: der Exceptionhandler
 * the form model: das Formularmodell
 * the form body: der Formularbody
 * the header: der Header

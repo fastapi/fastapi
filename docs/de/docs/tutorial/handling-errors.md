@@ -79,15 +79,15 @@ Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie be
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-## Benutzerdefinierte Exception-Handler installieren { #install-custom-exception-handlers }
+## Benutzerdefinierte Exceptionhandler installieren { #install-custom-exception-handlers }
 
-Sie können benutzerdefinierte Exception-Handler mit <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
+Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
 
 Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise` könnte.
 
 Und Sie möchten diese Exception global mit FastAPI handhaben.
 
-Sie könnten einen benutzerdefinierten Exception-Handler mit `@app.exception_handler()` hinzufügen:
+Sie könnten einen benutzerdefinierten Exceptionhandler mit `@app.exception_handler()` hinzufügen:
 
 {* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
@@ -109,23 +109,23 @@ Sie könnten auch `from starlette.requests import Request` und `from starlette.r
 
 ///
 
-## Die Default-Exception-Handler überschreiben { #override-the-default-exception-handlers }
+## Die Default-Exceptionhandler überschreiben { #override-the-default-exception-handlers }
 
-**FastAPI** hat einige Default-Exception-Handler.
+**FastAPI** hat einige Default-Exceptionhandler.
 
 Diese Handler sind dafür verantwortlich, die standardmäßigen JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n und wenn die Anfrage ungültige Daten enthält.
 
-Sie können diese Exception-Handler mit Ihren eigenen überschreiben.
+Sie können diese Exceptionhandler mit Ihren eigenen überschreiben.
 
 ### Überschreiben von Request-Validierungs-Exceptions { #override-request-validation-exceptions }
 
 Wenn ein Request ungültige Daten enthält, löst **FastAPI** intern einen `RequestValidationError` aus.
 
-Und es enthält auch einen Default-Exception-Handler für diesen.
+Und es enthält auch einen Default-Exceptionhandler für diesen.
 
-Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und verwenden Sie ihn mit `@app.exception_handler(RequestValidationError)`, um den Exception-Handler zu dekorieren.
+Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und verwenden Sie ihn mit `@app.exception_handler(RequestValidationError)`, um den Exceptionhandler zu dekorieren.
 
-Der Exception-Handler erhält einen `Request` und die Exception.
+Der Exceptionhandler erhält einen `Request` und die Exception.
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
 
@@ -236,7 +236,7 @@ Der einzige Unterschied besteht darin, dass die `HTTPException` von **FastAPI** 
 
 Sie können also weiterhin die `HTTPException` von **FastAPI** wie üblich in Ihrem Code auslösen.
 
-Aber wenn Sie einen Exception-Handler registrieren, sollten Sie ihn für die `HTTPException` von Starlette registrieren.
+Aber wenn Sie einen Exceptionhandler registrieren, sollten Sie ihn für die `HTTPException` von Starlette registrieren.
 
 Auf diese Weise, wenn irgendein Teil des internen Codes von Starlette, oder eine Starlette-Erweiterung oder ein Plug-in, eine Starlette `HTTPException` auslöst, wird Ihr Handler in der Lage sein, diese abzufangen und zu handhaben.
 
