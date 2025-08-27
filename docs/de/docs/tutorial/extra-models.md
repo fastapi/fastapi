@@ -32,7 +32,7 @@ Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1,
 
 ### Über `**user_in.dict()` { #about-user-in-dict }
 
-#### Die `.dict()` Methode von Pydantic { #pydantics-dict }
+#### Die `.dict()`-Methode von Pydantic { #pydantics-dict }
 
 `user_in` ist ein Pydantic-Modell der Klasse `UserIn`.
 
@@ -158,7 +158,7 @@ Wir könnten es besser machen.
 
 Wir können ein `UserBase`-Modell deklarieren, das als Basis für unsere anderen Modelle dient. Und dann können wir Unterklassen dieses Modells erstellen, die seine Attribute (Typdeklarationen, Validierung usw.) erben.
 
-Die ganze Datenkonvertierung, Validierung, Dokumentation usw. wird immer noch wie gewohnt funktionieren.
+Die ganze Datenkonvertierung, -validierung, -dokumentation usw. wird immer noch wie gewohnt funktionieren.
 
 Auf diese Weise können wir nur die Unterschiede zwischen den Modellen (mit Klartext-`password`, mit `hashed_password` und ohne Passwort) deklarieren:
 
@@ -199,7 +199,7 @@ Aber wenn wir das in der Zuweisung `response_model=PlaneItem | CarItem` machen, 
 
 Auf die gleiche Weise können Sie Responses von Listen von Objekten deklarieren.
 
-Dafür verwenden Sie das Standard-Python `typing.List` (oder nur `list` in Python 3.9 und höher):
+Dafür verwenden Sie Pythons Standard-`typing.List` (oder nur `list` in Python 3.9 und höher):
 
 {* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 

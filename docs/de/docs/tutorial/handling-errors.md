@@ -8,7 +8,7 @@ Sie könnten dem Client mitteilen müssen, dass:
 
 * Der Client nicht genügend Berechtigungen für diese Operation hat.
 * Der Client keinen Zugriff auf diese Ressource hat.
-* Der Artikel, auf den der Client zugreifen wollte, nicht existiert.
+* Die Ressource, auf die der Client versucht hat, zuzugreifen, nicht existiert.
 * usw.
 
 In diesen Fällen würden Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (von 400 bis 499) zurückgeben.
@@ -17,7 +17,7 @@ Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299).
 
 Die Statuscodes im Bereich 400 bedeuten hingegen, dass es einen Fehler seitens des Clients gab.
 
-Erinnern Sie sich an all diese **"404 Not Found"** Fehler (und Witze)?
+Erinnern Sie sich an all diese **„404 Not Found“** Fehler (und Witze)?
 
 ## `HTTPException` verwenden { #use-httpexception }
 
@@ -51,7 +51,7 @@ Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`)
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „not found“ Error) und eine JSON-Response wie:
+Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „not found“-Error) und eine JSON-Response wie:
 
 ```JSON
 {
@@ -71,7 +71,7 @@ Diese werden von **FastAPI** automatisch gehandhabt und in JSON konvertiert.
 
 ## Benutzerdefinierte Header hinzufügen { #add-custom-headers }
 
-Es gibt Situationen, in denen es nützlich ist, dem HTTP-Error benutzerdefinierte Header hinzuzufügen. Zum Beispiel für einige Arten der Sicherheit.
+Es gibt Situationen, in denen es nützlich ist, dem HTTP-Error benutzerdefinierte Header hinzuzufügen. Zum Beispiel in einigen Sicherheitsszenarien.
 
 Sie werden es wahrscheinlich nicht direkt in Ihrem Code verwenden müssen.
 
@@ -83,7 +83,7 @@ Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie be
 
 Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
 
-Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise` könnte.
+Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 
 Und Sie möchten diese Exception global mit FastAPI handhaben.
 
@@ -95,7 +95,7 @@ Hier, wenn Sie `/unicorns/yolo` anfordern, wird die *Pfadoperation* eine `Unicor
 
 Aber diese wird von `unicorn_exception_handler` gehandhabt.
 
-Sie erhalten also einen sauberen Fehler mit einem HTTP-Statuscode von `418` und einem JSON-Inhalt von:
+Sie erhalten also einen sauberen Fehler mit einem HTTP-Statuscode von `418` und dem JSON-Inhalt:
 
 ```JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
@@ -113,7 +113,7 @@ Sie könnten auch `from starlette.requests import Request` und `from starlette.r
 
 **FastAPI** hat einige Default-Exceptionhandler.
 
-Diese Handler sind dafür verantwortlich, die standardmäßigen JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n und wenn die Anfrage ungültige Daten enthält.
+Diese Handler sind dafür verantwortlich, die Default-JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n und wenn der Request ungültige Daten enthält.
 
 Sie können diese Exceptionhandler mit Ihren eigenen überschreiben.
 
@@ -240,7 +240,7 @@ Aber wenn Sie einen Exceptionhandler registrieren, sollten Sie ihn für die `HTT
 
 Auf diese Weise, wenn irgendein Teil des internen Codes von Starlette, oder eine Starlette-Erweiterung oder ein Plug-in, eine Starlette `HTTPException` auslöst, wird Ihr Handler in der Lage sein, diese abzufangen und zu handhaben.
 
-Um in diesem Beispiel beide `HTTPException`s im selben Code zu haben, wird die Exception von Starlette als `StarletteHTTPException` umbenannt:
+Um in diesem Beispiel beide `HTTPException`s im selben Code zu haben, wird die Exception von Starlette zu `StarletteHTTPException` umbenannt:
 
 ```Python
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -252,4 +252,4 @@ Wenn Sie die Exception zusammen mit den gleichen Default-Exceptionhandlern von *
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
-In diesem Beispiel drucken Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht aus, aber Sie verstehen das Prinzip. Sie können die Exception verwenden und dann einfach die Default-Exceptionhandler wiederverwenden.
+In diesem Beispiel geben Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht aus, aber Sie verstehen das Prinzip. Sie können die Exception verwenden und dann einfach die Default-Exceptionhandler wiederverwenden.

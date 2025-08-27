@@ -10,7 +10,7 @@ Wenn Sie neben dem Hauptstatuscode weitere Statuscodes zurückgeben möchten, k�
 
 Angenommen, Sie möchten eine *Pfadoperation* haben, die das Aktualisieren von Artikeln ermöglicht und bei Erfolg den HTTP-Statuscode 200 „OK“ zurückgibt.
 
-Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Elemente vorher nicht vorhanden waren, werden diese Elemente erstellt und der HTTP-Statuscode 201 „Created“ zurückgegeben.
+Sie möchten aber auch, dass sie neue Artikel akzeptiert. Und wenn die Artikel vorher nicht vorhanden waren, werden diese Artikel erstellt und der HTTP-Statuscode 201 „Created“ zurückgegeben.
 
 Um dies zu erreichen, importieren Sie `JSONResponse`, und geben Sie Ihren Inhalt direkt zurück, indem Sie den gewünschten `status_code` setzen:
 

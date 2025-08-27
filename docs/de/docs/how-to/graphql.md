@@ -23,7 +23,7 @@ Hier sind einige der **GraphQL**-Bibliotheken, die **ASGI**-Unterstützung haben
 * <a href="https://ariadnegraphql.org/" class="external-link" target="_blank">Ariadne</a>
     * Mit <a href="https://ariadnegraphql.org/docs/fastapi-integration" class="external-link" target="_blank">Dokumentation für FastAPI</a>
 * <a href="https://tartiflette.io/" class="external-link" target="_blank">Tartiflette</a>
-    * Mit <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a> zur Bereitstellung der ASGI-Integration
+    * Mit <a href="https://tartiflette.github.io/tartiflette-asgi/" class="external-link" target="_blank">Tartiflette ASGI</a> für ASGI-Integration
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
     * Mit <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>
 

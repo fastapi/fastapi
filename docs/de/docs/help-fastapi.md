@@ -116,7 +116,7 @@ In vielen Fällen wird nur ein Fragment des Codes gepostet, aber das reicht nich
 
 ### Um Schließung bitten { #ask-to-close }
 
-Wenn sie antworten, besteht eine hohe Chance, dass Sie ihr Problem gelöst haben. Herzlichen Glückwunsch, **Sie sind ein Held**! 🦸
+Wenn die Person antwortet, besteht eine hohe Chance, dass Sie ihr Problem gelöst haben. Herzlichen Glückwunsch, **Sie sind ein Held**! 🦸
 
 * Wenn es tatsächlich das Problem gelöst hat, können Sie sie darum bitten:
 
@@ -223,7 +223,7 @@ Die Hauptaufgaben, die Sie jetzt erledigen können, sind:
 
 Diese beiden Aufgaben sind die Dinge, die **am meisten Zeit verbrauchen**. Das ist die Hauptarbeit bei der Wartung von FastAPI.
 
-Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI zu pflegen** und stellen sicher, dass es weiterhin **schneller und besser voranschreitet**. 🚀
+Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI zu pflegen** und Sie stellen sicher, dass es weiterhin **schneller und besser voranschreitet**. 🚀
 
 ## Am Chat teilnehmen { #join-the-chat }
 

@@ -29,8 +29,8 @@ Sie können die internen Funktionen von FastAPI wiederverwenden, um die HTML-Sei
 * `openapi_url`: die URL, unter welcher die HTML-Seite für die Dokumentation das OpenAPI-Schema für Ihre API abrufen kann. Sie können hier das Attribut `app.openapi_url` verwenden.
 * `title`: der Titel Ihrer API.
 * `oauth2_redirect_url`: Sie können hier `app.swagger_ui_oauth2_redirect_url` verwenden, um die Standardeinstellung zu verwenden.
-* `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
-* `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinite CDN-URL.
+* `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
+* `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
 
 Und ähnlich für ReDoc ...
 
@@ -54,7 +54,7 @@ Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperati
 
 ### Es testen { #test-it }
 
-Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zu laden. Die Assets werden nun vom neuen CDN geladen.
+Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zu laden, die Assets werden nun vom neuen CDN geladen.
 
 ## JavaScript und CSS für die Dokumentation selbst hosten { #self-hosting-javascript-and-css-for-docs }
 
@@ -126,7 +126,7 @@ Starten Sie Ihre Anwendung und gehen Sie auf <a href="http://127.0.0.1:8000/stat
 
 Sie sollten eine sehr lange JavaScript-Datei für **ReDoc** sehen.
 
-Sie könnte mit etwas wie diesem beginnen:
+Sie könnte beginnen mit etwas wie:
 
 ```JavaScript
 /*! For license information please see redoc.standalone.js.LICENSE.txt */
@@ -178,7 +178,7 @@ Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperati
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
-### Benutzeroberfläche der statischen Dateien testen { #test-static-files-ui }
+### Benutzeroberfläche mit statischen Dateien testen { #test-static-files-ui }
 
 Jetzt sollten Sie in der Lage sein, Ihr WLAN zu trennen, gehen Sie zu Ihrer Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> und laden Sie die Seite neu.
 
