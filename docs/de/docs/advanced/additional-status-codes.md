@@ -30,7 +30,7 @@ Stellen Sie sicher, dass sie die gewünschten Daten enthält und dass die Werte 
 
 Sie können auch `from starlette.responses import JSONResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch über `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Dasselbe gilt für `status`.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Dasselbe gilt für `status`.
 
 ///
 

@@ -105,7 +105,7 @@ Sie erhalten also einen sauberen Fehler mit einem HTTP-Statuscode von `418` und 
 
 Sie könnten auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch als `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette. Dasselbe gilt für `Request`.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette. Dasselbe gilt für `Request`.
 
 ///
 
@@ -184,7 +184,7 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 
 Sie könnten auch `from starlette.responses import PlainTextResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch als `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
 
 ///
 

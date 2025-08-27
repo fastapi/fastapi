@@ -92,7 +92,7 @@ Diese sind nur eine Annehmlichkeit, sie enthalten dieselbe Zahl, aber so können
 
 Sie könnten auch `from starlette import status` verwenden.
 
-**FastAPI** bietet dieselben `starlette.status`-Codes auch über `fastapi.status` an, rein zu Ihrer Annehmlichkeit als Entwickler. Aber sie stammen direkt von Starlette.
+**FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, rein zu Ihrer Annehmlichkeit als Entwickler. Aber sie stammen direkt von Starlette.
 
 ///
 
