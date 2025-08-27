@@ -20,7 +20,7 @@ Um die Beschreibung der Response zu definieren, welche in der Oberfläche der Do
 
 ## *Pfadoperation* in der Dokumentation deprecaten – OpenAPI { #documentation-deprecate-a-path-operation-openapi }
 
-Um eine *Pfadoperation* zu deprecaten – sie als veraltet zu markieren – und das in der Oberfläche der Dokumentation anzuzeigen, lesen Sie die Dokumentation unter [Tutorial – Pfadoperation-Konfiguration – Deprecaten](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
+Um eine *Pfadoperation* zu <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecaten</abbr> und das in der Oberfläche der Dokumentation anzuzeigen, lesen Sie die Dokumentation unter [Tutorial – Pfadoperation-Konfiguration – Deprecaten](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
 
 ## Daten in etwas JSON-kompatibles konvertieren { #convert-any-data-to-json-compatible }
 

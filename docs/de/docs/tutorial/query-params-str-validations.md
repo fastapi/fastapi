@@ -381,11 +381,11 @@ Dann können Sie ein `alias` deklarieren, und dieser Alias wird verwendet, um de
 
 {* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
 
-## Parameter als deprecated ausweisen { #deprecating-parameters }
+## Parameter als deprecatet ausweisen { #deprecating-parameters }
 
 Nehmen wir an, Ihnen gefällt dieser Parameter nicht mehr.
 
-Sie müssen ihn eine Weile dort belassen, da es Clients gibt, die ihn verwenden, aber Sie möchten, dass die Dokumentation ihn klar als <abbr title="obsolet, empfohlen, ihn nicht mehr zu verwenden">deprecated</abbr> anzeigt.
+Sie müssen ihn eine Weile dort belassen, da es Clients gibt, die ihn verwenden, aber Sie möchten, dass die Dokumentation ihn klar als <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> anzeigt.
 
 Dann übergeben Sie den Parameter `deprecated=True` an `Query`:
 

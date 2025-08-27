@@ -102,7 +102,7 @@ Erstellen Sie einen PassLib-„Kontext“. Der wird für das Hashen und Verifizi
 
 /// tip | Tipp
 
-Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich deprecateter Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
+Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecateter</abbr> Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
 
 Sie könnten ihn beispielsweise verwenden, um von einem anderen System (wie Django) generierte Passwörter zu lesen und zu verifizieren, aber alle neuen Passwörter mit einem anderen Algorithmus wie Bcrypt zu hashen.
 

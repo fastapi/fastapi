@@ -45,7 +45,7 @@ Und auch in der Dokumentation zu <a href="https://strawberry.rocks/docs/integrat
 
 Frühere Versionen von Starlette enthielten eine `GraphQLApp`-Klasse zur Integration mit <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
 
-Das wurde von Starlette deprecated, aber wenn Sie Code haben, der das verwendet, können Sie einfach zu <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a> **migrieren**, das denselben Anwendungsfall abdeckt und eine **fast identische Schnittstelle** hat.
+Das wurde von Starlette <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr>, aber wenn Sie Code haben, der das verwendet, können Sie einfach zu <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a> **migrieren**, das denselben Anwendungsfall abdeckt und eine **fast identische Schnittstelle** hat.
 
 /// tip | Tipp
 

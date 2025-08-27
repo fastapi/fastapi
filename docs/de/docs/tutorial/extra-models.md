@@ -24,7 +24,7 @@ Hier ist eine allgemeine Idee, wie die Modelle mit ihren Passwortfeldern aussehe
 
 /// info | Info
 
-In Pydantic v1 hieß die Methode `.dict()`, in Pydantic v2 wurde sie als veraltet markiert (aber weiterhin unterstützt) und in `.model_dump()` umbenannt.
+In Pydantic v1 hieß die Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber weiterhin unterstützt) und in `.model_dump()` umbenannt.
 
 Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, aber Sie sollten `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
 

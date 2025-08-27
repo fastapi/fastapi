@@ -90,11 +90,11 @@ Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolg
 
 ## Eine *Pfadoperation* deprecaten { #deprecate-a-path-operation }
 
-Wenn Sie eine *Pfadoperation* als <abbr title="veraltet, von der Verwendung wird abgeraten">deprecated</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
+Wenn Sie eine *Pfadoperation* als <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
 {* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
-Sie wird in der interaktiven Dokumentation gut sichtbar als deprecated markiert werden:
+Sie wird in der interaktiven Dokumentation gut sichtbar als deprecatet markiert werden:
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 

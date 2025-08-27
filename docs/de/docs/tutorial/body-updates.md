@@ -52,7 +52,7 @@ Wie in `item.model_dump(exclude_unset=True)`.
 
 /// info | Info
 
-In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
 
 Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
 
@@ -70,7 +70,7 @@ Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` e
 
 /// info | Info
 
-In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
+In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
 
 Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
 

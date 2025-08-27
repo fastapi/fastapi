@@ -416,6 +416,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 * X is case-sensitive: Groß-/Klein­schrei­bung ist relevant in X
 * X is case-insensitive: Groß-/Klein­schrei­bung ist nicht relevant in X
 * standard Python: Standard-Python
+* deprecated: deprecatet
 
 
 9) Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)

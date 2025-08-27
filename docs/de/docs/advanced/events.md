@@ -84,7 +84,7 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 
 {* ../../docs_src/events/tutorial003.py hl[22] *}
 
-## Alternative Events (veraltet) { #alternative-events-deprecated }
+## Alternative Events (<abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr>) { #alternative-events-deprecated }
 
 /// warning | Achtung
 
