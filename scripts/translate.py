@@ -24,303 +24,618 @@ non_translated_sections = (
     "contributing.md",
 )
 
-
 general_prompt = """
+### About literal text in this prompt
+
+1) In the following instructions (after I say: `The above rules are in effect now`) the two characters `«` and `»` will be used to surround text and characters which you shall interpret literally. The `«` and the `»` are not part of the literal text (they are the meta characters denoting it).
+
+2) Furthermore, text surrounded by `«««` and `»»»` is a block of literal text which spans multiple lines. To get its content, dedent all lines of the block until the `«««` and `»»»` are at column zero, then remove the newline after the `«««` and the newline before the `»»»`. The `«««` and the `»»»` are not part of the literal text block (they are the meta characters denoting it).
+
+3) The above two syntaxes – `«...»` and `«««...»»»` – are used to denote literal text. Other forms of quotation marks – especially backticks and triple backticks – do NOT denote literal text.
+
+The above rules are relevant, because we will give code examples for Markdown. Markdown uses backticks to denote inline code and code blocks. So, if you see text surrounded by backticks, then do not interpret it as literal text and throw away the backticks, but interpret it as a Markdown code block or a Markdown code snippet, and keep the backticks.
+
+The above rules are in effect now.
+
+
+### Definitions of terms used in this prompt
+
+Backtick
+    The character «`»
+    Unicode U+0060 (GRAVE ACCENT)
+
+Single backtick
+    A single backtick – «`»
+
+triple backticks
+    Three backticks in a row – «```»
+
+Neutral double quote
+    The character «"»
+    Unicode U+0022 (QUOTATION MARK)
+
+Neutral single quote
+    The character «'»
+    Unicode U+0027 (APOSTROPHE)
+
+English double typographic quotes
+    The characters «“» and «”»
+    Unicode U+201C (LEFT DOUBLE QUOTATION MARK) and Unicode U+201D (RIGHT DOUBLE QUOTATION MARK)
+
+English single typographic quotes
+    The characters «‘» and «’»
+    Unicode U+2018 (LEFT SINGLE QUOTATION MARK) and Unicode U+2019 (RIGHT SINGLE QUOTATION MARK)
+
+Code snippet
+    Text in a Markdown document which is surrounded by single backticks.
+
+    Examples:
+
+        «`foo`»
+        «`lorem ipsum`»
+
+Code block
+    Text in a Markdown document which is surrounded by triple backticks. Spreads multiple lines.
+
+    Example:
+
+        «««
+        ```
+        Hello
+        World
+        ```
+        »»»
+
+    Example:
+
+        «««
+        ```python
+        print("hello World")
+        ```
+        »»»
+
+
+### Your task
+
+Translate an English text – the original content – to a target language.
+
+The original content is written in Markdown, write the translation in Markdown as well.
+
+The original content will be surrounded by triple percentage signs («%%%»). Do not include the triple percentage signs in the translation.
+
+
+### Technical terms in English
+
 For technical terms in English that don't have a common translation term, use the original term in English.
 
-For code snippets or fragments, surrounded by backticks (`), don't translate the content, keep the original in English. For example, `list`, `dict`, keep them as is.
 
-The content is written in Markdown, write the translation in Markdown as well.
+### Content of code snippets
+
+Do not translate the content of code snippets, keep the original in English. For example, «`list`», «`dict`», keep them as is.
 
 
-When there is a code block, surrounded by triple backticks, do not translate its content, except for comments in the language which the code block uses.
+### Content of code blocks
+
+Do not translate the content of code blocks, except for comments in the language which the code block uses.
 
 Examples:
 
-Source (English) – The code block is a bash code example with one comment:
+    Source (English) – The code block is a bash code example with one comment:
 
-```bash
-# Print greeting
-echo "Hello, World!"
-```
+        «««
+        ```bash
+        # Print greeting
+        echo "Hello, World!"
+        ```
+        »»»
 
-Result (German):
+    Result (German):
 
-```bash
-# Gruß ausgeben
-echo "Hello, World!"
-```
+        «««
+        ```bash
+        # Gruß ausgeben
+        echo "Hello, World!"
+        ```
+        »»»
 
-Source (English) – The code block is a console example containing HTML tags. No comments, nothing to change here:
+    Source (English) – The code block is a console example containing HTML tags. No comments, so nothing to change here:
 
-```console
-$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
-  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
-        Searching for package file structure
-```
+        «««
+        ```console
+        $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+        <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+                Searching for package file structure
+        ```
+        »»»
 
-Result (German):
+    Result (German):
 
-```console
-$ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
-  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
-        Searching for package file structure
-```
+        «««
+        ```console
+        $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
+        <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting server
+                Searching for package file structure
+        ```
+        »»»
 
-Source (English) – The code block is a console example containing 5 comments:
+    Source (English) – The code block is a console example containing 5 comments:
 
-```console
-// Go to the home directory
-$ cd
-// Create a directory for all your code projects
-$ mkdir code
-// Enter into that code directory
-$ cd code
-// Create a directory for this project
-$ mkdir awesome-project
-// Enter into that project directory
-$ cd awesome-project
-```
+        «««
+        ```console
+        // Go to the home directory
+        $ cd
+        // Create a directory for all your code projects
+        $ mkdir code
+        // Enter into that code directory
+        $ cd code
+        // Create a directory for this project
+        $ mkdir awesome-project
+        // Enter into that project directory
+        $ cd awesome-project
+        ```
+        »»»
 
-Result (German):
+    Result (German):
 
-```console
-// Gehe zum Home-Verzeichnis
-$ cd
-// Erstelle ein Verzeichnis für alle Ihre Code-Projekte
-$ mkdir code
-// Gehe in dieses Code-Verzeichnis
-$ cd code
-// Erstelle ein Verzeichnis für dieses Projekt
-$ mkdir awesome-project
-// Gehe in dieses Projektverzeichnis
-$ cd awesome-project
-```
+        «««
+        ```console
+        // Gehe zum Home-Verzeichnis
+        $ cd
+        // Erstelle ein Verzeichnis für alle Ihre Code-Projekte
+        $ mkdir code
+        // Gehe in dieses Code-Verzeichnis
+        $ cd code
+        // Erstelle ein Verzeichnis für dieses Projekt
+        $ mkdir awesome-project
+        // Gehe in dieses Projektverzeichnis
+        $ cd awesome-project
+        ```
+        »»»
 
 If there is an existing translation and its Mermaid diagram is in sync with the Mermaid diagram in the English source, except a few translated words, then use the Mermaid diagram of the existing translation. The human editor of the translation translated these words in the Mermaid diagram. Keep these translations, do not revert them back to the English source.
 
 Example:
 
-Source (English):
+    Source (English):
 
-```mermaid
-flowchart LR
-    subgraph global[global env]
-        harry-1[harry v1]
-    end
-    subgraph stone-project[philosophers-stone project]
-        stone(philosophers-stone) -->|requires| harry-1
-    end
-```
+        «««
+        ```mermaid
+        flowchart LR
+            subgraph global[global env]
+                harry-1[harry v1]
+            end
+            subgraph stone-project[philosophers-stone project]
+                stone(philosophers-stone) -->|requires| harry-1
+            end
+        ```
+        »»»
 
-Existing translation (German) – has three translations:
+    Existing translation (German) – has three translations:
 
-```mermaid
-flowchart LR
-    subgraph global[globale Umgebung]
-        harry-1[harry v1]
-    end
-    subgraph stone-project[philosophers-stone-Projekt]
-        stone(philosophers-stone) -->|benötigt| harry-1
-    end
-```
+        «««
+        ```mermaid
+        flowchart LR
+            subgraph global[globale Umgebung]
+                harry-1[harry v1]
+            end
+            subgraph stone-project[philosophers-stone-Projekt]
+                stone(philosophers-stone) -->|benötigt| harry-1
+            end
+        ```
+        »»»
 
-Result (German) – you change nothing:
+    Result (German) – you change nothing:
 
-```mermaid
-flowchart LR
-    subgraph global[globale Umgebung]
-        harry-1[harry v1]
-    end
-    subgraph stone-project[philosophers-stone-Projekt]
-        stone(philosophers-stone) -->|benötigt| harry-1
-    end
-```
+        «««
+        ```mermaid
+        flowchart LR
+            subgraph global[globale Umgebung]
+                harry-1[harry v1]
+            end
+            subgraph stone-project[philosophers-stone-Projekt]
+                stone(philosophers-stone) -->|benötigt| harry-1
+            end
+        ```
+        »»»
 
 
-The original content will be surrounded by triple percentage signs (%) and you should translate it to the target language. Do not include the triple percentage signs in the translation.
-
+### Special blocks
 
 There are special blocks of notes, tips and others that look like:
 
-/// note
+    «««
+    /// note
+    »»»
 
 To translate it, keep the same line and add the translation after a vertical bar.
 
 For example, if you were translating to Spanish, you would write:
 
-/// note | Nota
+    «««
+    /// note | Nota
+    »»»
 
 Some examples in Spanish:
 
-Source:
+    Source:
 
-/// tip
+        «««
+        /// tip
+        »»»
 
-Result:
+    Result:
 
-/// tip | Consejo
+        «««
+        /// tip | Consejo
+        »»»
 
-Source:
+    Source:
 
-/// details | Preview
+        «««
+        /// details | Preview
+        »»»
 
-Result:
+    Result:
 
-/// details | Vista previa
+        «««
+        /// details | Vista previa
+        »»»
 
 
-There are special blocks surrounded by four slashes (`////`). They mark text, which will be rendered as part of a tab in the final document. The scheme is:
+### Tab blocks
 
-//// tab | {tab title}
-{tab content, may span many lines}
-////
+There are special blocks surrounded by four slashes («////»). They mark text, which will be rendered as part of a tab in the final document. The scheme is:
 
-Keep everything before the vertical bar (`|`) as is, including the vertical bar. Translate the tab title. Translate the tab content, applying the rules you know. Keep the four block closing slashes as is.
+    «««
+    //// tab | {tab title}
+    {tab content, may span many lines}
+    ////
+    »»»
+
+Keep everything before the vertical bar («|») as is, including the vertical bar. Translate the tab title. Translate the tab content, applying the rules you know. Keep the four block closing slashes as is.
 
 Examples:
 
-Source (English):
+    Source (English):
 
-//// tab | Python 3.8+ non-Annotated
-Hello
-////
+        «««
+        //// tab | Python 3.8+ non-Annotated
+        Hello
+        ////
+        »»»
 
-Result (German):
+    Result (German):
 
-//// tab | Python 3.8+ nicht annotiert
-Hallo
-////
+        «««
+        //// tab | Python 3.8+ nicht annotiert
+        Hallo
+        ////
+        »»»
 
-Source (English) – Here there is nothing to translate in the tab title:
+    Source (English) – Here there is nothing to translate in the tab title:
 
-//// tab | Linux, macOS, Windows Bash
-Hello again
-////
+        «««
+        //// tab | Linux, macOS, Windows Bash
+        Hello again
+        ////
+        »»»
 
-Result (German):
+    Result (German):
 
-//// tab | Linux, macOS, Windows Bash
-Hallo wieder
-////
+        «««
+        //// tab | Linux, macOS, Windows Bash
+        Hallo wieder
+        ////
+        »»»
 
+
+### Headings
 
 Every Markdown heading in the English text (all levels) ends with a part inside curly brackets. This part denotes the hash of this heading, which is used in links to this heading. In translations, translate the heading, but do not translate this hash part, so that links do not break.
 
 Examples of how to translate a heading:
 
-Source (English):
+    Source (English):
 
-## Alternative API docs { #alternative-api-docs }
+        «««
+        ## Alternative API docs { #alternative-api-docs }
+        »»»
 
-Result (Spanish):
+    Result (Spanish):
 
-## Documentación de la API alternativa { #alternative-api-docs }
+        «««
+        ## Documentación de la API alternativa { #alternative-api-docs }
+        »»»
 
-Source (English):
+    Source (English):
 
-### Example { #example }
+        «««
+        ### Example { #example }
+        »»»
 
-Result (German):
+    Result (German):
 
-### Beispiel { #example }
+        «««
+        ### Beispiel { #example }
+        »»»
 
 
-Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a> tags):
+### Links
 
-1) For relative URLs only translate link text. Do not translate the URL or its parts
+Use the following rules for links (apply both to Markdown-style links («[text](url)») and to HTML-style «<a>» tags):
 
-Example:
-
-Source (English):
-
-[One of the fastest Python frameworks available](#performance)
-
-Result (German):
-
-[Eines der schnellsten verfügbaren Python-Frameworks](#performance)
-
-2) For absolute URLs which DO NOT start EXACTLY with "https://fastapi.tiangolo.com", only translate link text and leave the URL unchanged.
+1) For relative URLs, only translate link text. Do not translate the URL or its parts
 
 Example:
 
-Source (English):
+    Source (English):
 
-<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel docs</a>
+        «««
+        [One of the fastest Python frameworks available](#performance)
+        »»»
 
-Result (German):
+    Result (German):
 
-<a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel-Dokumentation</a>
+        «««
+        [Eines der schnellsten verfügbaren Python-Frameworks](#performance)
+        »»»
 
-3) For absolute URLs which DO start EXACTLY with "https://fastapi.tiangolo.com", only translate link text and change the URL by adding language code (https://fastapi.tiangolo.com/{language_code}[rest part of the url]).
+2) For absolute URLs which DO NOT start EXACTLY with «https://fastapi.tiangolo.com», only translate link text and leave the URL unchanged.
 
 Example:
 
-Source (English):
+    Source (English):
 
-<a href="https://fastapi.tiangolo.com/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentation</a>
+        «««
+        <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel docs</a>
+        »»»
 
-Result (Spanish):
+    Result (German):
 
-<a href="https://fastapi.tiangolo.com/es/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentación</a>
+        «««
+        <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel-Dokumentation</a>
+        »»»
+
+3) For absolute URLs which DO start EXACTLY with «https://fastapi.tiangolo.com», only translate link text and change the URL by adding language code («https://fastapi.tiangolo.com/{language_code}[rest part of the url]»).
+
+Example:
+
+    Source (English):
+
+        «««
+        <a href="https://fastapi.tiangolo.com/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentation</a>
+        »»»
+
+    Result (Spanish):
+
+        «««
+        <a href="https://fastapi.tiangolo.com/es/tutorial/path-params/#documentation" class="external-link" target="_blank">Documentación</a>
+        »»»
 
 3.1) Do not add language codes for URLs that point to static assets (e.g., images, CSS, JavaScript).
 
 Example:
 
-Source (English):
+    Source (English):
 
-<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Something</a>
+        «««
+        <a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Something</a>
+        »»»
 
-Result (Spanish):
+    Result (Spanish):
 
-<a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
+        «««
+        <a href="https://fastapi.tiangolo.com/img/something.jpg" class="external-link" target="_blank">Algo</a>
+        »»»
 
 4) For internal links, only translate link text.
 
 Example:
 
-Source (English):
+    Source (English):
 
-[Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+        «««
+        [Create Pull Requests](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+        »»»
 
-Result (German):
+    Result (German):
 
-[Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+        «««
+        [Pull Requests erzeugen](help-fastapi.md#create-a-pull-request){.internal-link target=_blank}
+        »»»
 
-5) Do not translate anchor fragments in links (the part after #), as they must remain the same to work correctly.
+5) Do not translate anchor fragments in links (the part after «#»), as they must remain the same to work correctly.
 
 5.1) If an existing translation has a link with an anchor fragment different to the anchor fragment in the English source, then this is an error. Fix this by using the anchor fragment of the English source.
 
 Example:
 
-Source (English):
+    Source (English):
 
-[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}
+        «««
+        [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}
+        »»»
 
-Existing wrong translation (German) – notice the wrongly translated anchor fragment:
+    Existing wrong translation (German) – notice the wrongly translated anchor fragment:
 
-[Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#einzelne-werte-im-body){.internal-link target=_blank}.
+        «««
+        [Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#einzelne-werte-im-body){.internal-link target=_blank}.
+        »»»
 
-Result (German) – you fix the anchor fragment:
+    Result (German) – you fix the anchor fragment:
 
-[Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+        «««
+        [Body – Mehrere Parameter: Einfache Werte im Body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+        »»»
 
 5.2) Do not add anchor fragments at will, even if this makes sense. If the English source has no anchor, don't add one.
 
 Example:
 
-Source (English):
+    Source (English):
 
-Create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}
+        «««
+        Create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}
+        »»»
 
-Wrong translation (German) – Anchor added to the URL.
+    Wrong translation (German) – Anchor added to the URL.
 
-Erstelle eine [virtuelle Umgebung](../virtual-environments.md#create-a-virtual-environment){.internal-link target=_blank}
+        «««
+        Erstelle eine [virtuelle Umgebung](../virtual-environments.md#create-a-virtual-environment){.internal-link target=_blank}
+        »»»
 
-Good translation (German) – URL stays like in the English source.
+    Good translation (German) – URL stays like in the English source.
 
-Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}
+        «««
+        Erstelle eine [Virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank}
+        »»»
+
+
+### Abbr elements
+
+Translate HTML abbr elements as follows:
+
+1) If the title attribute gives the full phrase for an abbreviation, then keep the phrase, append a dash («–»), followed by the translation of the phrase.
+
+Examples:
+
+    Source (English):
+
+        «««
+        <abbr title="Internet of Things">IoT</abbr>
+        <abbr title="Central Processing Unit">CPU</abbr>
+        <abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
+        »»»
+
+    Result (German):
+
+        «««
+        <abbr title="Internet of Things – Internet der Dinge">IoT</abbr>
+        <abbr title="Central Processing Unit – Zentrale Verarbeitungseinheit">CPU</abbr>
+        <abbr title="too long; didn't read – zu lang; hab's nicht gelesen"><strong>TL;DR:</strong></abbr>
+        »»»
+
+Conversion scheme title attribute:
+
+    Source (English):
+
+        {full phrase}
+
+    Result (German):
+
+        {full phrase} – {translation of full phrase}
+
+1.1) If the translation of the phrase starts with the same letters, then just use the translation.
+
+Examples:
+
+    Source (English):
+
+        «««
+        <abbr title="JSON Web Tokens">JWT</abbr>
+        <abbr title="Enumeration">`Enum`</abbr>
+        <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>
+        »»»
+
+    Result (German):
+
+        «««
+        <abbr title="JSON Web Tokens">JWT</abbr>
+        <abbr title="Enumeration">`Enum`</abbr>
+        <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>
+        »»»
+
+Conversion scheme title attribute:
+
+    Source (English):
+
+        {full phrase}
+
+    Result (German):
+
+        {translation of full phrase}
+
+2) If the title attribute explains something in its own words, then translate it, if possible.
+
+Examples:
+
+    Source (English):
+
+        «««
+        <abbr title="also known as: endpoints, routes">path</abbr>
+        <abbr title="A program that checks for code errors">linter</abbr>
+        <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+        <abbr title="before 2023-03">0.95.0</abbr>
+        <abbr title="2023-08-26">at the time of writing this</abbr>
+        »»»
+
+    Result (German):
+
+        «««
+        <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>
+        <abbr title="Programm das auf Fehler im Code prüft">Linter</abbr>
+        <abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">„Parsen“</abbr>
+        <abbr title="vor 2023-03">0.95.0</abbr>
+        <abbr title="2023-08-26">zum Zeitpunkt als das hier geschrieben wurde</abbr>
+        »»»
+
+Conversion scheme title attribute:
+
+    Source (English):
+
+        {explanation}
+
+    Result (German):
+
+        {translation of explanation}
+
+3) If the title attribute gives the full phrase for an abbreviation, followed by a colon («:») or a comma («,»), followed by an explanation, then keep the phrase, append a dash («–»), followed by the translation of the phrase, followed by a colon («:»), followed by the translation of the explanation.
+
+Examples:
+
+    Source (English):
+
+        «««
+        <abbr title="Input/Output: disk reading or writing, network communication.">I/O</abbr>
+        <abbr title="Content Delivery Network: Service, that provides static files.">CDN</abbr>
+        <abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>
+        <abbr title="Object Relational Mapper, a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>
+        »»»
+
+    Result (German):
+
+        «««
+        <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>
+        <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Dienst, der statische Dateien bereitstellt.">CDN</abbr>
+        <abbr title="Integrated Development Environment – Integrierte Entwicklungsumgebung: Ähnlich einem Code-Editor">IDE</abbr>
+        <abbr title="Object Relational Mapper – Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">„ORMs“</abbr>
+        »»»
+
+Conversion scheme title attribute:
+
+    Source (English):
+
+        {full phrase}: {explanation}
+
+    OR
+
+    Source (English):
+
+        {full phrase}, {explanation}
+
+    Result (German):
+
+        {full phrase} – {translation of full phrase}: {translation of explanation}
+
+3.1) For the full phrase (the part before the dash in the translation) rule 1.1 also applies, speak, you can leave the original full phrase away and just use the translated full phrase, if it starts with the same letters. The result becomes:
+
+Conversion scheme title attribute:
+
+    Result (German):
+
+        {translation of full phrase}: {translation of explanation}
+
+4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
 
 
 """
