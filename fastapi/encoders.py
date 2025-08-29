@@ -236,15 +236,9 @@ def encode_value(
     sqlalchemy_safe: bool = True,
 ) -> Any:
     if custom_encoder:
-        # fastpath for exact class match
-        obj_type = type(obj)
-        if obj_type in custom_encoder:
-            return custom_encoder[obj_type](obj)
-
-        # fallback to isinstance which uses MRO
-        for encoder_type, encoder_instance in custom_encoder.items():
-            if isinstance(obj, encoder_type):
-                return encoder_instance(obj)
+        encoder = find_encoder(obj, custom_encoder)
+        if encoder:
+            return encoder(obj)
 
     if isinstance(obj, (str, int, float, NoneType)):  # type: ignore[arg-type, misc]
         return obj
@@ -323,12 +317,9 @@ def encode_value(
             sqlalchemy_safe=sqlalchemy_safe,
         )
 
-    if type(obj) in ENCODERS_BY_TYPE:
-        return ENCODERS_BY_TYPE[type(obj)](obj)
-
-    for encoder, classes_tuple in encoders_by_class_tuples.items():
-        if isinstance(obj, classes_tuple):
-            return encoder(obj)
+    encoder = find_encoder(obj, ENCODERS_BY_TYPE)
+    if encoder:
+        return encoder(obj)
 
     try:
         obj_dict = dict(obj)
@@ -399,3 +390,15 @@ def encode_dict(
         encoded_dict[encoded_key] = encoded_value
 
     return encoded_dict
+
+
+def find_encoder(value: Any, encoders: Dict[Any, Callable[[Any], Any]]) -> Optional[Callable[[Any], Any]]:
+    # fastpath for exact class match
+    encoder = encoders.get(type(value))
+    if encoder:
+        return encoder(value)
+
+    # fallback to isinstance which uses MRO
+    for encoder_type, encoder in encoders.items():
+        if isinstance(value, encoder_type):
+            return encoder
