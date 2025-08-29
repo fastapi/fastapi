@@ -394,7 +394,7 @@ def find_encoder(
     # fastpath for exact class match
     encoder = encoders.get(type(value))
     if encoder:
-        return encoder(value)
+        return encoder
 
     # fallback to isinstance which uses MRO
     for encoder_type, encoder in encoders.items():
