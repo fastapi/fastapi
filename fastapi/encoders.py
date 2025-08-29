@@ -400,3 +400,5 @@ def find_encoder(
     for encoder_type, encoder in encoders.items():
         if isinstance(value, encoder_type):
             return encoder
+
+    return None
