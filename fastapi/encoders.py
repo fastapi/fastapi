@@ -388,7 +388,9 @@ def encode_dict(
     return encoded_dict
 
 
-def find_encoder(value: Any, encoders: Dict[Any, Callable[[Any], Any]]) -> Optional[Callable[[Any], Any]]:
+def find_encoder(
+    value: Any, encoders: Dict[Any, Callable[[Any], Any]]
+) -> Optional[Callable[[Any], Any]]:
     # fastpath for exact class match
     encoder = encoders.get(type(value))
     if encoder:
