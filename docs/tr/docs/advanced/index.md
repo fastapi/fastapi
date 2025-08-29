@@ -6,7 +6,7 @@
 
 İlerleyen bölümlerde diğer seçenekler, konfigürasyonlar ve ek özellikleri göreceğiz.
 
-/// tip | "İpucu"
+/// tip | İpucu
 
 Sonraki bölümler **mutlaka "gelişmiş" olmak zorunda değildir**.
 

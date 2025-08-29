@@ -108,7 +108,7 @@
 
 快加入 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord 聊天服务器</a> 👥 和 FastAPI 社区里的小伙伴一起哈皮吧。
 
-/// tip | "提示"
+/// tip | 提示
 
 如有问题，请在 <a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">GitHub Issues</a> 里提问，在这里更容易得到 [FastAPI 专家](fastapi-people.md#_3){.internal-link target=_blank}的帮助。
 

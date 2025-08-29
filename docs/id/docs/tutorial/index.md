@@ -52,7 +52,7 @@ $ pip install "fastapi[all]"
 
 ...yang juga termasuk `uvicorn`, yang dapat kamu gunakan sebagai server yang menjalankan kodemu.
 
-/// note | "Catatan"
+/// note | Catatan
 
 Kamu juga dapat meng-installnya bagian demi bagian.
 
