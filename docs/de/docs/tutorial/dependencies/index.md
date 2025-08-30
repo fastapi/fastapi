@@ -48,7 +48,7 @@ In diesem Fall erwartet diese Abhängigkeit:
 * Einen optionalen Query-Parameter `skip`, der ein `int` ist und standardmäßig `0` ist.
 * Einen optionalen Query-Parameter `limit`, der ein `int` ist und standardmäßig `100` ist.
 
-Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
+Und dann wird einfach ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> zurückgegeben, welches diese Werte enthält.
 
 /// info | Info
 

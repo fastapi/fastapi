@@ -36,7 +36,7 @@ Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1,
 
 `user_in` ist ein Pydantic-Modell der Klasse `UserIn`.
 
-Pydantic-Modelle haben eine `.dict()`-Methode, die ein `dict` mit den Daten des Modells zurückgibt.
+Pydantic-Modelle haben eine `.dict()`-Methode, die ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit den Daten des Modells zurückgibt.
 
 Wenn wir also ein Pydantic-Objekt `user_in` erstellen, etwa so:
 

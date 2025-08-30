@@ -4,7 +4,7 @@ Bevor wir tiefer in das **Dependency Injection** System eintauchen, lassen Sie u
 
 ## Ein `dict` aus dem vorherigen Beispiel { #a-dict-from-the-previous-example }
 
-Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Dependable“) zurückgegeben:
+Im vorherigen Beispiel haben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> von unserer Abhängigkeit („Dependable“) zurückgegeben:
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 

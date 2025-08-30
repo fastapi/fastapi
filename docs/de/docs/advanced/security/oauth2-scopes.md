@@ -70,7 +70,7 @@ Sehen wir uns diese Änderungen nun Schritt für Schritt an.
 
 Die erste Änderung ist, dass wir jetzt das OAuth2-Sicherheitsschema mit zwei verfügbaren Scopes deklarieren: `me` und `items`.
 
-Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
+Der `scopes`-Parameter erhält ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 

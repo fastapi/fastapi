@@ -24,7 +24,7 @@ Um beispielsweise noch etwas Leistung herauszuholen, können Sie <a href="https:
 
 Importieren Sie die `Response`-Klasse (Unterklasse), die Sie verwenden möchten, und deklarieren Sie sie im *Pfadoperation-Dekorator*.
 
-Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` wesentlich schneller als ein Dictionary zurückzugeben.
+Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` wesentlich schneller als ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurückzugeben.
 
 Das liegt daran, dass FastAPI standardmäßig jedes enthaltene Element überprüft und sicherstellt, dass es als JSON serialisierbar ist, und zwar unter Verwendung desselben [JSON-kompatiblen Encoders](../tutorial/encoder.md){.internal-link target=_blank}, der im Tutorial erläutert wurde. Dadurch können Sie **beliebige Objekte** zurückgeben, zum Beispiel Datenbankmodelle.
 

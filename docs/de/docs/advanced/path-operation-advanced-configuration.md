@@ -131,7 +131,7 @@ Und wenn Sie die resultierende OpenAPI sehen (unter `/openapi.json` in Ihrer API
 
 ### Benutzerdefiniertes OpenAPI-*Pfadoperation*-Schema { #custom-openapi-path-operation-schema }
 
-Das Dictionary in `openapi_extra` wird mit dem automatisch generierten OpenAPI-Schema für die *Pfadoperation* zusammengeführt (mittels Deep Merge).
+Das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> in `openapi_extra` wird mit dem automatisch generierten OpenAPI-Schema für die *Pfadoperation* zusammengeführt (mittels Deep Merge).
 
 Sie können dem automatisch generierten Schema also zusätzliche Daten hinzufügen.
 

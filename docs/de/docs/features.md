@@ -67,7 +67,7 @@ my_second_user: User = User(**second_user_data)
 
 `**second_user_data` bedeutet:
 
-Nimm die Schlüssel-Wert-Paare des `second_user_data` <abbr title="Dictionary – Wörterbuch: In anderen Programmiersprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dicts</abbr> und übergebe sie direkt als Schlüsselwort-Argumente. Äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`
+Nimm die Schlüssel-Wert-Paare des `second_user_data` <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dicts</abbr> und übergebe sie direkt als Schlüsselwort-Argumente. Äquivalent zu: `User(id=4, name="Mary", joined="2018-11-30")`
 
 ///
 

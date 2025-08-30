@@ -34,7 +34,7 @@ Verwenden Sie Standard-Python-Typen für alle Attribute:
 
 Wie auch bei der Deklaration von Query-Parametern gilt: Wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Andernfalls ist es erforderlich. Verwenden Sie `None`, um es einfach optional zu machen.
 
-Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python-`dict`) wie dieses:
+Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>) wie dieses:
 
 ```JSON
 {

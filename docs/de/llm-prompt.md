@@ -272,6 +272,8 @@ Below is a list of English terms and their preferred German translations, separa
 * «the default value»: «der Defaultwert»
 * «the default value»: NOT «der Standardwert»
 * «the default declaration»: «die Default-Deklaration»
+* «the dict»: «das Dict»
+* «the dictionary»: «das Dictionary»
 * «the engine»: «die Engine»
 * «the env var»: «die Umgebungsvariable»
 * «the error response»: «die Error-Response»

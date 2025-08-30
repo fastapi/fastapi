@@ -18,7 +18,7 @@ Für diese zusätzlichen Responses müssen Sie jedoch sicherstellen, dass Sie ei
 
 Sie können Ihren *Pfadoperation-Dekoratoren* einen Parameter `responses` übergeben.
 
-Der nimmt ein `dict` entgegen, die Schlüssel sind Statuscodes für jede Response, wie etwa `200`, und die Werte sind andere `dict`s mit den Informationen für jede Response.
+Der nimmt ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> entgegen, die Schlüssel sind Statuscodes für jede Response, wie etwa `200`, und die Werte sind andere `dict`s mit den Informationen für jede Response.
 
 Jedes dieser Response-`dict`s kann einen Schlüssel `model` haben, welcher ein Pydantic-Modell enthält, genau wie `response_model`.
 

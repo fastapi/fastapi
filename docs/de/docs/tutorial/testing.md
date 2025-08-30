@@ -188,7 +188,7 @@ Dann machen Sie in Ihren Tests einfach das gleiche.
 Z. B.:
 
 * Um einen *Pfad*- oder *Query*-Parameter zu übergeben, fügen Sie ihn der URL selbst hinzu.
-* Um einen JSON-Body zu übergeben, übergeben Sie ein Python-Objekt (z. B. ein `dict`) an den Parameter `json`.
+* Um einen JSON-Body zu übergeben, übergeben Sie ein Python-Objekt (z. B. ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>) an den Parameter `json`.
 * Wenn Sie *Formulardaten* anstelle von JSON senden müssen, verwenden Sie stattdessen den `data`-Parameter.
 * Um *Header* zu übergeben, verwenden Sie ein `dict` im `headers`-Parameter.
 * Für *Cookies* ein `dict` im `cookies`-Parameter.

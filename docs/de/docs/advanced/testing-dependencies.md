@@ -22,7 +22,7 @@ In diesem Fall können Sie die Abhängigkeit, die diesen Anbieter aufruft, über
 
 ### Das Attribut `app.dependency_overrides` verwenden { #use-the-app-dependency-overrides-attribute }
 
-Für diese Fälle verfügt Ihre **FastAPI**-Anwendung über das Attribut `app.dependency_overrides`, bei diesem handelt sich um ein einfaches `dict`.
+Für diese Fälle verfügt Ihre **FastAPI**-Anwendung über das Attribut `app.dependency_overrides`, bei diesem handelt sich um ein einfaches <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>.
 
 Um eine Abhängigkeit für das Testen zu überschreiben, geben Sie als Schlüssel die ursprüngliche Abhängigkeit (eine Funktion) und als Wert Ihre Überschreibung der Abhängigkeit (eine andere Funktion) ein.
 

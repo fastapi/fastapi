@@ -4,7 +4,7 @@ Sie können einige zusätzliche <a href="https://swagger.io/docs/open-source-too
 
 Um diese zu konfigurieren, übergeben Sie das Argument `swagger_ui_parameters` beim Erstellen des `FastAPI()`-App-Objekts oder an die Funktion `get_swagger_ui_html()`.
 
-`swagger_ui_parameters` empfängt ein Dict mit den Konfigurationen, die direkt an die Swagger-Oberfläche übergeben werden.
+`swagger_ui_parameters` empfängt ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit den Konfigurationen, die direkt an die Swagger-Oberfläche übergeben werden.
 
 FastAPI konvertiert die Konfigurationen nach **JSON**, um diese mit JavaScript kompatibel zu machen, da die Swagger-Oberfläche das benötigt.
 

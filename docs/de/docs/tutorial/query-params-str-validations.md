@@ -449,7 +449,7 @@ Haben Sie bemerkt? Eine Zeichenkette mit `value.startswith()` kann ein Tuple üb
 
 #### Ein zufälliges Item { #a-random-item }
 
-Mit `data.items()` erhalten wir ein <abbr title="Etwas, das man mit einer for-Schleife durchlaufen kann, wie eine Liste, Set, usw.">iterierbares Objekt</abbr> mit Tupeln, die Schlüssel und Wert für jedes Dictionary-Element enthalten.
+Mit `data.items()` erhalten wir ein <abbr title="Etwas, das man mit einer for-Schleife durchlaufen kann, wie eine Liste, Set, usw.">iterierbares Objekt</abbr> mit Tupeln, die Schlüssel und Wert für jedes <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr>-Element enthalten.
 
 Wir konvertieren dieses iterierbare Objekt mit `list(data.items())` in eine richtige `list`.
 

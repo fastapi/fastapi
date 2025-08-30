@@ -32,7 +32,7 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 {* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
-Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das Dictionary mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
+Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Herunterfahren*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 

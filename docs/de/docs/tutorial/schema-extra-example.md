@@ -24,7 +24,7 @@ Diese zusätzlichen Informationen werden unverändert zum für dieses Modell aus
 
 //// tab | Pydantic v2
 
-In Pydantic Version 2 würden Sie das Attribut `model_config` verwenden, das ein `dict` akzeptiert, wie beschrieben in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic-Dokumentation: Configuration</a>.
+In Pydantic Version 2 würden Sie das Attribut `model_config` verwenden, das ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> akzeptiert, wie beschrieben in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic-Dokumentation: Configuration</a>.
 
 Sie können `json_schema_extra` setzen, mit einem `dict`, das alle zusätzlichen Daten enthält, die im generierten JSON-Schema angezeigt werden sollen, einschließlich `examples`.
 

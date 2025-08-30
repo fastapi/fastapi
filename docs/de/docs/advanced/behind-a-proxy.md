@@ -92,7 +92,7 @@ Und die Kommandozeilenoption `--root-path` stellt diesen `root_path` bereit.
 
 ### Testen des aktuellen `root_path` { #checking-the-current-root-path }
 
-Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jeden Request verwendet wird. Er ist Teil des `scope`-Dictionarys (das ist Teil der ASGI-Spezifikation).
+Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jeden Request verwendet wird. Er ist Teil des `scope`-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionarys</abbr> (das ist Teil der ASGI-Spezifikation).
 
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 

@@ -58,7 +58,7 @@ Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` z
 
 /// note | Technische Details
 
-Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-`dict` ist, welches die mit dem Request verbundenen Metadaten enthält.
+Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> ist, welches die mit dem Request verbundenen Metadaten enthält.
 
 Ein `Request` hat auch ein `request.receive`, welches eine Funktion ist, die den Hauptteil des Requests empfängt.
 

@@ -42,9 +42,9 @@ Zum Beispiel:
 
 Sie können auch zusätzliche Metadaten für die verschiedenen Tags hinzufügen, die zum Gruppieren Ihrer Pfadoperationen verwendet werden, mit dem Parameter `openapi_tags`.
 
-Er nimmt eine Liste entgegen, die für jeden Tag ein Dict enthält.
+Er nimmt eine Liste entgegen, die für jeden Tag ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> enthält.
 
-Jedes Dict kann Folgendes enthalten:
+Jedes Dictionary kann Folgendes enthalten:
 
 * `name` (**erforderlich**): ein `str` mit demselben Tag-Namen, den Sie im Parameter `tags` in Ihren *Pfadoperationen* und `APIRouter`n verwenden.
 * `description`: ein `str` mit einer kurzen Beschreibung für das Tag. Sie kann Markdown enthalten und wird in der Benutzeroberfläche der Dokumentation angezeigt.
@@ -88,9 +88,9 @@ Wenn Sie nun die Dokumentation ansehen, werden dort alle zusätzlichen Metadaten
 
 ### Reihenfolge der Tags { #order-of-tags }
 
-Die Reihenfolge der Tag-Metadaten-Dicts definiert auch die Reihenfolge, in der diese in der Benutzeroberfläche der Dokumentation angezeigt werden.
+Die Reihenfolge der Tag-Metadaten-Dictionarys definiert auch die Reihenfolge, in der diese in der Benutzeroberfläche der Dokumentation angezeigt werden.
 
-Auch wenn beispielsweise `users` im Alphabet nach `items` kommt, wird es vor diesen angezeigt, da wir deren Metadaten als erstes Dict der Liste hinzugefügt haben.
+Auch wenn beispielsweise `users` im Alphabet nach `items` kommt, wird es vor diesen angezeigt, da wir deren Metadaten als erstes Dictionary der Liste hinzugefügt haben.
 
 ## OpenAPI-URL { #openapi-url }
 

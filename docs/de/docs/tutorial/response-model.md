@@ -23,7 +23,7 @@ Aber am wichtigsten:
 
 Es gibt Fälle, da möchten oder müssen Sie Daten zurückgeben, die nicht genau dem entsprechen, was der Typ deklariert.
 
-Zum Beispiel könnten Sie **ein Dict zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Datendokumentation, -validierung, usw. für das Objekt, welches Sie zurückgeben (z. B. ein Dict oder ein Datenbank-Objekt).
+Zum Beispiel könnten Sie **ein Dictionary zurückgeben** wollen, oder ein Datenbank-Objekt, aber **es als Pydantic-Modell deklarieren**. Auf diese Weise übernimmt das Pydantic-Modell alle Datendokumentation, -validierung, usw. für das Objekt, welches Sie zurückgeben (z. B. ein Dictionary oder ein Datenbank-Objekt).
 
 Würden Sie eine hierfür eine Rückgabetyp-Annotation verwenden, dann würden Tools und Editoren (korrekterweise) Fehler ausgeben, die Ihnen sagen, dass Ihre Funktion einen Typ zurückgibt (z. B. ein Dict), der sich unterscheidet von dem, was Sie deklariert haben (z. B. ein Pydantic-Modell).
 

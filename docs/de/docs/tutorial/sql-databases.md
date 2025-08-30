@@ -316,7 +316,7 @@ Wir können einen einzelnen Helden **lesen**:
 
 Wir können einen Helden **aktualisieren**. Dafür verwenden wir eine HTTP-`PATCH`-Operation.
 
-Und im Code erhalten wir ein `dict` mit allen Daten, die vom Client gesendet wurden, **nur die Daten, die vom Client gesendet wurden**, unter Ausschluss von Werten, die dort nur als Defaultwerte vorhanden wären. Um dies zu tun, verwenden wir `exclude_unset=True`. Das ist der Haupttrick. 🪄
+Und im Code erhalten wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit allen Daten, die vom Client gesendet wurden, **nur die Daten, die vom Client gesendet wurden**, unter Ausschluss von Werten, die dort nur als Defaultwerte vorhanden wären. Um dies zu tun, verwenden wir `exclude_unset=True`. Das ist der Haupttrick. 🪄
 
 Dann verwenden wir `hero_db.sqlmodel_update(hero_data)`, um die `hero_db` mit den Daten aus `hero_data` zu aktualisieren.
 

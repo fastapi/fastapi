@@ -62,7 +62,7 @@ In diesem Fall können Sie einfach die Standard-`dataclasses` durch `pydantic.da
 
     In diesem Fall handelt es sich um eine Liste von `Item`-Datenklassen.
 
-6. Hier geben wir ein Dictionary zurück, das `items` enthält, welches eine Liste von Datenklassen ist.
+6. Hier geben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurück, das `items` enthält, welches eine Liste von Datenklassen ist.
 
     FastAPI ist weiterhin in der Lage, die Daten nach JSON zu <abbr title="Konvertieren der Daten in ein übertragbares Format">serialisieren</abbr>.
 
