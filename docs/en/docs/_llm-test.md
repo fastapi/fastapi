@@ -4,10 +4,10 @@ This document tests if the <abbr title="Large Language Model">LLM</abbr> underst
 
 Use as follows:
 
-* Do a fresh translation of this document into the desired target language. 
-* Check if things are mostly okay. 
+* Do a fresh translation of this document into the desired target language.
+* Check if things are mostly okay.
 * If some things are not okay, but are fixable by improving the general or the language specific prompt, do that.
-* Then manually fix the remaining issues in the translation, so that it is a good translation. 
+* Then manually fix the remaining issues in the translation, so that it is a good translation.
 * Retranslate using the existing, good translation. The ideal result should be that the LLM makes no changes at all. That would mean that the general prompt and the language prompt are as good as they can be (Plot twist: It will usually make a few seemingly random changes, the reason is probably that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
 
 The idea is, that, when working on a translation for a language (assumed one is able to run `scripts/translate.py`), to include examples of found special cases here (not a detailed list, just examples for such special cases) and test with this document, rather than testing with every other single document, translating it multiple times, which costs a few cents per translation. Also, by adding such special cases here, other translation projects will also become aware of such special cases.

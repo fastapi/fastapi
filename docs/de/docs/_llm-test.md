@@ -4,10 +4,10 @@ Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Spr
 
 Wie folgt verwenden:
 
-* Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache erstellen. 
-* Prüfen, ob alles größtenteils in Ordnung ist. 
+* Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache erstellen.
+* Prüfen, ob alles größtenteils in Ordnung ist.
 * Wenn manches nicht in Ordnung ist, sich aber durch Verbesserungen am allgemeinen Prompt oder am sprachspezifischen Prompt beheben lässt, das tun.
-* Dann die verbleibenden Probleme in der Übersetzung manuell beheben, sodass es eine gute Übersetzung ist. 
+* Dann die verbleibenden Probleme in der Übersetzung manuell beheben, sodass es eine gute Übersetzung ist.
 * Erneut übersetzen, wobei die existierende, gute Übersetzung verwendet wird. Das ideale Ergebnis wäre, dass das LLM gar keine Änderungen vornimmt. Das würde bedeuten, dass der allgemeine Prompt und der Sprach-Prompt so gut wie möglich sind. (Plot Twist: Es wird normalerweise ein paar scheinbar zufällige Änderungen machen, der Grund ist vermutlich, dass <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs keine deterministischen Algorithmen sind</a>).
 
 Die Idee ist, dass Sie, wenn Sie an einer Übersetzung für eine Sprache arbeiten (unter der Annahme, dass Sie `scripts/translate.py` ausführen können), hier Beispiele gefundener Sonderfälle aufnehmen (keine detaillierte Liste, nur Beispiele für solche Sonderfälle) und mit diesem Dokument testen, statt jedes andere einzelne Dokument mehrfach zu testen und zu übersetzen, was pro Übersetzung ein paar Cent kostet. Außerdem werden durch das Hinzufügen solcher Sonderfälle hier auch andere Übersetzungsprojekte auf solche Sonderfälle aufmerksam.
