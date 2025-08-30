@@ -1,4 +1,3 @@
-import asyncio
 import dataclasses
 import email.message
 import inspect
@@ -80,7 +79,8 @@ from typing_extensions import Annotated, Doc, deprecated
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
 else:  # pragma: no cover
-    from asyncio import iscoroutinefunction    
+    from asyncio import iscoroutinefunction
+
 
 def _prepare_response_content(
     res: Any,
