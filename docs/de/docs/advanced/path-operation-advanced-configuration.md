@@ -56,7 +56,7 @@ Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) 
 
 Sie haben wahrscheinlich gesehen, wie man das `response_model` und den `status_code` für eine *Pfadoperation* deklariert.
 
-Das definiert die Metadaten der Haupt-Response einer *Pfadoperation*.
+Das definiert die Metadaten der Haupt-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> einer *Pfadoperation*.
 
 Sie können auch zusätzliche Responses mit deren Modellen, Statuscodes usw. deklarieren.
 

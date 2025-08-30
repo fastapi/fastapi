@@ -306,10 +306,10 @@ Below is a list of English terms and their preferred German translations, separa
 * «the payload»: «die Payload»
 * «the query»: «die Query»
 * «the recap»: «die Zusammenfassung»
-* «the request»: «der Request»
+* «the request» (what the client sends to the server): «der Request»
 * «the request body»: «der Requestbody»
 * «the request bodies» (plural): «die Requestbodys»
-* «the response»: «die Response»
+* «the response» (what the server sends back to the client): «die Response»
 * «the return type»: «der Rückgabetyp»
 * «the return value»: «der Rückgabewert»
 * «the SQLModel docs»: «die SQLModel-Dokumentation»

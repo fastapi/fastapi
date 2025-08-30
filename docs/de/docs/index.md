@@ -241,7 +241,7 @@ Sie können mehr darüber in der <a href="https://fastapi.tiangolo.com/de/fastap
 
 Öffnen Sie Ihren Browser unter <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
-Sie sehen die JSON-Antwort als:
+Sie sehen die JSON-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> als:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}

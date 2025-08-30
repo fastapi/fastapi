@@ -148,7 +148,7 @@ Erstellen Sie eine Variable `ALGORITHM` für den Algorithmus, der zum Signieren 
 
 Erstellen Sie eine Variable für das Ablaufdatum des Tokens.
 
-Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die Response verwendet wird.
+Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> verwendet wird.
 
 Erstellen Sie eine Hilfsfunktion, um einen neuen Zugriffstoken zu generieren.
 

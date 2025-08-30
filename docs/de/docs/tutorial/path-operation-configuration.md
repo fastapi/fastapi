@@ -10,7 +10,7 @@ Beachten Sie, dass diese Parameter direkt dem *Pfadoperation-Dekorator* übergeb
 
 ## Response-Statuscode { #response-status-code }
 
-Sie können den (HTTP-)`status_code` definieren, der in der Response Ihrer *Pfadoperation* verwendet werden soll.
+Sie können den (HTTP-)`status_code` definieren, der in der <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> Ihrer *Pfadoperation* verwendet werden soll.
 
 Sie können direkt den `int`-Code übergeben, etwa `404`.
 

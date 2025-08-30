@@ -73,7 +73,7 @@ X-Token: foo
 X-Token: bar
 ```
 
-Dann wäre die Response:
+Dann wäre die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>:
 
 ```JSON
 {

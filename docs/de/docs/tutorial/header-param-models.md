@@ -34,7 +34,7 @@ Sie können Pydantics Modellkonfiguration verwenden, um `extra` Felder zu verbie
 
 {* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
 
-Wenn ein Client versucht, einige **zusätzliche Header** zu senden, erhält er eine **Error-Response**.
+Wenn ein Client versucht, einige **zusätzliche Header** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
 Zum Beispiel, wenn der Client versucht, einen `tool`-Header mit einem Wert von `plumbus` zu senden, erhält er eine **Error-Response**, die ihm mitteilt, dass der Header-Parameter `tool` nicht erlaubt ist:
 

@@ -1,6 +1,6 @@
 # Zusätzliche Statuscodes { #additional-status-codes }
 
-Standardmäßig liefert **FastAPI** die Responses als `JSONResponse` zurück und fügt den Inhalt, den Sie aus Ihrer *Pfadoperation* zurückgeben, in diese `JSONResponse` ein.
+Standardmäßig liefert **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> als `JSONResponse` zurück und fügt den Inhalt, den Sie aus Ihrer *Pfadoperation* zurückgeben, in diese `JSONResponse` ein.
 
 Es wird der Default-Statuscode oder derjenige verwendet, den Sie in Ihrer *Pfadoperation* festgelegt haben.
 

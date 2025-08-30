@@ -12,7 +12,7 @@ Eine `FastAPI`-Anwendung (Instanz) verfügt über eine `.openapi()`-Methode, von
 
 Als Teil der Erstellung des Anwendungsobjekts wird eine *Pfadoperation* für `/openapi.json` (oder welcher Wert für den Parameter `openapi_url` gesetzt wurde) registriert.
 
-Diese gibt lediglich eine JSON-Response zurück, mit dem Ergebnis der Methode `.openapi()` der Anwendung.
+Diese gibt lediglich eine JSON-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> zurück, mit dem Ergebnis der Methode `.openapi()` der Anwendung.
 
 Standardmäßig überprüft die Methode `.openapi()` die Eigenschaft `.openapi_schema`, um zu sehen, ob diese Inhalt hat, und gibt diesen zurück.
 

@@ -8,7 +8,7 @@ Wenn Sie mit **FastAPI** beginnen, benötigen Sie dies möglicherweise nicht.
 
 ///
 
-Sie können zusätzliche Responses mit zusätzlichen Statuscodes, Medientypen, Beschreibungen, usw. deklarieren.
+Sie können zusätzliche <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mit zusätzlichen Statuscodes, Medientypen, Beschreibungen, usw. deklarieren.
 
 Diese zusätzlichen Responses werden in das OpenAPI-Schema aufgenommen, sodass sie auch in der API-Dokumentation erscheinen.
 

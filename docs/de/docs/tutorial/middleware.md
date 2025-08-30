@@ -2,7 +2,7 @@
 
 Sie können Middleware zu **FastAPI**-Anwendungen hinzufügen.
 
-Eine „Middleware“ ist eine Funktion, die mit jedem **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
+Eine „Middleware“ ist eine Funktion, die mit jedem **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**, bevor sie zurückgegeben wird.
 
 * Sie nimmt jeden **Request** entgegen, der an Ihre Anwendung gesendet wird.
 * Sie kann dann etwas mit diesem **Request** tun oder beliebigen Code ausführen.

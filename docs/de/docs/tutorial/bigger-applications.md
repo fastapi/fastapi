@@ -323,7 +323,7 @@ Aber wir können immer noch _mehr_ `tags` hinzufügen, die auf eine bestimmte *P
 
 Diese letzte Pfadoperation wird eine Kombination von Tags haben: `["items", "custom"]`.
 
-Und sie wird auch beide Responses in der Dokumentation haben, eine für `404` und eine für `403`.
+Und sie wird auch beide <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> in der Dokumentation haben, eine für `404` und eine für `403`.
 
 ///
 

@@ -170,7 +170,7 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 * Hintergrundaufgaben im selben Prozess.
 * Ereignisse beim Starten und Herunterfahren.
 * Testclient baut auf HTTPX auf.
-* **CORS**, GZip, statische Dateien, Responses streamen.
+* **CORS**, GZip, statische Dateien, <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> streamen.
 * **Sitzungs- und Cookie**-Unterstützung.
 * 100 % Testabdeckung.
 * 100 % Typen annotierte Codebasis.

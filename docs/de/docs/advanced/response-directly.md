@@ -4,7 +4,7 @@ Wenn Sie eine **FastAPI** *Pfadoperation* erstellen, können Sie normalerweise b
 
 Standardmäßig konvertiert **FastAPI** diesen Rückgabewert automatisch nach JSON, mithilfe des `jsonable_encoder`, der in [JSON-kompatibler Encoder](../tutorial/encoder.md){.internal-link target=_blank} erläutert wird.
 
-Dann würde es hinter den Kulissen diese JSON-kompatiblen Daten (z. B. ein `dict`) in eine `JSONResponse` einfügen, die zum Senden der Response an den Client verwendet wird.
+Dann würde es hinter den Kulissen diese JSON-kompatiblen Daten (z. B. ein `dict`) in eine `JSONResponse` einfügen, die zum Senden der <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> an den Client verwendet wird.
 
 Sie können jedoch direkt eine `JSONResponse` von Ihren *Pfadoperationen* zurückgeben.
 

@@ -1,6 +1,6 @@
 # Hintergrundtasks { #background-tasks }
 
-Sie können <abbr title="Hintergrund-Aufgaben">Hintergrundtasks</abbr> definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
+Sie können <abbr title="Hintergrund-Aufgaben">Hintergrundtasks</abbr> definieren, die *nach* der Rückgabe einer <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> ausgeführt werden sollen.
 
 Das ist nützlich für Vorgänge, die nach einem <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> ausgeführt werden müssen, bei denen der Client jedoch nicht unbedingt auf den Abschluss des Vorgangs warten muss, bevor er die Response erhält.
 

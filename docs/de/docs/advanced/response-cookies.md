@@ -4,7 +4,7 @@
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren.
 
-Und dann können Sie Cookies in diesem *vorübergehenden* Response-Objekt setzen.
+Und dann können Sie Cookies in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt setzen.
 
 {* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 

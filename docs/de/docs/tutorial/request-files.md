@@ -161,7 +161,7 @@ Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
 Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> kommen aber direkt von Starlette.
 
 ///
 

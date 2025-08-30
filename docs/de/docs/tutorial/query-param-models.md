@@ -34,7 +34,7 @@ Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` 
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
-Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-Response**.
+Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
 Wenn der Client beispielsweise versucht, einen `tool` Query-Parameter mit dem Wert `plumbus` zu senden, wie:
 

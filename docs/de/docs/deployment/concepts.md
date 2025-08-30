@@ -214,7 +214,7 @@ Im folgenden Beispiel gibt es einen **Manager-Prozess**, welcher zwei **Workerpr
 
 Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port** lauscht. Und er würde die gesamte Kommunikation an die Workerprozesse weiterleiten.
 
-Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
+Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** entgegenzunehmen und eine **<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
 
 <img src="/img/deployment/concepts/process-ram.drawio.svg">
 

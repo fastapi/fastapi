@@ -20,7 +20,7 @@ Jetzt wird jeder <abbr title="Request – Anfrage: Daten, die der Client zum Ser
 
 Und der Rest wird von **FastAPI** gehandhabt.
 
-Wenn Sie das ausführen und auf <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> gehen, sehen Sie die Response von Flask:
+Wenn Sie das ausführen und auf <a href="http://localhost:8000/v1/" class="external-link" target="_blank">http://localhost:8000/v1/</a> gehen, sehen Sie die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> von Flask:
 
 ```txt
 Hello, World from Flask!

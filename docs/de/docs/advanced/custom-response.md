@@ -1,6 +1,6 @@
 # Benutzerdefinierte Response – HTML, Stream, Datei, andere { #custom-response-html-stream-file-others }
 
-Standardmäßig gibt **FastAPI** die Responses mittels `JSONResponse` zurück.
+Standardmäßig gibt **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mittels `JSONResponse` zurück.
 
 Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
 

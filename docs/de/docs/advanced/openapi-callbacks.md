@@ -4,7 +4,7 @@ Sie könnten eine API mit einer *Pfadoperation* erstellen, die einen <abbr title
 
 Der Vorgang, der stattfindet, wenn Ihre API-Anwendung die *externe API* aufruft, wird als „Callback“ („Rückruf“) bezeichnet. Denn die Software, die der externe Entwickler geschrieben hat, sendet einen Request an Ihre API und dann *ruft Ihre API zurück* (*calls back*) und sendet einen Request an eine *externe API* (die wahrscheinlich vom selben Entwickler erstellt wurde).
 
-In diesem Fall möchten Sie möglicherweise dokumentieren, wie diese externe API aussehen *sollte*. Welche *Pfadoperation* sie haben sollte, welchen Body sie erwarten sollte, welche Response sie zurückgeben sollte, usw.
+In diesem Fall möchten Sie möglicherweise dokumentieren, wie diese externe API aussehen *sollte*. Welche *Pfadoperation* sie haben sollte, welchen Body sie erwarten sollte, welche <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> sie zurückgeben sollte, usw.
 
 ## Eine Anwendung mit Callbacks { #an-app-with-callbacks }
 

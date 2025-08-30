@@ -50,7 +50,7 @@ Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` 
 
 {* ../../docs_src/request_form_models/tutorial002_an_py39.py hl[12] *}
 
-Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error-Response**.
+Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
 Zum Beispiel, wenn der Client versucht, folgende Formularfelder zu senden:
 

@@ -18,7 +18,7 @@ In diesen Fällen können Sie einen `Response`-Parameter verwenden.
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren (wie Sie es auch für Cookies und Header tun können).
 
-Anschließend können Sie den `status_code` in diesem *vorübergehenden* Response-Objekt festlegen.
+Anschließend können Sie den `status_code` in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt festlegen.
 
 {* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 

@@ -42,7 +42,7 @@ Beginnen wir mit einer einfachen FastAPI-Anwendung:
 
 {* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
-Beachten Sie, dass die *Pfadoperationen* die Modelle definieren, die sie für die <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>- und Response-<abbr title="Die eigentlichen Nutzdaten, abzüglich der Metadaten">Payload</abbr> verwenden, indem sie die Modelle `Item` und `ResponseMessage` verwenden.
+Beachten Sie, dass die *Pfadoperationen* die Modelle definieren, die sie für die <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>- und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-<abbr title="Die eigentlichen Nutzdaten, abzüglich der Metadaten">Payload</abbr> verwenden, indem sie die Modelle `Item` und `ResponseMessage` verwenden.
 
 ### API-Dokumentation { #api-docs }
 

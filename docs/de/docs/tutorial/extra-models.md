@@ -166,7 +166,7 @@ Auf diese Weise können wir nur die Unterschiede zwischen den Modellen (mit Klar
 
 ## `Union` oder `anyOf` { #union-or-anyof }
 
-Sie können deklarieren, dass eine Response eine <abbr title="Union – Verbund, Einheit, Vereinigung: Eines von Mehreren">`Union`</abbr> mehrerer Typen ist, das bedeutet, dass die Response einer von ihnen ist.
+Sie können deklarieren, dass eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> eine <abbr title="Union – Verbund, Einheit, Vereinigung: Eines von Mehreren">`Union`</abbr> mehrerer Typen ist, das bedeutet, dass die Response einer von ihnen ist.
 
 Dies wird in OpenAPI mit `anyOf` definiert.
 

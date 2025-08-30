@@ -13,7 +13,7 @@ Und Sie haben immer noch dieselbe Funktionalität wie bisher gesehen:
 
 * Großartige Editor-Unterstützung.
 * Datenkonvertierung bei eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>.
-* Datenkonvertierung für Response-Daten.
+* Datenkonvertierung für <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Daten.
 * Datenvalidierung.
 * Automatische Annotation und Dokumentation.
 

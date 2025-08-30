@@ -69,7 +69,7 @@ Die Middleware antwortet auf zwei besondere Arten von HTTP-Requests ...
 
 Dies sind alle `OPTIONS`-Requests mit `Origin`- und `Access-Control-Request-Method`-Headern.
 
-In diesem Fall wird die Middleware den eingehenden Request abfangen und mit entsprechenden CORS-Headern, und entweder einer `200`- oder `400`-Response zu Informationszwecken antworten.
+In diesem Fall wird die Middleware den eingehenden Request abfangen und mit entsprechenden CORS-Headern, und entweder einer `200`- oder `400`-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> zu Informationszwecken antworten.
 
 ### Einfache Requests { #simple-requests }
 

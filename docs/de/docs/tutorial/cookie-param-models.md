@@ -52,7 +52,7 @@ Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu
 
 {* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
 
-Wenn ein Client versucht, einige **zusätzliche Cookies** zu senden, erhält er eine **Error-Response**.
+Wenn ein Client versucht, einige **zusätzliche Cookies** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
 Arme Cookie-Banner, wie sie sich mühen, Ihre Einwilligung zu erhalten, dass die <abbr title="Das ist ein weiterer Scherz. Beachten Sie mich nicht. Trinken Sie einen Kaffee zu Ihrem Keks. ☕">API sie ablehnen darf</abbr>. 🍪
 

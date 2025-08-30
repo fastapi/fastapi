@@ -4,7 +4,7 @@
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren (wie Sie es auch für Cookies tun können).
 
-Und dann können Sie Header in diesem *vorübergehenden* Response-Objekt festlegen.
+Und dann können Sie Header in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt festlegen.
 
 {* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 

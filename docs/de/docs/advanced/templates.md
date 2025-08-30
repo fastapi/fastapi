@@ -39,7 +39,7 @@ Außerdem wurde in früheren Versionen das `request`-Objekt als Teil der Schlüs
 
 /// tip | Tipp
 
-Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationsoberfläche erkennen, dass die Response HTML sein wird.
+Durch die Deklaration von `response_class=HTMLResponse` kann die Dokumentationsoberfläche erkennen, dass die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> HTML sein wird.
 
 ///
 

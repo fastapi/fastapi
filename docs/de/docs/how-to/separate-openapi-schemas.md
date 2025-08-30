@@ -38,7 +38,7 @@ Wenn Sie jedoch dasselbe Modell als Ausgabe verwenden, wie hier:
 
 ### Modell für Ausgabe-Responsedaten { #model-for-output-response-data }
 
-Wenn Sie mit der Dokumentation interagieren und die Response überprüfen, enthält die JSON-Response den Defaultwert (`null`), obwohl der Code nichts in eines der `description`-Felder geschrieben hat:
+Wenn Sie mit der Dokumentation interagieren und die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> überprüfen, enthält die JSON-Response den Defaultwert (`null`), obwohl der Code nichts in eines der `description`-Felder geschrieben hat:
 
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image02.png">

@@ -69,7 +69,7 @@ Die folgenden Argumente werden unterstützt:
 
 * `allowed_hosts` – Eine Liste von Domain-Namen, die als Hostnamen zulässig sein sollten. Wildcard-Domains wie `*.example.com` werden unterstützt, um Subdomains zu matchen. Um jeden Hostnamen zu erlauben, verwenden Sie entweder `allowed_hosts=["*"]` oder lassen Sie diese Middleware weg.
 
-Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-Response gesendet.
+Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> gesendet.
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
@@ -81,7 +81,7 @@ Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
 Die folgenden Argumente werden unterstützt:
 
-* `minimum_size` – Antworten, die kleiner als diese Mindestgröße in Bytes sind, nicht per GZip komprimieren. Der Defaultwert ist `500`.
+* `minimum_size` – Responsen, die kleiner als diese Mindestgröße in Bytes sind, nicht per GZip komprimieren. Der Defaultwert ist `500`.
 * `compresslevel` – Wird während der GZip-Kompression verwendet. Es ist ein Ganzzahlwert zwischen 1 und 9. Der Defaultwert ist `9`. Ein niedrigerer Wert resultiert in schnellerer Kompression, aber größeren Dateigrößen, während ein höherer Wert langsamere Kompression, aber kleinere Dateigrößen zur Folge hat.
 
 ## Andere Middlewares { #other-middlewares }

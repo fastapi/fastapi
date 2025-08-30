@@ -27,7 +27,7 @@ Tatsächlich verwendet FastAPI diese beiden Dekoratoren intern.
 
 Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach Abschluss schließen.
 
-Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine Response erzeugt wird:
+Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> erzeugt wird:
 
 {* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 

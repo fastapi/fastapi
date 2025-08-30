@@ -21,7 +21,7 @@ Erinnern Sie sich an all diese **„404 Not Found“** Fehler (und Witze)?
 
 ## `HTTPException` verwenden { #use-httpexception }
 
-Um HTTP-Responses mit Fehlern an den Client zurückzugeben, verwenden Sie `HTTPException`.
+Um HTTP-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mit Fehlern an den Client zurückzugeben, verwenden Sie `HTTPException`.
 
 ### `HTTPException` importieren { #import-httpexception }
 

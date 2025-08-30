@@ -110,7 +110,7 @@ $ fastapi run main.py --root-path /api/v1
 
 </div>
 
-wäre die Response etwa:
+wäre die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> etwa:
 
 ```JSON
 {
@@ -131,7 +131,7 @@ Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe d
 
 Beachten Sie, dass der Server (Uvicorn) diesen `root_path` für nichts anderes verwendet als für die Weitergabe an die Anwendung.
 
-Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Antwort:
+Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Response:
 
 ```JSON
 {

@@ -281,7 +281,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 würden Sie die mehreren `q`-*Query-Parameter*-Werte (`foo` und `bar`) in einer Python-`list` in Ihrer *Pfadoperation-Funktion* im *Funktionsparameter* `q` erhalten.
 
-So wäre die Response zu dieser URL:
+So wäre die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> zu dieser URL:
 
 ```JSON
 {
@@ -314,7 +314,7 @@ Wenn Sie zu:
 http://localhost:8000/items/
 ```
 
-gehen, wird der Default für `q` sein: `["foo", "bar"]`, und Ihre Antwort wird sein:
+gehen, wird der Default für `q` sein: `["foo", "bar"]`, und Ihre Response wird sein:
 
 ```JSON
 {

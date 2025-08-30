@@ -152,7 +152,7 @@ Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentati
 
 ## Den Token zurückgeben { #return-the-token }
 
-Die Response des `token`-Endpunkts muss ein JSON-Objekt sein.
+Die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> des `token`-Endpunkts muss ein JSON-Objekt sein.
 
 Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ "`bearer`" sein.
 

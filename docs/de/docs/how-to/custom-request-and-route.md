@@ -50,7 +50,7 @@ Als Nächstes erstellen wir eine benutzerdefinierte Unterklasse von `fastapi.rou
 
 Dieses Mal wird die Methode `APIRoute.get_route_handler()` überschrieben.
 
-Diese Methode gibt eine Funktion zurück. Und diese Funktion empfängt einen Request und gibt eine Response zurück.
+Diese Methode gibt eine Funktion zurück. Und diese Funktion empfängt einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> und gibt eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> zurück.
 
 Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` zu erstellen.
 

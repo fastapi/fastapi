@@ -199,7 +199,7 @@ Die Einfachheit des Dependency Injection Systems macht **FastAPI** kompatibel mi
 * externen APIs
 * Authentifizierungs- und Autorisierungssystemen
 * API-Nutzungs-Überwachungssystemen
-* Responsedaten-Injektionssystemen
+* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responsedaten</abbr>-Injektionssystemen
 * usw.
 
 ## Einfach und leistungsstark { #simple-and-powerful }
