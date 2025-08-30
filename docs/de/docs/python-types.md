@@ -558,7 +558,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 
 ... und **FastAPI** verwendet dieselben Deklarationen, um:
 
-* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfadparametern, Abfrageparametern, Header-Feldern, Bodys, Abhängigkeiten, usw.
+* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfadparametern, Query-Parametern, Header-Feldern, Bodys, Abhängigkeiten, usw.
 * **Daten umzuwandeln**: aus dem Request in den erforderlichen Typ.
 * **Daten zu validieren**: aus jedem Request:
     * **Automatische Fehler** generieren, die an den Client zurückgegeben werden, wenn die Daten ungültig sind.
