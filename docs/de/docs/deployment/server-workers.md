@@ -11,7 +11,7 @@ Schauen wir uns die Deployment-Konzepte von früher noch einmal an:
 
 Bis zu diesem Punkt, in allen Tutorials in der Dokumentation, haben Sie wahrscheinlich ein **Serverprogramm** ausgeführt, zum Beispiel mit dem `fastapi`-Befehl, der Uvicorn startet, und einen **einzelnen Prozess** ausführt.
 
-Wenn Sie Anwendungen bereitstellen, möchten Sie wahrscheinlich eine gewisse **Replikation von Prozessen**, um **mehrere Kerne** zu nutzen und mehr Requests bearbeiten zu können.
+Wenn Sie Anwendungen bereitstellen, möchten Sie wahrscheinlich eine gewisse **Replikation von Prozessen**, um **mehrere Kerne** zu nutzen und mehr <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> bearbeiten zu können.
 
 Wie Sie im vorherigen Kapitel über [Deployment-Konzepte](concepts.md){.internal-link target=_blank} gesehen haben, gibt es mehrere Strategien, die Sie anwenden können.
 

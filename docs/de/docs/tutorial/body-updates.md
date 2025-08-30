@@ -60,7 +60,7 @@ Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1,
 
 Das wird ein `dict` erstellen, mit nur den Daten, die gesetzt wurden, als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
-Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) gesendeten Daten enthält, ohne Defaultwerte:
+Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>) gesendeten Daten enthält, ohne Defaultwerte:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 

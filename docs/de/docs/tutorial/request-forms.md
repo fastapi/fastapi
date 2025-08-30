@@ -62,7 +62,7 @@ Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen
 
 /// warning | Achtung
 
-Sie können mehrere `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `application/x-www-form-urlencoded` statt `application/json` kodiert.
+Sie können mehrere `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> den Body mittels `application/x-www-form-urlencoded` statt `application/json` kodiert.
 
 Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 

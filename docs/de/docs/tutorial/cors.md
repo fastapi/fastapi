@@ -18,7 +18,7 @@ Auch wenn sie alle in `localhost` sind, verwenden sie unterschiedliche Protokoll
 
 Angenommen, Sie haben ein Frontend, das in Ihrem Browser unter `http://localhost:8080` läuft, und dessen JavaScript versucht, mit einem Backend zu kommunizieren, das unter `http://localhost` läuft (da wir keinen Port angegeben haben, geht der Browser vom Default-Port `80` aus).
 
-Dann wird der Browser ein HTTP-`OPTIONS`-Request an das `:80`-Backend senden, und wenn das Backend die entsprechenden Header sendet, die die Kommunikation von diesem anderen Origin (`http://localhost:8080`) autorisieren, lässt der `:8080`-Browser das JavaScript im Frontend seinen Request an das `:80`-Backend senden.
+Dann wird der Browser ein HTTP-`OPTIONS`-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an das `:80`-Backend senden, und wenn das Backend die entsprechenden Header sendet, die die Kommunikation von diesem anderen Origin (`http://localhost:8080`) autorisieren, lässt der `:8080`-Browser das JavaScript im Frontend seinen Request an das `:80`-Backend senden.
 
 Um dies zu erreichen, muss das `:80`-Backend eine Liste von „erlaubten Origins“ haben.
 

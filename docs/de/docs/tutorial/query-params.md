@@ -24,7 +24,7 @@ Aber wenn Sie sie mit Python-Typen deklarieren (im obigen Beispiel als `int`), w
 Die gleichen Prozesse, die für Pfad-Parameter gelten, werden auch auf Query-Parameter angewendet:
 
 * Editor Unterstützung (natürlich)
-* Daten-<abbr title="Konvertieren des Strings, der von einer HTTP-Anfrage kommt, in Python-Daten">„Parsen“</abbr>
+* Daten-<abbr title="Konvertieren des Strings, der von einem HTTP-Request kommt, in Python-Daten">„Parsen“</abbr>
 * Datenvalidierung
 * Automatische Dokumentation
 

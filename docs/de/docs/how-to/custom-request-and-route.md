@@ -4,7 +4,7 @@ In einigen Fällen möchten Sie möglicherweise die von den Klassen `Request` un
 
 Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.
 
-Wenn Sie beispielsweise den Requestbody lesen oder manipulieren möchten, bevor er von Ihrer Anwendung verarbeitet wird.
+Wenn Sie beispielsweise den <abbr title="Anfragekörper">Requestbody</abbr> lesen oder manipulieren möchten, bevor er von Ihrer Anwendung verarbeitet wird.
 
 /// danger | Gefahr
 

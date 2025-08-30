@@ -2,7 +2,7 @@
 
 Sie können Middleware zu **FastAPI**-Anwendungen hinzufügen.
 
-Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
+Eine „Middleware“ ist eine Funktion, die mit jedem **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
 
 * Sie nimmt jeden **Request** entgegen, der an Ihre Anwendung gesendet wird.
 * Sie kann dann etwas mit diesem **Request** tun oder beliebigen Code ausführen.
@@ -69,9 +69,9 @@ Hier verwenden wir <a href="https://docs.python.org/3/library/time.html#time.per
 
 Wenn Sie mehrere Middlewares hinzufügen, entweder mit dem `@app.middleware()` Dekorator oder der Methode `app.add_middleware()`, umschließt jede neue Middleware die Anwendung und bildet einen Stapel. Die zuletzt hinzugefügte Middleware ist die *äußerste*, und die erste ist die *innerste*.
 
-Auf dem Anfragepfad läuft die *äußerste* Middleware zuerst.
+Auf dem Requestpfad läuft die *äußerste* Middleware zuerst.
 
-Auf dem Antwortpfad läuft sie zuletzt.
+Auf dem Responsepfad läuft sie zuletzt.
 
 Zum Beispiel:
 

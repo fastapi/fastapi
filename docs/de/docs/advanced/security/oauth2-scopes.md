@@ -86,7 +86,7 @@ Das ist derselbe Mechanismus, der verwendet wird, wenn Sie beim Anmelden mit Fac
 
 Ändern Sie nun die Token-*Pfadoperation*, um die angeforderten Scopes zurückzugeben.
 
-Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine Eigenschaft `scopes` mit einer `list`e von `str`s für jeden Scope, den es im Request erhalten hat.
+Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine Eigenschaft `scopes` mit einer `list`e von `str`s für jeden Scope, den es im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> erhalten hat.
 
 Und wir geben die Scopes als Teil des JWT-Tokens zurück.
 

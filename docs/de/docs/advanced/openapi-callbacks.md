@@ -1,6 +1,6 @@
 # OpenAPI Callbacks { #openapi-callbacks }
 
-Sie könnten eine API mit einer *Pfadoperation* erstellen, die einen Request an eine *externe API* auslösen könnte, welche von jemand anderem erstellt wurde (wahrscheinlich derselbe Entwickler, der Ihre API *verwenden* würde).
+Sie könnten eine API mit einer *Pfadoperation* erstellen, die einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an eine *externe API* auslösen könnte, welche von jemand anderem erstellt wurde (wahrscheinlich derselbe Entwickler, der Ihre API *verwenden* würde).
 
 Der Vorgang, der stattfindet, wenn Ihre API-Anwendung die *externe API* aufruft, wird als „Callback“ („Rückruf“) bezeichnet. Denn die Software, die der externe Entwickler geschrieben hat, sendet einen Request an Ihre API und dann *ruft Ihre API zurück* (*calls back*) und sendet einen Request an eine *externe API* (die wahrscheinlich vom selben Entwickler erstellt wurde).
 

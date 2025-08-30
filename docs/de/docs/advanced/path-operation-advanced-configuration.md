@@ -135,7 +135,7 @@ Das Dictionary in `openapi_extra` wird mit dem automatisch generierten OpenAPI-S
 
 Sie können dem automatisch generierten Schema also zusätzliche Daten hinzufügen.
 
-Sie könnten sich beispielsweise dafür entscheiden, den Request mit Ihrem eigenen Code zu lesen und zu validieren, ohne die automatischen Funktionen von FastAPI mit Pydantic zu verwenden, aber Sie könnten den Request trotzdem im OpenAPI-Schema definieren wollen.
+Sie könnten sich beispielsweise dafür entscheiden, den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mit Ihrem eigenen Code zu lesen und zu validieren, ohne die automatischen Funktionen von FastAPI mit Pydantic zu verwenden, aber Sie könnten den Request trotzdem im OpenAPI-Schema definieren wollen.
 
 Das könnte man mit `openapi_extra` machen:
 

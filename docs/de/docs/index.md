@@ -249,7 +249,7 @@ Sie sehen die JSON-Antwort als:
 
 Sie haben bereits eine API erstellt, welche:
 
-* HTTP-Anfragen auf den _Pfaden_ `/` und `/items/{item_id}` entgegennimmt.
+* HTTP-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> auf den _Pfaden_ `/` und `/items/{item_id}` entgegennimmt.
 * Beide _Pfade_ erhalten `GET` <em>Operationen</em> (auch bekannt als HTTP _Methoden_).
 * Der _Pfad_ `/items/{item_id}` hat einen _Pfad-Parameter_ `item_id`, der ein `int` sein sollte.
 * Der _Pfad_ `/items/{item_id}` hat einen optionalen `str` _Query-Parameter_ `q`.
@@ -272,7 +272,7 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 ## Beispiel Aktualisierung { #example-upgrade }
 
-Ändern Sie jetzt die Datei `main.py`, um den <abbr title="Body – Körper, Inhalt: Der eigentliche Inhalt einer Nachricht, nicht die Metadaten">Body</abbr> einer `PUT`-Anfrage zu empfangen.
+Ändern Sie jetzt die Datei `main.py`, um den <abbr title="Body – Körper, Inhalt: Der eigentliche Inhalt einer Nachricht, nicht die Metadaten">Body</abbr> eines `PUT`-Requests zu empfangen.
 
 Deklarieren Sie den Body mithilfe von Standard-Python-Typen, dank Pydantic.
 
@@ -384,13 +384,13 @@ item: Item
 
 Um auf das vorherige Codebeispiel zurückzukommen, **FastAPI** wird:
 
-* Überprüfen, dass es eine `item_id` im Pfad für `GET`- und `PUT`-Anfragen gibt.
-* Überprüfen, ob die `item_id` vom Typ `int` für `GET`- und `PUT`-Anfragen ist.
+* Überprüfen, dass es eine `item_id` im Pfad für `GET`- und `PUT`-Requests gibt.
+* Überprüfen, ob die `item_id` vom Typ `int` für `GET`- und `PUT`-Requests ist.
     * Falls nicht, wird dem Client ein nützlicher, eindeutiger Fehler angezeigt.
-* Prüfen, ob es einen optionalen Query-Parameter namens `q` (wie in `http://127.0.0.1:8000/items/foo?q=somequery`) für `GET`-Anfragen gibt.
+* Prüfen, ob es einen optionalen Query-Parameter namens `q` (wie in `http://127.0.0.1:8000/items/foo?q=somequery`) für `GET`-Requests gibt.
     * Da der `q`-Parameter mit `= None` deklariert ist, ist er optional.
     * Ohne das `None` wäre er erforderlich (wie der Body im Fall von `PUT`).
-* Bei `PUT`-Anfragen an `/items/{item_id}` den Body als JSON lesen:
+* Bei `PUT`-Requests an `/items/{item_id}` den Body als JSON lesen:
     * Prüfen, ob er ein erforderliches Attribut `name` hat, das ein `str` sein muss.
     * Prüfen, ob er ein erforderliches Attribut `price` hat, das ein `float` sein muss.
     * Prüfen, ob er ein optionales Attribut `is_offer` hat, das ein `bool` sein muss, falls vorhanden.
@@ -466,7 +466,7 @@ Wird von Starlette verwendet:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - erforderlich, wenn Sie den `TestClient` verwenden möchten.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - erforderlich, wenn Sie die Standardkonfiguration für Templates verwenden möchten.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einer HTTP-Anfrage stammt, nach Python-Daten">„parsen“</abbr> möchten.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - erforderlich, wenn Sie Formulare mittels `request.form()` <abbr title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</abbr> möchten.
 
 Wird von FastAPI verwendet:
 

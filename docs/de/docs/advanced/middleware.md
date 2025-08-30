@@ -53,7 +53,7 @@ Für die nächsten Beispiele könnten Sie auch `from starlette.middleware.someth
 
 ## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
-Erzwingt, dass alle eingehenden Requests entweder `https` oder `wss` sein müssen.
+Erzwingt, dass alle eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> entweder `https` oder `wss` sein müssen.
 
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 

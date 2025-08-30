@@ -82,7 +82,7 @@ Aus diesem Grund heißt es auf der offiziellen Website:
 
 > Requests ist eines der am häufigsten heruntergeladenen Python-Packages aller Zeiten
 
-Die Art und Weise, wie Sie es verwenden, ist sehr einfach. Um beispielsweise einen `GET`-Request zu machen, würden Sie schreiben:
+Die Art und Weise, wie Sie es verwenden, ist sehr einfach. Um beispielsweise einen `GET`-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zu machen, würden Sie schreiben:
 
 ```Python
 response = requests.get("http://example.com/some/url")
@@ -249,7 +249,7 @@ Da die Parameter mit TypeScript-Typen beschrieben werden (ähnlich den Python-Ty
 
 Da TypeScript-Daten jedoch nach der Kompilierung nach JavaScript nicht erhalten bleiben, können die Typen nicht gleichzeitig die Validierung, Serialisierung und Dokumentation definieren. Aus diesem Grund und aufgrund einiger Designentscheidungen ist es für die Validierung, Serialisierung und automatische Schemagenerierung erforderlich, an vielen Stellen Dekoratoren hinzuzufügen. Es wird also ziemlich ausführlich.
 
-Es kann nicht sehr gut mit verschachtelten Modellen umgehen. Wenn es sich beim JSON-Body in der Anfrage also um ein JSON-Objekt mit inneren Feldern handelt, die wiederum verschachtelte JSON-Objekte sind, kann er nicht richtig dokumentiert und validiert werden.
+Es kann nicht sehr gut mit verschachtelten Modellen umgehen. Wenn es sich beim JSON-Body im Request also um ein JSON-Objekt mit inneren Feldern handelt, die wiederum verschachtelte JSON-Objekte sind, kann er nicht richtig dokumentiert und validiert werden.
 
 /// check | Inspirierte **FastAPI**
 

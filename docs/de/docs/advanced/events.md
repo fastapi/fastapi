@@ -1,6 +1,6 @@
 # Lifespan-Events { #lifespan-events }
 
-Sie können Logik (Code) definieren, die ausgeführt werden soll, bevor die Anwendung **hochfährt**. Dies bedeutet, dass dieser Code **einmal** ausgeführt wird, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**.
+Sie können Logik (Code) definieren, die ausgeführt werden soll, bevor die Anwendung **hochfährt**. Dies bedeutet, dass dieser Code **einmal** ausgeführt wird, **bevor** die Anwendung **beginnt, <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> entgegenzunehmen**.
 
 Auf die gleiche Weise können Sie Logik (Code) definieren, die ausgeführt werden soll, wenn die Anwendung **heruntergefahren** wird. In diesem Fall wird dieser Code **einmal** ausgeführt, **nachdem** möglicherweise **viele Requests** bearbeitet wurden.
 

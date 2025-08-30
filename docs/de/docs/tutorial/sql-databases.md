@@ -79,9 +79,9 @@ Sie hätten **ein einziges `engine`-Objekt** für Ihren gesamten Code, um sich m
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
 
-Die Verwendung von `check_same_thread=False` erlaubt FastAPI, dieselbe SQLite-Datenbank in verschiedenen Threads zu verwenden. Dies ist notwendig, da **eine einzelne Anfrage** **mehr als einen Thread** verwenden könnte (zum Beispiel in Abhängigkeiten).
+Die Verwendung von `check_same_thread=False` erlaubt FastAPI, dieselbe SQLite-Datenbank in verschiedenen Threads zu verwenden. Dies ist notwendig, da **ein einzelner <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** **mehr als einen Thread** verwenden könnte (zum Beispiel in Abhängigkeiten).
 
-Keine Sorge, so wie der Code strukturiert ist, werden wir später sicherstellen, dass wir **eine einzige SQLModel-*Session* pro Anfrage** verwenden, das ist eigentlich das, was `check_same_thread` erreichen möchte.
+Keine Sorge, so wie der Code strukturiert ist, werden wir später sicherstellen, dass wir **eine einzige SQLModel-*Session* pro Request** verwenden, das ist eigentlich das, was `check_same_thread` erreichen möchte.
 
 ### Die Tabellen erstellen { #create-the-tables }
 
@@ -93,7 +93,7 @@ Dann fügen wir eine Funktion hinzu, die `SQLModel.metadata.create_all(engine)` 
 
 Eine <abbr title="Sitzung">**`Session`**</abbr> speichert die **Objekte im Speicher** und verfolgt alle Änderungen, die an den Daten vorgenommen werden müssen, dann **verwendet sie die `engine`**, um mit der Datenbank zu kommunizieren.
 
-Wir werden eine FastAPI **Abhängigkeit** mit `yield` erstellen, die eine neue `Session` für jede Anfrage bereitstellt. Das ist es, was sicherstellt, dass wir eine einzige Session pro Anfrage verwenden. 🤓
+Wir werden eine FastAPI **Abhängigkeit** mit `yield` erstellen, die eine neue `Session` für jeden Request bereitstellt. Das ist es, was sicherstellt, dass wir eine einzige Session pro Request verwenden. 🤓
 
 Dann erstellen wir eine `Annotated`-Abhängigkeit `SessionDep`, um den Rest des Codes zu vereinfachen, der diese Abhängigkeit nutzen wird.
 

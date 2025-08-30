@@ -458,7 +458,7 @@ Ohne die Verwendung von Containern kann es umständlich und schwierig sein, Anwe
 
 Wenn Sie einen <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</abbr> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Uvicorn mit Workern) zu verwenden.
 
-Diese verteilten Containerverwaltungssysteme wie Kubernetes verfügen normalerweise über eine integrierte Möglichkeit, die **Replikation von Containern** zu handhaben und gleichzeitig **Load Balancing** für die eingehenden Requests zu unterstützen. Alles auf **Cluster-Ebene**.
+Diese verteilten Containerverwaltungssysteme wie Kubernetes verfügen normalerweise über eine integrierte Möglichkeit, die **Replikation von Containern** zu handhaben und gleichzeitig **Load Balancing** für die eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> zu unterstützen. Alles auf **Cluster-Ebene**.
 
 In diesen Fällen möchten Sie wahrscheinlich ein **Docker-Image von Grund auf** erstellen, wie [oben erklärt](#dockerfile), Ihre Abhängigkeiten installieren und **einen einzelnen Uvicorn-Prozess** ausführen, anstatt mehrere Uvicorn-Worker zu verwenden.
 

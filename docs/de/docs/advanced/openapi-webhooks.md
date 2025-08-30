@@ -1,6 +1,6 @@
 # OpenAPI Webhooks { #openapi-webhooks }
 
-Es gibt Fälle, in denen Sie Ihren API-**Benutzern** mitteilen möchten, dass Ihre App *deren* App mit einigen Daten aufrufen (einen Request senden) könnte, normalerweise um über ein bestimmtes **Event** zu **benachrichtigen**.
+Es gibt Fälle, in denen Sie Ihren API-**Benutzern** mitteilen möchten, dass Ihre App *deren* App mit einigen Daten aufrufen (einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> senden) könnte, normalerweise um über ein bestimmtes **Event** zu **benachrichtigen**.
 
 Das bedeutet, dass anstelle des normalen Prozesses, bei dem Ihre Benutzer Requests an Ihre API senden, **Ihre API** (oder Ihre App) **Requests an deren System** (an deren API, deren App) senden könnte.
 

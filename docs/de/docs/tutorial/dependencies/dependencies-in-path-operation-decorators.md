@@ -42,7 +42,7 @@ Sie können dieselben Abhängigkeits-*Funktionen* verwenden, die Sie normalerwei
 
 ### Abhängigkeitsanforderungen { #dependency-requirements }
 
-Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhängigkeiten deklarieren:
+Sie können Anforderungen für einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> (wie Header) oder andere Unterabhängigkeiten deklarieren:
 
 {* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 

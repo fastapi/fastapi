@@ -294,7 +294,7 @@ So wäre die Response zu dieser URL:
 
 /// tip | Tipp
 
-Um einen Query-Parameter mit einem Typ `list` zu deklarieren, wie im obigen Beispiel, müssen Sie explizit `Query` verwenden, da er andernfalls als Requestbody interpretiert würde.
+Um einen Query-Parameter mit einem Typ `list` zu deklarieren, wie im obigen Beispiel, müssen Sie explizit `Query` verwenden, da er andernfalls als <abbr title="Anfragekörper">Requestbody</abbr> interpretiert würde.
 
 ///
 
@@ -429,7 +429,7 @@ Dies ist verfügbar seit Pydantic Version 2 oder höher. 😎
 
 Wenn Sie irgendeine Art von Validierung durchführen müssen, die eine Kommunikation mit einer **externen Komponente** erfordert, wie z. B. einer Datenbank oder einer anderen API, sollten Sie stattdessen **FastAPI-Abhängigkeiten** verwenden. Sie werden diese später kennenlernen.
 
-Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit denselben **Daten** überprüft werden können, die in der Anfrage bereitgestellt werden.
+Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit denselben **Daten** überprüft werden können, die im Request bereitgestellt werden.
 
 ///
 

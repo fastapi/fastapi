@@ -199,7 +199,7 @@ Das Präfix lautet in diesem Fall also `/items`.
 
 Wir können auch eine Liste von `tags` und zusätzliche `responses` hinzufügen, die auf alle in diesem Router enthaltenen *Pfadoperationen* angewendet werden.
 
-Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperationen* im Router hinzugefügt und für jeden an sie gerichteten Request ausgeführt/aufgelöst werden.
+Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperationen* im Router hinzugefügt und für jeden an sie gerichteten <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> ausgeführt/aufgelöst werden.
 
 /// tip | Tipp
 

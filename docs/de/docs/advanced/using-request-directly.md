@@ -1,6 +1,6 @@
 # Den Request direkt verwenden { #using-the-request-directly }
 
-Bisher haben Sie die Teile des Requests, die Sie benötigen, mithilfe von deren Typen deklariert.
+Bisher haben Sie die Teile des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>, die Sie benötigen, mithilfe von deren Typen deklariert.
 
 Daten nehmend von:
 

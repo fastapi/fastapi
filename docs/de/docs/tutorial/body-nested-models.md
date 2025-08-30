@@ -61,7 +61,7 @@ Deklarieren wir also `tags` als Set von Strings.
 
 {* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
 
-Jetzt, selbst wenn Sie einen Request mit duplizierten Daten erhalten, werden diese zu einem Set eindeutiger Dinge konvertiert.
+Jetzt, selbst wenn Sie einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mit duplizierten Daten erhalten, werden diese zu einem Set eindeutiger Dinge konvertiert.
 
 Und wann immer Sie diese Daten ausgeben, selbst wenn die Quelle Duplikate hatte, wird es als Set von eindeutigen Dingen ausgegeben.
 

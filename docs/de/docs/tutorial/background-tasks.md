@@ -2,7 +2,7 @@
 
 Sie können <abbr title="Hintergrund-Aufgaben">Hintergrundtasks</abbr> definieren, die *nach* der Rückgabe einer Response ausgeführt werden sollen.
 
-Das ist nützlich für Vorgänge, die nach einem Request ausgeführt werden müssen, bei denen der Client jedoch nicht unbedingt auf den Abschluss des Vorgangs warten muss, bevor er die Response erhält.
+Das ist nützlich für Vorgänge, die nach einem <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> ausgeführt werden müssen, bei denen der Client jedoch nicht unbedingt auf den Abschluss des Vorgangs warten muss, bevor er die Response erhält.
 
 Hierzu zählen beispielsweise:
 

@@ -58,7 +58,7 @@ Aber was ist ein „Timing-Angriff“?
 
 Stellen wir uns vor, dass einige Angreifer versuchen, den Benutzernamen und das Passwort zu erraten.
 
-Und sie senden einen Request mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
+Und sie senden einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
 
 Dann würde der Python-Code in Ihrer Anwendung etwa so aussehen:
 

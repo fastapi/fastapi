@@ -16,7 +16,7 @@ Deklarieren Sie die erforderlichen **Header-Parameter** in einem **Pydantic-Mode
 
 {* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den **Headern** des Requests extrahieren und Ihnen das von Ihnen definierte Pydantic-Modell geben.
+**FastAPI** wird die Daten für **jedes Feld** aus den **Headern** des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das von Ihnen definierte Pydantic-Modell geben.
 
 ## Die Dokumentation testen { #check-the-docs }
 

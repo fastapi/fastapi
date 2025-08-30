@@ -20,7 +20,7 @@ Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app
 
 {* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
-Und der Proxy würde das **Pfadpräfix** on-the-fly **„entfernen“**, bevor er die Anfrage an den Anwendungsserver (wahrscheinlich Uvicorn via FastAPI CLI) übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
+Und der Proxy würde das **Pfadpräfix** on-the-fly **„entfernen“**, bevor er den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an den Anwendungsserver (wahrscheinlich Uvicorn via FastAPI CLI) übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
 
 Bis hierher würde alles wie gewohnt funktionieren.
 
@@ -92,7 +92,7 @@ Und die Kommandozeilenoption `--root-path` stellt diesen `root_path` bereit.
 
 ### Testen des aktuellen `root_path` { #checking-the-current-root-path }
 
-Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede Anfrage verwendet wird. Er ist Teil des `scope`-Dictionarys (das ist Teil der ASGI-Spezifikation).
+Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jeden Request verwendet wird. Er ist Teil des `scope`-Dictionarys (das ist Teil der ASGI-Spezifikation).
 
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 
@@ -205,7 +205,7 @@ Erstellen Sie nun die andere Datei `routes.toml`:
 
 Diese Datei konfiguriert Traefik, das Pfadpräfix `/api/v1` zu verwenden.
 
-Und dann leitet Traefik seine Anfragen an Ihren Uvicorn weiter, der unter `http://127.0.0.1:8000` läuft.
+Und dann leitet Traefik seine Requests an Ihren Uvicorn weiter, der unter `http://127.0.0.1:8000` läuft.
 
 Starten Sie nun Traefik:
 

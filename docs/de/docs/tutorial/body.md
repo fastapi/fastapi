@@ -1,8 +1,8 @@
 # Requestbody { #request-body }
 
-Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu Ihrer API senden müssen, senden Sie sie als <abbr title="Anfragekörper">**Requestbody**</abbr>.
+Wenn Sie Daten von einem <abbr title="Client: Eine Software, die sich mit einem Server verbindet.">Client</abbr> (sagen wir, einem Browser) zu Ihrer API senden müssen, senden Sie sie als **Requestbody**.
 
-Ein **Request**body sind Daten, die vom Client zu Ihrer API gesendet werden. Ein <abbr title="Antwortkörper">**Response**body</abbr> sind Daten, die Ihre API zum Client sendet.
+Ein <abbr title="Anfragekörper">**Request**body</abbr> sind Daten, die vom Client zu Ihrer API gesendet werden. Ein <abbr title="Antwortkörper">**Response**body</abbr> sind Daten, die Ihre API zum Client sendet.
 
 Ihre API muss fast immer einen **Response**body senden. Aber Clients müssen nicht unbedingt immer **Requestbodys** senden, manchmal fordern sie nur einen Pfad an, vielleicht mit einigen Query-Parametern, aber senden keinen Body.
 

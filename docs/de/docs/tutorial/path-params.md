@@ -38,7 +38,7 @@ Wenn Sie dieses Beispiel ausführen und Ihren Browser unter <a href="http://127.
 
 Beachten Sie, dass der Wert, den Ihre Funktion erhält und zurückgibt, die Zahl `3` ist, also ein `int`. Nicht der String `"3"`, also ein `str`.
 
-Sprich, mit dieser Typdeklaration wird **FastAPI** die Anfrage automatisch <abbr title="Den String, der von einer HTTP Anfrage kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
+Sprich, mit dieser Typdeklaration wird **FastAPI** den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> automatisch <abbr title="Den String, der von einem HTTP-Request kommt, in Python-Objekte konvertieren">„parsen“</abbr>.
 
 ///
 
@@ -249,7 +249,7 @@ In dem Fall wäre die URL: `/files//home/johndoe/myfile.txt`, mit einem doppelte
 In **FastAPI** erhalten Sie mittels kurzer, intuitiver Typdeklarationen:
 
 * Editor-Unterstützung: Fehlerprüfungen, Codevervollständigung, usw.
-* Daten "<abbr title="Den String, der von einer HTTP Anfrage kommt, nach Python-Daten konvertieren">parsen</abbr>"
+* Daten "<abbr title="Den String, der von einem HTTP-Request kommt, nach Python-Daten konvertieren">parsen</abbr>"
 * Datenvalidierung
 * API-Annotationen und automatische Dokumentation
 

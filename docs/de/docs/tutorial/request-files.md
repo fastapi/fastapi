@@ -127,7 +127,7 @@ Wenn Sie mehr über diese Kodierungen und Formularfelder lesen möchten, besuche
 
 /// warning | Achtung
 
-Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der Request den Body mittels `multipart/form-data` statt `application/json` kodiert.
+Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht gleichzeitig auch `Body`-Felder deklarieren, welche Sie als JSON erwarten, da der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> den Body mittels `multipart/form-data` statt `application/json` kodiert.
 
 Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 

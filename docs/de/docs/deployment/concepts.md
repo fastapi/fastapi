@@ -137,7 +137,7 @@ Und wir als Entwickler verbessern den Code ständig, wenn wir diese Bugs finden 
 
 ### Kleine Fehler automatisch handhaben { #small-errors-automatically-handled }
 
-Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise dem einzelnen Request zurückgeben, der den Fehler ausgelöst hat. 🛡
+Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise dem einzelnen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zurückgeben, der den Fehler ausgelöst hat. 🛡
 
 Der Client erhält für diesen Request einen **500 Internal Server Error**, aber die Anwendung arbeitet bei den nächsten Requests weiter, anstatt einfach komplett abzustürzen.
 

@@ -230,7 +230,7 @@ Rufen Sie den Endpunkt `/users/me/` auf, Sie erhalten die Response:
 
 <img src="/img/tutorial/security/image09.png">
 
-Wenn Sie die Developer Tools öffnen, können Sie sehen, dass die gesendeten Daten nur den Token enthalten. Das Passwort wird nur bei der ersten Anfrage gesendet, um den Benutzer zu authentisieren und diesen Zugriffstoken zu erhalten, aber nicht mehr danach:
+Wenn Sie die Developer Tools öffnen, können Sie sehen, dass die gesendeten Daten nur den Token enthalten. Das Passwort wird nur beim ersten <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> gesendet, um den Benutzer zu authentisieren und diesen Zugriffstoken zu erhalten, aber nicht mehr danach:
 
 <img src="/img/tutorial/security/image10.png">
 

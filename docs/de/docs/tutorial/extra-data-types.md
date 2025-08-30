@@ -12,7 +12,7 @@ Sie können aber auch komplexere Datentypen verwenden.
 Und Sie haben immer noch dieselbe Funktionalität wie bisher gesehen:
 
 * Großartige Editor-Unterstützung.
-* Datenkonvertierung bei eingehenden Requests.
+* Datenkonvertierung bei eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>.
 * Datenkonvertierung für Response-Daten.
 * Datenvalidierung.
 * Automatische Annotation und Dokumentation.

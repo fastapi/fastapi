@@ -14,7 +14,7 @@ Das Verstecken der Dokumentation macht es nur schwieriger zu verstehen, wie mit 
 
 Wenn Sie Ihre API sichern möchten, gibt es mehrere bessere Dinge, die Sie tun können, zum Beispiel:
 
-* Stellen Sie sicher, dass Sie über gut definierte Pydantic-Modelle für Ihre Requestbodys und Responses verfügen.
+* Stellen Sie sicher, dass Sie über gut definierte Pydantic-Modelle für Ihre <abbr title="Anfragekörper">Requestbodys</abbr> und Responses verfügen.
 * Konfigurieren Sie alle erforderlichen Berechtigungen und Rollen mithilfe von Abhängigkeiten.
 * Speichern Sie niemals Klartext-Passwörter, sondern nur Passwort-Hashes.
 * Implementieren und verwenden Sie gängige kryptografische Tools wie Passlib und JWT-Tokens, usw.

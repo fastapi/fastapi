@@ -46,7 +46,7 @@ Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen
 
 /// tip | Tipp
 
-Sie erinnern sich vielleicht, dass Requestbodys ebenfalls mit Pydantic-Modellen deklariert werden.
+Sie erinnern sich vielleicht, dass <abbr title="Anfragekörper">Requestbodys</abbr> ebenfalls mit Pydantic-Modellen deklariert werden.
 
 Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
 

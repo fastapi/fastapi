@@ -30,7 +30,7 @@ Und Sie können einige der Dateien als `bytes` und einige als `UploadFile` dekla
 
 /// warning | Achtung
 
-Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht auch `Body`-Felder deklarieren, die Sie als JSON erwarten, da der Body des Requests mittels `multipart/form-data` statt `application/json` kodiert sein wird.
+Sie können mehrere `File`- und `Form`-Parameter in einer *Pfadoperation* deklarieren, aber Sie können nicht auch `Body`-Felder deklarieren, die Sie als JSON erwarten, da der Body des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mittels `multipart/form-data` statt `application/json` kodiert sein wird.
 
 Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 

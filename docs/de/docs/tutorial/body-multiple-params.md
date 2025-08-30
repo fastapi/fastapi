@@ -1,6 +1,6 @@
 # Body – Mehrere Parameter { #body-multiple-parameters }
 
-Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von Requestbody-Deklarationen an.
+Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von <abbr title="Anfragekörper">Requestbody</abbr>-Deklarationen an.
 
 ## `Path`-, `Query`- und Body-Parameter vermischen { #mix-path-query-and-body-parameters }
 

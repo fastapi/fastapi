@@ -86,7 +86,7 @@ Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen
 
 ///
 
-Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
+Immer wenn ein neuer <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> eintrifft, kümmert sich **FastAPI** darum:
 
 * Ihre Abhängigkeitsfunktion („Dependable“) mit den richtigen Parametern aufzurufen.
 * Sich das Ergebnis von dieser Funktion zu holen.
@@ -165,7 +165,7 @@ Die interaktive Dokumentation enthält also auch alle Informationen aus diesen A
 
 ## Einfache Verwendung { #simple-usage }
 
-Näher betrachtet, werden *Pfadoperation-Funktionen* deklariert, um verwendet zu werden, wann immer ein *Pfad* und eine *Operation* übereinstimmen, und dann kümmert sich **FastAPI** darum, die Funktion mit den richtigen Parametern aufzurufen, die Daten aus der Anfrage extrahierend.
+Näher betrachtet, werden *Pfadoperation-Funktionen* deklariert, um verwendet zu werden, wann immer ein *Pfad* und eine *Operation* übereinstimmen, und dann kümmert sich **FastAPI** darum, die Funktion mit den richtigen Parametern aufzurufen, die Daten aus dem Request extrahierend.
 
 Tatsächlich funktionieren alle (oder die meisten) Webframeworks auf die gleiche Weise.
 

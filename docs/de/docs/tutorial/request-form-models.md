@@ -26,7 +26,7 @@ Sie müssen nur ein **Pydantic-Modell** mit den Feldern deklarieren, die Sie als
 
 {* ../../docs_src/request_form_models/tutorial001_an_py39.py hl[9:11,15] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den **Formulardaten** in der Anfrage **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell übergeben.
+**FastAPI** wird die Daten für **jedes Feld** aus den **Formulardaten** im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell übergeben.
 
 ## Die Dokumentation testen { #check-the-docs }
 

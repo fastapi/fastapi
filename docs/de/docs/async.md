@@ -239,7 +239,7 @@ In diesem Szenario „Fastfood-Burger mit Ihrem Schwarm“ ist es viel sinnvolle
 
 Das ist auch bei den meisten Webanwendungen der Fall.
 
-Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so gute Internetverbindungen die Requests übermitteln.
+Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so gute Internetverbindungen die <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> übermitteln.
 
 Und dann wieder warten 🕙, bis die Responses zurückkommen.
 

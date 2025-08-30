@@ -14,7 +14,7 @@ Ein Beispiel könnte sein, dass Sie einen externen Authentifizierungsanbieter ha
 
 Sie senden ihm ein Token und er gibt einen authentifizierten Benutzer zurück.
 
-Dieser Anbieter berechnet Ihnen möglicherweise Gebühren pro Anfrage, und der Aufruf könnte etwas länger dauern, als wenn Sie einen vordefinierten <abbr title="Platzhalter, vorgetäuscht, zum Schein">Mock</abbr>-Benutzer für Tests hätten.
+Dieser Anbieter berechnet Ihnen möglicherweise Gebühren pro <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>, und der Aufruf könnte etwas länger dauern, als wenn Sie einen vordefinierten <abbr title="Platzhalter, vorgetäuscht, zum Schein">Mock</abbr>-Benutzer für Tests hätten.
 
 Sie möchten den externen Anbieter wahrscheinlich einmal testen, ihn aber nicht unbedingt bei jedem weiteren ausgeführten Test aufrufen.
 

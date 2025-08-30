@@ -2,7 +2,7 @@
 
 Sie haben bereits gesehen, wie Sie Ihre **FastAPI**-Anwendungen mit dem bereitgestellten `TestClient` testen. Bisher haben Sie nur gesehen, wie man synchrone Tests schreibt, ohne `async`-Funktionen zu verwenden.
 
-Die Möglichkeit, in Ihren Tests asynchrone Funktionen zu verwenden, könnte beispielsweise nützlich sein, wenn Sie Ihre Datenbank asynchron abfragen. Stellen Sie sich vor, Sie möchten das Senden von Requests an Ihre FastAPI-Anwendung testen und dann überprüfen, ob Ihr Backend die richtigen Daten erfolgreich in die Datenbank geschrieben hat, während Sie eine asynchrone Datenbankbibliothek verwenden.
+Die Möglichkeit, in Ihren Tests asynchrone Funktionen zu verwenden, könnte beispielsweise nützlich sein, wenn Sie Ihre Datenbank asynchron abfragen. Stellen Sie sich vor, Sie möchten das Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung testen und dann überprüfen, ob Ihr Backend die richtigen Daten erfolgreich in die Datenbank geschrieben hat, während Sie eine asynchrone Datenbankbibliothek verwenden.
 
 Schauen wir uns an, wie wir das machen können.
 

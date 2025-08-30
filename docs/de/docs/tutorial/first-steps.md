@@ -232,7 +232,7 @@ Wir werden sie auch „**Operationen**“ nennen.
 
 {* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
-Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von Anfragen zuständig ist, die an:
+Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die Bearbeitung von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> zuständig ist, die an:
 
 * den Pfad `/`
 * unter der Verwendung der <abbr title="eine HTTP-GET-Methode"><code>get</code>-Operation</abbr> gehen
@@ -288,7 +288,7 @@ Das ist unsere „**Pfadoperation-Funktion**“:
 
 Dies ist eine Python-Funktion.
 
-Sie wird von **FastAPI** immer dann aufgerufen, wenn sie eine Anfrage an die URL „`/`“ mittels einer `GET`-Operation erhält.
+Sie wird von **FastAPI** immer dann aufgerufen, wenn sie einen Request an die URL „`/`“ mittels einer `GET`-Operation erhält.
 
 In diesem Fall handelt es sich um eine `async`-Funktion.
 

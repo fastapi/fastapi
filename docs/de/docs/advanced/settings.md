@@ -249,7 +249,7 @@ Hier definieren wir die Konfiguration `env_file` innerhalb Ihrer Pydantic-`Setti
 
 ### Die `Settings` nur einmal laden mittels `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
 
-Das Lesen einer Datei von der Festplatte ist normalerweise ein kostspieliger (langsamer) Vorgang, daher möchten Sie ihn wahrscheinlich nur einmal ausführen und dann dasselbe Einstellungsobjekt erneut verwenden, anstatt es für jeden Request zu lesen.
+Das Lesen einer Datei von der Festplatte ist normalerweise ein kostspieliger (langsamer) Vorgang, daher möchten Sie ihn wahrscheinlich nur einmal ausführen und dann dasselbe Einstellungsobjekt erneut verwenden, anstatt es für jeden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zu lesen.
 
 Aber jedes Mal, wenn wir ausführen:
 

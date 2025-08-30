@@ -63,7 +63,7 @@ Sie können die Eigenschaft `.openapi_schema` als „Cache“ verwenden, um Ihr 
 
 Auf diese Weise muss Ihre Anwendung das Schema nicht jedes Mal generieren, wenn ein Benutzer Ihre API-Dokumentation öffnet.
 
-Es wird nur einmal generiert und dann wird dasselbe zwischengespeicherte Schema für die nächsten Requests verwendet.
+Es wird nur einmal generiert und dann wird dasselbe zwischengespeicherte Schema für die nächsten <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> verwendet.
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 

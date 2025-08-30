@@ -22,7 +22,7 @@ Deklarieren Sie die **Cookie**-Parameter, die Sie benötigen, in einem **Pydanti
 
 {* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den im Request empfangenen **Cookies** **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell bereitstellen.
+**FastAPI** wird die Daten für **jedes Feld** aus den im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> empfangenen **Cookies** **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell bereitstellen.
 
 ## Die Dokumentation testen { #check-the-docs }
 

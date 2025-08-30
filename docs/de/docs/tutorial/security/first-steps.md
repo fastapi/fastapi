@@ -188,7 +188,7 @@ Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische
 
 ## Was es macht { #what-it-does }
 
-FastAPI wird im Request nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und den Token als `str` zurückgeben.
+FastAPI wird im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und den Token als `str` zurückgeben.
 
 Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer`-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
 

@@ -16,7 +16,7 @@ Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell**
 
 {* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** der Anfrage extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
+**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
 ## Die Dokumentation testen { #check-the-docs }
 

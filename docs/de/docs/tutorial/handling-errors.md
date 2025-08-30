@@ -13,7 +13,7 @@ Sie könnten dem Client mitteilen müssen, dass:
 
 In diesen Fällen würden Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (von 400 bis 499) zurückgeben.
 
-Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass die Anfrage in irgendeiner Weise erfolgreich war.
+Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> in irgendeiner Weise erfolgreich war.
 
 Die Statuscodes im Bereich 400 bedeuten hingegen, dass es einen Fehler seitens des Clients gab.
 
@@ -33,7 +33,7 @@ Um HTTP-Responses mit Fehlern an den Client zurückzugeben, verwenden Sie `HTTPE
 
 Weil es eine Python-Exception ist, geben Sie sie nicht zurück (`return`), sondern lösen sie aus (`raise`).
 
-Das bedeutet auch, wenn Sie sich innerhalb einer Hilfsfunktion befinden, die Sie innerhalb Ihrer *Pfadoperation-Funktion* aufrufen, und Sie die `HTTPException` aus dieser Hilfsfunktion heraus auslösen, wird der restliche Code in der *Pfadoperation-Funktion* nicht ausgeführt. Die Anfrage wird sofort abgebrochen und der HTTP-Error der `HTTPException` wird an den Client gesendet.
+Das bedeutet auch, wenn Sie sich innerhalb einer Hilfsfunktion befinden, die Sie innerhalb Ihrer *Pfadoperation-Funktion* aufrufen, und Sie die `HTTPException` aus dieser Hilfsfunktion heraus auslösen, wird der restliche Code in der *Pfadoperation-Funktion* nicht ausgeführt. Der Request wird sofort abgebrochen und der HTTP-Error der `HTTPException` wird an den Client gesendet.
 
 Der Vorteil des Auslösens einer Exception gegenüber dem Zurückgeben eines Wertes wird im Abschnitt über Abhängigkeiten und Sicherheit deutlicher werden.
 

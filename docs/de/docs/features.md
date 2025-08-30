@@ -6,7 +6,7 @@
 
 ### Basiert auf offenen Standards { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>-<abbr title="auch bekannt als HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, Requestbodys, Sicherheit, usw.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> für die Erstellung von APIs, inklusive Deklarationen von <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>-<abbr title="auch bekannt als HTTP-Methoden, wie POST, GET, PUT, DELETE">Operationen</abbr>, Parametern, <abbr title="Anfragekörper">Requestbodys</abbr>, Sicherheit, usw.
 * Automatische Dokumentation der Datenmodelle mit <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (da OpenAPI selbst auf JSON Schema basiert).
 * Um diese Standards herum entworfen, nach sorgfältigem Studium. Statt einer nachträglichen Schicht darüber.
 * Dies ermöglicht auch automatische **Client-Code-Generierung** in vielen Sprachen.
@@ -91,7 +91,7 @@ So kann Ihr Editor Sie unterstützen:
 
 ![Editor Unterstützung](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
-Sie bekommen sogar Autovervollständigung an Stellen, an denen Sie dies vorher nicht für möglich gehalten hätten. Zum Beispiel der `price` Schlüssel in einem JSON Datensatz (dieser könnte auch verschachtelt sein), der aus einer Anfrage kommt.
+Sie bekommen sogar Autovervollständigung an Stellen, an denen Sie dies vorher nicht für möglich gehalten hätten. Zum Beispiel der `price` Schlüssel in einem JSON Datensatz (dieser könnte auch verschachtelt sein), der aus einem Request kommt.
 
 Nie wieder falsche Schlüsselnamen tippen, Hin und Herhüpfen zwischen der Dokumentation, Hoch- und Runterscrollen, um herauszufinden, ob es `username` oder `user_name` war.
 
@@ -140,7 +140,7 @@ FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abb
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **„Graph“ von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.
-* Alle Abhängigkeiten können Daten von Anfragen anfordern und das Verhalten von **Pfadoperationen** und der automatisierten Dokumentation **modifizieren**.
+* Alle Abhängigkeiten können Daten von Requests anfordern und das Verhalten von **Pfadoperationen** und der automatisierten Dokumentation **modifizieren**.
 * **Automatische Validierung** selbst für solche Parameter von *Pfadoperationen*, welche in Abhängigkeiten definiert sind.
 * Unterstützung für komplexe Authentifizierungssysteme, **Datenbankverbindungen**, usw.
 * **Keine Kompromisse** bei Datenbanken, Frontends, usw., sondern einfache Integration mit allen.
@@ -181,7 +181,7 @@ Mit **FastAPI** bekommen Sie alles von **Starlette** (da FastAPI nur Starlette a
 
 Inklusive externer Bibliotheken, die auf Pydantic basieren, wie <abbr title="Object-Relational Mapper – Objektrelationaler Abbilder">ORM</abbr>s, <abbr title="Object-Document Mapper – Objekt-Dokument-Abbilder">ODM</abbr>s für Datenbanken.
 
-Daher können Sie in vielen Fällen das Objekt einer Anfrage **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
+Daher können Sie in vielen Fällen das Objekt eines Requests **direkt zur Datenbank** schicken, weil alles automatisch validiert wird.
 
 Das gleiche gilt auch für die andere Richtung: Sie können in vielen Fällen das Objekt aus der Datenbank **direkt zum Client** senden.
 
