@@ -218,9 +218,9 @@ Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator und str
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
-#### Verwendung von `StreamingResponse` mit dateiähnlichen Objekten { #using-streamingresponse-with-file-like-objects }
+#### Verwendung von `StreamingResponse` mit dateiartigen Objekten { #using-streamingresponse-with-file-like-objects }
 
-Wenn Sie ein dateiähnliches (file-like) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiähnliche Objekt zu iterieren.
+Wenn Sie ein dateiartiges (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a>) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiartige Objekt zu iterieren.
 
 Auf diese Weise müssen Sie nicht alles zuerst in den Arbeitsspeicher lesen und können diese Generatorfunktion an `StreamingResponse` übergeben und zurückgeben.
 
@@ -229,7 +229,7 @@ Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbei
 {* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 1. Das ist die Generatorfunktion. Es handelt sich um eine „Generatorfunktion“, da sie `yield`-Anweisungen enthält.
-2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiähnliche Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem sie mit dem Senden der Response fertig ist.
+2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiartige Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem sie mit dem Senden der Response fertig ist.
 3. Dieses `yield from` weist die Funktion an, über das Ding namens `file_like` zu iterieren. Und dann für jeden iterierten Teil, diesen Teil so zurückzugeben, als wenn er aus dieser Generatorfunktion (`iterfile`) stammen würde.
 
     Es handelt sich also hier um eine Generatorfunktion, die die „generierende“ Arbeit intern auf etwas anderes überträgt.
