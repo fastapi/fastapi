@@ -91,7 +91,7 @@ Seine Schlüssel-Merkmale sind:
 
 ---
 
-„_Ehrlich, was Sie gebaut haben, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
+„_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
 
 <div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a>-Autor</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
 
@@ -328,13 +328,13 @@ Gehen Sie jetzt auf <a href="http://127.0.0.1:8000/docs" class="external-link" t
 
 Und nun gehen Sie auf <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* Die alternative Dokumentation wird ebenfalls den neuen Abfrageparameter und -inhalt widerspiegeln:
+* Die alternative Dokumentation wird ebenfalls den neuen Query-Parameter und Body widerspiegeln:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Zusammenfassung { #recap }
 
-Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, etc. als Funktionsparameter.
+Zusammengefasst deklarieren Sie **einmal** die Typen von Parametern, Body, usw. als Funktionsparameter.
 
 Das machen Sie mit modernen Standard-Python-Typen.
 
@@ -387,7 +387,7 @@ Um auf das vorherige Codebeispiel zurückzukommen, **FastAPI** wird:
 * Überprüfen, dass es eine `item_id` im Pfad für `GET`- und `PUT`-Anfragen gibt.
 * Überprüfen, ob die `item_id` vom Typ `int` für `GET`- und `PUT`-Anfragen ist.
     * Falls nicht, wird dem Client ein nützlicher, eindeutiger Fehler angezeigt.
-* Prüfen, ob es einen optionalen Abfrageparameter namens `q` (wie in `http://127.0.0.1:8000/items/foo?q=somequery`) für `GET`-Anfragen gibt.
+* Prüfen, ob es einen optionalen Query-Parameter namens `q` (wie in `http://127.0.0.1:8000/items/foo?q=somequery`) für `GET`-Anfragen gibt.
     * Da der `q`-Parameter mit `= None` deklariert ist, ist er optional.
     * Ohne das `None` wäre er erforderlich (wie der Body im Fall von `PUT`).
 * Bei `PUT`-Anfragen an `/items/{item_id}` den Body als JSON lesen:
