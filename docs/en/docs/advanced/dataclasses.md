@@ -1,4 +1,4 @@
-# Using Dataclasses
+# Using Dataclasses { #using-dataclasses }
 
 FastAPI is built on top of **Pydantic**, and I have been showing you how to use Pydantic models to declare requests and responses.
 
@@ -28,7 +28,7 @@ But if you have a bunch of dataclasses laying around, this is a nice trick to us
 
 ///
 
-## Dataclasses in `response_model`
+## Dataclasses in `response_model` { #dataclasses-in-response-model }
 
 You can also use `dataclasses` in the `response_model` parameter:
 
@@ -40,7 +40,7 @@ This way, its schema will show up in the API docs user interface:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
-## Dataclasses in Nested Data Structures
+## Dataclasses in Nested Data Structures { #dataclasses-in-nested-data-structures }
 
 You can also combine `dataclasses` with other type annotations to make nested data structures.
 
@@ -84,12 +84,12 @@ You can combine `dataclasses` with other type annotations in many different comb
 
 Check the in-code annotation tips above to see more specific details.
 
-## Learn More
+## Learn More { #learn-more }
 
 You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
 
 To learn more, check the <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
 
-## Version
+## Version { #version }
 
 This is available since FastAPI version `0.67.0`. 🔖

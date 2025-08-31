@@ -1,21 +1,21 @@
 tiangolo:
   login: tiangolo
-  count: 747
+  count: 768
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 102
+  count: 106
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 alejsdev:
   login: alejsdev
-  count: 47
+  count: 48
   avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=638c65283ac9e9e2c3a0f9d1e3370db4b8a2c58d&v=4
   url: https://github.com/alejsdev
 pre-commit-ci:
   login: pre-commit-ci
-  count: 30
+  count: 37
   avatarUrl: https://avatars.githubusercontent.com/in/68672?v=4
   url: https://github.com/apps/pre-commit-ci
 github-actions:
@@ -116,7 +116,7 @@ hitrust:
 ShahriyarR:
   login: ShahriyarR
   count: 4
-  avatarUrl: https://avatars.githubusercontent.com/u/3852029?u=c9a1691e5ebdc94cbf543086099a6ed705cdb873&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/3852029?u=631b2ae59360ab380c524b32bc3d245aff1165af&v=4
   url: https://github.com/ShahriyarR
 adriangb:
   login: adriangb
@@ -138,6 +138,11 @@ AlexWendland:
   count: 4
   avatarUrl: https://avatars.githubusercontent.com/u/3949212?u=c4c0c615e0ea33d00bfe16b779cf6ebc0f58071c&v=4
   url: https://github.com/AlexWendland
+YuriiMotov:
+  login: YuriiMotov
+  count: 4
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
 divums:
   login: divums
   count: 3
@@ -421,7 +426,7 @@ davidefiocco:
 adriencaccia:
   login: adriencaccia
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/19605940?u=980b0b366a02791a5600b2e9f9ac2037679acaa8&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/19605940?u=9a59081f46bfc9d839886a49d5092cf572879049&v=4
   url: https://github.com/adriencaccia
 jamescurtin:
   login: jamescurtin
@@ -513,6 +518,11 @@ tamird:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/1535036?v=4
   url: https://github.com/tamird
+ndimares:
+  login: ndimares
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/6267663?u=cfb27efde7a7212be8142abb6c058a1aeadb41b1&v=4
+  url: https://github.com/ndimares
 rabinlamadong:
   login: rabinlamadong
   count: 2
@@ -538,6 +548,11 @@ DanielYang59:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/80093591?u=63873f701c7c74aac83c906800a1dddc0bc8c92f&v=4
   url: https://github.com/DanielYang59
+valentinDruzhinin:
+  login: valentinDruzhinin
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
+  url: https://github.com/valentinDruzhinin
 blueswen:
   login: blueswen
   count: 2
