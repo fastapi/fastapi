@@ -68,6 +68,7 @@ Enforces that all incoming requests have a correctly set `Host` header, in order
 The following arguments are supported:
 
 * `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
+* `www_redirect` - If set to True, requests to non-www versions of the allowed hosts will be redirected to their www counterparts. Defaults to `True`.
 
 If an incoming request does not validate correctly then a `400` response will be sent.
 
