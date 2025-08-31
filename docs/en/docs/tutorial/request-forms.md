@@ -1,4 +1,4 @@
-# Form Data
+# Form Data { #form-data }
 
 When you need to receive form fields instead of JSON, you can use `Form`.
 
@@ -14,13 +14,13 @@ $ pip install python-multipart
 
 ///
 
-## Import `Form`
+## Import `Form` { #import-form }
 
 Import `Form` from `fastapi`:
 
 {* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
-## Define `Form` parameters
+## Define `Form` parameters { #define-form-parameters }
 
 Create form parameters the same way you would for `Body` or `Query`:
 
@@ -44,7 +44,7 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ///
 
-## About "Form Fields"
+## About "Form Fields" { #about-form-fields }
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
@@ -68,6 +68,6 @@ This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
 ///
 
-## Recap
+## Recap { #recap }
 
 Use `Form` to declare form data input parameters.

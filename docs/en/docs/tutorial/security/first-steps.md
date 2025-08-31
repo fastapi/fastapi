@@ -1,4 +1,4 @@
-# Security - First Steps
+# Security - First Steps { #security-first-steps }
 
 Let's imagine that you have your **backend** API in some domain.
 
@@ -12,17 +12,17 @@ But let's save you the time of reading the full long specification just to find 
 
 Let's use the tools provided by **FastAPI** to handle security.
 
-## How it looks
+## How it looks { #how-it-looks }
 
 Let's first just use the code and see how it works, and then we'll come back to understand what's happening.
 
-## Create `main.py`
+## Create `main.py` { #create-main-py }
 
 Copy the example in a file `main.py`:
 
 {* ../../docs_src/security/tutorial001_an_py39.py *}
 
-## Run it
+## Run it { #run-it }
 
 /// info
 
@@ -52,7 +52,7 @@ $ fastapi dev main.py
 
 </div>
 
-## Check it
+## Check it { #check-it }
 
 Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -86,7 +86,7 @@ It can be used by third party applications and systems.
 
 And it can also be used by yourself, to debug, check and test the same application.
 
-## The `password` flow
+## The `password` flow { #the-password-flow }
 
 Now let's go back a bit and understand what is all that.
 
@@ -112,7 +112,7 @@ So, let's review it from that simplified point of view:
     * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.
     * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.
 
-## **FastAPI**'s `OAuth2PasswordBearer`
+## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
 **FastAPI** provides several tools, at different levels of abstraction, to implement these security features.
 
@@ -166,7 +166,7 @@ oauth2_scheme(some, parameters)
 
 So, it can be used with `Depends`.
 
-### Use it
+### Use it { #use-it }
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
@@ -184,7 +184,7 @@ All the security utilities that integrate with OpenAPI (and the automatic API do
 
 ///
 
-## What it does
+## What it does { #what-it-does }
 
 It will go and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.
 
@@ -198,6 +198,6 @@ You can try it already in the interactive docs:
 
 We are not verifying the validity of the token yet, but that's a start already.
 
-## Recap
+## Recap { #recap }
 
 So, in just 3 or 4 extra lines, you already have some primitive form of security.

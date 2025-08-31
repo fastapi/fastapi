@@ -1,4 +1,4 @@
-# Response Status Code
+# Response Status Code { #response-status-code }
 
 The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the *path operations*:
 
@@ -39,7 +39,7 @@ FastAPI knows this, and will produce OpenAPI docs that state there is no respons
 
 ///
 
-## About HTTP status codes
+## About HTTP status codes { #about-http-status-codes }
 
 /// note
 
@@ -70,7 +70,7 @@ To know more about each status code and which code is for what, check the <a hre
 
 ///
 
-## Shortcut to remember the names
+## Shortcut to remember the names { #shortcut-to-remember-the-names }
 
 Let's see the previous example again:
 
@@ -96,6 +96,6 @@ You could also use `from starlette import status`.
 
 ///
 
-## Changing the default
+## Changing the default { #changing-the-default }
 
 Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.
