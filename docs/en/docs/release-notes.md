@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Update TrustedHostMiddleware Documentation. PR [#11441](https://github.com/fastapi/fastapi/pull/11441) by [@soulee-dev](https://github.com/soulee-dev).
 * 📝 Remove links to site callbackhell.com that doesn't exist anymore. PR [#14006](https://github.com/fastapi/fastapi/pull/14006) by [@dennybiasiolli](https://github.com/dennybiasiolli).
 * 📝 Add permalinks to headers in English docs. PR [#13993](https://github.com/fastapi/fastapi/pull/13993) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update `docs/en/docs/advanced/generate-clients.md`. PR [#13793](https://github.com/fastapi/fastapi/pull/13793) by [@mrlubos](https://github.com/mrlubos).
