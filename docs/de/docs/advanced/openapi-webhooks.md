@@ -12,7 +12,7 @@ Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, 
 
 Sie definieren auch auf irgendeine Weise, in welchen **Momenten** Ihre App diese Requests oder Events senden wird.
 
-Und **Ihre Benutzer** definieren auf irgendeine Weise (zum Beispiel irgendwo in einem Web-<abbr title="Benutzeroberfläche zur Visualisierung und zum Management von Informationen">Dashboard</abbr>) die **URL**, an die Ihre App diese Requests senden soll.
+Und **Ihre Benutzer** definieren auf irgendeine Weise (zum Beispiel irgendwo in einem Web-<abbr title="Benutzeroberfläche für das Visualisieren und Managen von Daten">Dashboard</abbr>) die **URL**, an die Ihre App diese Requests senden soll.
 
 Die gesamte **Logik** zur Registrierung der URLs für Webhooks und der Code zum tatsächlichen Senden dieser Requests liegt bei Ihnen. Sie schreiben es so, wie Sie möchten, in **Ihrem eigenen Code**.
 

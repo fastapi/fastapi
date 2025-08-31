@@ -2,7 +2,7 @@
 
 Da **FastAPI** auf der **OpenAPI**-Spezifikation basiert, können dessen APIs in einem standardisierten Format beschrieben werden, das viele Tools verstehen.
 
-Dies vereinfacht es, aktuelle **Dokumentation** und Client-Bibliotheken (<abbr title="Software Development Kits – Software-Entwicklungspakete">**SDKs**</abbr>) in verschiedenen Sprachen zu generieren sowie **Test-** oder **Automatisierungs-Workflows**, die mit Ihrem Code synchron bleiben.
+Dies vereinfacht es, aktuelle **Dokumentation** und Client-Bibliotheken (<abbr title="Software Development Kit – Software-Entwicklungspaket">**SDKs**</abbr>) in verschiedenen Sprachen zu generieren sowie **Test-** oder **Automatisierungs-Workflows**, die mit Ihrem Code synchron bleiben.
 
 In diesem Leitfaden erfahren Sie, wie Sie ein **TypeScript-SDK** für Ihr FastAPI-Backend generieren.
 

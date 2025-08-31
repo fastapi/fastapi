@@ -337,7 +337,7 @@ Da es auf dem bisherigen Standard für synchrone Python-Webframeworks (WSGI) bas
 
 /// info | Info
 
-Hug wurde von Timothy Crosley erstellt, dem gleichen Schöpfer von <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, einem großartigen Tool zum automatischen Sortieren von Importen in Python-Dateien.
+Hug wurde von Timothy Crosley erstellt, demselben Schöpfer von <a href="https://github.com/timothycrosley/isort" class="external-link" target="_blank">`isort`</a>, einem großartigen Tool zum automatischen Sortieren von Importen in Python-Dateien.
 
 ///
 

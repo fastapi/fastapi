@@ -30,7 +30,7 @@ Sie können auch `from starlette import status` verwenden.
 
 ## Tags { #tags }
 
-Sie können Ihrer *Pfadoperation* Tags hinzufügen, indem Sie dem Parameter `tags` eine `list` von `str` übergeben (in der Regel nur ein `str`):
+Sie können Ihrer *Pfadoperation* Tags hinzufügen, indem Sie dem Parameter `tags` eine `list`e von `str`s übergeben (in der Regel nur ein `str`):
 
 {* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
 

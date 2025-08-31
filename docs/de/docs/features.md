@@ -134,7 +134,7 @@ Zusätzlich alle Sicherheitsfunktionen von Starlette (inklusive **Session Cookie
 
 Alles als wiederverwendbare Tools und Komponenten gebaut, die einfach in Ihre Systeme, Datenspeicher, relationale und nicht-relationale Datenbanken, usw., integriert werden können.
 
-### Einbringen von Abhängigkeiten (Dependency Injection) { #dependency-injection }
+### Dependency Injection { #dependency-injection }
 
 FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abbr title='Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Resourcen, Dienste, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 

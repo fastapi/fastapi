@@ -12,7 +12,7 @@ Importieren Sie zuerst `Header`:
 
 Deklarieren Sie dann die Header-Parameter mit derselben Struktur wie bei `Path`, `Query` und `Cookie`.
 
-Sie können den Defaultwert sowie alle zusätzlichen Validierungs- oder Annotierungsparameter definieren:
+Sie können den Defaultwert sowie alle zusätzlichen Validierungs- oder Annotationsparameter definieren:
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
@@ -56,7 +56,7 @@ Bevor Sie `convert_underscores` auf `False` setzen, bedenken Sie, dass manche HT
 
 ## Doppelte Header { #duplicate-headers }
 
-Es ist möglich, doppelte Header zu empfangen. Das bedeutet, denselben Header mit mehreren Werten.
+Es ist möglich, doppelte Header zu empfangen. Damit ist gemeint, denselben Header mit mehreren Werten.
 
 Sie können solche Fälle definieren, indem Sie in der Typdeklaration eine Liste verwenden.
 

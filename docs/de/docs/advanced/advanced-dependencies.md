@@ -36,7 +36,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
 
-Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt „bar“ enthält, als das Attribut `checker.fixed_content`.
+Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
 ## Die Instanz als Abhängigkeit verwenden { #use-the-instance-as-a-dependency }
 

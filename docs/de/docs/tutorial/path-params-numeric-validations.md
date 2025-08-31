@@ -1,6 +1,6 @@
 # Pfad-Parameter und Validierung von Zahlen { #path-parameters-and-numeric-validations }
 
-So wie Sie mit `Query` für Query-Parameter zusätzliche Validierungen und Metadaten hinzufügen können, können Sie das gleiche für Pfad-Parameter mit `Path` tun.
+So wie Sie mit `Query` für Query-Parameter zusätzliche Validierungen und Metadaten deklarieren können, können Sie mit `Path` die gleichen Validierungen und Metadaten für Pfad-Parameter deklarieren.
 
 ## `Path` importieren { #import-path }
 
@@ -14,13 +14,13 @@ FastAPI hat in Version 0.95.0 Unterstützung für `Annotated` hinzugefügt und e
 
 Wenn Sie eine ältere Version haben, würden Fehler angezeigt werden, wenn Sie versuchen, `Annotated` zu verwenden.
 
-Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
+Stellen Sie sicher, dass Sie [FastAPI aktualisieren](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}, auf mindestens Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
 ## Metadaten deklarieren { #declare-metadata }
 
-Sie können alle gleichen Parameter wie für `Query` deklarieren.
+Sie können dieselben Parameter wie für `Query` deklarieren.
 
 Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` zu deklarieren, können Sie schreiben:
 
@@ -44,7 +44,7 @@ Angenommen, Sie möchten den Query-Parameter `q` als erforderlichen `str` deklar
 
 Und Sie müssen sonst nichts anderes für diesen Parameter deklarieren, Sie brauchen also `Query` nicht wirklich.
 
-Aber Sie müssen dennoch `Path` für den `item_id` Pfad-Parameter verwenden. Und aus irgendeinem Grund möchten Sie `Annotated` nicht verwenden.
+Aber Sie müssen dennoch `Path` für den `item_id`-Pfad-Parameter verwenden. Und aus irgendeinem Grund möchten Sie `Annotated` nicht verwenden.
 
 Python wird sich beschweren, wenn Sie einen Wert mit einem „Default“ vor einem Wert ohne „Default“ setzen.
 
@@ -82,7 +82,7 @@ Hier ist ein **kleiner Trick**, der nützlich sein kann, obwohl Sie ihn nicht of
 
 Wenn Sie:
 
-* den `q` Query-Parameter sowohl ohne `Query` als auch ohne Defaultwert deklarieren
+* den `q`-Query-Parameter sowohl ohne `Query` als auch ohne Defaultwert deklarieren
 * den Pfad-Parameter `item_id` mit `Path` deklarieren
 * sie in einer anderen Reihenfolge haben
 * nicht `Annotated` verwenden
