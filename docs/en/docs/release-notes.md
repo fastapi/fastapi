@@ -34,6 +34,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove Mobb. PR [#14026](https://github.com/fastapi/fastapi/pull/14026) by [@tiangolo](https://github.com/tiangolo).
 * 🛠️ Update `mkdocs_hooks` to handle headers with permalinks when building docs. PR [#14025](https://github.com/fastapi/fastapi/pull/14025) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14016](https://github.com/fastapi/fastapi/pull/14016) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump `mkdocs-macros-plugin` from 1.3.7 to 1.3.9. PR [#14003](https://github.com/fastapi/fastapi/pull/14003) by [@YuriiMotov](https://github.com/YuriiMotov).
