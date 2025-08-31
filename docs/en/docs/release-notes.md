@@ -34,6 +34,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: remove Platform.sh. PR [#14027](https://github.com/fastapi/fastapi/pull/14027) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Mobb. PR [#14026](https://github.com/fastapi/fastapi/pull/14026) by [@tiangolo](https://github.com/tiangolo).
 * 🛠️ Update `mkdocs_hooks` to handle headers with permalinks when building docs. PR [#14025](https://github.com/fastapi/fastapi/pull/14025) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14016](https://github.com/fastapi/fastapi/pull/14016) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
