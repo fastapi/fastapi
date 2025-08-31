@@ -128,6 +128,14 @@ Inside of the function, you can access all the attributes of the model object di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
+/// info
+
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
+///
+
 ## Request body + path parameters { #request-body-path-parameters }
 
 You can declare path parameters and request body at the same time.
