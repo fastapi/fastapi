@@ -20,9 +20,9 @@ Sie können den (unregelmäßigen) [**FastAPI and friends**-Newsletter](newslett
 * Breaking Changes 🚨
 * Tipps und Tricks ✅
 
-## FastAPI auf Twitter folgen { #follow-fastapi-on-twitter }
+## FastAPI auf X (Twitter) folgen { #follow-fastapi-on-twitter }
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Folgen Sie @fastapi auf **Twitter**</a>, um die neuesten Nachrichten über **FastAPI** zu erhalten. 🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">Folgen Sie @fastapi auf **X (Twitter)**</a>, um die neuesten Nachrichten über **FastAPI** zu erhalten. 🐦
 
 ## **FastAPI** auf GitHub einen Stern geben { #star-fastapi-in-github }
 
@@ -47,19 +47,19 @@ Sie können:
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Mir auf **GitHub** folgen</a>.
     * Andere Open-Source-Projekte sehen, die ich erstellt habe und die Ihnen helfen könnten.
     * Mir folgen, um zu sehen, wenn ich ein neues Open-Source-Projekt erstelle.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Mir auf **Twitter** folgen</a> oder <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Mir auf **X (Twitter)** folgen</a> oder <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>.
     * Mir mitteilen, wie Sie FastAPI verwenden (ich höre das gerne).
     * Mitbekommen, wenn ich Ankündigungen mache oder neue Tools veröffentliche.
-    * Sie können auch <a href="https://twitter.com/fastapi" class="external-link" target="_blank">@fastapi auf Twitter folgen</a> (ein separates Konto).
+    * Sie können auch <a href="https://x.com/fastapi" class="external-link" target="_blank">@fastapi auf X (Twitter) folgen</a> (ein separates Konto).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Mir auf **LinkedIn** folgen</a>.
-    * Mitbekommen, wenn ich Ankündigungen mache oder neue Tools veröffentliche (obwohl ich Twitter häufiger verwende 🤷‍♂).
+    * Mitbekommen, wenn ich Ankündigungen mache oder neue Tools veröffentliche (obwohl ich X (Twitter) häufiger verwende 🤷‍♂).
 * Lesen, was ich schreibe (oder mir folgen) auf <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> oder <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Andere Ideen, Artikel lesen und mehr über die von mir erstellten Tools erfahren.
     * Mir folgen, um zu lesen, wenn ich etwas Neues veröffentliche.
 
 ## Über **FastAPI** tweeten { #tweet-about-fastapi }
 
-<a href="https://twitter.com/compose/tweet?text=Ich liebe @fastapi, weil ... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
+<a href="https://x.com/compose/tweet?text=Ich liebe @fastapi, weil ... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
 
 Ich höre gerne, wie **FastAPI** verwendet wird, was Ihnen daran gefallen hat, in welchem Projekt/Unternehmen Sie es verwenden, usw.
 
