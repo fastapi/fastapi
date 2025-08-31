@@ -75,15 +75,15 @@ sequenceDiagram
     participant Server as FastAPI Server
 
     Client->>Proxy: HTTPS Request<br/>Host: mysuperapp.com<br/>Path: /items
-    
+
     Note over Proxy: Proxy adds forwarded headers
-    
+
     Proxy->>Server: HTTP Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
-    
+
     Note over Server: Server interprets headers<br/>(if --forwarded-allow-ips is set)
-    
+
     Server->>Proxy: HTTP Response<br/>with correct HTTPS URLs
-    
+
     Proxy->>Client: HTTPS Response
 ```
 
