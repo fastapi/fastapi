@@ -88,7 +88,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Ich bin überglücklich mit **FastAPI**. Es macht so viel Spaß!_“
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Host des <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> Podcast</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Host des <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> Podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 
@@ -102,7 +102,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Wir haben zu **FastAPI** für unsere **APIs** gewechselt [...] Ich denke, es wird Ihnen gefallen [...]_“
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Gründer von <a href="https://explosion.ai" target="_blank">Explosion AI</a> - Autoren von <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(Ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Gründer von <a href="https://explosion.ai" target="_blank">Explosion AI</a> - Autoren von <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(Ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(Ref)</small></a></div>
 
 ---
 

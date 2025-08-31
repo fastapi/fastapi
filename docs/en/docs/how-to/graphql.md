@@ -1,4 +1,4 @@
-# GraphQL
+# GraphQL { #graphql }
 
 As **FastAPI** is based on the **ASGI** standard, it's very easy to integrate any **GraphQL** library also compatible with ASGI.
 
@@ -14,7 +14,7 @@ Make sure you evaluate if the **benefits** for your use case compensate the **dr
 
 ///
 
-## GraphQL Libraries
+## GraphQL Libraries { #graphql-libraries }
 
 Here are some of the **GraphQL** libraries that have **ASGI** support. You could use them with **FastAPI**:
 
@@ -27,7 +27,7 @@ Here are some of the **GraphQL** libraries that have **ASGI** support. You could
 * <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>
     * With <a href="https://github.com/ciscorn/starlette-graphene3" class="external-link" target="_blank">starlette-graphene3</a>
 
-## GraphQL with Strawberry
+## GraphQL with Strawberry { #graphql-with-strawberry }
 
 If you need or want to work with **GraphQL**, <a href="https://strawberry.rocks/" class="external-link" target="_blank">**Strawberry**</a> is the **recommended** library as it has the design closest to **FastAPI's** design, it's all based on **type annotations**.
 
@@ -41,7 +41,7 @@ You can learn more about Strawberry in the <a href="https://strawberry.rocks/" c
 
 And also the docs about <a href="https://strawberry.rocks/docs/integrations/fastapi" class="external-link" target="_blank">Strawberry with FastAPI</a>.
 
-## Older `GraphQLApp` from Starlette
+## Older `GraphQLApp` from Starlette { #older-graphqlapp-from-starlette }
 
 Previous versions of Starlette included a `GraphQLApp` class to integrate with <a href="https://graphene-python.org/" class="external-link" target="_blank">Graphene</a>.
 
@@ -53,7 +53,7 @@ If you need GraphQL, I still would recommend you check out <a href="https://stra
 
 ///
 
-## Learn More
+## Learn More { #learn-more }
 
 You can learn more about **GraphQL** in the <a href="https://graphql.org/" class="external-link" target="_blank">official GraphQL documentation</a>.
 

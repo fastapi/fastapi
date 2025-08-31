@@ -1,21 +1,21 @@
 tiangolo:
   login: tiangolo
-  count: 753
+  count: 768
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 104
+  count: 106
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 alejsdev:
   login: alejsdev
-  count: 47
+  count: 48
   avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=638c65283ac9e9e2c3a0f9d1e3370db4b8a2c58d&v=4
   url: https://github.com/alejsdev
 pre-commit-ci:
   login: pre-commit-ci
-  count: 33
+  count: 37
   avatarUrl: https://avatars.githubusercontent.com/in/68672?v=4
   url: https://github.com/apps/pre-commit-ci
 github-actions:
@@ -138,6 +138,11 @@ AlexWendland:
   count: 4
   avatarUrl: https://avatars.githubusercontent.com/u/3949212?u=c4c0c615e0ea33d00bfe16b779cf6ebc0f58071c&v=4
   url: https://github.com/AlexWendland
+YuriiMotov:
+  login: YuriiMotov
+  count: 4
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
 divums:
   login: divums
   count: 3
@@ -421,7 +426,7 @@ davidefiocco:
 adriencaccia:
   login: adriencaccia
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/19605940?u=980b0b366a02791a5600b2e9f9ac2037679acaa8&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/19605940?u=9a59081f46bfc9d839886a49d5092cf572879049&v=4
   url: https://github.com/adriencaccia
 jamescurtin:
   login: jamescurtin
@@ -553,8 +558,3 @@ blueswen:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/1564148?u=6d6b8cc8f2b5cef715e68d6175154a8a94d518ee&v=4
   url: https://github.com/blueswen
-YuriiMotov:
-  login: YuriiMotov
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=e83a39697a2d33ab2ec9bfbced794ee48bc29cec&v=4
-  url: https://github.com/YuriiMotov

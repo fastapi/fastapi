@@ -381,7 +381,7 @@ Starlette （和 **FastAPI**） 是基於 <a href="https://anyio.readthedocs.io/
 
 在較舊的 Python 版本中，你可能會使用多執行緒或 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但這些程式碼要更難以理解、調試和思考。
 
-在較舊的 NodeJS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致<a href="http://callbackhell.com/" class="external-link" target="_blank">回呼地獄</a>。
+在較舊的 NodeJS / 瀏覽器 JavaScript 中，你會使用「回呼」，這可能會導致“回呼地獄”。
 
 ## 協程
 
