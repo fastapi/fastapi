@@ -64,6 +64,39 @@ If you want to learn more about HTTPS, check the guide [About HTTPS](../deployme
 
 ///
 
+### How Proxy Forwarded Headers Work
+
+Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Proxy as Proxy/Load Balancer
+    participant Server as FastAPI Server
+
+    Client->>Proxy: HTTPS Request<br/>Host: mysuperapp.com<br/>Path: /items
+    
+    Note over Proxy: Proxy adds forwarded headers
+    
+    Proxy->>Server: HTTP Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
+    
+    Note over Server: Server interprets headers<br/>(if --forwarded-allow-ips is set)
+    
+    Server->>Proxy: HTTP Response<br/>with correct HTTPS URLs
+    
+    Proxy->>Client: HTTPS Response
+```
+
+The **proxy** intercepts the original client request and adds the special *forwarded* headers (`X-Forwarded-*`) before passing the request to the **application server**.
+
+These headers preserve information about the original request that would otherwise be lost:
+
+* **X-Forwarded-For**: The original client's IP address
+* **X-Forwarded-Proto**: The original protocol (`https`)
+* **X-Forwarded-Host**: The original host (`mysuperapp.com`)
+
+When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these headers and uses them, for example to generate the correct URLs in redirects.
+
 ## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
 
 You could have a proxy that adds a path prefix to your application.
