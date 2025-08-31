@@ -1,6 +1,6 @@
-# Response Headers
+# Response Headers { #response-headers }
 
-## Use a `Response` parameter
+## Use a `Response` parameter { #use-a-response-parameter }
 
 You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies).
 
@@ -16,7 +16,7 @@ And if you declared a `response_model`, it will still be used to filter and conv
 
 You can also declare the `Response` parameter in dependencies, and set headers (and cookies) in them.
 
-## Return a `Response` directly
+## Return a `Response` directly { #return-a-response-directly }
 
 You can also add headers when you return a `Response` directly.
 
@@ -34,7 +34,7 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 ///
 
-## Custom Headers
+## Custom Headers { #custom-headers }
 
 Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
 

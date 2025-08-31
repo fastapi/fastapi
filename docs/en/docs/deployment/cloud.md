@@ -1,10 +1,10 @@
-# Deploy FastAPI on Cloud Providers
+# Deploy FastAPI on Cloud Providers { #deploy-fastapi-on-cloud-providers }
 
 You can use virtually **any cloud provider** to deploy your FastAPI application.
 
 In most of the cases, the main cloud providers have guides to deploy FastAPI with them.
 
-## Cloud Providers - Sponsors
+## Cloud Providers - Sponsors { #cloud-providers-sponsors }
 
 Some cloud providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
 
