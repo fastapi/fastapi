@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Remove obsolete `url` field in error responses in docs. PR [#13655](https://github.com/fastapi/fastapi/pull/13655) by [@Taoup](https://github.com/Taoup).
 * 📝 Bring the `scope` claim in line with the standard in `docs_src/security/tutorial005.py`. PR [#11189](https://github.com/fastapi/fastapi/pull/11189) by [@DurandA](https://github.com/DurandA).
 * 📝 Update TrustedHostMiddleware Documentation. PR [#11441](https://github.com/fastapi/fastapi/pull/11441) by [@soulee-dev](https://github.com/soulee-dev).
 * 📝 Remove links to site callbackhell.com that doesn't exist anymore. PR [#14006](https://github.com/fastapi/fastapi/pull/14006) by [@dennybiasiolli](https://github.com/dennybiasiolli).
