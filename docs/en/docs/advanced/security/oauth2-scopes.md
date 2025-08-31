@@ -62,7 +62,7 @@ For OAuth2 they are just strings.
 
 First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:125,129:135,140,156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Now let's review those changes step by step.
 
@@ -98,7 +98,7 @@ But in your application, for security, you should make sure you only add the sco
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
 ## Declare scopes in *path operations* and dependencies { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
 /// info | Technical Details
 
@@ -180,7 +180,7 @@ Instead of, for example, a `dict`, or something else, as it could break the appl
 
 We also verify that we have a user with that username, and if not, we raise that same exception we created before.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:128] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
 ## Verify the `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ We now verify that all the scopes required, by this dependency and all the depen
 
 For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[129:135] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
 ## Dependency tree and scopes { #dependency-tree-and-scopes }
 
