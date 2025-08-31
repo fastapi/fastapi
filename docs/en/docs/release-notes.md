@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Fix Twitter to be X (Twitter) everywhere in documentation. PR [#13809](https://github.com/fastapi/fastapi/pull/13809) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🐛 Prevent scroll-to-top on restart/fast buttons in `termynal.js`. PR [#13714](https://github.com/fastapi/fastapi/pull/13714) by [@Ashish-Pandey62](https://github.com/Ashish-Pandey62).
 * 📝 Update testing events documentation. PR [#13259](https://github.com/fastapi/fastapi/pull/13259) by [@z0z0r4](https://github.com/z0z0r4).
 * 📝 Remove obsolete `url` field in error responses in docs. PR [#13655](https://github.com/fastapi/fastapi/pull/13655) by [@Taoup](https://github.com/Taoup).
