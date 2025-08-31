@@ -137,7 +137,7 @@ Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie
 
 Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
 
-Indem Sie von `str` erben, weiß die API Dokumentation, dass die Werte des Enums vom Typ `str` sein müssen, und wird in der Lage sein, korrekt zu rendern.
+Indem Sie von `str` erben, weiß die API Dokumentation, dass die Werte vom Typ `str` sein müssen, und wird in der Lage sein, korrekt zu rendern.
 
 Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaubten Werte sein werden:
 
@@ -145,7 +145,7 @@ Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaub
 
 /// info | Info
 
-<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder kurz Enums)</a> gibt es in Python seit Version 3.4.
+<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder Enums)</a> gibt es in Python seit Version 3.4.
 
 ///
 
@@ -167,17 +167,17 @@ Weil die erlaubten Werte für den *Pfad-Parameter* nun vordefiniert sind, kann d
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Mit Python-*<abbr title="Enumeration – Aufzählung">Enums</abbr>* arbeiten { #working-with-python-enumerations }
+### Mit Python-*Enumerationen* arbeiten { #working-with-python-enumerations }
 
-Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der möglichen Werte einer Enumeration">Member</abbr> eines Enums* sein.
+Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der möglichen Werte einer Enumeration">Member</abbr> einer Enumeration* sein.
 
-#### *Enum-Member* vergleichen { #compare-enumeration-members }
+#### *Enumeration-Member* vergleichen { #compare-enumeration-members }
 
-Sie können ihn mit einem Member Ihres Enums `ModelName` vergleichen:
+Sie können ihn mit einem Member Ihrer Enumeration `ModelName` vergleichen:
 
 {* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
-#### *Enum-Wert* erhalten { #get-the-enumeration-value }
+#### *Enumerations-Wert* erhalten { #get-the-enumeration-value }
 
 Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
 
@@ -189,7 +189,7 @@ Sie können den Wert `"lenet"` außerdem mittels `ModelName.lenet.value` abrufen
 
 ///
 
-#### *Enum-Member* zurückgeben { #return-enumeration-members }
+#### *Enumeration-Member* zurückgeben { #return-enumeration-members }
 
 Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschachtelt in einem JSON-Body (z. B. als `dict`).
 

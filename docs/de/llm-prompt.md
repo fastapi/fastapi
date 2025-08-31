@@ -275,6 +275,8 @@ Below is a list of English terms and their preferred German translations, separa
 * «the dict»: «das Dict»
 * «the dictionary»: «das Dictionary»
 * «the engine»: «die Engine»
+* «the enumeration»: «die Enumeration»
+* «the enum»: «das Enum»
 * «the env var»: «die Umgebungsvariable»
 * «the error response»: «die Error-Response»
 * «the event»: «das Event»
