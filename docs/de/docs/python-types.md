@@ -2,7 +2,7 @@
 
 Python hat Unterstützung für optionale <abbr title="englisch: Type hints">„Typhinweise“</abbr> (auch <abbr title="englisch: Type annotations">„Typannotationen“</abbr> genannt).
 
-Diese **„Typhinweise“** oder -annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
+Diese **„Typhinweise“** oder -Annotationen sind eine spezielle Syntax, die es erlaubt, den <abbr title="zum Beispiel: str, int, float, bool">Typ</abbr> einer Variablen zu deklarieren.
 
 Durch das Deklarieren von Typen für Ihre Variablen können Editoren und Tools bessere Unterstützung bieten.
 
