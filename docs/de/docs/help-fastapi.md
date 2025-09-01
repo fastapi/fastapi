@@ -40,7 +40,7 @@ Auf diese Weise erhalten Sie Benachrichtigungen (per E-Mail), wenn es ein neues 
 
 ## Mit dem Autor vernetzen { #connect-with-the-author }
 
-Sie können sich mit <a href="https://tiangolo.com" class="external-link" target="_blank">mir (Sebastián Ramírez / `tiangolo`)</a>, dem Autor, verbinden.
+Sie können sich mit <a href="https://tiangolo.com" class="external-link" target="_blank">mir (Sebastián Ramírez / `tiangolo`)</a>, dem Autor, vernetzen.
 
 Sie können:
 
@@ -100,7 +100,7 @@ So helfen Sie anderen bei Fragen (in Diskussionen oder Issues):
 
 ### Das Problem reproduzieren { #reproduce-the-problem }
 
-In den meisten Fällen und bei den meisten Fragen gibt es etwas in Bezug auf den **Originalcode** der Person.
+In den meisten Fällen und bei den meisten Fragen gibt es etwas in Bezug auf den **originalen Code** der Person.
 
 In vielen Fällen wird nur ein Fragment des Codes gepostet, aber das reicht nicht aus, um **das Problem zu reproduzieren**.
 
@@ -227,7 +227,7 @@ Wenn Sie mir dabei helfen können, **helfen Sie mir, FastAPI zu pflegen** und Si
 
 ## Am Chat teilnehmen { #join-the-chat }
 
-Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord-Chat-Server</a> 👥 bei und treffen Sie sich mit anderen Mitgliedern der FastAPI-Community.
+Treten Sie dem 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">Discord-Chatserver</a> 👥 bei und treffen Sie sich mit anderen Mitgliedern der FastAPI-Community.
 
 /// tip | Tipp
 
