@@ -192,7 +192,7 @@ Dieser ganze Erneuerungsprozess, während die Anwendung weiterhin bereitgestellt
 
 ## Proxy-<abbr title="weitergeleitete Header">Forwarded-Header</abbr> { #proxy-forwarded-headers }
 
-Wenn Sie einen Proxy zur Verarbeitung von HTTPS verwenden, weiß Ihr **Anwendungsserver** (z. B. Uvicorn über das FastAPI-CLI) nichts über den HTTPS-Prozess, er kommuniziert per einfachem HTTP mit dem **TLS-Terminierungsproxy**.
+Wenn Sie einen Proxy zur Verarbeitung von HTTPS verwenden, weiß Ihr **Anwendungsserver** (z. B. Uvicorn über das FastAPI CLI) nichts über den HTTPS-Prozess, er kommuniziert per einfachem HTTP mit dem **TLS-Terminierungsproxy**.
 
 Dieser **Proxy** würde normalerweise unmittelbar vor dem Übermitteln der Anfrage an den **Anwendungsserver** einige HTTP-Header dynamisch setzen, um dem Anwendungsserver mitzuteilen, dass der Request vom Proxy **weitergeleitet** wird.
 
@@ -208,7 +208,7 @@ Die Proxy-Header sind:
 
 Trotzdem, da der **Anwendungsserver** nicht weiß, dass er sich hinter einem vertrauenswürdigen **Proxy** befindet, würde er diesen Headern standardmäßig nicht vertrauen.
 
-Sie können den **Anwendungsserver** jedoch so konfigurieren, dass er den vom **Proxy** gesendeten *Forwarded*-Headern vertraut. Wenn Sie das FastAPI-CLI verwenden, können Sie die *CLI-Option* `--forwarded-allow-ips` nutzen, um anzugeben, von welchen IPs er diesen *Forwarded*-Headern vertrauen soll.
+Sie können den **Anwendungsserver** jedoch so konfigurieren, dass er den vom **Proxy** gesendeten *Forwarded*-Headern vertraut. Wenn Sie das FastAPI CLI verwenden, können Sie die *CLI-Option* `--forwarded-allow-ips` nutzen, um anzugeben, von welchen IPs er diesen *Forwarded*-Headern vertrauen soll.
 
 Wenn der **Anwendungsserver** beispielsweise nur Kommunikation vom vertrauenswürdigen **Proxy** empfängt, können Sie `--forwarded-allow-ips="*"` setzen, um allen eingehenden IPs zu vertrauen, da er nur Requests von der vom **Proxy** verwendeten IP erhalten wird.
 

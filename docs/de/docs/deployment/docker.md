@@ -277,7 +277,7 @@ Sie sollten jetzt eine Verzeichnisstruktur wie diese haben:
 
 #### Hinter einem TLS-Terminierungsproxy { #behind-a-tls-termination-proxy }
 
-Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn (durch das FastAPI-CLI), den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
+Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn (durch das FastAPI CLI), den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
 
 ```Dockerfile
 CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]

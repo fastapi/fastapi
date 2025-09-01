@@ -46,13 +46,13 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-Das Kommandozeilenprogramm namens `fastapi` ist die **FastAPI-CLI**.
+Das Kommandozeilenprogramm namens `fastapi` ist das **FastAPI CLI**.
 
-FastAPI-CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt automatisch die `FastAPI`-Instanz (häufig `app` genannt), bestimmt den korrekten Importprozess und stellt sie dann bereit.
+FastAPI CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt automatisch die `FastAPI`-Instanz (häufig `app` genannt), bestimmt den korrekten Importprozess und stellt sie dann bereit.
 
 Für die Produktion würden Sie stattdessen `fastapi run` verwenden. 🚀
 
-Intern verwendet die **FastAPI CLI** <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
+Intern verwendet das **FastAPI CLI** <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
 
 ## `fastapi dev` { #fastapi-dev }
 
