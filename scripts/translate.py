@@ -67,12 +67,15 @@ English single typographic quotes
     Unicode U+2018 (LEFT SINGLE QUOTATION MARK) and Unicode U+2019 (RIGHT SINGLE QUOTATION MARK)
 
 Code snippet
-    Text in a Markdown document which is surrounded by single backticks.
+    Also called "inline code". Text in a Markdown document which is surrounded by single backticks. A paragraph can have a more than one code snippets.
 
-    Examples:
+    Example:
 
-        «`foo`»
-        «`lorem ipsum`»
+        «`i am a code snippet`»
+
+    Example:
+
+        «`first code snippet` `second code snippet` `third code snippet`»
 
 Code block
     Text in a Markdown document which is surrounded by triple backticks. Spreads multiple lines.

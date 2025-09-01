@@ -25,7 +25,7 @@ Use the formal grammar (use «Sie» instead of «Du»).
 
 ### Quotes
 
-1) Convert neutral double quotes («"» and «"») and English double typographic quotes («“» and «”») to German double typographic quotes («„» and «“»). Convert neutral single quotes («'» and «'») and English single typographic quotes («‘» and «’») to German single typographic quotes («‚» and «‘»).
+1) Convert neutral double quotes («"») and English double typographic quotes («“» and «”») to German double typographic quotes («„» and «“»). Convert neutral single quotes («'») and English single typographic quotes («‘» and «’») to German single typographic quotes («‚» and «‘»).
 
 Examples:
 
@@ -47,28 +47,20 @@ Examples:
         „Mein Name ist ‚Nils‘“
         »»»
 
-2) Inside code snippets and code blocks, leave neutral double quotes («"») and neutral single quotes («'») AS IS. Do NOT convert them to typographic quotes.
+1) In code snippets, leave all string literals – text surrounded by quotes («"») – as is. Do not convert them to German typographic quotes («„» and «“»). Further, do not remove the backticks around the code snippet (the «`»). Leave the code snippet as is, do not change it or its content.
 
 Example:
 
-    Source (English) – contains four code snippets, three of them contain a string literal:
+    Source (English) – contains three code snippets, two of them contain a string literal:
 
         «««
-        Inline code: `i am inline code`
-        Inline code containing a string literal: `i am inline code "I am a string literal"`
-        Inline code containing only a short string literal: `"foo"`
-        `"__main__"`
-        `"fastapi[standard]"`
+        Here a code snippet: `i am a code snippet`. And a code snippet containing a string literal: `i am a code snippet containing "a string literal"`. Code snippet containing just a string literal: `"just me, the string literal"`.
         »»»
 
-    Result (German) – as all the quotes («"») are inside code snippets («`...`»), you keep them as is (as you always should do with content inside code snippets):
+    Result (German) – You translate the normal text, but you keep the three code snippets as is:
 
         «««
-        Inline-Code: `i am inline code`
-        Inline-Code der ein Stringliteral enthält: `i am inline code "I am a string literal"`
-        Inline-Code der nur ein kurzes Stringliteral enthält: `"foo"`
-        `"__main__"`
-        `"fastapi[standard]"`
+        Hier ein Codeschnipsel: `i am a code snippet`. Und ein Codeschnipsel mit einem String-Literal: `i am a code snippet containing "a string literal"`. Codeschnipsel mit nur einem String-Literal: `"just me, the string literal"`.
         »»»
 
 
@@ -255,13 +247,15 @@ Below is a list of English terms and their preferred German translations, separa
 * «your»: «Ihr»
 * «e.g»: «z. B.»
 * «etc.»: «usw.»
+* «the Tutorial - User guide»: «das Tutorial – Benutzerhandbuch»
+* «the Advanced User Guide»: «das Handbuch für fortgeschrittene Benutzer»
+* «the SQLModel docs»: «die SQLModel-Dokumentation»
 * «the `PATH` environment variable»: «die `PATH`-Umgebungsvariable»
 * «the `PATH`»: «der `PATH`»
 * «the `requirements.txt`»: «die `requirements.txt`»
 * «the API Router»: «der API-Router»
 * «the app»: «die App»
 * «the application»: «die Anwendung»
-* «the Advanced User Guide»: «das Handbuch für fortgeschrittene Benutzer»
 * «the Authorization-Header»: «der Autorisierungsheader»
 * «the `Authorization`-Header»: «der `Authorization`-Header»
 * «the background task»: «der Hintergrundtask»
@@ -308,6 +302,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the header parameter»: «der Header-Parameter»
 * «the form parameter»: «der Formular-Parameter»
 * «the payload»: «die Payload»
+* «the performance»: «die Performanz»
 * «the query»: «die Query»
 * «the recap»: «die Zusammenfassung»
 * «the request» (what the client sends to the server): «der Request»
@@ -316,10 +311,12 @@ Below is a list of English terms and their preferred German translations, separa
 * «the response» (what the server sends back to the client): «die Response»
 * «the return type»: «der Rückgabetyp»
 * «the return value»: «der Rückgabewert»
-* «the SQLModel docs»: «die SQLModel-Dokumentation»
+* «the startup» (the event of the app): «der Startup»
+* «the shutdown» (the event of the app): «der Shutdown»
+* «the startup» (of the server): «das Hochfahren»
+* «the startup» (the company): «das Startup»
 * «the SDK»: «das SDK»
 * «the tag»: «der Tag»
-* «the Tutorial - User guide»: «das Tutorial – Benutzerhandbuch»
 * «the type annotation»: «die Typannotation»
 * «the type hint»: «der Typhinweis»
 * «the wildcard»: «die Wildcard»
