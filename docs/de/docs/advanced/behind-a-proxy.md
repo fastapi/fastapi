@@ -1,6 +1,105 @@
 # Hinter einem Proxy { #behind-a-proxy }
 
-In manchen Situationen müssen Sie möglicherweise einen **Proxy**-Server wie Traefik oder Nginx verwenden, mit einer Konfiguration, die ein zusätzliches Pfadpräfix hinzufügt, das von Ihrer Anwendung nicht gesehen wird.
+In vielen Situationen würden Sie einen **Proxy** wie Traefik oder Nginx vor Ihrer FastAPI-App verwenden.
+
+Diese Proxys könnten HTTPS-Zertifikate und andere Dinge handhaben.
+
+## Proxy-<abbr title="weitergeleitete Header">Forwarded-Header</abbr> { #proxy-forwarded-headers }
+
+Ein **Proxy** vor Ihrer Anwendung würde normalerweise einige Header on-the-fly setzen, bevor er die Requests an den **Server** sendet, um den Server wissen zu lassen, dass der Request vom Proxy **weitergeleitet** wurde, einschließlich der ursprünglichen (öffentlichen) URL, inklusive der Domain, dass HTTPS verwendet wird, usw.
+
+Das **Server**-Programm (z. B. **Uvicorn** via **FastAPI CLI**) ist in der Lage, diese Header zu interpretieren und diese Information dann an Ihre Anwendung weiterzugeben.
+
+Aber aus Sicherheitsgründen, da der Server nicht weiß, dass er hinter einem vertrauenswürdigen Proxy läuft, wird er diese Header nicht interpretieren.
+
+/// note | Technische Details
+
+Die Proxy-Header sind:
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+### Proxy-Forwarded-Header aktivieren { #enable-proxy-forwarded-headers }
+
+Sie können FastAPI CLI mit der *CLI-Option* `--forwarded-allow-ips` starten und die IP-Adressen übergeben, denen vertraut werden soll, um diese Forwarded-Header zu lesen.
+
+Wenn Sie es auf `--forwarded-allow-ips="*"` setzen, würde es allen eingehenden IPs vertrauen.
+
+Wenn Ihr **Server** hinter einem vertrauenswürdigen **Proxy** sitzt und nur der Proxy mit ihm spricht, würde dies dazu führen, dass er die IP dieses **Proxys** akzeptiert, was auch immer sie ist.
+
+<div class="termy">
+
+```console
+$ fastapi run --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+### Weiterleitungen mit HTTPS { #redirects-with-https }
+
+Angenommen, Sie definieren eine *Pfadoperation* `/items/`:
+
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+
+Wenn der Client versucht, zu `/items` zu gehen, würde er standardmäßig zu `/items/` umgeleitet.
+
+Aber bevor Sie die *CLI-Option* `--forwarded-allow-ips` setzen, könnte er zu `http://localhost:8000/items/` umleiten.
+
+Aber möglicherweise wird Ihre Anwendung unter `https://mysuperapp.com` gehostet, und die Weiterleitung sollte zu `https://mysuperapp.com/items/` erfolgen.
+
+Durch Setzen von `--proxy-headers` kann FastAPI jetzt an den richtigen Ort umleiten. 😎
+
+```
+https://mysuperapp.com/items/
+```
+
+/// tip | Tipp
+
+Wenn Sie mehr über HTTPS erfahren möchten, lesen Sie den Leitfaden [Über HTTPS](../deployment/https.md){.internal-link target=_blank}.
+
+///
+
+### Wie Proxy-Forwarded-Header funktionieren
+
+Hier ist eine visuelle Darstellung, wie der **Proxy** weitergeleitete Header zwischen dem Client und dem **Anwendungsserver** hinzufügt:
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Proxy as Proxy/Loadbalancer
+    participant Server as FastAPI Server
+
+    Client->>Proxy: HTTPS-Request<br/>Host: mysuperapp.com<br/>Pfad: /items
+
+    Note over Proxy: Proxy fügt Forwarded-Header hinzu
+
+    Proxy->>Server: HTTP-Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Pfad: /items
+
+    Note over Server: Server interpretiert die Header<br/>(wenn --forwarded-allow-ips gesetzt ist)
+
+    Server->>Proxy: HTTP-Response<br/>mit correkten HTTPS-URLs
+
+    Proxy->>Client: HTTPS-Response
+```
+
+Der **Proxy** fängt den ursprünglichen Client-Request ab und fügt die speziellen *Forwarded*-Header (`X-Forwarded-*`) hinzu, bevor er den Request an den **Anwendungsserver** weitergibt.
+
+Diese Header bewahren Informationen über den ursprünglichen Request, die sonst verloren gingen:
+
+* **X-Forwarded-For**: Die ursprüngliche IP-Adresse des Clients
+* **X-Forwarded-Proto**: Das ursprüngliche Protokoll (`https`)
+* **X-Forwarded-Host**: Der ursprüngliche Host (`mysuperapp.com`)
+
+Wenn **FastAPI CLI** mit `--forwarded-allow-ips` konfiguriert ist, vertraut es diesen Headern und verwendet sie, z. B. um die korrekten URLs in Weiterleitungen zu erzeugen.
+
+## Proxy mit einem abgetrennten Pfadpräfix { #proxy-with-a-stripped-path-prefix }
+
+Sie könnten einen Proxy haben, der Ihrer Anwendung ein Pfadpräfix hinzufügt.
 
 In diesen Fällen können Sie <abbr title="Wurzelpfad">`root_path`</abbr> verwenden, um Ihre Anwendung zu konfigurieren.
 
@@ -73,7 +172,7 @@ Um dies zu erreichen, können Sie die Kommandozeilenoption `--root-path` wie fol
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -103,7 +202,7 @@ Wenn Sie Uvicorn dann starten mit:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -224,7 +323,7 @@ Und jetzt starten Sie Ihre Anwendung mit Uvicorn, indem Sie die Option `--root-p
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

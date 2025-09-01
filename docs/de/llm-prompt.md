@@ -301,6 +301,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the cookie parameter»: «der Cookie-Parameter»
 * «the header parameter»: «der Header-Parameter»
 * «the form parameter»: «der Formular-Parameter»
+* «the forwarded header»: «der Forwarded-Header»
 * «the payload»: «die Payload»
 * «the performance»: «die Performanz»
 * «the query»: «die Query»
