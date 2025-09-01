@@ -27,57 +27,68 @@ non_translated_sections = (
 general_prompt = """
 ### About literal text in this prompt
 
-1) In the following instructions (after I say: `The above rules are in effect now`) the two characters `«` and `»` will be used to surround text and characters which you shall interpret literally. The `«` and the `»` are not part of the literal text (they are the meta characters denoting it).
+1) In the following instructions (after I say: `The above rules are in effect now`) the two characters `«` and `»` will be used to surround LITERAL TEXT, which is text or characters you shall interpret literally. The `«` and the `»` are not part of the literal text, they are the meta characters denoting it.
 
-2) Furthermore, text surrounded by `«««` and `»»»` is a block of literal text which spans multiple lines. To get its content, dedent all lines of the block until the `«««` and `»»»` are at column zero, then remove the newline after the `«««` and the newline before the `»»»`. The `«««` and the `»»»` are not part of the literal text block (they are the meta characters denoting it).
+2) Furthermore, text surrounded by `«««` and `»»»` is a BLOCK OF LITERAL TEXT which spans multiple lines. To get its content, dedent all lines of the block until the `«««` and `»»»` are at column zero, then remove the newline (`\n`) after the `«««` and the newline before the `»»»`. The `«««` and the `»»»` are not part of the literal text block, they are the meta characters denoting it.
 
-3) The above two syntaxes – `«...»` and `«««...»»»` – are used to denote literal text. Other forms of quotation marks – especially backticks and triple backticks – do NOT denote literal text.
-
-The above rules are relevant, because we will give code examples for Markdown. Markdown uses backticks to denote inline code and code blocks. So, if you see text surrounded by backticks, then do not interpret it as literal text and throw away the backticks, but interpret it as a Markdown code block or a Markdown code snippet, and keep the backticks.
+3) If you see backticks inside literal text – inside `«` and `»` –  or inside blocks of literal text – inside `«««` and `»»»` – then interpret them as literal characters, do NOT interpret them as meta characters.
 
 The above rules are in effect now.
 
 
 ### Definitions of terms used in this prompt
 
-Backtick
+"backtick"
+
     The character «`»
     Unicode U+0060 (GRAVE ACCENT)
 
-Single backtick
+"single backtick"
+
     A single backtick – «`»
 
-triple backticks
+"triple backticks"
+
     Three backticks in a row – «```»
 
-Neutral double quote
+"neutral double quote"
+
     The character «"»
     Unicode U+0022 (QUOTATION MARK)
 
-Neutral single quote
+"neutral single quote"
+
     The character «'»
     Unicode U+0027 (APOSTROPHE)
 
-English double typographic quotes
+"English double typographic quotes"
+
     The characters «“» and «”»
     Unicode U+201C (LEFT DOUBLE QUOTATION MARK) and Unicode U+201D (RIGHT DOUBLE QUOTATION MARK)
 
-English single typographic quotes
+"English single typographic quotes"
+
     The characters «‘» and «’»
     Unicode U+2018 (LEFT SINGLE QUOTATION MARK) and Unicode U+2019 (RIGHT SINGLE QUOTATION MARK)
 
-Code snippet
-    Also called "inline code". Text in a Markdown document which is surrounded by single backticks. A paragraph can have a more than one code snippets.
+"code snippet"
+
+    Also called "inline code". Text in a Markdown document which is surrounded by single backticks. A paragraph in a markdown document can have a more than one code snippets.
 
     Example:
 
-        «`i am a code snippet`»
+        «««
+        `i am a code snippet`
+        »»»
 
     Example:
 
-        «`first code snippet` `second code snippet` `third code snippet`»
+        «««
+        `first code snippet` `second code snippet` `third code snippet`
+        »»»
 
-Code block
+"code block"
+
     Text in a Markdown document which is surrounded by triple backticks. Spreads multiple lines.
 
     Example:
@@ -494,7 +505,7 @@ Example:
         »»»
 
 
-### Abbr elements
+### HTML abbr elements
 
 Translate HTML abbr elements as follows:
 
