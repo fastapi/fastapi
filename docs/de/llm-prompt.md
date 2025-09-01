@@ -259,6 +259,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the Authorization-Header»: «der Autorisierungsheader»
 * «the `Authorization`-Header»: «der `Authorization`-Header»
 * «the background task»: «der Hintergrundtask»
+* «the button»: «der Button»
 * «the cloud provider»: «der Cloudanbieter»
 * «the CLI»: «Das CLI»
 * «the command line interface»: «Das Kommandozeileninterface»
