@@ -27,7 +27,7 @@ Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection
 
 ### Eine Abhängigkeit erstellen, oder <abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">„Dependable“</abbr> { #create-a-dependency-or-dependable }
 
-Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
+Konzentrieren wir uns zunächst auf die Abhängigkeit – die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
