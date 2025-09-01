@@ -25,7 +25,7 @@ Interaktive API-Dokumentation und erkundbare Web-Benutzeroberflächen. Da das Fr
 
 ### Nur modernes Python { #just-modern-python }
 
-Alles basiert auf Standard-**Python-Typ**-Deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
+Alles basiert auf Standard-**Python-Typ**deklarationen (dank Pydantic). Es muss keine neue Syntax gelernt werden, nur standardisiertes modernes Python.
 
 Wenn Sie eine zweiminütige Auffrischung benötigen, wie man Python-Typen verwendet (auch wenn Sie FastAPI nicht benutzen), schauen Sie sich das kurze Tutorial an: [Einführung in Python-Typen](python-types.md){.internal-link target=_blank}.
 
