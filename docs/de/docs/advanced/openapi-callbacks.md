@@ -179,7 +179,7 @@ Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `
 
 ### Es in der Dokumentation testen { #check-the-docs }
 
-Jetzt können Sie Ihre Anwendung starten und zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
+Jetzt können Sie Ihre Anwendung starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
 
 Sie sehen Ihre Dokumentation, einschließlich eines Abschnitts „Callbacks“ für Ihre *Pfadoperation*, der zeigt, wie die *externe API* aussehen sollte:
 

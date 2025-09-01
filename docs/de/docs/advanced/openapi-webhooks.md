@@ -48,7 +48,7 @@ Das liegt daran, dass erwartet wird, dass **Ihre Benutzer** den tatsächlichen *
 
 ### Die Dokumentation testen { #check-the-docs }
 
-Jetzt können Sie Ihre App starten und zu <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
+Jetzt können Sie Ihre App starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
 
 Sie werden sehen, dass Ihre Dokumentation die normalen *Pfadoperationen* und jetzt auch einige **Webhooks** enthält:
 
