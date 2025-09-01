@@ -59,7 +59,7 @@ Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
 * Sie müssen `File()` nicht als Parameter-Defaultwert verwenden.
-* Es wird eine „<abbr title="warteschlangenartig">gespoolte</abbr>“ Datei verwendet:
+* Es wird eine <abbr title="warteschlangenartig">„gespoolte“</abbr> Datei verwendet:
     * Eine Datei, die bis zu einem bestimmten Größen-Limit im Arbeitsspeicher behalten wird, und wenn das Limit überschritten wird, auf der Festplatte gespeichert wird.
 * Das bedeutet, es wird für große Dateien wie Bilder, Videos, große Binärdateien, usw. gut funktionieren, ohne den ganzen Arbeitsspeicher aufzubrauchen.
 * Sie können Metadaten aus der hochgeladenen Datei auslesen.

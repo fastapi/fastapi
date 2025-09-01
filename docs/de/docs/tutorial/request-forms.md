@@ -52,7 +52,7 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodi
 
 /// note | Technische Details
 
-Daten aus Formularen werden normalerweise mit dem „<abbr title="Medientyp">media type</abbr>“ `application/x-www-form-urlencoded` kodiert.
+Daten aus Formularen werden normalerweise mit dem <abbr title="Medientyp">„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
 Wenn das Formular stattdessen Dateien enthält, werden diese mit `multipart/form-data` kodiert. Im nächsten Kapitel erfahren Sie mehr über die Handhabung von Dateien.
 
