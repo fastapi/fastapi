@@ -52,7 +52,7 @@ Wenn Sie sich unsicher sind, verwenden Sie einfach `def`.
 
 Wie dem auch sei, in jedem der oben genannten Fälle wird FastAPI immer noch asynchron arbeiten und extrem schnell sein.
 
-Wenn Sie jedoch den oben genannten Schritten folgen, können einige Performance-Optimierungen vorgenommen werden.
+Wenn Sie jedoch den oben genannten Schritten folgen, können einige Performanz-Optimierungen vorgenommen werden.
 
 ## Technische Details { #technical-details }
 

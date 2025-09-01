@@ -24,7 +24,7 @@ Das wollen wir besser machen: Laden wir das Modell, bevor die Requests bearbeite
 
 ## Lifespan { #lifespan }
 
-Sie können diese Logik beim *Hochfahren* und *Herunterfahren* mithilfe des `lifespan`-Parameters der `FastAPI`-App und eines „Kontextmanagers“ definieren (ich zeige Ihnen gleich, was das ist).
+Sie können diese Logik beim <abbr title="Hochfahren">*Startup*</abbr> und <abbr title="Herunterfahren">*Shutdown*</abbr> mithilfe des `lifespan`-Parameters der `FastAPI`-App und eines „Kontextmanagers“ definieren (ich zeige Ihnen gleich, was das ist).
 
 Beginnen wir mit einem Beispiel und sehen es uns dann im Detail an.
 
@@ -32,9 +32,9 @@ Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
 {* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
-Hier simulieren wir das langsame *Hochfahren*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Hochfahrens*.
+Hier simulieren wir den langsamen *Startup*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
 
-Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Herunterfahren*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
+Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Shutdown*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
 /// tip | Tipp
 
@@ -88,13 +88,13 @@ Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontext
 
 /// warning | Achtung
 
-Der empfohlene Weg, das *Hochfahren* und *Herunterfahren* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben. Wenn Sie einen `lifespan`-Parameter übergeben, werden die `startup`- und `shutdown`-Eventhandler nicht mehr aufgerufen. Es ist entweder alles `lifespan` oder alles Events, nicht beides.
+Der empfohlene Weg, den *Startup* und *Shutdown* zu handhaben, ist die Verwendung des `lifespan`-Parameters der `FastAPI`-App, wie oben beschrieben. Wenn Sie einen `lifespan`-Parameter übergeben, werden die `startup`- und `shutdown`-Eventhandler nicht mehr aufgerufen. Es ist entweder alles `lifespan` oder alles Events, nicht beides.
 
 Sie können diesen Teil wahrscheinlich überspringen.
 
 ///
 
-Es gibt eine alternative Möglichkeit, diese Logik zu definieren, sodass sie beim *Hochfahren* und beim *Herunterfahren* ausgeführt wird.
+Es gibt eine alternative Möglichkeit, diese Logik zu definieren, sodass sie beim *Startup* und beim *Shutdown* ausgeführt wird.
 
 Sie können <abbr title="Eventhandler – Ereignisbehandler: Funktion, die beim Eintreten eines bestimmten Ereignisses ausgeführt wird">Eventhandler</abbr> (Funktionen) definieren, die ausgeführt werden sollen, bevor die Anwendung hochgefahren wird oder wenn die Anwendung heruntergefahren wird.
 
@@ -114,7 +114,7 @@ Und Ihre Anwendung empfängt erst dann Requests, wenn alle `startup`-Eventhandle
 
 ### `shutdown`-Event { #shutdown-event }
 
-Um eine Funktion hinzuzufügen, die beim Herunterfahren der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
+Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `shutdown`:
 
 {* ../../docs_src/events/tutorial002.py hl[6] *}
 
@@ -140,7 +140,7 @@ Daher deklarieren wir die Eventhandler-Funktion mit Standard-`def` statt mit `as
 
 ### `startup` und `shutdown` zusammen { #startup-and-shutdown-together }
 
-Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Hochfahren* und *Herunterfahren* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
+Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
 
 Bei getrennten Funktionen, die keine gemeinsame Logik oder Variablen haben, ist dies schwieriger, da Sie Werte in globalen Variablen speichern oder ähnliche Tricks verwenden müssen.
 
@@ -162,4 +162,4 @@ Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihr
 
 ## Unteranwendungen { #sub-applications }
 
-🚨 Beachten Sie, dass diese Lifespan-Events (Hochfahren und Herunterfahren) nur für die Hauptanwendung ausgeführt werden, nicht für [Unteranwendungen – Mounts](sub-applications.md){.internal-link target=_blank}.
+🚨 Beachten Sie, dass diese Lifespan-Events (Startup und Shutdown) nur für die Hauptanwendung ausgeführt werden, nicht für [Unteranwendungen – Mounts](sub-applications.md){.internal-link target=_blank}.

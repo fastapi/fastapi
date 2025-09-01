@@ -211,7 +211,7 @@ Dies ist in ein HTML-Tag gewrappt.
 `bar` vom Typ `str`.
 `baz` vom Typ `list`.
 FastAPIs Dokumentation.
-Starlettes Performance.
+Starlettes Performanz.
 Groß-/Klein­schrei­bung ist relevant in `foo`.
 Groß-/Klein­schrei­bung ist nicht relevant in „Bar“.
 Standard-Python-Klassen.

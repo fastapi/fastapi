@@ -94,7 +94,7 @@ Ein ähnlicher Prozess würde für jedes andere ASGI-Serverprogramm gelten.
 
 Durch das Hinzufügen von `standard` installiert und verwendet Uvicorn einige empfohlene zusätzliche Abhängigkeiten.
 
-Dazu gehört `uvloop`, der hochperformante Drop-in-Ersatz für `asyncio`, der den großen Nebenläufigkeits-Performance-Schub bietet.
+Dazu gehört `uvloop`, der hochperformante Drop-in-Ersatz für `asyncio`, der den großen Nebenläufigkeits-Performanz-Schub bietet.
 
 Wenn Sie FastAPI mit etwas wie `pip install "fastapi[standard]"` installieren, erhalten Sie auch `uvicorn[standard]`.
 

@@ -72,7 +72,7 @@ Sprich, mit der gleichen Python-Typdeklaration gibt Ihnen **FastAPI** Datenvalid
 
 Beachten Sie, dass die Fehlermeldung auch direkt die Stelle anzeigt, wo die Validierung nicht erfolgreich war.
 
-Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit ihrer API interagiert.
+Das ist unglaublich hilfreich, wenn Sie Code entwickeln und debuggen, welcher mit Ihrer API interagiert.
 
 ///
 
@@ -90,7 +90,7 @@ Beachten Sie, dass der Pfad-Parameter dort als Ganzzahl deklariert ist.
 
 ///
 
-## Nützliche Standards. Alternative Dokumentation { #standards-based-benefits-alternative-documentation }
+## Nützliche Standards, alternative Dokumentation { #standards-based-benefits-alternative-documentation }
 
 Und weil das generierte Schema vom <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a>-Standard kommt, gibt es viele kompatible Tools.
 
@@ -104,7 +104,7 @@ Und viele weitere kompatible Tools. Inklusive Codegenerierung für viele Sprache
 
 Die ganze Datenvalidierung wird hinter den Kulissen von <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> durchgeführt, Sie profitieren also von dessen Vorteilen. Und Sie wissen, dass Sie in guten Händen sind.
 
-Sie können für Typ Deklarationen auch `str`, `float`, `bool` und viele andere komplexe Datentypen verwenden.
+Sie können für Typdeklarationen auch `str`, `float`, `bool` und viele andere komplexe Datentypen verwenden.
 
 Mehrere davon werden wir in den nächsten Kapiteln erkunden.
 
@@ -136,7 +136,7 @@ Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie
 
 Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
 
-Indem Sie von `str` erben, weiß die API Dokumentation, dass die Werte vom Typ `str` sein müssen, und wird in der Lage sein, korrekt zu rendern.
+Indem Sie von `str` erben, weiß die API-Dokumentation, dass die Werte vom Typ `str` sein müssen, und wird in der Lage sein, korrekt zu rendern.
 
 Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaubten Werte sein werden:
 
@@ -205,7 +205,7 @@ In Ihrem Client erhalten Sie eine JSON-Response, wie etwa:
 }
 ```
 
-## Pfad Parameter die Pfade enthalten { #path-parameters-containing-paths }
+## Pfad-Parameter, die Pfade enthalten { #path-parameters-containing-paths }
 
 Angenommen, Sie haben eine *Pfadoperation* mit einem Pfad `/files/{file_path}`.
 
@@ -213,7 +213,7 @@ Aber `file_path` soll selbst einen *Pfad* enthalten, etwa `home/johndoe/myfile.t
 
 Sprich, die URL für diese Datei wäre etwas wie: `/files/home/johndoe/myfile.txt`.
 
-### OpenAPI Unterstützung { #openapi-support }
+### OpenAPI-Unterstützung { #openapi-support }
 
 OpenAPI bietet nicht die Möglichkeit, dass ein *Pfad-Parameter* seinerseits einen *Pfad* enthalten kann, das würde zu Szenarios führen, die schwierig zu testen und zu definieren sind.
 
@@ -221,7 +221,7 @@ Trotzdem können Sie das in **FastAPI** tun, indem Sie eines der internen Tools 
 
 Die Dokumentation würde weiterhin funktionieren, allerdings wird nicht dokumentiert werden, dass der Parameter ein Pfad sein sollte.
 
-### Pfad Konverter { #path-convertor }
+### Pfad-Konverter { #path-convertor }
 
 Mittels einer Option direkt von Starlette können Sie einen *Pfad-Parameter* deklarieren, der einen Pfad enthalten soll, indem Sie eine URL wie folgt definieren:
 

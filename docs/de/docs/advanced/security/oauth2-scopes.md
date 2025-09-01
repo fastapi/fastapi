@@ -62,7 +62,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} ändern. Diesmal verwenden wir OAuth2-Scopes:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:125,129:135,140,156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Sehen wir uns diese Änderungen nun Schritt für Schritt an.
 
@@ -98,7 +98,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
 ## Scopes in *Pfadoperationen* und Abhängigkeiten deklarieren { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
 /// info | Technische Details
 
@@ -180,7 +180,7 @@ Anstelle beispielsweise eines `dict`s oder etwas anderem, was später in der Anw
 
 Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, und wenn nicht, lösen wir dieselbe Exception aus, die wir zuvor erstellt haben.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:128] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
 ## Die `scopes` verifizieren { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Wir überprüfen nun, ob das empfangene Token alle Scopes enthält, die von dies
 
 Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen Scopes als `str` enthält.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[129:135] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
 ## Abhängigkeitsbaum und Scopes { #dependency-tree-and-scopes }
 

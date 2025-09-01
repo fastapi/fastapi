@@ -34,7 +34,7 @@ Verwenden Sie Standard-Python-Typen für alle Attribute:
 
 Wie auch bei der Deklaration von Query-Parametern gilt: Wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Andernfalls ist es erforderlich. Verwenden Sie `None`, um es einfach optional zu machen.
 
-Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>) wie dieses:
+Zum Beispiel deklariert das obige Modell ein JSON „`object`“ (oder Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>) wie dieses:
 
 ```JSON
 {
@@ -45,7 +45,7 @@ Zum Beispiel deklariert das obige Modell ein JSON "`object`" (oder Python-<abbr 
 }
 ```
 
-Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre folgendes JSON "`object`" auch gültig:
+Da `description` und `tax` optional sind (mit `None` als Defaultwert), wäre folgendes JSON „`object`“ auch gültig:
 
 ```JSON
 {
@@ -126,6 +126,14 @@ Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
 Innerhalb der Funktion können Sie alle Attribute des Modellobjekts direkt verwenden:
 
 {* ../../docs_src/body/tutorial002_py310.py *}
+
+/// info | Info
+
+In Pydantic v1 hieß die Methode `.dict()`, sie wurde in Pydantic v2 deprecatet (aber weiterhin unterstützt) und in `.model_dump()` umbenannt.
+
+Die Beispiele hier verwenden `.dict()` zur Kompatibilität mit Pydantic v1, aber Sie sollten stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 nutzen können.
+
+///
 
 ## Requestbody- + Pfad-Parameter { #request-body-path-parameters }
 

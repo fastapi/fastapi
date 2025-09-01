@@ -428,9 +428,9 @@ Es bietet:
 * Eine sehr beeindruckende Leistung.
 * WebSocket-Unterstützung.
 * Hintergrundtasks im selben Prozess.
-* Events für das Hoch- und Herunterfahren.
+* Startup- und Shutdown-Events.
 * Testclient basierend auf HTTPX.
-* CORS, GZip, statische Dateien, Streamende Responses.
+* CORS, GZip, statische Dateien, Responses streamen.
 * Session- und Cookie-Unterstützung.
 * 100 % Testabdeckung.
 * 100 % Typannotierte Codebasis.
