@@ -109,8 +109,6 @@ The `root_path` is used to handle these specific cases.
 
 And it's also used internally when mounting sub-applications.
 
-## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
-
 Having a proxy with a stripped path prefix, in this case, means that you could declare a path at `/app` in your code, but then, you add a layer on top (the proxy) that would put your **FastAPI** application under a path like `/api/v1`.
 
 In this case, the original path `/app` would actually be served at `/api/v1/app`.

@@ -109,8 +109,6 @@ Der `root_path` wird verwendet, um diese speziellen Fälle zu handhaben.
 
 Und er wird auch intern beim Mounten von Unteranwendungen verwendet.
 
-## Proxy mit einem abgetrennten Pfadpräfix { #proxy-with-a-stripped-path-prefix }
-
 Ein Proxy mit einem abgetrennten Pfadpräfix bedeutet in diesem Fall, dass Sie einen Pfad unter `/app` in Ihrem Code deklarieren könnten, dann aber, eine Ebene darüber, den Proxy hinzufügen, der Ihre **FastAPI**-Anwendung unter einem Pfad wie `/api/v1` platziert.
 
 In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1/app` bereitgestellt.
