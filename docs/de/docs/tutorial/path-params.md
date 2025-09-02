@@ -56,8 +56,7 @@ Wenn Sie aber im Browser <a href="http://127.0.0.1:8000/items/foo" class="extern
         "item_id"
       ],
       "msg": "Input should be a valid integer, unable to parse string as an integer",
-      "input": "foo",
-      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+      "input": "foo"
     }
   ]
 }
