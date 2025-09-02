@@ -7,12 +7,12 @@ Language code: de.
 
 ### Definitions
 
-hyphen
+"hyphen"
     The character «-»
     Unicode U+002D (HYPHEN-MINUS)
     Alternative names: hyphen, dash, minus sign
 
-dash
+"dash"
     The character «–»
     Unicode U+2013 (EN DASH)
     German name: Halbgeviertstrich
