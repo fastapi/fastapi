@@ -73,7 +73,7 @@ The above rules are in effect now.
 
 "code snippet"
 
-    Also called "inline code". Text in a Markdown document which is surrounded by single backticks. A paragraph in a markdown document can have a more than one code snippets.
+    Also called "inline code". Text in a Markdown document which is surrounded by single backticks. A paragraph in a Markdown document can have a more than one code snippet.
 
     Example:
 
