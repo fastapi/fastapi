@@ -250,6 +250,8 @@ Below is a list of English terms and their preferred German translations, separa
 * «the Tutorial - User guide»: «das Tutorial – Benutzerhandbuch»
 * «the Advanced User Guide»: «das Handbuch für fortgeschrittene Benutzer»
 * «the SQLModel docs»: «die SQLModel-Dokumentation»
+* «the docs»: «die Dokumentation» (use singular case)
+* «the env var»: «die Umgebungsvariable»
 * «the `PATH` environment variable»: «die `PATH`-Umgebungsvariable»
 * «the `PATH`»: «der `PATH`»
 * «the `requirements.txt`»: «die `requirements.txt`»
@@ -263,16 +265,14 @@ Below is a list of English terms and their preferred German translations, separa
 * «the cloud provider»: «der Cloudanbieter»
 * «the CLI»: «Das CLI»
 * «the command line interface»: «Das Kommandozeileninterface»
-* «the docs»: «die Dokumentation» (use singular case)
 * «the default value»: «der Defaultwert»
 * «the default value»: NOT «der Standardwert»
 * «the default declaration»: «die Default-Deklaration»
 * «the dict»: «das Dict»
 * «the dictionary»: «das Dictionary»
-* «the engine»: «die Engine»
 * «the enumeration»: «die Enumeration»
 * «the enum»: «das Enum»
-* «the env var»: «die Umgebungsvariable»
+* «the engine»: «die Engine»
 * «the error response»: «die Error-Response»
 * «the event»: «das Event»
 * «the exception»: «die Exception»
@@ -282,6 +282,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the header»: «der Header»
 * «the headers» (plural): «die Header»
 * «in headers» (plural): «in Headern»
+* «the forwarded header»: «der Forwarded-Header»
 * «the lifespan event»: «das Lifespan-Event»
 * «the lock»: «der Lock»
 * «the locking»: «das Locking»
@@ -302,7 +303,6 @@ Below is a list of English terms and their preferred German translations, separa
 * «the cookie parameter»: «der Cookie-Parameter»
 * «the header parameter»: «der Header-Parameter»
 * «the form parameter»: «der Formular-Parameter»
-* «the forwarded header»: «der Forwarded-Header»
 * «the payload»: «die Payload»
 * «the performance»: «die Performanz»
 * «the query»: «die Query»

@@ -6,7 +6,7 @@ Use as follows:
 
 * Do a fresh translation of this document into the desired target language.
 * Check if things are mostly okay.
-* If some things are not okay, but are fixable by improving the general or the language specific prompt, do that.
+* If some things are not okay, but are fixable by improving the English document or the general or the language specific prompt, do that.
 * Then manually fix the remaining issues in the translation, so that it is a good translation.
 * Retranslate using the existing, good translation. The ideal result should be that the LLM makes no changes at all. That would mean that the general prompt and the language prompt are as good as they can be (Plot twist: It will usually make a few seemingly random changes, the reason is probably that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
 
@@ -137,25 +137,28 @@ I welcome you.
 I admire your pullover.
 She likes fruits e.g. apples
 He likes oranges, bananas, etc.
+Read the docs.
+Read the Tutorial - User guide.
+Then read the Advanced User Guide.
+If this env var exists, do something.
 Read the `PATH` environment variable.
 Which is the same as the `PATH`.
 Install from the `requirements.txt`.
 Use the API Router.
 Start the app.
 Create the application.
-Read the Tutorial - User guide.
-Then read the Advanced User Guide.
 This is the Authorization-Header.
 This is the `Authorization`-Header.
 Waiting for the background task.
+Press the button.
 Try this cloud provider.
 Use the CLI.
 Which is the command line interface.
-Read the docs.
 The default value is "foo".
 The default declaration is "bar".
+Dictionaries, or dicts, are useful data structures.
+Enumerations, or Enums, have their use too.
 The engine will do that.
-If the env var exists, do something.
 Return an error response.
 Wait for the event.
 Raise the exception.
@@ -165,6 +168,7 @@ Sending the form body.
 Accessing the header.
 Modifying the headers.
 Spelling in headers.
+The forwarded headers are often used in connection with proxies.
 Listening to the lifespan event.
 Locking means, we lock a thing to safely modify it.
 Developing a mobile application.
@@ -193,6 +197,8 @@ Receiving the request bodies.
 Returning the response.
 What a function returns has a return value.
 And a return type.
+We are listening to the startup and shutdown events.
+We are waiting for the startup of the server.
 Details are described in the SQLModel docs.
 Use the SDK.
 The tag `Horst` means, Horst has to do it.
