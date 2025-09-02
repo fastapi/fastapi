@@ -300,11 +300,9 @@ Some examples in Spanish:
 
 There are special blocks surrounded by four slashes («////»). They mark text, which will be rendered as part of a tab in the final document. The scheme is:
 
-    «««
     //// tab | {tab title}
     {tab content, may span many lines}
     ////
-    »»»
 
 Keep everything before the vertical bar («|») as is, including the vertical bar. Translate the tab title. Translate the tab content, applying the rules you know. Keep the four block closing slashes as is.
 
@@ -376,7 +374,7 @@ Examples of how to translate a heading:
 
 ### Links
 
-Use the following rules for links (apply both to Markdown-style links («[text](url)») and to HTML-style «<a>» tags):
+Use the following rules for links (apply both to Markdown-style links ([text](url)) and to HTML-style <a> tags):
 
 1) For relative URLs, only translate link text. Do not translate the URL or its parts
 
