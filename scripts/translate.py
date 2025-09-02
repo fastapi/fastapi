@@ -691,9 +691,9 @@ def translate_page(
         Path,
         typer.Option(
             envvar="EN_PATH",
-            help="Path to the English source, relative to the FastAPI root directory. If not given, `docs/en/docs/_llm-test.md` is used.",
+            help="Path to the English source, relative to the FastAPI root directory. For example, `docs/en/docs/index.md`.",
         ),
-    ] = Path("docs/en/docs/_llm-test.md"),
+    ],
 ) -> None:
     assert language != "en", (
         "`en` is the source language, choose another language as translation target"
