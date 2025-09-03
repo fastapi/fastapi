@@ -727,16 +727,19 @@ def translate_page(
     if old_translation:
         prompt_segments.extend(
             [
-                "There's an existing previous translation for this content that is probably outdated with old content or old instructions.",
+                "There is an existing previous translation for the original English content, that may be outdated.",
                 "Update the translation only where necessary:",
-                "- If the original English content has changed, reflect that in the translation.",
+                "- If the original English content has added parts, also add these parts to the translation.",
+                "- If the original English content has removed parts, also remove them from the translation, unless you were instructed earlier to not do that in specific cases.",
+                "- If parts of the original English content have changed, also change those parts in the translation.",
                 "- If the previous translation violates current instructions, update it.",
-                "- Otherwise, preserve the original translation **line-by-line** as-is.",
+                "- Otherwise, preserve the original translation LINE-BY-LINE, AS-IS.",
                 "Do not:",
-                "- Rephrase or rewrite correct lines just to improve the style.",
-                "- Add or remove line breaks unless the English source changed.",
-                "- Change formatting or whitespace unless absolutely required.",
-                "Only change what must be changed. The goal is to minimize diffs for easier review.",
+                "- rephrase or rewrite correct lines just to improve the style.",
+                "- add or remove line breaks, unless the original English content changed.",
+                "- change formatting or whitespace unless absolutely required.",
+                "Only change what must be changed. The goal is to minimize diffs for easier human review.",
+                "UNLESS you were instructed earlier to behave different, there MUST NOT be whole sentences or partial sentences in the updated translation, which are not in the original English content, and there MUST NOT be whole sentences or partial sentences in the original English content, which are not in the updated translation. Remember: the updated translation shall be IN SYNC with the original English content.",
                 "Previous translation:",
                 f"%%%\n{old_translation}%%%",
             ]
