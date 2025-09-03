@@ -69,31 +69,31 @@ Seine Schlüssel-Merkmale sind:
 
 „_[...] Ich verwende **FastAPI** heutzutage sehr oft. [...] Ich habe tatsächlich vor, es für alle **ML-Services meines Teams bei Microsoft** zu verwenden. Einige davon werden in das Kernprodukt **Windows** und einige **Office**-Produkte integriert._“
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan – <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kabir Khan – <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
 „_Wir haben die **FastAPI**-Bibliothek übernommen, um einen **REST**-Server zu erstellen, der für **Vorhersagen** abgefragt werden kann. [für Ludwig]_“
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
 „_**Netflix** freut sich, die Open-Source-Veröffentlichung unseres **Krisenmanagement**-Orchestrierung-Frameworks bekannt zu geben: **Dispatch**! [erstellt mit **FastAPI**]_“
 
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen – <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen – <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
 „_Ich bin hellauf begeistert von **FastAPI**. Es macht so viel Spaß!_“
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken – <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> Podcast-Host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken – <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> Podcast-Host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
 „_Ehrlich, was Du gebaut hast, sieht super solide und poliert aus. In vielerlei Hinsicht ist es so, wie ich **Hug** haben wollte – es ist wirklich inspirierend, jemanden so etwas bauen zu sehen._“
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley – <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a>-Autor</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley – <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a>-Autor</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
@@ -101,13 +101,13 @@ Seine Schlüssel-Merkmale sind:
 
 „_Wir haben zu **FastAPI** für unsere **APIs** gewechselt [...] Ich denke, es wird Ihnen gefallen [...]_“
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani – Matthew Honnibal – <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a>-Gründer – <a href="https://spacy.io" target="_blank">spaCy</a>-Autoren</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(Ref)</small></a> – <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani – Matthew Honnibal – <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a>-Gründer – <a href="https://spacy.io" target="_blank">spaCy</a>-Autoren</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(Ref.)</small></a> – <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 
 „_Falls irgendjemand eine Produktions-Python-API erstellen möchte, kann ich **FastAPI** wärmstens empfehlen. Es ist **wunderschön konzipiert**, **einfach zu verwenden** und **hoch skalierbar**; es ist zu einer **Schlüsselkomponente** unserer API-First-Entwicklungsstrategie geworden und treibt viele Automatisierungen und Services an, wie etwa unseren Virtual TAC Engineer._“
 
-<div style="text-align: right; margin-right: 10%;">Deon Pillsbury – <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(Ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury – <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(Ref.)</small></a></div>
 
 ---
 

@@ -247,6 +247,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «your»: «Ihr»
 * «e.g»: «z. B.»
 * «etc.»: «usw.»
+* «ref»: «Ref.»
 * «the Tutorial - User guide»: «das Tutorial – Benutzerhandbuch»
 * «the Advanced User Guide»: «das Handbuch für fortgeschrittene Benutzer»
 * «the SQLModel docs»: «die SQLModel-Dokumentation»
