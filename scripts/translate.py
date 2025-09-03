@@ -31,7 +31,7 @@ general_prompt = """
 
 2) Furthermore, text surrounded by `«««` and `»»»` is a BLOCK OF LITERAL TEXT which spans multiple lines. To get its content, dedent all lines of the block until the `«««` and `»»»` are at column zero, then remove the newline (`\n`) after the `«««` and the newline before the `»»»`. The `«««` and the `»»»` are not part of the literal text block, they are the meta characters denoting it.
 
-3) If you see backticks inside literal text – inside `«` and `»` –  or inside blocks of literal text – inside `«««` and `»»»` – then interpret them as literal characters, do NOT interpret them as meta characters.
+3) If you see backticks or any other quotes inside literal text – inside `«` and `»` –  or inside blocks of literal text – inside `«««` and `»»»` – then interpret them as literal characters, do NOT interpret them as meta characters.
 
 The above rules are in effect now.
 
