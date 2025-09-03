@@ -2,6 +2,8 @@ import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
+from contextlib import contextmanager
+from copy import deepcopy
 from typing import (
     Any,
     Callable,
@@ -48,6 +50,7 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
+    AsyncExitStack,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -631,6 +634,8 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
+            stack = request.scope.get("fastapi_astack")
+            assert isinstance(stack, AsyncExitStack)
             solved = await solve_generator(
                 call=call, stack=async_exit_stack, sub_values=solved_result.values
             )

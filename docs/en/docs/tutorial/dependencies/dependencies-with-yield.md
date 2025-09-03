@@ -1,8 +1,8 @@
 # Dependencies with yield { #dependencies-with-yield }
 
-FastAPI supports dependencies that do some <abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc.'>extra steps after finishing</abbr>.
+FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", "close", "context managers", ...'>extra steps after finishing</abbr>.
 
-To do this, use `yield` instead of `return`, and write the extra steps (code) after.
+To do this, use `yield` instead of `return`, and write the extra steps after.
 
 /// tip
 
@@ -27,7 +27,7 @@ In fact, FastAPI uses those two decorators internally.
 
 For example, you could use this to create a database session and close it after finishing.
 
-Only the code prior to and including the `yield` statement is executed before creating a response:
+Only the code prior to and including the `yield` statement is executed before sending a response:
 
 {* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
@@ -77,7 +77,7 @@ And, in turn, `dependency_b` needs the value from `dependency_a` (here named `de
 
 {* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
-The same way, you could have some dependencies with `yield` and some other dependencies with `return`, and have some of those depend on some of the others.
+The same way, you could have dependencies with `yield` and `return` mixed.
 
 And you could have a single dependency that requires several other dependencies with `yield`, etc.
 
@@ -97,7 +97,21 @@ This works thanks to Python's <a href="https://docs.python.org/3/library/context
 
 You saw that you can use dependencies with `yield` and have `try` blocks that catch exceptions.
 
-The same way, you could raise an `HTTPException` or similar in the exit code, after the `yield`.
+It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
+
+The exit code in dependencies with `yield` is executed *after* the response is sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} will have already run. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
+
+So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response won't be there to catch that exception anymore.
+
+This is what allows anything set in the dependency (e.g. a DB session) to, for example, be used by background tasks.
+
+Background tasks are run *after* the response has been sent. So there's no way to raise an `HTTPException` because there's not even a way to change the response that is *already sent*.
+
+But if a background task creates a DB error, at least you can rollback or cleanly close the session in the dependency with `yield`, and maybe log the error or report it to a remote tracking system.
+
+If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
+
+If you have custom exceptions that you would like to handle *before* returning the response and possibly modifying the response, maybe even raising an `HTTPException`, create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
 /// tip
 
@@ -142,12 +156,14 @@ participant dep as Dep with yield
 participant operation as Path Operation
 participant tasks as Background tasks
 
-    Note over client,operation: Can raise exceptions, including HTTPException
+    Note over client,tasks: Can raise exception for dependency, handled after response is sent
+    Note over client,operation: Can raise HTTPException and can change the response
     client ->> dep: Start request
     Note over dep: Run code up to yield
-    opt raise Exception
-        dep -->> handler: Raise Exception
+    opt raise
+        dep -->> handler: Raise HTTPException
         handler -->> client: HTTP error response
+        dep -->> dep: Raise other exception
     end
     dep ->> operation: Run dependency, e.g. DB session
     opt raise
@@ -156,15 +172,20 @@ participant tasks as Background tasks
             dep -->> dep: Can catch exception, raise a new HTTPException, raise other exception
         end
         handler -->> client: HTTP error response
+        operation -->> dep: Raise other exception
+        dep -->> handler: Auto forward exception
     end
-
     operation ->> client: Return response to client
     Note over client,operation: Response is already sent, can't change it anymore
     opt Tasks
         operation -->> tasks: Send background tasks
     end
     opt Raise other exception
-        tasks -->> tasks: Handle exceptions in the background task code
+        tasks -->> dep: Raise other exception
+    end
+    Note over dep: After yield
+    opt Handle other exception
+        dep -->> dep: Handle exception, can't change response. E.g. close DB session.
     end
 ```
 
@@ -238,7 +259,7 @@ Underneath, the `open("./somefile.txt")` creates an object that is called a "Con
 
 When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 
-When you create a dependency with `yield`, **FastAPI** will internally create a context manager for it, and combine it with some other related tools.
+When you create a dependency with `yield`, **FastAPI** will internally convert it to a context manager, and combine it with some other related tools.
 
 ### Using context managers in dependencies with `yield` { #using-context-managers-in-dependencies-with-yield }
 
