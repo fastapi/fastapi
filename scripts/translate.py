@@ -108,6 +108,9 @@ The above rules are in effect now.
         ```
         »»»
 
+"HTML element"
+
+    a HTML opening tag – e.g. «<div>» – and a HTML closing tag – e.g. «</div>» – wrapping text or other HTML elements.
 
 ### Your task
 
