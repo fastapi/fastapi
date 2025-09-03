@@ -6,13 +6,13 @@ Wie folgt verwenden:
 
 * Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache erstellen.
 * Prüfen, ob alles größtenteils in Ordnung ist.
-* Wenn manches nicht in Ordnung ist, sich aber durch Verbesserungen am allgemeinen Prompt oder am sprachspezifischen Prompt beheben lässt, das tun.
+* Wenn manches nicht in Ordnung ist, sich aber durch Verbesserungen am englischen Dokument oder am allgemeinen Prompt oder am sprachspezifischen Prompt beheben lässt, das tun.
 * Dann die verbleibenden Probleme in der Übersetzung manuell beheben, sodass es eine gute Übersetzung ist.
 * Erneut übersetzen, wobei die existierende, gute Übersetzung verwendet wird. Das ideale Ergebnis wäre, dass das LLM gar keine Änderungen vornimmt. Das würde bedeuten, dass der allgemeine Prompt und der Sprach-Prompt so gut wie möglich sind. (Plot Twist: Es wird normalerweise ein paar scheinbar zufällige Änderungen machen, der Grund ist vermutlich, dass <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs keine deterministischen Algorithmen sind</a>).
 
 Die Idee ist, dass Sie, wenn Sie an einer Übersetzung für eine Sprache arbeiten (unter der Annahme, dass Sie `scripts/translate.py` ausführen können), hier Beispiele gefundener Sonderfälle aufnehmen (keine detaillierte Liste, nur Beispiele für solche Sonderfälle) und mit diesem Dokument testen, statt jedes andere einzelne Dokument mehrfach zu testen und zu übersetzen, was pro Übersetzung ein paar Cent kostet. Außerdem werden durch das Hinzufügen solcher Sonderfälle hier auch andere Übersetzungsprojekte auf solche Sonderfälle aufmerksam.
 
-## Codeschnipsel { #codesnippets}
+## Codeschnipsel { #code-snippets}
 
 Dies ist ein Codeschnipsel: `foo`. Und dies ist ein weiteres Codeschnipsel: `bar`. Und noch eins: `baz quux`.
 
@@ -20,7 +20,7 @@ Dies ist ein Codeschnipsel: `foo`. Und dies ist ein weiteres Codeschnipsel: `bar
 
 Gestern schrieb mein Freund: „Wenn man falsch richtig buchstabiert, hat man es falsch buchstabiert“. Worauf ich antwortete: „Richtig, aber ‚falsch‘ ist fälschlich nicht ‚„falsch“‘“.
 
-## Anführungszeichen in Codeschnipseln { #quotes-in-codesnippets}
+## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
 
 `pip install "foo[bar]"`
 
@@ -99,9 +99,9 @@ Etwas Text
 
 ////
 
-## Web- und interne Links { #links }
+## Web- und interne Links { #web-and-internal-links }
 
-[Link zur Überschrift oben](#codesnippets)
+[Link zur Überschrift oben](#code-snippets)
 
 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Externer Link</a>
 
@@ -131,31 +131,34 @@ Hallo nochmal.
 
 Hallo nochmal.
 
-## Sätze mit bevorzugten Übersetzungen (vielleicht) im Sprach-Prompt definiert { #sentences-with-preferred-translations-maybe-defined-in-the-language-prompt }
+## Sätze mit bevorzugten Übersetzungen, (vielleicht) im Sprach-Prompt definiert { #sentences-with-preferred-translations-maybe-defined-in-the-language-prompt }
 
 Ich heiße Sie willkommen.
 Ich bewundere Ihren Pullover.
 Sie mag Obst, z. B. Äpfel
 Er mag Orangen, Bananen, usw.
+Lesen Sie die Dokumentation.
+Lesen Sie das Tutorial – Benutzerhandbuch.
+Lesen Sie dann das Handbuch für fortgeschrittene Benutzer.
+Wenn die Umgebungsvariable existiert, tun Sie etwas.
 Lesen Sie die `PATH`-Umgebungsvariable.
 Was dasselbe ist wie der `PATH`.
 Installieren Sie aus der `requirements.txt`.
 Verwenden Sie den API-Router.
 Starten Sie die App.
 Erstellen Sie die Anwendung.
-Lesen Sie das Tutorial – Benutzerhandbuch.
-Lesen Sie dann das Handbuch für fortgeschrittene Benutzer.
 Dies ist der Autorisierungsheader.
 Dies ist der `Authorization`-Header.
 Warten auf den Hintergrundtask.
+Den Button drücken.
 Probieren Sie diesen Cloudanbieter.
 Verwenden Sie das CLI.
 Was das Kommandozeileninterface ist.
-Lesen Sie die Dokumentation.
 Der Defaultwert ist „foo“.
 Die Default-Deklaration ist „bar“.
+Dictionaries, oder Dicts, sind nützliche Datenstrukturen.
+Enumerationen, oder Enums, haben ebenfalls ihre Verwendung.
 Die Engine wird das tun.
-Wenn die Umgebungsvariable existiert, tun Sie etwas.
 Eine Error-Response zurückgeben.
 Auf das Event warten.
 Die Exception auslösen.
@@ -165,6 +168,7 @@ Den Formularbody senden.
 Auf den Header zugreifen.
 Die Header ändern.
 Schreibweise in Headern.
+Die Forwarded-Header werden häufig in Verbindung mit Proxys verwendet.
 Auf das Lifespan-Event lauschen.
 Locking bedeutet, dass wir ein Lock setzen, um etwas sicher zu ändern.
 Eine Mobile-Anwendung entwickeln.
@@ -193,6 +197,8 @@ Die Requestbodys empfangen.
 Die Response zurückgeben.
 Was eine Funktion zurückgibt, hat einen Rückgabewert.
 Und einen Rückgabetyp.
+Wir lauschen auf die Startup- und Shutdown-Events.
+Wir warten auf das Hochfahren des Servers.
 Details sind in der SQLModel-Dokumentation beschrieben.
 Verwenden Sie das SDK.
 Der Tag `Horst` bedeutet, Horst muss es tun.

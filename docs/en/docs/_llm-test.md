@@ -12,7 +12,7 @@ Use as follows:
 
 The idea is, that, when working on a translation for a language (assumed one is able to run `scripts/translate.py`), to include examples of found special cases here (not a detailed list, just examples for such special cases) and test with this document, rather than testing with every other single document, translating it multiple times, which costs a few cents per translation. Also, by adding such special cases here, other translation projects will also become aware of such special cases.
 
-## Code snippets { #codesnippets}
+## Code snippets { #code-snippets}
 
 This is a code snippet: `foo`. And this is another code snippet: `bar`. And another one: `baz quux`.
 
@@ -20,7 +20,7 @@ This is a code snippet: `foo`. And this is another code snippet: `bar`. And anot
 
 Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
-## Quotes in code snippets { #quotes-in-codesnippets}
+## Quotes in code snippets { #quotes-in-code-snippets}
 
 `pip install "foo[bar]"`
 
@@ -99,9 +99,9 @@ Some text
 
 ////
 
-## Web- and internal links { #links }
+## Web- and internal links { #web-and-internal-links }
 
-[Link to heading above](#codesnippets)
+[Link to heading above](#code-snippets)
 
 <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">External link</a>
 

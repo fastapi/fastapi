@@ -315,6 +315,8 @@ Below is a list of English terms and their preferred German translations, separa
 * «the return value»: «der Rückgabewert»
 * «the startup» (the event of the app): «der Startup»
 * «the shutdown» (the event of the app): «der Shutdown»
+* «the startup event»: «das Startup-Event»
+* «the shutdown event»: «das Shutdown-Event»
 * «the startup» (of the server): «das Hochfahren»
 * «the startup» (the company): «das Startup»
 * «the SDK»: «das SDK»
@@ -333,6 +335,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «to serve»: NOT «bedienen»
 * «to upgrade»: «aktualisieren»
 * «to wrap»: «wrappen»
+* «to wrap»: NOT «hüllen»
 * «`foo` as a `type`»: «`foo` vom Typ `type`»
 * «`foo` as a `type`»: «`foo`, ein `type`»
 * «FastAPI's X»: «FastAPIs X»
