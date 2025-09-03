@@ -1,6 +1,6 @@
+from contextlib import AsyncExitStack
 from typing import Optional
 
-from fastapi.concurrency import AsyncExitStack
 from starlette.types import ASGIApp, Receive, Scope, Send
 
 
