@@ -48,7 +48,6 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
-    AsyncExitStack,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
