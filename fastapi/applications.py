@@ -42,7 +42,7 @@ from starlette.middleware.exceptions import ExceptionMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
-from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
+from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope, Send
 from typing_extensions import Annotated, Doc, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
@@ -971,7 +971,7 @@ class FastAPI(Starlette):
         # inside of ExceptionMiddleware, inside of custom user middlewares
         debug = self.debug
         error_handler = None
-        exception_handlers = {}
+        exception_handlers: dict[Any, ExceptionHandler] = {}
 
         for key, value in self.exception_handlers.items():
             if key in (500, Exception):
@@ -1011,8 +1011,8 @@ class FastAPI(Starlette):
         )
 
         app = self.router
-        for cls, options in reversed(middleware):
-            app = cls(app=app, **options)
+        for cls, args, kwargs in reversed(middleware):
+            app = cls(app, *args, **kwargs)
         return app
 
     def openapi(self) -> Dict[str, Any]:
