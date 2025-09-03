@@ -113,9 +113,26 @@ Etwas Text
 
 [Interner Link](foo.md#bar){.internal-link target=_blank}
 
-## Abbr-Elemente { #abbr-elements }
+## HTML-„abbr“-Elemente { #html-abbr-elements }
 
-Hier einige Dinge, die in `abbr`-Elemente gehüllt sind (einige sind erfunden): <abbr title="Getting Things Done – Dinge erledigt bekommen">GTD</abbr>, <abbr title="XML-Web-Token">XWT</abbr>, <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>, <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</abbr>, <abbr title="Eine Methode des maschinellen Lernens, die künstliche neuronale Netze mit zahlreichen verdeckten Schichten zwischen Eingabe- und Ausgabeschichten verwendet und dabei eine umfassende interne Struktur entwickelt">Deep Learning</abbr>, <abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>.
+Hier einige Dinge, die in HTML-„abbr“-Elemente gewrappt sind (einige sind erfunden):
+
+### Ganze Phrase { #full-phrase }
+
+* <abbr title="Getting Things Done – Dinge erledigt bekommen">GTD</abbr>
+* <abbr title="less than – kleiner als"><code>lt</code></abbr>
+* <abbr title="XML-Web-Token">XWT</abbr>
+* <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>
+
+### Erklärung { #explanation }
+
+* <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</abbr>
+* <abbr title="Eine Methode des maschinellen Lernens, die künstliche neuronale Netze mit zahlreichen verdeckten Schichten zwischen Eingabe- und Ausgabeschichten verwendet und dabei eine umfassende interne Struktur entwickelt">Deep Learning</abbr>
+
+### Ganze Phrase: Erklärung { #full-phrase-explanation }
+
+* <abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
+* <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>.
 
 ## Überschriften { #headings }
 

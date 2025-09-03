@@ -508,9 +508,19 @@ Example:
 
 ### HTML abbr elements
 
-Translate HTML abbr elements as follows:
+Translate HTML abbr elements («<abbr title="description">text</abbr>») as follows:
 
-1) If the title attribute gives the full phrase for an abbreviation, then keep the phrase, append a dash («–»), followed by the translation of the phrase.
+1) If the text surrounded by the abbr element is an abbreviation (the text may be surrounded by further HTML or Markdown markup or quotes, for example «<code>text</code>» or «`text`» or «"text"», ignore that further markup when deciding if the text is an abbreviation), and if the description (the text inside the title attribute) contains the full phrase for this abbreviation, then append a dash («–») to the full phrase, followed by the translation of the full phrase.
+
+Conversion scheme:
+
+    Source (English):
+
+        <abbr title="{full phrase}">{abbreviation}</abbr>
+
+    Result:
+
+        <abbr title="{full phrase} – {translation of full phrase}">{abbreviation}</abbr>
 
 Examples:
 
@@ -530,17 +540,17 @@ Examples:
         <abbr title="too long; didn't read – zu lang; hab's nicht gelesen"><strong>TL;DR:</strong></abbr>
         »»»
 
-Conversion scheme title attribute:
+1.1) If the language to which you translate mostly uses the letters of the ASCII char set (for example Spanish, French, German, but not Russian, Chinese) and if the translation of the full phrase is identical to, or starts with the same letters as the original full phrase, then only give the translation of the full phrase.
+
+Conversion scheme:
 
     Source (English):
 
-        {full phrase}
+        <abbr title="{full phrase}">{abbreviation}</abbr>
 
-    Result (German):
+    Result:
 
-        {full phrase} – {translation of full phrase}
-
-1.1) If the translation of the phrase starts with the same letters, then just use the translation.
+        <abbr title="{translation of full phrase}">{abbreviation}</abbr>
 
 Examples:
 
@@ -548,7 +558,7 @@ Examples:
 
         «««
         <abbr title="JSON Web Tokens">JWT</abbr>
-        <abbr title="Enumeration">`Enum`</abbr>
+        <abbr title="Enumeration">Enum</abbr>
         <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>
         »»»
 
@@ -556,21 +566,21 @@ Examples:
 
         «««
         <abbr title="JSON Web Tokens">JWT</abbr>
-        <abbr title="Enumeration">`Enum`</abbr>
+        <abbr title="Enumeration">Enum</abbr>
         <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>
         »»»
 
-Conversion scheme title attribute:
+2) If the description is not a full phrase for an abbreviation which the abbr element surrounds, but some other information, then just translate the description.
+
+Conversion scheme:
 
     Source (English):
 
-        {full phrase}
+        <abbr title="{description}">{text}</abbr>
 
-    Result (German):
+    Result:
 
-        {translation of full phrase}
-
-2) If the title attribute explains something in its own words, then translate it, if possible.
+        <abbr title="{translation of description}">{translation of text}</abbr>
 
 Examples:
 
@@ -578,8 +588,8 @@ Examples:
 
         «««
         <abbr title="also known as: endpoints, routes">path</abbr>
-        <abbr title="A program that checks for code errors">linter</abbr>
-        <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+        <abbr title="a program that checks for code errors">linter</abbr>
+        <abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>
         <abbr title="before 2023-03">0.95.0</abbr>
         <abbr title="2023-08-26">at the time of writing this</abbr>
         »»»
@@ -589,22 +599,23 @@ Examples:
         «««
         <abbr title="auch bekannt als: Endpunkte, Routen">Pfad</abbr>
         <abbr title="Programm das auf Fehler im Code prüft">Linter</abbr>
-        <abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">„Parsen“</abbr>
+        <abbr title="Konvertieren des Strings eines HTTP-Requests in Python-Daten">Parsen</abbr>
         <abbr title="vor 2023-03">0.95.0</abbr>
         <abbr title="2023-08-26">zum Zeitpunkt als das hier geschrieben wurde</abbr>
         »»»
 
-Conversion scheme title attribute:
+
+3) If the text surrounded by the abbr element is an abbreviation and the description contains both the full phrase for that abbreviation, and other information, separated by a colon («:»), then append a dash («–») and the translation of the full phrase to the original full phrase and translate the other information.
+
+Conversion scheme:
 
     Source (English):
 
-        {explanation}
+        <abbr title="{full phrase}: {other information}">{abbreviation}</abbr>
 
-    Result (German):
+    Result:
 
-        {translation of explanation}
-
-3) If the title attribute gives the full phrase for an abbreviation, followed by a colon («:») or a comma («,»), followed by an explanation, then keep the phrase, append a dash («–»), followed by the translation of the phrase, followed by a colon («:»), followed by the translation of the explanation.
+        <abbr title="{full phrase} – {translation of full phrase}: {translation of other information}">{abbreviation}</abbr>
 
 Examples:
 
@@ -612,9 +623,8 @@ Examples:
 
         «««
         <abbr title="Input/Output: disk reading or writing, network communication.">I/O</abbr>
-        <abbr title="Content Delivery Network: Service, that provides static files.">CDN</abbr>
-        <abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>
-        <abbr title="Object Relational Mapper, a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>
+        <abbr title="Content Delivery Network: service, that provides static files.">CDN</abbr>
+        <abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>
         »»»
 
     Result (German):
@@ -623,34 +633,37 @@ Examples:
         <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>
         <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Dienst, der statische Dateien bereitstellt.">CDN</abbr>
         <abbr title="Integrated Development Environment – Integrierte Entwicklungsumgebung: Ähnlich einem Code-Editor">IDE</abbr>
-        <abbr title="Object Relational Mapper – Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">„ORMs“</abbr>
         »»»
 
-Conversion scheme title attribute:
+3.1) Like in rule 2.1, you can leave the original full phrase away, if the translated full phrase is identical or starts with the same letters as the original full phrase.
+
+Conversion scheme:
 
     Source (English):
 
-        {full phrase}: {explanation}
+        <abbr title="{full phrase}: {information}">{abbreviation}</abbr>
 
-    OR
+    Result:
+
+        <abbr title="{translation of full phrase}: {translation of information}">{abbreviation}</abbr>
+
+Example:
 
     Source (English):
 
-        {full phrase}, {explanation}
+        «««
+        <abbr title="Object Relational Mapper: a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">ORM</abbr>
+        »»»
 
     Result (German):
 
-        {full phrase} – {translation of full phrase}: {translation of explanation}
+        «««
+        <abbr title="Objektrelationaler Mapper: Ein Fachbegriff für eine Bibliothek, in der einige Klassen SQL-Tabellen und Instanzen Zeilen in diesen Tabellen darstellen">ORM</abbr>
+        »»»
 
-3.1) For the full phrase (the part before the dash in the translation) rule 1.1 also applies, speak, you can leave the original full phrase away and just use the translated full phrase, if it starts with the same letters. The result becomes:
+4) Apply above rules also when there is an existing translation! Make sure that all title attributes in abbr elements get properly translated or updated, using the schemes given above.
 
-Conversion scheme title attribute:
-
-    Result (German):
-
-        {translation of full phrase}: {translation of explanation}
-
-4) If there is an HTML abbr element in a sentence in an existing translation, but that element does not exist in the related sentence in the English text, then keep that HTML abbr element in the translation, do not change or remove it. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text. The reasoning for this rule is, that such abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. They would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to HTML abbr elements.
+5) If there is an existing translation, and it has ADDITIONAL abbr elements in a sentence, and these additional abbr elements do not exist in the related sentence in the English text, then KEEP those additional abbr elements in the translation. Do not remove them. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text, then also remove the abbr element. The reasoning for this rule is, that such additional abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. These additional abbr elements would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to abbr elements.
 
 
 """

@@ -113,9 +113,26 @@ Some text
 
 [Internal link](foo.md#bar){.internal-link target=_blank}
 
-## Abbr elements { #abbr-elements }
+## HTML "abbr" elements { #html-abbr-elements }
 
-Here some things wrapped in `abbr` elements (Some are invented): <abbr title="Getting Things Done">GTD</abbr>, <abbr title="XML Web Token">XWT</abbr>, <abbr title="Parallel Server Gateway Interface">PSGI</abbr>, <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>, <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>, <abbr title="Mozilla Developer Network: Documentation for developers, written by the Firefox people">MDN</abbr>.
+Here some things wrapped in HTML "abbr" elements (Some are invented):
+
+### Full phrase { #full-phrase }
+
+* <abbr title="Getting Things Done">GTD</abbr>
+* <abbr title="less than"><code>lt</code></abbr>
+* <abbr title="XML Web Token">XWT</abbr>
+* <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
+
+### Explanation { #explanation }
+
+* <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>
+* <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>
+
+### Full phrase: Explanation { #full-phrase-explanation }
+
+* <abbr title="Mozilla Developer Network: Documentation for developers, written by the Firefox people">MDN</abbr>
+* <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
 ## Headings { #headings }
 
