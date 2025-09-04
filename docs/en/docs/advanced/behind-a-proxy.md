@@ -1,6 +1,105 @@
 # Behind a Proxy { #behind-a-proxy }
 
-In some situations, you might need to use a **proxy** server like Traefik or Nginx with a configuration that adds an extra path prefix that is not seen by your application.
+In many situations, you would use a **proxy** like Traefik or Nginx in front of your FastAPI app.
+
+These proxies could handle HTTPS certificates and other things.
+
+## Proxy Forwarded Headers { #proxy-forwarded-headers }
+
+A **proxy** in front of your application would normally set some headers on the fly before sending the requests to your **server** to let the server know that the request was **forwarded** by the proxy, letting it know the original (public) URL, including the domain, that it is using HTTPS, etc.
+
+The **server** program (for example **Uvicorn** via **FastAPI CLI**) is capable of interpreting these headers, and then passing that information to your application.
+
+But for security, as the server doesn't know it is behind a trusted proxy, it won't interpret those headers.
+
+/// note | Technical Details
+
+The proxy headers are:
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+### Enable Proxy Forwarded Headers { #enable-proxy-forwarded-headers }
+
+You can start FastAPI CLI with the *CLI Option* `--forwarded-allow-ips` and pass the IP addresses that should be trusted to read those forwarded headers.
+
+If you set it to `--forwarded-allow-ips="*"` it would trust all the incoming IPs.
+
+If your **server** is behind a trusted **proxy** and only the proxy talks to it, this would make it accept whatever is the IP of that **proxy**.
+
+<div class="termy">
+
+```console
+$ fastapi run --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+### Redirects with HTTPS { #redirects-with-https }
+
+For example, let's say you define a *path operation* `/items/`:
+
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+
+If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
+
+But before setting the *CLI Option* `--forwarded-allow-ips` it could redirect to `http://localhost:8000/items/`.
+
+But maybe your application is hosted at `https://mysuperapp.com`, and the redirection should be to `https://mysuperapp.com/items/`.
+
+By setting `--proxy-headers` now FastAPI would be able to redirect to the right location. 😎
+
+```
+https://mysuperapp.com/items/
+```
+
+/// tip
+
+If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md){.internal-link target=_blank}.
+
+///
+
+### How Proxy Forwarded Headers Work
+
+Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Proxy as Proxy/Load Balancer
+    participant Server as FastAPI Server
+
+    Client->>Proxy: HTTPS Request<br/>Host: mysuperapp.com<br/>Path: /items
+
+    Note over Proxy: Proxy adds forwarded headers
+
+    Proxy->>Server: HTTP Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
+
+    Note over Server: Server interprets headers<br/>(if --forwarded-allow-ips is set)
+
+    Server->>Proxy: HTTP Response<br/>with correct HTTPS URLs
+
+    Proxy->>Client: HTTPS Response
+```
+
+The **proxy** intercepts the original client request and adds the special *forwarded* headers (`X-Forwarded-*`) before passing the request to the **application server**.
+
+These headers preserve information about the original request that would otherwise be lost:
+
+* **X-Forwarded-For**: The original client's IP address
+* **X-Forwarded-Proto**: The original protocol (`https`)
+* **X-Forwarded-Host**: The original host (`mysuperapp.com`)
+
+When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these headers and uses them, for example to generate the correct URLs in redirects.
+
+## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
+
+You could have a proxy that adds a path prefix to your application.
 
 In these cases you can use `root_path` to configure your application.
 
@@ -9,8 +108,6 @@ The `root_path` is a mechanism provided by the ASGI specification (that FastAPI 
 The `root_path` is used to handle these specific cases.
 
 And it's also used internally when mounting sub-applications.
-
-## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
 
 Having a proxy with a stripped path prefix, in this case, means that you could declare a path at `/app` in your code, but then, you add a layer on top (the proxy) that would put your **FastAPI** application under a path like `/api/v1`.
 
@@ -73,7 +170,7 @@ To achieve this, you can use the command line option `--root-path` like:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -103,7 +200,7 @@ Then, if you start Uvicorn with:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -224,7 +321,7 @@ And now start your app, using the `--root-path` option:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
