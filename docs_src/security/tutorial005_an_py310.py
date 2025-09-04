@@ -2,13 +2,15 @@ from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
 import jwt
+from fastapi import Depends, FastAPI, HTTPException, Security, status
+from fastapi.security import (
+    OAuth2PasswordBearer,
+    OAuth2PasswordRequestForm,
+    SecurityScopes,
+)
 from jwt.exceptions import InvalidTokenError
 from passlib.context import CryptContext
 from pydantic import BaseModel, ValidationError
-
-from fastapi import Depends, FastAPI, HTTPException, Security, status
-from fastapi.security import (OAuth2PasswordBearer, OAuth2PasswordRequestForm,
-                              SecurityScopes)
 
 # to get a string like this run:
 # openssl rand -hex 32

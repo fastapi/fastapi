@@ -1,8 +1,7 @@
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
-
 from fastapi import FastAPI, Query
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 

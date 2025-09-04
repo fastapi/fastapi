@@ -2,10 +2,9 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator, Dict, Union
 
 import pytest
-from pydantic import BaseModel
-
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 
 class State(BaseModel):

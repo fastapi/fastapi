@@ -2,9 +2,8 @@ import subprocess
 import sys
 from unittest.mock import patch
 
-import pytest
-
 import fastapi.cli
+import pytest
 
 
 def test_fastapi_cli():

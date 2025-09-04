@@ -1,5 +1,6 @@
-from docs_src.advanced_middleware.tutorial002 import app
 from fastapi.testclient import TestClient
+
+from docs_src.advanced_middleware.tutorial002 import app
 
 
 def test_middleware():

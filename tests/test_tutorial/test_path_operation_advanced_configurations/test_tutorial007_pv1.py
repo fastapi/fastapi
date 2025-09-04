@@ -1,5 +1,4 @@
 import pytest
-
 from fastapi.testclient import TestClient
 
 from ...utils import needs_pydanticv1
@@ -7,8 +6,7 @@ from ...utils import needs_pydanticv1
 
 @pytest.fixture(name="client")
 def get_client():
-    from docs_src.path_operation_advanced_configuration.tutorial007_pv1 import \
-        app
+    from docs_src.path_operation_advanced_configuration.tutorial007_pv1 import app
 
     client = TestClient(app)
     return client

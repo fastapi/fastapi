@@ -1,7 +1,6 @@
-from pydantic import BaseModel
-
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
+from pydantic import BaseModel
 
 
 def custom_generate_unique_id(route: APIRoute):

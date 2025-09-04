@@ -1,7 +1,36 @@
 from enum import Enum
-from typing import (Any, Awaitable, Callable, Coroutine, Dict, List, Optional,
-                    Sequence, Type, TypeVar, Union)
+from typing import (
+    Any,
+    Awaitable,
+    Callable,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Type,
+    TypeVar,
+    Union,
+)
 
+from fastapi import routing
+from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+    websocket_request_validation_exception_handler,
+)
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.logger import logger
+from fastapi.openapi.docs import (
+    get_redoc_html,
+    get_swagger_ui_html,
+    get_swagger_ui_oauth2_redirect_html,
+)
+from fastapi.openapi.utils import get_openapi
+from fastapi.params import Depends
+from fastapi.types import DecoratedCallable, IncEx
+from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
@@ -12,21 +41,6 @@ from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 from typing_extensions import Annotated, Doc, deprecated
-
-from fastapi import routing
-from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.exception_handlers import (
-    http_exception_handler, request_validation_exception_handler,
-    websocket_request_validation_exception_handler)
-from fastapi.exceptions import (RequestValidationError,
-                                WebSocketRequestValidationError)
-from fastapi.logger import logger
-from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html,
-                                  get_swagger_ui_oauth2_redirect_html)
-from fastapi.openapi.utils import get_openapi
-from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import generate_unique_id
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -879,9 +893,7 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ] = (
-            webhooks or routing.APIRouter()
-        )
+        ] = webhooks or routing.APIRouter()
         self.root_path = root_path or openapi_prefix
         self.state: Annotated[
             State,
@@ -934,7 +946,7 @@ class FastAPI(Starlette):
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
-        ] = ({} if exception_handlers is None else dict(exception_handlers))
+        ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler

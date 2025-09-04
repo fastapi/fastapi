@@ -1,10 +1,9 @@
 from typing import List
 
-from pydantic import BaseModel, ConfigDict, Field
-
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict, Field
 
 app = FastAPI()
 

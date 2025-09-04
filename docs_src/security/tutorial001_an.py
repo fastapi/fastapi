@@ -1,7 +1,6 @@
-from typing_extensions import Annotated
-
 from fastapi import Depends, FastAPI
 from fastapi.security import OAuth2PasswordBearer
+from typing_extensions import Annotated
 
 app = FastAPI()
 

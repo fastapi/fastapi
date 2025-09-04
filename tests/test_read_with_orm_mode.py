@@ -1,9 +1,8 @@
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict
 
 from .utils import needs_pydanticv1, needs_pydanticv2
 

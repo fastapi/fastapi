@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39

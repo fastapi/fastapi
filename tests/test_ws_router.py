@@ -1,9 +1,15 @@
 import functools
 
 import pytest
-
-from fastapi import (APIRouter, Depends, FastAPI, Header, WebSocket,
-                     WebSocketDisconnect, status)
+from fastapi import (
+    APIRouter,
+    Depends,
+    FastAPI,
+    Header,
+    WebSocket,
+    WebSocketDisconnect,
+    status,
+)
 from fastapi.middleware import Middleware
 from fastapi.testclient import TestClient
 

@@ -5,43 +5,76 @@ import inspect
 import json
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
-from typing import (Any, AsyncIterator, Callable, Collection, Coroutine, Dict,
-                    List, Mapping, Optional, Sequence, Set, Tuple, Type, Union)
+from typing import (
+    Any,
+    AsyncIterator,
+    Callable,
+    Collection,
+    Coroutine,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Type,
+    Union,
+)
 
+from fastapi import params
+from fastapi._compat import (
+    ModelField,
+    Undefined,
+    _get_model_config,
+    _model_dump,
+    _normalize_errors,
+    lenient_issubclass,
+)
+from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.utils import (
+    _should_embed_body_fields,
+    get_body_field,
+    get_dependant,
+    get_flat_dependant,
+    get_parameterless_sub_dependant,
+    get_typed_return_annotation,
+    solve_dependencies,
+)
+from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import (
+    FastAPIError,
+    RequestValidationError,
+    ResponseValidationError,
+    WebSocketRequestValidationError,
+)
+from fastapi.types import DecoratedCallable, IncEx
+from fastapi.utils import (
+    create_cloned_field,
+    create_model_field,
+    generate_unique_id,
+    get_value_or_default,
+    is_body_allowed_for_status_code,
+)
 from pydantic import BaseModel
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.routing import BaseRoute, Match
+from starlette.routing import (
+    BaseRoute,
+    Match,
+    compile_path,
+    get_name,
+    request_response,
+    websocket_session,
+)
 from starlette.routing import Mount as Mount  # noqa
-from starlette.routing import (compile_path, get_name, request_response,
-                               websocket_session)
 from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Doc, deprecated
-
-from fastapi import params
-from fastapi._compat import (ModelField, Undefined, _get_model_config,
-                             _model_dump, _normalize_errors,
-                             lenient_issubclass)
-from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import (_should_embed_body_fields,
-                                        get_body_field, get_dependant,
-                                        get_flat_dependant,
-                                        get_parameterless_sub_dependant,
-                                        get_typed_return_annotation,
-                                        solve_dependencies)
-from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import (FastAPIError, RequestValidationError,
-                                ResponseValidationError,
-                                WebSocketRequestValidationError)
-from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import (create_cloned_field, create_model_field,
-                           generate_unique_id, get_value_or_default,
-                           is_body_allowed_for_status_code)
 
 
 def _prepare_response_content(
@@ -472,9 +505,9 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
-                status_code
-            ), f"Status code {status_code} must not have a response body"
+            assert is_body_allowed_for_status_code(status_code), (
+                f"Status code {status_code} must not have a response body"
+            )
             response_name = "Response_" + self.unique_id
             self.response_field = create_model_field(
                 name=response_name,
@@ -505,9 +538,9 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(
-                    additional_status_code
-                ), f"Status code {additional_status_code} must not have a response body"
+                assert is_body_allowed_for_status_code(additional_status_code), (
+                    f"Status code {additional_status_code} must not have a response body"
+                )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -812,9 +845,9 @@ class APIRouter(routing.Router):
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -1224,9 +1257,9 @@ class APIRouter(routing.Router):
         """
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009

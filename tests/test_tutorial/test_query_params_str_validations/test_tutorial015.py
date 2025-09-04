@@ -2,9 +2,8 @@ import importlib
 
 import pytest
 from dirty_equals import IsStr
-from inline_snapshot import snapshot
-
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py39, needs_py310, needs_pydanticv2
 

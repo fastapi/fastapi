@@ -2,9 +2,9 @@ import importlib
 
 import pytest
 from dirty_equals import IsDict
+from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from fastapi.testclient import TestClient
 from tests.utils import needs_py39, needs_py310
 
 

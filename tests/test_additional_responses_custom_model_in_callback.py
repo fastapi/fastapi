@@ -1,9 +1,8 @@
 from dirty_equals import IsDict
-from pydantic import BaseModel, HttpUrl
-from starlette.responses import JSONResponse
-
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel, HttpUrl
+from starlette.responses import JSONResponse
 
 
 class CustomModel(BaseModel):

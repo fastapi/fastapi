@@ -1,8 +1,7 @@
 from typing import Union
 
-from typing_extensions import Annotated
-
 from fastapi import BackgroundTasks, Depends, FastAPI
+from typing_extensions import Annotated
 
 app = FastAPI()
 

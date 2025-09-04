@@ -2,10 +2,9 @@ import warnings
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
-
-from fastapi.openapi.models import Example
 
 from ._compat import PYDANTIC_V2, PYDANTIC_VERSION_MINOR_TUPLE, Undefined
 

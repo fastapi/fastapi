@@ -1,8 +1,7 @@
 from typing import Union
 
-from pydantic import BaseModel, Field
-
 from fastapi import FastAPI
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 

@@ -1,6 +1,5 @@
-from pydantic import BaseModel
-
 from fastapi import FastAPI, Header, HTTPException
+from pydantic import BaseModel
 
 fake_secret_token = "coneofsilence"
 

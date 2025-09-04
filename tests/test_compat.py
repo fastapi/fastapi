@@ -1,14 +1,19 @@
 from typing import Any, Dict, List, Union
 
+from fastapi import FastAPI, UploadFile
+from fastapi._compat import (
+    ModelField,
+    Undefined,
+    _get_model_config,
+    get_cached_model_fields,
+    get_model_fields,
+    is_bytes_sequence_annotation,
+    is_scalar_field,
+    is_uploadfile_sequence_annotation,
+)
+from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
-
-from fastapi import FastAPI, UploadFile
-from fastapi._compat import (ModelField, Undefined, _get_model_config,
-                             get_cached_model_fields, get_model_fields,
-                             is_bytes_sequence_annotation, is_scalar_field,
-                             is_uploadfile_sequence_annotation)
-from fastapi.testclient import TestClient
 
 from .utils import needs_pydanticv1, needs_pydanticv2
 

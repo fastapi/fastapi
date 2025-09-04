@@ -3,12 +3,12 @@ import warnings
 
 import pytest
 from dirty_equals import IsDict, IsInt
+from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from sqlalchemy import StaticPool
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.main import default_registry
 
-from fastapi.testclient import TestClient
 from tests.utils import needs_py39, needs_py310
 
 

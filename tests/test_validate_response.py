@@ -1,11 +1,10 @@
 from typing import List, Optional, Union
 
 import pytest
-from pydantic import BaseModel
-
 from fastapi import FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 app = FastAPI()
 

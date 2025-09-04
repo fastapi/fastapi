@@ -1,5 +1,6 @@
-from docs_src.dataclasses.tutorial003 import app
 from fastapi.testclient import TestClient
+
+from docs_src.dataclasses.tutorial003 import app
 
 from ...utils import needs_pydanticv1, needs_pydanticv2
 

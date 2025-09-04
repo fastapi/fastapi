@@ -1,9 +1,8 @@
 from datetime import datetime, timezone
 
-from pydantic import BaseModel
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 from .utils import needs_pydanticv1, needs_pydanticv2
 

@@ -1,6 +1,22 @@
-from typing import (Any, BinaryIO, Callable, Dict, Iterable, Optional, Type,
-                    TypeVar, cast)
+from typing import (
+    Any,
+    BinaryIO,
+    Callable,
+    Dict,
+    Iterable,
+    Optional,
+    Type,
+    TypeVar,
+    cast,
+)
 
+from fastapi._compat import (
+    PYDANTIC_V2,
+    CoreSchema,
+    GetJsonSchemaHandler,
+    JsonSchemaValue,
+    with_info_plain_validator_function,
+)
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
 from starlette.datastructures import FormData as FormData  # noqa: F401
@@ -9,10 +25,6 @@ from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
 from typing_extensions import Annotated, Doc
-
-from fastapi._compat import (PYDANTIC_V2, CoreSchema, GetJsonSchemaHandler,
-                             JsonSchemaValue,
-                             with_info_plain_validator_function)
 
 
 class UploadFile(StarletteUploadFile):

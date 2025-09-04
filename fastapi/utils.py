@@ -1,19 +1,34 @@
 import re
 import warnings
 from dataclasses import is_dataclass
-from typing import (TYPE_CHECKING, Any, Dict, MutableMapping, Optional, Set,
-                    Type, Union, cast)
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    MutableMapping,
+    Optional,
+    Set,
+    Type,
+    Union,
+    cast,
+)
 from weakref import WeakKeyDictionary
 
+import fastapi
+from fastapi._compat import (
+    PYDANTIC_V2,
+    BaseConfig,
+    ModelField,
+    PydanticSchemaGenerationError,
+    Undefined,
+    UndefinedType,
+    Validator,
+    lenient_issubclass,
+)
+from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel, create_model
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
-
-import fastapi
-from fastapi._compat import (PYDANTIC_V2, BaseConfig, ModelField,
-                             PydanticSchemaGenerationError, Undefined,
-                             UndefinedType, Validator, lenient_issubclass)
-from fastapi.datastructures import DefaultPlaceholder, DefaultType
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute

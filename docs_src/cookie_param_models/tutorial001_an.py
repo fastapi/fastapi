@@ -1,9 +1,8 @@
 from typing import Union
 
+from fastapi import Cookie, FastAPI
 from pydantic import BaseModel
 from typing_extensions import Annotated
-
-from fastapi import Cookie, FastAPI
 
 app = FastAPI()
 

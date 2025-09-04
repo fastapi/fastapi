@@ -1,33 +1,42 @@
 import http.client
 import inspect
 import warnings
-from typing import (Any, Dict, List, Optional, Sequence, Set, Tuple, Type,
-                    Union, cast)
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
 
+from fastapi import routing
+from fastapi._compat import (
+    GenerateJsonSchema,
+    JsonSchemaValue,
+    ModelField,
+    Undefined,
+    get_compat_model_name_map,
+    get_definitions,
+    get_schema_from_model_field,
+    lenient_issubclass,
+)
+from fastapi.datastructures import DefaultPlaceholder
+from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.utils import (
+    _get_flat_fields_from_params,
+    get_flat_dependant,
+    get_flat_params,
+)
+from fastapi.encoders import jsonable_encoder
+from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
+from fastapi.openapi.models import OpenAPI
+from fastapi.params import Body, ParamTypes
+from fastapi.responses import Response
+from fastapi.types import ModelNameMap
+from fastapi.utils import (
+    deep_dict_update,
+    generate_operation_id_for_path,
+    is_body_allowed_for_status_code,
+)
 from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 from typing_extensions import Literal
-
-from fastapi import routing
-from fastapi._compat import (GenerateJsonSchema, JsonSchemaValue, ModelField,
-                             Undefined, get_compat_model_name_map,
-                             get_definitions, get_schema_from_model_field,
-                             lenient_issubclass)
-from fastapi.datastructures import DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import (_get_flat_fields_from_params,
-                                        get_flat_dependant, get_flat_params)
-from fastapi.encoders import jsonable_encoder
-from fastapi.openapi.constants import (METHODS_WITH_BODY, REF_PREFIX,
-                                       REF_TEMPLATE)
-from fastapi.openapi.models import OpenAPI
-from fastapi.params import Body, ParamTypes
-from fastapi.responses import Response
-from fastapi.types import ModelNameMap
-from fastapi.utils import (deep_dict_update, generate_operation_id_for_path,
-                           is_body_allowed_for_status_code)
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -376,9 +385,9 @@ def get_openapi_path(
                     openapi_response = operation_responses.setdefault(
                         status_code_key, {}
                     )
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
+                    assert isinstance(process_response, dict), (
+                        "An additional response must be a dict"
+                    )
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
@@ -446,9 +455,9 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
+                assert isinstance(route.body_field, ModelField), (
+                    "A request body must be a Pydantic Field"
+                )
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)

@@ -1,8 +1,7 @@
-from sqlalchemy.sql.elements import quoted_name
-
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from fastapi.testclient import TestClient
+from sqlalchemy.sql.elements import quoted_name
 
 app = FastAPI(default_response_class=ORJSONResponse)
 

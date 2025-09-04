@@ -1,7 +1,6 @@
 from typing import Optional
 
 from dirty_equals import IsDict
-
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 

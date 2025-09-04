@@ -1,8 +1,7 @@
 from typing import Union
 
-from sqlmodel import Field, Session, SQLModel, create_engine, select
-
 from fastapi import Depends, FastAPI, HTTPException, Query
+from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 
 class Hero(SQLModel, table=True):
