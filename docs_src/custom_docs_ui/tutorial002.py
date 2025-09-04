@@ -1,9 +1,6 @@
 from fastapi import FastAPI
-from fastapi.openapi.docs import (
-    get_redoc_html,
-    get_swagger_ui_html,
-    get_swagger_ui_oauth2_redirect_html,
-)
+from fastapi.openapi.docs import (get_redoc_html, get_swagger_ui_html,
+                                  get_swagger_ui_oauth2_redirect_html)
 from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(docs_url=None, redoc_url=None)

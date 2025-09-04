@@ -1,5 +1,6 @@
-from fastapi import FastAPI, status
 from pydantic import BaseModel
+
+from fastapi import FastAPI, status
 
 app = FastAPI()
 

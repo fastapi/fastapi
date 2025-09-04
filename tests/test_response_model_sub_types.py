@@ -1,8 +1,9 @@
 from typing import List
 
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 
 class Model(BaseModel):

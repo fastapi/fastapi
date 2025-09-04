@@ -1,5 +1,6 @@
-from fastapi import Header, HTTPException
 from typing_extensions import Annotated
+
+from fastapi import Header, HTTPException
 
 
 async def get_token_header(x_token: Annotated[str, Header()]):

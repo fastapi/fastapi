@@ -1,7 +1,8 @@
 from typing import Optional
 
-from fastapi import FastAPI
 from pydantic import BaseModel
+
+from fastapi import FastAPI
 
 
 class Item(BaseModel):

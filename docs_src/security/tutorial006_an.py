@@ -1,6 +1,7 @@
+from typing_extensions import Annotated
+
 from fastapi import Depends, FastAPI
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from typing_extensions import Annotated
 
 app = FastAPI()
 

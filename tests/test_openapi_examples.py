@@ -1,9 +1,10 @@
 from typing import Union
 
 from dirty_equals import IsDict
+from pydantic import BaseModel
+
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 app = FastAPI()
 

@@ -1,4 +1,5 @@
 import pytest
+
 from fastapi.exceptions import FastAPIError
 
 

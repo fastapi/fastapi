@@ -1,9 +1,8 @@
 from pathlib import Path
 
-from fastapi.testclient import TestClient
-
 from docs_src.custom_response import tutorial008
 from docs_src.custom_response.tutorial008 import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

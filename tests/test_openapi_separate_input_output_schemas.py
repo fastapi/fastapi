@@ -1,8 +1,9 @@
 from typing import List, Optional
 
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 from .utils import PYDANTIC_V2, needs_pydanticv2
 

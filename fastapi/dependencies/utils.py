@@ -2,76 +2,45 @@ import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from typing import (
-    Any,
-    Callable,
-    Coroutine,
-    Dict,
-    ForwardRef,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    Union,
-    cast,
-)
+from typing import (Any, Callable, Coroutine, Dict, ForwardRef, List, Mapping,
+                    Optional, Sequence, Tuple, Type, Union, cast)
 
 import anyio
+from pydantic import BaseModel
+from pydantic.fields import FieldInfo
+from starlette.background import BackgroundTasks as StarletteBackgroundTasks
+from starlette.concurrency import run_in_threadpool
+from starlette.datastructures import (FormData, Headers, ImmutableMultiDict,
+                                      QueryParams, UploadFile)
+from starlette.requests import HTTPConnection, Request
+from starlette.responses import Response
+from starlette.websockets import WebSocket
+from typing_extensions import Annotated, get_args, get_origin
+
 from fastapi import params
-from fastapi._compat import (
-    PYDANTIC_V2,
-    ErrorWrapper,
-    ModelField,
-    RequiredParam,
-    Undefined,
-    _regenerate_error_with_loc,
-    copy_field_info,
-    create_body_model,
-    evaluate_forwardref,
-    field_annotation_is_scalar,
-    get_annotation_from_field_info,
-    get_cached_model_fields,
-    get_missing_field_error,
-    is_bytes_field,
-    is_bytes_sequence_field,
-    is_scalar_field,
-    is_scalar_sequence_field,
-    is_sequence_field,
-    is_uploadfile_or_nonable_uploadfile_annotation,
-    is_uploadfile_sequence_annotation,
-    lenient_issubclass,
-    sequence_types,
-    serialize_sequence_value,
-    value_is_sequence,
-)
+from fastapi._compat import (PYDANTIC_V2, ErrorWrapper, ModelField,
+                             RequiredParam, Undefined,
+                             _regenerate_error_with_loc, copy_field_info,
+                             create_body_model, evaluate_forwardref,
+                             field_annotation_is_scalar,
+                             get_annotation_from_field_info,
+                             get_cached_model_fields, get_missing_field_error,
+                             is_bytes_field, is_bytes_sequence_field,
+                             is_scalar_field, is_scalar_sequence_field,
+                             is_sequence_field,
+                             is_uploadfile_or_nonable_uploadfile_annotation,
+                             is_uploadfile_sequence_annotation,
+                             lenient_issubclass, sequence_types,
+                             serialize_sequence_value, value_is_sequence)
 from fastapi.background import BackgroundTasks
-from fastapi.concurrency import (
-    asynccontextmanager,
-    contextmanager_in_threadpool,
-)
+from fastapi.concurrency import (asynccontextmanager,
+                                 contextmanager_in_threadpool)
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
-from pydantic.fields import FieldInfo
-from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from starlette.concurrency import run_in_threadpool
-from starlette.datastructures import (
-    FormData,
-    Headers,
-    ImmutableMultiDict,
-    QueryParams,
-    UploadFile,
-)
-from starlette.requests import HTTPConnection, Request
-from starlette.responses import Response
-from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -97,14 +66,14 @@ def ensure_multipart_is_installed() -> None:
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
-            from multipart import __version__  # type: ignore[no-redef,import-untyped]
+            from multipart import \
+                __version__  # type: ignore[no-redef,import-untyped]
 
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]
-                    parse_options_header,
-                )
+                from multipart.multipart import \
+                    parse_options_header  # type: ignore[import-untyped]
 
                 assert parse_options_header
             except ImportError:
@@ -133,9 +102,9 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(depends.dependency), (
-        "A parameter-less dependency must have a callable dependency"
-    )
+    assert callable(
+        depends.dependency
+    ), "A parameter-less dependency must have a callable dependency"
     return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
 
 
@@ -302,9 +271,9 @@ def get_dependant(
             type_annotation=param_details.type_annotation,
             dependant=dependant,
         ):
-            assert param_details.field is None, (
-                f"Cannot specify multiple FastAPI annotations for {param_name!r}"
-            )
+            assert (
+                param_details.field is None
+            ), f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             continue
         assert param_details.field is not None
         if isinstance(param_details.field.field_info, params.Body):
@@ -439,9 +408,9 @@ def analyze_param(
         ),
     ):
         assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
-        assert field_info is None, (
-            f"Cannot specify FastAPI annotation for type {type_annotation!r}"
-        )
+        assert (
+            field_info is None
+        ), f"Cannot specify FastAPI annotation for type {type_annotation!r}"
     # Handle default assignations, neither field_info nor depends was not found in Annotated nor default value
     elif field_info is None and depends is None:
         default_value = value if value is not inspect.Signature.empty else RequiredParam
@@ -494,9 +463,9 @@ def analyze_param(
             field_info=field_info,
         )
         if is_path_param:
-            assert is_scalar_field(field=field), (
-                "Path params must be of one of the supported types"
-            )
+            assert is_scalar_field(
+                field=field
+            ), "Path params must be of one of the supported types"
         elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
@@ -521,9 +490,9 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
     elif field_info_in == params.ParamTypes.header:
         dependant.header_params.append(field)
     else:
-        assert field_info_in == params.ParamTypes.cookie, (
-            f"non-body parameters must be in path, query, header or cookie: {field.name}"
-        )
+        assert (
+            field_info_in == params.ParamTypes.cookie
+        ), f"non-body parameters must be in path, query, header or cookie: {field.name}"
         dependant.cookie_params.append(field)
 
 
@@ -790,9 +759,9 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
+        assert isinstance(
+            field_info, params.Param
+        ), "Params must be subclasses of Param"
         loc: Tuple[str, ...] = (field_info.in_.value,)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=params_to_process, values=values, loc=loc
@@ -802,9 +771,9 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
+        assert isinstance(
+            field_info, params.Param
+        ), "Params must be subclasses of Param"
         loc = (field_info.in_.value, field.alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc

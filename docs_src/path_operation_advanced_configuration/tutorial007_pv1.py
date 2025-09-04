@@ -1,8 +1,9 @@
 from typing import List
 
 import yaml
-from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, ValidationError
+
+from fastapi import FastAPI, HTTPException, Request
 
 app = FastAPI()
 

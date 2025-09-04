@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import Cookie, FastAPI
 from pydantic import BaseModel
+
+from fastapi import Cookie, FastAPI
 
 app = FastAPI()
 

@@ -2,6 +2,7 @@ import importlib
 from types import ModuleType
 
 import pytest
+
 from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
 

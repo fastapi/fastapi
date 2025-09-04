@@ -1,9 +1,10 @@
 import json
 from typing import List
 
+from typing_extensions import Annotated
+
 from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 def dependency_list() -> List[str]:

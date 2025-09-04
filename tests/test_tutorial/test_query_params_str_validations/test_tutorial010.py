@@ -2,6 +2,7 @@ import importlib
 
 import pytest
 from dirty_equals import IsDict
+
 from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 

@@ -3,6 +3,7 @@ from types import ModuleType
 
 import pytest
 from dirty_equals import IsDict, IsOneOf
+
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py39, needs_py310

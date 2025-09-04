@@ -1,6 +1,7 @@
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 
 
 class Item(BaseModel):

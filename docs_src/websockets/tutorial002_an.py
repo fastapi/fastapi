@@ -1,16 +1,10 @@
 from typing import Union
 
-from fastapi import (
-    Cookie,
-    Depends,
-    FastAPI,
-    Query,
-    WebSocket,
-    WebSocketException,
-    status,
-)
-from fastapi.responses import HTMLResponse
 from typing_extensions import Annotated
+
+from fastapi import (Cookie, Depends, FastAPI, Query, WebSocket,
+                     WebSocketException, status)
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 

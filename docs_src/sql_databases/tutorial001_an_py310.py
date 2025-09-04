@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
+
+from fastapi import Depends, FastAPI, HTTPException, Query
 
 
 class Hero(SQLModel, table=True):

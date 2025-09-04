@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Header
 from pydantic import BaseModel
+
+from fastapi import FastAPI, Header
 
 app = FastAPI()
 

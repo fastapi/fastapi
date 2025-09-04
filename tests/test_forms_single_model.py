@@ -1,10 +1,11 @@
 from typing import List, Optional
 
 from dirty_equals import IsDict
-from fastapi import FastAPI, Form
-from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
+
+from fastapi import FastAPI, Form
+from fastapi.testclient import TestClient
 
 app = FastAPI()
 

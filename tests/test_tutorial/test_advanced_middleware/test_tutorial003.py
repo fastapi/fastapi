@@ -1,7 +1,6 @@
+from docs_src.advanced_middleware.tutorial003 import app
 from fastapi.responses import PlainTextResponse
 from fastapi.testclient import TestClient
-
-from docs_src.advanced_middleware.tutorial003 import app
 
 
 @app.get("/large")

@@ -1,8 +1,9 @@
 import typing
 
+from pydantic import BaseModel
+
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 app = FastAPI()
 

@@ -1,7 +1,8 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI
 from pydantic import BaseModel, validator
+
+from fastapi import Depends, FastAPI
 
 app = FastAPI()
 

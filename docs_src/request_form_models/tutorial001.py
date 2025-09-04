@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Form
 from pydantic import BaseModel
+
+from fastapi import FastAPI, Form
 
 app = FastAPI()
 

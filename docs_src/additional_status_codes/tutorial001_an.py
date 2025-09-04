@@ -1,8 +1,9 @@
 from typing import Union
 
+from typing_extensions import Annotated
+
 from fastapi import Body, FastAPI, status
 from fastapi.responses import JSONResponse
-from typing_extensions import Annotated
 
 app = FastAPI()
 

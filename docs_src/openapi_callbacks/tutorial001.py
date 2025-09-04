@@ -1,7 +1,8 @@
 from typing import Union
 
-from fastapi import APIRouter, FastAPI
 from pydantic import BaseModel, HttpUrl
+
+from fastapi import APIRouter, FastAPI
 
 app = FastAPI()
 

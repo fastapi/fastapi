@@ -1,11 +1,12 @@
 from typing import List, Union
 
 import pytest
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 
 
 class BaseUser(BaseModel):

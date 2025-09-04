@@ -1,7 +1,8 @@
 from functools import lru_cache
 
-from fastapi import Depends, FastAPI
 from typing_extensions import Annotated
+
+from fastapi import Depends, FastAPI
 
 from .config import Settings
 

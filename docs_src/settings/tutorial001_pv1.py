@@ -1,5 +1,6 @@
-from fastapi import FastAPI
 from pydantic import BaseSettings
+
+from fastapi import FastAPI
 
 
 class Settings(BaseSettings):
