@@ -35,6 +35,7 @@ hide:
 
 ### Internal
 
+* 👷 Detect and label merge conflicts on PRs automatically. PR [#14045](https://github.com/fastapi/fastapi/pull/14045) by [@svlandeg](https://github.com/svlandeg).
 * 🔧 Update sponsors: remove Platform.sh. PR [#14027](https://github.com/fastapi/fastapi/pull/14027) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: remove Mobb. PR [#14026](https://github.com/fastapi/fastapi/pull/14026) by [@tiangolo](https://github.com/tiangolo).
 * 🛠️ Update `mkdocs_hooks` to handle headers with permalinks when building docs. PR [#14025](https://github.com/fastapi/fastapi/pull/14025) by [@tiangolo](https://github.com/tiangolo).
