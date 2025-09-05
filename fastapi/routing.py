@@ -1355,6 +1355,8 @@ class APIRouter(routing.Router):
                 self.add_websocket_route(
                     prefix + route.path, route.endpoint, name=route.name
                 )
+            elif isinstance(route, routing.Mount):
+                self.mount(prefix + route.path, route.app, name=route.name)
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)
         for handler in router.on_shutdown:
