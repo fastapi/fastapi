@@ -24,6 +24,7 @@ non_translated_sections = (
     "contributing.md",
 )
 
+
 general_prompt = """
 ### About literal text in this prompt
 
@@ -110,7 +111,7 @@ The above rules are in effect now.
 
 "HTML element"
 
-    a HTML opening tag – e.g. «<div>» – and a HTML closing tag – e.g. «</div>» – wrapping text or other HTML elements.
+    a HTML opening tag – e.g. «<div>» – and a HTML closing tag – e.g. «</div>» – surrounding text or other HTML elements.
 
 ### Your task
 
@@ -664,7 +665,6 @@ Example:
 4) Apply above rules also when there is an existing translation! Make sure that all title attributes in abbr elements get properly translated or updated, using the schemes given above.
 
 5) If there is an existing translation, and it has ADDITIONAL abbr elements in a sentence, and these additional abbr elements do not exist in the related sentence in the English text, then KEEP those additional abbr elements in the translation. Do not remove them. Except when you remove the whole sentence from the translation, because the whole sentence was removed from the English text, then also remove the abbr element. The reasoning for this rule is, that such additional abbr elements are manually added by the human editor of the translation, in order to translate or explain an English word to the human readers of the translation. These additional abbr elements would not make sense in the English text, but they do make sense in the translation. So keep them in the translation, even though they are not part of the English text. This rule only applies to abbr elements.
-
 
 """
 
