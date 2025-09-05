@@ -2,7 +2,6 @@ import asyncio
 import dataclasses
 import email.message
 import inspect
-import json
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
@@ -25,7 +24,6 @@ from typing import (
 from fastapi import params
 from fastapi._compat import (
     ModelField,
-    Undefined,
     _get_model_config,
     _model_dump,
     _normalize_errors,
@@ -243,42 +241,23 @@ def get_request_handler(
         async with AsyncExitStack() as file_stack:
             try:
                 body: Any = None
+                is_body_json = False
                 if body_field:
                     if is_body_form:
                         body = await request.form()
                         file_stack.push_async_callback(body.close)
                     else:
-                        body_bytes = await request.body()
-                        if body_bytes:
-                            json_body: Any = Undefined
-                            content_type_value = request.headers.get("content-type")
-                            if not content_type_value:
-                                json_body = await request.json()
-                            else:
-                                message = email.message.Message()
-                                message["content-type"] = content_type_value
-                                if message.get_content_maintype() == "application":
-                                    subtype = message.get_content_subtype()
-                                    if subtype == "json" or subtype.endswith("+json"):
-                                        json_body = await request.json()
-                            if json_body != Undefined:
-                                body = json_body
-                            else:
-                                body = body_bytes
-            except json.JSONDecodeError as e:
-                validation_error = RequestValidationError(
-                    [
-                        {
-                            "type": "json_invalid",
-                            "loc": ("body", e.pos),
-                            "msg": "JSON decode error",
-                            "input": {},
-                            "ctx": {"error": e.msg},
-                        }
-                    ],
-                    body=e.doc,
-                )
-                raise validation_error from e
+                        body = await request.body() or None
+                        if body:
+                            message = email.message.Message()
+                            message["content-type"] = request.headers.get(
+                                "content-type", "application/json"
+                            )
+                            if message.get_content_maintype() == "application":
+                                subtype = message.get_content_subtype()
+                                is_body_json = subtype == "json" or subtype.endswith(
+                                    "+json"
+                                )
             except HTTPException:
                 # If a middleware raises an HTTPException, it should be raised again
                 raise
@@ -293,6 +272,7 @@ def get_request_handler(
                     request=request,
                     dependant=dependant,
                     body=body,
+                    is_body_json=is_body_json,
                     dependency_overrides_provider=dependency_overrides_provider,
                     async_exit_stack=async_exit_stack,
                     embed_body_fields=embed_body_fields,
