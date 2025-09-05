@@ -4,7 +4,9 @@ from typing import List
 from dirty_equals import IsDict, IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from packaging.version import Version
 from pydantic import BaseModel, condecimal
+from pydantic.version import VERSION as pydantic_version
 
 app = FastAPI()
 
@@ -131,6 +133,10 @@ def test_put_incorrect_body_multiple():
 
 
 def test_openapi_schema():
+    decimal_string_type = {"type": "string"}
+    if Version(pydantic_version) >= Version("2.12.0a1"):  # pragma: no cover
+        decimal_string_type["pattern"] = r"^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$"
+
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -185,7 +191,7 @@ def test_openapi_schema():
                                 "title": "Age",
                                 "anyOf": [
                                     {"exclusiveMinimum": 0.0, "type": "number"},
-                                    {"type": "string"},
+                                    decimal_string_type,
                                 ],
                             }
                         )
