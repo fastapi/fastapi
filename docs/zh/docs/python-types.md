@@ -228,7 +228,7 @@ John Doe
 
 ## Pydantic 模型
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 是一个用来用来执行数据校验的 Python 库。
+<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 是一个用来执行数据校验的 Python 库。
 
 你可以将数据的"结构"声明为具有属性的类。
 
@@ -240,7 +240,29 @@ John Doe
 
 下面的例子来自 Pydantic 官方文档：
 
-{* ../../docs_src/python_types/tutorial010.py *}
+//// tab | Python 3.10+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py310.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011_py39.py!}
+```
+
+////
+
+//// tab | Python 3.8+
+
+```Python
+{!> ../../docs_src/python_types/tutorial011.py!}
+```
+
+////
 
 
 /// info

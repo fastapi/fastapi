@@ -1,4 +1,4 @@
-# Dependencies with yield
+# Dependencies with yield { #dependencies-with-yield }
 
 FastAPI supports dependencies that do some <abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc.'>extra steps after finishing</abbr>.
 
@@ -23,7 +23,7 @@ In fact, FastAPI uses similar decorator internally.
 
 ///
 
-## A database dependency with `yield`
+## A database dependency with `yield` { #a-database-dependency-with-yield }
 
 For example, you could use this to create a database session and close it after finishing.
 
@@ -47,7 +47,7 @@ You can use `async` or regular functions.
 
 ///
 
-## A dependency with `yield` and `try`
+## A dependency with `yield` and `try` { #a-dependency-with-yield-and-try }
 
 If you use a `try` block in a dependency with `yield`, you'll receive any exception that was thrown when using the dependency.
 
@@ -59,7 +59,7 @@ In the same way, you can use `finally` to make sure the exit steps are executed,
 
 {* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
-## Sub-dependencies with `yield`
+## Sub-dependencies with `yield` { #sub-dependencies-with-yield }
 
 You can have sub-dependencies and "trees" of sub-dependencies of any size and shape, and any or all of them can use `yield`.
 
@@ -93,7 +93,7 @@ This works thanks to Python's <a href="https://docs.python.org/3/library/context
 
 ///
 
-## Dependencies with `yield` and `HTTPException`
+## Dependencies with `yield` and `HTTPException` { #dependencies-with-yield-and-httpexception }
 
 You saw that you can use dependencies with `yield` and have `try` blocks that catch exceptions.
 
@@ -111,7 +111,7 @@ But it's there for you if you need it. 🤓
 
 An alternative you could use to catch exceptions (and possibly also raise another `HTTPException`) is to create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
 
-## Dependencies with `yield` and `except`
+## Dependencies with `yield` and `except` { #dependencies-with-yield-and-except }
 
 If you catch an exception using `except` in a dependency with `yield` and you don't raise it again (or raise a new exception), FastAPI won't be able to notice there was an exception, the same way that would happen with regular Python:
 
@@ -119,7 +119,7 @@ If you catch an exception using `except` in a dependency with `yield` and you do
 
 In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
 
-### Always `raise` in Dependencies with `yield` and `except`
+### Always `raise` in Dependencies with `yield` and `except` { #always-raise-in-dependencies-with-yield-and-except }
 
 If you catch an exception in a dependency with `yield`, unless you are raising another `HTTPException` or similar, you should re-raise the original exception.
 
@@ -142,7 +142,7 @@ You cannot use dependency-injected `Response` to modify response in dependency a
 
 ///
 
-## Execution of dependencies with `yield`
+## Execution of dependencies with `yield` { #execution-of-dependencies-with-yield }
 
 The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.
 
@@ -197,7 +197,7 @@ If you raise any exception, it will be passed to the dependencies with yield, in
 
 ///
 
-## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks
+## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning
 
@@ -207,13 +207,13 @@ These details are useful mainly if you were using a version of FastAPI prior to 
 
 ///
 
-### Dependencies with `yield` and `except`, Technical Details
+### Dependencies with `yield` and `except`, Technical Details { #dependencies-with-yield-and-except-technical-details }
 
 Before FastAPI 0.110.0, if you used a dependency with `yield`, and then you captured an exception with `except` in that dependency, and you didn't raise the exception again, the exception would be automatically raised/forwarded to any exception handlers or the internal server error handler.
 
 This was changed in version 0.110.0 to fix unhandled memory consumption from forwarded exceptions without a handler (internal server errors), and to make it consistent with the behavior of regular Python code.
 
-### Background Tasks and Dependencies with `yield`, Technical Details
+### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
 Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
 
@@ -233,9 +233,9 @@ If you used to rely on this behavior, now you should create the resources for ba
 
 For example, instead of using the same database session, you would create a new database session inside of the background task, and you would obtain the objects from the database using this new session. And then instead of passing the object from the database as a parameter to the background task function, you would pass the ID of that object and then obtain the object again inside the background task function.
 
-## Context Managers
+## Context Managers { #context-managers }
 
-### What are "Context Managers"
+### What are "Context Managers" { #what-are-context-managers }
 
 "Context Managers" are any of those Python objects that you can use in a `with` statement.
 
@@ -253,7 +253,7 @@ When the `with` block finishes, it makes sure to close the file, even if there w
 
 When you create a dependency with `yield`, **FastAPI** will internally create a context manager for it, and combine it with some other related tools.
 
-### Using context managers in dependencies with `yield`
+### Using context managers in dependencies with `yield` { #using-context-managers-in-dependencies-with-yield }
 
 /// warning
 
