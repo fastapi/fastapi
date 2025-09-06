@@ -257,8 +257,6 @@ Below is a list of English terms and their preferred German translations, separa
 * «the `PATH`»: «der `PATH`»
 * «the `requirements.txt`»: «die `requirements.txt`»
 * «the API Router»: «der API-Router»
-* «the app»: «die App»
-* «the application»: «die Anwendung»
 * «the Authorization-Header»: «der Autorisierungsheader»
 * «the `Authorization`-Header»: «der `Authorization`-Header»
 * «the background task»: «der Hintergrundtask»
@@ -305,7 +303,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the header parameter»: «der Header-Parameter»
 * «the form parameter»: «der Formular-Parameter»
 * «the payload»: «die Payload»
-* «the performance»: «die Performanz»
+* «the performance»: NOT «die Performance»
 * «the query»: «die Query»
 * «the recap»: «die Zusammenfassung»
 * «the request» (what the client sends to the server): «der Request»
