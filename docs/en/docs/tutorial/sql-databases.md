@@ -8,7 +8,7 @@ Here we'll see an example using <a href="https://sqlmodel.tiangolo.com/" class="
 
 /// tip
 
-You could use any other SQL or NoSQL database library you want (in some cases called <abbr title="Object Relational Mapper: a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>), FastAPI doesn't force you to use anything. 😎
+You could use any other SQL or NoSQL database library you want (in some cases called <abbr title="Object Relational Mapper, a fancy term for a library where some classes represent SQL tables and instances represent rows in those tables">"ORMs"</abbr>), FastAPI doesn't force you to use anything. 😎
 
 ///
 

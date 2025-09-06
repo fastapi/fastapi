@@ -490,7 +490,7 @@ And normally this **load balancer** would be able to handle requests that go to 
 
 In this type of scenario, you probably would want to have **a single (Uvicorn) process per container**, as you would already be handling replication at the cluster level.
 
-So, in this case, you **would not** want to have a multiple workers in the container, for example with the `--workers` command line option. You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
+So, in this case, you **would not** want to have a multiple workers in the container, for example with the `--workers` command line option.You would want to have just a **single Uvicorn process** per container (but probably multiple containers).
 
 Having another process manager inside the container (as would be with multiple workers) would only add **unnecessary complexity** that you are most probably already taking care of with your cluster system.
 

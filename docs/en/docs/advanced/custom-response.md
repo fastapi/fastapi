@@ -221,7 +221,7 @@ Takes an async generator or a normal generator/iterator and streams the response
 
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
-If you have a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
+If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
 
 That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
 
