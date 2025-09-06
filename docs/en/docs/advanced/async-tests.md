@@ -94,6 +94,6 @@ As the testing function is now asynchronous, you can now also call (and `await`)
 
 /// tip
 
-If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `@app.on_event("startup")` callback.
 
 ///

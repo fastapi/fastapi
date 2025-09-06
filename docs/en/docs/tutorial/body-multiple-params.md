@@ -119,7 +119,7 @@ For example:
 
 /// info
 
-`Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+`Body` also has all the same extra validation and metadata parameters as `Query`, `Path` and others you will see later.
 
 ///
 
