@@ -25,7 +25,7 @@ Use the formal grammar (use «Sie» instead of «Du»).
 
 ### Quotes
 
-1) Convert neutral double quotes («"») and English double typographic quotes («“» and «”») to German double typographic quotes («„» and «“»). Convert neutral single quotes («'») and English single typographic quotes («‘» and «’») to German single typographic quotes («‚» and «‘»).
+1) Convert neutral double quotes («"») and English double typographic quotes («“» and «”») to German double typographic quotes («„» and «“»). Convert neutral single quotes («'») and English single typographic quotes («‘» and «’») to German single typographic quotes («‚» and «‘»). Do NOT convert «`"» to «„», do NOT convert «"`» to «“».
 
 Examples:
 
@@ -36,6 +36,8 @@ Examples:
         “Hello Universe”
         "He said: 'Hello'"
         “my name is ‘Nils’”
+        `"__main__"`
+        `"items"`
         »»»
 
     Result (German):
@@ -45,22 +47,8 @@ Examples:
         „Hallo Universum“
         „Er sagte: ‚Hallo‘“
         „Mein Name ist ‚Nils‘“
-        »»»
-
-1) In code snippets, leave all string literals – text surrounded by quotes («"») – as is. Do not convert them to German typographic quotes («„» and «“»). Further, do not remove the backticks around the code snippet (the «`»). Leave the code snippet as is, do not change it or its content.
-
-Example:
-
-    Source (English) – contains three code snippets, two of them contain a string literal:
-
-        «««
-        Here a code snippet: `i am a code snippet`. And a code snippet containing a string literal: `i am a code snippet containing "a string literal"`. Code snippet containing just a string literal: `"just me, the string literal"`.
-        »»»
-
-    Result (German) – You translate the normal text, but you keep the three code snippets as is:
-
-        «««
-        Hier ein Codeschnipsel: `i am a code snippet`. Und ein Codeschnipsel mit einem String-Literal: `i am a code snippet containing "a string literal"`. Codeschnipsel mit nur einem String-Literal: `"just me, the string literal"`.
+        `"__main__"`
+        `"items"`
         »»»
 
 
