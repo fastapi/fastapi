@@ -12,22 +12,22 @@ class QuerySchema(BaseModel):
 
 @app.query("/items/")
 async def query_items(schema: QuerySchema):
-    return {"items": [{"name": "Empanada"}, {"name": "Arepa"}], "schema": schema.model_dump()}
+    return {
+        "items": [{"name": "Empanada"}, {"name": "Arepa"}],
+        "schema": schema.model_dump(),
+    }
 
 
 client = TestClient(app)
 
 
 def test_query_method():
-    body = {
-        "fields": ["name", "description"],
-        "filters": {"category": "food"}
-    }
+    body = {"fields": ["name", "description"], "filters": {"category": "food"}}
     response = client.request("QUERY", "/items/", json=body)
     assert response.status_code == 200, response.text
     assert response.json() == {
         "items": [{"name": "Empanada"}, {"name": "Arepa"}],
-        "schema": body
+        "schema": body,
     }
 
 

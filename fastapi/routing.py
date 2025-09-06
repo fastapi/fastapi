@@ -4822,7 +4822,6 @@ class APIRouter(routing.Router):
 
         return decorator
 
-
     @deprecated(
         """
         on_event is deprecated, use lifespan event handlers instead.
