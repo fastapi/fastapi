@@ -1,12 +1,12 @@
-# JSON-kompatibler Encoder
+# JSON-kompatibler Encoder { #json-compatible-encoder }
 
-Es gibt Fälle, da möchten Sie einen Datentyp (etwa ein Pydantic-Modell) in etwas konvertieren, das kompatibel mit JSON ist (etwa ein `dict`, eine `list`e, usw.).
+Es gibt Fälle, da möchten Sie einen Datentyp (etwa ein Pydantic-Modell) in etwas konvertieren, das kompatibel mit JSON ist (etwa ein `dict`, eine `list`, usw.).
 
 Zum Beispiel, wenn Sie es in einer Datenbank speichern möchten.
 
 Dafür bietet **FastAPI** eine Funktion `jsonable_encoder()`.
 
-## `jsonable_encoder` verwenden
+## `jsonable_encoder` verwenden { #using-the-jsonable-encoder }
 
 Stellen wir uns vor, Sie haben eine Datenbank `fake_db`, die nur JSON-kompatible Daten entgegennimmt.
 

@@ -1,16 +1,16 @@
-# Body – Aktualisierungen
+# Body – Aktualisierungen { #body-updates }
 
-## Ersetzendes Aktualisieren mit `PUT`
+## Ersetzendes Aktualisieren mit `PUT` { #update-replacing-with-put }
 
 Um einen Artikel zu aktualisieren, können Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> Operation verwenden.
 
-Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (in z. B. einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
+Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (z. B. in einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
 {* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` wird verwendet, um Daten zu empfangen, die die existierenden Daten ersetzen sollen.
 
-### Warnung bezüglich des Ersetzens
+### Warnung bezüglich des Ersetzens { #warning-about-replacing }
 
 Das bedeutet, dass, wenn Sie den Artikel `bar` aktualisieren wollen, mittels `PUT` und folgendem Body:
 
@@ -22,15 +22,15 @@ Das bedeutet, dass, wenn Sie den Artikel `bar` aktualisieren wollen, mittels `PU
 }
 ```
 
-das Eingabemodell nun den Defaultwert `"tax": 10.5` hat, weil Sie das bereits gespeicherte Attribut `"tax": 20.2` nicht mit übergeben haben.
+weil das bereits gespeicherte Attribut `"tax": 20.2` nicht enthalten ist, das Eingabemodell den Defaultwert `"tax": 10.5` erhalten würde.
 
-Die Daten werden darum mit einem „neuen“ `tax`-Wert von `10.5` abgespeichert.
+Und die Daten würden mit diesem „neuen“ `tax` von `10.5` gespeichert werden.
 
-## Teilweises Ersetzen mit `PATCH`
+## Teil-Aktualisierungen mit `PATCH` { #partial-updates-with-patch }
 
 Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> Operation verwenden, um Daten *teilweise* zu ersetzen.
 
-Das bedeutet, sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
+Das bedeutet, Sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
 
 /// note | Hinweis
 
@@ -44,33 +44,33 @@ Aber dieser Leitfaden zeigt Ihnen mehr oder weniger, wie die beiden normalerweis
 
 ///
 
-### Pydantics `exclude_unset`-Parameter verwenden
+### Pydantics `exclude_unset`-Parameter verwenden { #using-pydantics-exclude-unset-parameter }
 
 Wenn Sie Teil-Aktualisierungen entgegennehmen, ist der `exclude_unset`-Parameter in der `.model_dump()`-Methode von Pydantic-Modellen sehr nützlich.
 
 Wie in `item.model_dump(exclude_unset=True)`.
 
-/// info
+/// info | Info
 
-In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
+In Pydantic v1 hieß diese Methode `.dict()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_dump()` umbenannt.
 
 Die Beispiele hier verwenden `.dict()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 verwenden können.
 
 ///
 
-Das wird ein `dict` erstellen, mit nur den Daten, die gesetzt wurden als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
+Das wird ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> erstellen, mit nur den Daten, die gesetzt wurden, als das `item`-Modell erstellt wurde, Defaultwerte ausgeschlossen.
 
-Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im Request) gesendeten Daten enthält, ohne Defaultwerte:
+Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>) gesendeten Daten enthält, ohne Defaultwerte:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-### Pydantics `update`-Parameter verwenden
+### Pydantics `update`-Parameter verwenden { #using-pydantics-update-parameter }
 
 Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` erstellen, wobei Sie dem `update`-Parameter ein `dict` mit den zu ändernden Daten übergeben.
 
-/// info
+/// info | Info
 
-In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie deprecated (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
+In Pydantic v1 hieß diese Methode `.copy()`, in Pydantic v2 wurde sie <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> (aber immer noch unterstützt) und in `.model_copy()` umbenannt.
 
 Die Beispiele hier verwenden `.copy()` für die Kompatibilität mit Pydantic v1, Sie sollten jedoch stattdessen `.model_copy()` verwenden, wenn Sie Pydantic v2 verwenden können.
 
@@ -80,9 +80,9 @@ Wie in `stored_item_model.model_copy(update=update_data)`:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-### Rekapitulation zum teilweisen Ersetzen
+### Rekapitulation zu Teil-Aktualisierungen { #partial-updates-recap }
 
-Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
+Zusammengefasst, um Teil-Aktualisierungen vorzunehmen:
 
 * (Optional) verwenden Sie `PATCH` statt `PUT`.
 * Lesen Sie die bereits gespeicherten Daten aus.
@@ -90,7 +90,7 @@ Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
 * Erzeugen Sie aus dem empfangenen Modell ein `dict` ohne Defaultwerte (mittels `exclude_unset`).
     * So ersetzen Sie nur die tatsächlich vom Benutzer gesetzten Werte, statt dass bereits gespeicherte Werte mit Defaultwerten des Modells überschrieben werden.
 * Erzeugen Sie eine Kopie ihres gespeicherten Modells, wobei Sie die Attribute mit den empfangenen Teil-Ersetzungen aktualisieren (mittels des `update`-Parameters).
-* Konvertieren Sie das kopierte Modell zu etwas, das in ihrer Datenbank gespeichert werden kann (indem Sie beispielsweise `jsonable_encoder` verwenden).
+* Konvertieren Sie das kopierte Modell zu etwas, das in Ihrer Datenbank gespeichert werden kann (indem Sie beispielsweise `jsonable_encoder` verwenden).
     * Das ist vergleichbar dazu, die `.model_dump()`-Methode des Modells erneut aufzurufen, aber es wird sicherstellen, dass die Werte zu Daten konvertiert werden, die ihrerseits zu JSON konvertiert werden können, zum Beispiel `datetime` zu `str`.
 * Speichern Sie die Daten in Ihrer Datenbank.
 * Geben Sie das aktualisierte Modell zurück.

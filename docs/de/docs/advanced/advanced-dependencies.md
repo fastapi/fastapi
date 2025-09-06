@@ -1,6 +1,6 @@
-# Fortgeschrittene Abhängigkeiten
+# Fortgeschrittene Abhängigkeiten { #advanced-dependencies }
 
-## Parametrisierte Abhängigkeiten
+## Parametrisierte Abhängigkeiten { #parameterized-dependencies }
 
 Alle Abhängigkeiten, die wir bisher gesehen haben, waren festgelegte Funktionen oder Klassen.
 
@@ -10,9 +10,9 @@ Stellen wir uns vor, wir möchten eine Abhängigkeit haben, die prüft, ob ein Q
 
 Aber wir wollen diesen vordefinierten Inhalt per Parameter festlegen können.
 
-## Eine „aufrufbare“ Instanz
+## Eine „aufrufbare“ Instanz { #a-callable-instance }
 
-In Python gibt es eine Möglichkeit, eine Instanz einer Klasse „aufrufbar“ („callable“) zu machen.
+In Python gibt es eine Möglichkeit, eine Instanz einer Klasse <abbr title="Englisch „callable“">„aufrufbar“</abbr> zu machen.
 
 Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser Klasse.
 
@@ -22,15 +22,15 @@ Dazu deklarieren wir eine Methode `__call__`:
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
-## Die Instanz parametrisieren
+## Die Instanz parametrisieren { #parameterize-the-instance }
 
-Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum `Parametrisieren` der Abhängigkeit verwenden können:
+Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „Parametrisieren“ der Abhängigkeit verwenden können:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
 
 In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmern, wir werden es direkt in unserem Code verwenden.
 
-## Eine Instanz erstellen
+## Eine Instanz erstellen { #create-an-instance }
 
 Wir könnten eine Instanz dieser Klasse erstellen mit:
 
@@ -38,7 +38,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 
 Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
-## Die Instanz als Abhängigkeit verwenden
+## Die Instanz als Abhängigkeit verwenden { #use-the-instance-as-a-dependency }
 
 Dann könnten wir diesen `checker` in einem `Depends(checker)` anstelle von `Depends(FixedContentQueryChecker)` verwenden, da die Abhängigkeit die Instanz `checker` und nicht die Klasse selbst ist.
 
