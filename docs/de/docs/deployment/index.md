@@ -2,11 +2,11 @@
 
 Das Deployment einer **FastAPI**-Anwendung ist relativ einfach.
 
-## Deployment definieren { #what-does-deployment-mean }
+## Was bedeutet Deployment { #what-does-deployment-mean }
 
 <abbr title="Bereitstellen der Anwendung">**Deployment**</abbr> bedeutet, die notwendigen Schritte durchzuführen, um die Anwendung **für die Endbenutzer verfügbar** zu machen.
 
-Bei einer **Web-API** bedeutet das normalerweise, diese auf einem **entfernten Rechner** zu platzieren, mit einem **Serverprogramm**, welches gute Performanz, Stabilität, usw. bietet, damit Ihre **Benutzer** auf die Anwendung effizient und ohne Unterbrechungen oder Probleme **zugreifen** können.
+Bei einer **Web-API** bedeutet das normalerweise, diese auf einem **entfernten Rechner** zu platzieren, mit einem **Serverprogramm**, welches gute Leistung, Stabilität, usw. bietet, damit Ihre **Benutzer** auf die Anwendung effizient und ohne Unterbrechungen oder Probleme **zugreifen** können.
 
 Das steht im Gegensatz zu den **Entwicklungsphasen**, in denen Sie ständig den Code ändern, kaputt machen, reparieren, den Entwicklungsserver stoppen und neu starten, usw.
 

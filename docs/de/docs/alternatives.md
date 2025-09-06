@@ -425,7 +425,7 @@ Es ist sehr einfach und intuitiv. Es ist so konzipiert, dass es leicht erweiterb
 
 Es bietet:
 
-* Eine sehr beeindruckende Performanz.
+* Eine sehr beeindruckende Leistung.
 * WebSocket-Unterstützung.
 * Hintergrundtasks im selben Prozess.
 * Startup- und Shutdown-Events.

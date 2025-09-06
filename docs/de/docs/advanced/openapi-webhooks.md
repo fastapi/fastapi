@@ -8,7 +8,7 @@ Das wird normalerweise als **Web<abbr title="Haken, Einhängepunkt">hook</abbr>*
 
 ## Webhooks-Schritte { #webhooks-steps }
 
-Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, welche Nachricht Sie senden möchten, den **Requestbody**.
+Der Prozess besteht normalerweise darin, dass **Sie in Ihrem Code definieren**, welche Nachricht Sie senden möchten, den **Body des Requests**.
 
 Sie definieren auch auf irgendeine Weise, in welchen **Momenten** Ihre App diese Requests oder Events senden wird.
 

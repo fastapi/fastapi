@@ -2,15 +2,15 @@
 
 Sie könnten eine API mit einer *Pfadoperation* erstellen, die einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an eine *externe API* auslösen könnte, welche von jemand anderem erstellt wurde (wahrscheinlich derselbe Entwickler, der Ihre API *verwenden* würde).
 
-Der Vorgang, der stattfindet, wenn Ihre API-App die *externe API* aufruft, wird als „Callback“ („Rückruf“) bezeichnet. Denn die Software, die der externe Entwickler geschrieben hat, sendet einen Request an Ihre API und dann *ruft Ihre API zurück* (*calls back*) und sendet einen Request an eine *externe API* (die wahrscheinlich vom selben Entwickler erstellt wurde).
+Der Vorgang, der stattfindet, wenn Ihre API-Anwendung die *externe API* aufruft, wird als <abbr title="„Rückruf“">„Callback“</abbr> bezeichnet. Denn die Software, die der externe Entwickler geschrieben hat, sendet einen Request an Ihre API und dann *ruft Ihre API zurück* (*calls back*) und sendet einen Request an eine *externe API* (die wahrscheinlich vom selben Entwickler erstellt wurde).
 
 In diesem Fall möchten Sie möglicherweise dokumentieren, wie diese externe API aussehen *sollte*. Welche *Pfadoperation* sie haben sollte, welchen Body sie erwarten sollte, welche <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> sie zurückgeben sollte, usw.
 
-## Eine App mit Callbacks { #an-app-with-callbacks }
+## Eine Anwendung mit Callbacks { #an-app-with-callbacks }
 
 Sehen wir uns das alles anhand eines Beispiels an.
 
-Stellen Sie sich vor, Sie entwickeln eine App, mit der Sie Rechnungen erstellen können.
+Stellen Sie sich vor, Sie entwickeln eine Anwendung, mit der Sie Rechnungen erstellen können.
 
 Diese Rechnungen haben eine `id`, einen optionalen `title`, einen `customer` (Kunde) und ein `total` (Gesamtsumme).
 
@@ -23,9 +23,9 @@ Dann wird Ihre API (stellen wir uns vor):
 * eine Benachrichtigung an den API-Benutzer (den externen Entwickler) zurücksenden.
     * Dies erfolgt durch Senden eines POST-Requests (von *Ihrer API*) an eine *externe API*, die von diesem externen Entwickler bereitgestellt wird (das ist der „Callback“).
 
-## Die normale **FastAPI**-App { #the-normal-fastapi-app }
+## Die normale **FastAPI**-Anwendung { #the-normal-fastapi-app }
 
-Sehen wir uns zunächst an, wie die normale API-App aussehen würde, bevor wir den Callback hinzufügen.
+Sehen wir uns zunächst an, wie die normale API-Anwendung aussehen würde, bevor wir den Callback hinzufügen.
 
 Sie verfügt über eine *Pfadoperation*, die einen `Invoice`-Body empfängt, und einen Query-Parameter `callback_url`, der die URL für den Callback enthält.
 
@@ -43,7 +43,7 @@ Das einzig Neue ist `callbacks=invoices_callback_router.routes` als Argument fü
 
 ## Dokumentation des Callbacks { #documenting-the-callback }
 
-Der tatsächliche Callback-Code hängt stark von Ihrer eigenen API-App ab.
+Der tatsächliche Callback-Code hängt stark von Ihrer eigenen API-Anwendung ab.
 
 Und er wird wahrscheinlich von Anwendung zu Anwendung sehr unterschiedlich sein.
 
@@ -72,7 +72,7 @@ Wenn Sie den Callback selbst implementieren, können Sie beispielsweise <a href=
 
 ## Schreiben des Codes, der den Callback dokumentiert { #write-the-callback-documentation-code }
 
-Dieser Code wird nicht in Ihrer App ausgeführt, wir benötigen ihn nur, um zu *dokumentieren*, wie diese *externe API* aussehen soll.
+Dieser Code wird nicht in Ihrer Anwendung ausgeführt, wir benötigen ihn nur, um zu *dokumentieren*, wie diese *externe API* aussehen soll.
 
 Sie wissen jedoch bereits, wie Sie mit **FastAPI** ganz einfach eine automatische Dokumentation für eine API erstellen.
 
@@ -105,7 +105,7 @@ Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 
 Es gibt zwei Hauptunterschiede zu einer normalen *Pfadoperation*:
 
-* Es muss kein tatsächlicher Code vorhanden sein, da Ihre App diesen Code niemals aufruft. Sie wird nur zur Dokumentation der *externen API* verwendet. Die Funktion könnte also einfach `pass` enthalten.
+* Es muss kein tatsächlicher Code vorhanden sein, da Ihre Anwendung diesen Code niemals aufruft. Sie wird nur zur Dokumentation der *externen API* verwendet. Die Funktion könnte also einfach `pass` enthalten.
 * Der *Pfad* kann einen <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI-3-Ausdruck</a> enthalten (mehr dazu weiter unten), wo er Variablen mit Parametern und Teilen des ursprünglichen Requests verwenden kann, der an *Ihre API* gesendet wurde.
 
 ### Der Callback-Pfadausdruck { #the-callback-path-expression }
@@ -179,7 +179,7 @@ Beachten Sie, dass Sie nicht den Router selbst (`invoices_callback_router`) an `
 
 ### Es in der Dokumentation testen { #check-the-docs }
 
-Jetzt können Sie Ihre App starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
+Jetzt können Sie Ihre Anwendung starten und auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> gehen.
 
 Sie sehen Ihre Dokumentation, einschließlich eines Abschnitts „Callbacks“ für Ihre *Pfadoperation*, der zeigt, wie die *externe API* aussehen sollte:
 

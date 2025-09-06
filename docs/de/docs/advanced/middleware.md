@@ -74,7 +74,7 @@ Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-<abbr
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-Verarbeitet GZip-Responses für alle Requests, die „gzip“ im `Accept-Encoding`-Header enthalten.
+Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`-Header enthalten.
 
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 

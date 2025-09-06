@@ -16,7 +16,7 @@ Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell**
 
 {* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
 
-**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** des <abbr title="Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
+**FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
 ## Die Dokumentation testen { #check-the-docs }
 
@@ -34,7 +34,7 @@ Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` 
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
-Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-<abbr title="Daten, die der Server an den anfragenden Client zurücksendet">Response</abbr>**.
+Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
 Wenn der Client beispielsweise versucht, einen `tool` Query-Parameter mit dem Wert `plumbus` zu senden, wie:
 

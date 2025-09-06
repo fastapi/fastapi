@@ -12,7 +12,7 @@ Aber wir wollen diesen vordefinierten Inhalt per Parameter festlegen können.
 
 ## Eine „aufrufbare“ Instanz { #a-callable-instance }
 
-In Python gibt es eine Möglichkeit, eine Instanz einer Klasse „aufrufbar“ zu machen.
+In Python gibt es eine Möglichkeit, eine Instanz einer Klasse <abbr title="Englisch „callable“">„aufrufbar“</abbr> zu machen.
 
 Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser Klasse.
 
@@ -36,7 +36,7 @@ Wir könnten eine Instanz dieser Klasse erstellen mit:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
 
-Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt „bar“ enthält, als das Attribut `checker.fixed_content`.
+Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
 ## Die Instanz als Abhängigkeit verwenden { #use-the-instance-as-a-dependency }
 

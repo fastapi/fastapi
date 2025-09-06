@@ -130,7 +130,7 @@ Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinsti
 
 ## Vordefinierte Parameterwerte { #predefined-values }
 
-Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration – Aufzählung">`Enum`</abbr> verwenden.
+Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* hat, aber Sie wollen, dass dessen gültige Werte vordefiniert sind, können Sie ein Standard-Python <abbr title="Enumeration">`Enum`</abbr> verwenden.
 
 ### Eine `Enum`-Klasse erstellen { #create-an-enum-class }
 
@@ -178,7 +178,7 @@ Sie können ihn mit einem Member Ihrer Enumeration `ModelName` vergleichen:
 
 #### *Enumerations-Wert* erhalten { #get-the-enumeration-value }
 
-Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `ihr_enum_member.value`:
+Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `your_enum_member.value`:
 
 {* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
