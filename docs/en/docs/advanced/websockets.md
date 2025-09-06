@@ -4,7 +4,7 @@ You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets
 
 ## Install `websockets` { #install-websockets }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library which makes it easy to use "WebSockets", the JavaScript standard):
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library that makes it easy to use the "WebSocket" protocol):
 
 <div class="termy">
 
