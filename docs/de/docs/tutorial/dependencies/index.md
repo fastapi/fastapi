@@ -1,6 +1,6 @@
 # Abhängigkeiten { #dependencies }
 
-**FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="Einbringen von Abhängigkeiten: auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
+**FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="auch bekannt als: Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
 
 Es ist so konzipiert, sehr einfach zu verwenden zu sein und es jedem Entwickler sehr leicht zu machen, andere Komponenten mit **FastAPI** zu integrieren.
 

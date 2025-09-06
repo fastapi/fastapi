@@ -136,7 +136,7 @@ Alles als wiederverwendbare Tools und Komponenten gebaut, die einfach in Ihre Sy
 
 ### Dependency Injection { #dependency-injection }
 
-FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abbr title='Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Resourcen, Dienste, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
+FastAPI enthält ein extrem einfach zu verwendendes, aber extrem mächtiges <abbr title='auch bekannt als: Komponenten, Resourcen, Dienste, Dienstanbieter'><strong>Dependency Injection</strong></abbr> System.
 
 * Selbst Abhängigkeiten können Abhängigkeiten haben, woraus eine Hierarchie oder ein **„Graph“ von Abhängigkeiten** entsteht.
 * Alles **automatisch gehandhabt** durch das Framework.

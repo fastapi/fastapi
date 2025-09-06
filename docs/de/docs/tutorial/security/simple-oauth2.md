@@ -59,7 +59,7 @@ Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als A
 * Dem `username`.
 * Dem `password`.
 * Einem optionalen `scope`-Feld als langem String, bestehend aus durch Leerzeichen getrennten Strings.
-* Einem optionalen `grant_type` („Art der Anmeldung“).
+* Einem optionalen `grant_type`.
 
 /// tip | Tipp
 

@@ -365,7 +365,7 @@ Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie d
 
 Starlette (und **FastAPI**) basieren auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> ist.
 
-Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschrittenen nebenläufigen und parallelen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
+Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschrittenen nebenläufigen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
 
 Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
 

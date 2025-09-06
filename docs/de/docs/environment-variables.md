@@ -203,7 +203,7 @@ Das bedeutet, dass das System nach Programmen in den Verzeichnissen suchen sollt
 
 ////
 
-Wenn Sie einen **Befehl** im Terminal eingeben, **sucht** das Betriebssystem nach dem Programm in **jedem dieser Verzeichnisse**, die in der `PATH`-Umgebungsvariable aufgeführt sind.
+Wenn Sie einen **Befehl** im Terminal eingeben, **sucht** das Betriebssystem nach dem Programm in **jedem dieser Verzeichnisse**, die in der `PATH`-Umgebungsvariablen aufgeführt sind.
 
 Zum Beispiel, wenn Sie `python` im Terminal eingeben, sucht das Betriebssystem nach einem Programm namens `python` im **ersten Verzeichnis** in dieser Liste.
 

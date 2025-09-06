@@ -22,7 +22,7 @@ Dann wird der Browser ein HTTP-`OPTIONS`-<abbr title="Request – Anfrage: Daten
 
 Um dies zu erreichen, muss das `:80`-Backend eine Liste von „erlaubten Origins“ haben.
 
-In diesem Fall müsste die Liste `http://localhost:8080` enthalten, damit das `:8080`-Frontend korrekt funktioniert.
+In diesem case müsste die Liste `http://localhost:8080` enthalten, damit das `:8080`-Frontend korrekt funktioniert.
 
 ## Wildcards { #wildcards }
 

@@ -2,7 +2,7 @@
 
 Die API-Dokumentation verwendet **Swagger UI** und **ReDoc**, und jede dieser Dokumentationen benötigt einige JavaScript- und CSS-Dateien.
 
-Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird häufig verwendet, um diese Dateien vom Server bereitzustellen, der näher am Client liegt, wodurch die Leistung verbessert wird.">CDN</abbr> bereitgestellt.
+Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird häufig verwendet, um diese Dateien vom Server bereitzustellen, der näher am Client liegt, wodurch die Performanz verbessert wird.">CDN</abbr> bereitgestellt.
 
 Es ist jedoch möglich, das anzupassen, ein bestimmtes CDN festzulegen oder die Dateien selbst bereitzustellen.
 
@@ -52,7 +52,7 @@ Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperati
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
-### Es testen { #test-it }
+### Testen { #test-it }
 
 Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zu laden, die Assets werden nun vom neuen CDN geladen.
 

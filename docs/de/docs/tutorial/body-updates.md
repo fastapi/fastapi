@@ -26,7 +26,7 @@ weil das bereits gespeicherte Attribut `"tax": 20.2` nicht enthalten ist, das Ei
 
 Und die Daten würden mit diesem „neuen“ `tax` von `10.5` gespeichert werden.
 
-## Teilweises Ersetzen mit `PATCH` { #partial-updates-with-patch }
+## Teil-Aktualisierungen mit `PATCH` { #partial-updates-with-patch }
 
 Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> Operation verwenden, um Daten *teilweise* zu ersetzen.
 
@@ -80,9 +80,9 @@ Wie in `stored_item_model.model_copy(update=update_data)`:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-### Rekapitulation zum teilweisen Ersetzen { #partial-updates-recap }
+### Rekapitulation zu Teil-Aktualisierungen { #partial-updates-recap }
 
-Zusammengefasst, um Teil-Ersetzungen vorzunehmen:
+Zusammengefasst, um Teil-Aktualisierungen vorzunehmen:
 
 * (Optional) verwenden Sie `PATCH` statt `PUT`.
 * Lesen Sie die bereits gespeicherten Daten aus.

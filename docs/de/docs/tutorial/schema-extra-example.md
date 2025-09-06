@@ -122,7 +122,7 @@ Sie können die OpenAPI-spezifischen `examples` in FastAPI mit dem Parameter `op
 * `Form()`
 * `File()`
 
-Die Schlüssel des `dict` identifizieren jedes Beispiel, und jeder Wert (`"value"`) ist ein weiteres `dict`.
+Die Schlüssel des `dict` identifizieren jedes Beispiel, und jeder Wert ist ein weiteres `dict`.
 
 Jedes spezifische Beispiel-`dict` in den `examples` kann Folgendes enthalten:
 
@@ -221,4 +221,4 @@ Um dieses Problem zu lösen, hat FastAPI `0.103.0` **Unterstützung** für die D
 
 Ich habe immer gesagt, dass ich Geschichte nicht so sehr mag ... und jetzt schauen Sie mich an, wie ich „Technikgeschichte“-Unterricht gebe. 😅
 
-Kurz gesagt: **Upgraden Sie auf FastAPI 0.99.0 oder höher**, und die Dinge sind viel **einfacher, konsistenter und intuitiver**, und Sie müssen nicht alle diese historischen Details kennen. 😎
+Kurz gesagt: **Aktualisieren Sie auf FastAPI 0.99.0 oder höher**, und die Dinge sind viel **einfacher, konsistenter und intuitiver**, und Sie müssen nicht alle diese historischen Details kennen. 😎

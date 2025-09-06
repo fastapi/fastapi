@@ -20,7 +20,7 @@ Sie können den (unregelmäßigen) [**FastAPI and friends**-Newsletter](newslett
 * Breaking Changes 🚨
 * Tipps und Tricks ✅
 
-## FastAPI auf X (Twitter) folgen { #follow-fastapi-on-twitter }
+## FastAPI auf X (Twitter) folgen { #follow-fastapi-on-x-twitter }
 
 <a href="https://x.com/fastapi" class="external-link" target="_blank">Folgen Sie @fastapi auf **X (Twitter)**</a>, um die neuesten Nachrichten über **FastAPI** zu erhalten. 🐦
 
@@ -59,7 +59,7 @@ Sie können:
 
 ## Über **FastAPI** tweeten { #tweet-about-fastapi }
 
-<a href="https://x.com/compose/tweet?text=Ich liebe @fastapi, weil ... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweeten Sie über **FastAPI**</a> und teilen Sie mir und anderen mit, warum es Ihnen gefällt. 🎉
 
 Ich höre gerne, wie **FastAPI** verwendet wird, was Ihnen daran gefallen hat, in welchem Projekt/Unternehmen Sie es verwenden, usw.
 

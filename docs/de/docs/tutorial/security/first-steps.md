@@ -111,7 +111,7 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 * Der Benutzer klickt im Frontend, um zu einem anderen Abschnitt der Frontend-Web-Anwendung zu gelangen.
 * Das Frontend muss weitere Daten von der API abrufen.
     * Es benötigt jedoch eine Authentifizierung für diesen bestimmten Endpunkt.
-    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer` plus dem Token.
+    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer ` plus dem Token.
     * Wenn der Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
 
 ## **FastAPI**s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
@@ -188,9 +188,9 @@ Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische
 
 ## Was es macht { #what-it-does }
 
-FastAPI wird im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und den Token als `str` zurückgeben.
+FastAPI wird im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer ` plus ein Token ist, und den Token als `str` zurückgeben.
 
-Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer`-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
+Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer `-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
 
 Sie müssen nicht einmal prüfen, ob der Token existiert, um einen Fehler zurückzugeben. Seien Sie sicher, dass Ihre Funktion, wenn sie ausgeführt wird, ein `str` in diesem Token enthält.
 

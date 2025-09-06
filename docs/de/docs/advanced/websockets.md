@@ -4,7 +4,7 @@ Sie können <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets
 
 ## `websockets` installieren { #install-websockets }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `websockets` installieren (eine Python-Bibliothek, die die Verwendung von „WebSockets“, dem JavaScript-Standard, erleichtert):
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und `websockets` installieren (eine Python-Bibliothek, die die Verwendung des Protokolls „WebSockets“ erleichtert):
 
 <div class="termy">
 
@@ -142,7 +142,7 @@ Dort können Sie einstellen:
 
 /// tip | Tipp
 
-Beachten Sie, dass der Query-„Token“ von einer Abhängigkeit verarbeitet wird.
+Beachten Sie, dass der Query-Parameter `token` von einer Abhängigkeit verarbeitet wird.
 
 ///
 

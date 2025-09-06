@@ -60,7 +60,7 @@ Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` z
 
 Ein `Request` hat ein `request.scope`-Attribut, welches einfach ein Python-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> ist, welches die mit dem Request verbundenen Metadaten enthält.
 
-Ein `Request` hat auch ein `request.receive`, welches eine Funktion ist, die den Hauptteil des Requests empfängt.
+Ein `Request` hat auch ein `request.receive`, welches eine Funktion ist, die den Requestbody empfängt.
 
 Das `scope`-`dict` und die `receive`-Funktion sind beide Teil der ASGI-Spezifikation.
 

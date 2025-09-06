@@ -51,7 +51,7 @@ FastAPI wird dieses `response_model` nehmen, um die Daten zu dokumentieren, vali
 
 /// tip | Tipp
 
-Wenn Sie in Ihrem Editor strikte Typchecks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title='„Irgend etwas“'>`Any`</abbr> deklarieren.
+Wenn Sie in Ihrem Editor strikte Typchecks haben, mypy, usw., können Sie den Funktions-Rückgabetyp als <abbr title="„Irgend etwas“">`Any`</abbr> deklarieren.
 
 So sagen Sie dem Editor, dass Sie absichtlich *irgendetwas* zurückgeben. Aber FastAPI wird trotzdem die Dokumentation, Validierung, Filterung, usw. der Daten übernehmen, via `response_model`.
 
@@ -201,7 +201,7 @@ Das wird ebenfalls funktionieren, weil `RedirectResponse` eine Unterklasse von `
 
 Aber wenn Sie ein beliebiges anderes Objekt zurückgeben, das kein gültiger Pydantic-Typ ist (z. B. ein Datenbank-Objekt), und Sie annotieren es so in der Funktion, wird FastAPI versuchen, ein Pydantic-Responsemodell von dieser Typannotation zu erstellen, und scheitern.
 
-Das gleiche wird passieren, wenn Sie eine <abbr title='Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“'>Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
+Das gleiche wird passieren, wenn Sie eine <abbr title="Eine Union mehrerer Typen bedeutet: „Irgendeiner dieser Typen“">Union</abbr> mehrerer Typen haben, und einer oder mehrere sind nicht gültige Pydantic-Typen. Zum Beispiel funktioniert folgendes nicht 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

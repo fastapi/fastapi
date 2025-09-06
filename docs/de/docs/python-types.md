@@ -531,7 +531,7 @@ Es wird bereits mit **FastAPI** installiert sein.
 
 Python selbst macht nichts mit `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
 
-Aber Sie können `Annotated` nutzen, um **FastAPI** mit Metadaten zu versorgen, die ihm sagen, wie sich ihre Anwendung verhalten soll.
+Aber Sie können `Annotated` nutzen, um **FastAPI** mit Metadaten zu versorgen, die ihm sagen, wie sich Ihre Anwendung verhalten soll.
 
 Wichtig ist, dass **der erste *Typ-Parameter***, den Sie `Annotated` übergeben, der **tatsächliche Typ** ist. Der Rest sind Metadaten für andere Tools.
 
@@ -541,7 +541,7 @@ Später werden Sie sehen, wie **mächtig** es sein kann.
 
 /// tip | Tipp
 
-Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um ihren Code zu analysieren, zu refaktorisieren, usw. ✨
+Der Umstand, dass es **Standard-Python** ist, bedeutet, dass Sie immer noch die **bestmögliche Entwickler-Erfahrung** in Ihrem Editor haben, sowie mit den Tools, die Sie nutzen, um Ihren Code zu analysieren, zu refaktorisieren, usw. ✨
 
 Und ebenfalls, dass Ihr Code sehr kompatibel mit vielen anderen Python-Tools und -Bibliotheken sein wird. 🚀
 

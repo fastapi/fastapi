@@ -80,7 +80,7 @@ Dieses *Pfadoperation*-spezifische OpenAPI-Schema wird normalerweise automatisch
 
 /// tip | Tipp
 
-Dies ist ein Low-Level Erweiterungspunkt.
+Dies ist ein Low-Level-Erweiterungspunkt.
 
 Wenn Sie nur zusätzliche Responses deklarieren müssen, können Sie dies bequemer mit [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank} tun.
 

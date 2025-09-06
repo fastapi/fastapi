@@ -387,7 +387,7 @@ $ python main.py
 
 Hello World
 ```
-+
+
 </div>
 
 ## Ihren Editor konfigurieren { #configure-your-editor }

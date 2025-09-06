@@ -104,7 +104,7 @@ Um beispielsweise festzulegen, dass es unter `/api/v1/openapi.json` bereitgestel
 
 Wenn Sie das OpenAPI-Schema vollständig deaktivieren möchten, können Sie `openapi_url=None` festlegen, wodurch auch die Dokumentationsbenutzeroberflächen deaktiviert werden, die es verwenden.
 
-## URLs der Dokumentationen { #docs-urls }
+## Dokumentations-URLs { #docs-urls }
 
 Sie können die beiden enthaltenen Dokumentationsbenutzeroberflächen konfigurieren:
 

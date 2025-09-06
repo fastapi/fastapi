@@ -121,7 +121,7 @@ Daten aus Formularen werden, wenn es keine Dateien sind, normalerweise mit dem <
 
 Sollte das Formular aber Dateien enthalten, dann werden diese mit `multipart/form-data` kodiert. Wenn Sie `File` verwenden, wird **FastAPI** wissen, dass es die Dateien vom korrekten Teil des Bodys holen muss.
 
-Wenn Sie mehr über diese Kodierungen und Formularfelder lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
+Wenn Sie mehr über diese Kodierungen und Formularfelder lesen möchten, besuchen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für <code>POST</code></a>.
 
 ///
 

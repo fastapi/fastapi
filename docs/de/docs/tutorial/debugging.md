@@ -40,7 +40,7 @@ $ python myapp.py
 
 </div>
 
-dann hat in Ihrer Datei die interne Variable `__name__`, die von Python automatisch erstellt wird, als Wert den String `"__main__"`.
+dann hat in Ihrer Datei die interne Variable `__name__`, die von Python automatisch erstellt wird, als Wert den String „__main__“.
 
 Daher wird der Abschnitt:
 
@@ -62,7 +62,7 @@ from myapp import app
 # Hier mehr Code
 ```
 
-wird in diesem Fall in `myapp.py` die automatisch erstellte Variable `__name__` nicht den Wert `"__main__"` haben.
+wird in diesem Fall in `myapp.py` die automatisch erstellte Variable `__name__` nicht den Wert „__main__“ haben.
 
 Daher wird die Zeile:
 

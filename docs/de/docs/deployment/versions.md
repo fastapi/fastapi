@@ -34,7 +34,7 @@ Wenn Sie zum Verwalten Ihrer Installationen andere Tools wie `uv`, Poetry, Pipen
 
 ## Verfügbare Versionen { #available-versions }
 
-Die verfügbaren Versionen können Sie in den [Release Notes](../release-notes.md){.internal-link target=_blank} einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
+Die verfügbaren Versionen können Sie in den [Versionshinweisen](../release-notes.md){.internal-link target=_blank} einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
 
 ## Über Versionen { #about-versions }
 

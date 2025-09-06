@@ -6,7 +6,7 @@ Bei HTTP Basic Auth erwartet die Anwendung einen Header, der einen Benutzernamen
 
 Wenn sie diesen nicht empfängt, gibt sie den HTTP-Error 401 „Unauthorized“ zurück.
 
-Und gibt einen Header `WWW-Authenticate` mit dem Wert `Basic` und einem optionalen `realm`-Parameter („Bereich“) zurück.
+Und gibt einen Header `WWW-Authenticate` mit dem Wert `Basic` und einem optionalen `realm`-Parameter zurück.
 
 Dadurch wird der Browser angewiesen, die integrierte Eingabeaufforderung für einen Benutzernamen und ein Passwort anzuzeigen.
 
@@ -38,7 +38,7 @@ Verwenden Sie dazu das Python-Standardmodul <a href="https://docs.python.org/3/l
 
 Um dies zu lösen, konvertieren wir zunächst den `username` und das `password` in UTF-8-codierte `bytes`.
 
-Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass `credentials.username` `"stanleyjobson"` und `credentials.password` `"swordfish"` ist.
+Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass `credentials.username` „stanleyjobson“ und `credentials.password` „swordfish“ ist.
 
 {* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
 

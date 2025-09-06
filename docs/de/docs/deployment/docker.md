@@ -466,7 +466,7 @@ In diesen Fällen möchten Sie wahrscheinlich ein **Docker-Image von Grund auf**
 
 Bei der Verwendung von Containern ist normalerweise eine Komponente vorhanden, **die am Hauptport lauscht**. Es könnte sich um einen anderen Container handeln, der auch ein **TLS-Terminierungsproxy** ist, um **HTTPS** zu verarbeiten, oder ein ähnliches Tool.
 
-Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) **ausgewogen** auf die Worker verteilen würde, wird sie üblicherweise auch **Load Balancer** – Lastverteiler – genannt.
+Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) **ausgewogen** auf die Worker verteilen würde, wird sie üblicherweise auch **Load Balancer** genannt.
 
 /// tip | Tipp
 
