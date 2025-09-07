@@ -1104,7 +1104,7 @@ class FastAPI(Starlette):
         Re-sort FastAPI routes after registration to prioritize static
         over dynamic paths.
 
-        This sorts `self.app.router.routes` in-place to avoid static
+        This sorts `self.router.routes` in-place to avoid static
         routes being shadowed by dynamic routes like `/{id}`.
 
         Args:
@@ -1114,7 +1114,7 @@ class FastAPI(Starlette):
             None
         """
 
-        self.app.router.routes.sort(key=self._route_sort_key)
+        self.router.routes.sort(key=self._route_sort_key)
 
     def add_api_route(
         self,
