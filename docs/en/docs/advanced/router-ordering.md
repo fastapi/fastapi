@@ -1,7 +1,7 @@
 # Automatic Route Reordering { #automatic-route-reordering }
 
-FastAPI automatically reorders routes at startup so that **static routes** are matched 
-before **dynamic routes**. This prevents situations where a dynamic route like `/{id}` 
+FastAPI automatically reorders routes at startup so that **static routes** are matched
+before **dynamic routes**. This prevents situations where a dynamic route like `/{id}`
 could shadow a static route like `/users/admin`.
 
 ## Why It Matters { #why-it-matters }
@@ -11,7 +11,7 @@ Consider the following routes:
 - `/users/admin` — a static route.
 - `/users/{user_id}` — a dynamic route.
 
-Without automatic reordering, a request to `/users/admin` might incorrectly match the 
+Without automatic reordering, a request to `/users/admin` might incorrectly match the
 dynamic route `/users/{user_id}` instead of the intended static route.
 
 FastAPI ensures that:
@@ -41,7 +41,7 @@ GET /items/stats → {
         {
             "type":"int_parsing",
             "loc":["path","item_id"],
-            "msg":"Input should be a valid integer, 
+            "msg":"Input should be a valid integer,
             unable to parse string as an integer",
             "input":"stats"
         }
