@@ -150,90 +150,90 @@ Hello again.
 
 ## Sentences with preferred translations, (maybe) defined in the language prompt { #sentences-with-preferred-translations-maybe-defined-in-the-language-prompt }
 
-I welcome you.
-I admire your pullover.
-She likes fruits e.g. apples.
-He likes oranges, bananas, etc.
-Read the docs.
-Read the Tutorial - User guide.
-Then read the Advanced User Guide.
-If this env var exists, do something.
-Read the `PATH` environment variable.
-Which is the same as the `PATH`.
-Install from the `requirements.txt`.
-Use the API Router.
-This is the Authorization-Header.
-This is the `Authorization`-Header.
-Waiting for the background task.
-Press the button.
-Try this cloud provider.
-Use the CLI.
-Which is the command line interface.
-The default value is "foo".
-The default declaration is "bar".
-Dictionaries, or dicts, are useful data structures.
-Enumerations, or enums, have their use too.
-The engine will do that.
-Return an error response.
-Wait for the event.
-Raise the exception.
-The exception handler handles it.
-Defining the form model.
-Sending the form body.
-Accessing the header.
-Modifying the headers.
-Spelling in headers.
-The forwarded headers are often used in connection with proxies.
-Listening to the lifespan event.
-Locking means, we lock a thing to safely modify it.
-Developing a mobile application.
-Defining the model object.
-Something waits for the mounting.
-It is now mounted.
-Another origin.
-We have an override for this.
-The function has one parameter.
-The function parameter is an int.
-The function has many parameters.
-The default parameter is a bool.
-The body parameter contains the body of the request.
-Also called the request body parameter.
-The path parameter contains a variable in the request path.
-The query parameter contains the query parameters in the request path.
-The cookie parameter contains the request cookies.
-The header parameter contains the request headers.
-The form parameter contains the request's form fields.
-The payload is the request/response without metadata.
-This query asks for items older than a week.
-Recap: It's smooth.
-The request has been received.
-Receiving the request body.
-Receiving the request bodies.
-Returning the response.
-What a function returns has a return value.
-And a return type.
-We are listening to the startup and shutdown events.
-We are waiting for the startup of the server.
-Details are described in the SQLModel docs.
-Use the SDK.
-The tag `Horst` means, Horst has to do it.
-This parameter has a type annotation.
-Which is a type hint.
-The wildcard is `*`.
-The worker class does this and that.
-The worker process also does things.
-I will commit this tomorrow.
-Yesterday I modified the code.
-Let's serve our app.
-Let's serve this page.
-Before doing this, upgrade FastAPI.
-This is wrapped in an HTML tag.
-`foo` as an `int`.
-`bar` as a `str`.
-`baz` as a `list`.
-FastAPI's documentation.
-Starlette's performance.
-`foo` is case-sensitive.
-"Bar" is case-insensitive.
-Standard Python classes.
-This is deprecated.
+* I welcome you.
+* I admire your pullover.
+* She likes fruits e.g. apples.
+* He likes oranges, bananas, etc.
+* Read the docs.
+* Read the Tutorial - User guide.
+* Then read the Advanced User Guide.
+* If this env var exists, do something.
+* Read the `PATH` environment variable.
+* Which is the same as the `PATH`.
+* Install from the `requirements.txt`.
+* Use the API Router.
+* This is the Authorization-Header.
+* This is the `Authorization`-Header.
+* Waiting for the background task.
+* Press the button.
+* Try this cloud provider.
+* Use the CLI.
+* Which is the command line interface.
+* The default value is "foo".
+* The default declaration is "bar".
+* Dictionaries, or dicts, are useful data structures.
+* Enumerations, or enums, have their use too.
+* The engine will do that.
+* Return an error response.
+* Wait for the event.
+* Raise the exception.
+* The exception handler handles it.
+* Defining the form model.
+* Sending the form body.
+* Accessing the header.
+* Modifying the headers.
+* Spelling in headers.
+* The forwarded headers are often used in connection with proxies.
+* Listening to the lifespan event.
+* Locking means, we lock a thing to safely modify it.
+* Developing a mobile application.
+* Defining the model object.
+* Something waits for the mounting.
+* It is now mounted.
+* Another origin.
+* We have an override for this.
+* The function has one parameter.
+* The function parameter is an int.
+* The function has many parameters.
+* The default parameter is a bool.
+* The body parameter contains the body of the request.
+* Also called the request body parameter.
+* The path parameter contains a variable in the request path.
+* The query parameter contains the query parameters in the request path.
+* The cookie parameter contains the request cookies.
+* The header parameter contains the request headers.
+* The form parameter contains the request's form fields.
+* The payload is the request/response without metadata.
+* This query asks for items older than a week.
+* Recap: It's smooth.
+* The request has been received.
+* Receiving the request body.
+* Receiving the request bodies.
+* Returning the response.
+* What a function returns has a return value.
+* And a return type.
+* We are listening to the startup and shutdown events.
+* We are waiting for the startup of the server.
+* Details are described in the SQLModel docs.
+* Use the SDK.
+* The tag `Horst` means, Horst has to do it.
+* This parameter has a type annotation.
+* Which is a type hint.
+* The wildcard is `*`.
+* The worker class does this and that.
+* The worker process also does things.
+* I will commit this tomorrow.
+* Yesterday I modified the code.
+* Let's serve our app.
+* Let's serve this page.
+* Before doing this, upgrade FastAPI.
+* This is wrapped in an HTML tag.
+* `foo` as an `int`.
+* `bar` as a `str`.
+* `baz` as a `list`.
+* FastAPI's documentation.
+* Starlette's performance.
+* `foo` is case-sensitive.
+* "Bar" is case-insensitive.
+* Standard Python classes.
+* This is deprecated.

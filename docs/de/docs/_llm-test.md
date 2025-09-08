@@ -150,90 +150,90 @@ Hallo nochmal.
 
 ## Sätze mit bevorzugten Übersetzungen, (vielleicht) im Sprach-Prompt definiert { #sentences-with-preferred-translations-maybe-defined-in-the-language-prompt }
 
-Ich heiße Sie willkommen.
-Ich bewundere Ihren Pullover.
-Sie mag Obst, z. B. Äpfel.
-Er mag Orangen, Bananen, usw.
-Lesen Sie die Dokumentation.
-Lesen Sie das Tutorial – Benutzerhandbuch.
-Lesen Sie dann das Handbuch für fortgeschrittene Benutzer.
-Wenn die Umgebungsvariable existiert, tun Sie etwas.
-Lesen Sie die `PATH`-Umgebungsvariable.
-Was dasselbe ist wie der `PATH`.
-Installieren Sie aus der `requirements.txt`.
-Verwenden Sie den API-Router.
-Dies ist der Autorisierungsheader.
-Dies ist der `Authorization`-Header.
-Warten auf den Hintergrundtask.
-Den Button drücken.
-Probieren Sie diesen Cloudanbieter.
-Verwenden Sie das CLI.
-Was das Kommandozeileninterface ist.
-Der Defaultwert ist „foo“.
-Die Default-Deklaration ist „bar“.
-Dictionaries, oder Dicts, sind nützliche Datenstrukturen.
-Enumerationen, oder Enums, haben ebenfalls ihre Verwendung.
-Die Engine wird das tun.
-Eine Error-Response zurückgeben.
-Auf das Event warten.
-Die Exception auslösen.
-Der Exceptionhandler behandelt sie.
-Das Formularmodell definieren.
-Den Formularbody senden.
-Auf den Header zugreifen.
-Die Header ändern.
-Schreibweise in Headern.
-Die Forwarded-Header werden häufig in Verbindung mit Proxys verwendet.
-Auf das Lifespan-Event lauschen.
-Locking bedeutet, dass wir ein Lock setzen, um etwas sicher zu ändern.
-Eine Mobile-Anwendung entwickeln.
-Das Modellobjekt definieren.
-Etwas wartet auf das Mounten.
-Es ist jetzt gemountet.
-Ein weiteres Origin.
-Dafür haben wir eine Überschreibung.
-Die Funktion hat einen Parameter.
-Der Funktionsparameter ist ein int.
-Die Funktion hat viele Parameter.
-Der Defaultparameter ist ein bool.
-Der Body-Parameter enthält den Body des Requests.
-Auch der Requestbody-Parameter genannt.
-Der Pfad-Parameter enthält eine Variable im Requestpfad.
-Der Query-Parameter enthält die Query-Parameter im Requestpfad.
-Der Cookie-Parameter enthält die Request-Cookies.
-Der Header-Parameter enthält die Request-Header.
-Der Formular-Parameter enthält die Formularfelder des Requests.
-Die Payload ist der Request/die Response ohne Metadaten.
-Diese Query fragt nach Items, die älter als eine Woche sind.
-Zusammenfassung: Es ist smooth.
-Der Request wurde empfangen.
-Den Requestbody empfangen.
-Die Requestbodys empfangen.
-Die Response zurückgeben.
-Was eine Funktion zurückgibt, hat einen Rückgabewert.
-Und einen Rückgabetyp.
-Wir lauschen auf die Startup- und Shutdown-Events.
-Wir warten auf das Hochfahren des Servers.
-Details sind in der SQLModel-Dokumentation beschrieben.
-Verwenden Sie das SDK.
-Der Tag `Horst` bedeutet, Horst muss es tun.
-Dieser Parameter hat eine Typannotation.
-Was ein Typhinweis ist.
-Die Wildcard ist `*`.
-Die Workerklasse macht dies und das.
-Der Workerprozess macht auch Dinge.
-Ich werde das morgen committen.
-Gestern habe ich den Code geändert.
-Lassen Sie uns unsere App bereitstellen.
-Lassen Sie uns diese Seite ausliefern.
-Aktualisieren Sie FastAPI, bevor Sie das tun.
-Dies ist in ein HTML-Tag gewrappt.
-`foo` vom Typ `int`.
-`bar` vom Typ `str`.
-`baz` vom Typ `list`.
-FastAPIs Dokumentation.
-Starlettes Performanz.
-Groß-/Klein­schrei­bung ist relevant in `foo`.
-Groß-/Klein­schrei­bung ist nicht relevant in „Bar“.
-Standard-Python-Klassen.
-Dies ist deprecatet.
+* Ich heiße Sie willkommen.
+* Ich bewundere Ihren Pullover.
+* Sie mag Obst, z. B. Äpfel.
+* Er mag Orangen, Bananen, usw.
+* Lesen Sie die Dokumentation.
+* Lesen Sie das Tutorial – Benutzerhandbuch.
+* Lesen Sie dann das Handbuch für fortgeschrittene Benutzer.
+* Wenn die Umgebungsvariable existiert, tun Sie etwas.
+* Lesen Sie die `PATH`-Umgebungsvariable.
+* Was dasselbe ist wie der `PATH`.
+* Installieren Sie aus der `requirements.txt`.
+* Verwenden Sie den API-Router.
+* Dies ist der Autorisierungsheader.
+* Dies ist der `Authorization`-Header.
+* Warten auf den Hintergrundtask.
+* Den Button drücken.
+* Probieren Sie diesen Cloudanbieter.
+* Verwenden Sie das CLI.
+* Was das Kommandozeileninterface ist.
+* Der Defaultwert ist „foo“.
+* Die Default-Deklaration ist „bar“.
+* Dictionaries, oder Dicts, sind nützliche Datenstrukturen.
+* Enumerationen, oder Enums, haben ebenfalls ihre Verwendung.
+* Die Engine wird das tun.
+* Eine Error-Response zurückgeben.
+* Auf das Event warten.
+* Die Exception auslösen.
+* Der Exceptionhandler behandelt sie.
+* Das Formularmodell definieren.
+* Den Formularbody senden.
+* Auf den Header zugreifen.
+* Die Header ändern.
+* Schreibweise in Headern.
+* Die Forwarded-Header werden häufig in Verbindung mit Proxys verwendet.
+* Auf das Lifespan-Event lauschen.
+* Locking bedeutet, dass wir ein Lock setzen, um etwas sicher zu ändern.
+* Eine Mobile-Anwendung entwickeln.
+* Das Modellobjekt definieren.
+* Etwas wartet auf das Mounten.
+* Es ist jetzt gemountet.
+* Ein weiteres Origin.
+* Dafür haben wir eine Überschreibung.
+* Die Funktion hat einen Parameter.
+* Der Funktionsparameter ist ein int.
+* Die Funktion hat viele Parameter.
+* Der Defaultparameter ist ein bool.
+* Der Body-Parameter enthält den Body des Requests.
+* Auch der Requestbody-Parameter genannt.
+* Der Pfad-Parameter enthält eine Variable im Requestpfad.
+* Der Query-Parameter enthält die Query-Parameter im Requestpfad.
+* Der Cookie-Parameter enthält die Request-Cookies.
+* Der Header-Parameter enthält die Request-Header.
+* Der Formular-Parameter enthält die Formularfelder des Requests.
+* Die Payload ist der Request/die Response ohne Metadaten.
+* Diese Query fragt nach Items, die älter als eine Woche sind.
+* Zusammenfassung: Es ist smooth.
+* Der Request wurde empfangen.
+* Den Requestbody empfangen.
+* Die Requestbodys empfangen.
+* Die Response zurückgeben.
+* Was eine Funktion zurückgibt, hat einen Rückgabewert.
+* Und einen Rückgabetyp.
+* Wir lauschen auf die Startup- und Shutdown-Events.
+* Wir warten auf das Hochfahren des Servers.
+* Details sind in der SQLModel-Dokumentation beschrieben.
+* Verwenden Sie das SDK.
+* Der Tag `Horst` bedeutet, Horst muss es tun.
+* Dieser Parameter hat eine Typannotation.
+* Was ein Typhinweis ist.
+* Die Wildcard ist `*`.
+* Die Workerklasse macht dies und das.
+* Der Workerprozess macht auch Dinge.
+* Ich werde das morgen committen.
+* Gestern habe ich den Code geändert.
+* Lassen Sie uns unsere App bereitstellen.
+* Lassen Sie uns diese Seite ausliefern.
+* Aktualisieren Sie FastAPI, bevor Sie das tun.
+* Dies ist in ein HTML-Tag gewrappt.
+* `foo` vom Typ `int`.
+* `bar` vom Typ `str`.
+* `baz` vom Typ `list`.
+* FastAPIs Dokumentation.
+* Starlettes Performanz.
+* Groß-/Klein­schrei­bung ist relevant in `foo`.
+* Groß-/Klein­schrei­bung ist nicht relevant in „Bar“.
+* Standard-Python-Klassen.
+* Dies ist deprecatet.
