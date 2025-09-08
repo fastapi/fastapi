@@ -9,6 +9,16 @@ hide:
 
 ### Docs
 
+* 📝 Add documentation for Behind a Proxy - Proxy Forwarded Headers, using `--forwarded-allow-ips="*"`. PR [#14028](https://github.com/fastapi/fastapi/pull/14028) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add deprecation info block about `dict()` in `docs/tutorial/body.md`. PR [#13906](https://github.com/fastapi/fastapi/pull/13906) by [@jomkv](https://github.com/jomkv).
+* 📝 Fix Twitter to be X (Twitter) everywhere in documentation. PR [#13809](https://github.com/fastapi/fastapi/pull/13809) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🐛 Prevent scroll-to-top on restart/fast buttons in `termynal.js`. PR [#13714](https://github.com/fastapi/fastapi/pull/13714) by [@Ashish-Pandey62](https://github.com/Ashish-Pandey62).
+* 📝 Update testing events documentation. PR [#13259](https://github.com/fastapi/fastapi/pull/13259) by [@z0z0r4](https://github.com/z0z0r4).
+* 📝 Remove obsolete `url` field in error responses in docs. PR [#13655](https://github.com/fastapi/fastapi/pull/13655) by [@Taoup](https://github.com/Taoup).
+* 📝 Bring the `scope` claim in line with the standard in `docs_src/security/tutorial005.py`. PR [#11189](https://github.com/fastapi/fastapi/pull/11189) by [@DurandA](https://github.com/DurandA).
+* 📝 Update TrustedHostMiddleware Documentation. PR [#11441](https://github.com/fastapi/fastapi/pull/11441) by [@soulee-dev](https://github.com/soulee-dev).
+* 📝 Remove links to site callbackhell.com that doesn't exist anymore. PR [#14006](https://github.com/fastapi/fastapi/pull/14006) by [@dennybiasiolli](https://github.com/dennybiasiolli).
+* 📝 Add permalinks to headers in English docs. PR [#13993](https://github.com/fastapi/fastapi/pull/13993) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update `docs/en/docs/advanced/generate-clients.md`. PR [#13793](https://github.com/fastapi/fastapi/pull/13793) by [@mrlubos](https://github.com/mrlubos).
 * 📝 Add discussion template for new language translation requests. PR [#13535](https://github.com/fastapi/fastapi/pull/13535) by [@alejsdev](https://github.com/alejsdev).
 
@@ -25,6 +35,17 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14056](https://github.com/fastapi/fastapi/pull/14056) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14035](https://github.com/fastapi/fastapi/pull/14035) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump pypa/gh-action-pypi-publish from 1.12.4 to 1.13.0. PR [#14041](https://github.com/fastapi/fastapi/pull/14041) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14029](https://github.com/fastapi/fastapi/pull/14029) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Sponsors. PR [#14030](https://github.com/fastapi/fastapi/pull/14030) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14031](https://github.com/fastapi/fastapi/pull/14031) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Experts. PR [#14034](https://github.com/fastapi/fastapi/pull/14034) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Detect and label merge conflicts on PRs automatically. PR [#14045](https://github.com/fastapi/fastapi/pull/14045) by [@svlandeg](https://github.com/svlandeg).
+* 🔧 Update sponsors: remove Platform.sh. PR [#14027](https://github.com/fastapi/fastapi/pull/14027) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: remove Mobb. PR [#14026](https://github.com/fastapi/fastapi/pull/14026) by [@tiangolo](https://github.com/tiangolo).
+* 🛠️ Update `mkdocs_hooks` to handle headers with permalinks when building docs. PR [#14025](https://github.com/fastapi/fastapi/pull/14025) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14016](https://github.com/fastapi/fastapi/pull/14016) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump `mkdocs-macros-plugin` from 1.3.7 to 1.3.9. PR [#14003](https://github.com/fastapi/fastapi/pull/14003) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#13999](https://github.com/fastapi/fastapi/pull/13999) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
@@ -4127,7 +4148,7 @@ Soon there will be a new FastAPI release upgrading Starlette to take advantage o
 
 * ✅ Add  the `docs_src` directory to test coverage and update tests. Initial PR [#1904](https://github.com/tiangolo/fastapi/pull/1904) by [@Kludex](https://github.com/Kludex).
 * 🔧 Add new GitHub templates with forms for new issues. PR [#3612](https://github.com/tiangolo/fastapi/pull/3612) by [@tiangolo](https://github.com/tiangolo).
-* 📝 Add official FastAPI Twitter to docs: [@fastapi](https://twitter.com/fastapi). PR [#3578](https://github.com/tiangolo/fastapi/pull/3578) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add official FastAPI Twitter to docs: [@fastapi](https://x.com/fastapi). PR [#3578](https://github.com/tiangolo/fastapi/pull/3578) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.67.0
 
@@ -4235,7 +4256,7 @@ But requests with content type `text/plain` are exempt from [CORS](https://devel
 
 See [CVE-2021-32677](https://github.com/tiangolo/fastapi/security/advisories/GHSA-8h2j-cgx8-6xv7) for more details.
 
-Thanks to [Dima Boger](https://twitter.com/b0g3r) for the security report! 🙇🔒
+Thanks to [Dima Boger](https://x.com/b0g3r) for the security report! 🙇🔒
 
 ### Internal
 
@@ -4786,18 +4807,18 @@ Note: all the previous parameters are still there, so it's still possible to dec
 * Add new links:
     * **English articles**:
         * [Real-time Notifications with Python and Postgres](https://wuilly.com/2019/10/real-time-notifications-with-python-and-postgres/) by [Guillermo Cruz](https://wuilly.com/).
-        * [Microservice in Python using FastAPI](https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc)  by [Paurakh Sharma Humagain](https://twitter.com/PaurakhSharma).
+        * [Microservice in Python using FastAPI](https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc)  by [Paurakh Sharma Humagain](https://x.com/PaurakhSharma).
         * [Build simple API service with Python FastAPI — Part 1](https://dev.to/cuongld2/build-simple-api-service-with-python-fastapi-part-1-581o) by [cuongld2](https://dev.to/cuongld2).
-        * [FastAPI + Zeit.co = 🚀](https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/) by [Paul Sec](https://twitter.com/PaulWebSec).
-        * [Build a web API from scratch with FastAPI - the workshop](https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe) by [Sebastián Ramírez (tiangolo)](https://twitter.com/tiangolo).
+        * [FastAPI + Zeit.co = 🚀](https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/) by [Paul Sec](https://x.com/PaulWebSec).
+        * [Build a web API from scratch with FastAPI - the workshop](https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
         * [Build a Secure Twilio Webhook with Python and FastAPI](https://www.twilio.com/blog/build-secure-twilio-webhook-python-fastapi)  by [Twilio](https://www.twilio.com).
-        * [Using FastAPI with Django](https://www.stavros.io/posts/fastapi-with-django/)  by [Stavros Korokithakis](https://twitter.com/Stavros).
+        * [Using FastAPI with Django](https://www.stavros.io/posts/fastapi-with-django/)  by [Stavros Korokithakis](https://x.com/Stavros).
         * [Introducing Dispatch](https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072) by [Netflix](https://netflixtechblog.com/).
     * **Podcasts**:
         * [Build The Next Generation Of Python Web Applications With FastAPI - Episode 259 - interview to Sebastían Ramírez (tiangolo)](https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/) by [Podcast.`__init__`](https://www.pythonpodcast.com/).
     * **Talks**:
-        * [PyConBY 2020: Serve ML models easily with FastAPI](https://www.youtube.com/watch?v=z9K5pwb0rt8) by [Sebastián Ramírez (tiangolo)](https://twitter.com/tiangolo).
-        * [[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI](https://www.youtube.com/watch?v=PnpTY1f4k2U) by [Sebastián Ramírez (tiangolo)](https://twitter.com/tiangolo).
+        * [PyConBY 2020: Serve ML models easily with FastAPI](https://www.youtube.com/watch?v=z9K5pwb0rt8) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
+        * [[VIRTUAL] Py.Amsterdam's flying Software Circus: Intro to FastAPI](https://www.youtube.com/watch?v=PnpTY1f4k2U) by [Sebastián Ramírez (tiangolo)](https://x.com/tiangolo).
     * PR [#1467](https://github.com/tiangolo/fastapi/pull/1467).
 * Add translation to Chinese for [Python Types Intro - Python 类型提示简介](https://fastapi.tiangolo.com/zh/python-types/). PR [#1197](https://github.com/tiangolo/fastapi/pull/1197) by [@waynerv](https://github.com/waynerv).
 

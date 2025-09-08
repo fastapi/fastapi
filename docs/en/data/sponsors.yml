@@ -2,9 +2,6 @@ gold:
   - url: https://blockbee.io?ref=fastapi
     title: BlockBee Cryptocurrency Payment Gateway
     img: https://fastapi.tiangolo.com/img/sponsors/blockbee.png
-  - url: https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023
-    title: "Build, run and scale your apps on a modern, reliable, and secure PaaS."
-    img: https://fastapi.tiangolo.com/img/sponsors/platform-sh.png
   - url: https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge
     title: "Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"
     img: https://fastapi.tiangolo.com/img/sponsors/scalar.svg
@@ -26,9 +23,6 @@ gold:
   - url: https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source
     title: The Gold Standard in Retail Account Linking
     img: https://fastapi.tiangolo.com/img/sponsors/subtotal.svg
-  - url: https://vibe.mobb.ai/?utm_source=Fast+APi&utm_medium=Image&utm_campaign=MVS
-    title: Secure Your AI-Generated Code to Unlock Dev Productivity
-    img: https://fastapi.tiangolo.com/img/sponsors/mobbai.png
   - url: https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi
     title: Deploy enterprise applications at startup speed
     img: https://fastapi.tiangolo.com/img/sponsors/railway.png
