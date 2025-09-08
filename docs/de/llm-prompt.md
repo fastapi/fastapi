@@ -222,7 +222,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 
 ### List of English terms and their preferred German translations
 
-Below is a list of English terms and their preferred German translations, separated by a colon («:»). Use these translations, do not use your own. If an existing translation does not use these terms, update it to use them. A term or a translation may be followed by an explanation in brackets, which explains when to translate the term this way. If a translation is preceded by «NOT», then that means: do NOT use this translation for this term. English nouns, starting with the word «the», have the German genus – «der», «die», «das» – prepended to their German translation, to help you to grammatically decline the translation. They are given in singular case, unless they have «(plural)» attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word «to».
+Below is a list of English terms and their preferred German translations, separated by a colon («:»). Use these translations, do not use your own. If an existing translation does not use these terms, update it to use them. A term or a translation may be followed by an explanation in brackets, which explains when to translate the term this way. If a translation is preceded by «NOT», then that means: do NOT use this translation for this term. English nouns, starting with the word «the», have the German genus – «der», «die», «das» – prepended to their German translation, to help you to grammatically decline them in the translation. They are given in singular case, unless they have «(plural)» attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word «to».
 
 * «/// check»: «/// check | Testen»
 * «/// danger»: «/// danger | Gefahr»
@@ -335,4 +335,4 @@ Below is a list of English terms and their preferred German translations, separa
 
 ### Other rules
 
-Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF)
+Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF).
