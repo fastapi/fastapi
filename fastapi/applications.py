@@ -8,6 +8,7 @@ from typing import (
     List,
     Optional,
     Sequence,
+    Tuple,
     Type,
     TypeVar,
     Union,
@@ -962,6 +963,7 @@ class FastAPI(Starlette):
         )
         self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
+        self.reorder_routes_on_startup()
 
     def openapi(self) -> Dict[str, Any]:
         """
@@ -1052,6 +1054,67 @@ class FastAPI(Starlette):
         if self.root_path:
             scope["root_path"] = self.root_path
         await super().__call__(scope, receive, send)
+
+    def _route_sort_key(
+        self,
+        router: BaseRoute,
+    ) -> Tuple[int, int, int, str]:
+        """
+        Compute a sort key for FastAPI routes.
+
+        Ensures that routes with fewer dynamic segments (`{id}`)
+        come before more generic ones, so static paths are matched
+        first.
+        Example: `/entity/subentity/smthng` should not be mistaken
+        for `/entity/subentity/{id}`.
+
+        Args:
+            router (BaseRoute): the route object to compute the key for.
+
+        Returns:
+            Tuple[int, int, int, str]: a tuple of:
+                - dyn_count: number of dynamic segments
+                - -static_count: negative number of static segments
+                - -total: negative total number of segments
+                - path: the route path string
+        """
+
+        # Get the route path string
+        path = getattr(router, "path", None) or getattr(router, "path_format", "") or ""
+
+        # Split the path into segments, remove empty ones
+        parts = [p for p in path.strip("/").split("/") if p]
+
+        # Count dynamic segments {param}
+        dyn = sum(1 for p in parts if p.startswith("{"))
+
+        # Count static segments
+        static = len(parts) - dyn
+
+        # Total number of segments
+        total = len(parts)
+
+        # Return a key for sorting
+        return (dyn, -static, -total, path)
+
+    def reorder_routes_on_startup(
+        self,
+    ) -> None:
+        """
+        Re-sort FastAPI routes after registration to prioritize static
+        over dynamic paths.
+
+        This sorts `self.router.routes` in-place to avoid static
+        routes being shadowed by dynamic routes like `/{id}`.
+
+        Args:
+            None
+
+        Returns:
+            None
+        """
+
+        self.router.routes.sort(key=self._route_sort_key)
 
     def add_api_route(
         self,
