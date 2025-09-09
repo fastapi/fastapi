@@ -570,6 +570,12 @@ class Body(FieldInfo):
         else:
             kwargs["deprecated"] = deprecated
         if PYDANTIC_V2:
+            if serialization_alias in (_Unset, None) and isinstance(alias, str):
+                serialization_alias = alias
+
+            if validation_alias in (_Unset, None):
+                validation_alias = alias
+
             kwargs.update(
                 {
                     "annotation": annotation,
