@@ -18,6 +18,9 @@ def test_get_path(path, expected_status, expected_response):
     assert response.status_code == expected_status
     assert response.json() == expected_response
 
+    response = client.head(path)
+    assert response.status_code == expected_status
+
 
 def test_openapi_schema():
     response = client.get("/openapi.json")
