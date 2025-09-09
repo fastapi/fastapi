@@ -1,4 +1,4 @@
-# Tutorial - User Guide
+# Tutorial - User Guide { #tutorial-user-guide }
 
 This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
@@ -6,7 +6,7 @@ Each section gradually builds on the previous ones, but it's structured to separ
 
 It is also built to work as a future reference so you can come back and see exactly what you need.
 
-## Install FastAPI
+## Install FastAPI { #install-fastapi }
 
 The first step is to install FastAPI.
 
@@ -30,7 +30,7 @@ If you don't want to have those optional dependencies, you can instead install `
 
 ///
 
-## Run the code
+## Run the code { #run-the-code }
 
 All the code blocks can be copied and used directly (they are actually tested Python files).
 
@@ -82,7 +82,7 @@ Using it in your editor is what really shows you the benefits of FastAPI, seeing
 
 ---
 
-## Advanced User Guide
+## Advanced User Guide { #advanced-user-guide }
 
 There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
 

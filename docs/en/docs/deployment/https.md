@@ -1,4 +1,4 @@
-# About HTTPS
+# About HTTPS { #about-https }
 
 It is easy to assume that HTTPS is something that is just "enabled" or not.
 
@@ -43,7 +43,7 @@ Some of the options you could use as a TLS Termination Proxy are:
 * Nginx
 * HAProxy
 
-## Let's Encrypt
+## Let's Encrypt { #lets-encrypt }
 
 Before Let's Encrypt, these **HTTPS certificates** were sold by trusted third parties.
 
@@ -57,11 +57,11 @@ The domains are securely verified and the certificates are generated automatical
 
 The idea is to automate the acquisition and renewal of these certificates so that you can have **secure HTTPS, for free, forever**.
 
-## HTTPS for Developers
+## HTTPS for Developers { #https-for-developers }
 
 Here's an example of how an HTTPS API could look like, step by step, paying attention mainly to the ideas important for developers.
 
-### Domain Name
+### Domain Name { #domain-name }
 
 It would probably all start by you **acquiring** some **domain name**. Then, you would configure it in a DNS server (possibly your same cloud provider).
 
@@ -77,7 +77,7 @@ This Domain Name part is way before HTTPS, but as everything depends on the doma
 
 ///
 
-### DNS
+### DNS { #dns }
 
 Now let's focus on all the actual HTTPS parts.
 
@@ -85,19 +85,19 @@ First, the browser would check with the **DNS servers** what is the **IP for the
 
 The DNS servers would tell the browser to use some specific **IP address**. That would be the public IP address used by your server, that you configured in the DNS servers.
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
-### TLS Handshake Start
+### TLS Handshake Start { #tls-handshake-start }
 
 The browser would then communicate with that IP address on **port 443** (the HTTPS port).
 
 The first part of the communication is just to establish the connection between the client and the server and to decide the cryptographic keys they will use, etc.
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 This interaction between the client and the server to establish the TLS connection is called the **TLS handshake**.
 
-### TLS with SNI Extension
+### TLS with SNI Extension { #tls-with-sni-extension }
 
 **Only one process** in the server can be listening on a specific **port** in a specific **IP address**. There could be other processes listening on other ports in the same IP address, but only one for each combination of IP address and port.
 
@@ -111,7 +111,7 @@ Using the **SNI extension** discussed above, the TLS Termination Proxy would che
 
 In this case, it would use the certificate for `someapp.example.com`.
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 The client already **trusts** the entity that generated that TLS certificate (in this case Let's Encrypt, but we'll see about that later), so it can **verify** that the certificate is valid.
 
@@ -127,53 +127,53 @@ Notice that the encryption of the communication happens at the **TCP level**, no
 
 ///
 
-### HTTPS Request
+### HTTPS Request { #https-request }
 
 Now that the client and server (specifically the browser and the TLS Termination Proxy) have an **encrypted TCP connection**, they can start the **HTTP communication**.
 
 So, the client sends an **HTTPS request**. This is just an HTTP request through an encrypted TLS connection.
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
-### Decrypt the Request
+### Decrypt the Request { #decrypt-the-request }
 
 The TLS Termination Proxy would use the encryption agreed to **decrypt the request**, and would transmit the **plain (decrypted) HTTP request** to the process running the application (for example a process with Uvicorn running the FastAPI application).
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
-### HTTP Response
+### HTTP Response { #http-response }
 
 The application would process the request and send a **plain (unencrypted) HTTP response** to the TLS Termination Proxy.
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
-### HTTPS Response
+### HTTPS Response { #https-response }
 
 The TLS Termination Proxy would then **encrypt the response** using the cryptography agreed before (that started with the certificate for `someapp.example.com`), and send it back to the browser.
 
 Next, the browser would verify that the response is valid and encrypted with the right cryptographic key, etc. It would then **decrypt the response** and process it.
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 The client (browser) will know that the response comes from the correct server because it is using the cryptography they agreed using the **HTTPS certificate** before.
 
-### Multiple Applications
+### Multiple Applications { #multiple-applications }
 
 In the same server (or servers), there could be **multiple applications**, for example, other API programs or a database.
 
 Only one process can be handling the specific IP and port (the TLS Termination Proxy in our example) but the other applications/processes can be running on the server(s) too, as long as they don't try to use the same **combination of public IP and port**.
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 That way, the TLS Termination Proxy could handle HTTPS and certificates for **multiple domains**, for multiple applications, and then transmit the requests to the right application in each case.
 
-### Certificate Renewal
+### Certificate Renewal { #certificate-renewal }
 
 At some point in the future, each certificate would **expire** (about 3 months after acquiring it).
 
 And then, there would be another program (in some cases it's another program, in some cases it could be the same TLS Termination Proxy) that would talk to Let's Encrypt, and renew the certificate(s).
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 The **TLS certificates** are **associated with a domain name**, not with an IP address.
 
@@ -190,7 +190,39 @@ To do that, and to accommodate different application needs, there are several wa
 
 All this renewal process, while still serving the app, is one of the main reasons why you would want to have a **separate system to handle HTTPS** with a TLS Termination Proxy instead of just using the TLS certificates with the application server directly (e.g. Uvicorn).
 
-## Recap
+## Proxy Forwarded Headers { #proxy-forwarded-headers }
+
+When using a proxy to handle HTTPS, your **application server** (for example Uvicorn via FastAPI CLI) doesn't known anything about the HTTPS process, it communicates with plain HTTP with the **TLS Termination Proxy**.
+
+This **proxy** would normally set some HTTP headers on the fly before transmitting the request to the **application server**, to let the application server know that the request is being **forwarded** by the proxy.
+
+/// note | Technical Details
+
+The proxy headers are:
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+Nevertheless, as the **application server** doesn't know it is behind a trusted **proxy**, by default, it wouldn't trust those headers.
+
+But you can configure the **application server** to trust the *forwarded* headers sent by the **proxy**. If you are using FastAPI CLI, you can use the *CLI Option* `--forwarded-allow-ips` to tell it from which IPs it should trust those *forwarded* headers.
+
+For example, if the **application server** is only receiving communication from the trusted **proxy**, you can set it to `--forwarded-allow-ips="*"` to make it trust all incoming IPs, as it will only receive requests from whatever is the IP used by the **proxy**.
+
+This way the application would be able to know what is its own public URL, if it is using HTTPS, the domain, etc.
+
+This would be useful for example to properly handle redirects.
+
+/// tip
+
+You can learn more about this in the documentation for [Behind a Proxy - Enable Proxy Forwarded Headers](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+
+///
+
+## Recap { #recap }
 
 Having **HTTPS** is very important, and quite **critical** in most cases. Most of the effort you as a developer have to put around HTTPS is just about **understanding these concepts** and how they work.
 
