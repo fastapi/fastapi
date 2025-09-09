@@ -1,4 +1,9 @@
+from typing import TYPE_CHECKING, Sequence
+
 import pytest
+
+if TYPE_CHECKING:  # pragma: nocover
+    from fastapi._compat import ErrorDetails
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 
@@ -6,7 +11,7 @@ from ..utils import needs_pydanticv1
 
 
 @pytest.fixture(name="client")
-def get_client():
+def get_client() -> TestClient:
     from .app_pv1 import app
 
     client = TestClient(app)
@@ -14,7 +19,7 @@ def get_client():
 
 
 @needs_pydanticv1
-def test_filter_sub_model(client: TestClient):
+def test_filter_sub_model(client: TestClient) -> None:
     response = client.get("/model/modelA")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -25,10 +30,11 @@ def test_filter_sub_model(client: TestClient):
 
 
 @needs_pydanticv1
-def test_validator_is_cloned(client: TestClient):
+def test_validator_is_cloned(client: TestClient) -> None:
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
-    assert err.value.errors() == [
+    errors: Sequence[ErrorDetails] = err.value.errors()
+    assert errors == [
         {
             "loc": ("response", "name"),
             "msg": "name must end in A",
@@ -38,7 +44,7 @@ def test_validator_is_cloned(client: TestClient):
 
 
 @needs_pydanticv1
-def test_openapi_schema(client: TestClient):
+def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
