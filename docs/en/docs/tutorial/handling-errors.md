@@ -140,7 +140,7 @@ Here, if your request causes either a `FileTooLargeError` or an `UnsupportedFile
 
 This allows for simpler, more maintainable error handling when several conditions should result in the same kind of response.
 
-## Override the default exception handlers { #override-request-validation-exceptions }
+## Override the default exception handlers { #override-the-default-exception-handlers }
 
 **FastAPI** has some default exception handlers.
 
