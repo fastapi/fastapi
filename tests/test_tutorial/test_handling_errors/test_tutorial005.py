@@ -19,7 +19,19 @@ def test_post_validation_error():
                     "input": "XL",
                 }
             ],
-            "body": {"title": "towel", "size": "XL"},
+            "body": '{"title":"towel","size":"XL"}',
+        }
+    ) | IsDict(
+        {
+            "detail": [
+                {
+                    "type": "int_parsing",
+                    "loc": ["body", "size"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "XL",
+                }
+            ],
+            "body": '{"title": "towel", "size": "XL"}',
         }
     ) | IsDict(
         # TODO: remove when deprecating Pydantic v1
@@ -31,7 +43,19 @@ def test_post_validation_error():
                     "type": "type_error.integer",
                 }
             ],
-            "body": {"title": "towel", "size": "XL"},
+            "body": '{"title":"towel","size":"XL"}',
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "size"],
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
+                }
+            ],
+            "body": '{"title": "towel", "size": "XL"}',
         }
     )
 
