@@ -912,7 +912,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
-    ) -> None:
+    ) -> "APIRoute":
         route_class = route_class_override or self.route_class
         responses = responses or {}
         combined_responses = {**self.responses, **responses}
@@ -960,6 +960,7 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
         )
         self.routes.append(route)
+        return route
 
     def api_route(
         self,
@@ -1030,7 +1031,7 @@ class APIRouter(routing.Router):
         name: Optional[str] = None,
         *,
         dependencies: Optional[Sequence[params.Depends]] = None,
-    ) -> None:
+    ) -> "APIWebSocketRoute":
         current_dependencies = self.dependencies.copy()
         if dependencies:
             current_dependencies.extend(dependencies)
@@ -1043,6 +1044,7 @@ class APIRouter(routing.Router):
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
         self.routes.append(route)
+        return route
 
     def websocket(
         self,
