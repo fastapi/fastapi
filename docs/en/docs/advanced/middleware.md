@@ -1,4 +1,4 @@
-# Advanced Middleware
+# Advanced Middleware { #advanced-middleware }
 
 In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md){.internal-link target=_blank} to your application.
 
@@ -6,7 +6,7 @@ And then you also read how to handle [CORS with the `CORSMiddleware`](../tutoria
 
 In this section we'll see how to use other middlewares.
 
-## Adding ASGI middlewares
+## Adding ASGI middlewares { #adding-asgi-middlewares }
 
 As **FastAPI** is based on Starlette and implements the <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> specification, you can use any ASGI middleware.
 
@@ -39,7 +39,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `app.add_middleware()` receives a middleware class as the first argument and any additional arguments to be passed to the middleware.
 
-## Integrated middlewares
+## Integrated middlewares { #integrated-middlewares }
 
 **FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
 
@@ -51,7 +51,7 @@ For the next examples, you could also use `from starlette.middleware.something i
 
 ///
 
-## `HTTPSRedirectMiddleware`
+## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
 Enforces that all incoming requests must either be `https` or `wss`.
 
@@ -59,7 +59,7 @@ Any incoming request to `http` or `ws` will be redirected to the secure scheme i
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
-## `TrustedHostMiddleware`
+## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
 
@@ -68,10 +68,11 @@ Enforces that all incoming requests have a correctly set `Host` header, in order
 The following arguments are supported:
 
 * `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
+* `www_redirect` - If set to True, requests to non-www versions of the allowed hosts will be redirected to their www counterparts. Defaults to `True`.
 
 If an incoming request does not validate correctly then a `400` response will be sent.
 
-## `GZipMiddleware`
+## `GZipMiddleware` { #gzipmiddleware }
 
 Handles GZip responses for any request that includes `"gzip"` in the `Accept-Encoding` header.
 
@@ -98,7 +99,7 @@ The example below shows middleware applied at each scope. Notice how the inner r
 
 {* ../../docs_src/advanced_middleware/tutorial004.py *}
 
-## Other middlewares
+## Other middlewares { #other-middlewares }
 
 There are many other ASGI middlewares.
 

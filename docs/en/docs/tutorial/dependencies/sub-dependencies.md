@@ -1,4 +1,4 @@
-# Sub-dependencies
+# Sub-dependencies { #sub-dependencies }
 
 You can create dependencies that have **sub-dependencies**.
 
@@ -6,7 +6,7 @@ They can be as **deep** as you need them to be.
 
 **FastAPI** will take care of solving them.
 
-## First dependency "dependable"
+## First dependency "dependable" { #first-dependency-dependable }
 
 You could create a first dependency ("dependable") like:
 
@@ -16,7 +16,7 @@ It declares an optional query parameter `q` as a `str`, and then it just returns
 
 This is quite simple (not very useful), but will help us focus on how the sub-dependencies work.
 
-## Second dependency, "dependable" and "dependant"
+## Second dependency, "dependable" and "dependant" { #second-dependency-dependable-and-dependant }
 
 Then you can create another dependency function (a "dependable") that at the same time declares a dependency of its own (so it is a "dependant" too):
 
@@ -29,7 +29,7 @@ Let's focus on the parameters declared:
 * It also declares an optional `last_query` cookie, as a `str`.
     * If the user didn't provide any query `q`, we use the last query used, which we saved to a cookie before.
 
-## Use the dependency
+## Use the dependency { #use-the-dependency }
 
 Then we can use the dependency with:
 
@@ -54,7 +54,7 @@ read_query["/items/"]
 query_extractor --> query_or_cookie_extractor --> read_query
 ```
 
-## Using the same dependency multiple times
+## Using the same dependency multiple times { #using-the-same-dependency-multiple-times }
 
 If one of your dependencies is declared multiple times for the same *path operation*, for example, multiple dependencies have a common sub-dependency, **FastAPI** will know to call that sub-dependency only once per request.
 
@@ -86,7 +86,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 ////
 
-## Recap
+## Recap { #recap }
 
 Apart from all the fancy words used here, the **Dependency Injection** system is quite simple.
 
