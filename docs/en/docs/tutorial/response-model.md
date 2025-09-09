@@ -1,4 +1,4 @@
-# Response Model - Return Type
+# Response Model - Return Type { #response-model-return-type }
 
 You can declare the type used for the response by annotating the *path operation function* **return type**.
 
@@ -19,7 +19,7 @@ But most importantly:
 * It will **limit and filter** the output data to what is defined in the return type.
     * This is particularly important for **security**, we'll see more of that below.
 
-## `response_model` Parameter
+## `response_model` Parameter { #response-model-parameter }
 
 There are some cases where you need or want to return some data that is not exactly what the type declares.
 
@@ -57,7 +57,7 @@ That way you tell the editor that you are intentionally returning anything. But 
 
 ///
 
-### `response_model` Priority
+### `response_model` Priority { #response-model-priority }
 
 If you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI.
 
@@ -65,7 +65,7 @@ This way you can add correct type annotations to your functions even when you ar
 
 You can also use `response_model=None` to disable creating a response model for that *path operation*, you might need to do it if you are adding type annotations for things that are not valid Pydantic fields, you will see an example of that in one of the sections below.
 
-## Return the same input data
+## Return the same input data { #return-the-same-input-data }
 
 Here we are declaring a `UserIn` model, it will contain a plaintext password:
 
@@ -105,7 +105,7 @@ Never store the plain password of a user or send it in a response like this, unl
 
 ///
 
-## Add an output model
+## Add an output model { #add-an-output-model }
 
 We can instead create an input model with the plaintext password and an output model without it:
 
@@ -121,7 +121,7 @@ Here, even though our *path operation function* is returning the same input user
 
 So, **FastAPI** will take care of filtering out all the data that is not declared in the output model (using Pydantic).
 
-### `response_model` or Return Type
+### `response_model` or Return Type { #response-model-or-return-type }
 
 In this case, because the two models are different, if we annotated the function return type as `UserOut`, the editor and tools would complain that we are returning an invalid type, as those are different classes.
 
@@ -129,7 +129,7 @@ That's why in this example we have to declare it in the `response_model` paramet
 
 ...but continue reading below to see how to overcome that.
 
-## Return Type and Data Filtering
+## Return Type and Data Filtering { #return-type-and-data-filtering }
 
 Let's continue from the previous example. We wanted to **annotate the function with one type**, but we wanted to be able to return from the function something that actually includes **more data**.
 
@@ -147,7 +147,7 @@ With this, we get tooling support, from editors and mypy as this code is correct
 
 How does this work? Let's check that out. 🤓
 
-### Type Annotations and Tooling
+### Type Annotations and Tooling { #type-annotations-and-tooling }
 
 First let's see how editors, mypy and other tools would see this.
 
@@ -157,7 +157,7 @@ We annotate the function return type as `BaseUser`, but we are actually returnin
 
 The editor, mypy, and other tools won't complain about this because, in typing terms, `UserIn` is a subclass of `BaseUser`, which means it's a *valid* type when what is expected is anything that is a `BaseUser`.
 
-### FastAPI Data Filtering
+### FastAPI Data Filtering { #fastapi-data-filtering }
 
 Now, for FastAPI, it will see the return type and make sure that what you return includes **only** the fields that are declared in the type.
 
@@ -165,7 +165,7 @@ FastAPI does several things internally with Pydantic to make sure that those sam
 
 This way, you can get the best of both worlds: type annotations with **tooling support** and **data filtering**.
 
-## See it in the docs
+## See it in the docs { #see-it-in-the-docs }
 
 When you see the automatic docs, you can check that the input model and output model will both have their own JSON Schema:
 
@@ -175,11 +175,11 @@ And both models will be used for the interactive API documentation:
 
 <img src="/img/tutorial/response-model/image02.png">
 
-## Other Return Type Annotations
+## Other Return Type Annotations { #other-return-type-annotations }
 
 There might be cases where you return something that is not a valid Pydantic field and you annotate it in the function, only to get the support provided by tooling (the editor, mypy, etc).
 
-### Return a Response Directly
+### Return a Response Directly { #return-a-response-directly }
 
 The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
 
@@ -189,7 +189,7 @@ This simple case is handled automatically by FastAPI because the return type ann
 
 And tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.
 
-### Annotate a Response Subclass
+### Annotate a Response Subclass { #annotate-a-response-subclass }
 
 You can also use a subclass of `Response` in the type annotation:
 
@@ -197,7 +197,7 @@ You can also use a subclass of `Response` in the type annotation:
 
 This will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case.
 
-### Invalid Return Type Annotations
+### Invalid Return Type Annotations { #invalid-return-type-annotations }
 
 But when you return some other arbitrary object that is not a valid Pydantic type (e.g. a database object) and you annotate it like that in the function, FastAPI will try to create a Pydantic response model from that type annotation, and will fail.
 
@@ -207,7 +207,7 @@ The same would happen if you had something like a <abbr title='A union between m
 
 ...this fails because the type annotation is not a Pydantic type and is not just a single `Response` class or subclass, it's a union (any of the two) between a `Response` and a `dict`.
 
-### Disable Response Model
+### Disable Response Model { #disable-response-model }
 
 Continuing from the example above, you might not want to have the default data validation, documentation, filtering, etc. that is performed by FastAPI.
 
@@ -219,7 +219,7 @@ In this case, you can disable the response model generation by setting `response
 
 This will make FastAPI skip the response model generation and that way you can have any return type annotations you need without it affecting your FastAPI application. 🤓
 
-## Response Model encoding parameters
+## Response Model encoding parameters { #response-model-encoding-parameters }
 
 Your response model could have default values, like:
 
@@ -233,7 +233,7 @@ but you might want to omit them from the result if they were not actually stored
 
 For example, if you have models with many optional attributes in a NoSQL database, but you don't want to send very long JSON responses full of default values.
 
-### Use the `response_model_exclude_unset` parameter
+### Use the `response_model_exclude_unset` parameter { #use-the-response-model-exclude-unset-parameter }
 
 You can set the *path operation decorator* parameter `response_model_exclude_unset=True`:
 
@@ -275,7 +275,7 @@ as described in <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#
 
 ///
 
-#### Data with values for fields with defaults
+#### Data with values for fields with defaults { #data-with-values-for-fields-with-defaults }
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:
 
@@ -290,7 +290,7 @@ But if your data has values for the model's fields with default values, like the
 
 they will be included in the response.
 
-#### Data with the same values as the defaults
+#### Data with the same values as the defaults { #data-with-the-same-values-as-the-defaults }
 
 If the data has the same values as the default ones, like the item with ID `baz`:
 
@@ -316,7 +316,7 @@ They can be a list (`[]`), a `float` of `10.5`, etc.
 
 ///
 
-### `response_model_include` and `response_model_exclude`
+### `response_model_include` and `response_model_exclude` { #response-model-include-and-response-model-exclude }
 
 You can also use the *path operation decorator* parameters `response_model_include` and `response_model_exclude`.
 
@@ -344,13 +344,13 @@ It is equivalent to `set(["name", "description"])`.
 
 ///
 
-#### Using `list`s instead of `set`s
+#### Using `list`s instead of `set`s { #using-lists-instead-of-sets }
 
 If you forget to use a `set` and use a `list` or `tuple` instead, FastAPI will still convert it to a `set` and it will work correctly:
 
 {* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
 
-## Recap
+## Recap { #recap }
 
 Use the *path operation decorator's* parameter `response_model` to define response models and especially to ensure private data is filtered out.
 
