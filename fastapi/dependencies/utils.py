@@ -56,6 +56,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.types import RequestState, TypedState
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -335,6 +336,9 @@ def add_non_field_param_to_dependency(
     elif lenient_issubclass(type_annotation, SecurityScopes):
         dependant.security_scopes_param_name = param_name
         return True
+    elif lenient_issubclass(type_annotation, RequestState):
+        dependant.state_param_name = param_name
+        return True
     return None
 
 
@@ -360,7 +364,10 @@ def analyze_param(
         use_annotation = annotation
         type_annotation = annotation
     # Extract Annotated info
-    if get_origin(use_annotation) is Annotated:
+    origin = get_origin(annotation)
+    if origin is TypedState:
+        type_annotation = RequestState
+    if origin is Annotated:
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]
         fastapi_annotations = [
@@ -436,6 +443,7 @@ def analyze_param(
             Response,
             StarletteBackgroundTasks,
             SecurityScopes,
+            RequestState,
         ),
     ):
         assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
@@ -686,6 +694,8 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
+    if dependant.state_param_name:
+        values[dependant.state_param_name] = TypedState(_state=request.state._state)
     return SolvedDependency(
         values=values,
         errors=errors,
