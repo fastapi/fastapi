@@ -47,10 +47,7 @@ from fastapi._compat import (
     value_is_sequence,
 )
 from fastapi.background import BackgroundTasks
-from fastapi.concurrency import (
-    asynccontextmanager,
-    contextmanager_in_threadpool,
-)
+from fastapi.concurrency import asynccontextmanager, contextmanager_in_threadpool
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
@@ -102,8 +99,8 @@ def ensure_multipart_is_installed() -> None:
             assert __version__
             try:
                 # parse_options_header is only available in the right multipart
-                from multipart.multipart import (  # type: ignore[import-untyped]
-                    parse_options_header,
+                from multipart.multipart import (
+                    parse_options_header,  # type: ignore[import-untyped]
                 )
 
                 assert parse_options_header
