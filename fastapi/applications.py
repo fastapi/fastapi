@@ -98,6 +98,20 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        redact_error_details: Annotated[
+            bool,
+            Doc(
+                """
+                If enabled, validation error responses will not include detailed
+                information about the specific validation issues, returning a
+                generic message instead. Applies to HTTP request validation
+                errors and WebSocket validation close reasons.
+
+                This can help avoid leaking potentially sensitive implementation
+                details to clients.
+                """
+            ),
+        ] = False,
         title: Annotated[
             str,
             Doc(
@@ -821,6 +835,8 @@ class FastAPI(Starlette):
         ],
     ) -> None:
         self.debug = debug
+        # Controls if validation error details are redacted in responses
+        self.redact_error_details = redact_error_details
         self.title = title
         self.summary = summary
         self.description = description

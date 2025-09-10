@@ -721,10 +721,12 @@ def _get_multidict_value(
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
+    # Fix for #13533: Treat empty string fields as missing for Form and File fields
+    # to restore default value behavior for both x-www-form-urlencoded and multipart forms
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
+            isinstance(field.field_info, (params.Form, params.File))
             and isinstance(value, str)  # For type checks
             and value == ""
         )
@@ -896,8 +898,10 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
+    # Fix for #13533: Don't include empty strings from original form data
+    # as they should be treated as missing and use default values
     for key, value in received_body.items():
-        if key not in values:
+        if key not in values and value != "":
             values[key] = value
     return values
 
@@ -933,7 +937,12 @@ async def request_body_to_args(
         value: Optional[Any] = None
         if body_to_process is not None:
             try:
-                value = body_to_process.get(field.alias)
+                # Use _get_multidict_value to handle empty strings as missing for Form/File fields
+                # This ensures consistent behavior with the single field path
+                if isinstance(body_to_process, FormData):
+                    value = _get_multidict_value(field, body_to_process)
+                else:
+                    value = body_to_process.get(field.alias)
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
