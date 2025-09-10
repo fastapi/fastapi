@@ -35,6 +35,10 @@ hide:
 
 ### Internal
 
+* ⬆ Bump actions/setup-python from 5 to 6. PR [#14042](https://github.com/fastapi/fastapi/pull/14042) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/labeler from 5 to 6. PR [#14046](https://github.com/fastapi/fastapi/pull/14046) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14056](https://github.com/fastapi/fastapi/pull/14056) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14035](https://github.com/fastapi/fastapi/pull/14035) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump pypa/gh-action-pypi-publish from 1.12.4 to 1.13.0. PR [#14041](https://github.com/fastapi/fastapi/pull/14041) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#14029](https://github.com/fastapi/fastapi/pull/14029) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#14030](https://github.com/fastapi/fastapi/pull/14030) by [@tiangolo](https://github.com/tiangolo).
