@@ -19,7 +19,7 @@ from uuid import UUID
 
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color
+from pydantic_extra_types.color import Color  # ✅ updated import
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
