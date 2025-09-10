@@ -34,7 +34,6 @@ except ImportError:
     from pydantic.color import Color
 
 
-
 # Taken from Pydantic v1 as is
 def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
