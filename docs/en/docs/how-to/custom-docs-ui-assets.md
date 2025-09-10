@@ -89,7 +89,7 @@ Your new file structure could look like this:
 
 Download the static files needed for the docs and put them on that `static/` directory.
 
-You can probably right-click each link and select an option similar to `Save link as...`.
+You can probably right-click each link and select an option similar to "Save link as...".
 
 **Swagger UI** uses the files:
 
