@@ -7,10 +7,9 @@ in both x-www-form-urlencoded and multipart forms.
 
 from typing import Optional
 
-from fastapi import FastAPI, Form, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
-
 
 app = FastAPI()
 
@@ -57,7 +56,9 @@ def test_form_urlencoded_field_missing_uses_default():
 
 def test_form_urlencoded_field_empty_uses_default():
     """Test that empty string fields use default values in x-www-form-urlencoded forms."""
-    response = client.post("/form-urlencoded/", data={"name": "", "age": "", "email": ""})
+    response = client.post(
+        "/form-urlencoded/", data={"name": "", "age": "", "email": ""}
+    )
     assert response.status_code == 200
     assert response.json() == {
         "name": "default_name",
