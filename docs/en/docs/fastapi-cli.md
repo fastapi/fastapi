@@ -58,7 +58,7 @@ Internally, **FastAPI CLI** uses <a href="https://www.uvicorn.org" class="extern
 
 Running `fastapi dev` initiates development mode.
 
-By default, **auto-reload** is enabled, automatically reloading the server when you make changes to your code. This is resource-intensive and could be less stable than when it's disabled. You should only use it for development. It also listens on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
+By default, **auto-reload** is enabled, so the server automatically reloads whenever you make changes to your code. This is resource-intensive and could be less stable than when it's disabled. You should only use it for development. It also listens on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
 
 ## `fastapi run` { #fastapi-run }
 
