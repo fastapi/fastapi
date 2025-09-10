@@ -54,17 +54,7 @@ No importa para **FastAPI**. Detectará los parámetros por sus nombres, tipos y
 
 Así que puedes declarar tu función como:
 
-//// tab | Python 3.8 non-Annotated
-
-/// tip | Consejo
-
-Prefiere usar la versión `Annotated` si es posible.
-
-///
-
 {* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
-
-////
 
 Pero ten en cuenta que si usas `Annotated`, no tendrás este problema, no importará ya que no estás usando los valores por defecto de los parámetros de la función para `Query()` o `Path()`.
 
