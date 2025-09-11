@@ -250,6 +250,7 @@ def encode_value(
             exclude=exclude,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
@@ -294,6 +295,7 @@ def encode_value(
             exclude=exclude,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
@@ -319,6 +321,7 @@ def encode_value(
         exclude=exclude,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
         exclude_none=exclude_none,
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
@@ -331,6 +334,7 @@ def encode_dict(
     exclude: Optional[IncEx] = None,
     by_alias: bool = True,
     exclude_unset: bool = False,
+    exclude_defaults: bool = False,
     exclude_none: bool = False,
     custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
     sqlalchemy_safe: bool = True,
@@ -352,6 +356,8 @@ def encode_dict(
         if sqlalchemy_safe and isinstance(key, str) and key.startswith("_sa"):
             continue
 
+        # TODO: use exclude_defaults when encoding keys and values
+        # This is a bug from the original implementation, but is a breaking change
         encoded_key = encode_value(
             key,
             by_alias=by_alias,
@@ -360,7 +366,6 @@ def encode_dict(
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
-
         encoded_value = encode_value(
             value,
             by_alias=by_alias,
@@ -369,6 +374,7 @@ def encode_dict(
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+
         encoded_dict[encoded_key] = encoded_value
 
     return encoded_dict
