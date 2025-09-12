@@ -252,15 +252,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
 /// info
 
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
-/// info
-
-FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
+Depending on the installed version, FastAPI uses Pydantic model's <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">`.dict()` (v1)</a> (v1) or <a href="https://docs.pydantic.dev/2.0/api/main/#pydantic.main.BaseModel.model_dump" class="external-link" target="_blank">`model_dump` (v2)</a> with the `exclude_unset` parameter to achieve this.
 
 ///
 
