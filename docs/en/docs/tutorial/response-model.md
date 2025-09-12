@@ -252,7 +252,7 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
 
 /// info
 
-Depending on the installed version, FastAPI uses Pydantic model's <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">`.dict()` (v1)</a> (v1) or <a href="https://docs.pydantic.dev/2.0/api/main/#pydantic.main.BaseModel.model_dump" class="external-link" target="_blank">`model_dump` (v2)</a> with the `exclude_unset` parameter to achieve this.
+Depending on the installed version, FastAPI uses Pydantic model's <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">`.dict()` (v1)</a> (v1) or <a href="https://docs.pydantic.dev/2.0/api/main/#pydantic.main.BaseModel.model_dump" class="external-link" target="_blank">`.model_dump()` (v2)</a> with the `exclude_unset` parameter to achieve this.
 
 ///
 
