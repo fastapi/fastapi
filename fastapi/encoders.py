@@ -48,7 +48,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
     >>> decimal_encoder(Decimal("1"))
     1
-    
+
     >>> decimal_encoder(Decimal("NaN"))
     nan
     """
