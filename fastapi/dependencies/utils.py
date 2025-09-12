@@ -750,9 +750,15 @@ def request_params_to_args(
     first_field = fields[0]
     fields_to_extract = fields
     single_not_embedded_field = False
+    default_convert_underscores = True
     if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         single_not_embedded_field = True
+        # If headers are in a Pydantic model, the way to disable convert_underscores
+        # would be with Header(convert_underscores=False) at the Pydantic model level
+        default_convert_underscores = getattr(
+            first_field.field_info, "convert_underscores", True
+        )
 
     params_to_process: Dict[str, Any] = {}
 
@@ -763,7 +769,9 @@ def request_params_to_args(
         if isinstance(received_params, Headers):
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
-            convert_underscores = getattr(field.field_info, "convert_underscores", True)
+            convert_underscores = getattr(
+                field.field_info, "convert_underscores", default_convert_underscores
+            )
             if convert_underscores:
                 alias = (
                     field.alias
@@ -808,6 +816,25 @@ def request_params_to_args(
     return values, errors
 
 
+def is_union_of_base_models(field_type: Any) -> bool:
+    """Check if field type is a Union where all members are BaseModel subclasses."""
+    from fastapi.types import UnionType
+
+    origin = get_origin(field_type)
+
+    # Check if it's a Union type (covers both typing.Union and types.UnionType in Python 3.10+)
+    if origin is not Union and origin is not UnionType:
+        return False
+
+    union_args = get_args(field_type)
+
+    for arg in union_args:
+        if not lenient_issubclass(arg, BaseModel):
+            return False
+
+    return True
+
+
 def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     if not fields:
         return False
@@ -821,10 +848,12 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     # If it explicitly specifies it is embedded, it has to be embedded
     if getattr(first_field.field_info, "embed", None):
         return True
-    # If it's a Form (or File) field, it has to be a BaseModel to be top level
+    # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
-    if isinstance(first_field.field_info, params.Form) and not lenient_issubclass(
-        first_field.type_, BaseModel
+    if (
+        isinstance(first_field.field_info, params.Form)
+        and not lenient_issubclass(first_field.type_, BaseModel)
+        and not is_union_of_base_models(first_field.type_)
     ):
         return True
     return False

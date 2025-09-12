@@ -32,6 +32,7 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
+from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
@@ -113,6 +114,13 @@ def _get_openapi_operation_parameters(
         (ParamTypes.header, header_params),
         (ParamTypes.cookie, cookie_params),
     ]
+    default_convert_underscores = True
+    if len(flat_dependant.header_params) == 1:
+        first_field = flat_dependant.header_params[0]
+        if lenient_issubclass(first_field.type_, BaseModel):
+            default_convert_underscores = getattr(
+                first_field.field_info, "convert_underscores", True
+            )
     for param_type, param_group in parameter_groups:
         for param in param_group:
             field_info = param.field_info
@@ -126,8 +134,21 @@ def _get_openapi_operation_parameters(
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
+            name = param.alias
+            convert_underscores = getattr(
+                param.field_info,
+                "convert_underscores",
+                default_convert_underscores,
+            )
+            if (
+                param_type == ParamTypes.header
+                and param.alias == param.name
+                and convert_underscores
+            ):
+                name = param.name.replace("_", "-")
+
             parameter = {
-                "name": param.alias,
+                "name": name,
                 "in": param_type.value,
                 "required": param.required,
                 "schema": param_schema,
