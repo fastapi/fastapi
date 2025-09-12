@@ -9,7 +9,7 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 from typing_extensions import Annotated, Doc
 
 
@@ -75,7 +75,9 @@ class HTTPBase(SecurityBase):
         description: Optional[str] = None,
         auto_error: bool = True,
     ):
-        self.model = HTTPBaseModel(scheme=scheme, description=description)
+        self.model: HTTPBaseModel = HTTPBaseModel(
+            scheme=scheme, description=description
+        )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
@@ -87,8 +89,11 @@ class HTTPBase(SecurityBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": self.model.scheme},
                 )
+
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
@@ -306,15 +311,18 @@ class HTTPBearer(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
+                    headers={"WWW-Authenticate": "Bearer"},
                 )
             else:
                 return None
@@ -408,16 +416,20 @@ class HTTPDigest(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_401_UNAUTHORIZED,
+                    detail="Not authenticated",
+                    headers={"WWW-Authenticate": "Digest"},
                 )
             else:
                 return None
         if scheme.lower() != "digest":
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN,
+                    status_code=HTTP_401_UNAUTHORIZED,
                     detail="Invalid authentication credentials",
+                    headers={"WWW-Authenticate": "Digest"},
                 )
             else:
                 return None
+
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
