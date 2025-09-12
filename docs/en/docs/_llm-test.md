@@ -1,27 +1,61 @@
 # LLM test file { #llm-test-file }
 
-This document tests if the <abbr title="Large Language Model">LLM</abbr> understands the instructions given in the general prompt in `scripts/translate.py` and those in the language specific prompt `docs/{language code}/llm-prompt.md`, (which are appended to the instructions in the general prompt). By adding special cases here, translation projects will become aware of them easier.
+This document tests if the <abbr title="Large Language Model">LLM</abbr>, which translates the documentation, understands the `general_prompt` in `scripts/translate.py` and the language specific prompt in `docs/{language code}/llm-prompt.md`. The language specific prompt is appended to `general_prompt`.
+
+Tests added here will be seen by all designers of language specific prompts.
 
 Use as follows:
 
-* Do a fresh translation of this document into the desired target language.
-* Check if things are mostly okay.
-* If some things are not okay, but are fixable by improving the English document or the general or the language specific prompt, do that.
+* Have a language specific prompt – `docs/{language code}/llm-prompt.md`. 
+* Do a fresh translation of this document into your desired target language (see e.g. the `translate-page` command of the `translate.py`). This will create the translation under `docs/{language code}/docs/_llm-test.md`.
+* Check if things are okay in the translation.
+* If necessary, improve your language specific prompt, the general prompt, or the English document.
 * Then manually fix the remaining issues in the translation, so that it is a good translation.
-* Retranslate using the existing, good translation. The ideal result would be that the LLM makes no changes at all. That would mean that the general prompt and the language prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
+* Retranslate, having the good translation in place. The ideal result would be that the LLM makes no changes anymore to the translation. That means that the general prompt and your language specific prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
 
+The tests:
 
 ## Code snippets { #code-snippets}
 
+//// tab | Test
+
 This is a code snippet: `foo`. And this is another code snippet: `bar`. And another one: `baz quux`.
 
+////
+
+//// tab | Info
+
+Content of code snippets should be left as is.
+
+See section `### Content of code snippets` in the general prompt in `scripts/translate.py`.
+
+////
 
 ## Quotes { #quotes }
 
+//// tab | Test
+
 Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
 
+/// note
+
+The LLM will probably translate this wrong. Interesting is only if it keeps the fixed translation when retranslating.
+
+///
+
+////
+
+//// tab | Info
+
+The prompt designer may choose if they want to convert neutral quotes to typographic quotes. It is okay to leave them as is.
+
+See for example section `### Quotes` in `docs/de/llm-prompt.md`.
+
+////
 
 ## Quotes in code snippets { #quotes-in-code-snippets}
+
+//// tab | Test
 
 `pip install "foo[bar]"`
 
@@ -31,8 +65,17 @@ A difficult example for string literals in code snippets: `f"I like {'oranges' i
 
 Hardcore: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"`
 
+////
+
+//// tab | Info
+
+... However, quotes inside code snippets must stay as is.
+
+////
 
 ## code blocks { #code-blocks }
+
+//// tab | Test
 
 A Bash code example...
 
@@ -67,10 +110,19 @@ works(foo="bar")  # This works 🎉
 
 ...and that's it.
 
+////
+
+//// tab | Info
+
+Code in code blocks should not be modified, with the exception of comments.
+
+See section `### Content of code blocks` in the general prompt in `scripts/translate.py`.
+
+////
 
 ## Tabs and colored boxes { #tabs-and-colored-boxes }
 
-//// tab | This is a tab
+//// tab | Test
 
 /// info
 Some text
@@ -102,52 +154,79 @@ Some text
 
 ////
 
-//// tab | Here another tab
+//// tab | Info
 
-Hello
+Tabs and `Info`/`Note`/`Warning`/etc. blocks should have the translation of their title added after a vertical bar (`|`).
+
+See sections `### Special blocks` and `### Tab blocks` in the general prompt in `scripts/translate.py`.
 
 ////
 
-
 ## Web- and internal links { #web-and-internal-links }
 
-The link text should get translated, the link target should remain unchaged:
+//// tab | Test
+
+The link text should get translated, the link address should remain unchaged:
 
 * [Link to heading above](#code-snippets)
-* [Internal link](foo.md#bar){.internal-link target=_blank}
+* [Internal link](index.md#installation){.internal-link target=_blank}
 * <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">External link</a>
 * <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link to a style</a>
 * <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link to a script</a>
 * <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link to an image</a>
 
-The link text should get translated, the link target should be the translation, not the English text:
+The link text should get translated, the link address should point to the translation:
 
 * <a href="https://fastapi.tiangolo.com/" class="external-link" target="_blank">FastAPI link</a>
 
+////
+
+//// tab | Info
+
+Links should be translated, but their address shall remain unchanged. An exception are absolute links to pages of the FastAPI documentation. In that case it should link to the translation.
+
+See section `### Links` in the general prompt in `scripts/translate.py`.
+
+////
 
 ## HTML "abbr" elements { #html-abbr-elements }
 
+//// tab | Test
+
 Here some things wrapped in HTML "abbr" elements (Some are invented):
 
-### Full phrase { #full-phrase }
+### The abbr gives a full phrase { #the-abbr-gives-a-full-phrase }
 
 * <abbr title="Getting Things Done">GTD</abbr>
 * <abbr title="less than"><code>lt</code></abbr>
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
 
-### Explanation { #explanation }
+### The abbr gives an explanation { #the-abbr-gives-an-explanation }
 
 * <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>
 * <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>
 
-### Full phrase: Explanation { #full-phrase-explanation }
+### The abbr gives a full phrase and an explanation { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network: documentation for developers, written by the Firefox people">MDN</abbr>
 * <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
 
+////
+
+//// tab | Info
+
+"title" attributes of "abbr" elements are translated following some specific instructions.
+
+Translations can add their own "abbr" elements which the LLM should not remove. E.g. to explain English words.
+
+See section `### HTML abbr elements` in the general prompt in `scripts/translate.py`.
+
+////
 
 ## Headings { #headings }
+
+//// tab | Test
 
 ### Develop a webapp - a tutorial { #develop-a-webapp-a-tutorial }
 
@@ -161,8 +240,21 @@ Hello again.
 
 Hello again.
 
+////
+
+//// tab | Info
+
+The only hard rule for headings is that the LLM leaves the hash part inside curly brackets unchanged, which ensures that links do not break.
+
+See section `### Headings` in the general prompt in `scripts/translate.py`.
+
+For some language specific instructions, see e.g. section `### Headings` in `docs/de/llm-prompt.md`.
+
+////
 
 ## Terms used in the docs { #terms-used-in-the-docs }
+
+//// tab | Test
 
 * you
 * your
@@ -399,3 +491,13 @@ Hello again.
 * the wildcard
 * to return
 * to validate
+
+////
+
+//// tab | Info
+
+This is a not complete and not normative list of (mostly) technical terms seen in the docs. It may be helpful for the prompt designer to figure out for which terms the LLM needs a helping hand. For example when it keeps reverting a good translation to a suboptimal translation. Or when it has problems conjugating/declinating a term in your language.
+
+See e.g. section `### List of English terms and their preferred German translations` in `docs/de/llm-prompt.md`.
+
+////

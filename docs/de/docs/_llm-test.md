@@ -1,38 +1,81 @@
 # LLM-Testdatei { #llm-test-file }
 
-Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr> die Anweisungen aus dem allgemeinen Prompt in `scripts/translate.py` und diejenigen im sprachspezifischen Prompt `docs/{language code}/llm-prompt.md` versteht (die an die Anweisungen im allgemeinen Prompt angehängt werden). Durch das Hinzufügen von Spezialfällen hier werden Übersetzungsprojekte leichter darauf aufmerksam.
+Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachspezifische Prompt wird an `general_prompt` angehängt.
+
+Hier hinzugefügte Tests werden von allen Erstellern sprachspezifischer Prompts gesehen.
 
 So verwenden:
 
-* Führen Sie eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache durch.
-* Prüfen Sie, ob die Dinge größtenteils in Ordnung sind.
-* Wenn einige Dinge nicht in Ordnung sind, sich aber durch Verbesserungen am englischen Dokument oder am allgemeinen bzw. sprachsspezifischen Prompt beheben lassen, tun Sie das.
+* Einen sprachspezifischen Prompt haben – `docs/{language code}/llm-prompt.md`.
+* Eine frische Übersetzung dieses Dokuments in die gewünschte Zielsprache durchführen (siehe z. B. das Kommando `translate-page` der `translate.py`). Dadurch wird die Übersetzung unter `docs/{language code}/docs/_llm-test.md` erstellt.
+* Prüfen Sie, ob in der Übersetzung alles in Ordnung ist.
+* Verbessern Sie bei Bedarf Ihren sprachsspezifischen Prompt, den allgemeinen Prompt oder das englische Dokument.
 * Beheben Sie anschließend manuell die verbleibenden Probleme in der Übersetzung, sodass es eine gute Übersetzung ist.
-* Übersetzen Sie erneut unter Verwendung der bestehenden, guten Übersetzung. Das ideale Ergebnis wäre, dass das LLM überhaupt keine Änderungen vornimmt. Das würde bedeuten, dass der allgemeine Prompt und der Sprach-Prompt so gut sind, wie sie sein können (es wird manchmal ein paar scheinbar zufällige Änderungen machen, der Grund ist, dass <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs keine deterministischen Algorithmen sind</a>).
+* Übersetzen Sie erneut, nachdem die gute Übersetzung vorliegt. Das ideale Ergebnis wäre, dass das LLM an der Übersetzung keine Änderungen mehr vornimmt. Das bedeutet, dass der allgemeine Prompt und Ihr sprachsspezifischer Prompt so gut sind, wie sie sein können (Es wird manchmal ein paar scheinbar zufällige Änderungen machen, der Grund ist, dass <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs keine deterministischen Algorithmen sind</a>).
 
+Die Tests:
 
 ## Codeschnipsel { #code-snippets}
 
+//// tab | Test
+
 Dies ist ein Codeschnipsel: `foo`. Und dies ist ein weiteres Codeschnipsel: `bar`. Und noch eins: `baz quux`.
 
+////
+
+//// tab | Info
+
+Der Inhalt von Codeschnipseln sollte unverändert bleiben.
+
+Siehe Abschnitt `### Content of code snippets` im allgemeinen Prompt in `scripts/translate.py`.
+
+////
 
 ## Anführungszeichen { #quotes }
 
+//// tab | Test
+
 Gestern schrieb mein Freund: „Wenn man unkorrekt korrekt schreibt, hat man es unkorrekt geschrieben“. Worauf ich antwortete: „Korrekt, aber ‚unkorrekt‘ ist unkorrekterweise nicht ‚„unkorrekt“‘“.
 
+/// note | Hinweis
+
+Das LLM wird dies wahrscheinlich falsch übersetzen. Interessant ist nur, ob es die korrigierte Übersetzung bei einer erneuten Übersetzung beibehält.
+
+///
+
+////
+
+//// tab | Info
+
+Der Prompt-Designer kann entscheiden, ob neutrale Anführungszeichen in typografische Anführungszeichen umgewandelt werden sollen. Es ist in Ordnung, sie unverändert zu lassen.
+
+Siehe zum Beispiel den Abschnitt `### Quotes` in `docs/de/llm-prompt.md`.
+
+////
 
 ## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
+
+//// tab | Test
 
 `pip install "foo[bar]"`
 
 Beispiele für Stringliterale in Codeschnipseln: `"this"`, `'that'`.
 
-Ein schwieriges Beispiel für Stringliterale in Code-Snippets: `f"I like {'oranges' if orange else "apples"}"`
+Ein schwieriges Beispiel für Stringliterale in Codeschnipseln: `f"I like {'oranges' if orange else "apples"}"`
 
 Hardcore: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"`
 
+////
+
+//// tab | Info
+
+... Allerdings müssen Anführungszeichen in Codeschnipseln unverändert bleiben.
+
+////
 
 ## Codeblöcke { #code-blocks }
+
+//// tab | Test
 
 Ein Bash-Codebeispiel ...
 
@@ -67,10 +110,19 @@ works(foo="bar")  # Das funktioniert 🎉
 
 ... und das war's.
 
+////
+
+//// tab | Info
+
+Code in Codeblöcken sollte nicht verändert werden, mit Ausnahme von Kommentaren.
+
+Siehe Abschnitt `### Content of code blocks` im allgemeinen Prompt in `scripts/translate.py`.
+
+////
 
 ## Tabs und farbige Boxen { #tabs-and-colored-boxes }
 
-//// tab | Dies ist ein Tab
+//// tab | Test
 
 /// info | Info
 Etwas Text
@@ -102,52 +154,79 @@ Etwas Text
 
 ////
 
-//// tab | Hier ein weiterer Tab
+//// tab | Info
 
-Hallo
+Tabs und `Info`/`Note`/`Warning`/usw. Blöcke sollten die Übersetzung ihres Titels nach einem vertikalen Strich (`|`) erhalten.
+
+Siehe die Abschnitte `### Special blocks` und `### Tab blocks` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
 
-
 ## Web- und interne Links { #web-and-internal-links }
 
-Der Linktext sollte übersetzt werden, das Linkziel sollte unverändert bleiben:
+//// tab | Test
+
+Der Linktext sollte übersetzt werden, die Linkadresse sollte unverändert bleiben:
 
 * [Link zur Überschrift oben](#code-snippets)
-* [Interner Link](foo.md#bar){.internal-link target=_blank}
+* [Interner Link](index.md#installation){.internal-link target=_blank}
 * <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Externer Link</a>
 * <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link zu einem Stil</a>
 * <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link zu einem Skript</a>
 * <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link zu einem Bild</a>
 
-Der Linktext sollte übersetzt werden, das Linkziel sollte die Übersetzung sein, nicht der englische Text:
+Der Linktext sollte übersetzt werden, die Linkadresse sollte auf die Übersetzung zeigen:
 
 * <a href="https://fastapi.tiangolo.com/de/" class="external-link" target="_blank">FastAPI-Link</a>
 
+////
+
+//// tab | Info
+
+Links sollten übersetzt werden, aber ihre Adresse soll unverändert bleiben. Eine Ausnahme sind absolute Links zu Seiten der FastAPI-Dokumentation. In diesem Fall sollte auf die Übersetzung verlinkt werden.
+
+Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
+
+////
 
 ## HTML „abbr“-Elemente { #html-abbr-elements }
 
+//// tab | Test
+
 Hier einige Dinge, die in HTML-„abbr“-Elemente gepackt sind (einige sind erfunden):
 
-### Vollständige Phrase { #full-phrase }
+### Das abbr gibt eine vollständige Phrase { #the-abbr-gives-a-full-phrase }
 
 * <abbr title="Getting Things Done – Dinge erledigt bekommen">GTD</abbr>
 * <abbr title="less than – kleiner als"><code>lt</code></abbr>
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>
 
-### Erklärung { #explanation }
+### Das abbr gibt eine Erklärung { #the-abbr-gives-an-explanation }
 
 * <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</abbr>
 * <abbr title="Eine Methode des Machine Learning, die künstliche neuronale Netze mit zahlreichen versteckten Schichten zwischen Eingabe- und Ausgabeschicht verwendet und so eine umfassende interne Struktur entwickelt">Deep Learning</abbr>
 
-### Vollständige Phrase: Erklärung { #full-phrase-explanation }
+### Das abbr gibt eine vollständige Phrase und eine Erklärung { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
 * <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>.
 
+////
+
+//// tab | Info
+
+„title“-Attribute von „abbr“-Elementen werden nach bestimmten Anweisungen übersetzt.
+
+Übersetzungen können eigene „abbr“-Elemente hinzufügen, die das LLM nicht entfernen soll. Z. B. um englische Wörter zu erklären.
+
+Siehe Abschnitt `### HTML abbr elements` im allgemeinen Prompt in `scripts/translate.py`.
+
+////
 
 ## Überschriften { #headings }
+
+//// tab | Test
 
 ### Eine Webapp entwickeln – ein Tutorial { #develop-a-webapp-a-tutorial }
 
@@ -161,8 +240,21 @@ Hallo wieder.
 
 Hallo wieder.
 
+////
+
+//// tab | Info
+
+Die einzige strenge Regel für Überschriften ist, dass das LLM den Hash-Teil in geschweiften Klammern unverändert lässt, damit Links nicht kaputtgehen.
+
+Siehe Abschnitt `### Headings` im allgemeinen Prompt in `scripts/translate.py`.
+
+Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headings` in `docs/de/llm-prompt.md`.
+
+////
 
 ## In der Dokumentation verwendete Begriffe { #terms-used-in-the-docs }
+
+//// tab | Test
 
 * Sie
 * Ihr
@@ -199,8 +291,8 @@ Hallo wieder.
 * on the fly
 * Standard
 * Default
-* case-sensitive
-* case-insensitive
+* Groß-/Klein­schrei­bung ist relevant
+* Groß-/Klein­schrei­bung ist nicht relevant
 
 * die Anwendung bereitstellen
 * die Seite ausliefern
@@ -399,3 +491,13 @@ Hallo wieder.
 * die Wildcard
 * zurückgeben
 * validieren
+
+////
+
+//// tab | Info
+
+Dies ist eine nicht vollständige und nicht normative Liste von (meist) technischen Begriffen, die in der Dokumentation vorkommen. Sie kann dem Prompt-Designer helfen herauszufinden, bei welchen Begriffen das LLM Unterstützung braucht. Zum Beispiel, wenn es eine gute Übersetzung immer wieder auf eine suboptimale Übersetzung zurücksetzt. Oder wenn es Probleme hat, einen Begriff in Ihrer Sprache zu konjugieren/deklinieren.
+
+Siehe z. B. den Abschnitt `### List of English terms and their preferred German translations` in `docs/de/llm-prompt.md`.
+
+////
