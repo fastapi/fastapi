@@ -32,7 +32,7 @@ def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
 
 
-# Adapted from Pydantic v1 as is
+# Adapted from Pydantic v1
 # TODO: pv2 should this return strings instead?
 def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     """
