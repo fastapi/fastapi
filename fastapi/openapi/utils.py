@@ -1,7 +1,6 @@
 import http.client
-import inspect
 import warnings
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union, cast
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Union, cast
 
 from fastapi import routing
 from fastapi._compat import (
@@ -25,7 +24,6 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
-from fastapi.responses import Response
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
@@ -266,7 +264,7 @@ def get_openapi_path(
     definitions: Dict[str, Any] = {}
     assert route.methods is not None, "Methods must be a list"
     if isinstance(route.response_class, DefaultPlaceholder):
-        current_response_class: Type[Response] = route.response_class.value
+        current_response_class = route.response_class.value
     else:
         current_response_class = route.response_class
     assert current_response_class, "A response class is needed to generate OpenAPI"
@@ -337,16 +335,9 @@ def get_openapi_path(
             if route.status_code is not None:
                 status_code = str(route.status_code)
             else:
-                # It would probably make more sense for all response classes to have an
-                # explicit default status_code, and to extract it from them, instead of
-                # doing this inspection tricks, that would probably be in the future
-                # TODO: probably make status_code a default class attribute for all
-                # responses in Starlette
-                response_signature = inspect.signature(current_response_class.__init__)
-                status_code_param = response_signature.parameters.get("status_code")
-                if status_code_param is not None:
-                    if isinstance(status_code_param.default, int):
-                        status_code = str(status_code_param.default)
+                status_code = str(
+                    getattr(current_response_class, "default_status_code", 200)
+                )
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
             ] = route.response_description
