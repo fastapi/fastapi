@@ -30,7 +30,6 @@ from fastapi._compat import (
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
-    field_annotation_has_submodel_fields,
     field_annotation_is_root_model,
     field_annotation_is_scalar,
     get_annotation_from_field_info,
@@ -44,6 +43,7 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    resolves_to_basemodel,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
@@ -215,7 +215,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
     first_field = fields[0]
-    if len(fields) == 1 and field_annotation_has_submodel_fields(first_field.type_):
+    if len(fields) == 1 and resolves_to_basemodel(first_field.type_):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         return fields_to_extract
     return fields
@@ -458,7 +458,7 @@ def analyze_param(
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif (
             not field_annotation_is_scalar(type_annotation)
-            # Root models by default regarded as bodies
+            # Treat root models as Body parameters by default
             or field_annotation_is_root_model(type_annotation)
         ):
             field_info = params.Body(annotation=use_annotation, default=default_value)
@@ -757,10 +757,9 @@ def request_params_to_args(
     fields_to_extract = fields
     single_not_embedded_field = False
     default_convert_underscores = True
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        if field_annotation_has_submodel_fields(first_field.type_):
-            fields_to_extract = get_cached_model_fields(first_field.type_)
-            single_not_embedded_field = True
+    if len(fields) == 1 and resolves_to_basemodel(first_field.type_):
+        fields_to_extract = get_cached_model_fields(first_field.type_)
+        single_not_embedded_field = True
         # If headers are in a Pydantic model, the way to disable convert_underscores
         # would be with Header(convert_underscores=False) at the Pydantic model level
         default_convert_underscores = getattr(
@@ -923,9 +922,7 @@ async def request_body_to_args(
 
     fields_to_extract: List[ModelField] = body_fields
 
-    if single_not_embedded_field and field_annotation_has_submodel_fields(
-        first_field.type_
-    ):
+    if single_not_embedded_field and resolves_to_basemodel(first_field.type_):
         fields_to_extract = get_cached_model_fields(first_field.type_)
 
     if isinstance(received_body, FormData):

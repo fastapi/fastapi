@@ -297,6 +297,51 @@ def test_root_model_union(left: Any, right: Any):
     }
 
 
+def test_root_model_wraps_root_model():
+    if PYDANTIC_V2:
+
+        class Model(RootModel[RootModel[int]]):
+            pass
+    else:
+
+        class Inner(BaseModel):
+            __root__: int
+
+        class Model(BaseModel):
+            __root__: Inner
+
+    app2 = FastAPI()
+
+    @app2.get("/query")
+    def handler1(q: Annotated[Model, Query()]):
+        return {"q": q}
+
+    client2 = TestClient(app2)
+    response = client2.get("/query?q=42")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"q": 42}
+
+    response = client2.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    schema = response.json()
+    assert (
+        schema["paths"]["/query"]["get"]["parameters"][0]["schema"]["$ref"]
+        == "#/components/schemas/Model"
+    )
+    if PYDANTIC_V2:
+        assert (
+            schema["components"]["schemas"]["Model"]["$ref"]
+            == "#/components/schemas/RootModel_int_"
+        )
+        assert schema["components"]["schemas"]["RootModel_int_"]["type"] == "integer"
+    else:
+        assert (
+            schema["components"]["schemas"]["Model"]["$ref"]
+            == "#/components/schemas/Inner"
+        )
+        assert schema["components"]["schemas"]["Inner"]["type"] == "integer"
+
+
 @pytest.mark.parametrize(
     "url, error_path, request_body",
     [

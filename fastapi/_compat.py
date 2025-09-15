@@ -294,7 +294,8 @@ if PYDANTIC_V2:
 
     def root_model_inner_type(annotation: Any) -> Any:
         if lenient_issubclass(annotation, RootModel):
-            return annotation.model_fields["root"].annotation
+            inner = annotation.model_fields["root"].annotation
+            return root_model_inner_type(inner) or inner
         return None
 
 else:
@@ -457,7 +458,10 @@ else:
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
-        return model.dict(**kwargs)
+        serialized = model.dict(**kwargs)
+        if isinstance(serialized, dict) and "__root__" in serialized:
+            return serialized["__root__"]
+        return serialized
 
     def _get_model_config(model: BaseModel) -> Any:
         return model.__config__  # type: ignore[attr-defined]
@@ -549,7 +553,8 @@ else:
             lenient_issubclass(annotation, BaseModel)
             and "__root__" in annotation.__fields__
         ):
-            return annotation.__fields__["__root__"].annotation
+            inner = annotation.__fields__["__root__"].annotation
+            return root_model_inner_type(inner) or inner
         return None
 
 
@@ -605,9 +610,9 @@ def field_annotation_is_root_model(annotation: Union[Type[Any], None]) -> bool:
     return root_model_inner_type(annotation) is not None
 
 
-def field_annotation_has_submodel_fields(annotation: Union[Type[Any], None]) -> bool:
+def resolves_to_basemodel(annotation: Union[Type[Any], None]) -> bool:
     if (inner := root_model_inner_type(annotation)) is not None:
-        return field_annotation_has_submodel_fields(inner)
+        return resolves_to_basemodel(inner)
 
     return lenient_issubclass(annotation, BaseModel)
 
