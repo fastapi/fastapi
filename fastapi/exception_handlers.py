@@ -5,7 +5,7 @@ from fastapi.websockets import WebSocket
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
-from starlette.status import HTTP_422_UNPROCESSABLE_CONTENT, WS_1008_POLICY_VIOLATION
+from starlette.status import WS_1008_POLICY_VIOLATION
 
 
 async def http_exception_handler(request: Request, exc: HTTPException) -> Response:
@@ -21,7 +21,9 @@ async def request_validation_exception_handler(
     request: Request, exc: RequestValidationError
 ) -> JSONResponse:
     return JSONResponse(
-        status_code=HTTP_422_UNPROCESSABLE_CONTENT,
+        # 422 = starlette.status.HTTP_422_UNPROCESSABLE_CONTENT (RFC 9110,
+        # Starlette >=0.48), previously HTTP_422_UNPROCESSABLE_ENTITY
+        status_code=422,
         content={"detail": jsonable_encoder(exc.errors())},
     )
 
