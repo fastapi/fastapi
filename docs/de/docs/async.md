@@ -381,7 +381,7 @@ Davor war der Umgang mit asynchronem Code jedoch deutlich komplexer und schwieri
 
 In früheren Versionen von Python hätten Sie Threads oder <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> verwenden können. Der Code ist jedoch viel komplexer zu verstehen, zu debuggen und nachzuvollziehen.
 
-In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur <a href="http://callbackhell.com/" class="external-link" target="_blank">Callback-Hölle</a> führt.
+In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur "Callback-Hölle" führt.
 
 ## Coroutinen
 
