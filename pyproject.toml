@@ -142,6 +142,7 @@ source-includes = [
 name = "fastapi-slim"
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 strict = true
 
 [[tool.mypy.overrides]]
