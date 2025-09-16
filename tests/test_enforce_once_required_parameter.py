@@ -102,8 +102,6 @@ def test_schema():
 
 def test_get_invalid():
     response = client.get("/foo")
-    # 422 = fastapi.status.HTTP_422_UNPROCESSABLE_CONTENT (RFC 9110,
-    # Starlette >=0.48), previously HTTP_422_UNPROCESSABLE_ENTITY
     assert response.status_code == 422
 
 

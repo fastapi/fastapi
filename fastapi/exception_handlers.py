@@ -21,8 +21,6 @@ async def request_validation_exception_handler(
     request: Request, exc: RequestValidationError
 ) -> JSONResponse:
     return JSONResponse(
-        # 422 = starlette.status.HTTP_422_UNPROCESSABLE_CONTENT (RFC 9110,
-        # Starlette >=0.48), previously HTTP_422_UNPROCESSABLE_ENTITY
         status_code=422,
         content={"detail": jsonable_encoder(exc.errors())},
     )

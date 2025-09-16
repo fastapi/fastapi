@@ -415,8 +415,6 @@ def get_openapi_path(
                     )
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
-            # 422 = starlette.status.HTTP_422_UNPROCESSABLE_CONTENT (RFC 9110,
-            # Starlette >=0.48), previously HTTP_422_UNPROCESSABLE_ENTITY
             http422 = "422"
             all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
