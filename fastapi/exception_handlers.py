@@ -20,15 +20,21 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> Respon
 async def request_validation_exception_handler(
     request: Request, exc: RequestValidationError
 ) -> JSONResponse:
-    return JSONResponse(
-        status_code=HTTP_422_UNPROCESSABLE_ENTITY,
-        content={"detail": jsonable_encoder(exc.errors())},
-    )
+    app = request.app
+    if getattr(app, "redact_error_details", False):
+        # Generic message to avoid leaking validation internals
+        content = {"detail": "Request validation failed"}
+    else:
+        content = {"detail": jsonable_encoder(exc.errors())}
+    return JSONResponse(status_code=HTTP_422_UNPROCESSABLE_ENTITY, content=content)
 
 
 async def websocket_request_validation_exception_handler(
     websocket: WebSocket, exc: WebSocketRequestValidationError
 ) -> None:
-    await websocket.close(
-        code=WS_1008_POLICY_VIOLATION, reason=jsonable_encoder(exc.errors())
-    )
+    app = websocket.app
+    if getattr(app, "redact_error_details", False):
+        reason = "WebSocket validation failed"
+    else:
+        reason = jsonable_encoder(exc.errors())
+    await websocket.close(code=WS_1008_POLICY_VIOLATION, reason=reason)
