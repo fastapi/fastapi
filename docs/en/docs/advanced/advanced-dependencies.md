@@ -1,6 +1,6 @@
-# Advanced Dependencies
+# Advanced Dependencies { #advanced-dependencies }
 
-## Parameterized dependencies
+## Parameterized dependencies { #parameterized-dependencies }
 
 All the dependencies we have seen are a fixed function or class.
 
@@ -10,7 +10,7 @@ Let's imagine that we want to have a dependency that checks if the query paramet
 
 But we want to be able to parameterize that fixed content.
 
-## A "callable" instance
+## A "callable" instance { #a-callable-instance }
 
 In Python there's a way to make an instance of a class a "callable".
 
@@ -22,7 +22,7 @@ To do that, we declare a method `__call__`:
 
 In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
 
-## Parameterize the instance
+## Parameterize the instance { #parameterize-the-instance }
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
@@ -30,7 +30,7 @@ And now, we can use `__init__` to declare the parameters of the instance that we
 
 In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
 
-## Create an instance
+## Create an instance { #create-an-instance }
 
 We could create an instance of this class with:
 
@@ -38,7 +38,7 @@ We could create an instance of this class with:
 
 And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
 
-## Use the instance as a dependency
+## Use the instance as a dependency { #use-the-instance-as-a-dependency }
 
 Then, we could use this `checker` in a `Depends(checker)`, instead of `Depends(FixedContentQueryChecker)`, because the dependency is the instance, `checker`, not the class itself.
 
