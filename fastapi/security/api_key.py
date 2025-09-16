@@ -100,7 +100,7 @@ class APIKeyQuery(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.query},
+            **{"in": APIKeyIn.query},  # type: ignore[arg-type]
             name=name,
             description=description,
         )
@@ -188,7 +188,7 @@ class APIKeyHeader(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.header},
+            **{"in": APIKeyIn.header},  # type: ignore[arg-type]
             name=name,
             description=description,
         )
@@ -276,7 +276,7 @@ class APIKeyCookie(APIKeyBase):
         ] = True,
     ):
         self.model: APIKey = APIKey(
-            **{"in": APIKeyIn.cookie},
+            **{"in": APIKeyIn.cookie},  # type: ignore[arg-type]
             name=name,
             description=description,
         )
