@@ -22,7 +22,7 @@
 
 ## ⏩ FastAPI 🔛 👱📔
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">⏩ 🐶 Fastapi 🔛 **👱📔**</a> 🤚 📰 📰 🔃 **FastAPI**. 👶
+<a href="https://x.com/fastapi" class="external-link" target="_blank">⏩ 🐶 Fastapi 🔛 **👱📔**</a> 🤚 📰 📰 🔃 **FastAPI**. 👶
 
 ## ✴ **FastAPI** 📂
 
@@ -47,10 +47,10 @@
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">⏩ 👤 🔛 **📂**</a>.
     * 👀 🎏 📂 ℹ 🏗 👤 ✔️ ✍ 👈 💪 ℹ 👆.
     * ⏩ 👤 👀 🕐❔ 👤 ✍ 🆕 📂 ℹ 🏗.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">⏩ 👤 🔛 **👱📔**</a> ⚖️ <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">☠</a>.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">⏩ 👤 🔛 **👱📔**</a> ⚖️ <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">☠</a>.
     * 💬 👤 ❔ 👆 ⚙️ FastAPI (👤 💌 👂 👈).
     * 👂 🕐❔ 👤 ⚒ 🎉 ⚖️ 🚀 🆕 🧰.
-    * 👆 💪 <a href="https://twitter.com/fastapi" class="external-link" target="_blank">⏩ 🐶 Fastapi 🔛 👱📔</a> (🎏 🏧).
+    * 👆 💪 <a href="https://x.com/fastapi" class="external-link" target="_blank">⏩ 🐶 Fastapi 🔛 👱📔</a> (🎏 🏧).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">🔗 ⏮️ 👤 🔛 **👱📔**</a>.
     * 👂 🕐❔ 👤 ⚒ 🎉 ⚖️ 🚀 🆕 🧰 (👐 👤 ⚙️ 👱📔 🌖 🛎 🤷 ♂).
 * ✍ ⚫️❔ 👤 ✍ (⚖️ ⏩ 👤) 🔛 <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**🇸🇲.**</a> ⚖️ <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**🔉**</a>.
@@ -59,7 +59,7 @@
 
 ## 👱📔 🔃 **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">👱📔 🔃 **FastAPI**</a> &amp; ➡️ 👤 &amp; 🎏 💭 ⚫️❔ 👆 💖 ⚫️. 👶
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">👱📔 🔃 **FastAPI**</a> &amp; ➡️ 👤 &amp; 🎏 💭 ⚫️❔ 👆 💖 ⚫️. 👶
 
 👤 💌 👂 🔃 ❔ **FastAPI** 💆‍♂ ⚙️, ⚫️❔ 👆 ✔️ 💖 ⚫️, ❔ 🏗/🏢 👆 ⚙️ ⚫️, ♒️.
 

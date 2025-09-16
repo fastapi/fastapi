@@ -271,4 +271,4 @@ Mas ele fornece as ferramentas para simplificar o processo o máximo possível, 
 
 E você pode usar e implementar protocolos padrão seguros, como o OAuth2, de uma maneira relativamente simples.
 
-Você pode aprender mais no **Guia Avançado do Usuário** sobre como usar os "scopes" do OAuth2 para um sistema de permissões mais refinado, seguindo esses mesmos padrões. O OAuth2 com scopes é o mecanismo usado por muitos provedores grandes de autenticação, como o Facebook, Google, GitHub, Microsoft, Twitter, etc. para autorizar aplicativos de terceiros a interagir com suas APIs em nome de seus usuários.
+Você pode aprender mais no **Guia Avançado do Usuário** sobre como usar os "scopes" do OAuth2 para um sistema de permissões mais refinado, seguindo esses mesmos padrões. O OAuth2 com scopes é o mecanismo usado por muitos provedores grandes de autenticação, como o Facebook, Google, GitHub, Microsoft, X (Twitter), etc. para autorizar aplicativos de terceiros a interagir com suas APIs em nome de seus usuários.

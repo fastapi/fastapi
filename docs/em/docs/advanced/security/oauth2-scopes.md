@@ -62,7 +62,7 @@ Oauth2️⃣ 👫 🎻.
 
 🥇, ➡️ 🔜 👀 🍕 👈 🔀 ⚪️➡️ 🖼 👑 **🔰 - 👩‍💻 🦮** [Oauth2️⃣ ⏮️ 🔐 (&amp; 🔁), 📨 ⏮️ 🥙 🤝](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. 🔜 ⚙️ Oauth2️⃣ ↔:
 
-{* ../../docs_src/security/tutorial005.py hl[2,4,8,12,46,64,105,107:115,121:124,128:134,139,155] *}
+{* ../../docs_src/security/tutorial005.py hl[2,4,8,12,46,64,105,107:115,121:125,129:135,140,156] *}
 
 🔜 ➡️ 📄 👈 🔀 🔁 🔁.
 
@@ -98,7 +98,7 @@ Oauth2️⃣ 👫 🎻.
 
 ///
 
-{* ../../docs_src/security/tutorial005.py hl[155] *}
+{* ../../docs_src/security/tutorial005.py hl[156] *}
 
 ## 📣 ↔ *➡ 🛠️* &amp; 🔗
 
@@ -124,7 +124,7 @@ Oauth2️⃣ 👫 🎻.
 
 ///
 
-{* ../../docs_src/security/tutorial005.py hl[4,139,168] *}
+{* ../../docs_src/security/tutorial005.py hl[4,140,169] *}
 
 /// info | 📡 ℹ
 
@@ -180,7 +180,7 @@ Oauth2️⃣ 👫 🎻.
 
 👥 ✔ 👈 👥 ✔️ 👩‍💻 ⏮️ 👈 🆔, &amp; 🚥 🚫, 👥 🤚 👈 🎏 ⚠ 👥 ✍ ⏭.
 
-{* ../../docs_src/security/tutorial005.py hl[46,116:127] *}
+{* ../../docs_src/security/tutorial005.py hl[46,116:128] *}
 
 ## ✔ `scopes`
 
@@ -188,7 +188,7 @@ Oauth2️⃣ 👫 🎻.
 
 👉, 👥 ⚙️ `security_scopes.scopes`, 👈 🔌 `list` ⏮️ 🌐 👫 ↔ `str`.
 
-{* ../../docs_src/security/tutorial005.py hl[128:134] *}
+{* ../../docs_src/security/tutorial005.py hl[129:135] *}
 
 ## 🔗 🌲 &amp; ↔
 
