@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Upgrade Starlette supported version range to >=0.40.0,<0.49.0. PR [#14077](https://github.com/fastapi/fastapi/pull/14077) by [@musicinmybrain](https://github.com/musicinmybrain).
+
 ### Docs
 
 * 📝 Add documentation for Behind a Proxy - Proxy Forwarded Headers, using `--forwarded-allow-ips="*"`. PR [#14028](https://github.com/fastapi/fastapi/pull/14028) by [@tiangolo](https://github.com/tiangolo).
