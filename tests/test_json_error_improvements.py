@@ -1,3 +1,4 @@
+from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -80,11 +81,30 @@ def test_json_decode_error_empty_body():
     )
 
     assert response.status_code == 422
-    error = response.json()["detail"][0]
-
-    # Empty body is handled differently, not as a JSON decode error
-    assert error["loc"] == ["body"]
-    assert error["type"] == "missing"
+    # Handle both Pydantic v1 and v2 - empty body is handled differently
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "Field required",
+                    "type": "missing",
+                    "input": None,
+                }
+            ]
+        }
+    ) | IsDict(
+        # Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
 
 
 def test_json_decode_error_unclosed_brace():
