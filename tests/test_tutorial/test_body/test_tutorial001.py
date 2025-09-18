@@ -60,7 +60,8 @@ def test_post_with_str_float_description(client: TestClient):
 def test_post_with_str_float_description_tax(client: TestClient):
     response = client.post(
         "/items/",
-        json={"name": "Foo", "price": "50.5", "description": "Some Foo", "tax": 0.3},
+        json={"name": "Foo", "price": "50.5",
+              "description": "Some Foo", "tax": 0.3},
     )
     assert response.status_code == 200
     assert response.json() == {
@@ -206,11 +207,14 @@ def test_post_broken_body(client: TestClient):
             "detail": [
                 {
                     "type": "json_invalid",
-                    "loc": ["body", 1],
-                    "msg": "JSON decode error",
-                    "input": {},
+                    "loc": ["body", 1, 2],
+                    "msg": "JSON decode error - Expecting property name enclosed in double quotes at line 1, column 2",
+                    "input": "{some broken json}",
                     "ctx": {
-                        "error": "Expecting property name enclosed in double quotes"
+                        "error": "Expecting property name enclosed in double quotes",
+                        "position": 1,
+                        "line": 1,
+                        "column": 2,
                     },
                 }
             ]
