@@ -175,7 +175,7 @@ Everyone before you is waiting for their burgers to be ready before leaving the 
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and you.
+Then it's finally your turn, you place your order of 2 very fancy burgers for your crush and yourself.
 
 You pay 💸.
 
