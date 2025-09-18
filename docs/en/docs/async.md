@@ -109,7 +109,7 @@ You go with your crush to get fast food, you stand in line while the cashier tak
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Then it's your turn, you place your order of 2 very fancy burgers for your crush and you. 🍔🍔
+Then it's your turn, you place your order of 2 very fancy burgers for your crush and yourself. 🍔🍔
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
