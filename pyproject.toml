@@ -43,7 +43,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0,<0.48.0",
+    "starlette>=0.40.0,<0.49.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
 ]
@@ -60,7 +60,7 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 standard = [
     "fastapi-cli[standard] >=0.0.8",
     # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -79,7 +79,7 @@ standard = [
 standard-no-fastapi-cloud-cli = [
     "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.8",
     # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -98,7 +98,7 @@ standard-no-fastapi-cloud-cli = [
 all = [
     "fastapi-cli[standard] >=0.0.8",
     # # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
