@@ -610,6 +610,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                use_cache=sub_dependant.use_cache,
             )
 
         solved_result = await solve_dependencies(

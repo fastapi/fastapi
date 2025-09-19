@@ -48,6 +48,14 @@ async def get_scope_counter(
     }
 
 
+@app.get("/override-no-cache/")
+async def get_override_no_cache(
+    first: int = Depends(dep_counter, use_cache=False),
+    second: int = Depends(dep_counter, use_cache=False),
+):
+    return {"first": first, "second": second}
+
+
 client = TestClient(app)
 
 
@@ -89,3 +97,23 @@ def test_security_cache():
     response = client.get("/scope-counter/")
     assert response.status_code == 200, response.text
     assert response.json() == {"counter": 3, "scope_counter_1": 4, "scope_counter_2": 4}
+
+
+def test_dependency_override_respects_use_cache_false():
+    counter_holder["counter"] = 0
+
+    async def override_dep_counter():
+        counter_holder["counter"] += 1
+        return counter_holder["counter"]
+
+    app.dependency_overrides[dep_counter] = override_dep_counter
+    try:
+        response = client.get("/override-no-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"first": 1, "second": 2}
+        response = client.get("/override-no-cache/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"first": 3, "second": 4}
+    finally:
+        app.dependency_overrides.pop(dep_counter, None)
+    counter_holder["counter"] = 0
