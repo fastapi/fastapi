@@ -139,3 +139,16 @@ def test_json_decode_error_in_middle_of_long_document():
     assert error["input"].endswith("...")
     assert "invalid" in error["input"]
     assert error["type"] == "json_invalid"
+
+
+def test_successful_item_creation():
+    response = client.post(
+        "/items/",
+        json={"name": "Test Item", "price": 19.99, "description": "A test item"},
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["name"] == "Test Item"
+    assert data["price"] == 19.99
+    assert data["description"] == "A test item"
