@@ -20,6 +20,24 @@ from fastapi.responses import (
 )
 ```
 
+### Default status codes
+
+Each response class exposes a `default_status_code` class attribute with the HTTP
+status code used when no `status_code` is provided. FastAPI relies on this
+attribute when generating OpenAPI documentation.
+
+| Response class | Default status code |
+| -------------- | ------------------ |
+| `Response` | `200` |
+| `PlainTextResponse` | `200` |
+| `JSONResponse` | `200` |
+| `HTMLResponse` | `200` |
+| `FileResponse` | `200` |
+| `StreamingResponse` | `200` |
+| `RedirectResponse` | `307` |
+| `UJSONResponse` | `200` |
+| `ORJSONResponse` | `200` |
+
 ## FastAPI Responses
 
 There are a couple of custom FastAPI response classes, you can use them to optimize JSON performance.
@@ -29,6 +47,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -44,6 +63,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -62,6 +82,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - chunk_size
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -77,6 +98,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -92,6 +114,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -107,6 +130,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -122,6 +146,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -137,6 +162,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
         members:
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
@@ -153,6 +179,7 @@ There are a couple of custom FastAPI response classes, you can use them to optim
             - body_iterator
             - charset
             - status_code
+            - default_status_code
             - media_type
             - body
             - background
