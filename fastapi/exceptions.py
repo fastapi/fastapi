@@ -1,9 +1,26 @@
-from typing import Any, Dict, Optional, Sequence, Type, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Sequence, Type, Union, cast
 
 from pydantic import BaseModel, create_model
+from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
 from typing_extensions import Annotated, Doc
+
+PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
+PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
+
+if PYDANTIC_V2:
+    from pydantic.v1.error_wrappers import display_errors
+
+    if TYPE_CHECKING:  # pragma: nocover
+        from pydantic.v1.error_wrappers import ErrorDict
+else:
+    from pydantic.error_wrappers import (  # type: ignore[no-redef]
+        display_errors,
+    )
+
+    if TYPE_CHECKING:  # pragma: nocover
+        from pydantic.error_wrappers import ErrorDict  # type: ignore[no-redef]
 
 
 class HTTPException(StarletteHTTPException):
@@ -158,6 +175,14 @@ class RequestValidationError(ValidationException):
     def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
         super().__init__(errors)
         self.body = body
+
+    def __str__(self) -> str:
+        errors = cast(List["ErrorDict"], self.errors())
+        no_errors = len(errors)
+        return (
+            f"{no_errors} validation error{'' if no_errors == 1 else 's'}\n"
+            f"{display_errors(errors)}"
+        )
 
 
 class WebSocketRequestValidationError(ValidationException):
