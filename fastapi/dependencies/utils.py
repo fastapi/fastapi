@@ -248,6 +248,8 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
+        if annotation is type(None):
+            return None
     return annotation
 
 
@@ -255,7 +257,7 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     signature = inspect.signature(call)
     annotation = signature.return_annotation
 
-    if annotation == "None" or annotation is inspect.Signature.empty:
+    if annotation is inspect.Signature.empty:
         return None
 
     globalns = getattr(call, "__globals__", {})
