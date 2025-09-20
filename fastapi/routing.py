@@ -1,8 +1,8 @@
-import asyncio
 import dataclasses
 import email.message
 import inspect
 import json
+import sys
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
@@ -76,6 +76,11 @@ from starlette.types import AppType, ASGIApp, Lifespan, Scope
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Doc, deprecated
 
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
+
 
 def _prepare_response_content(
     res: Any,
@@ -120,6 +125,7 @@ def _prepare_response_content(
             for k, v in res.items()
         }
     elif dataclasses.is_dataclass(res):
+        assert not isinstance(res, type)
         return dataclasses.asdict(res)
     return res
 
@@ -232,9 +238,9 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     if inspect.isfunction(dependant.call):
-        is_coroutine = asyncio.iscoroutinefunction(dependant.call)
+        is_coroutine = iscoroutinefunction(dependant.call)
     else:
-        is_coroutine = asyncio.iscoroutinefunction(
+        is_coroutine = iscoroutinefunction(
             getattr(dependant.call, "__call__", dependant.call)  # noqa: B004
         )
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)

@@ -22,7 +22,7 @@ OAuth2は、認証と認可を処理するためのいくつかの方法を定�
 
 これには「サードパーティ」を使用して認証する方法が含まれています。
 
-これが、「Facebook、Google、Twitter、GitHubを使ってログイン」を使用したすべてのシステムの背後で使われている仕組みです。
+これが、「Facebook、Google、X (Twitter)、GitHubを使ってログイン」を使用したすべてのシステムの背後で使われている仕組みです。
 
 ### OAuth 1
 
@@ -79,7 +79,7 @@ OpenAPIでは、以下のセキュリティスキームを定義しています:
     * HTTP Basic認証
     * HTTP ダイジェスト認証など
 * `oauth2`: OAuth2のセキュリティ処理方法（「フロー」と呼ばれます）のすべて。
-    * これらのフローのいくつかは、OAuth 2.0認証プロバイダ（Google、Facebook、Twitter、GitHubなど）を構築するのに適しています。
+    * これらのフローのいくつかは、OAuth 2.0認証プロバイダ（Google、Facebook、X (Twitter)、GitHubなど）を構築するのに適しています。
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
@@ -91,7 +91,7 @@ OpenAPIでは、以下のセキュリティスキームを定義しています:
 
 /// tip | 豆知識
 
-Google、Facebook、Twitter、GitHubなど、他の認証/認可プロバイダを統合することも可能で、比較的簡単です。
+Google、Facebook、X (Twitter)、GitHubなど、他の認証/認可プロバイダを統合することも可能で、比較的簡単です。
 
 最も複雑な問題は、それらのような認証/認可プロバイダを構築することですが、**FastAPI**は、あなたのために重い仕事をこなしながら、それを簡単に行うためのツールを提供します。
 
