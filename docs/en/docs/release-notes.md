@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `inspect.getcoroutinefunction()` can break testing with `unittest.mock.patch()`. PR [#14022](https://github.com/fastapi/fastapi/pull/14022) by [@secrett2633](https://github.com/secrett2633).
+
 ### Refactors
 
 * 📌 Pin `httpx` to `>=0.23.0,<1.0.0`. PR [#14086](https://github.com/fastapi/fastapi/pull/14086) by [@YuriiMotov](https://github.com/YuriiMotov).
