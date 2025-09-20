@@ -1112,6 +1112,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -1138,6 +1139,7 @@ class FastAPI(Starlette):
             name=name,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def api_route(
@@ -1168,6 +1170,7 @@ class FastAPI(Starlette):
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
+        add_auto_options_route: bool = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -1195,6 +1198,7 @@ class FastAPI(Starlette):
                 name=name,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                add_auto_options_route=add_auto_options_route,
             )
             return func
 
@@ -1816,6 +1820,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -1856,6 +1868,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def put(
@@ -2189,6 +2202,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2234,6 +2255,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def post(
@@ -2567,6 +2589,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2612,6 +2642,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def delete(
@@ -2945,6 +2976,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -2985,6 +3024,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def options(
@@ -3318,6 +3358,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3358,6 +3406,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def head(
@@ -3691,6 +3740,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3731,6 +3788,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def patch(
@@ -4064,6 +4122,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4109,6 +4175,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def trace(
@@ -4442,6 +4509,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        add_auto_options_route: Annotated[
+            Optional[bool],
+            Doc(
+                """
+                Automatically create a route to handle the OPTIONS HTTP verb.
+                """
+            ),
+        ] = False,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4482,6 +4557,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            add_auto_options_route=add_auto_options_route,
         )
 
     def websocket_route(
