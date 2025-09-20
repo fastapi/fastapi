@@ -29,6 +29,7 @@ hide:
 
 ### Docs
 
+* 📝 Add note about Cookies and JavaScript on `tutorial/cookie-params.md`. PR [#13510](https://github.com/fastapi/fastapi/pull/13510) by [@Kludex](https://github.com/Kludex).
 * 📝 Remove outdated formatting from `path-params-numeric-validations.md` for languages `en`, `es` and `uk`.. PR [#14059](https://github.com/fastapi/fastapi/pull/14059) by [@svlandeg](https://github.com/svlandeg).
 * 📝 Fix and Improve English Documentation. PR [#14048](https://github.com/fastapi/fastapi/pull/14048) by [@nilslindemann](https://github.com/nilslindemann).
 
