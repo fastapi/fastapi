@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any, Callable, List, Optional, Sequence, Tuple
 
+import anyio
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
 
@@ -32,6 +33,7 @@ class Dependant:
     use_cache: bool = True
     path: Optional[str] = None
     cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
+    limiter: Optional[anyio.CapacityLimiter] = None
 
     def __post_init__(self) -> None:
         self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
