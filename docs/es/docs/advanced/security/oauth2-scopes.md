@@ -4,9 +4,9 @@ Puedes usar scopes de OAuth2 directamente con **FastAPI**, están integrados par
 
 Esto te permitiría tener un sistema de permisos más detallado, siguiendo el estándar de OAuth2, integrado en tu aplicación OpenAPI (y la documentación de la API).
 
-OAuth2 con scopes es el mecanismo usado por muchos grandes proveedores de autenticación, como Facebook, Google, GitHub, Microsoft, Twitter, etc. Lo usan para proporcionar permisos específicos a usuarios y aplicaciones.
+OAuth2 con scopes es el mecanismo usado por muchos grandes proveedores de autenticación, como Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Lo usan para proporcionar permisos específicos a usuarios y aplicaciones.
 
-Cada vez que te "logueas con" Facebook, Google, GitHub, Microsoft, Twitter, esa aplicación está usando OAuth2 con scopes.
+Cada vez que te "logueas con" Facebook, Google, GitHub, Microsoft, X (Twitter), esa aplicación está usando OAuth2 con scopes.
 
 En esta sección verás cómo manejar autenticación y autorización con el mismo OAuth2 con scopes en tu aplicación de **FastAPI**.
 
