@@ -25,6 +25,7 @@ hide:
 
 ### Internal
 
+* 🚨 Install pydantic.mypy plugin. PR [#14081](https://github.com/fastapi/fastapi/pull/14081) by [@svlandeg](https://github.com/svlandeg).
 * ✅ Add LLM test file. PR [#14049](https://github.com/fastapi/fastapi/pull/14049) by [@nilslindemann](https://github.com/nilslindemann).
 * 🔨 Update translations script. PR [#13968](https://github.com/fastapi/fastapi/pull/13968) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🛠️ Update `docs.py generate-readme` command to remove permalinks from headers. PR [#14055](https://github.com/fastapi/fastapi/pull/14055) by [@YuriiMotov](https://github.com/YuriiMotov).
