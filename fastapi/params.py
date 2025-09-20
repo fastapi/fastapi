@@ -6,11 +6,7 @@ from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import (
-    PYDANTIC_V2,
-    PYDANTIC_VERSION_MINOR_TUPLE,
-    Undefined,
-)
+from ._compat import PYDANTIC_V2, PYDANTIC_VERSION_MINOR_TUPLE, Undefined
 
 _Unset: Any = Undefined
 
