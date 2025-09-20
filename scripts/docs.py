@@ -47,6 +47,7 @@ site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
 header_pattern = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
 code_block3_pattern = re.compile(r"^\s*```")
 code_block4_pattern = re.compile(r"^\s*````")
 
@@ -189,9 +190,21 @@ index_sponsors_template = """
 """
 
 
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)

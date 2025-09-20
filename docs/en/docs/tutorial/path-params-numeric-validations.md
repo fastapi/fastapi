@@ -2,7 +2,7 @@
 
 In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
 
-## Import Path { #import-path }
+## Import `Path` { #import-path }
 
 First, import `Path` from `fastapi`, and import `Annotated`:
 
