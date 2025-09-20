@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix validation error when `File` is declared after `Form` parameter. PR [#11194](https://github.com/fastapi/fastapi/pull/11194) by [@thomasleveil](https://github.com/thomasleveil).
+
 ## 0.117.0
 
 ### Features
