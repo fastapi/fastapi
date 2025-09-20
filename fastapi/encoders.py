@@ -126,6 +126,14 @@ def jsonable_encoder(
             """
         ),
     ] = None,
+    context: Annotated[
+        Optional[Any],
+        Doc(
+            """
+            Pydantic's `context` parameter, passed to Pydantic serializers.
+            """
+        ),
+    ] = None,
     by_alias: Annotated[
         bool,
         Doc(
@@ -225,6 +233,7 @@ def jsonable_encoder(
             mode="json",
             include=include,
             exclude=exclude,
+            context=context,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_none=exclude_none,
@@ -234,6 +243,7 @@ def jsonable_encoder(
             obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
+            context=context,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
             # TODO: remove when deprecating Pydantic v1
@@ -247,6 +257,7 @@ def jsonable_encoder(
             obj_dict,
             include=include,
             exclude=exclude,
+            context=context,
             by_alias=by_alias,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
@@ -281,6 +292,7 @@ def jsonable_encoder(
             ):
                 encoded_key = jsonable_encoder(
                     key,
+                    context=context,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
@@ -289,6 +301,7 @@ def jsonable_encoder(
                 )
                 encoded_value = jsonable_encoder(
                     value,
+                    context=context,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_none=exclude_none,
@@ -305,6 +318,7 @@ def jsonable_encoder(
                     item,
                     include=include,
                     exclude=exclude,
+                    context=context,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
                     exclude_defaults=exclude_defaults,
@@ -335,6 +349,7 @@ def jsonable_encoder(
         data,
         include=include,
         exclude=exclude,
+        context=context,
         by_alias=by_alias,
         exclude_unset=exclude_unset,
         exclude_defaults=exclude_defaults,
