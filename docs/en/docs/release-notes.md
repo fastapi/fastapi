@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add OpenAPI `external_docs` parameter to `FastAPI`. PR [#13713](https://github.com/fastapi/fastapi/pull/13713) by [@cmtoro](https://github.com/cmtoro).
+
 ### Fixes
 
 * 🐛 Fix `inspect.getcoroutinefunction()` can break testing with `unittest.mock.patch()`. PR [#14022](https://github.com/fastapi/fastapi/pull/14022) by [@secrett2633](https://github.com/secrett2633).
