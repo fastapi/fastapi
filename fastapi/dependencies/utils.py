@@ -872,20 +872,19 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
-    first_field = body_fields[0]
-    first_field_info = first_field.field_info
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
+        field_info = field.field_info
         if (
-            isinstance(first_field_info, params.File)
+            isinstance(field_info, params.File)
             and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
             is_bytes_sequence_field(field)
-            and isinstance(first_field_info, params.File)
+            and isinstance(field_info, params.File)
             and value_is_sequence(value)
         ):
             # For types
