@@ -19,12 +19,19 @@ from uuid import UUID
 
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
+from pydantic_extra_types.color import Color  # ✅ updated import
 from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+
+try:
+    # Pydantic v2
+    from pydantic_extra_types.color import Color
+except ImportError:
+    # Fallback for Pydantic v1
+    from pydantic.color import Color
 
 
 # Taken from Pydantic v1 as is
