@@ -29,10 +29,6 @@ hide:
 * ✅ Enable test case for duplicated headers in `test_tutorial/test_header_params/test_tutorial003.py`. PR [#13864](https://github.com/fastapi/fastapi/pull/13864) by [@Amogha-ark](https://github.com/Amogha-ark).
 * 📌 Pin `httpx` to `>=0.23.0,<1.0.0`. PR [#14086](https://github.com/fastapi/fastapi/pull/14086) by [@YuriiMotov](https://github.com/YuriiMotov).
 
-### Upgrades
-
-* ⬆️ Update mypy to 1.14.1. PR [#12970](https://github.com/fastapi/fastapi/pull/12970) by [@tamird](https://github.com/tamird).
-
 ### Docs
 
 * 📝 Add note about Cookies and JavaScript on `tutorial/cookie-params.md`. PR [#13510](https://github.com/fastapi/fastapi/pull/13510) by [@Kludex](https://github.com/Kludex).
@@ -50,6 +46,7 @@ hide:
 * ✅ Add LLM test file. PR [#14049](https://github.com/fastapi/fastapi/pull/14049) by [@nilslindemann](https://github.com/nilslindemann).
 * 🔨 Update translations script. PR [#13968](https://github.com/fastapi/fastapi/pull/13968) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🛠️ Update `docs.py generate-readme` command to remove permalinks from headers. PR [#14055](https://github.com/fastapi/fastapi/pull/14055) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ⬆️ Update mypy to 1.14.1. PR [#12970](https://github.com/fastapi/fastapi/pull/12970) by [@tamird](https://github.com/tamird).
 
 ## 0.116.2
 
