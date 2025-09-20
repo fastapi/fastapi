@@ -488,6 +488,8 @@ def get_openapi(
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
+    exclude_unset: bool = False,
+    exclude_none: bool = True,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -565,4 +567,9 @@ def get_openapi(
         output["webhooks"] = webhook_paths
     if tags:
         output["tags"] = tags
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+    return jsonable_encoder(  # type: ignore
+        OpenAPI(**output),
+        by_alias=True,
+        exclude_unset=exclude_unset,
+        exclude_none=exclude_none,
+    )
