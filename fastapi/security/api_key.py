@@ -24,7 +24,7 @@ class APIKeyBase(SecurityBase):
         self.not_authenticated_status_code = not_authenticated_status_code
 
         self.model: APIKey = APIKey(
-            **{"in": location},  # type: ignore[arg-type]
+            **{"in": location},
             name=name,
             description=description,
         )

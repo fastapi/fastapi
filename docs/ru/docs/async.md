@@ -420,7 +420,7 @@ Starlette (и **FastAPI**) основаны на <a href="https://anyio.readthed
 
 Что касается JavaScript (в браузере и NodeJS), раньше там использовали для этой цели
 <abbr title="callback">"обратные вызовы"</abbr>. Что выливалось в
-<a href="http://callbackhell.ru/" class="external-link" target="_blank">ад обратных вызовов</a>.
+"ад обратных вызовов".
 
 ## Сопрограммы
 

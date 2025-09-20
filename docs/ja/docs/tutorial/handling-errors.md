@@ -63,7 +63,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 `HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
 
-`dist`や`list`などを渡すことができます。
+`dict`や`list`などを渡すことができます。
 
 これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
 

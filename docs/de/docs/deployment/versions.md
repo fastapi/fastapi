@@ -1,4 +1,4 @@
-# Über FastAPI-Versionen
+# Über FastAPI-Versionen { #about-fastapi-versions }
 
 **FastAPI** wird bereits in vielen Anwendungen und Systemen produktiv eingesetzt. Und die Testabdeckung wird bei 100 % gehalten. Aber seine Entwicklung geht immer noch schnell voran.
 
@@ -8,35 +8,35 @@ Aus diesem Grund sind die aktuellen Versionen immer noch `0.x.x`, was darauf hin
 
 Sie können jetzt Produktionsanwendungen mit **FastAPI** erstellen (und das tun Sie wahrscheinlich schon seit einiger Zeit), Sie müssen nur sicherstellen, dass Sie eine Version verwenden, die korrekt mit dem Rest Ihres Codes funktioniert.
 
-## `fastapi`-Version pinnen
+## Ihre `fastapi`-Version pinnen { #pin-your-fastapi-version }
 
 Als Erstes sollten Sie die Version von **FastAPI**, die Sie verwenden, an die höchste Version „pinnen“, von der Sie wissen, dass sie für Ihre Anwendung korrekt funktioniert.
 
-Angenommen, Sie verwenden in Ihrer Anwendung die Version `0.45.0`.
+Angenommen, Sie verwenden in Ihrer App die Version `0.112.0`.
 
 Wenn Sie eine `requirements.txt`-Datei verwenden, können Sie die Version wie folgt angeben:
 
 ```txt
-fastapi==0.45.0
+fastapi[standard]==0.112.0
 ```
 
-Das würde bedeuten, dass Sie genau die Version `0.45.0` verwenden.
+Das würde bedeuten, dass Sie genau die Version `0.112.0` verwenden.
 
 Oder Sie können sie auch anpinnen mit:
 
 ```txt
-fastapi>=0.45.0,<0.46.0
+fastapi[standard]>=0.112.0,<0.113.0
 ```
 
-Das würde bedeuten, dass Sie eine Version `0.45.0` oder höher verwenden würden, aber kleiner als `0.46.0`, beispielsweise würde eine Version `0.45.2` immer noch akzeptiert.
+Das würde bedeuten, dass Sie eine Version `0.112.0` oder höher verwenden würden, aber kleiner als `0.113.0`, beispielsweise würde eine Version `0.112.2` immer noch akzeptiert.
 
-Wenn Sie zum Verwalten Ihrer Installationen andere Tools wie Poetry, Pipenv oder andere verwenden, sie verfügen alle über eine Möglichkeit, bestimmte Versionen für Ihre Packages zu definieren.
+Wenn Sie zum Verwalten Ihrer Installationen andere Tools wie `uv`, Poetry, Pipenv oder andere verwenden, sie verfügen alle über eine Möglichkeit, bestimmte Versionen für Ihre Packages zu definieren.
 
-## Verfügbare Versionen
+## Verfügbare Versionen { #available-versions }
 
-Die verfügbaren Versionen können Sie in den [Release Notes](../release-notes.md){.internal-link target=_blank} einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
+Die verfügbaren Versionen können Sie in den [Versionshinweisen](../release-notes.md){.internal-link target=_blank} einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
 
-## Über Versionen
+## Über Versionen { #about-versions }
 
 Gemäß den Konventionen zur semantischen Versionierung könnte jede Version unter `1.0.0` potenziell nicht abwärtskompatible Änderungen hinzufügen.
 
@@ -62,9 +62,9 @@ Nicht abwärtskompatible Änderungen und neue Funktionen werden in „MINOR“-V
 
 ///
 
-## Upgrade der FastAPI-Versionen
+## Upgrade der FastAPI-Versionen { #upgrading-the-fastapi-versions }
 
-Sie sollten Tests für Ihre Anwendung hinzufügen.
+Sie sollten Tests für Ihre App hinzufügen.
 
 Mit **FastAPI** ist das sehr einfach (dank Starlette), schauen Sie sich die Dokumentation an: [Testen](../tutorial/testing.md){.internal-link target=_blank}
 
@@ -72,7 +72,7 @@ Nachdem Sie Tests erstellt haben, können Sie die **FastAPI**-Version auf eine n
 
 Wenn alles funktioniert oder nachdem Sie die erforderlichen Änderungen vorgenommen haben und alle Ihre Tests bestehen, können Sie Ihr `fastapi` an die neue aktuelle Version pinnen.
 
-## Über Starlette
+## Über Starlette { #about-starlette }
 
 Sie sollten die Version von `starlette` nicht pinnen.
 
@@ -80,13 +80,14 @@ Verschiedene Versionen von **FastAPI** verwenden eine bestimmte neuere Version v
 
 Sie können **FastAPI** also einfach die korrekte Starlette-Version verwenden lassen.
 
-## Über Pydantic
+## Über Pydantic { #about-pydantic }
 
 Pydantic integriert die Tests für **FastAPI** in seine eigenen Tests, sodass neue Versionen von Pydantic (über `1.0.0`) immer mit FastAPI kompatibel sind.
 
-Sie können Pydantic an jede für Sie geeignete Version über `1.0.0` und unter `2.0.0` anpinnen.
+Sie können Pydantic an jede für Sie geeignete Version über `1.0.0` anpinnen.
 
 Zum Beispiel:
+
 ```txt
-pydantic>=1.2.0,<2.0.0
+pydantic>=2.7.0,<3.0.0
 ```
