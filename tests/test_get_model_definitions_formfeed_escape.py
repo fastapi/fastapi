@@ -138,16 +138,12 @@ def test_openapi_schema():
     assert response.json() == openapi_schema
 
 
-class SortedTypeSet(Set[Type[Any]]):
+class SortedTypeSet(set):
     """
     Set of Types whose `__iter__()` method yields results sorted by the type names
     """
 
     def __init__(self, seq: Set[Type[Any]], *, sort_reversed: bool):
-        """
-        :param seq: Initial members of this set
-        :param sort_reversed: If true, reverse-order the sorting by type name during iteration
-        """
         super().__init__(seq)
         self.sort_reversed = sort_reversed
 

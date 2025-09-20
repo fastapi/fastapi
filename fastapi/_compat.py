@@ -397,7 +397,6 @@ else:
         for m_schema in definitions.values():
             if "description" in m_schema:
                 m_schema["description"] = m_schema["description"].split("\f")[0]
-
         return definitions
 
     def is_pv1_scalar_field(field: ModelField) -> bool:
