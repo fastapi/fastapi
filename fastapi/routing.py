@@ -119,7 +119,8 @@ def _prepare_response_content(
             )
             for k, v in res.items()
         }
-    elif dataclasses.is_dataclass(type(res)):
+    elif dataclasses.is_dataclass(res):
+        assert not isinstance(res, type)
         return dataclasses.asdict(res)
     return res
 

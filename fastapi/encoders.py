@@ -240,7 +240,8 @@ def jsonable_encoder(
             custom_encoder=encoders,
             sqlalchemy_safe=sqlalchemy_safe,
         )
-    if dataclasses.is_dataclass(type(obj)):
+    if dataclasses.is_dataclass(obj):
+        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
