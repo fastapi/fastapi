@@ -73,7 +73,7 @@ def test_cookie_param_model_invalid(client: TestClient):
                         "type": "missing",
                         "loc": ["cookie", "session_id"],
                         "msg": "Field required",
-                        "input": {},
+                        "input": {"fatebook_tracker": None, "googall_tracker": None},
                     }
                 ]
             }
