@@ -7,6 +7,20 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* 📌 Pin `httpx` to `>=0.23.0,<1.0.0`. PR [#14086](https://github.com/fastapi/fastapi/pull/14086) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🛠️ Update `docs.py generate-readme` command to remove permalinks from headers. PR [#14055](https://github.com/fastapi/fastapi/pull/14055) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.116.2
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette supported version range to >=0.40.0,<0.49.0. PR [#14077](https://github.com/fastapi/fastapi/pull/14077) by [@musicinmybrain](https://github.com/musicinmybrain).
+
 ### Docs
 
 * 📝 Add documentation for Behind a Proxy - Proxy Forwarded Headers, using `--forwarded-allow-ips="*"`. PR [#14028](https://github.com/fastapi/fastapi/pull/14028) by [@tiangolo](https://github.com/tiangolo).
