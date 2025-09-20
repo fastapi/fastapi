@@ -10,7 +10,6 @@ from fastapi._compat import (
     with_info_plain_validator_function,
 )
 from fastapi.logger import logger
-from fastapi.openapi.constants import TypeValue
 from pydantic import AnyUrl, BaseModel, Field
 from typing_extensions import Annotated, Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
@@ -122,6 +121,12 @@ class ExternalDocumentation(BaseModelWithConfig):
     url: AnyUrl
 
 
+# Ref JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation#name-type
+SchemaType = Literal[
+    "array", "boolean", "integer", "null", "number", "object", "string"
+]
+
+
 class Schema(BaseModelWithConfig):
     # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-the-json-schema-core-vocabu
     # Core Vocabulary
@@ -158,7 +163,7 @@ class Schema(BaseModelWithConfig):
     unevaluatedProperties: Optional["SchemaOrBool"] = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
     # A Vocabulary for Structural Validation
-    type: Optional[Union[TypeValue, List[TypeValue]]] = None
+    type: Optional[Union[SchemaType, List[SchemaType]]] = None
     enum: Optional[List[Any]] = None
     const: Optional[Any] = None
     multipleOf: Optional[float] = Field(default=None, gt=0)
