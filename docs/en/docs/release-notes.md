@@ -19,6 +19,10 @@ hide:
 
 * 📝 Fix and Improve English Documentation. PR [#14048](https://github.com/fastapi/fastapi/pull/14048) by [@nilslindemann](https://github.com/nilslindemann).
 
+### Translations
+
+* 📝 Update prompts and German translation. PR [#14015](https://github.com/fastapi/fastapi/pull/14015) by [@nilslindemann](https://github.com/nilslindemann).
+
 ### Internal
 
 * ✅ Add LLM test file. PR [#14049](https://github.com/fastapi/fastapi/pull/14049) by [@nilslindemann](https://github.com/nilslindemann).
