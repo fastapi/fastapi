@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.117.0
+
 ### Features
 
 * ✨  Allow `None` as return type for bodiless responses. PR [#9425](https://github.com/fastapi/fastapi/pull/9425) by [@hofrob](https://github.com/hofrob).
