@@ -8,32 +8,6 @@ Nó cũng được xây dựng để làm việc như một tham chiếu trong t
 
 Do đó bạn có thể quay lại và tìm chính xác những gì bạn cần.
 
-## Chạy mã
-
-Tất cả các code block có thể được sao chép và sử dụng trực tiếp (chúng thực chất là các tệp tin Python đã được kiểm thử).
-
-Để chạy bất kì ví dụ nào, sao chép code tới tệp tin `main.py`, và bắt đầu `uvicorn` với:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-**Khuyến khích** bạn viết hoặc sao chép code, sửa và chạy nó ở local.
-
-Sử dụng nó trong trình soạn thảo của bạn thực sự cho bạn thấy những lợi ích của FastAPI, thấy được cách bạn viết code ít hơn, tất cả đều được type check, autocompletion,...
-
----
-
 ## Cài đặt FastAPI
 
 Bước đầu tiên là cài đặt FastAPI.
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
 Và tương tự với từng phụ thuộc tùy chọn mà bạn muốn sử dụng.
 
 ///
+
+## Chạy mã
+
+Tất cả các code block có thể được sao chép và sử dụng trực tiếp (chúng thực chất là các tệp tin Python đã được kiểm thử).
+
+Để chạy bất kì ví dụ nào, sao chép code tới tệp tin `main.py`, và bắt đầu `uvicorn` với:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+**Khuyến khích** bạn viết hoặc sao chép code, sửa và chạy nó ở local.
+
+Sử dụng nó trong trình soạn thảo của bạn thực sự cho bạn thấy những lợi ích của FastAPI, thấy được cách bạn viết code ít hơn, tất cả đều được type check, autocompletion,...
+
+---
 
 ## Hướng dẫn nâng cao
 

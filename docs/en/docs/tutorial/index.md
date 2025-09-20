@@ -6,6 +6,30 @@ Each section gradually builds on the previous ones, but it's structured to separ
 
 It is also built to work as a future reference so you can come back and see exactly what you need.
 
+## Install FastAPI { #install-fastapi }
+
+The first step is to install FastAPI.
+
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then **install FastAPI**:
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+/// note
+
+When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
+
+If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
+
+///
+
 ## Run the code { #run-the-code }
 
 All the code blocks can be copied and used directly (they are actually tested Python files).
@@ -57,32 +81,6 @@ It is **HIGHLY encouraged** that you write or copy the code, edit it and run it 
 Using it in your editor is what really shows you the benefits of FastAPI, seeing how little code you have to write, all the type checks, autocompletion, etc.
 
 ---
-
-## Install FastAPI { #install-fastapi }
-
-The first step is to install FastAPI.
-
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then **install FastAPI**:
-
-<div class="termy">
-
-```console
-$ pip install "fastapi[standard]"
-
----> 100%
-```
-
-</div>
-
-/// note
-
-When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
-
-If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
-
-If you want to install the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
-
-///
 
 ## Advanced User Guide { #advanced-user-guide }
 

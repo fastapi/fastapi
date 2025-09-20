@@ -8,32 +8,6 @@ Ini juga dibangun untuk digunakan sebagai referensi yang akan datang.
 
 Sehingga kamu dapat kembali lagi dan mencari apa yang kamu butuhkan dengan tepat.
 
-## Jalankan kode
-
-Semua blok-blok kode dapat disalin dan digunakan langsung (Mereka semua sebenarnya adalah file python yang sudah teruji).
-
-Untuk menjalankan setiap contoh, salin kode ke file `main.py`, dan jalankan `uvicorn` dengan:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-**SANGAT disarankan** agar kamu menulis atau menyalin kode, mengubahnya dan menjalankannya secara lokal.
-
-Dengan menggunakannya di dalam editor, benar-benar memperlihatkan manfaat dari FastAPI, melihat bagaimana sedikitnya kode yang harus kamu tulis, semua pengecekan tipe, pelengkapan otomatis, dll.
-
----
-
 ## Install FastAPI
 
 Langkah pertama adalah dengan meng-install FastAPI.
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
 Dan demikian juga untuk pilihan dependensi yang hendak kamu gunakan.
 
 ///
+
+## Jalankan kode
+
+Semua blok-blok kode dapat disalin dan digunakan langsung (Mereka semua sebenarnya adalah file python yang sudah teruji).
+
+Untuk menjalankan setiap contoh, salin kode ke file `main.py`, dan jalankan `uvicorn` dengan:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+**SANGAT disarankan** agar kamu menulis atau menyalin kode, mengubahnya dan menjalankannya secara lokal.
+
+Dengan menggunakannya di dalam editor, benar-benar memperlihatkan manfaat dari FastAPI, melihat bagaimana sedikitnya kode yang harus kamu tulis, semua pengecekan tipe, pelengkapan otomatis, dll.
+
+---
 
 ## Pedoman Pengguna Lanjutan
 

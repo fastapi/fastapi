@@ -8,32 +8,6 @@ Außerdem dienen diese als zukünftige Referenz.
 
 Dadurch können Sie jederzeit  zurückkommen und sehen genau das, was Sie benötigen.
 
-## Den Code ausführen
-
-Alle Codeblöcke können kopiert und direkt verwendet werden (da es sich um getestete Python-Dateien handelt).
-
-Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
-
-<div class="termy">
-
-```console
-$ uvicorn main:app --reload
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
-```
-
-</div>
-
-Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen.
-
-Die Verwendung in Ihrem eigenen Editor zeigt Ihnen die Vorteile von FastAPI am besten, wenn Sie sehen, wie wenig Code Sie schreiben müssen, all die Typprüfungen, die automatische Vervollständigung usw.
-
----
-
 ## FastAPI installieren
 
 Der erste Schritt besteht aus der Installation von FastAPI.
@@ -71,6 +45,32 @@ pip install "uvicorn[standard]"
 Das gleiche gilt für jede der optionalen Abhängigkeiten, die Sie verwenden möchten.
 
 ///
+
+## Den Code ausführen
+
+Alle Codeblöcke können kopiert und direkt verwendet werden (da es sich um getestete Python-Dateien handelt).
+
+Um eines der Beispiele auszuführen, kopieren Sie den Code in eine Datei `main.py`, und starten Sie `uvicorn` mit:
+
+<div class="termy">
+
+```console
+$ uvicorn main:app --reload
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+<span style="color: green;">INFO</span>:     Started reloader process [28720]
+<span style="color: green;">INFO</span>:     Started server process [28722]
+<span style="color: green;">INFO</span>:     Waiting for application startup.
+<span style="color: green;">INFO</span>:     Application startup complete.
+```
+
+</div>
+
+Es wird **ausdrücklich empfohlen**, dass Sie den Code schreiben oder kopieren, ihn bearbeiten und lokal ausführen.
+
+Die Verwendung in Ihrem eigenen Editor zeigt Ihnen die Vorteile von FastAPI am besten, wenn Sie sehen, wie wenig Code Sie schreiben müssen, all die Typprüfungen, die automatische Vervollständigung usw.
+
+---
 
 ## Handbuch für fortgeschrittene Benutzer
 

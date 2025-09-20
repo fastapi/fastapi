@@ -6,6 +6,30 @@
 
 它也被設計成可作為未來的參考，讓你隨時回來查看所需的內容。
 
+## 安裝 FastAPI
+
+第一步是安裝 FastAPI。
+
+確保你建立一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，啟用它，然後**安裝 FastAPI**：
+
+<div class="termy">
+
+```console
+$ pip install "fastapi[standard]"
+
+---> 100%
+```
+
+</div>
+
+/// note
+
+當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準依賴項。
+
+如果你不想包含那些可選的依賴項，你可以使用 `pip install fastapi` 來安裝。
+
+///
+
 ## 運行程式碼
 
 所有程式碼區塊都可以直接複製和使用（它們實際上是經過測試的 Python 檔案）。
@@ -66,30 +90,6 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:singl
 在編輯器中使用它，才能真正體會到 FastAPI 的好處，可以看到你只需編寫少量程式碼，以及所有的型別檢查、自動補齊等功能。
 
 ---
-
-## 安裝 FastAPI
-
-第一步是安裝 FastAPI。
-
-確保你建立一個[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，啟用它，然後**安裝 FastAPI**：
-
-<div class="termy">
-
-```console
-$ pip install "fastapi[standard]"
-
----> 100%
-```
-
-</div>
-
-/// note
-
-當你使用 `pip install "fastapi[standard]"` 安裝時，會包含一些預設的可選標準依賴項。
-
-如果你不想包含那些可選的依賴項，你可以使用 `pip install fastapi` 來安裝。
-
-///
 
 ## 進階使用者指南
 
