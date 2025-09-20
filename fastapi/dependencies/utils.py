@@ -593,7 +593,8 @@ async def solve_dependencies(
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
-    dependency_cache = dependency_cache or {}
+    if dependency_cache is None:
+        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -630,7 +631,6 @@ async def solve_dependencies(
             embed_body_fields=embed_body_fields,
         )
         background_tasks = solved_result.background_tasks
-        dependency_cache.update(solved_result.dependency_cache)
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
