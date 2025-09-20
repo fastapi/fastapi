@@ -14,6 +14,7 @@ hide:
 
 ### Fixes
 
+* 🐛 Fix inconsistent processing of model docstring formfeed char with Pydantic V1. PR [#6039](https://github.com/fastapi/fastapi/pull/6039) by [@MaxwellPayne](https://github.com/MaxwellPayne).
 * 🐛 Fix `jsonable_encoder` alters `json_encoders` of Pydantic v1 objects. PR [#4972](https://github.com/fastapi/fastapi/pull/4972) by [@aboubacs](https://github.com/aboubacs).
 * 🐛 Reenable `allow_arbitrary_types` when only 1 argument is used on the API endpoint. PR [#13694](https://github.com/fastapi/fastapi/pull/13694) by [@rmawatson](https://github.com/rmawatson).
 * 🐛 Fix `inspect.getcoroutinefunction()` can break testing with `unittest.mock.patch()`. PR [#14022](https://github.com/fastapi/fastapi/pull/14022) by [@secrett2633](https://github.com/secrett2633).
