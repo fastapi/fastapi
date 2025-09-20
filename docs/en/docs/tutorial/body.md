@@ -1,4 +1,4 @@
-# Request Body
+# Request Body { #request-body }
 
 When you need to send data from a client (let's say, a browser) to your API, you send it as a **request body**.
 
@@ -18,13 +18,13 @@ As it is discouraged, the interactive docs with Swagger UI won't show the docume
 
 ///
 
-## Import Pydantic's `BaseModel`
+## Import Pydantic's `BaseModel` { #import-pydantics-basemodel }
 
 First, you need to import `BaseModel` from `pydantic`:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## Create your data model
+## Create your data model { #create-your-data-model }
 
 Then you declare your data model as a class that inherits from `BaseModel`.
 
@@ -55,7 +55,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-## Declare it as a parameter
+## Declare it as a parameter { #declare-it-as-a-parameter }
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
@@ -63,7 +63,7 @@ To add it to your *path operation*, declare it the same way you declared path an
 
 ...and declare its type as the model you created, `Item`.
 
-## Results
+## Results { #results }
 
 With just that Python type declaration, **FastAPI** will:
 
@@ -76,7 +76,7 @@ With just that Python type declaration, **FastAPI** will:
 * Generate <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> definitions for your model, you can also use them anywhere else you like if it makes sense for your project.
 * Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title="User Interfaces">UIs</abbr>.
 
-## Automatic docs
+## Automatic docs { #automatic-docs }
 
 The JSON Schemas of your models will be part of your OpenAPI generated schema, and will be shown in the interactive API docs:
 
@@ -86,7 +86,7 @@ And will also be used in the API docs inside each *path operation* that needs th
 
 <img src="/img/tutorial/body/image02.png">
 
-## Editor support
+## Editor support { #editor-support }
 
 In your editor, inside your function you will get type hints and completion everywhere (this wouldn't happen if you received a `dict` instead of a Pydantic model):
 
@@ -122,13 +122,21 @@ It improves editor support for Pydantic models, with:
 
 ///
 
-## Use the model
+## Use the model { #use-the-model }
 
 Inside of the function, you can access all the attributes of the model object directly:
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-## Request body + path parameters
+/// info
+
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
+
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
+
+///
+
+## Request body + path parameters { #request-body-path-parameters }
 
 You can declare path parameters and request body at the same time.
 
@@ -137,7 +145,7 @@ You can declare path parameters and request body at the same time.
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
 
-## Request body + path + query parameters
+## Request body + path + query parameters { #request-body-path-query-parameters }
 
 You can also declare **body**, **path** and **query** parameters, all at the same time.
 
@@ -161,6 +169,6 @@ But adding the type annotations will allow your editor to give you better suppor
 
 ///
 
-## Without Pydantic
+## Without Pydantic { #without-pydantic }
 
 If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.

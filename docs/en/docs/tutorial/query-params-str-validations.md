@@ -1,4 +1,4 @@
-# Query Parameters and String Validations
+# Query Parameters and String Validations { #query-parameters-and-string-validations }
 
 **FastAPI** allows you to declare additional information and validation for your parameters.
 
@@ -16,11 +16,11 @@ Having `str | None` will allow your editor to give you better support and detect
 
 ///
 
-## Additional validation
+## Additional validation { #additional-validation }
 
 We are going to enforce that even though `q` is optional, whenever it is provided, **its length doesn't exceed 50 characters**.
 
-### Import `Query` and `Annotated`
+### Import `Query` and `Annotated` { #import-query-and-annotated }
 
 To achieve that, first import:
 
@@ -39,7 +39,7 @@ Make sure you [Upgrade the FastAPI version](../deployment/versions.md#upgrading-
 
 ///
 
-## Use `Annotated` in the type for the `q` parameter
+## Use `Annotated` in the type for the `q` parameter { #use-annotated-in-the-type-for-the-q-parameter }
 
 Remember I told you before that `Annotated` can be used to add metadata to your parameters in the [Python Types Intro](../python-types.md#type-hints-with-metadata-annotations){.internal-link target=_blank}?
 
@@ -85,7 +85,7 @@ Both of those versions mean the same thing, `q` is a parameter that can be a `st
 
 Now let's jump to the fun stuff. 🎉
 
-## Add `Query` to `Annotated` in the `q` parameter
+## Add `Query` to `Annotated` in the `q` parameter { #add-query-to-annotated-in-the-q-parameter }
 
 Now that we have this `Annotated` where we can put more information (in this case some additional validation), add `Query` inside of `Annotated`, and set the parameter `max_length` to `50`:
 
@@ -107,7 +107,7 @@ FastAPI will now:
 * Show a **clear error** for the client when the data is not valid
 * **Document** the parameter in the OpenAPI schema *path operation* (so it will show up in the **automatic docs UI**)
 
-## Alternative (old): `Query` as the default value
+## Alternative (old): `Query` as the default value { #alternative-old-query-as-the-default-value }
 
 Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
@@ -146,7 +146,7 @@ q: str | None = Query(default=None, max_length=50)
 
 This will validate the data, show a clear error when the data is not valid, and document the parameter in the OpenAPI schema *path operation*.
 
-### `Query` as the default value or in `Annotated`
+### `Query` as the default value or in `Annotated` { #query-as-the-default-value-or-in-annotated }
 
 Keep in mind that when using `Query` inside of `Annotated` you cannot use the `default` parameter for `Query`.
 
@@ -172,7 +172,7 @@ q: Annotated[str, Query()] = "rick"
 q: str = Query(default="rick")
 ```
 
-### Advantages of `Annotated`
+### Advantages of `Annotated` { #advantages-of-annotated }
 
 **Using `Annotated` is recommended** instead of the default value in function parameters, it is **better** for multiple reasons. 🤓
 
@@ -184,13 +184,13 @@ When you don't use `Annotated` and instead use the **(old) default value style**
 
 Because `Annotated` can have more than one metadata annotation, you could now even use the same function with other tools, like <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">Typer</a>. 🚀
 
-## Add more validations
+## Add more validations { #add-more-validations }
 
 You can also add a parameter `min_length`:
 
 {* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
 
-## Add regular expressions
+## Add regular expressions { #add-regular-expressions }
 
 You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> `pattern` that the parameter should match:
 
@@ -206,7 +206,7 @@ If you feel lost with all these **"regular expression"** ideas, don't worry. The
 
 Now you know that whenever you need them you can use them in **FastAPI**.
 
-### Pydantic v1 `regex` instead of `pattern`
+### Pydantic v1 `regex` instead of `pattern` { #pydantic-v1-regex-instead-of-pattern }
 
 Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
 
@@ -220,7 +220,7 @@ You could still see some code using it:
 
 But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
 
-## Default values
+## Default values { #default-values }
 
 You can, of course, use default values other than `None`.
 
@@ -234,7 +234,7 @@ Having a default value of any type, including `None`, makes the parameter option
 
 ///
 
-## Required parameters
+## Required parameters { #required-parameters }
 
 When we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:
 
@@ -250,19 +250,15 @@ q: str | None = None
 
 But we are now declaring it with `Query`, for example like:
 
-//// tab | Annotated
-
 ```Python
 q: Annotated[str | None, Query(min_length=3)] = None
 ```
-
-////
 
 So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Required, can be `None`
+### Required, can be `None` { #required-can-be-none }
 
 You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
 
@@ -270,7 +266,7 @@ To do that, you can declare that `None` is a valid type but simply do not declar
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
-## Query parameter list / multiple values
+## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
 
@@ -307,7 +303,7 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 <img src="/img/tutorial/query-params-str-validations/image02.png">
 
-### Query parameter list / multiple values with defaults
+### Query parameter list / multiple values with defaults { #query-parameter-list-multiple-values-with-defaults }
 
 You can also define a default `list` of values if none are provided:
 
@@ -330,7 +326,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 }
 ```
 
-#### Using just `list`
+#### Using just `list` { #using-just-list }
 
 You can also use `list` directly instead of `list[str]`:
 
@@ -344,7 +340,7 @@ For example, `list[int]` would check (and document) that the contents of the lis
 
 ///
 
-## Declare more metadata
+## Declare more metadata { #declare-more-metadata }
 
 You can add more information about the parameter.
 
@@ -366,7 +362,7 @@ And a `description`:
 
 {* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
 
-## Alias parameters
+## Alias parameters { #alias-parameters }
 
 Imagine that you want the parameter to be `item-query`.
 
@@ -386,7 +382,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 
 {* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
 
-## Deprecating parameters
+## Deprecating parameters { #deprecating-parameters }
 
 Now let's say you don't like this parameter anymore.
 
@@ -400,13 +396,13 @@ The docs will show it like this:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Exclude parameters from OpenAPI
+## Exclude parameters from OpenAPI { #exclude-parameters-from-openapi }
 
 To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
-## Custom Validation
+## Custom Validation { #custom-validation }
 
 There could be cases where you need to do some **custom validation** that can't be done with the parameters shown above.
 
@@ -438,7 +434,7 @@ These custom validators are for things that can be checked with **only** the **s
 
 ///
 
-### Understand that Code
+### Understand that Code { #understand-that-code }
 
 The important point is just using **`AfterValidator` with a function inside `Annotated`**. Feel free to skip this part. 🤸
 
@@ -446,13 +442,13 @@ The important point is just using **`AfterValidator` with a function inside `Ann
 
 But if you're curious about this specific code example and you're still entertained, here are some extra details.
 
-#### String with `value.startswith()`
+#### String with `value.startswith()` { #string-with-value-startswith }
 
 Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 
-#### A Random Item
+#### A Random Item { #a-random-item }
 
 With `data.items()` we get an <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">iterable object</abbr> with tuples containing the key and value for each dictionary item.
 
@@ -468,7 +464,7 @@ So, if the user didn't provide an item ID, they will still receive a random sugg
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 
-## Recap
+## Recap { #recap }
 
 You can declare additional validations and metadata for your parameters.
 

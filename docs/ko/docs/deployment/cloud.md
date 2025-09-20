@@ -10,7 +10,4 @@
 
 이는 FastAPI와 **커뮤니티** (여러분)에 대한 진정한 헌신을 보여줍니다. 그들은 여러분에게 **좋은 서비스**를 제공할 뿐 만이 아니라 여러분이 **훌륭하고 건강한 프레임워크인** FastAPI 를 사용하길 원하기 때문입니다. 🙇
 
-아래와 같은 서비스를 사용해보고 각 서비스의 가이드를 따를 수도 있습니다:
-
-* <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
-* <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
+아래와 같은 서비스를 사용해보고 각 서비스의 가이드를 따를 수도 있습니다.

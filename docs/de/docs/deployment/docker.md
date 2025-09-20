@@ -1,4 +1,4 @@
-# FastAPI in Containern – Docker
+# FastAPI in Containern – Docker { #fastapi-in-containers-docker }
 
 Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten bereitstellen.
 
@@ -6,11 +6,11 @@ Die Verwendung von Linux-Containern bietet mehrere Vorteile, darunter **Sicherhe
 
 /// tip | Tipp
 
-Sie haben es eilig und kennen sich bereits aus? Springen Sie zum [`Dockerfile` unten 👇](#ein-docker-image-fur-fastapi-erstellen).
+Sie haben es eilig und kennen sich bereits aus? Springen Sie zum [`Dockerfile` unten 👇](#build-a-docker-image-for-fastapi).
 
 ///
 
-<Details>
+<details>
 <summary>Dockerfile-Vorschau 👀</summary>
 
 ```Dockerfile
@@ -24,15 +24,15 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./app /code/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 # Wenn Sie hinter einem Proxy wie Nginx oder Traefik sind, fügen Sie --proxy-headers hinzu
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--proxy-headers"]
+# CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
 </details>
 
-## Was ist ein Container?
+## Was ist ein Container { #what-is-a-container }
 
 Container (hauptsächlich Linux-Container) sind eine sehr **leichtgewichtige** Möglichkeit, Anwendungen einschließlich aller ihrer Abhängigkeiten und erforderlichen Dateien zu verpacken und sie gleichzeitig von anderen Containern (anderen Anwendungen oder Komponenten) im selben System isoliert zu halten.
 
@@ -42,7 +42,7 @@ Auf diese Weise verbrauchen Container **wenig Ressourcen**, eine Menge vergleich
 
 Container verfügen außerdem über ihre eigenen **isoliert** laufenden Prozesse (üblicherweise nur einen Prozess), über ihr eigenes Dateisystem und ihr eigenes Netzwerk, was die Bereitstellung, Sicherheit, Entwicklung usw. vereinfacht.
 
-## Was ist ein Containerimage?
+## Was ist ein Containerimage { #what-is-a-container-image }
 
 Ein **Container** wird von einem **Containerimage** ausgeführt.
 
@@ -50,17 +50,17 @@ Ein Containerimage ist eine **statische** Version aller Dateien, Umgebungsvariab
 
 Im Gegensatz zu einem „**Containerimage**“, bei dem es sich um den gespeicherten statischen Inhalt handelt, bezieht sich ein „**Container**“ normalerweise auf die laufende Instanz, das Ding, das **ausgeführt** wird.
 
-Wenn der **Container** gestartet und ausgeführt wird (gestartet von einem **Containerimage**), kann er Dateien, Umgebungsvariablen usw. erstellen oder ändern. Diese Änderungen sind nur in diesem Container vorhanden, nicht im zugrunde liegenden bestehen Containerimage (werden nicht auf der Festplatte gespeichert).
+Wenn der **Container** gestartet und ausgeführt wird (gestartet von einem **Containerimage**), kann er Dateien, Umgebungsvariablen usw. erstellen oder ändern. Diese Änderungen sind nur in diesem Container vorhanden, nicht im zugrunde liegenden Containerimage (werden nicht auf der Festplatte gespeichert).
 
 Ein Containerimage ist vergleichbar mit der **Programmdatei** und ihrem Inhalt, z. B. `python` und eine Datei `main.py`.
 
 Und der **Container** selbst (im Gegensatz zum **Containerimage**) ist die tatsächlich laufende Instanz des Images, vergleichbar mit einem **Prozess**. Tatsächlich läuft ein Container nur, wenn er einen **laufenden Prozess** hat (und normalerweise ist es nur ein einzelner Prozess). Der Container stoppt, wenn kein Prozess darin ausgeführt wird.
 
-## Containerimages
+## Containerimages { #container-images }
 
 Docker ist eines der wichtigsten Tools zum Erstellen und Verwalten von **Containerimages** und **Containern**.
 
-Und es gibt einen öffentlichen <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker <abbr title="Umschlagsplatz">Hub</abbr></a> mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
+Und es gibt einen öffentlichen <a href="https://hub.docker.com/" class="external-link" target="_blank">Docker <abbr title="Umschlagplatz">Hub</abbr></a> mit vorgefertigten **offiziellen Containerimages** für viele Tools, Umgebungen, Datenbanken und Anwendungen.
 
 Beispielsweise gibt es ein offizielles <a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python-Image</a>.
 
@@ -79,7 +79,7 @@ Sie würden also **mehrere Container** mit unterschiedlichen Dingen ausführen, 
 
 In alle Containerverwaltungssysteme (wie Docker oder Kubernetes) sind diese Netzwerkfunktionen integriert.
 
-## Container und Prozesse
+## Container und Prozesse { #containers-and-processes }
 
 Ein **Containerimage** enthält normalerweise in seinen Metadaten das Standardprogramm oder den Standardbefehl, der ausgeführt werden soll, wenn der **Container** gestartet wird, sowie die Parameter, die an dieses Programm übergeben werden sollen. Sehr ähnlich zu dem, was wäre, wenn es über die Befehlszeile gestartet werden würde.
 
@@ -91,7 +91,7 @@ Ein Container hat normalerweise einen **einzelnen Prozess**, aber es ist auch m�
 
 Es ist jedoch nicht möglich, einen laufenden Container, ohne **mindestens einen laufenden Prozess** zu haben. Wenn der Hauptprozess stoppt, stoppt der Container.
 
-## Ein Docker-Image für FastAPI erstellen
+## Ein Docker-Image für FastAPI erstellen { #build-a-docker-image-for-fastapi }
 
 Okay, wollen wir jetzt etwas bauen! 🚀
 
@@ -103,7 +103,7 @@ Das ist, was Sie in **den meisten Fällen** tun möchten, zum Beispiel:
 * Beim Betrieb auf einem **Raspberry Pi**
 * Bei Verwendung eines Cloud-Dienstes, der ein Containerimage für Sie ausführt, usw.
 
-### Paketanforderungen
+### Paketanforderungen { #package-requirements }
 
 Normalerweise befinden sich die **Paketanforderungen** für Ihre Anwendung in einer Datei.
 
@@ -116,9 +116,8 @@ Sie würden natürlich die gleichen Ideen verwenden, die Sie in [Über FastAPI-V
 Ihre `requirements.txt` könnte beispielsweise so aussehen:
 
 ```
-fastapi>=0.68.0,<0.69.0
-pydantic>=1.8.0,<2.0.0
-uvicorn>=0.15.0,<0.16.0
+fastapi[standard]>=0.113.0,<0.114.0
+pydantic>=2.7.0,<3.0.0
 ```
 
 Und normalerweise würden Sie diese Paketabhängigkeiten mit `pip` installieren, zum Beispiel:
@@ -128,20 +127,18 @@ Und normalerweise würden Sie diese Paketabhängigkeiten mit `pip` installieren,
 ```console
 $ pip install -r requirements.txt
 ---> 100%
-Successfully installed fastapi pydantic uvicorn
+Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info
+/// info | Info
 
 Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
 
-Ich zeige Ihnen später in einem Abschnitt unten ein Beispiel unter Verwendung von Poetry. 👇
-
 ///
 
-### Den **FastAPI**-Code erstellen
+### Den **FastAPI**-Code erstellen { #create-the-fastapi-code }
 
 * Erstellen Sie ein `app`-Verzeichnis und betreten Sie es.
 * Erstellen Sie eine leere Datei `__init__.py`.
@@ -165,35 +162,35 @@ def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-### Dockerfile
+### Dockerfile { #dockerfile }
 
 Erstellen Sie nun im selben Projektverzeichnis eine Datei `Dockerfile` mit:
 
 ```{ .dockerfile .annotate }
-# (1)
+# (1)!
 FROM python:3.9
 
-# (2)
+# (2)!
 WORKDIR /code
 
-# (3)
+# (3)!
 COPY ./requirements.txt /code/requirements.txt
 
-# (4)
+# (4)!
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (5)
+# (5)!
 COPY ./app /code/app
 
-# (6)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# (6)!
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 1. Beginne mit dem offiziellen Python-Basisimage.
 
 2. Setze das aktuelle Arbeitsverzeichnis auf `/code`.
 
-    Hier plazieren wir die Datei `requirements.txt` und das Verzeichnis `app`.
+    Hier platzieren wir die Datei `requirements.txt` und das Verzeichnis `app`.
 
 3. Kopiere die Datei mit den Paketanforderungen in das Verzeichnis `/code`.
 
@@ -223,19 +220,49 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 
     Daher ist es wichtig, dies **nahe dem Ende** des `Dockerfile`s zu platzieren, um die Erstellungszeiten des Containerimages zu optimieren.
 
-6. Lege den **Befehl** fest, um den `uvicorn`-Server zu starten.
+6. Lege den **Befehl** fest, um `fastapi run` zu nutzen, welches Uvicorn darunter verwendet.
 
     `CMD` nimmt eine Liste von Zeichenfolgen entgegen. Jede dieser Zeichenfolgen entspricht dem, was Sie durch Leerzeichen getrennt in die Befehlszeile eingeben würden.
 
     Dieser Befehl wird aus dem **aktuellen Arbeitsverzeichnis** ausgeführt, dem gleichen `/code`-Verzeichnis, das Sie oben mit `WORKDIR /code` festgelegt haben.
-
-    Da das Programm unter `/code` gestartet wird und sich darin das Verzeichnis `./app` mit Ihrem Code befindet, kann **Uvicorn** `app` sehen und aus `app.main` **importieren**.
 
 /// tip | Tipp
 
 Lernen Sie, was jede Zeile bewirkt, indem Sie auf die Zahlenblasen im Code klicken. 👆
 
 ///
+
+/// warning | Achtung
+
+Stellen Sie sicher, dass Sie **immer** die **exec form** der Anweisung `CMD` verwenden, wie unten erläutert.
+
+///
+
+#### `CMD` – Exec Form verwenden { #use-cmd-exec-form }
+
+Die <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> Docker-Anweisung kann in zwei Formen geschrieben werden:
+
+✅ **Exec** form:
+
+```Dockerfile
+# ✅ Tun Sie das
+CMD ["fastapi", "run", "app/main.py", "--port", "80"]
+```
+
+⛔️ **Shell** form:
+
+```Dockerfile
+# ⛔️ Tun Sie das nicht
+CMD fastapi run app/main.py --port 80
+```
+
+Achten Sie darauf, stets die **exec** form zu verwenden, um sicherzustellen, dass FastAPI ordnungsgemäß heruntergefahren wird und [Lifespan-Events](../advanced/events.md){.internal-link target=_blank} ausgelöst werden.
+
+Sie können mehr darüber in der <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">Docker-Dokumentation für Shell und Exec Form lesen</a>.
+
+Dies kann insbesondere bei der Verwendung von `docker compose` deutlich spürbar sein. Sehen Sie sich diesen Abschnitt in der Docker Compose-FAQ für technische Details an: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Warum benötigen meine Dienste 10 Sekunden, um neu erstellt oder gestoppt zu werden?</a>.
+
+#### Verzeichnisstruktur { #directory-structure }
 
 Sie sollten jetzt eine Verzeichnisstruktur wie diese haben:
 
@@ -248,15 +275,15 @@ Sie sollten jetzt eine Verzeichnisstruktur wie diese haben:
 └── requirements.txt
 ```
 
-#### Hinter einem TLS-Terminierungsproxy
+#### Hinter einem TLS-Terminierungsproxy { #behind-a-tls-termination-proxy }
 
-Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn, den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
+Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie die Option `--proxy-headers` hinzu. Das sagt Uvicorn (durch das FastAPI CLI), den von diesem Proxy gesendeten Headern zu vertrauen und dass die Anwendung hinter HTTPS ausgeführt wird, usw.
 
 ```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "80"]
 ```
 
-#### Docker-Cache
+#### Docker-Cache { #docker-cache }
 
 In diesem `Dockerfile` gibt es einen wichtigen Trick: Wir kopieren zuerst die **Datei nur mit den Abhängigkeiten**, nicht den Rest des Codes. Lassen Sie mich Ihnen erklären, warum.
 
@@ -288,7 +315,7 @@ Dann, gegen Ende des `Dockerfile`s, kopieren wir den gesamten Code. Da sich der 
 COPY ./app /code/app
 ```
 
-### Das Docker-Image erstellen
+### Das Docker-Image erstellen { #build-the-docker-image }
 
 Nachdem nun alle Dateien vorhanden sind, erstellen wir das Containerimage.
 
@@ -313,7 +340,7 @@ In diesem Fall handelt es sich um dasselbe aktuelle Verzeichnis (`.`).
 
 ///
 
-### Den Docker-Container starten
+### Den Docker-Container starten { #start-the-docker-container }
 
 * Führen Sie einen Container basierend auf Ihrem Image aus:
 
@@ -325,7 +352,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 </div>
 
-## Es überprüfen
+## Es testen { #check-it }
 
 Sie sollten es in der URL Ihres Docker-Containers überprüfen können, zum Beispiel: <a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> oder <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (oder gleichwertig, unter Verwendung Ihres Docker-Hosts).
 
@@ -335,7 +362,7 @@ Sie werden etwas sehen wie:
 {"item_id": 5, "q": "somequery"}
 ```
 
-## Interaktive API-Dokumentation
+## Interaktive API-Dokumentation { #interactive-api-docs }
 
 Jetzt können Sie auf <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> oder <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
@@ -343,7 +370,7 @@ Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von <a 
 
 ![Swagger-Oberfläche](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-## Alternative API-Dokumentation
+## Alternative API-Dokumentation { #alternative-api-docs }
 
 Sie können auch auf <a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> oder <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
@@ -351,7 +378,7 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Ein Docker-Image mit einem Single-File-FastAPI erstellen
+## Ein Docker-Image mit einem Single-File-FastAPI erstellen { #build-a-docker-image-with-a-single-file-fastapi }
 
 Wenn Ihr FastAPI eine einzelne Datei ist, zum Beispiel `main.py` ohne ein `./app`-Verzeichnis, könnte Ihre Dateistruktur wie folgt aussehen:
 
@@ -373,20 +400,20 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# (1)
+# (1)!
 COPY ./main.py /code/
 
-# (2)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+# (2)!
+CMD ["fastapi", "run", "main.py", "--port", "80"]
 ```
 
 1. Kopiere die Datei `main.py` direkt in das Verzeichnis `/code` (ohne ein Verzeichnis `./app`).
 
-2. Führe Uvicorn aus und weisen es an, das `app`-Objekt von `main` zu importieren (anstatt von `app.main` zu importieren).
+2. Verwenden Sie `fastapi run`, um Ihre Anwendung in der einzelnen Datei `main.py` bereitzustellen.
 
-Passen Sie dann den Uvicorn-Befehl an, um das neue Modul `main` anstelle von `app.main` zu verwenden, um das FastAPI-Objekt `app` zu importieren.
+Indem Sie die Datei an `fastapi run` übergeben, wird automatisch erkannt, dass es sich um eine einzelne Datei handelt und nicht um den Teil eines Packages, und es wird wissen, wie es zu importieren ist und Ihre FastAPI-App bereitzustellen. 😎
 
-## Deployment-Konzepte
+## Deployment-Konzepte { #deployment-concepts }
 
 Lassen Sie uns noch einmal über einige der gleichen [Deployment-Konzepte](concepts.md){.internal-link target=_blank} in Bezug auf Container sprechen.
 
@@ -396,14 +423,14 @@ Die **gute Nachricht** ist, dass es mit jeder unterschiedlichen Strategie eine M
 
 Sehen wir uns diese **Deployment-Konzepte** im Hinblick auf Container noch einmal an:
 
-* Sicherheit – HTTPS
+* HTTPS
 * Beim Hochfahren ausführen
 * Neustarts
 * Replikation (die Anzahl der laufenden Prozesse)
 * Arbeitsspeicher
 * Schritte vor dem Start
 
-## HTTPS
+## HTTPS { #https }
 
 Wenn wir uns nur auf das **Containerimage** für eine FastAPI-Anwendung (und später auf den laufenden **Container**) konzentrieren, würde HTTPS normalerweise **extern** von einem anderen Tool verarbeitet.
 
@@ -417,7 +444,7 @@ Traefik verfügt über Integrationen mit Docker, Kubernetes und anderen, sodass 
 
 Alternativ könnte HTTPS von einem Cloud-Anbieter als einer seiner Dienste gehandhabt werden (während die Anwendung weiterhin in einem Container ausgeführt wird).
 
-## Beim Hochfahren ausführen und Neustarts
+## Beim Hochfahren ausführen und Neustarts { #running-on-startup-and-restarts }
 
 Normalerweise gibt es ein anderes Tool, das für das **Starten und Ausführen** Ihres Containers zuständig ist.
 
@@ -427,19 +454,19 @@ In den meisten (oder allen) Fällen gibt es eine einfache Option, um die Ausfüh
 
 Ohne die Verwendung von Containern kann es umständlich und schwierig sein, Anwendungen beim Hochfahren auszuführen und neu zu starten. Bei der **Arbeit mit Containern** ist diese Funktionalität jedoch in den meisten Fällen standardmäßig enthalten. ✨
 
-## Replikation – Anzahl der Prozesse
+## Replikation – Anzahl der Prozesse { #replication-number-of-processes }
 
-Wenn Sie einen <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</abbr> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Gunicorn mit Workern) zu verwenden.
+Wenn Sie einen <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und auf irgendeine Weise zusammenarbeiten.">Cluster</abbr> von Maschinen mit **Kubernetes**, Docker Swarm Mode, Nomad verwenden, oder einem anderen, ähnlich komplexen System zur Verwaltung verteilter Container auf mehreren Maschinen, möchten Sie wahrscheinlich die **Replikation auf Cluster-Ebene abwickeln**, anstatt in jedem Container einen **Prozessmanager** (wie Uvicorn mit Workern) zu verwenden.
 
-Diese verteilten Containerverwaltungssysteme wie Kubernetes verfügen normalerweise über eine integrierte Möglichkeit, die **Replikation von Containern** zu handhaben und gleichzeitig **Load Balancing** für die eingehenden Requests zu unterstützen. Alles auf **Cluster-Ebene**.
+Diese verteilten Containerverwaltungssysteme wie Kubernetes verfügen normalerweise über eine integrierte Möglichkeit, die **Replikation von Containern** zu handhaben und gleichzeitig **Load Balancing** für die eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> zu unterstützen. Alles auf **Cluster-Ebene**.
 
-In diesen Fällen möchten Sie wahrscheinlich ein **Docker-Image von Grund auf** erstellen, wie [oben erklärt](#dockerfile), Ihre Abhängigkeiten installieren und **einen einzelnen Uvicorn-Prozess** ausführen, anstatt etwas wie Gunicorn mit Uvicorn-Workern auszuführen.
+In diesen Fällen möchten Sie wahrscheinlich ein **Docker-Image von Grund auf** erstellen, wie [oben erklärt](#dockerfile), Ihre Abhängigkeiten installieren und **einen einzelnen Uvicorn-Prozess** ausführen, anstatt mehrere Uvicorn-Worker zu verwenden.
 
-### Load Balancer
+### Load Balancer { #load-balancer }
 
 Bei der Verwendung von Containern ist normalerweise eine Komponente vorhanden, **die am Hauptport lauscht**. Es könnte sich um einen anderen Container handeln, der auch ein **TLS-Terminierungsproxy** ist, um **HTTPS** zu verarbeiten, oder ein ähnliches Tool.
 
-Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) **ausgewogen** auf die Worker verteilen würde, wird sie üblicherweise auch **Load Balancer** – Lastverteiler – genannt.
+Da diese Komponente die **Last** an Requests aufnehmen und diese (hoffentlich) **ausgewogen** auf die Worker verteilen würde, wird sie üblicherweise auch <abbr title="Lastverteiler">**Load Balancer**</abbr> genannt.
 
 /// tip | Tipp
 
@@ -449,7 +476,7 @@ Die gleiche **TLS-Terminierungsproxy**-Komponente, die für HTTPS verwendet wird
 
 Und wenn Sie mit Containern arbeiten, verfügt das gleiche System, mit dem Sie diese starten und verwalten, bereits über interne Tools, um die **Netzwerkkommunikation** (z. B. HTTP-Requests) von diesem **Load Balancer** (das könnte auch ein **TLS-Terminierungsproxy** sein) zu den Containern mit Ihrer Anwendung weiterzuleiten.
 
-### Ein Load Balancer – mehrere Workercontainer
+### Ein Load Balancer – mehrere Workercontainer { #one-load-balancer-multiple-worker-containers }
 
 Bei der Arbeit mit **Kubernetes** oder ähnlichen verteilten Containerverwaltungssystemen würde die Verwendung ihrer internen Netzwerkmechanismen es dem einzelnen **Load Balancer**, der den Haupt-**Port** überwacht, ermöglichen, Kommunikation (Requests) an möglicherweise **mehrere Container** weiterzuleiten, in denen Ihre Anwendung ausgeführt wird.
 
@@ -459,41 +486,48 @@ Und das verteilte Containersystem mit dem **Load Balancer** würde **die Request
 
 Und normalerweise wäre dieser **Load Balancer** in der Lage, Requests zu verarbeiten, die an *andere* Anwendungen in Ihrem Cluster gerichtet sind (z. B. eine andere Domain oder unter einem anderen URL-Pfad-Präfix), und würde diese Kommunikation an die richtigen Container weiterleiten für *diese andere* Anwendung, die in Ihrem Cluster ausgeführt wird.
 
-### Ein Prozess pro Container
+### Ein Prozess pro Container { #one-process-per-container }
 
-In einem solchen Szenario möchten Sie wahrscheinlich **einen einzelnen (Uvicorn-)Prozess pro Container** haben, da Sie die Replikation bereits auf Cluster ebene durchführen würden.
+In einem solchen Szenario möchten Sie wahrscheinlich **einen einzelnen (Uvicorn-)Prozess pro Container** haben, da Sie die Replikation bereits auf Cluster-Ebene durchführen würden.
 
-In diesem Fall möchten Sie also **nicht** einen Prozessmanager wie Gunicorn mit Uvicorn-Workern oder Uvicorn mit seinen eigenen Uvicorn-Workern haben. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
+In diesem Fall möchten Sie also **nicht** mehrere Worker im Container haben, z. B. mit der `--workers` Befehlszeilenoption. Sie möchten nur einen **einzelnen Uvicorn-Prozess** pro Container haben (wahrscheinlich aber mehrere Container).
 
-Ein weiterer Prozessmanager im Container (wie es bei Gunicorn oder Uvicorn der Fall wäre, welche Uvicorn-Worker verwalten) würde nur **unnötige Komplexität** hinzufügen, um welche Sie sich höchstwahrscheinlich bereits mit Ihrem Clustersystem kümmern.
+Ein weiterer Prozessmanager im Container (wie es bei mehreren Workern der Fall wäre) würde nur **unnötige Komplexität** hinzufügen, um welche Sie sich höchstwahrscheinlich bereits mit Ihrem Clustersystem kümmern.
 
-### Container mit mehreren Prozessen und Sonderfälle
+### Container mit mehreren Prozessen und Sonderfälle { #containers-with-multiple-processes-and-special-cases }
 
-Natürlich gibt es **Sonderfälle**, in denen Sie **einen Container** mit einem **Gunicorn-Prozessmanager** haben möchten, welcher mehrere **Uvicorn-Workerprozesse** darin startet.
+Natürlich gibt es **Sonderfälle**, in denen Sie **einen Container** mit mehreren **Uvicorn-Workerprozessen** haben möchten.
 
-In diesen Fällen können Sie das **offizielle Docker-Image** verwenden, welches **Gunicorn** als Prozessmanager enthält, welcher mehrere **Uvicorn-Workerprozesse** ausführt, sowie einige Standardeinstellungen, um die Anzahl der Worker basierend auf den verfügbaren CPU-Kernen automatisch anzupassen. Ich erzähle Ihnen weiter unten in [Offizielles Docker-Image mit Gunicorn – Uvicorn](#offizielles-docker-image-mit-gunicorn-uvicorn) mehr darüber.
+In diesen Fällen können Sie die `--workers` Befehlszeilenoption verwenden, um die Anzahl der zu startenden Worker festzulegen:
+
+```{ .dockerfile .annotate }
+FROM python:3.9
+
+WORKDIR /code
+
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./app /code/app
+
+# (1)!
+CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
+```
+
+1. Hier verwenden wir die `--workers` Befehlszeilenoption, um die Anzahl der Worker auf 4 festzulegen.
 
 Hier sind einige Beispiele, wann das sinnvoll sein könnte:
 
-#### Eine einfache Anwendung
+#### Eine einfache Anwendung { #a-simple-app }
 
-Sie könnten einen Prozessmanager im Container haben wollen, wenn Ihre Anwendung **einfach genug** ist, sodass Sie die Anzahl der Prozesse nicht (zumindest noch nicht) zu stark tunen müssen und Sie einfach einen automatisierten Standard verwenden können (mit dem offiziellen Docker-Image), und Sie führen es auf einem **einzelnen Server** aus, nicht auf einem Cluster.
+Sie könnten einen Prozessmanager im Container haben wollen, wenn Ihre Anwendung **einfach genug** ist, sodass Sie es auf einem **einzelnen Server** ausführen können, nicht auf einem Cluster.
 
-#### Docker Compose
+#### Docker Compose { #docker-compose }
 
 Sie könnten das Deployment auf einem **einzelnen Server** (kein Cluster) mit **Docker Compose** durchführen, sodass Sie keine einfache Möglichkeit hätten, die Replikation von Containern (mit Docker Compose) zu verwalten und gleichzeitig das gemeinsame Netzwerk mit **Load Balancing** zu haben.
 
 Dann möchten Sie vielleicht **einen einzelnen Container** mit einem **Prozessmanager** haben, der darin **mehrere Workerprozesse** startet.
-
-#### Prometheus und andere Gründe
-
-Sie könnten auch **andere Gründe** haben, die es einfacher machen würden, einen **einzelnen Container** mit **mehreren Prozessen** zu haben, anstatt **mehrere Container** mit **einem einzelnen Prozess** in jedem von ihnen.
-
-Beispielsweise könnten Sie (abhängig von Ihrem Setup) ein Tool wie einen Prometheus-Exporter im selben Container haben, welcher Zugriff auf **jeden der eingehenden Requests** haben sollte.
-
-Wenn Sie in hier **mehrere Container** hätten, würde Prometheus beim **Lesen der Metriken** standardmäßig jedes Mal diejenigen für **einen einzelnen Container** abrufen (für den Container, der den spezifischen Request verarbeitet hat), anstatt die **akkumulierten Metriken** für alle replizierten Container abzurufen.
-
-In diesem Fall könnte einfacher sein, **einen Container** mit **mehreren Prozessen** und ein lokales Tool (z. B. einen Prometheus-Exporter) in demselben Container zu haben, welches Prometheus-Metriken für alle internen Prozesse sammelt und diese Metriken für diesen einzelnen Container offenlegt.
 
 ---
 
@@ -506,25 +540,25 @@ Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, de
 * Arbeitsspeicher
 * Schritte vor dem Start
 
-## Arbeitsspeicher
+## Arbeitsspeicher { #memory }
 
 Wenn Sie **einen einzelnen Prozess pro Container** ausführen, wird von jedem dieser Container (mehr als einer, wenn sie repliziert werden) eine mehr oder weniger klar definierte, stabile und begrenzte Menge an Arbeitsspeicher verbraucht.
 
-Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z. B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von denen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
+Und dann können Sie dieselben Speichergrenzen und -anforderungen in Ihren Konfigurationen für Ihr Container-Management-System festlegen (z. B. in **Kubernetes**). Auf diese Weise ist es in der Lage, die Container auf den **verfügbaren Maschinen** zu replizieren, wobei die von diesen benötigte Speichermenge und die auf den Maschinen im Cluster verfügbare Menge berücksichtigt werden.
 
-Wenn Ihre Anwendung **einfach** ist, wird dies wahrscheinlich **kein Problem darstellen** und Sie müssen möglicherweise keine festen Speichergrenzen angeben. Wenn Sie jedoch **viel Speicher verbrauchen** (z. B. bei **Modellen für maschinelles Lernen**), sollten Sie überprüfen, wie viel Speicher Sie verbrauchen, und die **Anzahl der Container** anpassen, die in **jeder Maschine** ausgeführt werden. (und möglicherweise weitere Maschinen zu Ihrem Cluster hinzufügen).
+Wenn Ihre Anwendung **einfach** ist, wird dies wahrscheinlich **kein Problem darstellen** und Sie müssen möglicherweise keine festen Speichergrenzen angeben. Wenn Sie jedoch **viel Speicher verbrauchen** (z. B. bei **Modellen für maschinelles Lernen**), sollten Sie überprüfen, wie viel Speicher Sie verbrauchen, und die **Anzahl der Container** anpassen, die in **jeder Maschine** ausgeführt werden (und möglicherweise weitere Maschinen zu Ihrem Cluster hinzufügen).
 
-Wenn Sie **mehrere Prozesse pro Container** ausführen (zum Beispiel mit dem offiziellen Docker-Image), müssen Sie sicherstellen, dass die Anzahl der gestarteten Prozesse nicht **mehr Speicher verbraucht** als verfügbar ist.
+Wenn Sie **mehrere Prozesse pro Container** ausführen, müssen Sie sicherstellen, dass die Anzahl der gestarteten Prozesse nicht **mehr Speicher verbraucht** als verfügbar ist.
 
-## Schritte vor dem Start und Container
+## Schritte vor dem Start und Container { #previous-steps-before-starting-and-containers }
 
 Wenn Sie Container (z. B. Docker, Kubernetes) verwenden, können Sie hauptsächlich zwei Ansätze verwenden.
 
-### Mehrere Container
+### Mehrere Container { #multiple-containers }
 
-Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnenen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
+Wenn Sie **mehrere Container** haben, von denen wahrscheinlich jeder einen **einzelnen Prozess** ausführt (z. B. in einem **Kubernetes**-Cluster), dann möchten Sie wahrscheinlich einen **separaten Container** haben, welcher die Arbeit der **Vorab-Schritte** in einem einzelnen Container, mit einem einzelnen Prozess ausführt, **bevor** die replizierten Workercontainer ausgeführt werden.
 
-/// info
+/// info | Info
 
 Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init-Container</a>.
 
@@ -532,83 +566,29 @@ Wenn Sie Kubernetes verwenden, wäre dies wahrscheinlich ein <a href="https://ku
 
 Wenn es in Ihrem Anwendungsfall kein Problem darstellt, diese vorherigen Schritte **mehrmals parallel** auszuführen (z. B. wenn Sie keine Datenbankmigrationen ausführen, sondern nur prüfen, ob die Datenbank bereits bereit ist), können Sie sie auch einfach in jedem Container direkt vor dem Start des Hauptprozesses einfügen.
 
-### Einzelner Container
+### Einzelner Container { #single-container }
 
-Wenn Sie ein einfaches Setup mit einem **einzelnen Container** haben, welcher dann mehrere **Workerprozesse** (oder auch nur einen Prozess) startet, können Sie die Vorab-Schritte im selben Container direkt vor dem Starten des Prozesses mit der Anwendung ausführen. Das offizielle Docker-Image unterstützt das intern.
+Wenn Sie ein einfaches Setup mit einem **einzelnen Container** haben, welcher dann mehrere **Workerprozesse** (oder auch nur einen Prozess) startet, können Sie die Vorab-Schritte im selben Container direkt vor dem Starten des Prozesses mit der Anwendung ausführen.
 
-## Offizielles Docker-Image mit Gunicorn – Uvicorn
+### Docker-Basisimage { #base-docker-image }
 
-Es gibt ein offizielles Docker-Image, in dem Gunicorn mit Uvicorn-Workern ausgeführt wird, wie in einem vorherigen Kapitel beschrieben: [Serverworker – Gunicorn mit Uvicorn](server-workers.md){.internal-link target=_blank}.
+Es gab ein offizielles FastAPI-Docker-Image: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Dieses ist jedoch jetzt veraltet. ⛔️
 
-Dieses Image wäre vor allem in den oben beschriebenen Situationen nützlich: [Container mit mehreren Prozessen und Sonderfälle](#container-mit-mehreren-prozessen-und-sonderfalle).
+Sie sollten wahrscheinlich **nicht** dieses Basis-Docker-Image (oder ein anderes ähnliches) verwenden.
 
-* <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+Wenn Sie **Kubernetes** (oder andere) verwenden und bereits **Replikation** auf Cluster-Ebene mit mehreren **Containern** eingerichtet haben. In diesen Fällen ist es besser, **ein Image von Grund auf neu zu erstellen**, wie oben beschrieben: [Ein Docker-Image für FastAPI erstellen](#build-a-docker-image-for-fastapi).
 
-/// warning | Achtung
+Und wenn Sie mehrere Worker benötigen, können Sie einfach die `--workers` Befehlszeilenoption verwenden.
 
-Es besteht eine hohe Wahrscheinlichkeit, dass Sie dieses oder ein ähnliches Basisimage **nicht** benötigen und es besser wäre, wenn Sie das Image von Grund auf neu erstellen würden, wie [oben beschrieben in: Ein Docker-Image für FastAPI erstellen](#ein-docker-image-fur-fastapi-erstellen).
+/// note | Technische Details
 
-///
+Das Docker-Image wurde erstellt, als Uvicorn das Verwalten und Neustarten von ausgefallenen Workern noch nicht unterstützte, weshalb es notwendig war, Gunicorn mit Uvicorn zu verwenden, was zu einer erheblichen Komplexität führte, nur damit Gunicorn die Uvicorn-Workerprozesse verwaltet und neu startet.
 
-Dieses Image verfügt über einen **Auto-Tuning**-Mechanismus, um die **Anzahl der Arbeitsprozesse** basierend auf den verfügbaren CPU-Kernen festzulegen.
-
-Es verfügt über **vernünftige Standardeinstellungen**, aber Sie können trotzdem alle Konfigurationen mit **Umgebungsvariablen** oder Konfigurationsdateien ändern und aktualisieren.
-
-Es unterstützt auch die Ausführung von <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker#pre_start_path" class="external-link" target="_blank">**Vorab-Schritten vor dem Start** </a> mit einem Skript.
-
-/// tip | Tipp
-
-Um alle Konfigurationen und Optionen anzuzeigen, gehen Sie zur Docker-Image-Seite: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>.
+Aber jetzt, da Uvicorn (und der `fastapi`-Befehl) die Verwendung von `--workers` unterstützen, gibt es keinen Grund, ein Basis-Docker-Image an Stelle eines eigenen (das praktisch denselben Code enthält 😅) zu verwenden.
 
 ///
 
-### Anzahl der Prozesse auf dem offiziellen Docker-Image
-
-Die **Anzahl der Prozesse** auf diesem Image wird **automatisch** anhand der verfügbaren CPU-**Kerne** berechnet.
-
-Das bedeutet, dass versucht wird, so viel **Leistung** wie möglich aus der CPU herauszuquetschen.
-
-Sie können das auch in der Konfiguration anpassen, indem Sie **Umgebungsvariablen**, usw. verwenden.
-
-Das bedeutet aber auch, da die Anzahl der Prozesse von der CPU abhängt, welche der Container ausführt, dass die **Menge des verbrauchten Speichers** ebenfalls davon abhängt.
-
-Wenn Ihre Anwendung also viel Speicher verbraucht (z. B. bei Modellen für maschinelles Lernen) und Ihr Server über viele CPU-Kerne, **aber wenig Speicher** verfügt, könnte Ihr Container am Ende versuchen, mehr Speicher als vorhanden zu verwenden, was zu erheblichen Leistungseinbußen (oder sogar zum Absturz) führen kann. 🚨
-
-### Ein `Dockerfile` erstellen
-
-So würden Sie ein `Dockerfile` basierend auf diesem Image erstellen:
-
-```Dockerfile
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app
-```
-
-### Größere Anwendungen
-
-Wenn Sie dem Abschnitt zum Erstellen von [größeren Anwendungen mit mehreren Dateien](../tutorial/bigger-applications.md){.internal-link target=_blank} gefolgt sind, könnte Ihr `Dockerfile` stattdessen wie folgt aussehen:
-
-```Dockerfile hl_lines="7"
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
-
-COPY ./requirements.txt /app/requirements.txt
-
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
-
-COPY ./app /app/app
-```
-
-### Wann verwenden
-
-Sie sollten dieses offizielle Basisimage (oder ein ähnliches) wahrscheinlich **nicht** benutzen, wenn Sie **Kubernetes** (oder andere) verwenden und Sie bereits **Replikation** auf Cluster ebene mit mehreren **Containern** eingerichtet haben. In diesen Fällen ist es besser, **ein Image von Grund auf zu erstellen**, wie oben beschrieben: [Ein Docker-Image für FastAPI erstellen](#ein-docker-image-fur-fastapi-erstellen).
-
-Dieses Image wäre vor allem in den oben in [Container mit mehreren Prozessen und Sonderfälle](#container-mit-mehreren-prozessen-und-sonderfalle) beschriebenen Sonderfällen nützlich. Wenn Ihre Anwendung beispielsweise **einfach genug** ist, dass das Festlegen einer Standardanzahl von Prozessen basierend auf der CPU gut funktioniert, möchten Sie sich nicht mit der manuellen Konfiguration der Replikation auf Cluster ebene herumschlagen und führen nicht mehr als einen Container mit Ihrer Anwendung aus. Oder wenn Sie das Deployment mit **Docker Compose** durchführen und auf einem einzelnen Server laufen, usw.
-
-## Deployment des Containerimages
+## Deployment des Containerimages { #deploy-the-container-image }
 
 Nachdem Sie ein Containerimage (Docker) haben, gibt es mehrere Möglichkeiten, es bereitzustellen.
 
@@ -620,100 +600,11 @@ Zum Beispiel:
 * Mit einem anderen Tool wie Nomad
 * Mit einem Cloud-Dienst, der Ihr Containerimage nimmt und es bereitstellt
 
-## Docker-Image mit Poetry
+## Docker-Image mit `uv` { #docker-image-with-uv }
 
-Wenn Sie <a href="https://python-poetry.org/" class="external-link" target="_blank">Poetry</a> verwenden, um die Abhängigkeiten Ihres Projekts zu verwalten, können Sie Dockers mehrphasige Builds verwenden:
+Wenn Sie <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> verwenden, um Ihr Projekt zu installieren und zu verwalten, können Sie deren <a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv-Docker-Leitfaden</a> befolgen.
 
-```{ .dockerfile .annotate }
-# (1)
-FROM python:3.9 as requirements-stage
-
-# (2)
-WORKDIR /tmp
-
-# (3)
-RUN pip install poetry
-
-# (4)
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-
-# (5)
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-
-# (6)
-FROM python:3.9
-
-# (7)
-WORKDIR /code
-
-# (8)
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
-
-# (9)
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
-# (10)
-COPY ./app /code/app
-
-# (11)
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
-```
-
-1. Dies ist die erste Phase, genannt `requirements-stage` – „Anforderungsphase“.
-
-2. Setze `/tmp` als aktuelles Arbeitsverzeichnis.
-
-    Hier werden wir die Datei `requirements.txt` generieren.
-
-3. Installiere Poetry in dieser Docker-Phase.
-
-4. Kopiere die Dateien `pyproject.toml` und `poetry.lock` in das Verzeichnis `/tmp`.
-
-    Da es `./poetry.lock*` verwendet (endet mit einem `*`), stürzt es nicht ab, wenn diese Datei noch nicht verfügbar ist.
-
-5. Generiere die Datei `requirements.txt`.
-
-6. Dies ist die letzte Phase. Alles hier bleibt im endgültigen Containerimage erhalten.
-
-7. Setze das aktuelle Arbeitsverzeichnis auf `/code`.
-
-8. Kopiere die Datei `requirements.txt` in das Verzeichnis `/code`.
-
-    Diese Datei existiert nur in der vorherigen Docker-Phase, deshalb verwenden wir `--from-requirements-stage`, um sie zu kopieren.
-
-9. Installiere die Paketabhängigkeiten von der generierten Datei `requirements.txt`.
-
-10. Kopiere das Verzeichnis `app` in das Verzeichnis `/code`.
-
-11. Führe den Befehl `uvicorn` aus und weise ihn an, das aus `app.main` importierte `app`-Objekt zu verwenden.
-
-/// tip | Tipp
-
-Klicken Sie auf die Zahlenblasen, um zu sehen, was jede Zeile bewirkt.
-
-///
-
-Eine **Docker-Phase** ist ein Teil eines `Dockerfile`s, welcher als **temporäres Containerimage** fungiert und nur zum Generieren einiger Dateien für die spätere Verwendung verwendet wird.
-
-Die erste Phase wird nur zur **Installation von Poetry** und zur **Generierung der `requirements.txt`** mit deren Projektabhängigkeiten aus der Datei `pyproject.toml` von Poetry verwendet.
-
-Diese `requirements.txt`-Datei wird später in der **nächsten Phase** mit `pip` verwendet.
-
-Im endgültigen Containerimage bleibt **nur die letzte Stufe** erhalten. Die vorherigen Stufen werden verworfen.
-
-Bei der Verwendung von Poetry wäre es sinnvoll, **mehrstufige Docker-Builds** zu verwenden, da Poetry und seine Abhängigkeiten nicht wirklich im endgültigen Containerimage installiert sein müssen, sondern Sie brauchen **nur** die Datei `requirements.txt`, um Ihre Projektabhängigkeiten zu installieren.
-
-Dann würden Sie im nächsten (und letzten) Schritt das Image mehr oder weniger auf die gleiche Weise wie zuvor beschrieben erstellen.
-
-### Hinter einem TLS-Terminierungsproxy – Poetry
-
-Auch hier gilt: Wenn Sie Ihren Container hinter einem TLS-Terminierungsproxy (Load Balancer) wie Nginx oder Traefik ausführen, fügen Sie dem Befehl die Option `--proxy-headers` hinzu:
-
-```Dockerfile
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
-```
-
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Mithilfe von Containersystemen (z. B. mit **Docker** und **Kubernetes**) ist es ziemlich einfach, alle **Deployment-Konzepte** zu handhaben:
 
@@ -727,5 +618,3 @@ Mithilfe von Containersystemen (z. B. mit **Docker** und **Kubernetes**) ist es 
 In den meisten Fällen möchten Sie wahrscheinlich kein Basisimage verwenden und stattdessen **ein Containerimage von Grund auf erstellen**, eines basierend auf dem offiziellen Python-Docker-Image.
 
 Indem Sie auf die **Reihenfolge** der Anweisungen im `Dockerfile` und den **Docker-Cache** achten, können Sie **die Build-Zeiten minimieren**, um Ihre Produktivität zu erhöhen (und Langeweile zu vermeiden). 😎
-
-In bestimmten Sonderfällen möchten Sie möglicherweise das offizielle Docker-Image für FastAPI verwenden. 🤓

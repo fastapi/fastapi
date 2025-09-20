@@ -1,10 +1,10 @@
-# Abhängigkeiten
+# Abhängigkeiten { #dependencies }
 
-**FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
+**FastAPI** hat ein sehr mächtiges, aber intuitives **<abbr title="auch bekannt als: Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>** System.
 
 Es ist so konzipiert, sehr einfach zu verwenden zu sein und es jedem Entwickler sehr leicht zu machen, andere Komponenten mit **FastAPI** zu integrieren.
 
-## Was ist „Dependency Injection“
+## Was ist „Dependency Injection“ { #what-is-dependency-injection }
 
 **„Dependency Injection“** bedeutet in der Programmierung, dass es für Ihren Code (in diesem Fall Ihre *Pfadoperation-Funktionen*) eine Möglichkeit gibt, Dinge zu deklarieren, die er verwenden möchte und die er zum Funktionieren benötigt: „Abhängigkeiten“ – „Dependencies“.
 
@@ -19,15 +19,15 @@ Das ist sehr nützlich, wenn Sie:
 
 All dies, während Sie Codeverdoppelung minimieren.
 
-## Erste Schritte
+## Erste Schritte { #first-steps }
 
 Sehen wir uns ein sehr einfaches Beispiel an. Es ist so einfach, dass es vorerst nicht sehr nützlich ist.
 
 Aber so können wir uns besser auf die Funktionsweise des **Dependency Injection** Systems konzentrieren.
 
-### Erstellen Sie eine Abhängigkeit (<abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">„Dependable“</abbr>)
+### Eine Abhängigkeit erstellen, oder <abbr title="Das von dem abhängt, die zu verwendende Abhängigkeit">„Dependable“</abbr> { #create-a-dependency-or-dependable }
 
-Konzentrieren wir uns zunächst auf die Abhängigkeit - die Dependency.
+Konzentrieren wir uns zunächst auf die Abhängigkeit – die Dependency.
 
 Es handelt sich einfach um eine Funktion, die die gleichen Parameter entgegennimmt wie eine *Pfadoperation-Funktion*:
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
@@ -48,23 +48,23 @@ In diesem Fall erwartet diese Abhängigkeit:
 * Einen optionalen Query-Parameter `skip`, der ein `int` ist und standardmäßig `0` ist.
 * Einen optionalen Query-Parameter `limit`, der ein `int` ist und standardmäßig `100` ist.
 
-Und dann wird einfach ein `dict` zurückgegeben, welches diese Werte enthält.
+Und dann wird einfach ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> zurückgegeben, welches diese Werte enthält.
 
-/// info
+/// info | Info
 
 FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
 Wenn Sie eine ältere Version haben, werden Sie Fehler angezeigt bekommen, wenn Sie versuchen, `Annotated` zu verwenden.
 
-Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrade-der-fastapi-versionen){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
+Bitte [aktualisieren Sie FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} daher mindestens zu Version 0.95.1, bevor Sie `Annotated` verwenden.
 
 ///
 
-### `Depends` importieren
+### `Depends` importieren { #import-depends }
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
-### Deklarieren der Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr>
+### Die Abhängigkeit im <abbr title="Das Abhängige, der Verwender der Abhängigkeit">„Dependant“</abbr> deklarieren { #declare-the-dependency-in-the-dependant }
 
 So wie auch `Body`, `Query`, usw., verwenden Sie `Depends` mit den Parametern Ihrer *Pfadoperation-Funktion*:
 
@@ -86,7 +86,7 @@ Im nächsten Kapitel erfahren Sie, welche anderen „Dinge“, außer Funktionen
 
 ///
 
-Immer wenn ein neuer Request eintrifft, kümmert sich **FastAPI** darum:
+Immer wenn ein neuer <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> eintrifft, kümmert sich **FastAPI** darum:
 
 * Ihre Abhängigkeitsfunktion („Dependable“) mit den richtigen Parametern aufzurufen.
 * Sich das Ergebnis von dieser Funktion zu holen.
@@ -105,7 +105,7 @@ common_parameters --> read_users
 
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
-/// check
+/// check | Testen
 
 Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
 
@@ -113,7 +113,7 @@ Sie übergeben es einfach an `Depends` und **FastAPI** weiß, wie der Rest erled
 
 ///
 
-## `Annotated`-Abhängigkeiten wiederverwenden
+## `Annotated`-Abhängigkeiten wiederverwenden { #share-annotated-dependencies }
 
 In den Beispielen oben sehen Sie, dass es ein kleines bisschen **Codeverdoppelung** gibt.
 
@@ -139,7 +139,7 @@ Die Abhängigkeiten funktionieren weiterhin wie erwartet, und das **Beste daran*
 
 Das ist besonders nützlich, wenn Sie es in einer **großen Codebasis** verwenden, in der Sie in **vielen *Pfadoperationen*** immer wieder **dieselben Abhängigkeiten** verwenden.
 
-## `async` oder nicht `async`
+## `async` oder nicht `async` { #to-async-or-not-to-async }
 
 Da Abhängigkeiten auch von **FastAPI** aufgerufen werden (so wie Ihre *Pfadoperation-Funktionen*), gelten beim Definieren Ihrer Funktionen die gleichen Regeln.
 
@@ -151,11 +151,11 @@ Es spielt keine Rolle. **FastAPI** weiß, was zu tun ist.
 
 /// note | Hinweis
 
-Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-eile){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
+Wenn Ihnen das nichts sagt, lesen Sie den [Async: *„In Eile?“*](../../async.md#in-a-hurry){.internal-link target=_blank}-Abschnitt über `async` und `await` in der Dokumentation.
 
 ///
 
-## Integriert in OpenAPI
+## Integriert in OpenAPI { #integrated-with-openapi }
 
 Alle Requestdeklarationen, -validierungen und -anforderungen Ihrer Abhängigkeiten (und Unterabhängigkeiten) werden in dasselbe OpenAPI-Schema integriert.
 
@@ -163,9 +163,9 @@ Die interaktive Dokumentation enthält also auch alle Informationen aus diesen A
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-## Einfache Verwendung
+## Einfache Verwendung { #simple-usage }
 
-Näher betrachtet, werden *Pfadoperation-Funktionen* deklariert, um verwendet zu werden, wann immer ein *Pfad* und eine *Operation* übereinstimmen, und dann kümmert sich **FastAPI** darum, die Funktion mit den richtigen Parametern aufzurufen, die Daten aus der Anfrage extrahierend.
+Näher betrachtet, werden *Pfadoperation-Funktionen* deklariert, um verwendet zu werden, wann immer ein *Pfad* und eine *Operation* übereinstimmen, und dann kümmert sich **FastAPI** darum, die Funktion mit den richtigen Parametern aufzurufen, die Daten aus dem Request extrahierend.
 
 Tatsächlich funktionieren alle (oder die meisten) Webframeworks auf die gleiche Weise.
 
@@ -181,7 +181,7 @@ Andere gebräuchliche Begriffe für dieselbe Idee der „Abhängigkeitsinjektion
 * Injectables
 * Komponenten
 
-## **FastAPI**-Plugins
+## **FastAPI**-Plugins { #fastapi-plug-ins }
 
 Integrationen und „Plugins“ können mit dem **Dependency Injection** System erstellt werden. Aber tatsächlich besteht **keine Notwendigkeit, „Plugins“ zu erstellen**, da es durch die Verwendung von Abhängigkeiten möglich ist, eine unendliche Anzahl von Integrationen und Interaktionen zu deklarieren, die dann für Ihre *Pfadoperation-Funktionen* verfügbar sind.
 
@@ -189,7 +189,7 @@ Und Abhängigkeiten können auf sehr einfache und intuitive Weise erstellt werde
 
 Beispiele hierfür finden Sie in den nächsten Kapiteln zu relationalen und NoSQL-Datenbanken, Sicherheit usw.
 
-## **FastAPI**-Kompatibilität
+## **FastAPI**-Kompatibilität { #fastapi-compatibility }
 
 Die Einfachheit des Dependency Injection Systems macht **FastAPI** kompatibel mit:
 
@@ -199,10 +199,10 @@ Die Einfachheit des Dependency Injection Systems macht **FastAPI** kompatibel mi
 * externen APIs
 * Authentifizierungs- und Autorisierungssystemen
 * API-Nutzungs-Überwachungssystemen
-* Responsedaten-Injektionssystemen
+* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responsedaten</abbr>-Injektionssystemen
 * usw.
 
-## Einfach und leistungsstark
+## Einfach und leistungsstark { #simple-and-powerful }
 
 Obwohl das hierarchische Dependency Injection System sehr einfach zu definieren und zu verwenden ist, ist es dennoch sehr mächtig.
 
@@ -242,7 +242,7 @@ admin_user --> activate_user
 paying_user --> pro_items
 ```
 
-## Integriert mit **OpenAPI**
+## Integriert mit **OpenAPI** { #integrated-with-openapi_1 }
 
 Alle diese Abhängigkeiten, während sie ihre Anforderungen deklarieren, fügen auch Parameter, Validierungen, usw. zu Ihren *Pfadoperationen* hinzu.
 

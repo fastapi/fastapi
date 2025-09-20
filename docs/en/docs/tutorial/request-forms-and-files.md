@@ -1,4 +1,4 @@
-# Request Forms and Files
+# Request Forms and Files { #request-forms-and-files }
 
 You can define files and form fields at the same time using `File` and `Form`.
 
@@ -14,11 +14,11 @@ $ pip install python-multipart
 
 ///
 
-## Import `File` and `Form`
+## Import `File` and `Form` { #import-file-and-form }
 
 {* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
 
-## Define `File` and `Form` parameters
+## Define `File` and `Form` parameters { #define-file-and-form-parameters }
 
 Create file and form parameters the same way you would for `Body` or `Query`:
 
@@ -36,6 +36,6 @@ This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
 ///
 
-## Recap
+## Recap { #recap }
 
 Use `File` and `Form` together when you need to receive data and files in the same request.

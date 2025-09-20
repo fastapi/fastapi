@@ -1,4 +1,4 @@
-# Deployment-Konzepte
+# Deployment-Konzepte { #deployments-concepts }
 
 Bei dem Deployment – der Bereitstellung – einer **FastAPI**-Anwendung, oder eigentlich jeder Art von Web-API, gibt es mehrere Konzepte, die Sie wahrscheinlich interessieren, und mithilfe der Sie die **am besten geeignete** Methode zur **Bereitstellung Ihrer Anwendung** finden können.
 
@@ -13,7 +13,7 @@ Einige wichtige Konzepte sind:
 
 Wir werden sehen, wie diese sich auf das **Deployment** auswirken.
 
-Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu bedienen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
+Letztendlich besteht das ultimative Ziel darin, **Ihre API-Clients** auf **sichere** Weise zu versorgen, um **Unterbrechungen** zu vermeiden und die **Rechenressourcen** (z. B. entfernte Server/virtuelle Maschinen) so effizient wie möglich zu nutzen. 🚀
 
 Ich erzähle Ihnen hier etwas mehr über diese **Konzepte**, was Ihnen hoffentlich die **Intuition** gibt, die Sie benötigen, um zu entscheiden, wie Sie Ihre API in sehr unterschiedlichen Umgebungen bereitstellen, möglicherweise sogar in **zukünftigen**, die jetzt noch nicht existieren.
 
@@ -23,7 +23,7 @@ In den nächsten Kapiteln werde ich Ihnen mehr **konkrete Rezepte** für die Ber
 
 Aber schauen wir uns zunächst einmal diese grundlegenden **konzeptionellen Ideen** an. Diese Konzepte gelten auch für jede andere Art von Web-API. 💡
 
-## Sicherheit – HTTPS
+## Sicherheit – HTTPS { #security-https }
 
 Im [vorherigen Kapitel über HTTPS](https.md){.internal-link target=_blank} haben wir erfahren, wie HTTPS Verschlüsselung für Ihre API bereitstellt.
 
@@ -31,7 +31,7 @@ Wir haben auch gesehen, dass HTTPS normalerweise von einer Komponente **außerha
 
 Und es muss etwas geben, das für die **Erneuerung der HTTPS-Zertifikate** zuständig ist, es könnte sich um dieselbe Komponente handeln oder um etwas anderes.
 
-### Beispieltools für HTTPS
+### Beispieltools für HTTPS { #example-tools-for-https }
 
 Einige der Tools, die Sie als TLS-Terminierungsproxy verwenden können, sind:
 
@@ -55,11 +55,11 @@ In den nächsten Kapiteln zeige ich Ihnen einige konkrete Beispiele.
 
 Die nächsten zu berücksichtigenden Konzepte drehen sich dann um das Programm, das Ihre eigentliche API ausführt (z. B. Uvicorn).
 
-## Programm und Prozess
+## Programm und Prozess { #program-and-process }
 
 Wir werden viel über den laufenden „**Prozess**“ sprechen, daher ist es nützlich, Klarheit darüber zu haben, was das bedeutet und was der Unterschied zum Wort „**Programm**“ ist.
 
-### Was ist ein Programm?
+### Was ist ein Programm { #what-is-a-program }
 
 Das Wort **Programm** wird häufig zur Beschreibung vieler Dinge verwendet:
 
@@ -67,7 +67,7 @@ Das Wort **Programm** wird häufig zur Beschreibung vieler Dinge verwendet:
 * Die **Datei**, die vom Betriebssystem **ausgeführt** werden kann, zum Beispiel: `python`, `python.exe` oder `uvicorn`.
 * Ein bestimmtes Programm, während es auf dem Betriebssystem **läuft**, die CPU nutzt und Dinge im Arbeitsspeicher ablegt. Dies wird auch als **Prozess** bezeichnet.
 
-### Was ist ein Prozess?
+### Was ist ein Prozess { #what-is-a-process }
 
 Das Wort **Prozess** wird normalerweise spezifischer verwendet und bezieht sich nur auf das, was im Betriebssystem ausgeführt wird (wie im letzten Punkt oben):
 
@@ -88,13 +88,13 @@ Und Sie werden beispielsweise wahrscheinlich feststellen, dass mehrere Prozesse 
 
 Nachdem wir nun den Unterschied zwischen den Begriffen **Prozess** und **Programm** kennen, sprechen wir weiter über das Deployment.
 
-## Beim Hochfahren ausführen
+## Beim Hochfahren ausführen { #running-on-startup }
 
 Wenn Sie eine Web-API erstellen, möchten Sie in den meisten Fällen, dass diese **immer läuft**, ununterbrochen, damit Ihre Clients immer darauf zugreifen können. Es sei denn natürlich, Sie haben einen bestimmten Grund, warum Sie möchten, dass diese nur in bestimmten Situationen ausgeführt wird. Meistens möchten Sie jedoch, dass sie ständig ausgeführt wird und **verfügbar** ist.
 
-### Auf einem entfernten Server
+### Auf einem entfernten Server { #in-a-remote-server }
 
-Wenn Sie einen entfernten Server (einen Cloud-Server, eine virtuelle Maschine, usw.) einrichten, können Sie am einfachsten Uvicorn (oder ähnliches) manuell ausführen, genau wie bei der lokalen Entwicklung.
+Wenn Sie einen entfernten Server (einen Cloud-Server, eine virtuelle Maschine, usw.) einrichten, können Sie am einfachsten `fastapi run` (welches Uvicorn verwendet) oder etwas Ähnliches manuell ausführen, genau wie bei der lokalen Entwicklung.
 
 Und es wird funktionieren und **während der Entwicklung** nützlich sein.
 
@@ -102,15 +102,15 @@ Wenn Ihre Verbindung zum Server jedoch unterbrochen wird, wird der **laufende Pr
 
 Und wenn der Server neu gestartet wird (z. B. nach Updates oder Migrationen vom Cloud-Anbieter), werden Sie das wahrscheinlich **nicht bemerken**. Und deshalb wissen Sie nicht einmal, dass Sie den Prozess manuell neu starten müssen. Ihre API bleibt also einfach tot. 😱
 
-### Beim Hochfahren automatisch ausführen
+### Beim Hochfahren automatisch ausführen { #run-automatically-on-startup }
 
 Im Allgemeinen möchten Sie wahrscheinlich, dass das Serverprogramm (z. B. Uvicorn) beim Hochfahren des Servers automatisch gestartet wird und kein **menschliches Eingreifen** erforderlich ist, sodass immer ein Prozess mit Ihrer API ausgeführt wird (z. B. Uvicorn, welches Ihre FastAPI-Anwendung ausführt).
 
-### Separates Programm
+### Separates Programm { #separate-program }
 
 Um dies zu erreichen, haben Sie normalerweise ein **separates Programm**, welches sicherstellt, dass Ihre Anwendung beim Hochfahren ausgeführt wird. Und in vielen Fällen würde es auch sicherstellen, dass auch andere Komponenten oder Anwendungen ausgeführt werden, beispielsweise eine Datenbank.
 
-### Beispieltools zur Ausführung beim Hochfahren
+### Beispieltools zur Ausführung beim Hochfahren { #example-tools-to-run-at-startup }
 
 Einige Beispiele für Tools, die diese Aufgabe übernehmen können, sind:
 
@@ -125,29 +125,29 @@ Einige Beispiele für Tools, die diese Aufgabe übernehmen können, sind:
 
 In den nächsten Kapiteln werde ich Ihnen konkretere Beispiele geben.
 
-## Neustart
+## Neustart { #restarts }
 
 Ähnlich wie Sie sicherstellen möchten, dass Ihre Anwendung beim Hochfahren ausgeführt wird, möchten Sie wahrscheinlich auch sicherstellen, dass diese nach Fehlern **neu gestartet** wird.
 
-### Wir machen Fehler
+### Wir machen Fehler { #we-make-mistakes }
 
 Wir, als Menschen, machen ständig **Fehler**. Software hat fast *immer* **Bugs**, die an verschiedenen Stellen versteckt sind. 🐛
 
 Und wir als Entwickler verbessern den Code ständig, wenn wir diese Bugs finden und neue Funktionen implementieren (und möglicherweise auch neue Bugs hinzufügen 😅).
 
-### Kleine Fehler automatisch handhaben
+### Kleine Fehler automatisch handhaben { #small-errors-automatically-handled }
 
-Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise dem einzelnen Request zurückgeben, der den Fehler ausgelöst hat. 🛡
+Wenn beim Erstellen von Web-APIs mit FastAPI ein Fehler in unserem Code auftritt, wird FastAPI ihn normalerweise dem einzelnen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zurückgeben, der den Fehler ausgelöst hat. 🛡
 
 Der Client erhält für diesen Request einen **500 Internal Server Error**, aber die Anwendung arbeitet bei den nächsten Requests weiter, anstatt einfach komplett abzustürzen.
 
-### Größere Fehler – Abstürze
+### Größere Fehler – Abstürze { #bigger-errors-crashes }
 
 Dennoch kann es vorkommen, dass wir Code schreiben, der **die gesamte Anwendung zum Absturz bringt** und so zum Absturz von Uvicorn und Python führt. 💥
 
 Und dennoch möchten Sie wahrscheinlich nicht, dass die Anwendung tot bleibt, weil an einer Stelle ein Fehler aufgetreten ist. Sie möchten wahrscheinlich, dass sie zumindest für die *Pfadoperationen*, die nicht fehlerhaft sind, **weiterläuft**.
 
-### Neustart nach Absturz
+### Neustart nach Absturz { #restart-after-crash }
 
 Aber in den Fällen mit wirklich schwerwiegenden Fehlern, die den laufenden **Prozess** zum Absturz bringen, benötigen Sie eine externe Komponente, die den Prozess **neu startet**, zumindest ein paar Mal ...
 
@@ -161,7 +161,7 @@ Konzentrieren wir uns also auf die Hauptfälle, in denen die Anwendung in bestim
 
 Sie möchten wahrscheinlich, dass eine **externe Komponente** für den Neustart Ihrer Anwendung verantwortlich ist, da zu diesem Zeitpunkt dieselbe Anwendung mit Uvicorn und Python bereits abgestürzt ist und es daher nichts im selben Code derselben Anwendung gibt, was etwas dagegen tun kann.
 
-### Beispieltools zum automatischen Neustart
+### Beispieltools zum automatischen Neustart { #example-tools-to-restart-automatically }
 
 In den meisten Fällen wird dasselbe Tool, das zum **Ausführen des Programms beim Hochfahren** verwendet wird, auch für automatische **Neustarts** verwendet.
 
@@ -176,19 +176,19 @@ Dies könnte zum Beispiel erledigt werden durch:
 * Intern von einem Cloud-Anbieter im Rahmen seiner Dienste
 * Andere ...
 
-## Replikation – Prozesse und Arbeitsspeicher
+## Replikation – Prozesse und Arbeitsspeicher { #replication-processes-and-memory }
 
-Wenn Sie eine FastAPI-Anwendung verwenden und ein Serverprogramm wie Uvicorn verwenden, kann **ein einzelner Prozess** mehrere Clients gleichzeitig bedienen.
+Wenn Sie eine FastAPI-Anwendung verwenden und ein Serverprogramm wie den `fastapi`-Befehl, der Uvicorn ausführt, kann **ein einzelner Prozess** an mehrere Clients gleichzeitig ausliefern.
 
-In vielen Fällen möchten Sie jedoch mehrere Prozesse gleichzeitig ausführen.
+In vielen Fällen möchten Sie jedoch mehrere Workerprozesse gleichzeitig ausführen.
 
-### Mehrere Prozesse – Worker
+### Mehrere Prozesse – Worker { #multiple-processes-workers }
 
 Wenn Sie mehr Clients haben, als ein einzelner Prozess verarbeiten kann (z. B. wenn die virtuelle Maschine nicht sehr groß ist) und die CPU des Servers **mehrere Kerne** hat, dann könnten **mehrere Prozesse** gleichzeitig mit derselben Anwendung laufen und alle Requests unter sich verteilen.
 
-Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als **<abbr title="Arbeiter">Worker</abbr>** bezeichnet.
+Wenn Sie mit **mehreren Prozessen** dasselbe API-Programm ausführen, werden diese üblicherweise als <abbr title="Arbeiter">**Worker**</abbr> bezeichnet.
 
-### Workerprozesse und Ports
+### Workerprozesse und Ports { #worker-processes-and-ports }
 
 Erinnern Sie sich aus der Dokumentation [Über HTTPS](https.md){.internal-link target=_blank}, dass nur ein Prozess auf einer Kombination aus Port und IP-Adresse auf einem Server lauschen kann?
 
@@ -196,35 +196,35 @@ Das ist immer noch wahr.
 
 Um also **mehrere Prozesse** gleichzeitig zu haben, muss es einen **einzelnen Prozess geben, der einen Port überwacht**, welcher dann die Kommunikation auf irgendeine Weise an jeden Workerprozess überträgt.
 
-### Arbeitsspeicher pro Prozess
+### Arbeitsspeicher pro Prozess { #memory-per-process }
 
 Wenn das Programm nun Dinge in den Arbeitsspeicher lädt, zum Beispiel ein Modell für maschinelles Lernen in einer Variablen oder den Inhalt einer großen Datei in einer Variablen, verbraucht das alles **einen Teil des Arbeitsspeichers (RAM – Random Access Memory)** des Servers.
 
 Und mehrere Prozesse teilen sich normalerweise keinen Speicher. Das bedeutet, dass jeder laufende Prozess seine eigenen Dinge, eigenen Variablen und eigenen Speicher hat. Und wenn Sie in Ihrem Code viel Speicher verbrauchen, verbraucht **jeder Prozess** die gleiche Menge Speicher.
 
-### Serverspeicher
+### Serverspeicher { #server-memory }
 
 Wenn Ihr Code beispielsweise ein Machine-Learning-Modell mit **1 GB Größe** lädt und Sie einen Prozess mit Ihrer API ausführen, verbraucht dieser mindestens 1 GB RAM. Und wenn Sie **4 Prozesse** (4 Worker) starten, verbraucht jeder 1 GB RAM. Insgesamt verbraucht Ihre API also **4 GB RAM**.
 
 Und wenn Ihr entfernter Server oder Ihre virtuelle Maschine nur über 3 GB RAM verfügt, führt der Versuch, mehr als 4 GB RAM zu laden, zu Problemen. 🚨
 
-### Mehrere Prozesse – Ein Beispiel
+### Mehrere Prozesse – Ein Beispiel { #multiple-processes-an-example }
 
 Im folgenden Beispiel gibt es einen **Manager-Prozess**, welcher zwei **Workerprozesse** startet und steuert.
 
 Dieser Manager-Prozess wäre wahrscheinlich derjenige, welcher der IP am **Port** lauscht. Und er würde die gesamte Kommunikation an die Workerprozesse weiterleiten.
 
-Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **Request** entgegenzunehmen und eine **Response** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
+Diese Workerprozesse würden Ihre Anwendung ausführen, sie würden die Hauptberechnungen durchführen, um einen **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** entgegenzunehmen und eine **<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>** zurückzugeben, und sie würden alles, was Sie in Variablen einfügen, in den RAM laden.
 
 <img src="/img/deployment/concepts/process-ram.drawio.svg">
 
-Und natürlich würden auf derselben Maschine neben Ihrer Anwendung wahrscheinlich auch **andere Prozesse** laufen.
+Und natürlich würden auf derselben Maschine neben Ihrer Anwendung wahrscheinlich **andere Prozesse** laufen.
 
 Ein interessantes Detail ist dabei, dass der Prozentsatz der von jedem Prozess verwendeten **CPU** im Laufe der Zeit stark **variieren** kann, der **Arbeitsspeicher (RAM)** jedoch normalerweise mehr oder weniger **stabil** bleibt.
 
 Wenn Sie eine API haben, die jedes Mal eine vergleichbare Menge an Berechnungen durchführt, und Sie viele Clients haben, dann wird die **CPU-Auslastung** wahrscheinlich *ebenfalls stabil sein* (anstatt ständig schnell zu steigen und zu fallen).
 
-### Beispiele für Replikation-Tools und -Strategien
+### Beispiele für Replikation-Tools und -Strategien { #examples-of-replication-tools-and-strategies }
 
 Es gibt mehrere Ansätze, um dies zu erreichen, und ich werde Ihnen in den nächsten Kapiteln mehr über bestimmte Strategien erzählen, beispielsweise wenn es um Docker und Container geht.
 
@@ -232,9 +232,7 @@ Die wichtigste zu berücksichtigende Einschränkung besteht darin, dass es eine 
 
 Hier sind einige mögliche Kombinationen und Strategien:
 
-* **Gunicorn**, welches **Uvicorn-Worker** managt
-    * Gunicorn wäre der **Prozessmanager**, der die **IP** und den **Port** überwacht, die Replikation würde durch **mehrere Uvicorn-Workerprozesse** erfolgen
-* **Uvicorn**, welches **Uvicorn-Worker** managt
+* **Uvicorn** mit `--workers`
     * Ein Uvicorn-**Prozessmanager** würde der **IP** am **Port** lauschen, und er würde **mehrere Uvicorn-Workerprozesse** starten.
 * **Kubernetes** und andere verteilte **Containersysteme**
     * Etwas in der **Kubernetes**-Ebene würde die **IP** und den **Port** abhören. Die Replikation hätte **mehrere Container**, in jedem wird jeweils **ein Uvicorn-Prozess** ausgeführt.
@@ -249,7 +247,7 @@ Ich werde Ihnen in einem zukünftigen Kapitel mehr über Container-Images, Docke
 
 ///
 
-## Schritte vor dem Start
+## Schritte vor dem Start { #previous-steps-before-starting }
 
 Es gibt viele Fälle, in denen Sie, **bevor Sie Ihre Anwendung starten**, einige Schritte ausführen möchten.
 
@@ -271,7 +269,7 @@ In diesem Fall müssen Sie sich darüber keine Sorgen machen. 🤷
 
 ///
 
-### Beispiele für Strategien für Vorab-Schritte
+### Beispiele für Strategien für Vorab-Schritte { #examples-of-previous-steps-strategies }
 
 Es hängt **stark** davon ab, wie Sie **Ihr System bereitstellen**, und hängt wahrscheinlich mit der Art und Weise zusammen, wie Sie Programme starten, Neustarts durchführen, usw.
 
@@ -287,7 +285,7 @@ Konkretere Beispiele hierfür mit Containern gebe ich Ihnen in einem späteren K
 
 ///
 
-## Ressourcennutzung
+## Ressourcennutzung { #resource-utilization }
 
 Ihr(e) Server ist (sind) eine **Ressource**, welche Sie mit Ihren Programmen, der Rechenzeit auf den CPUs und dem verfügbaren RAM-Speicher verbrauchen oder **nutzen** können.
 
@@ -303,11 +301,11 @@ In diesem Fall wäre es besser, **einen zusätzlichen Server** zu besorgen und e
 
 Es besteht auch die Möglichkeit, dass es aus irgendeinem Grund zu **Spitzen** in der Nutzung Ihrer API kommt. Vielleicht ist diese viral gegangen, oder vielleicht haben andere Dienste oder Bots damit begonnen, sie zu nutzen. Und vielleicht möchten Sie in solchen Fällen über zusätzliche Ressourcen verfügen, um auf der sicheren Seite zu sein.
 
-Sie können eine **beliebige Zahl** festlegen, um beispielsweise eine Ressourcenauslastung zwischen **50 % und 90 %** anzustreben. Der Punkt ist, dass dies wahrscheinlich die wichtigen Dinge sind, die Sie messen und verwenden sollten, um Ihre Deployments zu optimieren.
+Sie können eine **beliebige Zahl** festlegen, um beispielsweise eine Ressourcenauslastung zwischen **50 % und 90 %** anzustreben. Der Punkt ist, dass dies wahrscheinlich die wichtigen Dinge sind, die Sie messen und verwenden sollten, um Ihre Deployments zu optimieren.
 
 Sie können einfache Tools wie `htop` verwenden, um die in Ihrem Server verwendete CPU und den RAM oder die von jedem Prozess verwendete Menge anzuzeigen. Oder Sie können komplexere Überwachungstools verwenden, die möglicherweise auf mehrere Server usw. verteilt sind.
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Sie haben hier einige der wichtigsten Konzepte gelesen, die Sie wahrscheinlich berücksichtigen müssen, wenn Sie entscheiden, wie Sie Ihre Anwendung bereitstellen:
 

@@ -1,4 +1,4 @@
-# Security
+# Security { #security }
 
 There are many ways to handle security, authentication and authorization.
 
@@ -10,11 +10,11 @@ In many frameworks and systems just handling security and authentication takes a
 
 But first, let's check some small concepts.
 
-## In a hurry?
+## In a hurry? { #in-a-hurry }
 
 If you don't care about any of these terms and you just need to add security with authentication based on username and password *right now*, skip to the next chapters.
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2 is a specification that defines several ways to handle authentication and authorization.
 
@@ -22,9 +22,9 @@ It is quite an extensive specification and covers several complex use cases.
 
 It includes ways to authenticate using a "third party".
 
-That's what all the systems with "login with Facebook, Google, Twitter, GitHub" use underneath.
+That's what all the systems with "login with Facebook, Google, X (Twitter), GitHub" use underneath.
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 There was an OAuth 1, which is very different from OAuth2, and more complex, as it included direct specifications on how to encrypt the communication.
 
@@ -38,7 +38,7 @@ In the section about **deployment** you will see how to set up HTTPS for free, u
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect is another specification, based on **OAuth2**.
 
@@ -48,7 +48,7 @@ For example, Google login uses OpenID Connect (which underneath uses OAuth2).
 
 But Facebook login doesn't support OpenID Connect. It has its own flavor of OAuth2.
 
-### OpenID (not "OpenID Connect")
+### OpenID (not "OpenID Connect") { #openid-not-openid-connect }
 
 There was also an "OpenID" specification. That tried to solve the same thing as **OpenID Connect**, but was not based on OAuth2.
 
@@ -56,7 +56,7 @@ So, it was a complete additional system.
 
 It is not very popular or used nowadays.
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI (previously known as Swagger) is the open specification for building APIs (now part of the Linux Foundation).
 
@@ -79,7 +79,7 @@ OpenAPI defines the following security schemes:
     * HTTP Basic authentication.
     * HTTP Digest, etc.
 * `oauth2`: all the OAuth2 ways to handle security (called "flows").
-    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, Twitter, GitHub, etc):
+    * Several of these flows are appropriate for building an OAuth 2.0 authentication provider (like Google, Facebook, X (Twitter), GitHub, etc):
         * `implicit`
         * `clientCredentials`
         * `authorizationCode`
@@ -91,13 +91,13 @@ OpenAPI defines the following security schemes:
 
 /// tip
 
-Integrating other authentication/authorization providers like Google, Facebook, Twitter, GitHub, etc. is also possible and relatively easy.
+Integrating other authentication/authorization providers like Google, Facebook, X (Twitter), GitHub, etc. is also possible and relatively easy.
 
 The most complex problem is building an authentication/authorization provider like those, but **FastAPI** gives you the tools to do it easily, while doing the heavy lifting for you.
 
 ///
 
-## **FastAPI** utilities
+## **FastAPI** utilities { #fastapi-utilities }
 
 FastAPI provides several tools for each of these security schemes in the `fastapi.security` module that simplify using these security mechanisms.
 

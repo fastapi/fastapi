@@ -1,0 +1,45 @@
+labels: [lang-all]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in helping translate the FastAPI docs! 🌍
+
+        Please follow these instructions carefully to propose a new language translation. 🙏
+
+        This structured process helps ensure translations can be properly maintained long-term.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Initial Checks
+      description: Please confirm and check all the following options.
+      options:
+        - label: I checked that this language is not already being translated in FastAPI docs.
+          required: true
+        - label: I searched existing discussions to ensure no one else proposed this language.
+          required: true
+        - label: I am a native speaker of the language I want to help translate.
+          required: true
+  - type: input
+    id: language
+    attributes:
+      label: Target Language
+      description: What language do you want to translate the FastAPI docs into?
+      placeholder: e.g. Latin
+    validations:
+      required: true
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: Additional Information
+      description: Any other relevant information about your translation proposal
+  - type: markdown
+    attributes:
+      value: |
+        Translations are automatized with AI and then reviewed by native speakers. 🤖 🙋
+
+        This allows us to keep them consistent and up-to-date.
+
+        If there are several native speakers commenting on this discussion and
+        committing to help review new translations, the FastAPI team will review it
+        and potentially make it an official translation. 😎

@@ -1,4 +1,4 @@
-# Tutorial - User Guide
+# Tutorial - User Guide { #tutorial-user-guide }
 
 This tutorial shows you how to use **FastAPI** with most of its features, step by step.
 
@@ -6,7 +6,7 @@ Each section gradually builds on the previous ones, but it's structured to separ
 
 It is also built to work as a future reference so you can come back and see exactly what you need.
 
-## Run the code
+## Run the code { #run-the-code }
 
 All the code blocks can be copied and used directly (they are actually tested Python files).
 
@@ -58,7 +58,7 @@ Using it in your editor is what really shows you the benefits of FastAPI, seeing
 
 ---
 
-## Install FastAPI
+## Install FastAPI { #install-fastapi }
 
 The first step is to install FastAPI.
 
@@ -76,13 +76,15 @@ $ pip install "fastapi[standard]"
 
 /// note
 
-When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies.
+When you install with `pip install "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
 If you don't want to have those optional dependencies, you can instead install `pip install fastapi`.
 
+If you want to install the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+
 ///
 
-## Advanced User Guide
+## Advanced User Guide { #advanced-user-guide }
 
 There is also an **Advanced User Guide** that you can read later after this **Tutorial - User guide**.
 

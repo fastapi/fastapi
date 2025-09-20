@@ -11,7 +11,4 @@ Thêm nữa, điều này cũng thể hiện cam kết thực sự của họ đ
 
 Bạn có thể thử các dịch vụ của họ và làm theo hướng dẫn của họ:
 
-* <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
-* <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
-* <a href="https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website" class="external-link" target="_blank">Coherence</a>
 * <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>

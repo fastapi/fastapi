@@ -1,6 +1,6 @@
-# Response-Statuscode
+# Response-Statuscode { #response-status-code }
 
-So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Response deklarieren, mithilfe des Parameters `status_code`, und zwar in jeder der *Pfadoperationen*:
+Genauso wie Sie ein Responsemodell angeben können, können Sie auch den HTTP-Statuscode für die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> mit dem Parameter `status_code` in jeder der *Pfadoperationen* deklarieren:
 
 * `@app.get()`
 * `@app.post()`
@@ -12,90 +12,90 @@ So wie ein Responsemodell, können Sie auch einen HTTP-Statuscode für die Respo
 
 /// note | Hinweis
 
-Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, so wie die anderen Parameter und der Body.
+Beachten Sie, dass `status_code` ein Parameter der „Dekorator“-Methode ist (`get`, `post`, usw.). Nicht der *Pfadoperation-Funktion*, wie alle anderen Parameter und der Body.
 
 ///
 
 Dem `status_code`-Parameter wird eine Zahl mit dem HTTP-Statuscode übergeben.
 
-/// info
+/// info | Info
 
-Alternativ kann `status_code` auch ein `IntEnum` erhalten, so wie Pythons <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
+Alternativ kann `status_code` auch ein `IntEnum` erhalten, wie etwa Pythons <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a>.
 
 ///
 
-Das wird:
+Dies wird:
 
 * Diesen Statuscode mit der Response zurücksenden.
-* Ihn als solchen im OpenAPI-Schema dokumentieren (und somit in den Benutzeroberflächen):
+* Diesen im OpenAPI-Schema dokumentieren (und somit in den Benutzeroberflächen):
 
 <img src="/img/tutorial/response-status-code/image01.png">
 
 /// note | Hinweis
 
-Einige Responsecodes (siehe nächster Abschnitt) kennzeichnen, dass die Response keinen Body hat.
+Einige Responsecodes (siehe nächsten Abschnitt) kennzeichnen, dass die Response keinen Body hat.
 
-FastAPI versteht das und wird in der OpenAPI-Dokumentation anzeigen, dass es keinen Responsebody gibt.
+FastAPI erkennt dies und erstellt eine OpenAPI-Dokumentation, die zeigt, dass es keinen Responsebody gibt.
 
 ///
 
-## Über HTTP-Statuscodes
+## Über HTTP-Statuscodes { #about-http-status-codes }
 
 /// note | Hinweis
 
-Wenn Sie bereits wissen, was HTTP-Statuscodes sind, überspringen Sie dieses Kapitel und fahren Sie mit dem nächsten fort.
+Wenn Sie bereits wissen, was HTTP-Statuscodes sind, können Sie diesen Abschnitt überspringen und mit dem nächsten fortfahren.
 
 ///
 
-In HTTP senden Sie als Teil der Response einen aus drei Ziffern bestehenden numerischen Statuscode.
+In HTTP senden Sie einen numerischen Statuscode mit 3 Ziffern als Teil der Response.
 
-Diese Statuscodes haben einen Namen zugeordnet, um sie besser zu erkennen, aber der wichtige Teil ist die Zahl.
+Diese Statuscodes haben einen zugeordneten Namen, um sie leichter zu erkennen, aber der wichtige Teil ist die Zahl.
 
-Kurz:
+Kurz gefasst:
 
-* `100` und darüber stehen für „Information“. Diese verwenden Sie selten direkt. Responses mit diesen Statuscodes können keinen Body haben.
-* **`200`** und darüber stehen für Responses, die „Successful“ („Erfolgreich“) waren. Diese verwenden Sie am häufigsten.
-    * `200` ist der Default-Statuscode, welcher bedeutet, alles ist „OK“.
-    * Ein anderes Beispiel ist `201`, „Created“ („Erzeugt“). Wird in der Regel verwendet, wenn ein neuer Datensatz in der Datenbank erzeugt wurde.
-    * Ein spezieller Fall ist `204`, „No Content“ („Kein Inhalt“). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der zum Client zurückgeschickt wird, diese Response hat also keinen Body.
-* **`300`** und darüber steht für „Redirection“ („Umleitung“).  Responses mit diesen Statuscodes können einen oder keinen Body haben, mit Ausnahme von `304`, „Not Modified“ („Nicht verändert“), welche keinen haben darf.
-* **`400`** und darüber stehen für „Client error“-Responses („Client-Fehler“). Auch diese verwenden Sie am häufigsten.
+* `100 - 199` stehen für „Information“. Sie verwenden diese selten direkt. Responses mit diesen Statuscodes dürfen keinen Body haben.
+* **`200 - 299`** stehen für „Successful“-Responses („Erfolgreich“). Diese werden Sie am häufigsten verwenden.
+    * `200` ist der Default-Statuscode, was bedeutet, alles ist „OK“.
+    * Ein weiteres Beispiel wäre `201`, „Created“ („Erzeugt“). Dieser wird üblicherweise verwendet, nachdem ein neuer Datensatz in der Datenbank erstellt wurde.
+    * Ein spezieller Fall ist `204`, „No Content“ („Kein Inhalt“). Diese Response wird verwendet, wenn es keinen Inhalt gibt, der an den Client zurückgeschickt werden soll, und diese Response darf daher keinen Body haben.
+* **`300 - 399`** stehen für „Redirection“ („Umleitung“). Responses mit diesen Statuscodes können einen Body haben oder nicht, außer bei `304`, „Not Modified“ („Nicht verändert“), die keinen haben darf.
+* **`400 - 499`** stehen für „Client error“-Responses („Client-Fehler“). Diese sind die zweithäufigsten, die Sie vermutlich verwenden werden.
     * Ein Beispiel ist `404`, für eine „Not Found“-Response („Nicht gefunden“).
     * Für allgemeine Fehler beim Client können Sie einfach `400` verwenden.
-* `500` und darüber stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn etwas an irgendeiner Stelle in Ihrem Anwendungscode oder im Server schiefläuft, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
+* `500 - 599` stehen für Server-Fehler. Diese verwenden Sie fast nie direkt. Wenn in Ihrem Anwendungscode oder Server etwas schiefgeht, wird automatisch einer dieser Fehler-Statuscodes zurückgegeben.
 
 /// tip | Tipp
 
-Um mehr über Statuscodes zu lernen, und welcher wofür verwendet wird, lesen Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwickler-Netzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a>.
+Um mehr über die einzelnen Statuscodes zu erfahren und welcher wofür verwendet wird, sehen Sie sich die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk">MDN</abbr> Dokumentation über HTTP-Statuscodes</a> an.
 
 ///
 
-## Abkürzung, um die Namen zu erinnern
+## Abkürzung zur Erinnerung an die Namen { #shortcut-to-remember-the-names }
 
-Schauen wir uns das vorherige Beispiel noch einmal an:
+Lassen Sie uns das vorherige Beispiel noch einmal anschauen:
 
 {* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` ist der Statuscode für „Created“ („Erzeugt“).
 
-Aber Sie müssen sich nicht daran erinnern, welcher dieser Codes was bedeutet.
+Aber Sie müssen sich nicht merken, was jeder dieser Codes bedeutet.
 
-Sie können die Hilfsvariablen von `fastapi.status` verwenden.
+Sie können die Annehmlichkeit von Variablen aus `fastapi.status` nutzen.
 
 {* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
-Diese sind nur eine Annehmlichkeit und enthalten dieselbe Nummer, aber auf diese Weise können Sie die Autovervollständigung Ihres Editors verwenden, um sie zu finden:
+Diese sind nur eine Annehmlichkeit, sie enthalten dieselbe Zahl, aber so können Sie die Autovervollständigung Ihres Editors verwenden, um sie zu finden:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 
 /// note | Technische Details
 
-Sie können auch `from starlette import status` verwenden.
+Sie könnten auch `from starlette import status` verwenden.
 
-**FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, als Annehmlichkeit für Sie, den Entwickler. Sie kommen aber direkt von Starlette.
+**FastAPI** bietet dieselben `starlette.status`-Codes auch via `fastapi.status` an, rein zu Ihrer Annehmlichkeit als Entwickler. Aber sie stammen direkt von Starlette.
 
 ///
 
-## Den Defaultwert ändern
+## Den Defaultwert ändern { #changing-the-default }
 
-Später sehen Sie, im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank}, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.
+Später im [Handbuch für fortgeschrittene Benutzer](../advanced/response-change-status-code.md){.internal-link target=_blank} werden Sie sehen, wie Sie einen anderen Statuscode zurückgeben können, als den Default, den Sie hier deklarieren.

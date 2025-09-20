@@ -1,8 +1,8 @@
-# Sicherheit – Erste Schritte
+# Sicherheit – Erste Schritte { #security-first-steps }
 
 Stellen wir uns vor, dass Sie Ihre **Backend**-API auf einer Domain haben.
 
-Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer mobilen Anwendung).
+Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer Mobile-Anwendung).
 
 Und Sie möchten eine Möglichkeit haben, dass sich das Frontend mithilfe eines **Benutzernamens** und eines **Passworts** beim Backend authentisieren kann.
 
@@ -12,25 +12,33 @@ Aber ersparen wir Ihnen die Zeit, die gesamte lange Spezifikation zu lesen, nur 
 
 Lassen Sie uns die von **FastAPI** bereitgestellten Tools verwenden, um Sicherheit zu gewährleisten.
 
-## Wie es aussieht
+## Wie es aussieht { #how-it-looks }
 
 Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktioniert, und dann kommen wir zurück, um zu verstehen, was passiert.
 
-## `main.py` erstellen
+## `main.py` erstellen { #create-main-py }
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
 {* ../../docs_src/security/tutorial001_an_py39.py *}
 
-## Ausführen
+## Ausführen { #run-it }
 
-/// info
+/// info | Info
 
-Um hochgeladene Dateien zu empfangen, installieren Sie zuerst <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+Das Paket <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
 
-Z. B. `pip install python-multipart`.
+Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Das, weil **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
+Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [Virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren und es dann mit:
+
+```console
+$ pip install python-multipart
+```
+
+installieren.
+
+Das liegt daran, dass **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
 
 ///
 
@@ -39,14 +47,14 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-## Überprüfen
+## Es testen { #check-it }
 
 Gehen Sie zu der interaktiven Dokumentation unter: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -80,7 +88,7 @@ Es kann von Anwendungen und Systemen Dritter verwendet werden.
 
 Und es kann auch von Ihnen selbst verwendet werden, um dieselbe Anwendung zu debuggen, zu prüfen und zu testen.
 
-## Der `password`-Flow
+## Der `password`-Flow { #the-password-flow }
 
 Lassen Sie uns nun etwas zurückgehen und verstehen, was das alles ist.
 
@@ -103,16 +111,16 @@ Betrachten wir es also aus dieser vereinfachten Sicht:
 * Der Benutzer klickt im Frontend, um zu einem anderen Abschnitt der Frontend-Web-Anwendung zu gelangen.
 * Das Frontend muss weitere Daten von der API abrufen.
     * Es benötigt jedoch eine Authentifizierung für diesen bestimmten Endpunkt.
-    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer` plus dem Token.
+    * Um sich also bei unserer API zu authentifizieren, sendet es einen Header `Authorization` mit dem Wert `Bearer ` plus dem Token.
     * Wenn der Token `foobar` enthielte, wäre der Inhalt des `Authorization`-Headers: `Bearer foobar`.
 
-## **FastAPI**s `OAuth2PasswordBearer`
+## **FastAPI**s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
 **FastAPI** bietet mehrere Tools auf unterschiedlichen Abstraktionsebenen zur Implementierung dieser Sicherheitsfunktionen.
 
 In diesem Beispiel verwenden wir **OAuth2** mit dem **Password**-Flow und einem **Bearer**-Token. Wir machen das mit der Klasse `OAuth2PasswordBearer`.
 
-/// info
+/// info | Info
 
 Ein „Bearer“-Token ist nicht die einzige Option.
 
@@ -142,7 +150,7 @@ Dieser Parameter erstellt nicht diesen Endpunkt / diese *Pfadoperation*, sondern
 
 Wir werden demnächst auch die eigentliche Pfadoperation erstellen.
 
-/// info
+/// info | Info
 
 Wenn Sie ein sehr strenger „Pythonista“ sind, missfällt Ihnen möglicherweise die Schreibweise des Parameternamens `tokenUrl` anstelle von `token_url`.
 
@@ -160,7 +168,7 @@ oauth2_scheme(some, parameters)
 
 Es kann also mit `Depends` verwendet werden.
 
-### Verwendung
+### Verwenden { #use-it }
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
@@ -178,11 +186,11 @@ Alle Sicherheits-Werkzeuge, die in OpenAPI integriert sind (und die automatische
 
 ///
 
-## Was es macht
+## Was es macht { #what-it-does }
 
-FastAPI wird im Request nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer` plus ein Token ist, und den Token als `str` zurückgeben.
+FastAPI wird im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> nach diesem `Authorization`-Header suchen, prüfen, ob der Wert `Bearer ` plus ein Token ist, und den Token als `str` zurückgeben.
 
-Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer`-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
+Wenn es keinen `Authorization`-Header sieht, oder der Wert keinen `Bearer `-Token hat, antwortet es direkt mit einem 401-Statuscode-Error (`UNAUTHORIZED`).
 
 Sie müssen nicht einmal prüfen, ob der Token existiert, um einen Fehler zurückzugeben. Seien Sie sicher, dass Ihre Funktion, wenn sie ausgeführt wird, ein `str` in diesem Token enthält.
 
@@ -192,6 +200,6 @@ Sie können das bereits in der interaktiven Dokumentation ausprobieren:
 
 Wir überprüfen im Moment noch nicht die Gültigkeit des Tokens, aber das ist bereits ein Anfang.
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
-Mit nur drei oder vier zusätzlichen Zeilen haben Sie also bereits eine primitive Form der Sicherheit.
+Mit nur drei oder vier zusätzlichen Zeilen haben Sie so bereits eine primitive Form der Sicherheit.

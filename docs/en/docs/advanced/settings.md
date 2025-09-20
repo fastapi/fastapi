@@ -1,4 +1,4 @@
-# Settings and Environment Variables
+# Settings and Environment Variables { #settings-and-environment-variables }
 
 In many cases your application could need some external settings or configurations, for example secret keys, database credentials, credentials for email services, etc.
 
@@ -12,17 +12,17 @@ To understand environment variables you can read [Environment Variables](../envi
 
 ///
 
-## Types and validation
+## Types and validation { #types-and-validation }
 
 These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
 
 That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or any validation has to be done in code.
 
-## Pydantic `Settings`
+## Pydantic `Settings` { #pydantic-settings }
 
 Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
 
-### Install `pydantic-settings`
+### Install `pydantic-settings` { #install-pydantic-settings }
 
 First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install the `pydantic-settings` package:
 
@@ -52,7 +52,7 @@ In Pydantic v1 it came included with the main package. Now it is distributed as 
 
 ///
 
-### Create the `Settings` object
+### Create the `Settings` object { #create-the-settings-object }
 
 Import `BaseSettings` from Pydantic and create a sub-class, very much like with a Pydantic model.
 
@@ -88,13 +88,13 @@ Then, when you create an instance of that `Settings` class (in this case, in the
 
 Next it will convert and validate the data. So, when you use that `settings` object, you will have data of the types you declared (e.g. `items_per_user` will be an `int`).
 
-### Use the `settings`
+### Use the `settings` { #use-the-settings }
 
 Then you can use the new `settings` object in your application:
 
 {* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
-### Run the server
+### Run the server { #run-the-server }
 
 Next, you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
 
@@ -120,7 +120,7 @@ The `app_name` would be `"ChimichangApp"`.
 
 And the `items_per_user` would keep its default value of `50`.
 
-## Settings in another module
+## Settings in another module { #settings-in-another-module }
 
 You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
@@ -138,13 +138,13 @@ You would also need a file `__init__.py` as you saw in [Bigger Applications - Mu
 
 ///
 
-## Settings in a dependency
+## Settings in a dependency { #settings-in-a-dependency }
 
 In some occasions it might be useful to provide the settings from a dependency, instead of having a global object with `settings` that is used everywhere.
 
 This could be especially useful during testing, as it's very easy to override a dependency with your own custom settings.
 
-### The config file
+### The config file { #the-config-file }
 
 Coming from the previous example, your `config.py` file could look like:
 
@@ -152,7 +152,7 @@ Coming from the previous example, your `config.py` file could look like:
 
 Notice that now we don't create a default instance `settings = Settings()`.
 
-### The main app file
+### The main app file { #the-main-app-file }
 
 Now we create a dependency that returns a new `config.Settings()`.
 
@@ -170,7 +170,7 @@ And then we can require it from the *path operation function* as a dependency an
 
 {* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
 
-### Settings and testing
+### Settings and testing { #settings-and-testing }
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
@@ -180,7 +180,7 @@ In the dependency override we set a new value for the `admin_email` when creatin
 
 Then we can test that it is used.
 
-## Reading a `.env` file
+## Reading a `.env` file { #reading-a-env-file }
 
 If you have many settings that possibly change a lot, maybe in different environments, it might be useful to put them on a file and then read them from it as if they were environment variables.
 
@@ -202,7 +202,7 @@ For this to work, you need to `pip install python-dotenv`.
 
 ///
 
-### The `.env` file
+### The `.env` file { #the-env-file }
 
 You could have a `.env` file with:
 
@@ -211,7 +211,7 @@ ADMIN_EMAIL="deadpool@example.com"
 APP_NAME="ChimichangApp"
 ```
 
-### Read settings from `.env`
+### Read settings from `.env` { #read-settings-from-env }
 
 And then update your `config.py` with:
 
@@ -247,7 +247,7 @@ In Pydantic version 1 the configuration was done in an internal class `Config`, 
 
 Here we define the config `env_file` inside of your Pydantic `Settings` class, and set the value to the filename with the dotenv file we want to use.
 
-### Creating the `Settings` only once with `lru_cache`
+### Creating the `Settings` only once with `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
 
 Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then reuse the same settings object, instead of reading it for each request.
 
@@ -274,7 +274,7 @@ But as we are using the `@lru_cache` decorator on top, the `Settings` object wil
 
 Then for any subsequent call of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
 
-#### `lru_cache` Technical Details
+#### `lru_cache` Technical Details { #lru-cache-technical-details }
 
 `@lru_cache` modifies the function it decorates to return the same value that was returned the first time, instead of computing it again, executing the code of the function every time.
 
@@ -337,7 +337,7 @@ That way, it behaves almost as if it was just a global variable. But as it uses 
 
 `@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
 
-## Recap
+## Recap { #recap }
 
 You can use Pydantic Settings to handle the settings or configurations for your application, with all the power of Pydantic models.
 

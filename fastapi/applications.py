@@ -748,7 +748,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -810,6 +810,32 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
+        openapi_external_docs: Annotated[
+            Optional[Dict[str, Any]],
+            Doc(
+                """
+                This field allows you to provide additional external documentation links.
+                If provided, it must be a dictionary containing:
+
+                * `description`: A brief description of the external documentation.
+                * `url`: The URL pointing to the external documentation. The value **MUST**
+                be a valid URL format.
+
+                **Example**:
+
+                ```python
+                from fastapi import FastAPI
+
+                external_docs = {
+                    "description": "Detailed API Reference",
+                    "url": "https://example.com/api-docs",
+                }
+
+                app = FastAPI(openapi_external_docs=external_docs)
+                ```
+                """
+            ),
+        ] = None,
         **extra: Annotated[
             Any,
             Doc(
@@ -838,6 +864,7 @@ class FastAPI(Starlette):
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
+        self.openapi_external_docs = openapi_external_docs
         self.extra = extra
         self.openapi_version: Annotated[
             str,
@@ -992,6 +1019,7 @@ class FastAPI(Starlette):
                 tags=self.openapi_tags,
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
+                external_docs=self.openapi_external_docs,
             )
         return self.openapi_schema
 
@@ -1720,7 +1748,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2093,7 +2121,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2471,7 +2499,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2849,7 +2877,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3222,7 +3250,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3595,7 +3623,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3968,7 +3996,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4346,7 +4374,7 @@ class FastAPI(Starlette):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4425,7 +4453,7 @@ class FastAPI(Starlette):
 
         app = FastAPI()
 
-        @app.put("/items/{item_id}")
+        @app.trace("/items/{item_id}")
         def trace_item(item_id: str):
             return None
         ```
@@ -4515,14 +4543,17 @@ class FastAPI(Starlette):
 
         ```python
         import time
+        from typing import Awaitable, Callable
 
-        from fastapi import FastAPI, Request
+        from fastapi import FastAPI, Request, Response
 
         app = FastAPI()
 
 
         @app.middleware("http")
-        async def add_process_time_header(request: Request, call_next):
+        async def add_process_time_header(
+            request: Request, call_next: Callable[[Request], Awaitable[Response]]
+        ) -> Response:
             start_time = time.time()
             response = await call_next(request)
             process_time = time.time() - start_time

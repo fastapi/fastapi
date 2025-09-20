@@ -1,4 +1,4 @@
-# Form Models
+# Form Models { #form-models }
 
 You can use **Pydantic models** to declare **form fields** in FastAPI.
 
@@ -20,7 +20,7 @@ This is supported since FastAPI version `0.113.0`. 🤓
 
 ///
 
-## Pydantic Models for Forms
+## Pydantic Models for Forms { #pydantic-models-for-forms }
 
 You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:
 
@@ -28,7 +28,7 @@ You just need to declare a **Pydantic model** with the fields you want to receiv
 
 **FastAPI** will **extract** the data for **each field** from the **form data** in the request and give you the Pydantic model you defined.
 
-## Check the Docs
+## Check the Docs { #check-the-docs }
 
 You can verify it in the docs UI at `/docs`:
 
@@ -36,7 +36,7 @@ You can verify it in the docs UI at `/docs`:
 <img src="/img/tutorial/request-form-models/image01.png">
 </div>
 
-## Forbid Extra Form Fields
+## Forbid Extra Form Fields { #forbid-extra-form-fields }
 
 In some special use cases (probably not very common), you might want to **restrict** the form fields to only those declared in the Pydantic model. And **forbid** any **extra** fields.
 
@@ -73,6 +73,6 @@ They will receive an error response telling them that the field `extra` is not a
 }
 ```
 
-## Summary
+## Summary { #summary }
 
 You can use Pydantic models to declare form fields in FastAPI. 😎

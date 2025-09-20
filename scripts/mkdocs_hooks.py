@@ -110,7 +110,7 @@ def generate_renamed_section_items(
             # Creating a new section makes it render it collapsed by default
             # no idea why, so, let's just modify the existing one
             # new_section = Section(title=new_title, children=new_children)
-            item.title = new_title
+            item.title = new_title.split("{ #")[0]
             item.children = new_children
             new_items.append(item)
         else:

@@ -1,8 +1,8 @@
-# Concurrency and async / await
+# Concurrency and async / await { #concurrency-and-async-await }
 
 Details about the `async def` syntax for *path operation functions* and some background about asynchronous code, concurrency, and parallelism.
 
-## In a hurry?
+## In a hurry? { #in-a-hurry }
 
 <abbr title="too long; didn't read"><strong>TL;DR:</strong></abbr>
 
@@ -40,7 +40,7 @@ def results():
 
 ---
 
-If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`.
+If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use `async def`, even if you don't need to use `await` inside.
 
 ---
 
@@ -54,7 +54,7 @@ Anyway, in any of the cases above, FastAPI will still work asynchronously and be
 
 But by following the steps above, it will be able to do some performance optimizations.
 
-## Technical Details
+## Technical Details { #technical-details }
 
 Modern versions of Python have support for **"asynchronous code"** using something called **"coroutines"**, with **`async` and `await`** syntax.
 
@@ -64,7 +64,7 @@ Let's see that phrase by parts in the sections below:
 * **`async` and `await`**
 * **Coroutines**
 
-## Asynchronous Code
+## Asynchronous Code { #asynchronous-code }
 
 Asynchronous code just means that the language 💬 has a way to tell the computer / program 🤖 that at some point in the code, it 🤖 will have to wait for *something else* to finish somewhere else. Let's say that *something else* is called "slow-file" 📝.
 
@@ -93,7 +93,7 @@ Instead of that, by being an "asynchronous" system, once finished, the task can 
 
 For "synchronous" (contrary to "asynchronous") they commonly also use the term "sequential", because the computer / program follows all the steps in sequence before switching to a different task, even if those steps involve waiting.
 
-### Concurrency and Burgers
+### Concurrency and Burgers { #concurrency-and-burgers }
 
 This idea of **asynchronous** code described above is also sometimes called **"concurrency"**. It is different from **"parallelism"**.
 
@@ -103,7 +103,7 @@ But the details between *concurrency* and *parallelism* are quite different.
 
 To see the difference, imagine the following story about burgers:
 
-### Concurrent Burgers
+### Concurrent Burgers { #concurrent-burgers }
 
 You go with your crush to get fast food, you stand in line while the cashier takes the orders from the people in front of you. 😍
 
@@ -163,7 +163,7 @@ So you wait for your crush to finish the story (finish the current work ⏯ / ta
 
 Then you go to the counter 🔀, to the initial task that is now finished ⏯, pick the burgers, say thanks and take them to the table. That finishes that step / task of interaction with the counter ⏹. That in turn, creates a new task, of "eating burgers" 🔀 ⏯, but the previous one of "getting burgers" is finished ⏹.
 
-### Parallel Burgers
+### Parallel Burgers { #parallel-burgers }
 
 Now let's imagine these aren't "Concurrent Burgers", but "Parallel Burgers".
 
@@ -233,7 +233,7 @@ And you have to wait 🕙 in the line for a long time or you lose your turn.
 
 You probably wouldn't want to take your crush 😍 with you to run errands at the bank 🏦.
 
-### Burger Conclusion
+### Burger Conclusion { #burger-conclusion }
 
 In this scenario of "fast food burgers with your crush", as there is a lot of waiting 🕙, it makes a lot more sense to have a concurrent system ⏸🔀⏯.
 
@@ -253,7 +253,7 @@ And that's the same level of performance you get with **FastAPI**.
 
 And as you can have parallelism and asynchronicity at the same time, you get higher performance than most of the tested NodeJS frameworks and on par with Go, which is a compiled language closer to C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(all thanks to Starlette)</a>.
 
-### Is concurrency better than parallelism?
+### Is concurrency better than parallelism? { #is-concurrency-better-than-parallelism }
 
 Nope! That's not the moral of the story.
 
@@ -290,7 +290,7 @@ For example:
 * **Machine Learning**: it normally requires lots of "matrix" and "vector" multiplications. Think of a huge spreadsheet with numbers and multiplying all of them together at the same time.
 * **Deep Learning**: this is a sub-field of Machine Learning, so, the same applies. It's just that there is not a single spreadsheet of numbers to multiply, but a huge set of them, and in many cases, you use a special processor to build and / or use those models.
 
-### Concurrency + Parallelism: Web + Machine Learning
+### Concurrency + Parallelism: Web + Machine Learning { #concurrency-parallelism-web-machine-learning }
 
 With **FastAPI** you can take advantage of concurrency that is very common for web development (the same main attraction of NodeJS).
 
@@ -300,7 +300,7 @@ That, plus the simple fact that Python is the main language for **Data Science**
 
 To see how to achieve this parallelism in production see the section about [Deployment](deployment/index.md){.internal-link target=_blank}.
 
-## `async` and `await`
+## `async` and `await` { #async-and-await }
 
 Modern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal "sequential" code and do the "awaiting" for you at the right moments.
 
@@ -349,7 +349,7 @@ async def read_burgers():
     return burgers
 ```
 
-### More technical details
+### More technical details { #more-technical-details }
 
 You might have noticed that `await` can only be used inside of functions defined with `async def`.
 
@@ -361,7 +361,7 @@ If you are working with **FastAPI** you don't have to worry about that, because 
 
 But if you want to use `async` / `await` without FastAPI, you can do it as well.
 
-### Write your own async code
+### Write your own async code { #write-your-own-async-code }
 
 Starlette (and **FastAPI**) are based on <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, which makes it compatible with both Python's standard library <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> and <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
 
@@ -371,7 +371,7 @@ And even if you were not using FastAPI, you could also write your own async appl
 
 I created another library on top of AnyIO, as a thin layer on top, to improve a bit the type annotations and get better **autocompletion**, **inline errors**, etc. It also has a friendly introduction and tutorial to help you **understand** and write **your own async code**: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. It would be particularly useful if you need to **combine async code with regular** (blocking/synchronous) code.
 
-### Other forms of asynchronous code
+### Other forms of asynchronous code { #other-forms-of-asynchronous-code }
 
 This style of using `async` and `await` is relatively new in the language.
 
@@ -383,15 +383,15 @@ But before that, handling asynchronous code was quite more complex and difficult
 
 In previous versions of Python, you could have used threads or <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. But the code is way more complex to understand, debug, and think about.
 
-In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+In previous versions of NodeJS / Browser JavaScript, you would have used "callbacks". Which leads to "callback hell".
 
-## Coroutines
+## Coroutines { #coroutines }
 
 **Coroutine** is just the very fancy term for the thing returned by an `async def` function. Python knows that it is something like a function, that it can start and that it will end at some point, but that it might be paused ⏸ internally too, whenever there is an `await` inside of it.
 
 But all this functionality of using asynchronous code with `async` and `await` is many times summarized as using "coroutines". It is comparable to the main key feature of Go, the "Goroutines".
 
-## Conclusion
+## Conclusion { #conclusion }
 
 Let's see the same phrase from above:
 
@@ -401,7 +401,7 @@ That should make more sense now. ✨
 
 All that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.
 
-## Very Technical Details
+## Very Technical Details { #very-technical-details }
 
 /// warning
 
@@ -413,7 +413,7 @@ If you have quite some technical knowledge (coroutines, threads, blocking, etc.)
 
 ///
 
-### Path operation functions
+### Path operation functions { #path-operation-functions }
 
 When you declare a *path operation function* with normal `def` instead of `async def`, it is run in an external threadpool that is then awaited, instead of being called directly (as it would block the server).
 
@@ -421,15 +421,15 @@ If you are coming from another async framework that does not work in the way des
 
 Still, in both situations, chances are that **FastAPI** will [still be faster](index.md#performance){.internal-link target=_blank} than (or at least comparable to) your previous framework.
 
-### Dependencies
+### Dependencies { #dependencies }
 
 The same applies for [dependencies](tutorial/dependencies/index.md){.internal-link target=_blank}. If a dependency is a standard `def` function instead of `async def`, it is run in the external threadpool.
 
-### Sub-dependencies
+### Sub-dependencies { #sub-dependencies }
 
 You can have multiple dependencies and [sub-dependencies](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} requiring each other (as parameters of the function definitions), some of them might be created with `async def` and some with normal `def`. It would still work, and the ones created with normal `def` would be called on an external thread (from the threadpool) instead of being "awaited".
 
-### Other utility functions
+### Other utility functions { #other-utility-functions }
 
 Any other utility function that you call directly can be created with normal `def` or `async def` and FastAPI won't affect the way you call it.
 

@@ -10,7 +10,4 @@
 
 这表明了他们对 FastAPI 及其**社区**（您）的真正承诺，因为他们不仅想为您提供**良好的服务**，而且还想确保您拥有一个**良好且健康的框架**：FastAPI。 🙇
 
-您可能想尝试他们的服务并阅读他们的指南：
-
-* <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank" >Platform.sh</a>
-* <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
+您可能想尝试他们的服务并阅读他们的指南.

@@ -1,4 +1,4 @@
-# Extra Models
+# Extra Models { #extra-models }
 
 Continuing with the previous example, it will be common to have more than one related model.
 
@@ -16,7 +16,7 @@ If you don't know, you will learn what a "password hash" is in the [security cha
 
 ///
 
-## Multiple models
+## Multiple models { #multiple-models }
 
 Here's a general idea of how the models could look like with their password fields and the places where they are used:
 
@@ -31,9 +31,9 @@ The examples here use `.dict()` for compatibility with Pydantic v1, but you shou
 
 ///
 
-### About `**user_in.dict()`
+### About `**user_in.dict()` { #about-user-in-dict }
 
-#### Pydantic's `.dict()`
+#### Pydantic's `.dict()` { #pydantics-dict }
 
 `user_in` is a Pydantic model of class `UserIn`.
 
@@ -70,7 +70,7 @@ we would get a Python `dict` with:
 }
 ```
 
-#### Unpacking a `dict`
+#### Unpacking a `dict` { #unpacking-a-dict }
 
 If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unpack" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
 
@@ -102,7 +102,7 @@ UserInDB(
 )
 ```
 
-#### A Pydantic model from the contents of another
+#### A Pydantic model from the contents of another { #a-pydantic-model-from-the-contents-of-another }
 
 As in the example above we got `user_dict` from `user_in.dict()`, this code:
 
@@ -121,7 +121,7 @@ UserInDB(**user_in.dict())
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
-#### Unpacking a `dict` and extra keywords
+#### Unpacking a `dict` and extra keywords { #unpacking-a-dict-and-extra-keywords }
 
 And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 
@@ -147,7 +147,7 @@ The supporting additional functions `fake_password_hasher` and `fake_save_user` 
 
 ///
 
-## Reduce duplication
+## Reduce duplication { #reduce-duplication }
 
 Reducing code duplication is one of the core ideas in **FastAPI**.
 
@@ -165,7 +165,7 @@ That way, we can declare just the differences between the models (with plaintext
 
 {* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-## `Union` or `anyOf`
+## `Union` or `anyOf` { #union-or-anyof }
 
 You can declare a response to be the `Union` of two or more types, that means, that the response would be any of them.
 
@@ -182,7 +182,7 @@ When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions
 {* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
 
-### `Union` in Python 3.10
+### `Union` in Python 3.10 { #union-in-python-3-10 }
 
 In this example we pass `Union[PlaneItem, CarItem]` as the value of the argument `response_model`.
 
@@ -196,7 +196,7 @@ some_variable: PlaneItem | CarItem
 
 But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
 
-## List of models
+## List of models { #list-of-models }
 
 The same way, you can declare responses of lists of objects.
 
@@ -205,7 +205,7 @@ For that, use the standard Python `typing.List` (or just `list` in Python 3.9 an
 {* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
 
-## Response with arbitrary `dict`
+## Response with arbitrary `dict` { #response-with-arbitrary-dict }
 
 You can also declare a response using a plain arbitrary `dict`, declaring just the type of the keys and values, without using a Pydantic model.
 
@@ -216,7 +216,7 @@ In this case, you can use `typing.Dict` (or just `dict` in Python 3.9 and above)
 {* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
 
 
-## Recap
+## Recap { #recap }
 
 Use multiple Pydantic models and inherit freely for each case.
 

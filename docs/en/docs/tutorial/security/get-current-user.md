@@ -1,4 +1,4 @@
-# Get Current User
+# Get Current User { #get-current-user }
 
 In the previous chapter the security system (which is based on the dependency injection system) was giving the *path operation function* a `token` as a `str`:
 
@@ -8,7 +8,7 @@ But that is still not that useful.
 
 Let's make it give us the current user.
 
-## Create a user model
+## Create a user model { #create-a-user-model }
 
 First, let's create a Pydantic user model.
 
@@ -16,7 +16,7 @@ The same way we use Pydantic to declare bodies, we can use it anywhere else:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## Create a `get_current_user` dependency
+## Create a `get_current_user` dependency { #create-a-get-current-user-dependency }
 
 Let's create a dependency `get_current_user`.
 
@@ -28,13 +28,13 @@ The same as we were doing before in the *path operation* directly, our new depen
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## Get the user
+## Get the user { #get-the-user }
 
 `get_current_user` will use a (fake) utility function we created, that takes a token as a `str` and returns our Pydantic `User` model:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## Inject the current user
+## Inject the current user { #inject-the-current-user }
 
 So now we can use the same `Depends` with our `get_current_user` in the *path operation*:
 
@@ -60,7 +60,7 @@ We are not restricted to having only one dependency that can return that type of
 
 ///
 
-## Other models
+## Other models { #other-models }
 
 You can now get the current user directly in the *path operation functions* and deal with the security mechanisms at the **Dependency Injection** level, using `Depends`.
 
@@ -76,7 +76,7 @@ You actually don't have users that log in to your application but robots, bots, 
 
 Just use any kind of model, any kind of class, any kind of database that you need for your application. **FastAPI** has you covered with the dependency injection system.
 
-## Code size
+## Code size { #code-size }
 
 This example might seem verbose. Keep in mind that we are mixing security, data models, utility functions and *path operations* in the same file.
 
@@ -94,7 +94,7 @@ And all these thousands of *path operations* can be as small as 3 lines:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## Recap
+## Recap { #recap }
 
 You can now get the current user directly in your *path operation function*.
 

@@ -181,6 +181,28 @@ as Uvicorn by default will use the port `8000`, the documentation on port `8008`
 
 ### Translations
 
+/// warning | Attention
+
+**Update on Translations**
+
+We're updating the way we handle documentation translations.
+
+Until now, we invited community members to translate pages via pull requests, which were then reviewed by at least two native speakers. While this has helped bring FastAPI to many more users, we’ve also run into several challenges - some languages have only a few translated pages, others are outdated and hard to maintain over time.
+To improve this, we’re working on automation tools 🤖 to manage translations more efficiently. Once ready, documentation will be machine-translated and still reviewed by at least two native speakers ✅ before publishing. This will allow us to keep translations up-to-date while reducing the review burden on maintainers.
+
+What’s changing now:
+
+* 🚫 We’re no longer accepting new community-submitted translation PRs.
+
+* ⏳ Existing open PRs will be reviewed and can still be merged if completed within the next 3 weeks (since July 11 2025).
+
+* 🌐 In the future, we will only support languages where at least three active native speakers are available to review and maintain translations.
+
+This transition will help us keep translations more consistent and timely while better supporting our contributors 🙌. Thank you to everyone who has contributed so far — your help has been invaluable! 💖
+
+///
+
+
 Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
 
 Here are the steps to help with translations.
@@ -293,30 +315,47 @@ Now you can translate it all and see how it looks as you save the file.
 
 Some of these files are updated very frequently and a translation would always be behind, or they include the main content from English source files, etc.
 
+#### Request a New Language
+
+Let's say that you want to request translations for a language that is not yet translated, not even some pages. For example, Latin.
+
+If there is no discussion for that language, you can start by requesting the new language. For that, you can follow these steps:
+
+* Create a new discussion following the template.
+* Get a few native speakers to comment on the discussion and commit to help review translations for that language.
+
+Once there are several people in the discussion, the FastAPI team can evaluate it and can make it an official translation.
+
+Then the docs will be automatically translated using AI, and the team of native speakers can review the translation, and help tweak the AI prompts.
+
+Once there's a new translation, for example if docs are updated or there's a new section, there will be a comment in the same discussion with the link to the new translation to review.
+
 #### New Language
 
-Let's say that you want to add translations for a language that is not yet translated, not even some pages.
+/// note
 
-Let's say you want to add translations for Creole, and it's not yet there in the docs.
+These steps will be performed by the FastAPI team.
 
-Checking the link from above, the code for "Creole" is `ht`.
+///
 
-The next step is to run the script to generate a new translation directory:
+Checking the link from above (List of ISO 639-1 codes), you can see that the 2-letter code for Latin is `la`.
+
+Now you can create a new directory for the new language, running the following script:
 
 <div class="termy">
 
 ```console
 // Use the command new-lang, pass the language code as a CLI argument
-$ python ./scripts/docs.py new-lang ht
+$ python ./scripts/docs.py new-lang la
 
-Successfully initialized: docs/ht
+Successfully initialized: docs/la
 ```
 
 </div>
 
-Now you can check in your code editor the newly created directory `docs/ht/`.
+Now you can check in your code editor the newly created directory `docs/la/`.
 
-That command created a file `docs/ht/mkdocs.yml` with a simple config that inherits everything from the `en` version:
+That command created a file `docs/la/mkdocs.yml` with a simple config that inherits everything from the `en` version:
 
 ```yaml
 INHERIT: ../en/mkdocs.yml
@@ -328,11 +367,11 @@ You could also simply create that file with those contents manually.
 
 ///
 
-That command also created a dummy file `docs/ht/index.md` for the main page, you can start by translating that one.
+That command also created a dummy file `docs/la/index.md` for the main page, you can start by translating that one.
 
 You can continue with the previous instructions for an "Existing Language" for that process.
 
-You can make the first pull request with those two files, `docs/ht/mkdocs.yml` and `docs/ht/index.md`. 🎉
+You can make the first pull request with those two files, `docs/la/mkdocs.yml` and `docs/la/index.md`. 🎉
 
 #### Preview the result
 

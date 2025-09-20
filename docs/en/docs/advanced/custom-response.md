@@ -1,4 +1,4 @@
-# Custom Response - HTML, Stream, File, others
+# Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others }
 
 By default, **FastAPI** will return the responses using `JSONResponse`.
 
@@ -18,7 +18,7 @@ If you use a response class with no media type, FastAPI will expect your respons
 
 ///
 
-## Use `ORJSONResponse`
+## Use `ORJSONResponse` { #use-orjsonresponse }
 
 For example, if you are squeezing performance, you can install and use <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> and set the response to be `ORJSONResponse`.
 
@@ -48,7 +48,7 @@ The `ORJSONResponse` is only available in FastAPI, not in Starlette.
 
 ///
 
-## HTML Response
+## HTML Response { #html-response }
 
 To return a response with HTML directly from **FastAPI**, use `HTMLResponse`.
 
@@ -67,7 +67,7 @@ And it will be documented as such in OpenAPI.
 
 ///
 
-### Return a `Response`
+### Return a `Response` { #return-a-response }
 
 As seen in [Return a Response directly](response-directly.md){.internal-link target=_blank}, you can also override the response directly in your *path operation*, by returning it.
 
@@ -87,13 +87,13 @@ Of course, the actual `Content-Type` header, status code, etc, will come from th
 
 ///
 
-### Document in OpenAPI and override `Response`
+### Document in OpenAPI and override `Response` { #document-in-openapi-and-override-response }
 
 If you want to override the response from inside of the function but at the same time document the "media type" in OpenAPI, you can use the `response_class` parameter AND return a `Response` object.
 
 The `response_class` will then be used only to document the OpenAPI *path operation*, but your `Response` will be used as is.
 
-#### Return an `HTMLResponse` directly
+#### Return an `HTMLResponse` directly { #return-an-htmlresponse-directly }
 
 For example, it could be something like:
 
@@ -107,7 +107,7 @@ But as you passed the `HTMLResponse` in the `response_class` too, **FastAPI** wi
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Available responses
+## Available responses { #available-responses }
 
 Here are some of the available responses.
 
@@ -121,7 +121,7 @@ You could also use `from starlette.responses import HTMLResponse`.
 
 ///
 
-### `Response`
+### `Response` { #response }
 
 The main `Response` class, all the other responses inherit from it.
 
@@ -138,23 +138,23 @@ FastAPI (actually Starlette) will automatically include a Content-Length header.
 
 {* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
-### `HTMLResponse`
+### `HTMLResponse` { #htmlresponse }
 
 Takes some text or bytes and returns an HTML response, as you read above.
 
-### `PlainTextResponse`
+### `PlainTextResponse` { #plaintextresponse }
 
 Takes some text or bytes and returns a plain text response.
 
 {* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
-### `JSONResponse`
+### `JSONResponse` { #jsonresponse }
 
 Takes some data and returns an `application/json` encoded response.
 
 This is the default response used in **FastAPI**, as you read above.
 
-### `ORJSONResponse`
+### `ORJSONResponse` { #orjsonresponse }
 
 A fast alternative JSON response using <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, as you read above.
 
@@ -164,7 +164,7 @@ This requires installing `orjson` for example with `pip install orjson`.
 
 ///
 
-### `UJSONResponse`
+### `UJSONResponse` { #ujsonresponse }
 
 An alternative JSON response using <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
@@ -188,7 +188,7 @@ It's possible that `ORJSONResponse` might be a faster alternative.
 
 ///
 
-### `RedirectResponse`
+### `RedirectResponse` { #redirectresponse }
 
 Returns an HTTP redirect. Uses a 307 status code (Temporary Redirect) by default.
 
@@ -213,15 +213,15 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 {* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
-### `StreamingResponse`
+### `StreamingResponse` { #streamingresponse }
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
-#### Using `StreamingResponse` with file-like objects
+#### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
-If you have a file-like object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
+If you have a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object (e.g. the object returned by `open()`), you can create a generator function to iterate over that file-like object.
 
 That way, you don't have to read it all first in memory, and you can pass that generator function to the `StreamingResponse`, and return it.
 
@@ -243,7 +243,7 @@ Notice that here as we are using standard `open()` that doesn't support `async` 
 
 ///
 
-### `FileResponse`
+### `FileResponse` { #fileresponse }
 
 Asynchronously streams a file as the response.
 
@@ -264,7 +264,7 @@ You can also use the `response_class` parameter:
 
 In this case, you can return the file path directly from your *path operation* function.
 
-## Custom response class
+## Custom response class { #custom-response-class }
 
 You can create your own custom response class, inheriting from `Response` and using it.
 
@@ -292,7 +292,7 @@ Now instead of returning:
 
 Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
 
-## Default response class
+## Default response class { #default-response-class }
 
 When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
 
@@ -308,6 +308,6 @@ You can still override `response_class` in *path operations* as before.
 
 ///
 
-## Additional documentation
+## Additional documentation { #additional-documentation }
 
 You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.

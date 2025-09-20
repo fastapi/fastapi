@@ -1,14 +1,14 @@
-# Header Parameters
+# Header Parameters { #header-parameters }
 
 You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.
 
-## Import `Header`
+## Import `Header` { #import-header }
 
 First import `Header`:
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-## Declare `Header` parameters
+## Declare `Header` parameters { #declare-header-parameters }
 
 Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.
 
@@ -30,7 +30,7 @@ To declare headers, you need to use `Header`, because otherwise the parameters w
 
 ///
 
-## Automatic conversion
+## Automatic conversion { #automatic-conversion }
 
 `Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.
 
@@ -54,7 +54,7 @@ Before setting `convert_underscores` to `False`, bear in mind that some HTTP pro
 
 ///
 
-## Duplicate headers
+## Duplicate headers { #duplicate-headers }
 
 It is possible to receive duplicate headers. That means, the same header with multiple values.
 
@@ -84,7 +84,7 @@ The response would be like:
 }
 ```
 
-## Recap
+## Recap { #recap }
 
 Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
 

@@ -1,4 +1,4 @@
-# Extra Data Types
+# Extra Data Types { #extra-data-types }
 
 Up to now, you have been using common data types, like:
 
@@ -17,7 +17,7 @@ And you will still have the same features as seen up to now:
 * Data validation.
 * Automatic annotation and documentation.
 
-## Other data types
+## Other data types { #other-data-types }
 
 Here are some of the additional data types you can use:
 
@@ -51,7 +51,7 @@ Here are some of the additional data types you can use:
     * In requests and responses, handled the same as a `float`.
 * You can check all the valid Pydantic data types here: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
 
-## Example
+## Example { #example }
 
 Here's an example *path operation* with parameters using some of the above types.
 

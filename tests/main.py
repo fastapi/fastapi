@@ -3,7 +3,12 @@ from typing import FrozenSet, List, Optional
 
 from fastapi import FastAPI, Path, Query
 
-app = FastAPI()
+external_docs = {
+    "description": "External API documentation.",
+    "url": "https://docs.example.com/api-general",
+}
+
+app = FastAPI(openapi_external_docs=external_docs)
 
 
 @app.api_route("/api_route")

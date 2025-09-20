@@ -1,12 +1,12 @@
-# Benutzerdefinierte Response – HTML, Stream, Datei, andere
+# Benutzerdefinierte Response – HTML, Stream, Datei, andere { #custom-response-html-stream-file-others }
 
-Standardmäßig gibt **FastAPI** die Responses mittels `JSONResponse` zurück.
+Standardmäßig gibt **FastAPI** die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mittels `JSONResponse` zurück.
 
-Sie können das überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
+Sie können dies überschreiben, indem Sie direkt eine `Response` zurückgeben, wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt.
 
-Wenn Sie jedoch direkt eine `Response` zurückgeben, werden die Daten nicht automatisch konvertiert und die Dokumentation wird nicht automatisch generiert (zum Beispiel wird der spezifische „Medientyp“, der im HTTP-Header `Content-Type` angegeben ist, nicht Teil der generierten OpenAPI).
+Wenn Sie jedoch direkt eine `Response` (oder eine Unterklasse wie `JSONResponse`) zurückgeben, werden die Daten nicht automatisch konvertiert (selbst wenn Sie ein `response_model` deklariert haben), und die Dokumentation wird nicht automatisch generiert (zum Beispiel wird der spezifische „Medientyp“, der im HTTP-Header `Content-Type` angegeben ist, nicht Teil der generierten OpenAPI).
 
-Sie können aber auch die `Response`, die Sie verwenden möchten, im *Pfadoperation-Dekorator* deklarieren.
+Sie können jedoch auch die `Response`, die Sie verwenden möchten (z. B. jede `Response`-Unterklasse), im *Pfadoperation-Dekorator* mit dem `response_class`-Parameter deklarieren.
 
 Der Inhalt, den Sie von Ihrer *Pfadoperation-Funktion* zurückgeben, wird in diese `Response` eingefügt.
 
@@ -18,13 +18,13 @@ Wenn Sie eine Response-Klasse ohne Medientyp verwenden, erwartet FastAPI, dass I
 
 ///
 
-## `ORJSONResponse` verwenden
+## `ORJSONResponse` verwenden { #use-orjsonresponse }
 
-Um beispielsweise noch etwas Leistung herauszuholen, können Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> installieren und verwenden, und die Response als `ORJSONResponse` deklarieren.
+Um beispielsweise noch etwas Leistung herauszuholen, können Sie <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> installieren und die Response als `ORJSONResponse` setzen.
 
-Importieren Sie die `Response`-Klasse (-Unterklasse), die Sie verwenden möchten, und deklarieren Sie sie im *Pfadoperation-Dekorator*.
+Importieren Sie die `Response`-Klasse (Unterklasse), die Sie verwenden möchten, und deklarieren Sie sie im *Pfadoperation-Dekorator*.
 
-Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` viel schneller als ein Dictionary zurückzugeben.
+Bei umfangreichen Responses ist die direkte Rückgabe einer `Response` wesentlich schneller als ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> zurückzugeben.
 
 Das liegt daran, dass FastAPI standardmäßig jedes enthaltene Element überprüft und sicherstellt, dass es als JSON serialisierbar ist, und zwar unter Verwendung desselben [JSON-kompatiblen Encoders](../tutorial/encoder.md){.internal-link target=_blank}, der im Tutorial erläutert wurde. Dadurch können Sie **beliebige Objekte** zurückgeben, zum Beispiel Datenbankmodelle.
 
@@ -32,7 +32,7 @@ Wenn Sie jedoch sicher sind, dass der von Ihnen zurückgegebene Inhalt **mit JSO
 
 {* ../../docs_src/custom_response/tutorial001b.py hl[2,7] *}
 
-/// info
+/// info | Info
 
 Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
 
@@ -44,11 +44,11 @@ Und er wird als solcher in OpenAPI dokumentiert.
 
 /// tip | Tipp
 
-Die `ORJSONResponse` ist derzeit nur in FastAPI verfügbar, nicht in Starlette.
+Die `ORJSONResponse` ist nur in FastAPI verfügbar, nicht in Starlette.
 
 ///
 
-## HTML-Response
+## HTML-Response { #html-response }
 
 Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `HTMLResponse`.
 
@@ -57,7 +57,7 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 
 {* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
-/// info
+/// info | Info
 
 Der Parameter `response_class` wird auch verwendet, um den „Medientyp“ der Response zu definieren.
 
@@ -67,7 +67,7 @@ Und er wird als solcher in OpenAPI dokumentiert.
 
 ///
 
-### Eine `Response` zurückgeben
+### Eine `Response` zurückgeben { #return-a-response }
 
 Wie in [Eine Response direkt zurückgeben](response-directly.md){.internal-link target=_blank} gezeigt, können Sie die Response auch direkt in Ihrer *Pfadoperation* überschreiben, indem Sie diese zurückgeben.
 
@@ -81,19 +81,19 @@ Eine `Response`, die direkt von Ihrer *Pfadoperation-Funktion* zurückgegeben wi
 
 ///
 
-/// info
+/// info | Info
 
 Natürlich stammen der eigentliche `Content-Type`-Header, der Statuscode, usw., aus dem `Response`-Objekt, das Sie zurückgegeben haben.
 
 ///
 
-### In OpenAPI dokumentieren und `Response` überschreiben
+### In OpenAPI dokumentieren und `Response` überschreiben { #document-in-openapi-and-override-response }
 
 Wenn Sie die Response innerhalb der Funktion überschreiben und gleichzeitig den „Medientyp“ in OpenAPI dokumentieren möchten, können Sie den `response_class`-Parameter verwenden UND ein `Response`-Objekt zurückgeben.
 
-Die `response_class` wird dann nur zur Dokumentation der OpenAPI-Pfadoperation* verwendet, Ihre `Response` wird jedoch unverändert verwendet.
+Die `response_class` wird dann nur zur Dokumentation der OpenAPI-*Pfadoperation* verwendet, Ihre `Response` wird jedoch unverändert verwendet.
 
-#### Eine `HTMLResponse` direkt zurückgeben
+#### Eine `HTMLResponse` direkt zurückgeben { #return-an-htmlresponse-directly }
 
 Es könnte zum Beispiel so etwas sein:
 
@@ -107,7 +107,7 @@ Aber da Sie die `HTMLResponse` auch in der `response_class` übergeben haben, we
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Verfügbare Responses
+## Verfügbare Responses { #available-responses }
 
 Hier sind einige der verfügbaren Responses.
 
@@ -121,7 +121,7 @@ Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
 ///
 
-### `Response`
+### `Response` { #response }
 
 Die Hauptklasse `Response`, alle anderen Responses erben von ihr.
 
@@ -138,29 +138,41 @@ FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein
 
 {* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
-### `HTMLResponse`
+### `HTMLResponse` { #htmlresponse }
 
 Nimmt Text oder Bytes entgegen und gibt eine HTML-Response zurück, wie Sie oben gelesen haben.
 
-### `PlainTextResponse`
+### `PlainTextResponse` { #plaintextresponse }
 
 Nimmt Text oder Bytes entgegen und gibt eine Plain-Text-Response zurück.
 
 {* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
-### `JSONResponse`
+### `JSONResponse` { #jsonresponse }
 
 Nimmt einige Daten entgegen und gibt eine `application/json`-codierte Response zurück.
 
 Dies ist die Standard-Response, die in **FastAPI** verwendet wird, wie Sie oben gelesen haben.
 
-### `ORJSONResponse`
+### `ORJSONResponse` { #orjsonresponse }
 
 Eine schnelle alternative JSON-Response mit <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, wie Sie oben gelesen haben.
 
-### `UJSONResponse`
+/// info | Info
+
+Dazu muss `orjson` installiert werden, z. B. mit `pip install orjson`.
+
+///
+
+### `UJSONResponse` { #ujsonresponse }
 
 Eine alternative JSON-Response mit <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
+
+/// info | Info
+
+Dazu muss `ujson` installiert werden, z. B. mit `pip install ujson`.
+
+///
 
 /// warning | Achtung
 
@@ -176,7 +188,7 @@ Möglicherweise ist `ORJSONResponse` eine schnellere Alternative.
 
 ///
 
-### `RedirectResponse`
+### `RedirectResponse` { #redirectresponse }
 
 Gibt eine HTTP-Weiterleitung (HTTP-Redirect) zurück. Verwendet standardmäßig den Statuscode 307 – Temporäre Weiterleitung (Temporary Redirect).
 
@@ -187,7 +199,6 @@ Sie können eine `RedirectResponse` direkt zurückgeben:
 ---
 
 Oder Sie können sie im Parameter `response_class` verwenden:
-
 
 {* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
@@ -201,26 +212,24 @@ Sie können den Parameter `status_code` auch in Kombination mit dem Parameter `r
 
 {* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
-### `StreamingResponse`
+### `StreamingResponse` { #streamingresponse }
 
 Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator und streamt den Responsebody.
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
-#### Verwendung von `StreamingResponse` mit dateiähnlichen Objekten
+#### Verwendung von `StreamingResponse` mit dateiartigen Objekten { #using-streamingresponse-with-file-like-objects }
 
-Wenn Sie ein dateiähnliches (file-like) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiähnliche Objekt zu iterieren.
+Wenn Sie ein dateiartiges (<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a>) Objekt haben (z. B. das von `open()` zurückgegebene Objekt), können Sie eine Generatorfunktion erstellen, um über dieses dateiartige Objekt zu iterieren.
 
 Auf diese Weise müssen Sie nicht alles zuerst in den Arbeitsspeicher lesen und können diese Generatorfunktion an `StreamingResponse` übergeben und zurückgeben.
 
 Das umfasst viele Bibliotheken zur Interaktion mit Cloud-Speicher, Videoverarbeitung und anderen.
 
-```{ .python .annotate hl_lines="2  10-12  14" }
-{!../../docs_src/custom_response/tutorial008.py!}
-```
+{* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 1. Das ist die Generatorfunktion. Es handelt sich um eine „Generatorfunktion“, da sie `yield`-Anweisungen enthält.
-2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiähnliche Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem sie mit dem Senden der Response fertig ist.
+2. Durch die Verwendung eines `with`-Blocks stellen wir sicher, dass das dateiartige Objekt geschlossen wird, nachdem die Generatorfunktion fertig ist. Also, nachdem sie mit dem Senden der Response fertig ist.
 3. Dieses `yield from` weist die Funktion an, über das Ding namens `file_like` zu iterieren. Und dann für jeden iterierten Teil, diesen Teil so zurückzugeben, als wenn er aus dieser Generatorfunktion (`iterfile`) stammen würde.
 
     Es handelt sich also hier um eine Generatorfunktion, die die „generierende“ Arbeit intern auf etwas anderes überträgt.
@@ -233,7 +242,7 @@ Beachten Sie, dass wir, da wir Standard-`open()` verwenden, welches `async` und 
 
 ///
 
-### `FileResponse`
+### `FileResponse` { #fileresponse }
 
 Streamt eine Datei asynchron als Response.
 
@@ -254,7 +263,7 @@ Sie können auch den Parameter `response_class` verwenden:
 
 In diesem Fall können Sie den Dateipfad direkt von Ihrer *Pfadoperation*-Funktion zurückgeben.
 
-## Benutzerdefinierte Response-Klasse
+## Benutzerdefinierte Response-Klasse { #custom-response-class }
 
 Sie können Ihre eigene benutzerdefinierte Response-Klasse erstellen, die von `Response` erbt und diese verwendet.
 
@@ -282,7 +291,7 @@ Statt:
 
 Natürlich werden Sie wahrscheinlich viel bessere Möglichkeiten finden, Vorteil daraus zu ziehen, als JSON zu formatieren. 😉
 
-## Standard-Response-Klasse
+## Standard-Response-Klasse { #default-response-class }
 
 Beim Erstellen einer **FastAPI**-Klasseninstanz oder eines `APIRouter`s können Sie angeben, welche Response-Klasse standardmäßig verwendet werden soll.
 
@@ -298,6 +307,6 @@ Sie können dennoch weiterhin `response_class` in *Pfadoperationen* überschreib
 
 ///
 
-## Zusätzliche Dokumentation
+## Zusätzliche Dokumentation { #additional-documentation }
 
 Sie können auch den Medientyp und viele andere Details in OpenAPI mit `responses` deklarieren: [Zusätzliche Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.

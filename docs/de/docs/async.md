@@ -1,8 +1,8 @@
-# Nebenläufigkeit und async / await
+# Nebenläufigkeit und async / await { #concurrency-and-async-await }
 
 Details zur `async def`-Syntax für *Pfadoperation-Funktionen* und Hintergrundinformationen zu asynchronem Code, Nebenläufigkeit und Parallelität.
 
-## In Eile?
+## In Eile? { #in-a-hurry }
 
 <abbr title="too long; didn't read – Zu lang; nicht gelesen"><strong>TL;DR:</strong></abbr>
 
@@ -12,7 +12,7 @@ Wenn Sie Bibliotheken von Dritten verwenden, die mit `await` aufgerufen werden m
 results = await some_library()
 ```
 
-Dann deklarieren Sie Ihre *Pfadoperation-Funktionen* mit `async def` wie in:
+Dann deklarieren Sie Ihre *Pfadoperation-Funktionen* mit `async def`, wie in:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note
+/// note | Hinweis
 
 Sie können `await` nur innerhalb von Funktionen verwenden, die mit `async def` erstellt wurden.
 
@@ -29,7 +29,7 @@ Sie können `await` nur innerhalb von Funktionen verwenden, die mit `async def` 
 
 ---
 
-Wenn Sie eine Bibliothek eines Dritten verwenden, die mit etwas kommuniziert (einer Datenbank, einer API, dem Dateisystem, usw.) und welche die Verwendung von `await` nicht unterstützt (dies ist derzeit bei den meisten Datenbankbibliotheken der Fall), dann deklarieren Sie Ihre *Pfadoperation-Funktionen* ganz normal nur mit `def`, etwa:
+Wenn Sie eine Bibliothek eines Dritten verwenden, die mit etwas kommuniziert (einer Datenbank, einer API, dem Dateisystem, usw.) und welche die Verwendung von `await` nicht unterstützt (dies ist derzeit bei den meisten Datenbankbibliotheken der Fall), dann deklarieren Sie Ihre *Pfadoperation-Funktionen* ganz normal nur mit `def`, wie in:
 
 ```Python hl_lines="2"
 @app.get('/')
@@ -40,7 +40,7 @@ def results():
 
 ---
 
-Wenn Ihre Anwendung (irgendwie) mit nichts anderem kommunizieren und auf dessen Antwort warten muss, verwenden Sie `async def`.
+Wenn Ihre Anwendung (irgendwie) nicht mit etwas anderem kommunizieren und auf dessen Antwort warten muss, verwenden Sie `async def`, auch wenn Sie `await` im Inneren nicht verwenden müssen.
 
 ---
 
@@ -52,11 +52,11 @@ Wenn Sie sich unsicher sind, verwenden Sie einfach `def`.
 
 Wie dem auch sei, in jedem der oben genannten Fälle wird FastAPI immer noch asynchron arbeiten und extrem schnell sein.
 
-Wenn Sie jedoch den oben genannten Schritten folgen, können einige Performance-Optimierungen vorgenommen werden.
+Wenn Sie jedoch den oben genannten Schritten folgen, können einige Performanz-Optimierungen vorgenommen werden.
 
-## Technische Details
+## Technische Details { #technical-details }
 
-Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async`** und **`await`**.
+Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async` und `await`**.
 
 Nehmen wir obigen Satz in den folgenden Abschnitten Schritt für Schritt unter die Lupe:
 
@@ -64,13 +64,13 @@ Nehmen wir obigen Satz in den folgenden Abschnitten Schritt für Schritt unter d
 * **`async` und `await`**
 * **Coroutinen**
 
-## Asynchroner Code
+## Asynchroner Code { #asynchronous-code }
 
-Asynchroner Code bedeutet lediglich, dass die Sprache 💬 eine Möglichkeit hat, dem Computersystem / Programm 🤖 mitzuteilen, dass es 🤖 an einem bestimmten Punkt im Code darauf warten muss, dass *etwas anderes* irgendwo anders fertig wird. Nehmen wir an, *etwas anderes* ist hier „Langsam-Datei“ 📝.
+Asynchroner Code bedeutet lediglich, dass die Sprache 💬 eine Möglichkeit hat, dem Computer / Programm 🤖 mitzuteilen, dass es 🤖 an einem bestimmten Punkt im Code darauf warten muss, dass *etwas anderes* irgendwo anders fertig wird. Nehmen wir an, *etwas anderes* ist hier „Langsam-Datei“ 📝.
 
 Während der Zeit, die „Langsam-Datei“ 📝 benötigt, kann das System also andere Aufgaben erledigen.
 
-Dann kommt das System / Programm 🤖 bei jeder Gelegenheit zurück, wenn es entweder wieder wartet, oder wann immer es 🤖 die ganze Arbeit erledigt hat, die zu diesem Zeitpunkt zu tun war. Und es 🤖 wird nachschauen, ob eine der Aufgaben, auf die es gewartet hat, fertig damit ist, zu tun, was sie tun sollte.
+Dann kommt der Computer / das Programm 🤖 bei jeder Gelegenheit zurück, weil es entweder wieder wartet oder wann immer es 🤖 die ganze Arbeit erledigt hat, die zu diesem Zeitpunkt zu tun war. Und es 🤖 wird nachschauen, ob eine der Aufgaben, auf die es gewartet hat, fertig ist.
 
 Dann nimmt es 🤖 die erste erledigte Aufgabe (sagen wir, unsere „Langsam-Datei“ 📝) und bearbeitet sie weiter.
 
@@ -87,13 +87,13 @@ Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="I
 
 Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output – Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch „I/O-lastige“ („I/O bound“) Operationen.
 
-„Asynchron“, sagt man, weil das Computersystem / Programm nicht mit einer langsamen Aufgabe „synchronisiert“ werden muss und nicht auf den genauen Moment warten muss, in dem die Aufgabe beendet ist, ohne dabei etwas zu tun, um schließlich das Ergebnis der Aufgabe zu übernehmen und die Arbeit fortsetzen zu können.
+„Asynchron“, sagt man, weil der Computer / das Programm nicht mit einer langsamen Aufgabe „synchronisiert“ werden muss und nicht auf den genauen Moment warten muss, in dem die Aufgabe beendet ist, ohne dabei etwas zu tun, um schließlich das Ergebnis der Aufgabe zu übernehmen und die Arbeit fortsetzen zu können.
 
-Da es sich stattdessen um ein „asynchrones“ System handelt, kann die Aufgabe nach Abschluss ein wenig (einige Mikrosekunden) in der Schlange warten, bis das System / Programm seine anderen Dinge erledigt hat und zurückkommt, um die Ergebnisse entgegenzunehmen und mit ihnen weiterzuarbeiten.
+Da es sich stattdessen um ein „asynchrones“ System handelt, kann die Aufgabe nach Abschluss ein wenig (einige Mikrosekunden) in der Schlange warten, bis der Computer / das Programm seine anderen Dinge erledigt hat und zurückkommt, um die Ergebnisse entgegenzunehmen und mit ihnen weiterzuarbeiten.
 
-Für „synchron“ (im Gegensatz zu „asynchron“) wird auch oft der Begriff „sequentiell“ verwendet, da das System / Programm alle Schritte in einer Sequenz („der Reihe nach“) ausführt, bevor es zu einer anderen Aufgabe wechselt, auch wenn diese Schritte mit Warten verbunden sind.
+Für „synchron“ (im Gegensatz zu „asynchron“) wird auch oft der Begriff „sequentiell“ verwendet, da der Computer / das Programm alle Schritte in einer Sequenz („der Reihe nach“) ausführt, bevor es zu einer anderen Aufgabe wechselt, auch wenn diese Schritte mit Warten verbunden sind.
 
-### Nebenläufigkeit und Hamburger
+### Nebenläufigkeit und Hamburger { #concurrency-and-burgers }
 
 Diese oben beschriebene Idee von **asynchronem** Code wird manchmal auch **„Nebenläufigkeit“** genannt. Sie unterscheidet sich von **„Parallelität“**.
 
@@ -103,7 +103,7 @@ Aber die Details zwischen *Nebenläufigkeit* und *Parallelität* sind ziemlich u
 
 Um den Unterschied zu erkennen, stellen Sie sich die folgende Geschichte über Hamburger vor:
 
-### Nebenläufige Hamburger
+### Nebenläufige Hamburger { #concurrent-burgers }
 
 Sie gehen mit Ihrem Schwarm Fastfood holen, stehen in der Schlange, während der Kassierer die Bestellungen der Leute vor Ihnen entgegennimmt. 😍
 
@@ -139,7 +139,7 @@ Sie und Ihr Schwarm essen die Burger und haben eine schöne Zeit. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info
+/// info | Info
 
 Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -147,7 +147,7 @@ Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com
 
 ---
 
-Stellen Sie sich vor, Sie wären das Computersystem / Programm 🤖 in dieser Geschichte.
+Stellen Sie sich vor, Sie wären der Computer / das Programm 🤖 in dieser Geschichte.
 
 Während Sie an der Schlange stehen, sind Sie einfach untätig 😴, warten darauf, dass Sie an die Reihe kommen, und tun nichts sehr „Produktives“. Aber die Schlange ist schnell abgearbeitet, weil der Kassierer nur die Bestellungen entgegennimmt (und nicht zubereitet), also ist das vertretbar.
 
@@ -163,7 +163,7 @@ Also warten Sie darauf, dass Ihr Schwarm ihre Geschichte zu Ende erzählt (die a
 
 Dann gehen Sie zur Theke 🔀, zur ursprünglichen Aufgabe, die nun erledigt ist ⏯, nehmen die Burger auf, sagen Danke, und bringen sie zum Tisch. Damit ist dieser Schritt / diese Aufgabe der Interaktion mit der Theke abgeschlossen ⏹. Das wiederum schafft eine neue Aufgabe, „Burger essen“ 🔀 ⏯, aber die vorherige Aufgabe „Burger holen“ ist erledigt ⏹.
 
-### Parallele Hamburger
+### Parallele Hamburger { #parallel-burgers }
 
 Stellen wir uns jetzt vor, dass es sich hierbei nicht um „nebenläufige Hamburger“, sondern um „parallele Hamburger“ handelt.
 
@@ -205,7 +205,7 @@ Sie essen sie und sind fertig. ⏹
 
 Es wurde nicht viel geredet oder geflirtet, da die meiste Zeit mit Warten 🕙 vor der Theke verbracht wurde. 😞
 
-/// info
+/// info | Info
 
 Die wunderschönen Illustrationen stammen von <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
 
@@ -233,15 +233,15 @@ Und man muss lange in der Schlange warten 🕙 sonst kommt man nicht an die Reih
 
 Sie würden Ihren Schwarm 😍 wahrscheinlich nicht mitnehmen wollen, um Besorgungen bei der Bank zu erledigen 🏦.
 
-### Hamburger Schlussfolgerung
+### Hamburger Schlussfolgerung { #burger-conclusion }
 
-In diesem Szenario „Fast Food Burger mit Ihrem Schwarm“ ist es viel sinnvoller, ein nebenläufiges System zu haben ⏸🔀⏯, da viel gewartet wird 🕙.
+In diesem Szenario „Fastfood-Burger mit Ihrem Schwarm“ ist es viel sinnvoller, ein nebenläufiges System zu haben ⏸🔀⏯, da viel gewartet wird 🕙.
 
 Das ist auch bei den meisten Webanwendungen der Fall.
 
-Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so gute Internetverbindungen die Requests übermitteln.
+Viele, viele Benutzer, aber Ihr Server wartet 🕙 darauf, dass deren nicht so gute Internetverbindungen die <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> übermitteln.
 
-Und dann warten 🕙, bis die Responses zurückkommen.
+Und dann wieder warten 🕙, bis die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> zurückkommen.
 
 Dieses „Warten“ 🕙 wird in Mikrosekunden gemessen, aber zusammenfassend lässt sich sagen, dass am Ende eine Menge gewartet wird.
 
@@ -253,7 +253,7 @@ Und das ist das gleiche Leistungsniveau, das Sie mit **FastAPI** erhalten.
 
 Und da Sie Parallelität und Asynchronität gleichzeitig haben können, erzielen Sie eine höhere Performanz als die meisten getesteten NodeJS-Frameworks und sind mit Go auf Augenhöhe, einer kompilierten Sprache, die näher an C liegt <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(alles dank Starlette)</a>.
 
-### Ist Nebenläufigkeit besser als Parallelität?
+### Ist Nebenläufigkeit besser als Parallelität? { #is-concurrency-better-than-parallelism }
 
 Nein! Das ist nicht die Moral der Geschichte.
 
@@ -290,17 +290,17 @@ Zum Beispiel:
 * **Maschinelles Lernen**: Normalerweise sind viele „Matrix“- und „Vektor“-Multiplikationen erforderlich. Stellen Sie sich eine riesige Tabelle mit Zahlen vor, in der Sie alle Zahlen gleichzeitig multiplizieren.
 * **Deep Learning**: Dies ist ein Teilgebiet des maschinellen Lernens, daher gilt das Gleiche. Es ist nur so, dass es nicht eine einzige Tabelle mit Zahlen zum Multiplizieren gibt, sondern eine riesige Menge davon, und in vielen Fällen verwendet man einen speziellen Prozessor, um diese Modelle zu erstellen und / oder zu verwenden.
 
-### Nebenläufigkeit + Parallelität: Web + maschinelles Lernen
+### Nebenläufigkeit + Parallelität: Web + maschinelles Lernen { #concurrency-parallelism-web-machine-learning }
 
 Mit **FastAPI** können Sie die Vorteile der Nebenläufigkeit nutzen, die in der Webentwicklung weit verbreitet ist (derselbe Hauptvorteil von NodeJS).
 
-Sie können aber auch die Vorteile von Parallelität und Multiprocessing (Mehrere Prozesse werden parallel ausgeführt) für **CPU-lastige** Workloads wie in Systemen für maschinelles Lernen nutzen.
+Sie können aber auch die Vorteile von Parallelität und Multiprocessing (mehrere Prozesse werden parallel ausgeführt) für **CPU-lastige** Workloads wie in Systemen für maschinelles Lernen nutzen.
 
 Dies und die einfache Tatsache, dass Python die Hauptsprache für **Data Science**, maschinelles Lernen und insbesondere Deep Learning ist, machen FastAPI zu einem sehr passenden Werkzeug für Web-APIs und Anwendungen für Data Science / maschinelles Lernen (neben vielen anderen).
 
 Wie Sie diese Parallelität in der Produktion erreichen, erfahren Sie im Abschnitt über [Deployment](deployment/index.md){.internal-link target=_blank}.
 
-## `async` und `await`.
+## `async` und `await` { #async-and-await }
 
 Moderne Versionen von Python verfügen über eine sehr intuitive Möglichkeit, asynchronen Code zu schreiben. Dadurch sieht es wie normaler „sequentieller“ Code aus und übernimmt im richtigen Moment das „Warten“ für Sie.
 
@@ -316,16 +316,16 @@ Damit `await` funktioniert, muss es sich in einer Funktion befinden, die diese A
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Mach Sie hier etwas Asynchrones, um die Burger zu erstellen
+    # Mache hier etwas Asynchrones, um die Burger zu erstellen
     return burgers
 ```
 
 ... statt mit `def`:
 
 ```Python hl_lines="2"
-# Die ist nicht asynchron
+# Dies ist nicht asynchron
 def get_sequential_burgers(number: int):
-    # Mach Sie hier etwas Sequentielles, um die Burger zu erstellen
+    # Mache hier etwas Sequentielles, um die Burger zu erstellen
     return burgers
 ```
 
@@ -349,7 +349,7 @@ async def read_burgers():
     return burgers
 ```
 
-### Weitere technische Details
+### Weitere technische Details { #more-technical-details }
 
 Ihnen ist wahrscheinlich aufgefallen, dass `await` nur innerhalb von Funktionen verwendet werden kann, die mit `async def` definiert sind.
 
@@ -361,15 +361,17 @@ Wenn Sie mit **FastAPI** arbeiten, müssen Sie sich darüber keine Sorgen machen
 
 Wenn Sie jedoch `async` / `await` ohne FastAPI verwenden möchten, können Sie dies auch tun.
 
-### Schreiben Sie Ihren eigenen asynchronen Code
+### Schreiben Sie Ihren eigenen asynchronen Code { #write-your-own-async-code }
 
-Starlette (und **FastAPI**) basiert auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, es ist sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a>, als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (und **FastAPI**) basieren auf <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, was bedeutet, dass es sowohl kompatibel mit der Python-Standardbibliothek <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> als auch mit <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a> ist.
 
-Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschritten nebenläufigen und parallelen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
+Insbesondere können Sie <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> direkt verwenden für Ihre fortgeschrittenen nebenläufigen Anwendungsfälle, die fortgeschrittenere Muster in Ihrem eigenen Code erfordern.
 
-Und selbst wenn Sie FastAPI nicht verwenden würden, könnten Sie auch Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> so schreiben, dass sie hoch kompatibel sind und Sie dessen Vorteile nutzen können (z. B. *strukturierte Nebenläufigkeit*).
+Und auch wenn Sie FastAPI nicht verwenden würden, könnten Sie Ihre eigenen asynchronen Anwendungen mit <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> schreiben, um hochkompatibel zu sein und dessen Vorteile zu nutzen (z. B. *strukturierte Nebenläufigkeit*).
 
-### Andere Formen von asynchronem Code
+Ich habe eine weitere Bibliothek auf Basis von AnyIO erstellt, als dünne Schicht obendrauf, um die Typannotationen etwas zu verbessern und bessere **Autovervollständigung**, **Inline-Fehler** usw. zu erhalten. Sie hat auch eine freundliche Einführung und ein Tutorial, um Ihnen zu helfen, **Ihren eigenen asynchronen Code zu verstehen** und zu schreiben: <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Sie ist insbesondere nützlich, wenn Sie **asynchronen Code mit regulärem** (blockierendem/synchronem) Code kombinieren müssen.
+
+### Andere Formen von asynchronem Code { #other-forms-of-asynchronous-code }
 
 Diese Art der Verwendung von `async` und `await` ist in der Sprache relativ neu.
 
@@ -381,25 +383,25 @@ Davor war der Umgang mit asynchronem Code jedoch deutlich komplexer und schwieri
 
 In früheren Versionen von Python hätten Sie Threads oder <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> verwenden können. Der Code ist jedoch viel komplexer zu verstehen, zu debuggen und nachzuvollziehen.
 
-In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur <a href="http://callbackhell.com/" class="external-link" target="_blank">Callback-Hölle</a> führt.
+In früheren Versionen von NodeJS / Browser JavaScript hätten Sie „Callbacks“ verwendet. Was zur „Callback-Hölle“ führt.
 
-## Coroutinen
+## Coroutinen { #coroutines }
 
 **Coroutine** ist nur ein schicker Begriff für dasjenige, was von einer `async def`-Funktion zurückgegeben wird. Python weiß, dass es so etwas wie eine Funktion ist, die es starten kann und die irgendwann endet, aber auch dass sie pausiert ⏸ werden kann, wann immer darin ein `await` steht.
 
 Aber all diese Funktionalität der Verwendung von asynchronem Code mit `async` und `await` wird oft als Verwendung von „Coroutinen“ zusammengefasst. Es ist vergleichbar mit dem Hauptmerkmal von Go, den „Goroutinen“.
 
-## Fazit
+## Fazit { #conclusion }
 
 Sehen wir uns den gleichen Satz von oben noch mal an:
 
-> Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async`** und **`await`**.
+> Moderne Versionen von Python unterstützen **„asynchronen Code“** unter Verwendung sogenannter **„Coroutinen“** mithilfe der Syntax **`async` und `await`**.
 
 Das sollte jetzt mehr Sinn ergeben. ✨
 
 All das ist es, was FastAPI (via Starlette) befeuert und es eine so beeindruckende Performanz haben lässt.
 
-## Sehr technische Details
+## Sehr technische Details { #very-technical-details }
 
 /// warning | Achtung
 
@@ -411,23 +413,23 @@ Wenn Sie über gute technische Kenntnisse verfügen (Coroutinen, Threads, Blocki
 
 ///
 
-### Pfadoperation-Funktionen
+### Pfadoperation-Funktionen { #path-operation-functions }
 
 Wenn Sie eine *Pfadoperation-Funktion* mit normalem `def` anstelle von `async def` deklarieren, wird sie in einem externen Threadpool ausgeführt, der dann `await`et wird, anstatt direkt aufgerufen zu werden (da dies den Server blockieren würde).
 
 Wenn Sie von einem anderen asynchronen Framework kommen, das nicht auf die oben beschriebene Weise funktioniert, und Sie es gewohnt sind, triviale, nur-berechnende *Pfadoperation-Funktionen* mit einfachem `def` zu definieren, um einen geringfügigen Geschwindigkeitsgewinn (etwa 100 Nanosekunden) zu erzielen, beachten Sie bitte, dass der Effekt in **FastAPI** genau gegenteilig wäre. In solchen Fällen ist es besser, `async def` zu verwenden, es sei denn, Ihre *Pfadoperation-Funktionen* verwenden Code, der blockierende <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben von/auf Festplatte, Netzwerkkommunikation.">I/O</abbr>-Operationen durchführt.
 
-Dennoch besteht in beiden Fällen eine gute Chance, dass **FastAPI** [immer noch schneller](index.md#performanz){.internal-link target=_blank} als Ihr bisheriges Framework (oder zumindest damit vergleichbar) ist.
+Dennoch besteht in beiden Fällen eine gute Chance, dass **FastAPI** [immer noch schneller](index.md#performance){.internal-link target=_blank} als Ihr bisheriges Framework (oder zumindest damit vergleichbar) ist.
 
-### Abhängigkeiten
+### Abhängigkeiten { #dependencies }
 
-Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md){.internal-link target=_blank}. Wenn eine Abhängigkeit eine normale `def`-Funktion ist, anstelle einer `async def`-Funktion, dann wird sie im externen Threadpool ausgeführt.
+Das Gleiche gilt für [Abhängigkeiten](tutorial/dependencies/index.md){.internal-link target=_blank}. Wenn eine Abhängigkeit eine normale `def`-Funktion anstelle einer `async def` ist, wird sie im externen Threadpool ausgeführt.
 
-### Unterabhängigkeiten
+### Unterabhängigkeiten { #sub-dependencies }
 
-Sie können mehrere Abhängigkeiten und [Unterabhängigkeiten](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} haben, die einander bedingen (als Parameter der Funktionsdefinitionen), einige davon könnten erstellt werden mit `async def` und einige mit normalem `def`. Es würde immer noch funktionieren und diejenigen, die mit normalem `def` erstellt wurden, würden in einem externen Thread (vom Threadpool stammend) aufgerufen werden, anstatt `await`et zu werden.
+Sie können mehrere Abhängigkeiten und [Unterabhängigkeiten](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} haben, die einander bedingen (als Parameter der Funktionsdefinitionen), einige davon könnten erstellt werden mit `async def` und einige mit normalem `def`. Es würde immer noch funktionieren, und diejenigen, die mit normalem `def` erstellt wurden, würden in einem externen Thread (vom Threadpool stammend) aufgerufen werden, anstatt `await`et zu werden.
 
-### Andere Hilfsfunktionen
+### Andere Hilfsfunktionen { #other-utility-functions }
 
 Jede andere Hilfsfunktion, die Sie direkt aufrufen, kann mit normalem `def` oder `async def` erstellt werden, und FastAPI beeinflusst nicht die Art und Weise, wie Sie sie aufrufen.
 
@@ -439,4 +441,4 @@ Wenn Ihre Hilfsfunktion eine normale Funktion mit `def` ist, wird sie direkt auf
 
 Nochmal, es handelt sich hier um sehr technische Details, die Ihnen helfen, falls Sie danach gesucht haben.
 
-Andernfalls liegen Sie richtig, wenn Sie sich an die Richtlinien aus dem obigen Abschnitt halten: <a href="#in-eile">In Eile?</a>.
+Andernfalls liegen Sie richtig, wenn Sie sich an die Richtlinien aus dem obigen Abschnitt halten: <a href="#in-a-hurry">In Eile?</a>.

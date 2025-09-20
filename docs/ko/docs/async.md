@@ -349,7 +349,7 @@ FastAPI를 사용하지 않더라도, 높은 호환성 및 <a href="https://anyi
 
 파이썬의 예전 버전이라면, 스레드 또는 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>를 사용할 수 있을 것입니다. 하지만 코드를 이해하고, 디버깅하고, 이에 대해 생각하는게 훨씬 복잡합니다.
 
-예전 버전의 NodeJS / 브라우저 자바스크립트라면, "콜백 함수"를 사용했을 것입니다. 그리고 이로 인해 <a href="http://callbackhell.com/" class="external-link" target="_blank">콜백 지옥</a>에 빠지게 될 수 있습니다.
+예전 버전의 NodeJS / 브라우저 자바스크립트라면, "콜백 함수"를 사용했을 것입니다. 그리고 이로 인해 "콜백 지옥"에 빠지게 될 수 있습니다.
 
 ## 코루틴
 

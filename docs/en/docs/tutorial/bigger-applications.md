@@ -1,4 +1,4 @@
-# Bigger Applications - Multiple Files
+# Bigger Applications - Multiple Files { #bigger-applications-multiple-files }
 
 If you are building an application or a web API, it's rarely the case that you can put everything in a single file.
 
@@ -10,7 +10,7 @@ If you come from Flask, this would be the equivalent of Flask's Blueprints.
 
 ///
 
-## An example file structure
+## An example file structure { #an-example-file-structure }
 
 Let's say you have a file structure like this:
 
@@ -71,7 +71,7 @@ The same file structure with comments:
 │       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
 ```
 
-## `APIRouter`
+## `APIRouter` { #apirouter }
 
 Let's say the file dedicated to handling just users is the submodule at `/app/routers/users.py`.
 
@@ -81,7 +81,7 @@ But it's still part of the same **FastAPI** application/web API (it's part of th
 
 You can create the *path operations* for that module using `APIRouter`.
 
-### Import `APIRouter`
+### Import `APIRouter` { #import-apirouter }
 
 You import it and create an "instance" the same way you would with the class `FastAPI`:
 
@@ -89,7 +89,7 @@ You import it and create an "instance" the same way you would with the class `Fa
 {!../../docs_src/bigger_applications/app/routers/users.py!}
 ```
 
-### *Path operations* with `APIRouter`
+### *Path operations* with `APIRouter` { #path-operations-with-apirouter }
 
 And then you use it to declare your *path operations*.
 
@@ -113,7 +113,7 @@ In this example, the variable is called `router`, but you can name it however yo
 
 We are going to include this `APIRouter` in the main `FastAPI` app, but first, let's check the dependencies and another `APIRouter`.
 
-## Dependencies
+## Dependencies { #dependencies }
 
 We see that we are going to need some dependencies used in several places of the application.
 
@@ -159,7 +159,7 @@ But in real cases you will get better results using the integrated [Security uti
 
 ///
 
-## Another module with `APIRouter`
+## Another module with `APIRouter` { #another-module-with-apirouter }
 
 Let's say you also have the endpoints dedicated to handling "items" from your application in the module at `app/routers/items.py`.
 
@@ -234,7 +234,7 @@ The `prefix`, `tags`, `responses`, and `dependencies` parameters are (as in many
 
 ///
 
-### Import the dependencies
+### Import the dependencies { #import-the-dependencies }
 
 This code lives in the module `app.routers.items`, the file `app/routers/items.py`.
 
@@ -246,7 +246,7 @@ So we use a relative import with `..` for the dependencies:
 {!../../docs_src/bigger_applications/app/routers/items.py!}
 ```
 
-#### How relative imports work
+#### How relative imports work { #how-relative-imports-work }
 
 /// tip
 
@@ -309,7 +309,7 @@ That would refer to some package above `app/`, with its own file `__init__.py`, 
 
 But now you know how it works, so you can use relative imports in your own apps no matter how complex they are. 🤓
 
-### Add some custom `tags`, `responses`, and `dependencies`
+### Add some custom `tags`, `responses`, and `dependencies` { #add-some-custom-tags-responses-and-dependencies }
 
 We are not adding the prefix `/items` nor the `tags=["items"]` to each *path operation* because we added them to the `APIRouter`.
 
@@ -327,7 +327,7 @@ And it will also have both responses in the documentation, one for `404` and one
 
 ///
 
-## The main `FastAPI`
+## The main `FastAPI` { #the-main-fastapi }
 
 Now, let's see the module at `app/main.py`.
 
@@ -337,7 +337,7 @@ This will be the main file in your application that ties everything together.
 
 And as most of your logic will now live in its own specific module, the main file will be quite simple.
 
-### Import `FastAPI`
+### Import `FastAPI` { #import-fastapi }
 
 You import and create a `FastAPI` class as normally.
 
@@ -347,7 +347,7 @@ And we can even declare [global dependencies](dependencies/global-dependencies.m
 {!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-### Import the `APIRouter`
+### Import the `APIRouter` { #import-the-apirouter }
 
 Now we import the other submodules that have `APIRouter`s:
 
@@ -357,7 +357,7 @@ Now we import the other submodules that have `APIRouter`s:
 
 As the files `app/routers/users.py` and `app/routers/items.py` are submodules that are part of the same Python package `app`, we can use a single dot `.` to import them using "relative imports".
 
-### How the importing works
+### How the importing works { #how-the-importing-works }
 
 The section:
 
@@ -399,7 +399,7 @@ To learn more about Python Packages and Modules, read <a href="https://docs.pyth
 
 ///
 
-### Avoid name collisions
+### Avoid name collisions { #avoid-name-collisions }
 
 We are importing the submodule `items` directly, instead of importing just its variable `router`.
 
@@ -420,7 +420,7 @@ So, to be able to use both of them in the same file, we import the submodules di
 {!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-### Include the `APIRouter`s for `users` and `items`
+### Include the `APIRouter`s for `users` and `items` { #include-the-apirouters-for-users-and-items }
 
 Now, let's include the `router`s from the submodules `users` and `items`:
 
@@ -458,7 +458,7 @@ So it won't affect performance. ⚡
 
 ///
 
-### Include an `APIRouter` with a custom `prefix`, `tags`, `responses`, and `dependencies`
+### Include an `APIRouter` with a custom `prefix`, `tags`, `responses`, and `dependencies` { #include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies }
 
 Now, let's imagine your organization gave you the `app/internal/admin.py` file.
 
@@ -491,7 +491,7 @@ But that will only affect that `APIRouter` in our app, not in any other code tha
 
 So, for example, other projects could use the same `APIRouter` with a different authentication method.
 
-### Include a *path operation*
+### Include a *path operation* { #include-a-path-operation }
 
 We can also add *path operations* directly to the `FastAPI` app.
 
@@ -517,7 +517,7 @@ As we cannot just isolate them and "mount" them independently of the rest, the *
 
 ///
 
-## Check the automatic API docs
+## Check the automatic API docs { #check-the-automatic-api-docs }
 
 Now, run your app:
 
@@ -537,7 +537,7 @@ You will see the automatic API docs, including the paths from all the submodules
 
 <img src="/img/tutorial/bigger-applications/image01.png">
 
-## Include the same router multiple times with different `prefix`
+## Include the same router multiple times with different `prefix` { #include-the-same-router-multiple-times-with-different-prefix }
 
 You can also use `.include_router()` multiple times with the *same* router using different prefixes.
 
@@ -545,7 +545,7 @@ This could be useful, for example, to expose the same API under different prefix
 
 This is an advanced usage that you might not really need, but it's there in case you do.
 
-## Include an `APIRouter` in another
+## Include an `APIRouter` in another { #include-an-apirouter-in-another }
 
 The same way you can include an `APIRouter` in a `FastAPI` application, you can include an `APIRouter` in another `APIRouter` using:
 
