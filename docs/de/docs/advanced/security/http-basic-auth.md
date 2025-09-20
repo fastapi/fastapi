@@ -1,4 +1,4 @@
-# HTTP Basic Auth
+# HTTP Basic Auth { #http-basic-auth }
 
 Für die einfachsten Fälle können Sie <abbr title="HTTP-Basisauthentifizierung">HTTP Basic Auth</abbr> verwenden.
 
@@ -6,13 +6,13 @@ Bei HTTP Basic Auth erwartet die Anwendung einen Header, der einen Benutzernamen
 
 Wenn sie diesen nicht empfängt, gibt sie den HTTP-Error 401 „Unauthorized“ zurück.
 
-Und gibt einen Header `WWW-Authenticate` mit dem Wert `Basic` und einem optionalen `realm`-Parameter („Bereich“) zurück.
+Und gibt einen Header `WWW-Authenticate` mit dem Wert `Basic` und einem optionalen <abbr title="Bereich">`realm`</abbr>-Parameter zurück.
 
 Dadurch wird der Browser angewiesen, die integrierte Eingabeaufforderung für einen Benutzernamen und ein Passwort anzuzeigen.
 
 Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser diese automatisch im Header.
 
-## Einfaches HTTP Basic Auth
+## Einfaches HTTP Basic Auth { #simple-http-basic-auth }
 
 * Importieren Sie `HTTPBasic` und `HTTPBasicCredentials`.
 * Erstellen Sie mit `HTTPBasic` ein „`security`-Schema“.
@@ -21,11 +21,12 @@ Wenn Sie dann den Benutzernamen und das Passwort eingeben, sendet der Browser di
     * Es enthält den gesendeten `username` und das gesendete `password`.
 
 {* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+
 Wenn Sie versuchen, die URL zum ersten Mal zu öffnen (oder in der Dokumentation auf den Button „Execute“ zu klicken), wird der Browser Sie nach Ihrem Benutzernamen und Passwort fragen:
 
 <img src="/img/tutorial/security/image12.png">
 
-## Den Benutzernamen überprüfen
+## Den Benutzernamen überprüfen { #check-the-username }
 
 Hier ist ein vollständigeres Beispiel.
 
@@ -51,13 +52,13 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 Aber durch die Verwendung von `secrets.compare_digest()` ist dieser Code sicher vor einer Art von Angriffen, die „Timing-Angriffe“ genannt werden.
 
-### Timing-Angriffe
+### Timing-Angriffe { #timing-attacks }
 
 Aber was ist ein „Timing-Angriff“?
 
 Stellen wir uns vor, dass einige Angreifer versuchen, den Benutzernamen und das Passwort zu erraten.
 
-Und sie senden eine Anfrage mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
+Und sie senden einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mit dem Benutzernamen `johndoe` und dem Passwort `love123`.
 
 Dann würde der Python-Code in Ihrer Anwendung etwa so aussehen:
 
@@ -77,21 +78,21 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die Antwort „Incorrect username or password“ erfolgt.
+Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> „Incorrect username or password“ erfolgt.
 
-#### Die Zeit zum Antworten hilft den Angreifern
+#### Die Zeit zum Antworten hilft den Angreifern { #the-time-to-answer-helps-the-attackers }
 
-Wenn die Angreifer zu diesem Zeitpunkt feststellen, dass der Server einige Mikrosekunden länger braucht, um die Antwort „Incorrect username or password“ zu senden, wissen sie, dass sie _etwas_ richtig gemacht haben, einige der Anfangsbuchstaben waren richtig.
+Wenn die Angreifer zu diesem Zeitpunkt feststellen, dass der Server einige Mikrosekunden länger braucht, um die Response „Incorrect username or password“ zu senden, wissen sie, dass sie _etwas_ richtig gemacht haben, einige der Anfangsbuchstaben waren richtig.
 
 Und dann können sie es noch einmal versuchen, wohl wissend, dass es wahrscheinlich eher etwas mit `stanleyjobsox` als mit `johndoe` zu tun hat.
 
-#### Ein „professioneller“ Angriff
+#### Ein „professioneller“ Angriff { #a-professional-attack }
 
 Natürlich würden die Angreifer das alles nicht von Hand versuchen, sondern ein Programm dafür schreiben, möglicherweise mit Tausenden oder Millionen Tests pro Sekunde. Und würden jeweils nur einen zusätzlichen richtigen Buchstaben erhalten.
 
 Aber so hätten die Angreifer in wenigen Minuten oder Stunden mit der „Hilfe“ unserer Anwendung den richtigen Benutzernamen und das richtige Passwort erraten, indem sie die Zeitspanne zur Hilfe nehmen, die diese zur Beantwortung benötigt.
 
-#### Das Problem beheben mittels `secrets.compare_digest()`
+#### Das Problem beheben mittels `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
 Aber in unserem Code verwenden wir tatsächlich `secrets.compare_digest()`.
 
@@ -99,7 +100,7 @@ Damit wird, kurz gesagt, der Vergleich von `stanleyjobsox` mit `stanleyjobson` g
 
 So ist Ihr Anwendungscode, dank der Verwendung von `secrets.compare_digest()`, vor dieser ganzen Klasse von Sicherheitsangriffen geschützt.
 
-### Den Error zurückgeben
+### Den Error zurückgeben { #return-the-error }
 
 Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben Sie eine `HTTPException` mit dem Statuscode 401 zurück (derselbe, der auch zurückgegeben wird, wenn keine Anmeldeinformationen angegeben werden) und fügen den Header `WWW-Authenticate` hinzu, damit der Browser die Anmeldeaufforderung erneut anzeigt:
 
