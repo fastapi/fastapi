@@ -512,6 +512,14 @@ class FastAPI(Starlette):
                 Read more in the [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
                 """
             ),
+            deprecated(
+                """
+                **Attention**: This parameter is deprecated.
+
+                The recommended approach for managing startup and shutdown
+                is by utilizing the lifespan parameter within the FastAPI app.
+                """
+            ),
         ] = None,
         on_shutdown: Annotated[
             Optional[Sequence[Callable[[], Any]]],
@@ -523,6 +531,14 @@ class FastAPI(Starlette):
 
                 Read more in the
                 [FastAPI docs for `lifespan`](https://fastapi.tiangolo.com/advanced/events/).
+                """
+            ),
+            deprecated(
+                """
+                **Attention**: This parameter is deprecated.
+
+                The recommended approach for managing startup and shutdown
+                is by utilizing the lifespan parameter within the FastAPI app.
                 """
             ),
         ] = None,
