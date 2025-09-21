@@ -63,3 +63,69 @@ In the chapters about security, there are utility functions that are implemented
 If you understood all this, you already know how those utility tools for security work underneath.
 
 ///
+
+## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
+
+/// warning
+
+You most probably don't need these technical details.
+
+These details are useful mainly if you had a FastAPI application older than 0.118.0 and you are facing issues with dependencies with `yield`.
+
+///
+
+Dependencies with `yield` have evolved over time to account for the different use cases and to fix some issues, here's a summary of what has changed.
+
+### Dependencies with `yield` and `StreamingResponse`, Technical Details { #dependencies-with-yield-and-streamingresponse-technical-details }
+
+Before FastAPI 0.118.0, if you used a dependency with `yield`, it would run the exit code after the *path operation function* returned but right before sending the response.
+
+The intention was not to hold resources for longer than necessary, waiting for the response to travel through the network.
+
+/// tip
+
+Later I realized that SQLAlchemy (and hence SQLModel), one of the main tools I was considering when thinking about not holding resources, would not hold the raw database connections indefinitely, but acquire and release them automatically when necessary. For example, releasing the database connection after a `session.commit()`.
+
+So this optimization was not really necessary.
+
+///
+
+This change also meant that if you returned a `StreamingResponse`, the exit code of the dependency with `yield` would have been already run.
+
+For example, if you had a database session in a dependency with `yield`, the `StreamingResponse` would not be able to use that session while streaming data because the session would have already been closed in the exit code after `yield`.
+
+So, the change was not really optimizing much, but it was breaking use cases.
+
+This behavior was reverted in 0.118.0, to make the exit code after `yield` be executed after the response is sent.
+
+/// info
+
+As you will see below, this is very similar to the behavior before version 0.106.0, but with several improvements and bug fixes for corner cases.
+
+///
+
+### Dependencies with `yield` and `except`, Technical Details { #dependencies-with-yield-and-except-technical-details }
+
+Before FastAPI 0.110.0, if you used a dependency with `yield`, and then you captured an exception with `except` in that dependency, and you didn't raise the exception again, the exception would be automatically raised/forwarded to any exception handlers or the internal server error handler.
+
+This was changed in version 0.110.0 to fix unhandled memory consumption from forwarded exceptions without a handler (internal server errors), and to make it consistent with the behavior of regular Python code.
+
+### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
+
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
+
+This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
+
+This was changed in FastAPI 0.106.0 with the intention to not hold resources while waiting for the response to travel through the network.
+
+/// tip
+
+Additionally, a background task is normally an independent set of logic that should be handled separately, with its own resources (e.g. its own database connection).
+
+So, this way you will probably have cleaner code.
+
+///
+
+If you used to rely on this behavior, now you should create the resources for background tasks inside the background task itself, and use internally only data that doesn't depend on the resources of dependencies with `yield`.
+
+For example, instead of using the same database session, you would create a new database session inside of the background task, and you would obtain the objects from the database using this new session. And then instead of passing the object from the database as a parameter to the background task function, you would pass the ID of that object and then obtain the object again inside the background task function.

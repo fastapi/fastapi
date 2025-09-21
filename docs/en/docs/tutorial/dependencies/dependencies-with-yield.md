@@ -95,23 +95,11 @@ This works thanks to Python's <a href="https://docs.python.org/3/library/context
 
 ## Dependencies with `yield` and `HTTPException` { #dependencies-with-yield-and-httpexception }
 
-You saw that you can use dependencies with `yield` and have `try` blocks that catch exceptions.
+You saw that you can use dependencies with `yield` and have `try` blocks that try to execute some code and then run some exit code after `finally`.
 
-It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
+You can also use `except` to catch the exception that was raised and do something with it.
 
-The exit code in dependencies with `yield` is executed *after* the response is sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} will have already run. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
-
-So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response won't be there to catch that exception anymore.
-
-This is what allows anything set in the dependency (e.g. a DB session) to, for example, be used by background tasks.
-
-Background tasks are run *after* the response has been sent. So there's no way to raise an `HTTPException` because there's not even a way to change the response that is *already sent*.
-
-But if a background task creates a DB error, at least you can rollback or cleanly close the session in the dependency with `yield`, and maybe log the error or report it to a remote tracking system.
-
-If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
-
-If you have custom exceptions that you would like to handle *before* returning the response and possibly modifying the response, maybe even raising an `HTTPException`, create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+For example, you can raise a different exception, like `HTTPException`.
 
 /// tip
 
@@ -135,7 +123,7 @@ In this case, the client will see an *HTTP 500 Internal Server Error* response a
 
 ### Always `raise` in Dependencies with `yield` and `except` { #always-raise-in-dependencies-with-yield-and-except }
 
-If you catch an exception in a dependency with `yield`, unless you are raising another `HTTPException` or similar, you should re-raise the original exception.
+If you catch an exception in a dependency with `yield`, unless you are raising another `HTTPException` or similar, **you should re-raise the original exception**.
 
 You can re-raise the same exception using `raise`:
 
@@ -198,40 +186,9 @@ If you raise any exception in the code from the *path operation function*, it wi
 
 ## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
-/// warning
+Dependencies with `yield` have evolved over time to cover different use cases and fix some issues.
 
-You most probably don't need these technical details, you can skip this section and continue below.
-
-These details are useful mainly if you were using a version of FastAPI prior to 0.106.0 and used resources from dependencies with `yield` in background tasks.
-
-///
-
-### Dependencies with `yield` and `except`, Technical Details { #dependencies-with-yield-and-except-technical-details }
-
-Before FastAPI 0.110.0, if you used a dependency with `yield`, and then you captured an exception with `except` in that dependency, and you didn't raise the exception again, the exception would be automatically raised/forwarded to any exception handlers or the internal server error handler.
-
-This was changed in version 0.110.0 to fix unhandled memory consumption from forwarded exceptions without a handler (internal server errors), and to make it consistent with the behavior of regular Python code.
-
-### Background Tasks and Dependencies with `yield`, Technical Details { #background-tasks-and-dependencies-with-yield-technical-details }
-
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} would have already run.
-
-This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
-
-Nevertheless, as this would mean waiting for the response to travel through the network while unnecessarily holding a resource in a dependency with yield (for example a database connection), this was changed in FastAPI 0.106.0.
-
-/// tip
-
-Additionally, a background task is normally an independent set of logic that should be handled separately, with its own resources (e.g. its own database connection).
-
-So, this way you will probably have cleaner code.
-
-///
-
-If you used to rely on this behavior, now you should create the resources for background tasks inside the background task itself, and use internally only data that doesn't depend on the resources of dependencies with `yield`.
-
-For example, instead of using the same database session, you would create a new database session inside of the background task, and you would obtain the objects from the database using this new session. And then instead of passing the object from the database as a parameter to the background task function, you would pass the ID of that object and then obtain the object again inside the background task function.
-
+If you want to see what has changed in different versions of FastAPI, you can read more about it in the advanced guide, in [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
 ## Context Managers { #context-managers }
 
 ### What are "Context Managers" { #what-are-context-managers }
