@@ -767,10 +767,11 @@ class Depends:
         dependency: Optional[Callable[..., Any]] = None,
         *,
         use_cache: bool = True,
-        parallelizable: bool = True,
+        parallelizable: Optional[bool] = None,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
+        # None means: use application default at resolution time
         self.parallelizable = parallelizable
 
     def __repr__(self) -> str:
@@ -786,7 +787,7 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
-        parallelizable: bool = True,
+        parallelizable: Optional[bool] = None,
     ):
         super().__init__(
             dependency=dependency, use_cache=use_cache, parallelizable=parallelizable

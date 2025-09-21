@@ -281,7 +281,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
-    parallelizable: bool = True,
+    parallelizable: Optional[bool] = None,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -589,13 +589,19 @@ class DependencySolveException(Exception):
         self.errors = errors
 
 
-def is_context_sensitive(dependant: Dependant) -> bool:
-    if dependant.parallelizable is False or (
+def is_context_sensitive(dependant: Dependant, *, default_parallelizable: bool) -> bool:
+    effective_parallelizable = (
+        default_parallelizable if dependant.parallelizable is None else dependant.parallelizable
+    )
+    if effective_parallelizable is False or (
         dependant.call is not None
         and (is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call))
     ):
         return True
-    return any(is_context_sensitive(sub) for sub in dependant.dependencies)
+    return any(
+        is_context_sensitive(sub, default_parallelizable=default_parallelizable)
+        for sub in dependant.dependencies
+    )
 
 
 def is_context_with_background_task(dependant: Dependant) -> bool:
@@ -659,6 +665,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                parallelizable=sub_dependant.parallelizable,
             )
 
         def resolve_cached() -> Optional["Future[Any]"]:
@@ -750,10 +757,16 @@ async def solve_dependencies(
             if name is not None:
                 values[name] = value
 
+
+    app = request.app  # type: ignore[attr-defined]
+    default_parallelizable = bool(
+        getattr(app, "depends_default_parallelizable", False)
+    )
+
     sequential_deps = []
     parallel_deps = []
     for sub in dependant.dependencies:
-        if is_context_sensitive(sub):
+        if is_context_sensitive(sub, default_parallelizable=default_parallelizable):
             sequential_deps.append(sub)
         else:
             parallel_deps.append(sub)
