@@ -317,7 +317,7 @@ def get_request_handler(
         response: Union[Response, None] = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
-            "fastapi_astack not found in request scope"
+            "fastapi_middleware_astack not found in request scope"
         )
 
         # Read body and auto-close files
