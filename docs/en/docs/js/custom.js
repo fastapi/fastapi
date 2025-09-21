@@ -135,10 +135,28 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
+function hideSponsorOnImageError() {
+    const sponsorImages = document.querySelectorAll('.sponsor-image');
+    const announceRight = document.getElementById('announce-right');
+
+    function hideAnnounceRight() {
+        if (announceRight) {
+            announceRight.style.display = 'none';
+        }
+    }
+
+    sponsorImages.forEach(function(img) {
+        img.addEventListener('error', function() {
+            hideAnnounceRight();
+        });
+    });
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
     showRandomAnnouncement('announce-right', 10000)
+    hideSponsorOnImageError();
 }
 document$.subscribe(() => {
     main()
