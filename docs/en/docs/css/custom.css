@@ -124,6 +124,11 @@ a.announce-link:hover {
   border-radius: 20px;
 }
 
+/* Hide .sponsor-badge when .sponsor-image is display none */
+.announce-wrapper a:has(.sponsor-image[style*="display: none"]) .sponsor-badge {
+  display: none;
+}
+
 .announce-wrapper>div {
   min-height: 40px;
   display: flex;
