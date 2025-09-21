@@ -1,3 +1,4 @@
+import warnings
 from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
@@ -109,9 +110,24 @@ if PYDANTIC_V2:
             return self.field_info.annotation
 
         def __post_init__(self) -> None:
-            self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[self.field_info.annotation, self.field_info]
-            )
+            with warnings.catch_warnings():
+                # Pydantic >= 2.12.0a1 warns about this when building
+                # TypeAdapters from field information that uses aliases.
+                # The Pydantic team recommends ignoring this in this case:
+                # https://github.com/fastapi/fastapi/pull/14036#issuecomment-3316045587
+                try:
+                    from pydantic.warnings import (  # type: ignore[attr-defined]
+                        UnsupportedFieldAttributeWarning,
+                    )
+                except ImportError:  # pragma: no cover
+                    pass
+                else:  # pragma: no cover
+                    warnings.simplefilter(
+                        "ignore", category=UnsupportedFieldAttributeWarning
+                    )
+                self._type_adapter: TypeAdapter[Any] = TypeAdapter(
+                    Annotated[self.field_info.annotation, self.field_info]
+                )
 
         def get_default(self) -> Any:
             if self.field_info.is_required():
