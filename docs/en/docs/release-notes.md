@@ -11,6 +11,10 @@ hide:
 
 * 📝 Update contributing guidelines for installing requirements. PR [#14095](https://github.com/fastapi/fastapi/pull/14095) by [@alejsdev](https://github.com/alejsdev).
 
+### Internal
+
+* 🐛 Hide sponsor badge when sponsor image is not displayed. PR [#14096](https://github.com/fastapi/fastapi/pull/14096) by [@alejsdev](https://github.com/alejsdev).
+
 ## 0.117.1
 
 ### Fixes
