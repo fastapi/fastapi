@@ -1,14 +1,18 @@
 import asyncio
 import time
 import warnings
+from contextlib import AsyncExitStack
+from typing import Dict, List, Optional
 
 import pytest
-from starlette.requests import Request
-from contextlib import AsyncExitStack
 from fastapi import Depends, FastAPI
+from fastapi.dependencies.utils import (
+    get_dependant,
+    silence_future_exception,
+    solve_dependencies,
+)
 from fastapi.testclient import TestClient
-from fastapi.dependencies.utils import get_dependant, solve_dependencies, silence_future_exception
-
+from starlette.requests import Request
 
 PAR_LOW, PAR_HIGH = 0.08, 0.25
 SEQPAR_LOW, SEQPAR_HIGH = 0.18, 0.35
@@ -45,12 +49,23 @@ def t_end(ts: dict, key: str) -> None:
     ts[key]["end"] = time.perf_counter()
 
 
-def assert_overlaps(ts: dict, a: str, b: str, *, min_overlap: float = OVERLAP_EPS) -> None:
+def assert_overlaps(
+    ts: dict, a: str, b: str, *, min_overlap: float = OVERLAP_EPS
+) -> None:
     overlap = min(ts[a]["end"], ts[b]["end"]) - max(ts[a]["start"], ts[b]["start"])
-    assert overlap > min_overlap, f"no sufficient overlap between {a} and {b}: {overlap:.4f}s"
+    assert overlap > min_overlap, (
+        f"no sufficient overlap between {a} and {b}: {overlap:.4f}s"
+    )
 
 
-def make_async_timed_dep(ts: dict, key: str, *, delay: float = 0.1, value: int = 1, order: list[str] | None = None):
+def make_async_timed_dep(
+    ts: dict,
+    key: str,
+    *,
+    delay: float = 0.1,
+    value: int = 1,
+    order: Optional[List[str]] = None,
+):
     async def dep():
         t_start(ts, key)
         await asyncio.sleep(delay)
@@ -72,7 +87,9 @@ def make_sync_timed_dep(ts: dict, key: str, *, delay: float = 0.1, value: int = 
     return dep
 
 
-def make_security_counter_dep(calls: dict, ts: dict | None = None, key_factory=None, *, delay: float = 0.1):
+def make_security_counter_dep(
+    calls: Dict, ts: Optional[Dict] = None, key_factory=None, *, delay: float = 0.1
+):
     counter = {"i": 0}
 
     async def dep():
@@ -192,7 +209,7 @@ def test_parallel_exception_silences_future_warning_and_raises_once():
 
     @app.get("/fail1")
     async def fail_endpoint(a: int = Depends(failing), b: int = Depends(failing)):
-        return {"ok": True} # pragma: no cover
+        return {"ok": True}  # pragma: no cover
 
     client = TestClient(app)
 
@@ -208,15 +225,18 @@ def test_dependency_overrides_preserve_parallelizable():
     app = FastAPI(depends_default_parallelizable=False)
 
     async def original():
-        await asyncio.sleep(0.1) # pragma: no cover
-        return "original" # pragma: no cover
+        await asyncio.sleep(0.1)  # pragma: no cover
+        return "original"  # pragma: no cover
 
     async def override():
         await asyncio.sleep(0.1)
         return "override"
 
     @app.get("/override")
-    async def ep(x: str = Depends(original, parallelizable=True), y: str = Depends(original, parallelizable=True)):
+    async def ep(
+        x: str = Depends(original, parallelizable=True),
+        y: str = Depends(original, parallelizable=True),
+    ):
         return {"x": x, "y": y}
 
     app.dependency_overrides[original] = override
@@ -402,7 +422,7 @@ def test_exception_order_sequential_then_parallel():
 
     @app.get("/ex-order-a")
     async def ep(_: int = Depends(fail_seq), __: int = Depends(fail_par)):
-        return {"ok": True} # pragma: no cover
+        return {"ok": True}  # pragma: no cover
 
     client = TestClient(app)
     with pytest.raises(SeqErr):
@@ -428,7 +448,7 @@ def test_exception_order_with_parallel_siblings():
 
     @app.get("/ex-order-b")
     async def ep(_: int = Depends(fail_a), __: int = Depends(fail_b)):
-        return {"ok": True} # pragma: no cover
+        return {"ok": True}  # pragma: no cover
 
     client = TestClient(app)
     with pytest.raises(AErr):
@@ -480,14 +500,15 @@ def test_security_scopes_cache_key_multiple():
     assert data["calls"] == 2
     assert_overlaps(ts, "call1", "call2")
 
+
 def test_cached_value_converted_to_future_and_awaited():
     app = FastAPI()
 
     async def low() -> int:
-        return 999 # pragma: no cover
+        return 999  # pragma: no cover
 
     async def wrapper(x: int = Depends(low)) -> int:
-        return x # pragma: no cover
+        return x  # pragma: no cover
 
     @app.get("/cov")
     async def cov(request: Request):
@@ -514,4 +535,5 @@ def test_silence_future_exception_handles_exception_path() -> None:
     class Dummy:
         def exception(self):
             raise Exception("boom")
+
     silence_future_exception(Dummy())

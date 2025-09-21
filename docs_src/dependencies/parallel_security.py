@@ -1,10 +1,13 @@
 from typing import Annotated
+
 from fastapi import FastAPI, Security
 
 app = FastAPI(depends_default_parallelizable=True)
 
+
 async def get_api_key() -> str:
     return "secret"
+
 
 @app.get("/secure")
 async def secure(

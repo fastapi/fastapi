@@ -591,7 +591,9 @@ class DependencySolveException(Exception):
 
 def is_context_sensitive(dependant: Dependant, *, default_parallelizable: bool) -> bool:
     effective_parallelizable = (
-        default_parallelizable if dependant.parallelizable is None else dependant.parallelizable
+        default_parallelizable
+        if dependant.parallelizable is None
+        else dependant.parallelizable
     )
     if effective_parallelizable is False or (
         dependant.call is not None
@@ -743,7 +745,7 @@ async def solve_dependencies(
         return sub_dependant.name, resolved, None, None
 
     def unpack_results(
-        results: list[
+        results: List[
             Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
         ],
     ) -> None:
@@ -757,11 +759,8 @@ async def solve_dependencies(
             if name is not None:
                 values[name] = value
 
-
-    app = request.app  # type: ignore[attr-defined]
-    default_parallelizable = bool(
-        getattr(app, "depends_default_parallelizable", False)
-    )
+    app = request.app
+    default_parallelizable = bool(getattr(app, "depends_default_parallelizable", False))
 
     sequential_deps = []
     parallel_deps = []
@@ -771,7 +770,7 @@ async def solve_dependencies(
         else:
             parallel_deps.append(sub)
 
-    sequential_results: list[
+    sequential_results: List[
         Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
     ] = []
     for sub in sequential_deps:
@@ -779,7 +778,7 @@ async def solve_dependencies(
         sequential_results.append(s_result)
     unpack_results(sequential_results)
 
-    parallel_results: list[
+    parallel_results: List[
         Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
     ] = []
     if parallel_deps:
