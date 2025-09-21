@@ -19,9 +19,9 @@ from uuid import UUID
 
 from fastapi.types import IncEx
 from pydantic import BaseModel
+from pydantic_extra_types.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from pydantic_extra_types.color import Color  # ✅ updated import
 from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
@@ -219,7 +219,7 @@ def jsonable_encoder(
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
-                encoders.update(custom_encoder)
+                encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
             obj,
             mode="json",
@@ -241,6 +241,7 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
+        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
