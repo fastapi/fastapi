@@ -26,11 +26,10 @@ from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
-try:
-    # Pydantic v2
+import pydantic
+if getattr(pydantic, "__version__", "1").startswith("2"):
     from pydantic_extra_types.color import Color
-except ImportError:
-    # Fallback for Pydantic v1
+else:
     from pydantic.color import Color
 
 
@@ -226,7 +225,7 @@ def jsonable_encoder(
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
-                encoders = {**encoders, **custom_encoder}
+                encoders.update(custom_encoder)
         obj_dict = _model_dump(
             obj,
             mode="json",
@@ -248,7 +247,6 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
-        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
