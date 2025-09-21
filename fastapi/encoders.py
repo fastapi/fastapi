@@ -17,7 +17,6 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
-import pydantic
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.networks import AnyUrl, NameEmail
@@ -26,11 +25,6 @@ from pydantic_extra_types.color import Color  # ✅ updated import
 from typing_extensions import Annotated, Doc
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
-
-if getattr(pydantic, "__version__", "1").startswith("2"):
-    from pydantic_extra_types.color import Color
-else:
-    from pydantic.color import Color
 
 
 # Taken from Pydantic v1 as is
