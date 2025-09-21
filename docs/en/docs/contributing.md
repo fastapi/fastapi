@@ -10,9 +10,11 @@ If you already cloned the <a href="https://github.com/fastapi/fastapi" class="ex
 
 Follow the instructions to create and activate a [virtual environment](virtual-environments.md){.internal-link target=_blank} for the internal code of `fastapi`.
 
-### Install requirements using pip
+### Install requirements
 
 After activating the environment, install the required packages:
+
+//// tab | `pip`
 
 <div class="termy">
 
@@ -23,6 +25,24 @@ $ pip install -r requirements.txt
 ```
 
 </div>
+
+////
+
+//// tab | `uv`
+
+If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
+
+<div class="termy">
+
+```console
+$ uv pip install -r requirements.txt
+
+---> 100%
+```
+
+</div>
+
+////
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
