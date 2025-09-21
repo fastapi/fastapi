@@ -1013,26 +1013,28 @@ class FastAPI(Starlette):
                 Middleware(
                     ExceptionMiddleware, handlers=exception_handlers, debug=debug
                 ),
-                # Add FastAPI-specific AsyncExitStackMiddleware for dependencies with
-                # contextvars.
+                # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
+                # Before this was also used for closing dependencies with yield but
+                # those now have their own AsyncExitStack, to properly support
+                # streaming responses while keeping compatibility with the previous
+                # versions (as of writing 0.117.1) that allowed doing
+                # except HTTPException inside a dependency with yield.
+
                 # This needs to happen after user middlewares because those create a
                 # new contextvars context copy by using a new AnyIO task group.
-                # The initial part of dependencies with 'yield' is executed in the
-                # FastAPI code, inside all the middlewares. However, the teardown part
-                # (after 'yield') is executed in the AsyncExitStack in this middleware.
+
+                # This AsyncExitStack preserves the context for contextvars, not
+                # strictly necessary for closing files but it was one of the original
+                # intentions.
                 # If the AsyncExitStack lived outside of the custom middlewares and
-                # contextvars were set in a dependency with 'yield' in that internal
-                # contextvars context, the values would not be available in the
-                # outer context of the AsyncExitStack.
+                # contextvars were set, for example in a dependency with 'yield'
+                # in that internal contextvars context, the values would not be
+                # available in the outer context of the AsyncExitStack.
+
                 # By placing the middleware and the AsyncExitStack here, inside all
-                # user middlewares, the code before and after 'yield' in dependencies
-                # with 'yield' is executed in the same contextvars context. Thus, all values
-                # set in contextvars before 'yield' are still available after 'yield,' as
-                # expected.
-                # Additionally, by having this AsyncExitStack here, after the
-                # ExceptionMiddleware, dependencies can now catch handled exceptions,
-                # e.g. HTTPException, to customize the teardown code (e.g. DB session
-                # rollback).
+                # user middlewares, the same context is used.
+                # This is currently not needed, only for closing files, but used to be
+                # important when dependencies with yield were closed here.
                 Middleware(AsyncExitStackMiddleware),
             ]
         )
