@@ -28,7 +28,7 @@ try:
     from pydantic_extra_types.color import Color
 except ImportError:
     # Fallback for Pydantic v1
-    from pydantic import Color
+    Color = None
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
