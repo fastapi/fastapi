@@ -121,6 +121,12 @@ class ExternalDocumentation(BaseModelWithConfig):
     url: AnyUrl
 
 
+# Ref JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation#name-type
+SchemaType = Literal[
+    "array", "boolean", "integer", "null", "number", "object", "string"
+]
+
+
 class Schema(BaseModelWithConfig):
     # Ref: JSON Schema 2020-12: https://json-schema.org/draft/2020-12/json-schema-core.html#name-the-json-schema-core-vocabu
     # Core Vocabulary
@@ -145,7 +151,7 @@ class Schema(BaseModelWithConfig):
     dependentSchemas: Optional[Dict[str, "SchemaOrBool"]] = None
     prefixItems: Optional[List["SchemaOrBool"]] = None
     # TODO: uncomment and remove below when deprecating Pydantic v1
-    # It generales a list of schemas for tuples, before prefixItems was available
+    # It generates a list of schemas for tuples, before prefixItems was available
     # items: Optional["SchemaOrBool"] = None
     items: Optional[Union["SchemaOrBool", List["SchemaOrBool"]]] = None
     contains: Optional["SchemaOrBool"] = None
@@ -157,7 +163,7 @@ class Schema(BaseModelWithConfig):
     unevaluatedProperties: Optional["SchemaOrBool"] = None
     # Ref: JSON Schema Validation 2020-12: https://json-schema.org/draft/2020-12/json-schema-validation.html#name-a-vocabulary-for-structural
     # A Vocabulary for Structural Validation
-    type: Optional[str] = None
+    type: Optional[Union[SchemaType, List[SchemaType]]] = None
     enum: Optional[List[Any]] = None
     const: Optional[Any] = None
     multipleOf: Optional[float] = Field(default=None, gt=0)
