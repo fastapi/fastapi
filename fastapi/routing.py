@@ -83,6 +83,69 @@ if sys.version_info >= (3, 13):  # pragma: no cover
 else:  # pragma: no cover
     from asyncio import iscoroutinefunction
 
+# Copy of starlette.routing.request_response modified to include the
+# dependencies' AsyncExitStack
+def request_response(
+    func: Callable[[Request], Union[Awaitable[Response], Response]],
+) -> ASGIApp:
+    """
+    Takes a function or coroutine `func(request) -> response`,
+    and returns an ASGI application.
+    """
+    f: Callable[[Request], Awaitable[Response]] = (
+        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
+    )
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        request = Request(scope, receive, send)
+
+        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+            # Starts customization
+            response_awaited = False
+            async with AsyncExitStack() as stack:
+                scope["fastapi_inner_astack"] = stack
+                # Same as in Starlette
+                response = await f(request)
+                await response(scope, receive, send)
+                # Continues customization
+                response_awaited = True
+            if not response_awaited:
+                raise FastAPIError(
+                    "Response not awaited. There's a high chance that the "
+                    "application code is raising an exception and a dependency with yield "
+                    "has a block with a bare except, or a block with except Exception, "
+                    "and is not raising the exception again. Read more about it in the "
+                    "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
+                )
+        # Same as in Starlette
+        await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+
+    return app
+
+# Copy of starlette.routing.websocket_session modified to include the
+# dependencies' AsyncExitStack
+def websocket_session(
+    func: Callable[[WebSocket], Awaitable[None]],
+) -> ASGIApp:
+    """
+    Takes a coroutine `func(session)`, and returns an ASGI application.
+    """
+    # assert asyncio.iscoroutinefunction(func), "WebSocket endpoints must be async"
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        session = WebSocket(scope, receive=receive, send=send)
+
+        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+            # Starts customization
+            async with AsyncExitStack() as stack:
+                scope["fastapi_inner_astack"] = stack
+                # Same as in Starlette
+                await func(session)
+        # Same as in Starlette
+        await wrap_app_handling_exceptions(app, session)(scope, receive, send)
+
+    return app
+
 
 def _prepare_response_content(
     res: Any,
@@ -361,14 +424,7 @@ def get_request_handler(
             raise validation_error
 
         # Return response
-        if response is None:
-            raise FastAPIError(
-                "No response object was returned. There's a high chance that the "
-                "application code is raising an exception and a dependency with yield "
-                "has a block with a bare except, or a block with except Exception, "
-                "and is not raising the exception again. Read more about it in the "
-                "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
-            )
+        assert response
         return response
 
     return app
