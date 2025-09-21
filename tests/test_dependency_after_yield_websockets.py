@@ -1,9 +1,10 @@
 from contextlib import contextmanager
-from typing import Annotated, Any, Generator
+from typing import Any, Generator
 
 import pytest
 from fastapi import Depends, FastAPI, WebSocket
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 
 class Session:
