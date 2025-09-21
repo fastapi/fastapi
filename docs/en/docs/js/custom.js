@@ -135,28 +135,41 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
-function hideSponsorOnImageError() {
+function handleSponsorImages() {
     const sponsorImages = document.querySelectorAll('.sponsor-image');
     const announceRight = document.getElementById('announce-right');
 
-    function hideAnnounceRight() {
-        if (announceRight) {
-            announceRight.style.display = 'none';
-        }
+    if (announceRight) {
+        announceRight.style.display = 'none';
     }
 
-    sponsorImages.forEach(function(img) {
-        img.addEventListener('error', function() {
-            hideAnnounceRight();
+    const imagePromises = Array.from(sponsorImages).map(img => {
+        return new Promise((resolve, reject) => {
+            if (img.complete) {
+                resolve();
+            } else {
+                img.addEventListener('load', resolve);
+                img.addEventListener('error', reject);
+            }
         });
     });
+
+    Promise.all(imagePromises)
+        .then(() => {
+            if (announceRight) {
+                announceRight.style.display = 'block';
+                showRandomAnnouncement('announce-right', 10000);
+            }
+        })
+        .catch(() => {
+            // do nothing
+        });
 }
 
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
-    showRandomAnnouncement('announce-right', 10000)
-    hideSponsorOnImageError();
+    handleSponsorImages();
 }
 document$.subscribe(() => {
     main()
