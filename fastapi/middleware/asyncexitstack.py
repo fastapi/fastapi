@@ -4,7 +4,9 @@ from starlette.types import ASGIApp, Receive, Scope, Send
 
 
 class AsyncExitStackMiddleware:
-    def __init__(self, app: ASGIApp, context_name: str = "fastapi_astack") -> None:
+    def __init__(
+        self, app: ASGIApp, context_name: str = "fastapi_middleware_astack"
+    ) -> None:
         self.app = app
         self.context_name = context_name
 
