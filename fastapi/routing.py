@@ -83,6 +83,7 @@ if sys.version_info >= (3, 13):  # pragma: no cover
 else:  # pragma: no cover
     from asyncio import iscoroutinefunction
 
+
 # Copy of starlette.routing.request_response modified to include the
 # dependencies' AsyncExitStack
 def request_response(
@@ -117,10 +118,12 @@ def request_response(
                     "and is not raising the exception again. Read more about it in the "
                     "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
                 )
+
         # Same as in Starlette
         await wrap_app_handling_exceptions(app, request)(scope, receive, send)
 
     return app
+
 
 # Copy of starlette.routing.websocket_session modified to include the
 # dependencies' AsyncExitStack
@@ -141,6 +144,7 @@ def websocket_session(
                 scope["fastapi_inner_astack"] = stack
                 # Same as in Starlette
                 await func(session)
+
         # Same as in Starlette
         await wrap_app_handling_exceptions(app, session)(scope, receive, send)
 
@@ -312,9 +316,9 @@ def get_request_handler(
     async def app(request: Request) -> Response:
         response: Union[Response, None] = None
         file_stack = request.scope.get("fastapi_middleware_astack")
-        assert isinstance(
-            file_stack, AsyncExitStack
-        ), "fastapi_astack not found in request scope"
+        assert isinstance(file_stack, AsyncExitStack), (
+            "fastapi_astack not found in request scope"
+        )
 
         # Read body and auto-close files
         try:
@@ -367,9 +371,9 @@ def get_request_handler(
         # Solve dependencies and run path operation function, auto-closing dependencies
         errors: List[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
-        assert isinstance(
-            async_exit_stack, AsyncExitStack
-        ), "fastapi_inner_astack not found in request scope"
+        assert isinstance(async_exit_stack, AsyncExitStack), (
+            "fastapi_inner_astack not found in request scope"
+        )
         solved_result = await solve_dependencies(
             request=request,
             dependant=dependant,
@@ -437,9 +441,9 @@ def get_websocket_app(
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
-        assert isinstance(
-            async_exit_stack, AsyncExitStack
-        ), "fastapi_inner_astack not found in request scope"
+        assert isinstance(async_exit_stack, AsyncExitStack), (
+            "fastapi_inner_astack not found in request scope"
+        )
         solved_result = await solve_dependencies(
             request=websocket,
             dependant=dependant,
