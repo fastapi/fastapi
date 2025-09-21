@@ -21,7 +21,6 @@ from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from pydantic_extra_types.color import Color
 from typing_extensions import Annotated, Doc
 try:
     # Preferred in Pydantic v2+
