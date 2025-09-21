@@ -3,6 +3,8 @@ from contextlib import AsyncExitStack
 from starlette.types import ASGIApp, Receive, Scope, Send
 
 
+# Used mainly to close files after the request is done, dependencies are closed
+# in their own AsyncExitStack
 class AsyncExitStackMiddleware:
     def __init__(
         self, app: ASGIApp, context_name: str = "fastapi_middleware_astack"
