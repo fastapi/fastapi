@@ -60,14 +60,12 @@ def get_stream_session(session: SessionDep) -> Any:
     return StreamingResponse(iter_data())
 
 
-def session_explode() -> None:
-    with acquire_session() as s:
-        iter_s = iter(s)
-        print(next(iter_s))
-    print(next(iter_s))
-
-
 client = TestClient(app)
+
+
+def test_regular_no_stream():
+    response = client.get("/data")
+    assert response.json() == ["foo", "bar", "baz"]
 
 
 def test_stream_simple():
