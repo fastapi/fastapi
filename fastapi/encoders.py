@@ -23,6 +23,12 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_extra_types.color import Color
 from typing_extensions import Annotated, Doc
+try:
+    # Preferred in Pydantic v2+
+    from pydantic_extra_types.color import Color
+except ImportError:
+    # Fallback for Pydantic v1
+    from pydantic import Color
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
