@@ -28,7 +28,7 @@ try:
     from pydantic_extra_types.color import Color
 except ImportError:
     # Fallback for Pydantic v1
-    Color = type("DummyColor", (), {})
+    Color: Type[Any]
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
