@@ -30,6 +30,16 @@ Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da die Parameter sons
 
 ///
 
+/// info | Info
+
+Beachten Sie, dass **Browser Cookies auf besondere Weise und hinter den Kulissen handhaben** und **JavaScript** **nicht** ohne Weiteres erlauben, auf sie zuzugreifen.
+
+Wenn Sie zur **API-Dokumentations-UI** unter `/docs` gehen, können Sie die **Dokumentation** zu Cookies für Ihre *Pfadoperationen* sehen.
+
+Aber selbst wenn Sie die **Daten ausfüllen** und auf „Execute“ klicken, da die Dokumentations-UI mit **JavaScript** arbeitet, werden die Cookies nicht gesendet, und Sie sehen eine **Fehler**-Meldung, als hätten Sie keine Werte eingegeben.
+
+///
+
 ## Zusammenfassung { #recap }
 
 Deklarieren Sie Cookies mit `Cookie` und verwenden Sie dabei das gleiche allgemeine Muster wie bei `Query` und `Path`.
