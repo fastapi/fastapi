@@ -1,7 +1,6 @@
 # tests/test_color_compat.py
-import sys
-import pytest
 import warnings
+
 import pydantic
 
 # Determine if we are running Pydantic v2+
@@ -12,6 +11,7 @@ try:
     from pydantic_extra_types.color import Color
 except ImportError:
     Color = type("DummyColor", (), {})  # fallback for Pydantic v1
+
 
 def test_color_import_and_usage():
     """
@@ -30,4 +30,6 @@ def test_color_import_and_usage():
             # Pydantic v1: treat as dummy string
             c = "#FF0000"
             # Ensure no warning was triggered
-            assert all("DeprecationWarning" not in str(warning.message) for warning in w)
+            assert all(
+                "DeprecationWarning" not in str(warning.message) for warning in w
+            )
