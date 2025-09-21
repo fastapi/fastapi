@@ -1,6 +1,7 @@
 from contextlib import contextmanager
 from typing import Annotated, Any, Generator
 
+import pytest
 from fastapi import Depends, FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
@@ -33,7 +34,14 @@ def dep_session() -> Any:
         yield s
 
 
+def broken_dep_session() -> Any:
+    with acquire_session() as s:
+        s.open = False
+        yield s
+
+
 SessionDep = Annotated[Session, Depends(dep_session)]
+BrokenSessionDep = Annotated[Session, Depends(broken_dep_session)]
 
 app = FastAPI()
 
@@ -60,6 +68,19 @@ def get_stream_session(session: SessionDep) -> Any:
     return StreamingResponse(iter_data())
 
 
+@app.get("/broken-session-data")
+def get_broken_session_data(session: BrokenSessionDep) -> Any:
+    return list(session)
+
+
+@app.get("/broken-session-stream")
+def get_broken_session_stream(session: BrokenSessionDep) -> Any:
+    def iter_data():
+        yield from session
+
+    return StreamingResponse(iter_data())
+
+
 client = TestClient(app)
 
 
@@ -76,3 +97,33 @@ def test_stream_simple():
 def test_stream_session():
     response = client.get("/stream-session")
     assert response.text == "foobarbaz"
+
+
+def test_broken_session_data():
+    with pytest.raises(ValueError, match="Session closed"):
+        client.get("/broken-session-data")
+
+
+def test_broken_session_data_no_raise():
+    client = TestClient(app, raise_server_exceptions=False)
+    response = client.get("/broken-session-data")
+    assert response.status_code == 500
+    assert response.text == "Internal Server Error"
+
+
+def test_broken_session_stream_raise():
+    # Can raise ValueError on Pydantic v2 and ExceptionGroup on Pydantic v1
+    with pytest.raises((ValueError, Exception)):
+        client.get("/broken-session-stream")
+
+
+def test_broken_session_stream_no_raise():
+    """
+    When a dependency with yield raises after the streaming response already started
+    the 200 status code is already sent, but there's still an error in the server
+    afterwards, an exception is raised and captured or shown in the server logs.
+    """
+    with TestClient(app, raise_server_exceptions=False) as client:
+        response = client.get("/broken-session-stream")
+        assert response.status_code == 200
+        assert response.text == ""
