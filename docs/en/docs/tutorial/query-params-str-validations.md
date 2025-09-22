@@ -265,7 +265,9 @@ You can declare that a parameter can accept `None`, but that it's still required
 To do that, you can declare that `None` is a valid type but simply do not declare a default value:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
-
+!!! note
+<'None" = parametter omitted from URL
+?q= is a empty string, not None>
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
