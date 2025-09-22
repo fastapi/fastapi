@@ -70,14 +70,15 @@ def test_query_params_str_validations_item_query_nonregexquery():
             ]
         }
     )
-    
+
+
 @needs_py310
 def test_query_params_str_validations_item_query_empty():
     client = get_client()
-    response = client.get("/items/", params = {"q": ""})
+    response = client.get("/items/", params={"q": ""})
     assert response.status_code == 422
     assert response.json() == IsDict(
-          {
+        {
             "detail": [
                 {
                     "type": "string_pattern_mismatch",
@@ -100,8 +101,8 @@ def test_query_params_str_validations_item_query_empty():
                 }
             ]
         }
-    
     )
+
 
 @needs_py310
 def test_openapi_schema():
