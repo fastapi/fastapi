@@ -143,10 +143,16 @@ function handleSponsorImages() {
 
     const imagePromises = Array.from(sponsorImages).map(img => {
         return new Promise((resolve, reject) => {
-            if (img.complete) {
+            if (img.complete && img.naturalHeight !== 0) {
                 resolve();
             } else {
-                img.addEventListener('load', resolve);
+                img.addEventListener('load', () => {
+                    if (img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
                 img.addEventListener('error', reject);
             }
         });
