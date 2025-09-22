@@ -138,7 +138,7 @@ async function showRandomAnnouncement(groupId, timeInterval) {
 function handleSponsorImages() {
     const announceRight = document.getElementById('announce-right');
     if(!announceRight) return;
-    
+
     const sponsorImages = document.querySelectorAll('.sponsor-image');
 
     const imagePromises = Array.from(sponsorImages).map(img => {
