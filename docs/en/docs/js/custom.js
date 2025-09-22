@@ -136,12 +136,10 @@ async function showRandomAnnouncement(groupId, timeInterval) {
 }
 
 function handleSponsorImages() {
-    const sponsorImages = document.querySelectorAll('.sponsor-image');
     const announceRight = document.getElementById('announce-right');
-
-    if (announceRight) {
-        announceRight.style.display = 'none';
-    }
+    if(!announceRight) return;
+    
+    const sponsorImages = document.querySelectorAll('.sponsor-image');
 
     const imagePromises = Array.from(sponsorImages).map(img => {
         return new Promise((resolve, reject) => {
@@ -156,10 +154,8 @@ function handleSponsorImages() {
 
     Promise.all(imagePromises)
         .then(() => {
-            if (announceRight) {
-                announceRight.style.display = 'block';
-                showRandomAnnouncement('announce-right', 10000);
-            }
+            announceRight.style.display = 'block';
+            showRandomAnnouncement('announce-right', 10000);
         })
         .catch(() => {
             // do nothing
