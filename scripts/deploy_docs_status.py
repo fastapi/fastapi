@@ -22,7 +22,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """
     Configuration settings for the documentation deployment bot.
-    
+
     Attributes:
         github_repository: The GitHub repository in format 'owner/repo'
         github_token: GitHub token with permissions to update statuses and comments
@@ -31,6 +31,7 @@ class Settings(BaseSettings):
         run_id: The GitHub Actions run ID for linking back to the workflow
         is_done: Boolean indicating if the deployment process is complete
     """
+
     github_repository: str
     github_token: SecretStr
     deploy_url: str | None = None
@@ -42,12 +43,13 @@ class Settings(BaseSettings):
 class LinkData(BaseModel):
     """
     Represents link information for modified documentation pages.
-    
+
     Attributes:
         previous_link: URL to the live/production version of the page
         preview_link: URL to the preview/deployed version of the page
         en_link: URL to the English version of the page (for non-English pages)
     """
+
     previous_link: str
     preview_link: str
     en_link: str | None = None
@@ -56,7 +58,7 @@ class LinkData(BaseModel):
 def main() -> None:
     """
     Main function that orchestrates the documentation deployment status workflow.
-    
+
     The function:
     1. Sets up logging and configuration
     2. Finds the PR associated with the commit
