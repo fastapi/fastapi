@@ -74,7 +74,7 @@ header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s
 def is_mkdocs_insiders() -> bool:
     """
     Check if mkdocs-material insiders version is installed.
-    
+
     Returns:
         bool: True if insiders version is detected, False otherwise
     """
@@ -85,7 +85,7 @@ def is_mkdocs_insiders() -> bool:
 def get_en_config() -> Dict[str, Any]:
     """
     Load and parse the English documentation configuration file.
-    
+
     Returns:
         Dict[str, Any]: Parsed YAML content from mkdocs.yml
     """
@@ -95,7 +95,7 @@ def get_en_config() -> Dict[str, Any]:
 def get_lang_paths() -> List[Path]:
     """
     Get all language directory paths from the docs directory.
-    
+
     Returns:
         List[Path]: Sorted list of Path objects for each language directory
     """
@@ -105,10 +105,10 @@ def get_lang_paths() -> List[Path]:
 def lang_callback(lang: Optional[str]) -> Union[str, None]:
     """
     Typer callback function to normalize language input.
-    
+
     Args:
         lang: Language code to normalize
-        
+
     Returns:
         Normalized lowercase language code or None if input is None
     """
@@ -121,10 +121,10 @@ def lang_callback(lang: Optional[str]) -> Union[str, None]:
 def complete_existing_lang(incomplete: str):
     """
     Autocomplete function for existing languages.
-    
+
     Args:
         incomplete: Partial language name to complete
-        
+
     Yields:
         str: Matching language directory names
     """
@@ -138,7 +138,7 @@ def complete_existing_lang(incomplete: str):
 def callback() -> None:
     """
     Global callback function executed before any command.
-    
+
     Sets up environment variables for mkdocs-insiders and MacOS Cairo support.
     """
     if is_mkdocs_insiders():
@@ -151,13 +151,13 @@ def callback() -> None:
 def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     """
     Generate a new docs translation directory for the specified language.
-    
+
     Creates the necessary directory structure, configuration file, and initial
     content for a new language translation.
-    
+
     Args:
         lang: Language code for the new translation (e.g., 'es', 'fr')
-        
+
     Raises:
         typer.Abort: If the language directory already exists
     """
@@ -187,13 +187,13 @@ def build_lang(
 ) -> None:
     """
     Build the documentation for a specific language.
-    
+
     Uses mkdocs to build the documentation site for the specified language
     and copies the output to the appropriate location.
-    
+
     Args:
         lang: Language code to build (e.g., 'en', 'es')
-        
+
     Raises:
         typer.Abort: If the language directory doesn't exist
     """
@@ -242,10 +242,10 @@ index_sponsors_template = """
 def remove_header_permalinks(content: str) -> str:
     """
     Remove permalinks from markdown headers.
-    
+
     Args:
         content: Markdown content with header permalinks
-        
+
     Returns:
         str: Markdown content with permalinks removed from headers
     """
@@ -262,13 +262,13 @@ def remove_header_permalinks(content: str) -> str:
 def generate_readme_content() -> str:
     """
     Generate README.md content from the main English index.md file.
-    
+
     Processes the index.md file to remove mkdocs-specific elements and
     generates appropriate content for GitHub README.
-    
+
     Returns:
         str: Generated README content
-        
+
     Raises:
         RuntimeError: If required sections are not found in the source content
     """
@@ -306,7 +306,7 @@ def generate_readme_content() -> str:
 def generate_readme() -> None:
     """
     Generate README.md file from the main English documentation index.md.
-    
+
     This command processes the main documentation index file to create
     a GitHub-appropriate README with sponsors information and without
     mkdocs-specific elements.
@@ -321,10 +321,10 @@ def generate_readme() -> None:
 def verify_readme() -> None:
     """
     Verify that README.md is up-to-date with the main documentation index.
-    
+
     Compares the current README content with what would be generated
     from the main index.md file and reports any discrepancies.
-    
+
     Raises:
         typer.Abort: If README.md is outdated
     """
@@ -344,13 +344,13 @@ def verify_readme() -> None:
 def build_all() -> None:
     """
     Build documentation for all available languages.
-    
+
     This command:
     1. Updates language configurations
     2. Cleans the output directory
     3. Builds documentation for all languages in parallel
     4. Places the final output in the site/ directory
-    
+
     Uses multiprocessing for efficient parallel builds across all CPU cores.
     """
     update_languages()
@@ -367,7 +367,7 @@ def build_all() -> None:
 def update_languages() -> None:
     """
     Update the mkdocs.yml file with all available languages.
-    
+
     This command regenerates the language configuration section in the
     main mkdocs.yml file to include all currently available translations.
     """
@@ -378,10 +378,10 @@ def update_languages() -> None:
 def serve() -> None:
     """
     Start a simple HTTP server to preview the built documentation site.
-    
+
     This is a basic server for previewing the complete built site with
     all translations. For development, use the 'live' command instead.
-    
+
     Note: Requires running 'build-all' first to generate the site.
     """
     typer.echo("Warning: this is a very simple server.")
@@ -404,10 +404,10 @@ def live(
 ) -> None:
     """
     Serve documentation with live reload for a specific language.
-    
+
     This command starts a mkdocs development server with livereload
     functionality for real-time preview during documentation development.
-    
+
     Args:
         lang: Language to serve (defaults to 'en' if not specified)
         dirty: Use dirty build mode for faster rebuilds
@@ -428,13 +428,13 @@ def live(
 def get_updated_config_content() -> Dict[str, Any]:
     """
     Generate updated mkdocs configuration with all available languages.
-    
+
     Reads the language names from language_names.yml and generates the
     complete alternate language configuration for the mkdocs.yml file.
-    
+
     Returns:
         Dict[str, Any]: Updated mkdocs configuration with all languages
-        
+
     Raises:
         typer.Abort: If a language code is missing from language_names.yml
     """
@@ -471,7 +471,7 @@ def get_updated_config_content() -> Dict[str, Any]:
 def update_config() -> None:
     """
     Update the main English mkdocs.yml file with current language configuration.
-    
+
     Writes the updated configuration generated by get_updated_config_content()
     back to the mkdocs.yml file.
     """
@@ -486,10 +486,10 @@ def update_config() -> None:
 def verify_config() -> None:
     """
     Verify that mkdocs.yml is up-to-date with language names.
-    
+
     Checks if the current mkdocs.yml configuration matches what would be
     generated from the current language_names.yml file.
-    
+
     Raises:
         typer.Abort: If mkdocs.yml is outdated
     """
@@ -511,10 +511,10 @@ def verify_config() -> None:
 def verify_non_translated() -> None:
     """
     Verify that non-translatable sections don't exist in translation directories.
-    
+
     Checks all language directories (except English) to ensure they don't
     contain files or directories that are marked as non-translatable.
-    
+
     Raises:
         typer.Abort: If non-translatable content is found in translation directories
     """
@@ -540,12 +540,12 @@ def verify_non_translated() -> None:
 def verify_docs() -> None:
     """
     Run all documentation verification checks.
-    
+
     This command runs a comprehensive verification including:
     - README.md validation
     - mkdocs.yml configuration validation
     - Non-translated content validation
-    
+
     This is useful as a pre-commit or CI check to ensure documentation integrity.
     """
     verify_readme()
@@ -557,7 +557,7 @@ def verify_docs() -> None:
 def langs_json() -> None:
     """
     Output all available language codes as JSON.
-    
+
     Prints a JSON array containing all available language codes found
     in the docs directory. Useful for scripting and automation.
     """
@@ -572,10 +572,10 @@ def langs_json() -> None:
 def generate_docs_src_versions_for_file(file_path: Path) -> None:
     """
     Generate Python source file versions for different Python versions.
-    
+
     Uses ruff to generate version-specific Python files for documentation
     examples, targeting different Python versions.
-    
+
     Args:
         file_path: Path to the source Python file to generate versions for
     """
