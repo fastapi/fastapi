@@ -189,10 +189,10 @@ class HTTPBasic(HTTPBase):
     ) -> Optional[HTTPBasicCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        if self.realm:
-            unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
-        else:
-            unauthorized_headers = {"WWW-Authenticate": "Basic"}
+        # Always include a realm as required by RFC 7617.
+        realm_value = self.realm or "fastapi"
+        unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{realm_value}"'}
+
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
