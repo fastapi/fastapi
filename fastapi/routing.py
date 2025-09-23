@@ -4444,7 +4444,8 @@ class APIRouter(routing.Router):
             return func
 
         return decorator
-    
+
+
 def get_query_param(request, name: str, default: str | None = None) -> str | None:
     """
     Utility function to safely fetch a query parameter from a request.
