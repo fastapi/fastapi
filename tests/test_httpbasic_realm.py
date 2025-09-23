@@ -2,6 +2,7 @@ from fastapi import Depends, FastAPI
 from fastapi.security import HTTPBasic
 from fastapi.testclient import TestClient
 
+
 def test_default_realm_is_included():
     app = FastAPI()
     security = HTTPBasic()
@@ -14,6 +15,7 @@ def test_default_realm_is_included():
     response = client.get("/protected")
     assert response.status_code == 401
     assert response.headers["www-authenticate"] == 'Basic realm="fastapi"'
+
 
 def test_custom_realm_is_respected():
     app = FastAPI()
