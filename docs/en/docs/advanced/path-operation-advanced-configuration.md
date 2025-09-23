@@ -202,3 +202,9 @@ Here we reuse the same Pydantic model.
 But the same way, we could have validated it in some other way.
 
 ///
+
+### Unsupported HTTP Methods
+
+FastAPI supports all standard HTTP methods defined by RFC 7231 (GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD).
+
+⚠️ Non-standard methods such as `QUERY` are **not supported** by FastAPI and will not be added, as they are not part of the HTTP specification.
