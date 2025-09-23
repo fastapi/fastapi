@@ -30,7 +30,7 @@ missing_translation_snippet = """
 """
 
 non_translated_sections = (
-    "reference/",
+    f"reference{os.sep}",
     "release-notes.md",
     "fastapi-people.md",
     "external-links.md",
