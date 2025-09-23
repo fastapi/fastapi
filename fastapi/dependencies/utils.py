@@ -1,4 +1,5 @@
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -72,6 +73,11 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -248,6 +254,8 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
+        if annotation is type(None):
+            return None
     return annotation
 
 
@@ -529,11 +537,11 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 def is_coroutine_callable(call: Callable[..., Any]) -> bool:
     if inspect.isroutine(call):
-        return inspect.iscoroutinefunction(call)
+        return iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.iscoroutinefunction(dunder_call)
+    return iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
@@ -587,7 +595,8 @@ async def solve_dependencies(
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
-    dependency_cache = dependency_cache or {}
+    if dependency_cache is None:
+        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -624,7 +633,6 @@ async def solve_dependencies(
             embed_body_fields=embed_body_fields,
         )
         background_tasks = solved_result.background_tasks
-        dependency_cache.update(solved_result.dependency_cache)
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
@@ -864,20 +872,19 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
-    first_field = body_fields[0]
-    first_field_info = first_field.field_info
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
+        field_info = field.field_info
         if (
-            isinstance(first_field_info, params.File)
+            isinstance(field_info, params.File)
             and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
             is_bytes_sequence_field(field)
-            and isinstance(first_field_info, params.File)
+            and isinstance(field_info, params.File)
             and value_is_sequence(value)
         ):
             # For types
@@ -916,7 +923,11 @@ async def request_body_to_args(
 
     fields_to_extract: List[ModelField] = body_fields
 
-    if single_not_embedded_field and lenient_issubclass(first_field.type_, BaseModel):
+    if (
+        single_not_embedded_field
+        and lenient_issubclass(first_field.type_, BaseModel)
+        and isinstance(received_body, FormData)
+    ):
         fields_to_extract = get_cached_model_fields(first_field.type_)
 
     if isinstance(received_body, FormData):
