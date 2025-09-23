@@ -1,3 +1,16 @@
+"""
+GitHub Documentation Deployment Status and Preview Links Bot.
+
+This script handles documentation deployment status updates and preview link generation
+for pull requests. It integrates with GitHub's API to:
+- Set commit statuses for documentation deployment
+- Generate preview links for modified documentation pages
+- Post detailed comments in PRs with links to modified pages
+
+The script is designed to work with GitHub Actions and expects specific environment
+variables to be set for configuration.
+"""
+
 import logging
 import re
 
@@ -7,6 +20,17 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+    """
+    Configuration settings for the documentation deployment bot.
+    
+    Attributes:
+        github_repository: The GitHub repository in format 'owner/repo'
+        github_token: GitHub token with permissions to update statuses and comments
+        deploy_url: The base URL where docs are deployed (optional until deployment completes)
+        commit_sha: The SHA hash of the commit being processed
+        run_id: The GitHub Actions run ID for linking back to the workflow
+        is_done: Boolean indicating if the deployment process is complete
+    """
     github_repository: str
     github_token: SecretStr
     deploy_url: str | None = None
@@ -16,12 +40,30 @@ class Settings(BaseSettings):
 
 
 class LinkData(BaseModel):
+    """
+    Represents link information for modified documentation pages.
+    
+    Attributes:
+        previous_link: URL to the live/production version of the page
+        preview_link: URL to the preview/deployed version of the page
+        en_link: URL to the English version of the page (for non-English pages)
+    """
     previous_link: str
     preview_link: str
     en_link: str | None = None
 
 
 def main() -> None:
+    """
+    Main function that orchestrates the documentation deployment status workflow.
+    
+    The function:
+    1. Sets up logging and configuration
+    2. Finds the PR associated with the commit
+    3. Updates commit status based on deployment state
+    4. Generates preview links for modified documentation files
+    5. Posts a comprehensive comment with all relevant links
+    """
     logging.basicConfig(level=logging.INFO)
     settings = Settings()
 
