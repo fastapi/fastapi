@@ -1,4 +1,4 @@
-# HTTP Basic Auth
+# HTTP Basic Auth { #http-basic-auth }
 
 For the simplest cases, you can use HTTP Basic Auth.
 
@@ -12,7 +12,7 @@ That tells the browser to show the integrated prompt for a username and password
 
 Then, when you type that username and password, the browser sends them in the header automatically.
 
-## Simple HTTP Basic Auth
+## Simple HTTP Basic Auth { #simple-http-basic-auth }
 
 * Import `HTTPBasic` and `HTTPBasicCredentials`.
 * Create a "`security` scheme" using `HTTPBasic`.
@@ -26,7 +26,7 @@ When you try to open the URL for the first time (or click the "Execute" button i
 
 <img src="/img/tutorial/security/image12.png">
 
-## Check the username
+## Check the username { #check-the-username }
 
 Here's a more complete example.
 
@@ -52,7 +52,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 But by using the `secrets.compare_digest()` it will be secure against a type of attacks called "timing attacks".
 
-### Timing Attacks
+### Timing Attacks { #timing-attacks }
 
 But what's a "timing attack"?
 
@@ -80,19 +80,19 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and `stanleyjobson` before realizing that both strings are not the same. So it will take some extra microseconds to reply back "Incorrect username or password".
 
-#### The time to answer helps the attackers
+#### The time to answer helps the attackers { #the-time-to-answer-helps-the-attackers }
 
 At that point, by noticing that the server took some microseconds longer to send the "Incorrect username or password" response, the attackers will know that they got _something_ right, some of the initial letters were right.
 
 And then they can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
 
-#### A "professional" attack
+#### A "professional" attack { #a-professional-attack }
 
 Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And they would get just one extra correct letter at a time.
 
 But doing that, in some minutes or hours the attackers would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
 
-#### Fix it with `secrets.compare_digest()`
+#### Fix it with `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
 But in our code we are actually using `secrets.compare_digest()`.
 
@@ -100,7 +100,7 @@ In short, it will take the same time to compare `stanleyjobsox` to `stanleyjobso
 
 That way, using `secrets.compare_digest()` in your application code, it will be safe against this whole range of security attacks.
 
-### Return the error
+### Return the error { #return-the-error }
 
 After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
 

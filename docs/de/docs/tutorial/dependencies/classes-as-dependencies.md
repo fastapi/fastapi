@@ -1,10 +1,10 @@
-# Klassen als Abhängigkeiten
+# Klassen als Abhängigkeiten { #classes-as-dependencies }
 
 Bevor wir tiefer in das **Dependency Injection** System eintauchen, lassen Sie uns das vorherige Beispiel verbessern.
 
-## Ein `dict` aus dem vorherigen Beispiel
+## Ein `dict` aus dem vorherigen Beispiel { #a-dict-from-the-previous-example }
 
-Im vorherigen Beispiel haben wir ein `dict` von unserer Abhängigkeit („Dependable“) zurückgegeben:
+Im vorherigen Beispiel haben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> von unserer Abhängigkeit („Dependable“) zurückgegeben:
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
@@ -14,7 +14,7 @@ Und wir wissen, dass Editoren nicht viel Unterstützung (wie etwa Code-Vervollst
 
 Das können wir besser machen ...
 
-## Was macht eine Abhängigkeit aus
+## Was macht eine Abhängigkeit aus { #what-makes-a-dependency }
 
 Bisher haben Sie Abhängigkeiten gesehen, die als Funktionen deklariert wurden.
 
@@ -38,7 +38,7 @@ something(some_argument, some_keyword_argument="foo")
 
 dann ist das ein „Callable“ (ein „Aufrufbares“).
 
-## Klassen als Abhängigkeiten
+## Klassen als Abhängigkeiten { #classes-as-dependencies_1 }
 
 Möglicherweise stellen Sie fest, dass Sie zum Erstellen einer Instanz einer Python-Klasse die gleiche Syntax verwenden.
 
@@ -89,7 +89,7 @@ In beiden Fällen wird sie haben:
 
 In beiden Fällen werden die Daten konvertiert, validiert, im OpenAPI-Schema dokumentiert, usw.
 
-## Verwendung
+## Verwenden { #use-it }
 
 Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
@@ -97,7 +97,7 @@ Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
 **FastAPI** ruft die Klasse `CommonQueryParams` auf. Dadurch wird eine „Instanz“ dieser Klasse erstellt und die Instanz wird als Parameter `commons` an Ihre Funktion überreicht.
 
-## Typannotation vs. `Depends`
+## Typannotation vs. `Depends` { #type-annotation-vs-depends }
 
 Beachten Sie, wie wir `CommonQueryParams` im obigen Code zweimal schreiben:
 
@@ -193,7 +193,7 @@ Es wird jedoch empfohlen, den Typ zu deklarieren, da Ihr Editor so weiß, was al
 
 <img src="/img/tutorial/dependencies/image02.png">
 
-## Abkürzung
+## Abkürzung { #shortcut }
 
 Aber Sie sehen, dass wir hier etwas Codeduplizierung haben, indem wir `CommonQueryParams` zweimal schreiben:
 
