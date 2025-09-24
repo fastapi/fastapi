@@ -13,6 +13,8 @@ hide:
 
 ### Internal
 
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14103](https://github.com/fastapi/fastapi/pull/14103) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ♻️ Refactor sponsor image handling. PR [#14102](https://github.com/fastapi/fastapi/pull/14102) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Fix sponsor display issue by hiding element on image error. PR [#14097](https://github.com/fastapi/fastapi/pull/14097) by [@alejsdev](https://github.com/alejsdev).
 * 🐛 Hide sponsor badge when sponsor image is not displayed. PR [#14096](https://github.com/fastapi/fastapi/pull/14096) by [@alejsdev](https://github.com/alejsdev).
 
