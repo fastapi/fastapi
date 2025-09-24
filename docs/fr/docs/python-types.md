@@ -25,7 +25,7 @@ Prenons un exemple simple :
 
 {*../../docs_src/python_types/tutorial001.py*}
 
-Exécuter ce programe affiche :
+Exécuter ce programme affiche :
 
 ```
 John Doe
@@ -286,7 +286,7 @@ Avec **FastAPI**, vous déclarez des paramètres grâce aux annotations de types
 * **Valider des données** : venant de chaque requête :
     * Générant automatiquement des **erreurs** renvoyées au client quand la donnée est invalide.
 * **Documenter** l'API avec OpenAPI :
-    * ce qui ensuite utilisé par les interfaces utilisateur automatiques de documentation interactive.
+    * ce qui est ensuite utilisé par les interfaces utilisateur automatiques de documentation interactive.
 
 Tout cela peut paraître bien abstrait, mais ne vous inquiétez pas, vous verrez tout ça en pratique dans [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
 
