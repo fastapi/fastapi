@@ -48,6 +48,7 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.14"
           - "3.13"
           - "3.12"
           - "3.11"
@@ -55,6 +56,9 @@ jobs:
           - "3.9"
           - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
+        exclude:
+          - python-version: "3.14"
+            pydantic-version: "pydantic-v1"
       fail-fast: false
     steps:
       - name: Dump GitHub context
@@ -66,6 +70,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
         with:
@@ -74,13 +79,16 @@ jobs:
           cache-dependency-glob: |
             requirements**.txt
             pyproject.toml
+      - name: Preinstall Pydantic 2.12.0a1 for Python 3.14
+        if: matrix.python-version == '3.14'
+        run: uv pip install --pre "pydantic==2.12.0a1"
       - name: Install Dependencies
         run: uv pip install -r requirements-tests.txt
       - name: Install Pydantic v1
         if: matrix.pydantic-version == 'pydantic-v1'
         run: uv pip install "pydantic>=1.10.0,<2.0.0"
       - name: Install Pydantic v2
-        if: matrix.pydantic-version == 'pydantic-v2'
+        if: matrix.pydantic-version == 'pydantic-v2' && matrix.python-version != '3.14'
         run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
       # TODO: Remove this once Python 3.8 is no longer supported
       - name: Install older AnyIO in Python 3.8
