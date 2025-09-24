@@ -111,10 +111,10 @@ if PYDANTIC_V2:
 
         def __post_init__(self) -> None:
             with warnings.catch_warnings():
-                # Pydantic >= 2.12.0a1 warns about this when building
-                # TypeAdapters from field information that uses aliases.
-                # The Pydantic team recommends ignoring this in this case:
-                # https://github.com/fastapi/fastapi/pull/14036#issuecomment-3316045587
+                # Pydantic >= 2.12.0 warns about field specific metadata that is unused
+                # (e.g. `TypeAdapter(Annotated[int, Field(alias='b')])`). In some cases, we
+                # end up building the type adapter from a model field annotation so we
+                # need to ignore the warning:
                 try:
                     from pydantic.warnings import (  # type: ignore[attr-defined]
                         UnsupportedFieldAttributeWarning,

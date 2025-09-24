@@ -186,9 +186,9 @@ def test_openapi_schema():
                                 "anyOf": [
                                     {"exclusiveMinimum": 0.0, "type": "number"},
                                     IsOneOf(
-                                        # pydantic < 2.12.0a1
+                                        # pydantic < 2.12.0
                                         {"type": "string"},
-                                        # pydantic >= 2.12.0a1
+                                        # pydantic >= 2.12.0
                                         {
                                             "type": "string",
                                             "pattern": r"^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$",
