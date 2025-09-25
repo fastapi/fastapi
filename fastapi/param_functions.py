@@ -2244,6 +2244,17 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
+    parallelizable: Annotated[
+        Optional[bool],
+        Doc(
+            """
+            Whether this dependency may be resolved in parallel.
+
+            If not provided, the application-wide default will be used (configured with
+            `FastAPI(depends_default_parallelizable=...)`).
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2274,7 +2285,9 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(
+        dependency=dependency, use_cache=use_cache, parallelizable=parallelizable
+    )
 
 
 def Security(  # noqa: N802
@@ -2321,6 +2334,17 @@ def Security(  # noqa: N802
             """
         ),
     ] = True,
+    parallelizable: Annotated[
+        Optional[bool],
+        Doc(
+            """
+            Whether this dependency may be resolved in parallel.
+
+            If not provided, the application-wide default will be used (configured with
+            `FastAPI(depends_default_parallelizable=...)`).
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI Security dependency.
@@ -2357,4 +2381,9 @@ def Security(  # noqa: N802
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return params.Security(
+        dependency=dependency,
+        scopes=scopes,
+        use_cache=use_cache,
+        parallelizable=parallelizable,
+    )
