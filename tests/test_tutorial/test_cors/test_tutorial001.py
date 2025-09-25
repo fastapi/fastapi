@@ -18,7 +18,10 @@ def test_cors():
         response.headers["access-control-allow-origin"]
         == "https://localhost.tiangolo.com"
     )
-    assert response.headers["access-control-allow-headers"] == "X-Example"
+    expected_headers = (
+        "Accept, Accept-Language, Content-Language, Content-Type, X-Example"
+    )
+    assert response.headers["access-control-allow-headers"] == expected_headers
 
     # Test standard response
     headers = {"Origin": "https://localhost.tiangolo.com"}
