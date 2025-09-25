@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* ✏️ Fix typos in OAuth2 password request forms. PR [#14112](https://github.com/fastapi/fastapi/pull/14112) by [@alv2017](https://github.com/alv2017).
 * 📝 Update contributing guidelines for installing requirements. PR [#14095](https://github.com/fastapi/fastapi/pull/14095) by [@alejsdev](https://github.com/alejsdev).
 
 ### Translations
