@@ -115,13 +115,11 @@ if PYDANTIC_V2:
                 # (e.g. `TypeAdapter(Annotated[int, Field(alias='b')])`). In some cases, we
                 # end up building the type adapter from a model field annotation so we
                 # need to ignore the warning:
-                try:
+                if PYDANTIC_VERSION_MINOR_TUPLE >= (2, 12):  # pragma: no cover
                     from pydantic.warnings import (  # type: ignore[attr-defined]
                         UnsupportedFieldAttributeWarning,
                     )
-                except ImportError:  # pragma: no cover
-                    pass
-                else:  # pragma: no cover
+
                     warnings.simplefilter(
                         "ignore", category=UnsupportedFieldAttributeWarning
                     )
