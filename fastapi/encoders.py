@@ -19,10 +19,16 @@ from uuid import UUID
 
 from fastapi.types import IncEx
 from pydantic import BaseModel
-from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
+
+try:
+    # Preferred in Pydantic v2+
+    from pydantic_extra_types.color import Color
+except ImportError:
+    # Fallback for Pydantic v1
+    Color = type("DummyColor", (), {})  # type:ignore
 
 from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
 
