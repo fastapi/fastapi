@@ -1207,12 +1207,14 @@ class FastAPI(Starlette):
         name: Optional[str] = None,
         *,
         dependencies: Optional[Sequence[Depends]] = None,
+        tags: Optional[List[Union[str, Enum]]] = None,
     ) -> None:
         self.router.add_api_websocket_route(
             path,
             endpoint,
             name=name,
             dependencies=dependencies,
+            tags=tags,
         )
 
     def websocket(
@@ -1246,6 +1248,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        tags: Annotated[
+            Optional[List[Union[str, Enum]]],
+            Doc(
+                """
+                A list of tags to be applied to this WebSocket.
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Decorate a WebSocket function.
@@ -1275,6 +1285,7 @@ class FastAPI(Starlette):
                 func,
                 name=name,
                 dependencies=dependencies,
+                tags=tags,
             )
             return func
 
