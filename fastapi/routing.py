@@ -31,7 +31,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
-from fastapi.datastructures import Default, DefaultPlaceholder
+from fastapi.datastructures import Default, DefaultPlaceholder, UploadFile
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     _should_embed_body_fields,
@@ -60,6 +60,7 @@ from fastapi.utils import (
 from pydantic import BaseModel
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
+from starlette.datastructures import UploadFile as StarletteUploadFile
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
@@ -214,6 +215,19 @@ async def run_endpoint_function(
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
     assert dependant.call is not None, "dependant.call must be a function"
+
+    # Convert all Starlette UploadFiles to FastAPI UploadFiles
+    for key, value in values.items():
+        if isinstance(value, StarletteUploadFile) and not isinstance(value, UploadFile):
+            values[key] = UploadFile.from_starlette(value)
+        elif isinstance(value, list):
+            values[key] = [
+                UploadFile.from_starlette(item)
+                if isinstance(item, StarletteUploadFile)
+                and not isinstance(item, UploadFile)
+                else item
+                for item in value
+            ]
 
     if is_coroutine:
         return await dependant.call(**values)
