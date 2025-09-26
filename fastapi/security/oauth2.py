@@ -89,7 +89,7 @@ class OAuth2PasswordRequestForm:
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],
@@ -243,7 +243,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],

@@ -82,7 +82,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "_আমি **FastAPI** নিয়ে চাঁদের সমান উৎসাহিত। এটি খুবই মজার!_"
 
-<div style="text-align: right; margin-right: 10%;">ব্রায়ান ওকেন - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">পাইথন বাইটস</a> পডকাস্ট হোস্ট</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">ব্রায়ান ওকেন - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">পাইথন বাইটস</a> পডকাস্ট হোস্ট</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -96,7 +96,7 @@ FastAPI একটি আধুনিক, দ্রুত ( বেশি ক্�
 
 "_আমরা আমাদের **APIs** [...] এর জন্য **FastAPI**- তে এসেছি [...] আমি মনে করি আপনিও এটি পছন্দ করবেন [...]_"
 
-<div style="text-align: right; margin-right: 10%;">ইনেস মন্টানি - ম্যাথিউ হোনিবাল - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> প্রতিষ্ঠাতা - <a href="https://spacy.io" target="_blank">spaCy</a> স্রষ্টা</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">ইনেস মন্টানি - ম্যাথিউ হোনিবাল - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> প্রতিষ্ঠাতা - <a href="https://spacy.io" target="_blank">spaCy</a> স্রষ্টা</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

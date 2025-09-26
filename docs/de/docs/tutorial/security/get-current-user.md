@@ -1,4 +1,4 @@
-# Aktuellen Benutzer abrufen
+# Aktuellen Benutzer abrufen { #get-current-user }
 
 Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* einen `token` vom Typ `str` überreicht:
 
@@ -8,15 +8,15 @@ Aber das ist immer noch nicht so nützlich.
 
 Lassen wir es uns den aktuellen Benutzer überreichen.
 
-## Ein Benutzermodell erstellen
+## Ein Benutzermodell erstellen { #create-a-user-model }
 
 Erstellen wir zunächst ein Pydantic-Benutzermodell.
 
 So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch überall sonst verwenden:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## Eine `get_current_user`-Abhängigkeit erstellen
+## Eine `get_current_user`-Abhängigkeit erstellen { #create-a-get-current-user-dependency }
 
 Erstellen wir eine Abhängigkeit `get_current_user`.
 
@@ -28,13 +28,13 @@ So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere 
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## Den Benutzer holen
+## Den Benutzer abrufen { #get-the-user }
 
 `get_current_user` wird eine von uns erstellte (gefakte) Hilfsfunktion verwenden, welche einen Token vom Typ `str` entgegennimmt und unser Pydantic-`User`-Modell zurückgibt:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## Den aktuellen Benutzer einfügen
+## Den aktuellen Benutzer einfügen { #inject-the-current-user }
 
 Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *Pfadoperation* verwenden:
 
@@ -46,13 +46,13 @@ Das wird uns innerhalb der Funktion bei Codevervollständigung und Typprüfungen
 
 /// tip | Tipp
 
-Sie erinnern sich vielleicht, dass Requestbodys ebenfalls mit Pydantic-Modellen deklariert werden.
+Sie erinnern sich vielleicht, dass <abbr title="Anfragekörper">Requestbodys</abbr> ebenfalls mit Pydantic-Modellen deklariert werden.
 
 Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
 
 ///
 
-/// check
+/// check | Testen
 
 Die Art und Weise, wie dieses System von Abhängigkeiten konzipiert ist, ermöglicht es uns, verschiedene Abhängigkeiten (verschiedene „Dependables“) zu haben, die alle ein `User`-Modell zurückgeben.
 
@@ -60,7 +60,7 @@ Wir sind nicht darauf beschränkt, nur eine Abhängigkeit zu haben, die diesen T
 
 ///
 
-## Andere Modelle
+## Andere Modelle { #other-models }
 
 Sie können jetzt den aktuellen Benutzer direkt in den *Pfadoperation-Funktionen* abrufen und die Sicherheitsmechanismen auf **Dependency Injection** Ebene handhaben, mittels `Depends`.
 
@@ -76,7 +76,7 @@ Sie haben eigentlich keine Benutzer, die sich bei Ihrer Anwendung anmelden, sond
 
 Verwenden Sie einfach jede Art von Modell, jede Art von Klasse, jede Art von Datenbank, die Sie für Ihre Anwendung benötigen. **FastAPI** deckt das alles mit seinem Dependency Injection System ab.
 
-## Codegröße
+## Codegröße { #code-size }
 
 Dieses Beispiel mag ausführlich erscheinen. Bedenken Sie, dass wir Sicherheit, Datenmodelle, Hilfsfunktionen und *Pfadoperationen* in derselben Datei vermischen.
 
@@ -94,7 +94,7 @@ Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Sie können jetzt den aktuellen Benutzer direkt in Ihrer *Pfadoperation-Funktion* abrufen.
 

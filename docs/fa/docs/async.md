@@ -383,7 +383,7 @@ Starlette (و **FastAPI**) بر پایه <a href="https://anyio.readthedocs.io/e
 
 توی نسخه‌های قبلی پایتون، می‌تونستی از نخ‌ها یا <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> استفاده کنی. ولی کد خیلی پیچیده‌تر می‌شه برای فهمیدن، دیباگ کردن و فکر کردن بهش.
 
-توی نسخه‌های قبلی NodeJS / جاوااسکریپت مرورگر، از "کال‌بک‌ها" استفاده می‌کردی. که می‌رسید به <a href="http://callbackhell.com/" class="external-link" target="_blank">جهان کال‌بک‌ها</a>.
+توی نسخه‌های قبلی NodeJS / جاوااسکریپت مرورگر، از "کال‌بک‌ها" استفاده می‌کردی. که می‌رسید به "جهان کال‌بک‌ها".
 
 ## کروتین‌ها
 
