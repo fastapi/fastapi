@@ -1,14 +1,17 @@
 from typing import List
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 app = FastAPI()
+
 
 class Item(BaseModel):
     name: str
     description: str = None
     price: float
     tax: float = None
+
 
 @app.get("/items/", response_model=List[Item])
 async def read_items():
