@@ -2,7 +2,7 @@
 
 In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`.
 
-## Import Path { #import-path }
+## Import `Path` { #import-path }
 
 First, import `Path` from `fastapi`, and import `Annotated`:
 
@@ -54,17 +54,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-//// tab | Python 3.8 non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
 {* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
-
-////
 
 But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
