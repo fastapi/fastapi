@@ -80,15 +80,7 @@ Dependencies with `yield` have evolved over time to account for the different us
 
 Before FastAPI 0.118.0, if you used a dependency with `yield`, it would run the exit code after the *path operation function* returned but right before sending the response.
 
-The intention was not to hold resources for longer than necessary, waiting for the response to travel through the network.
-
-/// tip
-
-Later I realized that SQLAlchemy (and hence SQLModel), one of the main tools I was considering when thinking about not holding resources, would not hold the raw database connections indefinitely, but acquire and release them automatically when necessary. For example, releasing the database connection after a `session.commit()`.
-
-So this optimization was not really necessary.
-
-///
+The intention was to avoid holding resources for longer than necessary, waiting for the response to travel through the network.
 
 This change also meant that if you returned a `StreamingResponse`, the exit code of the dependency with `yield` would have been already run.
 
@@ -103,6 +95,38 @@ This behavior was reverted in 0.118.0, to make the exit code after `yield` be ex
 As you will see below, this is very similar to the behavior before version 0.106.0, but with several improvements and bug fixes for corner cases.
 
 ///
+
+#### Use Cases with Early Exit Code { #use-cases-with-early-exit-code }
+
+There are some use cases with specific conditions that could benefit from the old behavior of running the exit code of dependencies with `yield` before sending the response.
+
+For example, imagine you have code that uses a database session in a dependency with `yield` only to verify a user, but the database session is never used again in the *path operation function*, only in the dependency, **and** the response takes a long time to be sent, like a `StreamingResponse` that sends data slowly, but for some reason doesn't use the database.
+
+In this case, the database session would be held until the response is finished being sent, but if you don't use it, then it wouldn't be necessary to hold it.
+
+Here's how it could look like:
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+
+The exit code, the automatic closing of the `Session` in:
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+
+...would be run after the the response finishes sending the slow data:
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+
+But as `generate_stream()` doesn't use the database session, it is not really necessary to keep the session open while sending the response.
+
+If you have this specific use case using SQLModel (or SQLAlchemy), you could explicitly close the session after you don't need it anymore:
+
+{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+
+That way the session would release the database connection, so other requests could use it.
+
+If you have a different use case that needs to exit early from a dependency with `yield`, please create a <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Question</a> with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
+
+If there are compelling use cases for early closing in dependencies with `yield`, I would consider adding a new way to opt in to early closing.
 
 ### Dependencies with `yield` and `except`, Technical Details { #dependencies-with-yield-and-except-technical-details }
 
