@@ -280,6 +280,10 @@ def test_root_model_union(left: Any, right: Any):
     def handler2(b: Annotated[Model, Body()]):
         return {"b": b}
 
+    @app2.post("/body2")
+    def handler2(q: Model) -> Model:
+        return q
+
     client2 = TestClient(app2)
     for val in ["2025-01-02", 42]:
         response = client2.get(f"/query?q={val}")
@@ -288,6 +292,15 @@ def test_root_model_union(left: Any, right: Any):
         response = client2.post("/body", json=val)
         assert response.status_code == 200, response.text
         assert response.json() == {"b": val}
+
+        # By default, RootModel is regarded as a body parameter
+        response = (
+            client2.post("/body2", json=val)
+            if issubclass(left, RootModel) or issubclass(right, RootModel)
+            else client2.post(f"/body2?q={val}")
+        )
+        assert response.status_code == 200, response.text
+        assert response.json() == val
 
     response = client2.get("/query?q=bad")
     assert response.status_code == 422, response.text

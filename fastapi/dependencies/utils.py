@@ -931,7 +931,7 @@ async def request_body_to_args(
 
     if (
         single_not_embedded_field
-        and resolves_to_basemodel(first_field.type_)
+        and lenient_issubclass(first_field.type_, BaseModel)
         and isinstance(received_body, FormData)
     ):
         fields_to_extract = get_cached_model_fields(first_field.type_)
