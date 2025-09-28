@@ -10,7 +10,7 @@ Use correct Russian grammar — appropriate cases, suffixes, and endings dependi
 
 For the following technical terms, use these specific translations to ensure consistency and clarity across the documentation:
 
-* production (meaning production software or environment): продакшн
+* production (meaning production software or environment): продакшн (do not change the ending, for example, translate `in production` as `в продакшн` (not `в продакшене`))
 * completion (meaning code auto-completion): автозавершение
 * editor (meaning component of IDE): редактор кода
 * adopt (meaning start to use): использовать (or `начать использовать`)
@@ -57,7 +57,7 @@ For the following technical terms, use these specific translations to ensure con
 * load balance: балансировка нагрузки
 * worker process: воркер-процесс (or `процесс воркера`)
 * worker: воркер
-* lifespan: lifespan (do not translate or clarify as `жизненный цикл`)
+* lifespan: lifespan (do not translate when it's about lifespan events, but translate as `жизненный цикл` or `срок жизни` in other cases)
 * mount (verb): монтировать
 * mount (noun): точка монтирования / mount (keep in English if it's a FastAPI keyword)
 * plugin: плагин
@@ -76,3 +76,12 @@ For the following technical terms, use these specific translations to ensure con
 * have the next best performance, after: быть на следующем месте по производительности после
 * timing attack: тайминговая атака (clarify `атака по времени` if needed)
 * OAuth2 scope: OAuth2 scope (clarify `область` if needed)
+* TLS Termination Proxy: прокси-сервер TSL-терминации
+* utilize (resources): использовать
+* сontent: содержимое (or `контент`)
+* raise exception: вызвать исключение (also possible to use `сгенерировать исключение` or `выбросить исключение`)
+* password flow: password flow (clarify as `аутентификация по паролю` if needed)
+* tutorial: руководство (or `учебник`)
+* too long; didn't read: слишком длинно; не читал
+
+Do not add whitespace in `т.д.`, `т.п.`.
