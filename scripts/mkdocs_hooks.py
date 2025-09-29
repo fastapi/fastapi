@@ -134,12 +134,12 @@ def on_page_markdown(
 ) -> str:
     # Set matadata["social"]["cards_layout_options"]["title"] to clean title (without
     # permalink)
-    header = markdown.split("\n\n", 1)[0]
-    header_clean = header.split("{ #")[0]
-    if header_clean:
+    title = page.title
+    clean_title = title.split("{ #")[0]
+    if clean_title:
         page.meta.setdefault("social", {})
         page.meta["social"].setdefault("cards_layout_options", {})
-        page.meta["social"]["cards_layout_options"]["title"] = header_clean
+        page.meta["social"]["cards_layout_options"]["title"] = clean_title
 
     if isinstance(page.file, EnFile):
         for excluded_section in non_translated_sections:
