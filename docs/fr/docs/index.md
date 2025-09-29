@@ -87,7 +87,7 @@ Les principales fonctionnalités sont :
 
 "_Je suis très enthousiaste à propos de **FastAPI**. C'est un bonheur !_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Auteur du podcast <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a></strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Auteur du podcast <a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a></strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -101,7 +101,7 @@ Les principales fonctionnalités sont :
 
 "_Nous sommes passés à **FastAPI** pour nos **APIs** [...] Je pense que vous l'aimerez [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Fondateurs de <a href="https://explosion.ai" target="_blank">Explosion AI</a> - Créateurs de <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Fondateurs de <a href="https://explosion.ai" target="_blank">Explosion AI</a> - Créateurs de <a href="https://spacy.io" target="_blank">spaCy</a></strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 

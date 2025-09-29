@@ -98,7 +98,7 @@ Você provavelmente pode clicar com o botão direito em cada link e selecionar u
 
 E o **ReDoc** usa os arquivos:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
 Depois disso, sua estrutura de arquivos deve se parecer com:
 
@@ -129,14 +129,8 @@ Você deverá ver um arquivo JavaScript muito longo para o **ReDoc**.
 Esse arquivo pode começar com algo como:
 
 ```JavaScript
-/*!
- * ReDoc - OpenAPI/Swagger-generated API Reference Documentation
- * -------------------------------------------------------------
- *   Version: "2.0.0-rc.18"
- *   Repo: https://github.com/Redocly/redoc
- */
-!function(e,t){"object"==typeof exports&&"object"==typeof m
-
+/*! For license information please see redoc.standalone.js.LICENSE.txt */
+!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
 ...
 ```
 

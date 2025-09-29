@@ -32,9 +32,9 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
+from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 from typing_extensions import Literal
 
 validation_error_definition = {
@@ -113,6 +113,13 @@ def _get_openapi_operation_parameters(
         (ParamTypes.header, header_params),
         (ParamTypes.cookie, cookie_params),
     ]
+    default_convert_underscores = True
+    if len(flat_dependant.header_params) == 1:
+        first_field = flat_dependant.header_params[0]
+        if lenient_issubclass(first_field.type_, BaseModel):
+            default_convert_underscores = getattr(
+                first_field.field_info, "convert_underscores", True
+            )
     for param_type, param_group in parameter_groups:
         for param in param_group:
             field_info = param.field_info
@@ -126,8 +133,21 @@ def _get_openapi_operation_parameters(
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
+            name = param.alias
+            convert_underscores = getattr(
+                param.field_info,
+                "convert_underscores",
+                default_convert_underscores,
+            )
+            if (
+                param_type == ParamTypes.header
+                and param.alias == param.name
+                and convert_underscores
+            ):
+                name = param.name.replace("_", "-")
+
             parameter = {
-                "name": param.alias,
+                "name": name,
                 "in": param_type.value,
                 "required": param.required,
                 "schema": param_schema,
@@ -364,9 +384,9 @@ def get_openapi_path(
                     openapi_response = operation_responses.setdefault(
                         status_code_key, {}
                     )
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
+                    assert isinstance(process_response, dict), (
+                        "An additional response must be a dict"
+                    )
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
@@ -395,7 +415,7 @@ def get_openapi_path(
                     )
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
-            http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
+            http422 = "422"
             all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
@@ -434,9 +454,9 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
+                assert isinstance(route.body_field, ModelField), (
+                    "A request body must be a Pydantic Field"
+                )
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)
@@ -468,6 +488,7 @@ def get_openapi(
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
+    external_docs: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -545,4 +566,6 @@ def get_openapi(
         output["webhooks"] = webhook_paths
     if tags:
         output["tags"] = tags
+    if external_docs:
+        output["externalDocs"] = external_docs
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore

@@ -86,7 +86,7 @@
 
 DNS 服务器会告诉浏览器使用某个特定的 **IP 地址**。 这将是你在 DNS 服务器中为你的服务器配置的公共 IP 地址。
 
-<img src="/img/deployment/https/https01.svg">
+<img src="/img/deployment/https/https01.drawio.svg">
 
 ### TLS 握手开始
 
@@ -94,7 +94,7 @@ DNS 服务器会告诉浏览器使用某个特定的 **IP 地址**。 这将是�
 
 通信的第一部分只是建立客户端和服务器之间的连接并决定它们将使用的加密密钥等。
 
-<img src="/img/deployment/https/https02.svg">
+<img src="/img/deployment/https/https02.drawio.svg">
 
 客户端和服务器之间建立 TLS 连接的过程称为 **TLS 握手**。
 
@@ -112,7 +112,7 @@ TLS 终止代理可以访问一个或多个 **TLS 证书**（HTTPS 证书）。
 
 在这种情况下，它将使用`someapp.example.com`的证书。
 
-<img src="/img/deployment/https/https03.svg">
+<img src="/img/deployment/https/https03.drawio.svg">
 
 客户端已经**信任**生成该 TLS 证书的实体（在本例中为 Let's Encrypt，但我们稍后会看到），因此它可以**验证**该证书是否有效。
 
@@ -134,19 +134,19 @@ TLS 终止代理可以访问一个或多个 **TLS 证书**（HTTPS 证书）。
 
 接下来，客户端发送一个 **HTTPS 请求**。 这其实只是一个通过 TLS 加密连接的 HTTP 请求。
 
-<img src="/img/deployment/https/https04.svg">
+<img src="/img/deployment/https/https04.drawio.svg">
 
 ### 解密请求
 
 TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（解密的）HTTP 请求**传输到运行应用程序的进程（例如运行 FastAPI 应用的 Uvicorn 进程）。
 
-<img src="/img/deployment/https/https05.svg">
+<img src="/img/deployment/https/https05.drawio.svg">
 
 ### HTTP 响应
 
 应用程序将处理请求并向 TLS 终止代理发送**（未加密）HTTP 响应**。
 
-<img src="/img/deployment/https/https06.svg">
+<img src="/img/deployment/https/https06.drawio.svg">
 
 ### HTTPS 响应
 
@@ -154,7 +154,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 接下来，浏览器将验证响应是否有效和是否使用了正确的加密密钥等。然后它会**解密响应**并处理它。
 
-<img src="/img/deployment/https/https07.svg">
+<img src="/img/deployment/https/https07.drawio.svg">
 
 客户端（浏览器）将知道响应来自正确的服务器，因为它使用了他们之前使用 **HTTPS 证书** 协商出的加密算法。
 
@@ -164,7 +164,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 只有一个进程可以处理特定的 IP 和端口（在我们的示例中为 TLS 终止代理），但其他应用程序/进程也可以在服务器上运行，只要它们不尝试使用相同的 **公共 IP 和端口的组合**。
 
-<img src="/img/deployment/https/https08.svg">
+<img src="/img/deployment/https/https08.drawio.svg">
 
 这样，TLS 终止代理就可以为多个应用程序处理**多个域名**的 HTTPS 和证书，然后在每种情况下将请求传输到正确的应用程序。
 
@@ -174,7 +174,7 @@ TLS 终止代理将使用协商好的加密算法**解密请求**，并将**（�
 
 然后，会有另一个程序（在某些情况下是另一个程序，在某些情况下可能是同一个 TLS 终止代理）与 Let's Encrypt 通信并更新证书。
 
-<img src="/img/deployment/https/https.svg">
+<img src="/img/deployment/https/https.drawio.svg">
 
 **TLS 证书** **与域名相关联**，而不是与 IP 地址相关联。
 
