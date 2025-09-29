@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.118.0
+
 ### Fixes
 
 * 🐛 Fix support for `StreamingResponse`s with dependencies with `yield` or `UploadFile`s, close after the response is done. PR [#14099](https://github.com/fastapi/fastapi/pull/14099) by [@tiangolo](https://github.com/tiangolo).
