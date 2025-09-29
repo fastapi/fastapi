@@ -86,8 +86,6 @@ This change also meant that if you returned a `StreamingResponse`, the exit code
 
 For example, if you had a database session in a dependency with `yield`, the `StreamingResponse` would not be able to use that session while streaming data because the session would have already been closed in the exit code after `yield`.
 
-So, the change was not really optimizing much, but it was breaking use cases.
-
 This behavior was reverted in 0.118.0, to make the exit code after `yield` be executed after the response is sent.
 
 /// info
