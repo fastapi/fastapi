@@ -414,6 +414,7 @@ def get_request_handler(
                 content = await serialize_response(
                     field=response_field,
                     response_content=raw_response,
+                    response_model=response_model,
                     include=response_model_include,
                     exclude=response_model_exclude,
                     by_alias=response_model_by_alias,
