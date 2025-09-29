@@ -99,6 +99,7 @@ def _get_openapi_operation_parameters(
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
+    field_docstring: Optional[Dict[str, str]] = None,
     separate_input_output_schemas: bool = True,
 ) -> List[Dict[str, Any]]:
     parameters = []
@@ -114,6 +115,7 @@ def _get_openapi_operation_parameters(
         (ParamTypes.cookie, cookie_params),
     ]
     default_convert_underscores = True
+    field_docstring = field_docstring or {}
     if len(flat_dependant.header_params) == 1:
         first_field = flat_dependant.header_params[0]
         if lenient_issubclass(first_field.type_, BaseModel):
@@ -154,6 +156,8 @@ def _get_openapi_operation_parameters(
             }
             if field_info.description:
                 parameter["description"] = field_info.description
+            elif param.name in field_docstring:
+                parameter["description"] = field_docstring[param.name]
             openapi_examples = getattr(field_info, "openapi_examples", None)
             example = getattr(field_info, "example", None)
             if openapi_examples:
@@ -231,8 +235,17 @@ def get_openapi_operation_metadata(
     if route.tags:
         operation["tags"] = route.tags
     operation["summary"] = generate_operation_summary(route=route, method=method)
+    if route.parsed_docstring:
+        operation["description"] = "\n\n".join(
+            [i.value for i in route.parsed_docstring if i.kind == "text"]
+        )
+        operation["description"] = operation["description"].split("\f")[0].strip()
+        if not operation["description"]:
+            del operation["description"]
     if route.description:
         operation["description"] = route.description
+        operation["description"] = operation["description"].split("\f")[0].strip()
+
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
         message = (
@@ -272,6 +285,10 @@ def get_openapi_path(
     assert current_response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: Optional[str] = current_response_class.media_type
     if route.include_in_schema:
+        args = [i.value for i in route.parsed_docstring if i.kind == "parameters"]
+        args_docstring_mapping = (
+            {a.name: a.description for a in args[0]} if len(args) == 1 else {}
+        )
         for method in route.methods:
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
@@ -291,6 +308,7 @@ def get_openapi_path(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                field_docstring=args_docstring_mapping,
             )
             parameters.extend(operation_parameters)
             if parameters:
@@ -347,9 +365,19 @@ def get_openapi_path(
                 if status_code_param is not None:
                     if isinstance(status_code_param.default, int):
                         status_code = str(status_code_param.default)
+            response_description = ""
+            if route.parsed_docstring:
+                ret = [i.value for i in route.parsed_docstring if i.kind == "returns"]
+                response_description = (
+                    ",".join(x.description for x in ret[0])
+                    if len(ret) == 1
+                    else "Successful Response"
+                )
+            if route.response_description:
+                response_description = route.response_description
             operation.setdefault("responses", {}).setdefault(status_code, {})[
                 "description"
-            ] = route.response_description
+            ] = response_description
             if route_response_media_type and is_body_allowed_for_status_code(
                 route.status_code
             ):

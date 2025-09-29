@@ -1,6 +1,5 @@
 import dataclasses
 import email.message
-import inspect
 import json
 import sys
 from contextlib import AsyncExitStack, asynccontextmanager
@@ -57,6 +56,7 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
+from griffe import Docstring
 from pydantic import BaseModel
 from starlette import routing
 from starlette.concurrency import run_in_threadpool
@@ -444,7 +444,7 @@ class APIRoute(routing.Route):
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
-        response_description: str = "Successful Response",
+        response_description: Optional[str] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         name: Optional[str] = None,
@@ -535,10 +535,13 @@ class APIRoute(routing.Route):
             self.response_field = None  # type: ignore
             self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
-        self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
+        self.description = description
+        self.docstring = self.endpoint.__doc__ or ""
+        self.parsed_docstring = Docstring(
+            self.docstring, parser="google", parser_options={"warnings": False}
+        ).parsed
         # if a "form feed" character (page break) is found in the description text,
         # truncate description text to the content preceding the first "form feed"
-        self.description = self.description.split("\f")[0].strip()
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -896,7 +899,7 @@ class APIRouter(routing.Router):
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
-        response_description: str = "Successful Response",
+        response_description: Optional[str] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         methods: Optional[Union[Set[str], List[str]]] = None,
@@ -977,7 +980,7 @@ class APIRouter(routing.Router):
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
-        response_description: str = "Successful Response",
+        response_description: Optional[str] = None,
         responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         methods: Optional[List[str]] = None,
@@ -1487,7 +1490,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -1495,7 +1498,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -1864,7 +1867,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -1872,7 +1875,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2246,7 +2249,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -2254,7 +2257,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -2628,7 +2631,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -2636,7 +2639,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3005,7 +3008,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3013,7 +3016,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3382,7 +3385,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3390,7 +3393,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -3764,7 +3767,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -3772,7 +3775,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
@@ -4146,7 +4149,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         response_description: Annotated[
-            str,
+            Optional[str],
             Doc(
                 """
                 The description for the default response.
@@ -4154,7 +4157,7 @@ class APIRouter(routing.Router):
                 It will be added to the generated OpenAPI (e.g. visible at `/docs`).
                 """
             ),
-        ] = "Successful Response",
+        ] = None,
         responses: Annotated[
             Optional[Dict[Union[int, str], Dict[str, Any]]],
             Doc(
