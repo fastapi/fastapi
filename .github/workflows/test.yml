@@ -54,7 +54,7 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"
-        pydantic-version: ["pydantic-v1", "pydantic-v2"]
+        pydantic-version: ["pydantic-v1", "pydantic-v2.7", "pydantic-v2.8+"]
       fail-fast: false
     steps:
       - name: Dump GitHub context
@@ -80,8 +80,11 @@ jobs:
         if: matrix.pydantic-version == 'pydantic-v1'
         run: uv pip install "pydantic>=1.10.0,<2.0.0"
       - name: Install Pydantic v2
-        if: matrix.pydantic-version == 'pydantic-v2'
-        run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
+        if: matrix.pydantic-version == 'pydantic-v2.7'
+        run: uv pip install --upgrade "pydantic>=2.0.2,<2.8"
+      - name: Install Pydantic v2.8+
+        if: matrix.pydantic-version == 'pydantic-v2.8+'
+        run: uv pip install --upgrade "pydantic>=2.8,<3.0"
       # TODO: Remove this once Python 3.8 is no longer supported
       - name: Install older AnyIO in Python 3.8
         if: matrix.python-version == '3.8'
