@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import List, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
@@ -44,12 +45,14 @@ def get_session():
         yield session
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    create_db_and_tables()  # StartUp
+    yield  # Allows app to run
+    # Shut down
 
 
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/heroes/", response_model=HeroPublic)

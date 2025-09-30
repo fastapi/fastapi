@@ -55,7 +55,7 @@ $ pip install sqlmodel
 
 导入 `SQLModel` 并创建一个数据库模型：
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:12] hl[8:12] *}
 
 `Hero` 类与 Pydantic 模型非常相似（实际上，从底层来看，它确实*就是一个 Pydantic 模型*）。
 
@@ -77,8 +77,7 @@ SQLModel 的引擎 `engine`（实际上它是一个 SQLAlchemy `engine` ）是�
 
 您只需构建**一个 `engine`**，来让您的所有代码连接到同一个数据库。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
-
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[15:19] hl[15:16,18:19] *}
 使用 `check_same_thread=False` 可以让 FastAPI 在不同线程中使用同一个 SQLite 数据库。这很有必要，因为**单个请求**可能会使用**多个线程**（例如在依赖项中）。
 
 不用担心，我们会按照代码结构确保**每个请求使用一个单独的 SQLModel *会话***，这实际上就是 `check_same_thread` 想要实现的。
@@ -87,7 +86,7 @@ SQLModel 的引擎 `engine`（实际上它是一个 SQLAlchemy `engine` ）是�
 
 然后，我们来添加一个函数，使用 `SQLModel.metadata.create_all(engine)` 为所有*表模型***创建表**。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:23] hl[22:23] *}
 
 ### 创建会话（Session）依赖项
 
@@ -97,13 +96,13 @@ SQLModel 的引擎 `engine`（实际上它是一个 SQLAlchemy `engine` ）是�
 
 然后我们创建一个 `Annotated` 的依赖项 `SessionDep` 来简化其他也会用到此依赖的代码。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[26:31]  hl[26:28,31] *}
 
 ### 在启动时创建数据库表
 
 我们会在应用程序启动时创建数据库表。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[34:42] hl[34:37, 42] *}
 
 此处，在应用程序启动事件中，我们创建了表。
 
@@ -123,7 +122,7 @@ SQLModel 将会拥有封装 Alembic 的迁移工具，但目前您可以直接�
 
 同样，您可以将其声明为函数的**返回类型**，然后数据的结构就会显示在自动生成的 API 文档界面中。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[45:50] hl[45:50] *}
 
 </details>
 
@@ -133,19 +132,19 @@ SQLModel 将会拥有封装 Alembic 的迁移工具，但目前您可以直接�
 
 我们可以使用 `select()` 从数据库中**读取** `Hero` 类，并利用 `limit` 和 `offset` 来对结果进行分页。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[53:60] hl[56:57,59] *}
 
 ### 读取单个 Hero
 
 我们可以**读取**单个 `Hero` 。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[63:68] hl[65] *}
 
 ### 删除单个 Hero
 
 我们也可以**删除**单个 `Hero` 。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[71:78] hl[76] *}
 
 ### 运行应用程序
 
@@ -194,7 +193,7 @@ $ fastapi dev main.py
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:10] hl[8:10] *}
 
 #### `Hero` - *表模型*
 
@@ -210,7 +209,7 @@ $ fastapi dev main.py
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:15] hl[13:15] *}
 
 #### `HeroPublic` - 公共*数据模型*
 
@@ -237,7 +236,7 @@ $ fastapi dev main.py
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:19] hl[18:19] *}
 
 #### `HeroCreate` - 用于创建 hero 的*数据模型*
 
@@ -261,7 +260,7 @@ $ fastapi dev main.py
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:23] hl[22:23] *}
 
 #### `HeroUpdate` - 用于更新 hero 的*数据模型*
 
@@ -279,7 +278,7 @@ $ fastapi dev main.py
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[8:29] hl[26:29] *}
 
 ### 使用 `HeroCreate` 创建并返回 `HeroPublic`
 
@@ -291,7 +290,7 @@ $ fastapi dev main.py
 
 然后我们将与函数中相同的*表模型* `Hero` 原样返回。但是由于我们使用 `HeroPublic` *数据模型*声明了 `response_model` ，**FastAPI** 会使用 `HeroPublic` 来验证和序列化数据。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[61:67] hl[61:63] *}
 
 /// tip
 
@@ -307,13 +306,13 @@ $ fastapi dev main.py
 
 我们可以像之前一样**读取** `Hero` 。同样，使用 `response_model=list[HeroPublic]` 确保正确地验证和序列化数据。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[70:77] hl[70] *}
 
 ### 用 `HeroPublic` 读取单个 Hero
 
 我们可以**读取**单个 `hero` 。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[80:85] hl[82] *}
 
 ### 用 `HeroUpdate` 更新单个 Hero
 
@@ -323,7 +322,7 @@ $ fastapi dev main.py
 
 然后我们会使用 `hero_db.sqlmodel_update(hero_data)` ，来利用 `hero_data` 的数据更新 `hero_db` 。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[88:98] hl[88:89,93:94] *}
 
 ### （又一次）删除单个 Hero
 
@@ -331,7 +330,7 @@ $ fastapi dev main.py
 
 我们不会满足在这一部分中重构一切的愿望。😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[101:108] hl[106] *}
 
 ### （又一次）运行应用程序
 
