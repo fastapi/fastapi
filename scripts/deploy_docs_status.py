@@ -2,7 +2,7 @@ import logging
 import re
 from typing import Literal
 
-from github import Github, Auth
+from github import Auth, Github
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import BaseSettings
 
