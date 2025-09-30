@@ -17,7 +17,7 @@ For the following technical terms, use these specific translations to ensure con
 * headers (meaning HTTP-headers): HTTP-заголовки
 * cookie sessions: сессии с использованием cookie
 * tested (adjective): протестированный
-* middleware: middleware (don't translate, but add `Промежуточный слой` if clarification is needed)
+* middleware: middleware (don't translate, but add `промежуточный слой` if clarification is needed)
 * path operation: операция пути (optionally clarify as `обработчик пути`)
 * path operation function: функция-обработчик пути (or `функция обработки пути`)
 * proprietary: проприетарный
@@ -83,5 +83,12 @@ For the following technical terms, use these specific translations to ensure con
 * password flow: password flow (clarify as `аутентификация по паролю` if needed)
 * tutorial: руководство (or `учебник`)
 * too long; didn't read: слишком длинно; не читал
+* proxy with a stripped path prefix: прокси с функцией удаления префикса пути
+* nerd: умник
+* sub application: подприложение
+* webhook request: вебхук-запрос
+* serve (meaning providing access to something): «отдавать» (or `предоставлять доступ к`)
+* recap (noun): резюме
+* utility function: вспомогательная функция
 
 Do not add whitespace in `т.д.`, `т.п.`.
