@@ -1,19 +1,19 @@
-# Advanced Security { #advanced-security }
+# Расширенная безопасность { #advanced-security }
 
-## Additional Features { #additional-features }
+## Дополнительные возможности { #additional-features }
 
-There are some extra features to handle security apart from the ones covered in the [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
+Есть дополнительные возможности для работы с безопасностью помимо тех, что описаны в [Учебник — Руководство пользователя: Безопасность](../../tutorial/security/index.md){.internal-link target=_blank}.
 
-/// tip
+/// tip | Совет
 
-The next sections are **not necessarily "advanced"**.
+Следующие разделы **не обязательно являются «продвинутыми»**.
 
-And it's possible that for your use case, the solution is in one of them.
+И возможно, что решение для вашего варианта использования находится в одном из них.
 
 ///
 
-## Read the Tutorial first { #read-the-tutorial-first }
+## Сначала прочитайте руководство { #read-the-tutorial-first }
 
-The next sections assume you already read the main [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank}.
+В следующих разделах предполагается, что вы уже прочитали основной [Учебник — Руководство пользователя: Безопасность](../../tutorial/security/index.md){.internal-link target=_blank}.
 
-They are all based on the same concepts, but allow some extra functionalities.
+Все они основаны на тех же концепциях, но предоставляют дополнительные возможности.

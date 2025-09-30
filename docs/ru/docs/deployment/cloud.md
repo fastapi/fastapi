@@ -1,16 +1,16 @@
-# Deploy FastAPI on Cloud Providers { #deploy-fastapi-on-cloud-providers }
+# Развертывание FastAPI у облачных провайдеров { #deploy-fastapi-on-cloud-providers }
 
-You can use virtually **any cloud provider** to deploy your FastAPI application.
+Вы можете использовать практически любого облачного провайдера, чтобы развернуть свое приложение на FastAPI.
 
-In most of the cases, the main cloud providers have guides to deploy FastAPI with them.
+В большинстве случаев у основных облачных провайдеров есть руководства по развертыванию FastAPI на их платформе.
 
-## Cloud Providers - Sponsors { #cloud-providers-sponsors }
+## Облачные провайдеры — спонсоры { #cloud-providers-sponsors }
 
-Some cloud providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
+Некоторые облачные провайдеры ✨ [**спонсируют FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ — это обеспечивает непрерывное и здоровое развитие FastAPI и его экосистемы.
 
-And it shows their true commitment to FastAPI and its **community** (you), as they not only want to provide you a **good service** but also want to make sure you have a **good and healthy framework**, FastAPI. 🙇
+И это показывает их искреннюю приверженность FastAPI и его сообществу (вам): они не только хотят предоставить вам хороший сервис, но и стремятся гарантировать, что у вас будет хороший и стабильный фреймворк — FastAPI. 🙇
 
-You might want to try their services and follow their guides:
+Возможно, вы захотите попробовать их сервисы и воспользоваться их руководствами:
 
 * <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
 * <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>

@@ -1,104 +1,104 @@
-# Path Operation Advanced Configuration { #path-operation-advanced-configuration }
+# Расширенная конфигурация операций пути { #path-operation-advanced-configuration }
 
 ## OpenAPI operationId { #openapi-operationid }
 
-/// warning
+/// warning | Предупреждение
 
-If you are not an "expert" in OpenAPI, you probably don't need this.
+Если вы не «эксперт» по OpenAPI, скорее всего, это вам не нужно.
 
 ///
 
-You can set the OpenAPI `operationId` to be used in your *path operation* with the parameter `operation_id`.
+Вы можете задать OpenAPI `operationId`, который будет использоваться в вашей *операции пути*, с помощью параметра `operation_id`.
 
-You would have to make sure that it is unique for each operation.
+Нужно убедиться, что он уникален для каждой операции.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
-### Using the *path operation function* name as the operationId { #using-the-path-operation-function-name-as-the-operationid }
+### Использование имени функции-обработчика пути как operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-If you want to use your APIs' function names as `operationId`s, you can iterate over all of them and override each *path operation's* `operation_id` using their `APIRoute.name`.
+Если вы хотите использовать имена функций ваших API в качестве `operationId`, вы можете пройти по всем из них и переопределить `operation_id` каждой *операции пути* с помощью их `APIRoute.name`.
 
-You should do it after adding all your *path operations*.
+Делать это следует после добавления всех *операций пути*.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
 
-/// tip
+/// tip | Совет
 
-If you manually call `app.openapi()`, you should update the `operationId`s before that.
-
-///
-
-/// warning
-
-If you do this, you have to make sure each one of your *path operation functions* has a unique name.
-
-Even if they are in different modules (Python files).
+Если вы вызываете `app.openapi()` вручную, обновите `operationId` до этого.
 
 ///
 
-## Exclude from OpenAPI { #exclude-from-openapi }
+/// warning | Предупреждение
 
-To exclude a *path operation* from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`:
+Если вы делаете это, убедитесь, что каждая из ваших *функций-обработчиков пути* имеет уникальное имя.
+
+Даже если они находятся в разных модулях (файлах Python).
+
+///
+
+## Исключить из OpenAPI { #exclude-from-openapi }
+
+Чтобы исключить *операцию пути* из генерируемой схемы OpenAPI (а значит, и из автоматической документации), используйте параметр `include_in_schema` и установите его в `False`:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
-## Advanced description from docstring { #advanced-description-from-docstring }
+## Расширенное описание из docstring { #advanced-description-from-docstring }
 
-You can limit the lines used from the docstring of a *path operation function* for OpenAPI.
+Вы можете ограничить количество строк из docstring *функции-обработчика пути*, используемых для OpenAPI.
 
-Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate the output used for OpenAPI at this point.
+Добавление `\f` (экранированного символа «form feed») заставит **FastAPI** обрезать текст, используемый для OpenAPI, в этой точке.
 
-It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
+Эта часть не попадёт в документацию, но другие инструменты (например, Sphinx) смогут использовать остальное.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
 
-## Additional Responses { #additional-responses }
+## Дополнительные ответы { #additional-responses }
 
-You probably have seen how to declare the `response_model` and `status_code` for a *path operation*.
+Вы, вероятно, уже видели, как объявлять `response_model` и `status_code` для *операции пути*.
 
-That defines the metadata about the main response of a *path operation*.
+Это определяет метаданные об основном ответе *операции пути*.
 
-You can also declare additional responses with their models, status codes, etc.
+Также можно объявлять дополнительные ответы с их моделями, статус-кодами и т.д.
 
-There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+В документации есть целая глава об этом — [Дополнительные ответы в OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
-## OpenAPI Extra { #openapi-extra }
+## Дополнительные данные OpenAPI { #openapi-extra }
 
-When you declare a *path operation* in your application, **FastAPI** automatically generates the relevant metadata about that *path operation* to be included in the OpenAPI schema.
+Когда вы объявляете *операцию пути* в своём приложении, **FastAPI** автоматически генерирует соответствующие метаданные об этой *операции пути* для включения в схему OpenAPI.
 
-/// note | Technical details
+/// note | Технические детали
 
-In the OpenAPI specification it is called the <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Operation Object</a>.
-
-///
-
-It has all the information about the *path operation* and is used to generate the automatic documentation.
-
-It includes the `tags`, `parameters`, `requestBody`, `responses`, etc.
-
-This *path operation*-specific OpenAPI schema is normally generated automatically by **FastAPI**, but you can also extend it.
-
-/// tip
-
-This is a low level extension point.
-
-If you only need to declare additional responses, a more convenient way to do it is with [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
+В спецификации OpenAPI это называется <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Объект операции</a>.
 
 ///
 
-You can extend the OpenAPI schema for a *path operation* using the parameter `openapi_extra`.
+Он содержит всю информацию об *операции пути* и используется для генерации автоматической документации.
 
-### OpenAPI Extensions { #openapi-extensions }
+Там есть `tags`, `parameters`, `requestBody`, `responses` и т.д.
 
-This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
+Эта спецификация OpenAPI, специфичная для *операции пути*, обычно генерируется автоматически **FastAPI**, но вы также можете её расширить.
+
+/// tip | Совет
+
+Это низкоуровневая возможность расширения.
+
+Если вам нужно лишь объявить дополнительные ответы, удобнее сделать это через [Дополнительные ответы в OpenAPI](additional-responses.md){.internal-link target=_blank}.
+
+///
+
+Вы можете расширить схему OpenAPI для *операции пути* с помощью параметра `openapi_extra`.
+
+### Расширения OpenAPI { #openapi-extensions }
+
+`openapi_extra` может пригодиться, например, чтобы объявить [Расширения OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
-If you open the automatic API docs, your extension will show up at the bottom of the specific *path operation*.
+Если вы откроете автоматическую документацию API, ваше расширение появится внизу страницы конкретной *операции пути*.
 
 <img src="/img/tutorial/path-operation-advanced-configuration/image01.png">
 
-And if you see the resulting OpenAPI (at `/openapi.json` in your API), you will see your extension as part of the specific *path operation* too:
+И если вы посмотрите на итоговый OpenAPI (по адресу `/openapi.json` вашего API), вы также увидите своё расширение в составе описания соответствующей *операции пути*:
 
 ```JSON hl_lines="22"
 {
@@ -129,29 +129,29 @@ And if you see the resulting OpenAPI (at `/openapi.json` in your API), you will 
 }
 ```
 
-### Custom OpenAPI *path operation* schema { #custom-openapi-path-operation-schema }
+### Пользовательская схема OpenAPI для операции пути { #custom-openapi-path-operation-schema }
 
-The dictionary in `openapi_extra` will be deeply merged with the automatically generated OpenAPI schema for the *path operation*.
+Словарь в `openapi_extra` будет объединён с автоматически сгенерированной схемой OpenAPI для *операции пути*.
 
-So, you could add additional data to the automatically generated schema.
+Таким образом, вы можете добавить дополнительные данные к автоматически сгенерированной схеме.
 
-For example, you could decide to read and validate the request with your own code, without using the automatic features of FastAPI with Pydantic, but you could still want to define the request in the OpenAPI schema.
+Например, вы можете решить читать и валидировать запрос своим кодом, не используя автоматические возможности FastAPI и Pydantic, но при этом захотите описать запрос в схеме OpenAPI.
 
-You could do that with `openapi_extra`:
+Это можно сделать с помощью `openapi_extra`:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
-In this example, we didn't declare any Pydantic model. In fact, the request body is not even <abbr title="converted from some plain format, like bytes, into Python objects">parsed</abbr> as JSON, it is read directly as `bytes`, and the function `magic_data_reader()` would be in charge of parsing it in some way.
+В этом примере мы не объявляли никакую Pydantic-модель. Фактически тело запроса даже не <abbr title="преобразовано из простого формата, например байтов, в объекты Python">распарсено</abbr> как JSON, оно читается напрямую как `bytes`, а функция `magic_data_reader()` будет отвечать за его парсинг каким-то способом.
 
-Nevertheless, we can declare the expected schema for the request body.
+Тем не менее, мы можем объявить ожидаемую схему для тела запроса.
 
-### Custom OpenAPI content type { #custom-openapi-content-type }
+### Пользовательский тип содержимого в OpenAPI { #custom-openapi-content-type }
 
-Using this same trick, you could use a Pydantic model to define the JSON Schema that is then included in the custom OpenAPI schema section for the *path operation*.
+Используя тот же приём, вы можете воспользоваться Pydantic-моделью, чтобы определить JSON Schema, которая затем будет включена в пользовательский раздел схемы OpenAPI для *операции пути*.
 
-And you could do this even if the data type in the request is not JSON.
+И вы можете сделать это, даже если тип данных в запросе — не JSON.
 
-For example, in this application we don't use FastAPI's integrated functionality to extract the JSON Schema from Pydantic models nor the automatic validation for JSON. In fact, we are declaring the request content type as YAML, not JSON:
+Например, в этом приложении мы не используем встроенную функциональность FastAPI для извлечения JSON Schema из моделей Pydantic, равно как и автоматическую валидацию JSON. Мы объявляем тип содержимого запроса как YAML, а не JSON:
 
 //// tab | Pydantic v2
 
@@ -165,17 +165,17 @@ For example, in this application we don't use FastAPI's integrated functionality
 
 ////
 
-/// info
+/// info | Информация
 
-In Pydantic version 1 the method to get the JSON Schema for a model was called `Item.schema()`, in Pydantic version 2, the method is called `Item.model_json_schema()`.
+В Pydantic версии 1 метод для получения JSON Schema модели назывался `Item.schema()`, в Pydantic версии 2 метод называется `Item.model_json_schema()`.
 
 ///
 
-Nevertheless, although we are not using the default integrated functionality, we are still using a Pydantic model to manually generate the JSON Schema for the data that we want to receive in YAML.
+Тем не менее, хотя мы не используем встроенную функциональность по умолчанию, мы всё равно используем Pydantic-модель, чтобы вручную сгенерировать JSON Schema для данных, которые мы хотим получить в YAML.
 
-Then we use the request directly, and extract the body as `bytes`. This means that FastAPI won't even try to parse the request payload as JSON.
+Затем мы работаем с запросом напрямую и извлекаем тело как `bytes`. Это означает, что FastAPI даже не попытается распарсить полезную нагрузку запроса как JSON.
 
-And then in our code, we parse that YAML content directly, and then we are again using the same Pydantic model to validate the YAML content:
+А затем в нашем коде мы напрямую парсим этот YAML и снова используем ту же Pydantic-модель для валидации YAML-содержимого:
 
 //// tab | Pydantic v2
 
@@ -189,16 +189,16 @@ And then in our code, we parse that YAML content directly, and then we are again
 
 ////
 
-/// info
+/// info | Информация
 
-In Pydantic version 1 the method to parse and validate an object was `Item.parse_obj()`, in Pydantic version 2, the method is called `Item.model_validate()`.
+В Pydantic версии 1 метод для парсинга и валидации объекта назывался `Item.parse_obj()`, в Pydantic версии 2 метод называется `Item.model_validate()`.
 
 ///
 
-/// tip
+/// tip | Совет
 
-Here we reuse the same Pydantic model.
+Здесь мы переиспользуем ту же Pydantic-модель.
 
-But the same way, we could have validated it in some other way.
+Но аналогично мы могли бы валидировать данные и каким-то другим способом.
 
 ///

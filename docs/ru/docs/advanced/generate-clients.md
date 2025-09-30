@@ -1,171 +1,171 @@
-# Generating SDKs { #generating-sdks }
+# Генерация SDK { #generating-sdks }
 
-Because **FastAPI** is based on the **OpenAPI** specification, its APIs can be described in a standard format that many tools understand.
+Поскольку **FastAPI** основан на спецификации **OpenAPI**, его API можно описать в стандартном формате, понятном множеству инструментов.
 
-This makes it easy to generate up-to-date **documentation**, client libraries (<abbr title="Software Development Kits">**SDKs**</abbr>) in multiple languages, and **testing** or **automation workflows** that stay in sync with your code.
+Это упрощает генерацию актуальной **документации**, клиентских библиотек (<abbr title="Software Development Kits – Наборы средств разработки">**SDKs**</abbr>) на разных языках, а также **тестирования** или **воркфлоу автоматизации**, которые остаются синхронизированными с вашим кодом.
 
-In this guide, you'll learn how to generate a **TypeScript SDK** for your FastAPI backend.
+В этом руководстве вы узнаете, как сгенерировать **TypeScript SDK** для вашего бэкенда на FastAPI.
 
-## Open Source SDK Generators { #open-source-sdk-generators }
+## Генераторы SDK с открытым исходным кодом { #open-source-sdk-generators }
 
-A versatile option is the <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, which supports **many programming languages** and can generate SDKs from your OpenAPI specification.
+Гибкий вариант — <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>, который поддерживает **многие языки программирования** и умеет генерировать SDK из вашей спецификации OpenAPI.
 
-For **TypeScript clients**, <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> is a purpose-built solution, providing an optimized experience for the TypeScript ecosystem.
+Для **TypeScript‑клиентов** <a href="https://heyapi.dev/" class="external-link" target="_blank">Hey API</a> — специализированное решение, обеспечивающее оптимальный опыт для экосистемы TypeScript.
 
-You can discover more SDK generators on <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
+Больше генераторов SDK можно найти на <a href="https://openapi.tools/#sdk" class="external-link" target="_blank">OpenAPI.Tools</a>.
 
-/// tip
+/// tip | Совет
 
-FastAPI automatically generates **OpenAPI 3.1** specifications, so any tool you use must support this version.
+FastAPI автоматически генерирует спецификации **OpenAPI 3.1**, поэтому любой используемый инструмент должен поддерживать эту версию.
 
 ///
 
-## SDK Generators from FastAPI Sponsors { #sdk-generators-from-fastapi-sponsors }
+## Генераторы SDK от спонсоров FastAPI { #sdk-generators-from-fastapi-sponsors }
 
-This section highlights **venture-backed** and **company-supported** solutions from companies that sponsor FastAPI. These products provide **additional features** and **integrations** on top of high-quality generated SDKs.
+В этом разделе представлены решения с **венчурной поддержкой** и **поддержкой компаний** от компаний, которые спонсируют FastAPI. Эти продукты предоставляют **дополнительные возможности** и **интеграции** сверх высококачественно генерируемых SDK.
 
-By ✨ [**sponsoring FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, these companies help ensure the framework and its **ecosystem** remain healthy and **sustainable**.
+Благодаря ✨ [**спонсорству FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨ эти компании помогают обеспечивать, чтобы фреймворк и его **экосистема** оставались здоровыми и **устойчивыми**.
 
-Their sponsorship also demonstrates a strong commitment to the FastAPI **community** (you), showing that they care not only about offering a **great service** but also about supporting a **robust and thriving framework**, FastAPI. 🙇
+Их спонсорство также демонстрирует серьёзную приверженность **сообществу** FastAPI (вам), показывая, что им важно не только предоставлять **отличный сервис**, но и поддерживать **надёжный и процветающий фреймворк** FastAPI. 🙇
 
-For example, you might want to try:
+Например, вы можете попробовать:
 
 * <a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" class="external-link" target="_blank">Speakeasy</a>
 * <a href="https://www.stainless.com/?utm_source=fastapi&utm_medium=referral" class="external-link" target="_blank">Stainless</a>
 * <a href="https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi" class="external-link" target="_blank">liblab</a>
 
-Some of these solutions may also be open source or offer free tiers, so you can try them without a financial commitment. Other commercial SDK generators are available and can be found online. 🤓
+Некоторые из этих решений также могут быть open source или иметь бесплатные тарифы, так что вы сможете попробовать их без финансовых затрат. Другие коммерческие генераторы SDK доступны и их можно найти онлайн. 🤓
 
-## Create a TypeScript SDK { #create-a-typescript-sdk }
+## Создать TypeScript SDK { #create-a-typescript-sdk }
 
-Let's start with a simple FastAPI application:
+Начнём с простого приложения FastAPI:
 
 {* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
-Notice that the *path operations* define the models they use for request payload and response payload, using the models `Item` and `ResponseMessage`.
+Обратите внимание, что *операции пути (обработчики пути)* определяют модели, которые они используют для полезной нагрузки запроса и полезной нагрузки ответа, с помощью моделей `Item` и `ResponseMessage`.
 
-### API Docs { #api-docs }
+### Документация API { #api-docs }
 
-If you go to `/docs`, you will see that it has the **schemas** for the data to be sent in requests and received in responses:
+Если перейти на `/docs`, вы увидите **схемы** данных, отправляемых в запросах и принимаемых в ответах:
 
 <img src="/img/tutorial/generate-clients/image01.png">
 
-You can see those schemas because they were declared with the models in the app.
+Вы видите эти схемы, потому что они были объявлены с моделями в приложении.
 
-That information is available in the app's **OpenAPI schema**, and then shown in the API docs.
+Эта информация доступна в **схеме OpenAPI** приложения и затем отображается в документации API.
 
-That same information from the models that is included in OpenAPI is what can be used to **generate the client code**.
+Та же информация из моделей, включённая в OpenAPI, может использоваться для **генерации клиентского кода**.
 
 ### Hey API { #hey-api }
 
-Once we have a FastAPI app with the models, we can use Hey API to generate a TypeScript client. The fastest way to do that is via npx.
+Как только у нас есть приложение FastAPI с моделями, мы можем использовать Hey API для генерации TypeScript‑клиента. Самый быстрый способ сделать это — через npx.
 
 ```sh
 npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 ```
 
-This will generate a TypeScript SDK in `./src/client`.
+Это сгенерирует TypeScript SDK в `./src/client`.
 
-You can learn how to <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">install `@hey-api/openapi-ts`</a> and read about the <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">generated output</a> on their website.
+Вы можете узнать, как <a href="https://heyapi.dev/openapi-ts/get-started" class="external-link" target="_blank">установить `@hey-api/openapi-ts`</a> и почитать о <a href="https://heyapi.dev/openapi-ts/output" class="external-link" target="_blank">сгенерированном результате</a> на их сайте.
 
-### Using the SDK { #using-the-sdk }
+### Использование SDK { #using-the-sdk }
 
-Now you can import and use the client code. It could look like this, notice that you get autocompletion for the methods:
+Теперь вы можете импортировать и использовать клиентский код. Это может выглядеть так, обратите внимание, что вы получаете автозавершение для методoв:
 
 <img src="/img/tutorial/generate-clients/image02.png">
 
-You will also get autocompletion for the payload to send:
+Вы также получите автозавершение для отправляемой полезной нагрузки:
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-/// tip
+/// tip | Совет
 
-Notice the autocompletion for `name` and `price`, that was defined in the FastAPI application, in the `Item` model.
+Обратите внимание на автозавершение для `name` и `price`, это было определено в приложении FastAPI, в модели `Item`.
 
 ///
 
-You will have inline errors for the data that you send:
+Вы получите ошибки прямо в редакторе для отправляемых данных:
 
 <img src="/img/tutorial/generate-clients/image04.png">
 
-The response object will also have autocompletion:
+Объект ответа также будет иметь автозавершение:
 
 <img src="/img/tutorial/generate-clients/image05.png">
 
-## FastAPI App with Tags { #fastapi-app-with-tags }
+## Приложение FastAPI с тегами { #fastapi-app-with-tags }
 
-In many cases, your FastAPI app will be bigger, and you will probably use tags to separate different groups of *path operations*.
+Во многих случаях ваше приложение FastAPI будет больше, и вы, вероятно, будете использовать теги, чтобы разделять разные группы *операций пути*.
 
-For example, you could have a section for **items** and another section for **users**, and they could be separated by tags:
+Например, у вас может быть раздел для **items** и другой раздел для **users**, и они могут быть разделены тегами:
 
 {* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
-### Generate a TypeScript Client with Tags { #generate-a-typescript-client-with-tags }
+### Генерация TypeScript‑клиента с тегами { #generate-a-typescript-client-with-tags }
 
-If you generate a client for a FastAPI app using tags, it will normally also separate the client code based on the tags.
+Если вы генерируете клиент для приложения FastAPI с использованием тегов, обычно клиентский код также будет разделён по тегам.
 
-This way, you will be able to have things ordered and grouped correctly for the client code:
+Таким образом вы сможете иметь всё правильно упорядоченным и сгруппированным в клиентском коде:
 
 <img src="/img/tutorial/generate-clients/image06.png">
 
-In this case, you have:
+В этом случае у вас есть:
 
 * `ItemsService`
 * `UsersService`
 
-### Client Method Names { #client-method-names }
+### Имена методов клиента { #client-method-names }
 
-Right now, the generated method names like `createItemItemsPost` don't look very clean:
+Сейчас сгенерированные имена методов вроде `createItemItemsPost` выглядят не очень аккуратно:
 
 ```TypeScript
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...that's because the client generator uses the OpenAPI internal **operation ID** for each *path operation*.
+...это потому, что генератор клиента использует внутренний **ID операции** OpenAPI для каждой *операции пути*.
 
-OpenAPI requires that each operation ID is unique across all the *path operations*, so FastAPI uses the **function name**, the **path**, and the **HTTP method/operation** to generate that operation ID, because that way it can make sure that the operation IDs are unique.
+OpenAPI требует, чтобы каждый ID операции был уникален среди всех *операций пути*, поэтому FastAPI использует **имя функции**, **путь** и **HTTP‑метод/операцию** для генерации этого ID операции, так как таким образом можно гарантировать уникальность ID операций.
 
-But I'll show you how to improve that next. 🤓
+Но далее я покажу, как это улучшить. 🤓
 
-## Custom Operation IDs and Better Method Names { #custom-operation-ids-and-better-method-names }
+## Пользовательские ID операций и лучшие имена методов { #custom-operation-ids-and-better-method-names }
 
-You can **modify** the way these operation IDs are **generated** to make them simpler and have **simpler method names** in the clients.
+Вы можете **изменить** способ **генерации** этих ID операций, чтобы сделать их проще, а имена методов в клиентах — **более простыми**.
 
-In this case, you will have to ensure that each operation ID is **unique** in some other way.
+В этом случае вам нужно будет обеспечить, чтобы каждый ID операции был **уникальным** другим способом.
 
-For example, you could make sure that each *path operation* has a tag, and then generate the operation ID based on the **tag** and the *path operation* **name** (the function name).
+Например, вы можете гарантировать, что у каждой *операции пути* есть тег, и затем генерировать ID операции на основе **тега** и **имени** *операции пути* (имени функции).
 
-### Custom Generate Unique ID Function { #custom-generate-unique-id-function }
+### Пользовательская функция генерации уникального ID { #custom-generate-unique-id-function }
 
-FastAPI uses a **unique ID** for each *path operation*, which is used for the **operation ID** and also for the names of any needed custom models, for requests or responses.
+FastAPI использует **уникальный ID** для каждой *операции пути*, который применяется для **ID операции**, а также для имён любых необходимых пользовательских моделей запросов или ответов.
 
-You can customize that function. It takes an `APIRoute` and outputs a string.
+Вы можете кастомизировать эту функцию. Она принимает `APIRoute` и возвращает строку.
 
-For example, here it is using the first tag (you will probably have only one tag) and the *path operation* name (the function name).
+Например, здесь берётся первый тег (скорее всего у вас один тег) и имя *операции пути* (имя функции).
 
-You can then pass that custom function to **FastAPI** as the `generate_unique_id_function` parameter:
+Затем вы можете передать эту пользовательскую функцию в **FastAPI** через параметр `generate_unique_id_function`:
 
 {* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
-### Generate a TypeScript Client with Custom Operation IDs { #generate-a-typescript-client-with-custom-operation-ids }
+### Генерация TypeScript‑клиента с пользовательскими ID операций { #generate-a-typescript-client-with-custom-operation-ids }
 
-Now, if you generate the client again, you will see that it has the improved method names:
+Теперь, если снова сгенерировать клиент, вы увидите, что имена методов улучшились:
 
 <img src="/img/tutorial/generate-clients/image07.png">
 
-As you see, the method names now have the tag and then the function name, now they don't include information from the URL path and the HTTP operation.
+Как видите, теперь имена методов содержат тег, а затем имя функции; больше они не включают информацию из URL‑пути и HTTP‑операции.
 
-### Preprocess the OpenAPI Specification for the Client Generator { #preprocess-the-openapi-specification-for-the-client-generator }
+### Предобработка спецификации OpenAPI для генератора клиента { #preprocess-the-openapi-specification-for-the-client-generator }
 
-The generated code still has some **duplicated information**.
+Сгенерированном коде всё ещё есть **дублирующаяся информация**.
 
-We already know that this method is related to the **items** because that word is in the `ItemsService` (taken from the tag), but we still have the tag name prefixed in the method name too. 😕
+Мы уже знаем, что этот метод относится к **items**, потому что это слово есть в `ItemsService` (взято из тега), но при этом имя тега всё ещё добавлено префиксом к имени метода. 😕
 
-We will probably still want to keep it for OpenAPI in general, as that will ensure that the operation IDs are **unique**.
+Скорее всего мы захотим оставить это в OpenAPI в целом, так как это гарантирует, что ID операций будут **уникальны**.
 
-But for the generated client, we could **modify** the OpenAPI operation IDs right before generating the clients, just to make those method names nicer and **cleaner**.
+Но для сгенерированного клиента мы можем **модифицировать** ID операций OpenAPI непосредственно перед генерацией клиентов, чтобы сделать имена методов более приятными и **чистыми**.
 
-We could download the OpenAPI JSON to a file `openapi.json` and then we could **remove that prefixed tag** with a script like this:
+Мы можем скачать OpenAPI JSON в файл `openapi.json`, а затем **убрать этот префикс‑тег** таким скриптом:
 
 {* ../../docs_src/generate_clients/tutorial004.py *}
 
@@ -177,32 +177,32 @@ We could download the OpenAPI JSON to a file `openapi.json` and then we could **
 
 ////
 
-With that, the operation IDs would be renamed from things like `items-get_items` to just `get_items`, that way the client generator can generate simpler method names.
+После этого ID операций будут переименованы с чего‑то вроде `items-get_items` просто в `get_items`, и генератор клиента сможет создавать более простые имена методов.
 
-### Generate a TypeScript Client with the Preprocessed OpenAPI { #generate-a-typescript-client-with-the-preprocessed-openapi }
+### Генерация TypeScript‑клиента с предобработанным OpenAPI { #generate-a-typescript-client-with-the-preprocessed-openapi }
 
-Since the end result is now in an `openapi.json` file, you need to update your input location:
+Так как конечный результат теперь в файле `openapi.json`, нужно обновить входное расположение:
 
 ```sh
 npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 ```
 
-After generating the new client, you would now have **clean method names**, with all the **autocompletion**, **inline errors**, etc:
+После генерации нового клиента у вас будут **чистые имена методов**, со всем **автозавершением**, **ошибками прямо в редакторе** и т.д.:
 
 <img src="/img/tutorial/generate-clients/image08.png">
 
-## Benefits { #benefits }
+## Преимущества { #benefits }
 
-When using the automatically generated clients, you would get **autocompletion** for:
+При использовании автоматически сгенерированных клиентов вы получите **автозавершение** для:
 
-* Methods.
-* Request payloads in the body, query parameters, etc.
-* Response payloads.
+* Методов.
+* Данных запроса — в теле запроса, query‑параметрах и т.д.
+* Данных ответа.
 
-You would also have **inline errors** for everything.
+У вас также будут **ошибки прямо в редакторе** для всего.
 
-And whenever you update the backend code, and **regenerate** the frontend, it would have any new *path operations* available as methods, the old ones removed, and any other change would be reflected on the generated code. 🤓
+И каждый раз, когда вы обновляете код бэкенда и **перегенерируете** фронтенд, в нём появятся новые *операции пути* как методы, старые будут удалены, а любые другие изменения отразятся в сгенерированном коде. 🤓
 
-This also means that if something changed, it will be **reflected** on the client code automatically. And if you **build** the client, it will error out if you have any **mismatch** in the data used.
+Это также означает, что если что‑то изменилось, это будет **отражено** в клиентском коде автоматически. И если вы **соберёте** клиент, он завершится с ошибкой, если где‑то есть **несоответствие** в используемых данных.
 
-So, you would **detect many errors** very early in the development cycle instead of having to wait for the errors to show up to your final users in production and then trying to debug where the problem is. ✨
+Таким образом, вы **обнаружите многие ошибки** очень рано в цикле разработки, вместо того чтобы ждать, когда ошибки проявятся у конечных пользователей в продакшн, и затем пытаться отладить, в чём проблема. ✨

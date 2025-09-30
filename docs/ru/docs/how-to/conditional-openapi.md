@@ -1,41 +1,41 @@
-# Conditional OpenAPI { #conditional-openapi }
+# Условный OpenAPI { #conditional-openapi }
 
-If you needed to, you could use settings and environment variables to configure OpenAPI conditionally depending on the environment, and even disable it entirely.
+При необходимости вы можете использовать настройки и переменные окружения, чтобы условно настраивать OpenAPI в зависимости от окружения и даже полностью его отключать.
 
-## About security, APIs, and docs { #about-security-apis-and-docs }
+## О безопасности, API и документации { #about-security-apis-and-docs }
 
-Hiding your documentation user interfaces in production *shouldn't* be the way to protect your API.
+Скрытие пользовательских интерфейсов документации в продакшн *не должно* быть способом защиты вашего API.
 
-That doesn't add any extra security to your API, the *path operations* will still be available where they are.
+Это не добавляет дополнительной безопасности вашему API, *операции пути* (обработчики пути) всё равно будут доступны по своим путям.
 
-If there's a security flaw in your code, it will still exist.
+Если в вашем коде есть уязвимость, она всё равно останется.
 
-Hiding the documentation just makes it more difficult to understand how to interact with your API, and could make it more difficult for you to debug it in production. It could be considered simply a form of <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a>.
+Сокрытие документации лишь усложняет понимание того, как взаимодействовать с вашим API, и может усложнить его отладку в продакшн. Это можно считать просто разновидностью <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">безопасности через сокрытие</a>.
 
-If you want to secure your API, there are several better things you can do, for example:
+Если вы хотите обезопасить свой API, есть несколько более эффективных вещей, которые можно сделать, например:
 
-* Make sure you have well defined Pydantic models for your request bodies and responses.
-* Configure any required permissions and roles using dependencies.
-* Never store plaintext passwords, only password hashes.
-* Implement and use well-known cryptographic tools, like Passlib and JWT tokens, etc.
-* Add more granular permission controls with OAuth2 scopes where needed.
-* ...etc.
+* Убедитесь, что у вас чётко определены Pydantic-модели для тел запросов и ответов.
+* Настройте необходимые разрешения и роли с помощью зависимостей.
+* Никогда не храните пароли в открытом виде, только хэши паролей.
+* Реализуйте и используйте известные криптографические инструменты, например Passlib и JWT-токены, и т.д.
+* Добавьте более тонкое управление доступом с помощью OAuth2 scopes (областей) там, где это необходимо.
+* ...и т.п.
 
-Nevertheless, you might have a very specific use case where you really need to disable the API docs for some environment (e.g. for production) or depending on configurations from environment variables.
+Тем не менее, у вас может быть очень специфичный случай использования, когда действительно нужно отключить документацию API для некоторых окружений (например, в продакшн) или в зависимости от настроек из переменных окружения.
 
-## Conditional OpenAPI from settings and env vars { #conditional-openapi-from-settings-and-env-vars }
+## Условный OpenAPI из настроек и переменных окружения { #conditional-openapi-from-settings-and-env-vars }
 
-You can easily use the same Pydantic settings to configure your generated OpenAPI and the docs UIs.
+Вы можете легко использовать те же настройки Pydantic, чтобы настроить сгенерированный OpenAPI и интерфейсы документации.
 
-For example:
+Например:
 
 {* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
-Here we declare the setting `openapi_url` with the same default of `"/openapi.json"`.
+Здесь мы объявляем настройку `openapi_url` с тем же значением по умолчанию — `"/openapi.json"`.
 
-And then we use it when creating the `FastAPI` app.
+Затем используем её при создании приложения FastAPI.
 
-Then you could disable OpenAPI (including the UI docs) by setting the environment variable `OPENAPI_URL` to the empty string, like:
+Далее вы можете отключить OpenAPI (включая интерфейсы документации), установив переменную окружения `OPENAPI_URL` в пустую строку, например:
 
 <div class="termy">
 
@@ -47,7 +47,7 @@ $ OPENAPI_URL= uvicorn main:app
 
 </div>
 
-Then if you go to the URLs at `/openapi.json`, `/docs`, or `/redoc` you will just get a `404 Not Found` error like:
+После этого, если перейти по адресам `/openapi.json`, `/docs` или `/redoc`, вы получите ошибку `404 Not Found`, например:
 
 ```JSON
 {

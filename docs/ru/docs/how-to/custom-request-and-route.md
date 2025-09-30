@@ -1,109 +1,109 @@
-# Custom Request and APIRoute class { #custom-request-and-apiroute-class }
+# Пользовательские классы Request и APIRoute { #custom-request-and-apiroute-class }
 
-In some cases, you may want to override the logic used by the `Request` and `APIRoute` classes.
+В некоторых случаях может понадобиться переопределить логику, используемую классами `Request` и `APIRoute`.
 
-In particular, this may be a good alternative to logic in a middleware.
+В частности, это может быть хорошей альтернативой логике в middleware.
 
-For example, if you want to read or manipulate the request body before it is processed by your application.
+Например, если вы хотите прочитать или изменить тело запроса до того, как оно будет обработано вашим приложением.
 
-/// danger
+/// danger | Опасность
 
-This is an "advanced" feature.
+Это «продвинутая» возможность.
 
-If you are just starting with **FastAPI** you might want to skip this section.
-
-///
-
-## Use cases { #use-cases }
-
-Some use cases include:
-
-* Converting non-JSON request bodies to JSON (e.g. <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
-* Decompressing gzip-compressed request bodies.
-* Automatically logging all request bodies.
-
-## Handling custom request body encodings { #handling-custom-request-body-encodings }
-
-Let's see how to make use of a custom `Request` subclass to decompress gzip requests.
-
-And an `APIRoute` subclass to use that custom request class.
-
-### Create a custom `GzipRequest` class { #create-a-custom-gziprequest-class }
-
-/// tip
-
-This is a toy example to demonstrate how it works, if you need Gzip support, you can use the provided [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+Если вы только начинаете работать с **FastAPI**, возможно, стоит пропустить этот раздел.
 
 ///
 
-First, we create a `GzipRequest` class, which will overwrite the `Request.body()` method to decompress the body in the presence of an appropriate header.
+## Сценарии использования { #use-cases }
 
-If there's no `gzip` in the header, it will not try to decompress the body.
+Некоторые сценарии:
 
-That way, the same route class can handle gzip compressed or uncompressed requests.
+* Преобразование тел запросов, не в формате JSON, в JSON (например, <a href="https://msgpack.org/index.html" class="external-link" target="_blank">`msgpack`</a>).
+* Распаковка тел запросов, сжатых с помощью gzip.
+* Автоматическое логирование всех тел запросов.
+
+## Обработка пользовательского кодирования тела запроса { #handling-custom-request-body-encodings }
+
+Посмотрим как использовать пользовательский подкласс `Request` для распаковки gzip-запросов.
+
+И подкласс `APIRoute`, чтобы использовать этот пользовательский класс запроса.
+
+### Создать пользовательский класс `GzipRequest` { #create-a-custom-gziprequest-class }
+
+/// tip | Совет
+
+Это учебный пример, демонстрирующий принцип работы. Если вам нужна поддержка Gzip, вы можете использовать готовый [`GzipMiddleware`](../advanced/middleware.md#gzipmiddleware){.internal-link target=_blank}.
+
+///
+
+Сначала создадим класс `GzipRequest`, который переопределит метод `Request.body()` и распакует тело запроса при наличии соответствующего HTTP-заголовка.
+
+Если в заголовке нет `gzip`, он не будет пытаться распаковывать тело.
+
+Таким образом, один и тот же класс маршрута сможет обрабатывать как gzip-сжатые, так и несжатые запросы.
 
 {* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
-### Create a custom `GzipRoute` class { #create-a-custom-gziproute-class }
+### Создать пользовательский класс `GzipRoute` { #create-a-custom-gziproute-class }
 
-Next, we create a custom subclass of `fastapi.routing.APIRoute` that will make use of the `GzipRequest`.
+Далее создадим пользовательский подкласс `fastapi.routing.APIRoute`, который будет использовать `GzipRequest`.
 
-This time, it will overwrite the method `APIRoute.get_route_handler()`.
+На этот раз он переопределит метод `APIRoute.get_route_handler()`.
 
-This method returns a function. And that function is what will receive a request and return a response.
+Этот метод возвращает функцию. Именно эта функция получает HTTP-запрос и возвращает HTTP-ответ.
 
-Here we use it to create a `GzipRequest` from the original request.
+Здесь мы используем её, чтобы создать `GzipRequest` из исходного HTTP-запроса.
 
 {* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
 
-/// note | Technical Details
+/// note | Технические детали
 
-A `Request` has a `request.scope` attribute, that's just a Python `dict` containing the metadata related to the request.
+У `Request` есть атрибут `request.scope` — это просто Python-`dict`, содержащий метаданные, связанные с HTTP-запросом.
 
-A `Request` also has a `request.receive`, that's a function to "receive" the body of the request.
+У `Request` также есть `request.receive` — функция для «получения» тела запроса.
 
-The `scope` `dict` and `receive` function are both part of the ASGI specification.
+И `dict` `scope`, и функция `receive` являются частью спецификации ASGI.
 
-And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
+Именно этих двух компонентов — `scope` и `receive` — достаточно, чтобы создать новый экземпляр `Request`.
 
-To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
-
-///
-
-The only thing the function returned by `GzipRequest.get_route_handler` does differently is convert the `Request` to a `GzipRequest`.
-
-Doing this, our `GzipRequest` will take care of decompressing the data (if necessary) before passing it to our *path operations*.
-
-After that, all of the processing logic is the same.
-
-But because of our changes in `GzipRequest.body`, the request body will be automatically decompressed when it is loaded by **FastAPI** when needed.
-
-## Accessing the request body in an exception handler { #accessing-the-request-body-in-an-exception-handler }
-
-/// tip
-
-To solve this same problem, it's probably a lot easier to use the `body` in a custom handler for `RequestValidationError` ([Handling Errors](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
-
-But this example is still valid and it shows how to interact with the internal components.
+Чтобы узнать больше о `Request`, см. <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">документацию Starlette о запросах</a>.
 
 ///
 
-We can also use this same approach to access the request body in an exception handler.
+Единственное, что делает по-другому функция, возвращённая `GzipRequest.get_route_handler`, — преобразует `Request` в `GzipRequest`.
 
-All we need to do is handle the request inside a `try`/`except` block:
+Благодаря этому наш `GzipRequest` позаботится о распаковке данных (при необходимости) до передачи их в наши *операции пути*.
+
+Дальше вся логика обработки остаётся прежней.
+
+Но благодаря изменениям в `GzipRequest.body` тело запроса будет автоматически распаковано при необходимости, когда оно будет загружено **FastAPI**.
+
+## Доступ к телу запроса в обработчике исключений { #accessing-the-request-body-in-an-exception-handler }
+
+/// tip | Совет
+
+Для решения этой задачи, вероятно, намного проще использовать `body` в пользовательском обработчике `RequestValidationError` ([Обработка ошибок](../tutorial/handling-errors.md#use-the-requestvalidationerror-body){.internal-link target=_blank}).
+
+Но этот пример всё равно актуален и показывает, как взаимодействовать с внутренними компонентами.
+
+///
+
+Тем же подходом можно воспользоваться, чтобы получить доступ к телу запроса в обработчике исключений.
+
+Нужно лишь обработать запрос внутри блока `try`/`except`:
 
 {* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
 
-If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
+Если произойдёт исключение, экземпляр `Request` всё ещё будет в области видимости, поэтому мы сможем прочитать тело запроса и использовать его при обработке ошибки:
 
 {* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
-## Custom `APIRoute` class in a router { #custom-apiroute-class-in-a-router }
+## Пользовательский класс `APIRoute` в роутере { #custom-apiroute-class-in-a-router }
 
-You can also set the `route_class` parameter of an `APIRouter`:
+Вы также можете задать параметр `route_class` у `APIRouter`:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
-In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
+В этом примере *операции пути*, объявленные в `router`, будут использовать пользовательский класс `TimedRoute` и получат дополнительный HTTP-заголовок `X-Response-Time` в ответе с временем, затраченным на формирование ответа:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

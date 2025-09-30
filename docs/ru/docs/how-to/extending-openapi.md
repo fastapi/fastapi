@@ -1,80 +1,80 @@
-# Extending OpenAPI { #extending-openapi }
+# Расширение OpenAPI { #extending-openapi }
 
-There are some cases where you might need to modify the generated OpenAPI schema.
+Иногда может понадобиться изменить сгенерированную схему OpenAPI.
 
-In this section you will see how.
+В этом разделе показано, как это сделать.
 
-## The normal process { #the-normal-process }
+## Обычный процесс { #the-normal-process }
 
-The normal (default) process, is as follows.
+Обычный (по умолчанию) процесс выглядит так.
 
-A `FastAPI` application (instance) has an `.openapi()` method that is expected to return the OpenAPI schema.
+Приложение `FastAPI` (экземпляр) имеет метод `.openapi()`, который должен возвращать схему OpenAPI.
 
-As part of the application object creation, a *path operation* for `/openapi.json` (or for whatever you set your `openapi_url`) is registered.
+В процессе создания объекта приложения регистрируется *операция пути* (обработчик пути) для `/openapi.json` (или для того, что указано в вашем `openapi_url`).
 
-It just returns a JSON response with the result of the application's `.openapi()` method.
+Она просто возвращает JSON-ответ с результатом вызова метода приложения `.openapi()`.
 
-By default, what the method `.openapi()` does is check the property `.openapi_schema` to see if it has contents and return them.
+По умолчанию метод `.openapi()` проверяет свойство `.openapi_schema`: если в нём уже есть данные, возвращает их.
 
-If it doesn't, it generates them using the utility function at `fastapi.openapi.utils.get_openapi`.
+Если нет — генерирует схему с помощью вспомогательной функции `fastapi.openapi.utils.get_openapi`.
 
-And that function `get_openapi()` receives as parameters:
+Функция `get_openapi()` принимает параметры:
 
-* `title`: The OpenAPI title, shown in the docs.
-* `version`: The version of your API, e.g. `2.5.0`.
-* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.1.0`.
-* `summary`: A short summary of the API.
-* `description`: The description of your API, this can include markdown and will be shown in the docs.
-* `routes`: A list of routes, these are each of the registered *path operations*. They are taken from `app.routes`.
+* `title`: Заголовок OpenAPI, отображается в документации.
+* `version`: Версия вашего API, например `2.5.0`.
+* `openapi_version`: Версия используемой спецификации OpenAPI. По умолчанию — последняя: `3.1.0`.
+* `summary`: Краткое описание API.
+* `description`: Описание вашего API; может включать Markdown и будет отображается в документации.
+* `routes`: Список маршрутов — это каждая зарегистрированная *операция пути*. Берутся из `app.routes`.
 
-/// info
+/// info | Информация
 
-The parameter `summary` is available in OpenAPI 3.1.0 and above, supported by FastAPI 0.99.0 and above.
+Параметр `summary` доступен в OpenAPI 3.1.0 и выше, поддерживается FastAPI версии 0.99.0 и выше.
 
 ///
 
-## Overriding the defaults { #overriding-the-defaults }
+## Переопределение значений по умолчанию { #overriding-the-defaults }
 
-Using the information above, you can use the same utility function to generate the OpenAPI schema and override each part that you need.
+Используя информацию выше, вы можете той же вспомогательной функцией сгенерировать схему OpenAPI и переопределить любые нужные части.
 
-For example, let's add <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">ReDoc's OpenAPI extension to include a custom logo</a>.
+Например, добавим <a href="https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo" class="external-link" target="_blank">расширение OpenAPI ReDoc для включения собственного логотипа</a>.
 
-### Normal **FastAPI** { #normal-fastapi }
+### Обычный **FastAPI** { #normal-fastapi }
 
-First, write all your **FastAPI** application as normally:
+Сначала напишите приложение **FastAPI** как обычно:
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
-### Generate the OpenAPI schema { #generate-the-openapi-schema }
+### Сгенерируйте схему OpenAPI { #generate-the-openapi-schema }
 
-Then, use the same utility function to generate the OpenAPI schema, inside a `custom_openapi()` function:
+Затем используйте ту же вспомогательную функцию для генерации схемы OpenAPI внутри функции `custom_openapi()`:
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
-### Modify the OpenAPI schema { #modify-the-openapi-schema }
+### Измените схему OpenAPI { #modify-the-openapi-schema }
 
-Now you can add the ReDoc extension, adding a custom `x-logo` to the `info` "object" in the OpenAPI schema:
+Теперь можно добавить расширение ReDoc, добавив кастомный `x-logo` в «объект» `info` в схеме OpenAPI:
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
-### Cache the OpenAPI schema { #cache-the-openapi-schema }
+### Кэшируйте схему OpenAPI { #cache-the-openapi-schema }
 
-You can use the property `.openapi_schema` as a "cache", to store your generated schema.
+Вы можете использовать свойство `.openapi_schema` как «кэш» для хранения сгенерированной схемы.
 
-That way, your application won't have to generate the schema every time a user opens your API docs.
+Так приложению не придётся генерировать схему каждый раз, когда пользователь открывает документацию API.
 
-It will be generated only once, and then the same cached schema will be used for the next requests.
+Она будет создана один раз, а затем тот же кэшированный вариант будет использоваться для последующих запросов.
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
-### Override the method { #override-the-method }
+### Переопределите метод { #override-the-method }
 
-Now you can replace the `.openapi()` method with your new function.
+Теперь вы можете заменить метод `.openapi()` на вашу новую функцию.
 
 {* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
-### Check it { #check-it }
+### Проверьте { #check-it }
 
-Once you go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> you will see that you are using your custom logo (in this example, **FastAPI**'s logo):
+Перейдите на <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> — вы увидите, что используется ваш кастомный логотип (в этом примере — логотип **FastAPI**):
 
 <img src="/img/tutorial/extending-openapi/image01.png">

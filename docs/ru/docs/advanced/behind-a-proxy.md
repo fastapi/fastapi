@@ -1,20 +1,20 @@
-# Behind a Proxy { #behind-a-proxy }
+# За прокси‑сервером { #behind-a-proxy }
 
-In many situations, you would use a **proxy** like Traefik or Nginx in front of your FastAPI app.
+Во многих случаях перед приложением FastAPI используется прокси‑сервер, например Traefik или Nginx.
 
-These proxies could handle HTTPS certificates and other things.
+Такие прокси могут обрабатывать HTTPS‑сертификаты и многое другое.
 
-## Proxy Forwarded Headers { #proxy-forwarded-headers }
+## Пересылаемые заголовки прокси { #proxy-forwarded-headers }
 
-A **proxy** in front of your application would normally set some headers on the fly before sending the requests to your **server** to let the server know that the request was **forwarded** by the proxy, letting it know the original (public) URL, including the domain, that it is using HTTPS, etc.
+Прокси перед вашим приложением обычно на лету добавляет некоторые HTTP‑заголовки перед отправкой запроса на ваш сервер, чтобы сообщить ему, что запрос был переслан прокси, а также передать исходный (публичный) URL (включая домен), информацию об использовании HTTPS и т.д.
 
-The **server** program (for example **Uvicorn** via **FastAPI CLI**) is capable of interpreting these headers, and then passing that information to your application.
+Программа сервера (например, Uvicorn, запущенный через FastAPI CLI) умеет интерпретировать эти заголовки и передавать соответствующую информацию вашему приложению.
 
-But for security, as the server doesn't know it is behind a trusted proxy, it won't interpret those headers.
+Но из соображений безопасности, пока сервер не уверен, что находится за доверенным прокси, он не будет интерпретировать эти заголовки.
 
-/// note | Technical Details
+/// note | Технические детали
 
-The proxy headers are:
+Заголовки прокси:
 
 * <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
 * <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
@@ -22,13 +22,13 @@ The proxy headers are:
 
 ///
 
-### Enable Proxy Forwarded Headers { #enable-proxy-forwarded-headers }
+### Включить пересылаемые заголовки прокси { #enable-proxy-forwarded-headers }
 
-You can start FastAPI CLI with the *CLI Option* `--forwarded-allow-ips` and pass the IP addresses that should be trusted to read those forwarded headers.
+Вы можете запустить FastAPI CLI с опцией командной строки `--forwarded-allow-ips` и передать IP‑адреса, которым следует доверять при чтении этих пересылаемых заголовков.
 
-If you set it to `--forwarded-allow-ips="*"` it would trust all the incoming IPs.
+Если указать `--forwarded-allow-ips="*"`, приложение будет доверять всем входящим IP.
 
-If your **server** is behind a trusted **proxy** and only the proxy talks to it, this would make it accept whatever is the IP of that **proxy**.
+Если ваш сервер находится за доверенным прокси и только прокси обращается к нему, этого достаточно, чтобы он принимал IP этого прокси.
 
 <div class="termy">
 
@@ -40,92 +40,92 @@ $ fastapi run --forwarded-allow-ips="*"
 
 </div>
 
-### Redirects with HTTPS { #redirects-with-https }
+### Редиректы с HTTPS { #redirects-with-https }
 
-For example, let's say you define a *path operation* `/items/`:
+Например, вы объявили операцию пути `/items/`:
 
 {* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
-If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
+Если клиент обратится к `/items`, по умолчанию произойдёт редирект на `/items/`.
 
-But before setting the *CLI Option* `--forwarded-allow-ips` it could redirect to `http://localhost:8000/items/`.
+Но до установки опции `--forwarded-allow-ips` редирект может вести на `http://localhost:8000/items/`.
 
-But maybe your application is hosted at `https://mysuperapp.com`, and the redirection should be to `https://mysuperapp.com/items/`.
+Однако приложение может быть доступно по `https://mysuperapp.com`, и редирект должен вести на `https://mysuperapp.com/items/`.
 
-By setting `--proxy-headers` now FastAPI would be able to redirect to the right location. 😎
+Указав `--proxy-headers`, FastAPI сможет редиректить на корректный адрес. 😎
 
 ```
 https://mysuperapp.com/items/
 ```
 
-/// tip
+/// tip | Совет
 
-If you want to learn more about HTTPS, check the guide [About HTTPS](../deployment/https.md){.internal-link target=_blank}.
+Если хотите узнать больше об HTTPS, смотрите руководство [О HTTPS](../deployment/https.md){.internal-link target=_blank}.
 
 ///
 
-### How Proxy Forwarded Headers Work
+### Как работают пересылаемые заголовки прокси
 
-Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
+Ниже показано, как прокси добавляет пересылаемые заголовки между клиентом и сервером приложения:
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant Proxy as Proxy/Load Balancer
-    participant Server as FastAPI Server
+    participant Client as Клиент
+    participant Proxy as Прокси/Балансировщик нагрузки
+    participant Server as FastAPI-сервер
 
-    Client->>Proxy: HTTPS Request<br/>Host: mysuperapp.com<br/>Path: /items
+    Client->>Proxy: HTTPS-запрос<br/>Host: mysuperapp.com<br/>Path: /items
 
-    Note over Proxy: Proxy adds forwarded headers
+    Note over Proxy: Прокси-сервер добавляет пересылаемые заголовки
 
-    Proxy->>Server: HTTP Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
+    Proxy->>Server: HTTP-запрос<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
 
-    Note over Server: Server interprets headers<br/>(if --forwarded-allow-ips is set)
+    Note over Server: Server интерпретирует HTTP-заголовки<br/>(если --forwarded-allow-ips установлен)
 
-    Server->>Proxy: HTTP Response<br/>with correct HTTPS URLs
+    Server->>Proxy: HTTP-ответ<br/>с верными HTTPS URLs
 
-    Proxy->>Client: HTTPS Response
+    Proxy->>Client: HTTPS-ответ
 ```
 
-The **proxy** intercepts the original client request and adds the special *forwarded* headers (`X-Forwarded-*`) before passing the request to the **application server**.
+Прокси перехватывает исходный клиентский запрос и добавляет специальные пересылаемые заголовки (`X-Forwarded-*`) перед передачей запроса на сервер приложения.
 
-These headers preserve information about the original request that would otherwise be lost:
+Эти заголовки сохраняют информацию об исходном запросе, которая иначе была бы потеряна:
 
-* **X-Forwarded-For**: The original client's IP address
-* **X-Forwarded-Proto**: The original protocol (`https`)
-* **X-Forwarded-Host**: The original host (`mysuperapp.com`)
+* X-Forwarded-For: исходный IP‑адрес клиента
+* X-Forwarded-Proto: исходный протокол (`https`)
+* X-Forwarded-Host: исходный хост (`mysuperapp.com`)
 
-When **FastAPI CLI** is configured with `--forwarded-allow-ips`, it trusts these headers and uses them, for example to generate the correct URLs in redirects.
+Когда FastAPI CLI сконфигурирован с `--forwarded-allow-ips`, он доверяет этим заголовкам и использует их, например, чтобы формировать корректные URL в редиректах.
 
-## Proxy with a stripped path prefix { #proxy-with-a-stripped-path-prefix }
+## Прокси с функцией удаления префикса пути { #proxy-with-a-stripped-path-prefix }
 
-You could have a proxy that adds a path prefix to your application.
+Прокси может добавлять к вашему приложению префикс пути (размещать приложение по пути с дополнительным префиксом).
 
-In these cases you can use `root_path` to configure your application.
+В таких случаях вы можете использовать `root_path` для настройки приложения.
 
-The `root_path` is a mechanism provided by the ASGI specification (that FastAPI is built on, through Starlette).
+Механизм `root_path` определён спецификацией ASGI (на которой построен FastAPI, через Starlette).
 
-The `root_path` is used to handle these specific cases.
+`root_path` используется для обработки таких специфических случаев.
 
-And it's also used internally when mounting sub-applications.
+Он также используется внутри при монтировании вложенных приложений.
 
-Having a proxy with a stripped path prefix, in this case, means that you could declare a path at `/app` in your code, but then, you add a layer on top (the proxy) that would put your **FastAPI** application under a path like `/api/v1`.
+Прокси с функцией удаления префикса пути в этом случае означает, что вы объявляете путь `/app` в коде, а затем добавляете сверху слой (прокси), который размещает ваше приложение FastAPI под путём вида `/api/v1`.
 
-In this case, the original path `/app` would actually be served at `/api/v1/app`.
+Тогда исходный путь `/app` фактически будет обслуживаться по адресу `/api/v1/app`.
 
-Even though all your code is written assuming there's just `/app`.
+Хотя весь ваш код написан с расчётом, что путь один — `/app`.
 
 {* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
-And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
+Прокси будет «обрезать» префикс пути на лету перед передачей запроса на сервер приложения (скорее всего Uvicorn, запущенный через FastAPI CLI), поддерживая у вашего приложения иллюзию, что его обслуживают по `/app`, чтобы вам не пришлось менять весь код и добавлять префикс `/api/v1`.
 
-Up to here, everything would work as normally.
+До этого момента всё будет работать как обычно.
 
-But then, when you open the integrated docs UI (the frontend), it would expect to get the OpenAPI schema at `/openapi.json`, instead of `/api/v1/openapi.json`.
+Но когда вы откроете встроенный интерфейс документации (фронтенд), он будет ожидать получить схему OpenAPI по адресу `/openapi.json`, а не `/api/v1/openapi.json`.
 
-So, the frontend (that runs in the browser) would try to reach `/openapi.json` and wouldn't be able to get the OpenAPI schema.
+Поэтому фронтенд (который работает в браузере) попытается обратиться к `/openapi.json` и не сможет получить схему OpenAPI.
 
-Because we have a proxy with a path prefix of `/api/v1` for our app, the frontend needs to fetch the OpenAPI schema at `/api/v1/openapi.json`.
+Так как для нашего приложения используется прокси с префиксом пути `/api/v1`, фронтенду нужно забирать схему OpenAPI по `/api/v1/openapi.json`.
 
 ```mermaid
 graph LR
@@ -138,34 +138,34 @@ browser --> proxy
 proxy --> server
 ```
 
-/// tip
+/// tip | Совет
 
-The IP `0.0.0.0` is commonly used to mean that the program listens on all the IPs available in that machine/server.
+IP `0.0.0.0` обычно означает, что программа слушает на всех IP‑адресах, доступных на этой машине/сервере.
 
 ///
 
-The docs UI would also need the OpenAPI schema to declare that this API `server` is located at `/api/v1` (behind the proxy). For example:
+Интерфейсу документации также нужна схема OpenAPI, в которой будет указано, что этот API `server` находится по пути `/api/v1` (за прокси). Например:
 
 ```JSON hl_lines="4-8"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Здесь ещё что-то
     "servers": [
         {
             "url": "/api/v1"
         }
     ],
     "paths": {
-            // More stuff here
+            // Здесь ещё что-то
     }
 }
 ```
 
-In this example, the "Proxy" could be something like **Traefik**. And the server would be something like FastAPI CLI with **Uvicorn**, running your FastAPI application.
+В этом примере «Proxy» может быть, например, Traefik. А сервером будет что‑то вроде FastAPI CLI с Uvicorn, на котором запущено ваше приложение FastAPI.
 
-### Providing the `root_path` { #providing-the-root-path }
+### Указание `root_path` { #providing-the-root-path }
 
-To achieve this, you can use the command line option `--root-path` like:
+Для этого используйте опцию командной строки `--root-path`, например так:
 
 <div class="termy">
 
@@ -177,25 +177,25 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 </div>
 
-If you use Hypercorn, it also has the option `--root-path`.
+Если вы используете Hypercorn, у него тоже есть опция `--root-path`.
 
-/// note | Technical Details
+/// note | Технические детали
 
-The ASGI specification defines a `root_path` for this use case.
+Спецификация ASGI определяет `root_path` для такого случая.
 
-And the `--root-path` command line option provides that `root_path`.
+А опция командной строки `--root-path` передаёт этот `root_path`.
 
 ///
 
-### Checking the current `root_path` { #checking-the-current-root-path }
+### Проверка текущего `root_path` { #checking-the-current-root-path }
 
-You can get the current `root_path` used by your application for each request, it is part of the `scope` dictionary (that's part of the ASGI spec).
+Вы можете получить текущий `root_path`, используемый вашим приложением для каждого запроса, — он входит в словарь `scope` (часть спецификации ASGI).
 
-Here we are including it in the message just for demonstration purposes.
+Здесь мы добавляем его в сообщение лишь для демонстрации.
 
 {* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
-Then, if you start Uvicorn with:
+Затем, если вы запустите Uvicorn так:
 
 <div class="termy">
 
@@ -207,7 +207,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 </div>
 
-The response would be something like:
+Ответ будет примерно таким:
 
 ```JSON
 {
@@ -216,19 +216,19 @@ The response would be something like:
 }
 ```
 
-### Setting the `root_path` in the FastAPI app { #setting-the-root-path-in-the-fastapi-app }
+### Установка `root_path` в приложении FastAPI { #setting-the-root-path-in-the-fastapi-app }
 
-Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
+Если нет возможности передать опцию командной строки `--root-path` (или аналог), вы можете указать параметр `root_path` при создании приложения FastAPI:
 
 {* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
 
-Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
+Передача `root_path` в `FastAPI` эквивалентна опции командной строки `--root-path` для Uvicorn или Hypercorn.
 
-### About `root_path` { #about-root-path }
+### О `root_path` { #about-root-path }
 
-Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
+Учтите, что сервер (Uvicorn) не использует `root_path` ни для чего, кроме как передать его в приложение.
 
-But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
+Если вы откроете в браузере <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, вы увидите обычный ответ:
 
 ```JSON
 {
@@ -237,25 +237,25 @@ But if you go with your browser to <a href="http://127.0.0.1:8000" class="extern
 }
 ```
 
-So, it won't expect to be accessed at `http://127.0.0.1:8000/api/v1/app`.
+То есть он не ожидает, что к нему обратятся по адресу `http://127.0.0.1:8000/api/v1/app`.
 
-Uvicorn will expect the proxy to access Uvicorn at `http://127.0.0.1:8000/app`, and then it would be the proxy's responsibility to add the extra `/api/v1` prefix on top.
+Uvicorn ожидает, что прокси обратится к нему по `http://127.0.0.1:8000/app`, а уже задача прокси — добавить сверху префикс `/api/v1`.
 
-## About proxies with a stripped path prefix { #about-proxies-with-a-stripped-path-prefix }
+## О прокси с урезанным префиксом пути { #about-proxies-with-a-stripped-path-prefix }
 
-Keep in mind that a proxy with stripped path prefix is only one of the ways to configure it.
+Помните, что прокси с урезанным префиксом пути — лишь один из вариантов настройки.
 
-Probably in many cases the default will be that the proxy doesn't have a stripped path prefix.
+Во многих случаях по умолчанию прокси будет без урезанного префикса пути.
 
-In a case like that (without a stripped path prefix), the proxy would listen on something like `https://myawesomeapp.com`, and then if the browser goes to `https://myawesomeapp.com/api/v1/app` and your server (e.g. Uvicorn) listens on `http://127.0.0.1:8000` the proxy (without a stripped path prefix) would access Uvicorn at the same path: `http://127.0.0.1:8000/api/v1/app`.
+В таком случае (без урезанного префикса) прокси слушает, например, по адресу `https://myawesomeapp.com`, и если браузер идёт на `https://myawesomeapp.com/api/v1/app`, а ваш сервер (например, Uvicorn) слушает на `http://127.0.0.1:8000`, то прокси (без урезанного префикса) обратится к Uvicorn по тому же пути: `http://127.0.0.1:8000/api/v1/app`.
 
-## Testing locally with Traefik { #testing-locally-with-traefik }
+## Локальное тестирование с Traefik { #testing-locally-with-traefik }
 
-You can easily run the experiment locally with a stripped path prefix using <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+Вы можете легко поэкспериментировать локально с урезанным префиксом пути, используя <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Download Traefik</a>, it's a single binary, you can extract the compressed file and run it directly from the terminal.
+<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Скачайте Traefik</a> — это один бинарный файл; распакуйте архив и запустите его прямо из терминала.
 
-Then create a file `traefik.toml` with:
+Затем создайте файл `traefik.toml` со следующим содержимым:
 
 ```TOML hl_lines="3"
 [entryPoints]
@@ -267,15 +267,15 @@ Then create a file `traefik.toml` with:
     filename = "routes.toml"
 ```
 
-This tells Traefik to listen on port 9999 and to use another file `routes.toml`.
+Это говорит Traefik слушать порт 9999 и использовать другой файл `routes.toml`.
 
-/// tip
+/// tip | Совет
 
-We are using port 9999 instead of the standard HTTP port 80 so that you don't have to run it with admin (`sudo`) privileges.
+Мы используем порт 9999 вместо стандартного HTTP‑порта 80, чтобы не нужно было запускать с правами администратора (`sudo`).
 
 ///
 
-Now create that other file `routes.toml`:
+Теперь создайте второй файл `routes.toml`:
 
 ```TOML hl_lines="5  12  20"
 [http]
@@ -300,11 +300,11 @@ Now create that other file `routes.toml`:
           url = "http://127.0.0.1:8000"
 ```
 
-This file configures Traefik to use the path prefix `/api/v1`.
+Этот файл настраивает Traefik на использование префикса пути `/api/v1`.
 
-And then Traefik will redirect its requests to your Uvicorn running on `http://127.0.0.1:8000`.
+Далее Traefik будет проксировать запросы на ваш Uvicorn, работающий на `http://127.0.0.1:8000`.
 
-Now start Traefik:
+Теперь запустите Traefik:
 
 <div class="termy">
 
@@ -316,7 +316,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 </div>
 
-And now start your app, using the `--root-path` option:
+И запустите приложение с опцией `--root-path`:
 
 <div class="termy">
 
@@ -328,9 +328,9 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 </div>
 
-### Check the responses { #check-the-responses }
+### Проверьте ответы { #check-the-responses }
 
-Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, you will see the normal response:
+Теперь, если вы перейдёте на URL с портом Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, вы увидите обычный ответ:
 
 ```JSON
 {
@@ -339,15 +339,15 @@ Now, if you go to the URL with the port for Uvicorn: <a href="http://127.0.0.1:8
 }
 ```
 
-/// tip
+/// tip | Совет
 
-Notice that even though you are accessing it at `http://127.0.0.1:8000/app` it shows the `root_path` of `/api/v1`, taken from the option `--root-path`.
+Обратите внимание, что хотя вы обращаетесь по `http://127.0.0.1:8000/app`, в ответе указан `root_path` равный `/api/v1`, взятый из опции `--root-path`.
 
 ///
 
-And now open the URL with the port for Traefik, including the path prefix: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+А теперь откройте URL с портом Traefik и префиксом пути: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
 
-We get the same response:
+Мы получим тот же ответ:
 
 ```JSON
 {
@@ -356,58 +356,58 @@ We get the same response:
 }
 ```
 
-but this time at the URL with the prefix path provided by the proxy: `/api/v1`.
+но уже по URL с префиксом, который добавляет прокси: `/api/v1`.
 
-Of course, the idea here is that everyone would access the app through the proxy, so the version with the path prefix `/api/v1` is the "correct" one.
+Разумеется, задумывается, что все будут обращаться к приложению через прокси, поэтому вариант с префиксом пути `/api/v1` является «правильным».
 
-And the version without the path prefix (`http://127.0.0.1:8000/app`), provided by Uvicorn directly, would be exclusively for the _proxy_ (Traefik) to access it.
+А вариант без префикса (`http://127.0.0.1:8000/app`), выдаваемый напрямую Uvicorn, предназначен исключительно для того, чтобы прокси (Traefik) мог к нему обращаться.
 
-That demonstrates how the Proxy (Traefik) uses the path prefix and how the server (Uvicorn) uses the `root_path` from the option `--root-path`.
+Это демонстрирует, как прокси (Traefik) использует префикс пути и как сервер (Uvicorn) использует `root_path`, переданный через опцию `--root-path`.
 
-### Check the docs UI { #check-the-docs-ui }
+### Проверьте интерфейс документации { #check-the-docs-ui }
 
-But here's the fun part. ✨
+А вот самое интересное. ✨
 
-The "official" way to access the app would be through the proxy with the path prefix that we defined. So, as we would expect, if you try the docs UI served by Uvicorn directly, without the path prefix in the URL, it won't work, because it expects to be accessed through the proxy.
+«Официальный» способ доступа к приложению — через прокси с заданным префиксом пути. Поэтому, как и ожидается, если открыть интерфейс документации, отдаваемый напрямую Uvicorn, без префикса пути в URL, он не будет работать, так как предполагается доступ через прокси.
 
-You can check it at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Проверьте по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
-But if we access the docs UI at the "official" URL using the proxy with port `9999`, at `/api/v1/docs`, it works correctly! 🎉
+А вот если открыть интерфейс документации по «официальному» URL через прокси на порту `9999`, по `/api/v1/docs`, всё работает корректно! 🎉
 
-You can check it at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+Проверьте по адресу <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
-Right as we wanted it. ✔️
+Именно как и хотелось. ✔️
 
-This is because FastAPI uses this `root_path` to create the default `server` in OpenAPI with the URL provided by `root_path`.
+Это потому, что FastAPI использует `root_path`, чтобы создать в OpenAPI сервер по умолчанию с URL из `root_path`.
 
-## Additional servers { #additional-servers }
+## Дополнительные серверы { #additional-servers }
 
-/// warning
+/// warning | Предупреждение
 
-This is a more advanced use case. Feel free to skip it.
+Это более продвинутый сценарий. Можно пропустить.
 
 ///
 
-By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
+По умолчанию FastAPI создаёт в схеме OpenAPI `server` с URL из `root_path`.
 
-But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with both a staging and a production environment.
+Но вы также можете указать дополнительные `servers`, например, если хотите, чтобы один и тот же интерфейс документации работал и со <abbr title="«промежуточное» или «предпродакшн» окружение">стейджингом</abbr>, и с продакшн.
 
-If you pass a custom list of `servers` and there's a `root_path` (because your API lives behind a proxy), **FastAPI** will insert a "server" with this `root_path` at the beginning of the list.
+Если вы передадите свой список `servers` и при этом задан `root_path` (потому что ваш API работает за прокси), FastAPI вставит «server» с этим `root_path` в начало списка.
 
-For example:
+Например:
 
 {* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
-Will generate an OpenAPI schema like:
+Будет сгенерирована схема OpenAPI примерно такая:
 
 ```JSON hl_lines="5-7"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // Здесь ещё что-то
     "servers": [
         {
             "url": "/api/v1"
@@ -422,37 +422,37 @@ Will generate an OpenAPI schema like:
         }
     ],
     "paths": {
-            // More stuff here
+            // Здесь ещё что-то
     }
 }
 ```
 
-/// tip
+/// tip | Совет
 
-Notice the auto-generated server with a `url` value of `/api/v1`, taken from the `root_path`.
+Обратите внимание на автоматически добавленный сервер с `url` равным `/api/v1`, взятым из `root_path`.
 
 ///
 
-In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> it would look like:
+В интерфейсе документации по адресу <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> это будет выглядеть так:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
-/// tip
+/// tip | Совет
 
-The docs UI will interact with the server that you select.
+Интерфейс документации будет взаимодействовать с сервером, который вы выберете.
 
 ///
 
-### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
+### Отключить автоматическое добавление сервера из `root_path` { #disable-automatic-server-from-root-path }
 
-If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
+Если вы не хотите, чтобы FastAPI добавлял автоматический сервер, используя `root_path`, укажите параметр `root_path_in_servers=False`:
 
 {* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
 
-and then it won't include it in the OpenAPI schema.
+и тогда этот сервер не будет добавлен в схему OpenAPI.
 
-## Mounting a sub-application { #mounting-a-sub-application }
+## Монтирование вложенного приложения { #mounting-a-sub-application }
 
-If you need to mount a sub-application (as described in [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}) while also using a proxy with `root_path`, you can do it normally, as you would expect.
+Если вам нужно смонтировать вложенное приложение (как описано в [Вложенные приложения — монтирование](sub-applications.md){.internal-link target=_blank}), и при этом вы используете прокси с `root_path`, делайте это обычным образом — всё будет работать, как ожидается.
 
-FastAPI will internally use the `root_path` smartly, so it will just work. ✨
+FastAPI умно использует `root_path` внутри, так что всё просто работает. ✨

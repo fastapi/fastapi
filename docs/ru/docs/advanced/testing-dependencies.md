@@ -1,53 +1,53 @@
-# Testing Dependencies with Overrides { #testing-dependencies-with-overrides }
+# Тестирование зависимостей с переопределениями { #testing-dependencies-with-overrides }
 
-## Overriding dependencies during testing { #overriding-dependencies-during-testing }
+## Переопределение зависимостей во время тестирования { #overriding-dependencies-during-testing }
 
-There are some scenarios where you might want to override a dependency during testing.
+Есть сценарии, когда может понадобиться переопределить зависимость во время тестирования.
 
-You don't want the original dependency to run (nor any of the sub-dependencies it might have).
+Вы не хотите, чтобы исходная зависимость выполнялась (и любые её подзависимости тоже).
 
-Instead, you want to provide a different dependency that will be used only during tests (possibly only some specific tests), and will provide a value that can be used where the value of the original dependency was used.
+Вместо этого вы хотите предоставить другую зависимость, которая будет использоваться только во время тестов (возможно, только в некоторых конкретных тестах) и будет возвращать значение, которое можно использовать везде, где использовалось значение исходной зависимости.
 
-### Use cases: external service { #use-cases-external-service }
+### Варианты использования: внешний сервис { #use-cases-external-service }
 
-An example could be that you have an external authentication provider that you need to call.
+Пример: у вас есть внешний провайдер аутентификации, к которому нужно обращаться.
 
-You send it a token and it returns an authenticated user.
+Вы отправляете ему токен, а он возвращает аутентифицированного пользователя.
 
-This provider might be charging you per request, and calling it might take some extra time than if you had a fixed mock user for tests.
+Такой провайдер может брать плату за каждый запрос, и его вызов может занимать больше времени, чем использование фиксированного мок-пользователя для тестов.
 
-You probably want to test the external provider once, but not necessarily call it for every test that runs.
+Вероятно, вы захотите протестировать внешний провайдер один раз, но не обязательно вызывать его для каждого запускаемого теста.
 
-In this case, you can override the dependency that calls that provider, and use a custom dependency that returns a mock user, only for your tests.
+В таком случае вы можете переопределить зависимость, которая обращается к этому провайдеру, и использовать собственную зависимость, возвращающую мок-пользователя, только для ваших тестов.
 
-### Use the `app.dependency_overrides` attribute { #use-the-app-dependency-overrides-attribute }
+### Используйте атрибут `app.dependency_overrides` { #use-the-app-dependency-overrides-attribute }
 
-For these cases, your **FastAPI** application has an attribute `app.dependency_overrides`, it is a simple `dict`.
+Для таких случаев у вашего приложения **FastAPI** есть атрибут `app.dependency_overrides`, это простой `dict`.
 
-To override a dependency for testing, you put as a key the original dependency (a function), and as the value, your dependency override (another function).
+Чтобы переопределить зависимость для тестирования, укажите в качестве ключа исходную зависимость (функцию), а в качестве значения — ваше переопределение зависимости (другую функцию).
 
-And then **FastAPI** will call that override instead of the original dependency.
+Тогда **FastAPI** будет вызывать это переопределение вместо исходной зависимости.
 
 {* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
 
-/// tip
+/// tip | Совет
 
-You can set a dependency override for a dependency used anywhere in your **FastAPI** application.
+Вы можете задать переопределение для зависимости, используемой в любом месте вашего приложения **FastAPI**.
 
-The original dependency could be used in a *path operation function*, a *path operation decorator* (when you don't use the return value), a `.include_router()` call, etc.
+Исходная зависимость может использоваться в функции-обработчике пути, в декораторе операции пути (когда вы не используете возвращаемое значение), в вызове `.include_router()` и т.д.
 
-FastAPI will still be able to override it.
+FastAPI всё равно сможет её переопределить.
 
 ///
 
-Then you can reset your overrides (remove them) by setting `app.dependency_overrides` to be an empty `dict`:
+Затем вы можете сбросить переопределения (удалить их), установив `app.dependency_overrides` в пустой `dict`:
 
 ```Python
 app.dependency_overrides = {}
 ```
 
-/// tip
+/// tip | Совет
 
-If you want to override a dependency only during some tests, you can set the override at the beginning of the test (inside the test function) and reset it at the end (at the end of the test function).
+Если вы хотите переопределять зависимость только во время некоторых тестов, задайте переопределение в начале теста (внутри функции теста) и сбросьте его в конце (в конце функции теста).
 
 ///

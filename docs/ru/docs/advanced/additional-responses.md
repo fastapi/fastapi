@@ -1,55 +1,55 @@
-# Additional Responses in OpenAPI { #additional-responses-in-openapi }
+# Дополнительные ответы в OpenAPI { #additional-responses-in-openapi }
 
-/// warning
+/// warning | Предупреждение
 
-This is a rather advanced topic.
+Это довольно продвинутая тема.
 
-If you are starting with **FastAPI**, you might not need this.
+Если вы только начинаете работать с **FastAPI**, возможно, вам это пока не нужно.
 
 ///
 
-You can declare additional responses, with additional status codes, media types, descriptions, etc.
+Вы можете объявлять дополнительные ответы с дополнительными статус-кодами, типами содержимого, описаниями и т.д.
 
-Those additional responses will be included in the OpenAPI schema, so they will also appear in the API docs.
+Эти дополнительные ответы будут включены в схему OpenAPI, и поэтому появятся в документации API.
 
-But for those additional responses you have to make sure you return a `Response` like `JSONResponse` directly, with your status code and content.
+Но для таких дополнительных ответов убедитесь, что вы возвращаете `Response`, например `JSONResponse`, напрямую, со своим статус-кодом и содержимым.
 
-## Additional Response with `model` { #additional-response-with-model }
+## Дополнительный ответ с `model` { #additional-response-with-model }
 
-You can pass to your *path operation decorators* a parameter `responses`.
+Вы можете передать вашим декораторам операции пути параметр `responses`.
 
-It receives a `dict`: the keys are status codes for each response (like `200`), and the values are other `dict`s with the information for each of them.
+Он принимает `dict`: ключи — это статус-коды для каждого ответа (например, `200`), а значения — другие `dict` с информацией для каждого из них.
 
-Each of those response `dict`s can have a key `model`, containing a Pydantic model, just like `response_model`.
+Каждый из этих `dict` для ответа может иметь ключ `model`, содержащий Pydantic-модель, аналогично `response_model`.
 
-**FastAPI** will take that model, generate its JSON Schema and include it in the correct place in OpenAPI.
+**FastAPI** возьмёт эту модель, сгенерирует для неё JSON‑схему и включит её в нужное место в OpenAPI.
 
-For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
+Например, чтобы объявить ещё один ответ со статус-кодом `404` и Pydantic-моделью `Message`, можно написать:
 
 {* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
-/// note
+/// note | Примечание
 
-Keep in mind that you have to return the `JSONResponse` directly.
-
-///
-
-/// info
-
-The `model` key is not part of OpenAPI.
-
-**FastAPI** will take the Pydantic model from there, generate the JSON Schema, and put it in the correct place.
-
-The correct place is:
-
-* In the key `content`, that has as value another JSON object (`dict`) that contains:
-    * A key with the media type, e.g. `application/json`, that contains as value another JSON object, that contains:
-        * A key `schema`, that has as the value the JSON Schema from the model, here's the correct place.
-            * **FastAPI** adds a reference here to the global JSON Schemas in another place in your OpenAPI instead of including it directly. This way, other applications and clients can use those JSON Schemas directly, provide better code generation tools, etc.
+Имейте в виду, что необходимо возвращать `JSONResponse` напрямую.
 
 ///
 
-The generated responses in the OpenAPI for this *path operation* will be:
+/// info | Информация
+
+Ключ `model` не является частью OpenAPI.
+
+**FastAPI** возьмёт Pydantic-модель оттуда, сгенерирует JSON‑схему и поместит её в нужное место.
+
+Нужное место:
+
+* В ключе `content`, значением которого является другой JSON‑объект (`dict`), содержащий:
+    * Ключ с типом содержимого, например `application/json`, значением которого является другой JSON‑объект, содержащий:
+        * Ключ `schema`, значением которого является JSON‑схема из модели — вот нужное место.
+            * **FastAPI** добавляет здесь ссылку на глобальные JSON‑схемы в другом месте вашего OpenAPI вместо того, чтобы включать схему напрямую. Так другие приложения и клиенты смогут использовать эти JSON‑схемы напрямую, предоставлять лучшие инструменты генерации кода и т.д.
+
+///
+
+Сгенерированные в OpenAPI ответы для этой операции пути будут такими:
 
 ```JSON hl_lines="3-12"
 {
@@ -88,7 +88,7 @@ The generated responses in the OpenAPI for this *path operation* will be:
 }
 ```
 
-The schemas are referenced to another place inside the OpenAPI schema:
+Схемы даны как ссылки на другое место внутри схемы OpenAPI:
 
 ```JSON hl_lines="4-16"
 {
@@ -169,51 +169,51 @@ The schemas are referenced to another place inside the OpenAPI schema:
 }
 ```
 
-## Additional media types for the main response { #additional-media-types-for-the-main-response }
+## Дополнительные типы содержимого для основного ответа { #additional-media-types-for-the-main-response }
 
-You can use this same `responses` parameter to add different media types for the same main response.
+Вы можете использовать этот же параметр `responses`, чтобы добавить разные типы содержимого для того же основного ответа.
 
-For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
+Например, вы можете добавить дополнительный тип содержимого `image/png`, объявив, что ваша операция пути может возвращать JSON‑объект (с типом содержимого `application/json`) или PNG‑изображение:
 
 {* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
 
-/// note
+/// note | Примечание
 
-Notice that you have to return the image using a `FileResponse` directly.
-
-///
-
-/// info
-
-Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
-
-But if you have specified a custom response class with `None` as its media type, FastAPI will use `application/json` for any additional response that has an associated model.
+Учтите, что изображение нужно возвращать напрямую, используя `FileResponse`.
 
 ///
 
-## Combining information { #combining-information }
+/// info | Информация
 
-You can also combine response information from multiple places, including the `response_model`, `status_code`, and `responses` parameters.
+Если вы явно не укажете другой тип содержимого в параметре `responses`, FastAPI будет считать, что ответ имеет тот же тип содержимого, что и основной класс ответа (по умолчанию `application/json`).
 
-You can declare a `response_model`, using the default status code `200` (or a custom one if you need), and then declare additional information for that same response in `responses`, directly in the OpenAPI schema.
+Но если вы указали пользовательский класс ответа с `None` в качестве его типа содержимого, FastAPI использует `application/json` для любого дополнительного ответа, у которого есть связанная модель.
 
-**FastAPI** will keep the additional information from `responses`, and combine it with the JSON Schema from your model.
+///
 
-For example, you can declare a response with a status code `404` that uses a Pydantic model and has a custom `description`.
+## Комбинирование информации { #combining-information }
 
-And a response with a status code `200` that uses your `response_model`, but includes a custom `example`:
+Вы также можете комбинировать информацию об ответах из нескольких мест, включая параметры `response_model`, `status_code` и `responses`.
+
+Вы можете объявить `response_model`, используя статус-код по умолчанию `200` (или свой, если нужно), а затем объявить дополнительную информацию для этого же ответа в `responses`, напрямую в схеме OpenAPI.
+
+**FastAPI** сохранит дополнительную информацию из `responses` и объединит её с JSON‑схемой из вашей модели.
+
+Например, вы можете объявить ответ со статус-кодом `404`, который использует Pydantic-модель и имеет пользовательское `description`.
+
+А также ответ со статус-кодом `200`, который использует ваш `response_model`, но включает пользовательский `example`:
 
 {* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
-It will all be combined and included in your OpenAPI, and shown in the API docs:
+Всё это будет объединено и включено в ваш OpenAPI и отображено в документации API:
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combine predefined responses and custom ones { #combine-predefined-responses-and-custom-ones }
+## Комбинирование предопределённых и пользовательских ответов { #combine-predefined-responses-and-custom-ones }
 
-You might want to have some predefined responses that apply to many *path operations*, but you want to combine them with custom responses needed by each *path operation*.
+Возможно, вы хотите иметь некоторые предопределённые ответы, применимые ко многим операциям пути, но при этом комбинировать их с пользовательскими ответами, необходимыми для каждой конкретной операции пути.
 
-For those cases, you can use the Python technique of "unpacking" a `dict` with `**dict_to_unpack`:
+В таких случаях вы можете использовать приём Python «распаковки» `dict` с помощью `**dict_to_unpack`:
 
 ```Python
 old_dict = {
@@ -223,7 +223,7 @@ old_dict = {
 new_dict = {**old_dict, "new key": "new value"}
 ```
 
-Here, `new_dict` will contain all the key-value pairs from `old_dict` plus the new key-value pair:
+Здесь `new_dict` будет содержать все пары ключ-значение из `old_dict` плюс новую пару ключ-значение:
 
 ```Python
 {
@@ -233,15 +233,15 @@ Here, `new_dict` will contain all the key-value pairs from `old_dict` plus the n
 }
 ```
 
-You can use that technique to reuse some predefined responses in your *path operations* and combine them with additional custom ones.
+Вы можете использовать этот приём, чтобы переиспользовать некоторые предопределённые ответы в ваших операциях пути и комбинировать их с дополнительными пользовательскими.
 
-For example:
+Например:
 
 {* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
 
-## More information about OpenAPI responses { #more-information-about-openapi-responses }
+## Дополнительная информация об ответах OpenAPI { #more-information-about-openapi-responses }
 
-To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
+Чтобы увидеть, что именно можно включать в ответы, посмотрите эти разделы спецификации OpenAPI:
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">OpenAPI Responses Object</a>, it includes the `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">OpenAPI Response Object</a>, you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Объект Responses OpenAPI</a>, он включает `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Объект Response OpenAPI</a>, вы можете включить всё из этого объекта напрямую в каждый ответ внутри вашего параметра `responses`. Включая `description`, `headers`, `content` (внутри него вы объявляете разные типы содержимого и JSON‑схемы) и `links`.

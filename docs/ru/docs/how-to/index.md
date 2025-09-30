@@ -1,13 +1,13 @@
-# How To - Recipes { #how-to-recipes }
+# Как сделать — Рецепты { #how-to-recipes }
 
-Here you will see different recipes or "how to" guides for **several topics**.
+Здесь вы найдете разные рецепты и руководства «как сделать» по различным темам.
 
-Most of these ideas would be more or less **independent**, and in most cases you should only need to study them if they apply directly to **your project**.
+Большинство из этих идей более-менее независимы, и в большинстве случаев вам стоит изучать их только если они напрямую относятся к вашему проекту.
 
-If something seems interesting and useful to your project, go ahead and check it, but otherwise, you might probably just skip them.
+Если что-то кажется интересным и полезным для вашего проекта, смело изучайте; в противном случае, вероятно, можно просто пропустить.
 
-/// tip
+/// tip | Совет
 
-If you want to **learn FastAPI** in a structured way (recommended), go and read the [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank} chapter by chapter instead.
+Если вы хотите изучить FastAPI структурированно (рекомендуется), вместо этого читайте [Учебник — Руководство пользователя](../tutorial/index.md){.internal-link target=_blank} по главам.
 
 ///

@@ -1,62 +1,62 @@
-# Configure Swagger UI { #configure-swagger-ui }
+# Настройка Swagger UI { #configure-swagger-ui }
 
-You can configure some extra <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">Swagger UI parameters</a>.
+Вы можете настроить дополнительные <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">параметры Swagger UI</a>.
 
-To configure them, pass the `swagger_ui_parameters` argument when creating the `FastAPI()` app object or to the `get_swagger_ui_html()` function.
+Чтобы настроить их, передайте аргумент `swagger_ui_parameters` при создании объекта приложения `FastAPI()` или в функцию `get_swagger_ui_html()`.
 
-`swagger_ui_parameters` receives a dictionary with the configurations passed to Swagger UI directly.
+`swagger_ui_parameters` принимает словарь с настройками, которые передаются в Swagger UI напрямую.
 
-FastAPI converts the configurations to **JSON** to make them compatible with JavaScript, as that's what Swagger UI needs.
+FastAPI преобразует эти настройки в **JSON**, чтобы они были совместимы с JavaScript, поскольку именно это требуется Swagger UI.
 
-## Disable Syntax Highlighting { #disable-syntax-highlighting }
+## Отключить подсветку синтаксиса { #disable-syntax-highlighting }
 
-For example, you could disable syntax highlighting in Swagger UI.
+Например, вы можете отключить подсветку синтаксиса в Swagger UI.
 
-Without changing the settings, syntax highlighting is enabled by default:
+Без изменения настроек подсветка синтаксиса включена по умолчанию:
 
 <img src="/img/tutorial/extending-openapi/image02.png">
 
-But you can disable it by setting `syntaxHighlight` to `False`:
+Но вы можете отключить её, установив `syntaxHighlight` в `False`:
 
 {* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
-...and then Swagger UI won't show the syntax highlighting anymore:
+…и после этого Swagger UI больше не будет показывать подсветку синтаксиса:
 
 <img src="/img/tutorial/extending-openapi/image03.png">
 
-## Change the Theme { #change-the-theme }
+## Изменить тему { #change-the-theme }
 
-The same way you could set the syntax highlighting theme with the key `"syntaxHighlight.theme"` (notice that it has a dot in the middle):
+Аналогично вы можете задать тему подсветки синтаксиса с ключом "syntaxHighlight.theme" (обратите внимание, что посередине стоит точка):
 
 {* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
-That configuration would change the syntax highlighting color theme:
+Эта настройка изменит цветовую тему подсветки синтаксиса:
 
 <img src="/img/tutorial/extending-openapi/image04.png">
 
-## Change Default Swagger UI Parameters { #change-default-swagger-ui-parameters }
+## Изменить параметры Swagger UI по умолчанию { #change-default-swagger-ui-parameters }
 
-FastAPI includes some default configuration parameters appropriate for most of the use cases.
+FastAPI включает некоторые параметры конфигурации по умолчанию, подходящие для большинства случаев.
 
-It includes these default configurations:
+Это включает следующие настройки по умолчанию:
 
 {* ../../fastapi/openapi/docs.py ln[8:23] hl[17:23] *}
 
-You can override any of them by setting a different value in the argument `swagger_ui_parameters`.
+Вы можете переопределить любую из них, указав другое значение в аргументе `swagger_ui_parameters`.
 
-For example, to disable `deepLinking` you could pass these settings to `swagger_ui_parameters`:
+Например, чтобы отключить `deepLinking`, можно передать такие настройки в `swagger_ui_parameters`:
 
 {* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
-## Other Swagger UI Parameters { #other-swagger-ui-parameters }
+## Другие параметры Swagger UI { #other-swagger-ui-parameters }
 
-To see all the other possible configurations you can use, read the official <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">docs for Swagger UI parameters</a>.
+Чтобы увидеть все остальные возможные настройки, прочитайте официальную <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">документацию по параметрам Swagger UI</a>.
 
-## JavaScript-only settings { #javascript-only-settings }
+## Настройки только для JavaScript { #javascript-only-settings }
 
-Swagger UI also allows other configurations to be **JavaScript-only** objects (for example, JavaScript functions).
+Swagger UI также допускает другие настройки, которые являются **чисто JavaScript-объектами** (например, JavaScript-функциями).
 
-FastAPI also includes these JavaScript-only `presets` settings:
+FastAPI также включает следующие настройки `presets` (только для JavaScript):
 
 ```JavaScript
 presets: [
@@ -65,6 +65,6 @@ presets: [
 ]
 ```
 
-These are **JavaScript** objects, not strings, so you can't pass them from Python code directly.
+Это объекты **JavaScript**, а не строки, поэтому напрямую передать их из Python-кода нельзя.
 
-If you need to use JavaScript-only configurations like those, you can use one of the methods above. Override all the Swagger UI *path operation* and manually write any JavaScript you need.
+Если вам нужны такие настройки только для JavaScript, используйте один из методов выше. Переопределите *операцию пути* Swagger UI и вручную напишите любой необходимый JavaScript.

@@ -1,30 +1,30 @@
-# Settings and Environment Variables { #settings-and-environment-variables }
+# Настройки и переменные окружения { #settings-and-environment-variables }
 
-In many cases your application could need some external settings or configurations, for example secret keys, database credentials, credentials for email services, etc.
+Во многих случаях вашему приложению могут понадобиться внешние настройки или конфигурации, например секретные ключи, учетные данные для базы данных, учетные данные для email‑сервисов и т.д.
 
-Most of these settings are variable (can change), like database URLs. And many could be sensitive, like secrets.
+Большинство таких настроек являются изменяемыми (могут меняться), например URL базы данных. И многие из них могут быть «чувствительными», например секреты.
 
-For this reason it's common to provide them in environment variables that are read by the application.
+По этой причине обычно их передают через переменные окружения, которые считываются приложением.
 
-/// tip
+/// tip | Совет
 
-To understand environment variables you can read [Environment Variables](../environment-variables.md){.internal-link target=_blank}.
+Чтобы понять, что такое переменные окружения, вы можете прочитать [Переменные окружения](../environment-variables.md){.internal-link target=_blank}.
 
 ///
 
-## Types and validation { #types-and-validation }
+## Типы и валидация { #types-and-validation }
 
-These environment variables can only handle text strings, as they are external to Python and have to be compatible with other programs and the rest of the system (and even with different operating systems, as Linux, Windows, macOS).
+Переменные окружения могут содержать только текстовые строки, так как они внешние по отношению к Python и должны быть совместимы с другими программами и остальной системой (и даже с разными операционными системами, такими как Linux, Windows, macOS).
 
-That means that any value read in Python from an environment variable will be a `str`, and any conversion to a different type or any validation has to be done in code.
+Это означает, что любое значение, прочитанное в Python из переменной окружения, будет `str`, а любые преобразования к другим типам или любая валидация должны выполняться в коде.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Fortunately, Pydantic provides a great utility to handle these settings coming from environment variables with <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+К счастью, Pydantic предоставляет отличную утилиту для работы с этими настройками, поступающими из переменных окружения, — <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: управление настройками</a>.
 
-### Install `pydantic-settings` { #install-pydantic-settings }
+### Установка `pydantic-settings` { #install-pydantic-settings }
 
-First, make sure you create your [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install the `pydantic-settings` package:
+Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет `pydantic-settings`:
 
 <div class="termy">
 
@@ -35,7 +35,7 @@ $ pip install pydantic-settings
 
 </div>
 
-It also comes included when you install the `all` extras with:
+Он также включен при установке набора `all` с:
 
 <div class="termy">
 
@@ -46,19 +46,19 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info
+/// info | Информация
 
-In Pydantic v1 it came included with the main package. Now it is distributed as this independent package so that you can choose to install it or not if you don't need that functionality.
+В Pydantic v1 он входил в основной пакет. Теперь он распространяется как отдельный пакет, чтобы вы могли установить его только при необходимости.
 
 ///
 
-### Create the `Settings` object { #create-the-settings-object }
+### Создание объекта `Settings` { #create-the-settings-object }
 
-Import `BaseSettings` from Pydantic and create a sub-class, very much like with a Pydantic model.
+Импортируйте `BaseSettings` из Pydantic и создайте подкласс, очень похожий на Pydantic‑модель.
 
-The same way as with Pydantic models, you declare class attributes with type annotations, and possibly default values.
+Аналогично Pydantic‑моделям, вы объявляете атрибуты класса с аннотациями типов и, при необходимости, значениями по умолчанию.
 
-You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
+Вы можете использовать все те же возможности валидации и инструменты, что и для Pydantic‑моделей, например разные типы данных и дополнительную валидацию через `Field()`.
 
 //// tab | Pydantic v2
 
@@ -68,9 +68,9 @@ You can use all the same validation features and tools you use for Pydantic mode
 
 //// tab | Pydantic v1
 
-/// info
+/// info | Информация
 
-In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
+В Pydantic v1 вы бы импортировали `BaseSettings` напрямую из `pydantic`, а не из `pydantic_settings`.
 
 ///
 
@@ -78,25 +78,25 @@ In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead 
 
 ////
 
-/// tip
+/// tip | Совет
 
-If you want something quick to copy and paste, don't use this example, use the last one below.
+Если вам нужно что-то быстро скопировать и вставить, не используйте этот пример — воспользуйтесь последним ниже.
 
 ///
 
-Then, when you create an instance of that `Settings` class (in this case, in the `settings` object), Pydantic will read the environment variables in a case-insensitive way, so, an upper-case variable `APP_NAME` will still be read for the attribute `app_name`.
+Затем, когда вы создаете экземпляр этого класса `Settings` (в нашем случае объект `settings`), Pydantic прочитает переменные окружения регистронезависимо, то есть переменная в верхнем регистре `APP_NAME` будет прочитана для атрибута `app_name`.
 
-Next it will convert and validate the data. So, when you use that `settings` object, you will have data of the types you declared (e.g. `items_per_user` will be an `int`).
+Далее он преобразует и провалидирует данные. Поэтому при использовании объекта `settings` вы получите данные тех типов, которые объявили (например, `items_per_user` будет `int`).
 
-### Use the `settings` { #use-the-settings }
+### Использование `settings` { #use-the-settings }
 
-Then you can use the new `settings` object in your application:
+Затем вы можете использовать новый объект `settings` в вашем приложении:
 
 {* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
-### Run the server { #run-the-server }
+### Запуск сервера { #run-the-server }
 
-Next, you would run the server passing the configurations as environment variables, for example you could set an `ADMIN_EMAIL` and `APP_NAME` with:
+Далее вы можете запустить сервер, передав конфигурации через переменные окружения. Например, можно задать `ADMIN_EMAIL` и `APP_NAME` так:
 
 <div class="termy">
 
@@ -108,120 +108,120 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 </div>
 
-/// tip
+/// tip | Совет
 
-To set multiple env vars for a single command just separate them with a space, and put them all before the command.
+Чтобы задать несколько переменных окружения для одной команды, просто разделяйте их пробелами и укажите все перед командой.
 
 ///
 
-And then the `admin_email` setting would be set to `"deadpool@example.com"`.
+Тогда параметр `admin_email` будет установлен в `"deadpool@example.com"`.
 
-The `app_name` would be `"ChimichangApp"`.
+`app_name` будет `"ChimichangApp"`.
 
-And the `items_per_user` would keep its default value of `50`.
+А `items_per_user` сохранит значение по умолчанию `50`.
 
-## Settings in another module { #settings-in-another-module }
+## Настройки в другом модуле { #settings-in-another-module }
 
-You could put those settings in another module file as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вы можете вынести эти настройки в другой модуль, как показано в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
-For example, you could have a file `config.py` with:
+Например, у вас может быть файл `config.py` со следующим содержимым:
 
 {* ../../docs_src/settings/app01/config.py *}
 
-And then use it in a file `main.py`:
+А затем использовать его в файле `main.py`:
 
 {* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
-/// tip
+/// tip | Совет
 
-You would also need a file `__init__.py` as you saw in [Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Вам также понадобится файл `__init__.py`, как в разделе [Большие приложения — несколько файлов](../tutorial/bigger-applications.md){.internal-link target=_blank}.
 
 ///
 
-## Settings in a dependency { #settings-in-a-dependency }
+## Настройки как зависимость { #settings-in-a-dependency }
 
-In some occasions it might be useful to provide the settings from a dependency, instead of having a global object with `settings` that is used everywhere.
+Иногда может быть полезно предоставлять настройки через зависимость, вместо глобального объекта `settings`, используемого повсюду.
 
-This could be especially useful during testing, as it's very easy to override a dependency with your own custom settings.
+Это особенно удобно при тестировании, так как очень легко переопределить зависимость своими настройками.
 
-### The config file { #the-config-file }
+### Файл конфигурации { #the-config-file }
 
-Coming from the previous example, your `config.py` file could look like:
+Продолжая предыдущий пример, ваш файл `config.py` может выглядеть так:
 
 {* ../../docs_src/settings/app02/config.py hl[10] *}
 
-Notice that now we don't create a default instance `settings = Settings()`.
+Обратите внимание, что теперь мы не создаем экземпляр по умолчанию `settings = Settings()`.
 
-### The main app file { #the-main-app-file }
+### Основной файл приложения { #the-main-app-file }
 
-Now we create a dependency that returns a new `config.Settings()`.
+Теперь мы создаем зависимость, которая возвращает новый `config.Settings()`.
 
 {* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
 
-/// tip
+/// tip | Совет
 
-We'll discuss the `@lru_cache` in a bit.
+Скоро мы обсудим `@lru_cache`.
 
-For now you can assume `get_settings()` is a normal function.
+Пока можно считать, что `get_settings()` — это обычная функция.
 
 ///
 
-And then we can require it from the *path operation function* as a dependency and use it anywhere we need it.
+Затем мы можем запросить ее в *функции-обработчике пути* как зависимость и использовать там, где нужно.
 
 {* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
 
-### Settings and testing { #settings-and-testing }
+### Настройки и тестирование { #settings-and-testing }
 
-Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
+Далее будет очень просто предоставить другой объект настроек во время тестирования, создав переопределение зависимости для `get_settings`:
 
 {* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
-In the dependency override we set a new value for the `admin_email` when creating the new `Settings` object, and then we return that new object.
+В переопределении зависимости мы задаем новое значение `admin_email` при создании нового объекта `Settings`, а затем возвращаем этот новый объект.
 
-Then we can test that it is used.
+После этого можно протестировать, что он используется.
 
-## Reading a `.env` file { #reading-a-env-file }
+## Чтение файла `.env` { #reading-a-env-file }
 
-If you have many settings that possibly change a lot, maybe in different environments, it might be useful to put them on a file and then read them from it as if they were environment variables.
+Если у вас много настроек, которые могут часто меняться, возможно в разных окружениях, может быть удобно поместить их в файл и читать оттуда как переменные окружения.
 
-This practice is common enough that it has a name, these environment variables are commonly placed in a file `.env`, and the file is called a "dotenv".
+Эта практика достаточно распространена и имеет название: такие переменные окружения обычно размещают в файле `.env`, а сам файл называют «dotenv».
 
-/// tip
+/// tip | Совет
 
-A file starting with a dot (`.`) is a hidden file in Unix-like systems, like Linux and macOS.
+Файл, начинающийся с точки (`.`), является скрытым в системах, подобных Unix, таких как Linux и macOS.
 
-But a dotenv file doesn't really have to have that exact filename.
-
-///
-
-Pydantic has support for reading from these types of files using an external library. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
-
-/// tip
-
-For this to work, you need to `pip install python-dotenv`.
+Но файл dotenv не обязательно должен иметь именно такое имя.
 
 ///
 
-### The `.env` file { #the-env-file }
+Pydantic поддерживает чтение таких файлов с помощью внешней библиотеки. Подробнее вы можете прочитать здесь: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: поддержка Dotenv (.env)</a>.
 
-You could have a `.env` file with:
+/// tip | Совет
+
+Чтобы это работало, вам нужно `pip install python-dotenv`.
+
+///
+
+### Файл `.env` { #the-env-file }
+
+У вас может быть файл `.env` со следующим содержимым:
 
 ```bash
 ADMIN_EMAIL="deadpool@example.com"
 APP_NAME="ChimichangApp"
 ```
 
-### Read settings from `.env` { #read-settings-from-env }
+### Чтение настроек из `.env` { #read-settings-from-env }
 
-And then update your `config.py` with:
+Затем обновите ваш `config.py` так:
 
 //// tab | Pydantic v2
 
 {* ../../docs_src/settings/app03_an/config.py hl[9] *}
 
-/// tip
+/// tip | Совет
 
-The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
 
 ///
 
@@ -231,56 +231,56 @@ The `model_config` attribute is used just for Pydantic configuration. You can re
 
 {* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
 
-/// tip
+/// tip | Совет
 
-The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
+Класс `Config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
 
 ///
 
 ////
 
-/// info
+/// info | Информация
 
-In Pydantic version 1 the configuration was done in an internal class `Config`, in Pydantic version 2 it's done in an attribute `model_config`. This attribute takes a `dict`, and to get autocompletion and inline errors you can import and use `SettingsConfigDict` to define that `dict`.
+В Pydantic версии 1 конфигурация задавалась во внутреннем классе `Config`, в Pydantic версии 2 — в атрибуте `model_config`. Этот атрибут принимает `dict`, и чтобы получить автозавершение и ошибки «на лету», вы можете импортировать и использовать `SettingsConfigDict` для описания этого `dict`.
 
 ///
 
-Here we define the config `env_file` inside of your Pydantic `Settings` class, and set the value to the filename with the dotenv file we want to use.
+Здесь мы задаем параметр конфигурации `env_file` внутри вашего класса Pydantic `Settings` и устанавливаем значение равным имени файла dotenv, который хотим использовать.
 
-### Creating the `Settings` only once with `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
+### Создание `Settings` только один раз с помощью `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
 
-Reading a file from disk is normally a costly (slow) operation, so you probably want to do it only once and then reuse the same settings object, instead of reading it for each request.
+Чтение файла с диска обычно затратная (медленная) операция, поэтому, вероятно, вы захотите сделать это один раз и затем переиспользовать один и тот же объект настроек, а не читать файл при каждом запросе.
 
-But every time we do:
+Но каждый раз, когда мы делаем:
 
 ```Python
 Settings()
 ```
 
-a new `Settings` object would be created, and at creation it would read the `.env` file again.
+создается новый объект `Settings`, и при создании он снова считывает файл `.env`.
 
-If the dependency function was just like:
+Если бы функция зависимости была такой:
 
 ```Python
 def get_settings():
     return Settings()
 ```
 
-we would create that object for each request, and we would be reading the `.env` file for each request. ⚠️
+мы бы создавали этот объект для каждого запроса и читали файл `.env` на каждый запрос. ⚠️
 
-But as we are using the `@lru_cache` decorator on top, the `Settings` object will be created only once, the first time it's called. ✔️
+Но так как мы используем декоратор `@lru_cache` сверху, объект `Settings` будет создан только один раз — при первом вызове. ✔️
 
 {* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
 
-Then for any subsequent call of `get_settings()` in the dependencies for the next requests, instead of executing the internal code of `get_settings()` and creating a new `Settings` object, it will return the same object that was returned on the first call, again and again.
+Затем при любых последующих вызовах `get_settings()` в зависимостях для следующих запросов, вместо выполнения внутреннего кода `get_settings()` и создания нового объекта `Settings`, будет возвращаться тот же объект, что был возвращен при первом вызове, снова и снова.
 
-#### `lru_cache` Technical Details { #lru-cache-technical-details }
+#### Технические детали `lru_cache` { #lru-cache-technical-details }
 
-`@lru_cache` modifies the function it decorates to return the same value that was returned the first time, instead of computing it again, executing the code of the function every time.
+`@lru_cache` модифицирует декорируемую функцию так, что она возвращает то же значение, что и в первый раз, вместо повторного вычисления, то есть вместо выполнения кода функции каждый раз.
 
-So, the function below it will be executed once for each combination of arguments. And then the values returned by each of those combinations of arguments will be used again and again whenever the function is called with exactly the same combination of arguments.
+Таким образом, функция под декоратором будет выполнена один раз для каждой комбинации аргументов. Затем значения, возвращенные для каждой из этих комбинаций, будут использоваться снова и снова при вызове функции с точно такой же комбинацией аргументов.
 
-For example, if you have a function:
+Например, если у вас есть функция:
 
 ```Python
 @lru_cache
@@ -288,7 +288,7 @@ def say_hi(name: str, salutation: str = "Ms."):
     return f"Hello {salutation} {name}"
 ```
 
-your program could execute like this:
+ваша программа может выполняться так:
 
 ```mermaid
 sequenceDiagram
@@ -331,16 +331,16 @@ participant execute as Execute function
     end
 ```
 
-In the case of our dependency `get_settings()`, the function doesn't even take any arguments, so it always returns the same value.
+В случае нашей зависимости `get_settings()` функция вообще не принимает аргументов, поэтому она всегда возвращает одно и то же значение.
 
-That way, it behaves almost as if it was just a global variable. But as it uses a dependency function, then we can override it easily for testing.
+Таким образом, она ведет себя почти как глобальная переменная. Но так как используется функция‑зависимость, мы можем легко переопределить ее для тестирования.
 
-`@lru_cache` is part of `functools` which is part of Python's standard library, you can read more about it in the <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
+`@lru_cache` — часть `functools`, что входит в стандартную библиотеку Python. Подробнее можно прочитать в <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">документации Python по `@lru_cache`</a>.
 
-## Recap { #recap }
+## Итоги { #recap }
 
-You can use Pydantic Settings to handle the settings or configurations for your application, with all the power of Pydantic models.
+Вы можете использовать Pydantic Settings для управления настройками и конфигурациями вашего приложения с полной мощью Pydantic‑моделей.
 
-* By using a dependency you can simplify testing.
-* You can use `.env` files with it.
-* Using `@lru_cache` lets you avoid reading the dotenv file again and again for each request, while allowing you to override it during testing.
+* Используя зависимость, вы упрощаете тестирование.
+* Можно использовать файлы `.env`.
+* `@lru_cache` позволяет не читать файл dotenv снова и снова для каждого запроса, при этом давая возможность переопределять его во время тестирования.

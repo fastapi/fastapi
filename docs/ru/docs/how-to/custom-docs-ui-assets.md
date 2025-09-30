@@ -1,70 +1,70 @@
-# Custom Docs UI Static Assets (Self-Hosting) { #custom-docs-ui-static-assets-self-hosting }
+# Свои статические ресурсы UI документации (самостоятельный хостинг) { #custom-docs-ui-static-assets-self-hosting }
 
-The API docs use **Swagger UI** and **ReDoc**, and each of those need some JavaScript and CSS files.
+Документация API использует **Swagger UI** и **ReDoc**, и для каждого из них нужны некоторые файлы JavaScript и CSS.
 
-By default, those files are served from a <abbr title="Content Delivery Network: A service, normally composed of several servers, that provides static files, like JavaScript and CSS. It's commonly used to serve those files from the server closer to the client, improving performance.">CDN</abbr>.
+По умолчанию эти файлы отдаются с <abbr title="Content Delivery Network – Сеть доставки контента: Сервис, обычно состоящий из нескольких серверов, который предоставляет статические файлы, такие как JavaScript и CSS. Обычно используется, чтобы отдавать эти файлы с сервера, расположенного ближе к клиенту, что улучшает производительность.">CDN</abbr>.
 
-But it's possible to customize it, you can set a specific CDN, or serve the files yourself.
+Но это можно настроить: вы можете указать конкретный CDN или отдавать файлы самостоятельно.
 
-## Custom CDN for JavaScript and CSS { #custom-cdn-for-javascript-and-css }
+## Пользовательский CDN для JavaScript и CSS { #custom-cdn-for-javascript-and-css }
 
-Let's say that you want to use a different <abbr title="Content Delivery Network">CDN</abbr>, for example you want to use `https://unpkg.com/`.
+Допустим, вы хотите использовать другой <abbr title="Content Delivery Network – Сеть доставки контента">CDN</abbr>, например `https://unpkg.com/`.
 
-This could be useful if for example you live in a country that restricts some URLs.
+Это может быть полезно, если, например, вы живёте в стране, где некоторые URL ограничены.
 
-### Disable the automatic docs { #disable-the-automatic-docs }
+### Отключить автоматическую документацию { #disable-the-automatic-docs }
 
-The first step is to disable the automatic docs, as by default, those use the default CDN.
+Первый шаг — отключить автоматическую документацию, так как по умолчанию она использует стандартный CDN.
 
-To disable them, set their URLs to `None` when creating your `FastAPI` app:
+Чтобы отключить её, установите их URL в значение `None` при создании вашего приложения `FastAPI`:
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
-### Include the custom docs { #include-the-custom-docs }
+### Подключить пользовательскую документацию { #include-the-custom-docs }
 
-Now you can create the *path operations* for the custom docs.
+Теперь вы можете создать *операции пути* для пользовательской документации.
 
-You can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Вы можете переиспользовать внутренние функции FastAPI для создания HTML-страниц документации и передать им необходимые аргументы:
 
-* `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
-* `title`: the title of your API.
-* `oauth2_redirect_url`: you can use `app.swagger_ui_oauth2_redirect_url` here to use the default.
-* `swagger_js_url`: the URL where the HTML for your Swagger UI docs can get the **JavaScript** file. This is the custom CDN URL.
-* `swagger_css_url`: the URL where the HTML for your Swagger UI docs can get the **CSS** file. This is the custom CDN URL.
+* `openapi_url`: URL, по которому HTML-страница документации сможет получить схему OpenAPI для вашего API. Здесь можно использовать атрибут `app.openapi_url`.
+* `title`: заголовок вашего API.
+* `oauth2_redirect_url`: здесь можно использовать `app.swagger_ui_oauth2_redirect_url`, чтобы оставить значение по умолчанию.
+* `swagger_js_url`: URL, по которому HTML для документации Swagger UI сможет получить файл **JavaScript**. Это URL вашего пользовательского CDN.
+* `swagger_css_url`: URL, по которому HTML для документации Swagger UI сможет получить файл **CSS**. Это URL вашего пользовательского CDN.
 
-And similarly for ReDoc...
+Аналогично и для ReDoc...
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
-/// tip
+/// tip | Совет
 
-The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+*Операция пути* для `swagger_ui_redirect` — это вспомогательный эндпоинт на случай, когда вы используете OAuth2.
 
-If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+Если вы интегрируете свой API с провайдером OAuth2, вы сможете аутентифицироваться и вернуться к документации API с полученными учётными данными, а затем взаимодействовать с ним, используя реальную аутентификацию OAuth2.
 
-Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+Swagger UI сделает это за вас «за кулисами», но для этого ему нужен этот вспомогательный «redirect» эндпоинт.
 
 ///
 
-### Create a *path operation* to test it { #create-a-path-operation-to-test-it }
+### Создайте *операцию пути*, чтобы проверить { #create-a-path-operation-to-test-it }
 
-Now, to be able to test that everything works, create a *path operation*:
+Чтобы убедиться, что всё работает, создайте *операцию пути*:
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
-### Test it { #test-it }
+### Тестирование { #test-it }
 
-Now, you should be able to go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page, it will load those assets from the new CDN.
+Теперь вы должны иметь возможность открыть свою документацию по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> и перезагрузить страницу — «ассеты» (статические файлы) будут загружаться с нового CDN.
 
-## Self-hosting JavaScript and CSS for docs { #self-hosting-javascript-and-css-for-docs }
+## Самостоятельный хостинг JavaScript и CSS для документации { #self-hosting-javascript-and-css-for-docs }
 
-Self-hosting the JavaScript and CSS could be useful if, for example, you need your app to keep working even while offline, without open Internet access, or in a local network.
+Самостоятельный хостинг JavaScript и CSS может быть полезен, если, например, вам нужно, чтобы приложение продолжало работать в офлайне, без доступа к открытому Интернету, или в локальной сети.
 
-Here you'll see how to serve those files yourself, in the same FastAPI app, and configure the docs to use them.
+Здесь вы увидите, как отдавать эти файлы самостоятельно, в том же приложении FastAPI, и настроить документацию на их использование.
 
-### Project file structure { #project-file-structure }
+### Структура файлов проекта { #project-file-structure }
 
-Let's say your project file structure looks like this:
+Допустим, структура файлов вашего проекта выглядит так:
 
 ```
 .
@@ -73,9 +73,9 @@ Let's say your project file structure looks like this:
 │   ├── main.py
 ```
 
-Now create a directory to store those static files.
+Теперь создайте директорию для хранения этих статических файлов.
 
-Your new file structure could look like this:
+Новая структура файлов может выглядеть так:
 
 ```
 .
@@ -85,22 +85,22 @@ Your new file structure could look like this:
 └── static/
 ```
 
-### Download the files { #download-the-files }
+### Скачайте файлы { #download-the-files }
 
-Download the static files needed for the docs and put them on that `static/` directory.
+Скачайте статические файлы, необходимые для документации, и поместите их в директорию `static/`.
 
-You can probably right-click each link and select an option similar to "Save link as...".
+Скорее всего, вы можете кликнуть правой кнопкой на каждой ссылке и выбрать что-то вроде «Сохранить ссылку как...».
 
-**Swagger UI** uses the files:
+**Swagger UI** использует файлы:
 
 * <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
 * <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
 
-And **ReDoc** uses the file:
+А **ReDoc** использует файл:
 
 * <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
 
-After that, your file structure could look like:
+После этого структура файлов может выглядеть так:
 
 ```
 .
@@ -113,20 +113,20 @@ After that, your file structure could look like:
     └── swagger-ui.css
 ```
 
-### Serve the static files { #serve-the-static-files }
+### Предоставьте доступ к статическим файлам { #serve-the-static-files }
 
-* Import `StaticFiles`.
-* "Mount" a `StaticFiles()` instance in a specific path.
+* Импортируйте `StaticFiles`.
+* Смонтируйте экземпляр `StaticFiles()` в определённый путь.
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
-### Test the static files { #test-the-static-files }
+### Протестируйте статические файлы { #test-the-static-files }
 
-Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Запустите своё приложение и откройте <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
 
-You should see a very long JavaScript file for **ReDoc**.
+Вы должны увидеть очень длинный JavaScript-файл для **ReDoc**.
 
-It could start with something like:
+Он может начинаться примерно так:
 
 ```JavaScript
 /*! For license information please see redoc.standalone.js.LICENSE.txt */
@@ -134,52 +134,52 @@ It could start with something like:
 ...
 ```
 
-That confirms that you are being able to serve static files from your app, and that you placed the static files for the docs in the correct place.
+Это подтверждает, что ваше приложение умеет отдавать статические файлы и что вы поместили файлы документации в нужное место.
 
-Now we can configure the app to use those static files for the docs.
+Теперь можно настроить приложение так, чтобы документация использовала эти статические файлы.
 
-### Disable the automatic docs for static files { #disable-the-automatic-docs-for-static-files }
+### Отключить автоматическую документацию для статических файлов { #disable-the-automatic-docs-for-static-files }
 
-The same as when using a custom CDN, the first step is to disable the automatic docs, as those use the CDN by default.
+Так же, как и при использовании пользовательского CDN, первым шагом будет отключение автоматической документации, так как по умолчанию она использует CDN.
 
-To disable them, set their URLs to `None` when creating your `FastAPI` app:
+Чтобы отключить её, установите их URL в значение `None` при создании вашего приложения `FastAPI`:
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
-### Include the custom docs for static files { #include-the-custom-docs-for-static-files }
+### Подключить пользовательскую документацию со статическими файлами { #include-the-custom-docs-for-static-files }
 
-And the same way as with a custom CDN, now you can create the *path operations* for the custom docs.
+Аналогично пользовательскому CDN, теперь вы можете создать *операции пути* для собственной документации.
 
-Again, you can reuse FastAPI's internal functions to create the HTML pages for the docs, and pass them the needed arguments:
+Снова можно переиспользовать внутренние функции FastAPI для создания HTML-страниц документации и передать им необходимые аргументы:
 
-* `openapi_url`: the URL where the HTML page for the docs can get the OpenAPI schema for your API. You can use here the attribute `app.openapi_url`.
-* `title`: the title of your API.
-* `oauth2_redirect_url`: you can use `app.swagger_ui_oauth2_redirect_url` here to use the default.
-* `swagger_js_url`: the URL where the HTML for your Swagger UI docs can get the **JavaScript** file. **This is the one that your own app is now serving**.
-* `swagger_css_url`: the URL where the HTML for your Swagger UI docs can get the **CSS** file. **This is the one that your own app is now serving**.
+* `openapi_url`: URL, по которому HTML-страница документации сможет получить схему OpenAPI для вашего API. Здесь можно использовать атрибут `app.openapi_url`.
+* `title`: заголовок вашего API.
+* `oauth2_redirect_url`: здесь можно использовать `app.swagger_ui_oauth2_redirect_url`, чтобы оставить значение по умолчанию.
+* `swagger_js_url`: URL, по которому HTML для документации Swagger UI сможет получить файл **JavaScript**. **Это тот файл, который теперь отдаёт ваше собственное приложение**.
+* `swagger_css_url`: URL, по которому HTML для документации Swagger UI сможет получить файл **CSS**. **Это тот файл, который теперь отдаёт ваше собственное приложение**.
 
-And similarly for ReDoc...
+Аналогично и для ReDoc...
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
-/// tip
+/// tip | Совет
 
-The *path operation* for `swagger_ui_redirect` is a helper for when you use OAuth2.
+*Операция пути* для `swagger_ui_redirect` — это вспомогательный эндпоинт на случай, когда вы используете OAuth2.
 
-If you integrate your API with an OAuth2 provider, you will be able to authenticate and come back to the API docs with the acquired credentials. And interact with it using the real OAuth2 authentication.
+Если вы интегрируете свой API с провайдером OAuth2, вы сможете аутентифицироваться и вернуться к документации API с полученными учётными данными, а затем взаимодействовать с ним, используя реальную аутентификацию OAuth2.
 
-Swagger UI will handle it behind the scenes for you, but it needs this "redirect" helper.
+Swagger UI сделает это за вас «за кулисами», но для этого ему нужен этот вспомогательный «redirect» эндпоинт.
 
 ///
 
-### Create a *path operation* to test static files { #create-a-path-operation-to-test-static-files }
+### Создайте *операцию пути* для теста статических файлов { #create-a-path-operation-to-test-static-files }
 
-Now, to be able to test that everything works, create a *path operation*:
+Чтобы убедиться, что всё работает, создайте *операцию пути*:
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
-### Test Static Files UI { #test-static-files-ui }
+### Тестирование UI со статическими файлами { #test-static-files-ui }
 
-Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+Теперь вы можете отключить Wi‑Fi, открыть свою документацию по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> и перезагрузить страницу.
 
-And even without Internet, you would be able to see the docs for your API and interact with it.
+Даже без Интернета вы сможете видеть документацию к своему API и взаимодействовать с ним.

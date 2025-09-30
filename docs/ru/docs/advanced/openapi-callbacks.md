@@ -1,130 +1,130 @@
-# OpenAPI Callbacks { #openapi-callbacks }
+# Обратные вызовы в OpenAPI { #openapi-callbacks }
 
-You could create an API with a *path operation* that could trigger a request to an *external API* created by someone else (probably the same developer that would be *using* your API).
+Вы можете создать API с *операцией пути* (обработчиком пути), которая будет инициировать HTTP-запрос к *внешнему API*, созданному кем-то другим (скорее всего тем же разработчиком, который будет использовать ваш API).
 
-The process that happens when your API app calls the *external API* is named a "callback". Because the software that the external developer wrote sends a request to your API and then your API *calls back*, sending a request to an *external API* (that was probably created by the same developer).
+Процесс, происходящий, когда ваше приложение API обращается к *внешнему API*, называется «callback» (обратный вызов). Программное обеспечение, написанное внешним разработчиком, отправляет HTTP-запрос вашему API, а затем ваш API выполняет обратный вызов, отправляя HTTP-запрос во *внешний API* (который, вероятно, тоже создал тот же разработчик).
 
-In this case, you could want to document how that external API *should* look like. What *path operation* it should have, what body it should expect, what response it should return, etc.
+В этом случае вам может понадобиться задокументировать, как должно выглядеть это внешнее API: какую *операцию пути* оно должно иметь, какое тело запроса ожидать, какой ответ возвращать и т.д.
 
-## An app with callbacks { #an-app-with-callbacks }
+## Приложение с обратными вызовами { #an-app-with-callbacks }
 
-Let's see all this with an example.
+Давайте рассмотрим это на примере.
 
-Imagine you develop an app that allows creating invoices.
+Представьте, что вы разрабатываете приложение, позволяющее создавать счета.
 
-These invoices will have an `id`, `title` (optional), `customer`, and `total`.
+Эти счета будут иметь `id`, `title` (необязательный), `customer` и `total`.
 
-The user of your API (an external developer) will create an invoice in your API with a POST request.
+Пользователь вашего API (внешний разработчик) создаст счет в вашем API с помощью POST-запроса.
 
-Then your API will (let's imagine):
+Затем ваш API (предположим) сделает следующее:
 
-* Send the invoice to some customer of the external developer.
-* Collect the money.
-* Send a notification back to the API user (the external developer).
-    * This will be done by sending a POST request (from *your API*) to some *external API* provided by that external developer (this is the "callback").
+* Отправит счет клиенту внешнего разработчика.
+* Получит оплату.
+* Отправит уведомление обратно пользователю API (внешнему разработчику).
+    * Это будет сделано отправкой POST-запроса (из *вашего API*) в *внешний API*, предоставленный этим внешним разработчиком (это и есть «callback»).
 
-## The normal **FastAPI** app { #the-normal-fastapi-app }
+## Обычное приложение **FastAPI** { #the-normal-fastapi-app }
 
-Let's first see how the normal API app would look like before adding the callback.
+Сначала посмотрим, как будет выглядеть обычное приложение API до добавления обратного вызова.
 
-It will have a *path operation* that will receive an `Invoice` body, and a query parameter `callback_url` that will contain the URL for the callback.
+В нём будет *операция пути*, которая получит тело запроса `Invoice`, и query-параметр `callback_url`, содержащий URL для обратного вызова.
 
-This part is pretty normal, most of the code is probably already familiar to you:
+Эта часть вполне обычна, большая часть кода вам уже знакома:
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
 
-/// tip
+/// tip | Совет
 
-The `callback_url` query parameter uses a Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> type.
+Query-параметр `callback_url` использует тип Pydantic <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a>.
 
 ///
 
-The only new thing is the `callbacks=invoices_callback_router.routes` as an argument to the *path operation decorator*. We'll see what that is next.
+Единственное новое — это `callbacks=invoices_callback_router.routes` в качестве аргумента *декоратора операции пути*. Далее разберёмся, что это такое.
 
-## Documenting the callback { #documenting-the-callback }
+## Документирование обратного вызова { #documenting-the-callback }
 
-The actual callback code will depend heavily on your own API app.
+Реальный код обратного вызова будет сильно зависеть от вашего приложения API.
 
-And it will probably vary a lot from one app to the next.
+И, вероятно, он будет заметно отличаться от одного приложения к другому.
 
-It could be just one or two lines of code, like:
+Это могут быть буквально одна-две строки кода, например:
 
 ```Python
 callback_url = "https://example.com/api/v1/invoices/events/"
 httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
-But possibly the most important part of the callback is making sure that your API user (the external developer) implements the *external API* correctly, according to the data that *your API* is going to send in the request body of the callback, etc.
+Но, возможно, самая важная часть обратного вызова — это убедиться, что пользователь вашего API (внешний разработчик) правильно реализует *внешний API* в соответствии с данными, которые *ваш API* будет отправлять в теле запроса обратного вызова и т.п.
 
-So, what we will do next is add the code to document how that *external API* should look like to receive the callback from *your API*.
+Поэтому далее мы добавим код, документирующий, как должен выглядеть этот *внешний API*, чтобы получать обратный вызов от *вашего API*.
 
-That documentation will show up in the Swagger UI at `/docs` in your API, and it will let external developers know how to build the *external API*.
+Эта документация отобразится в Swagger UI по адресу `/docs` в вашем API и позволит внешним разработчикам понять, как построить *внешний API*.
 
-This example doesn't implement the callback itself (that could be just a line of code), only the documentation part.
+В этом примере сам обратный вызов не реализуется (это может быть всего одна строка кода), реализуется только часть с документацией.
 
-/// tip
+/// tip | Совет
 
-The actual callback is just an HTTP request.
+Сам обратный вызов — это всего лишь HTTP-запрос.
 
-When implementing the callback yourself, you could use something like <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> or <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
-
-///
-
-## Write the callback documentation code { #write-the-callback-documentation-code }
-
-This code won't be executed in your app, we only need it to *document* how that *external API* should look like.
-
-But, you already know how to easily create automatic documentation for an API with **FastAPI**.
-
-So we are going to use that same knowledge to document how the *external API* should look like... by creating the *path operation(s)* that the external API should implement (the ones your API will call).
-
-/// tip
-
-When writing the code to document a callback, it might be useful to imagine that you are that *external developer*. And that you are currently implementing the *external API*, not *your API*.
-
-Temporarily adopting this point of view (of the *external developer*) can help you feel like it's more obvious where to put the parameters, the Pydantic model for the body, for the response, etc. for that *external API*.
+Реализуя обратный вызов, вы можете использовать, например, <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> или <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 
 ///
 
-### Create a callback `APIRouter` { #create-a-callback-apirouter }
+## Напишите код документации обратного вызова { #write-the-callback-documentation-code }
 
-First create a new `APIRouter` that will contain one or more callbacks.
+Этот код не будет выполняться в вашем приложении, он нужен только для *документирования* того, как должен выглядеть *внешний API*.
+
+Но вы уже знаете, как легко получить автоматическую документацию для API с **FastAPI**.
+
+Мы используем те же знания, чтобы задокументировать, как должен выглядеть *внешний API*... создав *операции пути*, которые внешний API должен реализовать (те, которые ваш API будет вызывать).
+
+/// tip | Совет
+
+Когда вы пишете код для документирования обратного вызова, полезно представить, что вы — тот самый *внешний разработчик*. И что вы сейчас реализуете *внешний API*, а не *свой API*.
+
+Временное принятие этой точки зрения (внешнего разработчика) поможет интуитивно понять, куда поместить параметры, какую Pydantic-модель использовать для тела запроса, для ответа и т.д. во *внешнем API*.
+
+///
+
+### Создайте `APIRouter` для обратного вызова { #create-a-callback-apirouter }
+
+Сначала создайте новый `APIRouter`, который будет содержать один или несколько обратных вызовов.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
 
-### Create the callback *path operation* { #create-the-callback-path-operation }
+### Создайте *операцию пути* для обратного вызова { #create-the-callback-path-operation }
 
-To create the callback *path operation* use the same `APIRouter` you created above.
+Чтобы создать *операцию пути* для обратного вызова, используйте тот же `APIRouter`, который вы создали выше.
 
-It should look just like a normal FastAPI *path operation*:
+Она должна выглядеть как обычная *операция пути* FastAPI:
 
-* It should probably have a declaration of the body it should receive, e.g. `body: InvoiceEvent`.
-* And it could also have a declaration of the response it should return, e.g. `response_model=InvoiceEventReceived`.
+* Вероятно, в ней должно быть объявление тела запроса, например `body: InvoiceEvent`.
+* А также может быть объявление модели ответа, например `response_model=InvoiceEventReceived`.
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
 
-There are 2 main differences from a normal *path operation*:
+Есть 2 основных отличия от обычной *операции пути*:
 
-* It doesn't need to have any actual code, because your app will never call this code. It's only used to document the *external API*. So, the function could just have `pass`.
-* The *path* can contain an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (see more below) where it can use variables with parameters and parts of the original request sent to *your API*.
+* Ей не нужен реальный код, потому что ваше приложение никогда не будет вызывать эту функцию. Она используется только для документирования *внешнего API*. Поэтому в функции может быть просто `pass`.
+* *Путь* может содержать <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">выражение OpenAPI 3</a> (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
 
-### The callback path expression { #the-callback-path-expression }
+### Выражение пути для обратного вызова { #the-callback-path-expression }
 
-The callback *path* can have an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> that can contain parts of the original request sent to *your API*.
+*Путь* обратного вызова может содержать <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">выражение OpenAPI 3</a>, которое может включать части исходного запроса, отправленного *вашему API*.
 
-In this case, it's the `str`:
+В нашем случае это `str`:
 
 ```Python
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-So, if your API user (the external developer) sends a request to *your API* to:
+Итак, если пользователь вашего API (внешний разработчик) отправляет HTTP-запрос вашему API по адресу:
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
 ```
 
-with a JSON body of:
+с телом JSON:
 
 ```JSON
 {
@@ -134,13 +134,13 @@ with a JSON body of:
 }
 ```
 
-then *your API* will process the invoice, and at some point later, send a callback request to the `callback_url` (the *external API*):
+то *ваш API* обработает счёт и, в какой-то момент позже, отправит запрос обратного вызова на `callback_url` (*внешний API*):
 
 ```
 https://www.external.org/events/invoices/2expen51ve
 ```
 
-with a JSON body containing something like:
+с телом JSON примерно такого вида:
 
 ```JSON
 {
@@ -149,7 +149,7 @@ with a JSON body containing something like:
 }
 ```
 
-and it would expect a response from that *external API* with a JSON body like:
+и будет ожидать от *внешнего API* ответ с телом JSON вида:
 
 ```JSON
 {
@@ -157,30 +157,30 @@ and it would expect a response from that *external API* with a JSON body like:
 }
 ```
 
-/// tip
+/// tip | Совет
 
-Notice how the callback URL used contains the URL received as a query parameter in `callback_url` (`https://www.external.org/events`) and also the invoice `id` from inside of the JSON body (`2expen51ve`).
+Обратите внимание, что используемый URL обратного вызова содержит URL, полученный как query-параметр в `callback_url` (`https://www.external.org/events`), а также `id` счёта из тела JSON (`2expen51ve`).
 
 ///
 
-### Add the callback router { #add-the-callback-router }
+### Подключите маршрутизатор обратного вызова { #add-the-callback-router }
 
-At this point you have the *callback path operation(s)* needed (the one(s) that the *external developer*  should implement in the *external API*) in the callback router you created above.
+К этому моменту у вас есть необходимые *операции пути* обратного вызова (те, которые *внешний разработчик* должен реализовать во *внешнем API*) в созданном выше маршрутизаторе обратных вызовов.
 
-Now use the parameter `callbacks` in *your API's path operation decorator* to pass the attribute `.routes` (that's actually just a `list` of routes/*path operations*) from that callback router:
+Теперь используйте параметр `callbacks` в *декораторе операции пути вашего API*, чтобы передать атрибут `.routes` (это, по сути, просто `list` маршрутов/*операций пути*) из этого маршрутизатора обратных вызовов:
 
 {* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
 
-/// tip
+/// tip | Совет
 
-Notice that you are not passing the router itself (`invoices_callback_router`) to `callback=`, but the attribute `.routes`, as in `invoices_callback_router.routes`.
+Обратите внимание, что вы передаёте не сам маршрутизатор (`invoices_callback_router`) в `callback=`, а его атрибут `.routes`, то есть `invoices_callback_router.routes`.
 
 ///
 
-### Check the docs { #check-the-docs }
+### Проверьте документацию { #check-the-docs }
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Теперь вы можете запустить приложение и перейти по адресу <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see your docs including a "Callbacks" section for your *path operation* that shows how the *external API* should look like:
+Вы увидите документацию, включающую раздел «Callbacks» для вашей *операции пути*, который показывает, как должен выглядеть *внешний API*:
 
 <img src="/img/tutorial/openapi-callbacks/image01.png">

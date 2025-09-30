@@ -1,13 +1,13 @@
-# Testing WebSockets { #testing-websockets }
+# Тестирование WebSocket { #testing-websockets }
 
-You can use the same `TestClient` to test WebSockets.
+Вы можете использовать тот же `TestClient` для тестирования WebSocket.
 
-For this, you use the `TestClient` in a `with` statement, connecting to the WebSocket:
+Для этого используйте `TestClient` с менеджером контекста `with`, подключаясь к WebSocket:
 
 {* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
-/// note
+/// note | Примечание
 
-For more details, check Starlette's documentation for <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">testing WebSockets</a>.
+Подробности смотрите в документации Starlette по <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">тестированию WebSocket</a>.
 
 ///

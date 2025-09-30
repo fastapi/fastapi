@@ -1,56 +1,56 @@
-# Using the Request Directly { #using-the-request-directly }
+# Прямое использование Request { #using-the-request-directly }
 
-Up to now, you have been declaring the parts of the request that you need with their types.
+До этого вы объявляли нужные части HTTP-запроса вместе с их типами.
 
-Taking data from:
+Извлекая данные из:
 
-* The path as parameters.
-* Headers.
-* Cookies.
-* etc.
+* пути (как параметров),
+* HTTP-заголовков,
+* Cookie,
+* и т.д.
 
-And by doing so, **FastAPI** is validating that data, converting it and generating documentation for your API automatically.
+Тем самым **FastAPI** валидирует эти данные, преобразует их и автоматически генерирует документацию для вашего API.
 
-But there are situations where you might need to access the `Request` object directly.
+Но бывают ситуации, когда нужно обратиться к объекту `Request` напрямую.
 
-## Details about the `Request` object { #details-about-the-request-object }
+## Подробности об объекте `Request` { #details-about-the-request-object }
 
-As **FastAPI** is actually **Starlette** underneath, with a layer of several tools on top, you can use Starlette's <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> object directly when you need to.
+Так как под капотом **FastAPI** — это **Starlette** с дополнительным слоем инструментов, вы можете при необходимости напрямую использовать объект <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> из Starlette.
 
-It would also mean that if you get data from the `Request` object directly (for example, read the body) it won't be validated, converted or documented (with OpenAPI, for the automatic API user interface) by FastAPI.
+Это также означает, что если вы получаете данные напрямую из объекта `Request` (например, читаете тело запроса), то они не будут валидироваться, конвертироваться или документироваться (с OpenAPI, для автоматического пользовательского интерфейса API) средствами FastAPI.
 
-Although any other parameter declared normally (for example, the body with a Pydantic model) would still be validated, converted, annotated, etc.
+При этом любой другой параметр, объявленный обычным образом (например, тело запроса с Pydantic-моделью), по-прежнему будет валидироваться, конвертироваться, аннотироваться и т.д.
 
-But there are specific cases where it's useful to get the `Request` object.
+Но есть конкретные случаи, когда полезно получить объект `Request`.
 
-## Use the `Request` object directly { #use-the-request-object-directly }
+## Используйте объект `Request` напрямую { #use-the-request-object-directly }
 
-Let's imagine you want to get the client's IP address/host inside of your *path operation function*.
+Представим, что вы хотите получить IP-адрес/хост клиента внутри вашей *функции-обработчика пути*.
 
-For that you need to access the request directly.
+Для этого нужно обратиться к запросу напрямую.
 
 {* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
-By declaring a *path operation function* parameter with the type being the `Request` **FastAPI** will know to pass the `Request` in that parameter.
+Если объявить параметр *функции-обработчика пути* с типом `Request`, **FastAPI** поймёт, что нужно передать объект `Request` в этот параметр.
 
-/// tip
+/// tip | Совет
 
-Note that in this case, we are declaring a path parameter beside the request parameter.
+Обратите внимание, что в этом примере мы объявляем path-параметр вместе с параметром `Request`.
 
-So, the path parameter will be extracted, validated, converted to the specified type and annotated with OpenAPI.
+Таким образом, path-параметр будет извлечён, валидирован, преобразован к указанному типу и задокументирован в OpenAPI.
 
-The same way, you can declare any other parameter as normally, and additionally, get the `Request` too.
+Точно так же вы можете объявлять любые другие параметры как обычно и, дополнительно, получать `Request`.
 
 ///
 
-## `Request` documentation { #request-documentation }
+## Документация по `Request` { #request-documentation }
 
-You can read more details about the <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` object in the official Starlette documentation site</a>.
+Подробнее об <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">объекте `Request` на официальном сайте документации Starlette</a>.
 
-/// note | Technical Details
+/// note | Технические детали
 
-You could also use `from starlette.requests import Request`.
+Вы также можете использовать `from starlette.requests import Request`.
 
-**FastAPI** provides it directly just as a convenience for you, the developer. But it comes directly from Starlette.
+**FastAPI** предоставляет его напрямую для удобства разработчика, но сам объект приходит из Starlette.
 
 ///

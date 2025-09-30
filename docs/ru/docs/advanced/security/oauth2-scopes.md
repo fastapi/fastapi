@@ -1,274 +1,274 @@
 # OAuth2 scopes { #oauth2-scopes }
 
-You can use OAuth2 scopes directly with **FastAPI**, they are integrated to work seamlessly.
+Вы можете использовать OAuth2 scopes (scope - область, рамки) напрямую с **FastAPI** — они интегрированы и работают бесшовно.
 
-This would allow you to have a more fine-grained permission system, following the OAuth2 standard, integrated into your OpenAPI application (and the API docs).
+Это позволит вам иметь более детальную систему разрешений по стандарту OAuth2, интегрированную в ваше OpenAPI‑приложение (и документацию API).
 
-OAuth2 with scopes is the mechanism used by many big authentication providers, like Facebook, Google, GitHub, Microsoft, X (Twitter), etc. They use it to provide specific permissions to users and applications.
+OAuth2 со scopes — это механизм, который используют многие крупные провайдеры аутентификации: Facebook, Google, GitHub, Microsoft, X (Twitter) и т.д. Они применяют его, чтобы предоставлять конкретные разрешения пользователям и приложениям.
 
-Every time you "log in with" Facebook, Google, GitHub, Microsoft, X (Twitter), that application is using OAuth2 with scopes.
+Каждый раз, когда вы «входите через» Facebook, Google, GitHub, Microsoft, X (Twitter), это приложение использует OAuth2 со scopes.
 
-In this section you will see how to manage authentication and authorization with the same OAuth2 with scopes in your **FastAPI** application.
+В этом разделе вы увидите, как управлять аутентификацией и авторизацией с теми же OAuth2 scopes в вашем приложении на **FastAPI**.
 
-/// warning
+/// warning | Предупреждение
 
-This is a more or less advanced section. If you are just starting, you can skip it.
+Это более-менее продвинутый раздел. Если вы только начинаете, можете пропустить его.
 
-You don't necessarily need OAuth2 scopes, and you can handle authentication and authorization however you want.
+Вам не обязательно нужны OAuth2 scopes — аутентификацию и авторизацию можно реализовать любым нужным вам способом.
 
-But OAuth2 with scopes can be nicely integrated into your API (with OpenAPI) and your API docs.
+Но OAuth2 со scopes можно красиво интегрировать в ваш API (через OpenAPI) и документацию API.
 
-Nevertheless, you still enforce those scopes, or any other security/authorization requirement, however you need, in your code.
+Так или иначе, вы все равно будете применять эти scopes или какие-то другие требования безопасности/авторизации, как вам нужно, в вашем коде.
 
-In many cases, OAuth2 with scopes can be an overkill.
+Во многих случаях OAuth2 со scopes может быть избыточным.
 
-But if you know you need it, or you are curious, keep reading.
-
-///
-
-## OAuth2 scopes and OpenAPI { #oauth2-scopes-and-openapi }
-
-The OAuth2 specification defines "scopes" as a list of strings separated by spaces.
-
-The content of each of these strings can have any format, but should not contain spaces.
-
-These scopes represent "permissions".
-
-In OpenAPI (e.g. the API docs), you can define "security schemes".
-
-When one of these security schemes uses OAuth2, you can also declare and use scopes.
-
-Each "scope" is just a string (without spaces).
-
-They are normally used to declare specific security permissions, for example:
-
-* `users:read` or `users:write` are common examples.
-* `instagram_basic` is used by Facebook / Instagram.
-* `https://www.googleapis.com/auth/drive` is used by Google.
-
-/// info
-
-In OAuth2 a "scope" is just a string that declares a specific permission required.
-
-It doesn't matter if it has other characters like `:` or if it is a URL.
-
-Those details are implementation specific.
-
-For OAuth2 they are just strings.
+Но если вы знаете, что это нужно, или вам просто интересно — продолжайте чтение.
 
 ///
 
-## Global view { #global-view }
+## OAuth2 scopes и OpenAPI { #oauth2-scopes-and-openapi }
 
-First, let's quickly see the parts that change from the examples in the main **Tutorial - User Guide** for [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Now using OAuth2 scopes:
+Спецификация OAuth2 определяет «scopes» как список строк, разделённых пробелами.
+
+Содержимое каждой такой строки может иметь любой формат, но не должно содержать пробелов.
+
+Эти scopes представляют «разрешения».
+
+В OpenAPI (например, в документации API) можно определить «схемы безопасности» (security schemes).
+
+Когда одна из таких схем безопасности использует OAuth2, вы также можете объявлять и использовать scopes.
+
+Каждый «scope» — это просто строка (без пробелов).
+
+Обычно они используются для объявления конкретных разрешений безопасности, например:
+
+- `users:read` или `users:write` — распространённые примеры.
+- `instagram_basic` используется Facebook / Instagram.
+- `https://www.googleapis.com/auth/drive` используется Google.
+
+/// info | Информация
+
+В OAuth2 «scope» — это просто строка, объявляющая требуемое конкретное разрешение.
+
+Неважно, есть ли там другие символы, такие как `:`, или это URL.
+
+Эти детали зависят от реализации.
+
+Для OAuth2 это просто строки.
+
+///
+
+## Взгляд издалека { #global-view }
+
+Сначала быстро посмотрим, что изменилось по сравнению с примерами из основного раздела **Учебник - Руководство пользователя** — [OAuth2 с паролем (и хешированием), Bearer с JWT-токенами](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Теперь — с использованием OAuth2 scopes:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
-Now let's review those changes step by step.
+Теперь рассмотрим эти изменения шаг за шагом.
 
-## OAuth2 Security scheme { #oauth2-security-scheme }
+## OAuth2 схема безопасности { #oauth2-security-scheme }
 
-The first change is that now we are declaring the OAuth2 security scheme with two available scopes, `me` and `items`.
+Первое изменение — мы объявляем схему безопасности OAuth2 с двумя доступными scopes: `me` и `items`.
 
-The `scopes` parameter receives a `dict` with each scope as a key and the description as the value:
+Параметр `scopes` получает `dict`, где каждый scope — это ключ, а описание — значение:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 
-Because we are now declaring those scopes, they will show up in the API docs when you log-in/authorize.
+Так как теперь мы объявляем эти scopes, они появятся в документации API при входе/авторизации.
 
-And you will be able to select which scopes you want to give access to: `me` and `items`.
+И вы сможете выбрать, какие scopes вы хотите выдать доступ: `me` и `items`.
 
-This is the same mechanism used when you give permissions while logging in with Facebook, Google, GitHub, etc:
+Это тот же механизм, когда вы даёте разрешения при входе через Facebook, Google, GitHub и т.д.:
 
 <img src="/img/tutorial/security/image11.png">
 
-## JWT token with scopes { #jwt-token-with-scopes }
+## JWT-токены со scopes { #jwt-token-with-scopes }
 
-Now, modify the token *path operation* to return the scopes requested.
+Теперь измените операцию пути, выдающую токен, чтобы возвращать запрошенные scopes.
 
-We are still using the same `OAuth2PasswordRequestForm`. It includes a property `scopes` with a `list` of `str`, with each scope it received in the request.
+Мы всё ещё используем тот же `OAuth2PasswordRequestForm`. Он включает свойство `scopes` с `list` из `str` — каждый scope, полученный в запросе.
 
-And we return the scopes as part of the JWT token.
+И мы возвращаем scopes как часть JWT‑токена.
 
-/// danger
+/// danger | Опасность
 
-For simplicity, here we are just adding the scopes received directly to the token.
+Для простоты здесь мы просто добавляем полученные scopes прямо в токен.
 
-But in your application, for security, you should make sure you only add the scopes that the user is actually able to have, or the ones you have predefined.
+Но в вашем приложении, в целях безопасности, следует убедиться, что вы добавляете только те scopes, которые пользователь действительно может иметь, или те, которые вы заранее определили.
 
 ///
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
-## Declare scopes in *path operations* and dependencies { #declare-scopes-in-path-operations-and-dependencies }
+## Объявление scopes в *обработчиках путей* и зависимостях { #declare-scopes-in-path-operations-and-dependencies }
 
-Now we declare that the *path operation* for `/users/me/items/` requires the scope `items`.
+Теперь объявим, что операция пути для `/users/me/items/` требует scope `items`.
 
-For this, we import and use `Security` from `fastapi`.
+Для этого импортируем и используем `Security` из `fastapi`.
 
-You can use `Security` to declare dependencies (just like `Depends`), but `Security` also receives a parameter `scopes` with a list of scopes (strings).
+Вы можете использовать `Security` для объявления зависимостей (как `Depends`), но `Security` также принимает параметр `scopes` со списком scopes (строк).
 
-In this case, we pass a dependency function `get_current_active_user` to `Security` (the same way we would do with `Depends`).
+В этом случае мы передаём функцию‑зависимость `get_current_active_user` в `Security` (точно так же, как сделали бы с `Depends`).
 
-But we also pass a `list` of scopes, in this case with just one scope: `items` (it could have more).
+Но мы также передаём `list` scopes — в данном случае только один scope: `items` (их могло быть больше).
 
-And the dependency function `get_current_active_user` can also declare sub-dependencies, not only with `Depends` but also with `Security`. Declaring its own sub-dependency function (`get_current_user`), and more scope requirements.
+И функция‑зависимость `get_current_active_user` тоже может объявлять подзависимости не только через `Depends`, но и через `Security`, объявляя свою подзависимость (`get_current_user`) и дополнительные требования по scopes.
 
-In this case, it requires the scope `me` (it could require more than one scope).
+В данном случае требуется scope `me` (их также могло быть больше одного).
 
-/// note
+/// note | Примечание
 
-You don't necessarily need to add different scopes in different places.
+Вам не обязательно добавлять разные scopes в разных местах.
 
-We are doing it here to demonstrate how **FastAPI** handles scopes declared at different levels.
+Мы делаем это здесь, чтобы показать, как **FastAPI** обрабатывает scopes, объявленные на разных уровнях.
 
 ///
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Technical Details
+/// info | Технические детали
 
-`Security` is actually a subclass of `Depends`, and it has just one extra parameter that we'll see later.
+`Security` на самом деле является подклассом `Depends` и имеет всего один дополнительный параметр, который мы рассмотрим позже.
 
-But by using `Security` instead of `Depends`, **FastAPI** will know that it can declare security scopes, use them internally, and document the API with OpenAPI.
+Но используя `Security` вместо `Depends`, **FastAPI** будет знать, что можно объявлять security scopes, использовать их внутри и документировать API в OpenAPI.
 
-But when you import `Query`, `Path`, `Depends`, `Security` and others from `fastapi`, those are actually functions that return special classes.
+Однако когда вы импортируете `Query`, `Path`, `Depends`, `Security` и другие из `fastapi`, это на самом деле функции, возвращающие специальные классы.
 
 ///
 
-## Use `SecurityScopes` { #use-securityscopes }
+## Использование `SecurityScopes` { #use-securityscopes }
 
-Now update the dependency `get_current_user`.
+Теперь обновим зависимость `get_current_user`.
 
-This is the one used by the dependencies above.
+Именно её используют зависимости выше.
 
-Here's where we are using the same OAuth2 scheme we created before, declaring it as a dependency: `oauth2_scheme`.
+Здесь мы используем ту же схему OAuth2, созданную ранее, объявляя её как зависимость: `oauth2_scheme`.
 
-Because this dependency function doesn't have any scope requirements itself, we can use `Depends` with `oauth2_scheme`, we don't have to use `Security` when we don't need to specify security scopes.
+Поскольку у этой функции‑зависимости нет собственных требований по scopes, мы можем использовать `Depends` с `oauth2_scheme` — нам не нужно использовать `Security`, если не требуется указывать security scopes.
 
-We also declare a special parameter of type `SecurityScopes`, imported from `fastapi.security`.
+Мы также объявляем специальный параметр типа `SecurityScopes`, импортированный из `fastapi.security`.
 
-This `SecurityScopes` class is similar to `Request` (`Request` was used to get the request object directly).
+Класс `SecurityScopes` похож на `Request` (через `Request` мы получали сам объект запроса).
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## Use the `scopes` { #use-the-scopes }
+## Использование `scopes` { #use-the-scopes }
 
-The parameter `security_scopes` will be of type `SecurityScopes`.
+Параметр `security_scopes` будет типа `SecurityScopes`.
 
-It will have a property `scopes` with a list containing all the scopes required by itself and all the dependencies that use this as a sub-dependency. That means, all the "dependants"... this might sound confusing, it is explained again later below.
+У него есть свойство `scopes` со списком, содержащим все scopes, требуемые им самим и всеми зависимостями, использующими его как подзависимость. То есть всеми «зависящими»… это может звучать запутанно, ниже есть дополнительное объяснение.
 
-The `security_scopes` object (of class `SecurityScopes`) also provides a `scope_str` attribute with a single string, containing those scopes separated by spaces (we are going to use it).
+Объект `security_scopes` (класс `SecurityScopes`) также предоставляет атрибут `scope_str` — это одна строка с этими scopes, разделёнными пробелами (мы будем её использовать).
 
-We create an `HTTPException` that we can reuse (`raise`) later at several points.
+Мы создаём `HTTPException`, который можем переиспользовать (`raise`) в нескольких местах.
 
-In this exception, we include the scopes required (if any) as a string separated by spaces (using `scope_str`). We put that string containing the scopes in the `WWW-Authenticate` header (this is part of the spec).
+В этом исключении мы включаем требуемые scopes (если есть) в виде строки, разделённой пробелами (используя `scope_str`). Эту строку со scopes мы помещаем в HTTP‑заголовок `WWW-Authenticate` (это часть спецификации).
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
 
-## Verify the `username` and data shape { #verify-the-username-and-data-shape }
+## Проверка `username` и формата данных { #verify-the-username-and-data-shape }
 
-We verify that we get a `username`, and extract the scopes.
+Мы проверяем, что получили `username`, и извлекаем scopes.
 
-And then we validate that data with the Pydantic model (catching the `ValidationError` exception), and if we get an error reading the JWT token or validating the data with Pydantic, we raise the `HTTPException` we created before.
+Затем валидируем эти данные с помощью Pydantic‑модели (перехватывая исключение `ValidationError`), и если возникает ошибка при чтении JWT‑токена или при валидации данных с Pydantic, мы вызываем `HTTPException`, созданное ранее.
 
-For that, we update the Pydantic model `TokenData` with a new property `scopes`.
+Для этого мы обновляем Pydantic‑модель `TokenData`, добавляя новое свойство `scopes`.
 
-By validating the data with Pydantic we can make sure that we have, for example, exactly a `list` of `str` with the scopes and a `str` with the `username`.
+Валидируя данные с помощью Pydantic, мы можем удостовериться, что у нас, например, именно `list` из `str` со scopes и `str` с `username`.
 
-Instead of, for example, a `dict`, or something else, as it could break the application at some point later, making it a security risk.
+А не, скажем, `dict` или что‑то ещё — ведь это могло бы где‑то позже сломать приложение и создать риск для безопасности.
 
-We also verify that we have a user with that username, and if not, we raise that same exception we created before.
+Мы также проверяем, что существует пользователь с таким именем, и если нет — вызываем то же исключение, созданное ранее.
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
-## Verify the `scopes` { #verify-the-scopes }
+## Проверка `scopes` { #verify-the-scopes }
 
-We now verify that all the scopes required, by this dependency and all the dependants (including *path operations*), are included in the scopes provided in the token received, otherwise raise an `HTTPException`.
+Теперь проверяем, что все требуемые scopes — этой зависимостью и всеми зависящими (включая операции пути) — присутствуют среди scopes, предоставленных в полученном токене, иначе вызываем `HTTPException`.
 
-For this, we use `security_scopes.scopes`, that contains a `list` with all these scopes as `str`.
+Для этого используем `security_scopes.scopes`, содержащий `list` со всеми этими scopes как `str`.
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
-## Dependency tree and scopes { #dependency-tree-and-scopes }
+## Дерево зависимостей и scopes { #dependency-tree-and-scopes }
 
-Let's review again this dependency tree and the scopes.
+Ещё раз рассмотрим дерево зависимостей и scopes.
 
-As the `get_current_active_user` dependency has as a sub-dependency on `get_current_user`, the scope `"me"` declared at `get_current_active_user` will be included in the list of required scopes in the `security_scopes.scopes` passed to `get_current_user`.
+Так как у зависимости `get_current_active_user` есть подзависимость `get_current_user`, scope `"me"`, объявленный в `get_current_active_user`, будет включён в список требуемых scopes в `security_scopes.scopes`, передаваемый в `get_current_user`.
 
-The *path operation* itself also declares a scope, `"items"`, so this will also be in the list of `security_scopes.scopes` passed to `get_current_user`.
+Сама операция пути тоже объявляет scope — `"items"`, поэтому он также будет в списке `security_scopes.scopes`, передаваемом в `get_current_user`.
 
-Here's how the hierarchy of dependencies and scopes looks like:
+Иерархия зависимостей и scopes выглядит так:
 
-* The *path operation* `read_own_items` has:
-    * Required scopes `["items"]` with the dependency:
-    * `get_current_active_user`:
-        *  The dependency function `get_current_active_user` has:
-            * Required scopes `["me"]` with the dependency:
-            * `get_current_user`:
-                * The dependency function `get_current_user` has:
-                    * No scopes required by itself.
-                    * A dependency using `oauth2_scheme`.
-                    * A `security_scopes` parameter of type `SecurityScopes`:
-                        * This `security_scopes` parameter has a property `scopes` with a `list` containing all these scopes declared above, so:
-                            * `security_scopes.scopes` will contain `["me", "items"]` for the *path operation* `read_own_items`.
-                            * `security_scopes.scopes` will contain `["me"]` for the *path operation* `read_users_me`, because it is declared in the dependency `get_current_active_user`.
-                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scopes` either.
+- Операция пути `read_own_items`:
+  - Запрашивает scopes `["items"]` с зависимостью:
+  - `get_current_active_user`:
+    - Функция‑зависимость `get_current_active_user`:
+      - Запрашивает scopes `["me"]` с зависимостью:
+      - `get_current_user`:
+        - Функция‑зависимость `get_current_user`:
+          - Собственных scopes не запрашивает.
+          - Имеет зависимость, использующую `oauth2_scheme`.
+          - Имеет параметр `security_scopes` типа `SecurityScopes`:
+            - Этот параметр `security_scopes` имеет свойство `scopes` с `list`, содержащим все объявленные выше scopes, то есть:
+              - `security_scopes.scopes` будет содержать `["me", "items"]` для операции пути `read_own_items`.
+              - `security_scopes.scopes` будет содержать `["me"]` для операции пути `read_users_me`, потому что он объявлен в зависимости `get_current_active_user`.
+              - `security_scopes.scopes` будет содержать `[]` (ничего) для операции пути `read_system_status`, потому что там не объявлялся `Security` со `scopes`, и его зависимость `get_current_user` тоже не объявляет `scopes`.
 
-/// tip
+/// tip | Совет
 
-The important and "magic" thing here is that `get_current_user` will have a different list of `scopes` to check for each *path operation*.
+Важный и «магический» момент здесь в том, что `get_current_user` будет иметь разный список `scopes` для проверки для каждой операции пути.
 
-All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific *path operation*.
+Всё это зависит от `scopes`, объявленных в каждой операции пути и в каждой зависимости в дереве зависимостей конкретной операции пути.
 
 ///
 
-## More details about `SecurityScopes` { #more-details-about-securityscopes }
+## Больше деталей о `SecurityScopes` { #more-details-about-securityscopes }
 
-You can use `SecurityScopes` at any point, and in multiple places, it doesn't have to be at the "root" dependency.
+Вы можете использовать `SecurityScopes` в любой точке и в нескольких местах — необязательно в «корневой» зависимости.
 
-It will always have the security scopes declared in the current `Security` dependencies and all the dependants for **that specific** *path operation* and **that specific** dependency tree.
+Он всегда будет содержать security scopes, объявленные в текущих зависимостях `Security`, и всеми зависящими — для этой конкретной операции пути и этого конкретного дерева зависимостей.
 
-Because the `SecurityScopes` will have all the scopes declared by dependants, you can use it to verify that a token has the required scopes in a central dependency function, and then declare different scope requirements in different *path operations*.
+Поскольку `SecurityScopes` будет содержать все scopes, объявленные зависящими, вы можете использовать его, чтобы централизованно проверять наличие требуемых scopes в токене в одной функции‑зависимости, а затем объявлять разные требования по scopes в разных операциях пути.
 
-They will be checked independently for each *path operation*.
+Они будут проверяться независимо для каждой операции пути.
 
-## Check it { #check-it }
+## Проверим это { #check-it }
 
-If you open the API docs, you can authenticate and specify which scopes you want to authorize.
+Откройте документацию API — вы сможете аутентифицироваться и указать, какие scopes вы хотите авторизовать.
 
 <img src="/img/tutorial/security/image11.png">
 
-If you don't select any scope, you will be "authenticated", but when you try to access `/users/me/` or `/users/me/items/` you will get an error saying that you don't have enough permissions. You will still be able to access `/status/`.
+Если вы не выберете ни один scope, вы будете «аутентифицированы», но при попытке доступа к `/users/me/` или `/users/me/items/` получите ошибку о недостаточных разрешениях. При этом доступ к `/status/` будет возможен.
 
-And if you select the scope `me` but not the scope `items`, you will be able to access `/users/me/` but not `/users/me/items/`.
+Если вы выберете scope `me`, но не `items`, вы сможете получить доступ к `/users/me/`, но не к `/users/me/items/`.
 
-That's what would happen to a third party application that tried to access one of these *path operations* with a token provided by a user, depending on how many permissions the user gave the application.
+Так и будет происходить со сторонним приложением, которое попытается обратиться к одной из этих операций пути с токеном, предоставленным пользователем, — в зависимости от того, сколько разрешений пользователь дал приложению.
 
-## About third party integrations { #about-third-party-integrations }
+## О сторонних интеграциях { #about-third-party-integrations }
 
-In this example we are using the OAuth2 "password" flow.
+В этом примере мы используем OAuth2 «password flow» (аутентификация по паролю).
 
-This is appropriate when we are logging in to our own application, probably with our own frontend.
+Это уместно, когда мы входим в наше собственное приложение, вероятно, с нашим собственным фронтендом.
 
-Because we can trust it to receive the `username` and `password`, as we control it.
+Мы можем ему доверять при получении `username` и `password`, потому что он под нашим контролем.
 
-But if you are building an OAuth2 application that others would connect to (i.e., if you are building an authentication provider equivalent to Facebook, Google, GitHub, etc.) you should use one of the other flows.
+Но если вы создаёте OAuth2‑приложение, к которому будут подключаться другие (т.е. вы строите провайдера аутентификации наподобие Facebook, Google, GitHub и т.п.), вам следует использовать один из других «flows».
 
-The most common is the implicit flow.
+Самый распространённый — «implicit flow».
 
-The most secure is the code flow, but it's more complex to implement as it requires more steps. As it is more complex, many providers end up suggesting the implicit flow.
+Самый безопасный — «code flow», но он сложнее в реализации, так как требует больше шагов. Из‑за сложности многие провайдеры в итоге рекомендуют «implicit flow».
 
-/// note
+/// note | Примечание
 
-It's common that each authentication provider names their flows in a different way, to make it part of their brand.
+Часто каждый провайдер аутентификации называет свои «flows» по‑разному — как часть бренда.
 
-But in the end, they are implementing the same OAuth2 standard.
+Но в итоге они реализуют один и тот же стандарт OAuth2.
 
 ///
 
-**FastAPI** includes utilities for all these OAuth2 authentication flows in `fastapi.security.oauth2`.
+FastAPI включает утилиты для всех этих OAuth2‑flows в `fastapi.security.oauth2`.
 
-## `Security` in decorator `dependencies` { #security-in-decorator-dependencies }
+## `Security` в параметре `dependencies` декоратора { #security-in-decorator-dependencies }
 
-The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.
+Точно так же, как вы можете определить `list` из `Depends` в параметре `dependencies` декоратора (см. [Зависимости в декораторах операции пути](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), вы можете использовать там и `Security` со `scopes`.

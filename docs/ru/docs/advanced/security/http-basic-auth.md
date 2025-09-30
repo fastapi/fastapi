@@ -1,107 +1,107 @@
 # HTTP Basic Auth { #http-basic-auth }
 
-For the simplest cases, you can use HTTP Basic Auth.
+Для самых простых случаев можно использовать HTTP Basic Auth.
 
-In HTTP Basic Auth, the application expects a header that contains a username and a password.
+При HTTP Basic Auth приложение ожидает HTTP-заголовок, который содержит имя пользователя и пароль.
 
-If it doesn't receive it, it returns an HTTP 401 "Unauthorized" error.
+Если его нет, возвращается ошибка HTTP 401 «Unauthorized».
 
-And returns a header `WWW-Authenticate` with a value of `Basic`, and an optional `realm` parameter.
+Также возвращается заголовок `WWW-Authenticate` со значением `Basic` и необязательным параметром `realm`.
 
-That tells the browser to show the integrated prompt for a username and password.
+Это говорит браузеру показать встроенное окно запроса имени пользователя и пароля.
 
-Then, when you type that username and password, the browser sends them in the header automatically.
+Затем, когда вы вводите эти данные, браузер автоматически отправляет их в заголовке.
 
-## Simple HTTP Basic Auth { #simple-http-basic-auth }
+## Простой HTTP Basic Auth { #simple-http-basic-auth }
 
-* Import `HTTPBasic` and `HTTPBasicCredentials`.
-* Create a "`security` scheme" using `HTTPBasic`.
-* Use that `security` with a dependency in your *path operation*.
-* It returns an object of type `HTTPBasicCredentials`:
-    * It contains the `username` and `password` sent.
+* Импортируйте `HTTPBasic` и `HTTPBasicCredentials`.
+* Создайте «схему» `security` с помощью `HTTPBasic`.
+* Используйте эту `security` как зависимость в вашей *операции пути*.
+* Она возвращает объект типа `HTTPBasicCredentials`:
+    * Он содержит отправленные `username` и `password`.
 
 {* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
 
-When you try to open the URL for the first time (or click the "Execute" button in the docs) the browser will ask you for your username and password:
+Когда вы впервые откроете URL (или нажмёте кнопку «Execute» в документации), браузер попросит ввести имя пользователя и пароль:
 
 <img src="/img/tutorial/security/image12.png">
 
-## Check the username { #check-the-username }
+## Проверка имени пользователя { #check-the-username }
 
-Here's a more complete example.
+Вот более полный пример.
 
-Use a dependency to check if the username and password are correct.
+Используйте зависимость, чтобы проверить, корректны ли имя пользователя и пароль.
 
-For this, use the Python standard module <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> to check the username and password.
+Для этого используйте стандартный модуль Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> для проверки имени пользователя и пароля.
 
-`secrets.compare_digest()` needs to take `bytes` or a `str` that only contains ASCII characters (the ones in English), this means it wouldn't work with characters like `á`, as in `Sebastián`.
+`secrets.compare_digest()` должен получать `bytes` или `str`, который содержит только символы ASCII (английские символы). Это значит, что он не будет работать с символами вроде `á`, как в `Sebastián`.
 
-To handle that, we first convert the `username` and `password` to `bytes` encoding them with UTF-8.
+Чтобы это обработать, сначала преобразуем `username` и `password` в `bytes`, закодировав их в UTF-8.
 
-Then we can use `secrets.compare_digest()` to ensure that `credentials.username` is `"stanleyjobson"`, and that `credentials.password` is `"swordfish"`.
+Затем можно использовать `secrets.compare_digest()`, чтобы убедиться, что `credentials.username` равен `"stanleyjobson"`, а `credentials.password` — `"swordfish"`.
 
 {* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
 
-This would be similar to:
+Это было бы похоже на:
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # Вернуть ошибку
     ...
 ```
 
-But by using the `secrets.compare_digest()` it will be secure against a type of attacks called "timing attacks".
+Но используя `secrets.compare_digest()`, вы защитите код от атак типа «тайминговая атака» (атака по времени).
 
-### Timing Attacks { #timing-attacks }
+### Тайминговые атаки { #timing-attacks }
 
-But what's a "timing attack"?
+Что такое «тайминговая атака»?
 
-Let's imagine some attackers are trying to guess the username and password.
+Представим, что злоумышленники пытаются угадать имя пользователя и пароль.
 
-And they send a request with a username `johndoe` and a password `love123`.
+И они отправляют запрос с именем пользователя `johndoe` и паролем `love123`.
 
-Then the Python code in your application would be equivalent to something like:
+Тогда Python-код в вашем приложении будет эквивалентен чему-то вроде:
 
 ```Python
 if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-But right at the moment Python compares the first `j` in `johndoe` to the first `s` in `stanleyjobson`, it will return `False`, because it already knows that those two strings are not the same, thinking that "there's no need to waste more computation comparing the rest of the letters". And your application will say "Incorrect username or password".
+Но в момент, когда Python сравнит первую `j` в `johndoe` с первой `s` в `stanleyjobson`, он вернёт `False`, потому что уже ясно, что строки не совпадают, решив, что «нет смысла тратить ресурсы на сравнение остальных букв». И ваше приложение ответит «Неверное имя пользователя или пароль».
 
-But then the attackers try with username `stanleyjobsox` and password `love123`.
+Затем злоумышленники попробуют имя пользователя `stanleyjobsox` и пароль `love123`.
 
-And your application code does something like:
+И ваш код сделает что-то вроде:
 
 ```Python
 if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-Python will have to compare the whole `stanleyjobso` in both `stanleyjobsox` and `stanleyjobson` before realizing that both strings are not the same. So it will take some extra microseconds to reply back "Incorrect username or password".
+Pythonу придётся сравнить весь общий префикс `stanleyjobso` в `stanleyjobsox` и `stanleyjobson`, прежде чем понять, что строки отличаются. Поэтому на ответ «Неверное имя пользователя или пароль» уйдёт на несколько микросекунд больше.
 
-#### The time to answer helps the attackers { #the-time-to-answer-helps-the-attackers }
+#### Время ответа помогает злоумышленникам { #the-time-to-answer-helps-the-attackers }
 
-At that point, by noticing that the server took some microseconds longer to send the "Incorrect username or password" response, the attackers will know that they got _something_ right, some of the initial letters were right.
+Замечая, что сервер прислал «Неверное имя пользователя или пароль» на несколько микросекунд позже, злоумышленники поймут, что какая-то часть была угадана — начальные буквы верны.
 
-And then they can try again knowing that it's probably something more similar to `stanleyjobsox` than to `johndoe`.
+Тогда они могут попробовать снова, зная, что правильнее что-то ближе к `stanleyjobsox`, чем к `johndoe`.
 
-#### A "professional" attack { #a-professional-attack }
+#### «Профессиональная» атака { #a-professional-attack }
 
-Of course, the attackers would not try all this by hand, they would write a program to do it, possibly with thousands or millions of tests per second. And they would get just one extra correct letter at a time.
+Конечно, злоумышленники не будут делать всё это вручную — они напишут программу, возможно, с тысячами или миллионами попыток в секунду. И будут подбирать по одной дополнительной верной букве за раз.
 
-But doing that, in some minutes or hours the attackers would have guessed the correct username and password, with the "help" of our application, just using the time taken to answer.
+Так за минуты или часы они смогут угадать правильные имя пользователя и пароль — с «помощью» нашего приложения — используя лишь время, затраченное на ответ.
 
-#### Fix it with `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
+#### Исправление с помощью `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
-But in our code we are actually using `secrets.compare_digest()`.
+Но в нашем коде мы используем `secrets.compare_digest()`.
 
-In short, it will take the same time to compare `stanleyjobsox` to `stanleyjobson` than it takes to compare `johndoe` to `stanleyjobson`. And the same for the password.
+Вкратце: сравнение `stanleyjobsox` с `stanleyjobson` займёт столько же времени, сколько и сравнение `johndoe` с `stanleyjobson`. То же относится и к паролю.
 
-That way, using `secrets.compare_digest()` in your application code, it will be safe against this whole range of security attacks.
+Таким образом, используя `secrets.compare_digest()` в коде приложения, вы защитите его от всего этого класса атак на безопасность.
 
-### Return the error { #return-the-error }
+### Возврат ошибки { #return-the-error }
 
-After detecting that the credentials are incorrect, return an `HTTPException` with a status code 401 (the same returned when no credentials are provided) and add the header `WWW-Authenticate` to make the browser show the login prompt again:
+После того как обнаружено, что учётные данные некорректны, верните `HTTPException` со статус-кодом ответа 401 (тем же, что и при отсутствии учётных данных) и добавьте HTTP-заголовок `WWW-Authenticate`, чтобы браузер снова показал окно входа:
 
 {* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}

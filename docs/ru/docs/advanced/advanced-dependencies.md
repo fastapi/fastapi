@@ -1,65 +1,65 @@
-# Advanced Dependencies { #advanced-dependencies }
+# Продвинутые зависимости { #advanced-dependencies }
 
-## Parameterized dependencies { #parameterized-dependencies }
+## Параметризованные зависимости { #parameterized-dependencies }
 
-All the dependencies we have seen are a fixed function or class.
+Все зависимости, которые мы видели, — это конкретная функция или класс.
 
-But there could be cases where you want to be able to set parameters on the dependency, without having to declare many different functions or classes.
+Но бывают случаи, когда нужно задавать параметры зависимости, не объявляя много разных функций или классов.
 
-Let's imagine that we want to have a dependency that checks if the query parameter `q` contains some fixed content.
+Представим, что нам нужна зависимость, которая проверяет, содержит ли query-параметр `q` некоторое фиксированное содержимое.
 
-But we want to be able to parameterize that fixed content.
+Но при этом мы хотим иметь возможность параметризовать это фиксированное содержимое.
 
-## A "callable" instance { #a-callable-instance }
+## «Вызываемый» экземпляр { #a-callable-instance }
 
-In Python there's a way to make an instance of a class a "callable".
+В Python есть способ сделать экземпляр класса «вызываемым» объектом.
 
-Not the class itself (which is already a callable), but an instance of that class.
+Не сам класс (он уже является вызываемым), а экземпляр этого класса.
 
-To do that, we declare a method `__call__`:
+Для этого объявляем метод `__call__`:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[12] *}
 
-In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
+В этом случае именно `__call__` **FastAPI** использует для проверки дополнительных параметров и подзависимостей, и именно он будет вызван, чтобы позже передать значение параметру в вашей *функции-обработчике пути*.
 
-## Parameterize the instance { #parameterize-the-instance }
+## Параметризуем экземпляр { #parameterize-the-instance }
 
-And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
+Теперь мы можем использовать `__init__`, чтобы объявить параметры экземпляра, с помощью которых будем «параметризовать» зависимость:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[9] *}
 
-In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
+В этом случае **FastAPI** вовсе не трогает `__init__` и не зависит от него — мы используем его напрямую в нашем коде.
 
-## Create an instance { #create-an-instance }
+## Создаём экземпляр { #create-an-instance }
 
-We could create an instance of this class with:
+Мы можем создать экземпляр этого класса так:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[18] *}
 
-And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
+Так мы «параметризуем» нашу зависимость: теперь внутри неё хранится "bar" в атрибуте `checker.fixed_content`.
 
-## Use the instance as a dependency { #use-the-instance-as-a-dependency }
+## Используем экземпляр как зависимость { #use-the-instance-as-a-dependency }
 
-Then, we could use this `checker` in a `Depends(checker)`, instead of `Depends(FixedContentQueryChecker)`, because the dependency is the instance, `checker`, not the class itself.
+Затем мы можем использовать этот `checker` в `Depends(checker)` вместо `Depends(FixedContentQueryChecker)`, потому что зависимостью является экземпляр `checker`, а не сам класс.
 
-And when solving the dependency, **FastAPI** will call this `checker` like:
+И при разрешении зависимости **FastAPI** вызовет `checker` примерно так:
 
 ```Python
 checker(q="somequery")
 ```
 
-...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
+…и передаст возвращённое значение как значение зависимости в нашу *функцию-обработчике пути* в параметр `fixed_content_included`:
 
 {* ../../docs_src/dependencies/tutorial011_an_py39.py hl[22] *}
 
-/// tip
+/// tip | Совет
 
-All this might seem contrived. And it might not be very clear how is it useful yet.
+Все это может показаться притянутым за уши. И пока может быть не совсем понятно, чем это полезно.
 
-These examples are intentionally simple, but show how it all works.
+Эти примеры намеренно простые, но они показывают, как всё устроено.
 
-In the chapters about security, there are utility functions that are implemented in this same way.
+В главах про безопасность есть утилитные функции, реализованные тем же способом.
 
-If you understood all this, you already know how those utility tools for security work underneath.
+Если вы поняли всё выше, вы уже знаете, как «под капотом» работают эти утилиты для безопасности.
 
 ///

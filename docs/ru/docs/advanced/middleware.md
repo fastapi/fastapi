@@ -1,20 +1,20 @@
-# Advanced Middleware { #advanced-middleware }
+# Расширенное использование middleware { #advanced-middleware }
 
-In the main tutorial you read how to add [Custom Middleware](../tutorial/middleware.md){.internal-link target=_blank} to your application.
+В основном руководстве вы читали, как добавить [пользовательское middleware](../tutorial/middleware.md){.internal-link target=_blank} в ваше приложение.
 
-And then you also read how to handle [CORS with the `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
+А затем — как работать с [CORS с помощью `CORSMiddleware`](../tutorial/cors.md){.internal-link target=_blank}.
 
-In this section we'll see how to use other middlewares.
+В этом разделе посмотрим, как использовать другие middleware.
 
-## Adding ASGI middlewares { #adding-asgi-middlewares }
+## Добавление ASGI middleware { #adding-asgi-middlewares }
 
-As **FastAPI** is based on Starlette and implements the <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr> specification, you can use any ASGI middleware.
+Так как **FastAPI** основан на Starlette и реализует спецификацию <abbr title="Asynchronous Server Gateway Interface – Асинхронный шлюзовой интерфейс сервера">ASGI</abbr>, вы можете использовать любое ASGI middleware.
 
-A middleware doesn't have to be made for FastAPI or Starlette to work, as long as it follows the ASGI spec.
+Middleware не обязательно должно быть сделано специально для FastAPI или Starlette — достаточно, чтобы оно соответствовало спецификации ASGI.
 
-In general, ASGI middlewares are classes that expect to receive an ASGI app as the first argument.
+В общем случае ASGI middleware — это классы, которые ожидают получить ASGI‑приложение первым аргументом.
 
-So, in the documentation for third-party ASGI middlewares they will probably tell you to do something like:
+Поэтому в документации к сторонним ASGI middleware, скорее всего, вы увидите что‑то вроде:
 
 ```Python
 from unicorn import UnicornMiddleware
@@ -24,9 +24,9 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-But FastAPI (actually Starlette) provides a simpler way to do it that makes sure that the internal middlewares handle server errors and custom exception handlers work properly.
+Но FastAPI (точнее, Starlette) предоставляет более простой способ, который гарантирует корректную обработку внутренних ошибок сервера и корректную работу пользовательских обработчиков исключений.
 
-For that, you use `app.add_middleware()` (as in the example for CORS).
+Для этого используйте `app.add_middleware()` (как в примере с CORS).
 
 ```Python
 from fastapi import FastAPI
@@ -37,61 +37,61 @@ app = FastAPI()
 app.add_middleware(UnicornMiddleware, some_config="rainbow")
 ```
 
-`app.add_middleware()` receives a middleware class as the first argument and any additional arguments to be passed to the middleware.
+`app.add_middleware()` принимает класс middleware в качестве первого аргумента и любые дополнительные аргументы, которые будут переданы этому middleware.
 
-## Integrated middlewares { #integrated-middlewares }
+## Встроенные middleware { #integrated-middlewares }
 
-**FastAPI** includes several middlewares for common use cases, we'll see next how to use them.
+**FastAPI** включает несколько middleware для распространённых сценариев. Ниже рассмотрим, как их использовать.
 
-/// note | Technical Details
+/// note | Технические детали
 
-For the next examples, you could also use `from starlette.middleware.something import SomethingMiddleware`.
+В следующих примерах вы также можете использовать `from starlette.middleware.something import SomethingMiddleware`.
 
-**FastAPI** provides several middlewares in `fastapi.middleware` just as a convenience for you, the developer. But most of the available middlewares come directly from Starlette.
+**FastAPI** предоставляет несколько middleware в `fastapi.middleware` для удобства разработчика. Но большинство доступных middleware приходит напрямую из Starlette.
 
 ///
 
 ## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
-Enforces that all incoming requests must either be `https` or `wss`.
+Гарантирует, что все входящие запросы должны использовать либо `https`, либо `wss`.
 
-Any incoming request to `http` or `ws` will be redirected to the secure scheme instead.
+Любой входящий запрос по `http` или `ws` будет перенаправлен на безопасную схему.
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
-Enforces that all incoming requests have a correctly set `Host` header, in order to guard against HTTP Host Header attacks.
+Гарантирует, что во всех входящих запросах корректно установлен `Host`‑заголовок, чтобы защититься от атак на HTTP‑заголовок Host.
 
 {* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
-The following arguments are supported:
+Поддерживаются следующие аргументы:
 
-* `allowed_hosts` - A list of domain names that should be allowed as hostnames. Wildcard domains such as `*.example.com` are supported for matching subdomains. To allow any hostname either use `allowed_hosts=["*"]` or omit the middleware.
-* `www_redirect` - If set to True, requests to non-www versions of the allowed hosts will be redirected to their www counterparts. Defaults to `True`.
+- `allowed_hosts` — список доменных имён, которые следует разрешить как имена хостов. Подстановки вида `*.example.com` поддерживаются для сопоставления поддоменов. Чтобы разрешить любой хост, используйте либо `allowed_hosts=["*"]`, либо не добавляйте это middleware.
+- `www_redirect` — если установлено в True, запросы к не‑www версиям разрешённых хостов будут перенаправляться на их www‑аналоги. По умолчанию — `True`.
 
-If an incoming request does not validate correctly then a `400` response will be sent.
+Если входящий запрос не проходит валидацию, будет отправлен ответ `400`.
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-Handles GZip responses for any request that includes `"gzip"` in the `Accept-Encoding` header.
+Обрабатывает GZip‑ответы для любых запросов, которые включают `"gzip"` в заголовке `Accept-Encoding`.
 
-The middleware will handle both standard and streaming responses.
+Это middleware обрабатывает как обычные, так и потоковые ответы.
 
 {* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
-The following arguments are supported:
+Поддерживаются следующие аргументы:
 
-* `minimum_size` - Do not GZip responses that are smaller than this minimum size in bytes. Defaults to `500`.
-* `compresslevel` - Used during GZip compression. It is an integer ranging from 1 to 9. Defaults to `9`. Lower value results in faster compression but larger file sizes, while higher value results in slower compression but smaller file sizes.
+- `minimum_size` — не сжимать GZip‑ом ответы, размер которых меньше этого минимального значения в байтах. По умолчанию — `500`.
+- `compresslevel` — уровень GZip‑сжатия. Целое число от 1 до 9. По умолчанию — `9`. Более низкое значение — быстреее сжатие, но больший размер файла; более высокое значение — более медленное сжатие, но меньший размер файла.
 
-## Other middlewares { #other-middlewares }
+## Другие middleware { #other-middlewares }
 
-There are many other ASGI middlewares.
+Существует много других ASGI middleware.
 
-For example:
+Например:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+- <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">`ProxyHeadersMiddleware` от Uvicorn</a>
+- <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
-To see other available middlewares check <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlette's Middleware docs</a> and the <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.
+Чтобы увидеть другие доступные middleware, посмотрите <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">документацию по middleware в Starlette</a> и <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">список ASGI Awesome</a>.

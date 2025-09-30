@@ -1,90 +1,90 @@
-# LLM test file { #llm-test-file }
+# Тестовый файл LLM { #llm-test-file }
 
-This document tests if the <abbr title="Large Language Model">LLM</abbr>, which translates the documentation, understands the `general_prompt` in `scripts/translate.py` and the language specific prompt in `docs/{language code}/llm-prompt.md`. The language specific prompt is appended to `general_prompt`.
+Этот документ проверяет, понимает ли <abbr title="Large Language Model – Большая языковая модель">LLM</abbr>, переводящая документацию, `general_prompt` в `scripts/translate.py` и языковой специфичный промпт в `docs/{language code}/llm-prompt.md`. Языковой специфичный промпт добавляется к `general_prompt`.
 
-Tests added here will be seen by all designers of language specific prompts.
+Тесты, добавленные здесь, увидят все создатели языковых промптов.
 
-Use as follows:
+Использование:
 
-* Have a language specific prompt – `docs/{language code}/llm-prompt.md`.
-* Do a fresh translation of this document into your desired target language (see e.g. the `translate-page` command of the `translate.py`). This will create the translation under `docs/{language code}/docs/_llm-test.md`.
-* Check if things are okay in the translation.
-* If necessary, improve your language specific prompt, the general prompt, or the English document.
-* Then manually fix the remaining issues in the translation, so that it is a good translation.
-* Retranslate, having the good translation in place. The ideal result would be that the LLM makes no changes anymore to the translation. That means that the general prompt and your language specific prompt are as good as they can be (It will sometimes make a few seemingly random changes, the reason is that <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLMs are not deterministic algorithms</a>).
+* Подготовьте языковой специфичный промпт — `docs/{language code}/llm-prompt.md`.
+* Выполните новый перевод этого документа на нужный целевой язык (см., например, команду `translate-page` в `translate.py`). Это создаст перевод в `docs/{language code}/docs/_llm-test.md`.
+* Проверьте, всё ли в порядке в переводе.
+* При необходимости улучшите ваш языковой специфичный промпт, общий промпт или английский документ.
+* Затем вручную исправьте оставшиеся проблемы в переводе, чтобы он был хорошим.
+* Переведите заново, имея хороший перевод на месте. Идеальным результатом будет ситуация, когда LLM больше не вносит изменений в перевод. Это означает, что общий промпт и ваш языковой специфичный промпт максимально хороши (иногда он будет делать несколько, казалось бы, случайных изменений, причина в том, что <a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM — недетерминированные алгоритмы</a>).
 
-The tests:
+Тесты:
 
-## Code snippets { #code-snippets}
+## Фрагменты кода { #code-snippets}
 
-//// tab | Test
+//// tab | Тест
 
-This is a code snippet: `foo`. And this is another code snippet: `bar`. And another one: `baz quux`.
-
-////
-
-//// tab | Info
-
-Content of code snippets should be left as is.
-
-See section `### Content of code snippets` in the general prompt in `scripts/translate.py`.
+Это фрагмент кода: `foo`. А это ещё один фрагмент кода: `bar`. И ещё один: `baz quux`.
 
 ////
 
-## Quotes { #quotes }
+//// tab | Информация
 
-//// tab | Test
+Содержимое фрагментов кода должно оставаться как есть.
 
-Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
+См. раздел `### Content of code snippets` в общем промпте в `scripts/translate.py`.
 
-/// note
+////
 
-The LLM will probably translate this wrong. Interesting is only if it keeps the fixed translation when retranslating.
+## Кавычки { #quotes }
+
+//// tab | Тест
+
+Вчера мой друг написал: "Если вы написали incorrectly правильно, значит вы написали это неправильно". На что я ответил: "Верно, но 'incorrectly' — это неправильно, а не '"incorrectly"'".
+
+/// note | Примечание
+
+LLM, вероятно, переведёт это неправильно. Интересно лишь то, сохранит ли она фиксированный перевод при повторном переводе.
 
 ///
 
 ////
 
-//// tab | Info
+//// tab | Информация
 
-The prompt designer may choose if they want to convert neutral quotes to typographic quotes. It is okay to leave them as is.
+Автор промпта может выбрать, хочет ли он преобразовывать нейтральные кавычки в типографские. Допускается оставить их как есть.
 
-See for example section `### Quotes` in `docs/de/llm-prompt.md`.
+См., например, раздел `### Quotes` в `docs/de/llm-prompt.md`.
 
 ////
 
-## Quotes in code snippets { #quotes-in-code-snippets}
+## Кавычки во фрагментах кода { #quotes-in-code-snippets}
 
-//// tab | Test
+//// tab | Тест
 
 `pip install "foo[bar]"`
 
-Examples for string literals in code snippets: `"this"`, `'that'`.
+Примеры строковых литералов во фрагментах кода: `"this"`, `'that'`.
 
-A difficult example for string literals in code snippets: `f"I like {'oranges' if orange else "apples"}"`
+Сложный пример строковых литералов во фрагментах кода: `f"I like {'oranges' if orange else "apples"}"`
 
-Hardcore: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"`
-
-////
-
-//// tab | Info
-
-... However, quotes inside code snippets must stay as is.
+Хардкор: `Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'"`
 
 ////
 
-## code blocks { #code-blocks }
+//// tab | Информация
 
-//// tab | Test
+... Однако кавычки внутри фрагментов кода должны оставаться как есть.
 
-A Bash code example...
+////
+
+## Блоки кода { #code-blocks }
+
+//// tab | Тест
+
+Пример кода Bash...
 
 ```bash
-# Print a greeting to the universe
+# Вывести приветствие вселенной
 echo "Hello universe"
 ```
 
-...and a console code example...
+...и пример вывода в консоли...
 
 ```console
 $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid">main.py</u>
@@ -92,412 +92,412 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
         Searching for package file structure
 ```
 
-...and another console code example...
+...и ещё один пример вывода в консоли...
 
 ```console
-// Create a directory "Code"
+// Создать директорию "Code"
 $ mkdir code
-// Switch into that directory
+// Перейти в эту директорию
 $ cd code
 ```
 
-...and a Python code example...
+...и пример кода на Python...
 
 ```Python
-wont_work()  # This won't work 😱
-works(foo="bar")  # This works 🎉
+wont_work()  # Это не сработает 😱
+works(foo="bar")  # Это работает 🎉
 ```
 
-...and that's it.
+...и на этом всё.
 
 ////
 
-//// tab | Info
+//// tab | Информация
 
-Code in code blocks should not be modified, with the exception of comments.
+Код в блоках кода не должен изменяться, за исключением комментариев.
 
-See section `### Content of code blocks` in the general prompt in `scripts/translate.py`.
+См. раздел `### Content of code blocks` в общем промпте в `scripts/translate.py`.
 
 ////
 
-## Tabs and colored boxes { #tabs-and-colored-boxes }
+## Вкладки и цветные блоки { #tabs-and-colored-boxes }
 
-//// tab | Test
+//// tab | Тест
 
-/// info
-Some text
+/// info | Информация
+Некоторый текст
 ///
 
-/// note
-Some text
+/// note | Примечание
+Некоторый текст
 ///
 
-/// note | Technical details
-Some text
+/// note | Технические подробности
+Некоторый текст
 ///
 
-/// check
-Some text
+/// check | Проверка
+Некоторый текст
 ///
 
-/// tip
-Some text
+/// tip | Совет
+Некоторый текст
 ///
 
-/// warning
-Some text
+/// warning | Предупреждение
+Некоторый текст
 ///
 
-/// danger
-Some text
+/// danger | Опасность
+Некоторый текст
 ///
 
 ////
 
-//// tab | Info
+//// tab | Информация
 
-Tabs and `Info`/`Note`/`Warning`/etc. blocks should have the translation of their title added after a vertical bar (`|`).
+Для вкладок и блоков `Info`/`Note`/`Warning`/и т.п. нужно добавить перевод их заголовка после вертикальной черты (`|`).
 
-See sections `### Special blocks` and `### Tab blocks` in the general prompt in `scripts/translate.py`.
-
-////
-
-## Web- and internal links { #web-and-internal-links }
-
-//// tab | Test
-
-The link text should get translated, the link address should remain unchaged:
-
-* [Link to heading above](#code-snippets)
-* [Internal link](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">External link</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Link to a style</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Link to a script</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Link to an image</a>
-
-The link text should get translated, the link address should point to the translation:
-
-* <a href="https://fastapi.tiangolo.com/" class="external-link" target="_blank">FastAPI link</a>
+См. разделы `### Special blocks` и `### Tab blocks` в общем промпте в `scripts/translate.py`.
 
 ////
 
-//// tab | Info
+## Веб- и внутренние ссылки { #web-and-internal-links }
 
-Links should be translated, but their address shall remain unchanged. An exception are absolute links to pages of the FastAPI documentation. In that case it should link to the translation.
+//// tab | Тест
 
-See section `### Links` in the general prompt in `scripts/translate.py`.
+Текст ссылок должен переводиться, адрес ссылки не должен изменяться:
 
-////
+* [Ссылка на заголовок выше](#code-snippets)
+* [Внутренняя ссылка](index.md#installation){.internal-link target=_blank}
+* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">Внешняя ссылка</a>
+* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">Ссылка на стиль</a>
+* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">Ссылка на скрипт</a>
+* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">Ссылка на изображение</a>
 
-## HTML "abbr" elements { #html-abbr-elements }
+Текст ссылок должен переводиться, адрес ссылки должен указывать на перевод:
 
-//// tab | Test
-
-Here some things wrapped in HTML "abbr" elements (Some are invented):
-
-### The abbr gives a full phrase { #the-abbr-gives-a-full-phrase }
-
-* <abbr title="Getting Things Done">GTD</abbr>
-* <abbr title="less than"><code>lt</code></abbr>
-* <abbr title="XML Web Token">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
-
-### The abbr gives an explanation { #the-abbr-gives-an-explanation }
-
-* <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>
-* <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>
-
-### The abbr gives a full phrase and an explanation { #the-abbr-gives-a-full-phrase-and-an-explanation }
-
-* <abbr title="Mozilla Developer Network: documentation for developers, written by the Firefox people">MDN</abbr>
-* <abbr title="Input/Output: disk reading or writing, network communications.">I/O</abbr>.
+* <a href="https://fastapi.tiangolo.com/ru/" class="external-link" target="_blank">Ссылка на FastAPI</a>
 
 ////
 
-//// tab | Info
+//// tab | Информация
 
-"title" attributes of "abbr" elements are translated following some specific instructions.
+Ссылки должны переводиться, но их адреса не должны изменяться. Исключение — абсолютные ссылки на страницы документации FastAPI. В этом случае ссылка должна вести на перевод.
 
-Translations can add their own "abbr" elements which the LLM should not remove. E.g. to explain English words.
-
-See section `### HTML abbr elements` in the general prompt in `scripts/translate.py`.
+См. раздел `### Links` в общем промпте в `scripts/translate.py`.
 
 ////
 
-## Headings { #headings }
+## HTML-элементы "abbr" { #html-abbr-elements }
 
-//// tab | Test
+//// tab | Тест
 
-### Develop a webapp - a tutorial { #develop-a-webapp-a-tutorial }
+Вот некоторые элементы, обёрнутые в HTML-элементы "abbr" (часть выдумана):
 
-Hello.
+### abbr даёт полную расшифровку { #the-abbr-gives-a-full-phrase }
 
-### Type hints and -annotations { #type-hints-and-annotations }
+* <abbr title="Getting Things Done – Как привести дела в порядок">GTD</abbr>
+* <abbr title="less than – меньше чем"><code>lt</code></abbr>
+* <abbr title="XML Web Token – XML веб‑токен">XWT</abbr>
+* <abbr title="Parallel Server Gateway Interface – Параллельный серверный интерфейс шлюза">PSGI</abbr>
 
-Hello again.
+### abbr даёт объяснение { #the-abbr-gives-an-explanation }
 
-### Super- and subclasses { #super-and-subclasses }
+* <abbr title="Группа машин, которые настроены на соединение и совместную работу определённым образом.">кластер</abbr>
+* <abbr title="Метод машинного обучения, который использует искусственные нейронные сети с многочисленными скрытыми слоями между входным и выходным слоями, тем самым формируя сложную внутреннюю структуру">Глубокое обучение</abbr>
 
-Hello again.
+### abbr даёт полную расшифровку и объяснение { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-////
-
-//// tab | Info
-
-The only hard rule for headings is that the LLM leaves the hash part inside curly brackets unchanged, which ensures that links do not break.
-
-See section `### Headings` in the general prompt in `scripts/translate.py`.
-
-For some language specific instructions, see e.g. section `### Headings` in `docs/de/llm-prompt.md`.
+* <abbr title="Mozilla Developer Network – Сеть разработчиков Mozilla: документация для разработчиков, созданная командой Firefox">MDN</abbr>
+* <abbr title="Input/Output – Ввод/Вывод: чтение или запись на диск, сетевое взаимодействие.">I/O</abbr>.
 
 ////
 
-## Terms used in the docs { #terms-used-in-the-docs }
+//// tab | Информация
 
-//// tab | Test
+Атрибуты "title" элементов "abbr" переводятся по определённым правилам.
 
-* you
-* your
+Переводы могут добавлять свои собственные элементы "abbr", которые LLM не должна удалять. Например, чтобы объяснить английские слова.
 
-* e.g.
-* etc.
+См. раздел `### HTML abbr elements` в общем промпте в `scripts/translate.py`.
 
-* `foo` as an `int`
-* `bar` as a `str`
-* `baz` as a `list`
+////
 
-* the Tutorial - User guide
-* the Advanced User Guide
-* the SQLModel docs
-* the API docs
-* the automatic docs
+## Заголовки { #headings }
 
-* Data Science
-* Deep Learning
-* Machine Learning
-* Dependency Injection
-* HTTP Basic authentication
+//// tab | Тест
+
+### Разработка веб‑приложения — руководство { #develop-a-webapp-a-tutorial }
+
+Привет.
+
+### Аннотации типов и -аннотации { #type-hints-and-annotations }
+
+Снова привет.
+
+### Супер- и подклассы { #super-and-subclasses }
+
+Снова привет.
+
+////
+
+//// tab | Информация
+
+Единственное жёсткое правило для заголовков — LLM должна оставить часть хеша в фигурных скобках без изменений, чтобы ссылки не ломались.
+
+См. раздел `### Headings` в общем промпте в `scripts/translate.py`.
+
+Для некоторых языковых инструкций см., например, раздел `### Headings` в `docs/de/llm-prompt.md`.
+
+////
+
+## Термины, используемые в документации { #terms-used-in-the-docs }
+
+//// tab | Тест
+
+* вы
+* ваш
+
+* например
+* и т.д.
+
+* `foo` как `int`
+* `bar` как `str`
+* `baz` как `list`
+
+* Учебник — Руководство пользователя
+* Расширенное руководство пользователя
+* Документация по SQLModel
+* Документация API
+* Автоматическая документация
+
+* Наука о данных
+* Глубокое обучение
+* Машинное обучение
+* Внедрение зависимостей
+* Аутентификация HTTP Basic
 * HTTP Digest
-* ISO format
-* the JSON Schema standard
-* the JSON schema
-* the schema definition
-* Password Flow
-* Mobile
+* формат ISO
+* стандарт JSON Schema
+* JSON-схема
+* определение схемы
+* password flow
+* Мобильный
 
-* deprecated
-* designed
-* invalid
-* on the fly
-* standard
-* default
-* case-sensitive
-* case-insensitive
+* устаревший
+* спроектированный
+* некорректный
+* на лету
+* стандарт
+* по умолчанию
+* чувствительный к регистру
+* нечувствительный к регистру
 
-* to serve the application
-* to serve the page
+* обслуживать приложение
+* отдавать страницу
 
-* the app
-* the application
+* приложение
+* приложение
 
-* the request
-* the response
-* the error response
+* HTTP-запрос
+* HTTP-ответ
+* ответ с ошибкой
 
-* the path operation
-* the path operation decorator
-* the path operation function
+* операция пути
+* декоратор операции пути
+* функция-обработчик пути
 
-* the body
-* the request body
-* the response body
-* the JSON body
-* the form body
-* the file body
-* the function body
+* тело
+* тело запроса
+* тело ответа
+* JSON-тело
+* тело формы
+* тело файла
+* тело функции
 
-* the parameter
-* the body parameter
-* the path parameter
-* the query parameter
-* the cookie parameter
-* the header parameter
-* the form parameter
-* the function parameter
+* параметр
+* body-параметр
+* path-параметр
+* query-параметр
+* cookie-параметр
+* параметр заголовка
+* параметр формы
+* параметр функции
 
-* the event
-* the startup event
-* the startup of the server
-* the shutdown event
-* the lifespan event
+* событие
+* событие запуска
+* запуск сервера
+* событие остановки
+* событие lifespan
 
-* the handler
-* the event handler
-* the exception handler
-* to handle
+* обработчик
+* обработчик события
+* обработчик исключений
+* обрабатывать
 
-* the model
-* the Pydantic model
-* the data model
-* the database model
-* the form model
-* the model object
+* модель
+* Pydantic-модель
+* модель данных
+* модель базы данных
+* модель формы
+* объект модели
 
-* the class
-* the base class
-* the parent class
-* the subclass
-* the child class
-* the sibling class
-* the class method
+* класс
+* базовый класс
+* родительский класс
+* подкласс
+* дочерний класс
+* родственный класс
+* метод класса
 
-* the header
-* the headers
-* the authorization header
-* the `Authorization` header
-* the forwarded header
+* заголовок
+* HTTP-заголовки
+* заголовок авторизации
+* заголовок `Authorization`
+* заголовок `Forwarded`
 
-* the dependency injection system
-* the dependency
-* the dependable
-* the dependant
+* система внедрения зависимостей
+* зависимость
+* зависимый объект
+* зависимый
 
-* I/O bound
-* CPU bound
-* concurrency
-* parallelism
-* multiprocessing
+* ограниченный вводом/выводом
+* ограниченный процессором
+* конкурентность
+* параллелизм
+* многопроцессность
 
-* the env var
-* the environment variable
-* the `PATH`
-* the `PATH` variable
+* переменная окружения
+* переменная окружения
+* `PATH`
+* переменная `PATH`
 
-* the authentication
-* the authentication provider
-* the authorization
-* the authorization form
-* the authorization provider
-* the user authenticates
-* the system authenticates the user
+* аутентификация
+* провайдер аутентификации
+* авторизация
+* форма авторизации
+* провайдер авторизации
+* пользователь аутентифицируется
+* система аутентифицирует пользователя
 
-* the CLI
-* the command line interface
+* CLI
+* интерфейс командной строки
 
-* the server
-* the client
+* сервер
+* клиент
 
-* the cloud provider
-* the cloud service
+* облачный провайдер
+* облачный сервис
 
-* the development
-* the development stages
+* разработка
+* этапы разработки
 
-* the dict
-* the dictionary
-* the enumeration
-* the enum
-* the enum member
+* dict
+* словарь
+* перечисление
+* enum
+* член перечисления
 
-* the encoder
-* the decoder
-* to encode
-* to decode
+* кодировщик
+* декодировщик
+* кодировать
+* декодировать
 
-* the exception
-* to raise
+* исключение
+* вызвать
 
-* the expression
-* the statement
+* выражение
+* оператор
 
-* the frontend
-* the backend
+* фронтенд
+* бэкенд
 
-* the GitHub discussion
-* the GitHub issue
+* обсуждение на GitHub
+* Issue на GitHub (тикет/обращение)
 
-* the performance
-* the performance optimization
+* производительность
+* оптимизация производительности
 
-* the return type
-* the return value
+* тип возвращаемого значения
+* возвращаемое значение
 
-* the security
-* the security scheme
+* безопасность
+* схема безопасности
 
-* the task
-* the background task
-* the task function
+* задача
+* фоновая задача
+* функция задачи
 
-* the template
-* the template engine
+* шаблон
+* шаблонизатор
 
-* the type annotation
-* the type hint
+* аннотация типов
+* аннотация типов
 
-* the server worker
-* the Uvicorn worker
-* the Gunicorn Worker
-* the worker process
-* the worker class
-* the workload
+* воркер сервера
+* воркер Uvicorn
+* воркер Gunicorn
+* воркер-процесс
+* класс воркера
+* рабочая нагрузка
 
-* the deployment
-* to deploy
+* деплой
+* развернуть
 
-* the SDK
-* the software development kit
+* SDK
+* набор средств разработки ПО
 
-* the `APIRouter`
-* the `requirements.txt`
-* the Bearer Token
-* the breaking change
-* the bug
-* the button
-* the callable
-* the code
-* the commit
-* the context manager
-* the coroutine
-* the database session
-* the disk
-* the domain
-* the engine
-* the fake X
-* the HTTP GET method
-* the item
-* the library
-* the lifespan
-* the lock
-* the middleware
-* the mobile application
-* the module
-* the mounting
-* the network
-* the origin
-* the override
-* the payload
-* the processor
-* the property
-* the proxy
-* the pull request
-* the query
-* the RAM
-* the remote machine
-* the status code
-* the string
-* the tag
-* the web framework
-* the wildcard
-* to return
-* to validate
+* `APIRouter`
+* `requirements.txt`
+* токен Bearer
+* несовместимое изменение
+* баг
+* кнопка
+* вызываемый объект
+* код
+* коммит
+* менеджер контекста
+* корутина
+* сессия базы данных
+* диск
+* домен
+* движок
+* фиктивный X
+* метод HTTP GET
+* элемент
+* библиотека
+* lifespan
+* блокировка
+* middleware (Промежуточный слой)
+* мобильное приложение
+* модуль
+* монтирование
+* сеть
+* origin (источник)
+* переопределение
+* полезная нагрузка
+* процессор
+* свойство
+* прокси
+* пулл-реквест (запрос на изменение)
+* запрос
+* ОЗУ
+* удалённая машина
+* статус-код
+* строка
+* тег
+* веб‑фреймворк
+* подстановочный знак
+* вернуть
+* валидировать
 
 ////
 
-//// tab | Info
+//// tab | Информация
 
-This is a not complete and not normative list of (mostly) technical terms seen in the docs. It may be helpful for the prompt designer to figure out for which terms the LLM needs a helping hand. For example when it keeps reverting a good translation to a suboptimal translation. Or when it has problems conjugating/declinating a term in your language.
+Это неполный и ненормативный список (в основном) технических терминов, встречающихся в документации. Он может помочь автору промпта понять, по каким терминам LLM нужна подсказка. Например, когда она продолжает возвращать действительно хороший перевод к неоптимальному. Или когда у неё возникают проблемы со склонением/спряжением термина на вашем языке.
 
-See e.g. section `### List of English terms and their preferred German translations` in `docs/de/llm-prompt.md`.
+См., например, раздел `### List of English terms and their preferred German translations` в `docs/de/llm-prompt.md`.
 
 ////

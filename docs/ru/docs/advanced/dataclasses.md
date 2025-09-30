@@ -1,95 +1,95 @@
-# Using Dataclasses { #using-dataclasses }
+# Использование dataclasses { #using-dataclasses }
 
-FastAPI is built on top of **Pydantic**, and I have been showing you how to use Pydantic models to declare requests and responses.
+FastAPI построен поверх **Pydantic**, и я показывал вам, как использовать Pydantic-модели для объявления HTTP-запросов и HTTP-ответов.
 
-But FastAPI also supports using <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> the same way:
+Но FastAPI также поддерживает использование <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> тем же способом:
 
 {* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
 
-This is still supported thanks to **Pydantic**, as it has <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
+Это по-прежнему поддерживается благодаря **Pydantic**, так как в нём есть <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">встроенная поддержка `dataclasses`</a>.
 
-So, even with the code above that doesn't use Pydantic explicitly, FastAPI is using Pydantic to convert those standard dataclasses to Pydantic's own flavor of dataclasses.
+Так что даже если в коде выше Pydantic не используется явно, FastAPI использует Pydantic, чтобы конвертировать стандартные dataclasses в собственный вариант dataclasses от Pydantic.
 
-And of course, it supports the same:
+И, конечно, поддерживаются те же возможности:
 
-* data validation
-* data serialization
-* data documentation, etc.
+- валидация данных
+- сериализация данных
+- документирование данных и т.д.
 
-This works the same way as with Pydantic models. And it is actually achieved in the same way underneath, using Pydantic.
+Это работает так же, как с Pydantic-моделями. И на самом деле под капотом это достигается тем же образом, с использованием Pydantic.
 
-/// info
+/// info | Информация
 
-Keep in mind that dataclasses can't do everything Pydantic models can do.
+Помните, что dataclasses не умеют всего того, что умеют Pydantic-модели.
 
-So, you might still need to use Pydantic models.
+Поэтому вам всё ещё может потребоваться использовать Pydantic-модели.
 
-But if you have a bunch of dataclasses laying around, this is a nice trick to use them to power a web API using FastAPI. 🤓
+Но если у вас уже есть набор dataclasses, это полезный приём — задействовать их для веб-API на FastAPI. 🤓
 
 ///
 
-## Dataclasses in `response_model` { #dataclasses-in-response-model }
+## Dataclasses в `response_model` { #dataclasses-in-response-model }
 
-You can also use `dataclasses` in the `response_model` parameter:
+Вы также можете использовать `dataclasses` в параметре `response_model`:
 
 {* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
 
-The dataclass will be automatically converted to a Pydantic dataclass.
+Этот dataclass будет автоматически преобразован в Pydantic dataclass.
 
-This way, its schema will show up in the API docs user interface:
+Таким образом, его схема появится в интерфейсе документации API:
 
 <img src="/img/tutorial/dataclasses/image01.png">
 
-## Dataclasses in Nested Data Structures { #dataclasses-in-nested-data-structures }
+## Dataclasses во вложенных структурах данных { #dataclasses-in-nested-data-structures }
 
-You can also combine `dataclasses` with other type annotations to make nested data structures.
+Вы также можете комбинировать `dataclasses` с другими аннотациями типов, чтобы создавать вложенные структуры данных.
 
-In some cases, you might still have to use Pydantic's version of `dataclasses`. For example, if you have errors with the automatically generated API documentation.
+В некоторых случаях вам всё же может понадобиться использовать версию `dataclasses` из Pydantic. Например, если у вас возникают ошибки с автоматически генерируемой документацией API.
 
-In that case, you can simply swap the standard `dataclasses` with `pydantic.dataclasses`, which is a drop-in replacement:
+В таком случае вы можете просто заменить стандартные `dataclasses` на `pydantic.dataclasses`, которая является полностью совместимой заменой (drop-in replacement):
 
 {* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
 
-1. We still import `field` from standard `dataclasses`.
+1. Мы по-прежнему импортируем `field` из стандартных `dataclasses`.
 
-2. `pydantic.dataclasses` is a drop-in replacement for `dataclasses`.
+2. `pydantic.dataclasses` — полностью совместимая замена (drop-in replacement) для `dataclasses`.
 
-3. The `Author` dataclass includes a list of `Item` dataclasses.
+3. Dataclass `Author` содержит список dataclass `Item`.
 
-4. The `Author` dataclass is used as the `response_model` parameter.
+4. Dataclass `Author` используется в параметре `response_model`.
 
-5. You can use other standard type annotations with dataclasses as the request body.
+5. Вы можете использовать и другие стандартные аннотации типов вместе с dataclasses в качестве тела запроса.
 
-    In this case, it's a list of `Item` dataclasses.
+    В этом случае это список dataclass `Item`.
 
-6. Here we are returning a dictionary that contains `items` which is a list of dataclasses.
+6. Здесь мы возвращаем словарь, содержащий `items`, который является списком dataclass.
 
-    FastAPI is still capable of <abbr title="converting the data to a format that can be transmitted">serializing</abbr> the data to JSON.
+    FastAPI по-прежнему способен <abbr title="преобразование данных в формат, который можно передавать">сериализовать</abbr> данные в JSON.
 
-7. Here the `response_model` is using a type annotation of a list of `Author` dataclasses.
+7. Здесь `response_model` использует аннотацию типа — список dataclass `Author`.
 
-    Again, you can combine `dataclasses` with standard type annotations.
+    Снова, вы можете комбинировать `dataclasses` со стандартными аннотациями типов.
 
-8. Notice that this *path operation function* uses regular `def` instead of `async def`.
+8. Обратите внимание, что эта *функция-обработчик пути* использует обычный `def` вместо `async def`.
 
-    As always, in FastAPI you can combine `def` and `async def` as needed.
+    Как и всегда в FastAPI, вы можете сочетать `def` и `async def` по необходимости.
 
-    If you need a refresher about when to use which, check out the section _"In a hurry?"_ in the docs about [`async` and `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
+    Если хотите освежить в памяти, когда что использовать, посмотрите раздел _"Нет времени?"_ в документации про [`async` и `await`](../async.md#in-a-hurry){.internal-link target=_blank}.
 
-9. This *path operation function* is not returning dataclasses (although it could), but a list of dictionaries with internal data.
+9. Эта *функция-обработчик пути* возвращает не dataclasses (хотя могла бы), а список словарей с внутренними данными.
 
-    FastAPI will use the `response_model` parameter (that includes dataclasses) to convert the response.
+    FastAPI использует параметр `response_model` (в котором заданы dataclasses), чтобы преобразовать HTTP-ответ.
 
-You can combine `dataclasses` with other type annotations in many different combinations to form complex data structures.
+Вы можете комбинировать `dataclasses` с другими аннотациями типов множеством способов, чтобы формировать сложные структуры данных.
 
-Check the in-code annotation tips above to see more specific details.
+Смотрите подсказки в коде выше, чтобы увидеть более конкретные детали.
 
-## Learn More { #learn-more }
+## Узнать больше { #learn-more }
 
-You can also combine `dataclasses` with other Pydantic models, inherit from them, include them in your own models, etc.
+Вы также можете комбинировать `dataclasses` с другими Pydantic-моделями, наследоваться от них, включать их в свои модели и т.д.
 
-To learn more, check the <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">Pydantic docs about dataclasses</a>.
+Чтобы узнать больше, посмотрите <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/" class="external-link" target="_blank">документацию Pydantic о dataclasses</a>.
 
-## Version { #version }
+## Версия { #version }
 
-This is available since FastAPI version `0.67.0`. 🔖
+Доступно начиная с версии FastAPI `0.67.0`. 🔖

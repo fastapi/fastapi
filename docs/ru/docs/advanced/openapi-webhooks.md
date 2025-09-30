@@ -1,55 +1,55 @@
-# OpenAPI Webhooks { #openapi-webhooks }
+# Вебхуки OpenAPI { #openapi-webhooks }
 
-There are cases where you want to tell your API **users** that your app could call *their* app (sending a request) with some data, normally to **notify** of some type of **event**.
+Бывают случаи, когда вы хотите сообщить пользователям вашего API, что ваше приложение может вызвать их приложение (отправив HTTP-запрос) с некоторыми данными, обычно чтобы уведомить о каком-то событии.
 
-This means that instead of the normal process of your users sending requests to your API, it's **your API** (or your app) that could **send requests to their system** (to their API, their app).
+Это означает, что вместо обычного процесса, когда пользователи отправляют запросы вашему API, ваш API (или ваше приложение) может отправлять запросы в их систему (в их API, их приложение).
 
-This is normally called a **webhook**.
+Обычно это называется вебхуком.
 
-## Webhooks steps { #webhooks-steps }
+## Шаги вебхуков { #webhooks-steps }
 
-The process normally is that **you define** in your code what is the message that you will send, the **body of the request**.
+Обычно процесс таков: вы определяете в своем коде, какое сообщение вы будете отправлять, то есть тело запроса.
 
-You also define in some way at which **moments** your app will send those requests or events.
+Вы также определяете, в какие моменты (при каких событиях) ваше приложение будет отправлять эти запросы.
 
-And **your users** define in some way (for example in a web dashboard somewhere) the **URL** where your app should send those requests.
+А ваши пользователи каким-то образом (например, в веб‑панели) указывают URL-адрес, на который ваше приложение должно отправлять эти запросы.
 
-All the **logic** about how to register the URLs for webhooks and the code to actually send those requests is up to you. You write it however you want to in **your own code**.
+Вся логика регистрации URL-адресов для вебхуков и код, который реально отправляет эти запросы, целиком на вашей стороне. Вы пишете это так, как вам нужно, в своем собственном коде.
 
-## Documenting webhooks with **FastAPI** and OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
+## Документирование вебхуков с помощью FastAPI и OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
 
-With **FastAPI**, using OpenAPI, you can define the names of these webhooks, the types of HTTP operations that your app can send (e.g. `POST`, `PUT`, etc.) and the request **bodies** that your app would send.
+С FastAPI, используя OpenAPI, вы можете определить имена этих вебхуков, типы HTTP-операций, которые ваше приложение может отправлять (например, `POST`, `PUT` и т.д.), а также тела запросов, которые ваше приложение будет отправлять.
 
-This can make it a lot easier for your users to **implement their APIs** to receive your **webhook** requests, they might even be able to autogenerate some of their own API code.
+Это значительно упростит вашим пользователям реализацию их API для приема ваших вебхук-запросов; возможно, они даже смогут автоматически сгенерировать часть кода своего API.
 
-/// info
+/// info | Информация
 
-Webhooks are available in OpenAPI 3.1.0 and above, supported by FastAPI `0.99.0` and above.
+Вебхуки доступны в OpenAPI 3.1.0 и выше, поддерживаются в FastAPI `0.99.0` и новее.
 
 ///
 
-## An app with webhooks { #an-app-with-webhooks }
+## Приложение с вебхуками { #an-app-with-webhooks }
 
-When you create a **FastAPI** application, there is a `webhooks` attribute that you can use to define *webhooks*, the same way you would define *path operations*, for example with `@app.webhooks.post()`.
+При создании приложения на **FastAPI** есть атрибут `webhooks`, с помощью которого можно объявлять вебхуки так же, как вы объявляете операции пути (обработчики пути), например с `@app.webhooks.post()`.
 
 {* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:13,36:53] *}
 
-The webhooks that you define will end up in the **OpenAPI** schema and the automatic **docs UI**.
+Определенные вами вебхуки попадут в схему **OpenAPI** и в автоматический **интерфейс документации**.
 
-/// info
+/// info | Информация
 
-The `app.webhooks` object is actually just an `APIRouter`, the same type you would use when structuring your app with multiple files.
+Объект `app.webhooks` на самом деле — это обычный `APIRouter`, тот же тип, который вы используете при структурировании приложения по нескольким файлам.
 
 ///
 
-Notice that with webhooks you are actually not declaring a *path* (like `/items/`), the text you pass there is just an **identifier** of the webhook (the name of the event), for example in `@app.webhooks.post("new-subscription")`, the webhook name is `new-subscription`.
+Обратите внимание: в случае с вебхуками вы на самом деле не объявляете путь (например, `/items/`), передаваемый туда текст — это лишь идентификатор вебхука (имя события). Например, в `@app.webhooks.post("new-subscription")` имя вебхука — `new-subscription`.
 
-This is because it is expected that **your users** would define the actual **URL path** where they want to receive the webhook request in some other way (e.g. a web dashboard).
+Это связано с тем, что предполагается: фактический URL‑путь, по которому они хотят получать запрос вебхука, ваши пользователи укажут каким-то другим образом (например, в веб‑панели).
 
-### Check the docs { #check-the-docs }
+### Посмотрите документацию { #check-the-docs }
 
-Now you can start your app and go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Теперь вы можете запустить приложение и перейти по ссылке <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-You will see your docs have the normal *path operations* and now also some **webhooks**:
+Вы увидите, что в документации есть обычные операции пути, а также появились вебхуки:
 
 <img src="/img/tutorial/openapi-webhooks/image01.png">
