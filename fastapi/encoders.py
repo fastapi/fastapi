@@ -262,7 +262,7 @@ def encode_value(
         if not PYDANTIC_V2:
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
-                encoders.update(custom_encoder)
+                encoders = {**encoders, **custom_encoder}
 
         obj_dict = _model_dump(
             obj,
@@ -288,6 +288,7 @@ def encode_value(
         )
 
     if dataclasses.is_dataclass(obj):
+        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return encode_dict(
             obj_dict,

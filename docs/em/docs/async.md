@@ -381,7 +381,7 @@ async def read_burgers():
 
 ⏮️ ⏬ 🐍, 👆 💪 ✔️ ⚙️ 🧵 ⚖️ <a href="https://www.gevent.org/" class="external-link" target="_blank">🐁</a>. ✋️ 📟 🌌 🌖 🏗 🤔, ℹ, &amp; 💭 🔃.
 
-⏮️ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ <a href="http://callbackhell.com/" class="external-link" target="_blank">⏲ 🔥😈</a>.
+⏮️ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ "⏲ 🔥😈".
 
 ## 🔁
 

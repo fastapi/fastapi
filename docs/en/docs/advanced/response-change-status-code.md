@@ -1,10 +1,10 @@
-# Response - Change Status Code
+# Response - Change Status Code { #response-change-status-code }
 
 You probably read before that you can set a default [Response Status Code](../tutorial/response-status-code.md){.internal-link target=_blank}.
 
 But in some cases you need to return a different status code than the default.
 
-## Use case
+## Use case { #use-case }
 
 For example, imagine that you want to return an HTTP status code of "OK" `200` by default.
 
@@ -14,7 +14,7 @@ But you still want to be able to filter and convert the data you return with a `
 
 For those cases, you can use a `Response` parameter.
 
-## Use a `Response` parameter
+## Use a `Response` parameter { #use-a-response-parameter }
 
 You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies and headers).
 

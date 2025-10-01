@@ -393,9 +393,10 @@ else:
             )
             definitions.update(m_definitions)
             model_name = model_name_map[model]
+            definitions[model_name] = m_schema
+        for m_schema in definitions.values():
             if "description" in m_schema:
                 m_schema["description"] = m_schema["description"].split("\f")[0]
-            definitions[model_name] = m_schema
         return definitions
 
     def is_pv1_scalar_field(field: ModelField) -> bool:
