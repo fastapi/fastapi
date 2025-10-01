@@ -486,9 +486,9 @@ else:
         separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = field_schema(  # type: ignore[no-any-return]
+        json_schema = cast(Dict[str, Any], field_schema(
             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )[0]
+        )[0])
         
         # Check for PropertyNames constraint in field metadata
         try:
@@ -504,7 +504,7 @@ else:
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
         models = get_flat_models_from_fields(fields, known_models=set())
-        return get_model_name_map(models)  # type: ignore[no-any-return]
+        return cast(ModelNameMap, get_model_name_map(models))
 
     def get_definitions(
         *,
