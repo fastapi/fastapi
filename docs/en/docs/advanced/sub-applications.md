@@ -1,18 +1,18 @@
-# Sub Applications - Mounts
+# Sub Applications - Mounts { #sub-applications-mounts }
 
 If you need to have two independent FastAPI applications, with their own independent OpenAPI and their own docs UIs, you can have a main app and "mount" one (or more) sub-application(s).
 
-## Mounting a **FastAPI** application
+## Mounting a **FastAPI** application { #mounting-a-fastapi-application }
 
 "Mounting" means adding a completely "independent" application in a specific path, that then takes care of handling everything under that path, with the _path operations_ declared in that sub-application.
 
-### Top-level application
+### Top-level application { #top-level-application }
 
 First, create the main, top-level, **FastAPI** application, and its *path operations*:
 
 {* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
-### Sub-application
+### Sub-application { #sub-application }
 
 Then, create your sub-application, and its *path operations*.
 
@@ -20,7 +20,7 @@ This sub-application is just another standard FastAPI application, but this is t
 
 {* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
-### Mount the sub-application
+### Mount the sub-application { #mount-the-sub-application }
 
 In your top-level application, `app`, mount the sub-application, `subapi`.
 
@@ -28,7 +28,7 @@ In this case, it will be mounted at the path `/subapi`:
 
 {* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
-### Check the automatic API docs
+### Check the automatic API docs { #check-the-automatic-api-docs }
 
 Now, run the `fastapi` command with your file:
 
@@ -56,7 +56,7 @@ You will see the automatic API docs for the sub-application, including only its 
 
 If you try interacting with any of the two user interfaces, they will work correctly, because the browser will be able to talk to each specific app or sub-app.
 
-### Technical Details: `root_path`
+### Technical Details: `root_path` { #technical-details-root-path }
 
 When you mount a sub-application as described above, FastAPI will take care of communicating the mount path for the sub-application using a mechanism from the ASGI specification called a `root_path`.
 
