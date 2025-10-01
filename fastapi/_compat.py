@@ -205,17 +205,23 @@ if PYDANTIC_V2:
             json_schema["title"] = (
                 field.field_info.title or field.alias.title().replace("_", " ")
             )
-        
+
         # Check for PropertyNames constraint in field metadata
         try:
-            from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
+            from fastapi.schema import (
+                apply_property_names_to_schema,
+                get_property_names_constraint,
+            )
+
             property_names_constraint = get_property_names_constraint(field.field_info)
             if property_names_constraint:
-                json_schema = apply_property_names_to_schema(json_schema, property_names_constraint)
+                json_schema = apply_property_names_to_schema(
+                    json_schema, property_names_constraint
+                )
         except ImportError:
             # Gracefully handle if schema module is not available
             pass
-            
+
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
@@ -247,12 +253,12 @@ if PYDANTIC_V2:
             if "description" in item_def:
                 item_description = cast(str, item_def["description"]).split("\f")[0]
                 item_def["description"] = item_description
-        
+
         # Apply PropertyNames constraints to model definitions
         # Convert DefsRef keys to strings for compatibility
         string_definitions = {str(k): v for k, v in definitions.items()}
         _apply_property_names_to_definitions(string_definitions, fields)
-        
+
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
@@ -486,20 +492,29 @@ else:
         separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        json_schema = cast(Dict[str, Any], field_schema(
-            field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )[0])
-        
+        json_schema = cast(
+            Dict[str, Any],
+            field_schema(field, model_name_map=model_name_map, ref_prefix=REF_PREFIX)[
+                0
+            ],
+        )
+
         # Check for PropertyNames constraint in field metadata
         try:
-            from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
+            from fastapi.schema import (
+                apply_property_names_to_schema,
+                get_property_names_constraint,
+            )
+
             property_names_constraint = get_property_names_constraint(field.field_info)
             if property_names_constraint:
-                json_schema = apply_property_names_to_schema(json_schema, property_names_constraint)
+                json_schema = apply_property_names_to_schema(
+                    json_schema, property_names_constraint
+                )
         except ImportError:
             # Gracefully handle if schema module is not available
             pass
-            
+
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
@@ -690,18 +705,20 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def _apply_property_names_to_definitions(
-    definitions: Dict[str, Dict[str, Any]], 
-    fields: List[ModelField]
+    definitions: Dict[str, Dict[str, Any]], fields: List[ModelField]
 ) -> None:
     """
     Apply PropertyNames constraints to model definitions by checking each model's fields.
     """
     try:
-        from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
-        
+        from fastapi.schema import (
+            apply_property_names_to_schema,
+            get_property_names_constraint,
+        )
+
         # Group fields by their model type
         model_fields_map: Dict[Type[BaseModel], List[ModelField]] = {}
-        
+
         for field in fields:
             # Get the actual annotation (which might be the BaseModel class)
             annotation = field.field_info.annotation
@@ -711,8 +728,10 @@ def _apply_property_names_to_definitions(
                 if model_annotation not in model_fields_map:
                     model_fields_map[model_annotation] = []
                 # Get fields from the model itself, not the field that references it
-                model_fields_map[model_annotation].extend(get_model_fields(model_annotation))
-        
+                model_fields_map[model_annotation].extend(
+                    get_model_fields(model_annotation)
+                )
+
         # Apply PropertyNames constraints to definitions
         for model_class, model_field_list in model_fields_map.items():
             model_name = model_class.__name__
@@ -720,12 +739,16 @@ def _apply_property_names_to_definitions(
                 definition = definitions[model_name]
                 if "properties" in definition:
                     for model_field in model_field_list:
-                        property_names_constraint = get_property_names_constraint(model_field.field_info)
+                        property_names_constraint = get_property_names_constraint(
+                            model_field.field_info
+                        )
                         if property_names_constraint:
                             field_name = model_field.alias
                             if field_name in definition["properties"]:
                                 field_schema = definition["properties"][field_name]
-                                field_schema = apply_property_names_to_schema(field_schema, property_names_constraint)
+                                field_schema = apply_property_names_to_schema(
+                                    field_schema, property_names_constraint
+                                )
                                 definition["properties"][field_name] = field_schema
     except ImportError:
         # Schema module not available
