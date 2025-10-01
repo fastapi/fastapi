@@ -705,11 +705,13 @@ def _apply_property_names_to_definitions(
         for field in fields:
             # Get the actual annotation (which might be the BaseModel class)
             annotation = field.field_info.annotation
-            if lenient_issubclass(annotation, BaseModel):
-                if annotation not in model_fields_map:
-                    model_fields_map[annotation] = []
+            if annotation is not None and lenient_issubclass(annotation, BaseModel):
+                # Type guard ensures annotation is a valid BaseModel type
+                model_annotation = cast(Type[BaseModel], annotation)
+                if model_annotation not in model_fields_map:
+                    model_fields_map[model_annotation] = []
                 # Get fields from the model itself, not the field that references it
-                model_fields_map[annotation].extend(get_model_fields(annotation))
+                model_fields_map[model_annotation].extend(get_model_fields(model_annotation))
         
         # Apply PropertyNames constraints to definitions
         for model_class, model_field_list in model_fields_map.items():
