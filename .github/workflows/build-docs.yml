@@ -40,6 +40,7 @@ jobs:
             - mkdocs.no-insiders.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
+            - scripts/mkdocs_hooks.py
   langs:
     needs:
       - changes

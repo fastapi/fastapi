@@ -7,6 +7,17 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Add Russian translations for missing pages (LLM-generated). PR [#14135](https://github.com/fastapi/fastapi/pull/14135) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update Russian translations for existing pages (LLM-generated). PR [#14123](https://github.com/fastapi/fastapi/pull/14123) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Remove configuration files for inactive translations. PR [#14130](https://github.com/fastapi/fastapi/pull/14130) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👷 Update docs previews comment, single comment, add failure status. PR [#14129](https://github.com/fastapi/fastapi/pull/14129) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Modify `mkdocs_hooks.py` to add `title` to page's metadata (remove permalinks in social cards). PR [#14125](https://github.com/fastapi/fastapi/pull/14125) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.118.0
 
 ### Fixes
