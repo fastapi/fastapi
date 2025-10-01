@@ -205,6 +205,17 @@ if PYDANTIC_V2:
             json_schema["title"] = (
                 field.field_info.title or field.alias.title().replace("_", " ")
             )
+        
+        # Check for PropertyNames constraint in field metadata
+        try:
+            from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
+            property_names_constraint = get_property_names_constraint(field.field_info)
+            if property_names_constraint:
+                json_schema = apply_property_names_to_schema(json_schema, property_names_constraint)
+        except ImportError:
+            # Gracefully handle if schema module is not available
+            pass
+            
         return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
@@ -236,6 +247,10 @@ if PYDANTIC_V2:
             if "description" in item_def:
                 item_description = cast(str, item_def["description"]).split("\f")[0]
                 item_def["description"] = item_description
+        
+        # Apply PropertyNames constraints to model definitions
+        _apply_property_names_to_definitions(definitions, fields)
+        
         return field_mapping, definitions  # type: ignore[return-value]
 
     def is_scalar_field(field: ModelField) -> bool:
@@ -469,9 +484,21 @@ else:
         separate_input_output_schemas: bool = True,
     ) -> Dict[str, Any]:
         # This expects that GenerateJsonSchema was already used to generate the definitions
-        return field_schema(  # type: ignore[no-any-return]
+        json_schema = field_schema(  # type: ignore[no-any-return]
             field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
         )[0]
+        
+        # Check for PropertyNames constraint in field metadata
+        try:
+            from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
+            property_names_constraint = get_property_names_constraint(field.field_info)
+            if property_names_constraint:
+                json_schema = apply_property_names_to_schema(json_schema, property_names_constraint)
+        except ImportError:
+            # Gracefully handle if schema module is not available
+            pass
+            
+        return json_schema
 
     def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
         models = get_flat_models_from_fields(fields, known_models=set())
@@ -658,6 +685,47 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
         is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
         for sub_annotation in get_args(annotation)
     )
+
+
+def _apply_property_names_to_definitions(
+    definitions: Dict[str, Dict[str, Any]], 
+    fields: List[ModelField]
+) -> None:
+    """
+    Apply PropertyNames constraints to model definitions by checking each model's fields.
+    """
+    try:
+        from fastapi.schema import get_property_names_constraint, apply_property_names_to_schema
+        
+        # Group fields by their model type
+        model_fields_map: Dict[Type[BaseModel], List[ModelField]] = {}
+        
+        for field in fields:
+            # Get the actual annotation (which might be the BaseModel class)
+            annotation = field.field_info.annotation
+            if lenient_issubclass(annotation, BaseModel):
+                if annotation not in model_fields_map:
+                    model_fields_map[annotation] = []
+                # Get fields from the model itself, not the field that references it
+                model_fields_map[annotation].extend(get_model_fields(annotation))
+        
+        # Apply PropertyNames constraints to definitions
+        for model_class, model_field_list in model_fields_map.items():
+            model_name = model_class.__name__
+            if model_name in definitions:
+                definition = definitions[model_name]
+                if "properties" in definition:
+                    for model_field in model_field_list:
+                        property_names_constraint = get_property_names_constraint(model_field.field_info)
+                        if property_names_constraint:
+                            field_name = model_field.alias
+                            if field_name in definition["properties"]:
+                                field_schema = definition["properties"][field_name]
+                                field_schema = apply_property_names_to_schema(field_schema, property_names_constraint)
+                                definition["properties"][field_name] = field_schema
+    except ImportError:
+        # Schema module not available
+        pass
 
 
 @lru_cache
