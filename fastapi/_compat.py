@@ -249,7 +249,9 @@ if PYDANTIC_V2:
                 item_def["description"] = item_description
         
         # Apply PropertyNames constraints to model definitions
-        _apply_property_names_to_definitions(definitions, fields)
+        # Convert DefsRef keys to strings for compatibility
+        string_definitions = {str(k): v for k, v in definitions.items()}
+        _apply_property_names_to_definitions(string_definitions, fields)
         
         return field_mapping, definitions  # type: ignore[return-value]
 
