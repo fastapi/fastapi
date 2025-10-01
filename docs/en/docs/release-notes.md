@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump tiangolo/issue-manager from 0.5.1 to 0.6.0. PR [#14148](https://github.com/fastapi/fastapi/pull/14148) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Update docs previews comment, single comment, add failure status. PR [#14129](https://github.com/fastapi/fastapi/pull/14129) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Modify `mkdocs_hooks.py` to add `title` to page's metadata (remove permalinks in social cards). PR [#14125](https://github.com/fastapi/fastapi/pull/14125) by [@YuriiMotov](https://github.com/YuriiMotov).
 
