@@ -245,7 +245,7 @@ def results():
 
 이 시나리오에서, (당신을 포함한) 각각의 청소부들은 프로세서가 될 것이고, 각자의 역할을 수행합니다.
 
-실행 시간의 대부분이 대기가 아닌 실제 작업에 소요되고, 컴퓨터에서 작업은 <abbr title="Central Processing Unit">CPU</abbr>에서 이루어지므로, 이러한 문제를 "CPU에 묶였"다고 합니다.
+실행 시간의 대부분이 대기가 아닌 실제 작업에 소요되고, 컴퓨터에서 작업은 <abbr title="Central Processing Unit">CPU</abbr>에서 이루어지므로, 이러한 문제를 "CPU에 묶였다."고 합니다.
 
 ---
 
@@ -299,7 +299,7 @@ def get_sequential_burgers(number: int):
 
 `async def`를 사용하면, 파이썬은 해당 함수 내에서 `await` 표현에 주의해야한다는 사실과, 해당 함수의 실행을 "일시정지"⏸하고 다시 돌아오기 전까지 다른 작업을 수행🔀할 수 있다는 것을 알게됩니다.
 
-`async def`f 함수를 호출하고자 할 때, "대기"해야합니다. 따라서, 아래는 동작하지 않습니다.
+`async def` 함수를 호출하고자 할 때, "대기"해야합니다. 따라서, 아래는 동작하지 않습니다.
 
 ```Python
 # This won't work, because get_burgers was defined with: async def
@@ -308,7 +308,7 @@ burgers = get_burgers(2)
 
 ---
 
-따라서, `await`f를 사용해서 호출할 수 있는 라이브러리를 사용한다면, 다음과 같이 `async def`를 사용하는 *경로 작동 함수*를 생성해야 합니다:
+따라서, `await`를 사용해서 호출할 수 있는 라이브러리를 사용한다면, 다음과 같이 `async def`를 사용하는 *경로 작동 함수*를 생성해야 합니다:
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
