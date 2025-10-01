@@ -75,8 +75,8 @@ def test_invalid_data():
             "detail": [
                 {
                     "loc": ["query", "item", 0],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "type": "type_error.int_parsing",
+                    "msg": "value is not a valid integer",
+                    "type": "type_error.integer",
                 }
             ]
         }
