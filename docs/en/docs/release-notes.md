@@ -7,6 +7,21 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Sync German docs. PR [#14149](https://github.com/fastapi/fastapi/pull/14149) by [@nilslindemann](https://github.com/nilslindemann).
+* 🌐 Add Russian translations for missing pages (LLM-generated). PR [#14135](https://github.com/fastapi/fastapi/pull/14135) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update Russian translations for existing pages (LLM-generated). PR [#14123](https://github.com/fastapi/fastapi/pull/14123) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Remove configuration files for inactive translations. PR [#14130](https://github.com/fastapi/fastapi/pull/14130) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump ruff from 0.12.7 to 0.13.2. PR [#14147](https://github.com/fastapi/fastapi/pull/14147) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump sqlmodel from 0.0.24 to 0.0.25. PR [#14143](https://github.com/fastapi/fastapi/pull/14143) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump tiangolo/issue-manager from 0.5.1 to 0.6.0. PR [#14148](https://github.com/fastapi/fastapi/pull/14148) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👷 Update docs previews comment, single comment, add failure status. PR [#14129](https://github.com/fastapi/fastapi/pull/14129) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Modify `mkdocs_hooks.py` to add `title` to page's metadata (remove permalinks in social cards). PR [#14125](https://github.com/fastapi/fastapi/pull/14125) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.118.0
 
 ### Fixes
