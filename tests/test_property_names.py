@@ -2,7 +2,8 @@
 Tests for PropertyNames constraint support in FastAPI.
 """
 
-from typing import Dict, Annotated
+from typing import Dict
+from typing_extensions import Annotated
 from fastapi import FastAPI
 from fastapi.schema import PropertyNames
 from pydantic import BaseModel
