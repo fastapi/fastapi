@@ -12,8 +12,8 @@ pillow==11.3.0
 # For image processing by Material for MkDocs
 cairosvg==2.8.2
 mkdocstrings[python]==0.26.1
-griffe-typingdoc==0.2.8
+griffe-typingdoc==0.2.9
 # For griffe, it formats with black
 black==25.1.0
-mkdocs-macros-plugin==1.3.9
-markdown-include-variants==0.0.4
+mkdocs-macros-plugin==1.4.0
+markdown-include-variants==0.0.5
