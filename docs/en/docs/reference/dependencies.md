@@ -5,7 +5,6 @@
 Dependencies are handled mainly with the special function `Depends()` that takes a callable.
 
 Here is the reference for it and its parameters.
-
 You can import it directly from `fastapi`:
 
 ```python
