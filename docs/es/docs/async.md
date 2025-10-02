@@ -383,7 +383,7 @@ Pero antes de eso, manejar el código asíncrono era mucho más complejo y difí
 
 En versiones previas de Python, podrías haber usado hilos o <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>. Pero el código es mucho más complejo de entender, depurar y razonar.
 
-En versiones previas de NodeJS / JavaScript en el Navegador, habrías usado "callbacks". Lo que lleva al <a href="http://callbackhell.com/" class="external-link" target="_blank">callback hell</a>.
+En versiones previas de NodeJS / JavaScript en el Navegador, habrías usado "callbacks". Lo que lleva al "callback hell".
 
 ## Coroutines
 
