@@ -266,10 +266,6 @@ def get_request_handler(
                             else:
                                 body = body_bytes
             except json.JSONDecodeError as e:
-                lines_before = e.doc[: e.pos].split("\n")
-                line_number = len(lines_before)
-                column_number = len(lines_before[-1]) + 1 if lines_before else 1
-
                 start_pos = max(0, e.pos - 40)
                 end_pos = min(len(e.doc), e.pos + 40)
                 error_snippet = e.doc[start_pos:end_pos]
@@ -282,14 +278,15 @@ def get_request_handler(
                     [
                         {
                             "type": "json_invalid",
-                            "loc": ("body", line_number, column_number),
-                            "msg": f"JSON decode error - {e.msg} at line {line_number}, column {column_number}",
-                            "input": error_snippet,
+                            "loc": ("body", e.pos),
+                            "msg": "JSON decode error",
+                            "input": {},
                             "ctx": {
                                 "error": e.msg,
                                 "position": e.pos,
-                                "line": line_number,
-                                "column": column_number,
+                                "line": e.lineno - 1,
+                                "column": e.colno - 1,
+                                "snippet": error_snippet,
                             },
                         }
                     ],

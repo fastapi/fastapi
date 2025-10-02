@@ -30,12 +30,14 @@ def test_json_decode_error_single_line():
     assert response.status_code == 422
     error = response.json()["detail"][0]
 
-    assert error["loc"] == ["body", 1, 27]
-    assert "line 1" in error["msg"]
-    assert "column 27" in error["msg"]
-    assert error["ctx"]["line"] == 1
-    assert error["ctx"]["column"] == 27
-    assert "None" in error["input"]
+    assert error["loc"] == ["body", 26]
+    assert error["msg"] == "JSON decode error"
+    assert error["input"] == {}
+    assert error["ctx"]["error"] == "Expecting value"
+    assert error["ctx"]["position"] == 26
+    assert error["ctx"]["line"] == 0
+    assert error["ctx"]["column"] == 26
+    assert "None" in error["ctx"]["snippet"]
 
 
 def test_json_decode_error_multiline():
@@ -52,12 +54,13 @@ def test_json_decode_error_multiline():
     assert response.status_code == 422
     error = response.json()["detail"][0]
 
-    assert error["loc"] == ["body", 4, 12]
-    assert "line 4" in error["msg"]
-    assert "column 12" in error["msg"]
-    assert error["ctx"]["line"] == 4
-    assert error["ctx"]["column"] == 12
-    assert "invalid" in error["input"]
+    assert error["loc"][0] == "body"
+    assert isinstance(error["loc"][1], int)
+    assert error["msg"] == "JSON decode error"
+    assert error["input"] == {}
+    assert error["ctx"]["line"] == 3
+    assert error["ctx"]["column"] == 11
+    assert "invalid" in error["ctx"]["snippet"]
 
 
 def test_json_decode_error_shows_snippet():
@@ -70,9 +73,10 @@ def test_json_decode_error_shows_snippet():
     assert response.status_code == 422
     error = response.json()["detail"][0]
 
-    assert "..." in error["input"]
-    assert "invalid" in error["input"]
-    assert len(error["input"]) <= 83
+    assert error["msg"] == "JSON decode error"
+    assert error["input"] == {}
+    assert "invalid" in error["ctx"]["snippet"]
+    assert len(error["ctx"]["snippet"]) <= 83
 
 
 def test_json_decode_error_empty_body():
@@ -117,10 +121,13 @@ def test_json_decode_error_unclosed_brace():
     assert response.status_code == 422
     error = response.json()["detail"][0]
 
-    assert "line" in error["msg"].lower()
-    assert "column" in error["msg"].lower()
+    assert error["msg"] == "JSON decode error"
     assert error["type"] == "json_invalid"
+    assert error["input"] == {}
     assert "position" in error["ctx"]
+    assert "line" in error["ctx"]
+    assert "column" in error["ctx"]
+    assert "snippet" in error["ctx"]
 
 
 def test_json_decode_error_in_middle_of_long_document():
@@ -135,9 +142,10 @@ def test_json_decode_error_in_middle_of_long_document():
     assert response.status_code == 422
     error = response.json()["detail"][0]
 
-    # The error snippet should have "..." at the end since error is early in doc
-    assert error["input"].endswith("...")
-    assert "invalid" in error["input"]
+    assert error["msg"] == "JSON decode error"
+    assert error["input"] == {}
+    assert error["ctx"]["snippet"].endswith("...")
+    assert "invalid" in error["ctx"]["snippet"]
     assert error["type"] == "json_invalid"
 
 
