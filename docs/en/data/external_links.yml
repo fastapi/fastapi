@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://apitally.io/blog/getting-started-with-logging-in-fastapi
+    title: Getting started with logging in FastAPI
   - author: Balthazar Rouberol
     author_link: https://balthazar-rouberol.com
     link: https://blog.balthazar-rouberol.com/how-to-profile-a-fastapi-asynchronous-request
