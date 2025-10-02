@@ -596,29 +596,6 @@ class APIRoute(routing.Route):
         if not defer_init:
             self.init_attributes()
 
-    def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
-        return get_request_handler(
-            dependant=self.dependant,
-            body_field=self.body_field,
-            status_code=self.status_code,
-            response_class=self.response_class,
-            response_field=self.secure_cloned_response_field,
-            response_model_include=self.response_model_include,
-            response_model_exclude=self.response_model_exclude,
-            response_model_by_alias=self.response_model_by_alias,
-            response_model_exclude_unset=self.response_model_exclude_unset,
-            response_model_exclude_defaults=self.response_model_exclude_defaults,
-            response_model_exclude_none=self.response_model_exclude_none,
-            dependency_overrides_provider=self.dependency_overrides_provider,
-            embed_body_fields=self._embed_body_fields,
-        )
-
-    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
-        match, child_scope = super().matches(scope)
-        if match != Match.NONE:
-            child_scope["route"] = self
-        return match, child_scope
-
     @cached_property
     def response_field(self) -> Optional[ModelField]:
         if not self.response_model:
@@ -630,16 +607,16 @@ class APIRoute(routing.Route):
             mode="serialization",
         )
 
-    # Create a clone of the field, so that a Pydantic submodel is not returned
-    # as is just because it's an instance of a subclass of a more limited class
-    # e.g. UserInDB (containing hashed_password) could be a subclass of User
-    # that doesn't have the hashed_password. But because it's a subclass, it
-    # would pass the validation and be returned as is.
-    # By being a new field, no inheritance will be passed as is. A new model
-    # will always be created.
-    # TODO: remove when deprecating Pydantic v1
     @cached_property
     def secure_cloned_response_field(self) -> Optional[ModelField]:
+        # Create a clone of the field, so that a Pydantic submodel is not returned
+        # as is just because it's an instance of a subclass of a more limited class
+        # e.g. UserInDB (containing hashed_password) could be a subclass of User
+        # that doesn't have the hashed_password. But because it's a subclass, it
+        # would pass the validation and be returned as is.
+        # By being a new field, no inheritance will be passed as is. A new model
+        # will always be created.
+        # TODO: remove when deprecating Pydantic v1
         return create_cloned_field(self.response_field) if self.response_field else None
 
     @cached_property
@@ -652,7 +629,6 @@ class APIRoute(routing.Route):
                 assert is_body_allowed_for_status_code(additional_status_code), (
                     f"Status code {additional_status_code} must not have a response body"
                 )
-
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -691,14 +667,37 @@ class APIRoute(routing.Route):
         return request_response(self.get_route_handler())
 
     def init_attributes(self) -> None:
-        self.app = self.app
-        self.dependant = self.dependant
-        self.response_field = self.response_field
-        self.response_fields = self.response_fields
-        self.secure_cloned_response_field = self.secure_cloned_response_field
-        self.body_field = self.body_field
-        self._flat_dependant = self._flat_dependant
-        self._embed_body_fields = self._embed_body_fields
+        _ = self.app
+        _ = self.dependant
+        _ = self.response_field
+        _ = self.response_fields
+        _ = self.secure_cloned_response_field
+        _ = self.body_field
+        _ = self._flat_dependant
+        _ = self._embed_body_fields
+
+    def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
+        return get_request_handler(
+            dependant=self.dependant,
+            body_field=self.body_field,
+            status_code=self.status_code,
+            response_class=self.response_class,
+            response_field=self.secure_cloned_response_field,
+            response_model_include=self.response_model_include,
+            response_model_exclude=self.response_model_exclude,
+            response_model_by_alias=self.response_model_by_alias,
+            response_model_exclude_unset=self.response_model_exclude_unset,
+            response_model_exclude_defaults=self.response_model_exclude_defaults,
+            response_model_exclude_none=self.response_model_exclude_none,
+            dependency_overrides_provider=self.dependency_overrides_provider,
+            embed_body_fields=self._embed_body_fields,
+        )
+
+    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
+        match, child_scope = super().matches(scope)
+        if match != Match.NONE:
+            child_scope["route"] = self
+        return match, child_scope
 
 
 class APIRouter(routing.Router):
