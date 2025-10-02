@@ -36,12 +36,14 @@ from fastapi._compat import (
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
+    CallableInfoCache,
     _should_embed_body_fields,
     get_body_field,
+    get_cached_callable_info,
     get_dependant,
     get_flat_dependant,
     get_parameterless_sub_dependant,
-    get_typed_return_annotation,
+    prepare_callable_info_cache,
     solve_dependencies,
 )
 from fastapi.encoders import jsonable_encoder
@@ -304,6 +306,7 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
     embed_body_fields: bool = False,
+    callable_info_cache: Optional[CallableInfoCache] = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = iscoroutinefunction(dependant.call)
@@ -312,6 +315,12 @@ def get_request_handler(
         actual_response_class: Type[Response] = response_class.value
     else:
         actual_response_class = response_class
+
+    # callables are not changing between requests, so we can cache them here
+    callable_info_cache = prepare_callable_info_cache(
+        call=dependant.call,
+        existing_cache=callable_info_cache,
+    )
 
     async def app(request: Request) -> Response:
         response: Union[Response, None] = None
@@ -379,6 +388,7 @@ def get_request_handler(
             dependant=dependant,
             body=body,
             dependency_overrides_provider=dependency_overrides_provider,
+            callable_info_cache=callable_info_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
@@ -438,7 +448,14 @@ def get_websocket_app(
     dependant: Dependant,
     dependency_overrides_provider: Optional[Any] = None,
     embed_body_fields: bool = False,
+    callable_info_cache: Optional[CallableInfoCache] = None,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
+    # callables are not changing between requests, so we can cache them here
+    callable_info_cache = prepare_callable_info_cache(
+        call=dependant.call,
+        existing_cache=callable_info_cache,
+    )
+
     async def app(websocket: WebSocket) -> None:
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
@@ -448,6 +465,7 @@ def get_websocket_app(
             request=websocket,
             dependant=dependant,
             dependency_overrides_provider=dependency_overrides_provider,
+            callable_info_cache=callable_info_cache,
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
@@ -473,14 +491,23 @@ class APIWebSocketRoute(routing.WebSocketRoute):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        self.callable_info_cache = prepare_callable_info_cache(call=endpoint)
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format,
+            call=self.endpoint,
+            callable_info_cache=self.callable_info_cache,
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+                get_parameterless_sub_dependant(
+                    depends=depends,
+                    path=self.path_format,
+                    callable_info_cache=self.callable_info_cache,
+                ),
             )
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
@@ -491,6 +518,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
                 dependant=self.dependant,
                 dependency_overrides_provider=dependency_overrides_provider,
                 embed_body_fields=self._embed_body_fields,
+                callable_info_cache=self.callable_info_cache,
             )
         )
 
@@ -538,8 +566,10 @@ class APIRoute(routing.Route):
     ) -> None:
         self.path = path
         self.endpoint = endpoint
+        self.callable_info_cache = prepare_callable_info_cache(call=endpoint)
         if isinstance(response_model, DefaultPlaceholder):
-            return_annotation = get_typed_return_annotation(endpoint)
+            callable_info = get_cached_callable_info(endpoint, self.callable_info_cache)
+            return_annotation = callable_info.typed_signature.return_annotation
             if lenient_issubclass(return_annotation, Response):
                 response_model = None
             else:
@@ -631,7 +661,11 @@ class APIRoute(routing.Route):
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
-                get_parameterless_sub_dependant(depends=depends, path=self.path_format),
+                get_parameterless_sub_dependant(
+                    depends=depends,
+                    path=self.path_format,
+                    callable_info_cache=self.callable_info_cache,
+                ),
             )
         self._flat_dependant = get_flat_dependant(self.dependant)
         self._embed_body_fields = _should_embed_body_fields(
@@ -659,6 +693,7 @@ class APIRoute(routing.Route):
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
             embed_body_fields=self._embed_body_fields,
+            callable_info_cache=self.callable_info_cache,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
