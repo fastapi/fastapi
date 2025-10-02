@@ -1,14 +1,15 @@
 from dirty_equals import IsOneOf
 from fastapi import FastAPI
+from fastapi.openapi.models import Server
 from fastapi.testclient import TestClient
 
 app = FastAPI(
     servers=[
         {"url": "/", "description": "Default, relative server"},
-        {
-            "url": "http://staging.localhost.tiangolo.com:8000",
-            "description": "Staging but actually localhost still",
-        },
+        Server(
+            url="http://staging.localhost.tiangolo.com:8000",
+            description="Staging but actually localhost still",
+        ),
         {"url": "https://prod.example.com"},
     ]
 )
