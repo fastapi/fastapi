@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+import anyio
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
@@ -2244,6 +2245,20 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
+    limiter: Annotated[
+        Optional[anyio.CapacityLimiter],
+        Doc(
+            """
+            By default, synchronous dependencies will be run in a threadpool
+            with the number of concurrent threads limited by the current default anyio
+            thread limiter. A different `anyio.CapacityLimiter` may be specified
+            for problematic dependencies to use a different (logical) thread pool with
+            other limits in order to avoid blocking other threads.
+
+            For async dependencies (defined using `async def`) this parameter is ignored.
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2274,7 +2289,7 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(dependency=dependency, use_cache=use_cache, limiter=limiter)
 
 
 def Security(  # noqa: N802
@@ -2321,6 +2336,18 @@ def Security(  # noqa: N802
             """
         ),
     ] = True,
+    limiter: Annotated[
+        Optional[anyio.CapacityLimiter],
+        Doc(
+            """
+            By default, synchronous dependencies will be run in a threadpool
+            with the number of concurrent threads limited by the current default anyio
+            thread limiter. A different `anyio.CapacityLimiter` may be specified
+            for problematic dependencies to use a different (logical) thread pool with
+            other limits in order to avoid blocking other threads.
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI Security dependency.
@@ -2357,4 +2384,6 @@ def Security(  # noqa: N802
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    return params.Security(
+        dependency=dependency, scopes=scopes, use_cache=use_cache, limiter=limiter
+    )
