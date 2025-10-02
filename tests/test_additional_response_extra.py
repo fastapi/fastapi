@@ -1,4 +1,7 @@
+from pathlib import Path as libPath
+
 from fastapi import APIRouter, FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
 router = APIRouter()
@@ -6,6 +9,11 @@ router = APIRouter()
 sub_router = APIRouter()
 
 app = FastAPI()
+
+
+sub_router.mount(
+    "/static", StaticFiles(directory=libPath(__file__).resolve().parent), name="static"
+)
 
 
 @sub_router.get("/")
@@ -18,6 +26,14 @@ router.include_router(sub_router, prefix="/items")
 app.include_router(router)
 
 client = TestClient(app)
+
+
+def test_sub_router_mount():
+    response = client.get(f"/items/static/{libPath(__file__).resolve().stem}.py")
+    assert response.status_code == 200, response.text
+
+
+test_sub_router_mount()
 
 
 def test_path_operation():
