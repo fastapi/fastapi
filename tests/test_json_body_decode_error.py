@@ -155,3 +155,17 @@ def test_json_decode_error_snippet_ellipsis(
     snippet = error["ctx"]["snippet"]
     assert snippet.startswith("...") == expected_starts_with_ellipsis
     assert snippet.endswith("...") == expected_ends_with_ellipsis
+
+
+def test_successful_item_creation():
+    response = client.post(
+        "/items/",
+        json={"name": "Test Item", "price": 19.99,
+              "description": "A test item"},
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["name"] == "Test Item"
+    assert data["price"] == 19.99
+    assert data["description"] == "A test item"
