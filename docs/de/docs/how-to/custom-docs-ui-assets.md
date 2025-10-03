@@ -1,18 +1,18 @@
-# Statische Assets der Dokumentationsoberfläche (selbst hosten)
+# Statische Assets der Dokumentationsoberfläche (Selbst-Hosting) { #custom-docs-ui-static-assets-self-hosting }
 
 Die API-Dokumentation verwendet **Swagger UI** und **ReDoc**, und jede dieser Dokumentationen benötigt einige JavaScript- und CSS-Dateien.
 
-Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network – Inhalte-Auslieferungs-Netzwerk: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird normalerweise verwendet, um diese Dateien von einem Server bereitzustellen, der näher am Client liegt, wodurch die Leistung verbessert wird.">CDN</abbr> bereitgestellt.
+Standardmäßig werden diese Dateien von einem <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk: Ein Dienst, der normalerweise aus mehreren Servern besteht und statische Dateien wie JavaScript und CSS bereitstellt. Er wird häufig verwendet, um diese Dateien vom Server bereitzustellen, der näher am Client liegt, wodurch die Leistung verbessert wird.">CDN</abbr> bereitgestellt.
 
 Es ist jedoch möglich, das anzupassen, ein bestimmtes CDN festzulegen oder die Dateien selbst bereitzustellen.
 
-## Benutzerdefiniertes CDN für JavaScript und CSS
+## Benutzerdefiniertes CDN für JavaScript und CSS { #custom-cdn-for-javascript-and-css }
 
-Nehmen wir an, Sie möchten ein anderes <abbr title="Content Delivery Network">CDN</abbr> verwenden, zum Beispiel möchten Sie `https://unpkg.com/` verwenden.
+Nehmen wir an, Sie möchten ein anderes <abbr title="Content Delivery Network – Inhalte auslieferndes Netzwerk">CDN</abbr> verwenden, zum Beispiel möchten Sie `https://unpkg.com/` verwenden.
 
 Das kann nützlich sein, wenn Sie beispielsweise in einem Land leben, in dem bestimmte URLs eingeschränkt sind.
 
-### Die automatischen Dokumentationen deaktivieren
+### Die automatischen Dokumentationen deaktivieren { #disable-the-automatic-docs }
 
 Der erste Schritt besteht darin, die automatischen Dokumentationen zu deaktivieren, da diese standardmäßig das Standard-CDN verwenden.
 
@@ -20,7 +20,7 @@ Um diese zu deaktivieren, setzen Sie deren URLs beim Erstellen Ihrer `FastAPI`-A
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
-### Die benutzerdefinierten Dokumentationen hinzufügen
+### Die benutzerdefinierten Dokumentationen hinzufügen { #include-the-custom-docs }
 
 Jetzt können Sie die *Pfadoperationen* für die benutzerdefinierten Dokumentationen erstellen.
 
@@ -32,7 +32,7 @@ Sie können die internen Funktionen von FastAPI wiederverwenden, um die HTML-Sei
 * `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
 * `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. Dies ist die benutzerdefinierte CDN-URL.
 
-Und genau so für ReDoc ...
+Und ähnlich für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
@@ -46,23 +46,23 @@ Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „U
 
 ///
 
-### Eine *Pfadoperation* erstellen, um es zu testen
+### Eine *Pfadoperation* erstellen, um es zu testen { #create-a-path-operation-to-test-it }
 
 Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperation*:
 
 {* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
-### Es ausprobieren
+### Es testen { #test-it }
 
-Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zuladen, die Assets werden nun vom neuen CDN geladen.
+Jetzt sollten Sie in der Lage sein, zu Ihrer Dokumentation auf <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> zu gehen und die Seite neu zu laden, die Assets werden nun vom neuen CDN geladen.
 
-## JavaScript und CSS für die Dokumentation selbst hosten
+## JavaScript und CSS für die Dokumentation selbst hosten { #self-hosting-javascript-and-css-for-docs }
 
-Das Selbst Hosten von JavaScript und CSS kann nützlich sein, wenn Sie beispielsweise möchten, dass Ihre Anwendung auch offline, ohne bestehenden Internetzugang oder in einem lokalen Netzwerk weiter funktioniert.
+Das Selbst-Hosting von JavaScript und CSS kann nützlich sein, wenn Sie beispielsweise möchten, dass Ihre Anwendung auch offline, ohne bestehenden Internetzugang oder in einem lokalen Netzwerk weiter funktioniert.
 
 Hier erfahren Sie, wie Sie diese Dateien selbst in derselben FastAPI-App bereitstellen und die Dokumentation für deren Verwendung konfigurieren.
 
-### Projektdateistruktur
+### Projektdateistruktur { #project-file-structure }
 
 Nehmen wir an, die Dateistruktur Ihres Projekts sieht folgendermaßen aus:
 
@@ -85,11 +85,11 @@ Ihre neue Dateistruktur könnte so aussehen:
 └── static/
 ```
 
-### Die Dateien herunterladen
+### Die Dateien herunterladen { #download-the-files }
 
 Laden Sie die für die Dokumentation benötigten statischen Dateien herunter und legen Sie diese im Verzeichnis `static/` ab.
 
-Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und eine Option wie etwa `Link speichern unter...` auswählen.
+Sie können wahrscheinlich mit der rechten Maustaste auf jeden Link klicken und eine Option wie etwa „Link speichern unter ...“ auswählen.
 
 **Swagger UI** verwendet folgende Dateien:
 
@@ -113,14 +113,14 @@ Danach könnte Ihre Dateistruktur wie folgt aussehen:
     └── swagger-ui.css
 ```
 
-### Die statischen Dateien bereitstellen
+### Die statischen Dateien bereitstellen { #serve-the-static-files }
 
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
-### Die statischen Dateien testen
+### Die statischen Dateien testen { #test-the-static-files }
 
 Starten Sie Ihre Anwendung und gehen Sie auf <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
 
@@ -138,19 +138,19 @@ Das zeigt, dass Sie statische Dateien aus Ihrer Anwendung bereitstellen können 
 
 Jetzt können wir die Anwendung so konfigurieren, dass sie diese statischen Dateien für die Dokumentation verwendet.
 
-### Die automatischen Dokumentationen deaktivieren, für statische Dateien
+### Die automatischen Dokumentationen für statische Dateien deaktivieren { #disable-the-automatic-docs-for-static-files }
 
 Wie bei der Verwendung eines benutzerdefinierten CDN besteht der erste Schritt darin, die automatischen Dokumentationen zu deaktivieren, da diese standardmäßig das CDN verwenden.
 
-Um diese zu deaktivieren, setzen Sie deren URLs beim Erstellen Ihrer `FastAPI`-App auf `None`:
+Um sie zu deaktivieren, setzen Sie deren URLs beim Erstellen Ihrer `FastAPI`-App auf `None`:
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
-### Die benutzerdefinierten Dokumentationen, mit statischen Dateien, hinzufügen
+### Die benutzerdefinierten Dokumentationen für statische Dateien hinzufügen { #include-the-custom-docs-for-static-files }
 
 Und genau wie bei einem benutzerdefinierten CDN können Sie jetzt die *Pfadoperationen* für die benutzerdefinierten Dokumentationen erstellen.
 
-Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um die HTML-Seiten für die Dokumentationen zu erstellen, und diesen die erforderlichen Argumente übergeben:
+Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um die HTML-Seiten für die Dokumentationen zu erstellen und ihnen die erforderlichen Argumente zu übergeben:
 
 * `openapi_url`: die URL, unter der die HTML-Seite für die Dokumentation das OpenAPI-Schema für Ihre API abrufen kann. Sie können hier das Attribut `app.openapi_url` verwenden.
 * `title`: der Titel Ihrer API.
@@ -158,7 +158,7 @@ Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um di
 * `swagger_js_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **JavaScript**-Datei abrufen kann. **Das ist die, welche jetzt von Ihrer eigenen Anwendung bereitgestellt wird**.
 * `swagger_css_url`: die URL, unter welcher der HTML-Code für Ihre Swagger-UI-Dokumentation die **CSS**-Datei abrufen kann. **Das ist die, welche jetzt von Ihrer eigenen Anwendung bereitgestellt wird**.
 
-Und genau so für ReDoc ...
+Und ähnlich für ReDoc ...
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
@@ -172,14 +172,14 @@ Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „U
 
 ///
 
-### Eine *Pfadoperation* erstellen, um statische Dateien zu testen
+### Eine *Pfadoperation* erstellen, um statische Dateien zu testen { #create-a-path-operation-to-test-static-files }
 
 Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperation*:
 
 {* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
-### Benutzeroberfläche, mit statischen Dateien, testen
+### Benutzeroberfläche mit statischen Dateien testen { #test-static-files-ui }
 
 Jetzt sollten Sie in der Lage sein, Ihr WLAN zu trennen, gehen Sie zu Ihrer Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> und laden Sie die Seite neu.
 
-Und selbst ohne Internet könnten Sie die Dokumentation für Ihre API sehen und damit interagieren.
+Und selbst ohne Internet können Sie die Dokumentation für Ihre API sehen und mit ihr interagieren.

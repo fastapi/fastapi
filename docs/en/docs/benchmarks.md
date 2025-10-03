@@ -1,10 +1,10 @@
-# Benchmarks
+# Benchmarks { #benchmarks }
 
 Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI).
 
 But when checking benchmarks and comparisons you should keep the following in mind.
 
-## Benchmarks and speed
+## Benchmarks and speed { #benchmarks-and-speed }
 
 When you check the benchmarks, it is common to see several tools of different types compared as equivalent.
 
