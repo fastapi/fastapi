@@ -1,4 +1,4 @@
-# FastAPI
+# FastAPI { #fastapi }
 
 <style>
 .md-content .md-typeset h1 { display: none; }
@@ -48,7 +48,7 @@ The key features are:
 
 <small>* estimation based on tests on an internal development team, building production applications.</small>
 
-## Sponsors
+## Sponsors { #sponsors }
 
 <!-- sponsors -->
 
@@ -65,7 +65,7 @@ The key features are:
 
 <a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Other sponsors</a>
 
-## Opinions
+## Opinions { #opinions }
 
 "_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
 
@@ -87,7 +87,7 @@ The key features are:
 
 "_I’m over the moon excited about **FastAPI**. It’s so fun!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -101,7 +101,7 @@ The key features are:
 
 "_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -111,7 +111,7 @@ The key features are:
 
 ---
 
-## **Typer**, the FastAPI of CLIs
+## **Typer**, the FastAPI of CLIs { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
@@ -119,14 +119,14 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 **Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
 
-## Requirements
+## Requirements { #requirements }
 
 FastAPI stands on the shoulders of giants:
 
 * <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
-## Installation
+## Installation { #installation }
 
 Create and activate a <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> and then install FastAPI:
 
@@ -142,9 +142,9 @@ $ pip install "fastapi[standard]"
 
 **Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
 
-## Example
+## Example { #example }
 
-### Create it
+### Create it { #create-it }
 
 Create a file `main.py` with:
 
@@ -195,7 +195,7 @@ If you don't know, check the _"In a hurry?"_ section about <a href="https://fast
 
 </details>
 
-### Run it
+### Run it { #run-it }
 
 Run the server with:
 
@@ -237,7 +237,7 @@ You can read more about it in the <a href="https://fastapi.tiangolo.com/fastapi-
 
 </details>
 
-### Check it
+### Check it { #check-it }
 
 Open your browser at <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
@@ -254,7 +254,7 @@ You already created an API that:
 * The _path_ `/items/{item_id}` has a _path parameter_ `item_id` that should be an `int`.
 * The _path_ `/items/{item_id}` has an optional `str` _query parameter_ `q`.
 
-### Interactive API docs
+### Interactive API docs { #interactive-api-docs }
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -262,7 +262,7 @@ You will see the automatic interactive API documentation (provided by <a href="h
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Alternative API docs { #alternative-api-docs }
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -270,7 +270,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Example upgrade
+## Example upgrade { #example-upgrade }
 
 Now modify the file `main.py` to receive a body from a `PUT` request.
 
@@ -308,7 +308,7 @@ def update_item(item_id: int, item: Item):
 
 The `fastapi dev` server should reload automatically.
 
-### Interactive API docs upgrade
+### Interactive API docs upgrade { #interactive-api-docs-upgrade }
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -324,7 +324,7 @@ Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_bl
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternative API docs upgrade
+### Alternative API docs upgrade { #alternative-api-docs-upgrade }
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -332,7 +332,7 @@ And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" targe
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Recap
+### Recap { #recap }
 
 In summary, you declare **once** the types of parameters, body, etc. as function parameters.
 
@@ -444,17 +444,17 @@ For a more complete example including more features, see the <a href="https://fa
     * **Cookie Sessions**
     * ...and more.
 
-## Performance
+## Performance { #performance }
 
 Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
 
 To understand more about it, see the section <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Dependencies
+## Dependencies { #dependencies }
 
 FastAPI depends on Pydantic and Starlette.
 
-### `standard` Dependencies
+### `standard` Dependencies { #standard-dependencies }
 
 When you install FastAPI with `pip install "fastapi[standard]"` it comes with the `standard` group of optional dependencies:
 
@@ -474,15 +474,15 @@ Used by FastAPI:
 * `fastapi-cli[standard]` - to provide the `fastapi` command.
     * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
-### Without `standard` Dependencies
+### Without `standard` Dependencies { #without-standard-dependencies }
 
 If you don't want to include the `standard` optional dependencies, you can install with `pip install fastapi` instead of `pip install "fastapi[standard]"`.
 
-### Without `fastapi-cloud-cli`
+### Without `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
 If you want to install FastAPI with the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
-### Additional Optional Dependencies
+### Additional Optional Dependencies { #additional-optional-dependencies }
 
 There are some additional dependencies you might want to install.
 
@@ -496,6 +496,6 @@ Additional optional FastAPI dependencies:
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
-## License
+## License { #license }
 
 This project is licensed under the terms of the MIT license.
