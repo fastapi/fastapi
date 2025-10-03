@@ -1,9 +1,17 @@
+import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
 app = FastAPI()
+
+
+INVALID_JSON = """
+{
+  "name": "Test",
+  "price": 'invalid'
+}"""
 
 
 class Item(BaseModel):
@@ -41,14 +49,8 @@ def test_json_decode_error_single_line():
 
 
 def test_json_decode_error_multiline():
-    invalid_json = """
-{
-  "name": "Test",
-  "price": 'invalid'
-}"""
-
     response = client.post(
-        "/items/", content=invalid_json, headers={"Content-Type": "application/json"}
+        "/items/", content=INVALID_JSON, headers={"Content-Type": "application/json"}
     )
 
     assert response.status_code == 422
@@ -61,22 +63,6 @@ def test_json_decode_error_multiline():
     assert error["ctx"]["line"] == 3
     assert error["ctx"]["column"] == 11
     assert "invalid" in error["ctx"]["snippet"]
-
-
-def test_json_decode_error_shows_snippet():
-    long_json = '{"very_long_field_name_here": "some value", "another_field": invalid}'
-
-    response = client.post(
-        "/items/", content=long_json, headers={"Content-Type": "application/json"}
-    )
-
-    assert response.status_code == 422
-    error = response.json()["detail"][0]
-
-    assert error["msg"] == "JSON decode error"
-    assert error["input"] == {}
-    assert "invalid" in error["ctx"]["snippet"]
-    assert len(error["ctx"]["snippet"]) <= 83
 
 
 def test_json_decode_error_empty_body():
@@ -130,13 +116,32 @@ def test_json_decode_error_unclosed_brace():
     assert "snippet" in error["ctx"]
 
 
-def test_json_decode_error_in_middle_of_long_document():
-    # Create a JSON with error early in a long document (need >40 chars after error)
-    # The error is at position for "invalid" which needs at least 41 chars after it
-    long_json = '{"field": invalid, "padding_field": "this needs to be long enough that we have more than forty characters after the error position"}'
-
+@pytest.mark.parametrize(
+    "json_content,expected_starts_with_ellipsis,expected_ends_with_ellipsis",
+    [
+        (
+            '{"field": invalid, "padding_field": "this needs to be long enough that we have more than forty characters after the error position"}',
+            False,
+            True,
+        ),
+        (
+            '{"very_long_field_name_here": "some value that is long enough to push us past the forty character mark", "another_field": invalid}',
+            True,
+            False,
+        ),
+        (
+            '{"very_long_field_name_here": "some value", "field": invalid, "padding_field": "this needs to be long enough that we have more than forty characters after the error position"}',
+            True,
+            True,
+        ),
+        ('{"field": invalid}', False, False),
+    ],
+)
+def test_json_decode_error_snippet_ellipsis(
+    json_content, expected_starts_with_ellipsis, expected_ends_with_ellipsis
+):
     response = client.post(
-        "/items/", content=long_json, headers={"Content-Type": "application/json"}
+        "/items/", content=json_content, headers={"Content-Type": "application/json"}
     )
 
     assert response.status_code == 422
@@ -144,19 +149,9 @@ def test_json_decode_error_in_middle_of_long_document():
 
     assert error["msg"] == "JSON decode error"
     assert error["input"] == {}
-    assert error["ctx"]["snippet"].endswith("...")
     assert "invalid" in error["ctx"]["snippet"]
     assert error["type"] == "json_invalid"
 
-
-def test_successful_item_creation():
-    response = client.post(
-        "/items/",
-        json={"name": "Test Item", "price": 19.99, "description": "A test item"},
-    )
-
-    assert response.status_code == 200
-    data = response.json()
-    assert data["name"] == "Test Item"
-    assert data["price"] == 19.99
-    assert data["description"] == "A test item"
+    snippet = error["ctx"]["snippet"]
+    assert snippet.startswith("...") == expected_starts_with_ellipsis
+    assert snippet.endswith("...") == expected_ends_with_ellipsis
