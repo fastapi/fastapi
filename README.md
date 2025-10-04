@@ -501,3 +501,12 @@ Additional optional FastAPI dependencies:
 ## License
 
 This project is licensed under the terms of the MIT license.
+
+
+### How does `fastapi` work?
+
+Check out this interactive walkthrough of the `fastapi` codebase on CodeCanvas [here](https://www.code-canvas.com/?session=unauthenticatedGithub&repo=fastapi&owner=fastapi&branch=master&OnboardingTutorial=true).
+
+To update the diagram, follow the quick tutorial [here](https://docs.code-canvas.com/updating-diagram).
+
+<img width="1916" alt="CodeCanvas Screenshot" src="https://codecanvas-media-public.s3.amazonaws.com/images/codecanvas-readme-screenshot.png" />
