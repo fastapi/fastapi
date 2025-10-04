@@ -17,6 +17,7 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
+from fastapi._compat import v1
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
@@ -24,7 +25,7 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
 
-from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+from ._compat import PYDANTIC_V2, Url, _is_undefined, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -58,6 +59,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
+    v1.Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -74,14 +76,19 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Interface: str,
     IPv6Network: str,
     NameEmail: str,
+    v1.NameEmail: str,
     Path: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
+    v1.SecretBytes: str,
     SecretStr: str,
+    v1.SecretStr: str,
     set: list,
     UUID: str,
     Url: str,
+    v1.Url: str,
     AnyUrl: str,
+    v1.AnyUrl: str,
 }
 
 
@@ -260,7 +267,7 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
-    if isinstance(obj, UndefinedType):
+    if _is_undefined(obj):
         return None
     if isinstance(obj, dict):
         encoded_dict = {}

@@ -24,6 +24,7 @@ from fastapi._compat import (
     UndefinedType,
     Validator,
     lenient_issubclass,
+    v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel, create_model
@@ -60,28 +61,33 @@ def get_path_param_names(path: str) -> Set[str]:
     return set(re.findall("{(.*?)}", path))
 
 
+_invalid_args_message = (
+    "Invalid args for response field! Hint: "
+    "check that {type_} is a valid Pydantic field type. "
+    "If you are using a return type annotation that is not a valid Pydantic "
+    "field (e.g. Union[Response, dict, None]) you can disable generating the "
+    "response model from the type annotation with the path operation decorator "
+    "parameter response_model=None. Read more: "
+    "https://fastapi.tiangolo.com/tutorial/response-model/"
+)
+
+
 def create_model_field(
     name: str,
     type_: Any,
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     required: Union[bool, UndefinedType] = Undefined,
-    model_config: Type[BaseConfig] = BaseConfig,
+    model_config: Type[BaseConfig] | None = None,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
 ) -> ModelField:
     class_validators = class_validators or {}
-    if PYDANTIC_V2:
-        field_info = field_info or FieldInfo(
-            annotation=type_, default=default, alias=alias
-        )
-    else:
-        field_info = field_info or FieldInfo()
     kwargs = {"name": name, "field_info": field_info}
-    if PYDANTIC_V2:
-        kwargs.update({"mode": mode})
-    else:
+    if lenient_issubclass(type_, v1.BaseModel):
+        model_config = v1.BaseConfig
+        field_info = field_info or v1.FieldInfo()
         kwargs.update(
             {
                 "type_": type_,
@@ -92,18 +98,21 @@ def create_model_field(
                 "alias": alias,
             }
         )
-    try:
-        return ModelField(**kwargs)  # type: ignore[arg-type]
-    except (RuntimeError, PydanticSchemaGenerationError):
-        raise fastapi.exceptions.FastAPIError(
-            "Invalid args for response field! Hint: "
-            f"check that {type_} is a valid Pydantic field type. "
-            "If you are using a return type annotation that is not a valid Pydantic "
-            "field (e.g. Union[Response, dict, None]) you can disable generating the "
-            "response model from the type annotation with the path operation decorator "
-            "parameter response_model=None. Read more: "
-            "https://fastapi.tiangolo.com/tutorial/response-model/"
-        ) from None
+        try:
+            return v1.ModelField(**kwargs)  # type: ignore[arg-type]
+        except RuntimeError:
+            raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+    elif PYDANTIC_V2:
+        from ._compat import v2
+
+        field_info = field_info or FieldInfo(
+            annotation=type_, default=default, alias=alias
+        )
+        kwargs.update({"mode": mode})
+        try:
+            return v2.ModelField(**kwargs)  # type: ignore[arg-type]
+        except PydanticSchemaGenerationError:
+            raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
 
 
 def create_cloned_field(

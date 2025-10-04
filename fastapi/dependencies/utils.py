@@ -23,11 +23,11 @@ import anyio
 from fastapi import params
 from fastapi._compat import (
     PYDANTIC_V2,
-    ErrorWrapper,
     ModelField,
     RequiredParam,
     Undefined,
-    _regenerate_error_with_loc,
+    _is_error_wrapper,
+    _is_model_class,
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
@@ -45,6 +45,7 @@ from fastapi._compat import (
     lenient_issubclass,
     sequence_types,
     serialize_sequence_value,
+    v1,
     value_is_sequence,
 )
 from fastapi.background import BackgroundTasks
@@ -219,7 +220,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
     first_field = fields[0]
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+    if len(fields) == 1 and _is_model_class(first_field.type_):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         return fields_to_extract
     return fields
@@ -498,7 +499,7 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, Undefined),
+            required=field_info.default in (RequiredParam, v1.RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:
@@ -510,7 +511,7 @@ def analyze_param(
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or (
-                    lenient_issubclass(field.type_, BaseModel)
+                    _is_model_class(field.type_)
                     # For Pydantic v1
                     and getattr(field, "shape", 1) == 1
                 )
@@ -712,10 +713,10 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
-    if isinstance(errors_, ErrorWrapper):
+    if _is_error_wrapper(errors_):
         return None, [errors_]
     elif isinstance(errors_, list):
-        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        new_errors = v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
         return v_, []
