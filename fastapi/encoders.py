@@ -82,6 +82,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     AnyUrl: str,
 }
 
+
 def jsonable_encoder(
     obj: Annotated[
         Any,
