@@ -82,9 +82,6 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     AnyUrl: str,
 }
 
-NoneType = type(None)
-
-
 def jsonable_encoder(
     obj: Annotated[
         Any,
@@ -222,7 +219,7 @@ def encode_value(
         if encoder:
             return encoder(obj)
 
-    if isinstance(obj, (str, int, float, NoneType)):  # type: ignore[arg-type, misc]
+    if obj is None or isinstance(obj, (str, int, float)):
         return obj
 
     if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
