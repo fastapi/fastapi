@@ -335,9 +335,7 @@ def test_encode_with_context() -> None:
         @field_serializer("value")
         def serialize_value(value: int, info: SerializationInfo) -> int:
             if info.context is not None:
-                if isinstance(
-                    value_from_context := info.context.get("value"), int
-                ):
+                if isinstance(value_from_context := info.context.get("value"), int):
                     return value_from_context
 
             return value
