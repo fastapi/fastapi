@@ -21,13 +21,13 @@ class Item(BaseModel):
 app = FastAPI()
 
 
-@app.post("/old-simple-model")
-def handle_old_models(data: SubItem) -> SubItem:
+@app.post("/simple-model")
+def handle_simple_model(data: SubItem) -> SubItem:
     return data
 
 
-@app.post("/old-simple-model-filter", response_model=SubItem)
-def handle_old_models_filter(data: SubItem) -> Any:
+@app.post("/simple-model-filter", response_model=SubItem)
+def handle_simple_model_filter(data: SubItem) -> Any:
     extended_data = data.dict()
     extended_data.update({"secret_price": 42})
     return extended_data
@@ -51,7 +51,7 @@ client = TestClient(app)
 
 def test_old_simple_model():
     response = client.post(
-        "/old-simple-model",
+        "/simple-model",
         json={"name": "Foo"},
     )
     assert response.status_code == 200, response.text
@@ -60,7 +60,7 @@ def test_old_simple_model():
 
 def test_old_simple_model_validation_error():
     response = client.post(
-        "/old-simple-model",
+        "/simple-model",
         json={"wrong_name": "Foo"},
     )
     assert response.status_code == 422, response.text
@@ -79,7 +79,7 @@ def test_old_simple_model_validation_error():
 
 def test_old_simple_model_filter():
     response = client.post(
-        "/old-simple-model-filter",
+        "/simple-model-filter",
         json={"name": "Foo"},
     )
     assert response.status_code == 200, response.text
@@ -217,89 +217,75 @@ def test_openapi_schema():
         {
             "openapi": "3.1.0",
             "info": {"title": "FastAPI", "version": "0.1.0"},
-            "paths": {
-                "/old-simple-model": {
-                    "post": {
-                        "summary": "Handle Old Models",
-                        "operationId": "handle_old_models_old_simple_model_post",
-                        "requestBody": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/SubItem"}
-                                        ],
-                                        "title": "Data",
-                                    }
-                                }
-                            },
-                            "required": True,
-                        },
-                        "responses": {
-                            "200": {
-                                "description": "Successful Response",
-                                "content": {
-                                    "application/json": {
-                                        "schema": {
-                                            "$ref": "#/components/schemas/SubItem"
-                                        }
-                                    }
-                                },
-                            },
-                            "422": {
-                                "description": "Validation Error",
-                                "content": {
-                                    "application/json": {
-                                        "schema": {
-                                            "$ref": "#/components/schemas/HTTPValidationError"
-                                        }
-                                    }
-                                },
-                            },
-                        },
+            "paths": {"/simple-model": {
+    "post": {
+        "summary": "Handle Simple Model",
+        "operationId": "handle_simple_model_simple_model_post",
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "allOf": [{"$ref": "#/components/schemas/SubItem"}],
+                        "title": "Data",
+                    }
+                }
+            },
+            "required": True,
+        },
+        "responses": {
+            "200": {
+                "description": "Successful Response",
+                "content": {
+                    "application/json": {
+                        "schema": {"$ref": "#/components/schemas/SubItem"}
                     }
                 },
-                "/old-simple-model-filter": {
-                    "post": {
-                        "summary": "Handle Old Models Filter",
-                        "operationId": "handle_old_models_filter_old_simple_model_filter_post",
-                        "requestBody": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/SubItem"}
-                                        ],
-                                        "title": "Data",
-                                    }
-                                }
-                            },
-                            "required": True,
-                        },
-                        "responses": {
-                            "200": {
-                                "description": "Successful Response",
-                                "content": {
-                                    "application/json": {
-                                        "schema": {
-                                            "$ref": "#/components/schemas/SubItem"
-                                        }
-                                    }
-                                },
-                            },
-                            "422": {
-                                "description": "Validation Error",
-                                "content": {
-                                    "application/json": {
-                                        "schema": {
-                                            "$ref": "#/components/schemas/HTTPValidationError"
-                                        }
-                                    }
-                                },
-                            },
-                        },
+            },
+            "422": {
+                "description": "Validation Error",
+                "content": {
+                    "application/json": {
+                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
                     }
-                }, "/item": {
+                },
+            },
+        },
+    }
+}, "/simple-model-filter": {
+    "post": {
+        "summary": "Handle Simple Model Filter",
+        "operationId": "handle_simple_model_filter_simple_model_filter_post",
+        "requestBody": {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "allOf": [{"$ref": "#/components/schemas/SubItem"}],
+                        "title": "Data",
+                    }
+                }
+            },
+            "required": True,
+        },
+        "responses": {
+            "200": {
+                "description": "Successful Response",
+                "content": {
+                    "application/json": {
+                        "schema": {"$ref": "#/components/schemas/SubItem"}
+                    }
+                },
+            },
+            "422": {
+                "description": "Validation Error",
+                "content": {
+                    "application/json": {
+                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
+                    }
+                },
+            },
+        },
+    }
+}, "/item": {
     "post": {
         "summary": "Handle Item",
         "operationId": "handle_item_item_post",
