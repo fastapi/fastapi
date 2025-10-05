@@ -82,22 +82,24 @@ def create_model_field(
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
+    version: Literal["1", "auto"] = "auto",
 ) -> ModelField:
     class_validators = class_validators or {}
-    kwargs = {"name": name, "field_info": field_info}
-    if lenient_issubclass(type_, v1.BaseModel):
+
+    if lenient_issubclass(type_, v1.BaseModel) or version == "1":
         model_config = v1.BaseConfig
         field_info = field_info or v1.FieldInfo()
-        kwargs.update(
-            {
-                "type_": type_,
-                "class_validators": class_validators,
-                "default": default,
-                "required": required,
-                "model_config": model_config,
-                "alias": alias,
-            }
-        )
+        kwargs = {
+            "name": name,
+            "field_info": field_info,
+            "type_": type_,
+            "class_validators": class_validators,
+            "default": default,
+            "required": required,
+            "model_config": model_config,
+            "alias": alias,
+        }
+
         try:
             return v1.ModelField(**kwargs)  # type: ignore[arg-type]
         except RuntimeError:
@@ -108,7 +110,7 @@ def create_model_field(
         field_info = field_info or FieldInfo(
             annotation=type_, default=default, alias=alias
         )
-        kwargs.update({"mode": mode})
+        kwargs = {"mode": mode, "name": name, "field_info": field_info}
         try:
             return v2.ModelField(**kwargs)  # type: ignore[arg-type]
         except PydanticSchemaGenerationError:
@@ -121,7 +123,9 @@ def create_cloned_field(
     cloned_types: Optional[MutableMapping[Type[BaseModel], Type[BaseModel]]] = None,
 ) -> ModelField:
     if PYDANTIC_V2:
-        return field
+        from ._compat import v2
+        if isinstance(field, v2.ModelField):  # type: ignore[name-defined]
+            return field
     # cloned_types caches already cloned types to support recursive models and improve
     # performance by avoiding unnecessary cloning
     if cloned_types is None:
@@ -131,17 +135,17 @@ def create_cloned_field(
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
     use_type = original_type
-    if lenient_issubclass(original_type, BaseModel):
-        original_type = cast(Type[BaseModel], original_type)
+    if lenient_issubclass(original_type, v1.BaseModel):
+        original_type = cast(Type[v1.BaseModel], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = create_model(original_type.__name__, __base__=original_type)
+            use_type = v1.create_model(original_type.__name__, __base__=original_type)
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(
-                    f, cloned_types=cloned_types
+                    f, cloned_types=cloned_types,
                 )
-    new_field = create_model_field(name=field.name, type_=use_type)
+    new_field = create_model_field(name=field.name, type_=use_type, version="1")
     new_field.has_alias = field.has_alias  # type: ignore[attr-defined]
     new_field.alias = field.alias  # type: ignore[misc]
     new_field.class_validators = field.class_validators  # type: ignore[attr-defined]

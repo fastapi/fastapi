@@ -220,10 +220,10 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, BaseModel):
+    if isinstance(obj, (BaseModel, v1.BaseModel)):
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
-        if not PYDANTIC_V2:
+        if isinstance(obj, v1.BaseModel):
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}

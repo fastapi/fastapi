@@ -48,6 +48,7 @@ from fastapi._compat import (
     v1,
     value_is_sequence,
 )
+from fastapi._compat.shared import annotation_is_pydantic_v1
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
@@ -74,6 +75,8 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
+
+from .._compat import _params_v1
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -316,7 +319,7 @@ def get_dependant(
             )
             continue
         assert param_details.field is not None
-        if isinstance(param_details.field.field_info, params.Body):
+        if isinstance(param_details.field.field_info, (params.Body, _params_v1.Body)):
             dependant.body_params.append(param_details.field)
         else:
             add_param_to_fields(field=param_details.field, dependant=dependant)
@@ -375,21 +378,30 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, v1.FieldInfo, params.Depends))
         ]
         fastapi_specific_annotations = [
             arg
             for arg in fastapi_annotations
-            if isinstance(arg, (params.Param, params.Body, params.Depends))
+            if isinstance(
+                arg,
+                (
+                    params.Param,
+                    _params_v1.Param,
+                    params.Body,
+                    _params_v1.Body,
+                    params.Depends,
+                ),
+            )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
+            fastapi_annotation: Union[FieldInfo, v1.FieldInfo, params.Depends, None] = (
                 fastapi_specific_annotations[-1]
             )
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
-        if isinstance(fastapi_annotation, FieldInfo):
+        if isinstance(fastapi_annotation, (FieldInfo, v1.FieldInfo)):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
@@ -420,14 +432,15 @@ def analyze_param(
         )
         depends = value
     # Get FieldInfo from default value
-    elif isinstance(value, FieldInfo):
+    elif isinstance(value, (FieldInfo, v1.FieldInfo)):
         assert field_info is None, (
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
         )
         field_info = value
         if PYDANTIC_V2:
-            field_info.annotation = type_annotation
+            if isinstance(field_info, FieldInfo):
+                field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
@@ -464,7 +477,14 @@ def analyze_param(
         ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
-            field_info = params.Body(annotation=use_annotation, default=default_value)
+            if annotation_is_pydantic_v1(use_annotation):
+                field_info = _params_v1.Body(
+                    annotation=use_annotation, default=default_value
+                )
+            else:
+                field_info = params.Body(
+                    annotation=use_annotation, default=default_value
+                )
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
 
@@ -838,7 +858,7 @@ def is_union_of_base_models(field_type: Any) -> bool:
     union_args = get_args(field_type)
 
     for arg in union_args:
-        if not lenient_issubclass(arg, BaseModel):
+        if not _is_model_class(arg):
             return False
 
     return True
@@ -860,8 +880,8 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
     if (
-        isinstance(first_field.field_info, params.Form)
-        and not lenient_issubclass(first_field.type_, BaseModel)
+        isinstance(first_field.field_info, (params.Form, _params_v1.Form))
+        and not _is_model_class(first_field.type_)
         and not is_union_of_base_models(first_field.type_)
     ):
         return True
@@ -926,7 +946,7 @@ async def request_body_to_args(
 
     if (
         single_not_embedded_field
-        and lenient_issubclass(first_field.type_, BaseModel)
+        and _is_model_class(first_field.type_)
         and isinstance(received_body, FormData)
     ):
         fields_to_extract = get_cached_model_fields(first_field.type_)
@@ -994,12 +1014,15 @@ def get_body_field(
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
     else:
-        BodyFieldInfo = params.Body
+        if annotation_is_pydantic_v1(BodyModel):
+            BodyFieldInfo = _params_v1.Body
+        else:
+            BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
             for f in flat_dependant.body_params
-            if isinstance(f.field_info, params.Body)
+            if isinstance(f.field_info, (params.Body, _params_v1.Body))
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]

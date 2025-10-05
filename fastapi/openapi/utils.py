@@ -176,7 +176,7 @@ def get_openapi_operation_request_body(
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
-    assert isinstance(body_field, ModelField)
+    assert _is_model_field(body_field)
     body_schema = get_schema_from_model_field(
         field=body_field,
         model_name_map=model_name_map,
