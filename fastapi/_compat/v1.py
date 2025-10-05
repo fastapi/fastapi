@@ -14,7 +14,6 @@ from typing import (
 )
 
 from fastapi._compat import shared
-from fastapi.exceptions import RequestErrorModel
 from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
 from fastapi.types import ModelNameMap
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -72,6 +71,7 @@ if not PYDANTIC_V2:
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
+    from pydantic.schema import get_model_name_map as get_model_name_map  # noqa: F401
     from pydantic.types import SecretBytes as SecretBytes  # noqa: F401
     from pydantic.types import SecretStr as SecretStr  # noqa: F401
     from pydantic.typing import (  # type: ignore[no-redef]
@@ -80,6 +80,7 @@ if not PYDANTIC_V2:
     from pydantic.utils import (  # type: ignore[no-redef]
         lenient_issubclass as lenient_issubclass,  # noqa: F401
     )
+
 
 else:
     from pydantic.v1 import AnyUrl as Url  # noqa: F401
@@ -129,6 +130,9 @@ else:
     from pydantic.v1.schema import (
         get_flat_models_from_field as get_flat_models_from_field,  # noqa: F401
     )
+    from pydantic.v1.schema import (
+        get_model_name_map as get_model_name_map,  # noqa: F401
+    )
     from pydantic.v1.types import SecretBytes as SecretBytes  # noqa: F401
     from pydantic.v1.types import SecretStr as SecretStr  # noqa: F401
     from pydantic.v1.typing import (  # type: ignore[no-redef]
@@ -142,6 +146,7 @@ else:
 GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
 JsonSchemaValue = Dict[str, Any]  # type: ignore[misc]
 CoreSchema = Any  # type: ignore[assignment,misc]
+
 
 sequence_shapes = {
     SHAPE_LIST,
@@ -167,6 +172,9 @@ class GenerateJsonSchema:  # type: ignore[no-redef]
 
 class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
     pass
+
+
+RequestErrorModel: Type[BaseModel] = create_model("Request")
 
 
 def with_info_plain_validator_function(  # type: ignore[misc]
@@ -283,7 +291,6 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> Dict[str, Any]:
-    # This expects that GenerateJsonSchema was already used to generate the definitions
     return field_schema(  # type: ignore[no-any-return]
         field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )[0]
