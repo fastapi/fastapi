@@ -6,11 +6,11 @@ from fastapi._compat import (
     Undefined,
     _get_model_config,
     get_cached_model_fields,
-    get_model_fields,
-    is_bytes_sequence_annotation,
     is_scalar_field,
     is_uploadfile_sequence_annotation,
+    v1,
 )
+from fastapi._compat.shared import is_bytes_sequence_annotation
 from fastapi.testclient import TestClient
 from pydantic import BaseConfig, BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
@@ -20,9 +20,11 @@ from .utils import needs_pydanticv1, needs_pydanticv2
 
 @needs_pydanticv2
 def test_model_field_default_required():
+    from fastapi._compat import v2
+
     # For coverage
     field_info = FieldInfo(annotation=str)
-    field = ModelField(name="foo", field_info=field_info)
+    field = v2.ModelField(name="foo", field_info=field_info)
     assert field.default is Undefined
 
 
@@ -38,7 +40,7 @@ def test_union_scalar_list():
     # TODO: there might not be a current valid code path that uses this, it would
     # potentially enable query parameters defined as both a scalar and a list
     # but that would require more refactors, also not sure it's really useful
-    from fastapi._compat import is_pv1_scalar_field
+    from fastapi._compat.v1 import is_pv1_scalar_field
 
     field_info = FieldInfo()
     field = ModelField(
@@ -143,19 +145,19 @@ def test_is_uploadfile_sequence_annotation():
 
 def test_is_pv1_scalar_field():
     # For coverage
-    class Model(BaseModel):
+    class Model(v1.BaseModel):
         foo: Union[str, Dict[str, Any]]
 
-    fields = get_model_fields(Model)
+    fields = v1.get_model_fields(Model)
     assert not is_scalar_field(fields[0])
 
 
 def test_get_model_fields_cached():
-    class Model(BaseModel):
+    class Model(v1.BaseModel):
         foo: str
 
-    non_cached_fields = get_model_fields(Model)
-    non_cached_fields2 = get_model_fields(Model)
+    non_cached_fields = v1.get_model_fields(Model)
+    non_cached_fields2 = v1.get_model_fields(Model)
     cached_fields = get_cached_model_fields(Model)
     cached_fields2 = get_cached_model_fields(Model)
     for f1, f2 in zip(cached_fields, cached_fields2):
