@@ -9,9 +9,8 @@ from typing import (
 )
 
 from fastapi._compat import v1
-from fastapi._compat.shared import lenient_issubclass
+from fastapi._compat.shared import PYDANTIC_V2, lenient_issubclass
 from fastapi.types import ModelNameMap
-from fastapi.x_compat import PYDANTIC_V2
 from pydantic import BaseModel
 from typing_extensions import Literal
 
