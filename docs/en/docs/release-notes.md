@@ -16,6 +16,9 @@ hide:
 
 ### Internal
 
+* ⬆ Bump griffe-typingdoc from 0.2.8 to 0.2.9. PR [#14144](https://github.com/fastapi/fastapi/pull/14144) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocs-macros-plugin from 1.3.9 to 1.4.0. PR [#14145](https://github.com/fastapi/fastapi/pull/14145) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump markdown-include-variants from 0.0.4 to 0.0.5. PR [#14146](https://github.com/fastapi/fastapi/pull/14146) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14126](https://github.com/fastapi/fastapi/pull/14126) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * 👥 Update FastAPI GitHub topic repositories. PR [#14150](https://github.com/fastapi/fastapi/pull/14150) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Sponsors. PR [#14139](https://github.com/fastapi/fastapi/pull/14139) by [@tiangolo](https://github.com/tiangolo).
