@@ -23,11 +23,12 @@ from fastapi._compat import (
     Undefined,
     UndefinedType,
     Validator,
+    annotation_is_pydantic_v1,
     lenient_issubclass,
     v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
-from pydantic import BaseModel, create_model
+from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
 
@@ -86,7 +87,7 @@ def create_model_field(
 ) -> ModelField:
     class_validators = class_validators or {}
 
-    if lenient_issubclass(type_, v1.BaseModel) or version == "1":
+    if annotation_is_pydantic_v1(type_) or version == "1":
         model_config = v1.BaseConfig
         field_info = field_info or v1.FieldInfo()
         kwargs = {
@@ -124,6 +125,7 @@ def create_cloned_field(
 ) -> ModelField:
     if PYDANTIC_V2:
         from ._compat import v2
+
         if isinstance(field, v2.ModelField):  # type: ignore[name-defined]
             return field
     # cloned_types caches already cloned types to support recursive models and improve
@@ -143,7 +145,8 @@ def create_cloned_field(
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(
-                    f, cloned_types=cloned_types,
+                    f,
+                    cloned_types=cloned_types,
                 )
     new_field = create_model_field(name=field.name, type_=use_type, version="1")
     new_field.has_alias = field.has_alias  # type: ignore[attr-defined]

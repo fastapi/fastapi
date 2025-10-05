@@ -205,8 +205,9 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-    if fields and isinstance(fields[0], v1.ModelField):
-        models = v1.get_flat_models_from_fields(fields, known_models=set())
+    v1_models = [field for field in fields if isinstance(field, v1.ModelField)]
+    if v1_models:
+        models = v1.get_flat_models_from_fields(v1_models, known_models=set())
         return v1.get_model_name_map(models)  # type: ignore[no-any-return]
     return {}
 
