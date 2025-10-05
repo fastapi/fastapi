@@ -64,20 +64,20 @@ Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter 
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-## `passlib` installieren { #install-passlib }
+## `pwdlib` installieren { #install-pwdlib }
 
-PassLib ist ein großartiges Python-Package, um Passwort-Hashes zu handhaben.
+pwdlib ist ein großartiges Python-Package, um Passwort-Hashes zu handhaben.
 
 Es unterstützt viele sichere Hashing-Algorithmen und Werkzeuge, um mit diesen zu arbeiten.
 
-Der empfohlene Algorithmus ist „Bcrypt“.
+Der empfohlene Algorithmus ist „Argon2“.
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren, und installieren Sie dann PassLib mit Bcrypt:
+Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md){.internal-link target=_blank} erstellen, sie aktivieren, und installieren Sie dann pwdlib mit Argon2:
 
 <div class="termy">
 
 ```console
-$ pip install "passlib[bcrypt]"
+$ pip install "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -86,7 +86,7 @@ $ pip install "passlib[bcrypt]"
 
 /// tip | Tipp
 
-Mit `passlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheit-Plugin, oder vielen anderen erstellt wurden.
+Mit `pwdlib` können Sie sogar konfigurieren, Passwörter zu lesen, die von **Django**, einem **Flask**-Sicherheits-Plugin, oder vielen anderen erstellt wurden.
 
 So könnten Sie beispielsweise die gleichen Daten aus einer Django-Anwendung in einer Datenbank mit einer FastAPI-Anwendung teilen. Oder schrittweise eine Django-Anwendung migrieren, während Sie dieselbe Datenbank verwenden.
 
@@ -96,15 +96,15 @@ Und Ihre Benutzer könnten sich gleichzeitig über Ihre Django-Anwendung oder Ih
 
 ## Die Passwörter hashen und überprüfen { #hash-and-verify-the-passwords }
 
-Importieren Sie die benötigten Tools aus `passlib`.
+Importieren Sie die benötigten Tools aus `pwdlib`.
 
-Erstellen Sie einen PassLib-„Kontext“. Der wird für das Hashen und Verifizieren von Passwörtern verwendet.
+Erstellen Sie eine PasswordHash-Instanz mit empfohlenen Einstellungen – sie wird für das Hashen und Verifizieren von Passwörtern verwendet.
 
 /// tip | Tipp
 
-Der PassLib-Kontext kann auch andere Hashing-Algorithmen verwenden, einschließlich <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecateter</abbr> Alter, um etwa nur eine Verifizierung usw. zu ermöglichen.
+pwdlib unterstützt auch den bcrypt-Hashing-Algorithmus, enthält jedoch keine Legacy-Algorithmen – für die Arbeit mit veralteten Hashes wird die Verwendung der Bibliothek passlib empfohlen.
 
-Sie könnten ihn beispielsweise verwenden, um von einem anderen System (wie Django) generierte Passwörter zu lesen und zu verifizieren, aber alle neuen Passwörter mit einem anderen Algorithmus wie Bcrypt zu hashen.
+Sie könnten sie beispielsweise verwenden, um von einem anderen System (wie Django) generierte Passwörter zu lesen und zu verifizieren, aber alle neuen Passwörter mit einem anderen Algorithmus wie Argon2 oder Bcrypt zu hashen.
 
 Und mit allen gleichzeitig kompatibel sein.
 
@@ -120,7 +120,7 @@ Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
 /// note | Hinweis
 
-Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie, wie das gehashte Passwort jetzt aussieht: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+Wenn Sie sich die neue (gefakte) Datenbank `fake_users_db` anschauen, sehen Sie, wie das gehashte Passwort jetzt aussieht: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 
@@ -264,7 +264,7 @@ Viele Packages, die es stark vereinfachen, müssen viele Kompromisse beim Datenm
 
 Es gibt Ihnen die volle Flexibilität, diejenigen auszuwählen, die am besten zu Ihrem Projekt passen.
 
-Und Sie können viele gut gepflegte und weit verbreitete Packages wie `passlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
+Und Sie können viele gut gepflegte und weit verbreitete Packages wie `pwdlib` und `PyJWT` direkt verwenden, da **FastAPI** keine komplexen Mechanismen zur Integration externer Pakete erfordert.
 
 Aber es bietet Ihnen die Werkzeuge, um den Prozess so weit wie möglich zu vereinfachen, ohne Kompromisse bei Flexibilität, Robustheit oder Sicherheit einzugehen.
 
