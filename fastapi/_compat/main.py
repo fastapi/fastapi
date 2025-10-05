@@ -99,11 +99,11 @@ def _is_error_wrapper(exc: Exception) -> bool:
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
     if isinstance(field_info, v1.FieldInfo):
         return v1.copy_field_info(field_info=field_info, annotation=annotation)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.copy_field_info(field_info=field_info, annotation=annotation)
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def create_body_model(
@@ -111,11 +111,11 @@ def create_body_model(
 ) -> Type[BaseModel]:
     if fields and isinstance(fields[0], v1.ModelField):
         return v1.create_body_model(fields=fields, model_name=model_name)  # type: ignore[return-value]
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.create_body_model(fields=fields, model_name=model_name)  # type: ignore[return-value]
-    raise TypeError("fields must be a sequence of ModelField instances")
 
 
 def get_annotation_from_field_info(
@@ -125,73 +125,73 @@ def get_annotation_from_field_info(
         return v1.get_annotation_from_field_info(
             annotation=annotation, field_info=field_info, field_name=field_name
         )
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.get_annotation_from_field_info(
             annotation=annotation, field_info=field_info, field_name=field_name
         )
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def is_bytes_field(field: ModelField) -> bool:
     if isinstance(field, v1.ModelField):
         return v1.is_bytes_field(field)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.is_bytes_field(field)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
     if isinstance(field, v1.ModelField):
         return v1.is_bytes_sequence_field(field)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.is_bytes_sequence_field(field)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def is_scalar_field(field: ModelField) -> bool:
     if isinstance(field, v1.ModelField):
         return v1.is_scalar_field(field)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.is_scalar_field(field)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
     if isinstance(field, v1.ModelField):
         return v1.is_scalar_sequence_field(field)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.is_scalar_sequence_field(field)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def is_sequence_field(field: ModelField) -> bool:
     if isinstance(field, v1.ModelField):
         return v1.is_sequence_field(field)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.is_sequence_field(field)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     if isinstance(field, v1.ModelField):
         return v1.serialize_sequence_value(field=field, value=value)
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[return-value]
-    raise TypeError("field_info must be an instance of FieldInfo")
 
 
 def _model_rebuild(model: Type[BaseModel]) -> None:
@@ -278,16 +278,6 @@ def _is_model_field(value: Any) -> bool:
         from . import v2
 
         return isinstance(value, v2.ModelField)
-    return False
-
-
-def _is_field_info(value: Any) -> bool:
-    if isinstance(value, v1.FieldInfo):
-        return True
-    elif PYDANTIC_V2:
-        from . import v2
-
-        return isinstance(value, v2.FieldInfo)
     return False
 
 

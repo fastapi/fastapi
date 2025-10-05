@@ -2,7 +2,6 @@ from typing import Any, Dict, List, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
-    ModelField,
     Undefined,
     _get_model_config,
     get_cached_model_fields,
@@ -10,12 +9,12 @@ from fastapi._compat import (
     is_uploadfile_sequence_annotation,
     v1,
 )
-from fastapi._compat.shared import is_bytes_sequence_annotation
+from fastapi._compat.shared import is_bytes_sequence_annotation, lenient_issubclass
 from fastapi.testclient import TestClient
-from pydantic import BaseConfig, BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv2
 
 
 @needs_pydanticv2
@@ -28,29 +27,25 @@ def test_model_field_default_required():
     assert field.default is Undefined
 
 
-@needs_pydanticv1
-def test_upload_file_dummy_with_info_plain_validator_function():
+def test_v1_plain_validator_function():
     # For coverage
-    assert UploadFile.__get_pydantic_core_schema__(str, lambda x: None) == {}
+    def func(v):  # pragma: no cover
+        return v
+
+    result = v1.with_info_plain_validator_function(func)
+    assert result == {}
 
 
-@needs_pydanticv1
-def test_union_scalar_list():
+def test_lenient_is_subclass():
     # For coverage
-    # TODO: there might not be a current valid code path that uses this, it would
-    # potentially enable query parameters defined as both a scalar and a list
-    # but that would require more refactors, also not sure it's really useful
-    from fastapi._compat.v1 import is_pv1_scalar_field
+    assert lenient_issubclass(Union[str, int], str) is False
 
-    field_info = FieldInfo()
-    field = ModelField(
-        name="foo",
-        field_info=field_info,
-        type_=Union[str, List[int]],
-        class_validators={},
-        model_config=BaseConfig,
-    )
-    assert not is_pv1_scalar_field(field)
+
+def test_is_model_field():
+    # For coverage
+    from fastapi._compat import _is_model_field
+
+    assert not _is_model_field(str)
 
 
 @needs_pydanticv2

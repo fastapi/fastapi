@@ -185,6 +185,18 @@ def test_list_to_item_filter():
     assert "internal_id" not in result
 
 
+def test_list_to_item_filter_no_data():
+    response = client.post("/item-list-filter", json=[])
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "title": "",
+        "size": 0,
+        "description": None,
+        "sub": {"name": ""},
+        "multi": [],
+    }
+
+
 def test_list_to_list():
     input_items = [
         {"title": "Item 1", "size": 10, "sub": {"name": "Sub1"}},
@@ -248,6 +260,15 @@ def test_list_to_list_filter():
         # Verify secret fields are filtered out
         assert "secret_data" not in item
         assert "internal_id" not in item
+
+
+def test_list_to_list_filter_no_data():
+    response = client.post(
+        "/item-list-to-list-filter",
+        json=[],
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == []
 
 
 def test_list_validation_error():
