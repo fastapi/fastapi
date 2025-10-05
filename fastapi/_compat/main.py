@@ -68,7 +68,7 @@ def _is_undefined(value: object) -> bool:
 
 
 def _get_model_config(model: BaseModel) -> Any:
-    if lenient_issubclass(model, v1.BaseModel):
+    if isinstance(model, v1.BaseModel):
         return v1._get_model_config(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -79,7 +79,7 @@ def _get_model_config(model: BaseModel) -> Any:
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
-    if lenient_issubclass(model, v1.BaseModel):
+    if isinstance(model, v1.BaseModel):
         return v1._model_dump(model, mode=mode, **kwargs)
     elif PYDANTIC_V2:
         from . import v2
@@ -205,8 +205,10 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-    models = v1.get_flat_models_from_fields(fields, known_models=set())
-    return v1.get_model_name_map(models)  # type: ignore[no-any-return]
+    if fields and isinstance(fields[0], v1.ModelField):
+        models = v1.get_flat_models_from_fields(fields, known_models=set())
+        return v1.get_model_name_map(models)  # type: ignore[no-any-return]
+    return {}
 
 
 def get_definitions(
