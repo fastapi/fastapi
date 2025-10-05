@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
+from tests.utils import pydantic_snapshot
+
 from .main import app
 
 client = TestClient(app)
@@ -237,14 +239,23 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(
+                                            {
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
+                                                    }
+                                                ],
+                                                "title": "Data",
+                                            }
+                                        ),
+                                        v1=snapshot(
                                             {
                                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
                                             }
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -318,14 +329,23 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(
+                                            {
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
+                                                    }
+                                                ],
+                                                "title": "Data",
+                                            }
+                                        ),
+                                        v1=snapshot(
                                             {
                                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
                                             }
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -639,10 +659,17 @@ def test_openapi_schema():
                         "properties": {
                             "new_title": {"type": "string", "title": "New Title"},
                             "new_size": {"type": "integer", "title": "New Size"},
-                            "new_description": {
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "title": "New Description",
-                            },
+                            "new_description": pydantic_snapshot(
+                                v2=snapshot(
+                                    {
+                                        "anyOf": [{"type": "string"}, {"type": "null"}],
+                                        "title": "New Description",
+                                    }
+                                ),
+                                v1=snapshot(
+                                    {"type": "string", "title": "New Description"}
+                                ),
+                            ),
                             "new_sub": {
                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                             },
