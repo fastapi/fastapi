@@ -351,7 +351,16 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": pydantic_snapshot(
-                                        v2=snapshot(),
+                                        v2=snapshot(
+                                            {
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/Item"
+                                                    }
+                                                ],
+                                                "title": "Data",
+                                            }
+                                        ),
                                         v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
                                         ),
@@ -396,7 +405,16 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": pydantic_snapshot(
-                                        v2=snapshot(),
+                                        v2=snapshot(
+                                            {
+                                                "allOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/Item"
+                                                    }
+                                                ],
+                                                "title": "Data",
+                                            }
+                                        ),
                                         v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
                                         ),
