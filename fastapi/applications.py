@@ -64,6 +64,24 @@ class FastAPI(Starlette):
     ```
     """
 
+    state: Annotated[
+        State,
+        Doc(
+            """
+                A state object for the application. This is the same object for the
+                entire application, it doesn't change from request to request.
+
+                You normally wouldn't use this in FastAPI, for most of the cases you
+                would instead use FastAPI dependencies.
+
+                This is simply inherited from Starlette.
+
+                Read more about it in the
+                [Starlette docs for Applications](https://www.starlette.io/applications/#storing-state-on-the-app-instance).
+                """
+        ),
+    ]
+
     def __init__(
         self: AppType,
         *,
@@ -923,25 +941,11 @@ class FastAPI(Starlette):
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
-        ] = webhooks or routing.APIRouter()
+        ] = (
+            webhooks or routing.APIRouter()
+        )
         self.root_path = root_path or openapi_prefix
-        self.state: Annotated[
-            State,
-            Doc(
-                """
-                A state object for the application. This is the same object for the
-                entire application, it doesn't change from request to request.
-
-                You normally wouldn't use this in FastAPI, for most of the cases you
-                would instead use FastAPI dependencies.
-
-                This is simply inherited from Starlette.
-
-                Read more about it in the
-                [Starlette docs for Applications](https://www.starlette.io/applications/#storing-state-on-the-app-instance).
-                """
-            ),
-        ] = State()
+        self.state = State()
         self.dependency_overrides: Annotated[
             Dict[Callable[..., Any], Callable[..., Any]],
             Doc(
@@ -976,7 +980,7 @@ class FastAPI(Starlette):
         )
         self.exception_handlers: Dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
-        ] = {} if exception_handlers is None else dict(exception_handlers)
+        ] = ({} if exception_handlers is None else dict(exception_handlers))
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
