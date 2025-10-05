@@ -87,22 +87,22 @@ def create_model_field(
 ) -> ModelField:
     class_validators = class_validators or {}
 
-    if annotation_is_pydantic_v1(type_) or version == "1":
-        model_config = v1.BaseConfig
-        field_info = field_info or v1.FieldInfo()
-        kwargs = {
-            "name": name,
-            "field_info": field_info,
-            "type_": type_,
-            "class_validators": class_validators,
-            "default": default,
-            "required": required,
-            "model_config": model_config,
-            "alias": alias,
-        }
+    v1_model_config = v1.BaseConfig
+    v1_field_info = field_info or v1.FieldInfo()
+    v1_kwargs = {
+        "name": name,
+        "field_info": v1_field_info,
+        "type_": type_,
+        "class_validators": class_validators,
+        "default": default,
+        "required": required,
+        "model_config": v1_model_config,
+        "alias": alias,
+    }
 
+    if annotation_is_pydantic_v1(type_) or version == "1":
         try:
-            return v1.ModelField(**kwargs)  # type: ignore[arg-type]
+            return v1.ModelField(**v1_kwargs)  # type: ignore[arg-type]
         except RuntimeError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
     elif PYDANTIC_V2:
@@ -116,6 +116,12 @@ def create_model_field(
             return v2.ModelField(**kwargs)  # type: ignore[arg-type]
         except PydanticSchemaGenerationError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+    # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
+    # a Pydantic v1 type, like a constrained int
+    try:
+        return v1.ModelField(**v1_kwargs)  # type: ignore[arg-type]
+    except RuntimeError:
+        raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
 
 
 def create_cloned_field(
