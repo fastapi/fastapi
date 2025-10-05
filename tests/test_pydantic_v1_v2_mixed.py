@@ -1,10 +1,12 @@
 from typing import Any, List, Union
 
 from fastapi import FastAPI
+from fastapi._compat.v1 import BaseModel
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel as NewBaseModel
-from pydantic.v1 import BaseModel
+
+from tests.utils import pydantic_snapshot
 
 
 class SubItem(BaseModel):
@@ -662,20 +664,23 @@ def test_v2_to_v1_validation_error():
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "new_size"],
-                    "msg": "Field required",
-                    "input": {"new_title": "Missing fields"},
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "new_sub"],
-                    "msg": "Field required",
-                    "input": {"new_title": "Missing fields"},
-                },
-            ]
+            "detail": pydantic_snapshot(
+                v2=snapshot(),
+                v1=snapshot(
+                    [
+                        {
+                            "loc": ["body", "new_size"],
+                            "msg": "field required",
+                            "type": "value_error.missing",
+                        },
+                        {
+                            "loc": ["body", "new_sub"],
+                            "msg": "field required",
+                            "type": "value_error.missing",
+                        },
+                    ]
+                ),
+            )
         }
     )
 
@@ -693,12 +698,16 @@ def test_v2_to_v1_nested_validation_error():
     assert response.json() == snapshot(
         {
             "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "new_sub", "new_sub_name"],
-                    "msg": "Field required",
-                    "input": {"wrong_field": "value"},
-                }
+                pydantic_snapshot(
+                    v2=snapshot(),
+                    v1=snapshot(
+                        {
+                            "loc": ["body", "new_sub", "new_sub_name"],
+                            "msg": "field required",
+                            "type": "value_error.missing",
+                        }
+                    ),
+                )
             ]
         }
     )
@@ -742,20 +751,23 @@ def test_v2_list_validation_error():
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", 1, "new_size"],
-                    "msg": "Field required",
-                    "input": {"new_title": "Invalid"},
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", 1, "new_sub"],
-                    "msg": "Field required",
-                    "input": {"new_title": "Invalid"},
-                },
-            ]
+            "detail": pydantic_snapshot(
+                v2=snapshot(),
+                v1=snapshot(
+                    [
+                        {
+                            "loc": ["body", 1, "new_size"],
+                            "msg": "field required",
+                            "type": "value_error.missing",
+                        },
+                        {
+                            "loc": ["body", 1, "new_sub"],
+                            "msg": "field required",
+                            "type": "value_error.missing",
+                        },
+                    ]
+                ),
+            )
         }
     )
 
@@ -791,18 +803,18 @@ def test_invalid_list_structure_v2():
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
-            "detail": [
-                {
-                    "type": "list_type",
-                    "loc": ["body"],
-                    "msg": "Input should be a valid list",
-                    "input": {
-                        "new_title": "Not a list",
-                        "new_size": 100,
-                        "new_sub": {"new_sub_name": "Sub"},
-                    },
-                }
-            ]
+            "detail": pydantic_snapshot(
+                v2=snapshot(),
+                v1=snapshot(
+                    [
+                        {
+                            "loc": ["body"],
+                            "msg": "value is not a valid list",
+                            "type": "type_error.list",
+                        }
+                    ]
+                ),
+            )
         }
     )
 
@@ -822,12 +834,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -863,12 +875,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -972,12 +984,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -1347,10 +1359,12 @@ def test_openapi_schema():
                         "properties": {
                             "new_title": {"type": "string", "title": "New Title"},
                             "new_size": {"type": "integer", "title": "New Size"},
-                            "new_description": {
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "title": "New Description",
-                            },
+                            "new_description": pydantic_snapshot(
+                                v2=snapshot(),
+                                v1=snapshot(
+                                    {"type": "string", "title": "New Description"}
+                                ),
+                            ),
                             "new_sub": {"$ref": "#/components/schemas/NewSubItem"},
                             "new_multi": {
                                 "items": {"$ref": "#/components/schemas/NewSubItem"},

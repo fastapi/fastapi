@@ -1,9 +1,11 @@
 from typing import Any, List, Union
 
 from fastapi import FastAPI
+from fastapi._compat.v1 import BaseModel
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic.v1 import BaseModel
+
+from tests.utils import pydantic_snapshot
 
 
 class SubItem(BaseModel):
@@ -94,7 +96,7 @@ def test_item_model():
             "size": 100,
             "description": "This is a test item",
             "sub": {"name": "SubItem1"},
-            "multi": [{"name": "Multi1"}, {"name": "Multi2"}]
+            "multi": [{"name": "Multi1"}, {"name": "Multi2"}],
         },
     )
     assert response.status_code == 200, response.text
@@ -103,18 +105,14 @@ def test_item_model():
         "size": 100,
         "description": "This is a test item",
         "sub": {"name": "SubItem1"},
-        "multi": [{"name": "Multi1"}, {"name": "Multi2"}]
+        "multi": [{"name": "Multi1"}, {"name": "Multi2"}],
     }
 
 
 def test_item_model_minimal():
     response = client.post(
         "/item",
-        json={
-            "title": "Minimal Item",
-            "size": 50,
-            "sub": {"name": "SubMin"}
-        },
+        json={"title": "Minimal Item", "size": 50, "sub": {"name": "SubMin"}},
     )
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -122,32 +120,34 @@ def test_item_model_minimal():
         "size": 50,
         "description": None,
         "sub": {"name": "SubMin"},
-        "multi": []
+        "multi": [],
     }
 
 
 def test_item_model_validation_errors():
     response = client.post(
         "/item",
-        json={
-            "title": "Missing fields"
-        },
+        json={"title": "Missing fields"},
     )
     assert response.status_code == 422, response.text
     error_detail = response.json()["detail"]
     assert len(error_detail) == 2
-    assert {"loc": ["body", "size"], "msg": "field required", "type": "value_error.missing"} in error_detail
-    assert {"loc": ["body", "sub"], "msg": "field required", "type": "value_error.missing"} in error_detail
+    assert {
+        "loc": ["body", "size"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    } in error_detail
+    assert {
+        "loc": ["body", "sub"],
+        "msg": "field required",
+        "type": "value_error.missing",
+    } in error_detail
 
 
 def test_item_model_nested_validation_error():
     response = client.post(
         "/item",
-        json={
-            "title": "Test Item",
-            "size": 100,
-            "sub": {"wrong_field": "test"}
-        },
+        json={"title": "Test Item", "size": 100, "sub": {"wrong_field": "test"}},
     )
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
@@ -166,11 +166,7 @@ def test_item_model_nested_validation_error():
 def test_item_model_invalid_type():
     response = client.post(
         "/item",
-        json={
-            "title": "Test Item",
-            "size": "not_a_number",
-            "sub": {"name": "SubItem"}
-        },
+        json={"title": "Test Item", "size": "not_a_number", "sub": {"name": "SubItem"}},
     )
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
@@ -194,7 +190,7 @@ def test_item_filter():
             "size": 200,
             "description": "Test filtering",
             "sub": {"name": "SubFiltered"},
-            "multi": []
+            "multi": [],
         },
     )
     assert response.status_code == 200, response.text
@@ -204,7 +200,7 @@ def test_item_filter():
         "size": 200,
         "description": "Test filtering",
         "sub": {"name": "SubFiltered"},
-        "multi": []
+        "multi": [],
     }
     assert "secret_data" not in result
     assert "internal_id" not in result
@@ -217,143 +213,168 @@ def test_openapi_schema():
         {
             "openapi": "3.1.0",
             "info": {"title": "FastAPI", "version": "0.1.0"},
-            "paths": {"/simple-model": {
-    "post": {
-        "summary": "Handle Simple Model",
-        "operationId": "handle_simple_model_simple_model_post",
-        "requestBody": {
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "allOf": [{"$ref": "#/components/schemas/SubItem"}],
-                        "title": "Data",
+            "paths": {
+                "/simple-model": {
+                    "post": {
+                        "summary": "Handle Simple Model",
+                        "operationId": "handle_simple_model_simple_model_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
+                                            {"$ref": "#/components/schemas/SubItem"}
+                                        ),
+                                    )
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/SubItem"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
                     }
-                }
-            },
-            "required": True,
-        },
-        "responses": {
-            "200": {
-                "description": "Successful Response",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/SubItem"}
+                },
+                "/simple-model-filter": {
+                    "post": {
+                        "summary": "Handle Simple Model Filter",
+                        "operationId": "handle_simple_model_filter_simple_model_filter_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
+                                            {"$ref": "#/components/schemas/SubItem"}
+                                        ),
+                                    )
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/SubItem"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/item": {
+                    "post": {
+                        "summary": "Handle Item",
+                        "operationId": "handle_item_item_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ),
+                                    )
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/Item"}
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/item-filter": {
+                    "post": {
+                        "summary": "Handle Item Filter",
+                        "operationId": "handle_item_filter_item_filter_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ),
+                                    )
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/Item"}
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
                     }
                 },
             },
-            "422": {
-                "description": "Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
-                    }
-                },
-            },
-        },
-    }
-}, "/simple-model-filter": {
-    "post": {
-        "summary": "Handle Simple Model Filter",
-        "operationId": "handle_simple_model_filter_simple_model_filter_post",
-        "requestBody": {
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "allOf": [{"$ref": "#/components/schemas/SubItem"}],
-                        "title": "Data",
-                    }
-                }
-            },
-            "required": True,
-        },
-        "responses": {
-            "200": {
-                "description": "Successful Response",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/SubItem"}
-                    }
-                },
-            },
-            "422": {
-                "description": "Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
-                    }
-                },
-            },
-        },
-    }
-}, "/item": {
-    "post": {
-        "summary": "Handle Item",
-        "operationId": "handle_item_item_post",
-        "requestBody": {
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "allOf": [{"$ref": "#/components/schemas/Item"}],
-                        "title": "Data",
-                    }
-                }
-            },
-            "required": True,
-        },
-        "responses": {
-            "200": {
-                "description": "Successful Response",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/Item"}
-                    }
-                },
-            },
-            "422": {
-                "description": "Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
-                    }
-                },
-            },
-        },
-    }
-}, "/item-filter": {
-    "post": {
-        "summary": "Handle Item Filter",
-        "operationId": "handle_item_filter_item_filter_post",
-        "requestBody": {
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "allOf": [{"$ref": "#/components/schemas/Item"}],
-                        "title": "Data",
-                    }
-                }
-            },
-            "required": True,
-        },
-        "responses": {
-            "200": {
-                "description": "Successful Response",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/Item"}
-                    }
-                },
-            },
-            "422": {
-                "description": "Validation Error",
-                "content": {
-                    "application/json": {
-                        "schema": {"$ref": "#/components/schemas/HTTPValidationError"}
-                    }
-                },
-            },
-        },
-    }
-}},
             "components": {
                 "schemas": {
                     "HTTPValidationError": {
@@ -368,23 +389,25 @@ def test_openapi_schema():
                         },
                         "type": "object",
                         "title": "HTTPValidationError",
-                    }, "Item": {
-    "properties": {
-        "title": {"type": "string", "title": "Title"},
-        "size": {"type": "integer", "title": "Size"},
-        "description": {"type": "string", "title": "Description"},
-        "sub": {"$ref": "#/components/schemas/SubItem"},
-        "multi": {
-            "items": {"$ref": "#/components/schemas/SubItem"},
-            "type": "array",
-            "title": "Multi",
-            "default": [],
-        },
-    },
-    "type": "object",
-    "required": ["title", "size", "sub"],
-    "title": "Item",
-}, "SubItem": {
+                    },
+                    "Item": {
+                        "properties": {
+                            "title": {"type": "string", "title": "Title"},
+                            "size": {"type": "integer", "title": "Size"},
+                            "description": {"type": "string", "title": "Description"},
+                            "sub": {"$ref": "#/components/schemas/SubItem"},
+                            "multi": {
+                                "items": {"$ref": "#/components/schemas/SubItem"},
+                                "type": "array",
+                                "title": "Multi",
+                                "default": [],
+                            },
+                        },
+                        "type": "object",
+                        "required": ["title", "size", "sub"],
+                        "title": "Item",
+                    },
+                    "SubItem": {
                         "properties": {"name": {"type": "string", "title": "Name"}},
                         "type": "object",
                         "required": ["name"],

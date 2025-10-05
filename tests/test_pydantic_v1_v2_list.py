@@ -1,9 +1,11 @@
 from typing import Any, List, Union
 
 from fastapi import FastAPI
+from fastapi._compat.v1 import BaseModel
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic.v1 import BaseModel
+
+from tests.utils import pydantic_snapshot
 
 
 class SubItem(BaseModel):
@@ -348,12 +350,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
@@ -393,12 +395,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": {
-                                        "allOf": [
+                                    "schema": pydantic_snapshot(
+                                        v2=snapshot(),
+                                        v1=snapshot(
                                             {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Data",
-                                    }
+                                        ),
+                                    )
                                 }
                             },
                             "required": True,
