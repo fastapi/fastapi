@@ -204,11 +204,24 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-    v1_models = [field for field in fields if isinstance(field, v1.ModelField)]
-    if v1_models:
-        models = v1.get_flat_models_from_fields(v1_models, known_models=set())
-        return v1.get_model_name_map(models)  # type: ignore[no-any-return]
-    return {}
+    v1_model_fields = [field for field in fields if isinstance(field, v1.ModelField)]
+    v1_flat_models = v1.get_flat_models_from_fields(v1_model_fields, known_models=set())
+    all_flat_models = v1_flat_models
+    if PYDANTIC_V2:
+        from . import v2
+
+        v2_model_fields = [
+            field for field in fields if isinstance(field, v2.ModelField)
+        ]
+        v2_flat_models = v2.get_flat_models_from_fields(
+            v2_model_fields, known_models=set()
+        )
+        all_flat_models = all_flat_models.union(v2_flat_models)
+
+        model_name_map = v2.get_model_name_map(all_flat_models)  # type: ignore[no-any-return]
+        return model_name_map
+    model_name_map = v1.get_model_name_map(all_flat_models)  # type: ignore[no-any-return]
+    return model_name_map  # type: ignore[return-value]
 
 
 def get_definitions(
