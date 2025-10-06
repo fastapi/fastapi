@@ -1,4 +1,4 @@
-# Middleware (Промежуточный слой)
+# Middleware (Промежуточный слой) { #middleware }
 
 Вы можете добавить промежуточный слой (middleware) в **FastAPI** приложение.
 
@@ -17,11 +17,11 @@
 
 Если у вас есть зависимости с `yield`, то код выхода (код после `yield`) будет выполняться *после* middleware.
 
-Если у вас имеются некие фоновые задачи (см. документацию), то они будут запущены после middleware.
+Если были какие‑либо фоновые задачи (рассматриваются в разделе [Фоновые задачи](background-tasks.md){.internal-link target=_blank}, вы увидите это позже), они будут запущены *после* всех middleware.
 
 ///
 
-## Создание middleware
+## Создание middleware { #create-a-middleware }
 
 Для создания middleware используйте декоратор `@app.middleware("http")`.
 
@@ -51,7 +51,7 @@
 
 ///
 
-### До и после `response`
+### До и после `response` { #before-and-after-the-response }
 
 Вы можете добавить код, использующий `request` до передачи его какой-либо *операции пути*.
 
@@ -67,8 +67,31 @@
 
 ///
 
-## Другие middleware
+## Порядок выполнения нескольких middleware { #multiple-middleware-execution-order }
+
+Когда вы добавляете несколько middleware с помощью декоратора `@app.middleware()` или метода `app.add_middleware()`, каждое новое middleware оборачивает приложение, формируя стек. Последнее добавленное middleware — самое внешнее (*outermost*), а первое — самое внутреннее (*innermost*).
+
+На пути обработки запроса сначала выполняется самое внешнее middleware.
+
+На пути формирования ответа оно выполняется последним.
+
+Например:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+Это приводит к следующему порядку выполнения:
+
+* **Запрос**: MiddlewareB → MiddlewareA → маршрут
+
+* **Ответ**: маршрут → MiddlewareA → MiddlewareB
+
+Такое стековое поведение обеспечивает предсказуемый и управляемый порядок выполнения middleware.
+
+## Другие middleware { #other-middlewares }
 
 О других middleware вы можете узнать больше в разделе [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
 
-В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing">CORS</abbr> с помощью middleware.
+В следующем разделе вы можете прочитать, как настроить <abbr title="Cross-Origin Resource Sharing – совместное использование ресурсов между источниками">CORS</abbr> с помощью middleware.
