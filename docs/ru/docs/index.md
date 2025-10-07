@@ -117,32 +117,24 @@ FastAPI — это современный, быстрый (высокопрои�
 
 FastAPI стоит на плечах гигантов:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для части связанной с вебом.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для части связанной с данными.
+* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для части, связанной с вебом.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для части, связанной с данными.
 
 ## Установка
 
+Создайте и активируйте <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">виртуальное окружение</a>, а затем установите FastAPI:
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-Вам также понадобится сервер ASGI для производства, такой как <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> или <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
-
-<div class="termy">
-
-```console
-$ pip install "uvicorn[standard]"
-
----> 100%
-```
-
-</div>
+**Примечание**: Убедитесь, что вы помещаете `"fastapi[standard]"` в кавычки, чтобы это работало во всех терминалах.
 
 ## Пример
 
@@ -204,11 +196,24 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -216,13 +221,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>О команде <code>uvicorn main:app --reload</code>...</summary>
+<summary>О команде <code>fastapi dev main.py</code>...</summary>
 
-Команда `uvicorn main:app` относится к:
+Команда `fastapi dev` читает ваш файл `main.py`, обнаруживает в нем приложение **FastAPI** и запускает сервер с помощью <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
 
-* `main`: файл `main.py` (модуль Python).
-* `app`: объект, созданный внутри `main.py` с помощью строки `app = FastAPI()`.
-* `--reload`: перезапуск сервера после изменения кода. Делайте это только во время разработки.
+По умолчанию `fastapi dev` запускается с включенной автоперезагрузкой для локальной разработки.
+
+Вы можете узнать больше об этом в <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">документации FastAPI CLI</a>.
 
 </details>
 
@@ -295,7 +300,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-Сервер должен перезагрузиться автоматически (потому что вы добавили `--reload` к команде `uvicorn` выше).
+Сервер `fastapi dev` должен перезагрузиться автоматически.
 
 ### Интерактивное обновление документации API
 
