@@ -286,12 +286,12 @@ def test_background_tasks():
     assert data["context_a"] == "started a"
     assert data["bg"] == "not set"
     middleware_state = json.loads(response.headers["x-state"])
-    assert middleware_state["context_b"] == "finished b with a: started a"
-    assert middleware_state["context_a"] == "finished a"
+    assert middleware_state["context_b"] == "started b"
+    assert middleware_state["context_a"] == "started a"
     assert middleware_state["bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert state["bg"] == "bg set - b: finished b with a: started a - a: finished a"
+    assert state["bg"] == "bg set - b: started b - a: started a"
 
 
 def test_sync_raise_raises():
@@ -397,7 +397,4 @@ def test_sync_background_tasks():
     assert data["sync_bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
-    assert (
-        state["sync_bg"]
-        == "sync_bg set - b: finished b with a: started a - a: finished a"
-    )
+    assert state["sync_bg"] == "sync_bg set - b: started b - a: started a"

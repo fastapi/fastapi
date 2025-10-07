@@ -17,7 +17,7 @@ Wenn Sie Ihre API sichern möchten, gibt es mehrere bessere Dinge, die Sie tun k
 * Stellen Sie sicher, dass Sie über gut definierte Pydantic-Modelle für Ihre <abbr title="Anfragekörper">Requestbodys</abbr> und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> verfügen.
 * Konfigurieren Sie alle erforderlichen Berechtigungen und Rollen mithilfe von Abhängigkeiten.
 * Speichern Sie niemals Klartext-Passwörter, sondern nur Passwort-Hashes.
-* Implementieren und verwenden Sie gängige kryptografische Tools wie Passlib und JWT-Tokens, usw.
+* Implementieren und verwenden Sie gängige kryptografische Tools wie pwdlib und JWT-Tokens, usw.
 * Fügen Sie bei Bedarf detailliertere Berechtigungskontrollen mit OAuth2-Scopes hinzu.
 * ... usw.
 
