@@ -48,6 +48,7 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.14"
           - "3.13"
           - "3.12"
           - "3.11"
@@ -55,6 +56,9 @@ jobs:
           - "3.9"
           - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
+        exclude:
+          - python-version: "3.14"
+            pydantic-version: "pydantic-v1"
       fail-fast: false
     steps:
       - name: Dump GitHub context
