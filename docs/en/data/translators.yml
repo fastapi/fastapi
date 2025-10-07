@@ -1,6 +1,6 @@
 nilslindemann:
   login: nilslindemann
-  count: 120
+  count: 122
   avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
   url: https://github.com/nilslindemann
 jaystone776:
@@ -118,6 +118,11 @@ batlopes:
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/33462923?u=0fb3d7acb316764616f11e4947faf080e49ad8d9&v=4
   url: https://github.com/batlopes
+tiangolo:
+  login: tiangolo
+  count: 6
+  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
+  url: https://github.com/tiangolo
 lucasbalieiro:
   login: lucasbalieiro
   count: 6
@@ -143,11 +148,6 @@ Attsun1031:
   count: 5
   avatarUrl: https://avatars.githubusercontent.com/u/1175560?v=4
   url: https://github.com/Attsun1031
-tiangolo:
-  login: tiangolo
-  count: 5
-  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
-  url: https://github.com/tiangolo
 rostik1410:
   login: rostik1410
   count: 5
@@ -286,7 +286,7 @@ hsuanchi:
 alejsdev:
   login: alejsdev
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=638c65283ac9e9e2c3a0f9d1e3370db4b8a2c58d&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=447d12a1b347f466b35378bee4c7104cc9b2c571&v=4
   url: https://github.com/alejsdev
 riroan:
   login: riroan
@@ -471,7 +471,7 @@ emrhnsyts:
 vusallyv:
   login: vusallyv
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/85983771?u=53a7b755cb338d9313966dbf2e4e68b512565186&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/85983771?u=6fb8e2f876bca06e9f846606423c8f18fb46ad06&v=4
   url: https://github.com/vusallyv
 jackleeio:
   login: jackleeio
@@ -543,3 +543,8 @@ EdmilsonRodrigues:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/62777025?u=217d6f3cd6cc750bb8818a3af7726c8d74eb7c2d&v=4
   url: https://github.com/EdmilsonRodrigues
+YuriiMotov:
+  login: YuriiMotov
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
