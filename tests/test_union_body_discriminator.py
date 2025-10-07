@@ -34,7 +34,9 @@ def get_client() -> TestClient:
     ]
 
     @app.post("/items/")
-    def save_union_body_discriminator(item: Item) -> Dict[str, Any]:
+    def save_union_body_discriminator(
+        item: Item, q: Annotated[str, Tag("query")]
+    ) -> Dict[str, Any]:
         return {"item": item}
 
     client = TestClient(app)
@@ -43,13 +45,13 @@ def get_client() -> TestClient:
 
 @needs_pydanticv2
 def test_post_item(client: TestClient) -> None:
-    response = client.post("/items/", json={"value": "first", "price": 100})
+    response = client.post("/items/?q=first", json={"value": "first", "price": 100})
     assert response.status_code == 200, response.text
     assert response.json() == {"item": {"value": "first", "price": 100}}
 
 
 @needs_pydanticv2
 def test_post_other_item(client: TestClient) -> None:
-    response = client.post("/items/", json={"value": "other", "price": 100.5})
+    response = client.post("/items/?q=other", json={"value": "other", "price": 100.5})
     assert response.status_code == 200, response.text
     assert response.json() == {"item": {"value": "other", "price": 100.5}}
