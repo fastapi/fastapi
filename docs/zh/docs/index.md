@@ -125,27 +125,19 @@ FastAPI 站在以下巨人的肩膀之上：
 
 ## 安装
 
+创建并激活一个<a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">虚拟环境</a>，然后安装 FastAPI：
+
 <div class="termy">
 
 ```console
-$ pip install fastapi
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
-
-<div class="termy">
-
-```console
-$ pip install "uvicorn[standard]"
-
----> 100%
-```
-
-</div>
+**注意**：确保将 `"fastapi[standard]"` 放在引号中，以便在所有终端中正常工作。
 
 ## 示例
 
@@ -207,11 +199,24 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
+ ╭────────── FastAPI CLI - Development mode ───────────╮
+ │                                                     │
+ │  Serving at: http://127.0.0.1:8000                  │
+ │                                                     │
+ │  API docs: http://127.0.0.1:8000/docs               │
+ │                                                     │
+ │  Running in development mode, for production use:   │
+ │                                                     │
+ │  fastapi run                                        │
+ │                                                     │
+ ╰─────────────────────────────────────────────────────╯
+
+INFO:     Will watch for changes in these directories: ['/home/user/code/awesomeapp']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28720]
-INFO:     Started server process [28722]
+INFO:     Started reloader process [2248755] using WatchFiles
+INFO:     Started server process [2248757]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
@@ -219,13 +224,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>关于 <code>uvicorn main:app --reload</code> 命令......</summary>
+<summary>关于 <code>fastapi dev main.py</code> 命令......</summary>
 
- `uvicorn main:app` 命令含义如下:
+`fastapi dev` 命令会读取你的 `main.py` 文件，检测其中的 **FastAPI** 应用，并使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 启动服务器。
 
-* `main`：`main.py` 文件（一个 Python "模块"）。
-* `app`：在 `main.py` 文件中通过 `app = FastAPI()` 创建的对象。
-* `--reload`：让服务器在更新代码后重新启动。仅在开发时使用该选项。
+默认情况下，`fastapi dev` 会启用自动重载功能用于本地开发。
+
+你可以在 <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI 文档</a> 中了解更多信息。
 
 </details>
 
@@ -298,7 +303,7 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-服务器将会自动重载（因为在上面的步骤中你向 `uvicorn` 命令添加了 `--reload` 选项）。
+`fastapi dev` 服务器将会自动重载。
 
 ### 交互式 API 文档升级
 
