@@ -41,7 +41,7 @@ schema = {
                         "type": "array",
                     },
                     "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error " "Type", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
                 },
                 "required": ["loc", "msg", "type"],
                 "title": "ValidationError",
@@ -50,7 +50,7 @@ schema = {
         }
     },
     "info": {"title": "FastAPI", "version": "0.1.0"},
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "paths": {
         "/": {
             "get": {
@@ -66,7 +66,7 @@ schema = {
                 "responses": {
                     "200": {
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     },
                     "422": {
                         "content": {
@@ -76,7 +76,7 @@ schema = {
                                 }
                             }
                         },
-                        "description": "Validation " "Error",
+                        "description": "Validation Error",
                     },
                 },
                 "summary": "Get Deps",
