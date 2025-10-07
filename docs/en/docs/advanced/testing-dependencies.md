@@ -1,6 +1,6 @@
-# Testing Dependencies with Overrides
+# Testing Dependencies with Overrides { #testing-dependencies-with-overrides }
 
-## Overriding dependencies during testing
+## Overriding dependencies during testing { #overriding-dependencies-during-testing }
 
 There are some scenarios where you might want to override a dependency during testing.
 
@@ -8,7 +8,7 @@ You don't want the original dependency to run (nor any of the sub-dependencies i
 
 Instead, you want to provide a different dependency that will be used only during tests (possibly only some specific tests), and will provide a value that can be used where the value of the original dependency was used.
 
-### Use cases: external service
+### Use cases: external service { #use-cases-external-service }
 
 An example could be that you have an external authentication provider that you need to call.
 
@@ -20,7 +20,7 @@ You probably want to test the external provider once, but not necessarily call i
 
 In this case, you can override the dependency that calls that provider, and use a custom dependency that returns a mock user, only for your tests.
 
-### Use the `app.dependency_overrides` attribute
+### Use the `app.dependency_overrides` attribute { #use-the-app-dependency-overrides-attribute }
 
 For these cases, your **FastAPI** application has an attribute `app.dependency_overrides`, it is a simple `dict`.
 
