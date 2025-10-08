@@ -29,7 +29,7 @@ if sys.version_info < (3, 9):
     # this is used for is also never reached in this codebase, as it's a copy of
     # Pydantic's lenient_issubclass, just for compatibility with v1
     # TODO: remove when dropping support for Python 3.8
-    WithArgsTypes: tuple[Any, ...] = ()
+    WithArgsTypes: Tuple[Any, ...] = ()
 elif sys.version_info < (3, 10):
     WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # pyright: ignore[reportAttributeAccessIssue]
 else:
