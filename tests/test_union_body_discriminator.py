@@ -3,7 +3,7 @@ from typing import Any, Dict, Union
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel, Field, Tag
+from pydantic import BaseModel, Field
 from typing_extensions import Annotated, Literal
 
 app = FastAPI()
@@ -15,22 +15,19 @@ class FirstItem(BaseModel):
 
 
 class OtherItem(BaseModel):
-    value: Literal["second"]
+    value: Literal["other"]
     price: float
 
 
 Item = Annotated[
-    Union[
-        Annotated[FirstItem, Tag("first")],
-        Annotated[OtherItem, Tag("other")],
-    ],
+    Union[FirstItem, OtherItem],
     Field(discriminator="value"),
 ]
 
 
 @app.post("/items/")
 def save_union_body_discriminator(
-    item: Item, q: Annotated[str, Tag("query")]
+    item: Item, q: Annotated[str, Field(..., description="Query string")]
 ) -> Dict[str, Any]:
     return {"item": item}
 
@@ -55,7 +52,7 @@ def test_openapi_schema() -> None:
                             "propertyName": "value",
                             "mapping": {
                                 "first": "#/components/schemas/FirstItem",
-                                "second": "#/components/schemas/OtherItem",
+                                "other": "#/components/schemas/OtherItem",
                             },
                         },
                         "title": "Item",
