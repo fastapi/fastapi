@@ -48,8 +48,8 @@ else:
 
 @lru_cache
 def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-    if lenient_issubclass(model, v1.BaseModel):
-        return v1.get_model_fields(model)  # type: ignore[return-value]
+    if lenient_issubclass(model, v1.BaseModel):  # type: ignore[attr-defined]
+        return v1.get_model_fields(model)
     else:
         from . import v2
 
@@ -67,7 +67,7 @@ def _is_undefined(value: object) -> bool:
 
 
 def _get_model_config(model: BaseModel) -> Any:
-    if isinstance(model, v1.BaseModel):
+    if isinstance(model, v1.BaseModel):  # type: ignore[attr-defined]
         return v1._get_model_config(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -78,7 +78,7 @@ def _get_model_config(model: BaseModel) -> Any:
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
-    if isinstance(model, v1.BaseModel):
+    if isinstance(model, v1.BaseModel):  # type: ignore[attr-defined]
         return v1._model_dump(model, mode=mode, **kwargs)
     elif PYDANTIC_V2:
         from . import v2
@@ -110,12 +110,12 @@ def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
 ) -> Type[BaseModel]:
     if fields and isinstance(fields[0], v1.ModelField):
-        return v1.create_body_model(fields=fields, model_name=model_name)  # type: ignore[return-value]
+        return v1.create_body_model(fields=fields, model_name=model_name)
     else:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.create_body_model(fields=fields, model_name=model_name)  # type: ignore[return-value]
+        return v2.create_body_model(fields=fields, model_name=model_name)  # type: ignore[arg-type]
 
 
 def get_annotation_from_field_info(
@@ -141,7 +141,7 @@ def is_bytes_field(field: ModelField) -> bool:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.is_bytes_field(field)  # type: ignore[return-value]
+        return v2.is_bytes_field(field)  # type: ignore[arg-type]
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
@@ -151,7 +151,7 @@ def is_bytes_sequence_field(field: ModelField) -> bool:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.is_bytes_sequence_field(field)  # type: ignore[return-value]
+        return v2.is_bytes_sequence_field(field)  # type: ignore[arg-type]
 
 
 def is_scalar_field(field: ModelField) -> bool:
@@ -161,7 +161,7 @@ def is_scalar_field(field: ModelField) -> bool:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.is_scalar_field(field)  # type: ignore[return-value]
+        return v2.is_scalar_field(field)  # type: ignore[arg-type]
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
@@ -171,7 +171,7 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.is_scalar_sequence_field(field)  # type: ignore[return-value]
+        return v2.is_scalar_sequence_field(field)  # type: ignore[arg-type]
 
 
 def is_sequence_field(field: ModelField) -> bool:
@@ -181,7 +181,7 @@ def is_sequence_field(field: ModelField) -> bool:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.is_sequence_field(field)  # type: ignore[return-value]
+        return v2.is_sequence_field(field)  # type: ignore[arg-type]
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
@@ -191,11 +191,11 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         assert PYDANTIC_V2
         from . import v2
 
-        return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[return-value]
+        return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
 
 
 def _model_rebuild(model: Type[BaseModel]) -> None:
-    if lenient_issubclass(model, v1.BaseModel):
+    if lenient_issubclass(model, v1.BaseModel):  # type: ignore[attr-defined]
         v1._model_rebuild(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -205,7 +205,7 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
     v1_model_fields = [field for field in fields if isinstance(field, v1.ModelField)]
-    v1_flat_models = v1.get_flat_models_from_fields(v1_model_fields, known_models=set())
+    v1_flat_models = v1.get_flat_models_from_fields(v1_model_fields, known_models=set())  # type: ignore[attr-defined]
     all_flat_models = v1_flat_models
     if PYDANTIC_V2:
         from . import v2
@@ -218,10 +218,10 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
         )
         all_flat_models = all_flat_models.union(v2_flat_models)
 
-        model_name_map = v2.get_model_name_map(all_flat_models)  # type: ignore[no-any-return]
+        model_name_map = v2.get_model_name_map(all_flat_models)
         return model_name_map
-    model_name_map = v1.get_model_name_map(all_flat_models)  # type: ignore[no-any-return]
-    return model_name_map  # type: ignore[return-value]
+    model_name_map = v1.get_model_name_map(all_flat_models)
+    return model_name_map
 
 
 def get_definitions(
@@ -269,7 +269,7 @@ def get_schema_from_model_field(
         return v1.get_schema_from_model_field(
             field=field,
             model_name_map=model_name_map,
-            field_mapping=field_mapping,  # type: ignore[arg-type]
+            field_mapping=field_mapping,
             separate_input_output_schemas=separate_input_output_schemas,
         )
     else:
@@ -277,7 +277,7 @@ def get_schema_from_model_field(
         from . import v2
 
         return v2.get_schema_from_model_field(
-            field=field,
+            field=field,  # type: ignore[arg-type]
             model_name_map=model_name_map,
             field_mapping=field_mapping,  # type: ignore[arg-type]
             separate_input_output_schemas=separate_input_output_schemas,
@@ -295,10 +295,10 @@ def _is_model_field(value: Any) -> bool:
 
 
 def _is_model_class(value: Any) -> bool:
-    if lenient_issubclass(value, v1.BaseModel):
+    if lenient_issubclass(value, v1.BaseModel):  # type: ignore[attr-defined]
         return True
     elif PYDANTIC_V2:
         from . import v2
 
-        return lenient_issubclass(value, v2.BaseModel)
+        return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]
     return False

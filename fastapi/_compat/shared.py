@@ -31,10 +31,10 @@ if sys.version_info < (3, 9):
     # TODO: remove when dropping support for Python 3.8
     WithArgsTypes: Tuple[Any, ...] = ()
 elif sys.version_info < (3, 10):
-    WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # pyright: ignore[reportAttributeAccessIssue]
+    WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
 else:
     WithArgsTypes: tuple[Any, ...] = (
-        typing._GenericAlias,
+        typing._GenericAlias,  # type: ignore[attr-defined]
         types.GenericAlias,
         types.UnionType,
     )  # pyright: ignore[reportAttributeAccessIssue]
@@ -77,7 +77,7 @@ def lenient_issubclass(
 def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
-    return lenient_issubclass(annotation, sequence_types)
+    return lenient_issubclass(annotation, sequence_types)  # type: ignore[arg-type]
 
 
 def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
@@ -98,7 +98,7 @@ def value_is_sequence(value: Any) -> bool:
 
 def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     return (
-        lenient_issubclass(annotation, (BaseModel, v1.BaseModel, Mapping, UploadFile))
+        lenient_issubclass(annotation, (BaseModel, v1.BaseModel, Mapping, UploadFile))  # type: ignore[attr-defined]
         or _annotation_is_sequence(annotation)
         or is_dataclass(annotation)
     )
@@ -195,12 +195,12 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, v1.BaseModel):
+    if lenient_issubclass(annotation, v1.BaseModel):  # type: ignore[attr-defined]
         return True
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, v1.BaseModel):
+            if lenient_issubclass(arg, v1.BaseModel):  # type: ignore[attr-defined]
                 return True
     if field_annotation_is_sequence(annotation):
         for sub_annotation in get_args(annotation):

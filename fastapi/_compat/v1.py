@@ -23,20 +23,20 @@ PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")
 PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 # Keeping old "Required" functionality from Pydantic V1, without
 # shadowing typing.Required.
-RequiredParam: Any = Ellipsis  # type: ignore[no-redef]
+RequiredParam: Any = Ellipsis
 
 if not PYDANTIC_V2:
     from pydantic import AnyUrl as Url  # noqa: F401
-    from pydantic import (  # type: ignore[assignment]
+    from pydantic import (
         BaseConfig as BaseConfig,  # noqa: F401
     )
     from pydantic import BaseModel, create_model
     from pydantic import ValidationError as ValidationError  # noqa: F401
-    from pydantic.class_validators import (  # type: ignore[no-redef]
+    from pydantic.class_validators import (
         Validator as Validator,  # noqa: F401
     )
     from pydantic.color import Color as Color  # noqa: F401
-    from pydantic.error_wrappers import (  # type: ignore[no-redef]
+    from pydantic.error_wrappers import (
         ErrorWrapper as ErrorWrapper,  # noqa: F401
     )
     from pydantic.errors import MissingError
@@ -50,14 +50,10 @@ if not PYDANTIC_V2:
         SHAPE_TUPLE_ELLIPSIS,
     )
     from pydantic.fields import FieldInfo as FieldInfo
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        ModelField as ModelField,  # noqa: F401
-    )
-    from pydantic.fields import (  # type: ignore[no-redef,attr-defined]
-        Undefined as Undefined,
-    )
-    from pydantic.fields import (  # type: ignore[no-redef, attr-defined]
-        UndefinedType as UndefinedType,  # noqa: F401
+    from pydantic.fields import ModelField as ModelField  # type: ignore[attr-defined]
+    from pydantic.fields import Undefined as Undefined  # type: ignore[attr-defined]
+    from pydantic.fields import (
+        UndefinedType as UndefinedType,  # type: ignore[attr-defined]  # noqa: F401
     )
     from pydantic.networks import AnyUrl as AnyUrl  # noqa: F401
     from pydantic.networks import NameEmail as NameEmail  # noqa: F401
@@ -67,37 +63,36 @@ if not PYDANTIC_V2:
         get_flat_models_from_fields,
         model_process_schema,
     )
-    from pydantic.schema import (  # type: ignore[no-redef]  # noqa: F401
-        get_annotation_from_field_info as get_annotation_from_field_info,
+    from pydantic.schema import (
+        get_annotation_from_field_info as get_annotation_from_field_info,  # noqa: F401
     )
     from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
     from pydantic.schema import get_model_name_map as get_model_name_map  # noqa: F401
     from pydantic.types import SecretBytes as SecretBytes  # noqa: F401
     from pydantic.types import SecretStr as SecretStr  # noqa: F401
-    from pydantic.typing import (  # type: ignore[no-redef]
-        evaluate_forwardref as evaluate_forwardref,  # noqa: F401
-    )
-    from pydantic.utils import (  # type: ignore[no-redef]
-        lenient_issubclass as lenient_issubclass,  # noqa: F401
-    )
+    from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
+    from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
 
 else:
     from pydantic.v1 import AnyUrl as Url  # noqa: F401
-    from pydantic.v1 import (  # type: ignore[assignment]
-        BaseConfig as BaseConfig,  # noqa: F401
+    from pydantic.v1 import (
+        BaseConfig as BaseConfig,  # type: ignore[assignment]  # noqa: F401
     )
-    from pydantic.v1 import BaseModel, create_model
-    from pydantic.v1 import ValidationError as ValidationError  # noqa: F401
-    from pydantic.v1.class_validators import (  # type: ignore[no-redef]
-        Validator as Validator,  # noqa: F401
+    from pydantic.v1 import (
+        BaseModel as BaseModel,  # type: ignore[assignment]  # noqa: F401
     )
-    from pydantic.v1.color import Color as Color  # noqa: F401
-    from pydantic.v1.error_wrappers import (  # type: ignore[no-redef]
-        ErrorWrapper as ErrorWrapper,  # noqa: F401
+    from pydantic.v1 import (
+        ValidationError as ValidationError,  # type: ignore[assignment]  # noqa: F401
     )
+    from pydantic.v1 import create_model as create_model  # noqa: F401
+    from pydantic.v1.class_validators import Validator as Validator  # noqa: F401
+    from pydantic.v1.color import (
+        Color as Color,  # type: ignore[assignment]  # noqa: F401
+    )
+    from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper  # noqa: F401
     from pydantic.v1.errors import MissingError
-    from pydantic.v1.fields import (  # type: ignore[attr-defined]
+    from pydantic.v1.fields import (
         SHAPE_FROZENSET,
         SHAPE_LIST,
         SHAPE_SEQUENCE,
@@ -106,26 +101,22 @@ else:
         SHAPE_TUPLE,
         SHAPE_TUPLE_ELLIPSIS,
     )
-    from pydantic.v1.fields import FieldInfo as FieldInfo
-    from pydantic.v1.fields import (  # type: ignore[no-redef,attr-defined]
-        ModelField as ModelField,  # noqa: F401
-    )
-    from pydantic.v1.fields import (  # type: ignore[no-redef,attr-defined]
-        Undefined as Undefined,
-    )
-    from pydantic.v1.fields import (  # type: ignore[no-redef, attr-defined]
-        UndefinedType as UndefinedType,  # noqa: F401
-    )
+    from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
+    from pydantic.v1.fields import ModelField as ModelField  # noqa: F401
+    from pydantic.v1.fields import Undefined as Undefined
+    from pydantic.v1.fields import UndefinedType as UndefinedType  # noqa: F401
     from pydantic.v1.networks import AnyUrl as AnyUrl  # noqa: F401
-    from pydantic.v1.networks import NameEmail as NameEmail  # noqa: F401
+    from pydantic.v1.networks import (
+        NameEmail as NameEmail,  # type: ignore[assignment]  # noqa: F401
+    )
     from pydantic.v1.schema import TypeModelSet as TypeModelSet
     from pydantic.v1.schema import (
         field_schema,
         get_flat_models_from_fields,
         model_process_schema,
     )
-    from pydantic.v1.schema import (  # type: ignore[no-redef]  # noqa: F401
-        get_annotation_from_field_info as get_annotation_from_field_info,
+    from pydantic.v1.schema import (
+        get_annotation_from_field_info as get_annotation_from_field_info,  # noqa: F401
     )
     from pydantic.v1.schema import (
         get_flat_models_from_field as get_flat_models_from_field,  # noqa: F401
@@ -133,19 +124,21 @@ else:
     from pydantic.v1.schema import (
         get_model_name_map as get_model_name_map,  # noqa: F401
     )
-    from pydantic.v1.types import SecretBytes as SecretBytes  # noqa: F401
-    from pydantic.v1.types import SecretStr as SecretStr  # noqa: F401
-    from pydantic.v1.typing import (  # type: ignore[no-redef]
+    from pydantic.v1.types import (
+        SecretBytes as SecretBytes,  # type: ignore[assignment]  # noqa: F401
+    )
+    from pydantic.v1.types import (
+        SecretStr as SecretStr,  # type: ignore[assignment]  # noqa: F401
+    )
+    from pydantic.v1.typing import (
         evaluate_forwardref as evaluate_forwardref,  # noqa: F401
     )
-    from pydantic.v1.utils import (  # type: ignore[no-redef]
-        lenient_issubclass as lenient_issubclass,  # noqa: F401
-    )
+    from pydantic.v1.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
 
 
-GetJsonSchemaHandler = Any  # type: ignore[assignment,misc]
-JsonSchemaValue = Dict[str, Any]  # type: ignore[misc]
-CoreSchema = Any  # type: ignore[assignment,misc]
+GetJsonSchemaHandler = Any
+JsonSchemaValue = Dict[str, Any]
+CoreSchema = Any
 
 
 sequence_shapes = {
@@ -166,18 +159,18 @@ sequence_shape_to_type = {
 
 
 @dataclass
-class GenerateJsonSchema:  # type: ignore[no-redef]
+class GenerateJsonSchema:
     ref_template: str
 
 
-class PydanticSchemaGenerationError(Exception):  # type: ignore[no-redef]
+class PydanticSchemaGenerationError(Exception):
     pass
 
 
 RequestErrorModel: Type[BaseModel] = create_model("Request")
 
 
-def with_info_plain_validator_function(  # type: ignore[misc]
+def with_info_plain_validator_function(
     function: Callable[..., Any],
     *,
     ref: Union[str, None] = None,
@@ -211,7 +204,7 @@ def is_pv1_scalar_field(field: ModelField) -> bool:
 
     field_info = field.field_info
     if not (
-        field.shape == SHAPE_SINGLETON  # type: ignore[attr-defined]
+        field.shape == SHAPE_SINGLETON
         and not lenient_issubclass(field.type_, BaseModel)
         and not lenient_issubclass(field.type_, dict)
         and not shared.field_annotation_is_sequence(field.type_)
@@ -219,21 +212,18 @@ def is_pv1_scalar_field(field: ModelField) -> bool:
         and not isinstance(field_info, params.Body)
     ):
         return False
-    if field.sub_fields:  # type: ignore[attr-defined]
-        if not all(
-            is_pv1_scalar_field(f)
-            for f in field.sub_fields  # type: ignore[attr-defined]
-        ):
+    if field.sub_fields:
+        if not all(is_pv1_scalar_field(f) for f in field.sub_fields):
             return False
     return True
 
 
 def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
-    if (field.shape in sequence_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
+    if (field.shape in sequence_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is not None:  # type: ignore[attr-defined]
-            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
                 if not is_pv1_scalar_field(sub_field):
                     return False
         return True
@@ -319,7 +309,7 @@ def is_scalar_field(field: ModelField) -> bool:
 
 
 def is_sequence_field(field: ModelField) -> bool:
-    return field.shape in sequence_shapes or shared._annotation_is_sequence(field.type_)  # type: ignore[attr-defined]
+    return field.shape in sequence_shapes or shared._annotation_is_sequence(field.type_)
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
@@ -327,11 +317,11 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_bytes_field(field: ModelField) -> bool:
-    return lenient_issubclass(field.type_, bytes)
+    return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
-    return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)  # type: ignore[attr-defined]
+    return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
@@ -339,11 +329,11 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return,attr-defined]
+    return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return]
 
 
 def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
-    missing_field_error = ErrorWrapper(MissingError(), loc=loc)  # type: ignore[call-arg]
+    missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     new_error = ValidationError([missing_field_error], RequestErrorModel)
     return new_error.errors()[0]  # type: ignore[return-value]
 

@@ -102,7 +102,7 @@ def create_model_field(
 
     if annotation_is_pydantic_v1(type_) or version == "1":
         try:
-            return v1.ModelField(**v1_kwargs)  # type: ignore[arg-type]
+            return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
     elif PYDANTIC_V2:
@@ -113,13 +113,13 @@ def create_model_field(
         )
         kwargs = {"mode": mode, "name": name, "field_info": field_info}
         try:
-            return v2.ModelField(**kwargs)  # type: ignore[arg-type]
+            return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
         except PydanticSchemaGenerationError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
     # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
     # a Pydantic v1 type, like a constrained int
     try:
-        return v1.ModelField(**v1_kwargs)  # type: ignore[arg-type]
+        return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
 
@@ -132,7 +132,7 @@ def create_cloned_field(
     if PYDANTIC_V2:
         from ._compat import v2
 
-        if isinstance(field, v2.ModelField):  # type: ignore[name-defined]
+        if isinstance(field, v2.ModelField):
             return field
     # cloned_types caches already cloned types to support recursive models and improve
     # performance by avoiding unnecessary cloning
@@ -144,10 +144,10 @@ def create_cloned_field(
         original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, v1.BaseModel):
-        original_type = cast(Type[v1.BaseModel], original_type)
+        original_type = cast(Type[v1.BaseModel], original_type)  # type: ignore[name-defined]
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = v1.create_model(original_type.__name__, __base__=original_type)
+            use_type = v1.create_model(original_type.__name__, __base__=original_type)  # type: ignore[attr-defined]
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(

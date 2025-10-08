@@ -733,7 +733,7 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
-    if _is_error_wrapper(errors_):
+    if _is_error_wrapper(errors_):  # type: ignore[arg-type]
         return None, [errors_]
     elif isinstance(errors_, list):
         new_errors = v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
@@ -1015,7 +1015,7 @@ def get_body_field(
         BodyFieldInfo = params.Form
     else:
         if annotation_is_pydantic_v1(BodyModel):
-            BodyFieldInfo = _params_v1.Body
+            BodyFieldInfo = _params_v1.Body  # type: ignore[assignment]
         else:
             BodyFieldInfo = params.Body
 

@@ -86,7 +86,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     set: list,
     UUID: str,
     Url: str,
-    v1.Url: str,
+    v1.Url: str,  # type: ignore[attr-defined]
     AnyUrl: str,
     v1.AnyUrl: str,
 }
@@ -220,10 +220,10 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, (BaseModel, v1.BaseModel)):
+    if isinstance(obj, (BaseModel, v1.BaseModel)):  # type: ignore[attr-defined]
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
-        if isinstance(obj, v1.BaseModel):
+        if isinstance(obj, v1.BaseModel):  # type: ignore[attr-defined]
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}

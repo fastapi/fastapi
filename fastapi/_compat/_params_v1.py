@@ -5,9 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 from fastapi.openapi.models import Example
 from typing_extensions import Annotated, deprecated
 
-from .shared import (
-    PYDANTIC_VERSION_MINOR_TUPLE,
-)
+from .shared import PYDANTIC_VERSION_MINOR_TUPLE
 from .v1 import FieldInfo, Undefined
 
 _Unset: Any = Undefined
@@ -20,7 +18,7 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
-class Param(FieldInfo):
+class Param(FieldInfo):  # type: ignore[misc]
     in_: ParamTypes
 
     def __init__(
@@ -121,7 +119,7 @@ class Param(FieldInfo):
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Path(Param):
+class Path(Param):  # type: ignore[misc]
     in_ = ParamTypes.path
 
     def __init__(
@@ -207,7 +205,7 @@ class Path(Param):
         )
 
 
-class Query(Param):
+class Query(Param):  # type: ignore[misc]
     in_ = ParamTypes.query
 
     def __init__(
@@ -291,7 +289,7 @@ class Query(Param):
         )
 
 
-class Header(Param):
+class Header(Param):  # type: ignore[misc]
     in_ = ParamTypes.header
 
     def __init__(
@@ -377,7 +375,7 @@ class Header(Param):
         )
 
 
-class Cookie(Param):
+class Cookie(Param):  # type: ignore[misc]
     in_ = ParamTypes.cookie
 
     def __init__(
@@ -461,7 +459,7 @@ class Cookie(Param):
         )
 
 
-class Body(FieldInfo):
+class Body(FieldInfo):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -565,7 +563,7 @@ class Body(FieldInfo):
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Form(Body):
+class Form(Body):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -649,7 +647,7 @@ class Form(Body):
         )
 
 
-class File(Form):
+class File(Form):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
