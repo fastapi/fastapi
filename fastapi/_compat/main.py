@@ -272,7 +272,8 @@ def get_schema_from_model_field(
             field_mapping=field_mapping,  # type: ignore[arg-type]
             separate_input_output_schemas=separate_input_output_schemas,
         )
-    elif PYDANTIC_V2:
+    else:
+        assert PYDANTIC_V2
         from . import v2
 
         return v2.get_schema_from_model_field(
@@ -281,7 +282,6 @@ def get_schema_from_model_field(
             field_mapping=field_mapping,  # type: ignore[arg-type]
             separate_input_output_schemas=separate_input_output_schemas,
         )
-    raise TypeError("field must be an instance of ModelField")
 
 
 def _is_model_field(value: Any) -> bool:

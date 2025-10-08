@@ -62,7 +62,7 @@ def lenient_issubclass(
 ) -> bool:
     try:
         return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]
-    except TypeError:
+    except TypeError:  # pragma: no cover
         if isinstance(cls, WithArgsTypes):
             return False
         raise  # pragma: no cover
