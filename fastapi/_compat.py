@@ -590,6 +590,9 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
 
+    if origin is Annotated:
+        return field_annotation_is_complex(get_args(annotation)[0])
+
     return (
         _annotation_is_complex(annotation)
         or _annotation_is_complex(origin)
