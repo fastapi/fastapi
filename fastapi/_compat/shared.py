@@ -21,7 +21,7 @@ from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
-from typing_extensions import get_args, get_origin
+from typing_extensions import Annotated, get_args, get_origin
 
 # Copy from Pydantic v2, compatible with v1
 if sys.version_info < (3, 10):
@@ -102,6 +102,9 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
+
+    if origin is Annotated:
+        return field_annotation_is_complex(get_args(annotation)[0])
 
     return (
         _annotation_is_complex(annotation)
