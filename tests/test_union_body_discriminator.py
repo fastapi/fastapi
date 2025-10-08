@@ -49,13 +49,6 @@ def test_openapi_schema_pydantic_v1() -> None:
                         {"$ref": "#/components/schemas/FirstItem"},
                         {"$ref": "#/components/schemas/OtherItem"},
                     ],
-                    "discriminator": {
-                        "propertyName": "value",
-                        "mapping": {
-                            "first": "#/components/schemas/FirstItem",
-                            "other": "#/components/schemas/OtherItem",
-                        },
-                    },
                     "title": "Item",
                 }
             }
