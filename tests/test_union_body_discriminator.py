@@ -6,6 +6,8 @@ from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated, Literal
 
+from .utils import needs_pydanticv1, needs_pydanticv2
+
 app = FastAPI()
 
 
@@ -35,30 +37,54 @@ def save_union_body_discriminator(
 client = TestClient(app)
 
 
+@needs_pydanticv1
+def test_openapi_schema_pydantic_v1() -> None:
+    openapi = app.openapi()
+
+    assert openapi["paths"]["/items/"]["post"]["requestBody"]["content"] == snapshot(
+        {
+            "application/json": {
+                "schema": {
+                    "anyOf": [
+                        {"$ref": "#/components/schemas/FirstItem"},
+                        {"$ref": "#/components/schemas/OtherItem"},
+                    ],
+                    "discriminator": {
+                        "propertyName": "value",
+                        "mapping": {
+                            "first": "#/components/schemas/FirstItem",
+                            "other": "#/components/schemas/OtherItem",
+                        },
+                    },
+                    "title": "Item",
+                }
+            }
+        }
+    )
+
+
+@needs_pydanticv2
 def test_openapi_schema() -> None:
     openapi = app.openapi()
 
-    assert openapi["paths"]["/items/"]["post"]["requestBody"] == snapshot(
+    assert openapi["paths"]["/items/"]["post"]["requestBody"]["content"] == snapshot(
         {
-            "required": True,
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "oneOf": [
-                            {"$ref": "#/components/schemas/FirstItem"},
-                            {"$ref": "#/components/schemas/OtherItem"},
-                        ],
-                        "discriminator": {
-                            "propertyName": "value",
-                            "mapping": {
-                                "first": "#/components/schemas/FirstItem",
-                                "other": "#/components/schemas/OtherItem",
-                            },
+            "application/json": {
+                "schema": {
+                    "oneOf": [
+                        {"$ref": "#/components/schemas/FirstItem"},
+                        {"$ref": "#/components/schemas/OtherItem"},
+                    ],
+                    "discriminator": {
+                        "propertyName": "value",
+                        "mapping": {
+                            "first": "#/components/schemas/FirstItem",
+                            "other": "#/components/schemas/OtherItem",
                         },
-                        "title": "Item",
-                    }
+                    },
+                    "title": "Item",
                 }
-            },
+            }
         }
     )
 
