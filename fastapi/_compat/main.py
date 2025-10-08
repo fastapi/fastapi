@@ -39,7 +39,7 @@ else:
     from .v1 import RequiredParam as RequiredParam
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
-    from .v1 import Url as Url  # type: ignore[attr-defined, no-redef]
+    from .v1 import Url as Url  # type: ignore[assignment]
     from .v1 import Validator as Validator
     from .v1 import evaluate_forwardref as evaluate_forwardref
     from .v1 import get_missing_field_error as get_missing_field_error

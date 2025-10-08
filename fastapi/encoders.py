@@ -86,7 +86,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     set: list,
     UUID: str,
     Url: str,
-    v1.Url: str,  # type: ignore[attr-defined]
+    v1.Url: str,
     AnyUrl: str,
     v1.AnyUrl: str,
 }
