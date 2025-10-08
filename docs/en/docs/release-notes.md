@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.118.1
+
 ### Upgrades
 
 * 👽️ Ensure compatibility with Pydantic 2.12.0. PR [#14036](https://github.com/fastapi/fastapi/pull/14036) by [@cjwatson](https://github.com/cjwatson).
