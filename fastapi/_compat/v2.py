@@ -399,13 +399,14 @@ def get_flat_models_from_model(
 
 
 def get_flat_models_from_annotation(
-    annotation: Any, known_models: Union[TypeModelSet, None] = None
+    annotation: Any, known_models: TypeModelSet
 ) -> TypeModelSet:
-    known_models = known_models or set()
     origin = get_origin(annotation)
     if origin is not None:
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)) and arg not in known_models:
+                if arg in known_models:
+                    continue
                 known_models.add(arg)
                 if lenient_issubclass(arg, BaseModel):
                     get_flat_models_from_model(arg, known_models=known_models)
@@ -425,6 +426,8 @@ def get_flat_models_from_field(
         get_flat_models_from_model(field_type, known_models=known_models)
     elif lenient_issubclass(field_type, Enum):
         known_models.add(field_type)
+    else:
+        get_flat_models_from_annotation(field_type, known_models=known_models)
     return known_models
 
 
