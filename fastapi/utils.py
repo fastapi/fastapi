@@ -79,7 +79,7 @@ def create_model_field(
     class_validators: Optional[Dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
     required: Union[bool, UndefinedType] = Undefined,
-    model_config: Type[BaseConfig] | None = None,
+    model_config: Union[Type[BaseConfig], None] = None,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
