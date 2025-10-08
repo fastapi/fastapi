@@ -113,4 +113,3 @@ def handle_v2_list_to_v1_item(data: List[modelsv2.Item]) -> modelsv1.Item:
             multi=[modelsv1.SubItem(name=s.new_sub_name) for s in item.new_multi],
         )
     return modelsv1.Item(title="", size=0, sub=modelsv1.SubItem(name=""))
-

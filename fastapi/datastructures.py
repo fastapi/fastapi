@@ -11,7 +11,6 @@ from typing import (
 )
 
 from fastapi._compat import (
-    PYDANTIC_V2,
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,

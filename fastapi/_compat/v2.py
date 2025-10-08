@@ -372,6 +372,7 @@ def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
         for name, field_info in model.model_fields.items()
     ]
 
+
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 

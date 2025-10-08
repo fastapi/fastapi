@@ -25,7 +25,7 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from typing_extensions import Annotated, Doc
 
-from ._compat import PYDANTIC_V2, Url, _is_undefined, _model_dump
+from ._compat import Url, _is_undefined, _model_dump
 
 
 # Taken from Pydantic v1 as is
