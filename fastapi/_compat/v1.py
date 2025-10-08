@@ -26,19 +26,13 @@ PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 RequiredParam: Any = Ellipsis
 
 if not PYDANTIC_V2:
-    from pydantic import AnyUrl as Url  # noqa: F401
-    from pydantic import (
-        BaseConfig as BaseConfig,  # noqa: F401
-    )
-    from pydantic import BaseModel, create_model
-    from pydantic import ValidationError as ValidationError  # noqa: F401
-    from pydantic.class_validators import (
-        Validator as Validator,  # noqa: F401
-    )
-    from pydantic.color import Color as Color  # noqa: F401
-    from pydantic.error_wrappers import (
-        ErrorWrapper as ErrorWrapper,  # noqa: F401
-    )
+    from pydantic import BaseConfig as BaseConfig
+    from pydantic import BaseModel as BaseModel
+    from pydantic import ValidationError as ValidationError
+    from pydantic import create_model as create_model
+    from pydantic.class_validators import Validator as Validator
+    from pydantic.color import Color as Color
+    from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
@@ -52,11 +46,11 @@ if not PYDANTIC_V2:
     from pydantic.fields import FieldInfo as FieldInfo
     from pydantic.fields import ModelField as ModelField  # type: ignore[attr-defined]
     from pydantic.fields import Undefined as Undefined  # type: ignore[attr-defined]
-    from pydantic.fields import (
-        UndefinedType as UndefinedType,  # type: ignore[attr-defined]  # noqa: F401
+    from pydantic.fields import (  # type: ignore[attr-defined]
+        UndefinedType as UndefinedType,
     )
-    from pydantic.networks import AnyUrl as AnyUrl  # noqa: F401
-    from pydantic.networks import NameEmail as NameEmail  # noqa: F401
+    from pydantic.networks import AnyUrl as AnyUrl
+    from pydantic.networks import NameEmail as NameEmail
     from pydantic.schema import TypeModelSet as TypeModelSet
     from pydantic.schema import (
         field_schema,
@@ -64,33 +58,26 @@ if not PYDANTIC_V2:
         model_process_schema,
     )
     from pydantic.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,  # noqa: F401
+        get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
-    from pydantic.schema import get_model_name_map as get_model_name_map  # noqa: F401
-    from pydantic.types import SecretBytes as SecretBytes  # noqa: F401
-    from pydantic.types import SecretStr as SecretStr  # noqa: F401
-    from pydantic.typing import evaluate_forwardref as evaluate_forwardref  # noqa: F401
-    from pydantic.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
+    from pydantic.schema import get_model_name_map as get_model_name_map
+    from pydantic.types import SecretBytes as SecretBytes
+    from pydantic.types import SecretStr as SecretStr
+    from pydantic.typing import evaluate_forwardref as evaluate_forwardref
+    from pydantic.utils import lenient_issubclass as lenient_issubclass
 
 
 else:
-    from pydantic.v1 import AnyUrl as Url  # noqa: F401
-    from pydantic.v1 import (
-        BaseConfig as BaseConfig,  # type: ignore[assignment]  # noqa: F401
+    from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
+    from pydantic.v1 import BaseModel as BaseModel  # type: ignore[assignment]
+    from pydantic.v1 import (  # type: ignore[assignment]
+        ValidationError as ValidationError,
     )
-    from pydantic.v1 import (
-        BaseModel as BaseModel,  # type: ignore[assignment]  # noqa: F401
-    )
-    from pydantic.v1 import (
-        ValidationError as ValidationError,  # type: ignore[assignment]  # noqa: F401
-    )
-    from pydantic.v1 import create_model as create_model  # noqa: F401
-    from pydantic.v1.class_validators import Validator as Validator  # noqa: F401
-    from pydantic.v1.color import (
-        Color as Color,  # type: ignore[assignment]  # noqa: F401
-    )
-    from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper  # noqa: F401
+    from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
+    from pydantic.v1.class_validators import Validator as Validator
+    from pydantic.v1.color import Color as Color  # type: ignore[assignment]
+    from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.v1.errors import MissingError
     from pydantic.v1.fields import (
         SHAPE_FROZENSET,
@@ -102,12 +89,12 @@ else:
         SHAPE_TUPLE_ELLIPSIS,
     )
     from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
-    from pydantic.v1.fields import ModelField as ModelField  # noqa: F401
+    from pydantic.v1.fields import ModelField as ModelField
     from pydantic.v1.fields import Undefined as Undefined
-    from pydantic.v1.fields import UndefinedType as UndefinedType  # noqa: F401
-    from pydantic.v1.networks import AnyUrl as AnyUrl  # noqa: F401
-    from pydantic.v1.networks import (
-        NameEmail as NameEmail,  # type: ignore[assignment]  # noqa: F401
+    from pydantic.v1.fields import UndefinedType as UndefinedType
+    from pydantic.v1.networks import AnyUrl as AnyUrl
+    from pydantic.v1.networks import (  # type: ignore[assignment]
+        NameEmail as NameEmail,
     )
     from pydantic.v1.schema import TypeModelSet as TypeModelSet
     from pydantic.v1.schema import (
@@ -116,30 +103,26 @@ else:
         model_process_schema,
     )
     from pydantic.v1.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,  # noqa: F401
+        get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.v1.schema import (
-        get_flat_models_from_field as get_flat_models_from_field,  # noqa: F401
+        get_flat_models_from_field as get_flat_models_from_field,
     )
-    from pydantic.v1.schema import (
-        get_model_name_map as get_model_name_map,  # noqa: F401
+    from pydantic.v1.schema import get_model_name_map as get_model_name_map
+    from pydantic.v1.types import (  # type: ignore[assignment]
+        SecretBytes as SecretBytes,
     )
-    from pydantic.v1.types import (
-        SecretBytes as SecretBytes,  # type: ignore[assignment]  # noqa: F401
+    from pydantic.v1.types import (  # type: ignore[assignment]
+        SecretStr as SecretStr,
     )
-    from pydantic.v1.types import (
-        SecretStr as SecretStr,  # type: ignore[assignment]  # noqa: F401
-    )
-    from pydantic.v1.typing import (
-        evaluate_forwardref as evaluate_forwardref,  # noqa: F401
-    )
-    from pydantic.v1.utils import lenient_issubclass as lenient_issubclass  # noqa: F401
+    from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
+    from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
 
 
 GetJsonSchemaHandler = Any
 JsonSchemaValue = Dict[str, Any]
 CoreSchema = Any
-
+Url = AnyUrl
 
 sequence_shapes = {
     SHAPE_LIST,

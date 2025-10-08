@@ -27,7 +27,7 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
 )
 from pydantic._internal._typing_extra import eval_type_lenient
 from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
-from pydantic.fields import FieldInfo
+from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
@@ -196,7 +196,7 @@ def get_schema_from_model_field(
 
 def get_definitions(
     *,
-    fields: List[ModelField],
+    fields: Sequence[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
 ) -> Tuple[
@@ -219,7 +219,7 @@ def get_definitions(
 
     inputs = [
         (field, override_mode or field.mode, field._type_adapter.core_schema)
-        for field in fields + list(unique_flat_model_fields)
+        for field in list(fields) + list(unique_flat_model_fields)
     ]
     field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)
     for item_def in cast(Dict[str, Dict[str, Any]], definitions).values():
@@ -277,25 +277,30 @@ def _remap_definitions_and_field_mappings(
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
-):
+) -> Tuple[
+    Dict[Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
+    Dict[str, Any],
+]:
     old_name_to_new_name_map = {}
-    for key, value in field_mapping.items():
-        model = key[0].type_
+    for field_key, schema in field_mapping.items():
+        model = field_key[0].type_
         if model not in model_name_map:
             continue
         new_name = model_name_map[model]
-        old_name = value["$ref"].split("/")[-1]
+        old_name = schema["$ref"].split("/")[-1]
         if old_name in {f"{new_name}-Input", f"{new_name}-Output"}:
             continue
         old_name_to_new_name_map[old_name] = new_name
 
-    new_field_mapping = {}
-    for key, value in field_mapping.items():
-        new_value = _replace_refs(
-            schema=value,
+    new_field_mapping: Dict[
+        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    ] = {}
+    for field_key, schema in field_mapping.items():
+        new_schema = _replace_refs(
+            schema=schema,
             old_name_to_new_name_map=old_name_to_new_name_map,
         )
-        new_field_mapping[key] = new_value
+        new_field_mapping[field_key] = new_schema
 
     new_definitions = {}
     for key, value in definitions.items():

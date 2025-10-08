@@ -31,24 +31,26 @@ if PYDANTIC_V2:
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
 else:
-    from .v1 import BaseConfig as BaseConfig
+    from .v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
     from .v1 import FieldInfo as FieldInfo
-    from .v1 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
+    from .v1 import (  # type: ignore[assignment]
+        PydanticSchemaGenerationError as PydanticSchemaGenerationError,
+    )
     from .v1 import RequiredParam as RequiredParam
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
-    from .v1 import Url as Url
+    from .v1 import Url as Url  # type: ignore[attr-defined, no-redef]
     from .v1 import Validator as Validator
     from .v1 import evaluate_forwardref as evaluate_forwardref
     from .v1 import get_missing_field_error as get_missing_field_error
-    from .v1 import (
+    from .v1 import (  # type: ignore[assignment]
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
 
 
 @lru_cache
 def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-    if lenient_issubclass(model, v1.BaseModel):  # type: ignore[attr-defined]
+    if lenient_issubclass(model, v1.BaseModel):
         return v1.get_model_fields(model)
     else:
         from . import v2
@@ -67,7 +69,7 @@ def _is_undefined(value: object) -> bool:
 
 
 def _get_model_config(model: BaseModel) -> Any:
-    if isinstance(model, v1.BaseModel):  # type: ignore[attr-defined]
+    if isinstance(model, v1.BaseModel):
         return v1._get_model_config(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -78,7 +80,7 @@ def _get_model_config(model: BaseModel) -> Any:
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
-    if isinstance(model, v1.BaseModel):  # type: ignore[attr-defined]
+    if isinstance(model, v1.BaseModel):
         return v1._model_dump(model, mode=mode, **kwargs)
     elif PYDANTIC_V2:
         from . import v2
@@ -195,7 +197,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
 
 
 def _model_rebuild(model: Type[BaseModel]) -> None:
-    if lenient_issubclass(model, v1.BaseModel):  # type: ignore[attr-defined]
+    if lenient_issubclass(model, v1.BaseModel):
         v1._model_rebuild(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -295,7 +297,7 @@ def _is_model_field(value: Any) -> bool:
 
 
 def _is_model_class(value: Any) -> bool:
-    if lenient_issubclass(value, v1.BaseModel):  # type: ignore[attr-defined]
+    if lenient_issubclass(value, v1.BaseModel):
         return True
     elif PYDANTIC_V2:
         from . import v2

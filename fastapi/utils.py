@@ -144,10 +144,10 @@ def create_cloned_field(
         original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, v1.BaseModel):
-        original_type = cast(Type[v1.BaseModel], original_type)  # type: ignore[name-defined]
+        original_type = cast(Type[v1.BaseModel], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = v1.create_model(original_type.__name__, __base__=original_type)  # type: ignore[attr-defined]
+            use_type = v1.create_model(original_type.__name__, __base__=original_type)
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(

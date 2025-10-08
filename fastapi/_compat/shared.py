@@ -98,7 +98,7 @@ def value_is_sequence(value: Any) -> bool:
 
 def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     return (
-        lenient_issubclass(annotation, (BaseModel, v1.BaseModel, Mapping, UploadFile))  # type: ignore[attr-defined]
+        lenient_issubclass(annotation, (BaseModel, v1.BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
         or is_dataclass(annotation)
     )
@@ -195,12 +195,12 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, v1.BaseModel):  # type: ignore[attr-defined]
+    if lenient_issubclass(annotation, v1.BaseModel):
         return True
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, v1.BaseModel):  # type: ignore[attr-defined]
+            if lenient_issubclass(arg, v1.BaseModel):
                 return True
     if field_annotation_is_sequence(annotation):
         for sub_annotation in get_args(annotation):
