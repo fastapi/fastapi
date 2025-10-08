@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.118.2
+
 ### Fixes
 
 * 🐛 Fix tagged discriminated union not recognized as body field. PR [#12942](https://github.com/fastapi/fastapi/pull/12942) by [@frankie567](https://github.com/frankie567).
