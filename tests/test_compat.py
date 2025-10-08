@@ -9,7 +9,7 @@ from fastapi._compat import (
     is_uploadfile_sequence_annotation,
     v1,
 )
-from fastapi._compat.shared import is_bytes_sequence_annotation, lenient_issubclass
+from fastapi._compat.shared import is_bytes_sequence_annotation
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
@@ -34,11 +34,6 @@ def test_v1_plain_validator_function():
 
     result = v1.with_info_plain_validator_function(func)
     assert result == {}
-
-
-def test_lenient_is_subclass():
-    # For coverage
-    assert lenient_issubclass(Union[str, int], str) is False
 
 
 def test_is_model_field():
