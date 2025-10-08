@@ -3,24 +3,20 @@ from typing import Any, Dict, Union
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel, Discriminator, Tag
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, Tag
+from typing_extensions import Annotated, Literal
 
 app = FastAPI()
 
 
 class FirstItem(BaseModel):
-    value: str
+    value: Literal["first"]
     price: int
 
 
 class OtherItem(BaseModel):
-    value: str
+    value: Literal["second"]
     price: float
-
-
-def get_discriminator_value(v: Any) -> str:
-    return v.get("value")
 
 
 Item = Annotated[
@@ -28,7 +24,7 @@ Item = Annotated[
         Annotated[FirstItem, Tag("first")],
         Annotated[OtherItem, Tag("other")],
     ],
-    Discriminator(get_discriminator_value),
+    Field(discriminator="value"),
 ]
 
 
@@ -55,6 +51,13 @@ def test_openapi_schema() -> None:
                             {"$ref": "#/components/schemas/FirstItem"},
                             {"$ref": "#/components/schemas/OtherItem"},
                         ],
+                        "discriminator": {
+                            "propertyName": "value",
+                            "mapping": {
+                                "first": "#/components/schemas/FirstItem",
+                                "second": "#/components/schemas/OtherItem",
+                            },
+                        },
                         "title": "Item",
                     }
                 }
