@@ -252,7 +252,6 @@ def get_definitions(
             model_name_map=model_name_map,
             separate_input_output_schemas=separate_input_output_schemas,
         )
-        # TODO: check for uniqueness
         all_definitions = {**v1_definitions, **v2_definitions}
         all_field_maps = {**v1_field_maps, **v2_field_maps}
         return all_field_maps, all_definitions
