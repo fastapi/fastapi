@@ -224,6 +224,54 @@ def test_v2_to_v1_list_to_item_empty():
     }
 
 
+def test_v2_same_name_to_v1():
+    response = client.post(
+        "/v2-to-v1/same-name",
+        json={
+            "item1": {
+                "new_title": "Title1",
+                "new_size": 100,
+                "new_description": "Description1",
+                "new_sub": {"new_sub_name": "Sub1"},
+                "new_multi": [{"new_sub_name": "Multi1"}],
+            },
+            "item2": {
+                "new_title": "Title2",
+                "new_size": 200,
+                "new_description": "Description2",
+                "new_sub": {"new_sub_name": "Sub2"},
+                "new_multi": [
+                    {"new_sub_name": "Multi2a"},
+                    {"new_sub_name": "Multi2b"},
+                ],
+            },
+        },
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "title": "Title1",
+        "size": 200,
+        "description": "Description1",
+        "sub": {"name": "Sub1"},
+        "multi": [{"name": "Multi2a"}, {"name": "Multi2b"}],
+    }
+
+
+def test_v2_items_in_list_to_v1_item_in_list():
+    response = client.post(
+        "/v2-to-v1/list-of-items-to-list-of-items",
+        json={
+            "data1": [{"name2": "Item1"}, {"name2": "Item2"}],
+            "data2": [{"name2b": "Item3"}, {"name2b": "Item4"}],
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == [
+        {"name1": "Item1"},
+        {"name1": "Item3"},
+    ]
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
@@ -292,7 +340,7 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
+                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
                                     }
                                 }
                             },
@@ -474,7 +522,7 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
+                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
                                     }
                                 }
                             },
@@ -517,7 +565,7 @@ def test_openapi_schema():
                                 "application/json": {
                                     "schema": {
                                         "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
                                         },
                                         "type": "array",
                                         "title": "Data",
@@ -563,7 +611,7 @@ def test_openapi_schema():
                                 "application/json": {
                                     "schema": {
                                         "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
                                         },
                                         "type": "array",
                                         "title": "Data",
@@ -596,9 +644,123 @@ def test_openapi_schema():
                         },
                     }
                 },
+                "/v2-to-v1/same-name": {
+                    "post": {
+                        "summary": "Handle V2 Same Name To V1",
+                        "operationId": "handle_v2_same_name_to_v1_v2_to_v1_same_name_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/v2-to-v1/list-of-items-to-list-of-items": {
+                    "post": {
+                        "summary": "Handle V2 Items In List To V1 Item In List",
+                        "operationId": "handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__ItemInList"
+                                            },
+                                            "type": "array",
+                                            "title": "Response Handle V2 Items In List To V1 Item In List V2 To V1 List Of Items To List Of Items Post",
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
             },
             "components": {
                 "schemas": {
+                    "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post": {
+                        "properties": {
+                            "data1": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList"
+                                },
+                                "type": "array",
+                                "title": "Data1",
+                            },
+                            "data2": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList"
+                                },
+                                "type": "array",
+                                "title": "Data2",
+                            },
+                        },
+                        "type": "object",
+                        "required": ["data1", "data2"],
+                        "title": "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post",
+                    },
+                    "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post": {
+                        "properties": {
+                            "item1": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                            },
+                            "item2": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__Item"
+                            },
+                        },
+                        "type": "object",
+                        "required": ["item1", "item2"],
+                        "title": "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post",
+                    },
                     "HTTPValidationError": {
                         "properties": {
                             "detail": {
@@ -611,6 +773,14 @@ def test_openapi_schema():
                         },
                         "type": "object",
                         "title": "HTTPValidationError",
+                    },
+                    "SubItem-Output": {
+                        "properties": {
+                            "new_sub_name": {"type": "string", "title": "New Sub Name"}
+                        },
+                        "type": "object",
+                        "required": ["new_sub_name"],
+                        "title": "SubItem",
                     },
                     "ValidationError": {
                         "properties": {
@@ -633,6 +803,12 @@ def test_openapi_schema():
                         "type": "object",
                         "required": ["name"],
                         "title": "SubItem",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv1__ItemInList": {
+                        "properties": {"name1": {"type": "string", "title": "Name1"}},
+                        "type": "object",
+                        "required": ["name1"],
+                        "title": "ItemInList",
                     },
                     "tests__test_pydantic_v1_v2_multifile__modelsv1__Item": {
                         "properties": {
@@ -659,17 +835,32 @@ def test_openapi_schema():
                         "properties": {
                             "new_title": {"type": "string", "title": "New Title"},
                             "new_size": {"type": "integer", "title": "New Size"},
-                            "new_description": pydantic_snapshot(
-                                v2=snapshot(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "New Description",
-                                    }
-                                ),
-                                v1=snapshot(
-                                    {"type": "string", "title": "New Description"}
-                                ),
-                            ),
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
+                            "new_sub": {"$ref": "#/components/schemas/SubItem-Output"},
+                            "new_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/SubItem-Output"
+                                },
+                                "type": "array",
+                                "title": "New Multi",
+                                "default": [],
+                            },
+                        },
+                        "type": "object",
+                        "required": ["new_title", "new_size", "new_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input": {
+                        "properties": {
+                            "new_title": {"type": "string", "title": "New Title"},
+                            "new_size": {"type": "integer", "title": "New Size"},
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
                             "new_sub": {
                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                             },
@@ -686,12 +877,58 @@ def test_openapi_schema():
                         "required": ["new_title", "new_size", "new_sub"],
                         "title": "Item",
                     },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList": {
+                        "properties": {"name2": {"type": "string", "title": "Name2"}},
+                        "type": "object",
+                        "required": ["name2"],
+                        "title": "ItemInList",
+                    },
                     "tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem": {
                         "properties": {
                             "new_sub_name": {"type": "string", "title": "New Sub Name"}
                         },
                         "type": "object",
                         "required": ["new_sub_name"],
+                        "title": "SubItem",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__Item": {
+                        "properties": {
+                            "dup_title": {"type": "string", "title": "Dup Title"},
+                            "dup_size": {"type": "integer", "title": "Dup Size"},
+                            "dup_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Dup Description",
+                            },
+                            "dup_sub": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
+                            },
+                            "dup_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
+                                },
+                                "type": "array",
+                                "title": "Dup Multi",
+                                "default": [],
+                            },
+                        },
+                        "type": "object",
+                        "required": ["dup_title", "dup_size", "dup_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList": {
+                        "properties": {
+                            "dup_name2": {"type": "string", "title": "Dup Name2"}
+                        },
+                        "type": "object",
+                        "required": ["dup_name2"],
+                        "title": "ItemInList",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem": {
+                        "properties": {
+                            "dup_sub_name": {"type": "string", "title": "Dup Sub Name"}
+                        },
+                        "type": "object",
+                        "required": ["dup_sub_name"],
                         "title": "SubItem",
                     },
                 }

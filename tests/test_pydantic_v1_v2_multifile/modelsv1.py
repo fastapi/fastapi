@@ -13,3 +13,7 @@ class Item(BaseModel):
     description: Union[str, None] = None
     sub: SubItem
     multi: List[SubItem] = []
+
+
+class ItemInList(BaseModel):
+    name1: str

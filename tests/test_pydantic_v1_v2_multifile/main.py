@@ -2,7 +2,7 @@ from typing import List
 
 from fastapi import FastAPI
 
-from . import modelsv1, modelsv2
+from . import modelsv1, modelsv2, modelsv2b
 
 app = FastAPI()
 
@@ -113,3 +113,30 @@ def handle_v2_list_to_v1_item(data: List[modelsv2.Item]) -> modelsv1.Item:
             multi=[modelsv1.SubItem(name=s.new_sub_name) for s in item.new_multi],
         )
     return modelsv1.Item(title="", size=0, sub=modelsv1.SubItem(name=""))
+
+
+@app.post("/v2-to-v1/same-name")
+def handle_v2_same_name_to_v1(
+    item1: modelsv2.Item, item2: modelsv2b.Item
+) -> modelsv1.Item:
+    return modelsv1.Item(
+        title=item1.new_title,
+        size=item2.dup_size,
+        description=item1.new_description,
+        sub=modelsv1.SubItem(name=item1.new_sub.new_sub_name),
+        multi=[modelsv1.SubItem(name=s.dup_sub_name) for s in item2.dup_multi],
+    )
+
+
+@app.post("/v2-to-v1/list-of-items-to-list-of-items")
+def handle_v2_items_in_list_to_v1_item_in_list(
+    data1: List[modelsv2.ItemInList], data2: List[modelsv2b.ItemInList]
+) -> List[modelsv1.ItemInList]:
+    result = []
+    item1 = data1[0]
+    item2 = data2[0]
+    result = [
+        modelsv1.ItemInList(name1=item1.name2),
+        modelsv1.ItemInList(name1=item2.dup_name2),
+    ]
+    return result
