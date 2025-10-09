@@ -107,3 +107,41 @@ También puedes establecer el parámetro `route_class` de un `APIRouter`:
 En este ejemplo, las *path operations* bajo el `router` usarán la clase personalizada `TimedRoute`, y tendrán un header `X-Response-Time` extra en el response con el tiempo que tomó generar el response:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
+
+## Experimental: Método HTTP QUERY { #experimental-http-query-method }
+
+/// warning | Advertencia
+
+Esta es una funcionalidad experimental para el método HTTP QUERY no estándar. Úsalo con precaución.
+
+///
+
+FastAPI y `APIRouter` exponen un decorador `.query()` para el método HTTP QUERY experimental, tal como se define en el <a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-02.html" class="external-link" target="_blank">borrador del IETF para "método seguro con cuerpo"</a>.
+
+El método QUERY funciona en tiempo de ejecución y puede usarse como cualquier otro decorador de método HTTP:
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class SearchQuery(BaseModel):
+    text: str
+    limit: int = 10
+
+@app.query("/search")
+def search_items(query: SearchQuery):
+    return {"results": f"Searching for: {query.text}"}
+```
+
+### Limitaciones { #query-method-limitations }
+
+* **No se muestra en la documentación interactiva**: El método QUERY no aparecerá en el esquema OpenAPI ni en la documentación interactiva (Swagger UI, ReDoc) porque la especificación OpenAPI no define operaciones "query".
+* **Soporte limitado de clientes**: No todos los clientes HTTP y proxies soportan el método QUERY.
+
+/// tip | Consejo
+
+Para máxima interoperabilidad, prefiere usar **POST** para operaciones que requieren un cuerpo de request. El método QUERY solo es útil en escenarios especializados donde necesitas seguir la especificación del borrador del IETF.
+
+///
