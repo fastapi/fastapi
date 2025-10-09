@@ -406,9 +406,10 @@ def analyze_param(
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
-            assert (
-                field_info.default is Undefined or field_info.default is RequiredParam
-            ), (
+            assert field_info.default in {
+                Undefined,
+                v1.Undefined,
+            } or field_info.default in {RequiredParam, v1.RequiredParam}, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
@@ -493,7 +494,7 @@ def analyze_param(
     if field_info is not None:
         # Handle field_info.in_
         if is_path_param:
-            assert isinstance(field_info, params.Path), (
+            assert isinstance(field_info, (params.Path, _params_v1.Path)), (
                 f"Cannot use `{field_info.__class__.__name__}` for path param"
                 f" {param_name!r}"
             )
@@ -819,7 +820,7 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(field_info, params.Param), (
+        assert isinstance(field_info, (params.Param, _params_v1.Param)), (
             "Params must be subclasses of Param"
         )
         loc: Tuple[str, ...] = (field_info.in_.value,)
@@ -831,7 +832,7 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(field_info, params.Param), (
+        assert isinstance(field_info, (params.Param, _params_v1.Param)), (
             "Params must be subclasses of Param"
         )
         loc = (field_info.in_.value, field.alias)

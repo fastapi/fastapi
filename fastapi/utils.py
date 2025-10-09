@@ -100,7 +100,11 @@ def create_model_field(
         "alias": alias,
     }
 
-    if annotation_is_pydantic_v1(type_) or version == "1":
+    if (
+        annotation_is_pydantic_v1(type_)
+        or isinstance(field_info, v1.FieldInfo)
+        or version == "1"
+    ):
         try:
             return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
