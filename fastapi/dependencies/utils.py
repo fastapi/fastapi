@@ -499,7 +499,7 @@ def analyze_param(
                 f" {param_name!r}"
             )
         elif (
-            isinstance(field_info, params.Param)
+            isinstance(field_info, (params.Param, _params_v1.Param))
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
@@ -508,7 +508,7 @@ def analyze_param(
             field_info,
             param_name,
         )
-        if isinstance(field_info, params.Form):
+        if isinstance(field_info, (params.Form, _params_v1.Form)):
             ensure_multipart_is_installed()
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
@@ -527,7 +527,7 @@ def analyze_param(
             assert is_scalar_field(field=field), (
                 "Path params must be of one of the supported types"
             )
-        elif isinstance(field_info, params.Query):
+        elif isinstance(field_info, (params.Query, _params_v1.Query)):
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
@@ -754,7 +754,7 @@ def _get_multidict_value(
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
+            isinstance(field.field_info, (params.Form, _params_v1.Form))
             and isinstance(value, str)  # For type checks
             and value == ""
         )
@@ -899,14 +899,14 @@ async def _extract_form_body(
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
         if (
-            isinstance(field_info, params.File)
+            isinstance(field_info, (params.File, _params_v1.File))
             and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
             is_bytes_sequence_field(field)
-            and isinstance(field_info, params.File)
+            and isinstance(field_info, (params.File, _params_v1.File))
             and value_is_sequence(value)
         ):
             # For types
@@ -1012,8 +1012,18 @@ def get_body_field(
         BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
-    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+    elif any(
+        isinstance(f.field_info, _params_v1.File) for f in flat_dependant.body_params
+    ):
+        BodyFieldInfo: Type[_params_v1.Body] = _params_v1.File
+    elif any(
+        isinstance(f.field_info, params.Form) for f in flat_dependant.body_params
+    ):
         BodyFieldInfo = params.Form
+    elif any(
+        isinstance(f.field_info, _params_v1.Form) for f in flat_dependant.body_params
+    ):
+        BodyFieldInfo = _params_v1.Form
     else:
         if annotation_is_pydantic_v1(BodyModel):
             BodyFieldInfo = _params_v1.Body  # type: ignore[assignment]

@@ -31,6 +31,7 @@ from fastapi._compat import (
     _get_model_config,
     _model_dump,
     _normalize_errors,
+    _params_v1,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -307,7 +308,9 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    is_body_form = body_field and isinstance(
+        body_field.field_info, (params.Form, _params_v1.Form)
+    )
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
     else:
