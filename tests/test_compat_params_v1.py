@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 import pytest
 from fastapi import FastAPI
@@ -99,7 +99,7 @@ def upload_file(
 
 @app.post("/upload-multiple/")
 def upload_multiple_files(
-    files: Annotated[list[bytes], File()],
+    files: Annotated[List[bytes], File()],
     note: Annotated[str, Form()] = "",
 ):
     return {
