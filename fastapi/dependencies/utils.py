@@ -1016,9 +1016,7 @@ def get_body_field(
         isinstance(f.field_info, _params_v1.File) for f in flat_dependant.body_params
     ):
         BodyFieldInfo: Type[_params_v1.Body] = _params_v1.File
-    elif any(
-        isinstance(f.field_info, params.Form) for f in flat_dependant.body_params
-    ):
+    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
     elif any(
         isinstance(f.field_info, _params_v1.Form) for f in flat_dependant.body_params
