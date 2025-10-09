@@ -1015,13 +1015,13 @@ def get_body_field(
     elif any(
         isinstance(f.field_info, _params_v1.File) for f in flat_dependant.body_params
     ):
-        BodyFieldInfo: Type[_params_v1.Body] = _params_v1.File
+        BodyFieldInfo: Type[_params_v1.Body] = _params_v1.File  # type: ignore[no-redef]
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
     elif any(
         isinstance(f.field_info, _params_v1.Form) for f in flat_dependant.body_params
     ):
-        BodyFieldInfo = _params_v1.Form
+        BodyFieldInfo = _params_v1.Form  # type: ignore[assignment]
     else:
         if annotation_is_pydantic_v1(BodyModel):
             BodyFieldInfo = _params_v1.Body  # type: ignore[assignment]
