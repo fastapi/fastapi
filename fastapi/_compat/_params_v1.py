@@ -1,21 +1,14 @@
 import warnings
-from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Union
 
 from fastapi.openapi.models import Example
+from fastapi.params import ParamTypes
 from typing_extensions import Annotated, deprecated
 
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE
 from .v1 import FieldInfo, Undefined
 
 _Unset: Any = Undefined
-
-
-class ParamTypes(Enum):
-    query = "query"
-    header = "header"
-    path = "path"
-    cookie = "cookie"
 
 
 class Param(FieldInfo):  # type: ignore[misc]
