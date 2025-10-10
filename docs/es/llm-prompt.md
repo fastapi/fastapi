@@ -4,56 +4,6 @@ Use the informal grammar (use "tú" instead of "usted").
 
 For instructions or titles in imperative, keep them in imperative, for example "Edit it" to "Edítalo".
 
-There are special blocks of notes, tips and others that look like:
-
-/// note
-
-To translate it, keep the same line and add the translation after a vertical bar:
-
-/// note | Nota
-
-Some examples:
-
-Source:
-
-/// tip
-
-Result:
-
-/// tip | Consejo
-
-Source:
-
-/// details | Preview
-
-Result:
-
-/// details | Vista previa
-
-Source:
-
-/// warning
-
-Result:
-
-/// warning | Advertencia
-
-Source:
-
-/// info
-
-Result:
-
-/// info | Información
-
-Source:
-
-/// note | Technical Details
-
-Result:
-
-/// note | Detalles Técnicos
-
 ---
 
 For the next terms, use the following translations:
