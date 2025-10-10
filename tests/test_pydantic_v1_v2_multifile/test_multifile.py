@@ -236,13 +236,13 @@ def test_v2_same_name_to_v1():
                 "new_multi": [{"new_sub_name": "Multi1"}],
             },
             "item2": {
-                "new_title": "Title2",
-                "new_size": 200,
-                "new_description": "Description2",
-                "new_sub": {"new_sub_name": "Sub2"},
-                "new_multi": [
-                    {"new_sub_name": "Multi2a"},
-                    {"new_sub_name": "Multi2b"},
+                "dup_title": "Title2",
+                "dup_size": 200,
+                "dup_description": "Description2",
+                "dup_sub": {"dup_sub_name": "Sub2"},
+                "dup_multi": [
+                    {"dup_sub_name": "Multi2a"},
+                    {"dup_sub_name": "Multi2b"},
                 ],
             },
         },
@@ -262,7 +262,7 @@ def test_v2_items_in_list_to_v1_item_in_list():
         "/v2-to-v1/list-of-items-to-list-of-items",
         json={
             "data1": [{"name2": "Item1"}, {"name2": "Item2"}],
-            "data2": [{"name2b": "Item3"}, {"name2b": "Item4"}],
+            "data2": [{"dup_name2": "Item3"}, {"dup_name2": "Item4"}],
         },
     )
     assert response.status_code == 200, response.text
@@ -819,6 +819,14 @@ def test_openapi_schema():
                         "type": "object",
                         "title": "HTTPValidationError",
                     },
+                    "SubItem-Output": {
+                        "properties": {
+                            "new_sub_name": {"type": "string", "title": "New Sub Name"}
+                        },
+                        "type": "object",
+                        "required": ["new_sub_name"],
+                        "title": "SubItem",
+                    },
                     "ValidationError": {
                         "properties": {
                             "loc": {
@@ -883,6 +891,28 @@ def test_openapi_schema():
                                     {"type": "string", "title": "New Description"}
                                 ),
                             ),
+                            "new_sub": {"$ref": "#/components/schemas/SubItem-Output"},
+                            "new_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/SubItem-Output"
+                                },
+                                "type": "array",
+                                "title": "New Multi",
+                                "default": [],
+                            },
+                        },
+                        "type": "object",
+                        "required": ["new_title", "new_size", "new_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input": {
+                        "properties": {
+                            "new_title": {"type": "string", "title": "New Title"},
+                            "new_size": {"type": "integer", "title": "New Size"},
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
                             "new_sub": {
                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                             },
