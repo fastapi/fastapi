@@ -23,7 +23,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
-from fastapi.openapi.models import OpenAPI
+from fastapi.openapi.models import OpenAPI, Server
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.types import ModelNameMap
@@ -483,7 +483,7 @@ def get_openapi(
     routes: Sequence[BaseRoute],
     webhooks: Optional[Sequence[BaseRoute]] = None,
     tags: Optional[List[Dict[str, Any]]] = None,
-    servers: Optional[List[Dict[str, Union[str, Any]]]] = None,
+    servers: Optional[List[Union[Dict[str, Union[str, Any]], Server]]] = None,
     terms_of_service: Optional[str] = None,
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
