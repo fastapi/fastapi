@@ -20,16 +20,19 @@ from typing import (
     cast,
 )
 
-from fastapi.exceptions import RequestErrorModel
+from fastapi.exceptions import (
+    PYDANTIC_V2 as PYDANTIC_V2,
+)
+from fastapi.exceptions import (
+    PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE,
+)
+from fastapi.exceptions import (
+    RequestErrorModel,
+)
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, create_model
-from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
-PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
-
 
 sequence_annotation_to_type = {
     Sequence: list,
