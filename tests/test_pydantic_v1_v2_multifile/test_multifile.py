@@ -1,8 +1,13 @@
+import sys
+
+from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+
+if sys.version_info > (3, 13):
+    skip_module_if_py_gte_314()
+
 from dirty_equals import IsPartialDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-
-from tests.utils import pydantic_snapshot
 
 from .main import app
 

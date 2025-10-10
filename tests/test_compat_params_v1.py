@@ -1,14 +1,19 @@
+import sys
 from typing import List, Optional
 
 import pytest
+
+from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+
+if sys.version_info > (3, 13):
+    skip_module_if_py_gte_314()
+
 from fastapi import FastAPI
 from fastapi._compat._params_v1 import Body, Cookie, File, Form, Header, Path, Query
 from fastapi._compat.v1 import BaseModel
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from typing_extensions import Annotated
-
-from tests.utils import pydantic_snapshot
 
 
 class Item(BaseModel):
