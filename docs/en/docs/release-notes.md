@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.118.3
+
 ### Upgrades
 
 * ⬆️ Add support for Python 3.14. PR [#14165](https://github.com/fastapi/fastapi/pull/14165) by [@svlandeg](https://github.com/svlandeg).
