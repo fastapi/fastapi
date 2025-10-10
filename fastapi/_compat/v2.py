@@ -423,8 +423,6 @@ def get_flat_models_from_annotation(
     if origin is not None:
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)) and arg not in known_models:
-                if arg in known_models:
-                    continue
                 known_models.add(arg)
                 if lenient_issubclass(arg, BaseModel):
                     get_flat_models_from_model(arg, known_models=known_models)
