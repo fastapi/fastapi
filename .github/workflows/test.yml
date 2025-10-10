@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true
@@ -58,6 +58,9 @@ jobs:
           - "3.9"
           - "3.8"
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
+        exclude:
+          - python-version: "3.14"
+            pydantic-version: "pydantic-v1"
       fail-fast: false
     steps:
       - name: Dump GitHub context
@@ -71,7 +74,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           allow-prereleases: true
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true
@@ -116,7 +119,7 @@ jobs:
         with:
           python-version: '3.8'
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true

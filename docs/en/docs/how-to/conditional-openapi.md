@@ -17,7 +17,7 @@ If you want to secure your API, there are several better things you can do, for 
 * Make sure you have well defined Pydantic models for your request bodies and responses.
 * Configure any required permissions and roles using dependencies.
 * Never store plaintext passwords, only password hashes.
-* Implement and use well-known cryptographic tools, like Passlib and JWT tokens, etc.
+* Implement and use well-known cryptographic tools, like pwdlib and JWT tokens, etc.
 * Add more granular permission controls with OAuth2 scopes where needed.
 * ...etc.
 

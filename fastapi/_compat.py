@@ -1,3 +1,4 @@
+import warnings
 from collections import deque
 from copy import copy
 from dataclasses import dataclass, is_dataclass
@@ -109,9 +110,20 @@ if PYDANTIC_V2:
             return self.field_info.annotation
 
         def __post_init__(self) -> None:
-            self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[self.field_info.annotation, self.field_info]
-            )
+            with warnings.catch_warnings():
+                # Pydantic >= 2.12.0 warns about field specific metadata that is unused
+                # (e.g. `TypeAdapter(Annotated[int, Field(alias='b')])`). In some cases, we
+                # end up building the type adapter from a model field annotation so we
+                # need to ignore the warning:
+                if PYDANTIC_VERSION_MINOR_TUPLE >= (2, 12):
+                    from pydantic.warnings import UnsupportedFieldAttributeWarning
+
+                    warnings.simplefilter(
+                        "ignore", category=UnsupportedFieldAttributeWarning
+                    )
+                self._type_adapter: TypeAdapter[Any] = TypeAdapter(
+                    Annotated[self.field_info.annotation, self.field_info]
+                )
 
         def get_default(self) -> Any:
             if self.field_info.is_required():
@@ -577,6 +589,9 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
+
+    if origin is Annotated:
+        return field_annotation_is_complex(get_args(annotation)[0])
 
     return (
         _annotation_is_complex(annotation)
