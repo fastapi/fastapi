@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_pydanticv2
+from .utils import needs_py_lt_314, needs_pydanticv2
 
 
 @needs_pydanticv2
@@ -133,6 +133,7 @@ def test_is_uploadfile_sequence_annotation():
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
 
 
+@needs_py_lt_314
 def test_is_pv1_scalar_field():
     # For coverage
     class Model(v1.BaseModel):
