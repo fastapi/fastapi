@@ -5,7 +5,7 @@ import pytest
 
 from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
 
-if sys.version_info > (3, 13):
+if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
 from fastapi import FastAPI
