@@ -5,6 +5,7 @@ from fastapi._compat import (
     ModelField,
     Undefined,
     _get_model_config,
+    _model_dump,
     get_cached_model_fields,
     get_model_fields,
     is_bytes_sequence_annotation,
@@ -163,3 +164,13 @@ def test_get_model_fields_cached():
 
     assert non_cached_fields is not non_cached_fields2
     assert cached_fields is cached_fields2
+
+
+@needs_pydanticv1
+def test_model_dump_remove_context_kwarg_in_pydanticv1() -> None:
+    class Model(BaseModel):
+        foo: str
+
+    # The following instruction would throw an error
+    # in pv1 if the context kwarg was not removed.
+    _model_dump(Model(foo="bar"), context=1)

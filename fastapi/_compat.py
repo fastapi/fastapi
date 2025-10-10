@@ -465,6 +465,8 @@ else:
     def _model_dump(
         model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
     ) -> Any:
+        if not PYDANTIC_V2:
+            kwargs.pop("context", None)
         return model.dict(**kwargs)
 
     def _get_model_config(model: BaseModel) -> Any:
