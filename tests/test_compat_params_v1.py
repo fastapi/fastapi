@@ -9,8 +9,16 @@ if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
 from fastapi import FastAPI
-from fastapi._compat._params_v1 import Body, Cookie, File, Form, Header, Path, Query
 from fastapi._compat.v1 import BaseModel
+from fastapi.temp_pydantic_v1_params import (
+    Body,
+    Cookie,
+    File,
+    Form,
+    Header,
+    Path,
+    Query,
+)
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from typing_extensions import Annotated
