@@ -66,11 +66,47 @@ Have in mind that as the Pydantic team no longer supports Pydantic v1 in recent 
 
 ### Pydantic v1 and v2 on the same app { #pydantic-v1-and-v2-on-the-same-app }
 
-It's **not possible** to have a model of Pydantic v2 with its own fields defined as Pydantic v1 models or vice versa.
+It's **not supported** by Pydantic to have a model of Pydantic v2 with its own fields defined as Pydantic v1 models or vice versa.
+
+```mermaid
+graph TB
+    subgraph "❌ Not Supported"
+        direction TB
+        subgraph V2["Pydantic v2 Model"]
+            V1Field["Pydantic v1 Model"]
+        end
+        subgraph V1["Pydantic v1 Model"]
+            V2Field["Pydantic v2 Model"]
+        end
+    end
+    
+    style V2 fill:#f9fff3
+    style V1 fill:#fff6f0
+    style V1Field fill:#fff6f0
+    style V2Field fill:#f9fff3
+```
 
 ...but, you can have separated models using Pydantic v1 and v2 in the same app.
 
-In some cases, it's even possible to have both Pydantic v1 and v2 models in the same **path operation**:
+```mermaid
+graph TB
+    subgraph "✅ Supported"
+        direction TB
+        subgraph V2["Pydantic v2 Model"]
+            V2Field["Pydantic v2 Model"]
+        end
+        subgraph V1["Pydantic v1 Model"]
+            V1Field["Pydantic v1 Model"]
+        end
+    end
+
+    style V2 fill:#f9fff3
+    style V1 fill:#fff6f0
+    style V1Field fill:#fff6f0
+    style V2Field fill:#f9fff3
+```
+
+In some cases, it's even possible to have both Pydantic v1 and v2 models in the same **path operation** in your FastAPI app:
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
 
