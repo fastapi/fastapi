@@ -48,4 +48,4 @@ E como o `Response` pode ser usado frequentemente para definir cabeçalhos e coo
 
 ///
 
-Para ver todos os parâmetros e opções disponíveis, verifique a <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentação no Starlette</a>.
+Para ver todos os parâmetros e opções disponíveis, verifique a <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentação no Starlette</a>.

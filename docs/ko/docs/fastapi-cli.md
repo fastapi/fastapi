@@ -60,7 +60,7 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 인수로 받아
 
 프로덕션 환경에서는 `fastapi run` 명령어를 사용합니다. 🚀
 
-내부적으로, **FastAPI CLI**는 고성능의, 프로덕션에 적합한, ASGI 서버인 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>을 사용합니다. 😎
+내부적으로, **FastAPI CLI**는 고성능의, 프로덕션에 적합한, ASGI 서버인 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>을 사용합니다. 😎
 
 ## `fastapi dev`
 

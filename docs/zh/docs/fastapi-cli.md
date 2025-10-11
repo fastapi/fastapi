@@ -52,7 +52,7 @@ FastAPI CLI 接收你的 Python 程序路径，自动检测包含 FastAPI 的变
 
 在生产环境中，你应该使用 `fastapi run` 命令。🚀
 
-在内部，**FastAPI CLI** 使用了 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>，这是一个高性能、适用于生产环境的 ASGI 服务器。😎
+在内部，**FastAPI CLI** 使用了 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>，这是一个高性能、适用于生产环境的 ASGI 服务器。😎
 
 ## `fastapi dev`
 

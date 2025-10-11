@@ -417,7 +417,7 @@ Manejar toda la validación de datos, serialización de datos y documentación a
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
 
 Starlette es un framework/toolkit <abbr title="El nuevo estándar para construir aplicaciones web asíncronas en Python">ASGI</abbr> liviano, ideal para construir servicios asyncio de alto rendimiento.
 
@@ -462,7 +462,7 @@ Por lo tanto, cualquier cosa que puedas hacer con Starlette, puedes hacerlo dire
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
 
 Uvicorn es un servidor ASGI extremadamente rápido, construido sobre uvloop y httptools.
 

@@ -37,4 +37,4 @@
 
 ## より詳しい情報
 
-詳細とオプションについては、<a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starletteの静的ファイルに関するドキュメント</a>を確認してください。
+詳細とオプションについては、<a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starletteの静的ファイルに関するドキュメント</a>を確認してください。

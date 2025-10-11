@@ -60,7 +60,7 @@ O FastAPI CLI recebe o caminho do seu programa Python, detecta automaticamente a
 
 Para produção você usaria `fastapi run` no lugar. 🚀
 
-Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI de alta performance e pronto para produção. 😎
+Internamente, **FastAPI CLI** usa <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, um servidor ASGI de alta performance e pronto para produção. 😎
 
 ## `fastapi dev`
 

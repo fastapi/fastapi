@@ -52,7 +52,7 @@ FastAPI использует стандарт для построения Python
 
 Есть несколько альтернатив, например:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: высокопроизводительный ASGI‑сервер.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: высокопроизводительный ASGI‑сервер.
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ASGI‑сервер, среди прочего совместимый с HTTP/2 и Trio.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: ASGI‑сервер, созданный для Django Channels.
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: HTTP‑сервер на Rust для Python‑приложений.

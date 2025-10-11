@@ -37,7 +37,7 @@ Die Middleware-Funktion erhält:
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des `X-`-Präfixes</a>.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
 
 ///
 

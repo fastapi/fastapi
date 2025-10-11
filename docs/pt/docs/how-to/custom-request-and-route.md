@@ -66,7 +66,7 @@ O dicionário `scope` e a função `receive` são ambos parte da especificação
 
 E essas duas coisas, `scope` e `receive`, são o que é necessário para criar uma nova instância de `Request`.
 
-Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">documentação do Starlette sobre Requests</a>.
+Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">documentação do Starlette sobre Requests</a>.
 
 ///
 
