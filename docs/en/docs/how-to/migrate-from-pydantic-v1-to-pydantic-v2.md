@@ -79,7 +79,7 @@ graph TB
             V2Field["Pydantic v2 Model"]
         end
     end
-    
+
     style V2 fill:#f9fff3
     style V1 fill:#fff6f0
     style V1Field fill:#fff6f0
