@@ -11,6 +11,10 @@ hide:
 
 * 📝 Replace `starlette.io` by `starlette.dev` and `uvicorn.org` by `uvicorn.dev`. PR [#14176](https://github.com/fastapi/fastapi/pull/14176) by [@Kludex](https://github.com/Kludex).
 
+### Internal
+
+* 🔧 Configure reminder for `waiting` label in `issue-manager`. PR [#14156](https://github.com/fastapi/fastapi/pull/14156) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.119.0
 
 FastAPI now (temporarily) supports both Pydantic v2 models and `pydantic.v1` models at the same time in the same app, to make it easier for any FastAPI apps still using Pydantic v1 to gradually but quickly **migrate to Pydantic v2**.
