@@ -4535,6 +4535,17 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
         )
 
+    def query(
+        self,
+        path: str,
+        *args: Any,
+        **kwargs: Any,
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        """
+        Experimental: HTTP QUERY method. See APIRouter.query for caveats.
+        """
+        return self.router.query(path, *args, **kwargs)
+
     def websocket_route(
         self, path: str, name: Union[str, None] = None
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
