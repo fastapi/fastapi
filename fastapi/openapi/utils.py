@@ -14,7 +14,7 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import EndpointDependant
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     get_flat_dependant,
@@ -76,7 +76,7 @@ status_code_ranges: Dict[str, str] = {
 
 
 def get_openapi_security_definitions(
-    flat_dependant: Dependant,
+    flat_dependant: EndpointDependant,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
     security_definitions = {}
     operation_security = []
@@ -94,7 +94,7 @@ def get_openapi_security_definitions(
 
 def _get_openapi_operation_parameters(
     *,
-    dependant: Dependant,
+    dependant: EndpointDependant,
     model_name_map: ModelNameMap,
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
