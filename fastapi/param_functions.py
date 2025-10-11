@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from annotated_types import SupportsGe, SupportsGt, SupportsLe, SupportsLt
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
@@ -90,37 +91,38 @@ def Path(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -415,37 +417,38 @@ def Query(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -730,37 +733,38 @@ def Header(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -1035,37 +1039,38 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -1362,37 +1367,38 @@ def Body(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -1677,37 +1683,38 @@ def Form(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
@@ -1991,37 +1998,38 @@ def File(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        Optional[SupportsGt],
         Doc(
             """
-            Greater than. If set, value must be greater than this. Only applicable to
-            numbers.
+            Greater than. If set, value must be greater than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        Optional[SupportsGe],
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
-            this. Only applicable to numbers.
+            this. Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        Optional[SupportsLt],
         Doc(
             """
-            Less than. If set, value must be less than this. Only applicable to numbers.
+            Less than. If set, value must be less than this. Applicable to
+            any comparable type, not just numbers.
             """
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        Optional[SupportsLe],
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
-            Only applicable to numbers.
+            Applicable to any comparable type, not just numbers.
             """
         ),
     ] = None,
