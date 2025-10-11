@@ -1,6 +1,6 @@
 import dataclasses
 import datetime
-from collections import defaultdict, deque
+from collections import deque
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Callable, Dict, Optional, Type, Union
 from uuid import UUID
 
 from fastapi.types import IncEx
@@ -64,9 +64,6 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     datetime.timedelta: lambda td: td.total_seconds(),
     Decimal: decimal_encoder,
     Enum: lambda o: o.value,
-    frozenset: list,
-    deque: list,
-    GeneratorType: list,
     IPv4Address: str,
     IPv4Interface: str,
     IPv4Network: str,
@@ -75,28 +72,15 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Network: str,
     NameEmail: str,
     Path: str,
+    PurePath: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
     SecretStr: str,
-    set: list,
     UUID: str,
+    UndefinedType: lambda _: None,
     Url: str,
     AnyUrl: str,
 }
-
-
-def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]],
-) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
-    encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
-        tuple
-    )
-    for type_, encoder in type_encoder_map.items():
-        encoders_by_class_tuples[encoder] += (type_,)
-    return encoders_by_class_tuples
-
-
-encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
 
 
 def jsonable_encoder(
@@ -201,18 +185,75 @@ def jsonable_encoder(
     Read more about it in the
     [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
     """
-    custom_encoder = custom_encoder or {}
-    if custom_encoder:
-        if type(obj) in custom_encoder:
-            return custom_encoder[type(obj)](obj)
-        else:
-            for encoder_type, encoder_instance in custom_encoder.items():
-                if isinstance(obj, encoder_type):
-                    return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
         include = set(include)
+
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
+
+    return _encode_value(
+        obj,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+        custom_encoder=custom_encoder,
+        sqlalchemy_safe=sqlalchemy_safe,
+    )
+
+
+def _encode_value(
+    obj: Any,
+    include: Optional[IncEx] = None,
+    exclude: Optional[IncEx] = None,
+    by_alias: bool = True,
+    exclude_unset: bool = False,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
+    sqlalchemy_safe: bool = True,
+) -> Any:
+    if custom_encoder:
+        encoder = _find_encoder(obj, custom_encoder)
+        if encoder:
+            return encoder(obj)
+
+    if obj is None or isinstance(obj, (str, int, float)):
+        return obj
+
+    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
+        encoded_list = []
+        for item in obj:
+            value = _encode_value(
+                item,
+                include=include,
+                exclude=exclude,
+                by_alias=by_alias,
+                exclude_unset=exclude_unset,
+                exclude_defaults=exclude_defaults,
+                exclude_none=exclude_none,
+                custom_encoder=custom_encoder,
+                sqlalchemy_safe=sqlalchemy_safe,
+            )
+            encoded_list.append(value)
+
+        return encoded_list
+
+    if isinstance(obj, dict):
+        return _encode_dict(
+            obj,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+
     if isinstance(obj, BaseModel):
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
@@ -220,6 +261,7 @@ def jsonable_encoder(
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}
+
         obj_dict = _model_dump(
             obj,
             mode="json",
@@ -230,9 +272,11 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
+
         if "__root__" in obj_dict:
             obj_dict = obj_dict["__root__"]
-        return jsonable_encoder(
+
+        return _encode_value(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
@@ -240,10 +284,11 @@ def jsonable_encoder(
             custom_encoder=encoders,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
-        return jsonable_encoder(
+        return _encode_dict(
             obj_dict,
             include=include,
             exclude=exclude,
@@ -254,85 +299,23 @@ def jsonable_encoder(
             custom_encoder=custom_encoder,
             sqlalchemy_safe=sqlalchemy_safe,
         )
-    if isinstance(obj, Enum):
-        return obj.value
-    if isinstance(obj, PurePath):
-        return str(obj)
-    if isinstance(obj, (str, int, float, type(None))):
-        return obj
-    if isinstance(obj, UndefinedType):
-        return None
-    if isinstance(obj, dict):
-        encoded_dict = {}
-        allowed_keys = set(obj.keys())
-        if include is not None:
-            allowed_keys &= set(include)
-        if exclude is not None:
-            allowed_keys -= set(exclude)
-        for key, value in obj.items():
-            if (
-                (
-                    not sqlalchemy_safe
-                    or (not isinstance(key, str))
-                    or (not key.startswith("_sa"))
-                )
-                and (value is not None or not exclude_none)
-                and key in allowed_keys
-            ):
-                encoded_key = jsonable_encoder(
-                    key,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                    sqlalchemy_safe=sqlalchemy_safe,
-                )
-                encoded_value = jsonable_encoder(
-                    value,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                    sqlalchemy_safe=sqlalchemy_safe,
-                )
-                encoded_dict[encoded_key] = encoded_value
-        return encoded_dict
-    if isinstance(obj, (list, set, frozenset, GeneratorType, tuple, deque)):
-        encoded_list = []
-        for item in obj:
-            encoded_list.append(
-                jsonable_encoder(
-                    item,
-                    include=include,
-                    exclude=exclude,
-                    by_alias=by_alias,
-                    exclude_unset=exclude_unset,
-                    exclude_defaults=exclude_defaults,
-                    exclude_none=exclude_none,
-                    custom_encoder=custom_encoder,
-                    sqlalchemy_safe=sqlalchemy_safe,
-                )
-            )
-        return encoded_list
 
-    if type(obj) in ENCODERS_BY_TYPE:
-        return ENCODERS_BY_TYPE[type(obj)](obj)
-    for encoder, classes_tuple in encoders_by_class_tuples.items():
-        if isinstance(obj, classes_tuple):
-            return encoder(obj)
+    encoder = _find_encoder(obj, ENCODERS_BY_TYPE)
+    if encoder:
+        return encoder(obj)
 
     try:
-        data = dict(obj)
+        obj_dict = dict(obj)
     except Exception as e:
-        errors: List[Exception] = []
-        errors.append(e)
+        errors = [e]
         try:
-            data = vars(obj)
+            obj_dict = vars(obj)
         except Exception as e:
             errors.append(e)
             raise ValueError(errors) from e
-    return jsonable_encoder(
-        data,
+
+    return _encode_dict(
+        obj_dict,
         include=include,
         exclude=exclude,
         by_alias=by_alias,
@@ -342,3 +325,71 @@ def jsonable_encoder(
         custom_encoder=custom_encoder,
         sqlalchemy_safe=sqlalchemy_safe,
     )
+
+
+def _encode_dict(
+    obj: Dict[Any, Any],
+    include: Optional[IncEx] = None,
+    exclude: Optional[IncEx] = None,
+    by_alias: bool = True,
+    exclude_unset: bool = False,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+    custom_encoder: Optional[Dict[Any, Callable[[Any], Any]]] = None,
+    sqlalchemy_safe: bool = True,
+) -> Any:
+    encoded_dict = {}
+    allowed_keys = set(obj.keys())
+
+    if include is not None:
+        allowed_keys &= set(include)
+
+    if exclude is not None:
+        allowed_keys -= set(exclude)
+
+    for key, value in obj.items():
+        if key not in allowed_keys:
+            continue
+        if value is None and exclude_none:
+            continue
+        if sqlalchemy_safe and isinstance(key, str) and key.startswith("_sa"):
+            continue
+
+        # TODO: use exclude_defaults when encoding keys and values
+        # This is a bug from the original implementation, but is a breaking change
+        encoded_key = _encode_value(
+            key,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+        encoded_value = _encode_value(
+            value,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+
+        encoded_dict[encoded_key] = encoded_value
+
+    return encoded_dict
+
+
+def _find_encoder(
+    value: Any, encoders: Dict[Any, Callable[[Any], Any]]
+) -> Optional[Callable[[Any], Any]]:
+    # fastpath for exact class match
+    encoder = encoders.get(type(value))
+    if encoder:
+        return encoder
+
+    # fallback to isinstance which uses MRO
+    for encoder_type, encoder in encoders.items():
+        if isinstance(value, encoder_type):
+            return encoder
+
+    return None
