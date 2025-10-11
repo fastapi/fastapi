@@ -73,7 +73,7 @@ For example, you could create a new file called `middleware.py` with the followi
 
 {* ../../docs_src/middleware/tutorial002/middleware.py hl[4,7:9,12,14] *}
 
-Here, we define a class `ProcessTimeHeaderMiddleware` that inherits from `BaseHTTPMiddleware`.  
+Here, we define a class `ProcessTimeHeaderMiddleware` that inherits from `BaseHTTPMiddleware`.
 This middleware measures how long each request takes to be processed and adds a custom header to the response.
 
 Then, in your main application file, you can import and use the middleware as follows:
