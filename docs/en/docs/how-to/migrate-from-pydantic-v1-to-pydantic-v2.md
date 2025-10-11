@@ -78,7 +78,7 @@ In this example above, the input model is a Pydantic v1 model, and the output mo
 
 ### Pydantic v1 parameters { #pydantic-v1-parameters }
 
-If you need to use some of the FastAPI-specific parameters like `Body`, `Query`, `Form`, etc. with Pydantic v1 models, you can import them from `fastapi.temp_pydantic_v1_params` while you finish the migration to Pydantic v2:
+If you need to use some of the FastAPI-specific tools for parameters like `Body`, `Query`, `Form`, etc. with Pydantic v1 models, you can import them from `fastapi.temp_pydantic_v1_params` while you finish the migration to Pydantic v2:
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
 
