@@ -1,21 +1,21 @@
 tiangolo:
   login: tiangolo
-  count: 776
+  count: 782
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
   login: dependabot
-  count: 113
+  count: 117
   avatarUrl: https://avatars.githubusercontent.com/in/29110?v=4
   url: https://github.com/apps/dependabot
 alejsdev:
   login: alejsdev
-  count: 48
-  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=638c65283ac9e9e2c3a0f9d1e3370db4b8a2c58d&v=4
+  count: 52
+  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=447d12a1b347f466b35378bee4c7104cc9b2c571&v=4
   url: https://github.com/alejsdev
 pre-commit-ci:
   login: pre-commit-ci
-  count: 41
+  count: 45
   avatarUrl: https://avatars.githubusercontent.com/in/68672?v=4
   url: https://github.com/apps/pre-commit-ci
 github-actions:
@@ -25,7 +25,7 @@ github-actions:
   url: https://github.com/apps/github-actions
 Kludex:
   login: Kludex
-  count: 23
+  count: 24
   avatarUrl: https://avatars.githubusercontent.com/u/7353520?u=df8a3f06ba8f55ae1967a3e2d5ed882903a4e330&v=4
   url: https://github.com/Kludex
 dmontagu:
@@ -38,21 +38,31 @@ euri10:
   count: 13
   avatarUrl: https://avatars.githubusercontent.com/u/1104190?u=321a2e953e6645a7d09b732786c7a8061e0f8a8b&v=4
   url: https://github.com/euri10
+nilslindemann:
+  login: nilslindemann
+  count: 13
+  avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
+  url: https://github.com/nilslindemann
 kantandane:
   login: kantandane
   count: 13
   avatarUrl: https://avatars.githubusercontent.com/u/3978368?u=cccc199291f991a73b1ebba5abc735a948e0bd16&v=4
   url: https://github.com/kantandane
-nilslindemann:
-  login: nilslindemann
+svlandeg:
+  login: svlandeg
   count: 11
-  avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
-  url: https://github.com/nilslindemann
+  avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
+  url: https://github.com/svlandeg
 zhaohan-dong:
   login: zhaohan-dong
   count: 11
   avatarUrl: https://avatars.githubusercontent.com/u/65422392?u=8260f8781f50248410ebfa4c9bf70e143fe5c9f2&v=4
   url: https://github.com/zhaohan-dong
+YuriiMotov:
+  login: YuriiMotov
+  count: 10
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
 mariacamilagl:
   login: mariacamilagl
   count: 9
@@ -68,21 +78,16 @@ vishnuvskvkl:
   count: 8
   avatarUrl: https://avatars.githubusercontent.com/u/84698110?u=8af5de0520dd4fa195f53c2850a26f57c0f6bc64&v=4
   url: https://github.com/vishnuvskvkl
-svlandeg:
-  login: svlandeg
-  count: 7
-  avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
-  url: https://github.com/svlandeg
 alissadb:
   login: alissadb
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/96190409?u=be42d85938c241be781505a5a872575be28b2906&v=4
   url: https://github.com/alissadb
-YuriiMotov:
-  login: YuriiMotov
+alv2017:
+  login: alv2017
   count: 6
-  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
-  url: https://github.com/YuriiMotov
+  avatarUrl: https://avatars.githubusercontent.com/u/31544722?v=4
+  url: https://github.com/alv2017
 wshayes:
   login: wshayes
   count: 5
@@ -103,11 +108,6 @@ krishnamadhavan:
   count: 5
   avatarUrl: https://avatars.githubusercontent.com/u/31798870?u=950693b28f3ae01105fd545c046e46ca3d31ab06&v=4
   url: https://github.com/krishnamadhavan
-alv2017:
-  login: alv2017
-  count: 5
-  avatarUrl: https://avatars.githubusercontent.com/u/31544722?v=4
-  url: https://github.com/alv2017
 jekirl:
   login: jekirl
   count: 4
@@ -133,6 +133,11 @@ iudeen:
   count: 4
   avatarUrl: https://avatars.githubusercontent.com/u/10519440?u=f09cdd745e5bf16138f29b42732dd57c7f02bee1&v=4
   url: https://github.com/iudeen
+musicinmybrain:
+  login: musicinmybrain
+  count: 4
+  avatarUrl: https://avatars.githubusercontent.com/u/6898909?u=9010312053e7141383b9bdf538036c7f37fbaba0&v=4
+  url: https://github.com/musicinmybrain
 philipokiokio:
   login: philipokiokio
   count: 4
@@ -186,7 +191,7 @@ Serrones:
 uriyyo:
   login: uriyyo
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/32038156?u=a27b65a9ec3420586a827a0facccbb8b6df1ffb3&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/32038156?u=0c68019beb28381ce5205a838937c61e0fe3fee2&v=4
   url: https://github.com/uriyyo
 andrew222651:
   login: andrew222651
@@ -243,16 +248,11 @@ papb:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/20914054?u=890511fae7ea90d887e2a65ce44a1775abba38d5&v=4
   url: https://github.com/papb
-musicinmybrain:
-  login: musicinmybrain
+tamird:
+  login: tamird
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/6898909?u=9010312053e7141383b9bdf538036c7f37fbaba0&v=4
-  url: https://github.com/musicinmybrain
-gitworkflows:
-  login: gitworkflows
-  count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/118260833?v=4
-  url: https://github.com/gitworkflows
+  avatarUrl: https://avatars.githubusercontent.com/u/1535036?v=4
+  url: https://github.com/tamird
 Nimitha-jagadeesha:
   login: Nimitha-jagadeesha
   count: 3
@@ -296,7 +296,7 @@ kabirkhan:
 zamiramir:
   login: zamiramir
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/40475662?u=e58ef61034e8d0d6a312cc956fb09b9c3332b449&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/40475662?v=4
   url: https://github.com/zamiramir
 trim21:
   login: trim21
@@ -331,7 +331,7 @@ svalouch:
 frankie567:
   login: frankie567
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/1144727?u=c159fe047727aedecbbeeaa96a1b03ceb9d39add&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/1144727?u=f3e79acfe4ed207e15c2145161a8a9759925fcd2&v=4
   url: https://github.com/frankie567
 marier-nico:
   login: marier-nico
@@ -486,7 +486,7 @@ nzig:
 yezz123:
   login: yezz123
   count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/52716203?u=d7062cbc6eb7671d5dc9cc0e32a24ae335e0f225&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/52716203?u=21b53ce4115062b1e20cb513e64ca0000c2ef127&v=4
   url: https://github.com/yezz123
 softwarebloat:
   login: softwarebloat
@@ -518,11 +518,6 @@ estebanx64:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/10840422?u=1900887aeed268699e5ea6f3fb7db614f7b77cd3&v=4
   url: https://github.com/estebanx64
-tamird:
-  login: tamird
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/1535036?v=4
-  url: https://github.com/tamird
 ndimares:
   login: ndimares
   count: 2

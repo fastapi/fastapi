@@ -2,6 +2,7 @@ from typing import List, Union
 
 import pytest
 from fastapi import FastAPI
+from fastapi._compat import v1
 from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
@@ -503,6 +504,23 @@ def test_invalid_response_model_field():
 
         @app.get("/")
         def read_root() -> Union[Response, None]:
+            return Response(content="Foo")  # pragma: no cover
+
+    assert "valid Pydantic field type" in e.value.args[0]
+    assert "parameter response_model=None" in e.value.args[0]
+
+
+# TODO: remove when dropping Pydantic v1 support
+def test_invalid_response_model_field_pv1():
+    app = FastAPI()
+
+    class Model(v1.BaseModel):
+        foo: str
+
+    with pytest.raises(FastAPIError) as e:
+
+        @app.get("/")
+        def read_root() -> Union[Response, Model, None]:
             return Response(content="Foo")  # pragma: no cover
 
     assert "valid Pydantic field type" in e.value.args[0]

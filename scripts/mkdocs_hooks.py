@@ -132,6 +132,15 @@ def on_pre_page(page: Page, *, config: MkDocsConfig, files: Files) -> Page:
 def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
+    # Set matadata["social"]["cards_layout_options"]["title"] to clean title (without
+    # permalink)
+    title = page.title
+    clean_title = title.split("{ #")[0]
+    if clean_title:
+        page.meta.setdefault("social", {})
+        page.meta["social"].setdefault("cards_layout_options", {})
+        page.meta["social"]["cards_layout_options"]["title"] = clean_title
+
     if isinstance(page.file, EnFile):
         for excluded_section in non_translated_sections:
             if page.file.src_path.startswith(excluded_section):

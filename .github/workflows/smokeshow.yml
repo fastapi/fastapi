@@ -26,7 +26,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true

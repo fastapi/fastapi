@@ -54,17 +54,7 @@ Für **FastAPI** spielt es keine Rolle. Es erkennt die Parameter anhand ihrer Na
 
 Sie können Ihre Funktion also so deklarieren:
 
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
 {* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
-
-////
 
 Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden, da es nicht darauf ankommt, dass Sie keine Funktionsparameter-Defaultwerte für `Query()` oder `Path()` verwenden.
 

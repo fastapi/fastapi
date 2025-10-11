@@ -45,6 +45,8 @@ def get_client(request: pytest.FixtureRequest):
 
     with TestClient(mod.app) as c:
         yield c
+    # Clean up connection explicitely to avoid resource warning
+    mod.engine.dispose()
 
 
 def test_crud_app(client: TestClient):

@@ -11,11 +11,9 @@ from typing import (
 )
 
 from fastapi._compat import (
-    PYDANTIC_V2,
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,
-    with_info_plain_validator_function,
 )
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
@@ -154,11 +152,10 @@ class UploadFile(StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
 
-    if not PYDANTIC_V2:
-
-        @classmethod
-        def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
-            field_schema.update({"type": "string", "format": "binary"})
+    # TODO: remove when deprecating Pydantic v1
+    @classmethod
+    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
+        field_schema.update({"type": "string", "format": "binary"})
 
     @classmethod
     def __get_pydantic_json_schema__(
@@ -170,6 +167,8 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_core_schema__(
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
     ) -> CoreSchema:
+        from ._compat.v2 import with_info_plain_validator_function
+
         return with_info_plain_validator_function(cls._validate)
 
 

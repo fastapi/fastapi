@@ -201,6 +201,7 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -303,10 +304,6 @@ extra:
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /bn/
-    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
@@ -315,22 +312,10 @@ extra:
     name: fa - فارسی
   - link: /fr/
     name: fr - français
-  - link: /he/
-    name: he - עברית
-  - link: /hu/
-    name: hu - magyar
-  - link: /id/
-    name: id - Bahasa Indonesia
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /nl/
-    name: nl - Nederlands
-  - link: /pl/
-    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -339,12 +324,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /ur/
-    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
-  - link: /yo/
-    name: yo - Yorùbá
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
