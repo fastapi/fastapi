@@ -3,6 +3,7 @@ import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
+from functools import partial
 from typing import (
     Any,
     Callable,
@@ -562,10 +563,10 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 
 def is_coroutine_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isroutine(call):
-        return iscoroutinefunction(call)
-    if inspect.isclass(call):
-        return False
+    if iscoroutinefunction(call):
+        return True
+    if isinstance(call, partial):
+        return is_coroutine_callable(call.func)
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return iscoroutinefunction(dunder_call)
 
@@ -573,6 +574,8 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isasyncgenfunction(call):
         return True
+    if isinstance(call, partial):
+        return is_async_gen_callable(call.func)
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return inspect.isasyncgenfunction(dunder_call)
 
@@ -580,6 +583,8 @@ def is_async_gen_callable(call: Callable[..., Any]) -> bool:
 def is_gen_callable(call: Callable[..., Any]) -> bool:
     if inspect.isgeneratorfunction(call):
         return True
+    if isinstance(call, partial):
+        return is_gen_callable(call.func)
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
     return inspect.isgeneratorfunction(dunder_call)
 
