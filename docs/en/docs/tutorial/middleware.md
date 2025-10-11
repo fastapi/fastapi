@@ -65,6 +65,41 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
+### Multiple-File Custom Middleware Example { #custom-middleware-multiple-files }
+
+In larger applications, it's often cleaner to keep your middleware code in a separate module instead of defining it directly in your `main.py`.
+
+For example, you could create a new file called `middleware.py` with the following content:
+
+{* ../../docs_src/middleware/tutorial002/middleware.py hl[4,7:9,12,14] *}
+
+Here, we define a class `ProcessTimeHeaderMiddleware` that inherits from `BaseHTTPMiddleware`.  
+This middleware measures how long each request takes to be processed and adds a custom header to the response.
+
+Then, in your main application file, you can import and use the middleware as follows:
+
+{* ../../docs_src/middleware/tutorial002/main.py hl[7] *}
+
+In this example:
+
+* The middleware is imported from `middleware.py`.
+* It’s added to the FastAPI application using `app.add_middleware(...)`.
+* Each incoming request is timed, and the processing duration is added as a header named `X-Process-Time`.
+
+/// tip
+
+Separating your middleware into its own module helps organize code for larger projects and keeps `main.py` clean and maintainable.
+
+///
+
+/// note | Technical Details
+
+You could also use `from starlette.middleware.base import BaseHTTPMiddleware`.
+
+**FastAPI** provides it as a convenience for developers, but it comes from Starlette.
+
+///
+
 ## Multiple middleware execution order { #multiple-middleware-execution-order }
 
 When you add multiple middlewares using either `@app.middleware()` decorator or `app.add_middleware()` method, each new middleware wraps the application, forming a stack. The last middleware added is the *outermost*, and the first is the *innermost*.
