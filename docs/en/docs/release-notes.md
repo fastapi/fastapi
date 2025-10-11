@@ -7,6 +7,40 @@ hide:
 
 ## Latest Changes
 
+FastAPI now (temporarily) supports both Pydantic v2 models and `pydantic.v1` models at the same time in the same app, to make it easier for any FastAPI apps still using Pydantic v1 to gradually but quickly **migrate to Pydantic v2**.
+
+```Python
+from fastapi import FastAPI
+from pydantic import BaseModel as BaseModelV2
+from pydantic.v1 import BaseModel
+
+
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+
+
+class ItemV2(BaseModelV2):
+    title: str
+    summary: str | None = None
+
+
+app = FastAPI()
+
+
+@app.post("/items/", response_model=ItemV2)
+def create_item(item: Item):
+    return {"title": item.name, "summary": item.description}
+```
+
+Adding this feature was a big effort with the main objective of making it easier for the few applications still stuck in Pydantic v1 to migrate to Pydantic v2.
+
+And with this, support for **Pydantic v1 is now deprecated** and will be **removed** from FastAPI in a future version soon.
+
+**Note**: have in mind that the Pydantic team already stopped supporting Pydantic v1 for recent versions of Python, starting with Python 3.14.
+
+You can read in the docs more about how to [Migrate from Pydantic v1 to Pydantic v2](https://fastapi.tiangolo.com/how-to/migrate-from-pydantic-v1-to-pydantic-v2/).
+
 ### Features
 
 * ✨ Add support for `from pydantic.v1 import BaseModel`, mixed Pydantic v1 and v2 models in the same app. PR [#14168](https://github.com/fastapi/fastapi/pull/14168) by [@tiangolo](https://github.com/tiangolo).
