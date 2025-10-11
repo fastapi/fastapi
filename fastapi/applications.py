@@ -974,18 +974,22 @@ class FastAPI(Starlette):
             responses=responses,
             generate_unique_id_function=generate_unique_id_function,
         )
-        self.exception_handlers: Dict[Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]] = (
-            {} if exception_handlers is None else dict(exception_handlers)
-        )
+        self.exception_handlers: Dict[
+            Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
+        ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
-        self.exception_handlers.setdefault(RequestValidationError, request_validation_exception_handler)
+        self.exception_handlers.setdefault(
+            RequestValidationError, request_validation_exception_handler
+        )
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
             # Starlette still has incorrect type specification for the handlers
             websocket_request_validation_exception_handler,  # type: ignore
         )
 
-        self.user_middleware: List[Middleware] = [] if middleware is None else list(middleware)
+        self.user_middleware: List[Middleware] = (
+            [] if middleware is None else list(middleware)
+        )
         self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
 
@@ -1006,7 +1010,9 @@ class FastAPI(Starlette):
             [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
             + self.user_middleware
             + [
-                Middleware(ExceptionMiddleware, handlers=exception_handlers, debug=debug),
+                Middleware(
+                    ExceptionMiddleware, handlers=exception_handlers, debug=debug
+                ),
                 # Add FastAPI-specific AsyncExitStackMiddleware for closing files.
                 # Before this was also used for closing dependencies with yield but
                 # those now have their own AsyncExitStack, to properly support
@@ -1115,7 +1121,9 @@ class FastAPI(Starlette):
             async def redoc_html(req: Request) -> HTMLResponse:
                 root_path = req.scope.get("root_path", "").rstrip("/")
                 openapi_url = root_path + self.openapi_url
-                return get_redoc_html(openapi_url=openapi_url, title=f"{self.title} - ReDoc")
+                return get_redoc_html(
+                    openapi_url=openapi_url, title=f"{self.title} - ReDoc"
+                )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
 
@@ -1147,10 +1155,14 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
+        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+            JSONResponse
+        ),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
-        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(generate_unique_id),
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> None:
         self.router.add_api_route(
             path,
@@ -1204,7 +1216,9 @@ class FastAPI(Starlette):
         response_class: Type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
         openapi_extra: Optional[Dict[str, Any]] = None,
-        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(generate_unique_id),
+        generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+            generate_unique_id
+        ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
