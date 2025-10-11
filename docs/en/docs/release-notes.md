@@ -7,14 +7,54 @@ hide:
 
 ## Latest Changes
 
+## 0.118.3
+
+### Upgrades
+
+* ⬆️ Add support for Python 3.14. PR [#14165](https://github.com/fastapi/fastapi/pull/14165) by [@svlandeg](https://github.com/svlandeg).
+
+## 0.118.2
+
+### Fixes
+
+* 🐛 Fix tagged discriminated union not recognized as body field. PR [#12942](https://github.com/fastapi/fastapi/pull/12942) by [@frankie567](https://github.com/frankie567).
+
+### Internal
+
+* ⬆ Bump astral-sh/setup-uv from 6 to 7. PR [#14167](https://github.com/fastapi/fastapi/pull/14167) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.118.1
+
+### Upgrades
+
+* 👽️ Ensure compatibility with Pydantic 2.12.0. PR [#14036](https://github.com/fastapi/fastapi/pull/14036) by [@cjwatson](https://github.com/cjwatson).
+
+### Docs
+
+* 📝 Add External Link: Getting started with logging in FastAPI. PR [#14152](https://github.com/fastapi/fastapi/pull/14152) by [@itssimon](https://github.com/itssimon).
+
 ### Translations
 
+* 🔨 Add Russian translations LLM prompt. PR [#13936](https://github.com/fastapi/fastapi/pull/13936) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Sync German docs. PR [#14149](https://github.com/fastapi/fastapi/pull/14149) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Russian translations for missing pages (LLM-generated). PR [#14135](https://github.com/fastapi/fastapi/pull/14135) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update Russian translations for existing pages (LLM-generated). PR [#14123](https://github.com/fastapi/fastapi/pull/14123) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Remove configuration files for inactive translations. PR [#14130](https://github.com/fastapi/fastapi/pull/14130) by [@tiangolo](https://github.com/tiangolo).
 
 ### Internal
 
+* 🔨 Move local coverage logic to its own script. PR [#14166](https://github.com/fastapi/fastapi/pull/14166) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14161](https://github.com/fastapi/fastapi/pull/14161) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump griffe-typingdoc from 0.2.8 to 0.2.9. PR [#14144](https://github.com/fastapi/fastapi/pull/14144) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocs-macros-plugin from 1.3.9 to 1.4.0. PR [#14145](https://github.com/fastapi/fastapi/pull/14145) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump markdown-include-variants from 0.0.4 to 0.0.5. PR [#14146](https://github.com/fastapi/fastapi/pull/14146) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14126](https://github.com/fastapi/fastapi/pull/14126) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14150](https://github.com/fastapi/fastapi/pull/14150) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Sponsors. PR [#14139](https://github.com/fastapi/fastapi/pull/14139) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14138](https://github.com/fastapi/fastapi/pull/14138) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump ruff from 0.12.7 to 0.13.2. PR [#14147](https://github.com/fastapi/fastapi/pull/14147) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump sqlmodel from 0.0.24 to 0.0.25. PR [#14143](https://github.com/fastapi/fastapi/pull/14143) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump tiangolo/issue-manager from 0.5.1 to 0.6.0. PR [#14148](https://github.com/fastapi/fastapi/pull/14148) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Update docs previews comment, single comment, add failure status. PR [#14129](https://github.com/fastapi/fastapi/pull/14129) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Modify `mkdocs_hooks.py` to add `title` to page's metadata (remove permalinks in social cards). PR [#14125](https://github.com/fastapi/fastapi/pull/14125) by [@YuriiMotov](https://github.com/YuriiMotov).
 
