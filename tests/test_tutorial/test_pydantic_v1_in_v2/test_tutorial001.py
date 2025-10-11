@@ -1,4 +1,5 @@
 import sys
+from typing import Any
 
 import pytest
 from fastapi._compat import PYDANTIC_V2
