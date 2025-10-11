@@ -779,8 +779,11 @@ class Security(Depends):
         self,
         dependency: Optional[Callable[..., Any]] = None,
         *,
-        scopes: Optional[Sequence[str]] = None,
+        scopes: Optional[Union[str, Sequence[str]]] = None,
         use_cache: bool = True,
     ):
         super().__init__(dependency=dependency, use_cache=use_cache)
-        self.scopes = scopes or []
+        if isinstance(scopes, str):
+            self.scopes: Sequence[str] = [scopes]
+        else:
+            self.scopes = scopes or []
