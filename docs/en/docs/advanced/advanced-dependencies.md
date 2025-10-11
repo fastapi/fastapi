@@ -1,5 +1,57 @@
 # Advanced Dependencies { #advanced-dependencies }
 
+## Parallel dependency resolution (opt-in) { #parallel-dependency-resolution-opt-in }
+
+FastAPI can resolve independent dependencies in parallel to reduce overall latency.
+
+This is disabled by default. You can opt in per-application, and you can also control
+it per dependency.
+
+- Application-wide default (disabled by default):
+  - Set `depends_default_parallelizable=True` in `FastAPI(...)` to allow parallel
+    resolution by default.
+- Per-dependency override:
+  - Use `Depends(..., parallelizable=True | False)` (and the same for `Security(...)`).
+  - If not provided, the application default is used.
+
+When parallelization is enabled, dependencies at the same level of the dependency graph
+that are not "context sensitive" will be resolved concurrently.
+
+Context sensitive dependencies are always resolved sequentially:
+
+- Dependencies implemented with `yield` (generator or async generator dependencies).
+- Dependencies explicitly marked with `parallelizable=False`.
+
+Dependency errors are still raised in the order of declaration, even if resolved in
+parallel. Caching (`use_cache=True`, the default) still works per request: concurrent
+callers share a single in-flight execution and the same result.
+
+### Enable globally
+
+{* ../../docs_src/dependencies/parallel_global_opt_in.py *}
+
+### Enable/disable per dependency
+
+{* ../../docs_src/dependencies/parallel_per_dep_enable.py *}
+
+You can also opt out for a specific dependency when the app default is parallel:
+
+{* ../../docs_src/dependencies/parallel_per_dep_disable.py *}
+
+### Security dependencies
+
+`Security(...)` supports the same `parallelizable` flag. Caching for security dependencies
+respects OAuth2 scopes: dependencies with the same scopes share a cached value within
+one request, different scopes result in separate executions.
+
+{* ../../docs_src/dependencies/parallel_security.py *}
+
+### Notes
+
+- Sync (regular `def`) dependencies participate via a threadpool.
+- Generator (`yield`) dependencies are always sequential.
+- Errors from dependencies are raised respecting the declaration order.
+
 ## Parameterized dependencies { #parameterized-dependencies }
 
 All the dependencies we have seen are a fixed function or class.
