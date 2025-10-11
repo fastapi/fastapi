@@ -37,7 +37,7 @@ La función middleware recibe:
 
 Ten en cuenta que los custom proprietary headers se pueden añadir <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo 'X-'</a>.
 
-Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación de CORS de Starlette</a>.
+Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación de CORS de Starlette</a>.
 
 ///
 

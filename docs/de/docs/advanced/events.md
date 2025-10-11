@@ -154,7 +154,7 @@ In der technischen ASGI-Spezifikation ist dies Teil des <a href="https://asgi.re
 
 /// info | Info
 
-Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlettes Lifespan-Dokumentation</a>.
+Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlettes Lifespan-Dokumentation</a>.
 
 Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihres Codes verwendet werden kann.
 

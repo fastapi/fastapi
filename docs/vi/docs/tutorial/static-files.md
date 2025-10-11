@@ -37,4 +37,4 @@ Tất cả các tham số này có thể khác với `static`, điều chỉnh c
 
 ## Thông tin thêm
 
-Để biết thêm chi tiết và tùy chọn, hãy xem <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Để biết thêm chi tiết và tùy chọn, hãy xem <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

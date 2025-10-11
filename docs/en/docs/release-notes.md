@@ -5486,7 +5486,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade the compatible version of Starlette to `0.12.0`.
     * This includes support for ASGI 3 (the latest version of the standard).
-    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.io/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
+    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
     * It's now possible to use the low level utility `iterate_in_threadpool` from `starlette.concurrency` (for advanced scenarios).
     * PR [#243](https://github.com/tiangolo/fastapi/pull/243).
 
