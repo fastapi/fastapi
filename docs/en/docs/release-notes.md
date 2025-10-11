@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.119.0
+
 FastAPI now (temporarily) supports both Pydantic v2 models and `pydantic.v1` models at the same time in the same app, to make it easier for any FastAPI apps still using Pydantic v1 to gradually but quickly **migrate to Pydantic v2**.
 
 ```Python
