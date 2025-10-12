@@ -35,7 +35,7 @@ if PYDANTIC_V2:
 else:
     from .v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
     from .v1 import FieldInfo as FieldInfo
-    from .v1 import GenerateJsonSchema as GenerateJsonSchema
+    from .v1 import GenerateJsonSchema as GenerateJsonSchema  # type: ignore[assignment]
     from .v1 import (  # type: ignore[assignment]
         PydanticSchemaGenerationError as PydanticSchemaGenerationError,
     )

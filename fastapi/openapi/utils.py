@@ -42,7 +42,9 @@ from .._compat import _is_model_field
 if PYDANTIC_V2:
     from .._compat.v2 import GenerateJsonSchema as GenerateJsonSchema
 else:
-    from .._compat.v1 import GenerateJsonSchema as GenerateJsonSchema
+    from .._compat.v1 import (  # type: ignore[assignment]
+        GenerateJsonSchema as GenerateJsonSchema,
+    )
 
 validation_error_definition = {
     "title": "ValidationError",
