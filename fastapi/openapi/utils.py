@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union,
 
 from fastapi import routing
 from fastapi._compat import (
+    PYDANTIC_V2,
     JsonSchemaValue,
     ModelField,
     Undefined,
@@ -37,6 +38,11 @@ from starlette.routing import BaseRoute
 from typing_extensions import Literal
 
 from .._compat import _is_model_field
+
+if PYDANTIC_V2:
+    from .._compat.v2 import GenerateJsonSchema
+else:
+    from .._compat.v1 import GenerateJsonSchema
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -480,6 +486,7 @@ def get_openapi(
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
     external_docs: Optional[Dict[str, Any]] = None,
+    schema_generator: Optional[GenerateJsonSchema] = None,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -505,6 +512,7 @@ def get_openapi(
         fields=all_fields,
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
+        schema_generator=schema_generator,
     )
     for route in routes or []:
         if isinstance(route, routing.APIRoute):
