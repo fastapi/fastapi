@@ -20,7 +20,7 @@ from .model_field import ModelField
 if PYDANTIC_V2:
     from .v2 import BaseConfig as BaseConfig
     from .v2 import FieldInfo as FieldInfo
-    from .v2 import GenerateJsonSchema
+    from .v2 import GenerateJsonSchema as GenerateJsonSchema
     from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from .v2 import RequiredParam as RequiredParam
     from .v2 import Undefined as Undefined
@@ -35,7 +35,7 @@ if PYDANTIC_V2:
 else:
     from .v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
     from .v1 import FieldInfo as FieldInfo
-    from .v1 import GenerateJsonSchema
+    from .v1 import GenerateJsonSchema as GenerateJsonSchema
     from .v1 import (  # type: ignore[assignment]
         PydanticSchemaGenerationError as PydanticSchemaGenerationError,
     )
