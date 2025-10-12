@@ -52,7 +52,7 @@ Das Wichtigste, was Sie benötigen, um eine **FastAPI**-Anwendung (oder eine and
 
 Es gibt mehrere Alternativen, einschließlich:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ein hochperformanter ASGI-Server.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: ein hochperformanter ASGI-Server.
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: ein ASGI-Server, der unter anderem kompatibel mit HTTP/2 und Trio ist.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: der für Django Channels entwickelte ASGI-Server.
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Ein Rust HTTP-Server für Python-Anwendungen.

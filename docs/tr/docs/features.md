@@ -166,7 +166,7 @@ Bütün entegrasyonlar kullanımı kolay olmak üzere (zorunluluklar ile beraber
 
 ## Starlette özellikleri
 
-**FastAPI**, <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> ile tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Starlette kodu da çalışacaktır.
+**FastAPI**, <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> ile tamamiyle uyumlu ve üzerine kurulu. Yani FastAPI üzerine ekleme yapacağınız herhangi bir Starlette kodu da çalışacaktır.
 
 `FastAPI` aslında `Starlette`'nin bir sub-class'ı. Eğer Starlette'nin nasıl kullanılacağını biliyor isen, çoğu işlevini aynı şekilde yapıyor.
 

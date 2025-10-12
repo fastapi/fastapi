@@ -66,7 +66,7 @@
 
  &amp; 👈 2️⃣ 👜, `scope` &amp; `receive`, ⚫️❔ 💪 ✍ 🆕 `Request` 👐.
 
-💡 🌅 🔃 `Request` ✅ <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">💃 🩺 🔃 📨</a>.
+💡 🌅 🔃 `Request` ✅ <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">💃 🩺 🔃 📨</a>.
 
 ///
 

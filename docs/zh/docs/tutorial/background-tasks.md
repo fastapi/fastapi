@@ -101,7 +101,7 @@
 
 ## 技术细节
 
-`BackgroundTasks` 类直接来自 <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>。
+`BackgroundTasks` 类直接来自 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>。
 
 它被直接导入/包含到FastAPI以便你可以从 `fastapi` 导入，并避免意外从 `starlette.background` 导入备用的 `BackgroundTask` (后面没有 `s`)。
 
@@ -109,7 +109,7 @@
 
 在FastAPI中仍然可以单独使用 `BackgroundTask`，但您必须在代码中创建对象，并返回包含它的Starlette `Response`。
 
-更多细节查看 <a href="https://www.starlette.io/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
+更多细节查看 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
 
 ## 告诫
 
