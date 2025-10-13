@@ -37,6 +37,7 @@ from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
     _should_embed_body_fields,
+    analyze_param,
     get_body_field,
     get_dependant,
     get_flat_dependant,
@@ -670,6 +671,22 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
+def get_api_router_dep(dep: params.Depends | Any) -> params.Depends:
+    if isinstance(dep, params.Depends):
+        return dep
+    d = analyze_param(
+        param_name="APIRouter Dependency",
+        annotation=dep,
+        value=inspect.Signature.empty,
+        is_path_param=False,
+    ).depends
+
+    assert d is not None, (
+        "APIRouter dependency must be a Depends or be Annotated with Depends"
+    )
+    return d
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -716,11 +733,15 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[params.Depends]],
+            Optional[Sequence[params.Depends | Any]],
             Doc(
                 """
-                A list of dependencies (using `Depends()`) to be applied to all the
-                *path operations* in this router.
+                A list of dependencies to be applied to all the *path operations* in
+                this router.
+
+                Dependencies can be provided as `Depends(...)` instances, or using
+                `Annotated[..., Depends(...)]`. FastAPI will analyze and convert
+                these automatically when the router is included.
 
                 Read more about it in the
                 [FastAPI docs for Bigger Applications - Multiple Files](https://fastapi.tiangolo.com/tutorial/bigger-applications/#include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies).
@@ -927,7 +948,7 @@ class APIRouter(routing.Router):
             )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
-        self.dependencies = list(dependencies or [])
+        self.dependencies = [get_api_router_dep(dep) for dep in dependencies or []]
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
