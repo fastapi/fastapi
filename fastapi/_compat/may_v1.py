@@ -96,6 +96,6 @@ else:
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
-    from .v1 import get_definitions
+    from .v1 import get_definitions as get_definitions
     from .v1 import _normalize_errors as _normalize_errors
-    from .v1 import _regenerate_error_with_loc
+    from .v1 import _regenerate_error_with_loc as _regenerate_error_with_loc
