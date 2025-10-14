@@ -88,7 +88,7 @@ else:
     from .v1 import FieldInfo as FieldInfo
     from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
     from .v1 import JsonSchemaValue as JsonSchemaValue
-    from .v1 import ModelField  # type: ignore[assignment]
+    from .v1 import ModelField as ModelField
     from .v1 import NameEmail as NameEmail
     from .v1 import RequiredParam as RequiredParam
     from .v1 import SecretBytes as SecretBytes
