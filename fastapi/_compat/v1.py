@@ -56,11 +56,13 @@ if not PYDANTIC_V2:
         field_schema,
         model_process_schema,
     )
-    from pydantic.schema import get_flat_models_from_fields as get_flat_models_from_fields
     from pydantic.schema import (
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
+    from pydantic.schema import (
+        get_flat_models_from_fields as get_flat_models_from_fields,
+    )
     from pydantic.schema import get_model_name_map as get_model_name_map
     from pydantic.types import SecretBytes as SecretBytes
     from pydantic.types import SecretStr as SecretStr
@@ -101,12 +103,14 @@ else:
         field_schema,
         model_process_schema,
     )
-    from pydantic.v1.schema import get_flat_models_from_fields as get_flat_models_from_fields
     from pydantic.v1.schema import (
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.v1.schema import (
         get_flat_models_from_field as get_flat_models_from_field,
+    )
+    from pydantic.v1.schema import (
+        get_flat_models_from_fields as get_flat_models_from_fields,
     )
     from pydantic.v1.schema import get_model_name_map as get_model_name_map
     from pydantic.v1.types import (  # type: ignore[assignment]
