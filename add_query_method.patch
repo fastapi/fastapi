@@ -3,7 +3,7 @@
 @@ -2581,6 +2581,89 @@ class APIRouter:
              generate_unique_id_function=generate_unique_id_function,
          )
- 
+
 +    def query(
 +        self,
 +        path: Annotated[
@@ -80,10 +80,10 @@
 +    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
 +        """
 +        Add a *path operation* using an HTTP QUERY operation.
-+        
++
 +        The QUERY method is a safe HTTP method that allows request bodies,
 +        useful for complex queries that exceed URL length limits.
-+        
++
 +        See: https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-02.html
 +        """
 +        return self.api_route(

@@ -2,11 +2,11 @@
 Tests for the QUERY HTTP method implementation in FastAPI
 """
 
-import pytest
+from typing import Any, Dict, List
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing import List, Dict, Any
 
 
 class SearchQuery(BaseModel):
@@ -21,10 +21,7 @@ def test_query_method_basic():
 
     @app.query("/search/")
     def search_items(query: SearchQuery):
-        return {
-            "results": [{"id": 1, "name": "test"}],
-            "query": query.dict()
-        }
+        return {"results": [{"id": 1, "name": "test"}], "query": query.dict()}
 
     client = TestClient(app)
 
@@ -35,8 +32,8 @@ def test_query_method_basic():
         json={
             "terms": ["test", "search"],
             "filters": {"category": "books"},
-            "limit": 5
-        }
+            "limit": 5,
+        },
     )
 
     assert response.status_code == 200
@@ -65,7 +62,7 @@ def test_query_method_validation():
         json={
             "filters": {"category": "books"}
             # Missing required 'terms' field
-        }
+        },
     )
 
     assert response.status_code == 422  # Validation error
@@ -111,11 +108,7 @@ def test_query_method_with_dependencies():
 
     client = TestClient(app)
 
-    response = client.request(
-        "QUERY",
-        "/search/",
-        json={"terms": ["test"]}
-    )
+    response = client.request("QUERY", "/search/", json={"terms": ["test"]})
 
     assert response.status_code == 200
 
@@ -130,18 +123,11 @@ def test_query_method_response_model():
 
     @app.query("/search/", response_model=SearchResponse)
     def search_items(query: SearchQuery):
-        return {
-            "results": [{"id": 1, "name": "test"}],
-            "total": 1
-        }
+        return {"results": [{"id": 1, "name": "test"}], "total": 1}
 
     client = TestClient(app)
 
-    response = client.request(
-        "QUERY",
-        "/search/",
-        json={"terms": ["test"]}
-    )
+    response = client.request("QUERY", "/search/", json={"terms": ["test"]})
 
     assert response.status_code == 200
     data = response.json()

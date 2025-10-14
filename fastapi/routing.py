@@ -2629,8 +2629,10 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(None),
-        status_code: Annotated[Optional[int], Doc(
-            """
+        status_code: Annotated[
+            Optional[int],
+            Doc(
+                """
             The default status code to be used for the response.
 
             You could override the status code by returning a response directly.
@@ -2638,7 +2640,8 @@ class APIRouter(routing.Router):
             Read more about it in the
             [FastAPI docs for Response Status Code](https://fastapi.tiangolo.com/tutorial/response-status-code/).
             """
-        )] = None,
+            ),
+        ] = None,
         tags: Annotated[
             Optional[List[Union[str, Enum]]],
             Doc(

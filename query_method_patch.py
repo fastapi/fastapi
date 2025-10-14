@@ -2,6 +2,7 @@
 
 # This is the method to add to the FastAPI class in applications.py after the post method
 
+
 def query(
     self,
     path: str,
@@ -27,21 +28,23 @@ def query(
     name: Optional[str] = None,
     callbacks: Optional[List[BaseRoute]] = None,
     openapi_extra: Optional[Dict[str, Any]] = None,
-    generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(generate_unique_id),
+    generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
+        generate_unique_id
+    ),
 ) -> Callable[[DecoratedCallable], DecoratedCallable]:
     """
     Add a *path operation* using an HTTP QUERY operation.
-    
+
     The QUERY method is a safe HTTP method that allows request bodies,
     useful for complex queries that exceed URL length limits.
-    
+
     ## Example
-    
+
     ```python
     from fastapi import FastAPI
-    
+
     app = FastAPI()
-    
+
     @app.query("/search/")
     def search_items(query: SearchQuery):
         return {"results": [...]}
