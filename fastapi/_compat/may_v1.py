@@ -50,6 +50,9 @@ if sys.version_info >= (3, 14):
     class GetJsonSchemaHandler:
         pass
 
+    class JsonSchemaValue:
+        pass
+
     class Undefined:
         pass
 
@@ -82,7 +85,10 @@ else:
     from .v1 import CoreSchema as CoreSchema
     from .v1 import FieldInfo as FieldInfo
     from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
+    from .v1 import (
+        JsonSchemaValue,
+        ModelField,
+    )
     from .v1 import JsonSchemaValue as JsonSchemaValue
-    from .v1 import ModelField
     from .v1 import UndefinedType as UndefinedType
     from .v1 import _normalize_errors as _normalize_errors
