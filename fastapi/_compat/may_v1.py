@@ -83,12 +83,16 @@ else:
     from .v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
     from .v1 import BaseModel as BaseModel  # type: ignore[assignment]
     from .v1 import Color as Color  # type: ignore[assignment]
-    from .v1 import CoreSchema as CoreSchema   # type: ignore[assignment]
+    from .v1 import CoreSchema as CoreSchema  # type: ignore[assignment]
     from .v1 import ErrorWrapper as ErrorWrapper  # type: ignore[assignment]
     from .v1 import FieldInfo as FieldInfo  # type: ignore[assignment]
-    from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler  # type: ignore[assignment]
+    from .v1 import (
+        GetJsonSchemaHandler as GetJsonSchemaHandler,  # type: ignore[assignment]
+    )
     from .v1 import JsonSchemaValue as JsonSchemaValue  # type: ignore[assignment]
-    from .v1 import ModelField  # type: ignore[assignment]
+    from .v1 import (
+        ModelField,  # type: ignore[assignment]
+    )
     from .v1 import NameEmail as NameEmail  # type: ignore[assignment]
     from .v1 import RequiredParam as RequiredParam  # type: ignore[assignment]
     from .v1 import SecretBytes as SecretBytes  # type: ignore[assignment]
@@ -96,6 +100,4 @@ else:
     from .v1 import Undefined as Undefined  # type: ignore[assignment]
     from .v1 import UndefinedType as UndefinedType  # type: ignore[assignment]
     from .v1 import Url as Url  # type: ignore[assignment]
-    from .v1 import get_definitions  # type: ignore[assignment]
     from .v1 import _normalize_errors as _normalize_errors  # type: ignore[assignment]
-    from .v1 import _regenerate_error_with_loc  # type: ignore[assignment]
