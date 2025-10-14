@@ -54,9 +54,9 @@ if not PYDANTIC_V2:
     from pydantic.schema import TypeModelSet as TypeModelSet
     from pydantic.schema import (
         field_schema,
-        get_flat_models_from_fields,
         model_process_schema,
     )
+    from pydantic.schema import get_flat_models_from_fields as get_flat_models_from_fields
     from pydantic.schema import (
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
@@ -99,9 +99,9 @@ else:
     from pydantic.v1.schema import TypeModelSet as TypeModelSet
     from pydantic.v1.schema import (
         field_schema,
-        get_flat_models_from_fields,
         model_process_schema,
     )
+    from pydantic.v1.schema import get_flat_models_from_fields as get_flat_models_from_fields
     from pydantic.v1.schema import (
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
