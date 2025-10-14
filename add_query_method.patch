@@ -1,0 +1,118 @@
+--- a/fastapi/routing.py
++++ b/fastapi/routing.py
+@@ -2581,6 +2581,89 @@ class APIRouter:
+             generate_unique_id_function=generate_unique_id_function,
+         )
+ 
++    def query(
++        self,
++        path: Annotated[
++            str,
++            Doc(
++                """
++                The URL path to be used for this *path operation*.
++
++                For example, in `http://example.com/items`, the path is `/items`.
++                """
++            ),
++        ],
++        *,
++        response_model: Annotated[
++            Any,
++            Doc(
++                """
++                The type to use for the response.
++
++                It could be any valid Pydantic *field* type. So, it doesn't have to
++                be a Pydantic model, it could be other things, like a `list`, `dict`,
++                etc.
++
++                It will be used for:
++
++                * Documentation: the generated OpenAPI (and the UI at `/docs`) will
++                    show it as the response (JSON Schema).
++                * Serialization: you could return an arbitrary object and the
++                    `response_model` would be used to serialize that object into the
++                    corresponding JSON.
++                * Filtering: the JSON sent to the client will only contain the data
++                    (fields) defined in the `response_model`. If you returned an object
++                    that contains an attribute `password` but the `response_model` does
++                    not include that field, the JSON sent to the client would not have
++                    that `password`.
++                * Validation: whatever you return will be serialized with the
++                    `response_model`, converting any data as necessary to generate the
++                    corresponding JSON. But if the data in the object returned is not
++                    valid, that would mean a violation of the contract with the client,
++                    so it's an error from the API developer. So, FastAPI will raise an
++                    error and return a 500 error code (Internal Server Error).
++
++                Read more about it in the
++                [FastAPI docs for Response Model](https://fastapi.tiangolo.com/tutorial/response-model/).
++                """
++            ),
++        ] = Default(None),
++        status_code: Annotated[Optional[int], Doc("HTTP status code for the response")] = None,
++        tags: Annotated[Optional[List[Union[str, Enum]]], Doc("OpenAPI tags")] = None,
++        dependencies: Annotated[Optional[Sequence[params.Depends]], Doc("Dependencies")] = None,
++        summary: Annotated[Optional[str], Doc("OpenAPI summary")] = None,
++        description: Annotated[Optional[str], Doc("OpenAPI description")] = None,
++        response_description: Annotated[str, Doc("OpenAPI response description")] = "Successful Response",
++        responses: Annotated[Optional[Dict[Union[int, str], Dict[str, Any]]], Doc("Additional responses")] = None,
++        deprecated: Annotated[Optional[bool], Doc("Mark as deprecated")] = None,
++        operation_id: Annotated[Optional[str], Doc("OpenAPI operation ID")] = None,
++        response_model_include: Annotated[Optional[IncEx], Doc("Fields to include")] = None,
++        response_model_exclude: Annotated[Optional[IncEx], Doc("Fields to exclude")] = None,
++        response_model_by_alias: Annotated[bool, Doc("Use field aliases")] = True,
++        response_model_exclude_unset: Annotated[bool, Doc("Exclude unset fields")] = False,
++        response_model_exclude_defaults: Annotated[bool, Doc("Exclude default values")] = False,
++        response_model_exclude_none: Annotated[bool, Doc("Exclude None values")] = False,
++        include_in_schema: Annotated[bool, Doc("Include in OpenAPI schema")] = True,
++        response_class: Annotated[
++            Union[Type[Response], DefaultPlaceholder],
++            Doc("Response class to use"),
++        ] = Default(JSONResponse),
++        name: Annotated[Optional[str], Doc("Name for the operation")] = None,
++        callbacks: Annotated[Optional[List[BaseRoute]], Doc("OpenAPI callbacks")] = None,
++        openapi_extra: Annotated[Optional[Dict[str, Any]], Doc("Extra OpenAPI data")] = None,
++        generate_unique_id_function: Annotated[
++            Callable[[APIRoute], str], Doc("Function to generate unique IDs")
++        ] = Default(generate_unique_id),
++    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
++        """
++        Add a *path operation* using an HTTP QUERY operation.
++        
++        The QUERY method is a safe HTTP method that allows request bodies,
++        useful for complex queries that exceed URL length limits.
++        
++        See: https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-02.html
++        """
++        return self.api_route(
++            path=path,
++            response_model=response_model,
++            status_code=status_code,
++            tags=tags,
++            dependencies=dependencies,
++            summary=summary,
++            description=description,
++            response_description=response_description,
++            responses=responses,
++            deprecated=deprecated,
++            methods=["QUERY"],
++            operation_id=operation_id,
++            response_model_include=response_model_include,
++            response_model_exclude=response_model_exclude,
++            response_model_by_alias=response_model_by_alias,
++            response_model_exclude_unset=response_model_exclude_unset,
++            response_model_exclude_defaults=response_model_exclude_defaults,
++            response_model_exclude_none=response_model_exclude_none,
++            include_in_schema=include_in_schema,
++            response_class=response_class,
++            name=name,
++            callbacks=callbacks,
++            openapi_extra=openapi_extra,
++            generate_unique_id_function=generate_unique_id_function,
++        )
++
+     def delete(
+         self,
+         path: Annotated[

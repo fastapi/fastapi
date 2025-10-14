@@ -2913,27 +2913,27 @@ class APIRouter(routing.Router):
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP QUERY operation.
-        
+
         The QUERY method is a safe HTTP method that allows request bodies,
         useful for complex queries that exceed URL length limits.
-        
+
         ## Example
-        
+
         ```python
         from fastapi import FastAPI
         from pydantic import BaseModel
-        
+
         app = FastAPI()
-        
+
         class SearchQuery(BaseModel):
             terms: List[str]
             filters: Dict[str, Any]
-        
+
         @app.query("/search/")
         def search_items(query: SearchQuery):
             return {"results": [...]}
         ```
-        
+
         Read more about the QUERY method in the IETF draft:
         https://www.ietf.org/archive/id/draft-ietf-httpbis-safe-method-w-body-02.html
         """
