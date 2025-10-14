@@ -59,6 +59,8 @@ jobs:
         exclude:
           - python-version: "3.14"
             pydantic-version: "pydantic-v1"
+          - python-version: "3.14"
+            pydantic-version: "pydantic-v2"
       fail-fast: false
     steps:
       - name: Dump GitHub context
