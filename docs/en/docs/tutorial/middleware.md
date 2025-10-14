@@ -1,4 +1,4 @@
-# Middleware
+# Middleware { #middleware }
 
 You can add middleware to **FastAPI** applications.
 
@@ -19,7 +19,7 @@ If there were any background tasks (covered in the [Background Tasks](background
 
 ///
 
-## Create a middleware
+## Create a middleware { #create-a-middleware }
 
 To create a middleware you use the decorator `@app.middleware("http")` on top of a function.
 
@@ -35,9 +35,9 @@ The middleware function receives:
 
 /// tip
 
-Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the 'X-' prefix</a>.
+Keep in mind that custom proprietary headers can be added <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">using the `X-` prefix</a>.
 
-But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) using the parameter `expose_headers` documented in <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) using the parameter `expose_headers` documented in <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
 
 ///
 
@@ -49,7 +49,7 @@ You could also use `from starlette.requests import Request`.
 
 ///
 
-### Before and after the `response`
+### Before and after the `response` { #before-and-after-the-response }
 
 You can add code to be run with the `request`,  before any *path operation* receives it.
 
@@ -65,7 +65,7 @@ Here we use <a href="https://docs.python.org/3/library/time.html#time.perf_count
 
 ///
 
-## Multiple middleware execution order
+## Multiple middleware execution order { #multiple-middleware-execution-order }
 
 When you add multiple middlewares using either `@app.middleware()` decorator or `app.add_middleware()` method, each new middleware wraps the application, forming a stack. The last middleware added is the *outermost*, and the first is the *innermost*.
 
@@ -88,7 +88,7 @@ This results in the following execution order:
 
 This stacking behavior ensures that middlewares are executed in a predictable and controllable order.
 
-## Other middlewares
+## Other middlewares { #other-middlewares }
 
 You can later read more about other middlewares in the [Advanced User Guide: Advanced Middleware](../advanced/middleware.md){.internal-link target=_blank}.
 

@@ -154,7 +154,7 @@ ASGI 기술 사양에 따르면, 이는 <a href="https://asgi.readthedocs.io/en/
 
 /// info | 정보
 
-Starlette의 `lifespan` 핸들러에 대해 더 읽고 싶다면 <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette의 Lifespan 문서</a>에서 확인할 수 있습니다.
+Starlette의 `lifespan` 핸들러에 대해 더 읽고 싶다면 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette의 Lifespan 문서</a>에서 확인할 수 있습니다.
 
 이 문서에는 코드의 다른 영역에서 사용할 수 있는 lifespan 상태를 처리하는 방법도 포함되어 있습니다.
 

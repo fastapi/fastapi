@@ -1,4 +1,4 @@
-# Handling Errors
+# Handling Errors { #handling-errors }
 
 There are many situations in which you need to notify an error to a client that is using your API.
 
@@ -19,15 +19,15 @@ The status codes in the 400 range mean that there was an error from the client.
 
 Remember all those **"404 Not Found"** errors (and jokes)?
 
-## Use `HTTPException`
+## Use `HTTPException` { #use-httpexception }
 
 To return HTTP responses with errors to the client you use `HTTPException`.
 
-### Import `HTTPException`
+### Import `HTTPException` { #import-httpexception }
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-### Raise an `HTTPException` in your code
+### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code }
 
 `HTTPException` is a normal Python exception with additional data relevant for APIs.
 
@@ -41,7 +41,7 @@ In this example, when the client requests an item by an ID that doesn't exist, r
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
-### The resulting response
+### The resulting response { #the-resulting-response }
 
 If the client requests `http://example.com/items/foo` (an `item_id` `"foo"`), that client will receive an HTTP status code of 200, and a JSON response of:
 
@@ -69,7 +69,7 @@ They are handled automatically by **FastAPI** and converted to JSON.
 
 ///
 
-## Add custom headers
+## Add custom headers { #add-custom-headers }
 
 There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
 
@@ -79,9 +79,9 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-## Install custom exception handlers
+## Install custom exception handlers { #install-custom-exception-handlers }
 
-You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
+You can add custom exception handlers with <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
 
 Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 
@@ -109,7 +109,7 @@ You could also use `from starlette.requests import Request` and `from starlette.
 
 ///
 
-## Override the default exception handlers
+## Override the default exception handlers { #override-the-default-exception-handlers }
 
 **FastAPI** has some default exception handlers.
 
@@ -117,7 +117,7 @@ These handlers are in charge of returning the default JSON responses when you `r
 
 You can override these exception handlers with your own.
 
-### Override request validation exceptions
+### Override request validation exceptions { #override-request-validation-exceptions }
 
 When a request contains invalid data, **FastAPI** internally raises a `RequestValidationError`.
 
@@ -154,7 +154,7 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` vs `ValidationError`
+#### `RequestValidationError` vs `ValidationError` { #requestvalidationerror-vs-validationerror }
 
 /// warning
 
@@ -172,7 +172,7 @@ It should be this way because if you have a Pydantic `ValidationError` in your *
 
 And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
 
-### Override the `HTTPException` error handler
+### Override the `HTTPException` error handler { #override-the-httpexception-error-handler }
 
 The same way, you can override the `HTTPException` handler.
 
@@ -188,7 +188,7 @@ You could also use `from starlette.responses import PlainTextResponse`.
 
 ///
 
-### Use the `RequestValidationError` body
+### Use the `RequestValidationError` body { #use-the-requestvalidationerror-body }
 
 The `RequestValidationError` contains the `body` it received with invalid data.
 
@@ -226,7 +226,7 @@ You will receive a response telling you that the data is invalid containing the 
 }
 ```
 
-#### FastAPI's `HTTPException` vs Starlette's `HTTPException`
+#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI** has its own `HTTPException`.
 
@@ -246,7 +246,7 @@ In this example, to be able to have both `HTTPException`s in the same code, Star
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### Reuse **FastAPI**'s exception handlers
+### Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }
 
 If you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:
 

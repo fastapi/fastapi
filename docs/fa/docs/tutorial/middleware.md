@@ -34,7 +34,7 @@
 
 /// نکته | به خاطر داشته باشید که هدرهای اختصاصی سفارشی را می توان با استفاده از پیشوند "X-" اضافه کرد.
 
-اما اگر هدرهای سفارشی دارید که می‌خواهید مرورگر کاربر بتواند آنها را ببیند، باید آنها را با استفاده از پارامتر `expose_headers` که در مستندات <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">CORS از Starlette</a> توضیح داده شده است، به پیکربندی CORS خود اضافه کنید.
+اما اگر هدرهای سفارشی دارید که می‌خواهید مرورگر کاربر بتواند آنها را ببیند، باید آنها را با استفاده از پارامتر `expose_headers` که در مستندات <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">CORS از Starlette</a> توضیح داده شده است، به پیکربندی CORS خود اضافه کنید.
 
 ///
 

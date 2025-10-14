@@ -1,4 +1,4 @@
-# Testing WebSockets
+# Testing WebSockets { #testing-websockets }
 
 You can use the same `TestClient` to test WebSockets.
 
@@ -8,6 +8,6 @@ For this, you use the `TestClient` in a `with` statement, connecting to the WebS
 
 /// note
 
-For more details, check Starlette's documentation for <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">testing WebSockets</a>.
+For more details, check Starlette's documentation for <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">testing WebSockets</a>.
 
 ///
