@@ -215,9 +215,7 @@ def get_definitions(
 
     schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
     override_mode: Union[Literal["validation"], None] = (
-        None
-        if (separate_input_output_schemas or has_computed_fields)
-        else "validation"
+        None if (separate_input_output_schemas or has_computed_fields) else "validation"
     )
     flat_models = get_flat_models_from_fields(fields, known_models=set())
     flat_model_fields = [
