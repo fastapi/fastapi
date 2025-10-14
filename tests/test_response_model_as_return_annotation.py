@@ -515,6 +515,7 @@ def test_invalid_response_model_field():
 @needs_pydanticv1
 def test_invalid_response_model_field_pv1():
     from fastapi._compat import v1
+
     app = FastAPI()
 
     class Model(v1.BaseModel):

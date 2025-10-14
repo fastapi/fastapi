@@ -165,6 +165,7 @@ def test_model_description_escaped_with_formfeed(sort_reversed: bool):
     Test `get_model_definitions` with models passed in different order.
     """
     from fastapi._compat import v1
+
     all_fields = fastapi.openapi.utils.get_fields_from_routes(app.routes)
 
     flat_models = v1.get_flat_models_from_fields(all_fields, known_models=set())
