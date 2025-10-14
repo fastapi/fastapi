@@ -86,13 +86,13 @@ else:
     from .v1 import CoreSchema as CoreSchema
     from .v1 import ErrorWrapper as ErrorWrapper
     from .v1 import FieldInfo as FieldInfo
-    from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler  # type: ignore[assignment]
+    from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
     from .v1 import JsonSchemaValue as JsonSchemaValue
     from .v1 import ModelField  # type: ignore[assignment]
     from .v1 import NameEmail as NameEmail
-    from .v1 import RequiredParam as RequiredParam  # type: ignore[assignment]
+    from .v1 import RequiredParam as RequiredParam
     from .v1 import SecretBytes as SecretBytes
-    from .v1 import SecretStr as SecretStr  # type: ignore[assignment]
+    from .v1 import SecretStr as SecretStr
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
