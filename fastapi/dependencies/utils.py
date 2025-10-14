@@ -43,9 +43,9 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    may_v1,
     sequence_types,
     serialize_sequence_value,
-    may_v1,
     value_is_sequence,
 )
 from fastapi._compat.shared import annotation_is_pydantic_v1
@@ -397,9 +397,9 @@ def analyze_param(
             )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, may_v1.FieldInfo, params.Depends, None] = (
-                fastapi_specific_annotations[-1]
-            )
+            fastapi_annotation: Union[
+                FieldInfo, may_v1.FieldInfo, params.Depends, None
+            ] = fastapi_specific_annotations[-1]
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
@@ -524,7 +524,8 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, may_v1.RequiredParam, Undefined),
+            required=field_info.default
+            in (RequiredParam, may_v1.RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:

@@ -25,7 +25,7 @@ from fastapi._compat import (
     Validator,
     annotation_is_pydantic_v1,
     lenient_issubclass,
-    may_v1
+    may_v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
@@ -106,6 +106,7 @@ def create_model_field(
         or version == "1"
     ):
         from fastapi._compat import v1
+
         try:
             return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
@@ -124,6 +125,7 @@ def create_model_field(
     # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
     # a Pydantic v1 type, like a constrained int
     from fastapi._compat import v1
+
     try:
         return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:
@@ -142,6 +144,7 @@ def create_cloned_field(
             return field
 
     from fastapi._compat import v1
+
     # cloned_types caches already cloned types to support recursive models and improve
     # performance by avoiding unnecessary cloning
     if cloned_types is None:

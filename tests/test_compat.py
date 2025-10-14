@@ -139,6 +139,7 @@ def test_is_uploadfile_sequence_annotation():
 @needs_py_lt_314
 def test_is_pv1_scalar_field():
     from fastapi._compat import v1
+
     # For coverage
     class Model(v1.BaseModel):
         foo: Union[str, Dict[str, Any]]
@@ -150,6 +151,7 @@ def test_is_pv1_scalar_field():
 @needs_py_lt_314
 def test_get_model_fields_cached():
     from fastapi._compat import v1
+
     class Model(may_v1.BaseModel):
         foo: str
 
