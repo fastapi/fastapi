@@ -6,7 +6,7 @@ from fastapi.params import ParamTypes
 from typing_extensions import Annotated, deprecated
 
 from ._compat.shared import PYDANTIC_VERSION_MINOR_TUPLE
-from ._compat.v1 import FieldInfo, Undefined
+from ._compat.may_v1 import FieldInfo, Undefined
 
 _Unset: Any = Undefined
 

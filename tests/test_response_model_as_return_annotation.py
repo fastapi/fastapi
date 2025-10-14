@@ -2,11 +2,12 @@ from typing import List, Union
 
 import pytest
 from fastapi import FastAPI
-from fastapi._compat import v1
 from fastapi.exceptions import FastAPIError, ResponseValidationError
 from fastapi.responses import JSONResponse, Response
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+
+from tests.utils import needs_pydanticv1
 
 
 class BaseUser(BaseModel):
@@ -511,7 +512,9 @@ def test_invalid_response_model_field():
 
 
 # TODO: remove when dropping Pydantic v1 support
+@needs_pydanticv1
 def test_invalid_response_model_field_pv1():
+    from fastapi._compat import v1
     app = FastAPI()
 
     class Model(v1.BaseModel):

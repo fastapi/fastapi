@@ -44,7 +44,7 @@ from .shared import (
 from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
-from .v1 import CoreSchema as CoreSchema
-from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
-from .v1 import JsonSchemaValue as JsonSchemaValue
-from .v1 import _normalize_errors as _normalize_errors
+from .may_v1 import CoreSchema as CoreSchema
+from .may_v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
+from .may_v1 import JsonSchemaValue as JsonSchemaValue
+from .may_v1 import _normalize_errors as _normalize_errors
