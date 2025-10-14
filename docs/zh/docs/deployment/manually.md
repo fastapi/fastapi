@@ -52,7 +52,7 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 除此之外，还有其他一些可选的 ASGI 服务器，例如：
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>：高性能 ASGI 服务器。
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>：高性能 ASGI 服务器。
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>：与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>：为 Django Channels 构建的 ASGI 服务器。
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>：基于 Rust 的 HTTP 服务器，专为 Python 应用设计。

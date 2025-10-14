@@ -37,7 +37,7 @@
 
 请记住可以 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">用'X-' 前缀</a>添加专有自定义请求头.
 
-但是如果你想让浏览器中的客户端看到你的自定义请求头, 你需要把它们加到 CORS 配置 ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) 的 `expose_headers` 参数中,在 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>文档中.
+但是如果你想让浏览器中的客户端看到你的自定义请求头, 你需要把它们加到 CORS 配置 ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) 的 `expose_headers` 参数中,在 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>文档中.
 
 ///
 

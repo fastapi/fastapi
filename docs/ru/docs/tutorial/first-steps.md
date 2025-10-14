@@ -155,7 +155,7 @@ OpenAPI определяет схему API для вашего API. И эта �
 
 `FastAPI` — это класс, который напрямую наследуется от `Starlette`.
 
-Вы можете использовать весь функционал <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> и в `FastAPI`.
+Вы можете использовать весь функционал <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> и в `FastAPI`.
 
 ///
 

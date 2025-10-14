@@ -58,7 +58,7 @@ Nachdem ich mehrere Alternativen getestet hatte, entschied ich, dass ich <a href
 
 Dann habe ich zu dessen Code beigetragen, um es vollständig mit JSON Schema kompatibel zu machen, und so verschiedene Möglichkeiten zum Definieren von einschränkenden Deklarationen (Constraints) zu unterstützen, und die Editorunterstützung (Typprüfungen, Codevervollständigung) zu verbessern, basierend auf den Tests in mehreren Editoren.
 
-Während der Entwicklung habe ich auch zu <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a> beigetragen, der anderen Schlüsselanforderung.
+Während der Entwicklung habe ich auch zu <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a> beigetragen, der anderen Schlüsselanforderung.
 
 ## Entwicklung { #development }
 

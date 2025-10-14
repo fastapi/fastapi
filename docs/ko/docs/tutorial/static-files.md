@@ -38,4 +38,4 @@
 
 ## 추가 정보
 
-자세한 내용과 선택 사항을 보려면 <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette의 정적 파일에 관한 문서</a>를 확인하십시오.
+자세한 내용과 선택 사항을 보려면 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette의 정적 파일에 관한 문서</a>를 확인하십시오.
