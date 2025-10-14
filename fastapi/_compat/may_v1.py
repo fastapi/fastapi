@@ -88,7 +88,9 @@ else:
     from .v1 import FieldInfo as FieldInfo
     from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
     from .v1 import JsonSchemaValue as JsonSchemaValue
-    from .v1 import ModelField  # type: ignore[assignment]
+    from .v1 import (
+        ModelField,  # type: ignore[assignment]
+    )
     from .v1 import NameEmail as NameEmail
     from .v1 import RequiredParam as RequiredParam
     from .v1 import SecretBytes as SecretBytes
@@ -96,6 +98,4 @@ else:
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
-    from .v1 import get_definitions
     from .v1 import _normalize_errors as _normalize_errors
-    from .v1 import _regenerate_error_with_loc
