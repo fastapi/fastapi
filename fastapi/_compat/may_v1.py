@@ -1,5 +1,5 @@
 import sys
-from typing import Any, Dict, List, Literal, Sequence, Tuple, Union
+from typing import Any, Dict, List, Literal, Sequence, Tuple, Union, Type
 
 from fastapi.types import ModelNameMap
 
@@ -56,6 +56,8 @@ if sys.version_info >= (3, 14):
     class Url:
         pass
 
+    from .v2 import create_model
+
     def get_definitions(
         *,
         fields: List[ModelField],
@@ -68,14 +70,6 @@ if sys.version_info >= (3, 14):
         Dict[str, Dict[str, Any]],
     ]:
         return {}, {}
-
-    def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-        return []
-
-    def _regenerate_error_with_loc(
-        *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-    ) -> List[Dict[str, Any]]:
-        return []
 
 
 else:
@@ -96,6 +90,34 @@ else:
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
-    from .v1 import _normalize_errors as _normalize_errors
-    from .v1 import _regenerate_error_with_loc as _regenerate_error_with_loc
+    from .v1 import create_model
     from .v1 import get_definitions as get_definitions
+
+
+RequestErrorModel: Type[BaseModel] = create_model("Request")
+
+
+def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
+    use_errors: List[Any] = []
+    for error in errors:
+        if isinstance(error, ErrorWrapper):
+            new_errors = ValidationError(  # type: ignore[call-arg]
+                errors=[error], model=RequestErrorModel
+            ).errors()
+            use_errors.extend(new_errors)
+        elif isinstance(error, list):
+            use_errors.extend(_normalize_errors(error))
+        else:
+            use_errors.append(error)
+    return use_errors
+
+
+def _regenerate_error_with_loc(
+    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
+) -> List[Dict[str, Any]]:
+    updated_loc_errors: List[Any] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())}
+        for err in _normalize_errors(errors)
+    ]
+
+    return updated_loc_errors

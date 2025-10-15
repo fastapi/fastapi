@@ -219,32 +219,6 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
-def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-    use_errors: List[Any] = []
-    for error in errors:
-        if isinstance(error, ErrorWrapper):
-            new_errors = ValidationError(  # type: ignore[call-arg]
-                errors=[error], model=RequestErrorModel
-            ).errors()
-            use_errors.extend(new_errors)
-        elif isinstance(error, list):
-            use_errors.extend(_normalize_errors(error))
-        else:
-            use_errors.append(error)
-    return use_errors
-
-
-def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Dict[str, Any]]:
-    updated_loc_errors: List[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())}
-        for err in _normalize_errors(errors)
-    ]
-
-    return updated_loc_errors
-
-
 def _model_rebuild(model: Type[BaseModel]) -> None:
     model.update_forward_refs()
 

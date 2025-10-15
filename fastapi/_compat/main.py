@@ -1,3 +1,4 @@
+import sys
 from functools import lru_cache
 from typing import (
     Any,
@@ -275,14 +276,29 @@ def get_definitions(
     ],
     Dict[str, Dict[str, Any]],
 ]:
-    v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
-    v1_field_maps, v1_definitions = may_v1.get_definitions(
-        fields=v1_fields,
-        model_name_map=model_name_map,
-        separate_input_output_schemas=separate_input_output_schemas,
-    )
-    if not PYDANTIC_V2:
-        return v1_field_maps, v1_definitions
+    if sys.version_info < (3, 14):
+        v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
+        v1_field_maps, v1_definitions = may_v1.get_definitions(
+            fields=v1_fields,
+            model_name_map=model_name_map,
+            separate_input_output_schemas=separate_input_output_schemas,
+        )
+        if not PYDANTIC_V2:
+            return v1_field_maps, v1_definitions
+        else:
+            from . import v2
+
+            v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
+            v2_field_maps, v2_definitions = v2.get_definitions(
+                fields=v2_fields,
+                model_name_map=model_name_map,
+                separate_input_output_schemas=separate_input_output_schemas,
+            )
+            all_definitions = {**v1_definitions, **v2_definitions}
+            all_field_maps = {**v1_field_maps, **v2_field_maps}
+            return all_field_maps, all_definitions
+
+    # Pydantic v1 is not supported since Python 3.14
     else:
         from . import v2
 
@@ -292,9 +308,7 @@ def get_definitions(
             model_name_map=model_name_map,
             separate_input_output_schemas=separate_input_output_schemas,
         )
-        all_definitions = {**v1_definitions, **v2_definitions}
-        all_field_maps = {**v1_field_maps, **v2_field_maps}
-        return all_field_maps, all_definitions
+        return v2_field_maps, v2_definitions
 
 
 def get_schema_from_model_field(
