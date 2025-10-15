@@ -56,7 +56,7 @@ if sys.version_info >= (3, 14):
     class Url:
         pass
 
-    from .v2 import create_model
+    from .v2 import ValidationError, create_model
 
     def get_definitions(
         *,
@@ -90,7 +90,7 @@ else:
     from .v1 import Undefined as Undefined
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
-    from .v1 import create_model
+    from .v1 import ValidationError, create_model
     from .v1 import get_definitions as get_definitions
 
 
