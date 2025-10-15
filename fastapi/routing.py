@@ -33,6 +33,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
+from fastapi.background import BackgroundTasks
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -103,13 +104,31 @@ def request_response(
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
+            background_tasks: BackgroundTasks | None = None
+            initial_task_count = 0
+
             async with AsyncExitStack() as stack:
                 scope["fastapi_inner_astack"] = stack
                 # Same as in Starlette
                 response = await f(request)
+
+                # Check how many tasks were in the background before awaiting
+                if background_tasks := scope.get("fastapi_background_tasks"):
+                    initial_task_count = len(background_tasks.tasks)
+
                 await response(scope, receive, send)
                 # Continues customization
                 response_awaited = True
+
+            # After AsyncExitStack cleanup (which includes dependency cleanup),
+            # check if new background tasks were added and execute them
+            if background_tasks and len(background_tasks.tasks) > initial_task_count:
+                for task in background_tasks.tasks[initial_task_count:]:
+                    if task.is_async:
+                        await task.func(*task.args, **task.kwargs)
+                    else:
+                        await run_in_threadpool(task.func, *task.args, **task.kwargs)
+
             if not response_awaited:
                 raise FastAPIError(
                     "Response not awaited. There's a high chance that the "
@@ -384,6 +403,8 @@ def get_request_handler(
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
         )
+        # Store background tasks in request scope for cleanup monitoring
+        request.scope["fastapi_background_tasks"] = solved_result.background_tasks
         errors = solved_result.errors
         if not errors:
             raw_response = await run_endpoint_function(
