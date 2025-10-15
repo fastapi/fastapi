@@ -333,7 +333,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Depends | Any]],
             Doc(
                 """
                 A list of global dependencies, they will be applied to each
@@ -345,11 +345,12 @@ class FastAPI(Starlette):
                 **Example**
 
                 ```python
+                from typing import Annotated
                 from fastapi import Depends, FastAPI
 
                 from .dependencies import func_dep_1, func_dep_2
-
-                app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2)])
+                annotated_dep=Annotated[str,lambda:"annotated"]
+                app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2),annotated_dep])
                 ```
                 """
             ),

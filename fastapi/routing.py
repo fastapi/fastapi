@@ -671,7 +671,7 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
-def get_api_router_dep(dep: params.Depends | Any) -> params.Depends:
+def get_depends_from_annotated(dep: params.Depends | Any) -> params.Depends:
     if isinstance(dep, params.Depends):
         return dep
     d = analyze_param(
@@ -948,7 +948,9 @@ class APIRouter(routing.Router):
             )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
-        self.dependencies = [get_api_router_dep(dep) for dep in dependencies or []]
+        self.dependencies = [
+            get_depends_from_annotated(dep) for dep in dependencies or []
+        ]
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
         self.responses = responses or {}
