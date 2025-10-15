@@ -1,5 +1,5 @@
 import sys
-from typing import Any, Dict, List, Literal, Sequence, Tuple, Union, Type
+from typing import Any, Dict, List, Literal, Sequence, Tuple, Type, Union
 
 from fastapi.types import ModelNameMap
 
