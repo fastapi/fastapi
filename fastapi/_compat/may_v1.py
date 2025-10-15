@@ -69,7 +69,7 @@ if sys.version_info >= (3, 14):
         ],
         Dict[str, Dict[str, Any]],
     ]:
-        return {}, {}
+        return {}, {}  # pragma: no cover
 
 
 else:
