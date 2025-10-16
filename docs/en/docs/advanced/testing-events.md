@@ -5,7 +5,7 @@ When you need `lifespan` to run in your tests, you can use the `TestClient` with
 {* ../../docs_src/app_testing/tutorial004.py hl[9:15,18,27:28,30:32,41:43] *}
 
 
-You can read more details about the ["Running lifespan in tests in the official Starlette documentation site."](https://www.starlette.io/lifespan/#running-lifespan-in-tests)
+You can read more details about the ["Running lifespan in tests in the official Starlette documentation site."](https://www.starlette.dev/lifespan/#running-lifespan-in-tests)
 
 For the deprecated `startup` and `shutdown` events, you can use the `TestClient` as follows:
 

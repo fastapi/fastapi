@@ -5,6 +5,7 @@ import fastapi.openapi.utils
 import pydantic.schema
 import pytest
 from fastapi import FastAPI
+from fastapi._compat import v1
 from pydantic import BaseModel
 from starlette.testclient import TestClient
 
@@ -166,14 +167,12 @@ def test_model_description_escaped_with_formfeed(sort_reversed: bool):
     """
     all_fields = fastapi.openapi.utils.get_fields_from_routes(app.routes)
 
-    flat_models = fastapi._compat.get_flat_models_from_fields(
-        all_fields, known_models=set()
-    )
+    flat_models = v1.get_flat_models_from_fields(all_fields, known_models=set())
     model_name_map = pydantic.schema.get_model_name_map(flat_models)
 
     expected_address_description = "This is a public description of an Address\n"
 
-    models = fastapi._compat.get_model_definitions(
+    models = v1.get_model_definitions(
         flat_models=SortedTypeSet(flat_models, sort_reversed=sort_reversed),
         model_name_map=model_name_map,
     )

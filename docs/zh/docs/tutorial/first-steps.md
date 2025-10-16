@@ -155,7 +155,7 @@ OpenAPI 为你的 API 定义 API 模式。该模式中包含了你的 API 发送
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 的功能。
+你可以通过 `FastAPI` 使用所有的 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 的功能。
 
 ///
 

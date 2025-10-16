@@ -5,7 +5,7 @@
 {* ../../docs_src/app_testing/tutorial004.py hl[9:15,18,27:28,30:32,41:43] *}
 
 
-Вы можете узнать больше подробностей в статье [Запуск lifespan в тестах на официальном сайте документации Starlette.](https://www.starlette.io/lifespan/#running-lifespan-in-tests)
+Вы можете узнать больше подробностей в статье [Запуск lifespan в тестах на официальном сайте документации Starlette.](https://www.starlette.dev/lifespan/#running-lifespan-in-tests)
 
 Для устаревших событий `startup` и `shutdown` вы можете использовать `TestClient` следующим образом:
 

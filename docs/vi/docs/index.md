@@ -124,7 +124,7 @@ Nếu bạn đang xây dựng một <abbr title="Giao diện dòng lệnh">CLI</
 
 FastAPI đứng trên vai những người khổng lồ:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> cho phần web.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> cho phần web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> cho phần data.
 
 ## Cài đặt
@@ -139,7 +139,7 @@ $ pip install fastapi
 
 </div>
 
-Bạn cũng sẽ cần một ASGI server cho production như <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> hoặc <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Bạn cũng sẽ cần một ASGI server cho production như <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> hoặc <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -464,7 +464,7 @@ Sử dụng Starlette:
 
 Sử dụng bởi FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - Server để chạy ứng dụng của bạn.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Bắt buộc nếu bạn muốn sử dụng `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Bắt buộc nếu bạn muốn sử dụng `UJSONResponse`.
 

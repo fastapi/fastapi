@@ -4,7 +4,7 @@ La principale chose dont vous avez besoin pour exécuter une application **FastA
 
 Il existe 3 principales alternatives :
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> : un serveur ASGI haute performance.
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a> : un serveur
   ASGI compatible avec HTTP/2 et Trio entre autres fonctionnalités.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a> : le serveur ASGI
@@ -27,7 +27,7 @@ Vous pouvez installer un serveur compatible ASGI avec :
 
 //// tab | Uvicorn
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, un serveur ASGI rapide comme l'éclair, basé sur uvloop et httptools.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>, un serveur ASGI rapide comme l'éclair, basé sur uvloop et httptools.
 
 <div class="termy">
 
