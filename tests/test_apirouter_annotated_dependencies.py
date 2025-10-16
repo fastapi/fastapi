@@ -10,7 +10,7 @@ def get_value() -> int:
 ValueDep = Annotated[int, Depends(get_value)]
 
 
-router = APIRouter(dependencies=[ValueDep, Depends(lambda: "sdfgh")])
+router = APIRouter(dependencies=[Depends(lambda: "sdfgh"), ValueDep])
 
 
 @router.get("/")
@@ -25,6 +25,8 @@ def no_dep():
 
 app = FastAPI()
 app.include_router(router)
+
+router.post("/", dependencies=[Depends(lambda: None)])
 
 
 def test_apirouter_annotated_dependencies():
