@@ -22,7 +22,7 @@ from typing import (
 )
 
 import anyio
-from fastapi import params
+from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
     PYDANTIC_V2,
     ModelField,
@@ -780,7 +780,7 @@ class ParameterCodec:
 
     @staticmethod
     def decode(
-        field_info: params.Param,
+        field_info: Union[params.Param, temp_pydantic_v1_params.Param],
         received_params: Union[Mapping[str, Any], QueryParams, Headers],
         field: ModelField,
     ) -> Dict[str, Any]:
@@ -793,7 +793,7 @@ class ParameterCodec:
 
     @staticmethod
     def decode_deepObject(
-        field_info: params.Param,
+        field_info: Union[params.Param, temp_pydantic_v1_params.Param],
         received_params: Union[Mapping[str, Any], QueryParams, Headers],
         field: ModelField,
     ) -> Dict[str, Any]:

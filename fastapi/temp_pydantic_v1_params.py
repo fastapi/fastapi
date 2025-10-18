@@ -59,6 +59,8 @@ class Param(FieldInfo):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: str = _Unset,
+        explode: bool = _Unset,
         **extra: Any,
     ):
         if example is not _Unset:
@@ -107,6 +109,9 @@ class Param(FieldInfo):  # type: ignore[misc]
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
         super().__init__(**use_kwargs)
+        self.style = style
+        self.explode = explode
+
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
