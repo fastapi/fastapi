@@ -1,4 +1,4 @@
-# mypy: ignore-errors
+# mypy: disable-error-code=no-untyped-def,no-untyped-call,arg-type,call-arg,attr-defined,valid-type
 # path: fastapi/_compat/import.py
 """
 Centralized lazy import helpers for v1 compatibility.

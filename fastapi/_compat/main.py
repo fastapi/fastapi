@@ -1,4 +1,4 @@
-# mypy: ignore-errors
+# mypy: disable-error-code=no-untyped-def,no-untyped-call,arg-type,call-arg,attr-defined,valid-type
 from functools import lru_cache
 from typing import (
     Any,

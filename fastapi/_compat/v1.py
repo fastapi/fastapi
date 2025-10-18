@@ -1,4 +1,4 @@
-# mypy: ignore-errors
+# mypy: disable-error-code=no-untyped-def,no-untyped-call,arg-type,call-arg,attr-defined,valid-type
 # path: fastapi/_compat/v1.py
 
 """
@@ -27,7 +27,7 @@ RequiredParam = Ellipsis
 _pv1 = None
 _warned = False
 
-def _load():
+def _load() -> Any:
     global _pv1, _warned
     if _pv1 is not None:
         return _pv1

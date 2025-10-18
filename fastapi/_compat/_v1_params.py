@@ -1,4 +1,4 @@
-# mypy: ignore-errors
+# mypy: disable-error-code=no-untyped-def,no-untyped-call,arg-type,call-arg,attr-defined,valid-type
 # path: fastapi/_compat/_v1_params.py
 
 """
@@ -14,7 +14,7 @@ from typing import Any
 
 _SENTINEL = object()
 
-def _v1():
+def _v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from . import v1  # lazy proxy; só avisa/erra se realmente usar v1
     return v1

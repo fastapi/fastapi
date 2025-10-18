@@ -1,4 +1,4 @@
-# mypy: ignore-errors
+# mypy: disable-error-code=no-untyped-def,no-untyped-call,arg-type,call-arg,attr-defined,valid-type
 import re
 import warnings
 from dataclasses import is_dataclass
@@ -37,7 +37,7 @@ if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
 # Lazy import of v1 to avoid warnings
-def _get_v1():
+def _get_v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
     return v1
