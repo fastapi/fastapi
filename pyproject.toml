@@ -184,6 +184,10 @@ filterwarnings = [
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
     # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
     'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
+    # Ignore our controlled DeprecationWarning for pydantic v1 usage on Python 3.14+
+    'ignore:Pydantic v1 on Python 3\.14\+ is discouraged/deprecated\. Migrate to v2\.:DeprecationWarning:fastapi._compat.v1',
+    # Ignore pydantic.v1's own warning about Python 3.14+ compatibility
+    "ignore:Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater:UserWarning",
 ]
 
 [tool.coverage.run]
@@ -233,6 +237,7 @@ ignore = [
 "docs_src/dependencies/tutorial010.py" = ["F821"]
 "docs_src/custom_response/tutorial007.py" = ["B007"]
 "docs_src/dataclasses/tutorial003.py" = ["I001"]
+"fastapi/_compat/__init__.py" = ["I001"]
 "docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
 "docs_src/path_operation_advanced_configuration/tutorial007_pv1.py" = ["B904"]
 "docs_src/custom_request_and_route/tutorial002.py" = ["B904"]

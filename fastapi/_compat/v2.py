@@ -15,7 +15,7 @@ from typing import (
     cast,
 )
 
-from fastapi._compat import shared, v1
+from fastapi._compat import shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap
 from pydantic import BaseModel, TypeAdapter, create_model
@@ -34,6 +34,13 @@ from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined, PydanticUndefinedType
 from pydantic_core import Url as Url
 from typing_extensions import Annotated, Literal, get_args, get_origin
+
+
+# Lazy import of v1 to avoid warnings
+def _get_v1() -> Any:
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 
 try:
     from pydantic_core.core_schema import (
@@ -116,7 +123,7 @@ class ModelField:
                 None,
             )
         except ValidationError as exc:
-            return None, v1._regenerate_error_with_loc(
+            return None, _get_v1()._regenerate_error_with_loc(
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 
@@ -457,3 +464,8 @@ def get_flat_models_from_fields(
 
 def get_long_model_name(model: TypeModelOrEnum) -> str:
     return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
+
+
+def _is_model_class(value: Any) -> bool:
+    """Check if a value is a Pydantic model class."""
+    return lenient_issubclass(value, BaseModel)

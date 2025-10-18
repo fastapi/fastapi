@@ -1,5 +1,6 @@
 import dataclasses
 import datetime
+import sys
 from collections import defaultdict, deque
 from decimal import Decimal
 from enum import Enum
@@ -59,7 +60,6 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
-    v1.Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -76,20 +76,27 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Interface: str,
     IPv6Network: str,
     NameEmail: str,
-    v1.NameEmail: str,
     Path: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
-    v1.SecretBytes: str,
     SecretStr: str,
-    v1.SecretStr: str,
     set: list,
     UUID: str,
     Url: str,
-    v1.Url: str,
     AnyUrl: str,
-    v1.AnyUrl: str,
 }
+
+def _ensure_v1_encoders_registered() -> None:
+    """Register V1 encoders only when needed (lazy loading)."""
+    # Only register if pydantic.v1 is already loaded (app actually used v1)
+    if "pydantic.v1" not in sys.modules:
+        return
+    ENCODERS_BY_TYPE.setdefault(v1.Color, str)  # type: ignore[attr-defined]
+    ENCODERS_BY_TYPE.setdefault(v1.NameEmail, str)  # type: ignore[attr-defined]
+    ENCODERS_BY_TYPE.setdefault(v1.SecretBytes, str)  # type: ignore[attr-defined]
+    ENCODERS_BY_TYPE.setdefault(v1.SecretStr, str)  # type: ignore[attr-defined]
+    ENCODERS_BY_TYPE.setdefault(getattr(v1.networks, "Url", v1.AnyUrl), str)  # type: ignore[arg-type,attr-defined]
+    ENCODERS_BY_TYPE.setdefault(v1.AnyUrl, str)  # type: ignore[attr-defined]
 
 
 def generate_encoders_by_class_tuples(
@@ -208,6 +215,9 @@ def jsonable_encoder(
     Read more about it in the
     [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
     """
+    # Ensure V1 encoders are registered if needed (lazy loading)
+    _ensure_v1_encoders_registered()
+
     custom_encoder = custom_encoder or {}
     if custom_encoder:
         if type(obj) in custom_encoder:
@@ -220,13 +230,15 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, (BaseModel, v1.BaseModel)):
+    if isinstance(obj, BaseModel):
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
-        if isinstance(obj, v1.BaseModel):
-            encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
-            if custom_encoder:
-                encoders = {**encoders, **custom_encoder}
+        # Check if it's a v1 model using lazy loading
+        if "pydantic.v1" in sys.modules:
+            if isinstance(obj, v1.BaseModel):
+                    encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
+        if custom_encoder:
+            encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
             obj,
             mode="json",

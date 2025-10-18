@@ -167,8 +167,7 @@ class UploadFile(StarletteUploadFile):
     def __get_pydantic_core_schema__(
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
     ) -> CoreSchema:
-        from ._compat.v2 import with_info_plain_validator_function
-
+        from fastapi._compat.v2 import with_info_plain_validator_function  # noqa: I001
         return with_info_plain_validator_function(cls._validate)
 
 

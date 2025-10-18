@@ -24,7 +24,7 @@ from typing import (
     Union,
 )
 
-from fastapi import params, temp_pydantic_v1_params
+from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -33,6 +33,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
+from fastapi._compat import _v1_params as temp_pydantic_v1_params
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -603,7 +604,7 @@ class APIRoute(routing.Route):
                 create_cloned_field(self.response_field)
             )
         else:
-            self.response_field = None  # type: ignore
+            self.response_field = None  # type: ignore[assignment]
             self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")

@@ -45,7 +45,7 @@ from fastapi._compat import (
     lenient_issubclass,
     sequence_types,
     serialize_sequence_value,
-    v1,
+    # v1,  # Lazy import to avoid warnings
     value_is_sequence,
 )
 from fastapi._compat.shared import annotation_is_pydantic_v1
@@ -76,7 +76,14 @@ from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
 
-from .. import temp_pydantic_v1_params
+from .._compat import _v1_params as temp_pydantic_v1_params
+
+
+# Lazy import of v1 to avoid warnings
+def _get_v1() -> Any:
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -225,7 +232,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     first_field = fields[0]
     if len(fields) == 1 and _is_model_class(first_field.type_):
         fields_to_extract = get_cached_model_fields(first_field.type_)
-        return fields_to_extract
+        return fields_to_extract  # type: ignore[no-any-return]
     return fields
 
 
@@ -380,7 +387,7 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, v1.FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, params.Depends))
         ]
         fastapi_specific_annotations = [
             arg
@@ -397,21 +404,21 @@ def analyze_param(
             )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, v1.FieldInfo, params.Depends, None] = (
+            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
                 fastapi_specific_annotations[-1]
             )
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
-        if isinstance(fastapi_annotation, (FieldInfo, v1.FieldInfo)):
+        if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
             assert field_info.default in {
                 Undefined,
-                v1.Undefined,
-            } or field_info.default in {RequiredParam, v1.RequiredParam}, (
+                _get_v1().Undefined,
+            } or field_info.default in {RequiredParam, _get_v1().RequiredParam}, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
@@ -435,7 +442,7 @@ def analyze_param(
         )
         depends = value
     # Get FieldInfo from default value
-    elif isinstance(value, (FieldInfo, v1.FieldInfo)):
+    elif isinstance(value, FieldInfo):
         assert field_info is None, (
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
@@ -524,8 +531,8 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, v1.RequiredParam, Undefined),
-            field_info=field_info,
+            required=field_info.default in (RequiredParam, _get_v1().RequiredParam, Undefined),
+            field_info=field_info,  # type: ignore[arg-type]
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
@@ -734,14 +741,14 @@ def _validate_value_with_model_field(
 ) -> Tuple[Any, List[Any]]:
     if value is None:
         if field.required:
-            return None, [get_missing_field_error(loc=loc)]
+            return None, [get_missing_field_error(loc=loc, field=field)]
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
     if _is_error_wrapper(errors_):  # type: ignore[arg-type]
         return None, [errors_]
     elif isinstance(errors_, list):
-        new_errors = v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        new_errors = _get_v1()._regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
         return v_, []
@@ -973,7 +980,7 @@ async def request_body_to_args(
                 value = body_to_process.get(field.alias)
             # If the received body is a list, not a dict
             except AttributeError:
-                errors.append(get_missing_field_error(loc))
+                errors.append(get_missing_field_error(loc=loc, field=field))
                 continue
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
