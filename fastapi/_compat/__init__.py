@@ -10,7 +10,7 @@ detects the Pydantic version and provides the appropriate symbols.
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 # Import the v1 proxy module - this provides lazy loading and controlled warnings
 # Don't import at module level to avoid warnings
@@ -102,7 +102,7 @@ from .shared import value_is_sequence as value_is_sequence
 # Export V1 symbols as Any to avoid import-time access
 CoreSchema = Any
 GetJsonSchemaHandler = Any
-JsonSchemaValue = dict[str, Any]
+JsonSchemaValue = Dict[str, Any]
 
 
 def _normalize_errors(errors: Any) -> Any:

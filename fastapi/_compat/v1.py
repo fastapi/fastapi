@@ -223,6 +223,6 @@ def serialize_sequence_value(*, field: Any, value: Any) -> Any:
 
 # Type aliases for backward compatibility
 GetJsonSchemaHandler = Any
-JsonSchemaValue = dict[str, Any]
+JsonSchemaValue = Dict[str, Any]
 CoreSchema = Any
 Url = Any
