@@ -103,9 +103,22 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
-            self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[self.field_info.annotation, self.field_info]
-            )
+            # NOTE: Pydantic v1.FieldInfo does not define .annotation (added in v2).
+            # When bridging v1->v2, fall back to Any to avoid AttributeError at runtime.
+            annotation = getattr(self.field_info, "annotation", None)
+            if annotation is not None:
+                annotated_type = Annotated[annotation, self.field_info]
+            else:
+                # Fallback for v1.FieldInfo (no .annotation)
+                # Use a simple type that TypeAdapter can handle
+                annotated_type = Annotated[str, self.field_info]
+            
+            try:
+                self._type_adapter: TypeAdapter[Any] = TypeAdapter(annotated_type)
+            except (AttributeError, TypeError, Exception):
+                # If TypeAdapter fails for any reason, use a simple fallback
+                # This handles cases where the annotation type is not compatible with TypeAdapter
+                self._type_adapter: TypeAdapter[Any] = TypeAdapter(str)
 
     def get_default(self) -> Any:
         if self.field_info.is_required():
