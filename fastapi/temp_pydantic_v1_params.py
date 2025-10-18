@@ -112,7 +112,6 @@ class Param(FieldInfo):  # type: ignore[misc]
         self.style = style
         self.explode = explode
 
-
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
 
