@@ -1,5 +1,5 @@
-import dataclasses
 import collections
+import dataclasses
 import inspect
 import re
 import sys
@@ -23,7 +23,7 @@ from typing import (
 )
 
 import anyio
-from fastapi import params
+from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
     PYDANTIC_V2,
     ModelField,
@@ -79,8 +79,6 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Literal, get_args, get_origin
-
-from .. import temp_pydantic_v1_params
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -762,12 +760,16 @@ class ParameterCodec:
 
     @staticmethod
     def decode(
-        field_info: params.Param,
+        field_info: Union[params.Param, temp_pydantic_v1_params.Param],
         received_params: Union[Mapping[str, Any], QueryParams, Headers],
         field: ModelField,
     ) -> Dict[str, Any]:
         fn: Callable[
-            [params.Param, Union[Mapping[str, Any], QueryParams, Headers], ModelField],
+            [
+                Union[params.Param, temp_pydantic_v1_params.Param],
+                Union[Mapping[str, Any], QueryParams, Headers],
+                ModelField,
+            ],
             Dict[str, Any],
         ]
         fn = getattr(ParameterCodec, f"decode_{field_info.style}")
@@ -775,7 +777,7 @@ class ParameterCodec:
 
     @staticmethod
     def decode_deepObject(
-        field_info: params.Param,
+        field_info: Union[params.Param, temp_pydantic_v1_params.Param],
         received_params: Union[Mapping[str, Any], QueryParams, Headers],
         field: ModelField,
     ) -> Dict[str, Any]:
