@@ -112,7 +112,7 @@ class ModelField:
                 # Fallback for v1.FieldInfo (no .annotation)
                 # Use a simple type that TypeAdapter can handle
                 annotated_type = Annotated[str, self.field_info]
-            
+
             try:
                 self._type_adapter: TypeAdapter[Any] = TypeAdapter(annotated_type)
             except (AttributeError, TypeError, Exception):
