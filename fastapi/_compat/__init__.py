@@ -85,6 +85,7 @@ from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
+from .shared import is_v1_field_info as is_v1_field_info
 from .shared import (
     is_uploadfile_or_nonable_uploadfile_annotation as is_uploadfile_or_nonable_uploadfile_annotation,
 )
@@ -155,6 +156,7 @@ __all__ = [
     "_is_undefined",
     "get_cached_model_fields",
     "get_compat_model_name_map",
+    "is_v1_field_info",
     "ModelField",
     "PYDANTIC_VERSION_MINOR_TUPLE",
     "annotation_is_pydantic_v1",

@@ -23,6 +23,7 @@ from fastapi._compat import (
     Undefined,
     UndefinedType,
     Validator,
+    annotation_is_pydantic_v1,
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
@@ -94,32 +95,44 @@ def create_model_field(
 ) -> ModelField:
     class_validators = class_validators or {}
 
-    v1_model_config = _get_v1().BaseConfig
-    v1_field_info = field_info or FieldInfo()
-    v1_kwargs = {
+    # Build v1 kwargs
+    v1_kwargs: Dict[str, Any] = {
         "name": name,
-        "field_info": v1_field_info,
         "type_": type_,
         "class_validators": class_validators,
         "default": default,
         "required": required,
-        "model_config": v1_model_config,
+        "model_config": model_config,
+        "field_info": field_info,
         "alias": alias,
     }
 
-    if PYDANTIC_V2 and version != "1":
-        from ._compat import v2
+    # Detect v1 context
+    from fastapi._compat.shared import is_v1_field_info
 
-        field_info = field_info or FieldInfo(
-            annotation=type_, default=default, alias=alias
-        )
-        kwargs = {"mode": mode, "name": name, "field_info": field_info}
+    is_v1_model = annotation_is_pydantic_v1(type_) or lenient_issubclass(type_, _get_v1().BaseModel)
+    is_v1_field = is_v1_field_info(field_info)
+    is_forced_v1 = (version == "1")
+
+    # Route to appropriate ModelField
+    if is_v1_model or is_v1_field or is_forced_v1:
         try:
-            return v2.ModelField(**kwargs)  # type: ignore[return-value]
+            return _get_v1().ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+        except RuntimeError:
+            raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+
+    # v2 path - create FieldInfo only for v2
+    fi_v2 = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
+    v2_kwargs: Dict[str, Any] = {"mode": mode, "name": name, "field_info": fi_v2}
+
+    if PYDANTIC_V2:
+        from ._compat import v2
+        try:
+            return v2.ModelField(**v2_kwargs)  # type: ignore[return-value]
         except PydanticSchemaGenerationError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
-    # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
-    # a Pydantic v1 type, like a constrained int
+
+    # Fallback to v1 if v2 not available
     try:
         return _get_v1().ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:

@@ -18,6 +18,11 @@ from typing import (
 
 from fastapi._compat import v1 as _v1
 from fastapi.types import UnionType
+
+try:
+    from fastapi._compat import _v1_params
+except Exception:  # pragma: no cover
+    _v1_params = None  # type: ignore[assignment]
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
@@ -122,6 +127,26 @@ def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
         or hasattr(origin, "__pydantic_core_schema__")
         or hasattr(origin, "__get_pydantic_core_schema__")
     )
+
+
+def is_v1_field_info(field_info: Any) -> bool:
+    """Return True if this FieldInfo comes from Pydantic v1 (native or shim)."""
+    if field_info is None:
+        return False
+
+    # v1 native FieldInfo
+    if isinstance(field_info, getattr(_v1, "FieldInfo", ())):
+        return True
+
+    # shim _v1_params classes
+    if _v1_params is not None:
+        for name in ("Param", "Body", "Form", "File", "Query", "Path", "Header", "Cookie"):
+            cls = getattr(_v1_params, name, None)
+            if cls and isinstance(field_info, cls):
+                return True
+
+    # wrapper that stores v1.FieldInfo internally
+    return getattr(field_info, "_fi", None) is not None
 
 
 def field_annotation_is_scalar(annotation: Any) -> bool:

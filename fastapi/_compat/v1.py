@@ -22,6 +22,22 @@ from typing_extensions import Literal
 # Legacy FastAPI sentinel used by v1 params
 RequiredParam = Ellipsis
 
+# Compat: expose PydanticSchemaGenerationError for both v1 and v2
+try:
+    # pydantic v2 (caso alguém injete v2 por engano)
+    from pydantic.errors import (
+        PydanticSchemaGenerationError as _PSGE,  # type: ignore[attr-defined]
+    )
+except Exception:
+    try:
+        # pydantic v1: usar o erro mais próximo semanticamente
+        from pydantic.errors import ConfigError as _PSGE
+    except Exception:
+        class _PSGE(Exception):  # fallback defensivo (não deve acontecer)
+            pass
+
+PydanticSchemaGenerationError = _PSGE
+
 _pv1 = None
 _warned = False
 
@@ -226,3 +242,11 @@ GetJsonSchemaHandler = Any
 JsonSchemaValue = Dict[str, Any]
 CoreSchema = Any
 Url = Any
+
+__all__ = [
+    "PydanticSchemaGenerationError",
+    "RequiredParam",
+    "JsonSchemaValue",
+    "CoreSchema",
+    "Url",
+]
