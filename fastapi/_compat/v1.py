@@ -126,7 +126,6 @@ def is_scalar_sequence_field(field) -> bool:
         return not pv1.utils.lenient_issubclass(field.type_, pv1.BaseModel) and all(is_scalar_field(sf) for sf in (field.sub_fields or []))
     return False
 
-from copy import copy as _copy
 def copy_field_info(*, field_info, annotation: Any):
     return _copy(field_info)
 

@@ -77,13 +77,13 @@ from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
 
+from .._compat import _v1_params as temp_pydantic_v1_params
+
 # Lazy import of v1 to avoid warnings
 def _get_v1():
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
     return v1
-
-from .._compat import _v1_params as temp_pydantic_v1_params
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction

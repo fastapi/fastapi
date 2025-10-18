@@ -9,7 +9,7 @@ from typing import (
     Type,
 )
 
-from fastapi._compat.shared import PYDANTIC_V2, lenient_issubclass
+from fastapi._compat.shared import PYDANTIC_V2
 from fastapi._compat.lazy_import import get_v1_if_loaded, v1_isinstance, v1_lenient_issubclass
 from fastapi.types import ModelNameMap
 from pydantic import BaseModel
