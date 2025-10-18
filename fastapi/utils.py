@@ -96,13 +96,14 @@ def create_model_field(
     class_validators = class_validators or {}
 
     # Build v1 kwargs
+    v1_model_config = model_config or _get_v1().BaseConfig
     v1_kwargs: Dict[str, Any] = {
         "name": name,
         "type_": type_,
         "class_validators": class_validators,
         "default": default,
         "required": required,
-        "model_config": model_config,
+        "model_config": v1_model_config,
         "field_info": field_info,
         "alias": alias,
     }
