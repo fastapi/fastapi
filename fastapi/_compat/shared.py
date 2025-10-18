@@ -97,7 +97,7 @@ def value_is_sequence(value: Any) -> bool:
 
 
 def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
-    types_tuple: tuple[Type[Any], ...] = (BaseModel, Mapping, UploadFile)
+    types_tuple: Tuple[Type[Any], ...] = (BaseModel, Mapping, UploadFile)
     if "pydantic.v1" in sys.modules:
         # only now touch v1 (already used by app)
         types_tuple += (_v1.BaseModel,)

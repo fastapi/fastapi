@@ -471,3 +471,8 @@ def get_long_model_name(model: TypeModelOrEnum) -> str:
 def _is_model_class(value: Any) -> bool:
     """Check if a value is a Pydantic model class."""
     return lenient_issubclass(value, BaseModel)
+
+
+def _is_model_field(value: Any) -> bool:
+    """Check if a value is a Pydantic model field."""
+    return isinstance(value, ModelField)
