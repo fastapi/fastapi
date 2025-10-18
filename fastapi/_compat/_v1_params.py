@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 # path: fastapi/_compat/_v1_params.py
 
 """

@@ -37,8 +37,8 @@ class TestV2FirstCompatibility:
             import fastapi.encoders
             from fastapi import FastAPI
             
-            app = FastAPI()
-            
+            _ = FastAPI()  # Create app but don't use it
+
             # Test jsonable_encoder with v2 model
             class TestModel(BaseModel):
                 name: str
@@ -108,14 +108,14 @@ class TestV2FirstCompatibility:
         import sys
         
         # Clear any existing pydantic.v1 from sys.modules
-        v1_was_loaded = "pydantic.v1" in sys.modules
+        _ = "pydantic.v1" in sys.modules  # Check but don't use
         
         # Import FastAPI components
         import fastapi
         import fastapi.encoders
         from fastapi import FastAPI
         
-        app = FastAPI()
+        _ = FastAPI()  # Create app but don't use it
         
         # At this point, pydantic.v1 should not be loaded unless it was already loaded
         # (we can't test the exact state because it might have been loaded by other tests)
@@ -170,7 +170,7 @@ class TestV2FirstCompatibility:
             # This should not raise an error unless we actually try to use v1
             import fastapi
             from fastapi import FastAPI
-            app = FastAPI()
+            _ = FastAPI()  # Create app but don't use it
             
             # The strict mode only affects actual v1 usage, not imports
             assert True

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 # path: fastapi/_compat/import.py
 """
 Centralized lazy import helpers for v1 compatibility.

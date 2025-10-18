@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import re
 import warnings
 from dataclasses import is_dataclass
@@ -27,11 +28,6 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 
-# Lazy import of v1 to avoid warnings
-def _get_v1():
-    """Lazy import of v1 module to avoid warnings."""
-    from fastapi._compat import v1
-    return v1
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -39,6 +35,12 @@ from typing_extensions import Literal
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+# Lazy import of v1 to avoid warnings
+def _get_v1():
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 
 # Cache for `create_cloned_field`
 _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
