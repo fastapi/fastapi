@@ -24,7 +24,8 @@ from typing import (
     Union,
 )
 
-from fastapi import params, temp_pydantic_v1_params
+from fastapi import params
+from fastapi._compat import _v1_params as temp_pydantic_v1_params
 from fastapi._compat import (
     ModelField,
     Undefined,

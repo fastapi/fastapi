@@ -1,3 +1,20 @@
+# path: fastapi/_compat/__init__.py
+
+"""
+FastAPI Pydantic compatibility layer.
+
+This module provides a v2-first compatibility layer that automatically
+detects the Pydantic version and provides the appropriate symbols.
+"""
+
+from __future__ import annotations
+
+from typing import Any
+
+# Import the v1 proxy module - this provides lazy loading and controlled warnings
+# Don't import at module level to avoid warnings
+
+# Import legacy compatibility symbols for backward compatibility
 from .main import BaseConfig as BaseConfig
 from .main import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from .main import RequiredParam as RequiredParam
@@ -44,7 +61,27 @@ from .shared import (
 from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
-from .v1 import CoreSchema as CoreSchema
-from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
-from .v1 import JsonSchemaValue as JsonSchemaValue
-from .v1 import _normalize_errors as _normalize_errors
+
+# V1 symbols are available via the v1 proxy module
+# Access them directly: from fastapi._compat import v1; v1.CoreSchema
+# This avoids import-time access and warnings
+
+# Export V1 symbols as Any to avoid import-time access
+CoreSchema = Any
+GetJsonSchemaHandler = Any
+JsonSchemaValue = dict[str, Any]
+
+def _normalize_errors(errors):
+    from importlib import import_module
+    v1 = import_module("fastapi._compat.v1")  # proxy lazy
+    return v1._normalize_errors(errors)
+
+# Make v1 available as an attribute
+def __getattr__(name: str):
+    if name == "v1":
+        # Import directly to avoid recursion
+        import importlib
+        return importlib.import_module("fastapi._compat.v1")
+    raise AttributeError(f"module 'fastapi._compat' has no attribute '{name}'")
+
+# No __all__ defined - exports everything implicitly for backward compatibility

@@ -16,7 +16,6 @@ from typing import (
     Union,
 )
 
-from fastapi._compat import v1
 from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -97,8 +96,13 @@ def value_is_sequence(value: Any) -> bool:
 
 
 def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
+    types_tuple = (BaseModel, Mapping, UploadFile)
+    if "pydantic.v1" in sys.modules:
+        # só agora toca v1 (já foi usado pelo app)
+        from fastapi._compat import v1 as _v1
+        types_tuple += (_v1.BaseModel,)
     return (
-        lenient_issubclass(annotation, (BaseModel, v1.BaseModel, Mapping, UploadFile))
+        lenient_issubclass(annotation, types_tuple)
         or _annotation_is_sequence(annotation)
         or is_dataclass(annotation)
     )
@@ -195,15 +199,14 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, v1.BaseModel):
+    if "pydantic.v1" not in sys.modules:
+        return False
+    from fastapi._compat import v1 as _v1
+    if lenient_issubclass(annotation, _v1.BaseModel):
         return True
     origin = get_origin(annotation)
-    if origin is Union or origin is UnionType:
-        for arg in get_args(annotation):
-            if lenient_issubclass(arg, v1.BaseModel):
-                return True
+    if origin in (Union, UnionType):
+        return any(lenient_issubclass(arg, _v1.BaseModel) for arg in get_args(annotation))
     if field_annotation_is_sequence(annotation):
-        for sub_annotation in get_args(annotation):
-            if annotation_is_pydantic_v1(sub_annotation):
-                return True
+        return any(annotation_is_pydantic_v1(sa) for sa in get_args(annotation))
     return False

@@ -25,8 +25,13 @@ from fastapi._compat import (
     Validator,
     annotation_is_pydantic_v1,
     lenient_issubclass,
-    v1,
 )
+
+# Lazy import of v1 to avoid warnings
+def _get_v1():
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -87,8 +92,8 @@ def create_model_field(
 ) -> ModelField:
     class_validators = class_validators or {}
 
-    v1_model_config = v1.BaseConfig
-    v1_field_info = field_info or v1.FieldInfo()
+    v1_model_config = _get_v1().BaseConfig
+    v1_field_info = field_info or _get_v1().FieldInfo()
     v1_kwargs = {
         "name": name,
         "field_info": v1_field_info,
@@ -102,11 +107,11 @@ def create_model_field(
 
     if (
         annotation_is_pydantic_v1(type_)
-        or isinstance(field_info, v1.FieldInfo)
+        or isinstance(field_info, _get_v1().FieldInfo)
         or version == "1"
     ):
         try:
-            return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+            return _get_v1().ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
     elif PYDANTIC_V2:
@@ -123,7 +128,7 @@ def create_model_field(
     # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
     # a Pydantic v1 type, like a constrained int
     try:
-        return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+        return _get_v1().ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
 
@@ -147,11 +152,11 @@ def create_cloned_field(
     if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
         original_type = original_type.__pydantic_model__
     use_type = original_type
-    if lenient_issubclass(original_type, v1.BaseModel):
-        original_type = cast(Type[v1.BaseModel], original_type)
+    if lenient_issubclass(original_type, _get_v1().BaseModel):
+        original_type = cast(Type[_get_v1().BaseModel], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = v1.create_model(original_type.__name__, __base__=original_type)
+            use_type = _get_v1().create_model(original_type.__name__, __base__=original_type)
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(

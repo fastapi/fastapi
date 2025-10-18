@@ -1,334 +1,136 @@
-from copy import copy
-from dataclasses import dataclass, is_dataclass
-from enum import Enum
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    List,
-    Sequence,
-    Set,
-    Tuple,
-    Type,
-    Union,
-)
+# path: fastapi/_compat/v1.py
 
-from fastapi._compat import shared
-from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
-from fastapi.types import ModelNameMap
-from pydantic.version import VERSION as PYDANTIC_VERSION
+"""
+Pydantic V1 compatibility module with lazy loading and controlled warnings.
+
+This module acts as a transparent proxy to pydantic.v1, loading it only when needed
+and providing controlled warnings for Python 3.14+ usage.
+"""
+
+from __future__ import annotations
+
+import importlib
+import os
+import sys
+import warnings
+from typing import Any, Dict, List, Sequence, Tuple
 from typing_extensions import Literal
 
-PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
-PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
-# Keeping old "Required" functionality from Pydantic V1, without
-# shadowing typing.Required.
-RequiredParam: Any = Ellipsis
+# Never import pydantic.v1 at import-time of this file.
+# Load on demand in __getattr__ (PEP 562).
 
-if not PYDANTIC_V2:
-    from pydantic import BaseConfig as BaseConfig
-    from pydantic import BaseModel as BaseModel
-    from pydantic import ValidationError as ValidationError
-    from pydantic import create_model as create_model
-    from pydantic.class_validators import Validator as Validator
-    from pydantic.color import Color as Color
-    from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
-    from pydantic.errors import MissingError
-    from pydantic.fields import (  # type: ignore[attr-defined]
-        SHAPE_FROZENSET,
-        SHAPE_LIST,
-        SHAPE_SEQUENCE,
-        SHAPE_SET,
-        SHAPE_SINGLETON,
-        SHAPE_TUPLE,
-        SHAPE_TUPLE_ELLIPSIS,
-    )
-    from pydantic.fields import FieldInfo as FieldInfo
-    from pydantic.fields import ModelField as ModelField  # type: ignore[attr-defined]
-    from pydantic.fields import Undefined as Undefined  # type: ignore[attr-defined]
-    from pydantic.fields import (  # type: ignore[attr-defined]
-        UndefinedType as UndefinedType,
-    )
-    from pydantic.networks import AnyUrl as AnyUrl
-    from pydantic.networks import NameEmail as NameEmail
-    from pydantic.schema import TypeModelSet as TypeModelSet
-    from pydantic.schema import (
-        field_schema,
-        get_flat_models_from_fields,
-        model_process_schema,
-    )
-    from pydantic.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
-    from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
-    from pydantic.schema import get_model_name_map as get_model_name_map
-    from pydantic.types import SecretBytes as SecretBytes
-    from pydantic.types import SecretStr as SecretStr
-    from pydantic.typing import evaluate_forwardref as evaluate_forwardref
-    from pydantic.utils import lenient_issubclass as lenient_issubclass
+_pv1 = None
+_warned = False
 
+def _load():
+    global _pv1, _warned
+    if _pv1 is not None:
+        return _pv1
+    if sys.version_info >= (3, 14):
+        msg = "Pydantic v1 em Python 3.14+ é desaconselhado/deprecado. Migre para v2."
+        if os.getenv("FASTAPI_PYDANTIC_V1_STRICT") == "1":
+            raise RuntimeError(msg)
+        if not _warned:
+            warnings.warn(msg, DeprecationWarning, stacklevel=3)
+            _warned = True
+    _pv1 = importlib.import_module("pydantic.v1")
+    return _pv1
 
-else:
-    from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
-    from pydantic.v1 import BaseModel as BaseModel  # type: ignore[assignment]
-    from pydantic.v1 import (  # type: ignore[assignment]
-        ValidationError as ValidationError,
-    )
-    from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
-    from pydantic.v1.class_validators import Validator as Validator
-    from pydantic.v1.color import Color as Color  # type: ignore[assignment]
-    from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
-    from pydantic.v1.errors import MissingError
-    from pydantic.v1.fields import (
-        SHAPE_FROZENSET,
-        SHAPE_LIST,
-        SHAPE_SEQUENCE,
-        SHAPE_SET,
-        SHAPE_SINGLETON,
-        SHAPE_TUPLE,
-        SHAPE_TUPLE_ELLIPSIS,
-    )
-    from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
-    from pydantic.v1.fields import ModelField as ModelField
-    from pydantic.v1.fields import Undefined as Undefined
-    from pydantic.v1.fields import UndefinedType as UndefinedType
-    from pydantic.v1.networks import AnyUrl as AnyUrl
-    from pydantic.v1.networks import (  # type: ignore[assignment]
-        NameEmail as NameEmail,
-    )
-    from pydantic.v1.schema import TypeModelSet as TypeModelSet
-    from pydantic.v1.schema import (
-        field_schema,
-        get_flat_models_from_fields,
-        model_process_schema,
-    )
-    from pydantic.v1.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
-    from pydantic.v1.schema import (
-        get_flat_models_from_field as get_flat_models_from_field,
-    )
-    from pydantic.v1.schema import get_model_name_map as get_model_name_map
-    from pydantic.v1.types import (  # type: ignore[assignment]
-        SecretBytes as SecretBytes,
-    )
-    from pydantic.v1.types import (  # type: ignore[assignment]
-        SecretStr as SecretStr,
-    )
-    from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
-    from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
+def __getattr__(name: str) -> Any:
+    mod = _load()
+    # tenta direto no módulo principal
+    if hasattr(mod, name):
+        return getattr(mod, name)
+    # tenta submódulos comuns
+    for sub in ("fields","schema","networks","types","color","class_validators",
+                "error_wrappers","errors","typing","utils"):
+        submod = getattr(mod, sub, None)
+        if submod and hasattr(submod, name):
+            return getattr(submod, name)
+    raise AttributeError(name)
 
-
-GetJsonSchemaHandler = Any
-JsonSchemaValue = Dict[str, Any]
-CoreSchema = Any
-Url = AnyUrl
-
-sequence_shapes = {
-    SHAPE_LIST,
-    SHAPE_SET,
-    SHAPE_FROZENSET,
-    SHAPE_TUPLE,
-    SHAPE_SEQUENCE,
-    SHAPE_TUPLE_ELLIPSIS,
-}
-sequence_shape_to_type = {
-    SHAPE_LIST: list,
-    SHAPE_SET: set,
-    SHAPE_TUPLE: tuple,
-    SHAPE_SEQUENCE: list,
-    SHAPE_TUPLE_ELLIPSIS: list,
-}
-
-
-@dataclass
-class GenerateJsonSchema:
-    ref_template: str
-
-
-class PydanticSchemaGenerationError(Exception):
-    pass
-
-
-RequestErrorModel: Type[BaseModel] = create_model("Request")
-
-
-def with_info_plain_validator_function(
-    function: Callable[..., Any],
-    *,
-    ref: Union[str, None] = None,
-    metadata: Any = None,
-    serialization: Any = None,
-) -> Any:
-    return {}
-
-
-def get_model_definitions(
-    *,
-    flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
-) -> Dict[str, Any]:
-    definitions: Dict[str, Dict[str, Any]] = {}
-    for model in flat_models:
-        m_schema, m_definitions, m_nested_models = model_process_schema(
-            model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-        )
-        definitions.update(m_definitions)
-        model_name = model_name_map[model]
-        definitions[model_name] = m_schema
-    for m_schema in definitions.values():
-        if "description" in m_schema:
-            m_schema["description"] = m_schema["description"].split("\f")[0]
-    return definitions
-
-
-def is_pv1_scalar_field(field: ModelField) -> bool:
-    from fastapi import params
-
-    field_info = field.field_info
-    if not (
-        field.shape == SHAPE_SINGLETON
-        and not lenient_issubclass(field.type_, BaseModel)
-        and not lenient_issubclass(field.type_, dict)
-        and not shared.field_annotation_is_sequence(field.type_)
-        and not is_dataclass(field.type_)
-        and not isinstance(field_info, params.Body)
-    ):
-        return False
-    if field.sub_fields:
-        if not all(is_pv1_scalar_field(f) for f in field.sub_fields):
-            return False
-    return True
-
-
-def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
-    if (field.shape in sequence_shapes) and not lenient_issubclass(
-        field.type_, BaseModel
-    ):
-        if field.sub_fields is not None:
-            for sub_field in field.sub_fields:
-                if not is_pv1_scalar_field(sub_field):
-                    return False
-        return True
-    if shared._annotation_is_sequence(field.type_):
-        return True
-    return False
-
+# ---------- Wrappers usados pelo core FastAPI (mínimos) ----------
 
 def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-    use_errors: List[Any] = []
-    for error in errors:
-        if isinstance(error, ErrorWrapper):
-            new_errors = ValidationError(  # type: ignore[call-arg]
-                errors=[error], model=RequestErrorModel
-            ).errors()
-            use_errors.extend(new_errors)
-        elif isinstance(error, list):
-            use_errors.extend(_normalize_errors(error))
+    pv1 = _load()
+    RequestErrorModel = pv1.create_model("Request")
+    out: List[Any] = []
+    for err in errors:
+        if isinstance(err, pv1.error_wrappers.ErrorWrapper):
+            out.extend(pv1.ValidationError(errors=[err], model=RequestErrorModel).errors())
+        elif isinstance(err, list):
+            out.extend(_normalize_errors(err))
         else:
-            use_errors.append(error)
-    return use_errors
+            out.append(err)
+    return out
 
+def _regenerate_error_with_loc(*, errors: Sequence[Any], loc_prefix: Tuple[Any, ...]) -> List[Dict[str, Any]]:
+    return [{**e, "loc": loc_prefix + tuple(e.get("loc", ())) } for e in _normalize_errors(errors)]
 
-def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Dict[str, Any]]:
-    updated_loc_errors: List[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())}
-        for err in _normalize_errors(errors)
-    ]
-
-    return updated_loc_errors
-
-
-def _model_rebuild(model: Type[BaseModel]) -> None:
+def _model_rebuild(model) -> None:
     model.update_forward_refs()
 
-
-def _model_dump(
-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
-) -> Any:
+def _model_dump(model, mode: Literal["json","python"]="json", **kwargs: Any) -> Any:
     return model.dict(**kwargs)
 
+def _get_model_config(model) -> Any:
+    return getattr(model, "__config__", None)
 
-def _get_model_config(model: BaseModel) -> Any:
-    return model.__config__  # type: ignore[attr-defined]
+def get_schema_from_model_field(*, field, model_name_map, field_mapping: Dict[Tuple[Any, Literal["validation","serialization"]], Dict[str, Any]], separate_input_output_schemas: bool=True) -> Dict[str, Any]:
+    schema = _load().schema
+    ref = "#/components/schemas"
+    return schema.field_schema(field, model_name_map=model_name_map, ref_prefix=ref)[0]
 
+def get_definitions(*, fields: List[Any], model_name_map, separate_input_output_schemas: bool=True):
+    schema = _load().schema
+    models = schema.get_flat_models_from_fields(fields, known_models=set())
+    definitions: Dict[str, Dict[str, Any]] = {}
+    for m in models:
+        m_schema, m_defs, _ = schema.model_process_schema(m, model_name_map=model_name_map, ref_prefix="#/components/schemas")
+        definitions.update(m_defs)
+        definitions[model_name_map[m]] = m_schema
+    return {}, definitions
 
-def get_schema_from_model_field(
-    *,
-    field: ModelField,
-    model_name_map: ModelNameMap,
-    field_mapping: Dict[
-        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
-    ],
-    separate_input_output_schemas: bool = True,
-) -> Dict[str, Any]:
-    return field_schema(  # type: ignore[no-any-return]
-        field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
-    )[0]
+def get_model_fields(model) -> List[Any]:
+    return list(getattr(model, "__fields__", {}).values())
 
+def is_bytes_field(field) -> bool:
+    return _load().utils.lenient_issubclass(field.type_, bytes)
 
-# def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-#     models = get_flat_models_from_fields(fields, known_models=set())
-#     return get_model_name_map(models)  # type: ignore[no-any-return]
+def is_bytes_sequence_field(field) -> bool:
+    f = _load().fields
+    shapes = {f.SHAPE_LIST, f.SHAPE_SET, f.SHAPE_FROZENSET, f.SHAPE_TUPLE, f.SHAPE_SEQUENCE, f.SHAPE_TUPLE_ELLIPSIS}
+    return field.shape in shapes and _load().utils.lenient_issubclass(field.type_, bytes)
 
+def is_scalar_field(field) -> bool:
+    f = _load().fields
+    pv1 = _load()
+    return (field.shape == f.SHAPE_SINGLETON
+            and not pv1.utils.lenient_issubclass(field.type_, pv1.BaseModel)
+            and not pv1.utils.lenient_issubclass(field.type_, dict))
 
-def get_definitions(
-    *,
-    fields: List[ModelField],
-    model_name_map: ModelNameMap,
-    separate_input_output_schemas: bool = True,
-) -> Tuple[
-    Dict[Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
-    Dict[str, Dict[str, Any]],
-]:
-    models = get_flat_models_from_fields(fields, known_models=set())
-    return {}, get_model_definitions(flat_models=models, model_name_map=model_name_map)
+def is_sequence_field(field) -> bool:
+    f = _load().fields
+    return field.shape in {f.SHAPE_LIST, f.SHAPE_SET, f.SHAPE_FROZENSET, f.SHAPE_TUPLE, f.SHAPE_SEQUENCE, f.SHAPE_TUPLE_ELLIPSIS}
 
+def is_scalar_sequence_field(field) -> bool:
+    f = _load().fields
+    pv1 = _load()
+    if field.shape in {f.SHAPE_LIST, f.SHAPE_SET, f.SHAPE_FROZENSET, f.SHAPE_TUPLE, f.SHAPE_SEQUENCE, f.SHAPE_TUPLE_ELLIPSIS}:
+        return not pv1.utils.lenient_issubclass(field.type_, pv1.BaseModel) and all(is_scalar_field(sf) for sf in (field.sub_fields or []))
+    return False
 
-def is_scalar_field(field: ModelField) -> bool:
-    return is_pv1_scalar_field(field)
+from copy import copy as _copy
+def copy_field_info(*, field_info, annotation: Any):
+    return _copy(field_info)
 
+def serialize_sequence_value(*, field, value):
+    f = _load().fields
+    mapping = { f.SHAPE_LIST: list, f.SHAPE_SET: set, f.SHAPE_TUPLE: tuple, f.SHAPE_SEQUENCE: list, f.SHAPE_TUPLE_ELLIPSIS: list }
+    return mapping[field.shape](value)
 
-def is_sequence_field(field: ModelField) -> bool:
-    return field.shape in sequence_shapes or shared._annotation_is_sequence(field.type_)
-
-
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    return is_pv1_scalar_sequence_field(field)
-
-
-def is_bytes_field(field: ModelField) -> bool:
-    return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
-
-
-def is_bytes_sequence_field(field: ModelField) -> bool:
-    return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
-
-
-def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
-    return copy(field_info)
-
-
-def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return]
-
-
-def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
-    missing_field_error = ErrorWrapper(MissingError(), loc=loc)
-    new_error = ValidationError([missing_field_error], RequestErrorModel)
-    return new_error.errors()[0]  # type: ignore[return-value]
-
-
-def create_body_model(
-    *, fields: Sequence[ModelField], model_name: str
-) -> Type[BaseModel]:
-    BodyModel = create_model(model_name)
-    for f in fields:
-        BodyModel.__fields__[f.name] = f  # type: ignore[index]
-    return BodyModel
-
-
-def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-    return list(model.__fields__.values())  # type: ignore[attr-defined]
+# Type aliases for backward compatibility
+GetJsonSchemaHandler = Any
+JsonSchemaValue = dict[str, Any]
+CoreSchema = Any
+Url = Any
