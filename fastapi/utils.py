@@ -111,9 +111,11 @@ def create_model_field(
     # Detect v1 context
     from fastapi._compat.shared import is_v1_field_info
 
-    is_v1_model = annotation_is_pydantic_v1(type_) or lenient_issubclass(type_, _get_v1().BaseModel)
+    is_v1_model = annotation_is_pydantic_v1(type_) or lenient_issubclass(
+        type_, _get_v1().BaseModel
+    )
     is_v1_field = is_v1_field_info(field_info)
-    is_forced_v1 = (version == "1")
+    is_forced_v1 = version == "1"
 
     # Route to appropriate ModelField
     if is_v1_model or is_v1_field or is_forced_v1:
@@ -128,6 +130,7 @@ def create_model_field(
 
     if PYDANTIC_V2:
         from ._compat import v2
+
         try:
             return v2.ModelField(**v2_kwargs)  # type: ignore[return-value]
         except PydanticSchemaGenerationError:

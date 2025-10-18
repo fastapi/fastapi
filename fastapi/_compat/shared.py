@@ -140,7 +140,16 @@ def is_v1_field_info(field_info: Any) -> bool:
 
     # shim _v1_params classes
     if _v1_params is not None:
-        for name in ("Param", "Body", "Form", "File", "Query", "Path", "Header", "Cookie"):
+        for name in (
+            "Param",
+            "Body",
+            "Form",
+            "File",
+            "Query",
+            "Path",
+            "Header",
+            "Cookie",
+        ):
             cls = getattr(_v1_params, name, None)
             if cls and isinstance(field_info, cls):
                 return True

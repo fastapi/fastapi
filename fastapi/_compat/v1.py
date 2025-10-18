@@ -33,8 +33,10 @@ except Exception:
         # pydantic v1: usar o erro mais próximo semanticamente
         from pydantic.errors import ConfigError as _PSGE
     except Exception:
+
         class _PSGE(Exception):  # fallback defensivo (não deve acontecer)
             pass
+
 
 PydanticSchemaGenerationError = _PSGE
 
