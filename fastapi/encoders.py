@@ -85,12 +85,14 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     AnyUrl: str,
 }
 
+
 def _ensure_v1_encoders_registered() -> None:
     """Register V1 encoders only when needed (lazy loading)."""
     # Só registra se pydantic.v1 já estiver carregado (app realmente usou v1)
     if "pydantic.v1" not in sys.modules:
         return
     from fastapi._compat import v1  # agora sim
+
     ENCODERS_BY_TYPE.setdefault(v1.Color, str)
     ENCODERS_BY_TYPE.setdefault(v1.NameEmail, str)
     ENCODERS_BY_TYPE.setdefault(v1.SecretBytes, str)
@@ -217,7 +219,7 @@ def jsonable_encoder(
     """
     # Ensure V1 encoders are registered if needed (lazy loading)
     _ensure_v1_encoders_registered()
-    
+
     custom_encoder = custom_encoder or {}
     if custom_encoder:
         if type(obj) in custom_encoder:
@@ -236,6 +238,7 @@ def jsonable_encoder(
         # Check if it's a v1 model using lazy loading
         if "pydantic.v1" in sys.modules:
             from fastapi._compat import v1
+
             if isinstance(obj, v1.BaseModel):
                 encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
         if custom_encoder:

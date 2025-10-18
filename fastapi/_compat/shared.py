@@ -100,6 +100,7 @@ def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
     if "pydantic.v1" in sys.modules:
         # só agora toca v1 (já foi usado pelo app)
         from fastapi._compat import v1 as _v1
+
         types_tuple += (_v1.BaseModel,)
     return (
         lenient_issubclass(annotation, types_tuple)
@@ -202,11 +203,14 @@ def annotation_is_pydantic_v1(annotation: Any) -> bool:
     if "pydantic.v1" not in sys.modules:
         return False
     from fastapi._compat import v1 as _v1
+
     if lenient_issubclass(annotation, _v1.BaseModel):
         return True
     origin = get_origin(annotation)
     if origin in (Union, UnionType):
-        return any(lenient_issubclass(arg, _v1.BaseModel) for arg in get_args(annotation))
+        return any(
+            lenient_issubclass(arg, _v1.BaseModel) for arg in get_args(annotation)
+        )
     if field_annotation_is_sequence(annotation):
         return any(annotation_is_pydantic_v1(sa) for sa in get_args(annotation))
     return False

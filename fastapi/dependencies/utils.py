@@ -79,11 +79,14 @@ from typing_extensions import Annotated, get_args, get_origin
 
 from .._compat import _v1_params as temp_pydantic_v1_params
 
+
 # Lazy import of v1 to avoid warnings
 def _get_v1():
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
+
     return v1
+
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -404,9 +407,9 @@ def analyze_param(
             )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, _get_v1().FieldInfo, params.Depends, None] = (
-                fastapi_specific_annotations[-1]
-            )
+            fastapi_annotation: Union[
+                FieldInfo, _get_v1().FieldInfo, params.Depends, None
+            ] = fastapi_specific_annotations[-1]
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
@@ -531,7 +534,8 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, _get_v1().RequiredParam, Undefined),
+            required=field_info.default
+            in (RequiredParam, _get_v1().RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:

@@ -25,7 +25,6 @@ from typing import (
 )
 
 from fastapi import params
-from fastapi._compat import _v1_params as temp_pydantic_v1_params
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -34,6 +33,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
+from fastapi._compat import _v1_params as temp_pydantic_v1_params
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (

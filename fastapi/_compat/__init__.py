@@ -13,7 +13,6 @@ from typing import Any
 
 # Import the v1 proxy module - this provides lazy loading and controlled warnings
 # Don't import at module level to avoid warnings
-
 # Import legacy compatibility symbols for backward compatibility
 from .main import BaseConfig as BaseConfig
 from .main import PydanticSchemaGenerationError as PydanticSchemaGenerationError
@@ -71,17 +70,22 @@ CoreSchema = Any
 GetJsonSchemaHandler = Any
 JsonSchemaValue = dict[str, Any]
 
+
 def _normalize_errors(errors):
     from importlib import import_module
+
     v1 = import_module("fastapi._compat.v1")  # proxy lazy
     return v1._normalize_errors(errors)
+
 
 # Make v1 available as an attribute
 def __getattr__(name: str):
     if name == "v1":
         # Import directly to avoid recursion
         import importlib
+
         return importlib.import_module("fastapi._compat.v1")
     raise AttributeError(f"module 'fastapi._compat' has no attribute '{name}'")
+
 
 # No __all__ defined - exports everything implicitly for backward compatibility
