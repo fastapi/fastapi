@@ -16,12 +16,6 @@ from typing import (
 )
 
 from fastapi._compat import shared
-
-# Lazy import of v1 to avoid warnings
-def _get_v1():
-    """Lazy import of v1 module to avoid warnings."""
-    from fastapi._compat import v1
-    return v1
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap
 from pydantic import BaseModel, TypeAdapter, create_model
@@ -40,6 +34,12 @@ from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined, PydanticUndefinedType
 from pydantic_core import Url as Url
 from typing_extensions import Annotated, Literal, get_args, get_origin
+
+# Lazy import of v1 to avoid warnings
+def _get_v1():
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 
 try:
     from pydantic_core.core_schema import (

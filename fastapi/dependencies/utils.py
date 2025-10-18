@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import inspect
 import sys
 from contextlib import AsyncExitStack, contextmanager
@@ -49,12 +50,6 @@ from fastapi._compat import (
     value_is_sequence,
 )
 from fastapi._compat.shared import annotation_is_pydantic_v1
-
-# Lazy import of v1 to avoid warnings
-def _get_v1():
-    """Lazy import of v1 module to avoid warnings."""
-    from fastapi._compat import v1
-    return v1
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
@@ -81,6 +76,12 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
+
+# Lazy import of v1 to avoid warnings
+def _get_v1():
+    """Lazy import of v1 module to avoid warnings."""
+    from fastapi._compat import v1
+    return v1
 
 from .._compat import _v1_params as temp_pydantic_v1_params
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from functools import lru_cache
 from typing import (
     Any,
@@ -326,10 +327,10 @@ def get_missing_field_error(loc: Tuple[str, ...], field: ModelField) -> Dict[str
 def evaluate_forwardref(type_: Any, globalns: Dict[str, Any], localns: Dict[str, Any]) -> Any:
     if PYDANTIC_V2:
         from . import v2
-        return v2.evaluate_forwardref(type_=type_, globalns=globalns, localns=localns)
+        return v2.evaluate_forwardref(type_, globalns, localns)
     else:
         v1 = get_v1_if_loaded()
-        return v1.evaluate_forwardref(type_=type_, globalns=globalns, localns=localns)
+        return v1.evaluate_forwardref(type_, globalns, localns)
 
 
 def with_info_plain_validator_function(

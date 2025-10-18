@@ -13,11 +13,15 @@ import importlib
 import os
 import sys
 import warnings
+from copy import copy as _copy
 from typing import Any, Dict, List, Sequence, Tuple
 from typing_extensions import Literal
 
 # Never import pydantic.v1 at import-time of this file.
 # Load on demand in __getattr__ (PEP 562).
+
+# Legacy FastAPI sentinel used by v1 params
+RequiredParam = Ellipsis
 
 _pv1 = None
 _warned = False
@@ -37,6 +41,8 @@ def _load():
     return _pv1
 
 def __getattr__(name: str) -> Any:
+    if name == "RequiredParam":
+        return Ellipsis
     mod = _load()
     # tenta direto no módulo principal
     if hasattr(mod, name):
