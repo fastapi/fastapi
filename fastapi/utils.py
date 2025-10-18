@@ -33,11 +33,14 @@ from typing_extensions import Literal
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
 
+
 # Lazy import of v1 to avoid warnings
 def _get_v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
+
     return v1
+
 
 # Cache for `create_cloned_field`
 _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
@@ -146,7 +149,9 @@ def create_cloned_field(
         original_type = cast(Type[Any], original_type)
         use_type = cloned_types.get(original_type)
         if use_type is None:
-            use_type = _get_v1().create_model(original_type.__name__, __base__=original_type)
+            use_type = _get_v1().create_model(
+                original_type.__name__, __base__=original_type
+            )
             cloned_types[original_type] = use_type
             for f in original_type.__fields__.values():
                 use_type.__fields__[f.name] = create_cloned_field(

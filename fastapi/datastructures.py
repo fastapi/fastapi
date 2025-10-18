@@ -168,6 +168,7 @@ class UploadFile(StarletteUploadFile):
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
     ) -> CoreSchema:
         from fastapi._compat.v2 import with_info_plain_validator_function  # noqa: I001
+
         return with_info_plain_validator_function(cls._validate)
 
 

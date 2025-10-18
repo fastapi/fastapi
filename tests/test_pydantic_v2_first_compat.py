@@ -45,21 +45,23 @@ class TestV2FirstCompatibility:
             result = jsonable_encoder(model)
 
             assert result == {"name": "test", "value": 42}
-            assert len(w) == 0, f"Unexpected warnings: {[str(warning.message) for warning in w]}"
+            assert len(w) == 0, (
+                f"Unexpected warnings: {[str(warning.message) for warning in w]}"
+            )
 
     def test_proxy_classes_isinstance(self):
         """Test that proxy classes work correctly with isinstance()."""
         import fastapi.temp_pydantic_v1_params as T
 
         # Test that proxy classes are available
-        assert hasattr(T, 'Param')
-        assert hasattr(T, 'Body')
-        assert hasattr(T, 'Form')
-        assert hasattr(T, 'File')
-        assert hasattr(T, 'Query')
-        assert hasattr(T, 'Header')
-        assert hasattr(T, 'Cookie')
-        assert hasattr(T, 'Path')
+        assert hasattr(T, "Param")
+        assert hasattr(T, "Body")
+        assert hasattr(T, "Form")
+        assert hasattr(T, "File")
+        assert hasattr(T, "Query")
+        assert hasattr(T, "Header")
+        assert hasattr(T, "Cookie")
+        assert hasattr(T, "Path")
 
         # Test isinstance() with proxy classes (expect DeprecationWarning)
         with warnings.catch_warnings():
@@ -69,6 +71,7 @@ class TestV2FirstCompatibility:
 
         # Test that proxy classes are different from v2 params
         from fastapi import params as v2_params
+
         assert T.Param is not v2_params.Param
         assert T.Body is not v2_params.Body
 
@@ -99,14 +102,14 @@ class TestV2FirstCompatibility:
             path = Path()
 
         # Test that they have expected attributes
-        assert hasattr(body, 'default')
-        assert hasattr(query, 'default')
-        assert hasattr(form, 'default')
-        assert hasattr(file_param, 'default')
-        assert hasattr(param, 'default')
-        assert hasattr(header, 'default')
-        assert hasattr(cookie, 'default')
-        assert hasattr(path, 'default')
+        assert hasattr(body, "default")
+        assert hasattr(query, "default")
+        assert hasattr(form, "default")
+        assert hasattr(file_param, "default")
+        assert hasattr(param, "default")
+        assert hasattr(header, "default")
+        assert hasattr(cookie, "default")
+        assert hasattr(path, "default")
 
     def test_lazy_loading_behavior(self):
         """Test that v1 is only loaded when actually used."""
@@ -124,6 +127,7 @@ class TestV2FirstCompatibility:
 
         # Test that we can still access v1 proxy
         from fastapi._compat import v1
+
         assert v1 is not None
 
     def test_encoders_lazy_registration(self):
@@ -148,14 +152,14 @@ class TestV2FirstCompatibility:
             from fastapi._compat import v1
 
             # Test that v1 proxy has expected attributes
-            assert hasattr(v1, 'BaseModel')
-            assert hasattr(v1, 'FieldInfo')
-            assert hasattr(v1, 'ValidationError')
+            assert hasattr(v1, "BaseModel")
+            assert hasattr(v1, "FieldInfo")
+            assert hasattr(v1, "ValidationError")
 
             # Test that wrapper functions are available
-            assert hasattr(v1, '_normalize_errors')
-            assert hasattr(v1, '_model_dump')
-            assert hasattr(v1, '_model_rebuild')
+            assert hasattr(v1, "_normalize_errors")
+            assert hasattr(v1, "_model_dump")
+            assert hasattr(v1, "_model_rebuild")
 
     def test_strict_mode_environment_variable(self):
         """Test FASTAPI_PYDANTIC_V1_STRICT environment variable behavior."""
@@ -170,6 +174,7 @@ class TestV2FirstCompatibility:
 
             # This should not raise an error unless we actually try to use v1
             from fastapi import FastAPI
+
             _ = FastAPI()  # Create app but don't use it
 
             # The strict mode only affects actual v1 usage, not imports
@@ -194,14 +199,14 @@ class TestV2FirstCompatibility:
             form = Form()
 
         # Test that they delegate to internal v1.FieldInfo
-        assert hasattr(param, '_fi')
-        assert hasattr(body, '_fi')
-        assert hasattr(form, '_fi')
+        assert hasattr(param, "_fi")
+        assert hasattr(body, "_fi")
+        assert hasattr(form, "_fi")
 
         # Test that they have expected interface
-        assert hasattr(param, 'default')
-        assert hasattr(body, 'default')
-        assert hasattr(form, 'default')
+        assert hasattr(param, "default")
+        assert hasattr(body, "default")
+        assert hasattr(form, "default")
 
 
 if __name__ == "__main__":

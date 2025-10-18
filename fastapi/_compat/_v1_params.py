@@ -1,4 +1,3 @@
-
 """
 Internal v1-params shim. Will be removed when v1 is dropped.
 
@@ -13,28 +12,47 @@ from typing import Any
 
 _SENTINEL = object()
 
+
 def _v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from . import v1  # lazy proxy; only warns/errors if actually using v1
+
     return v1
+
 
 class _BaseParam:
     """Minimal wrapper that delegates to v1.FieldInfo without importing v1 at import-time."""
+
     def __init__(self, default: Any = _SENTINEL, **kwargs: Any):
         v1 = _v1()
         if default is _SENTINEL:
-            default = getattr(v1, 'Undefined', None)
+            default = getattr(v1, "Undefined", None)
         self._fi = v1.FieldInfo(default=default, **kwargs)
 
     def __getattr__(self, name: str) -> Any:
         return getattr(self._fi, name)
 
+
 # Types used in isinstance() checks in core
 class Param(_BaseParam): ...
+
+
 class Body(_BaseParam): ...
+
+
 class Form(Body): ...
+
+
 class File(Form): ...
+
+
 class Path(Param): ...
+
+
 class Query(Param): ...
+
+
 class Header(Param): ...
+
+
 class Cookie(Param): ...

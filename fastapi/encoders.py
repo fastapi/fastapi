@@ -86,6 +86,7 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     AnyUrl: str,
 }
 
+
 def _ensure_v1_encoders_registered() -> None:
     """Register V1 encoders only when needed (lazy loading)."""
     # Only register if pydantic.v1 is already loaded (app actually used v1)
@@ -236,7 +237,7 @@ def jsonable_encoder(
         # Check if it's a v1 model using lazy loading
         if "pydantic.v1" in sys.modules:
             if isinstance(obj, v1.BaseModel):
-                    encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
+                encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
         if custom_encoder:
             encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(

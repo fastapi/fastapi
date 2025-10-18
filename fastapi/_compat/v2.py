@@ -40,7 +40,9 @@ from typing_extensions import Annotated, Literal, get_args, get_origin
 def _get_v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
+
     return v1
+
 
 try:
     from pydantic_core.core_schema import (

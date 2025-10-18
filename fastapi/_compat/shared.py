@@ -205,7 +205,9 @@ def annotation_is_pydantic_v1(annotation: Any) -> bool:
         return True
     origin = get_origin(annotation)
     if origin in (Union, UnionType):
-        return any(lenient_issubclass(arg, _v1.BaseModel) for arg in get_args(annotation))
+        return any(
+            lenient_issubclass(arg, _v1.BaseModel) for arg in get_args(annotation)
+        )
     if field_annotation_is_sequence(annotation):
         return any(annotation_is_pydantic_v1(sa) for sa in get_args(annotation))
     return False

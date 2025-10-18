@@ -104,18 +104,23 @@ CoreSchema = Any
 GetJsonSchemaHandler = Any
 JsonSchemaValue = dict[str, Any]
 
+
 def _normalize_errors(errors: Any) -> Any:
     from importlib import import_module
+
     v1 = import_module("fastapi._compat.v1")  # proxy lazy
     return v1._normalize_errors(errors)
+
 
 # Make v1 available as an attribute
 def __getattr__(name: str) -> Any:
     if name == "v1":
         # Import directly to avoid recursion
         import importlib
+
         return importlib.import_module("fastapi._compat.v1")
     raise AttributeError(f"module 'fastapi._compat' has no attribute '{name}'")
+
 
 # Explicitly export all compatibility symbols
 __all__ = [

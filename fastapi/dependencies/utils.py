@@ -83,7 +83,9 @@ from .._compat import _v1_params as temp_pydantic_v1_params
 def _get_v1() -> Any:
     """Lazy import of v1 module to avoid warnings."""
     from fastapi._compat import v1
+
     return v1
+
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -531,7 +533,8 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, _get_v1().RequiredParam, Undefined),
+            required=field_info.default
+            in (RequiredParam, _get_v1().RequiredParam, Undefined),
             field_info=field_info,  # type: ignore[arg-type]
         )
         if is_path_param:
