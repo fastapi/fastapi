@@ -37,4 +37,4 @@ Alle diese Parameter können anders als „`static`“ lauten, passen Sie sie an
 
 ## Weitere Informationen { #more-info }
 
-Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.
+Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.

@@ -123,7 +123,7 @@ FastAPI — это современный, быстрый (высокопрои�
 
 FastAPI стоит на плечах гигантов:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для части, связанной с вебом.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> для части, связанной с вебом.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для части, связанной с данными.
 
 ## Установка { #installation }
@@ -229,7 +229,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>О команде <code>fastapi dev main.py</code>...</summary>
 
-Команда `fastapi dev` читает ваш файл `main.py`, находит в нём приложение **FastAPI** и запускает сервер с помощью <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+Команда `fastapi dev` читает ваш файл `main.py`, находит в нём приложение **FastAPI** и запускает сервер с помощью <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 По умолчанию `fastapi dev` запускается с включённой авто-перезагрузкой для локальной разработки.
 
@@ -470,7 +470,7 @@ FastAPI зависит от Pydantic и Starlette.
 
 Используется FastAPI:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> — сервер, который загружает и обслуживает ваше приложение. Включает `uvicorn[standard]`, содержащий некоторые зависимости (например, `uvloop`), нужные для высокой производительности.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> — сервер, который загружает и обслуживает ваше приложение. Включает `uvicorn[standard]`, содержащий некоторые зависимости (например, `uvloop`), нужные для высокой производительности.
 * `fastapi-cli[standard]` — чтобы предоставить команду `fastapi`.
     * Включает `fastapi-cloud-cli`, который позволяет развернуть ваше приложение FastAPI в <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 

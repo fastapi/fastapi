@@ -81,7 +81,7 @@
 
 ## Установка пользовательских обработчиков исключений { #install-custom-exception-handlers }
 
-Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">то же самое исключение - утилиты от Starlette</a>.
+Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">то же самое исключение - утилиты от Starlette</a>.
 
 Допустим, у вас есть пользовательское исключение `UnicornException`, которое вы (или используемая вами библиотека) можете `вызвать`.
 

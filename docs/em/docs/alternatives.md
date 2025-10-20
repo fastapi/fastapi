@@ -417,7 +417,7 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">💃</a>
 
 💃 💿 <abbr title="The new standard for building asynchronous Python web">🔫</abbr> 🛠️/🧰, ❔ 💯 🏗 ↕-🎭 ✳ 🐕‍🦺.
 
@@ -462,7 +462,7 @@ Pydantic 🗃 🔬 💽 🔬, 🛠️ &amp; 🧾 (⚙️ 🎻 🔗) ⚓️ 🔛 
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
 
 Uvicorn 🌩-⏩ 🔫 💽, 🏗 🔛 uvloop &amp; httptool.
 

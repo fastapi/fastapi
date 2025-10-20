@@ -37,4 +37,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações
 
-Para mais detalhes e opções, verifique <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Para mais detalhes e opções, verifique <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
