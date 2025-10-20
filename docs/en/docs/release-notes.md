@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* 🔧 Add sponsor Requestly. PR [#14205](https://github.com/fastapi/fastapi/pull/14205) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Configure reminder for `waiting` label in `issue-manager`. PR [#14156](https://github.com/fastapi/fastapi/pull/14156) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.119.0
