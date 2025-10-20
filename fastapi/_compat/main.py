@@ -236,7 +236,7 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
     v1_model_fields = [
         field for field in fields if isinstance(field, may_v1.ModelField)
     ]
-    if len(v1_model_fields) > 0:
+    if v1_model_fields:
         from fastapi._compat import v1
 
         v1_flat_models = v1.get_flat_models_from_fields(
