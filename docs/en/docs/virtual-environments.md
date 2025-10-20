@@ -242,6 +242,26 @@ $ python -m pip install --upgrade pip
 
 </div>
 
+/// tip
+
+If you've created the virtual environment using `uv` above. Then, while running the command above to upgrade pip, you may get an error **`No module named pip`**. 
+
+In that case, you can install and upgrade pip using the command:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+This command will install pip if it is not already installed and also ensures that the installed version of pip is at least as recent as the one available in `ensurepip`.
+
+///
+
 ## Add `.gitignore` { #add-gitignore }
 
 If you are using **Git** (you should), add a `.gitignore` file to exclude everything in your `.venv` from Git.
