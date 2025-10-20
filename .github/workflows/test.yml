@@ -48,23 +48,32 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
         python-version: [ "3.14" ]
+        pydantic-version: "pydantic-v2"
         include:
           - os: macos-latest
             python-version: "3.8"
-          - os: windows-latest
-            python-version: "3.9"
-          - os: ubuntu-latest
-            python-version: "3.10"
-          - os: macos-latest
-            python-version: "3.11"
-          - os: windows-latest
-            python-version: "3.12"
-          - os: ubuntu-latest
-            python-version: "3.13"
-        pydantic-version: ["pydantic-v1", "pydantic-v2"]
-        exclude:
-          - python-version: "3.14"
             pydantic-version: "pydantic-v1"
+          - os: windows-latest
+            python-version: "3.8"
+            pydantic-version: "pydantic-v2"
+          - os: ubuntu-latest
+            python-version: "3.9"
+            pydantic-version: "pydantic-v1"
+          - os: macos-latest
+            python-version: "3.10"
+            pydantic-version: "pydantic-v2"
+          - os: windows-latest
+            python-version: "3.11"
+            pydantic-version: "pydantic-v1"
+          - os: ubuntu-latest
+            python-version: "3.12"
+            pydantic-version: "pydantic-v2"
+          - os: macos-latest
+            python-version: "3.13"
+            pydantic-version: "pydantic-v1"
+          - os: windows-latest
+            python-version: "3.13"
+            pydantic-version: "pydantic-v2"
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
