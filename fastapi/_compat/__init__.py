@@ -30,6 +30,10 @@ from .main import serialize_sequence_value as serialize_sequence_value
 from .main import (
     with_info_plain_validator_function as with_info_plain_validator_function,
 )
+from .may_v1 import CoreSchema as CoreSchema
+from .may_v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
+from .may_v1 import JsonSchemaValue as JsonSchemaValue
+from .may_v1 import _normalize_errors as _normalize_errors
 from .model_field import ModelField as ModelField
 from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
@@ -44,7 +48,3 @@ from .shared import (
 from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
-from .v1 import CoreSchema as CoreSchema
-from .v1 import GetJsonSchemaHandler as GetJsonSchemaHandler
-from .v1 import JsonSchemaValue as JsonSchemaValue
-from .v1 import _normalize_errors as _normalize_errors
