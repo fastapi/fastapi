@@ -7,7 +7,7 @@ from fastapi._compat import (
     get_cached_model_fields,
     is_scalar_field,
     is_uploadfile_sequence_annotation,
-    v1,
+    may_v1,
 )
 from fastapi._compat.shared import is_bytes_sequence_annotation
 from fastapi.testclient import TestClient
@@ -27,7 +27,10 @@ def test_model_field_default_required():
     assert field.default is Undefined
 
 
+@needs_py_lt_314
 def test_v1_plain_validator_function():
+    from fastapi._compat import v1
+
     # For coverage
     def func(v):  # pragma: no cover
         return v
@@ -135,6 +138,8 @@ def test_is_uploadfile_sequence_annotation():
 
 @needs_py_lt_314
 def test_is_pv1_scalar_field():
+    from fastapi._compat import v1
+
     # For coverage
     class Model(v1.BaseModel):
         foo: Union[str, Dict[str, Any]]
@@ -143,8 +148,11 @@ def test_is_pv1_scalar_field():
     assert not is_scalar_field(fields[0])
 
 
+@needs_py_lt_314
 def test_get_model_fields_cached():
-    class Model(v1.BaseModel):
+    from fastapi._compat import v1
+
+    class Model(may_v1.BaseModel):
         foo: str
 
     non_cached_fields = v1.get_model_fields(Model)
