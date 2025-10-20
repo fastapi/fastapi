@@ -223,7 +223,7 @@ Using it led to the creation of several Flask full-stack generators. These are t
 * <a href="https://github.com/tiangolo/full-stack-flask-couchbase" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchbase</a>
 * <a href="https://github.com/tiangolo/full-stack-flask-couchdb" class="external-link" target="_blank">https://github.com/tiangolo/full-stack-flask-couchdb</a>
 
-And these same full-stack generators were the base of the [**FastAPI** Project Generators](project-generation.md){.internal-link target=_blank}.
+And these same full-stack generators were the base of the [Full Stack **FastAPI** Template](project-generation.md){.internal-link target=_blank}.
 
 /// info
 
