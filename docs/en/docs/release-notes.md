@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.119.1
+
 ### Fixes
 
 * 🐛 Fix internal Pydantic v1 compatibility (warnings) for Python 3.14 and Pydantic 2.12.1. PR [#14186](https://github.com/fastapi/fastapi/pull/14186) by [@svlandeg](https://github.com/svlandeg).
