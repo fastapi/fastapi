@@ -1,6 +1,6 @@
 # Testen { #testing }
 
-Dank <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
+Dank <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
 
 Es basiert auf <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, welches wiederum auf der Grundlage von Requests konzipiert wurde, es ist also sehr vertraut und intuitiv.
 

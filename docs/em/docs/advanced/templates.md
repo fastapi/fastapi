@@ -81,4 +81,4 @@ $ pip install jinja2
 
 ## 🌅 ℹ
 
-🌅 ℹ, 🔌 ❔ 💯 📄, ✅ <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">💃 🩺 🔛 📄</a>.
+🌅 ℹ, 🔌 ❔ 💯 📄, ✅ <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">💃 🩺 🔛 📄</a>.

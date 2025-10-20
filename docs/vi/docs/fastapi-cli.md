@@ -52,7 +52,7 @@ FastAPI CLI nhận đường dẫn đến chương trình Python của bạn (vd
 
 Đối với vận hành thực tế (production), bạn sẽ sử dụng `fastapi run` thay thế. 🚀
 
-Ở bên trong, **FastAPI CLI** sử dụng <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, một server ASGI có hiệu suất cao, sẵn sàng cho vận hành thực tế (production). 😎
+Ở bên trong, **FastAPI CLI** sử dụng <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, một server ASGI có hiệu suất cao, sẵn sàng cho vận hành thực tế (production). 😎
 
 ## `fastapi dev`
 

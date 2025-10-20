@@ -61,7 +61,7 @@ Et ensuite une autre tâche d'arrière-plan (générée dans les paramètres de 
 
 ## Détails techniques
 
-La classe `BackgroundTasks` provient directement de <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+La classe `BackgroundTasks` provient directement de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 Elle est importée/incluse directement dans **FastAPI** pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
 
@@ -69,7 +69,7 @@ En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possi
 
 Il est tout de même possible d'utiliser `BackgroundTask` seul dans **FastAPI**, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
 
-Plus de détails sont disponibles dans <a href="https://www.starlette.io/background/" class="external-link" target="_blank">la documentation officielle de Starlette sur les tâches d'arrière-plan</a> (via leurs classes `BackgroundTasks`et `BackgroundTask`).
+Plus de détails sont disponibles dans <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">la documentation officielle de Starlette sur les tâches d'arrière-plan</a> (via leurs classes `BackgroundTasks`et `BackgroundTask`).
 
 ## Avertissement
 

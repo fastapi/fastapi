@@ -123,7 +123,7 @@ Si vous souhaitez construire une application <abbr title="Command Line Interface
 
 FastAPI repose sur les épaules de géants :
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> pour les parties web.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> pour les parties web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> pour les parties données.
 
 ## Installation
@@ -138,7 +138,7 @@ $ pip install fastapi
 
 </div>
 
-Vous aurez également besoin d'un serveur ASGI pour la production tel que <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ou <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Vous aurez également besoin d'un serveur ASGI pour la production tel que <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> ou <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -461,7 +461,7 @@ Utilisées par Starlette :
 
 Utilisées par FastAPI / Starlette :
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - Pour le serveur qui charge et sert votre application.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - Pour le serveur qui charge et sert votre application.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Obligatoire si vous voulez utiliser `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
 

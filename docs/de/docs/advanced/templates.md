@@ -123,4 +123,4 @@ Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer *
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlettes Dokumentation zu Templates</a>.
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlettes Dokumentation zu Templates</a>.
