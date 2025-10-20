@@ -25,6 +25,7 @@ For the next terms, use the following translations:
 * cross domain: cross domain (do not translate to "domínio cruzado")
 * cross origin: cross origin (do not translate to "origem cruzada")
 * Cross-Origin Resource Sharing: Cross-Origin Resource Sharing (do not translate to "Compartilhamento de Recursos de Origem Cruzada")
+* Deep Learning: Deep Learning (do not translate to "Aprendizado Profundo")
 * dependable: dependable
 * deprecated: descontinuado
 * docs: documentação
@@ -32,7 +33,6 @@ For the next terms, use the following translations:
 * framework: framework (do not translate)
 * feature: funcionalidade
 * guides: tutoriais
-* HTML: HTML
 * I/O (as in "input and output"): I/O (do not translate to "E/S")
 * JSON Schema: JSON Schema
 * library: biblioteca
