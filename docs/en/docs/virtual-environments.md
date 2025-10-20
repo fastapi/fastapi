@@ -244,7 +244,7 @@ $ python -m pip install --upgrade pip
 
 /// tip
 
-If you've created the virtual environment using `uv` above. Then, while running the command above to upgrade pip, you may get an error **`No module named pip`**. 
+If you've created the virtual environment using `uv` above. Then, while running the command above to upgrade pip, you may get an error **`No module named pip`**.
 
 In that case, you can install and upgrade pip using the command:
 
