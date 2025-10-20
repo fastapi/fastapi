@@ -1,3 +1,4 @@
+import sys
 from functools import lru_cache
 from typing import (
     Any,
@@ -8,7 +9,7 @@ from typing import (
     Type,
 )
 
-from fastapi._compat import v1
+from fastapi._compat import may_v1
 from fastapi._compat.shared import PYDANTIC_V2, lenient_issubclass
 from fastapi.types import ModelNameMap
 from pydantic import BaseModel
@@ -50,7 +51,9 @@ else:
 
 @lru_cache
 def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-    if lenient_issubclass(model, v1.BaseModel):
+    if lenient_issubclass(model, may_v1.BaseModel):
+        from fastapi._compat import v1
+
         return v1.get_model_fields(model)
     else:
         from . import v2
@@ -59,7 +62,7 @@ def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
 
 
 def _is_undefined(value: object) -> bool:
-    if isinstance(value, v1.UndefinedType):
+    if isinstance(value, may_v1.UndefinedType):
         return True
     elif PYDANTIC_V2:
         from . import v2
@@ -69,7 +72,9 @@ def _is_undefined(value: object) -> bool:
 
 
 def _get_model_config(model: BaseModel) -> Any:
-    if isinstance(model, v1.BaseModel):
+    if isinstance(model, may_v1.BaseModel):
+        from fastapi._compat import v1
+
         return v1._get_model_config(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -80,7 +85,9 @@ def _get_model_config(model: BaseModel) -> Any:
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
-    if isinstance(model, v1.BaseModel):
+    if isinstance(model, may_v1.BaseModel):
+        from fastapi._compat import v1
+
         return v1._model_dump(model, mode=mode, **kwargs)
     elif PYDANTIC_V2:
         from . import v2
@@ -89,7 +96,7 @@ def _model_dump(
 
 
 def _is_error_wrapper(exc: Exception) -> bool:
-    if isinstance(exc, v1.ErrorWrapper):
+    if isinstance(exc, may_v1.ErrorWrapper):
         return True
     elif PYDANTIC_V2:
         from . import v2
@@ -99,7 +106,9 @@ def _is_error_wrapper(exc: Exception) -> bool:
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
-    if isinstance(field_info, v1.FieldInfo):
+    if isinstance(field_info, may_v1.FieldInfo):
+        from fastapi._compat import v1
+
         return v1.copy_field_info(field_info=field_info, annotation=annotation)
     else:
         assert PYDANTIC_V2
@@ -111,7 +120,9 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
 ) -> Type[BaseModel]:
-    if fields and isinstance(fields[0], v1.ModelField):
+    if fields and isinstance(fields[0], may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.create_body_model(fields=fields, model_name=model_name)
     else:
         assert PYDANTIC_V2
@@ -123,7 +134,9 @@ def create_body_model(
 def get_annotation_from_field_info(
     annotation: Any, field_info: FieldInfo, field_name: str
 ) -> Any:
-    if isinstance(field_info, v1.FieldInfo):
+    if isinstance(field_info, may_v1.FieldInfo):
+        from fastapi._compat import v1
+
         return v1.get_annotation_from_field_info(
             annotation=annotation, field_info=field_info, field_name=field_name
         )
@@ -137,7 +150,9 @@ def get_annotation_from_field_info(
 
 
 def is_bytes_field(field: ModelField) -> bool:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.is_bytes_field(field)
     else:
         assert PYDANTIC_V2
@@ -147,7 +162,9 @@ def is_bytes_field(field: ModelField) -> bool:
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.is_bytes_sequence_field(field)
     else:
         assert PYDANTIC_V2
@@ -157,7 +174,9 @@ def is_bytes_sequence_field(field: ModelField) -> bool:
 
 
 def is_scalar_field(field: ModelField) -> bool:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.is_scalar_field(field)
     else:
         assert PYDANTIC_V2
@@ -167,7 +186,9 @@ def is_scalar_field(field: ModelField) -> bool:
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.is_scalar_sequence_field(field)
     else:
         assert PYDANTIC_V2
@@ -177,7 +198,9 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_sequence_field(field: ModelField) -> bool:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.is_sequence_field(field)
     else:
         assert PYDANTIC_V2
@@ -187,7 +210,9 @@ def is_sequence_field(field: ModelField) -> bool:
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.serialize_sequence_value(field=field, value=value)
     else:
         assert PYDANTIC_V2
@@ -197,7 +222,9 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
 
 
 def _model_rebuild(model: Type[BaseModel]) -> None:
-    if lenient_issubclass(model, v1.BaseModel):
+    if lenient_issubclass(model, may_v1.BaseModel):
+        from fastapi._compat import v1
+
         v1._model_rebuild(model)
     elif PYDANTIC_V2:
         from . import v2
@@ -206,9 +233,18 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
 
 
 def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
-    v1_model_fields = [field for field in fields if isinstance(field, v1.ModelField)]
-    v1_flat_models = v1.get_flat_models_from_fields(v1_model_fields, known_models=set())  # type: ignore[attr-defined]
-    all_flat_models = v1_flat_models
+    v1_model_fields = [
+        field for field in fields if isinstance(field, may_v1.ModelField)
+    ]
+    if v1_model_fields:
+        from fastapi._compat import v1
+
+        v1_flat_models = v1.get_flat_models_from_fields(
+            v1_model_fields, known_models=set()
+        )
+        all_flat_models = v1_flat_models
+    else:
+        all_flat_models = set()
     if PYDANTIC_V2:
         from . import v2
 
@@ -222,6 +258,8 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
 
         model_name_map = v2.get_model_name_map(all_flat_models)
         return model_name_map
+    from fastapi._compat import v1
+
     model_name_map = v1.get_model_name_map(all_flat_models)
     return model_name_map
 
@@ -232,17 +270,35 @@ def get_definitions(
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
 ) -> Tuple[
-    Dict[Tuple[ModelField, Literal["validation", "serialization"]], v1.JsonSchemaValue],
+    Dict[
+        Tuple[ModelField, Literal["validation", "serialization"]],
+        may_v1.JsonSchemaValue,
+    ],
     Dict[str, Dict[str, Any]],
 ]:
-    v1_fields = [field for field in fields if isinstance(field, v1.ModelField)]
-    v1_field_maps, v1_definitions = v1.get_definitions(
-        fields=v1_fields,
-        model_name_map=model_name_map,
-        separate_input_output_schemas=separate_input_output_schemas,
-    )
-    if not PYDANTIC_V2:
-        return v1_field_maps, v1_definitions
+    if sys.version_info < (3, 14):
+        v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
+        v1_field_maps, v1_definitions = may_v1.get_definitions(
+            fields=v1_fields,
+            model_name_map=model_name_map,
+            separate_input_output_schemas=separate_input_output_schemas,
+        )
+        if not PYDANTIC_V2:
+            return v1_field_maps, v1_definitions
+        else:
+            from . import v2
+
+            v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
+            v2_field_maps, v2_definitions = v2.get_definitions(
+                fields=v2_fields,
+                model_name_map=model_name_map,
+                separate_input_output_schemas=separate_input_output_schemas,
+            )
+            all_definitions = {**v1_definitions, **v2_definitions}
+            all_field_maps = {**v1_field_maps, **v2_field_maps}
+            return all_field_maps, all_definitions
+
+    # Pydantic v1 is not supported since Python 3.14
     else:
         from . import v2
 
@@ -252,9 +308,7 @@ def get_definitions(
             model_name_map=model_name_map,
             separate_input_output_schemas=separate_input_output_schemas,
         )
-        all_definitions = {**v1_definitions, **v2_definitions}
-        all_field_maps = {**v1_field_maps, **v2_field_maps}
-        return all_field_maps, all_definitions
+        return v2_field_maps, v2_definitions
 
 
 def get_schema_from_model_field(
@@ -262,11 +316,14 @@ def get_schema_from_model_field(
     field: ModelField,
     model_name_map: ModelNameMap,
     field_mapping: Dict[
-        Tuple[ModelField, Literal["validation", "serialization"]], v1.JsonSchemaValue
+        Tuple[ModelField, Literal["validation", "serialization"]],
+        may_v1.JsonSchemaValue,
     ],
     separate_input_output_schemas: bool = True,
 ) -> Dict[str, Any]:
-    if isinstance(field, v1.ModelField):
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
         return v1.get_schema_from_model_field(
             field=field,
             model_name_map=model_name_map,
@@ -286,7 +343,7 @@ def get_schema_from_model_field(
 
 
 def _is_model_field(value: Any) -> bool:
-    if isinstance(value, v1.ModelField):
+    if isinstance(value, may_v1.ModelField):
         return True
     elif PYDANTIC_V2:
         from . import v2
@@ -296,7 +353,7 @@ def _is_model_field(value: Any) -> bool:
 
 
 def _is_model_class(value: Any) -> bool:
-    if lenient_issubclass(value, v1.BaseModel):
+    if lenient_issubclass(value, may_v1.BaseModel):
         return True
     elif PYDANTIC_V2:
         from . import v2
