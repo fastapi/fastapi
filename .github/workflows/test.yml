@@ -48,7 +48,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
         python-version: [ "3.14" ]
-        pydantic-version: "pydantic-v2"
+        pydantic-version: [ "pydantic-v2" ]
         include:
           - os: macos-latest
             python-version: "3.8"
