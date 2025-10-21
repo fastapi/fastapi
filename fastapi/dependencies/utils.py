@@ -899,6 +899,8 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
+    # Track which keys are defined as body_fields to avoid re-adding empty strings
+    body_field_aliases = {field.alias for field in body_fields}
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
@@ -928,10 +930,17 @@ async def _extract_form_body(
                 for sub_value in value:
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
-        if value is not None:
+        # Don't add empty strings for Form fields - _get_multidict_value already handled them
+        if value is not None and not (
+            isinstance(field_info, (params.Form, temp_pydantic_v1_params.Form))
+            and isinstance(value, str)
+            and value == ""
+        ):
             values[field.alias] = value
+    # Only add extra fields that are not already defined as body_fields
+    # This prevents overwriting correctly processed default values
     for key, value in received_body.items():
-        if key not in values:
+        if key not in body_field_aliases and key not in values:
             values[key] = value
     return values
 
