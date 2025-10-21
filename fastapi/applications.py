@@ -349,7 +349,7 @@ class FastAPI(Starlette):
                 from fastapi import Depends, FastAPI
 
                 from .dependencies import func_dep_1, func_dep_2
-                annotated_dep=Annotated[str,lambda:"annotated"]
+                annotated_dep=Annotated[str,Depends(lambda:"annotated")]
                 app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2),annotated_dep])
                 ```
                 """
