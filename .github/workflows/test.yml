@@ -94,9 +94,9 @@ jobs:
         if: matrix.python-version == '3.8'
         run: uv pip install "anyio[trio]<4.0.0"
       - name: Set PYTHON_GIL
-          if: endsWith(matrix.python-version, 't')
-          run: |
-            echo "PYTHON_GIL=0" >> "$GITHUB_ENV"
+        if: endsWith(matrix.python-version, 't')
+        run: |
+          echo "PYTHON_GIL=0" >> "$GITHUB_ENV"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
