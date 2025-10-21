@@ -154,7 +154,7 @@ Por debajo, en la especificación técnica ASGI, esto es parte del <a href="http
 
 /// info | Información
 
-Puedes leer más sobre los manejadores `lifespan` de Starlette en <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">la documentación de `Lifespan` de Starlette</a>.
+Puedes leer más sobre los manejadores `lifespan` de Starlette en <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">la documentación de `Lifespan` de Starlette</a>.
 
 Incluyendo cómo manejar el estado de lifespan que puede ser usado en otras áreas de tu código.
 

@@ -58,7 +58,7 @@ After testing several alternatives, I decided that I was going to use <a href="h
 
 Then I contributed to it, to make it fully compliant with JSON Schema, to support different ways to define constraint declarations, and to improve editor support (type checks, autocompletion) based on the tests in several editors.
 
-During the development, I also contributed to <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, the other key requirement.
+During the development, I also contributed to <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, the other key requirement.
 
 ## Development { #development }
 

@@ -122,4 +122,4 @@ Item ID: 42
 
 ## 更多说明
 
-包括测试模板等更多详情，请参阅 <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette 官方文档 - 模板</a>。
+包括测试模板等更多详情，请参阅 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette 官方文档 - 模板</a>。

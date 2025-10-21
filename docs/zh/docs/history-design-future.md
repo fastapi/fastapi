@@ -57,7 +57,7 @@
 
 我甚至为它做了不少贡献，让它完美兼容了 JSON Schema，支持多种方式定义约束声明，并基于多个编辑器，改进了它对编辑器支持（类型检查、自动补全）。
 
-在开发期间，我还为 <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a> 做了不少贡献，这是另一个关键需求项。
+在开发期间，我还为 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a> 做了不少贡献，这是另一个关键需求项。
 
 ## 开发
 

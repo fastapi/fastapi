@@ -5,7 +5,7 @@ Wenn Sie `lifespan` in Ihren Tests ausführen müssen, können Sie den `TestClie
 {* ../../docs_src/app_testing/tutorial004.py hl[9:15,18,27:28,30:32,41:43] *}
 
 
-Sie können mehr Details unter [„Lifespan in Tests ausführen in der offiziellen Starlette-Dokumentation.“](https://www.starlette.io/lifespan/#running-lifespan-in-tests) nachlesen.
+Sie können mehr Details unter [„Lifespan in Tests ausführen in der offiziellen Starlette-Dokumentation.“](https://www.starlette.dev/lifespan/#running-lifespan-in-tests) nachlesen.
 
 Für die deprecateten Events <abbr title="Hochfahren">`startup`</abbr> und <abbr title="Herunterfahren">`shutdown`</abbr> können Sie den `TestClient` wie folgt verwenden:
 
