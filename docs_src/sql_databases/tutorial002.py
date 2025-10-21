@@ -1,5 +1,5 @@
-from typing import List, Union
 from contextlib import asynccontextmanager
+from typing import List, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
@@ -44,13 +44,16 @@ def get_session():
     with Session(engine) as session:
         yield session
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     models.create_db_and_tables()
     yield
     # Can add events for after startup completion here
 
+
 app = FastAPI(lifespan=lifespan)
+
 
 @app.post("/heroes/", response_model=HeroPublic)
 def create_hero(hero: HeroCreate, session: Session = Depends(get_session)):
