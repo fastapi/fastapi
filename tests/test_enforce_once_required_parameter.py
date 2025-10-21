@@ -48,7 +48,7 @@ expected_schema = {
                         "type": "array",
                     },
                     "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error " "Type", "type": "string"},
+                    "type": {"title": "Error Type", "type": "string"},
                 },
                 "required": ["loc", "msg", "type"],
                 "title": "ValidationError",
@@ -73,7 +73,7 @@ expected_schema = {
                 "responses": {
                     "200": {
                         "content": {"application/json": {"schema": {}}},
-                        "description": "Successful " "Response",
+                        "description": "Successful Response",
                     },
                     "422": {
                         "content": {
@@ -83,7 +83,7 @@ expected_schema = {
                                 }
                             }
                         },
-                        "description": "Validation " "Error",
+                        "description": "Validation Error",
                     },
                 },
                 "summary": "Foo Handler",
@@ -102,7 +102,7 @@ def test_schema():
 
 def test_get_invalid():
     response = client.get("/foo")
-    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.status_code == 422
 
 
 def test_get_valid():

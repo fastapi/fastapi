@@ -1,93 +1,41 @@
-# Файлы и формы в запросе
+# Файлы и формы в запросе { #request-forms-and-files }
 
 Вы можете определять файлы и поля формы одновременно, используя `File` и `Form`.
 
-/// info | "Дополнительная информация"
+/// info | Информация
 
 Чтобы получать загруженные файлы и/или данные форм, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-Например: `pip install python-multipart`.
+Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, активировали его, а затем установили пакет, например:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 
-## Импортируйте `File` и `Form`
+## Импортируйте `File` и `Form` { #import-file-and-form }
 
-//// tab | Python 3.9+
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
 
-```Python hl_lines="3"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="1"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
-
-## Определите параметры `File` и `Form`
+## Определите параметры `File` и `Form` { #define-file-and-form-parameters }
 
 Создайте параметры файла и формы таким же образом, как для `Body` или `Query`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="10-12"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.6+
-
-```Python hl_lines="9-11"
-{!> ../../../docs_src/request_forms_and_files/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.6+ без Annotated
-
-/// tip | "Подсказка"
-
-Предпочтительнее использовать версию с аннотацией, если это возможно.
-
-///
-
-```Python hl_lines="8"
-{!> ../../../docs_src/request_forms_and_files/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
 
 Файлы и поля формы будут загружены в виде данных формы, и вы получите файлы и поля формы.
 
-Вы можете объявить некоторые файлы как `bytes`, а некоторые - как `UploadFile`.
+Вы можете объявить некоторые файлы как `bytes`, а некоторые — как `UploadFile`.
 
-/// warning | "Внимание"
+/// warning | Внимание
 
-Вы можете объявить несколько параметров `File` и `Form` в операции *path*, но вы не можете также объявить поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с помощью `multipart/form-data` вместо `application/json`.
+Вы можете объявить несколько параметров `File` и `Form` в операции пути, но вы не можете также объявить поля `Body`, которые вы ожидаете получить в виде JSON, так как запрос будет иметь тело, закодированное с помощью `multipart/form-data` вместо `application/json`.
 
-Это не ограничение **Fast API**, это часть протокола HTTP.
+Это не ограничение **FastAPI**, это часть протокола HTTP.
 
 ///
 
-## Резюме
+## Резюме { #recap }
 
 Используйте `File` и `Form` вместе, когда необходимо получить данные и файлы в одном запросе.

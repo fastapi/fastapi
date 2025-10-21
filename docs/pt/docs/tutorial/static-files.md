@@ -7,11 +7,9 @@ Você pode servir arquivos estáticos automaticamente de um diretório usando `S
 * Importe `StaticFiles`.
 * "Monte" uma instância de `StaticFiles()` em um caminho específico.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-/// note | "Detalhes técnicos"
+/// note | Detalhes técnicos
 
 Você também pode usar `from starlette.staticfiles import StaticFiles`.
 
@@ -39,4 +37,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações
 
-Para mais detalhes e opções, verifique <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Para mais detalhes e opções, verifique <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

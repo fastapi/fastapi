@@ -1,8 +1,8 @@
-# Alternatives, Inspiration and Comparisons
+# Alternatives, Inspiration and Comparisons { #alternatives-inspiration-and-comparisons }
 
 What inspired **FastAPI**, how it compares to alternatives and what it learned from them.
 
-## Intro
+## Intro { #intro }
 
 **FastAPI** wouldn't exist if not for the previous work of others.
 
@@ -12,9 +12,9 @@ I have been avoiding the creation of a new framework for several years. First I 
 
 But at some point, there was no other option than creating something that provided all these features, taking the best ideas from previous tools, and combining them in the best way possible, using language features that weren't even available before (Python 3.6+ type hints).
 
-## Previous tools
+## Previous tools { #previous-tools }
 
-### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a>
+### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a> { #django }
 
 It's the most popular Python framework and is widely trusted. It is used to build systems like Instagram.
 
@@ -22,7 +22,7 @@ It's relatively tightly coupled with relational databases (like MySQL or Postgre
 
 It was created to generate the HTML in the backend, not to create APIs used by a modern frontend (like React, Vue.js and Angular) or by other systems (like <abbr title="Internet of Things">IoT</abbr> devices) communicating with it.
 
-### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
+### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
 Django REST framework was created to be a flexible toolkit for building Web APIs using Django underneath, to improve its API capabilities.
 
@@ -36,13 +36,13 @@ Django REST Framework was created by Tom Christie. The same creator of Starlette
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Have an automatic API documentation web user interface.
 
 ///
 
-### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a> { #flask }
 
 Flask is a "microframework", it doesn't include database integrations nor many of the things that come by default in Django.
 
@@ -56,7 +56,7 @@ This decoupling of parts, and being a "microframework" that could be extended to
 
 Given the simplicity of Flask, it seemed like a good match for building APIs. The next thing to find was a "Django REST Framework" for Flask.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Be a micro-framework. Making it easy to mix and match the tools and parts needed.
 
@@ -64,7 +64,7 @@ Have a simple and easy to use routing system.
 
 ///
 
-### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a> { #requests }
 
 **FastAPI** is not actually an alternative to **Requests**. Their scope is very different.
 
@@ -98,7 +98,7 @@ def read_url():
 
 See the similarities in `requests.get(...)` and `@app.get(...)`.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 * Have a simple and intuitive API.
 * Use HTTP method names (operations) directly, in a straightforward and intuitive way.
@@ -106,7 +106,7 @@ See the similarities in `requests.get(...)` and `@app.get(...)`.
 
 ///
 
-### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
+### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a> { #swagger-openapi }
 
 The main feature I wanted from Django REST Framework was the automatic API documentation.
 
@@ -118,7 +118,7 @@ At some point, Swagger was given to the Linux Foundation, to be renamed OpenAPI.
 
 That's why when talking about version 2.0 it's common to say "Swagger", and for version 3+ "OpenAPI".
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Adopt and use an open standard for API specifications, instead of a custom schema.
 
@@ -131,11 +131,11 @@ These two were chosen for being fairly popular and stable, but doing a quick sea
 
 ///
 
-### Flask REST frameworks
+### Flask REST frameworks { #flask-rest-frameworks }
 
 There are several Flask REST frameworks, but after investing the time and work into investigating them, I found that many are discontinued or abandoned, with several standing issues that made them unfit.
 
-### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a>
+### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
 One of the main features needed by API systems is data "<abbr title="also called marshalling, conversion">serialization</abbr>" which is taking data from the code (Python) and converting it into something that can be sent through the network. For example, converting an object containing data from a database into a JSON object. Converting `datetime` objects into strings, etc.
 
@@ -147,13 +147,13 @@ These features are what Marshmallow was built to provide. It is a great library,
 
 But it was created before there existed Python type hints. So, to define every <abbr title="the definition of how data should be formed">schema</abbr> you need to use specific utils and classes provided by Marshmallow.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Use code to define "schemas" that provide data types and validation, automatically.
 
 ///
 
-### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
+### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
 Another big feature required by APIs is <abbr title="reading and converting to Python data">parsing</abbr> data from incoming requests.
 
@@ -169,13 +169,13 @@ Webargs was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Have automatic validation of incoming request data.
 
 ///
 
-### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
+### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a> { #apispec }
 
 Marshmallow and Webargs provide validation, parsing and serialization as plug-ins.
 
@@ -199,13 +199,13 @@ APISpec was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Support the open standard for APIs, OpenAPI.
 
 ///
 
-### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a>
+### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a> { #flask-apispec }
 
 It's a Flask plug-in, that ties together Webargs, Marshmallow and APISpec.
 
@@ -231,13 +231,13 @@ Flask-apispec was created by the same Marshmallow developers.
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Generate the OpenAPI schema automatically, from the same code that defines serialization and validation.
 
 ///
 
-### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (and <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>)
+### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (and <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>) { #nestjs-and-angular }
 
 This isn't even Python, NestJS is a JavaScript (TypeScript) NodeJS framework inspired by Angular.
 
@@ -251,7 +251,7 @@ But as TypeScript data is not preserved after compilation to JavaScript, it cann
 
 It can't handle nested models very well. So, if the JSON body in the request is a JSON object that has inner fields that in turn are nested JSON objects, it cannot be properly documented and validated.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Use Python types to have great editor support.
 
@@ -259,11 +259,11 @@ Have a powerful dependency injection system. Find a way to minimize code repetit
 
 ///
 
-### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a>
+### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a> { #sanic }
 
 It was one of the first extremely fast Python frameworks based on `asyncio`. It was made to be very similar to Flask.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 It used <a href="https://github.com/MagicStack/uvloop" class="external-link" target="_blank">`uvloop`</a> instead of the default Python `asyncio` loop. That's what made it so fast.
 
@@ -271,7 +271,7 @@ It clearly inspired Uvicorn and Starlette, that are currently faster than Sanic 
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Find a way to have a crazy performance.
 
@@ -279,7 +279,7 @@ That's why **FastAPI** is based on Starlette, as it is the fastest framework ava
 
 ///
 
-### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
+### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a> { #falcon }
 
 Falcon is another high performance Python framework, it is designed to be minimal, and work as the foundation of other frameworks like Hug.
 
@@ -287,7 +287,7 @@ It is designed to have functions that receive two parameters, one "request" and 
 
 So, data validation, serialization, and documentation, have to be done in code, not automatically. Or they have to be implemented as a framework on top of Falcon, like Hug. This same distinction happens in other frameworks that are inspired by Falcon's design, of having one request object and one response object as parameters.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Find ways to get great performance.
 
@@ -297,7 +297,7 @@ Although in FastAPI it's optional, and is used mainly to set headers, cookies, a
 
 ///
 
-### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a>
+### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a> { #molten }
 
 I discovered Molten in the first stages of building **FastAPI**. And it has quite similar ideas:
 
@@ -313,7 +313,7 @@ The dependency injection system requires pre-registration of the dependencies an
 
 Routes are declared in a single place, using functions declared in other places (instead of using decorators that can be placed right on top of the function that handles the endpoint). This is closer to how Django does it than to how Flask (and Starlette) does it. It separates in the code things that are relatively tightly coupled.
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Define extra validations for data types using the "default" value of model attributes. This improves editor support, and it was not available in Pydantic before.
 
@@ -321,7 +321,7 @@ This actually inspired updating parts of Pydantic, to support the same validatio
 
 ///
 
-### <a href="https://www.hug.rest/" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a> { #hug }
 
 Hug was one of the first frameworks to implement the declaration of API parameter types using Python type hints. This was a great idea that inspired other tools to do the same.
 
@@ -341,7 +341,7 @@ Hug was created by Timothy Crosley, the same creator of <a href="https://github.
 
 ///
 
-/// check | "Ideas inspiring **FastAPI**"
+/// check | Ideas inspiring **FastAPI**
 
 Hug inspired parts of APIStar, and was one of the tools I found most promising, alongside APIStar.
 
@@ -351,7 +351,7 @@ Hug inspired **FastAPI** to declare a `response` parameter in functions to set h
 
 ///
 
-### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5)
+### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0.5) { #apistar-0-5 }
 
 Right before deciding to build **FastAPI** I found **APIStar** server. It had almost everything I was looking for and had a great design.
 
@@ -385,7 +385,7 @@ APIStar was created by Tom Christie. The same guy that created:
 
 ///
 
-/// check | "Inspired **FastAPI** to"
+/// check | Inspired **FastAPI** to
 
 Exist.
 
@@ -399,9 +399,9 @@ I consider **FastAPI** a "spiritual successor" to APIStar, while improving and i
 
 ///
 
-## Used by **FastAPI**
+## Used by **FastAPI** { #used-by-fastapi }
 
-### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> { #pydantic }
 
 Pydantic is a library to define data validation, serialization and documentation (using JSON Schema) based on Python type hints.
 
@@ -409,7 +409,7 @@ That makes it extremely intuitive.
 
 It is comparable to Marshmallow. Although it's faster than Marshmallow in benchmarks. And as it is based on the same Python type hints, the editor support is great.
 
-/// check | "**FastAPI** uses it to"
+/// check | **FastAPI** uses it to
 
 Handle all the data validation, data serialization and automatic model documentation (based on JSON Schema).
 
@@ -417,7 +417,7 @@ Handle all the data validation, data serialization and automatic model documenta
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
 Starlette is a lightweight <abbr title="The new standard for building asynchronous Python web applications">ASGI</abbr> framework/toolkit, which is ideal for building high-performance asyncio services.
 
@@ -444,7 +444,7 @@ But it doesn't provide automatic data validation, serialization or documentation
 
 That's one of the main things that **FastAPI** adds on top, all based on Python type hints (using Pydantic). That, plus the dependency injection system, security utilities, OpenAPI schema generation, etc.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 ASGI is a new "standard" being developed by Django core team members. It is still not a "Python standard" (a PEP), although they are in the process of doing that.
 
@@ -452,7 +452,7 @@ Nevertheless, it is already being used as a "standard" by several tools. This gr
 
 ///
 
-/// check | "**FastAPI** uses it to"
+/// check | **FastAPI** uses it to
 
 Handle all the core web parts. Adding features on top.
 
@@ -462,7 +462,7 @@ So, anything that you can do with Starlette, you can do it directly with **FastA
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
 
 Uvicorn is a lightning-fast ASGI server, built on uvloop and httptools.
 
@@ -470,16 +470,16 @@ It is not a web framework, but a server. For example, it doesn't provide tools f
 
 It is the recommended server for Starlette and **FastAPI**.
 
-/// check | "**FastAPI** recommends it as"
+/// check | **FastAPI** recommends it as
 
 The main web server to run **FastAPI** applications.
 
-You can combine it with Gunicorn, to have an asynchronous multi-process server.
+You can also use the `--workers` command line option to have an asynchronous multi-process server.
 
 Check more details in the [Deployment](deployment/index.md){.internal-link target=_blank} section.
 
 ///
 
-## Benchmarks and speed
+## Benchmarks and speed { #benchmarks-and-speed }
 
 To understand, compare, and see the difference between Uvicorn, Starlette and FastAPI, check the section about [Benchmarks](benchmarks.md){.internal-link target=_blank}.

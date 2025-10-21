@@ -11,11 +11,11 @@
     <em>فریم‌ورک FastAPI، کارایی بالا، یادگیری آسان، کدنویسی سریع، آماده برای استفاده در محیط پروداکشن</em>
 </p>
 <p align="center">
-<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg" alt="Test">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
-<a href="https://codecov.io/gh/fastapi/fastapi" target="_blank">
-    <img src="https://img.shields.io/codecov/c/github/fastapi/fastapi?color=%2334D058" alt="Coverage">
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi" target="_blank">
     <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
@@ -84,13 +84,13 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <div style="text-align: left; direction: ltr;">"<em>I’m over the moon excited about <strong>FastAPI</strong>. It’s so fun!"</em></div>
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
 <div style="text-align: left; direction: ltr;">"<em>Honestly, what you've built looks super solid and polished. In many ways, it's what I wanted <strong>Hug</strong> to be - it's really inspiring to see someone build that."</em></div>
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://www.hug.rest/" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creator</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -98,7 +98,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 <div style="text-align: left; direction: ltr;">"<em>We've switched over to <strong>FastAPI</strong> for our <strong>APIs</strong> [...] I think you'll like it [...]</em>"</div>
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -116,7 +116,7 @@ FastAPI یک وب فریم‌ورک مدرن و سریع (با کارایی با
 
 FastAPI مبتنی بر ابزارهای قدرتمند زیر است:
 
-* فریم‌ورک <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> برای بخش وب.
+* فریم‌ورک <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> برای بخش وب.
 * کتابخانه <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> برای بخش داده‌.
 
 ## نصب
@@ -131,7 +131,7 @@ $ pip install fastapi
 
 </div>
 
-نصب یک سرور پروداکشن نظیر <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> یا <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> نیز جزء نیازمندی‌هاست.
+نصب یک سرور پروداکشن نظیر <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> یا <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> نیز جزء نیازمندی‌هاست.
 
 <div class="termy">
 
@@ -456,7 +456,7 @@ item: Item
 
 استفاده شده توسط FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - برای سرور اجرا کننده برنامه وب.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - برای سرور اجرا کننده برنامه وب.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - در صورتی که بخواهید از `ORJSONResponse` استفاده کنید.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - در صورتی که بخواهید از `UJSONResponse` استفاده کنید.
 

@@ -1,64 +1,14 @@
-# Body - Multiple Parameters
+# Body - Multiple Parameters { #body-multiple-parameters }
 
 Now that we have seen how to use `Path` and `Query`, let's see more advanced uses of request body declarations.
 
-## Mix `Path`, `Query` and body parameters
+## Mix `Path`, `Query` and body parameters { #mix-path-query-and-body-parameters }
 
 First, of course, you can mix `Path`, `Query` and request body parameter declarations freely and **FastAPI** will know what to do.
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-20"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="17-19"
-{!> ../../../docs_src/body_multiple_params/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="19-21"
-{!> ../../../docs_src/body_multiple_params/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note
 
@@ -66,7 +16,7 @@ Notice that, in this case, the `item` that would be taken from the body is optio
 
 ///
 
-## Multiple body parameters
+## Multiple body parameters { #multiple-body-parameters }
 
 In the previous example, the *path operations* would expect a JSON body with the attributes of an `Item`, like:
 
@@ -81,21 +31,8 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
 
-```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial002.py!}
-```
-
-////
 
 In this case, **FastAPI** will notice that there is more than one body parameter in the function (there are two parameters that are Pydantic models).
 
@@ -126,7 +63,7 @@ Notice that even though the `item` was declared the same way as before, it is no
 
 It will perform the validation of the compound data, and will document it like that for the OpenAPI schema and automatic docs.
 
-## Singular values in body
+## Singular values in body { #singular-values-in-body }
 
 The same way there is a `Query` and `Path` to define extra data for query and path parameters, **FastAPI** provides an equivalent `Body`.
 
@@ -136,57 +73,8 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
-```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../../docs_src/body_multiple_params/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="20"
-{!> ../../../docs_src/body_multiple_params/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="22"
-{!> ../../../docs_src/body_multiple_params/tutorial003.py!}
-```
-
-////
 
 In this case, **FastAPI** will expect a body like:
 
@@ -208,7 +96,7 @@ In this case, **FastAPI** will expect a body like:
 
 Again, it will convert the data types, validate, document, etc.
 
-## Multiple body params and query
+## Multiple body params and query { #multiple-body-params-and-query }
 
 Of course, you can also declare additional query parameters whenever you need, additional to any body parameters.
 
@@ -226,65 +114,16 @@ q: str | None = None
 
 For example:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="29"
-{!> ../../../docs_src/body_multiple_params/tutorial004_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="26"
-{!> ../../../docs_src/body_multiple_params/tutorial004_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="28"
-{!> ../../../docs_src/body_multiple_params/tutorial004.py!}
-```
-
-////
 
 /// info
 
-`Body` also has all the same extra validation and metadata parameters as `Query`,`Path` and others you will see later.
+`Body` also has all the same extra validation and metadata parameters as `Query`, `Path` and others you will see later.
 
 ///
 
-## Embed a single body parameter
+## Embed a single body parameter { #embed-a-single-body-parameter }
 
 Let's say you only have a single `item` body parameter from a Pydantic model `Item`.
 
@@ -298,57 +137,8 @@ item: Item = Body(embed=True)
 
 as in:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
-```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../../docs_src/body_multiple_params/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="15"
-{!> ../../../docs_src/body_multiple_params/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="17"
-{!> ../../../docs_src/body_multiple_params/tutorial005.py!}
-```
-
-////
 
 In this case **FastAPI** will expect a body like:
 
@@ -374,7 +164,7 @@ instead of:
 }
 ```
 
-## Recap
+## Recap { #recap }
 
 You can add multiple body parameters to your *path operation function*, even though a request can only have a single body.
 

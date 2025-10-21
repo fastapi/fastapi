@@ -58,7 +58,7 @@ Après avoir testé plusieurs alternatives, j'ai décidé que j'allais utiliser 
 
 J'y ai ensuite contribué, pour le rendre entièrement compatible avec JSON Schema, pour supporter différentes manières de définir les déclarations de contraintes, et pour améliorer le support des éditeurs (vérifications de type, autocomplétion) sur la base des tests effectués dans plusieurs éditeurs.
 
-Pendant le développement, j'ai également contribué à <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, l'autre exigence clé.
+Pendant le développement, j'ai également contribué à <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, l'autre exigence clé.
 
 ## Développement
 

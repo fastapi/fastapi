@@ -43,7 +43,7 @@ def test_redoc():
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
-    assert "redoc@next" in response.text
+    assert "redoc@2" in response.text
 
 
 def test_enum_status_code_response():
@@ -58,6 +58,10 @@ def test_openapi_schema():
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
+        "externalDocs": {
+            "description": "External API documentation.",
+            "url": "https://docs.example.com/api-general",
+        },
         "paths": {
             "/api_route": {
                 "get": {

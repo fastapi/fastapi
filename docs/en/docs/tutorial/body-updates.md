@@ -1,38 +1,16 @@
-# Body - Updates
+# Body - Updates { #body-updates }
 
-## Update replacing with `PUT`
+## Update replacing with `PUT` { #update-replacing-with-put }
 
 To update an item you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> operation.
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-33"
-{!> ../../../docs_src/body_updates/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-35"
-{!> ../../../docs_src/body_updates/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 `PUT` is used to receive data that should replace the existing data.
 
-### Warning about replacing
+### Warning about replacing { #warning-about-replacing }
 
 That means that if you want to update the item `bar` using `PUT` with a body containing:
 
@@ -48,7 +26,7 @@ because it doesn't include the already stored attribute `"tax": 20.2`, the input
 
 And the data would be saved with that "new" `tax` of `10.5`.
 
-## Partial updates with `PATCH`
+## Partial updates with `PATCH` { #partial-updates-with-patch }
 
 You can also use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> operation to *partially* update data.
 
@@ -66,7 +44,7 @@ But this guide shows you, more or less, how they are intended to be used.
 
 ///
 
-### Using Pydantic's `exclude_unset` parameter
+### Using Pydantic's `exclude_unset` parameter { #using-pydantics-exclude-unset-parameter }
 
 If you want to receive partial updates, it's very useful to use the parameter `exclude_unset` in Pydantic's model's `.model_dump()`.
 
@@ -84,31 +62,9 @@ That would generate a `dict` with only the data that was set when creating the `
 
 Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-```Python hl_lines="32"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="34"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
-
-### Using Pydantic's `update` parameter
+### Using Pydantic's `update` parameter { #using-pydantics-update-parameter }
 
 Now, you can create a copy of the existing model using `.model_copy()`, and pass the `update` parameter with a `dict` containing the data to update.
 
@@ -122,31 +78,9 @@ The examples here use `.copy()` for compatibility with Pydantic v1, but you shou
 
 Like `stored_item_model.model_copy(update=update_data)`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-```Python hl_lines="33"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="35"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
-
-### Partial updates recap
+### Partial updates recap { #partial-updates-recap }
 
 In summary, to apply partial updates you would:
 
@@ -161,29 +95,7 @@ In summary, to apply partial updates you would:
 * Save the data to your DB.
 * Return the updated model.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="28-35"
-{!> ../../../docs_src/body_updates/tutorial002_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="30-37"
-{!> ../../../docs_src/body_updates/tutorial002.py!}
-```
-
-////
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
 /// tip
 

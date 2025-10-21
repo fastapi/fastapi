@@ -20,9 +20,9 @@ Você pode se inscrever (pouco frequente) [**FastAPI e amigos** newsletter](news
 * Mudanças de última hora 🚨
 * Truques e dicas ✅
 
-## Siga o FastAPI no twitter
+## Siga o FastAPI no X (Twitter)
 
-<a href="https://twitter.com/fastapi" class="external-link" target="_blank">Siga @fastapi no **Twitter**</a> para receber as últimas notícias sobre o **FastAPI**. 🐦
+<a href="https://x.com/fastapi" class="external-link" target="_blank">Siga @fastapi no **X (Twitter)**</a> para receber as últimas notícias sobre o **FastAPI**. 🐦
 
 ## Favorite o **FastAPI** no GitHub
 
@@ -47,19 +47,19 @@ Você pode:
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">Me siga no **GitHub**</a>.
     * Ver também outros projetos Open Source criados por mim que podem te ajudar.
     * Me seguir para saber quando um novo projeto Open Source for criado.
-* <a href="https://twitter.com/tiangolo" class="external-link" target="_blank">Me siga no **Twitter**</a>.
+* <a href="https://x.com/tiangolo" class="external-link" target="_blank">Me siga no **X (Twitter)**</a>.
     * Me dizer o motivo pelo o qual você está usando o FastAPI(Adoro ouvir esse tipo de comentário).
     * Saber quando eu soltar novos anúncios ou novas ferramentas.
-    * Também é possivel <a href="https://twitter.com/fastapi" class="external-link" target="_blank">seguir o @fastapi no Twitter</a> (uma conta aparte).
+    * Também é possivel <a href="https://x.com/fastapi" class="external-link" target="_blank">seguir o @fastapi no X (Twitter)</a> (uma conta aparte).
 * <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">Conect-se comigo no **Linkedin**</a>.
-    * Saber quando eu fizer novos anúncios ou novas ferramentas (apesar de que uso o twitter com mais frequência 🤷‍♂).
+    * Saber quando eu fizer novos anúncios ou novas ferramentas (apesar de que uso o X (Twitter) com mais frequência 🤷‍♂).
 * Ler meus artigos (ou me seguir) no <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> ou no <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a>.
     * Ficar por dentro de novas ideias, artigos, e ferramentas criadas por mim.
     * Me siga para saber quando eu publicar algo novo.
 
 ## Tweete sobre **FastAPI**
 
-<a href="https://twitter.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweete sobre o **FastAPI**</a> e compartilhe comigo e com os outros o porque de gostar do FastAPI. 🎉
+<a href="https://x.com/compose/tweet?text=I'm loving @fastapi because... https://github.com/fastapi/fastapi" class="external-link" target="_blank">Tweete sobre o **FastAPI**</a> e compartilhe comigo e com os outros o porque de gostar do FastAPI. 🎉
 
 Adoro ouvir sobre como o **FastAPI** é usado, o que você gosta nele, em qual projeto/empresa está sendo usado, etc.
 
@@ -109,7 +109,7 @@ Assim podendo tentar ajudar a resolver essas questões.
 Entre no 👥 <a href="https://discord.gg/VQjSZaeJmf" class="external-link" target="_blank">server de conversa do Discord</a> 👥 e conheça novas pessoas da comunidade
 do FastAPI.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Para perguntas, pergunte nas <a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">questões do GitHub</a>, lá tem um chance maior de você ser ajudado sobre o FastAPI [FastAPI Experts](fastapi-people.md#especialistas){.internal-link target=_blank}.
 

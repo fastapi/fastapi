@@ -372,7 +372,7 @@ Mais avant ça, gérer du code asynchrone était bien plus complexe et difficile
 
 Dans les versions précédentes de Python, vous auriez utilisé des *threads* ou <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>.  Mais le code aurait été bien plus difficile à comprendre, débugger, et concevoir.
 
-Dans les versions précédentes de Javascript NodeJS / Navigateur, vous auriez utilisé des "callbacks". Menant potentiellement à ce que l'on appelle <a href="http://callbackhell.com/" class="external-link" target="_blank">le "callback hell"</a>.
+Dans les versions précédentes de Javascript NodeJS / Navigateur, vous auriez utilisé des "callbacks". Menant potentiellement à ce que l'on appelle le "callback hell".
 
 
 ## Coroutines
@@ -393,7 +393,7 @@ Tout ceci est donc ce qui donne sa force à **FastAPI** (à travers Starlette) e
 
 ## Détails très techniques
 
-/// warning | "Attention !"
+/// warning | Attention !
 
 Vous pouvez probablement ignorer cela.
 

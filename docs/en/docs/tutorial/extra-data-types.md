@@ -1,4 +1,4 @@
-# Extra Data Types
+# Extra Data Types { #extra-data-types }
 
 Up to now, you have been using common data types, like:
 
@@ -17,7 +17,7 @@ And you will still have the same features as seen up to now:
 * Data validation.
 * Automatic annotation and documentation.
 
-## Other data types
+## Other data types { #other-data-types }
 
 Here are some of the additional data types you can use:
 
@@ -51,112 +51,12 @@ Here are some of the additional data types you can use:
     * In requests and responses, handled the same as a `float`.
 * You can check all the valid Pydantic data types here: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
 
-## Example
+## Example { #example }
 
 Here's an example *path operation* with parameters using some of the above types.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  3  13-17"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1  2  11-15"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="1  2  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 Note that the parameters inside the function have their natural data type, and you can, for example, perform normal date manipulations, like:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-20"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="17-18"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}

@@ -15,6 +15,7 @@ import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+from ruff.__main__ import find_ruff_bin
 
 logging.basicConfig(level=logging.INFO)
 
@@ -23,7 +24,7 @@ app = typer.Typer()
 mkdocs_name = "mkdocs.yml"
 
 missing_translation_snippet = """
-{!../../../docs/missing-translation.md!}
+{!../../docs/missing-translation.md!}
 """
 
 non_translated_sections = [
@@ -34,6 +35,7 @@ non_translated_sections = [
     "newsletter.md",
     "management-tasks.md",
     "management.md",
+    "contributing.md",
 ]
 
 docs_path = Path("docs")
@@ -41,6 +43,8 @@ en_docs_path = Path("docs/en")
 en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
+
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
 
 
 @lru_cache
@@ -152,9 +156,21 @@ index_sponsors_template = """
 """
 
 
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
@@ -380,6 +396,42 @@ def langs_json():
         if lang_path.is_dir():
             langs.append(lang_path.name)
     print(json.dumps(langs))
+
+
+@app.command()
+def generate_docs_src_versions_for_file(file_path: Path) -> None:
+    target_versions = ["py39", "py310"]
+    base_content = file_path.read_text(encoding="utf-8")
+    previous_content = {base_content}
+    for target_version in target_versions:
+        version_result = subprocess.run(
+            [
+                find_ruff_bin(),
+                "check",
+                "--target-version",
+                target_version,
+                "--fix",
+                "--unsafe-fixes",
+                "-",
+            ],
+            input=base_content.encode("utf-8"),
+            capture_output=True,
+        )
+        content_target = version_result.stdout.decode("utf-8")
+        format_result = subprocess.run(
+            [find_ruff_bin(), "format", "-"],
+            input=content_target.encode("utf-8"),
+            capture_output=True,
+        )
+        content_format = format_result.stdout.decode("utf-8")
+        if content_format in previous_content:
+            continue
+        previous_content.add(content_format)
+        version_file = file_path.with_name(
+            file_path.name.replace(".py", f"_{target_version}.py")
+        )
+        logging.info(f"Writing to {version_file}")
+        version_file.write_text(content_format, encoding="utf-8")
 
 
 if __name__ == "__main__":

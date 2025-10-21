@@ -1,4 +1,4 @@
-# Virtual Environments
+# Virtual Environments { #virtual-environments }
 
 When you work in Python projects you probably should use a **virtual environment** (or a similar mechanism) to isolate the packages you install for each project.
 
@@ -26,7 +26,7 @@ If you are ready to adopt a **tool that manages everything** for you (including 
 
 ///
 
-## Create a Project
+## Create a Project { #create-a-project }
 
 First, create a directory for your project.
 
@@ -51,7 +51,7 @@ $ cd awesome-project
 
 </div>
 
-## Create a Virtual Environment
+## Create a Virtual Environment { #create-a-virtual-environment }
 
 When you start working on a Python project **for the first time**, create a virtual environment **<abbr title="there are other options, this is a simple guideline">inside your project</abbr>**.
 
@@ -114,7 +114,7 @@ You could create the virtual environment in a different directory, but there's a
 
 ///
 
-## Activate the Virtual Environment
+## Activate the Virtual Environment { #activate-the-virtual-environment }
 
 Activate the new virtual environment so that any Python command you run or package you install uses it.
 
@@ -170,7 +170,7 @@ This makes sure that if you use a **terminal (<abbr title="command line interfac
 
 ///
 
-## Check the Virtual Environment is Active
+## Check the Virtual Environment is Active { #check-the-virtual-environment-is-active }
 
 Check that the virtual environment is active (the previous command worked).
 
@@ -212,7 +212,7 @@ If it shows the `python` binary at `.venv\Scripts\python`, inside of your projec
 
 ////
 
-## Upgrade `pip`
+## Upgrade `pip` { #upgrade-pip }
 
 /// tip
 
@@ -242,7 +242,7 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## Add `.gitignore`
+## Add `.gitignore` { #add-gitignore }
 
 If you are using **Git** (you should), add a `.gitignore` file to exclude everything in your `.venv` from Git.
 
@@ -282,7 +282,7 @@ That command will create a file `.gitignore` with the content:
 
 ///
 
-## Install Packages
+## Install Packages { #install-packages }
 
 After activating the environment, you can install packages in it.
 
@@ -294,7 +294,7 @@ If you need to upgrade a version or add a new package you would **do this again*
 
 ///
 
-### Install Packages Directly
+### Install Packages Directly { #install-packages-directly }
 
 If you're in a hurry and don't want to use a file to declare your project's package requirements, you can install them directly.
 
@@ -333,7 +333,7 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### Install from `requirements.txt`
+### Install from `requirements.txt` { #install-from-requirements-txt }
 
 If you have a `requirements.txt`, you can now use it to install its packages.
 
@@ -376,7 +376,7 @@ pydantic==2.8.0
 
 ///
 
-## Run Your Program
+## Run Your Program { #run-your-program }
 
 After you activated the virtual environment, you can run your program, and it will use the Python inside of your virtual environment with the packages you installed there.
 
@@ -390,7 +390,7 @@ Hello World
 
 </div>
 
-## Configure Your Editor
+## Configure Your Editor { #configure-your-editor }
 
 You would probably use an editor, make sure you configure it to use the same virtual environment you created (it will probably autodetect it) so that you can get autocompletion and inline errors.
 
@@ -405,7 +405,7 @@ You normally have to do this only **once**, when you create the virtual environm
 
 ///
 
-## Deactivate the Virtual Environment
+## Deactivate the Virtual Environment { #deactivate-the-virtual-environment }
 
 Once you are done working on your project you can **deactivate** the virtual environment.
 
@@ -419,7 +419,7 @@ $ deactivate
 
 This way, when you run `python` it won't try to run it from that virtual environment with the packages installed there.
 
-## Ready to Work
+## Ready to Work { #ready-to-work }
 
 Now you're ready to start working on your project.
 
@@ -433,7 +433,7 @@ Continue reading. 👇🤓
 
 ///
 
-## Why Virtual Environments
+## Why Virtual Environments { #why-virtual-environments }
 
 To work with FastAPI you need to install <a href="https://www.python.org/" class="external-link" target="_blank">Python</a>.
 
@@ -443,7 +443,7 @@ To install packages you would normally use the `pip` command that comes with Pyt
 
 Nevertheless, if you just use `pip` directly, the packages would be installed in your **global Python environment** (the global installation of Python).
 
-### The Problem
+### The Problem { #the-problem }
 
 So, what's the problem with installing packages in the global Python environment?
 
@@ -526,7 +526,7 @@ Now, imagine that with **many** other **packages** that all your **projects depe
 
 Also, depending on your operating system (e.g. Linux, Windows, macOS), it could have come with Python already installed. And in that case it probably had some packages pre-installed with some specific versions **needed by your system**. If you install packages in the global Python environment, you could end up **breaking** some of the programs that came with your operating system.
 
-## Where are Packages Installed
+## Where are Packages Installed { #where-are-packages-installed }
 
 When you install Python, it creates some directories with some files in your computer.
 
@@ -552,7 +552,7 @@ Then it will **extract** all those files and put them in a directory in your com
 
 By default, it will put those files downloaded and extracted in the directory that comes with your Python installation, that's the **global environment**.
 
-## What are Virtual Environments
+## What are Virtual Environments { #what-are-virtual-environments }
 
 The solution to the problems of having all the packages in the global environment is to use a **virtual environment for each project** you work on.
 
@@ -577,7 +577,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## What Does Activating a Virtual Environment Mean
+## What Does Activating a Virtual Environment Mean { #what-does-activating-a-virtual-environment-mean }
 
 When you activate a virtual environment, for example with:
 
@@ -668,7 +668,7 @@ After activating the virtual environment, the `PATH` variable would look somethi
 /home/user/code/awesome-project/.venv/bin:/usr/bin:/bin:/usr/sbin:/sbin
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 /home/user/code/awesome-project/.venv/bin
@@ -692,7 +692,7 @@ and use that one.
 C:\Users\user\code\awesome-project\.venv\Scripts;C:\Windows\System32
 ```
 
-That means that the system will now start looking first look for programs in:
+That means that the system will now start looking first for programs in:
 
 ```plaintext
 C:\Users\user\code\awesome-project\.venv\Scripts
@@ -714,7 +714,7 @@ An important detail is that it will put the virtual environment path at the **be
 
 Activating a virtual environment also changes a couple of other things, but this is one of the most important things it does.
 
-## Checking a Virtual Environment
+## Checking a Virtual Environment { #checking-a-virtual-environment }
 
 When you check if a virtual environment is active, for example with:
 
@@ -748,7 +748,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 That means that the `python` program that will be used is the one **in the virtual environment**.
 
-you use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
+You use `which` in Linux and macOS and `Get-Command` in Windows PowerShell.
 
 The way that command works is that it will go and check in the `PATH` environment variable, going through **each path in order**, looking for the program called `python`. Once it finds it, it will **show you the path** to that program.
 
@@ -766,7 +766,7 @@ It's useful being able to check what `python` is being used. 🤓
 
 ///
 
-## Why Deactivate a Virtual Environment
+## Why Deactivate a Virtual Environment { #why-deactivate-a-virtual-environment }
 
 For example, you could be working on a project `philosophers-stone`, **activate that virtual environment**, install packages and work with that environment.
 
@@ -820,7 +820,7 @@ I solemnly swear 🐺
 
 </div>
 
-## Alternatives
+## Alternatives { #alternatives }
 
 This is a simple guide to get you started and teach you how everything works **underneath**.
 
@@ -837,7 +837,7 @@ Once you are ready and want to use a tool to **manage the entire project**, pack
 * Make sure you have an **exact** set of packages and versions to install, including their dependencies, so that you can be sure that you can run your project in production exactly the same as in your computer while developing, this is called **locking**
 * And many other things
 
-## Conclusion
+## Conclusion { #conclusion }
 
 If you read and understood all this, now **you know much more** about virtual environments than many developers out there. 🤓
 
