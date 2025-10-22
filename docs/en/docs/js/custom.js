@@ -81,6 +81,9 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+
+                const originalText = node.textContent;
+
                 const div = document.createElement("div");
                 node.replaceWith(div);
                 const termynal = new Termynal(div, {
@@ -89,6 +92,38 @@ function setupTermynal() {
                     lineDelay: 500
                 });
                 termynals.push(termynal);
+
+                const highlightParent = div.closest('.highlight');
+                if (highlightParent) {
+                    const existingButton = highlightParent.querySelector('button[data-clipboard-text]');
+                    if (existingButton) {
+                        existingButton.remove();
+                    }
+
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'md-clipboard md-icon';
+                    copyButton.title = 'Copy to clipboard';
+                    copyButton.setAttribute('data-clipboard-text', originalText);
+
+                    copyButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg>';
+
+                    copyButton.addEventListener('click', async function() {
+                        try {
+                            await navigator.clipboard.writeText(originalText);
+                            const originalTitle = copyButton.title;
+                            copyButton.title = 'Copied!';
+                            copyButton.classList.add('md-clipboard--copied');
+                            setTimeout(() => {
+                                copyButton.title = originalTitle;
+                                copyButton.classList.remove('md-clipboard--copied');
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Failed to copy text: ', err);
+                        }
+                    });
+
+                    highlightParent.appendChild(copyButton);
+                }
             });
     }
 
