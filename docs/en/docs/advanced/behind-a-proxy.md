@@ -64,7 +64,7 @@ If you want to learn more about HTTPS, check the guide [About HTTPS](../deployme
 
 ///
 
-### How Proxy Forwarded Headers Work
+### How Proxy Forwarded Headers Work { #how-proxy-forwarded-headers-work }
 
 Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
 
