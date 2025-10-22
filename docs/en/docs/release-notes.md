@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* 🛠️ Update German LLM prompt and test file. PR [#14189](https://github.com/fastapi/fastapi/pull/14189) by [@nilslindemann](https://github.com/nilslindemann).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14181](https://github.com/fastapi/fastapi/pull/14181) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
 ## 0.119.1
