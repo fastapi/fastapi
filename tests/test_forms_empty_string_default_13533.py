@@ -7,7 +7,9 @@ This test verifies that empty strings in form fields are correctly handled:
 - This applies to both x-www-form-urlencoded and multipart/form-data
 """
 
-from typing import Annotated, Optional
+from typing import Optional
+
+from typing_extensions import Annotated
 
 from fastapi import FastAPI, File, Form
 from fastapi.testclient import TestClient
