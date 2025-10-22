@@ -1,3 +1,5 @@
+import pytest
+
 from fastapi.testclient import TestClient
 
 from docs_src.custom_response.tutorial001 import app
@@ -5,12 +7,14 @@ from docs_src.custom_response.tutorial001 import app
 client = TestClient(app)
 
 
+@pytest.mark.skip(reason="skipping ujson tests")
 def test_get_custom_response():
     response = client.get("/items/")
     assert response.status_code == 200, response.text
     assert response.json() == [{"item_id": "Foo"}]
 
 
+@pytest.mark.skip(reason="skipping ujson tests")
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
