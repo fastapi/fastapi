@@ -1,5 +1,4 @@
 import pytest
-
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from fastapi.testclient import TestClient
