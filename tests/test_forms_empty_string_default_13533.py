@@ -9,10 +9,9 @@ This test verifies that empty strings in form fields are correctly handled:
 
 from typing import Optional
 
-from typing_extensions import Annotated
-
 from fastapi import FastAPI, File, Form
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 # Test app for URL-encoded forms with optional string
 app_urlencoded_str = FastAPI()
