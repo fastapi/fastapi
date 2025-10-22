@@ -1,7 +1,6 @@
 from typing import Any
 
 import pytest
-
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.testclient import TestClient
@@ -12,6 +11,7 @@ class ORJSONResponse(JSONResponse):
 
     def render(self, content: Any) -> bytes:
         import orjson
+
         return orjson.dumps(content)
 
 
