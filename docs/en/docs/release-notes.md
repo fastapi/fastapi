@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.120.0
+
 There are no major nor breaking changes in this release. ☕️
 
 The internal reference documentation now uses `annotated_doc.Doc` instead of `typing_extensions.Doc`, this adds a new (very small) dependency on [`annotated-doc`](https://github.com/fastapi/annotated-doc), a package made just to provide that `Doc` documentation utility class.
