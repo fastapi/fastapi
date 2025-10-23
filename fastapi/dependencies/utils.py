@@ -158,14 +158,14 @@ def get_sub_dependant(
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     security_requirement = None
-    security_scopes = security_scopes or []
+    use_scopes: List[str] = []
     if isinstance(depends, params.Security):
+        use_scopes = security_scopes or []
         dependency_scopes = depends.scopes
-        security_scopes.extend(dependency_scopes)
+        use_scopes.extend(dependency_scopes)
     if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
         if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
+            use_scopes = security_scopes or []
         security_requirement = SecurityRequirement(
             security_scheme=dependency, scopes=use_scopes
         )
@@ -173,7 +173,7 @@ def get_sub_dependant(
         path=path,
         call=dependency,
         name=name,
-        security_scopes=security_scopes,
+        security_scopes=use_scopes,
         use_cache=depends.use_cache,
     )
     if security_requirement:
