@@ -65,7 +65,7 @@ There are a few differences:
 
 * `Field(primary_key=True)` tells SQLModel that the `id` is the **primary key** in the SQL database (you can learn more about SQL primary keys in the SQLModel docs).
 
-    By having the type as `int | None`, SQLModel will know that this column should be an `INTEGER` in the SQL database and that it should be `NULLABLE`.
+    **Note:** We use `int | None` for the primary key field so that in Python code we can *create an object without an `id`* (`id=None`), assuming the database will *generate it when saving*. SQLModel understands that the database will provide the `id` and *defines the column as a non-null `INTEGER`* in the database schema. See <a href="https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/#primary-key-id" class="external-link" target="_blank">SQLModel docs on primary keys</a> for details.
 
 * `Field(index=True)` tells SQLModel that it should create a **SQL index** for this column, that would allow faster lookups in the database when reading data filtered by this column.
 
