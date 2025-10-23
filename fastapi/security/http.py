@@ -179,11 +179,24 @@ class HTTPBasic(HTTPBase):
                 """
             ),
         ] = True,
+        auto_error_detail: Annotated[
+            str,
+            Doc(
+                """
+                The text to be returned to the client when `auto_error`
+                raises an HTTP exception.
+
+                It's useful when you have multiple errors defined: set
+                different detail text to easily differentiate which error was raised.
+                """
+            ),
+        ] = "Not authenticated",
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
+        self.auto_error_detail = auto_error_detail
 
     async def __call__(  # type: ignore
         self, request: Request
@@ -198,7 +211,7 @@ class HTTPBasic(HTTPBase):
             if self.auto_error:
                 raise HTTPException(
                     status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
+                    detail=self.auto_error_detail,
                     headers=unauthorized_headers,
                 )
             else:
@@ -294,10 +307,23 @@ class HTTPBearer(HTTPBase):
                 """
             ),
         ] = True,
+        auto_error_detail: Annotated[
+            str,
+            Doc(
+                """
+                The text to be returned to the client when `auto_error`
+                raises an HTTP exception.
+
+                It's useful when you have multiple errors defined: set
+                different detail text to easily differentiate which error was raised.
+                """
+            ),
+        ] = "Not authenticated",
     ):
         self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.auto_error_detail = auto_error_detail
 
     async def __call__(
         self, request: Request
@@ -307,7 +333,8 @@ class HTTPBearer(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_403_FORBIDDEN,
+                    detail=self.auto_error_detail,
                 )
             else:
                 return None
@@ -396,10 +423,23 @@ class HTTPDigest(HTTPBase):
                 """
             ),
         ] = True,
+        auto_error_detail: Annotated[
+            str,
+            Doc(
+                """
+                The text to be returned to the client when `auto_error`
+                raises an HTTP exception.
+
+                It's useful when you have multiple errors defined: set
+                different detail text to easily differentiate which error was raised.
+                """
+            ),
+        ] = "Not authenticated",
     ):
         self.model = HTTPBaseModel(scheme="digest", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
+        self.auto_error_detail = auto_error_detail
 
     async def __call__(
         self, request: Request
@@ -409,7 +449,8 @@ class HTTPDigest(HTTPBase):
         if not (authorization and scheme and credentials):
             if self.auto_error:
                 raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
+                    status_code=HTTP_403_FORBIDDEN,
+                    detail=self.auto_error_detail,
                 )
             else:
                 return None
