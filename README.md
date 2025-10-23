@@ -498,6 +498,16 @@ Additional optional FastAPI dependencies:
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Required if you want to use `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Required if you want to use `UJSONResponse`.
 
+## Quick Test for Contributors
+
+After installing the dependencies, you can verify that FastAPI is working correctly
+by running a subset of the test suite:
+
+```bash
+pytest -q fastapi/tests/test_tutorial
+
+```
+
 ## License
 
 This project is licensed under the terms of the MIT license.
