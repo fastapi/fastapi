@@ -840,6 +840,16 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        depends_default_parallelizable: Annotated[
+            bool,
+            Doc(
+                """
+                Default for whether dependencies are allowed to run in parallel when not
+                explicitly specified per dependency. Projects can opt in by setting this
+                to True when creating the application. The default is False.
+                """
+            ),
+        ] = False,
         **extra: Annotated[
             Any,
             Doc(
@@ -869,6 +879,7 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
+        self.depends_default_parallelizable = depends_default_parallelizable
         self.extra = extra
         self.openapi_version: Annotated[
             str,
