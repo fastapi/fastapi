@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* ➕ Migrate internal reference documentation from `typing_extensions.Doc` to `annotated_doc.Doc`. PR [#14222](https://github.com/fastapi/fastapi/pull/14222) by [@tiangolo](https://github.com/tiangolo).
 * 🛠️ Update German LLM prompt and test file. PR [#14189](https://github.com/fastapi/fastapi/pull/14189) by [@nilslindemann](https://github.com/nilslindemann).
 * ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14181](https://github.com/fastapi/fastapi/pull/14181) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
