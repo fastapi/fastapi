@@ -1,9 +1,10 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
 
 _Unset: Any = Undefined
 
