@@ -1,3 +1,4 @@
+import os
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set, Type, Union
 
@@ -55,9 +56,12 @@ except ImportError:  # pragma: no cover
             return with_info_plain_validator_function(cls._validate)
 
 
+_FASTAPI_OPENAPI_DEFER_BUILD = "FASTAPI_OPENAPI_DEFER_BUILD" in os.environ
+
+
 class BaseModelWithConfig(BaseModel):
     if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
+        model_config = {"extra": "allow", "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD}
 
     else:
 
@@ -226,7 +230,10 @@ class Example(TypedDict, total=False):
     externalValue: Optional[AnyUrl]
 
     if PYDANTIC_V2:  # type: ignore [misc]
-        __pydantic_config__ = {"extra": "allow"}
+        __pydantic_config__ = {
+            "extra": "allow",
+            "defer_build": _FASTAPI_OPENAPI_DEFER_BUILD,
+        }
 
     else:
 
