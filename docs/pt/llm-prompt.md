@@ -22,6 +22,7 @@ For the next terms, use the following translations:
 * «/// note»: «/// note | Nota»
 * «/// tip»: «/// tip | Dica»
 * «/// warning»: «/// warning | Atenção»
+* «(you should)»: «(você deveria)»
 * async context manager: gerenciador de contexto assíncrono
 * autocomplete: autocompletar
 * autocompletion: preenchimento automático
