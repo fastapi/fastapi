@@ -1,4 +1,4 @@
-# Trabalhadores do Servidor - Uvicorn com Trabalhadores
+# Trabalhadores do Servidor - Uvicorn com Trabalhadores { #server-workers-uvicorn-with-workers }
 
 Vamos rever os conceitos de implantação anteriores:
 
@@ -25,7 +25,7 @@ Em particular, ao executar no **Kubernetes** você provavelmente **não** vai qu
 
 ///
 
-## Vários trabalhadores
+## Vários trabalhadores { #multiple-workers }
 
 Você pode iniciar vários trabalhadores com a opção de linha de comando `--workers`:
 
@@ -64,13 +64,13 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27368</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27369</b></font><b>]</b>
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27370</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>27367</b></font><b>]</b>
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
+     <span style="background-color="#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
      <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
@@ -111,7 +111,7 @@ A única opção nova aqui é `--workers` informando ao Uvicorn para iniciar 4 p
 
 Você também pode ver que ele mostra o **PID** de cada processo, `27365` para o processo pai (este é o **gerenciador de processos**) e um para cada processo de trabalho: `27368`, `27369`, `27370` e `27367`.
 
-## Conceitos de Implantação
+## Conceitos de Implantação { #deployment-concepts }
 
 Aqui você viu como usar vários **trabalhadores** para **paralelizar** a execução do aplicativo, aproveitar **vários núcleos** na CPU e conseguir atender **mais solicitações**.
 
@@ -124,13 +124,13 @@ Da lista de conceitos de implantação acima, o uso de trabalhadores ajudaria pr
 * **Memória**
 * **Etapas anteriores antes de iniciar**
 
-## Contêineres e Docker
+## Contêineres e Docker { #containers-and-docker }
 
 No próximo capítulo sobre [FastAPI em contêineres - Docker](docker.md){.internal-link target=_blank}, explicarei algumas estratégias que você pode usar para lidar com os outros **conceitos de implantação**.
 
 Vou mostrar como **construir sua própria imagem do zero** para executar um único processo Uvicorn. É um processo simples e provavelmente é o que você gostaria de fazer ao usar um sistema de gerenciamento de contêineres distribuídos como o **Kubernetes**.
 
-## Recapitular
+## Recapitular { #recap }
 
 Você pode usar vários processos de trabalho com a opção CLI `--workers` com os comandos `fastapi` ou `uvicorn` para aproveitar as vantagens de **CPUs multi-core** e executar **vários processos em paralelo**.
 
