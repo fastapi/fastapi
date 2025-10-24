@@ -39,6 +39,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
@@ -46,6 +47,7 @@ dependencies = [
     "starlette>=0.40.0,<0.49.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "annotated-doc>=0.0.2",
 ]
 
 [project.urls]
@@ -172,8 +174,6 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # For passlib
-    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes

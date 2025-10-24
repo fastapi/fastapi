@@ -37,4 +37,4 @@
 
 ## Додаткова інформація
 
-Детальніше про налаштування та можливості можна дізнатися в <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">документації Starlette про статичні файли</a>.
+Детальніше про налаштування та можливості можна дізнатися в <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">документації Starlette про статичні файли</a>.

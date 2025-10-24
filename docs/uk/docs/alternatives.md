@@ -415,7 +415,7 @@ Pydantic — це бібліотека для визначення переві�
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
 
 Starlette — це легкий фреймворк/набір інструментів <abbr title="The new standard for build asynchronous Python web">ASGI</abbr>, який ідеально підходить для створення високопродуктивних asyncio сервісів.
 
@@ -460,7 +460,7 @@ ASGI — це новий «стандарт», який розробляєтьс
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
 
 Uvicorn — це блискавичний сервер ASGI, побудований на uvloop і httptools.
 

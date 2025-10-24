@@ -4,7 +4,7 @@
 
 📤 3️⃣ 👑 🎛:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: ↕ 🎭 🔫 💽.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: ↕ 🎭 🔫 💽.
 * <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: 🔫 💽 🔗 ⏮️ 🇺🇸🔍/2️⃣ &amp; 🎻 👪 🎏 ⚒.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">👸</a>: 🔫 💽 🏗 ✳ 📻.
 
@@ -24,7 +24,7 @@
 
 //// tab | Uvicorn
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, 🌩-⏩ 🔫 💽, 🏗 🔛 uvloop &amp; httptool.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>, 🌩-⏩ 🔫 💽, 🏗 🔛 uvloop &amp; httptool.
 
 <div class="termy">
 
