@@ -1,4 +1,4 @@
-# Parâmetros de Consulta
+# Parâmetros de Consulta { #query-parameters }
 
 Quando você declara outros parâmetros na função que não fazem parte dos parâmetros da rota, esses parâmetros são automaticamente interpretados como parâmetros de "consulta".
 
@@ -28,7 +28,7 @@ Todo o processo que era aplicado para parâmetros de rota também é aplicado pa
 * Validação de dados
 * Documentação automática
 
-## Valores padrão
+## Valores padrão { #defaults }
 
 Como os parâmetros de consulta não são uma parte fixa da rota, eles podem ser opcionais e podem ter valores padrão.
 
@@ -57,7 +57,7 @@ Os valores dos parâmetros na sua função serão:
 * `skip=20`: Por que você definiu isso na URL
 * `limit=10`: Por que esse era o valor padrão
 
-## Parâmetros opcionais
+## Parâmetros opcionais { #optional-parameters }
 
 Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo o valor padrão para `None`:
 
@@ -65,13 +65,13 @@ Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
 
-/// check | Verificar
+/// check | Verifique
 
 Você também pode notar que o **FastAPI** é esperto o suficiente para perceber que o parâmetro da rota `item_id` é um parâmetro da rota, e `q` não é, portanto, `q` é o parâmetro de consulta.
 
 ///
 
-## Conversão dos tipos de parâmetros de consulta
+## Conversão dos tipos de parâmetros de consulta { #query-parameter-type-conversion }
 
 Você também pode declarar tipos `bool`, e eles serão convertidos:
 
@@ -109,7 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 ou qualquer outra variação (tudo em maiúscula, primeira letra em maiúscula, etc), a sua função vai ver o parâmetro `short` com um valor `bool` de `True`. Caso contrário `False`.
 
-## Múltiplos parâmetros de rota e consulta
+## Múltiplos parâmetros de rota e consulta { #multiple-path-and-query-parameters }
 
 Você pode declarar múltiplos parâmetros de rota e parâmetros de consulta ao mesmo tempo, o **FastAPI** vai saber o quê é o quê.
 
@@ -119,7 +119,7 @@ Eles serão detectados pelo nome:
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Parâmetros de consulta obrigatórios
+## Parâmetros de consulta obrigatórios { #required-query-parameters }
 
 Quando você declara um valor padrão para parâmetros que não são de rota (até agora, nós vimos apenas parâmetros de consulta), então eles não são obrigatórios.
 
@@ -141,16 +141,17 @@ http://127.0.0.1:8000/items/foo-item
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null
+    }
+  ]
 }
 ```
 
@@ -181,6 +182,6 @@ Nesse caso, existem 3 parâmetros de consulta:
 
 /// tip | Dica
 
-Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#valores-predefinidos){.internal-link target=_blank}.
+Você também poderia usar `Enum` da mesma forma que com [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
 
 ///
