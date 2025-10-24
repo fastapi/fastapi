@@ -6,6 +6,8 @@ Language code: pt.
 
 For instructions or titles in imperative, keep them in imperative, for example "Import FastAPI" to "Importe o FastAPI".
 
+Keep existing translations as they are if the term is already translated.
+
 When translating documentation into Portuguese, use neutral and widely understandable language. Although Portuguese originated in Portugal and has its largest number of speakers in Brazil, it is also an official language in several countries and regions, such as Equatorial Guinea, Mozambique, Angola, Cape Verde, and São Tomé and Príncipe. Avoid words or expressions that are specific to a single country or region.
 
 ---
@@ -30,6 +32,7 @@ For the next terms, use the following translations:
 * Cross-Origin Resource Sharing: Cross-Origin Resource Sharing (do not translate to "Compartilhamento de Recursos de Origem Cruzada")
 * Deep Learning: Deep Learning (do not translate to "Aprendizado Profundo")
 * dependable: dependable
+* dependencies: dependências
 * deprecated: descontinuado
 * docs: documentação
 * FastAPI app: aplicação FastAPI
@@ -47,6 +50,10 @@ For the next terms, use the following translations:
 * path (as in URL path): path
 * path operation: operação de rota
 * path operation function: função de operação de rota
+* prefix: prefixo
+* request (as in HTTP request): request (do not change if it's already translated to requisição)
+* router (as in FastAPI's router): router (do not change if it's already translated to "roteador" or "roteadores")
+* response (as in HTTP response): response (do not change if it's already translated to resposta)
 * shutdown (of the app): encerramento
 * shutdown event (of the app): evento de encerramento
 * startup (as in the event of the app): inicialização
