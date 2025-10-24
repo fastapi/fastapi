@@ -93,7 +93,7 @@ Instead of that, by being an "asynchronous" system, once finished, the task can 
 
 For "synchronous" (contrary to "asynchronous") they commonly also use the term "sequential", because the computer / program follows all the steps in sequence before switching to a different task, even if those steps involve waiting.
 
-### Concurrency and Burgers { #concurrency-and-burgers }
+### Concurrency and Parallelism { #concurrency-and-parallelism }
 
 This idea of **asynchronous** code described above is also sometimes called **"concurrency"**. It is different from **"parallelism"**.
 
