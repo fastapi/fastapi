@@ -144,7 +144,7 @@ Using a relative URL is important to make sure your application keeps working ev
 
 ///
 
-This parameter doesn't create that endpoint / *path operation*, but declares that the URL `/token` will be the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
+This parameter doesn't create that endpoint or *path operation*, but declares that the URL `/token` will be the one that the client should use to get the token. That information is used in OpenAPI, and then in the interactive API documentation systems.
 
 We will soon also create the actual path operation.
 
