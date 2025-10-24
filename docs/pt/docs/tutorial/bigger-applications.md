@@ -81,7 +81,7 @@ Mas ele ainda faz parte da mesma aplicação/web API **FastAPI** (faz parte do m
 
 Você pode criar as *operações de rotas* para esse módulo usando o `APIRouter`.
 
-### Importar `APIRouter` { #import-apirouter }
+### Importe `APIRouter` { #import-apirouter }
 
 você o importa e cria uma "instância" da mesma maneira que faria com a classe `FastAPI`:
 
@@ -234,7 +234,7 @@ Os parâmetros `prefix`, `tags`, `responses` e `dependencies` são (como em muit
 
 ///
 
-### Importar as dependências { #import-the-dependencies }
+### Importe as dependências { #import-the-dependencies }
 
 Este código reside no módulo `app.routers.items`, o arquivo `app/routers/items.py`.
 
@@ -420,7 +420,7 @@ Então, para poder usar ambos no mesmo arquivo, importamos os submódulos direta
 {!../../docs_src/bigger_applications/app/main.py!}
 ```
 
-### Incluir o `APIRouter`s para `usuários` e `itens` { #include-the-apirouters-for-users-and-items }
+### Inclua os `APIRouter`s para `usuários` e `itens` { #include-the-apirouters-for-users-and-items }
 
 Agora, vamos incluir os `router`s dos submódulos `users` e `items`:
 
@@ -458,7 +458,7 @@ Então não afetará o desempenho. ⚡
 
 ///
 
-### Incluir um `APIRouter` com um `prefix`, `tags`, `responses` e `dependencies` personalizados { #include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies }
+### Inclua um `APIRouter` com um `prefix`, `tags`, `responses` e `dependencies` personalizados { #include-an-apirouter-with-a-custom-prefix-tags-responses-and-dependencies }
 
 Agora, vamos imaginar que sua organização lhe deu o arquivo `app/internal/admin.py`.
 
@@ -491,7 +491,7 @@ Mas isso afetará apenas o `APIRouter` em nosso aplicativo, e não em nenhum out
 
 Assim, por exemplo, outros projetos poderiam usar o mesmo `APIRouter` com um método de autenticação diferente.
 
-### Incluir uma *operação de rota* { #include-a-path-operation }
+### Inclua uma *operação de rota* { #include-a-path-operation }
 
 Também podemos adicionar *operações de rota* diretamente ao aplicativo `FastAPI`.
 
@@ -537,7 +537,7 @@ Você verá a documentação automática da API, incluindo os caminhos de todos 
 
 <img src="/img/tutorial/bigger-applications/image01.png">
 
-## Incluir o mesmo roteador várias vezes com `prefix` diferentes { #include-the-same-router-multiple-times-with-different-prefix }
+## Inclua o mesmo roteador várias vezes com `prefix` diferentes { #include-the-same-router-multiple-times-with-different-prefix }
 
 Você também pode usar `.include_router()` várias vezes com o *mesmo* roteador usando prefixos diferentes.
 
@@ -545,7 +545,7 @@ Isso pode ser útil, por exemplo, para expor a mesma API sob prefixos diferentes
 
 Esse é um uso avançado que você pode não precisar, mas está lá caso precise.
 
-## Incluir um `APIRouter` em outro { #include-an-apirouter-in-another }
+## Inclua um `APIRouter` em outro { #include-an-apirouter-in-another }
 
 Da mesma forma que você pode incluir um `APIRouter` em um aplicativo `FastAPI`, você pode incluir um `APIRouter` em outro `APIRouter` usando:
 
