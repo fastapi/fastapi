@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.8 não anotado
+//// tab | Python 3.8 non-Annotated
 
 /// tip | Dica
 
