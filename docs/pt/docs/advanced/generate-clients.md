@@ -121,23 +121,23 @@ Agora os nomes dos métodos gerados como `createItemItemsPost` não parecem muit
 ItemsService.createItemItemsPost({name: "Plumbus", price: 5})
 ```
 
-...isso ocorre porque o gerador de clientes usa o **operation ID** interno do OpenAPI para cada *operação de rota*.
+...isso ocorre porque o gerador de clientes usa o **ID de operação** interno do OpenAPI para cada *operação de rota*.
 
-O OpenAPI exige que cada operation ID seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **path** e o **método/operação HTTP** para gerar esse operation ID, porque dessa forma ele pode garantir que os operation IDs sejam únicos.
+O OpenAPI exige que cada ID de operação seja único em todas as *operações de rota*, então o FastAPI usa o **nome da função**, o **path** e o **método/operação HTTP** para gerar esse ID de operação, porque dessa forma ele pode garantir que os IDs de operação sejam únicos.
 
 Mas eu vou te mostrar como melhorar isso a seguir. 🤓
 
 ## IDs de operação personalizados e nomes de métodos melhores { #custom-operation-ids-and-better-method-names }
 
-Você pode **modificar** a maneira como esses operation IDs são **gerados** para torná-los mais simples e ter **nomes de método mais simples** nos clientes.
+Você pode **modificar** a maneira como esses IDs de operação são **gerados** para torná-los mais simples e ter **nomes de método mais simples** nos clientes.
 
-Neste caso, você terá que garantir que cada operation ID seja **único** de alguma outra maneira.
+Neste caso, você terá que garantir que cada ID de operação seja **único** de alguma outra maneira.
 
-Por exemplo, você poderia garantir que cada *operação de rota* tenha uma tag, e então gerar o operation ID com base na **tag** e no **nome** da *operação de rota* (o nome da função).
+Por exemplo, você poderia garantir que cada *operação de rota* tenha uma tag, e então gerar o ID de operação com base na **tag** e no **nome** da *operação de rota* (o nome da função).
 
 ### Função personalizada para gerar IDs exclusivos { #custom-generate-unique-id-function }
 
-O FastAPI usa um **ID exclusivo** para cada *operação de rota*, ele é usado para o **operation ID** e também para os nomes de quaisquer modelos personalizados necessários, para requisições ou respostas.
+O FastAPI usa um **ID exclusivo** para cada *operação de rota*, ele é usado para o **ID de operação** e também para os nomes de quaisquer modelos personalizados necessários, para requisições ou respostas.
 
 Você pode personalizar essa função. Ela recebe uma `APIRoute` e retorna uma string.
 
@@ -161,9 +161,9 @@ O código gerado ainda tem algumas **informações duplicadas**.
 
 Nós já sabemos que esse método está relacionado aos **items** porque essa palavra está no `ItemsService` (retirada da tag), mas ainda temos o nome da tag prefixado no nome do método também. 😕
 
-Provavelmente ainda queremos mantê-lo para o OpenAPI em geral, pois isso garantirá que os operation IDs sejam **únicos**.
+Provavelmente ainda queremos mantê-lo para o OpenAPI em geral, pois isso garantirá que os IDs de operação sejam **únicos**.
 
-Mas para o cliente gerado, poderíamos **modificar** os operation IDs do OpenAPI logo antes de gerar os clientes, apenas para tornar esses nomes de método mais agradáveis e **limpos**.
+Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do OpenAPI logo antes de gerar os clientes, apenas para tornar esses nomes de método mais agradáveis e **limpos**.
 
 Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então poderíamos **remover essa tag prefixada** com um script como este:
 
@@ -177,7 +177,7 @@ Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então pod
 
 ////
 
-Com isso, os operation IDs seriam renomeados de coisas como `items-get_items` para apenas `get_items`, dessa forma o gerador de clientes pode gerar nomes de métodos mais simples.
+Com isso, os IDs de operação seriam renomeados de coisas como `items-get_items` para apenas `get_items`, dessa forma o gerador de clientes pode gerar nomes de métodos mais simples.
 
 ### Gere um cliente TypeScript com o OpenAPI pré-processado { #generate-a-typescript-client-with-the-preprocessed-openapi }
 
