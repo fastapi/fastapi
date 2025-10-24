@@ -23,6 +23,7 @@ from typing import (
     Union,
 )
 
+from annotated_doc import Doc
 from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
     ModelField,
@@ -77,7 +78,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
 
 
 # Copy of starlette.routing.request_response modified to include the

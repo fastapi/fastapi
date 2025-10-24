@@ -58,3 +58,6 @@ bronze:
   - url: https://lambdatest.com/?utm_source=fastapi&utm_medium=partner&utm_campaign=sponsor&utm_term=opensource&utm_content=webpage
     title: LambdaTest, AI-Powered Cloud-based Test Orchestration Platform
     img: https://fastapi.tiangolo.com/img/sponsors/lambdatest.png
+  - url: https://requestly.com/fastapi
+    title: All-in-one platform to Test, Mock and Intercept APIs. Built for speed, privacy and offline support.
+    img: https://fastapi.tiangolo.com/img/sponsors/requestly.png

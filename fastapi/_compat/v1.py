@@ -54,13 +54,15 @@ if not PYDANTIC_V2:
     from pydantic.schema import TypeModelSet as TypeModelSet
     from pydantic.schema import (
         field_schema,
-        get_flat_models_from_fields,
         model_process_schema,
     )
     from pydantic.schema import (
         get_annotation_from_field_info as get_annotation_from_field_info,
     )
     from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
+    from pydantic.schema import (
+        get_flat_models_from_fields as get_flat_models_from_fields,
+    )
     from pydantic.schema import get_model_name_map as get_model_name_map
     from pydantic.types import SecretBytes as SecretBytes
     from pydantic.types import SecretStr as SecretStr
@@ -99,7 +101,6 @@ else:
     from pydantic.v1.schema import TypeModelSet as TypeModelSet
     from pydantic.v1.schema import (
         field_schema,
-        get_flat_models_from_fields,
         model_process_schema,
     )
     from pydantic.v1.schema import (
@@ -107,6 +108,9 @@ else:
     )
     from pydantic.v1.schema import (
         get_flat_models_from_field as get_flat_models_from_field,
+    )
+    from pydantic.v1.schema import (
+        get_flat_models_from_fields as get_flat_models_from_fields,
     )
     from pydantic.v1.schema import get_model_name_map as get_model_name_map
     from pydantic.v1.types import (  # type: ignore[assignment]
@@ -213,32 +217,6 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
     if shared._annotation_is_sequence(field.type_):
         return True
     return False
-
-
-def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-    use_errors: List[Any] = []
-    for error in errors:
-        if isinstance(error, ErrorWrapper):
-            new_errors = ValidationError(  # type: ignore[call-arg]
-                errors=[error], model=RequestErrorModel
-            ).errors()
-            use_errors.extend(new_errors)
-        elif isinstance(error, list):
-            use_errors.extend(_normalize_errors(error))
-        else:
-            use_errors.append(error)
-    return use_errors
-
-
-def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Dict[str, Any]]:
-    updated_loc_errors: List[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())}
-        for err in _normalize_errors(errors)
-    ]
-
-    return updated_loc_errors
 
 
 def _model_rebuild(model: Type[BaseModel]) -> None:

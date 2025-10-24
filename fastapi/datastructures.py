@@ -10,6 +10,7 @@ from typing import (
     cast,
 )
 
+from annotated_doc import Doc
 from fastapi._compat import (
     CoreSchema,
     GetJsonSchemaHandler,
@@ -22,7 +23,7 @@ from starlette.datastructures import Headers as Headers  # noqa: F401
 from starlette.datastructures import QueryParams as QueryParams  # noqa: F401
 from starlette.datastructures import State as State  # noqa: F401
 from starlette.datastructures import UploadFile as StarletteUploadFile
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class UploadFile(StarletteUploadFile):

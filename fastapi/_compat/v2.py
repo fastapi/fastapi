@@ -15,7 +15,7 @@ from typing import (
     cast,
 )
 
-from fastapi._compat import shared, v1
+from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap
 from pydantic import BaseModel, TypeAdapter, create_model
@@ -116,7 +116,7 @@ class ModelField:
                 None,
             )
         except ValidationError as exc:
-            return None, v1._regenerate_error_with_loc(
+            return None, may_v1._regenerate_error_with_loc(
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 

@@ -47,6 +47,7 @@ dependencies = [
     "starlette>=0.40.0,<0.49.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "annotated-doc>=0.0.2",
 ]
 
 [project.urls]
