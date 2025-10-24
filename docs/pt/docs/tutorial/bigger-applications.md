@@ -137,7 +137,7 @@ Agora usaremos uma dependência simples para ler um cabeçalho `X-Token` persona
 
 ////
 
-//// tab | Python 3.8+ não anotado
+//// tab | Python 3.8+ non-Annotated
 
 /// tip | Dica
 
@@ -503,7 +503,7 @@ Aqui fazemos isso... só para mostrar que podemos 🤷:
 
 e funcionará corretamente, junto com todas as outras *operações de rota* adicionadas com `app.include_router()`.
 
-/// info | Detalhes Muito Técnicos
+/// note | Detalhes Técnicos Avançados
 
 **Observação**: este é um detalhe muito técnico que você provavelmente pode **simplesmente pular**.
 
