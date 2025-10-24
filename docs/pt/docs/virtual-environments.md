@@ -244,7 +244,7 @@ $ python -m pip install --upgrade pip
 
 ## Adicionar `.gitignore` { #add-gitignore }
 
-Se você estiver usando **Git** (you should), adicione um arquivo `.gitignore` para excluir tudo em seu `.venv` do Git.
+Se você estiver usando **Git** (você deveria), adicione um arquivo `.gitignore` para excluir tudo em seu `.venv` do Git.
 
 /// tip | Dica
 
@@ -752,7 +752,7 @@ você usa `which` no Linux e macOS e `Get-Command` no Windows PowerShell.
 
 A maneira como esse comando funciona é que ele vai e verifica na variável de ambiente `PATH`, passando por **cada caminho em ordem**, procurando pelo programa chamado `python`. Uma vez que ele o encontre, ele **mostrará o caminho** para esse programa.
 
-A parte mais importante é que quando você chama ``python`, esse é exatamente o "`python`" que será executado.
+A parte mais importante é que quando você chama `python`, esse é exatamente o "`python`" que será executado.
 
 Assim, você pode confirmar se está no ambiente virtual correto.
 
