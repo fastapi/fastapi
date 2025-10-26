@@ -269,7 +269,6 @@ def get_request_handler(
         actual_response_class = response_class
 
     async def app(request: Request) -> Response:
-        response: Union[Response, None] = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
