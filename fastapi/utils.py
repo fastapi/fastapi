@@ -247,8 +247,9 @@ def get_value_or_default(
 
     Otherwise, the first item (a `DefaultPlaceholder`) will be returned.
     """
-    items = (first_item,) + extra_items
-    for item in items:
+    if not isinstance(first_item, DefaultPlaceholder):
+        return first_item
+    for item in extra_items:
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
