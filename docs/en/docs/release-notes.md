@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.120.1
+
 ### Upgrades
 
 * ⬆️ Bump Starlette to <`0.50.0`. PR [#14234](https://github.com/fastapi/fastapi/pull/14234) by [@YuriiMotov](https://github.com/YuriiMotov).
