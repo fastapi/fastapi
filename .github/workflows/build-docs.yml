@@ -118,7 +118,7 @@ jobs:
           path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: docs-site-${{ matrix.lang }}
           path: ./site/**
