@@ -64,7 +64,7 @@ Se você quiser saber mais sobre HTTPS, confira o tutorial [Sobre HTTPS](../depl
 
 ///
 
-### Como funcionam os headers encaminhados pelo proxy
+### Como funcionam os headers encaminhados pelo proxy { #how-proxy-forwarded-headers-work }
 
 Aqui está uma representação visual de como o **proxy** adiciona headers encaminhados entre o cliente e o **servidor da aplicação**:
 
