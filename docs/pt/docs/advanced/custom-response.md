@@ -8,9 +8,9 @@ Mas se você retornar uma `Response` diretamente (ou qualquer subclasse, como `J
 
 Mas você também pode declarar a `Response` que você deseja utilizar (e.g. qualquer subclasse de `Response`), em um *decorador de operação de rota* utilizando o parâmetro `response_class`.
 
-Os conteúdos que você retorna em sua *função de operador de rota* serão colocados dentro dessa `Response`.
+Os conteúdos que você retorna em sua *função de operação de rota* serão colocados dentro dessa `Response`.
 
-E se a `Response` tiver um media type JSON (`application/json`), como é o caso com `JSONResponse` e `UJSONResponse`, os dados que você retornar serão automaticamente convertidos (e filtrados) com qualquer `response_model` do Pydantic que for declarado em sua *função de operador de rota*.
+E se a `Response` tiver um media type JSON (`application/json`), como é o caso com `JSONResponse` e `UJSONResponse`, os dados que você retornar serão automaticamente convertidos (e filtrados) com qualquer `response_model` do Pydantic que for declarado no decorador de operação de rota.
 
 /// note | Nota
 
@@ -214,13 +214,13 @@ Você também pode utilizar o parâmetro `status_code` combinado com o parâmetr
 
 ### `StreamingResponse` { #streamingresponse }
 
-Recebe uma gerador assíncrono ou um gerador/iterador comum e retorna o corpo da requisição continuamente (stream).
+Recebe um gerador assíncrono ou um gerador/iterador comum e retorna o corpo da resposta de forma contínua (stream).
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
 #### Utilizando `StreamingResponse` com objetos semelhantes a arquivos { #using-streamingresponse-with-file-like-objects }
 
-Se você tiver um objeto semelhante a um arquivo (e.g. o objeto retornado por `open()`), você pode criar uma função geradora para iterar sobre esse objeto.
+Se você tiver um objeto <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">semelhante a um arquivo</a> (e.g. o objeto retornado por `open()`), você pode criar uma função geradora para iterar sobre esse objeto.
 
 Dessa forma, você não precisa ler todo o arquivo na memória primeiro, e você pode passar essa função geradora para `StreamingResponse` e retorná-la.
 
@@ -229,7 +229,7 @@ Isso inclui muitas bibliotecas que interagem com armazenamento em nuvem, process
 {* ../../docs_src/custom_response/tutorial008.py hl[2,10:12,14] *}
 
 1. Essa é a função geradora. É definida como "função geradora" porque contém declarações `yield` nela.
-2. Ao utilizar o bloco `with`, nós garantimos que o objeto semelhante a um arquivo é fechado após a função geradora ser finalizada. Isto é, após a resposta terminar de ser enivada.
+2. Ao utilizar o bloco `with`, nós garantimos que o objeto semelhante a um arquivo é fechado após a função geradora ser finalizada. Isto é, após a resposta terminar de ser enviada.
 3. Essa declaração `yield from` informa a função para iterar sobre essa coisa nomeada de `file_like`. E então, para cada parte iterada, fornece essa parte como se viesse dessa função geradora (`iterfile`).
 
     Então, é uma função geradora que transfere o trabalho de "geração" para alguma outra coisa interna.
@@ -271,7 +271,7 @@ Por exemplo, vamos supor que você queira utilizar o <a href="https://github.com
 
 Vamos supor também que você queira retornar um JSON indentado e formatado, então você quer utilizar a opção `orjson.OPT_INDENT_2` do orjson.
 
-Você poderia criar uma classe `CustomORJSONResponse`. A principal coisa a ser feita é sobrecarregar o método render da classe Response, `Response.render(content)`, que retorna o conteúdo em bytes, para retornar o conteúdo que você deseja:
+Você poderia criar uma classe `CustomORJSONResponse`. A principal coisa a ser feita é sobrecarregar o método render da classe Response, `Response.render(content)`, que retorna o conteúdo em bytes:
 
 {* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
