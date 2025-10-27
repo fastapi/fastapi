@@ -14,3 +14,9 @@ You might want to try their services and follow their guides:
 
 * <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
 * <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>
+
+## Other Providers { #other-providers }
+
+Additional cloud providers that support FastAPI deployment:
+
+* <a href="https://seenode.com/docs/frameworks/python/fastapi/?utm_source=docs&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Seenode</a>
