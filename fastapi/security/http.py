@@ -81,9 +81,9 @@ class HTTPBase(SecurityBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, request: HTTPConnection
+        self, conn: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -186,9 +186,9 @@ class HTTPBasic(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(  # type: ignore
-        self, request: HTTPConnection
+        self, conn: HTTPConnection
     ) -> Optional[HTTPBasicCredentials]:
-        authorization = request.headers.get("Authorization")
+        authorization = conn.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if self.realm:
             unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
@@ -300,9 +300,9 @@ class HTTPBearer(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, request: HTTPConnection
+        self, conn: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -402,9 +402,9 @@ class HTTPDigest(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, request: HTTPConnection
+        self, conn: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
-        authorization = request.headers.get("Authorization")
+        authorization = conn.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
