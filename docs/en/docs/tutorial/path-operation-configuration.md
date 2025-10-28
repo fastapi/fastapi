@@ -105,3 +105,14 @@ Check how deprecated and non-deprecated *path operations* look like:
 ## Recap { #recap }
 
 You can configure and add metadata for your *path operations* easily by passing parameters to the *path operation decorators*.
+
+
+## Recap { #recap }
+
+You can configure and add metadata for your *path operations* easily by passing parameters to the *path operation decorators*.
+
+
+!!! note
+    FastAPI supports all standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`.
+    Methods like `QUERY` are **not part of the official HTTP specification** (see RFC 9110) and therefore are not supported.
+    If you need query-like behavior, use `GET` with query parameters or design an appropriate API route.
