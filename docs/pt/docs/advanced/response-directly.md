@@ -50,7 +50,7 @@ O exemplo acima mostra todas as partes que você precisa, mas ainda não é muit
 
 Agora, vamos ver como você pode usar isso para retornar uma resposta personalizada.
 
-Vamos dizer quer retornar uma resposta <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
+Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
@@ -60,7 +60,6 @@ Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`,
 
 Quando você retorna uma `Response` diretamente os dados não são validados, convertidos (serializados) ou documentados automaticamente.
 
-Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI
-](additional-responses.md){.internal-link target=_blank}.
+Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 Você pode ver nas próximas seções como usar/declarar essas `Responses` customizadas enquanto mantém a conversão e documentação automática dos dados.
