@@ -7,6 +7,22 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump actions/download-artifact from 5 to 6. PR [#14236](https://github.com/fastapi/fastapi/pull/14236) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14237](https://github.com/fastapi/fastapi/pull/14237) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump actions/upload-artifact from 4 to 5. PR [#14235](https://github.com/fastapi/fastapi/pull/14235) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.120.1
+
+### Upgrades
+
+* ⬆️ Bump Starlette to <`0.50.0`. PR [#14234](https://github.com/fastapi/fastapi/pull/14234) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔧 Add `license` and `license-files` to `pyproject.toml`, remove `License` from `classifiers`. PR [#14230](https://github.com/fastapi/fastapi/pull/14230) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.120.0
 
 There are no major nor breaking changes in this release. ☕️
