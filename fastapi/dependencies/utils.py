@@ -930,8 +930,9 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
+    processed_fields = {field.alias for field in body_fields}
     for key, value in received_body.items():
-        if key not in values:
+        if key not in processed_fields and key not in values:
             values[key] = value
     return values
 
