@@ -763,10 +763,16 @@ class File(Form):  # type: ignore[misc]
 
 class Depends:
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
+        use_cache: bool = True,
+        parallelizable: Optional[bool] = None,
     ):
         self.dependency = dependency
         self.use_cache = use_cache
+        # None means: use application default at resolution time
+        self.parallelizable = parallelizable
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
@@ -781,6 +787,9 @@ class Security(Depends):
         *,
         scopes: Optional[Sequence[str]] = None,
         use_cache: bool = True,
+        parallelizable: Optional[bool] = None,
     ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
+        super().__init__(
+            dependency=dependency, use_cache=use_cache, parallelizable=parallelizable
+        )
         self.scopes = scopes or []

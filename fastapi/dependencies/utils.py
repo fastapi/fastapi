@@ -1,5 +1,7 @@
+import asyncio
 import inspect
 import sys
+from asyncio import Future
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -175,6 +177,7 @@ def get_sub_dependant(
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        parallelizable=depends.parallelizable,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
@@ -202,6 +205,7 @@ def get_flat_dependant(
         body_params=dependant.body_params.copy(),
         security_requirements=dependant.security_requirements.copy(),
         use_cache=dependant.use_cache,
+        parallelizable=dependant.parallelizable,
         path=dependant.path,
     )
     for sub_dependant in dependant.dependencies:
@@ -281,6 +285,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    parallelizable: Optional[bool] = None,
 ) -> Dependant:
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -291,6 +296,7 @@ def get_dependant(
         path=path,
         security_scopes=security_scopes,
         use_cache=use_cache,
+        parallelizable=parallelizable,
     )
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
@@ -604,6 +610,42 @@ class SolvedDependency:
     dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
 
 
+class DependencySolveException(Exception):
+    def __init__(self, errors: List[Any]):
+        super().__init__(str(errors))
+        self.errors = errors
+
+
+def is_context_sensitive(dependant: Dependant, *, default_parallelizable: bool) -> bool:
+    effective_parallelizable = (
+        default_parallelizable
+        if dependant.parallelizable is None
+        else dependant.parallelizable
+    )
+    if effective_parallelizable is False or (
+        dependant.call is not None
+        and (is_gen_callable(dependant.call) or is_async_gen_callable(dependant.call))
+    ):
+        return True
+    return any(
+        is_context_sensitive(sub, default_parallelizable=default_parallelizable)
+        for sub in dependant.dependencies
+    )
+
+
+def is_context_with_background_task(dependant: Dependant) -> bool:
+    if dependant.background_tasks_param_name:
+        return True
+    return any(is_context_with_background_task(sub) for sub in dependant.dependencies)
+
+
+def silence_future_exception(fut: "Future[Any]") -> None:
+    try:
+        fut.exception()
+    except BaseException:
+        pass  # Silences the warning
+
+
 async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
@@ -618,20 +660,26 @@ async def solve_dependencies(
 ) -> SolvedDependency:
     values: Dict[str, Any] = {}
     errors: List[Any] = []
+
     if response is None:
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
+
     if dependency_cache is None:
         dependency_cache = {}
-    sub_dependant: Dependant
-    for sub_dependant in dependant.dependencies:
+
+    if background_tasks is None and is_context_with_background_task(dependant):
+        background_tasks = BackgroundTasks()
+
+    async def resolve_sub_dependant(
+        sub_dependant: Dependant,
+    ) -> Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
+        cache_key = cast(Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key)
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
+
         if (
             dependency_overrides_provider
             and dependency_overrides_provider.dependency_overrides
@@ -646,37 +694,127 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                parallelizable=sub_dependant.parallelizable,
             )
 
-        solved_result = await solve_dependencies(
-            request=request,
-            dependant=use_sub_dependant,
-            body=body,
-            background_tasks=background_tasks,
-            response=response,
-            dependency_overrides_provider=dependency_overrides_provider,
-            dependency_cache=dependency_cache,
-            async_exit_stack=async_exit_stack,
-            embed_body_fields=embed_body_fields,
-        )
-        background_tasks = solved_result.background_tasks
-        if solved_result.errors:
-            errors.extend(solved_result.errors)
-            continue
-        if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
-            solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            solved = await solve_generator(
-                call=call, stack=async_exit_stack, sub_values=solved_result.values
+        def resolve_cached() -> Optional["Future[Any]"]:
+            if not sub_dependant.use_cache:
+                return None
+
+            if cache_key not in dependency_cache:
+                future = asyncio.get_event_loop().create_future()
+                # Ensures ignored exceptions are not logged with warning, as we only raise the first one.
+                future.add_done_callback(silence_future_exception)
+                dependency_cache[cache_key] = future
+                return None
+
+            cached = dependency_cache[cache_key]
+
+            if isinstance(cached, Future):
+                return cached
+
+            future = Future()
+            future.set_result(cached)
+            return future
+
+        async def resolve_value() -> Any:
+            solved_result = await solve_dependencies(
+                request=request,
+                dependant=use_sub_dependant,
+                body=body,
+                background_tasks=background_tasks,
+                response=response,
+                dependency_overrides_provider=dependency_overrides_provider,
+                dependency_cache=dependency_cache,
+                async_exit_stack=async_exit_stack,
+                embed_body_fields=embed_body_fields,
             )
-        elif is_coroutine_callable(call):
-            solved = await call(**solved_result.values)
+
+            if solved_result.errors:
+                raise DependencySolveException(solved_result.errors)
+
+            if is_gen_callable(call) or is_async_gen_callable(call):
+                return await solve_generator(
+                    call=call,
+                    stack=async_exit_stack,
+                    sub_values=solved_result.values,
+                )
+            elif is_coroutine_callable(call):
+                return await call(**solved_result.values)
+            else:
+                return await run_in_threadpool(call, **solved_result.values)
+
+        task = resolve_cached() or resolve_value()
+
+        def ensure_cache(value: Optional[Any]) -> None:
+            if (
+                cache_key not in dependency_cache
+                or not isinstance(dependency_cache[cache_key], Future)
+                or dependency_cache[cache_key].done()
+            ):
+                return
+
+            if isinstance(value, BaseException):
+                dependency_cache[cache_key].set_exception(value)
+            else:
+                dependency_cache[cache_key].set_result(value)
+
+        try:
+            resolved = await task
+        except DependencySolveException as exc:
+            ensure_cache(None)
+            return sub_dependant.name, None, exc.errors, None
+        except BaseException as resolution_exc:
+            ensure_cache(resolution_exc)
+            return sub_dependant.name, None, None, resolution_exc
+
+        ensure_cache(resolved)
+        return sub_dependant.name, resolved, None, None
+
+    def unpack_results(
+        results: List[
+            Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+        ],
+    ) -> None:
+        for name, value, sub_errors, sub_exception in results:
+            # Ensures order of exception based on dependency order.
+            if sub_exception:
+                raise sub_exception
+            if sub_errors:
+                errors.extend(sub_errors)
+                continue
+            if name is not None:
+                values[name] = value
+
+    app = request.app
+    default_parallelizable = bool(getattr(app, "depends_default_parallelizable", False))
+
+    sequential_deps = []
+    parallel_deps = []
+    for sub in dependant.dependencies:
+        if is_context_sensitive(sub, default_parallelizable=default_parallelizable):
+            sequential_deps.append(sub)
         else:
-            solved = await run_in_threadpool(call, **solved_result.values)
-        if sub_dependant.name is not None:
-            values[sub_dependant.name] = solved
-        if sub_dependant.cache_key not in dependency_cache:
-            dependency_cache[sub_dependant.cache_key] = solved
+            parallel_deps.append(sub)
+
+    sequential_results: List[
+        Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+    ] = []
+    for sub in sequential_deps:
+        s_result = await resolve_sub_dependant(sub)
+        sequential_results.append(s_result)
+    unpack_results(sequential_results)
+
+    parallel_results: List[
+        Tuple[Optional[str], Any, Optional[List[Any]], Optional[BaseException]]
+    ] = []
+    if parallel_deps:
+        p_result = await asyncio.gather(
+            *[resolve_sub_dependant(sub) for sub in parallel_deps]
+        )
+        parallel_results.extend(p_result)
+    unpack_results(parallel_results)
+
     path_values, path_errors = request_params_to_args(
         dependant.path_params, request.path_params
     )
@@ -694,17 +832,19 @@ async def solve_dependencies(
     values.update(header_values)
     values.update(cookie_values)
     errors += path_errors + query_errors + header_errors + cookie_errors
+
     if dependant.body_params:
         (
             body_values,
             body_errors,
-        ) = await request_body_to_args(  # body_params checked above
+        ) = await request_body_to_args(
             body_fields=dependant.body_params,
             received_body=body,
             embed_body_fields=embed_body_fields,
         )
         values.update(body_values)
         errors.extend(body_errors)
+
     if dependant.http_connection_param_name:
         values[dependant.http_connection_param_name] = request
     if dependant.request_param_name and isinstance(request, Request):
@@ -712,8 +852,6 @@ async def solve_dependencies(
     elif dependant.websocket_param_name and isinstance(request, WebSocket):
         values[dependant.websocket_param_name] = request
     if dependant.background_tasks_param_name:
-        if background_tasks is None:
-            background_tasks = BackgroundTasks()
         values[dependant.background_tasks_param_name] = background_tasks
     if dependant.response_param_name:
         values[dependant.response_param_name] = response
@@ -721,6 +859,7 @@ async def solve_dependencies(
         values[dependant.security_scopes_param_name] = SecurityScopes(
             scopes=dependant.security_scopes
         )
+
     return SolvedDependency(
         values=values,
         errors=errors,
