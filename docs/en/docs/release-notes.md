@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix separation of schemas with nested models introduced in 0.119.0. PR [#14246](https://github.com/fastapi/fastapi/pull/14246) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ⬆ Bump actions/download-artifact from 5 to 6. PR [#14236](https://github.com/fastapi/fastapi/pull/14236) by [@dependabot[bot]](https://github.com/apps/dependabot).
