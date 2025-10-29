@@ -6,6 +6,8 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
 
+from tests.utils import pydantic_snapshot
+
 
 class MessageEventType(str, Enum):
     alpha = "alpha"
@@ -112,21 +114,47 @@ def test_openapi_schema():
                     },
                     "MessageEvent": {
                         "properties": {
-                            "event_type": {
-                                "$ref": "#/components/schemas/MessageEventType",
-                                "default": "alpha",
-                            },
+                            "event_type": pydantic_snapshot(
+                                v2=snapshot(
+                                    {
+                                        "$ref": "#/components/schemas/MessageEventType",
+                                        "default": "alpha",
+                                    }
+                                ),
+                                v1=snapshot(
+                                    {
+                                        "allOf": [
+                                            {
+                                                "$ref": "#/components/schemas/MessageEventType"
+                                            }
+                                        ],
+                                        "default": "alpha",
+                                    }
+                                ),
+                            ),
                             "output": {"type": "string", "title": "Output"},
                         },
                         "type": "object",
                         "required": ["output"],
                         "title": "MessageEvent",
                     },
-                    "MessageEventType": {
-                        "type": "string",
-                        "enum": ["alpha", "beta"],
-                        "title": "MessageEventType",
-                    },
+                    "MessageEventType": pydantic_snapshot(
+                        v2=snapshot(
+                            {
+                                "type": "string",
+                                "enum": ["alpha", "beta"],
+                                "title": "MessageEventType",
+                            }
+                        ),
+                        v1=snapshot(
+                            {
+                                "type": "string",
+                                "enum": ["alpha", "beta"],
+                                "title": "MessageEventType",
+                                "description": "An enumeration.",
+                            }
+                        ),
+                    ),
                     "MessageOutput": {
                         "properties": {
                             "body": {"type": "string", "title": "Body", "default": ""},
