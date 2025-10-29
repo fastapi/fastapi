@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import List
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -18,7 +19,7 @@ class MessageEvent(BaseModel):
 
 class MessageOutput(BaseModel):
     body: str = ""
-    events: list[MessageEvent] = []
+    events: List[MessageEvent] = []
 
 
 class Message(BaseModel):
