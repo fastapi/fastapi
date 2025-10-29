@@ -125,23 +125,6 @@ def ensure_multipart_is_installed() -> None:
             raise RuntimeError(multipart_not_installed_error) from None
 
 
-def get_param_sub_dependant(
-    *,
-    param_name: str,
-    depends: params.Depends,
-    path: str,
-    security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    assert depends.dependency
-    return get_sub_dependant(
-        depends=depends,
-        dependency=depends.dependency,
-        path=path,
-        name=param_name,
-        security_scopes=security_scopes,
-    )
-
-
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
@@ -282,9 +265,6 @@ def get_dependant(
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
-    path_param_names = get_path_param_names(path)
-    endpoint_signature = get_typed_signature(call)
-    signature_params = endpoint_signature.parameters
     dependant = Dependant(
         call=call,
         name=name,
@@ -292,6 +272,9 @@ def get_dependant(
         security_scopes=security_scopes,
         use_cache=use_cache,
     )
+    path_param_names = get_path_param_names(path)
+    endpoint_signature = get_typed_signature(call)
+    signature_params = endpoint_signature.parameters
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -301,10 +284,12 @@ def get_dependant(
             is_path_param=is_path_param,
         )
         if param_details.depends is not None:
-            sub_dependant = get_param_sub_dependant(
-                param_name=param_name,
+            assert param_details.depends.dependency
+            sub_dependant = get_sub_dependant(
                 depends=param_details.depends,
+                dependency=param_details.depends.dependency,
                 path=path,
+                name=param_name,
                 security_scopes=security_scopes,
             )
             dependant.dependencies.append(sub_dependant)
