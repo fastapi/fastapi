@@ -1,3 +1,7 @@
+# Test with parts from, and to verify the report in:
+# https://github.com/fastapi/fastapi/discussions/14177
+# Made an issue in:
+# https://github.com/fastapi/fastapi/issues/14247
 from enum import Enum
 from typing import List
 
