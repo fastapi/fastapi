@@ -43,6 +43,15 @@ async def create_message(input_message: str) -> Message:
 client = TestClient(app)
 
 
+def test_create_message():
+    response = client.post("/messages", params={"input_message": "Hello"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "input": "Hello",
+        "output": {"body": "Processed: Hello", "events": []},
+    }
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
