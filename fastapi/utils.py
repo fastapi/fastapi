@@ -59,8 +59,17 @@ def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
 
 
 def get_path_param_names(path: str) -> Set[str]:
+    """
+    Extract path parameter names from a FastAPI route path string.
+    
+    Args:
+        path (str): The route path (e.g., '/items/{item_id}/comments/{comment_id}').
+        
+    Returns:
+        Set[str]: A set of parameter names found in the path.
+    """
     return set(re.findall("{(.*?)}", path))
-
+    
 
 _invalid_args_message = (
     "Invalid args for response field! Hint: "
@@ -219,6 +228,16 @@ def generate_unique_id(route: "APIRoute") -> str:
 
 
 def deep_dict_update(main_dict: Dict[Any, Any], update_dict: Dict[Any, Any]) -> None:
+    """
+    Recursively update the contents of a dictionary with another dictionary.
+    
+    Args:
+        main_dict (Dict[Any, Any]): The dictionary to update in-place.
+        update_dict (Dict[Any, Any]): The dictionary to update from.
+
+    Returns:
+        None
+    """
     for key, value in update_dict.items():
         if (
             key in main_dict
