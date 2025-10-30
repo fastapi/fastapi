@@ -129,39 +129,12 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
     )
-    return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
-
-
-def get_sub_dependant(
-    *,
-    depends: params.Depends,
-    dependency: Callable[..., Any],
-    path: str,
-    name: Optional[str] = None,
-    security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    security_requirement = None
-    security_scopes = security_scopes or []
-    if isinstance(depends, params.Security):
-        if depends.scopes:
-            security_scopes.extend(depends.scopes)
-    if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
-        security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=use_scopes
-        )
-    sub_dependant = get_dependant(
-        path=path,
-        call=dependency,
-        name=name,
-        security_scopes=security_scopes,
-        use_cache=depends.use_cache,
+    use_security_scopes: List[str] = []
+    if isinstance(depends, params.Security) and depends.scopes:
+        use_security_scopes.extend(depends.scopes)
+    return get_dependant(
+        path=path, call=depends.dependency, security_scopes=use_security_scopes
     )
-    if security_requirement:
-        sub_dependant.security_requirements.append(security_requirement)
-    return sub_dependant
 
 
 CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
@@ -285,13 +258,27 @@ def get_dependant(
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
-            sub_dependant = get_sub_dependant(
-                depends=param_details.depends,
-                dependency=param_details.depends.dependency,
+            use_security_scopes = security_scopes or []
+            if isinstance(param_details.depends, params.Security):
+                if param_details.depends.scopes:
+                    use_security_scopes.extend(param_details.depends.scopes)
+            sub_dependant = get_dependant(
                 path=path,
+                call=param_details.depends.dependency,
                 name=param_name,
-                security_scopes=security_scopes,
+                security_scopes=use_security_scopes,
+                use_cache=param_details.depends.use_cache,
             )
+            if isinstance(param_details.depends.dependency, SecurityBase):
+                use_scopes: List[str] = []
+                if isinstance(
+                    param_details.depends.dependency, (OAuth2, OpenIdConnect)
+                ):
+                    use_scopes = use_security_scopes
+                security_requirement = SecurityRequirement(
+                    security_scheme=param_details.depends.dependency, scopes=use_scopes
+                )
+                sub_dependant.security_requirements.append(security_requirement)
             dependant.dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
