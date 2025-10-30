@@ -153,6 +153,7 @@ class DependencyScopeError(FastAPIError):
     (narrower) scope.
     """
 
+
 class ValidationException(Exception):
     def __init__(self, errors: Sequence[Any]) -> None:
         self._errors = errors

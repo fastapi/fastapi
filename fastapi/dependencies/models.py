@@ -33,7 +33,9 @@ class Dependant:
     use_cache: bool = True
     path: Optional[str] = None
     scope: Literal["function", "request"] = "request"
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str] = field(init=False)
+    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str] = field(
+        init=False
+    )
 
     def __post_init__(self) -> None:
         self.cache_key = (
