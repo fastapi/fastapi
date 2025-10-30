@@ -55,6 +55,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
@@ -74,7 +75,7 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import Annotated, Literal, get_args, get_origin
 
 from .. import temp_pydantic_v1_params
 
@@ -133,7 +134,10 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     if isinstance(depends, params.Security) and depends.scopes:
         use_security_scopes.extend(depends.scopes)
     return get_dependant(
-        path=path, call=depends.dependency, security_scopes=use_security_scopes
+        path=path,
+        call=depends.dependency,
+        security_scopes=use_security_scopes,
+        scope=depends.scope,
     )
 
 
@@ -237,6 +241,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    scope: Literal["function", "request"] = "request",
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -244,6 +249,7 @@ def get_dependant(
         path=path,
         security_scopes=security_scopes,
         use_cache=use_cache,
+        scope=scope,
     )
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -258,6 +264,12 @@ def get_dependant(
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
+            if dependant.scope == "request":
+                if param_details.depends.scope == "function":
+                    raise DependencyScopeError(
+                        f'The dependency {dependant} has a scope of "request", it'
+                        'cannot depend on dependencies with scope "function".'
+                    )
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
                 if param_details.depends.scopes:
@@ -268,6 +280,7 @@ def get_dependant(
                 name=param_name,
                 security_scopes=use_security_scopes,
                 use_cache=param_details.depends.use_cache,
+                scope=param_details.depends.scope,
             )
             if isinstance(param_details.depends.dependency, SecurityBase):
                 use_scopes: List[str] = []
@@ -585,9 +598,19 @@ async def solve_dependencies(
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
     dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    # TODO: remove this parameter later, no longer used, not removing it yet as some
+    # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
 ) -> SolvedDependency:
+    request_astack = request.scope.get("fastapi_inner_astack")
+    assert isinstance(request_astack, AsyncExitStack), (
+        "fastapi_inner_astack not found in request scope"
+    )
+    function_astack = request.scope.get("fastapi_function_astack")
+    assert isinstance(function_astack, AsyncExitStack), (
+        "fastapi_function_astack not found in request scope"
+    )
     values: Dict[str, Any] = {}
     errors: List[Any] = []
     if response is None:
@@ -596,7 +619,6 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
-    sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         sub_dependant.cache_key = cast(
@@ -618,6 +640,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                scope=sub_dependant.scope,
             )
 
         solved_result = await solve_dependencies(
@@ -638,8 +661,11 @@ async def solve_dependencies(
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
         elif is_gen_callable(call) or is_async_gen_callable(call):
+            use_astack = request_astack
+            if sub_dependant.scope == "function":
+                use_astack = function_astack
             solved = await solve_generator(
-                call=call, stack=async_exit_stack, sub_values=solved_result.values
+                call=call, stack=use_astack, sub_values=solved_result.values
             )
         elif is_coroutine_callable(call):
             solved = await call(**solved_result.values)
