@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.120.3
+
 ### Refactors
 
 * ♻️ Reduce internal cyclic recursion in dependencies, from 2 functions calling each other to 1 calling itself. PR [#14256](https://github.com/fastapi/fastapi/pull/14256) by [@tiangolo](https://github.com/tiangolo).
