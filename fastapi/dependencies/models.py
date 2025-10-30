@@ -3,6 +3,7 @@ from typing import Any, Callable, List, Optional, Sequence, Tuple
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
+from typing_extensions import Literal
 
 
 @dataclass
@@ -31,7 +32,12 @@ class Dependant:
     security_scopes: Optional[List[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
+    scope: Literal["function", "request"] = "request"
+    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str] = field(init=False)
 
     def __post_init__(self) -> None:
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+        self.cache_key = (
+            self.call,
+            tuple(sorted(set(self.security_scopes or []))),
+            self.scope,
+        )
