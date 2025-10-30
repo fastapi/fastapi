@@ -88,7 +88,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 「_**FastAPI** 让我兴奋的欣喜若狂。它太棒了！_」
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 播客主持人</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 播客主持人</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -102,7 +102,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 「_我们已经将 **API** 服务切换到了 **FastAPI** [...] 我认为你会喜欢它的 [...]_」
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 创始人 - <a href="https://spacy.io" target="_blank">spaCy</a> 作者</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 创始人 - <a href="https://spacy.io" target="_blank">spaCy</a> 作者</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -120,7 +120,7 @@ Python 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
 
 ## 安装
@@ -135,7 +135,7 @@ $ pip install fastapi
 
 </div>
 
-你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
+你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -459,7 +459,7 @@ item: Item
 
 用于 FastAPI / Starlette：
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse` 时安装。
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 时安装。
 

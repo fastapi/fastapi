@@ -1,12 +1,12 @@
-# Testing
+# Testing { #testing }
 
-Thanks to <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
+Thanks to <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testing **FastAPI** applications is easy and enjoyable.
 
 It is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, which in turn is designed based on Requests, so it's very familiar and intuitive.
 
 With it, you can use <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> directly with **FastAPI**.
 
-## Using `TestClient`
+## Using `TestClient` { #using-testclient }
 
 /// info
 
@@ -56,13 +56,13 @@ If you want to call `async` functions in your tests apart from sending requests 
 
 ///
 
-## Separating tests
+## Separating tests { #separating-tests }
 
 In a real application, you probably would have your tests in a different file.
 
 And your **FastAPI** application might also be composed of several files/modules, etc.
 
-### **FastAPI** app file
+### **FastAPI** app file { #fastapi-app-file }
 
 Let's say you have a file structure as described in [Bigger Applications](bigger-applications.md){.internal-link target=_blank}:
 
@@ -78,7 +78,7 @@ In the file `main.py` you have your **FastAPI** app:
 
 {* ../../docs_src/app_testing/main.py *}
 
-### Testing file
+### Testing file { #testing-file }
 
 Then you could have a file `test_main.py` with your tests. It could live on the same Python package (the same directory with a `__init__.py` file):
 
@@ -97,11 +97,11 @@ Because this file is in the same package, you can use relative imports to import
 
 ...and have the code for the tests just like before.
 
-## Testing: extended example
+## Testing: extended example { #testing-extended-example }
 
 Now let's extend this example and add more details to see how to test different parts.
 
-### Extended **FastAPI** app file
+### Extended **FastAPI** app file { #extended-fastapi-app-file }
 
 Let's continue with the same file structure as before:
 
@@ -173,7 +173,7 @@ Prefer to use the `Annotated` version if possible.
 
 ////
 
-### Extended testing file
+### Extended testing file { #extended-testing-file }
 
 You could then update `test_main.py` with the extended tests:
 
@@ -202,7 +202,7 @@ If you have a Pydantic model in your test and you want to send its data to the a
 
 ///
 
-## Run it
+## Run it { #run-it }
 
 After that, you just need to install `pytest`.
 

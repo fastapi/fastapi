@@ -87,7 +87,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 "_👤 🤭 🌕 😄 🔃 **FastAPI**. ⚫️ 🎊 ❗_"
 
-<div style="text-align: right; margin-right: 10%;">✡ 🇭🇰 - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">🐍 🔢</a> 📻 🦠</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">✡ 🇭🇰 - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">🐍 🔢</a> 📻 🦠</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -101,7 +101,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 "_👥 ✔️ 🎛 🤭 **FastAPI** 👆 **🔗** [...] 👤 💭 👆 🔜 💖 ⚫️ [...]_"
 
-<div style="text-align: right; margin-right: 10%;">🇱🇨 🇸🇲 - ✡ Honnibal - <strong><a href="https://explosion.ai" target="_blank">💥 👲</a> 🕴 - <a href="https://spacy.io" target="_blank">🌈</a> 👼</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(🇦🇪)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(🇦🇪)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">🇱🇨 🇸🇲 - ✡ Honnibal - <strong><a href="https://explosion.ai" target="_blank">💥 👲</a> 🕴 - <a href="https://spacy.io" target="_blank">🌈</a> 👼</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(🇦🇪)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(🇦🇪)</small></a></div>
 
 ---
 
@@ -125,7 +125,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 FastAPI 🧍 🔛 ⌚ 🐘:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🕸 🍕.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">💃</a> 🕸 🍕.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
 
 ## 👷‍♂
@@ -140,7 +140,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-👆 🔜 💪 🔫 💽, 🏭 ✅ <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ⚖️ <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+👆 🔜 💪 🔫 💽, 🏭 ✅ <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> ⚖️ <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -463,7 +463,7 @@ item: Item
 
 ⚙️ FastAPI / 💃:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 

@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Optional, Union, cast
 
+from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
@@ -10,7 +11,7 @@ from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -85,11 +86,11 @@ class OAuth2PasswordRequestForm:
         ],
         password: Annotated[
             str,
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],
@@ -130,7 +131,7 @@ class OAuth2PasswordRequestForm:
         ] = None,
         client_secret: Annotated[
             Union[str, None],
-            Form(),
+            Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
                 If there's a `client_password` (and a `client_id`), they can be sent
@@ -243,7 +244,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],
@@ -457,11 +458,26 @@ class OAuth2PasswordBearer(OAuth2):
                 """
             ),
         ] = True,
+        refreshUrl: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The URL to refresh the token and obtain a new one.
+                """
+            ),
+        ] = None,
     ):
         if not scopes:
             scopes = {}
         flows = OAuthFlowsModel(
-            password=cast(Any, {"tokenUrl": tokenUrl, "scopes": scopes})
+            password=cast(
+                Any,
+                {
+                    "tokenUrl": tokenUrl,
+                    "refreshUrl": refreshUrl,
+                    "scopes": scopes,
+                },
+            )
         )
         super().__init__(
             flows=flows,

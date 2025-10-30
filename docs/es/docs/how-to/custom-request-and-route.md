@@ -66,7 +66,7 @@ El `dict` `scope` y la función `receive` son ambos parte de la especificación 
 
 Y esas dos cosas, `scope` y `receive`, son lo que se necesita para crear una nueva *Request instance*.
 
-Para aprender más sobre el `Request`, revisa <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">la documentación de Starlette sobre Requests</a>.
+Para aprender más sobre el `Request`, revisa <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">la documentación de Starlette sobre Requests</a>.
 
 ///
 

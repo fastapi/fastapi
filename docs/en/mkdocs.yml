@@ -201,6 +201,7 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -289,42 +290,20 @@ markdown_extensions:
   mdx_include: null
   markdown_include_variants: null
 extra:
-  analytics:
-    provider: google
-    property: G-YNEVN69SC3
-    feedback:
-      title: Was this page helpful?
-      ratings:
-      - icon: material/emoticon-happy-outline
-        name: This page was helpful
-        data: 1
-        note: Thanks for your feedback!
-      - icon: material/emoticon-sad-outline
-        name: This page could be improved
-        data: 0
-        note: Thanks for your feedback!
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/fastapi/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/fastapi
+    link: https://x.com/fastapi
   - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/tiangolo
-  - icon: fontawesome/brands/dev
-    link: https://dev.to/tiangolo
-  - icon: fontawesome/brands/medium
-    link: https://medium.com/@tiangolo
+    link: https://www.linkedin.com/company/fastapi
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /bn/
-    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
@@ -333,22 +312,10 @@ extra:
     name: fa - فارسی
   - link: /fr/
     name: fr - français
-  - link: /he/
-    name: he - עברית
-  - link: /hu/
-    name: hu - magyar
-  - link: /id/
-    name: id - Bahasa Indonesia
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /nl/
-    name: nl - Nederlands
-  - link: /pl/
-    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -357,12 +324,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /ur/
-    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
-  - link: /yo/
-    name: yo - Yorùbá
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
