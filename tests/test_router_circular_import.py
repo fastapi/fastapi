@@ -7,5 +7,5 @@ def test_router_circular_import():
     router = APIRouter()
 
     app.include_router(router)
-    with pytest.raises(AssertionError, match="Router cannot be the same as parent"):
+    with pytest.raises(AssertionError, match="Cannot include router into itself"):
         router.include_router(router)
