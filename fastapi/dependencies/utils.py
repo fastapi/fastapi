@@ -129,7 +129,7 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
     )
-    use_security_scopes = []
+    use_security_scopes: List[str] = []
     if isinstance(depends, params.Security) and depends.scopes:
         use_security_scopes.extend(depends.scopes)
     return get_dependant(
