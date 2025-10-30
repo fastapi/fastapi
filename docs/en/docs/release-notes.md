@@ -7,6 +7,11 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Refactor internals of dependencies, simplify code and remove `get_param_sub_dependant`. PR [#14255](https://github.com/fastapi/fastapi/pull/14255) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor internals of dependencies, simplify using dataclasses. PR [#14254](https://github.com/fastapi/fastapi/pull/14254) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.120.2
 
 ### Fixes
