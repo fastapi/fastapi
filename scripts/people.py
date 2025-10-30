@@ -119,6 +119,7 @@ class Settings(BaseSettings):
     github_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
+    sleep_interval: int = 5
 
 
 def get_graphql_response(
@@ -184,7 +185,7 @@ def get_discussion_nodes(settings: Settings) -> list[DiscussionsNode]:
             discussion_nodes.append(discussion_edge.node)
         last_edge = discussion_edges[-1]
         # Handle GitHub secondary rate limits, requests per minute
-        time.sleep(5)
+        time.sleep(settings.sleep_interval)
         discussion_edges = get_graphql_question_discussion_edges(
             settings=settings, after=last_edge.cursor
         )

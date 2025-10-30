@@ -83,7 +83,7 @@
 
 ## 安装自定义异常处理器
 
-添加自定义处理器，要使用 [Starlette 的异常工具](https://www.starlette.io/exceptions/)。
+添加自定义处理器，要使用 [Starlette 的异常工具](https://www.starlette.dev/exceptions/)。
 
 假设要触发的自定义异常叫作 `UnicornException`。
 

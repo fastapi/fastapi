@@ -147,7 +147,7 @@ FastAPI має розумні налаштування **за замовчува
 
 ## Можливості Starlette
 
-**FastAPI** повністю сумісний із (та побудований на основі) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Тому будь-який додатковий код Starlette, який ви маєте, також працюватиме.
+**FastAPI** повністю сумісний із (та побудований на основі) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Тому будь-який додатковий код Starlette, який ви маєте, також працюватиме.
 
 **FastAPI** фактично є підкласом **Starlette**. Тому, якщо ви вже знайомі зі Starlette або використовуєте його, більшість функціональності працюватиме так само.
 

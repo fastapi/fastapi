@@ -1,4 +1,4 @@
-# First Steps
+# First Steps { #first-steps }
 
 The simplest FastAPI file could look like this:
 
@@ -56,7 +56,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 That line shows the URL where your app is being served, in your local machine.
 
-### Check it
+### Check it { #check-it }
 
 Open your browser at <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
@@ -66,7 +66,7 @@ You will see the JSON response as:
 {"message": "Hello World"}
 ```
 
-### Interactive API docs
+### Interactive API docs { #interactive-api-docs }
 
 Now go to <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -74,7 +74,7 @@ You will see the automatic interactive API documentation (provided by <a href="h
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternative API docs
+### Alternative API docs { #alternative-api-docs }
 
 And now, go to <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -82,31 +82,31 @@ You will see the alternative automatic documentation (provided by <a href="https
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+### OpenAPI { #openapi }
 
 **FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
 
-#### "Schema"
+#### "Schema" { #schema }
 
 A "schema" is a definition or description of something. Not the code that implements it, but just an abstract description.
 
-#### API "schema"
+#### API "schema" { #api-schema }
 
 In this case, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> is a specification that dictates how to define a schema of your API.
 
 This schema definition includes your API paths, the possible parameters they take, etc.
 
-#### Data "schema"
+#### Data "schema" { #data-schema }
 
 The term "schema" might also refer to the shape of some data, like a JSON content.
 
 In that case, it would mean the JSON attributes, and data types they have, etc.
 
-#### OpenAPI and JSON Schema
+#### OpenAPI and JSON Schema { #openapi-and-json-schema }
 
 OpenAPI defines an API schema for your API. And that schema includes definitions (or "schemas") of the data sent and received by your API using **JSON Schema**, the standard for JSON data schemas.
 
-#### Check the `openapi.json`
+#### Check the `openapi.json` { #check-the-openapi-json }
 
 If you are curious about how the raw OpenAPI schema looks like, FastAPI automatically generates a JSON (schema) with the descriptions of all your API.
 
@@ -135,7 +135,7 @@ It will show a JSON starting with something like:
 ...
 ```
 
-#### What is OpenAPI for
+#### What is OpenAPI for { #what-is-openapi-for }
 
 The OpenAPI schema is what powers the two interactive documentation systems included.
 
@@ -143,9 +143,9 @@ And there are dozens of alternatives, all based on OpenAPI. You could easily add
 
 You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
 
-## Recap, step by step
+## Recap, step by step { #recap-step-by-step }
 
-### Step 1: import `FastAPI`
+### Step 1: import `FastAPI` { #step-1-import-fastapi }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
@@ -155,11 +155,11 @@ You could also use it to generate code automatically, for clients that communica
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+You can use all the <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
 
 ///
 
-### Step 2: create a `FastAPI` "instance"
+### Step 2: create a `FastAPI` "instance" { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
@@ -167,9 +167,9 @@ Here the `app` variable will be an "instance" of the class `FastAPI`.
 
 This will be the main point of interaction to create all your API.
 
-### Step 3: create a *path operation*
+### Step 3: create a *path operation* { #step-3-create-a-path-operation }
 
-#### Path
+#### Path { #path }
 
 "Path" here refers to the last part of the URL starting from the first `/`.
 
@@ -193,7 +193,7 @@ A "path" is also commonly called an "endpoint" or a "route".
 
 While building an API, the "path" is the main way to separate "concerns" and "resources".
 
-#### Operation
+#### Operation { #operation }
 
 "Operation" here refers to one of the HTTP "methods".
 
@@ -228,7 +228,7 @@ So, in OpenAPI, each of the HTTP methods is called an "operation".
 
 We are going to call them "**operations**" too.
 
-#### Define a *path operation decorator*
+#### Define a *path operation decorator* { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
@@ -276,7 +276,7 @@ For example, when using GraphQL you normally perform all the actions using only 
 
 ///
 
-### Step 4: define the **path operation function**
+### Step 4: define the **path operation function** { #step-4-define-the-path-operation-function }
 
 This is our "**path operation function**":
 
@@ -304,7 +304,7 @@ If you don't know the difference, check the [Async: *"In a hurry?"*](../async.md
 
 ///
 
-### Step 5: return the content
+### Step 5: return the content { #step-5-return-the-content }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
@@ -314,7 +314,7 @@ You can also return Pydantic models (you'll see more about that later).
 
 There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
 
-## Recap
+## Recap { #recap }
 
 * Import `FastAPI`.
 * Create an `app` instance.

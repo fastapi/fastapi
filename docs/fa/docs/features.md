@@ -167,7 +167,7 @@ FastAPI شامل یک سیستم <abbr title='همچنین به عنوان "comp
 
 ## ویژگی های Starlette
 
-**FastAPI** کاملا (و براساس) با <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> سازگار است. بنابراین، هرکد اضافی Starlette که دارید، نیز کار خواهد کرد.
+**FastAPI** کاملا (و براساس) با <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> سازگار است. بنابراین، هرکد اضافی Starlette که دارید، نیز کار خواهد کرد.
 
 ‍‍`FastAPI` در واقع یک زیرکلاس از `Starlette` است. بنابراین اگر از قبل Starlette را میشناسید یا با آن کار کرده اید، بیشتر قابلیت ها به همین روش کار خواهد کرد.
 

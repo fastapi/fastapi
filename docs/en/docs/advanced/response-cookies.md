@@ -1,6 +1,6 @@
-# Response Cookies
+# Response Cookies { #response-cookies }
 
-## Use a `Response` parameter
+## Use a `Response` parameter { #use-a-response-parameter }
 
 You can declare a parameter of type `Response` in your *path operation function*.
 
@@ -16,7 +16,7 @@ And if you declared a `response_model`, it will still be used to filter and conv
 
 You can also declare the `Response` parameter in dependencies, and set cookies (and headers) in them.
 
-## Return a `Response` directly
+## Return a `Response` directly { #return-a-response-directly }
 
 You can also create cookies when returning a `Response` directly in your code.
 
@@ -36,7 +36,7 @@ And also that you are not sending any data that should have been filtered by a `
 
 ///
 
-### More info
+### More info { #more-info }
 
 /// note | Technical Details
 
@@ -48,4 +48,4 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 ///
 
-To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
+To see all the available parameters and options, check the <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
