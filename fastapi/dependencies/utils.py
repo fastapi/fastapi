@@ -1,4 +1,5 @@
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -22,11 +23,11 @@ import anyio
 from fastapi import params
 from fastapi._compat import (
     PYDANTIC_V2,
-    ErrorWrapper,
     ModelField,
     RequiredParam,
     Undefined,
-    _regenerate_error_with_loc,
+    _is_error_wrapper,
+    _is_model_class,
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
@@ -42,10 +43,12 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    may_v1,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
 )
+from fastapi._compat.shared import annotation_is_pydantic_v1
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
@@ -72,6 +75,13 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, get_args, get_origin
+
+from .. import temp_pydantic_v1_params
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -115,60 +125,16 @@ def ensure_multipart_is_installed() -> None:
             raise RuntimeError(multipart_not_installed_error) from None
 
 
-def get_param_sub_dependant(
-    *,
-    param_name: str,
-    depends: params.Depends,
-    path: str,
-    security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    assert depends.dependency
-    return get_sub_dependant(
-        depends=depends,
-        dependency=depends.dependency,
-        path=path,
-        name=param_name,
-        security_scopes=security_scopes,
-    )
-
-
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
     )
-    return get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
-
-
-def get_sub_dependant(
-    *,
-    depends: params.Depends,
-    dependency: Callable[..., Any],
-    path: str,
-    name: Optional[str] = None,
-    security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    security_requirement = None
-    security_scopes = security_scopes or []
-    if isinstance(depends, params.Security):
-        dependency_scopes = depends.scopes
-        security_scopes.extend(dependency_scopes)
-    if isinstance(dependency, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(dependency, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
-        security_requirement = SecurityRequirement(
-            security_scheme=dependency, scopes=use_scopes
-        )
-    sub_dependant = get_dependant(
-        path=path,
-        call=dependency,
-        name=name,
-        security_scopes=security_scopes,
-        use_cache=depends.use_cache,
+    use_security_scopes: List[str] = []
+    if isinstance(depends, params.Security) and depends.scopes:
+        use_security_scopes.extend(depends.scopes)
+    return get_dependant(
+        path=path, call=depends.dependency, security_scopes=use_security_scopes
     )
-    if security_requirement:
-        sub_dependant.security_requirements.append(security_requirement)
-    return sub_dependant
 
 
 CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
@@ -213,7 +179,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
     first_field = fields[0]
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
+    if len(fields) == 1 and _is_model_class(first_field.type_):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         return fields_to_extract
     return fields
@@ -248,6 +214,8 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
         annotation = evaluate_forwardref(annotation, globalns, globalns)
+        if annotation is type(None):
+            return None
     return annotation
 
 
@@ -270,9 +238,6 @@ def get_dependant(
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
-    path_param_names = get_path_param_names(path)
-    endpoint_signature = get_typed_signature(call)
-    signature_params = endpoint_signature.parameters
     dependant = Dependant(
         call=call,
         name=name,
@@ -280,6 +245,9 @@ def get_dependant(
         security_scopes=security_scopes,
         use_cache=use_cache,
     )
+    path_param_names = get_path_param_names(path)
+    endpoint_signature = get_typed_signature(call)
+    signature_params = endpoint_signature.parameters
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -289,12 +257,28 @@ def get_dependant(
             is_path_param=is_path_param,
         )
         if param_details.depends is not None:
-            sub_dependant = get_param_sub_dependant(
-                param_name=param_name,
-                depends=param_details.depends,
+            assert param_details.depends.dependency
+            use_security_scopes = security_scopes or []
+            if isinstance(param_details.depends, params.Security):
+                if param_details.depends.scopes:
+                    use_security_scopes.extend(param_details.depends.scopes)
+            sub_dependant = get_dependant(
                 path=path,
-                security_scopes=security_scopes,
+                call=param_details.depends.dependency,
+                name=param_name,
+                security_scopes=use_security_scopes,
+                use_cache=param_details.depends.use_cache,
             )
+            if isinstance(param_details.depends.dependency, SecurityBase):
+                use_scopes: List[str] = []
+                if isinstance(
+                    param_details.depends.dependency, (OAuth2, OpenIdConnect)
+                ):
+                    use_scopes = use_security_scopes
+                security_requirement = SecurityRequirement(
+                    security_scheme=param_details.depends.dependency, scopes=use_scopes
+                )
+                sub_dependant.security_requirements.append(security_requirement)
             dependant.dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
@@ -307,7 +291,9 @@ def get_dependant(
             )
             continue
         assert param_details.field is not None
-        if isinstance(param_details.field.field_info, params.Body):
+        if isinstance(
+            param_details.field.field_info, (params.Body, temp_pydantic_v1_params.Body)
+        ):
             dependant.body_params.append(param_details.field)
         else:
             add_param_to_fields(field=param_details.field, dependant=dependant)
@@ -366,28 +352,38 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, may_v1.FieldInfo, params.Depends))
         ]
         fastapi_specific_annotations = [
             arg
             for arg in fastapi_annotations
-            if isinstance(arg, (params.Param, params.Body, params.Depends))
+            if isinstance(
+                arg,
+                (
+                    params.Param,
+                    temp_pydantic_v1_params.Param,
+                    params.Body,
+                    temp_pydantic_v1_params.Body,
+                    params.Depends,
+                ),
+            )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
-                fastapi_specific_annotations[-1]
-            )
+            fastapi_annotation: Union[
+                FieldInfo, may_v1.FieldInfo, params.Depends, None
+            ] = fastapi_specific_annotations[-1]
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
-        if isinstance(fastapi_annotation, FieldInfo):
+        if isinstance(fastapi_annotation, (FieldInfo, may_v1.FieldInfo)):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
                 field_info=fastapi_annotation, annotation=use_annotation
             )
-            assert (
-                field_info.default is Undefined or field_info.default is RequiredParam
-            ), (
+            assert field_info.default in {
+                Undefined,
+                may_v1.Undefined,
+            } or field_info.default in {RequiredParam, may_v1.RequiredParam}, (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
@@ -411,14 +407,15 @@ def analyze_param(
         )
         depends = value
     # Get FieldInfo from default value
-    elif isinstance(value, FieldInfo):
+    elif isinstance(value, (FieldInfo, may_v1.FieldInfo)):
         assert field_info is None, (
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
         )
         field_info = value
         if PYDANTIC_V2:
-            field_info.annotation = type_annotation
+            if isinstance(field_info, FieldInfo):
+                field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
@@ -455,7 +452,14 @@ def analyze_param(
         ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
-            field_info = params.Body(annotation=use_annotation, default=default_value)
+            if annotation_is_pydantic_v1(use_annotation):
+                field_info = temp_pydantic_v1_params.Body(
+                    annotation=use_annotation, default=default_value
+                )
+            else:
+                field_info = params.Body(
+                    annotation=use_annotation, default=default_value
+                )
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
 
@@ -464,12 +468,14 @@ def analyze_param(
     if field_info is not None:
         # Handle field_info.in_
         if is_path_param:
-            assert isinstance(field_info, params.Path), (
+            assert isinstance(
+                field_info, (params.Path, temp_pydantic_v1_params.Path)
+            ), (
                 f"Cannot use `{field_info.__class__.__name__}` for path param"
                 f" {param_name!r}"
             )
         elif (
-            isinstance(field_info, params.Param)
+            isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param))
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
@@ -478,7 +484,7 @@ def analyze_param(
             field_info,
             param_name,
         )
-        if isinstance(field_info, params.Form):
+        if isinstance(field_info, (params.Form, temp_pydantic_v1_params.Form)):
             ensure_multipart_is_installed()
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
@@ -490,19 +496,20 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, Undefined),
+            required=field_info.default
+            in (RequiredParam, may_v1.RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
                 "Path params must be of one of the supported types"
             )
-        elif isinstance(field_info, params.Query):
+        elif isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)):
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or (
-                    lenient_issubclass(field.type_, BaseModel)
+                    _is_model_class(field.type_)
                     # For Pydantic v1
                     and getattr(field, "shape", 1) == 1
                 )
@@ -529,11 +536,11 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 def is_coroutine_callable(call: Callable[..., Any]) -> bool:
     if inspect.isroutine(call):
-        return inspect.iscoroutinefunction(call)
+        return iscoroutinefunction(call)
     if inspect.isclass(call):
         return False
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.iscoroutinefunction(dunder_call)
+    return iscoroutinefunction(dunder_call)
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
@@ -587,7 +594,8 @@ async def solve_dependencies(
         response = Response()
         del response.headers["content-length"]
         response.status_code = None  # type: ignore
-    dependency_cache = dependency_cache or {}
+    if dependency_cache is None:
+        dependency_cache = {}
     sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
@@ -624,7 +632,6 @@ async def solve_dependencies(
             embed_body_fields=embed_body_fields,
         )
         background_tasks = solved_result.background_tasks
-        dependency_cache.update(solved_result.dependency_cache)
         if solved_result.errors:
             errors.extend(solved_result.errors)
             continue
@@ -704,10 +711,10 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
-    if isinstance(errors_, ErrorWrapper):
+    if _is_error_wrapper(errors_):  # type: ignore[arg-type]
         return None, [errors_]
     elif isinstance(errors_, list):
-        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        new_errors = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
         return v_, []
@@ -727,7 +734,12 @@ def _get_multidict_value(
     if (
         value is None
         or (
-            (isinstance(field.field_info, params.Form) or form_input)
+            (
+                isinstance(
+                    field.field_info,
+                    (params.Form, temp_pydantic_v1_params.Form)
+                ) or form_input
+            )
             and isinstance(value, str)  # For type checks
             and value == ""
         )
@@ -793,7 +805,7 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(field_info, params.Param), (
+        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
             "Params must be subclasses of Param"
         )
         loc: Tuple[str, ...] = (field_info.in_.value,)
@@ -805,7 +817,7 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(field_info, params.Param), (
+        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
             "Params must be subclasses of Param"
         )
         loc = (field_info.in_.value, field.alias)
@@ -832,7 +844,7 @@ def is_union_of_base_models(field_type: Any) -> bool:
     union_args = get_args(field_type)
 
     for arg in union_args:
-        if not lenient_issubclass(arg, BaseModel):
+        if not _is_model_class(arg):
             return False
 
     return True
@@ -854,8 +866,8 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
     if (
-        isinstance(first_field.field_info, params.Form)
-        and not lenient_issubclass(first_field.type_, BaseModel)
+        isinstance(first_field.field_info, (params.Form, temp_pydantic_v1_params.Form))
+        and not _is_model_class(first_field.type_)
         and not is_union_of_base_models(first_field.type_)
     ):
         return True
@@ -868,20 +880,19 @@ async def _extract_form_body(
 ) -> Dict[str, Any]:
     values = {}
     field_aliases = {field.alias for field in body_fields}
-    first_field = body_fields[0]
-    first_field_info = first_field.field_info
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body, form_input=True)
+        field_info = field.field_info
         if (
-            isinstance(first_field_info, params.File)
+            isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
             and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
             is_bytes_sequence_field(field)
-            and isinstance(first_field_info, params.File)
+            and isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
             and value_is_sequence(value)
         ):
             # For types
@@ -922,7 +933,11 @@ async def request_body_to_args(
 
     fields_to_extract: List[ModelField] = body_fields
 
-    if single_not_embedded_field and lenient_issubclass(first_field.type_, BaseModel):
+    if (
+        single_not_embedded_field
+        and _is_model_class(first_field.type_)
+        and isinstance(received_body, FormData)
+    ):
         fields_to_extract = get_cached_model_fields(first_field.type_)
 
     if isinstance(received_body, FormData):
@@ -985,15 +1000,28 @@ def get_body_field(
         BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: Type[params.Body] = params.File
+    elif any(
+        isinstance(f.field_info, temp_pydantic_v1_params.File)
+        for f in flat_dependant.body_params
+    ):
+        BodyFieldInfo: Type[temp_pydantic_v1_params.Body] = temp_pydantic_v1_params.File  # type: ignore[no-redef]
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
+    elif any(
+        isinstance(f.field_info, temp_pydantic_v1_params.Form)
+        for f in flat_dependant.body_params
+    ):
+        BodyFieldInfo = temp_pydantic_v1_params.Form  # type: ignore[assignment]
     else:
-        BodyFieldInfo = params.Body
+        if annotation_is_pydantic_v1(BodyModel):
+            BodyFieldInfo = temp_pydantic_v1_params.Body  # type: ignore[assignment]
+        else:
+            BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
             for f in flat_dependant.body_params
-            if isinstance(f.field_info, params.Body)
+            if isinstance(f.field_info, (params.Body, temp_pydantic_v1_params.Body))
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]

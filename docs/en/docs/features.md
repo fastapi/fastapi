@@ -159,7 +159,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ## Starlette features { #starlette-features }
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
 `FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 
@@ -190,7 +190,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * **No brainfuck**:
     * No new schema definition micro-language to learn.
     * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment, similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
+* Plays nicely with your **<abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.

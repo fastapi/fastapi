@@ -1,7 +1,7 @@
 from typing import Any, List
 
 from dirty_equals import IsOneOf
-from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
+from fastapi.params import Body, Cookie, Header, Param, Path, Query
 
 test_data: List[Any] = ["teststr", None, ..., 1, []]
 
@@ -141,12 +141,3 @@ def test_body_repr_number():
 
 def test_body_repr_list():
     assert repr(Body([])) == "Body([])"
-
-
-def test_depends_repr():
-    assert repr(Depends()) == "Depends(NoneType)"
-    assert repr(Depends(get_user)) == "Depends(get_user)"
-    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=False)"
-    assert (
-        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
-    )

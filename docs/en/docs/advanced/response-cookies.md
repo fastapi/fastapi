@@ -48,4 +48,4 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 ///
 
-To see all the available parameters and options, check the <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.
+To see all the available parameters and options, check the <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">documentation in Starlette</a>.

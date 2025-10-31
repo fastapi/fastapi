@@ -155,7 +155,7 @@ You could also use it to generate code automatically, for clients that communica
 
 `FastAPI` is a class that inherits directly from `Starlette`.
 
-You can use all the <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
+You can use all the <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> functionality with `FastAPI` too.
 
 ///
 

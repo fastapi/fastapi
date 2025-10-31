@@ -139,7 +139,7 @@ API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
-`FastAPI`로 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>의 모든 기능을 사용할 수 있습니다.
+`FastAPI`로 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>의 모든 기능을 사용할 수 있습니다.
 
 ///
 
