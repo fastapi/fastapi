@@ -248,6 +248,14 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
+    if isinstance(call, SecurityBase):
+        use_scopes: List[str] = []
+        if isinstance(call, (OAuth2, OpenIdConnect)):
+            use_scopes = security_scopes
+        security_requirement = SecurityRequirement(
+            security_scheme=call, scopes=use_scopes
+        )
+        dependant.security_requirements.append(security_requirement)
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -269,16 +277,6 @@ def get_dependant(
                 security_scopes=use_security_scopes,
                 use_cache=param_details.depends.use_cache,
             )
-            if isinstance(param_details.depends.dependency, SecurityBase):
-                use_scopes: List[str] = []
-                if isinstance(
-                    param_details.depends.dependency, (OAuth2, OpenIdConnect)
-                ):
-                    use_scopes = use_security_scopes
-                security_requirement = SecurityRequirement(
-                    security_scheme=param_details.depends.dependency, scopes=use_scopes
-                )
-                sub_dependant.security_requirements.append(security_requirement)
             dependant.dependencies.append(sub_dependant)
             continue
         if add_non_field_param_to_dependency(
