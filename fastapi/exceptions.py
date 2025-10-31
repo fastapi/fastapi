@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Sequence, Type, Union
+from typing import Any, Mapping, Optional, Sequence, Type, Union
 
 from annotated_doc import Doc
 from pydantic import BaseModel, create_model
@@ -55,7 +55,7 @@ class HTTPException(StarletteHTTPException):
             ),
         ] = None,
         headers: Annotated[
-            Optional[Dict[str, str]],
+            Optional[Mapping[str, str]],
             Doc(
                 """
                 Any headers to send to the client in the response.
