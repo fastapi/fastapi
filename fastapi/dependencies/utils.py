@@ -731,24 +731,24 @@ def _get_multidict_value(
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
-    if (
-        value is None
-        or (
-            (
-                isinstance(
-                    field.field_info,
-                    (params.Form, temp_pydantic_v1_params.Form)
-                ) or form_input
-            )
-            and isinstance(value, str)  # For type checks
-            and value == ""
-        )
-        or (is_sequence_field(field) and len(value) == 0)
-    ):
-        if form_input or field.required:
+
+    if form_input:
+        # Special handling for form inputs:
+        # Treat empty strings or empty lists as missing values
+        if (
+            (isinstance(value, str) and value == "")
+            or (is_sequence_field(field) and len(value) == 0)
+        ):
             return None
-        else:
-            return deepcopy(field.default)
+    else:
+        # For non-form inputs:
+        # If value is None or an empty sequence, use the default (if not required) or
+        # treat as missing (if required)
+        if value is None or (is_sequence_field(field) and len(value) == 0):
+            if field.required:
+                return None
+            else:
+                return deepcopy(field.default)
     return value
 
 
