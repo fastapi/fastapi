@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.120.4
+
 ### Fixes
 
 * 🐛 Fix security schemes in OpenAPI when added at the top level app. PR [#14266](https://github.com/fastapi/fastapi/pull/14266) by [@YuriiMotov](https://github.com/YuriiMotov).
