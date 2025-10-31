@@ -7,6 +7,7 @@ from typing import (
     Any,
     Dict,
     List,
+    Optional,
     Sequence,
     Set,
     Tuple,
@@ -199,11 +200,12 @@ def get_definitions(
     fields: Sequence[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
+    schema_generator: Optional[GenerateJsonSchema] = None,
 ) -> Tuple[
     Dict[Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
     Dict[str, Dict[str, Any]],
 ]:
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
+    schema_generator = schema_generator or GenerateJsonSchema(ref_template=REF_TEMPLATE)
     override_mode: Union[Literal["validation"], None] = (
         None if separate_input_output_schemas else "validation"
     )
