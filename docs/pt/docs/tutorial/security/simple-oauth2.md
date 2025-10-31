@@ -1,8 +1,8 @@
-# Simples OAuth2 com senha e Bearer
+# Simples OAuth2 com senha e Bearer { #simple-oauth2-with-password-and-bearer }
 
 Agora vamos construir a partir do capítulo anterior e adicionar as partes que faltam para ter um fluxo de segurança completo.
 
-## Pegue o `username` (nome de usuário) e `password` (senha)
+## Obtenha o `username` e a `password` { #get-the-username-and-password }
 
 É utilizado o utils de segurança da **FastAPI** para obter o `username` e a `password`.
 
@@ -18,9 +18,9 @@ Mas para a *operação de rota* de login, precisamos usar esses nomes para serem
 
 A especificação também afirma que o `username` e a `password` devem ser enviados como dados de formulário (portanto, não há JSON aqui).
 
-### `scope`
+### `scope` { #scope }
 
-A especificação também diz que o cliente pode enviar outro campo de formulário "`scope`" (Escopo).
+A especificação também diz que o cliente pode enviar outro campo de formulário "`scope`".
 
 O nome do campo do formulário é `scope` (no singular), mas na verdade é uma longa string com "escopos" separados por espaços.
 
@@ -44,11 +44,11 @@ Para OAuth2 são apenas strings.
 
 ///
 
-## Código para conseguir o `username` e a `password`
+## Código para conseguir o `username` e a `password` { #code-to-get-the-username-and-password }
 
 Agora vamos usar os utilitários fornecidos pelo **FastAPI** para lidar com isso.
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
 Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com `Depends` na *operação de rota* para `/token`:
 
@@ -59,7 +59,7 @@ Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com 
 * O `username`.
 * A `password`.
 * Um campo `scope` opcional como uma string grande, composta de strings separadas por espaços.
-* Um `grant_type` (tipo de concessão) opcional.
+* Um `grant_type` opcional.
 
 /// tip | Dica
 
@@ -84,7 +84,7 @@ Mas como é um caso de uso comum, ele é fornecido diretamente pelo **FastAPI**,
 
 ///
 
-### Use os dados do formulário
+### Use os dados do formulário { #use-the-form-data }
 
 /// tip | Dica
 
@@ -96,13 +96,13 @@ Não estamos usando `scopes` neste exemplo, mas a funcionalidade está disponív
 
 Agora, obtenha os dados do usuário do banco de dados (falso), usando o `username` do campo do formulário.
 
-Se não existir tal usuário, retornaremos um erro dizendo "Incorrect username or password" (Nome de usuário ou senha incorretos).
+Se não existir tal usuário, retornaremos um erro dizendo "Incorrect username or password".
 
 Para o erro, usamos a exceção `HTTPException`:
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-### Confira a password (senha)
+### Confira a senha { #check-the-password }
 
 Neste ponto temos os dados do usuário do nosso banco de dados, mas não verificamos a senha.
 
@@ -112,7 +112,7 @@ Você nunca deve salvar senhas em texto simples, portanto, usaremos o sistema de
 
 Se as senhas não corresponderem, retornaremos o mesmo erro.
 
-#### Hashing de senha
+#### Hashing de senha { #password-hashing }
 
 "Hashing" significa: converter algum conteúdo (uma senha neste caso) em uma sequência de bytes (apenas uma string) que parece algo sem sentido.
 
@@ -120,7 +120,7 @@ Sempre que você passa exatamente o mesmo conteúdo (exatamente a mesma senha), 
 
 Mas você não pode converter a sequência aleatória de caracteres de volta para a senha.
 
-##### Porque usar hashing de senha
+##### Porque usar hashing de senha { #why-use-password-hashing }
 
 Se o seu banco de dados for roubado, o ladrão não terá as senhas em texto simples dos seus usuários, apenas os hashes.
 
@@ -128,11 +128,11 @@ Assim, o ladrão não poderá tentar usar essas mesmas senhas em outro sistema (
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-#### Sobre `**user_dict`
+#### Sobre `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` significa:
 
-*Passe as keys (chaves) e values (valores) de `user_dict` diretamente como argumentos de valor-chave, equivalente a:*
+*Passe as chaves e valores de `user_dict` diretamente como argumentos de valor-chave, equivalente a:*
 
 ```Python
 UserInDB(
@@ -146,11 +146,11 @@ UserInDB(
 
 /// info | Informação
 
-Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user_indict){.internal-link target=_blank}.
+Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
 
 ///
 
-## Retorne o token
+## Retorne o token { #return-the-token }
 
 A resposta do endpoint `token` deve ser um objeto JSON.
 
@@ -182,11 +182,11 @@ De resto, **FastAPI** cuida disso para você.
 
 ///
 
-## Atualize as dependências
+## Atualize as dependências { #update-the-dependencies }
 
 Agora vamos atualizar nossas dependências.
 
-Queremos obter o `user_user` *somente* se este usuário estiver ativo.
+Queremos obter o `current_user` *somente* se este usuário estiver ativo.
 
 Portanto, criamos uma dependência adicional `get_current_active_user` que por sua vez usa `get_current_user` como dependência.
 
@@ -214,11 +214,11 @@ Esse é o benefício dos padrões...
 
 ///
 
-## Veja em ação
+## Veja em ação { #see-it-in-action }
 
 Abra o docs interativo: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-### Autenticação
+### Autentique-se { #authenticate }
 
 Clique no botão "Authorize".
 
@@ -234,7 +234,7 @@ Após autenticar no sistema, você verá assim:
 
 <img src="/img/tutorial/security/image05.png">
 
-### Obtenha seus próprios dados de usuário
+### Obtenha seus próprios dados de usuário { #get-your-own-user-data }
 
 Agora use a operação `GET` com o caminho `/users/me`.
 
@@ -260,7 +260,7 @@ Se você clicar no ícone de cadeado, sair e tentar a mesma operação novamente
 }
 ```
 
-### Usuário inativo
+### Usuário inativo { #inactive-user }
 
 Agora tente com um usuário inativo, autentique-se com:
 
@@ -278,7 +278,7 @@ Você receberá um erro "Usuário inativo", como:
 }
 ```
 
-## Recaptulando
+## Recapitulando { #recap }
 
 Agora você tem as ferramentas para implementar um sistema de segurança completo baseado em `username` e `password` para sua API.
 

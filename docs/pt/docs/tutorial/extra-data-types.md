@@ -1,4 +1,4 @@
-# Tipos de dados extras
+# Tipos de dados extras { #extra-data-types }
 
 Até agora, você tem usado tipos de dados comuns, tais como:
 
@@ -17,7 +17,7 @@ E você ainda terá os mesmos recursos que viu até agora:
 * Validação de dados.
 * Anotação e documentação automáticas.
 
-## Outros tipos de dados
+## Outros tipos de dados { #other-data-types }
 
 Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 
@@ -36,7 +36,7 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 * `datetime.timedelta`:
     * O `datetime.timedelta` do Python.
     * Em requisições e respostas será representado como um `float` de segundos totais.
-    * O Pydantic também permite representá-lo como uma "codificação ISO 8601 diferença de tempo", <a href="https://docs.pydantic.dev/latest/concepts/serialization/" class="external-link" target="_blank">cheque a documentação para mais informações</a>.
+    * O Pydantic também permite representá-lo como uma "codificação ISO 8601 diferença de tempo", <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">cheque a documentação para mais informações</a>.
 * `frozenset`:
     * Em requisições e respostas, será tratado da mesma forma que um `set`:
         * Nas requisições, uma lista será lida, eliminando duplicadas e convertendo-a em um `set`.
@@ -49,14 +49,14 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 * `Decimal`:
     * O `Decimal` padrão do Python.
     * Em requisições e respostas será representado como um `float`.
-* Você pode checar todos os tipos de dados válidos do Pydantic aqui: <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Tipos de dados do Pydantic</a>.
+* Você pode checar todos os tipos de dados válidos do Pydantic aqui: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Tipos de dados do Pydantic</a>.
 
-## Exemplo
+## Exemplo { #example }
 
 Aqui está um exemplo de *operação de rota* com parâmetros utilizando-se de alguns dos tipos acima.
 
-{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 Note que os parâmetros dentro da função tem seu tipo de dados natural, e você pode, por exemplo, realizar manipulações normais de data, como:
 
-{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
