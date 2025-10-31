@@ -879,7 +879,6 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
-    field_aliases = {field.alias for field in body_fields}
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body, form_input=True)
@@ -912,7 +911,8 @@ async def _extract_form_body(
         if value is not None:
             values[field.alias] = value
 
-    # preserve extra keys not in model body fields for validation
+    # Include extra form fields (not defined as body parameters, but received in body)
+    field_aliases = {field.alias for field in body_fields}
     for key, value in received_body.items():
         if key not in field_aliases:
             values[key] = value
