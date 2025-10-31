@@ -1,6 +1,6 @@
 import pytest
+from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
-from fastapi import FastAPI, Body
 
 
 # Create app variants for different data types
@@ -8,18 +8,21 @@ def create_app(variant: str):
     app = FastAPI()
 
     if variant == "int":
+
         @app.put("/items/")
         def update_item(data: dict = Body(...)):
             item_id = data.get("item_id")
             return {"variant": "int", "item_id": item_id}
 
     elif variant == "str":
+
         @app.put("/items/")
         def update_item(data: dict = Body(...)):
             item_name = data.get("item_name")
             return {"variant": "str", "item_name": item_name}
 
     elif variant == "dict":
+
         @app.put("/items/")
         def update_item(data: dict = Body(...)):
             item = data.get("item")
