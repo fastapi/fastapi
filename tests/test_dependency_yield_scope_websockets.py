@@ -15,7 +15,7 @@ class Session:
         self.open = True
 
 
-def dep_session() -> Any:
+async def dep_session() -> Any:
     s = Session()
     yield s
     s.open = False
