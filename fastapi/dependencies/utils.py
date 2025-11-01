@@ -266,9 +266,10 @@ def get_dependant(
                 and dependant.computed_scope == "request"
                 and param_details.depends.scope == "function"
             ):
+                assert dependant.call
                 raise DependencyScopeError(
-                    f'The dependency {dependant} has a scope of "request", it'
-                    'cannot depend on dependencies with scope "function".'
+                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    '"request", it cannot depend on dependencies with scope "function".'
                 )
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
