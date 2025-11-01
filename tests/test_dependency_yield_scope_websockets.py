@@ -1,10 +1,12 @@
-from typing import Any, Tuple
+from typing import Any, Dict, Tuple
 
 import pytest
 from fastapi import Depends, FastAPI, WebSocket
 from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
+
+global_state: Dict[str, Any] = {}
 
 
 class Session:
@@ -16,6 +18,7 @@ def dep_session() -> Any:
     s = Session()
     yield s
     s.open = False
+    global_state["session_closed"] = True
 
 
 SessionFuncDep = Annotated[Session, Depends(dep_session, scope="function")]
@@ -34,6 +37,7 @@ def get_named_session(session: SessionRequestDep, session_b: SessionDefaultDep) 
     named_session = NamedSession(name="named")
     yield named_session, session_b
     named_session.open = False
+    global_state["named_session_closed"] = True
 
 
 NamedSessionsDep = Annotated[Tuple[NamedSession, Session], Depends(get_named_session)]
@@ -43,6 +47,7 @@ def get_named_func_session(session: SessionFuncDep) -> Any:
     named_session = NamedSession(name="named")
     yield named_session, session
     named_session.open = False
+    global_state["named_func_session_closed"] = True
 
 
 def get_named_regular_func_session(session: SessionFuncDep) -> Any:
@@ -120,29 +125,39 @@ client = TestClient(app)
 
 
 def test_function_scope() -> None:
+    global_state["session_closed"] = False
     with client.websocket_connect("/function-scope") as websocket:
         data = websocket.receive_json()
     assert data["is_open"] is True
+    assert global_state["session_closed"] is True
 
 
 def test_request_scope() -> None:
+    global_state["session_closed"] = False
     with client.websocket_connect("/request-scope") as websocket:
         data = websocket.receive_json()
     assert data["is_open"] is True
+    assert global_state["session_closed"] is True
 
 
 def test_two_scopes() -> None:
+    global_state["session_closed"] = False
     with client.websocket_connect("/two-scopes") as websocket:
         data = websocket.receive_json()
     assert data["func_is_open"] is True
     assert data["req_is_open"] is True
+    assert global_state["session_closed"] is True
 
 
 def test_sub() -> None:
+    global_state["session_closed"] = False
+    global_state["named_session_closed"] = False
     with client.websocket_connect("/sub") as websocket:
         data = websocket.receive_json()
     assert data["named_session_open"] is True
     assert data["session_open"] is True
+    assert global_state["session_closed"] is True
+    assert global_state["named_session_closed"] is True
 
 
 def test_broken_scope() -> None:
@@ -159,14 +174,20 @@ def test_broken_scope() -> None:
 
 
 def test_named_function_scope() -> None:
+    global_state["session_closed"] = False
+    global_state["named_func_session_closed"] = False
     with client.websocket_connect("/named-function-scope") as websocket:
         data = websocket.receive_json()
     assert data["named_session_open"] is True
     assert data["session_open"] is True
+    assert global_state["session_closed"] is True
+    assert global_state["named_func_session_closed"] is True
 
 
 def test_regular_function_scope() -> None:
+    global_state["session_closed"] = False
     with client.websocket_connect("/regular-function-scope") as websocket:
         data = websocket.receive_json()
     assert data["named_session_open"] is True
     assert data["session_open"] is True
+    assert global_state["session_closed"] is True
