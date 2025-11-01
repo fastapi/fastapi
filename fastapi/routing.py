@@ -108,7 +108,6 @@ def request_response(
                 scope["fastapi_inner_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
                     scope["fastapi_function_astack"] = function_stack
-                    # Same as in Starlette
                     response = await f(request)
                 await response(scope, receive, send)
                 # Continues customization
