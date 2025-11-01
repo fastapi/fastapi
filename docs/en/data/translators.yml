@@ -1,6 +1,6 @@
 nilslindemann:
   login: nilslindemann
-  count: 122
+  count: 124
   avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
   url: https://github.com/nilslindemann
 jaystone776:
@@ -103,6 +103,11 @@ pablocm83:
   count: 8
   avatarUrl: https://avatars.githubusercontent.com/u/28315068?u=3310fbb05bb8bfc50d2c48b6cb64ac9ee4a14549&v=4
   url: https://github.com/pablocm83
+tiangolo:
+  login: tiangolo
+  count: 7
+  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
+  url: https://github.com/tiangolo
 ptt3199:
   login: ptt3199
   count: 7
@@ -118,11 +123,6 @@ batlopes:
   count: 6
   avatarUrl: https://avatars.githubusercontent.com/u/33462923?u=0fb3d7acb316764616f11e4947faf080e49ad8d9&v=4
   url: https://github.com/batlopes
-tiangolo:
-  login: tiangolo
-  count: 6
-  avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
-  url: https://github.com/tiangolo
 lucasbalieiro:
   login: lucasbalieiro
   count: 6
