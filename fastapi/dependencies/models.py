@@ -1,8 +1,10 @@
 from dataclasses import dataclass, field
-from typing import Any, Callable, List, Optional, Sequence, Tuple
+from functools import cached_property
+from typing import Any, Callable, List, Optional, Sequence, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
+from fastapi.types import DependencyCacheKey
 from typing_extensions import Literal
 
 
@@ -32,14 +34,12 @@ class Dependant:
     security_scopes: Optional[List[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
-    scope: Literal["function", "request"] = "request"
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str] = field(
-        init=False
-    )
+    scope: Union[Literal["function", "request"], None] = None
 
-    def __post_init__(self) -> None:
-        self.cache_key = (
+    @cached_property
+    def cache_key(self) -> DependencyCacheKey:
+        return (
             self.call,
             tuple(sorted(set(self.security_scopes or []))),
-            self.scope,
+            self.scope or "",
         )

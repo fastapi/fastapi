@@ -766,7 +766,7 @@ class File(Form):  # type: ignore[misc]
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
-    scope: Literal["function", "request"] = "request"
+    scope: Union[Literal["function", "request"], None] = None
 
 
 @dataclass

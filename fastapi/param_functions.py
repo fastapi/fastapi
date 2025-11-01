@@ -2246,7 +2246,7 @@ def Depends(  # noqa: N802
         ),
     ] = True,
     scope: Annotated[
-        Literal["function", "request"],
+        Union[Literal["function", "request"], None],
         Doc(
             """
             Mainly for dependencies with `yield`, define when the dependency function
@@ -2264,7 +2264,7 @@ def Depends(  # noqa: N802
                 function will be executed *around* the **request** and response cycle.
             """
         ),
-    ] = "request",
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.

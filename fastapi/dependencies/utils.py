@@ -60,6 +60,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -138,14 +139,11 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     )
 
 
-CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
-
-
 def get_flat_dependant(
     dependant: Dependant,
     *,
     skip_repeats: bool = False,
-    visited: Optional[List[CacheKey]] = None,
+    visited: Optional[List[DependencyCacheKey]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -238,7 +236,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
-    scope: Literal["function", "request"] = "request",
+    scope: Union[Literal["function", "request"], None] = None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -254,7 +252,7 @@ def get_dependant(
     if isinstance(call, SecurityBase):
         use_scopes: List[str] = []
         if isinstance(call, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
+            use_scopes = security_scopes or use_scopes
         security_requirement = SecurityRequirement(
             security_scheme=call, scopes=use_scopes
         )
@@ -581,7 +579,7 @@ class SolvedDependency:
     errors: List[Any]
     background_tasks: Optional[StarletteBackgroundTasks]
     response: Response
-    dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
+    dependency_cache: Dict[DependencyCacheKey, Any]
 
 
 async def solve_dependencies(
@@ -592,7 +590,7 @@ async def solve_dependencies(
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    dependency_cache: Optional[Dict[DependencyCacheKey, Any]] = None,
     # TODO: remove this parameter later, no longer used, not removing it yet as some
     # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
@@ -616,9 +614,6 @@ async def solve_dependencies(
         dependency_cache = {}
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
         if (
