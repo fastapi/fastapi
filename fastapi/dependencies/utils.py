@@ -1,5 +1,4 @@
 import inspect
-import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -79,11 +78,6 @@ from starlette.websockets import WebSocket
 from typing_extensions import Annotated, Literal, get_args, get_origin
 
 from .. import temp_pydantic_v1_params
-
-if sys.version_info >= (3, 13):  # pragma: no cover
-    pass
-else:  # pragma: no cover
-    pass
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
