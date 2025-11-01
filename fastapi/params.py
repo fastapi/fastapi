@@ -790,9 +790,7 @@ class Depends:
                         "\n✓ Correct: Depends(my_function)"
                         "\n✗ Wrong: Depends(my_function())"
                     )
-                elif hasattr(dependency, "__class__") and hasattr(
-                    dependency.__class__, "__call__"
-                ):
+                elif callable(dependency):
                     # Might be an instance of a callable class
                     error_msg += "\n\nIf you're using a callable class, make sure to pass the class itself or a callable instance."
 
