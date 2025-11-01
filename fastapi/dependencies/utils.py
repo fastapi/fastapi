@@ -1,5 +1,4 @@
 import inspect
-import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -55,10 +54,12 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -74,14 +75,9 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import Annotated, Literal, get_args, get_origin
 
 from .. import temp_pydantic_v1_params
-
-if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
-else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -137,14 +133,11 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     )
 
 
-CacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...]]
-
-
 def get_flat_dependant(
     dependant: Dependant,
     *,
     skip_repeats: bool = False,
-    visited: Optional[List[CacheKey]] = None,
+    visited: Optional[List[DependencyCacheKey]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
@@ -237,6 +230,7 @@ def get_dependant(
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
+    scope: Union[Literal["function", "request"], None] = None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -244,6 +238,7 @@ def get_dependant(
         path=path,
         security_scopes=security_scopes,
         use_cache=use_cache,
+        scope=scope,
     )
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
@@ -251,7 +246,7 @@ def get_dependant(
     if isinstance(call, SecurityBase):
         use_scopes: List[str] = []
         if isinstance(call, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes
+            use_scopes = security_scopes or use_scopes
         security_requirement = SecurityRequirement(
             security_scheme=call, scopes=use_scopes
         )
@@ -266,6 +261,16 @@ def get_dependant(
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
+            if (
+                (dependant.is_gen_callable or dependant.is_async_gen_callable)
+                and dependant.computed_scope == "request"
+                and param_details.depends.scope == "function"
+            ):
+                assert dependant.call
+                raise DependencyScopeError(
+                    f'The dependency "{dependant.call.__name__}" has a scope of '
+                    '"request", it cannot depend on dependencies with scope "function".'
+                )
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
                 if param_details.depends.scopes:
@@ -276,6 +281,7 @@ def get_dependant(
                 name=param_name,
                 security_scopes=use_security_scopes,
                 use_cache=param_details.depends.use_cache,
+                scope=param_details.depends.scope,
             )
             dependant.dependencies.append(sub_dependant)
             continue
@@ -532,36 +538,14 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
         dependant.cookie_params.append(field)
 
 
-def is_coroutine_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isroutine(call):
-        return iscoroutinefunction(call)
-    if inspect.isclass(call):
-        return False
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return iscoroutinefunction(dunder_call)
-
-
-def is_async_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isasyncgenfunction(call):
-        return True
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isasyncgenfunction(dunder_call)
-
-
-def is_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isgeneratorfunction(call):
-        return True
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isgeneratorfunction(dunder_call)
-
-
-async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+async def _solve_generator(
+    *, dependant: Dependant, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
-    if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif is_async_gen_callable(call):
-        cm = asynccontextmanager(call)(**sub_values)
+    assert dependant.call
+    if dependant.is_gen_callable:
+        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
+    elif dependant.is_async_gen_callable:
+        cm = asynccontextmanager(dependant.call)(**sub_values)
     return await stack.enter_async_context(cm)
 
 
@@ -571,7 +555,7 @@ class SolvedDependency:
     errors: List[Any]
     background_tasks: Optional[StarletteBackgroundTasks]
     response: Response
-    dependency_cache: Dict[Tuple[Callable[..., Any], Tuple[str]], Any]
+    dependency_cache: Dict[DependencyCacheKey, Any]
 
 
 async def solve_dependencies(
@@ -582,10 +566,20 @@ async def solve_dependencies(
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
-    dependency_cache: Optional[Dict[Tuple[Callable[..., Any], Tuple[str]], Any]] = None,
+    dependency_cache: Optional[Dict[DependencyCacheKey, Any]] = None,
+    # TODO: remove this parameter later, no longer used, not removing it yet as some
+    # people might be monkey patching this function (although that's not supported)
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
 ) -> SolvedDependency:
+    request_astack = request.scope.get("fastapi_inner_astack")
+    assert isinstance(request_astack, AsyncExitStack), (
+        "fastapi_inner_astack not found in request scope"
+    )
+    function_astack = request.scope.get("fastapi_function_astack")
+    assert isinstance(function_astack, AsyncExitStack), (
+        "fastapi_function_astack not found in request scope"
+    )
     values: Dict[str, Any] = {}
     errors: List[Any] = []
     if response is None:
@@ -594,12 +588,8 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
-    sub_dependant: Dependant
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
-        sub_dependant.cache_key = cast(
-            Tuple[Callable[..., Any], Tuple[str]], sub_dependant.cache_key
-        )
         call = sub_dependant.call
         use_sub_dependant = sub_dependant
         if (
@@ -616,6 +606,7 @@ async def solve_dependencies(
                 call=call,
                 name=sub_dependant.name,
                 security_scopes=sub_dependant.security_scopes,
+                scope=sub_dependant.scope,
             )
 
         solved_result = await solve_dependencies(
@@ -635,11 +626,18 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
-            solved = await solve_generator(
-                call=call, stack=async_exit_stack, sub_values=solved_result.values
+        elif (
+            use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable
+        ):
+            use_astack = request_astack
+            if sub_dependant.scope == "function":
+                use_astack = function_astack
+            solved = await _solve_generator(
+                dependant=use_sub_dependant,
+                stack=use_astack,
+                sub_values=solved_result.values,
             )
-        elif is_coroutine_callable(call):
+        elif use_sub_dependant.is_coroutine_callable:
             solved = await call(**solved_result.values)
         else:
             solved = await run_in_threadpool(call, **solved_result.values)
