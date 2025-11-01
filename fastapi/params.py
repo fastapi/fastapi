@@ -3,15 +3,12 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
-from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
 from typing_extensions import Annotated, deprecated
 
-from ._compat import (
-    PYDANTIC_V2,
-    PYDANTIC_VERSION_MINOR_TUPLE,
-    Undefined,
-)
+from fastapi.openapi.models import Example
+
+from ._compat import PYDANTIC_V2, PYDANTIC_VERSION_MINOR_TUPLE, Undefined
 
 _Unset: Any = Undefined
 
@@ -767,6 +764,48 @@ class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
 
+    def __init__(
+        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+    ):
+        # Validate that dependency is used correctly
+        if dependency is not None:
+            # Check for nested Depends
+            if isinstance(dependency, Depends):
+                raise TypeError(
+                    "Invalid usage of Depends(). "
+                    "You have nested Depends() calls: Depends(Depends(...)). "
+                    "Each dependency should only be wrapped once. "
+                    "Remove the inner Depends() and pass the function directly."
+                )
+
+            # Check if dependency is callable
+            if not callable(dependency):
+                # Provide helpful error based on the type
+                dep_type = type(dependency).__name__
+                error_msg = f"Depends() expects a callable (function or class), but received {dep_type}. "
+
+                # Add specific hints for common mistakes
+                if isinstance(dependency, (dict, list, str, int, float, bool)):
+                    error_msg += (
+                        "\n\nIt looks like you may have called the dependency function instead of passing it. "
+                        "\n✓ Correct: Depends(my_function)"
+                        "\n✗ Wrong: Depends(my_function())"
+                    )
+                elif hasattr(dependency, "__class__") and hasattr(
+                    dependency.__class__, "__call__"
+                ):
+                    # Might be an instance of a callable class
+                    error_msg += "\n\nIf you're using a callable class, make sure to pass the class itself or a callable instance."
+
+                raise TypeError(error_msg)
+
+        self.dependency = dependency
+        self.use_cache = use_cache
+
+    def __repr__(self) -> str:
+        attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
+        cache = "" if self.use_cache else ", use_cache=False"
+        return f"{self.__class__.__name__}({attr}{cache})"
 
 @dataclass
 class Security(Depends):
