@@ -130,21 +130,21 @@ client = TestClient(app)
 def test_function_scope() -> None:
     response = client.get("/function-scope")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["is_open"] is False
 
 
 def test_request_scope() -> None:
     response = client.get("/request-scope")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["is_open"] is True
 
 
 def test_two_scopes() -> None:
     response = client.get("/two-scopes")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["func_is_open"] is False
     assert data["req_is_open"] is True
 
@@ -152,7 +152,7 @@ def test_two_scopes() -> None:
 def test_sub() -> None:
     response = client.get("/sub")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["named_session_open"] is True
     assert data["session_open"] is True
 
@@ -171,7 +171,7 @@ def test_broken_scope() -> None:
 def test_named_function_scope() -> None:
     response = client.get("/named-function-scope")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["named_session_open"] is False
     assert data["session_open"] is False
 
@@ -179,6 +179,6 @@ def test_named_function_scope() -> None:
 def test_regular_function_scope() -> None:
     response = client.get("/regular-function-scope")
     assert response.status_code == 200
-    data = json.loads(response.content)
+    data = response.json()
     assert data["named_session_open"] is True
     assert data["session_open"] is False
