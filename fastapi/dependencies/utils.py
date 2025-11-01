@@ -81,9 +81,9 @@ from typing_extensions import Annotated, Literal, get_args, get_origin
 from .. import temp_pydantic_v1_params
 
 if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
+    pass
 else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
+    pass
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -267,12 +267,15 @@ def get_dependant(
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
-            if dependant.scope == "request":
-                if param_details.depends.scope == "function":
-                    raise DependencyScopeError(
-                        f'The dependency {dependant} has a scope of "request", it'
-                        'cannot depend on dependencies with scope "function".'
-                    )
+            if (
+                (dependant.is_gen_callable or dependant.is_async_gen_callable)
+                and dependant.computed_scope == "request"
+                and param_details.depends.scope == "function"
+            ):
+                raise DependencyScopeError(
+                    f'The dependency {dependant} has a scope of "request", it'
+                    'cannot depend on dependencies with scope "function".'
+                )
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
                 if param_details.depends.scopes:
@@ -540,36 +543,14 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
         dependant.cookie_params.append(field)
 
 
-def is_coroutine_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isroutine(call):
-        return iscoroutinefunction(call)
-    if inspect.isclass(call):
-        return False
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return iscoroutinefunction(dunder_call)
-
-
-def is_async_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isasyncgenfunction(call):
-        return True
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isasyncgenfunction(dunder_call)
-
-
-def is_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isgeneratorfunction(call):
-        return True
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isgeneratorfunction(dunder_call)
-
-
-async def solve_generator(
-    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+async def _solve_generator(
+    *, dependant: Dependant, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
-    if is_gen_callable(call):
-        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
-    elif is_async_gen_callable(call):
-        cm = asynccontextmanager(call)(**sub_values)
+    assert dependant.call
+    if dependant.is_gen_callable:
+        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
+    elif dependant.is_async_gen_callable:
+        cm = asynccontextmanager(dependant.call)(**sub_values)
     return await stack.enter_async_context(cm)
 
 
@@ -650,14 +631,18 @@ async def solve_dependencies(
             continue
         if sub_dependant.use_cache and sub_dependant.cache_key in dependency_cache:
             solved = dependency_cache[sub_dependant.cache_key]
-        elif is_gen_callable(call) or is_async_gen_callable(call):
+        elif (
+            use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable
+        ):
             use_astack = request_astack
             if sub_dependant.scope == "function":
                 use_astack = function_astack
-            solved = await solve_generator(
-                call=call, stack=use_astack, sub_values=solved_result.values
+            solved = await _solve_generator(
+                dependant=use_sub_dependant,
+                stack=use_astack,
+                sub_values=solved_result.values,
             )
-        elif is_coroutine_callable(call):
+        elif use_sub_dependant.is_coroutine_callable:
             solved = await call(**solved_result.values)
         else:
             solved = await run_in_threadpool(call, **solved_result.values)
