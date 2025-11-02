@@ -735,9 +735,8 @@ def _get_multidict_value(
     if form_input:
         # Special handling for form inputs:
         # Treat empty strings or empty lists as missing values
-        if (
-            (isinstance(value, str) and value == "")
-            or (is_sequence_field(field) and len(value) == 0)
+        if (isinstance(value, str) and value == "") or (
+            is_sequence_field(field) and len(value) == 0
         ):
             return None
     else:
