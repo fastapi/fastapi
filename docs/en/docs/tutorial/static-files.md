@@ -1,8 +1,8 @@
-# Static Files
+# Static Files { #static-files }
 
 You can serve static files automatically from a directory using `StaticFiles`.
 
-## Use `StaticFiles`
+## Use `StaticFiles` { #use-staticfiles }
 
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
@@ -17,7 +17,7 @@ You could also use `from starlette.staticfiles import StaticFiles`.
 
 ///
 
-### What is "Mounting"
+### What is "Mounting" { #what-is-mounting }
 
 "Mounting" means adding a complete "independent" application in a specific path, that then takes care of handling all the sub-paths.
 
@@ -25,7 +25,7 @@ This is different from using an `APIRouter` as a mounted application is complete
 
 You can read more about this in the [Advanced User Guide](../advanced/index.md){.internal-link target=_blank}.
 
-## Details
+## Details { #details }
 
 The first `"/static"` refers to the sub-path this "sub-application" will be "mounted" on. So, any path that starts with `"/static"` will be handled by it.
 
@@ -35,6 +35,6 @@ The `name="static"` gives it a name that can be used internally by **FastAPI**.
 
 All these parameters can be different than "`static`", adjust them with the needs and specific details of your own application.
 
-## More info
+## More info { #more-info }
 
-For more details and options check <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

@@ -37,7 +37,7 @@ A função middleware recebe:
 
 Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo 'X-'</a>.
 
-Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Documentos CORS da Starlette</a>.
+Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Documentos CORS da Starlette</a>.
 
 ///
 

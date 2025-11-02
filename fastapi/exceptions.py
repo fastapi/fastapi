@@ -1,9 +1,10 @@
 from typing import Any, Dict, Optional, Sequence, Type, Union
 
+from annotated_doc import Doc
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class HTTPException(StarletteHTTPException):

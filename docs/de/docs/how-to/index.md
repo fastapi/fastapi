@@ -1,4 +1,4 @@
-# How-To – Rezepte
+# How-To – Rezepte { #how-to-recipes }
 
 Hier finden Sie verschiedene Rezepte und „How-To“-Anleitungen zu **verschiedenen Themen**.
 

@@ -15,7 +15,7 @@ Porém há situações em que você possa precisar acessar o objeto `Request` di
 
 ## Detalhes sobre o objeto `Request`
 
-Como o **FastAPI** é na verdade o **Starlette** por baixo, com camadas de diversas funcionalidades por cima, você pode utilizar o objeto <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> do Starlette diretamente quando precisar.
+Como o **FastAPI** é na verdade o **Starlette** por baixo, com camadas de diversas funcionalidades por cima, você pode utilizar o objeto <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> do Starlette diretamente quando precisar.
 
 Isso significaria também que se você obtiver informações do objeto `Request` diretamente (ler o corpo da requisição por exemplo), as informações não serão validadas, convertidas ou documentadas (com o OpenAPI, para a interface de usuário automática da API) pelo FastAPI.
 
@@ -45,7 +45,7 @@ Do mesmo jeito, você pode declarar qualquer outro parâmetro normalmente, e al�
 
 ## Documentação do `Request`
 
-Você pode ler mais sobre os detalhes do objeto <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` no site da documentação oficial do Starlette.</a>.
+Você pode ler mais sobre os detalhes do objeto <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request` no site da documentação oficial do Starlette.</a>.
 
 /// note | Detalhes Técnicos
 

@@ -15,7 +15,7 @@
 
 ## ℹ 🔃 `Request` 🎚
 
-**FastAPI** 🤙 **💃** 🔘, ⏮️ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
+**FastAPI** 🤙 **💃** 🔘, ⏮️ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
 
 ⚫️ 🔜 ⛓ 👈 🚥 👆 🤚 📊 ⚪️➡️ `Request` 🎚 🔗 (🖼, ✍ 💪) ⚫️ 🏆 🚫 ✔, 🗜 ⚖️ 📄 (⏮️ 🗄, 🏧 🛠️ 👩‍💻 🔢) FastAPI.
 
@@ -45,7 +45,7 @@
 
 ## `Request` 🧾
 
-👆 💪 ✍ 🌅 ℹ 🔃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` 🎚 🛂 💃 🧾 🕸</a>.
+👆 💪 ✍ 🌅 ℹ 🔃 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request` 🎚 🛂 💃 🧾 🕸</a>.
 
 /// note | 📡 ℹ
 

@@ -38,4 +38,4 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 Ten en cuenta que los headers propietarios personalizados se pueden agregar <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo 'X-'</a>.
 
-Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación CORS de Starlette</a>.
+Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación CORS de Starlette</a>.
