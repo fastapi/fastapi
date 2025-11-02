@@ -869,7 +869,6 @@ async def _extract_form_body(
     received_body: FormData,
 ) -> Dict[str, Any]:
     values = {}
-    processed_keys = set()
 
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
@@ -899,11 +898,11 @@ async def _extract_form_body(
                 for sub_value in value:
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
-        processed_keys.add(field.alias)
         if value is not None:
             values[field.alias] = value
+    field_aliases = {field.alias for field in body_fields}
     for key, value in received_body.items():
-        if key not in processed_keys:
+        if key not in field_aliases:
             values[key] = value
     return values
 
