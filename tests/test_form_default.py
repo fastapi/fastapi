@@ -48,7 +48,10 @@ def form_model(params: Annotated[FormParams, Form()]):
 
 @app.post("/form-param-list-with-default")
 def form_param_list_with_default(
-    params: Annotated[List[str], Form(default_factory=list)],
+    params: Annotated[
+        List[str],
+        Form(),
+    ] = [],  # noqa: B006 (default_factory doesn't work with Pydantic V1)
 ):
     return {"params": params}
 
