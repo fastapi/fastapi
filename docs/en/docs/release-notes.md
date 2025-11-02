@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump mkdocstrings[python] from 0.26.1 to 0.30.1. PR [#14279](https://github.com/fastapi/fastapi/pull/14279) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.120.4
 
 ### Fixes
