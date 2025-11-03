@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.121.0
+
 ### Features
 
 * ✨ Add support for dependencies with scopes, support `scope="request"` for dependencies with `yield` that exit before the response is sent. PR [#14262](https://github.com/fastapi/fastapi/pull/14262) by [@tiangolo](https://github.com/tiangolo).
