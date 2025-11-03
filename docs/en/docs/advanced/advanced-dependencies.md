@@ -78,7 +78,9 @@ Dependencies with `yield` have evolved over time to account for the different us
 
 ### Dependencies with `yield` and `scope` { #dependencies-with-yield-and-scope }
 
-In FastAPI 0.121.0 there was added support for `Depends(scope="function")` for dependencies with `yield`, using this, the exit code after `yield` is executed right after the *path operation function* is finished, before the response is sent back to the client.
+In version 0.121.0, FastAPI added support for `Depends(scope="function")` for dependencies with `yield`.
+
+Using `Depends(scope="function")`, the exit code after `yield` is executed right after the *path operation function* is finished, before the response is sent back to the client.
 
 And when using `Depends(scope="request")` (the default), the exit code after `yield` is executed after the response is sent.
 
