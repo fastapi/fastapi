@@ -3,7 +3,7 @@ try:
 
 except ImportError:  # pragma: no cover
     cli_main = None  # type: ignore
-# cli_main = None  # type: ignore
+
 
 
 def main() -> None:
