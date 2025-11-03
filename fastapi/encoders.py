@@ -17,13 +17,14 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
+from annotated_doc import Doc
 from fastapi._compat import may_v1
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 from ._compat import Url, _is_undefined, _model_dump
 
