@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI People - Sponsors. PR [#14274](https://github.com/fastapi/fastapi/pull/14274) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#14280](https://github.com/fastapi/fastapi/pull/14280) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump mkdocs-macros-plugin from 1.4.0 to 1.4.1. PR [#14277](https://github.com/fastapi/fastapi/pull/14277) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocstrings[python] from 0.26.1 to 0.30.1. PR [#14279](https://github.com/fastapi/fastapi/pull/14279) by [@dependabot[bot]](https://github.com/apps/dependabot).
