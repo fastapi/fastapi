@@ -70,11 +70,19 @@ If you understood all this, you already know how those utility tools for securit
 
 You most probably don't need these technical details.
 
-These details are useful mainly if you had a FastAPI application older than 0.118.0 and you are facing issues with dependencies with `yield`.
+These details are useful mainly if you had a FastAPI application older than 0.121.0 and you are facing issues with dependencies with `yield`.
 
 ///
 
 Dependencies with `yield` have evolved over time to account for the different use cases and to fix some issues, here's a summary of what has changed.
+
+### Dependencies with `yield` and `scope` { #dependencies-with-yield-and-scope }
+
+In FastAPI 0.121.0 there was added support for `Depends(scope="function")` for dependencies with `yield`, using this, the exit code after `yield` is executed right after the *path operation function* is finished, before the response is sent back to the client.
+
+And when using `Depends(scope="request")` (the default), the exit code after `yield` is executed after the response is sent.
+
+You can read more about it in the docs for [Dependencies with `yield` - Early exit and `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
 
 ### Dependencies with `yield` and `StreamingResponse`, Technical Details { #dependencies-with-yield-and-streamingresponse-technical-details }
 
