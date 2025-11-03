@@ -217,7 +217,7 @@ participant operation as Path Operation
 
     client ->> dep_req: Start request
     Note over dep_req: Run code up to yield
-    dep_req ->> dep_func: 
+    dep_req ->> dep_func:
     Note over dep_func: Run code up to yield
     dep_func ->> operation: Run path operation
     operation ->> dep_func: Return from path operation
