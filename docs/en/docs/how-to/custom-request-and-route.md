@@ -66,7 +66,7 @@ The `scope` `dict` and `receive` function are both part of the ASGI specificatio
 
 And those two things, `scope` and `receive`, are what is needed to create a new `Request` instance.
 
-To learn more about the `Request` check <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
+To learn more about the `Request` check <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette's docs about Requests</a>.
 
 ///
 

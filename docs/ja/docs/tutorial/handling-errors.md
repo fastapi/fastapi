@@ -81,7 +81,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 ## カスタム例外ハンドラのインストール
 
-カスタム例外ハンドラは<a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
+カスタム例外ハンドラは<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
 
 あなた（または使用しているライブラリ）が`raise`するかもしれないカスタム例外`UnicornException`があるとしましょう。
 

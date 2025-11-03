@@ -125,7 +125,7 @@ FastAPI 🏛, ⏩ (↕-🎭), 🕸 🛠️ 🏗 🛠️ ⏮️ 🐍 3️⃣.8️
 
 FastAPI 🧍 🔛 ⌚ 🐘:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🕸 🍕.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">💃</a> 🕸 🍕.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 📊 🍕.
 
 ## 👷‍♂
@@ -140,7 +140,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-👆 🔜 💪 🔫 💽, 🏭 ✅ <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ⚖️ <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+👆 🔜 💪 🔫 💽, 🏭 ✅ <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> ⚖️ <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -463,7 +463,7 @@ item: Item
 
 ⚙️ FastAPI / 💃:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - 💽 👈 📐 &amp; 🍦 👆 🈸.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - ✔ 🚥 👆 💚 ⚙️ `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - ✔ 🚥 👆 💚 ⚙️ `UJSONResponse`.
 

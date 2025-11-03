@@ -48,4 +48,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.
+Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.

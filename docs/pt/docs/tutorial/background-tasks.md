@@ -61,7 +61,7 @@ E então outra tarefa em segundo plano gerada na _função de operação de cami
 
 ## Detalhes técnicos
 
-A classe `BackgroundTasks` vem diretamente de <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+A classe `BackgroundTasks` vem diretamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 Ela é importada/incluída diretamente no FastAPI para que você possa importá-la do `fastapi` e evitar a importação acidental da alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
 
@@ -69,7 +69,7 @@ Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é então possível u
 
 Ainda é possível usar `BackgroundTask` sozinho no FastAPI, mas você deve criar o objeto em seu código e retornar uma Starlette `Response` incluindo-o.
 
-Você pode ver mais detalhes na <a href="https://www.starlette.io/background/" class="external-link" target="_blank"> documentação oficiais da Starlette para tarefas em segundo plano </a>.
+Você pode ver mais detalhes na <a href="https://www.starlette.dev/background/" class="external-link" target="_blank"> documentação oficiais da Starlette para tarefas em segundo plano </a>.
 
 ## Ressalva
 

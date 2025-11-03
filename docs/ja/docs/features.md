@@ -160,7 +160,7 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 
 ## Starletteの機能
 
-**FastAPI**は、<a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のStarletteコードがあれば、それも機能します。
+**FastAPI**は、<a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のStarletteコードがあれば、それも機能します。
 
 `FastAPI`は実際には`Starlette`のサブクラスです。したがって、Starletteをすでに知っているか使用している場合は、ほとんどの機能が同じように機能します。
 

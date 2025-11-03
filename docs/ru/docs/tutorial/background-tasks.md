@@ -61,7 +61,7 @@
 
 ## Технические детали { #technical-details }
 
-Класс `BackgroundTasks` приходит напрямую из <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+Класс `BackgroundTasks` приходит напрямую из <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 Он импортируется/включается прямо в FastAPI, чтобы вы могли импортировать его из `fastapi` и избежать случайного импорта альтернативного `BackgroundTask` (без `s` на конце) из `starlette.background`.
 
@@ -69,7 +69,7 @@
 
 По‑прежнему можно использовать один `BackgroundTask` в FastAPI, но тогда вам нужно создать объект в своём коде и вернуть Starlette `Response`, включающий его.
 
-Подробнее см. в <a href="https://www.starlette.io/background/" class="external-link" target="_blank">официальной документации Starlette по фоновым задачам</a>.
+Подробнее см. в <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">официальной документации Starlette по фоновым задачам</a>.
 
 ## Предостережение { #caveat }
 

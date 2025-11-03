@@ -93,4 +93,4 @@ HTTP 호스트 헤더 공격을 방지하기 위해 모든 수신 요청에 올�
 <a href=“https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py” class=“external-link” target=“_blank”>유비콘의 `ProxyHeadersMiddleware`></a>
 <a href=“https://github.com/florimondmanca/msgpack-asgi” class=“external-link” target=“_blank”>MessagePack</a>
 
-사용 가능한 다른 미들웨어를 확인하려면 <a href=“https://www.starlette.io/middleware/” class=“external-link” target=“_blank”>스타렛의 미들웨어 문서</a> 및 <a href=“https://github.com/florimondmanca/awesome-asgi” class=“external-link” target=“_blank”>ASGI Awesome List</a>를 참조하세요.
+사용 가능한 다른 미들웨어를 확인하려면 <a href=“https://www.starlette.dev/middleware/” class=“external-link” target=“_blank”>스타렛의 미들웨어 문서</a> 및 <a href=“https://github.com/florimondmanca/awesome-asgi” class=“external-link” target=“_blank”>ASGI Awesome List</a>를 참조하세요.

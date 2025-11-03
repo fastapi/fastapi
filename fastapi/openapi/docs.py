@@ -1,9 +1,10 @@
 import json
 from typing import Any, Dict, Optional
 
+from annotated_doc import Doc
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],
