@@ -133,7 +133,7 @@ class Termynal {
             this.container.innerHTML = ''
             this.init()
         }
-        restart.href = '#'
+        restart.href = "javascript:void(0)"
         restart.setAttribute('data-terminal-control', '')
         restart.innerHTML = "restart ↻"
         return restart
@@ -147,7 +147,7 @@ class Termynal {
             this.typeDelay = 0
             this.startDelay = 0
         }
-        finish.href = '#'
+        finish.href = "javascript:void(0)"
         finish.setAttribute('data-terminal-control', '')
         finish.innerHTML = "fast →"
         this.finishElement = finish

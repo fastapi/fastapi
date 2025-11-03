@@ -1,6 +1,6 @@
-# Fortgeschrittene Sicherheit
+# Fortgeschrittene Sicherheit { #advanced-security }
 
-## Zusatzfunktionen
+## Zusatzfunktionen { #additional-features }
 
 Neben den in [Tutorial – Benutzerhandbuch: Sicherheit](../../tutorial/security/index.md){.internal-link target=_blank} behandelten Funktionen gibt es noch einige zusätzliche Funktionen zur Handhabung der Sicherheit.
 
@@ -12,8 +12,8 @@ Und es ist möglich, dass für Ihren Anwendungsfall die Lösung in einem davon l
 
 ///
 
-## Lesen Sie zuerst das Tutorial
+## Das Tutorial zuerst lesen { #read-the-tutorial-first }
 
-In den nächsten Abschnitten wird davon ausgegangen, dass Sie das Haupt-[Tutorial – Benutzerhandbuch: Sicherheit](../../tutorial/security/index.md){.internal-link target=_blank} bereits gelesen haben.
+Die nächsten Abschnitte setzen voraus, dass Sie das Haupt-[Tutorial – Benutzerhandbuch: Sicherheit](../../tutorial/security/index.md){.internal-link target=_blank} bereits gelesen haben.
 
 Sie basieren alle auf den gleichen Konzepten, ermöglichen jedoch einige zusätzliche Funktionalitäten.

@@ -1,6 +1,6 @@
 import types
 from enum import Enum
-from typing import Any, Callable, Dict, Generic, Set, Type, TypeVar, Union
+from typing import Any, Callable, Dict, Generic, Optional, Set, Tuple, Type, TypeVar, Union
 
 from pydantic import BaseModel
 
@@ -37,3 +37,6 @@ class TypedState(RequestState, Generic[StateType]):
             super().__setattr__(key, value)
         else:
             self._state[key] = value
+
+
+DependencyCacheKey = Tuple[Optional[Callable[..., Any]], Tuple[str, ...], str]

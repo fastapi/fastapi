@@ -8,6 +8,6 @@
 
 /// note
 
-🌅 ℹ, ✅ 💃 🧾 <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank">🔬 *️⃣ </a>.
+🌅 ℹ, ✅ 💃 🧾 <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">🔬 *️⃣ </a>.
 
 ///

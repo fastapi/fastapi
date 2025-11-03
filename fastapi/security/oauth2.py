@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Optional, Union, cast
 
+from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
@@ -10,7 +11,7 @@ from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -89,7 +90,7 @@ class OAuth2PasswordRequestForm:
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],
@@ -243,7 +244,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             Doc(
                 """
                 `password` string. The OAuth2 spec requires the exact field name
-                `password".
+                `password`.
                 """
             ),
         ],
