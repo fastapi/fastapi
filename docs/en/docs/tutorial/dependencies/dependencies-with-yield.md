@@ -217,9 +217,9 @@ participant operation as Path Operation
 
     client ->> dep_req: Start request
     Note over dep_req: Run code up to yield
-    dep_req ->> dep_func:
+    dep_req ->> dep_func: Pass dependency
     Note over dep_func: Run code up to yield
-    dep_func ->> operation: Run path operation
+    dep_func ->> operation: Run path operation with dependency
     operation ->> dep_func: Return from path operation
     Note over dep_func: Run code after yield
     Note over dep_func: ✅ Dependency closed
