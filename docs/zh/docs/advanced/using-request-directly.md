@@ -15,7 +15,7 @@
 
 ## `Request` 对象的细节
 
-实际上，**FastAPI** 的底层是 **Starlette**，**FastAPI** 只不过是在  **Starlette** 顶层提供了一些工具，所以能直接使用 Starlette 的  <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 对象。
+实际上，**FastAPI** 的底层是 **Starlette**，**FastAPI** 只不过是在  **Starlette** 顶层提供了一些工具，所以能直接使用 Starlette 的  <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 对象。
 
 但直接从 `Request` 对象提取数据时（例如，读取请求体），**FastAPI** 不会验证、转换和存档数据（为 API 文档使用 OpenAPI）。
 
@@ -45,7 +45,7 @@
 
 ## `Request` 文档
 
-更多细节详见 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">Starlette 官档 - `Request` 对象</a>。
+更多细节详见 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette 官档 - `Request` 对象</a>。
 
 /// note | 技术细节
 

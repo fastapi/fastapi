@@ -1,4 +1,4 @@
-# Lifespan Events
+# Lifespan Events { #lifespan-events }
 
 You can define logic (code) that should be executed before the application **starts up**. This means that this code will be executed **once**, **before** the application **starts receiving requests**.
 
@@ -8,7 +8,7 @@ Because this code is executed before the application **starts** taking requests,
 
 This can be very useful for setting up **resources** that you need to use for the whole app, and that are **shared** among requests, and/or that you need to **clean up** afterwards. For example, a database connection pool, or loading a shared machine learning model.
 
-## Use Case
+## Use Case { #use-case }
 
 Let's start with an example **use case** and then see how to solve it with this.
 
@@ -22,7 +22,7 @@ You could load it at the top level of the module/file, but that would also mean 
 
 That's what we'll solve, let's load the model before the requests are handled, but only right before the application starts receiving requests, not while  the code is being loaded.
 
-## Lifespan
+## Lifespan { #lifespan }
 
 You can define this *startup* and *shutdown* logic using the `lifespan` parameter of the `FastAPI` app, and a "context manager" (I'll show you what that is in a second).
 
@@ -44,7 +44,7 @@ Maybe you need to start a new version, or you just got tired of running it. 🤷
 
 ///
 
-### Lifespan function
+### Lifespan function { #lifespan-function }
 
 The first thing to notice, is that we are defining an async function with `yield`. This is very similar to Dependencies with `yield`.
 
@@ -54,7 +54,7 @@ The first part of the function, before the `yield`, will be executed **before** 
 
 And the part after the `yield` will be executed **after** the application has finished.
 
-### Async Context Manager
+### Async Context Manager { #async-context-manager }
 
 If you check, the function is decorated with an `@asynccontextmanager`.
 
@@ -84,7 +84,7 @@ The `lifespan` parameter of the `FastAPI` app takes an **async context manager**
 
 {* ../../docs_src/events/tutorial003.py hl[22] *}
 
-## Alternative Events (deprecated)
+## Alternative Events (deprecated) { #alternative-events-deprecated }
 
 /// warning
 
@@ -100,7 +100,7 @@ You can define event handlers (functions) that need to be executed before the ap
 
 These functions can be declared with `async def` or normal `def`.
 
-### `startup` event
+### `startup` event { #startup-event }
 
 To add a function that should be run before the application starts, declare it with the event `"startup"`:
 
@@ -112,7 +112,7 @@ You can add more than one event handler function.
 
 And your application won't start receiving requests until all the `startup` event handlers have completed.
 
-### `shutdown` event
+### `shutdown` event { #shutdown-event }
 
 To add a function that should be run when the application is shutting down, declare it with the event `"shutdown"`:
 
@@ -138,7 +138,7 @@ So, we declare the event handler function with standard `def` instead of `async 
 
 ///
 
-### `startup` and `shutdown` together
+### `startup` and `shutdown` together { #startup-and-shutdown-together }
 
 There's a high chance that the logic for your *startup* and *shutdown* is connected, you might want to start something and then finish it, acquire a resource and then release it, etc.
 
@@ -146,7 +146,7 @@ Doing that in separated functions that don't share logic or variables together i
 
 Because of that, it's now recommended to instead use the `lifespan` as explained above.
 
-## Technical Details
+## Technical Details { #technical-details }
 
 Just a technical detail for the curious nerds. 🤓
 
@@ -154,12 +154,12 @@ Underneath, in the ASGI technical specification, this is part of the <a href="ht
 
 /// info
 
-You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
 
 Including how to handle lifespan state that can be used in other areas of your code.
 
 ///
 
-## Sub Applications
+## Sub Applications { #sub-applications }
 
 🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.

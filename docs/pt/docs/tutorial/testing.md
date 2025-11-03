@@ -1,6 +1,6 @@
 # Testando
 
-Graças ao <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
+Graças ao <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
 
 Ele é baseado no <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 

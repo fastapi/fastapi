@@ -37,4 +37,4 @@
 
 ## 更多信息
 
-更多细节和选择查阅 <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+更多细节和选择查阅 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

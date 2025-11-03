@@ -37,4 +37,4 @@ Bu parametrelerin hepsi "`static`"den farklı olabilir, bunları kendi uygulaman
 
 ## Daha Fazla Bilgi
 
-Daha fazla detay ve seçenek için <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette'in Statik Dosyalar hakkındaki dokümantasyonunu</a> incelleyin.
+Daha fazla detay ve seçenek için <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette'in Statik Dosyalar hakkındaki dokümantasyonunu</a> incelleyin.

@@ -1,12 +1,12 @@
-# OAuth2-Scopes
+# OAuth2-Scopes { #oauth2-scopes }
 
 Sie können OAuth2-<abbr title="Geltungsbereiche">Scopes</abbr> direkt in **FastAPI** verwenden, sie sind nahtlos integriert.
 
 Das ermöglicht es Ihnen, ein feingranuliertes Berechtigungssystem nach dem OAuth2-Standard in Ihre OpenAPI-Anwendung (und deren API-Dokumentation) zu integrieren.
 
-OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, Twitter usw. verwendet wird. Sie verwenden ihn, um Benutzern und Anwendungen spezifische Berechtigungen zu erteilen.
+OAuth2 mit Scopes ist der Mechanismus, der von vielen großen Authentifizierungsanbietern wie Facebook, Google, GitHub, Microsoft, X (Twitter) usw. verwendet wird. Sie verwenden ihn, um Benutzern und Anwendungen spezifische Berechtigungen zu erteilen.
 
-Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder Twitter anmelden („log in with“), verwendet die entsprechende Anwendung OAuth2 mit Scopes.
+Jedes Mal, wenn Sie sich mit Facebook, Google, GitHub, Microsoft oder X (Twitter) anmelden („log in with“), verwendet die entsprechende Anwendung OAuth2 mit Scopes.
 
 In diesem Abschnitt erfahren Sie, wie Sie Authentifizierung und Autorisierung mit demselben OAuth2, mit Scopes in Ihrer **FastAPI**-Anwendung verwalten.
 
@@ -26,7 +26,7 @@ Aber wenn Sie wissen, dass Sie es brauchen oder neugierig sind, lesen Sie weiter
 
 ///
 
-## OAuth2-Scopes und OpenAPI
+## OAuth2-Scopes und OpenAPI { #oauth2-scopes-and-openapi }
 
 Die OAuth2-Spezifikation definiert „Scopes“ als eine Liste von durch Leerzeichen getrennten Strings.
 
@@ -46,7 +46,7 @@ Er wird normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu dekla
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info
+/// info | Info
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -58,21 +58,21 @@ Für OAuth2 sind es einfach nur Strings.
 
 ///
 
-## Gesamtübersicht
+## Gesamtübersicht { #global-view }
 
 Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank} ändern. Diesmal verwenden wir OAuth2-Scopes:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[4,8,12,46,64,105,107:115,121:124,128:134,139,155] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Sehen wir uns diese Änderungen nun Schritt für Schritt an.
 
-## OAuth2-Sicherheitsschema
+## OAuth2-Sicherheitsschema { #oauth2-security-scheme }
 
 Die erste Änderung ist, dass wir jetzt das OAuth2-Sicherheitsschema mit zwei verfügbaren Scopes deklarieren: `me` und `items`.
 
-Der `scopes`-Parameter erhält ein `dict` mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
+Der `scopes`-Parameter erhält ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[62:65] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
 
 Da wir diese Scopes jetzt deklarieren, werden sie in der API-Dokumentation angezeigt, wenn Sie sich einloggen/autorisieren.
 
@@ -82,11 +82,11 @@ Das ist derselbe Mechanismus, der verwendet wird, wenn Sie beim Anmelden mit Fac
 
 <img src="/img/tutorial/security/image11.png">
 
-## JWT-Token mit Scopes
+## JWT-Token mit Scopes { #jwt-token-with-scopes }
 
 Ändern Sie nun die Token-*Pfadoperation*, um die angeforderten Scopes zurückzugeben.
 
-Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine Eigenschaft `scopes` mit einer `list`e von `str`s für jeden Scope, den es im Request erhalten hat.
+Wir verwenden immer noch dasselbe `OAuth2PasswordRequestForm`. Es enthält eine Eigenschaft `scopes` mit einer `list`e von `str`s für jeden Scope, den es im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> erhalten hat.
 
 Und wir geben die Scopes als Teil des JWT-Tokens zurück.
 
@@ -98,9 +98,9 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[155] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
-## Scopes in *Pfadoperationen* und Abhängigkeiten deklarieren
+## Scopes in *Pfadoperationen* und Abhängigkeiten deklarieren { #declare-scopes-in-path-operations-and-dependencies }
 
 Jetzt deklarieren wir, dass die *Pfadoperation* für `/users/me/items/` den Scope `items` erfordert.
 
@@ -124,7 +124,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[4,139,170] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
 /// info | Technische Details
 
@@ -136,7 +136,7 @@ Wenn Sie jedoch `Query`, `Path`, `Depends`, `Security` und andere von `fastapi` 
 
 ///
 
-## `SecurityScopes` verwenden
+## `SecurityScopes` verwenden { #use-securityscopes }
 
 Aktualisieren Sie nun die Abhängigkeit `get_current_user`.
 
@@ -150,9 +150,9 @@ Wir deklarieren auch einen speziellen Parameter vom Typ `SecurityScopes`, der au
 
 Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um das Request-Objekt direkt zu erhalten).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[8,105] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## Die `scopes` verwenden
+## Die `scopes` verwenden { #use-the-scopes }
 
 Der Parameter `security_scopes` wird vom Typ `SecurityScopes` sein.
 
@@ -164,9 +164,9 @@ Wir erstellen eine `HTTPException`, die wir später an mehreren Stellen wiederve
 
 In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als durch Leerzeichen getrennten String ein (unter Verwendung von `scope_str`). Wir fügen diesen String mit den Scopes in den Header `WWW-Authenticate` ein (das ist Teil der Spezifikation).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[105,107:115] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
 
-## Den `username` und das Format der Daten überprüfen
+## Den `username` und das Format der Daten überprüfen { #verify-the-username-and-data-shape }
 
 Wir verifizieren, dass wir einen `username` erhalten, und extrahieren die Scopes.
 
@@ -180,17 +180,17 @@ Anstelle beispielsweise eines `dict`s oder etwas anderem, was später in der Anw
 
 Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, und wenn nicht, lösen wir dieselbe Exception aus, die wir zuvor erstellt haben.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[46,116:127] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
-## Die `scopes` verifizieren
+## Die `scopes` verifizieren { #verify-the-scopes }
 
-Wir überprüfen nun, ob das empfangenen Token alle Scopes enthält, die von dieser Abhängigkeit und deren Verwendern (einschließlich *Pfadoperationen*) gefordert werden. Andernfalls lösen wir eine `HTTPException` aus.
+Wir überprüfen nun, ob das empfangene Token alle Scopes enthält, die von dieser Abhängigkeit und deren Verwendern (einschließlich *Pfadoperationen*) gefordert werden. Andernfalls lösen wir eine `HTTPException` aus.
 
 Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen Scopes als `str` enthält.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[128:134] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
-## Abhängigkeitsbaum und Scopes
+## Abhängigkeitsbaum und Scopes { #dependency-tree-and-scopes }
 
 Sehen wir uns diesen Abhängigkeitsbaum und die Scopes noch einmal an.
 
@@ -223,7 +223,7 @@ Alles hängt von den „Scopes“ ab, die in jeder *Pfadoperation* und jeder Abh
 
 ///
 
-## Weitere Details zu `SecurityScopes`.
+## Weitere Details zu `SecurityScopes` { #more-details-about-securityscopes }
 
 Sie können `SecurityScopes` an jeder Stelle und an mehreren Stellen verwenden, es muss sich nicht in der „Wurzel“-Abhängigkeit befinden.
 
@@ -233,7 +233,7 @@ Da die `SecurityScopes` alle von den Verwendern der Abhängigkeiten deklarierten
 
 Diese werden für jede *Pfadoperation* unabhängig überprüft.
 
-## Testen Sie es
+## Es testen { #check-it }
 
 Wenn Sie die API-Dokumentation öffnen, können Sie sich authentisieren und angeben, welche Scopes Sie autorisieren möchten.
 
@@ -245,7 +245,7 @@ Und wenn Sie den Scope `me`, aber nicht den Scope `items` auswählen, können Si
 
 Das würde einer Drittanbieteranwendung passieren, die versucht, auf eine dieser *Pfadoperationen* mit einem Token zuzugreifen, das von einem Benutzer bereitgestellt wurde, abhängig davon, wie viele Berechtigungen der Benutzer dieser Anwendung erteilt hat.
 
-## Über Integrationen von Drittanbietern
+## Über Integrationen von Drittanbietern { #about-third-party-integrations }
 
 In diesem Beispiel verwenden wir den OAuth2-Flow „Password“.
 
@@ -269,6 +269,6 @@ Aber am Ende implementieren sie denselben OAuth2-Standard.
 
 **FastAPI** enthält Werkzeuge für alle diese OAuth2-Authentifizierungs-Flows in `fastapi.security.oauth2`.
 
-## `Security` in Dekorator-`dependencies`
+## `Security` in Dekorator-`dependencies` { #security-in-decorator-dependencies }
 
 Auf die gleiche Weise können Sie eine `list`e von `Depends` im Parameter `dependencies` des Dekorators definieren (wie in [Abhängigkeiten in Pfadoperation-Dekoratoren](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank} erläutert), Sie könnten auch dort `Security` mit `scopes` verwenden.

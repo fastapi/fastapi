@@ -63,7 +63,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 `HTTPException`を発生させる際には、`str`だけでなく、JSONに変換できる任意の値を`detail`パラメータとして渡すことができます。
 
-`dist`や`list`などを渡すことができます。
+`dict`や`list`などを渡すことができます。
 
 これらは **FastAPI** によって自動的に処理され、JSONに変換されます。
 
@@ -81,7 +81,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 ## カスタム例外ハンドラのインストール
 
-カスタム例外ハンドラは<a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
+カスタム例外ハンドラは<a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">Starletteと同じ例外ユーティリティ</a>を使用して追加することができます。
 
 あなた（または使用しているライブラリ）が`raise`するかもしれないカスタム例外`UnicornException`があるとしましょう。
 

@@ -121,4 +121,4 @@ E como você está usando `StaticFiles`, este arquivo CSS será automaticamente 
 
 ## Mais detalhes
 
-Para obter mais detalhes, incluindo como testar templates, consulte a <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">documentação da Starlette sobre templates</a>.
+Para obter mais detalhes, incluindo como testar templates, consulte a <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">documentação da Starlette sobre templates</a>.
