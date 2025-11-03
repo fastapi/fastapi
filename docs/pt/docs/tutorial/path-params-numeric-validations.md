@@ -14,7 +14,7 @@ O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 
 
 Se você tiver uma versão mais antiga, verá erros ao tentar usar `Annotated`.
 
-Certifique-se de [Atualize a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
+Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
