@@ -2256,12 +2256,12 @@ def Depends(  # noqa: N802
             * `"function"`: start the dependency before the *path operation function*
                 that handles the request, end the dependency after the *path operation
                 function* ends, but **before** the response is sent back to the client.
-                So, the dependency function will be executed *around* the *path operation
+                So, the dependency function will be executed **around** the *path operation
                 **function***.
             * `"request"`: start the dependency before the *path operation function*
                 that handles the request (similar to when using `"function"`), but end
                 **after** the response is sent back to the client. So, the dependency
-                function will be executed *around* the **request** and response cycle.
+                function will be executed **around** the **request** and response cycle.
             """
         ),
     ] = None,
