@@ -34,7 +34,7 @@ jobs:
             requirements**.txt
             pyproject.toml
       - run: uv pip install -r requirements-github-actions.txt
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: coverage-html
           path: htmlcov

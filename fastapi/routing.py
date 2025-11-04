@@ -24,6 +24,7 @@ from typing import (
     Union,
 )
 
+from annotated_doc import Doc
 import anyio
 from anyio import CapacityLimiter
 from fastapi import params, temp_pydantic_v1_params
@@ -78,7 +79,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -105,10 +106,11 @@ def request_response(
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
-            async with AsyncExitStack() as stack:
-                scope["fastapi_inner_astack"] = stack
-                # Same as in Starlette
-                response = await f(request)
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    response = await f(request)
                 await response(scope, receive, send)
                 # Continues customization
                 response_awaited = True
@@ -141,11 +143,11 @@ def websocket_session(
         session = WebSocket(scope, receive=receive, send=send)
 
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
-            # Starts customization
-            async with AsyncExitStack() as stack:
-                scope["fastapi_inner_astack"] = stack
-                # Same as in Starlette
-                await func(session)
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    await func(session)
 
         # Same as in Starlette
         await wrap_app_handling_exceptions(app, session)(scope, receive, send)
@@ -483,7 +485,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -634,7 +638,9 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
