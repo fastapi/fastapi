@@ -250,13 +250,9 @@ q: str | None = None
 
 But we are now declaring it with `Query`, for example like:
 
-//// tab | Annotated
-
 ```Python
 q: Annotated[str | None, Query(min_length=3)] = None
 ```
-
-////
 
 So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 

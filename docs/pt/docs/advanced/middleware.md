@@ -93,4 +93,4 @@ Por exemplo:
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn's `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
-Para checar outros middlewares disponíveis, confira <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Documentação de Middlewares do Starlette</a> e a  <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">Lista Incrível do ASGI</a>.
+Para checar outros middlewares disponíveis, confira <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Documentação de Middlewares do Starlette</a> e a  <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">Lista Incrível do ASGI</a>.

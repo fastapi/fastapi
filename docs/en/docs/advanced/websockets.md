@@ -2,9 +2,9 @@
 
 You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
-## Install `WebSockets` { #install-websockets }
+## Install `websockets` { #install-websockets }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library that makes it easy to use the "WebSocket" protocol):
 
 <div class="termy">
 
@@ -182,5 +182,5 @@ If you need something easy to integrate with FastAPI but that is more robust, su
 
 To learn more about the options, check Starlette's documentation for:
 
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.

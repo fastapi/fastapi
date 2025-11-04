@@ -38,4 +38,4 @@
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">‘X-’ 접두어를 사용하여</a> 커스텀 사설 헤더를 추가할 수 있습니다.
 
-하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}에서 자세히 알아보세요). `expose_headers` 매개변수를 사용하여 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette의 CORS 설명서</a>에 문서화된 대로 설정할 수 있습니다.
+하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}에서 자세히 알아보세요). `expose_headers` 매개변수를 사용하여 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette의 CORS 설명서</a>에 문서화된 대로 설정할 수 있습니다.

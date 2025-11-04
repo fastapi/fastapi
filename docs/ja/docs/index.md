@@ -118,7 +118,7 @@ FastAPI は、Pythonの標準である型ヒントに基づいてPython 以降�
 
 FastAPI は巨人の肩の上に立っています。
 
-- Web の部分は<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+- Web の部分は<a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
 - データの部分は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
 
 ## インストール
@@ -133,7 +133,7 @@ $ pip install fastapi
 
 </div>
 
-本番環境では、<a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
+本番環境では、<a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> または、 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>のような、 ASGI サーバーが必要になります。
 
 <div class="termy">
 
@@ -451,7 +451,7 @@ Starlette によって使用されるもの:
 
 FastAPI / Starlette に使用されるもの:
 
-- <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
+- <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - アプリケーションをロードしてサーブするサーバーのため。
 - <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`を使用したい場合は必要です。
 - <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`を使用する場合は必須です。
 

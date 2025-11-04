@@ -1,4 +1,4 @@
-# Fortgeschrittene Middleware
+# Fortgeschrittene Middleware { #advanced-middleware }
 
 Im Haupttutorial haben Sie gelesen, wie Sie Ihrer Anwendung [benutzerdefinierte Middleware](../tutorial/middleware.md){.internal-link target=_blank} hinzufügen können.
 
@@ -6,15 +6,15 @@ Und dann auch, wie man [CORS mittels der `CORSMiddleware`](../tutorial/cors.md){
 
 In diesem Abschnitt werden wir sehen, wie man andere Middlewares verwendet.
 
-## ASGI-Middleware hinzufügen
+## ASGI-Middleware hinzufügen { #adding-asgi-middlewares }
 
-Da **FastAPI** auf Starlette basiert und die <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>-Spezifikation implementiert, können Sie jede ASGI-Middleware verwenden.
+Da **FastAPI** auf Starlette basiert und die <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>-Spezifikation implementiert, können Sie jede ASGI-Middleware verwenden.
 
 Eine Middleware muss nicht speziell für FastAPI oder Starlette gemacht sein, um zu funktionieren, solange sie der ASGI-Spezifikation genügt.
 
 Im Allgemeinen handelt es sich bei ASGI-Middleware um Klassen, die als erstes Argument eine ASGI-Anwendung erwarten.
 
-In der Dokumentation für ASGI-Middlewares von Drittanbietern wird Ihnen wahrscheinlich gesagt, etwa Folgendes zu tun:
+In der Dokumentation für ASGI-Middlewares von Drittanbietern wird Ihnen wahrscheinlich gesagt, dass Sie etwa Folgendes tun sollen:
 
 ```Python
 from unicorn import UnicornMiddleware
@@ -39,7 +39,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `app.add_middleware()` empfängt eine Middleware-Klasse als erstes Argument und dann alle weiteren Argumente, die an die Middleware übergeben werden sollen.
 
-## Integrierte Middleware
+## Integrierte Middleware { #integrated-middlewares }
 
 **FastAPI** enthält mehrere Middlewares für gängige Anwendungsfälle. Wir werden als Nächstes sehen, wie man sie verwendet.
 
@@ -51,15 +51,15 @@ Für die nächsten Beispiele könnten Sie auch `from starlette.middleware.someth
 
 ///
 
-## `HTTPSRedirectMiddleware`
+## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
-Erzwingt, dass alle eingehenden Requests entweder `https` oder `wss` sein müssen.
+Erzwingt, dass alle eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> entweder `https` oder `wss` sein müssen.
 
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 
 {* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
-## `TrustedHostMiddleware`
+## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
@@ -68,10 +68,11 @@ Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header h
 Die folgenden Argumente werden unterstützt:
 
 * `allowed_hosts` – Eine Liste von Domain-Namen, die als Hostnamen zulässig sein sollten. Wildcard-Domains wie `*.example.com` werden unterstützt, um Subdomains zu matchen. Um jeden Hostnamen zu erlauben, verwenden Sie entweder `allowed_hosts=["*"]` oder lassen Sie diese Middleware weg.
+* `www_redirect` – Wenn auf True gesetzt, werden Requests an Nicht-www-Versionen der erlaubten Hosts zu deren www-Gegenstücken umgeleitet. Der Defaultwert ist `True`.
 
-Wenn ein eingehender Request nicht korrekt validiert wird, wird eine „400“-Response gesendet.
+Wenn ein eingehender Request nicht korrekt validiert wird, wird eine `400`-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> gesendet.
 
-## `GZipMiddleware`
+## `GZipMiddleware` { #gzipmiddleware }
 
 Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`-Header enthalten.
 
@@ -81,9 +82,10 @@ Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
 Die folgenden Argumente werden unterstützt:
 
-* `minimum_size` – Antworten, die kleiner als diese Mindestgröße in Bytes sind, nicht per GZip komprimieren. Der Defaultwert ist `500`.
+* `minimum_size` – Responses, die kleiner als diese Mindestgröße in Bytes sind, nicht per GZip komprimieren. Der Defaultwert ist `500`.
+* `compresslevel` – Wird während der GZip-Kompression verwendet. Es ist ein Ganzzahlwert zwischen 1 und 9. Der Defaultwert ist `9`. Ein niedrigerer Wert resultiert in schnellerer Kompression, aber größeren Dateigrößen, während ein höherer Wert langsamere Kompression, aber kleinere Dateigrößen zur Folge hat.
 
-## Andere Middlewares
+## Andere Middlewares { #other-middlewares }
 
 Es gibt viele andere ASGI-Middlewares.
 
@@ -92,4 +94,4 @@ Zum Beispiel:
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorns `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
-Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlettes Middleware-Dokumentation</a> und die <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.
+Um mehr über weitere verfügbare Middlewares herauszufinden, besuchen Sie <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlettes Middleware-Dokumentation</a> und die <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>.

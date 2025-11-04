@@ -123,4 +123,4 @@ Y porque estás usando `StaticFiles`, ese archivo CSS sería servido automática
 
 ## Más detalles
 
-Para más detalles, incluyendo cómo testear plantillas, revisa <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">la documentación de Starlette sobre plantillas</a>.
+Para más detalles, incluyendo cómo testear plantillas, revisa <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">la documentación de Starlette sobre plantillas</a>.
