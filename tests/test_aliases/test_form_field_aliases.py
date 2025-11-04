@@ -1,9 +1,13 @@
-from typing import Optional
+from typing import List, Optional
 
 import pytest
-from dirty_equals import IsOneOf
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
+
+from ..utils import needs_pydanticv2
+
+pytestmark = needs_pydanticv2
+
 
 app = FastAPI()
 
@@ -25,10 +29,7 @@ def test_required_field_alias_by_name():
     resp = client.post("/required-field-alias", data={"param": "123"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_alias" in detail[0]["loc"]
 
 
@@ -97,7 +98,7 @@ def test_optional_field_alias_schema():
 
 
 @app.post("/list-field-alias", operation_id="list_field_alias")
-async def list_field_alias(param: list[str] = Form(alias="param_alias")):
+async def list_field_alias(param: List[str] = Form(alias="param_alias")):
     return {"param": param}
 
 
@@ -106,10 +107,7 @@ def test_list_field_alias_by_name():
     resp = client.post("/list-field-alias", data={"param": ["123", "456"]})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_alias" in detail[0]["loc"]
 
 
@@ -143,7 +141,7 @@ def test_list_field_alias_schema():
 
 @app.post("/optional-list-field-alias", operation_id="optional_list_field_alias")
 async def optional_list_field_alias(
-    param: Optional[list[str]] = Form(None, alias="param_alias"),
+    param: Optional[List[str]] = Form(None, alias="param_alias"),
 ):
     return {"param": param}
 
@@ -207,10 +205,7 @@ def test_required_field_validation_alias_by_name():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -290,7 +285,7 @@ def test_optional_field_validation_alias_schema():
 
 @app.post("/list-field-validation-alias", operation_id="list_field_validation_alias")
 async def list_field_validation_alias(
-    param: list[str] = Form(validation_alias="param_val_alias"),
+    param: List[str] = Form(validation_alias="param_val_alias"),
 ):
     return {"param": param}
 
@@ -304,10 +299,7 @@ def test_list_field_validation_alias_by_name():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -345,7 +337,7 @@ def test_list_field_validation_alias_schema():
     operation_id="optional_list_field_validation_alias",
 )
 async def optional_list_field_validation_alias(
-    param: Optional[list[str]] = Form(None, validation_alias="param_val_alias"),
+    param: Optional[List[str]] = Form(None, validation_alias="param_val_alias"),
 ):
     return {"param": param}
 
@@ -414,10 +406,7 @@ def test_required_field_alias_and_validation_alias_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
     # Currently fails due to issue with aliases:
     # AssertionError: assert 'param_val_alias' in ['body', 'param_alias']
@@ -434,10 +423,7 @@ def test_required_field_alias_and_validation_alias_by_alias():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -535,7 +521,7 @@ def test_optional_field_alias_and_validation_alias_schema():
     operation_id="list_field_alias_and_validation_alias",
 )
 async def list_field_alias_and_validation_alias(
-    param: list[str] = Form(alias="param_alias", validation_alias="param_val_alias"),
+    param: List[str] = Form(alias="param_alias", validation_alias="param_val_alias"),
 ):
     return {"param": param}
 
@@ -548,10 +534,7 @@ def test_list_field_alias_and_validation_alias_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
     # Currently fails due to issue with aliases:
     # AssertionError: assert 'param_val_alias' in ['body', 'param_alias']
@@ -568,10 +551,7 @@ def test_list_field_alias_and_validation_alias_by_alias():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -612,7 +592,7 @@ def test_list_field_alias_and_validation_alias_schema():
     operation_id="optional_list_field_alias_and_validation_alias",
 )
 async def optional_list_field_alias_and_validation_alias(
-    param: Optional[list[str]] = Form(
+    param: Optional[List[str]] = Form(
         None, alias="param_alias", validation_alias="param_val_alias"
     ),
 ):
@@ -686,10 +666,7 @@ def test_workaround_by_name():
     resp = client.post("/workaround", data={"param": "123"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_alias" in detail[0]["loc"]
 
 

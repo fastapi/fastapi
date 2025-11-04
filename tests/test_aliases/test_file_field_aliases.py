@@ -1,16 +1,20 @@
-from typing import Optional
+from typing import List, Optional
 
 import pytest
-from dirty_equals import IsOneOf
 from fastapi import FastAPI, File
 from fastapi.testclient import TestClient
+
+from ..utils import needs_pydanticv2
+
+pytestmark = needs_pydanticv2
+
 
 app = FastAPI()
 
 # =====================================================================================
 # File(alias=...)
 # Current situation: Works, but schema is wrong
-# Optional[list[bytes]] fails due to another issue (likely not related to aliases)
+# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 # ------------------------------
 # required field
@@ -26,10 +30,7 @@ def test_required_field_alias_by_name():
     resp = client.post("/required-field-alias", files={"file": b"content"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "file_alias" in detail[0]["loc"]
 
 
@@ -100,7 +101,7 @@ def test_optional_field_alias_schema():
 
 
 @app.post("/list-field-alias", operation_id="list_field_alias")
-async def list_field_alias(files: list[bytes] = File(alias="files_alias")):
+async def list_field_alias(files: List[bytes] = File(alias="files_alias")):
     return {"file_sizes": [len(file) for file in files]}
 
 
@@ -111,10 +112,7 @@ def test_list_field_alias_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "files_alias" in detail[0]["loc"]
 
 
@@ -151,7 +149,7 @@ def test_list_field_alias_schema():
 
 @app.post("/optional-list-field-alias", operation_id="optional_list_field_alias")
 async def optional_list_field_alias(
-    files: Optional[list[bytes]] = File(None, alias="files_alias"),
+    files: Optional[List[bytes]] = File(None, alias="files_alias"),
 ):
     if files is None:
         return {"file_sizes": None}
@@ -169,7 +167,7 @@ def test_optional_list_field_alias_by_name():
 
 
 @pytest.mark.xfail(
-    reason="Optional[list[bytes]] File type causes TypeError in FastAPI",
+    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
     raises=TypeError,
     strict=False,
 )
@@ -207,7 +205,7 @@ def test_optional_list_field_alias_schema():
 # =====================================================================================
 # File(validation_alias=...)
 # Current situation: schema is correct, but doesn't work (parameter name is used)
-# Optional[list[bytes]] fails due to another issue (likely not related to aliases)
+# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 
 # ------------------------------
@@ -232,10 +230,7 @@ def test_required_field_validation_alias_by_name():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "file_val_alias" in detail[0]["loc"]
 
 
@@ -320,7 +315,7 @@ def test_optional_field_validation_alias_schema():
 
 @app.post("/list-field-validation-alias", operation_id="list_field_validation_alias")
 async def list_field_validation_alias(
-    files: list[bytes] = File(validation_alias="files_val_alias"),
+    files: List[bytes] = File(validation_alias="files_val_alias"),
 ):
     return {"file_sizes": [len(file) for file in files]}
 
@@ -337,10 +332,7 @@ def test_list_field_validation_alias_by_name():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "files_val_alias" in detail[0]["loc"]
 
 
@@ -379,7 +371,7 @@ def test_list_field_validation_alias_schema():
     operation_id="optional_list_field_validation_alias",
 )
 async def optional_list_field_validation_alias(
-    files: Optional[list[bytes]] = File(None, validation_alias="files_val_alias"),
+    files: Optional[List[bytes]] = File(None, validation_alias="files_val_alias"),
 ):
     if files is None:
         return {"file_sizes": None}
@@ -387,7 +379,7 @@ async def optional_list_field_validation_alias(
 
 
 @pytest.mark.xfail(
-    reason="Optional[list[bytes]] File type causes TypeError in FastAPI",
+    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
     raises=TypeError,
     strict=False,
 )
@@ -436,7 +428,7 @@ def test_optional_list_field_validation_alias_schema():
 # =====================================================================================
 # File(alias=..., validation_alias=...)
 # Current situation: Schema is correct (validation_alias), but doesn't work (alias is used)
-# Optional[list[bytes]] fails due to another issue (likely not related to aliases)
+# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 # ------------------------------
 # required field
@@ -460,10 +452,7 @@ def test_required_field_alias_and_validation_alias_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "file_val_alias" in detail[0]["loc"]
     # Currently fails due to issue with aliases:
     # AssertionError: assert 'file_val_alias' in ['body', 'file_alias']
@@ -480,10 +469,7 @@ def test_required_field_alias_and_validation_alias_by_alias():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "file_val_alias" in detail[0]["loc"]
 
 
@@ -589,7 +575,7 @@ def test_optional_field_alias_and_validation_alias_schema():
     operation_id="list_field_alias_and_validation_alias",
 )
 async def list_field_alias_and_validation_alias(
-    files: list[bytes] = File(alias="files_alias", validation_alias="files_val_alias"),
+    files: List[bytes] = File(alias="files_alias", validation_alias="files_val_alias"),
 ):
     return {"file_sizes": [len(file) for file in files]}
 
@@ -603,10 +589,7 @@ def test_list_field_alias_and_validation_alias_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "files_val_alias" in detail[0]["loc"]
     # Currently fails due to issue with aliases:
     # AssertionError: assert 'files_val_alias' in ['body', 'files_alias']
@@ -624,10 +607,7 @@ def test_list_field_alias_and_validation_alias_by_alias():
     # AssertionError: assert 200 == 422
 
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "files_val_alias" in detail[0]["loc"]
 
 
@@ -668,7 +648,7 @@ def test_list_field_alias_and_validation_alias_schema():
     operation_id="optional_list_field_alias_and_validation_alias",
 )
 async def optional_list_field_alias_and_validation_alias(
-    files: Optional[list[bytes]] = File(
+    files: Optional[List[bytes]] = File(
         None, alias="files_alias", validation_alias="files_val_alias"
     ),
 ):
@@ -688,7 +668,7 @@ def test_optional_list_field_alias_and_validation_alias_by_name():
 
 
 @pytest.mark.xfail(
-    reason="Optional[list[bytes]] File type causes TypeError in FastAPI",
+    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
     raises=TypeError,
     strict=False,
 )
@@ -754,10 +734,7 @@ def test_workaround_by_name():
     resp = client.post("/workaround", files={"file": b"content"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "file_alias" in detail[0]["loc"]
 
 

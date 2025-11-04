@@ -1,10 +1,13 @@
-from typing import Annotated, Optional
+from typing import List, Optional
 
 import pytest
-from dirty_equals import IsOneOf
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+
+from ..utils import needs_pydanticv2
+
+pytestmark = needs_pydanticv2
 
 app = FastAPI()
 
@@ -21,7 +24,7 @@ class RequiredFieldAliasModel(BaseModel):
 
 
 @app.post("/required-field-alias-model")
-async def required_field_alias_model(data: Annotated[RequiredFieldAliasModel, Form()]):
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -30,10 +33,7 @@ def test_required_field_alias_model_by_name():
     resp = client.post("/required-field-alias-model", data={"param": "123"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_alias" in detail[0]["loc"]
 
 
@@ -61,7 +61,7 @@ class OptionalFieldAliasModel(BaseModel):
 
 
 @app.post("/optional-field-alias-model")
-async def optional_field_alias_model(data: Annotated[OptionalFieldAliasModel, Form()]):
+async def optional_field_alias_model(data: OptionalFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -95,11 +95,11 @@ def test_optional_field_alias_model_schema():
 
 
 class ListFieldAliasModel(BaseModel):
-    param: list[str] = Field(alias="param_alias")
+    param: List[str] = Field(alias="param_alias")
 
 
 @app.post("/list-field-alias-model")
-async def list_field_alias_model(data: Annotated[ListFieldAliasModel, Form()]):
+async def list_field_alias_model(data: ListFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -108,10 +108,7 @@ def test_list_field_alias_model_by_name():
     resp = client.post("/list-field-alias-model", data={"param": ["123", "456"]})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_alias" in detail[0]["loc"]
 
 
@@ -139,12 +136,12 @@ def test_list_field_alias_model_schema():
 
 
 class OptionalListFieldAliasModel(BaseModel):
-    param: Optional[list[str]] = Field(None, alias="param_alias")
+    param: Optional[List[str]] = Field(None, alias="param_alias")
 
 
 @app.post("/optional-list-field-alias-model")
 async def optional_list_field_alias_model(
-    data: Annotated[OptionalListFieldAliasModel, Form()],
+    data: OptionalListFieldAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -170,8 +167,12 @@ def test_optional_list_field_alias_model_by_alias():
 def test_optional_list_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["OptionalListFieldAliasModel"]
-    assert len(body_schema["properties"]) == 1
-    assert "param_alias" in body_schema["properties"]
+    assert body_schema["properties"] == {
+        "param_alias": {
+            "anyOf": [{"items": {"type": "string"}, "type": "array"}, {"type": "null"}],
+            "title": "Param Alias",
+        }
+    }
 
 
 # =====================================================================================
@@ -192,7 +193,7 @@ class RequiredFieldValidationAliasModel(BaseModel):
     operation_id="required_field_validation_alias_model",
 )
 async def required_field_validation_alias_model(
-    data: Annotated[RequiredFieldValidationAliasModel, Form()],
+    data: RequiredFieldValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -202,10 +203,7 @@ def test_required_field_validation_alias_model_by_name():
     resp = client.post("/required-field-validation-alias-model", data={"param": "123"})
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -239,7 +237,7 @@ class OptionalFieldValidationAliasModel(BaseModel):
     operation_id="optional_field_validation_alias_model",
 )
 async def optional_field_validation_alias_model(
-    data: Annotated[OptionalFieldValidationAliasModel, Form()],
+    data: OptionalFieldValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -276,7 +274,7 @@ def test_optional_field_validation_alias_model_schema():
 
 
 class ListFieldValidationAliasModel(BaseModel):
-    param: list[str] = Field(validation_alias="param_val_alias")
+    param: List[str] = Field(validation_alias="param_val_alias")
 
 
 @app.post(
@@ -284,7 +282,7 @@ class ListFieldValidationAliasModel(BaseModel):
     operation_id="list_field_validation_alias_model",
 )
 async def list_field_validation_alias_model(
-    data: Annotated[ListFieldValidationAliasModel, Form()],
+    data: ListFieldValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -296,10 +294,7 @@ def test_list_field_validation_alias_model_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -334,7 +329,7 @@ def test_list_field_validation_alias_model_schema():
 
 
 class OptionalListFieldValidationAliasModel(BaseModel):
-    param: Optional[list[str]] = Field(None, validation_alias="param_val_alias")
+    param: Optional[List[str]] = Field(None, validation_alias="param_val_alias")
 
 
 @app.post(
@@ -342,7 +337,7 @@ class OptionalListFieldValidationAliasModel(BaseModel):
     operation_id="optional_list_field_validation_alias_model",
 )
 async def optional_list_field_validation_alias_model(
-    data: Annotated[OptionalListFieldValidationAliasModel, Form()],
+    data: OptionalListFieldValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -401,7 +396,7 @@ class RequiredFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="required_field_alias_and_validation_alias_model",
 )
 async def required_field_alias_and_validation_alias_model(
-    data: Annotated[RequiredFieldAliasAndValidationAliasModel, Form()],
+    data: RequiredFieldAliasAndValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -413,10 +408,7 @@ def test_required_field_alias_and_validation_alias_model_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -427,10 +419,7 @@ def test_required_field_alias_and_validation_alias_model_by_alias():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -469,7 +458,7 @@ class OptionalFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="optional_field_alias_and_validation_alias_model",
 )
 async def optional_field_alias_and_validation_alias_model(
-    data: Annotated[OptionalFieldAliasAndValidationAliasModel, Form()],
+    data: OptionalFieldAliasAndValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -520,7 +509,7 @@ def test_optional_field_alias_and_validation_alias_model_schema():
 
 
 class ListFieldAliasAndValidationAliasModel(BaseModel):
-    param: list[str] = Field(alias="param_alias", validation_alias="param_val_alias")
+    param: List[str] = Field(alias="param_alias", validation_alias="param_val_alias")
 
 
 @app.post(
@@ -528,7 +517,7 @@ class ListFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="list_field_alias_and_validation_alias_model",
 )
 async def list_field_alias_and_validation_alias_model(
-    data: Annotated[ListFieldAliasAndValidationAliasModel, Form()],
+    data: ListFieldAliasAndValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
@@ -540,10 +529,7 @@ def test_list_field_alias_and_validation_alias_model_by_name():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -555,10 +541,7 @@ def test_list_field_alias_and_validation_alias_model_by_alias():
     )
     assert resp.status_code == 422
     detail = resp.json()["detail"]
-    assert detail[0]["msg"] == IsOneOf(
-        "Field required",
-        "field required",  # TODO: remove when deprecating Pydantic v1
-    )
+    assert detail[0]["msg"] == "Field required"
     assert "param_val_alias" in detail[0]["loc"]
 
 
@@ -596,7 +579,7 @@ def test_list_field_alias_and_validation_alias_model_schema():
 
 
 class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
-    param: Optional[list[str]] = Field(
+    param: Optional[List[str]] = Field(
         None, alias="param_alias", validation_alias="param_val_alias"
     )
 
@@ -606,7 +589,7 @@ class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="optional_list_field_alias_and_validation_alias_model",
 )
 async def optional_list_field_alias_and_validation_alias_model(
-    data: Annotated[OptionalListFieldAliasAndValidationAliasModel, Form()],
+    data: OptionalListFieldAliasAndValidationAliasModel = Form(...),
 ):
     return {"param": data.param}
 
