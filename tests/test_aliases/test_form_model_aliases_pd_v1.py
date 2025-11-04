@@ -1,4 +1,4 @@
-from typing import Annotated, List, Optional
+from typing import List, Optional
 
 import pytest
 from fastapi import FastAPI, Form
@@ -25,7 +25,7 @@ class RequiredFieldAliasModel(BaseModel):
 
 
 @app.post("/required-field-alias-model")
-async def required_field_alias_model(data: Annotated[RequiredFieldAliasModel, Form()]):
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -62,7 +62,7 @@ class OptionalFieldAliasModel(BaseModel):
 
 
 @app.post("/optional-field-alias-model")
-async def optional_field_alias_model(data: Annotated[OptionalFieldAliasModel, Form()]):
+async def optional_field_alias_model(data: OptionalFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -105,7 +105,7 @@ class ListFieldAliasModel(BaseModel):
 
 
 @app.post("/list-field-alias-model")
-async def list_field_alias_model(data: Annotated[ListFieldAliasModel, Form()]):
+async def list_field_alias_model(data: ListFieldAliasModel = Form(...)):
     return {"param": data.param}
 
 
@@ -147,7 +147,7 @@ class OptionalListFieldAliasModel(BaseModel):
 
 @app.post("/optional-list-field-alias-model")
 async def optional_list_field_alias_model(
-    data: Annotated[OptionalListFieldAliasModel, Form()],
+    data: OptionalListFieldAliasModel = Form(...),
 ):
     return {"param": data.param}
 
