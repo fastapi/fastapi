@@ -24,8 +24,8 @@ from typing import (
     Union,
 )
 
-from annotated_doc import Doc
 import anyio
+from annotated_doc import Doc
 from anyio import CapacityLimiter
 from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
