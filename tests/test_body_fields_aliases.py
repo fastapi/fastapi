@@ -1,8 +1,6 @@
-from pydantic import Field
 import pytest
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
-
 
 app = FastAPI()
 
