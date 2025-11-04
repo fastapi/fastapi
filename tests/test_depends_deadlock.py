@@ -3,8 +3,8 @@ import threading
 import time
 from typing import Generator
 
-import httpx
 from fastapi import Depends, FastAPI
+from httpx import ASGITransport, AsyncClient
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -66,11 +66,13 @@ def get_deadlock(db: MyDB = Depends(get_db)):
 # able to free the resource without deadlocking, allowing each request to
 # be handled timely
 def test_depends_deadlock_patch():
-    async def make_request(client: httpx.AsyncClient):
+    async def make_request(client: AsyncClient):
         await client.get("/deadlock")
 
     async def run_requests():
-        async with httpx.AsyncClient(app=app, base_url="http://testserver") as aclient:
+        async with AsyncClient(
+            transport=ASGITransport(app=app), base_url="http://testserver"
+        ) as aclient:
             tasks = [make_request(aclient) for _ in range(100)]
             await asyncio.gather(*tasks)
 
