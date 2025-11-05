@@ -1,3 +1,4 @@
+import os
 import subprocess
 import sys
 from unittest.mock import patch
@@ -20,6 +21,12 @@ def test_fastapi_cli():
         ],
         capture_output=True,
         encoding="utf-8",
+        # On Windows, the default console encoding (e.g., cp1252) cannot handle certain
+        # Unicode characters like emojis (🚀) printed by FastAPI's CLI. This causes a
+        # UnicodeEncodeError before the CLI can print the expected error message.
+        # Setting PYTHONIOENCODING to UTF-8 ensures that stdout/stderr streams support
+        # full Unicode output and the test runs reliably across platforms.
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
     )
     assert result.returncode == 1, result.stdout
     assert "Path does not exist non_existent_file.py" in result.stdout
