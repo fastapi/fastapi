@@ -147,7 +147,9 @@ def test_list_field_alias_model_schema():
 if not PYDANTIC_V2:
 
     class OptionalListFieldAliasModel(BaseModel):
-        files: Optional[List[UploadFile]] = Field(None, alias="files_alias", nullable=True)
+        files: Optional[List[UploadFile]] = Field(
+            None, alias="files_alias", nullable=True
+        )
 
     @app.post("/optional-list-field-alias-model")
     async def optional_list_field_alias_model(

@@ -564,7 +564,9 @@ def test_optional_field_alias_and_validation_alias_schema():
     operation_id="list_field_alias_and_validation_alias",
 )
 async def list_field_alias_and_validation_alias(
-    files: List[UploadFile] = File(alias="files_alias", validation_alias="files_val_alias"),
+    files: List[UploadFile] = File(
+        alias="files_alias", validation_alias="files_val_alias"
+    ),
 ):
     return {"file_sizes": [file.size for file in files]}
 
