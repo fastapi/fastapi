@@ -1,7 +1,7 @@
 import inspect
 import sys
 from dataclasses import dataclass, field
-from functools import cached_property
+from functools import cached_property, partial
 from typing import Any, Callable, List, Optional, Sequence, Union
 
 from fastapi._compat import ModelField
@@ -53,25 +53,34 @@ class Dependant:
 
     @cached_property
     def is_gen_callable(self) -> bool:
-        if inspect.isgeneratorfunction(self.call):
+        use_call: Any = self.call
+        if isinstance(self.call, partial):
+            use_call = self.call.func
+        if inspect.isgeneratorfunction(use_call):
             return True
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
         return inspect.isgeneratorfunction(dunder_call)
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
-        if inspect.isasyncgenfunction(self.call):
+        use_call: Any = self.call
+        if isinstance(self.call, partial):
+            use_call = self.call.func
+        if inspect.isasyncgenfunction(use_call):
             return True
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
         return inspect.isasyncgenfunction(dunder_call)
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
-        if inspect.isroutine(self.call):
-            return iscoroutinefunction(self.call)
-        if inspect.isclass(self.call):
+        use_call: Any = self.call
+        if isinstance(self.call, partial):
+            use_call = self.call.func
+        if inspect.isroutine(use_call):
+            return iscoroutinefunction(use_call)
+        if inspect.isclass(use_call):
             return False
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
         return iscoroutinefunction(dunder_call)
 
     @cached_property

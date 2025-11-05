@@ -2,7 +2,6 @@ import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from functools import partial
 from typing import (
     Any,
     Callable,
