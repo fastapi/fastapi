@@ -208,6 +208,27 @@ class ModelField:
             exclude_none=exclude_none,
         )
 
+    def serialize_json(
+        self,
+        value: Any,
+        *,
+        include: Union[IncEx, None] = None,
+        exclude: Union[IncEx, None] = None,
+        by_alias: bool = True,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+    ) -> bytes:
+        return self._type_adapter.dump_json(
+            value,
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+        )
+
     def __hash__(self) -> int:
         # Each ModelField is unique for our purposes, to allow making a dict from
         # ModelField to its JSON Schema.

@@ -46,3 +46,15 @@ class ORJSONResponse(JSONResponse):
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
         )
+
+
+class PydanticJSONResponse(JSONResponse):
+    """
+    JSON response using Pydantic v2's built-in JSON serialization
+    """
+
+    def render(self, content: Any) -> bytes:
+        assert isinstance(content, bytes), (
+            "PydanticJSONResponse must be used with a response model"
+        )
+        return content

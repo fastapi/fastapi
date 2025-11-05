@@ -51,3 +51,15 @@ class ModelField(Protocol):
         exclude_defaults: bool = False,
         exclude_none: bool = False,
     ) -> Any: ...
+
+    def serialize_json(
+        self,
+        value: Any,
+        *,
+        include: Union[IncEx, None] = None,
+        exclude: Union[IncEx, None] = None,
+        by_alias: bool = True,
+        exclude_unset: bool = False,
+        exclude_defaults: bool = False,
+        exclude_none: bool = False,
+    ) -> bytes: ...
