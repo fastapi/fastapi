@@ -14,7 +14,6 @@ app = FastAPI()
 # =====================================================================================
 # File(alias=...)
 # Current situation: Works, but schema is wrong
-# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 # ------------------------------
 # required field
@@ -166,20 +165,12 @@ def test_optional_list_field_alias_by_name():
     assert resp.json() == {"file_sizes": None}
 
 
-@pytest.mark.xfail(
-    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
-    raises=TypeError,
-    strict=False,
-)
 def test_optional_list_field_alias_by_alias():
     client = TestClient(app)
     resp = client.post(
         "/optional-list-field-alias",
         files=[("files_alias", b"content1"), ("files_alias", b"content2")],
     )
-    # Currently fails due to some issue (likely unrelated to aliases) with:
-    # TypeError: issubclass() arg 1 must be a class
-
     assert resp.json() == {"file_sizes": [8, 8]}
 
 
@@ -205,7 +196,6 @@ def test_optional_list_field_alias_schema():
 # =====================================================================================
 # File(validation_alias=...)
 # Current situation: schema is correct, but doesn't work (parameter name is used)
-# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 
 # ------------------------------
@@ -229,9 +219,10 @@ def test_required_field_validation_alias_by_name():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "file_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "file_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -244,7 +235,8 @@ def test_required_field_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"file_size": 7}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_size": 7}
 
 
 def test_required_field_validation_alias_schema():
@@ -331,9 +323,10 @@ def test_list_field_validation_alias_by_name():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "files_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "files_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -347,7 +340,8 @@ def test_list_field_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"file_sizes": [8, 8]}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_list_field_validation_alias_schema():
@@ -378,22 +372,16 @@ async def optional_list_field_validation_alias(
     return {"file_sizes": [len(file) for file in files]}
 
 
-@pytest.mark.xfail(
-    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
-    raises=TypeError,
-    strict=False,
-)
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_validation_alias_by_name():
     client = TestClient(app)
     resp = client.post(
         "/optional-list-field-validation-alias",
         files=[("files", b"content1"), ("files", b"content2")],
     )
-    # Currently fails due to some issue (likely unrelated to aliases) with:
-    # TypeError: issubclass() arg 1 must be a class
 
     assert resp.json() == {"file_sizes": None}
-    # Will likely fail due to issue with aliases with:
+    # Currently fails due to issue with aliases:
     # AssertionError: assert {'file_sizes': [8, 8]} == {'file_sizes': None}
 
 
@@ -428,7 +416,6 @@ def test_optional_list_field_validation_alias_schema():
 # =====================================================================================
 # File(alias=..., validation_alias=...)
 # Current situation: Schema is correct (validation_alias), but doesn't work (alias is used)
-# Optional[List[bytes]] fails due to another issue (likely not related to aliases)
 
 # ------------------------------
 # required field
@@ -468,9 +455,10 @@ def test_required_field_alias_and_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "file_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "file_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -484,7 +472,8 @@ def test_required_field_alias_and_validation_alias_by_validation_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"file_size": 7}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_size": 7}
 
 
 def test_required_field_alias_and_validation_alias_schema():
@@ -606,9 +595,10 @@ def test_list_field_alias_and_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "files_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "files_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -622,7 +612,8 @@ def test_list_field_alias_and_validation_alias_by_validation_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"file_sizes": [8, 8]}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_list_field_alias_and_validation_alias_schema():
@@ -667,23 +658,16 @@ def test_optional_list_field_alias_and_validation_alias_by_name():
     assert resp.json() == {"file_sizes": None}
 
 
-@pytest.mark.xfail(
-    reason="Optional[List[bytes]] File type causes TypeError in FastAPI",
-    raises=TypeError,
-    strict=False,
-)
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_and_validation_alias_by_alias():
     client = TestClient(app)
     resp = client.post(
         "/optional-list-field-alias-and-validation-alias",
         files=[("files_alias", b"content1"), ("files_alias", b"content2")],
     )
-    # Currently fails due to some issue (likely unrelated to aliases) with:
-    # TypeError: issubclass() arg 1 must be a class
-
     assert resp.status_code == 200
     assert resp.json() == {"file_sizes": None}
-    # Will likely fail due to issue with aliases:
+    # Currently fails due to issue with aliases:
     # AssertionError: assert {'file_sizes': [8, 8]} == {'file_sizes': None}
 
 

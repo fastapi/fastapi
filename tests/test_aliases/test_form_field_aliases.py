@@ -204,9 +204,10 @@ def test_required_field_validation_alias_by_name():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "param_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "param_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -219,7 +220,8 @@ def test_required_field_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"param": "123"}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"param": "123"}
 
 
 def test_required_field_validation_alias_schema():
@@ -298,9 +300,10 @@ def test_list_field_validation_alias_by_name():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "param_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "param_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -313,7 +316,8 @@ def test_list_field_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"param": ["123", "456"]}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_list_field_validation_alias_schema():
@@ -422,9 +426,10 @@ def test_required_field_alias_and_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "param_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "param_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -437,7 +442,8 @@ def test_required_field_alias_and_validation_alias_by_validation_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"param": "123"}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"param": "123"}
 
 
 def test_required_field_alias_and_validation_alias_schema():
@@ -550,9 +556,10 @@ def test_list_field_alias_and_validation_alias_by_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 200 == 422
 
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "param_val_alias" in detail[0]["loc"]
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "param_val_alias" in detail[0]["loc"]
 
 
 @pytest.mark.xfail(raises=AssertionError, strict=False)
@@ -566,7 +573,8 @@ def test_list_field_alias_and_validation_alias_by_validation_alias():
     # Currently fails due to issue with aliases:
     # AssertionError: assert 422 == 200
 
-    assert resp.json() == {"param": ["123", "456"]}
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_list_field_alias_and_validation_alias_schema():
