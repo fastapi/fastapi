@@ -276,7 +276,7 @@ Now modify the file `main.py` to receive a body from a `PUT` request.
 
 Declare the body using standard Python types, thanks to Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
+```Python
 from typing import Union
 
 from fastapi import FastAPI
