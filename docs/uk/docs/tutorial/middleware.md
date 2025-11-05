@@ -39,7 +39,7 @@
 
 Не забувайте, що власні заголовки можна додавати, використовуючи <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">префікс 'X-'</a>.
 
-Але якщо у Вас є власні заголовки, які Ви хочете, щоб браузерний клієнт міг побачити, потрібно додати їх до Вашої конфігурації CORS (див. [CORS (Обмін ресурсами між різними джерелами)](cors.md){.internal-link target=_blank} за допомогою параметра `expose_headers`, описаного в <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">документації Starlette по CORS</a>.
+Але якщо у Вас є власні заголовки, які Ви хочете, щоб браузерний клієнт міг побачити, потрібно додати їх до Вашої конфігурації CORS (див. [CORS (Обмін ресурсами між різними джерелами)](cors.md){.internal-link target=_blank} за допомогою параметра `expose_headers`, описаного в <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">документації Starlette по CORS</a>.
 
 ///
 

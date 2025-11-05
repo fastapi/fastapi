@@ -37,4 +37,4 @@ All these parameters can be different than "`static`", adjust them with the need
 
 ## More info { #more-info }
 
-For more details and options check <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+For more details and options check <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

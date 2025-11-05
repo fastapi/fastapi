@@ -139,7 +139,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 `FastAPI` 🎓 👈 😖 🔗 ⚪️➡️ `Starlette`.
 
-👆 💪 ⚙️ 🌐 <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🛠️ ⏮️ `FastAPI` 💁‍♂️.
+👆 💪 ⚙️ 🌐 <a href="https://www.starlette.dev/" class="external-link" target="_blank">💃</a> 🛠️ ⏮️ `FastAPI` 💁‍♂️.
 
 ///
 
