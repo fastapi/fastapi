@@ -42,7 +42,7 @@ async def websocket_validation_handler(
 
 @app.get("/users/{user_id}")
 def get_user(user_id: int):
-    return {"user_id": user_id} # pragma: no cover
+    return {"user_id": user_id}  # pragma: no cover
 
 
 @app.get("/items/", response_model=Item)
@@ -52,9 +52,9 @@ def get_item():
 
 @app.websocket("/ws/{item_id}")
 async def websocket_endpoint(websocket: WebSocket, item_id: int):
-    await websocket.accept() # pragma: no cover
-    await websocket.send_text(f"Item: {item_id}") # pragma: no cover
-    await websocket.close() # pragma: no cover
+    await websocket.accept()  # pragma: no cover
+    await websocket.send_text(f"Item: {item_id}")  # pragma: no cover
+    await websocket.close()  # pragma: no cover
 
 
 client = TestClient(app)
@@ -85,7 +85,7 @@ def test_response_validation_error_includes_endpoint_context():
 def test_websocket_validation_error_includes_endpoint_context():
     try:
         with client.websocket_connect("/ws/invalid"):
-            ...
+            pass  # pragma: no cover
     except Exception:
         pass
 
