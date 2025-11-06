@@ -227,11 +227,11 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
-    if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is not None:  # type: ignore[attr-defined]
-            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
                 if not is_scalar_sequence_field(sub_field):
                     return False
         return True
@@ -239,11 +239,11 @@ def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
 
 
 def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
-    if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
         field.type_, BaseModel
     ):
-        if field.sub_fields is not None:  # type: ignore[attr-defined]
-            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
                 if not is_scalar_field(sub_field):
                     return False
         return True
