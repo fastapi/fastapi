@@ -898,9 +898,13 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
-    for key, value in received_body.items():
+    for key in received_body.keys():
         if key not in values:
-            values[key] = value
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                values[key] = param_values[0]
+            else:
+                values[key] = param_values
     return values
 
 
