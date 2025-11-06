@@ -1,6 +1,6 @@
 """FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
 
-__version__ = "0.120.4"
+__version__ = "0.121.0"
 
 from starlette import status as status
 

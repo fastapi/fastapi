@@ -7,8 +7,27 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Upate docs for advanced dependencies with `yield`, noting the changes in 0.121.0, adding `scope`. PR [#14287](https://github.com/fastapi/fastapi/pull/14287) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
+* ⬆ Bump ruff from 0.13.2 to 0.14.3. PR [#14276](https://github.com/fastapi/fastapi/pull/14276) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14289](https://github.com/fastapi/fastapi/pull/14289) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+
+## 0.121.0
+
+### Features
+
+* ✨ Add support for dependencies with scopes, support `scope="request"` for dependencies with `yield` that exit before the response is sent. PR [#14262](https://github.com/fastapi/fastapi/pull/14262) by [@tiangolo](https://github.com/tiangolo).
+    * New docs: [Dependencies with `yield` - Early exit and `scope`](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#early-exit-and-scope).
+
+### Internal
+
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14273](https://github.com/fastapi/fastapi/pull/14273) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Sponsors. PR [#14274](https://github.com/fastapi/fastapi/pull/14274) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14280](https://github.com/fastapi/fastapi/pull/14280) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump mkdocs-macros-plugin from 1.4.0 to 1.4.1. PR [#14277](https://github.com/fastapi/fastapi/pull/14277) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocstrings[python] from 0.26.1 to 0.30.1. PR [#14279](https://github.com/fastapi/fastapi/pull/14279) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
