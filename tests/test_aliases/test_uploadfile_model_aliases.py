@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-import pytest
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -190,8 +189,8 @@ def test_optional_list_field_alias_model_schema():
 
 # =====================================================================================
 # Field(validation_alias=...)
-# Current situation: Works except lists (validation error - expected list, got str)
-
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
 
 # ------------------------------
 # required field
@@ -304,7 +303,7 @@ class ListFieldValidationAliasModel(BaseModel):
     "/list-field-validation-alias-model",
     operation_id="list_field_validation_alias_model",
 )
-async def list_field_validation_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
+async def list_field_validation_alias_model(
     data: ListFieldValidationAliasModel = File(...),
 ):
     return {"file_sizes": [file.size for file in data.files]}
@@ -322,7 +321,8 @@ def test_list_field_validation_alias_model_by_name():
     assert "files_val_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_list_field_validation_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -330,12 +330,7 @@ def test_list_field_validation_alias_model_by_alias():
         files=[("files_val_alias", b"content1"), ("files_val_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"type":"list_type","loc":["body","files_val_alias"],"msg":"Input should be a valid list","input":{"filename":"upload","file":{"_file":{},"_max_size":1048576,"_rolled":false,"_TemporaryFileArgs":{"mode":"w+b","buffering":-1,"suffix":null,"prefix":null,"encoding":null,"newline":null,"dir":null,"errors":null}},"size":8,"headers":{"content-disposition":"form-data; name=\"files_val_alias\"; filename=\"upload\"","content-type":"application/octet-stream"},"_max_mem_size":1048576}}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_list_field_validation_alias_model_schema():
@@ -380,7 +375,8 @@ def test_optional_list_field_validation_alias_model_by_name():
     assert resp.json() == {"file_sizes": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_optional_list_field_validation_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -388,12 +384,7 @@ def test_optional_list_field_validation_alias_model_by_alias():
         files=[("files_val_alias", b"content1"), ("files_val_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # AssertionError: {"detail":[{"type":"list_type","loc":["body","files_val_alias"],"msg":"Input should be a valid list","input":{"filename":"upload","file":{"_file":{},"_max_size":1048576,"_rolled":false,"_TemporaryFileArgs":{"mode":"w+b","buffering":-1,"suffix":null,"prefix":null,"encoding":null,"newline":null,"dir":null,"errors":null}},"size":8,"headers":{"content-disposition":"form-data; name=\"files_val_alias\"; filename=\"upload\"","content-type":"application/octet-stream"},"_max_mem_size":1048576}}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_optional_list_field_validation_alias_model_schema():
@@ -414,7 +405,9 @@ def test_optional_list_field_validation_alias_model_schema():
 
 # =====================================================================================
 # Field(alias=..., validation_alias=...)
-# Current situation: Works except lists (validation error - expected list, got str)
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
+
 
 # ------------------------------
 # required field
@@ -559,7 +552,7 @@ class ListFieldAliasAndValidationAliasModel(BaseModel):
     "/list-field-alias-and-validation-alias-model",
     operation_id="list_field_alias_and_validation_alias_model",
 )
-async def list_field_alias_and_validation_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
+async def list_field_alias_and_validation_alias_model(
     data: ListFieldAliasAndValidationAliasModel = File(...),
 ):
     return {"file_sizes": [file.size for file in data.files]}
@@ -589,7 +582,8 @@ def test_list_field_alias_and_validation_alias_model_by_alias():
     assert "files_val_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_list_field_alias_and_validation_alias_model_by_validation_alias():
     client = TestClient(app)
     resp = client.post(
@@ -597,12 +591,7 @@ def test_list_field_alias_and_validation_alias_model_by_validation_alias():
         files=[("files_val_alias", b"content1"), ("files_val_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # AssertionError: {"detail":[{"type":"list_type","loc":["body","files_val_alias"],"msg":"Input should be a valid list","input":{"filename":"upload","file":{"_file":{},"_max_size":1048576,"_rolled":false,"_TemporaryFileArgs":{"mode":"w+b","buffering":-1,"suffix":null,"prefix":null,"encoding":null,"newline":null,"dir":null,"errors":null}},"size":8,"headers":{"content-disposition":"form-data; name=\"files_val_alias\"; filename=\"upload\"","content-type":"application/octet-stream"},"_max_mem_size":1048576}}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_list_field_alias_and_validation_alias_model_schema():
@@ -633,7 +622,7 @@ class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
     "/optional-list-field-alias-and-validation-alias-model",
     operation_id="optional_list_field_alias_and_validation_alias_model",
 )
-async def optional_list_field_alias_and_validation_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
+async def optional_list_field_alias_and_validation_alias_model(
     data: OptionalListFieldAliasAndValidationAliasModel = File(...),
 ):
     if data.files is None:
@@ -661,7 +650,8 @@ def test_optional_list_field_alias_and_validation_alias_model_by_alias():
     assert resp.json() == {"file_sizes": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_optional_list_field_alias_and_validation_alias_model_by_validation_alias():
     client = TestClient(app)
     resp = client.post(
@@ -669,12 +659,7 @@ def test_optional_list_field_alias_and_validation_alias_model_by_validation_alia
         files=[("files_val_alias", b"content1"), ("files_val_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # AssertionError: {"detail":[{"type":"list_type","loc":["body","files_val_alias"],"msg":"Input should be a valid list","input":{"filename":"upload","file":{"_file":{},"_max_size":1048576,"_rolled":false,"_TemporaryFileArgs":{"mode":"w+b","buffering":-1,"suffix":null,"prefix":null,"encoding":null,"newline":null,"dir":null,"errors":null}},"size":8,"headers":{"content-disposition":"form-data; name=\"files_val_alias\"; filename=\"upload\"","content-type":"application/octet-stream"},"_max_mem_size":1048576}}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_optional_list_field_alias_and_validation_alias_model_schema():

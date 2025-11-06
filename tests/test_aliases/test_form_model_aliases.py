@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-import pytest
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -177,8 +176,8 @@ def test_optional_list_field_alias_model_schema():
 
 # =====================================================================================
 # Field(validation_alias=...)
-# Current situation: works except lists
-
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
 
 # ------------------------------
 # required field
@@ -284,7 +283,7 @@ class ListFieldValidationAliasModel(BaseModel):
 async def list_field_validation_alias_model(
     data: ListFieldValidationAliasModel = Form(...),
 ):
-    return {"param": data.param}  # pragma: no cover (remove `no cover` when bug fixed)
+    return {"param": data.param}
 
 
 def test_list_field_validation_alias_model_by_name():
@@ -298,19 +297,15 @@ def test_list_field_validation_alias_model_by_name():
     assert "param_val_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_list_field_validation_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
         "/list-field-validation-alias-model", data={"param_val_alias": ["123", "456"]}
     )
     assert resp.status_code == 200, resp.text
-    # Currently fails due to some issue:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"type":"list_type","loc":["body","param_val_alias"],"msg":"Input should be a valid list","input":"456"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"param": ["123", "456"]}
+    assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_list_field_validation_alias_model_schema():
@@ -352,7 +347,8 @@ def test_optional_list_field_validation_alias_model_by_name():
     assert resp.json() == {"param": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_optional_list_field_validation_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -360,12 +356,7 @@ def test_optional_list_field_validation_alias_model_by_alias():
         data={"param_val_alias": ["123", "456"]},
     )
     assert resp.status_code == 200, resp.text
-    # Currently fails due to some issue:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"type":"list_type","loc":["body","param_val_alias"],"msg":"Input should be a valid list","input":"456"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"param": ["123", "456"]}
+    assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_optional_list_field_validation_alias_model_schema():
@@ -383,7 +374,8 @@ def test_optional_list_field_validation_alias_model_schema():
 
 # =====================================================================================
 # Field(alias=..., validation_alias=...)
-# Current situation: works except lists
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
 
 # ------------------------------
 # required field
@@ -521,7 +513,7 @@ class ListFieldAliasAndValidationAliasModel(BaseModel):
 async def list_field_alias_and_validation_alias_model(
     data: ListFieldAliasAndValidationAliasModel = Form(...),
 ):
-    return {"param": data.param}  # pragma: no cover (remove `no cover` when bug fixed)
+    return {"param": data.param}
 
 
 def test_list_field_alias_and_validation_alias_model_by_name():
@@ -547,7 +539,8 @@ def test_list_field_alias_and_validation_alias_model_by_alias():
     assert "param_val_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_list_field_alias_and_validation_alias_model_by_validation_alias():
     client = TestClient(app)
     resp = client.post(
@@ -555,12 +548,7 @@ def test_list_field_alias_and_validation_alias_model_by_validation_alias():
         data={"param_val_alias": ["123", "456"]},
     )
     assert resp.status_code == 200, resp.text
-    # Currently fails due to some issue:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"type":"list_type","loc":["body","param_val_alias"],"msg":"Input should be a valid list","input":"456"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"param": ["123", "456"]}
+    assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_list_field_alias_and_validation_alias_model_schema():
@@ -617,7 +605,8 @@ def test_optional_list_field_alias_and_validation_alias_model_by_alias():
     assert resp.json() == {"param": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
 def test_optional_list_field_alias_and_validation_alias_model_by_validation_alias():
     client = TestClient(app)
     resp = client.post(
@@ -625,12 +614,7 @@ def test_optional_list_field_alias_and_validation_alias_model_by_validation_alia
         data={"param_val_alias": ["123", "456"]},
     )
     assert resp.status_code == 200, resp.text
-    # Currently fails due to some issue:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"type":"list_type","loc":["body","param_val_alias"],"msg":"Input should be a valid list","input":"456"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"param": ["123", "456"]}
+    assert resp.json() == {"param": ["123", "456"]}
 
 
 def test_optional_list_field_alias_and_validation_alias_model_schema():
