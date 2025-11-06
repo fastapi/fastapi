@@ -1,16 +1,14 @@
-# Отладка
+# Отладка { #debugging }
 
 Вы можете подключить отладчик в своем редакторе, например, в Visual Studio Code или PyCharm.
 
-## Вызов `uvicorn`
+## Вызов `uvicorn` { #call-uvicorn }
 
 В вашем FastAPI приложении, импортируйте и вызовите `uvicorn` напрямую:
 
-```Python hl_lines="1  15"
-{!../../../docs_src/debugging/tutorial001.py!}
-```
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
-### Описание `__name__ == "__main__"`
+### Описание `__name__ == "__main__"` { #about-name-main }
 
 Главная цель использования `__name__ == "__main__"` в том, чтобы код выполнялся при запуске файла с помощью:
 
@@ -22,13 +20,13 @@ $ python myapp.py
 
 </div>
 
-но не вызывался, когда другой файл импортирует это, например::
+но не вызывался, когда другой файл импортирует это, например:
 
 ```Python
 from myapp import app
 ```
 
-#### Больше деталей
+#### Больше деталей { #more-details }
 
 Давайте назовём ваш файл `myapp.py`.
 
@@ -74,10 +72,13 @@ from myapp import app
 
 не будет выполнена.
 
-!!! Информация
-    Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+/// info | Информация
 
-## Запуск вашего кода с помощью отладчика
+Для получения дополнительной информации, ознакомьтесь с <a href="https://docs.python.org/3/library/__main__.html" class="external-link" target="_blank">официальной документацией Python</a>.
+
+///
+
+## Запуск вашего кода с помощью отладчика { #run-your-code-with-your-debugger }
 
 Так как вы запускаете сервер Uvicorn непосредственно из вашего кода, вы можете вызвать Python программу (ваше FastAPI приложение) напрямую из отладчика.
 

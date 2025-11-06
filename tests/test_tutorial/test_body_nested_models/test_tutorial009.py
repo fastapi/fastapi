@@ -1,14 +1,23 @@
+import importlib
+
 import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
+
+from ...utils import needs_py39
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.body_nested_models.tutorial009 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial009",
+        pytest.param("tutorial009_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.body_nested_models.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
@@ -31,7 +40,6 @@ def test_post_invalid_body(client: TestClient):
                     "loc": ["body", "foo", "[key]"],
                     "msg": "Input should be a valid integer, unable to parse string as an integer",
                     "input": "foo",
-                    "url": match_pydantic_error_url("int_parsing"),
                 }
             ]
         }

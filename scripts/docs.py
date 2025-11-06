@@ -11,13 +11,11 @@ from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-import mkdocs.commands.build
-import mkdocs.commands.serve
-import mkdocs.config
 import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+from ruff.__main__ import find_ruff_bin
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,8 +24,19 @@ app = typer.Typer()
 mkdocs_name = "mkdocs.yml"
 
 missing_translation_snippet = """
-{!../../../docs/missing-translation.md!}
+{!../../docs/missing-translation.md!}
 """
+
+non_translated_sections = [
+    "reference/",
+    "release-notes.md",
+    "fastapi-people.md",
+    "external-links.md",
+    "newsletter.md",
+    "management-tasks.md",
+    "management.md",
+    "contributing.md",
+]
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
@@ -35,8 +44,10 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
 
-@lru_cache()
+
+@lru_cache
 def is_mkdocs_insiders() -> bool:
     version = metadata.version("mkdocs-material")
     return "insiders" in version
@@ -53,9 +64,6 @@ def get_lang_paths() -> List[Path]:
 def lang_callback(lang: Optional[str]) -> Union[str, None]:
     if lang is None:
         return None
-    if not lang.isalpha() or len(lang) != 2:
-        typer.echo("Use a 2 letter language code, like: es")
-        raise typer.Abort()
     lang = lang.lower()
     return lang
 
@@ -79,8 +87,6 @@ def callback() -> None:
 def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
     """
     Generate a new docs translation directory for the language LANG.
-
-    LANG should be a 2-letter language code, like: en, es, de, pt, etc.
     """
     new_path: Path = Path("docs") / lang
     if new_path.exists():
@@ -104,7 +110,7 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
 def build_lang(
     lang: str = typer.Argument(
         ..., callback=lang_callback, autocompletion=complete_existing_lang
-    )
+    ),
 ) -> None:
     """
     Build the docs for a language.
@@ -150,22 +156,45 @@ index_sponsors_template = """
 """
 
 
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
+    match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
     sponsors_data_path = en_docs_path / "data" / "sponsors.yml"
     sponsors = mkdocs.utils.yaml_load(sponsors_data_path.read_text(encoding="utf-8"))
     if not (match_start and match_end):
         raise RuntimeError("Couldn't auto-generate sponsors section")
+    if not match_pre:
+        raise RuntimeError("Couldn't find pre section (<style>) in index.md")
+    frontmatter_end = match_pre.end()
     pre_end = match_start.end()
     post_start = match_end.start()
     template = Template(index_sponsors_template)
     message = template.render(sponsors=sponsors)
-    pre_content = content[:pre_end]
+    pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
     new_content = pre_content + message + post_content
+    # Remove content between <!-- only-mkdocs --> and <!-- /only-mkdocs -->
+    new_content = re.sub(
+        r"<!-- only-mkdocs -->.*?<!-- /only-mkdocs -->",
+        "",
+        new_content,
+        flags=re.DOTALL,
+    )
     return new_content
 
 
@@ -247,7 +276,8 @@ def serve() -> None:
 def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
-    )
+    ),
+    dirty: bool = False,
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
@@ -259,39 +289,104 @@ def live(
     en.
     """
     # Enable line numbers during local development to make it easier to highlight
-    os.environ["LINENUMS"] = "true"
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang
-    os.chdir(lang_path)
-    mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
+    # Enable line numbers during local development to make it easier to highlight
+    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
+    if dirty:
+        args.append("--dirty")
+    subprocess.run(
+        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+    )
+
+
+def get_updated_config_content() -> Dict[str, Any]:
+    config = get_en_config()
+    languages = [{"en": "/"}]
+    new_alternate: List[Dict[str, str]] = []
+    # Language names sourced from https://quickref.me/iso-639-1
+    # Contributors may wish to update or change these, e.g. to fix capitalization.
+    language_names_path = Path(__file__).parent / "../docs/language_names.yml"
+    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+        language_names_path.read_text(encoding="utf-8")
+    )
+    for lang_path in get_lang_paths():
+        if lang_path.name in {"en", "em"} or not lang_path.is_dir():
+            continue
+        code = lang_path.name
+        languages.append({code: f"/{code}/"})
+    for lang_dict in languages:
+        code = list(lang_dict.keys())[0]
+        url = lang_dict[code]
+        if code not in local_language_names:
+            print(
+                f"Missing language name for: {code}, "
+                "update it in docs/language_names.yml"
+            )
+            raise typer.Abort()
+        use_name = f"{code} - {local_language_names[code]}"
+        new_alternate.append({"link": url, "name": use_name})
+    new_alternate.append({"link": "/em/", "name": "😉"})
+    config["extra"]["alternate"] = new_alternate
+    return config
 
 
 def update_config() -> None:
-    config = get_en_config()
-    languages = [{"en": "/"}]
-    alternate: List[Dict[str, str]] = config["extra"].get("alternate", [])
-    alternate_dict = {alt["link"]: alt["name"] for alt in alternate}
-    new_alternate: List[Dict[str, str]] = []
-    for lang_path in get_lang_paths():
-        if lang_path.name == "en" or not lang_path.is_dir():
-            continue
-        name = lang_path.name
-        languages.append({name: f"/{name}/"})
-    for lang_dict in languages:
-        name = list(lang_dict.keys())[0]
-        url = lang_dict[name]
-        if url not in alternate_dict:
-            new_alternate.append({"link": url, "name": name})
-        else:
-            use_name = alternate_dict[url]
-            new_alternate.append({"link": url, "name": use_name})
-    config["nav"][1] = {"Languages": languages}
-    config["extra"]["alternate"] = new_alternate
+    config = get_updated_config_content()
     en_config_path.write_text(
         yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
         encoding="utf-8",
     )
+
+
+@app.command()
+def verify_config() -> None:
+    """
+    Verify main mkdocs.yml content to make sure it uses the latest language names.
+    """
+    typer.echo("Verifying mkdocs.yml")
+    config = get_en_config()
+    updated_config = get_updated_config_content()
+    if config != updated_config:
+        typer.secho(
+            "docs/en/mkdocs.yml outdated from docs/language_names.yml, "
+            "update language_names.yml and run "
+            "python ./scripts/docs.py update-languages",
+            color=typer.colors.RED,
+        )
+        raise typer.Abort()
+    typer.echo("Valid mkdocs.yml ✅")
+
+
+@app.command()
+def verify_non_translated() -> None:
+    """
+    Verify there are no files in the non translatable pages.
+    """
+    print("Verifying non translated pages")
+    lang_paths = get_lang_paths()
+    error_paths = []
+    for lang in lang_paths:
+        if lang.name == "en":
+            continue
+        for non_translatable in non_translated_sections:
+            non_translatable_path = lang / "docs" / non_translatable
+            if non_translatable_path.exists():
+                error_paths.append(non_translatable_path)
+    if error_paths:
+        print("Non-translated pages found, remove them:")
+        for error_path in error_paths:
+            print(error_path)
+        raise typer.Abort()
+    print("No non-translated pages found ✅")
+
+
+@app.command()
+def verify_docs():
+    verify_readme()
+    verify_config()
+    verify_non_translated()
 
 
 @app.command()
@@ -301,6 +396,42 @@ def langs_json():
         if lang_path.is_dir():
             langs.append(lang_path.name)
     print(json.dumps(langs))
+
+
+@app.command()
+def generate_docs_src_versions_for_file(file_path: Path) -> None:
+    target_versions = ["py39", "py310"]
+    base_content = file_path.read_text(encoding="utf-8")
+    previous_content = {base_content}
+    for target_version in target_versions:
+        version_result = subprocess.run(
+            [
+                find_ruff_bin(),
+                "check",
+                "--target-version",
+                target_version,
+                "--fix",
+                "--unsafe-fixes",
+                "-",
+            ],
+            input=base_content.encode("utf-8"),
+            capture_output=True,
+        )
+        content_target = version_result.stdout.decode("utf-8")
+        format_result = subprocess.run(
+            [find_ruff_bin(), "format", "-"],
+            input=content_target.encode("utf-8"),
+            capture_output=True,
+        )
+        content_format = format_result.stdout.decode("utf-8")
+        if content_format in previous_content:
+            continue
+        previous_content.add(content_format)
+        version_file = file_path.with_name(
+            file_path.name.replace(".py", f"_{target_version}.py")
+        )
+        logging.info(f"Writing to {version_file}")
+        version_file.write_text(content_format, encoding="utf-8")
 
 
 if __name__ == "__main__":

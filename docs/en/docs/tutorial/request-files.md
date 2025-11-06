@@ -1,104 +1,60 @@
-# Request Files
+# Request Files { #request-files }
 
 You can define files to be uploaded by the client using `File`.
 
-!!! info
-    To receive uploaded files, first install <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>.
+/// info
 
-    E.g. `pip install python-multipart`.
+To receive uploaded files, first install <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
 
-    This is because uploaded files are sent as "form data".
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and then install it, for example:
 
-## Import `File`
+```console
+$ pip install python-multipart
+```
+
+This is because uploaded files are sent as "form data".
+
+///
+
+## Import `File` { #import-file }
 
 Import `File` and `UploadFile` from `fastapi`:
 
-=== "Python 3.9+"
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
-
-## Define `File` Parameters
+## Define `File` Parameters { #define-file-parameters }
 
 Create file parameters the same way you would for `Body` or `Form`:
 
-=== "Python 3.9+"
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[9] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
+/// info
 
-=== "Python 3.6+"
+`File` is a class that inherits directly from `Form`.
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
+But remember that when you import `Query`, `Path`, `File` and others from `fastapi`, those are actually functions that return special classes.
 
-=== "Python 3.6+ non-Annotated"
+///
 
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
+/// tip
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameters or body (JSON) parameters.
 
-!!! info
-    `File` is a class that inherits directly from `Form`.
-
-    But remember that when you import `Query`, `Path`, `File` and others from `fastapi`, those are actually functions that return special classes.
-
-!!! tip
-    To declare File bodies, you need to use `File`, because otherwise the parameters would be interpreted as query parameters or body (JSON) parameters.
+///
 
 The files will be uploaded as "form data".
 
 If you declare the type of your *path operation function* parameter as `bytes`, **FastAPI** will read the file for you and you will receive the contents as `bytes`.
 
-Have in mind that this means that the whole contents will be stored in memory. This will work well for small files.
+Keep in mind that this means that the whole contents will be stored in memory. This will work well for small files.
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
-## File Parameters with `UploadFile`
+## File Parameters with `UploadFile` { #file-parameters-with-uploadfile }
 
 Define a file parameter with a type of `UploadFile`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/request_files/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/request_files/tutorial001_an.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/request_files/tutorial001.py!}
-    ```
+{* ../../docs_src/request_files/tutorial001_an_py39.py hl[14] *}
 
 Using `UploadFile` has several advantages over `bytes`:
 
@@ -110,13 +66,13 @@ Using `UploadFile` has several advantages over `bytes`:
 * It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` interface.
 * It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
 
-### `UploadFile`
+### `UploadFile` { #uploadfile }
 
 `UploadFile` has the following attributes:
 
 * `filename`: A `str` with the original file name that was uploaded (e.g. `myimage.jpg`).
 * `content_type`: A `str` with the content type (MIME type / media type) (e.g. `image/jpeg`).
-* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
+* `file`: A <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> object). This is the actual Python file object that you can pass directly to other functions or libraries that expect a "file-like" object.
 
 `UploadFile` has the following `async` methods. They all call the corresponding file methods underneath (using the internal `SpooledTemporaryFile`).
 
@@ -141,96 +97,55 @@ If you are inside of a normal `def` *path operation function*, you can access th
 contents = myfile.file.read()
 ```
 
-!!! note "`async` Technical Details"
-    When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
+/// note | `async` Technical Details
 
-!!! note "Starlette Technical Details"
-    **FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
+When you use the `async` methods, **FastAPI** runs the file methods in a threadpool and awaits for them.
 
-## What is "Form Data"
+///
+
+/// note | Starlette Technical Details
+
+**FastAPI**'s `UploadFile` inherits directly from **Starlette**'s `UploadFile`, but adds some necessary parts to make it compatible with **Pydantic** and the other parts of FastAPI.
+
+///
+
+## What is "Form Data" { #what-is-form-data }
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 
-!!! note "Technical Details"
-    Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded` when it doesn't include files.
+/// note | Technical Details
 
-    But when the form includes files, it is encoded as `multipart/form-data`. If you use `File`, **FastAPI** will know it has to get the files from the correct part of the body.
+Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded` when it doesn't include files.
 
-    If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
+But when the form includes files, it is encoded as `multipart/form-data`. If you use `File`, **FastAPI** will know it has to get the files from the correct part of the body.
 
-!!! warning
-    You can declare multiple `File` and `Form` parameters in a *path operation*, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
+If you want to read more about these encodings and form fields, head to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs for <code>POST</code></a>.
 
-    This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
+///
 
-## Optional File Upload
+/// warning
+
+You can declare multiple `File` and `Form` parameters in a *path operation*, but you can't also declare `Body` fields that you expect to receive as JSON, as the request will have the body encoded using `multipart/form-data` instead of `application/json`.
+
+This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
+
+///
+
+## Optional File Upload { #optional-file-upload }
 
 You can make a file optional by using standard type annotations and setting a default value of `None`:
 
-=== "Python 3.10+"
+{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="10  18"
-    {!> ../../../docs_src/request_files/tutorial001_02_an.py!}
-    ```
-
-=== "Python 3.10+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="7  15"
-    {!> ../../../docs_src/request_files/tutorial001_02_py310.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="9  17"
-    {!> ../../../docs_src/request_files/tutorial001_02.py!}
-    ```
-
-## `UploadFile` with Additional Metadata
+## `UploadFile` with Additional Metadata { #uploadfile-with-additional-metadata }
 
 You can also use `File()` with `UploadFile`, for example, to set additional metadata:
 
-=== "Python 3.9+"
+{* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
-    ```Python hl_lines="9  15"
-    {!> ../../../docs_src/request_files/tutorial001_03_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="8  14"
-    {!> ../../../docs_src/request_files/tutorial001_03_an.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="7  13"
-    {!> ../../../docs_src/request_files/tutorial001_03.py!}
-    ```
-
-## Multiple File Uploads
+## Multiple File Uploads { #multiple-file-uploads }
 
 It's possible to upload several files at the same time.
 
@@ -238,77 +153,24 @@ They would be associated to the same "form field" sent using "form data".
 
 To use that, declare a list of `bytes` or `UploadFile`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="11  16"
-    {!> ../../../docs_src/request_files/tutorial002_an.py!}
-    ```
-
-=== "Python 3.9+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="8  13"
-    {!> ../../../docs_src/request_files/tutorial002_py39.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="10  15"
-    {!> ../../../docs_src/request_files/tutorial002.py!}
-    ```
+{* ../../docs_src/request_files/tutorial002_an_py39.py hl[10,15] *}
 
 You will receive, as declared, a `list` of `bytes` or `UploadFile`s.
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import HTMLResponse`.
+/// note | Technical Details
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+You could also use `from starlette.responses import HTMLResponse`.
 
-### Multiple File Uploads with Additional Metadata
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+///
+
+### Multiple File Uploads with Additional Metadata { #multiple-file-uploads-with-additional-metadata }
 
 And the same way as before, you can use `File()` to set additional parameters, even for `UploadFile`:
 
-=== "Python 3.9+"
+{* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
-    ```Python hl_lines="11  18-20"
-    {!> ../../../docs_src/request_files/tutorial003_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="12  19-21"
-    {!> ../../../docs_src/request_files/tutorial003_an.py!}
-    ```
-
-=== "Python 3.9+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="9  16"
-    {!> ../../../docs_src/request_files/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="11  18"
-    {!> ../../../docs_src/request_files/tutorial003.py!}
-    ```
-
-## Recap
+## Recap { #recap }
 
 Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data.

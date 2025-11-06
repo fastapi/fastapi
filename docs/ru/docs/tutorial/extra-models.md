@@ -1,4 +1,4 @@
-# Дополнительные модели
+# Дополнительные модели { #extra-models }
 
 В продолжение прошлого примера будет уже обычным делом иметь несколько связанных между собой моделей.
 
@@ -8,30 +8,31 @@
 * **Модель для вывода** не должна содержать пароль.
 * **Модель для базы данных**, возможно, должна содержать хэшированный пароль.
 
-!!! danger "Внимание"
-    Никогда не храните пароли пользователей в чистом виде. Всегда храните "безопасный хэш", который вы затем сможете проверить.
+/// danger | Внимание
 
-    Если вам это не знакомо, вы можете узнать про "хэш пароля" в [главах о безопасности](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Никогда не храните пароли пользователей в чистом виде. Всегда храните "безопасный хэш", который вы затем сможете проверить.
 
-## Множественные модели
+Если вам это не знакомо, вы можете узнать про "хэш пароля" в [главах о безопасности](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+
+///
+
+## Множественные модели { #multiple-models }
 
 Ниже изложена основная идея того, как могут выглядеть эти модели с полями для паролей, а также описаны места, где они используются:
 
-=== "Python 3.10+"
+{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-    ```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
-    {!> ../../../docs_src/extra_models/tutorial001_py310.py!}
-    ```
+/// info | Информация
 
-=== "Python 3.6+"
+В Pydantic v1 метод назывался `.dict()`, в Pydantic v2 он помечен как устаревший (но всё ещё поддерживается) и переименован в `.model_dump()`.
 
-    ```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
-    {!> ../../../docs_src/extra_models/tutorial001.py!}
-    ```
+В примерах здесь используется `.dict()` для совместимости с Pydantic v1, но если вы используете Pydantic v2, следует использовать `.model_dump()`.
 
-### Про `**user_in.dict()`
+///
 
-#### `.dict()` из Pydantic
+### Про `**user_in.dict()` { #about-user-in-dict }
+
+#### `.dict()` из Pydantic { #pydantics-dict }
 
 `user_in` - это Pydantic-модель класса `UserIn`.
 
@@ -68,7 +69,7 @@ print(user_dict)
 }
 ```
 
-#### Распаковка `dict`
+#### Распаковка `dict` { #unpacking-a-dict }
 
 Если мы возьмём `dict` наподобие `user_dict` и передадим его в функцию (или класс), используя `**user_dict`, Python распакует его. Он передаст ключи и значения `user_dict` напрямую как аргументы типа ключ-значение.
 
@@ -100,7 +101,7 @@ UserInDB(
 )
 ```
 
-#### Pydantic-модель из содержимого другой модели
+#### Pydantic-модель из содержимого другой модели { #a-pydantic-model-from-the-contents-of-another }
 
 Как в примере выше мы получили `user_dict` из `user_in.dict()`, этот код:
 
@@ -119,7 +120,7 @@ UserInDB(**user_in.dict())
 
 Таким образом мы получаем Pydantic-модель на основе данных из другой Pydantic-модели.
 
-#### Распаковка `dict` и дополнительные именованные аргументы
+#### Распаковка `dict` и дополнительные именованные аргументы { #unpacking-a-dict-and-extra-keywords }
 
 И затем, если мы добавим дополнительный именованный аргумент `hashed_password=hashed_password` как здесь:
 
@@ -139,10 +140,13 @@ UserInDB(
 )
 ```
 
-!!! warning "Предупреждение"
-    Цель использованных в примере вспомогательных функций - не более чем демонстрация возможных операций с данными, но, конечно, они не обеспечивают настоящую безопасность.
+/// warning | Предупреждение
 
-## Сократите дублирование
+Вспомогательные функции `fake_password_hasher` и `fake_save_user` используются только для демонстрации возможного потока данных и, конечно, не обеспечивают настоящую безопасность.
+
+///
+
+## Сократите дублирование { #reduce-duplication }
 
 Сокращение дублирования кода - это одна из главных идей **FastAPI**.
 
@@ -158,42 +162,25 @@ UserInDB(
 
 В этом случае мы можем определить только различия между моделями (с `password` в чистом виде, с `hashed_password` и без пароля):
 
-=== "Python 3.10+"
+{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-    ```Python hl_lines="7  13-14  17-18  21-22"
-    {!> ../../../docs_src/extra_models/tutorial002_py310.py!}
-    ```
+## `Union` или `anyOf` { #union-or-anyof }
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="9  15-16  19-20  23-24"
-    {!> ../../../docs_src/extra_models/tutorial002.py!}
-    ```
-
-## `Union` или `anyOf`
-
-Вы можете определить ответ как `Union` из двух типов. Это означает, что ответ должен соответствовать одному из них.
+Вы можете определить ответ как `Union` из двух или более типов. Это означает, что ответ должен соответствовать одному из них.
 
 Он будет определён в OpenAPI как `anyOf`.
 
-Для этого используйте стандартные аннотации типов в Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Для этого используйте стандартную аннотацию типов в Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-!!! note "Примечание"
-    При объявлении <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, сначала указывайте наиболее детальные типы, затем менее детальные. В примере ниже более детальный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
+/// note | Примечание
 
-=== "Python 3.10+"
+При объявлении <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, сначала указывайте наиболее детальные типы, затем менее детальные. В примере ниже более детальный `PlaneItem` стоит перед `CarItem` в `Union[PlaneItem, CarItem]`.
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
-    ```
+///
 
-=== "Python 3.6+"
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003.py!}
-    ```
-
-### `Union` в Python 3.10
+### `Union` в Python 3.10 { #union-in-python-3-10 }
 
 В этом примере мы передаём `Union[PlaneItem, CarItem]` в качестве значения аргумента `response_model`.
 
@@ -207,25 +194,15 @@ some_variable: PlaneItem | CarItem
 
 Но если мы помещаем его в `response_model=PlaneItem | CarItem` мы получим ошибку, потому что Python попытается произвести **некорректную операцию** между `PlaneItem` и `CarItem` вместо того, чтобы интерпретировать это как аннотацию типа.
 
-## Список моделей
+## Список моделей { #list-of-models }
 
 Таким же образом вы можете определять ответы как списки объектов.
 
 Для этого используйте `typing.List` из стандартной библиотеки Python (или просто `list` в Python 3.9 и выше):
 
-=== "Python 3.9+"
+{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/extra_models/tutorial004_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  20"
-    {!> ../../../docs_src/extra_models/tutorial004.py!}
-    ```
-
-## Ответ с произвольным `dict`
+## Ответ с произвольным `dict` { #response-with-arbitrary-dict }
 
 Вы также можете определить ответ, используя произвольный одноуровневый `dict` и определяя только типы ключей и значений без использования Pydantic-моделей.
 
@@ -233,19 +210,9 @@ some_variable: PlaneItem | CarItem
 
 В этом случае вы можете использовать `typing.Dict` (или просто `dict` в Python 3.9 и выше):
 
-=== "Python 3.9+"
+{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/extra_models/tutorial005_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  8"
-    {!> ../../../docs_src/extra_models/tutorial005.py!}
-    ```
-
-## Резюме
+## Резюме { #recap }
 
 Используйте несколько Pydantic-моделей и свободно применяйте наследование для каждой из них.
 

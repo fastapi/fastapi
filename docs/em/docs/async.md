@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! note
-    👆 💪 🕴 ⚙️ `await` 🔘 🔢 ✍ ⏮️ `async def`.
+/// note
+
+👆 💪 🕴 ⚙️ `await` 🔘 🔢 ✍ ⏮️ `async def`.
+
+///
 
 ---
 
@@ -136,8 +139,11 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-!!! info
-    🌹 🖼 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">👯 🍏</a>. 👶
+/// info
+
+🌹 🖼 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">👯 🍏</a>. 👶
+
+///
 
 ---
 
@@ -199,8 +205,11 @@ def results():
 
 📤 🚫 🌅 💬 ⚖️ 😏 🌅 🕰 💸 ⌛ 👶 🚪 ⏲. 👶
 
-!!! info
-    🌹 🖼 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">👯 🍏</a>. 👶
+/// info
+
+🌹 🖼 <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">👯 🍏</a>. 👶
+
+///
 
 ---
 
@@ -372,7 +381,7 @@ async def read_burgers():
 
 ⏮️ ⏬ 🐍, 👆 💪 ✔️ ⚙️ 🧵 ⚖️ <a href="https://www.gevent.org/" class="external-link" target="_blank">🐁</a>. ✋️ 📟 🌌 🌖 🏗 🤔, ℹ, &amp; 💭 🔃.
 
-⏮️ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ <a href="http://callbackhell.com/" class="external-link" target="_blank">⏲ 🔥😈</a>.
+⏮️ ⏬ ✳ / 🖥 🕸, 👆 🔜 ✔️ ⚙️ "⏲". ❔ ↘️ "⏲ 🔥😈".
 
 ## 🔁
 
@@ -392,12 +401,15 @@ async def read_burgers():
 
 ## 📶 📡 ℹ
 
-!!! warning
-    👆 💪 🎲 🚶 👉.
+/// warning
 
-    👉 📶 📡 ℹ ❔ **FastAPI** 👷 🔘.
+👆 💪 🎲 🚶 👉.
 
-    🚥 👆 ✔️ 📡 💡 (🈶-🏋, 🧵, 🍫, ♒️.) &amp; 😟 🔃 ❔ FastAPI 🍵 `async def` 🆚 😐 `def`, 🚶 ⤴️.
+👉 📶 📡 ℹ ❔ **FastAPI** 👷 🔘.
+
+🚥 👆 ✔️ 📡 💡 (🈶-🏋, 🧵, 🍫, ♒️.) &amp; 😟 🔃 ❔ FastAPI 🍵 `async def` 🆚 😐 `def`, 🚶 ⤴️.
+
+///
 
 ### ➡ 🛠️ 🔢
 
@@ -405,15 +417,15 @@ async def read_burgers():
 
 🚥 👆 👟 ⚪️➡️ ➕1️⃣ 🔁 🛠️ 👈 🔨 🚫 👷 🌌 🔬 🔛 &amp; 👆 ⚙️ ⚖ 🙃 📊-🕴 *➡ 🛠️ 🔢* ⏮️ ✅ `def` 🤪 🎭 📈 (🔃 1️⃣0️⃣0️⃣ 💓), 🙏 🗒 👈 **FastAPI** ⭐ 🔜 🔄. 👫 💼, ⚫️ 👻 ⚙️ `async def` 🚥 👆 *➡ 🛠️ 🔢* ⚙️ 📟 👈 🎭 🚧 <abbr title="Input/Output: disk reading or writing, network communications.">👤/🅾</abbr>.
 
-, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](/#performance){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
+, 👯‍♂️ ⚠, 🤞 👈 **FastAPI** 🔜 [⏩](index.md#_15){.internal-link target=_blank} 🌘 (⚖️ 🌘 ⭐) 👆 ⏮️ 🛠️.
 
 ### 🔗
 
-🎏 ✔ [🔗](/tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
+🎏 ✔ [🔗](tutorial/dependencies/index.md){.internal-link target=_blank}. 🚥 🔗 🐩 `def` 🔢 ↩️ `async def`, ⚫️ 🏃 🔢 🧵.
 
 ### 🎧-🔗
 
-👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](/tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
+👆 💪 ✔️ 💗 🔗 &amp; [🎧-🔗](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} 🚫 🔠 🎏 (🔢 🔢 🔑), 👫 💪 ✍ ⏮️ `async def` &amp; ⏮️ 😐 `def`. ⚫️ 🔜 👷, &amp; 🕐 ✍ ⏮️ 😐 `def` 🔜 🤙 🔛 🔢 🧵 (⚪️➡️ 🧵) ↩️ ➖ "⌛".
 
 ### 🎏 🚙 🔢
 
@@ -427,4 +439,4 @@ async def read_burgers():
 
 🔄, 👉 📶 📡 ℹ 👈 🔜 🎲 ⚠ 🚥 👆 👟 🔎 👫.
 
-⏪, 👆 🔜 👍 ⏮️ 📄 ⚪️➡️ 📄 🔛: <a href="#in-a-hurry">🏃 ❓</a>.
+⏪, 👆 🔜 👍 ⏮️ 📄 ⚪️➡️ 📄 🔛: <a href="#_2">🏃 ❓</a>.

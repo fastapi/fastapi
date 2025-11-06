@@ -1,14 +1,23 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
+from ...utils import needs_py39, needs_py310, needs_pydanticv2
 
 
-@pytest.fixture(name="client")
-def get_client() -> TestClient:
-    from docs_src.separate_openapi_schemas.tutorial001 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial001",
+        pytest.param("tutorial001_py310", marks=needs_py310),
+        pytest.param("tutorial001_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest) -> TestClient:
+    mod = importlib.import_module(f"docs_src.separate_openapi_schemas.{request.param}")
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 
@@ -48,9 +57,7 @@ def test_openapi_schema(client: TestClient) -> None:
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Item-Output"
-                                        },
+                                        "items": {"$ref": "#/components/schemas/Item"},
                                         "type": "array",
                                         "title": "Response Read Items Items  Get",
                                     }
@@ -65,7 +72,7 @@ def test_openapi_schema(client: TestClient) -> None:
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": {"$ref": "#/components/schemas/Item-Input"}
+                                "schema": {"$ref": "#/components/schemas/Item"}
                             }
                         },
                         "required": True,
@@ -102,7 +109,7 @@ def test_openapi_schema(client: TestClient) -> None:
                     "type": "object",
                     "title": "HTTPValidationError",
                 },
-                "Item-Input": {
+                "Item": {
                     "properties": {
                         "name": {"type": "string", "title": "Name"},
                         "description": {
@@ -112,18 +119,6 @@ def test_openapi_schema(client: TestClient) -> None:
                     },
                     "type": "object",
                     "required": ["name"],
-                    "title": "Item",
-                },
-                "Item-Output": {
-                    "properties": {
-                        "name": {"type": "string", "title": "Name"},
-                        "description": {
-                            "anyOf": [{"type": "string"}, {"type": "null"}],
-                            "title": "Description",
-                        },
-                    },
-                    "type": "object",
-                    "required": ["name", "description"],
                     "title": "Item",
                 },
                 "ValidationError": {

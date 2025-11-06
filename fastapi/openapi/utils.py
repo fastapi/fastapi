@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Type, Union,
 
 from fastapi import routing
 from fastapi._compat import (
-    GenerateJsonSchema,
     JsonSchemaValue,
     ModelField,
     Undefined,
@@ -16,11 +15,15 @@ from fastapi._compat import (
 )
 from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
-from fastapi.dependencies.utils import get_flat_dependant, get_flat_params
+from fastapi.dependencies.utils import (
+    _get_flat_fields_from_params,
+    get_flat_dependant,
+    get_flat_params,
+)
 from fastapi.encoders import jsonable_encoder
-from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX, REF_TEMPLATE
+from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
-from fastapi.params import Body, Param
+from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
@@ -28,10 +31,12 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
+from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
-from starlette.status import HTTP_422_UNPROCESSABLE_ENTITY
 from typing_extensions import Literal
+
+from .._compat import _is_model_field
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -87,10 +92,9 @@ def get_openapi_security_definitions(
     return security_definitions, operation_security
 
 
-def get_openapi_operation_parameters(
+def _get_openapi_operation_parameters(
     *,
-    all_route_params: Sequence[ModelField],
-    schema_generator: GenerateJsonSchema,
+    dependant: Dependant,
     model_name_map: ModelNameMap,
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
@@ -98,40 +102,72 @@ def get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> List[Dict[str, Any]]:
     parameters = []
-    for param in all_route_params:
-        field_info = param.field_info
-        field_info = cast(Param, field_info)
-        if not field_info.include_in_schema:
-            continue
-        param_schema = get_schema_from_model_field(
-            field=param,
-            schema_generator=schema_generator,
-            model_name_map=model_name_map,
-            field_mapping=field_mapping,
-            separate_input_output_schemas=separate_input_output_schemas,
-        )
-        parameter = {
-            "name": param.alias,
-            "in": field_info.in_.value,
-            "required": param.required,
-            "schema": param_schema,
-        }
-        if field_info.description:
-            parameter["description"] = field_info.description
-        if field_info.openapi_examples:
-            parameter["examples"] = jsonable_encoder(field_info.openapi_examples)
-        elif field_info.example != Undefined:
-            parameter["example"] = jsonable_encoder(field_info.example)
-        if field_info.deprecated:
-            parameter["deprecated"] = field_info.deprecated
-        parameters.append(parameter)
+    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
+    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
+    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
+    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
+    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    parameter_groups = [
+        (ParamTypes.path, path_params),
+        (ParamTypes.query, query_params),
+        (ParamTypes.header, header_params),
+        (ParamTypes.cookie, cookie_params),
+    ]
+    default_convert_underscores = True
+    if len(flat_dependant.header_params) == 1:
+        first_field = flat_dependant.header_params[0]
+        if lenient_issubclass(first_field.type_, BaseModel):
+            default_convert_underscores = getattr(
+                first_field.field_info, "convert_underscores", True
+            )
+    for param_type, param_group in parameter_groups:
+        for param in param_group:
+            field_info = param.field_info
+            # field_info = cast(Param, field_info)
+            if not getattr(field_info, "include_in_schema", True):
+                continue
+            param_schema = get_schema_from_model_field(
+                field=param,
+                model_name_map=model_name_map,
+                field_mapping=field_mapping,
+                separate_input_output_schemas=separate_input_output_schemas,
+            )
+            name = param.alias
+            convert_underscores = getattr(
+                param.field_info,
+                "convert_underscores",
+                default_convert_underscores,
+            )
+            if (
+                param_type == ParamTypes.header
+                and param.alias == param.name
+                and convert_underscores
+            ):
+                name = param.name.replace("_", "-")
+
+            parameter = {
+                "name": name,
+                "in": param_type.value,
+                "required": param.required,
+                "schema": param_schema,
+            }
+            if field_info.description:
+                parameter["description"] = field_info.description
+            openapi_examples = getattr(field_info, "openapi_examples", None)
+            example = getattr(field_info, "example", None)
+            if openapi_examples:
+                parameter["examples"] = jsonable_encoder(openapi_examples)
+            elif example != Undefined:
+                parameter["example"] = jsonable_encoder(example)
+            if getattr(field_info, "deprecated", None):
+                parameter["deprecated"] = True
+            parameters.append(parameter)
     return parameters
 
 
 def get_openapi_operation_request_body(
     *,
     body_field: Optional[ModelField],
-    schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
@@ -140,10 +176,9 @@ def get_openapi_operation_request_body(
 ) -> Optional[Dict[str, Any]]:
     if not body_field:
         return None
-    assert isinstance(body_field, ModelField)
+    assert _is_model_field(body_field)
     body_schema = get_schema_from_model_field(
         field=body_field,
-        schema_generator=schema_generator,
         model_name_map=model_name_map,
         field_mapping=field_mapping,
         separate_input_output_schemas=separate_input_output_schemas,
@@ -216,7 +251,6 @@ def get_openapi_path(
     *,
     route: routing.APIRoute,
     operation_ids: Set[str],
-    schema_generator: GenerateJsonSchema,
     model_name_map: ModelNameMap,
     field_mapping: Dict[
         Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
@@ -247,10 +281,8 @@ def get_openapi_path(
                 operation.setdefault("security", []).extend(operation_security)
             if security_definitions:
                 security_schemes.update(security_definitions)
-            all_route_params = get_flat_params(route.dependant)
-            operation_parameters = get_openapi_operation_parameters(
-                all_route_params=all_route_params,
-                schema_generator=schema_generator,
+            operation_parameters = _get_openapi_operation_parameters(
+                dependant=route.dependant,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -272,7 +304,6 @@ def get_openapi_path(
             if method in METHODS_WITH_BODY:
                 request_body_oai = get_openapi_operation_request_body(
                     body_field=route.body_field,
-                    schema_generator=schema_generator,
                     model_name_map=model_name_map,
                     field_mapping=field_mapping,
                     separate_input_output_schemas=separate_input_output_schemas,
@@ -290,7 +321,6 @@ def get_openapi_path(
                         ) = get_openapi_path(
                             route=callback,
                             operation_ids=operation_ids,
-                            schema_generator=schema_generator,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
@@ -321,7 +351,6 @@ def get_openapi_path(
                     if route.response_field:
                         response_schema = get_schema_from_model_field(
                             field=route.response_field,
-                            schema_generator=schema_generator,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
@@ -347,15 +376,14 @@ def get_openapi_path(
                     openapi_response = operation_responses.setdefault(
                         status_code_key, {}
                     )
-                    assert isinstance(
-                        process_response, dict
-                    ), "An additional response must be a dict"
+                    assert isinstance(process_response, dict), (
+                        "An additional response must be a dict"
+                    )
                     field = route.response_fields.get(additional_status_code)
                     additional_field_schema: Optional[Dict[str, Any]] = None
                     if field:
                         additional_field_schema = get_schema_from_model_field(
                             field=field,
-                            schema_generator=schema_generator,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
                             separate_input_output_schemas=separate_input_output_schemas,
@@ -378,7 +406,8 @@ def get_openapi_path(
                     )
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
-            http422 = str(HTTP_422_UNPROCESSABLE_ENTITY)
+            http422 = "422"
+            all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
@@ -416,9 +445,9 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert isinstance(
-                    route.body_field, ModelField
-                ), "A request body must be a Pydantic Field"
+                assert _is_model_field(route.body_field), (
+                    "A request body must be a Pydantic Field"
+                )
                 body_fields_from_routes.append(route.body_field)
             if route.response_field:
                 responses_from_routes.append(route.response_field)
@@ -450,6 +479,7 @@ def get_openapi(
     contact: Optional[Dict[str, Union[str, Any]]] = None,
     license_info: Optional[Dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
+    external_docs: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     info: Dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -471,10 +501,8 @@ def get_openapi(
     operation_ids: Set[str] = set()
     all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
     model_name_map = get_compat_model_name_map(all_fields)
-    schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
     field_mapping, definitions = get_definitions(
         fields=all_fields,
-        schema_generator=schema_generator,
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
@@ -483,7 +511,6 @@ def get_openapi(
             result = get_openapi_path(
                 route=route,
                 operation_ids=operation_ids,
-                schema_generator=schema_generator,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -503,7 +530,6 @@ def get_openapi(
             result = get_openapi_path(
                 route=webhook,
                 operation_ids=operation_ids,
-                schema_generator=schema_generator,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -527,4 +553,6 @@ def get_openapi(
         output["webhooks"] = webhook_paths
     if tags:
         output["tags"] = tags
+    if external_docs:
+        output["externalDocs"] = external_docs
     return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore

@@ -1,10 +1,10 @@
-# Deploy FastAPI on Cloud Providers
+# Deploy FastAPI on Cloud Providers { #deploy-fastapi-on-cloud-providers }
 
 You can use virtually **any cloud provider** to deploy your FastAPI application.
 
 In most of the cases, the main cloud providers have guides to deploy FastAPI with them.
 
-## Cloud Providers - Sponsors
+## Cloud Providers - Sponsors { #cloud-providers-sponsors }
 
 Some cloud providers ✨ [**sponsor FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨, this ensures the continued and healthy **development** of FastAPI and its **ecosystem**.
 
@@ -12,6 +12,5 @@ And it shows their true commitment to FastAPI and its **community** (you), as th
 
 You might want to try their services and follow their guides:
 
-* <a href="https://docs.platform.sh/languages/python.html?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" class="external-link" target="_blank">Platform.sh</a>
-* <a href="https://docs.porter.run/language-specific-guides/fastapi" class="external-link" target="_blank">Porter</a>
-* <a href="https://www.deta.sh/?ref=fastapi" class="external-link" target="_blank">Deta</a>
+* <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
+* <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>

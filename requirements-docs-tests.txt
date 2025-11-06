@@ -1,0 +1,4 @@
+# For mkdocstrings and tests
+httpx >=0.23.0,<1.0.0
+# For linting and generating docs versions
+ruff ==0.14.3

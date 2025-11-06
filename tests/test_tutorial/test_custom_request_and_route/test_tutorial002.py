@@ -1,6 +1,5 @@
-from dirty_equals import IsDict
+from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
-from fastapi.utils import match_pydantic_error_url
 
 from docs_src.custom_request_and_route.tutorial002 import app
 
@@ -23,17 +22,18 @@ def test_exception_handler_body_access():
                         "loc": ["body"],
                         "msg": "Input should be a valid list",
                         "input": {"numbers": [1, 2, 3]},
-                        "url": match_pydantic_error_url("list_type"),
                     }
                 ],
-                "body": '{"numbers": [1, 2, 3]}',
+                # httpx 0.28.0 switches to compact JSON https://github.com/encode/httpx/issues/3363
+                "body": IsOneOf('{"numbers": [1, 2, 3]}', '{"numbers":[1,2,3]}'),
             }
         }
     ) | IsDict(
         # TODO: remove when deprecating Pydantic v1
         {
             "detail": {
-                "body": '{"numbers": [1, 2, 3]}',
+                # httpx 0.28.0 switches to compact JSON https://github.com/encode/httpx/issues/3363
+                "body": IsOneOf('{"numbers": [1, 2, 3]}', '{"numbers":[1,2,3]}'),
                 "errors": [
                     {
                         "loc": ["body"],

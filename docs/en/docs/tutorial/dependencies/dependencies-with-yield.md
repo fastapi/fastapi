@@ -1,64 +1,65 @@
-# Dependencies with yield
+# Dependencies with yield { #dependencies-with-yield }
 
-FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", "close", "context managers", ...'>extra steps after finishing</abbr>.
+FastAPI supports dependencies that do some <abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc.'>extra steps after finishing</abbr>.
 
-To do this, use `yield` instead of `return`, and write the extra steps after.
+To do this, use `yield` instead of `return`, and write the extra steps (code) after.
 
-!!! tip
-    Make sure to use `yield` one single time.
+/// tip
 
-!!! note "Technical Details"
-    Any function that is valid to use with:
+Make sure to use `yield` one single time per dependency.
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+///
 
-    would be valid to use as a **FastAPI** dependency.
+/// note | Technical Details
 
-    In fact, FastAPI uses those two decorators internally.
+Any function that is valid to use with:
 
-## A database dependency with `yield`
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+
+would be valid to use as a **FastAPI** dependency.
+
+In fact, FastAPI uses those two decorators internally.
+
+///
+
+## A database dependency with `yield` { #a-database-dependency-with-yield }
 
 For example, you could use this to create a database session and close it after finishing.
 
-Only the code prior to and including the `yield` statement is executed before sending a response:
+Only the code prior to and including the `yield` statement is executed before creating a response:
 
-```Python hl_lines="2-4"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 The yielded value is what is injected into *path operations* and other dependencies:
 
-```Python hl_lines="4"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
-The code following the `yield` statement is executed after the response has been delivered:
+The code following the `yield` statement is executed after the response:
 
-```Python hl_lines="5-6"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
-!!! tip
-    You can use `async` or normal functions.
+/// tip
 
-    **FastAPI** will do the right thing with each, the same as with normal dependencies.
+You can use `async` or regular functions.
 
-## A dependency with `yield` and `try`
+**FastAPI** will do the right thing with each, the same as with normal dependencies.
+
+///
+
+## A dependency with `yield` and `try` { #a-dependency-with-yield-and-try }
 
 If you use a `try` block in a dependency with `yield`, you'll receive any exception that was thrown when using the dependency.
 
-For example, if some code at some point in the middle, in another dependency or in a *path operation*, made a database transaction "rollback" or create any other error, you will receive the exception in your dependency.
+For example, if some code at some point in the middle, in another dependency or in a *path operation*, made a database transaction "rollback" or created any other exception, you would receive the exception in your dependency.
 
 So, you can look for that specific exception inside the dependency with `except SomeException`.
 
 In the same way, you can use `finally` to make sure the exit steps are executed, no matter if there was an exception or not.
 
-```Python hl_lines="3  5"
-{!../../../docs_src/dependencies/tutorial007.py!}
-```
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
-## Sub-dependencies with `yield`
+## Sub-dependencies with `yield` { #sub-dependencies-with-yield }
 
 You can have sub-dependencies and "trees" of sub-dependencies of any size and shape, and any or all of them can use `yield`.
 
@@ -66,26 +67,7 @@ You can have sub-dependencies and "trees" of sub-dependencies of any size and sh
 
 For example, `dependency_c` can have a dependency on `dependency_b`, and `dependency_b` on `dependency_a`:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="6  14  22"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="5  13  21"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="4  12  20"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[6,14,22] *}
 
 And all of them can use `yield`.
 
@@ -93,28 +75,9 @@ In this case `dependency_c`, to execute its exit code, needs the value from `dep
 
 And, in turn, `dependency_b` needs the value from `dependency_a` (here named `dep_a`) to be available for its exit code.
 
-=== "Python 3.9+"
+{* ../../docs_src/dependencies/tutorial008_an_py39.py hl[18:19,26:27] *}
 
-    ```Python hl_lines="18-19  26-27"
-    {!> ../../../docs_src/dependencies/tutorial008_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="17-18  25-26"
-    {!> ../../../docs_src/dependencies/tutorial008_an.py!}
-    ```
-
-=== "Python 3.6+ non-Annotated"
-
-    !!! tip
-        Prefer to use the `Annotated` version if possible.
-
-    ```Python hl_lines="16-17  24-25"
-    {!> ../../../docs_src/dependencies/tutorial008.py!}
-    ```
-
-The same way, you could have dependencies with `yield` and `return` mixed.
+The same way, you could have some dependencies with `yield` and some other dependencies with `return`, and have some of those depend on some of the others.
 
 And you could have a single dependency that requires several other dependencies with `yield`, etc.
 
@@ -122,33 +85,53 @@ You can have any combinations of dependencies that you want.
 
 **FastAPI** will make sure everything is run in the correct order.
 
-!!! note "Technical Details"
-    This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
+/// note | Technical Details
 
-    **FastAPI** uses them internally to achieve this.
+This works thanks to Python's <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>.
 
-## Dependencies with `yield` and `HTTPException`
+**FastAPI** uses them internally to achieve this.
 
-You saw that you can use dependencies with `yield` and have `try` blocks that catch exceptions.
+///
 
-It might be tempting to raise an `HTTPException` or similar in the exit code, after the `yield`. But **it won't work**.
+## Dependencies with `yield` and `HTTPException` { #dependencies-with-yield-and-httpexception }
 
-The exit code in dependencies with `yield` is executed *after* the response is sent, so [Exception Handlers](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} will have already run. There's nothing catching exceptions thrown by your dependencies in the exit code (after the `yield`).
+You saw that you can use dependencies with `yield` and have `try` blocks that try to execute some code and then run some exit code after `finally`.
 
-So, if you raise an `HTTPException` after the `yield`, the default (or any custom) exception handler that catches `HTTPException`s and returns an HTTP 400 response won't be there to catch that exception anymore.
+You can also use `except` to catch the exception that was raised and do something with it.
 
-This is what allows anything set in the dependency (e.g. a DB session) to, for example, be used by background tasks.
+For example, you can raise a different exception, like `HTTPException`.
 
-Background tasks are run *after* the response has been sent. So there's no way to raise an `HTTPException` because there's not even a way to change the response that is *already sent*.
+/// tip
 
-But if a background task creates a DB error, at least you can rollback or cleanly close the session in the dependency with `yield`, and maybe log the error or report it to a remote tracking system.
+This is a somewhat advanced technique, and in most of the cases you won't really need it, as you can raise exceptions (including `HTTPException`) from inside of the rest of your application code, for example, in the *path operation function*.
 
-If you have some code that you know could raise an exception, do the most normal/"Pythonic" thing and add a `try` block in that section of the code.
+But it's there for you if you need it. 🤓
 
-If you have custom exceptions that you would like to handle *before* returning the response and possibly modifying the response, maybe even raising an `HTTPException`, create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+///
 
-!!! tip
-    You can still raise exceptions including `HTTPException` *before* the `yield`. But not after.
+{* ../../docs_src/dependencies/tutorial008b_an_py39.py hl[18:22,31] *}
+
+If you want to catch exceptions and create a custom response based on that, create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+
+## Dependencies with `yield` and `except` { #dependencies-with-yield-and-except }
+
+If you catch an exception using `except` in a dependency with `yield` and you don't raise it again (or raise a new exception), FastAPI won't be able to notice there was an exception, the same way that would happen with regular Python:
+
+{* ../../docs_src/dependencies/tutorial008c_an_py39.py hl[15:16] *}
+
+In this case, the client will see an *HTTP 500 Internal Server Error* response as it should, given that we are not raising an `HTTPException` or similar, but the server will **not have any logs** or any other indication of what was the error. 😱
+
+### Always `raise` in Dependencies with `yield` and `except` { #always-raise-in-dependencies-with-yield-and-except }
+
+If you catch an exception in a dependency with `yield`, unless you are raising another `HTTPException` or similar, **you should re-raise the original exception**.
+
+You can re-raise the same exception using `raise`:
+
+{* ../../docs_src/dependencies/tutorial008d_an_py39.py hl[17] *}
+
+Now the client will get the same *HTTP 500 Internal Server Error* response, but the server will have our custom `InternalError` in the logs. 😎
+
+## Execution of dependencies with `yield` { #execution-of-dependencies-with-yield }
 
 The sequence of execution is more or less like this diagram. Time flows from top to bottom. And each column is one of the parts interacting or executing code.
 
@@ -161,50 +144,99 @@ participant dep as Dep with yield
 participant operation as Path Operation
 participant tasks as Background tasks
 
-    Note over client,tasks: Can raise exception for dependency, handled after response is sent
-    Note over client,operation: Can raise HTTPException and can change the response
+    Note over client,operation: Can raise exceptions, including HTTPException
     client ->> dep: Start request
     Note over dep: Run code up to yield
-    opt raise
-        dep -->> handler: Raise HTTPException
+    opt raise Exception
+        dep -->> handler: Raise Exception
         handler -->> client: HTTP error response
-        dep -->> dep: Raise other exception
     end
     dep ->> operation: Run dependency, e.g. DB session
     opt raise
-        operation -->> dep: Raise HTTPException
-        dep -->> handler: Auto forward exception
+        operation -->> dep: Raise Exception (e.g. HTTPException)
+        opt handle
+            dep -->> dep: Can catch exception, raise a new HTTPException, raise other exception
+        end
         handler -->> client: HTTP error response
-        operation -->> dep: Raise other exception
-        dep -->> handler: Auto forward exception
     end
+
     operation ->> client: Return response to client
     Note over client,operation: Response is already sent, can't change it anymore
     opt Tasks
         operation -->> tasks: Send background tasks
     end
     opt Raise other exception
-        tasks -->> dep: Raise other exception
-    end
-    Note over dep: After yield
-    opt Handle other exception
-        dep -->> dep: Handle exception, can't change response. E.g. close DB session.
+        tasks -->> tasks: Handle exceptions in the background task code
     end
 ```
 
-!!! info
-    Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
+/// info
 
-    After one of those responses is sent, no other response can be sent.
+Only **one response** will be sent to the client. It might be one of the error responses or it will be the response from the *path operation*.
 
-!!! tip
-    This diagram shows `HTTPException`, but you could also raise any other exception for which you create a [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}.
+After one of those responses is sent, no other response can be sent.
 
-    If you raise any exception, it will be passed to the dependencies with yield, including `HTTPException`, and then **again** to the exception handlers. If there's no exception handler for that exception, it will then be handled by the default internal `ServerErrorMiddleware`, returning a 500 HTTP status code, to let the client know that there was an error in the server.
+///
 
-## Context Managers
+/// tip
 
-### What are "Context Managers"
+If you raise any exception in the code from the *path operation function*, it will be passed to the dependencies with yield, including `HTTPException`. In most cases you will want to re-raise that same exception or a new one from the dependency with `yield` to make sure it's properly handled.
+
+///
+
+## Early exit and `scope` { #early-exit-and-scope }
+
+Normally the exit code of dependencies with `yield` is executed **after the response** is sent to the client.
+
+But if you know that you won't need to use the dependency after returning from the *path operation function*, you can use `Depends(scope="function")` to tell FastAPI that it should close the dependency after the *path operation function* returns, but **before** the **response is sent**.
+
+{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+
+`Depends()` receives a `scope` parameter that can be:
+
+* `"function"`: start the dependency before the *path operation function* that handles the request, end the dependency after the *path operation function* ends, but **before** the response is sent back to the client. So, the dependency function will be executed **around** the *path operation **function***.
+* `"request"`: start the dependency before the *path operation function* that handles the request (similar to when using `"function"`), but end **after** the response is sent back to the client. So, the dependency function will be executed **around** the **request** and response cycle.
+
+If not specified and the dependency has `yield`, it will have a `scope` of `"request"` by default.
+
+### `scope` for sub-dependencies { #scope-for-sub-dependencies }
+
+When you declare a dependency with a `scope="request"` (the default), any sub-dependency needs to also have a `scope` of `"request"`.
+
+But a dependency with `scope` of `"function"` can have dependencies with `scope` of `"function"` and `scope` of `"request"`.
+
+This is because any dependency needs to be able to run its exit code before the sub-dependencies, as it might need to still use them during its exit code.
+
+```mermaid
+sequenceDiagram
+
+participant client as Client
+participant dep_req as Dep scope="request"
+participant dep_func as Dep scope="function"
+participant operation as Path Operation
+
+    client ->> dep_req: Start request
+    Note over dep_req: Run code up to yield
+    dep_req ->> dep_func: Pass dependency
+    Note over dep_func: Run code up to yield
+    dep_func ->> operation: Run path operation with dependency
+    operation ->> dep_func: Return from path operation
+    Note over dep_func: Run code after yield
+    Note over dep_func: ✅ Dependency closed
+    dep_func ->> client: Send response to client
+    Note over client: Response sent
+    Note over dep_req: Run code after yield
+    Note over dep_req: ✅ Dependency closed
+```
+
+## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
+
+Dependencies with `yield` have evolved over time to cover different use cases and fix some issues.
+
+If you want to see what has changed in different versions of FastAPI, you can read more about it in the advanced guide, in [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
+## Context Managers { #context-managers }
+
+### What are "Context Managers" { #what-are-context-managers }
 
 "Context Managers" are any of those Python objects that you can use in a `with` statement.
 
@@ -216,38 +248,42 @@ with open("./somefile.txt") as f:
     print(contents)
 ```
 
-Underneath, the `open("./somefile.txt")` creates an object that is a called a "Context Manager".
+Underneath, the `open("./somefile.txt")` creates an object that is called a "Context Manager".
 
 When the `with` block finishes, it makes sure to close the file, even if there were exceptions.
 
-When you create a dependency with `yield`, **FastAPI** will internally convert it to a context manager, and combine it with some other related tools.
+When you create a dependency with `yield`, **FastAPI** will internally create a context manager for it, and combine it with some other related tools.
 
-### Using context managers in dependencies with `yield`
+### Using context managers in dependencies with `yield` { #using-context-managers-in-dependencies-with-yield }
 
-!!! warning
-    This is, more or less, an "advanced" idea.
+/// warning
 
-    If you are just starting with **FastAPI** you might want to skip it for now.
+This is, more or less, an "advanced" idea.
+
+If you are just starting with **FastAPI** you might want to skip it for now.
+
+///
 
 In Python, you can create Context Managers by <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">creating a class with two methods: `__enter__()` and `__exit__()`</a>.
 
 You can also use them inside of **FastAPI** dependencies with `yield` by using
 `with` or `async with` statements inside of the dependency function:
 
-```Python hl_lines="1-9  13"
-{!../../../docs_src/dependencies/tutorial010.py!}
-```
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
-!!! tip
-    Another way to create a context manager is with:
+/// tip
 
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
-    * <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+Another way to create a context manager is with:
 
-    using them to decorate a function with a single `yield`.
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> or
+* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
 
-    That's what **FastAPI** uses internally for dependencies with `yield`.
+using them to decorate a function with a single `yield`.
 
-    But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
+That's what **FastAPI** uses internally for dependencies with `yield`.
 
-    FastAPI will do it for you internally.
+But you don't have to use the decorators for FastAPI dependencies (and you shouldn't).
+
+FastAPI will do it for you internally.
+
+///

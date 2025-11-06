@@ -1,4 +1,4 @@
-# Return a Response Directly
+# Return a Response Directly { #return-a-response-directly }
 
 When you create a **FastAPI** *path operation* you can normally return any data from it: a `dict`, a `list`, a Pydantic model, a database model, etc.
 
@@ -10,12 +10,15 @@ But you can return a `JSONResponse` directly from your *path operations*.
 
 It might be useful, for example, to return custom headers or cookies.
 
-## Return a `Response`
+## Return a `Response` { #return-a-response }
 
 In fact, you can return any `Response` or any sub-class of it.
 
-!!! tip
-    `JSONResponse` itself is a sub-class of `Response`.
+/// tip
+
+`JSONResponse` itself is a sub-class of `Response`.
+
+///
 
 And when you return a `Response`, **FastAPI** will pass it directly.
 
@@ -23,24 +26,25 @@ It won't do any data conversion with Pydantic models, it won't convert the conte
 
 This gives you a lot of flexibility. You can return any data type, override any data declaration or validation, etc.
 
-## Using the `jsonable_encoder` in a `Response`
+## Using the `jsonable_encoder` in a `Response` { #using-the-jsonable-encoder-in-a-response }
 
-Because **FastAPI** doesn't do any change to a `Response` you return, you have to make sure it's contents are ready for it.
+Because **FastAPI** doesn't make any changes to a `Response` you return, you have to make sure its contents are ready for it.
 
 For example, you cannot put a Pydantic model in a `JSONResponse` without first converting it to a `dict` with all the data types (like `datetime`, `UUID`, etc) converted to JSON-compatible types.
 
 For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
 
-```Python hl_lines="6-7  21-22"
-{!../../../docs_src/response_directly/tutorial001.py!}
-```
+{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
 
-!!! note "Technical Details"
-    You could also use `from starlette.responses import JSONResponse`.
+/// note | Technical Details
 
-    **FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+You could also use `from starlette.responses import JSONResponse`.
 
-## Returning a custom `Response`
+**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette.
+
+///
+
+## Returning a custom `Response` { #returning-a-custom-response }
 
 The example above shows all the parts you need, but it's not very useful yet, as you could have just returned the `item` directly, and **FastAPI** would put it in a `JSONResponse` for you, converting it to a `dict`, etc. All that by default.
 
@@ -48,15 +52,13 @@ Now, let's see how you could use that to return a custom response.
 
 Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a> response.
 
-You could put your XML content in a string, put it in a `Response`, and return it:
+You could put your XML content in a string, put that in a `Response`, and return it:
 
-```Python hl_lines="1  18"
-{!../../../docs_src/response_directly/tutorial002.py!}
-```
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
-## Notes
+## Notes { #notes }
 
-When you return a `Response` directly its data is not validated, converted (serialized), nor documented automatically.
+When you return a `Response` directly its data is not validated, converted (serialized), or documented automatically.
 
 But you can still document it as described in [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 

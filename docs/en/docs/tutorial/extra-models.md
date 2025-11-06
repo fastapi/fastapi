@@ -1,4 +1,4 @@
-# Extra Models
+# Extra Models { #extra-models }
 
 Continuing with the previous example, it will be common to have more than one related model.
 
@@ -8,30 +8,32 @@ This is especially the case for user models, because:
 * The **output model** should not have a password.
 * The **database model** would probably need to have a hashed password.
 
-!!! danger
-    Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
+/// danger
 
-    If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+Never store user's plaintext passwords. Always store a "secure hash" that you can then verify.
 
-## Multiple models
+If you don't know, you will learn what a "password hash" is in the [security chapters](security/simple-oauth2.md#password-hashing){.internal-link target=_blank}.
+
+///
+
+## Multiple models { #multiple-models }
 
 Here's a general idea of how the models could look like with their password fields and the places where they are used:
 
-=== "Python 3.10+"
+{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-    ```Python hl_lines="7  9  14  20  22  27-28  31-33  38-39"
-    {!> ../../../docs_src/extra_models/tutorial001_py310.py!}
-    ```
 
-=== "Python 3.6+"
+/// info
 
-    ```Python hl_lines="9  11  16  22  24  29-30  33-35  40-41"
-    {!> ../../../docs_src/extra_models/tutorial001.py!}
-    ```
+In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
 
-### About `**user_in.dict()`
+The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
 
-#### Pydantic's `.dict()`
+///
+
+### About `**user_in.dict()` { #about-user-in-dict }
+
+#### Pydantic's `.dict()` { #pydantics-dict }
 
 `user_in` is a Pydantic model of class `UserIn`.
 
@@ -68,9 +70,9 @@ we would get a Python `dict` with:
 }
 ```
 
-#### Unwrapping a `dict`
+#### Unpacking a `dict` { #unpacking-a-dict }
 
-If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unwrap" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
+If we take a `dict` like `user_dict` and pass it to a function (or class) with `**user_dict`, Python will "unpack" it. It will pass the keys and values of the `user_dict` directly as key-value arguments.
 
 So, continuing with the `user_dict` from above, writing:
 
@@ -78,7 +80,7 @@ So, continuing with the `user_dict` from above, writing:
 UserInDB(**user_dict)
 ```
 
-Would result in something equivalent to:
+would result in something equivalent to:
 
 ```Python
 UserInDB(
@@ -100,7 +102,7 @@ UserInDB(
 )
 ```
 
-#### A Pydantic model from the contents of another
+#### A Pydantic model from the contents of another { #a-pydantic-model-from-the-contents-of-another }
 
 As in the example above we got `user_dict` from `user_in.dict()`, this code:
 
@@ -115,11 +117,11 @@ would be equivalent to:
 UserInDB(**user_in.dict())
 ```
 
-...because `user_in.dict()` is a `dict`, and then we make Python "unwrap" it by passing it to `UserInDB` prepended with `**`.
+...because `user_in.dict()` is a `dict`, and then we make Python "unpack" it by passing it to `UserInDB` prefixed with `**`.
 
 So, we get a Pydantic model from the data in another Pydantic model.
 
-#### Unwrapping a `dict` and extra keywords
+#### Unpacking a `dict` and extra keywords { #unpacking-a-dict-and-extra-keywords }
 
 And then adding the extra keyword argument `hashed_password=hashed_password`, like in:
 
@@ -139,10 +141,13 @@ UserInDB(
 )
 ```
 
-!!! warning
-    The supporting additional functions are just to demo a possible flow of the data, but they of course are not providing any real security.
+/// warning
 
-## Reduce duplication
+The supporting additional functions `fake_password_hasher` and `fake_save_user` are just to demo a possible flow of the data, but they of course are not providing any real security.
+
+///
+
+## Reduce duplication { #reduce-duplication }
 
 Reducing code duplication is one of the core ideas in **FastAPI**.
 
@@ -158,42 +163,26 @@ All the data conversion, validation, documentation, etc. will still work as norm
 
 That way, we can declare just the differences between the models (with plaintext `password`, with `hashed_password` and without password):
 
-=== "Python 3.10+"
+{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-    ```Python hl_lines="7  13-14  17-18  21-22"
-    {!> ../../../docs_src/extra_models/tutorial002_py310.py!}
-    ```
+## `Union` or `anyOf` { #union-or-anyof }
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="9  15-16  19-20  23-24"
-    {!> ../../../docs_src/extra_models/tutorial002.py!}
-    ```
-
-## `Union` or `anyOf`
-
-You can declare a response to be the `Union` of two types, that means, that the response would be any of the two.
+You can declare a response to be the `Union` of two or more types, that means, that the response would be any of them.
 
 It will be defined in OpenAPI with `anyOf`.
 
 To do that, use the standard Python type hint <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
-!!! note
-    When defining a <a href="https://pydantic-docs.helpmanual.io/usage/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
+/// note
 
-=== "Python 3.10+"
+When defining a <a href="https://docs.pydantic.dev/latest/concepts/types/#unions" class="external-link" target="_blank">`Union`</a>, include the most specific type first, followed by the less specific type. In the example below, the more specific `PlaneItem` comes before `CarItem` in `Union[PlaneItem, CarItem]`.
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003_py310.py!}
-    ```
+///
 
-=== "Python 3.6+"
+{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
-    ```Python hl_lines="1  14-15  18-20  33"
-    {!> ../../../docs_src/extra_models/tutorial003.py!}
-    ```
 
-### `Union` in Python 3.10
+### `Union` in Python 3.10 { #union-in-python-3-10 }
 
 In this example we pass `Union[PlaneItem, CarItem]` as the value of the argument `response_model`.
 
@@ -205,27 +194,18 @@ If it was in a type annotation we could have used the vertical bar, as:
 some_variable: PlaneItem | CarItem
 ```
 
-But if we put that in `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
+But if we put that in the assignment `response_model=PlaneItem | CarItem` we would get an error, because Python would try to perform an **invalid operation** between `PlaneItem` and `CarItem` instead of interpreting that as a type annotation.
 
-## List of models
+## List of models { #list-of-models }
 
 The same way, you can declare responses of lists of objects.
 
 For that, use the standard Python `typing.List` (or just `list` in Python 3.9 and above):
 
-=== "Python 3.9+"
+{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/extra_models/tutorial004_py39.py!}
-    ```
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  20"
-    {!> ../../../docs_src/extra_models/tutorial004.py!}
-    ```
-
-## Response with arbitrary `dict`
+## Response with arbitrary `dict` { #response-with-arbitrary-dict }
 
 You can also declare a response using a plain arbitrary `dict`, declaring just the type of the keys and values, without using a Pydantic model.
 
@@ -233,19 +213,10 @@ This is useful if you don't know the valid field/attribute names (that would be 
 
 In this case, you can use `typing.Dict` (or just `dict` in Python 3.9 and above):
 
-=== "Python 3.9+"
+{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
 
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/extra_models/tutorial005_py39.py!}
-    ```
 
-=== "Python 3.6+"
-
-    ```Python hl_lines="1  8"
-    {!> ../../../docs_src/extra_models/tutorial005.py!}
-    ```
-
-## Recap
+## Recap { #recap }
 
 Use multiple Pydantic models and inherit freely for each case.
 

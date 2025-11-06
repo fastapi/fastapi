@@ -15,9 +15,7 @@
 
 首先导入 `BackgroundTasks` 并在 *路径操作函数* 中使用类型声明 `BackgroundTasks` 定义一个参数：
 
-```Python hl_lines="1  13"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[1, 13] *}
 
 **FastAPI** 会创建一个 `BackgroundTasks` 类型的对象并作为该参数传入。
 
@@ -33,17 +31,13 @@
 
 由于写操作不使用 `async` 和 `await`，我们用普通的 `def` 定义函数：
 
-```Python hl_lines="6-9"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## 添加后台任务
 
 在你的 *路径操作函数* 里，用 `.add_task()` 方法将任务函数传到 *后台任务* 对象中：
 
-```Python hl_lines="14"
-{!../../../docs_src/background_tasks/tutorial001.py!}
-```
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` 接收以下参数：
 
@@ -57,41 +51,47 @@
 
 **FastAPI** 知道在每种情况下该做什么以及如何复用同一对象，因此所有后台任务被合并在一起并且随后在后台运行：
 
-=== "Python 3.10+"
+//// tab | Python 3.10+
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py310.py!}
-    ```
+{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13, 15, 22, 25] *}
 
-=== "Python 3.9+"
+////
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002_an_py39.py!}
-    ```
+//// tab | Python 3.9+
 
-=== "Python 3.6+"
+{* ../../docs_src/background_tasks/tutorial002_an_py39.py hl[13, 15, 22, 25] *}
 
-    ```Python hl_lines="14  16  23  26"
-    {!> ../../../docs_src/background_tasks/tutorial002_an.py!}
-    ```
+////
 
-=== "Python 3.10+ 没Annotated"
+//// tab | Python 3.8+
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+{* ../../docs_src/background_tasks/tutorial002_an.py hl[14, 16, 23, 26] *}
 
-    ```Python hl_lines="11  13  20  23"
-    {!> ../../../docs_src/background_tasks/tutorial002_py310.py!}
-    ```
+////
 
-=== "Python 3.6+ 没Annotated"
+//// tab | Python 3.10+ 没Annotated
 
-    !!! tip
-         尽可能选择使用 `Annotated` 的版本。
+/// tip
 
-    ```Python hl_lines="13  15  22  25"
-    {!> ../../../docs_src/background_tasks/tutorial002.py!}
-    ```
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+{* ../../docs_src/background_tasks/tutorial002_py310.py hl[11, 13, 20, 23] *}
+
+////
+
+//// tab | Python 3.8+ 没Annotated
+
+/// tip
+
+尽可能选择使用 `Annotated` 的版本。
+
+///
+
+{* ../../docs_src/background_tasks/tutorial002.py hl[13, 15, 22, 25] *}
+
+////
 
 该示例中，信息会在响应发出 *之后* 被写到 `log.txt` 文件。
 
@@ -101,7 +101,7 @@
 
 ## 技术细节
 
-`BackgroundTasks` 类直接来自 <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>。
+`BackgroundTasks` 类直接来自 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>。
 
 它被直接导入/包含到FastAPI以便你可以从 `fastapi` 导入，并避免意外从 `starlette.background` 导入备用的 `BackgroundTask` (后面没有 `s`)。
 
@@ -109,15 +109,13 @@
 
 在FastAPI中仍然可以单独使用 `BackgroundTask`，但您必须在代码中创建对象，并返回包含它的Starlette `Response`。
 
-更多细节查看 <a href="https://www.starlette.io/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
+更多细节查看 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlette's official docs for Background Tasks</a>.
 
 ## 告诫
 
 如果您需要执行繁重的后台计算，并且不一定需要由同一进程运行（例如，您不需要共享内存、变量等），那么使用其他更大的工具（如 <a href="https://docs.celeryq.dev" class="external-link" target="_blank">Celery</a>）可能更好。
 
 它们往往需要更复杂的配置，即消息/作业队列管理器，如RabbitMQ或Redis，但它们允许您在多个进程中运行后台任务，甚至是在多个服务器中。
-
-要查看示例，查阅 [Project Generators](../project-generation.md){.internal-link target=_blank}，它们都包括已经配置的Celery。
 
 但是，如果您需要从同一个**FastAPI**应用程序访问变量和对象，或者您需要执行小型后台任务（如发送电子邮件通知），您只需使用 `BackgroundTasks` 即可。
 
