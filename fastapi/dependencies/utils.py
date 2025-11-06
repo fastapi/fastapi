@@ -766,10 +766,6 @@ def _get_multidict_value(
     return value
 
 
-class Marker:
-    pass
-
-
 def request_params_to_args(
     fields: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
