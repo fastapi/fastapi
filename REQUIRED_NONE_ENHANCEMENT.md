@@ -12,7 +12,7 @@ Users often want to create APIs where:
 3. Validation rules still apply when the parameter is not None
 
 The existing documentation shows either:
-- Optional parameters: `param: str | None = None` 
+- Optional parameters: `param: str | None = None`
 - Required parameters: `param: str`
 
 But doesn't clearly demonstrate the middle ground: **required but nullable**.
@@ -32,7 +32,7 @@ async def read_items(
     # Handle explicit None case
     if q == "null":
         q = None
-    
+
     if q is not None:
         # Filter logic here
         return {"items": [...], "filtered_by": q}
@@ -44,14 +44,14 @@ async def read_items(
 ### Key Points
 
 1. **No default value** - Makes the parameter required
-2. **Union[str, None]** - Allows both string and None values  
+2. **Union[str, None]** - Allows both string and None values
 3. **Handle "null" string** - Convert string "null" to Python None
 4. **Validation applies** - min_length=3 still enforced for non-None values
 
 ### Usage Examples
 
 ```bash
-# ✅ Valid - searches for "python" 
+# ✅ Valid - searches for "python"
 GET /items/?q=python
 
 # ✅ Valid - explicitly no filtering (null converted to None)
@@ -70,7 +70,7 @@ GET /items/?q=ab
 - `tutorial016_required_can_be_none_py310.py` - Simple demonstration
 - `tutorial016_required_can_be_none_an.py` - Compatible with older Python versions
 
-### Comprehensive Example  
+### Comprehensive Example
 - `tutorial017_comprehensive_required_none_py310.py` - Advanced patterns including:
   - Multiple required parameters with different types
   - Custom validation and error handling
@@ -80,7 +80,7 @@ GET /items/?q=ab
 ## Why This Enhancement Matters
 
 1. **Addresses Real User Need** - Issue #12419 shows this is a genuine pain point
-2. **Fills Documentation Gap** - Current docs don't cover this specific pattern  
+2. **Fills Documentation Gap** - Current docs don't cover this specific pattern
 3. **Provides Working Code** - Complete, tested examples ready to use
 4. **Shows Best Practices** - Error handling, validation, and API design patterns
 
@@ -97,7 +97,7 @@ All examples include comprehensive test coverage showing:
 This enhancement connects to existing FastAPI documentation:
 - Query Parameters tutorial
 - Parameter validation
-- Request validation and error handling  
+- Request validation and error handling
 - Type hints and annotations
 
 The examples follow FastAPI's established patterns while addressing the specific "required but nullable" use case.
