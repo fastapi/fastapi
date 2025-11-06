@@ -986,10 +986,7 @@ def test_openapi_schema():
                             "required": False,
                             "schema": IsDict(
                                 {
-                                    "anyOf": [
-                                        {"type": "integer"},
-                                        {"type": "null"},
-                                    ],
+                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
                                     "title": "Query",
                                 }
                             )
