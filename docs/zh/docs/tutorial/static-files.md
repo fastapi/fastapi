@@ -7,14 +7,15 @@
 * 导入`StaticFiles`。
 * "挂载"(Mount) 一个 `StaticFiles()` 实例到一个指定路径。
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-!!! note "技术细节"
-    你也可以用 `from starlette.staticfiles import StaticFiles`。
+/// note | 技术细节
 
-    **FastAPI** 提供了和 `starlette.staticfiles` 相同的 `fastapi.staticfiles` ，只是为了方便你，开发者。但它确实来自Starlette。
+你也可以用 `from starlette.staticfiles import StaticFiles`。
+
+**FastAPI** 提供了和 `starlette.staticfiles` 相同的 `fastapi.staticfiles` ，只是为了方便你，开发者。但它确实来自Starlette。
+
+///
 
 ### 什么是"挂载"(Mounting)
 
@@ -36,4 +37,4 @@
 
 ## 更多信息
 
-更多细节和选择查阅 <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+更多细节和选择查阅 <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.

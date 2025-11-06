@@ -1,14 +1,31 @@
+import importlib
 import os
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.background_tasks.tutorial002 import app
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310
 
 
-def test():
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial002",
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        "tutorial002_an",
+        pytest.param("tutorial002_an_py39", marks=needs_py39),
+        pytest.param("tutorial002_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.background_tasks.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test(client: TestClient):
     log = Path("log.txt")
     if log.is_file():
         os.remove(log)  # pragma: no cover

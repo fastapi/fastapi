@@ -63,10 +63,13 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-!!! info
-    `**second_user_data` یعنی:
+/// info
 
-    کلید ها و مقادیر دیکشنری `second_user_data` را مستقیما به عنوان ارگومان های key-value بفرست، که معادل است با : `User(id=4, name="Mary", joined="2018-11-30")`
+`**second_user_data` یعنی:
+
+کلید ها و مقادیر دیکشنری `second_user_data` را مستقیما به عنوان ارگومان های key-value بفرست، که معادل است با : `User(id=4, name="Mary", joined="2018-11-30")`
+
+///
 
 ### پشتیبانی ویرایشگر
 
@@ -164,7 +167,7 @@ FastAPI شامل یک سیستم <abbr title='همچنین به عنوان "comp
 
 ## ویژگی های Starlette
 
-**FastAPI** کاملا (و براساس) با <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> سازگار است. بنابراین، هرکد اضافی Starlette که دارید، نیز کار خواهد کرد.
+**FastAPI** کاملا (و براساس) با <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> سازگار است. بنابراین، هرکد اضافی Starlette که دارید، نیز کار خواهد کرد.
 
 ‍‍`FastAPI` در واقع یک زیرکلاس از `Starlette` است. بنابراین اگر از قبل Starlette را میشناسید یا با آن کار کرده اید، بیشتر قابلیت ها به همین روش کار خواهد کرد.
 
@@ -182,7 +185,7 @@ FastAPI شامل یک سیستم <abbr title='همچنین به عنوان "comp
 
 ## ویژگی های Pydantic
 
-**FastAPI** کاملا (و براساس) با <a href="https://pydantic-docs.helpmanual.io" class="external-link" target="_blank"><strong>Pydantic</strong></a> سازگار است. بنابراین هرکد Pydantic اضافی که داشته باشید، نیز کار خواهد کرد.
+**FastAPI** کاملا (و براساس) با <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> سازگار است. بنابراین هرکد Pydantic اضافی که داشته باشید، نیز کار خواهد کرد.
 
 از جمله کتابخانه های خارجی نیز مبتنی بر Pydantic میتوان به <abbr title="Object-Relational Mapper">ORM</abbr> و <abbr title="Object-Document Mapper">ODM</abbr> ها برای دیتابیس ها اشاره کرد.
 

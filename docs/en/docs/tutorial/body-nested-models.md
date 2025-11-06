@@ -1,40 +1,28 @@
-# Body - Nested Models
+# Body - Nested Models { #body-nested-models }
 
 With **FastAPI**, you can define, validate, document, and use arbitrarily deeply nested models (thanks to Pydantic).
 
-## List fields
+## List fields { #list-fields }
 
 You can define an attribute to be a subtype. For example, a Python `list`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial001.py!}
-    ```
+{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
 
 This will make `tags` be a list, although it doesn't declare the type of the elements of the list.
 
-## List fields with type parameter
+## List fields with type parameter { #list-fields-with-type-parameter }
 
 But Python has a specific way to declare lists with internal types, or "type parameters":
 
-### Import typing's `List`
+### Import typing's `List` { #import-typings-list }
 
 In Python 3.9 and above you can use the standard `list` to declare these type annotations as we'll see below. 💡
 
 But in Python versions before 3.9 (3.6 and above), you first need to import `List` from standard Python's `typing` module:
 
-```Python hl_lines="1"
-{!> ../../../docs_src/body_nested_models/tutorial002.py!}
-```
+{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
 
-### Declare a `list` with a type parameter
+### Declare a `list` with a type parameter { #declare-a-list-with-a-type-parameter }
 
 To declare types that have type parameters (internal types), like `list`, `dict`, `tuple`:
 
@@ -61,25 +49,9 @@ Use that same standard syntax for model attributes with internal types.
 
 So, in our example, we can make `tags` be specifically a "list of strings":
 
-=== "Python 3.10+"
+{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial002.py!}
-    ```
-
-## Set types
+## Set types { #set-types }
 
 But then we think about it, and realize that tags shouldn't repeat, they would probably be unique strings.
 
@@ -87,23 +59,7 @@ And Python has a special data type for sets of unique items, the `set`.
 
 Then we can declare `tags` as a set of strings:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="14"
-    {!> ../../../docs_src/body_nested_models/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="1  14"
-    {!> ../../../docs_src/body_nested_models/tutorial003.py!}
-    ```
+{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
 
 With this, even if you receive a request with duplicate data, it will be converted to a set of unique items.
 
@@ -111,7 +67,7 @@ And whenever you output that data, even if the source had duplicates, it will be
 
 And it will be annotated / documented accordingly too.
 
-## Nested Models
+## Nested Models { #nested-models }
 
 Each attribute of a Pydantic model has a type.
 
@@ -121,49 +77,17 @@ So, you can declare deeply nested JSON "objects" with specific attribute names, 
 
 All that, arbitrarily nested.
 
-### Define a submodel
+### Define a submodel { #define-a-submodel }
 
 For example, we can define an `Image` model:
 
-=== "Python 3.10+"
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
 
-    ```Python hl_lines="7-9"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9-11"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
-
-### Use the submodel as a type
+### Use the submodel as a type { #use-the-submodel-as-a-type }
 
 And then we can use it as the type of an attribute:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial004.py!}
-    ```
+{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
 
 This would mean that **FastAPI** would expect a body similar to:
 
@@ -188,55 +112,23 @@ Again, doing just that declaration, with **FastAPI** you get:
 * Data validation
 * Automatic documentation
 
-## Special types and validation
+## Special types and validation { #special-types-and-validation }
 
 Apart from normal singular types like `str`, `int`, `float`, etc. you can use more complex singular types that inherit from `str`.
 
-To see all the options you have, checkout the docs for <a href="https://pydantic-docs.helpmanual.io/usage/types/" class="external-link" target="_blank">Pydantic's exotic types</a>. You will see some examples in the next chapter.
+To see all the options you have, checkout <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic's Type Overview</a>. You will see some examples in the next chapter.
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be an instance of Pydantic's `HttpUrl` instead of a `str`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="2  8"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="4  10"
-    {!> ../../../docs_src/body_nested_models/tutorial005.py!}
-    ```
+{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
 
 The string will be checked to be a valid URL, and documented in JSON Schema / OpenAPI as such.
 
-## Attributes with lists of submodels
+## Attributes with lists of submodels { #attributes-with-lists-of-submodels }
 
 You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="18"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/body_nested_models/tutorial006.py!}
-    ```
+{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
 
 This will expect (convert, validate, document, etc.) a JSON body like:
 
@@ -264,35 +156,25 @@ This will expect (convert, validate, document, etc.) a JSON body like:
 }
 ```
 
-!!! info
-    Notice how the `images` key now has a list of image objects.
+/// info
 
-## Deeply nested models
+Notice how the `images` key now has a list of image objects.
+
+///
+
+## Deeply nested models { #deeply-nested-models }
 
 You can define arbitrarily deeply nested models:
 
-=== "Python 3.10+"
+{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
 
-    ```Python hl_lines="7  12  18  21  25"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py310.py!}
-    ```
+/// info
 
-=== "Python 3.9+"
+Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
 
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007_py39.py!}
-    ```
+///
 
-=== "Python 3.8+"
-
-    ```Python hl_lines="9  14  20  23  27"
-    {!> ../../../docs_src/body_nested_models/tutorial007.py!}
-    ```
-
-!!! info
-    Notice how `Offer` has a list of `Item`s, which in turn have an optional list of `Image`s
-
-## Bodies of pure lists
+## Bodies of pure lists { #bodies-of-pure-lists }
 
 If the top level value of the JSON body you expect is a JSON `array` (a Python `list`), you can declare the type in the parameter of the function, the same as in Pydantic models:
 
@@ -308,19 +190,9 @@ images: list[Image]
 
 as in:
 
-=== "Python 3.9+"
+{* ../../docs_src/body_nested_models/tutorial008_py39.py hl[13] *}
 
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/body_nested_models/tutorial008_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="15"
-    {!> ../../../docs_src/body_nested_models/tutorial008.py!}
-    ```
-
-## Editor support everywhere
+## Editor support everywhere { #editor-support-everywhere }
 
 And you get editor support everywhere.
 
@@ -332,7 +204,7 @@ You couldn't get this kind of editor support if you were working directly with `
 
 But you don't have to worry about them either, incoming dicts are converted automatically and your output is converted automatically to JSON too.
 
-## Bodies of arbitrary `dict`s
+## Bodies of arbitrary `dict`s { #bodies-of-arbitrary-dicts }
 
 You can also declare a body as a `dict` with keys of some type and values of some other type.
 
@@ -348,28 +220,21 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-=== "Python 3.9+"
+{* ../../docs_src/body_nested_models/tutorial009_py39.py hl[7] *}
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/body_nested_models/tutorial009_py39.py!}
-    ```
+/// tip
 
-=== "Python 3.8+"
+Keep in mind that JSON only supports `str` as keys.
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/body_nested_models/tutorial009.py!}
-    ```
+But Pydantic has automatic data conversion.
 
-!!! tip
-    Keep in mind that JSON only supports `str` as keys.
+This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
 
-    But Pydantic has automatic data conversion.
+And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
 
-    This means that, even though your API clients can only send strings as keys, as long as those strings contain pure integers, Pydantic will convert them and validate them.
+///
 
-    And the `dict` you receive as `weights` will actually have `int` keys and `float` values.
-
-## Recap
+## Recap { #recap }
 
 With **FastAPI** you have the maximum flexibility provided by Pydantic models, while keeping your code simple, short and elegant.
 

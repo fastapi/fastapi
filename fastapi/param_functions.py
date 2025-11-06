@@ -1,9 +1,10 @@
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
+from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Literal, deprecated
 
 _Unset: Any = Undefined
 
@@ -240,7 +241,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -565,7 +566,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -880,7 +881,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1185,7 +1186,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1282,7 +1283,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     embed: Annotated[
-        bool,
+        Union[bool, None],
         Doc(
             """
             When `embed` is `True`, the parameter will be expected in a JSON body as a
@@ -1294,7 +1295,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Body - Multiple Parameters](https://fastapi.tiangolo.com/tutorial/body-multiple-params/#embed-a-single-body-parameter).
             """
         ),
-    ] = False,
+    ] = None,
     media_type: Annotated[
         str,
         Doc(
@@ -1512,7 +1513,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1827,7 +1828,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2141,7 +2142,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Optional[bool],
+        Union[deprecated, str, bool, None],
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2244,6 +2245,26 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
+    scope: Annotated[
+        Union[Literal["function", "request"], None],
+        Doc(
+            """
+            Mainly for dependencies with `yield`, define when the dependency function
+            should start (the code before `yield`) and when it should end (the code
+            after `yield`).
+
+            * `"function"`: start the dependency before the *path operation function*
+                that handles the request, end the dependency after the *path operation
+                function* ends, but **before** the response is sent back to the client.
+                So, the dependency function will be executed **around** the *path operation
+                **function***.
+            * `"request"`: start the dependency before the *path operation function*
+                that handles the request (similar to when using `"function"`), but end
+                **after** the response is sent back to the client. So, the dependency
+                function will be executed **around** the **request** and response cycle.
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2274,7 +2295,7 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
 
 
 def Security(  # noqa: N802
@@ -2298,7 +2319,7 @@ def Security(  # noqa: N802
             dependency.
 
             The term "scope" comes from the OAuth2 specification, it seems to be
-            intentionaly vague and interpretable. It normally refers to permissions,
+            intentionally vague and interpretable. It normally refers to permissions,
             in cases to roles.
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
@@ -2343,7 +2364,7 @@ def Security(  # noqa: N802
     ```python
     from typing import Annotated
 
-    from fastapi import Depends, FastAPI
+    from fastapi import Security, FastAPI
 
     from .db import User
     from .security import get_current_active_user

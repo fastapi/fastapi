@@ -21,8 +21,11 @@ async def read_results():
     return results
 ```
 
-!!! not
-    Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
+/// note | Not
+
+Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
+
+///
 
 ---
 
@@ -343,7 +346,7 @@ Ancak bundan önce, asenkron kodu işlemek oldukça karmaşık ve zordu.
 
 Python'un önceki sürümlerinde, threadlerı veya <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> kullanıyor olabilirdin. Ancak kodu anlamak, hata ayıklamak ve düşünmek çok daha karmaşık olurdu.
 
-NodeJS / Browser JavaScript'in önceki sürümlerinde, "callback" kullanırdınız. Bu da <a href="http://callbackhell.com/" class="external-link" target="_blank">callbacks cehennemine</a> yol açar.
+NodeJS / Browser JavaScript'in önceki sürümlerinde, "callback" kullanırdınız. Bu da "callbacks cehennemine" yol açar.
 
 ## Coroutine'ler
 
@@ -363,12 +366,15 @@ FastAPI'ye (Starlette aracılığıyla) güç veren ve bu kadar etkileyici bir p
 
 ## Çok Teknik Detaylar
 
-!!! warning
-    Muhtemelen burayı atlayabilirsiniz.
+/// warning
 
-    Bunlar, **FastAPI**'nin altta nasıl çalıştığına dair çok teknik ayrıntılardır.
+Muhtemelen burayı atlayabilirsiniz.
 
-    Biraz teknik bilginiz varsa (co-routines, threads, blocking, vb)ve FastAPI'nin "async def" ile normal "def" arasındaki farkı nasıl işlediğini merak ediyorsanız, devam edin.
+Bunlar, **FastAPI**'nin altta nasıl çalıştığına dair çok teknik ayrıntılardır.
+
+Biraz teknik bilginiz varsa (co-routines, threads, blocking, vb)ve FastAPI'nin "async def" ile normal "def" arasındaki farkı nasıl işlediğini merak ediyorsanız, devam edin.
+
+///
 
 ### Path fonksiyonu
 
@@ -376,7 +382,7 @@ FastAPI'ye (Starlette aracılığıyla) güç veren ve bu kadar etkileyici bir p
 
 Yukarıda açıklanan şekilde çalışmayan başka bir asenkron framework'den geliyorsanız ve küçük bir performans kazancı (yaklaşık 100 nanosaniye) için  "def" ile *path fonksiyonu* tanımlamaya alışkınsanız, **FastAPI**'de tam tersi olacağını unutmayın. Bu durumlarda, *path fonksiyonu* <abbr title="Input/Output: disk okuma veya yazma, ağ iletişimleri.">G/Ç</abbr> engelleyen durum oluşturmadıkça "async def" kullanmak daha iyidir.
 
-Yine de, her iki durumda da, **FastAPI**'nin önceki frameworkden [hala daha hızlı](/#performance){.internal-link target=_blank} (veya en azından karşılaştırılabilir) olma olasılığı vardır.
+Yine de, her iki durumda da, **FastAPI**'nin önceki frameworkden [hala daha hızlı](index.md#performans){.internal-link target=_blank} (veya en azından karşılaştırılabilir) olma olasılığı vardır.
 
 ### Bagımlılıklar
 

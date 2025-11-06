@@ -1,6 +1,6 @@
 # 📖, 🔧 &amp; 🔮
 
-🕰 🏁, <a href="https://github.com/tiangolo/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank"> **FastAPI** 👩‍💻 💭</a>:
+🕰 🏁, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank"> **FastAPI** 👩‍💻 💭</a>:
 
 &gt; ⚫️❔ 📖 👉 🏗 ❓ ⚫️ 😑 ✔️ 👟 ⚪️➡️ 🕳 👌 👩‍❤‍👨 🗓️ [...]
 
@@ -54,11 +54,11 @@
 
 ## 📄
 
-⏮️ 🔬 📚 🎛, 👤 💭 👈 👤 🔜 ⚙️ <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">**Pydantic**</a> 🚮 📈.
+⏮️ 🔬 📚 🎛, 👤 💭 👈 👤 🔜 ⚙️ <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> 🚮 📈.
 
 ⤴️ 👤 📉 ⚫️, ⚒ ⚫️ 🍕 🛠️ ⏮️ 🎻 🔗, 🐕‍🦺 🎏 🌌 🔬 ⚛ 📄, &amp; 📉 👨‍🎨 🐕‍🦺 (🆎 ✅, ✍) ⚓️ 🔛 💯 📚 👨‍🎨.
 
-⏮️ 🛠️, 👤 📉 <a href="https://www.starlette.io/" class="external-link" target="_blank">**💃**</a>, 🎏 🔑 📄.
+⏮️ 🛠️, 👤 📉 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**💃**</a>, 🎏 🔑 📄.
 
 ## 🛠️
 

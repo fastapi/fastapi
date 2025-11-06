@@ -7,14 +7,15 @@
 * 🗄 `StaticFiles`.
 * "🗻" `StaticFiles()` 👐 🎯 ➡.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.staticfiles import StaticFiles`.
+/// note | 📡 ℹ
 
-    **FastAPI** 🚚 🎏 `starlette.staticfiles` `fastapi.staticfiles` 🏪 👆, 👩‍💻. ✋️ ⚫️ 🤙 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.staticfiles import StaticFiles`.
+
+**FastAPI** 🚚 🎏 `starlette.staticfiles` `fastapi.staticfiles` 🏪 👆, 👩‍💻. ✋️ ⚫️ 🤙 👟 🔗 ⚪️➡️ 💃.
+
+///
 
 ### ⚫️❔ "🗜"
 
@@ -36,4 +37,4 @@
 
 ## 🌅 ℹ
 
-🌖 ℹ &amp; 🎛 ✅ <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">💃 🩺 🔃 🎻 📁</a>.
+🌖 ℹ &amp; 🎛 ✅ <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">💃 🩺 🔃 🎻 📁</a>.

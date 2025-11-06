@@ -10,23 +10,13 @@
 
 一个常见的工具是 <a href="https://openapi-generator.tech/" class="external-link" target="_blank">OpenAPI Generator</a>。
 
-如果您正在开发**前端**，一个非常有趣的替代方案是 <a href="https://github.com/ferdikoomen/openapi-typescript-codegen" class="external-link" target="_blank">openapi-typescript-codegen</a>。
+如果您正在开发**前端**，一个非常有趣的替代方案是 <a href="https://github.com/hey-api/openapi-ts" class="external-link" target="_blank">openapi-ts</a>。
 
 ## 生成一个 TypeScript 前端客户端
 
 让我们从一个简单的 FastAPI 应用开始：
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="7-9  12-13  16-17  21"
-    {!> ../../../docs_src/generate_clients/tutorial001_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="9-11  14-15  18  19  23"
-    {!> ../../../docs_src/generate_clients/tutorial001.py!}
-    ```
+{* ../../docs_src/generate_clients/tutorial001_py39.py hl[7:9,12:13,16:17,21] *}
 
 请注意，*路径操作* 定义了他们所用于请求数据和回应数据的模型，所使用的模型是`Item` 和 `ResponseMessage`。
 
@@ -46,14 +36,14 @@ OpenAPI中所包含的模型里有相同的信息可以用于 **生成客户端�
 
 现在我们有了带有模型的应用，我们可以为前端生成客户端代码。
 
-#### 安装 `openapi-typescript-codegen`
+#### 安装 `openapi-ts`
 
-您可以使用以下工具在前端代码中安装 `openapi-typescript-codegen`:
+您可以使用以下工具在前端代码中安装 `openapi-ts`:
 
 <div class="termy">
 
 ```console
-$ npm install openapi-typescript-codegen --save-dev
+$ npm install @hey-api/openapi-ts --save-dev
 
 ---> 100%
 ```
@@ -62,7 +52,7 @@ $ npm install openapi-typescript-codegen --save-dev
 
 #### 生成客户端代码
 
-要生成客户端代码，您可以使用现在将要安装的命令行应用程序 `openapi`。
+要生成客户端代码，您可以使用现在将要安装的命令行应用程序 `openapi-ts`。
 
 因为它安装在本地项目中，所以您可能无法直接使用此命令，但您可以将其放在 `package.json` 文件中。
 
@@ -75,12 +65,12 @@ $ npm install openapi-typescript-codegen --save-dev
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }
@@ -94,7 +84,7 @@ $ npm install openapi-typescript-codegen --save-dev
 $ npm run generate-client
 
 frontend-app@1.0.0 generate-client /home/user/code/frontend-app
-> openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios
+> openapi-ts --input http://localhost:8000/openapi.json --output ./src/client --client axios
 ```
 
 </div>
@@ -111,8 +101,11 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 <img src="/img/tutorial/generate-clients/image03.png">
 
-!!! tip
-    请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
+/// tip
+
+请注意， `name` 和 `price` 的自动补全，是通过其在`Item`模型(FastAPI)中的定义实现的。
+
+///
 
 如果发送的数据字段不符，你也会看到编辑器的错误提示:
 
@@ -128,17 +121,7 @@ frontend-app@1.0.0 generate-client /home/user/code/frontend-app
 
 例如，您可以有一个用 `items` 的部分和另一个用于 `users` 的部分，它们可以用标签来分隔：
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="21  26  34"
-    {!> ../../../docs_src/generate_clients/tutorial002_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="23  28  36"
-    {!> ../../../docs_src/generate_clients/tutorial002.py!}
-    ```
+{* ../../docs_src/generate_clients/tutorial002_py39.py hl[21,26,34] *}
 
 ### 生成带有标签的 TypeScript 客户端
 
@@ -185,17 +168,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 
 然后，你可以将这个自定义函数作为 `generate_unique_id_function` 参数传递给 **FastAPI**:
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="6-7  10"
-    {!> ../../../docs_src/generate_clients/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.8+"
-
-    ```Python hl_lines="8-9  12"
-    {!> ../../../docs_src/generate_clients/tutorial003.py!}
-    ```
+{* ../../docs_src/generate_clients/tutorial003_py39.py hl[6:7,10] *}
 
 ### 使用自定义操作ID生成TypeScript客户端
 
@@ -217,9 +190,7 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
 
 我们可以将 OpenAPI JSON 下载到一个名为`openapi.json`的文件中，然后使用以下脚本**删除此前缀的标签**：
 
-```Python
-{!../../../docs_src/generate_clients/tutorial004.py!}
-```
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 通过这样做，操作ID将从类似于 `items-get_items` 的名称重命名为 `get_items` ，这样客户端生成器就可以生成更简洁的方法名称。
 
@@ -234,12 +205,12 @@ FastAPI为每个*路径操作*使用一个**唯一ID**，它用于**操作ID**�
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-client": "openapi --input ./openapi.json --output ./src/client --client axios"
+    "generate-client": "openapi-ts --input ./openapi.json --output ./src/client --client axios"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.20.1",
+    "@hey-api/openapi-ts": "^0.27.38",
     "typescript": "^4.6.2"
   }
 }

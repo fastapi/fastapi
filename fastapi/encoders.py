@@ -17,14 +17,16 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
+from annotated_doc import Doc
+from fastapi._compat import may_v1
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated
 
-from ._compat import PYDANTIC_V2, Url, _model_dump
+from ._compat import Url, _is_undefined, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -58,6 +60,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
+    may_v1.Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -74,19 +77,24 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Interface: str,
     IPv6Network: str,
     NameEmail: str,
+    may_v1.NameEmail: str,
     Path: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
+    may_v1.SecretBytes: str,
     SecretStr: str,
+    may_v1.SecretStr: str,
     set: list,
     UUID: str,
     Url: str,
+    may_v1.Url: str,
     AnyUrl: str,
+    may_v1.AnyUrl: str,
 }
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]]
+    type_encoder_map: Dict[Any, Callable[[Any], Any]],
 ) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
     encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
         tuple
@@ -213,13 +221,13 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, BaseModel):
+    if isinstance(obj, (BaseModel, may_v1.BaseModel)):
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
-        if not PYDANTIC_V2:
+        if isinstance(obj, may_v1.BaseModel):
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
-                encoders.update(custom_encoder)
+                encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
             obj,
             mode="json",
@@ -241,6 +249,7 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
+        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
@@ -259,6 +268,8 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
+    if _is_undefined(obj):
+        return None
     if isinstance(obj, dict):
         encoded_dict = {}
         allowed_keys = set(obj.keys())

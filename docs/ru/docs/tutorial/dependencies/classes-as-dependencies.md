@@ -1,62 +1,30 @@
-# Классы как зависимости
+# Классы как зависимости { #classes-as-dependencies }
 
 Прежде чем углубиться в систему **Внедрения Зависимостей**, давайте обновим предыдущий пример.
 
-## `Словарь` из предыдущего примера
+## `dict` из предыдущего примера { #a-dict-from-the-previous-example }
 
-В предыдущем примере мы возвращали `словарь` из нашей зависимости:
+В предыдущем примере мы возвращали `dict` из нашей зависимости:
 
-=== "Python 3.10+"
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
+Но затем мы получаем `dict` в параметре `commons` *функции-обработчика пути*.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="11"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
-
-Но затем мы получаем `словарь`  в параметре `commons`  *функции операции пути*. И мы знаем, что редакторы не могут обеспечить достаточную поддержку для `словаря`, поскольку они не могут знать их ключи и типы значений.
+И мы знаем, что редакторы кода не могут обеспечить достаточную поддержку (например, автозавершение) для `dict`, поскольку они не могут знать их ключи и типы значений.
 
 Мы можем сделать лучше...
 
-## Что делает зависимость
+## Что делает зависимость { #what-makes-a-dependency }
 
 До сих пор вы видели зависимости, объявленные как функции.
 
-Но это не единственный способ объявления зависимостей (хотя, вероятно, более распространенный).
+Но это не единственный способ объявления зависимостей (хотя он, вероятно, более распространенный).
 
-Ключевым фактором является то, что зависимость должна быть "вызываемой".
+Ключевым фактором является то, что зависимость должна быть «вызываемой».
 
-В Python "**вызываемый**" - это все, что Python может "вызвать", как функцию.
+В Python «**вызываемый**» — это всё, что Python может «вызвать», как функцию.
 
-Так, если у вас есть объект `something` (который может _не_ быть функцией) и вы можете "вызвать" его (выполнить) как:
+Так, если у вас есть объект `something` (который может и _не_ быть функцией) и вы можете «вызвать» его (выполнить) так:
 
 ```Python
 something()
@@ -68,9 +36,9 @@ something()
 something(some_argument, some_keyword_argument="foo")
 ```
 
-в таком случае он является "вызываемым".
+в таком случае он является «вызываемым».
 
-## Классы как зависимости
+## Классы как зависимости { #classes-as-dependencies_1 }
 
 Вы можете заметить, что для создания экземпляра класса в Python используется тот же синтаксис.
 
@@ -87,204 +55,75 @@ fluffy = Cat(name="Mr Fluffy")
 
 В данном случае `fluffy` является экземпляром класса `Cat`.
 
-А чтобы создать `fluffy`, вы "вызываете" `Cat`.
+А чтобы создать `fluffy`, вы «вызываете» `Cat`.
 
 Таким образом, класс в Python также является **вызываемым**.
 
 Тогда в **FastAPI** в качестве зависимости можно использовать класс Python.
 
-На самом деле FastAPI проверяет, что переданный объект является "вызываемым" (функция, класс или что-либо еще) и указаны  необходимые для его вызова параметры.
+На самом деле FastAPI проверяет, что переданный объект является «вызываемым» (функция, класс или что-либо еще) и какие параметры у него определены.
 
-Если вы передаёте что-то, что можно "вызывать" в качестве зависимости в **FastAPI**, то он будет анализировать параметры, необходимые для "вызова" этого объекта и обрабатывать их так же, как параметры *функции операции пути*. Включая подзависимости.
+Если вы передаёте «вызываемый» объект в качестве зависимости в **FastAPI**, он проанализирует параметры, необходимые для этого «вызываемого» объекта, и обработает их так же, как параметры *функции-обработчика пути*. Включая подзависимости.
 
-Это относится и к вызываемым объектам без параметров. Работа с ними происходит точно так же, как и для *функций операции пути* без параметров.
+Это относится и к вызываемым объектам без параметров. Работа с ними происходит точно так же, как и для *функций-обработчиков пути* без параметров.
 
 Теперь мы можем изменить зависимость `common_parameters`, указанную выше, на класс `CommonQueryParams`:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="12-16"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="9-13"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="11-15"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
 
 Обратите внимание на метод `__init__`, используемый для создания экземпляра класса:
 
-=== "Python 3.10+"
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
+...он имеет те же параметры, что и ранее используемая функция `common_parameters`:
 
-=== "Python 3.9+"
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
 
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="13"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="12"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
-
-...имеет те же параметры, что и ранее используемая функция `common_parameters`:
-
-=== "Python 3.10+"
-
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/dependencies/tutorial001_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="6"
-    {!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/dependencies/tutorial001.py!}
-    ```
-
-Эти параметры и будут использоваться **FastAPI** для "решения" зависимости.
+Эти параметры и будут использоваться **FastAPI** для «решения» зависимости.
 
 В обоих случаях она будет иметь:
 
 * Необязательный параметр запроса `q`, представляющий собой `str`.
 * Параметр запроса `skip`, представляющий собой `int`, по умолчанию `0`.
-* Параметр запроса `limit`, представляющий собой `int`, по умолчанию равный `100`.
+* Параметр запроса `limit`, представляющий собой `int`, по умолчанию `100`.
 
-В обоих случаях данные будут конвертированы, валидированы, документированы по схеме OpenAPI и т.д.
+В обоих случаях данные будут конвертированы, валидированы, задокументированы в схеме OpenAPI и т.д.
 
-## Как это использовать
+## Как это использовать { #use-it }
 
 Теперь вы можете объявить свою зависимость, используя этот класс.
 
-=== "Python 3.10+"
+{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py310.py!}
-    ```
+**FastAPI** вызывает класс `CommonQueryParams`. При этом создается «экземпляр» этого класса, который будет передан в качестве параметра `commons` в вашу функцию.
 
-=== "Python 3.9+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial002_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial002_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial002.py!}
-    ```
-
-**FastAPI** вызывает класс `CommonQueryParams`. При этом создается "экземпляр" этого класса, который будет передан в качестве параметра `commons` в вашу функцию.
-
-## Аннотация типа или `Depends`
+## Аннотация типа и `Depends` { #type-annotation-vs-depends }
 
 Обратите внимание, что в приведенном выше коде мы два раза пишем `CommonQueryParams`:
 
-=== "Python 3.6+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+////
 
-=== "Python 3.6+"
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+/// tip | Подсказка
 
-Последний параметр `CommonQueryParams`, в:
+Рекомендуется использовать версию с `Annotated`, если возможно.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
+
+Последний `CommonQueryParams`, в:
 
 ```Python
 ... Depends(CommonQueryParams)
@@ -292,187 +131,158 @@ fluffy = Cat(name="Mr Fluffy")
 
 ...это то, что **FastAPI** будет использовать, чтобы узнать, что является зависимостью.
 
-Из него FastAPI извлечёт объявленные параметры и именно их будет вызывать.
+Из него FastAPI извлечёт объявленные параметры, и именно его FastAPI будет вызывать.
 
 ---
 
 В этом случае первый `CommonQueryParams`, в:
 
-=== "Python 3.6+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, ...
-    ```
+```Python
+commons: Annotated[CommonQueryParams, ...
+```
 
-=== "Python 3.6+ без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: CommonQueryParams ...
-    ```
+/// tip | Подсказка
+
+Рекомендуется использовать версию с `Annotated`, если возможно.
+
+///
+
+```Python
+commons: CommonQueryParams ...
+```
+
+////
 
 ...не имеет никакого специального значения для **FastAPI**. FastAPI не будет использовать его для преобразования данных, валидации и т.д. (поскольку для этого используется `Depends(CommonQueryParams)`).
 
 На самом деле можно написать просто:
 
-=== "Python 3.6+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[Any, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[Any, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.6+ без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons = Depends(CommonQueryParams)
-    ```
+/// tip | Подсказка
+
+Рекомендуется использовать версию с `Annotated`, если возможно.
+
+///
+
+```Python
+commons = Depends(CommonQueryParams)
+```
+
+////
 
 ...как тут:
 
-=== "Python 3.10+"
+{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
 
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial003_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial003_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial003.py!}
-    ```
-
-Но объявление типа приветствуется, так как в этом случае ваш редактор будет знать, что будет передано в качестве параметра `commons`, и тогда он сможет помочь вам с автодополнением, проверкой типов и т.д:
+Но объявление типа приветствуется, так как в этом случае ваш редактор кода будет знать, что будет передано в качестве параметра `commons`, и тогда он сможет помочь вам с автозавершением, проверкой типов и т.д.:
 
 <img src="/img/tutorial/dependencies/image02.png">
 
-## Сокращение
+## Сокращение { #shortcut }
 
 Но вы видите, что здесь мы имеем некоторое повторение кода, дважды написав `CommonQueryParams`:
 
-=== "Python 3.6+ без Annotated"
+//// tab | Python 3.8+
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+////
 
-=== "Python 3.6+"
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+/// tip | Подсказка
 
-Для случаев, когда зависимостью является *конкретный* класс, который **FastAPI** "вызовет" для создания экземпляра этого класса, можно использовать укороченную запись.
+Рекомендуется использовать версию с `Annotated`, если возможно.
 
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
+
+**FastAPI** предоставляет сокращение для таких случаев, когда зависимость — это *конкретный* класс, который **FastAPI** будет «вызывать» для создания экземпляра этого класса.
+
+Для этих конкретных случаев вы можете сделать следующее.
 
 Вместо того чтобы писать:
 
-=== "Python 3.6+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
+```
 
-=== "Python 3.6+ без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+//// tab | Python 3.8+ non-Annotated
 
-    ```Python
-    commons: CommonQueryParams = Depends(CommonQueryParams)
-    ```
+/// tip | Подсказка
+
+Рекомендуется использовать версию с `Annotated`, если возможно.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends(CommonQueryParams)
+```
+
+////
 
 ...следует написать:
 
-=== "Python 3.6+"
+//// tab | Python 3.8+
 
-    ```Python
-    commons: Annotated[CommonQueryParams, Depends()]
-    ```
+```Python
+commons: Annotated[CommonQueryParams, Depends()]
+```
 
-=== "Python 3.6 без Annotated"
+////
 
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
+//// tab | Python 3.8 non-Annotated
 
-    ```Python
-    commons: CommonQueryParams = Depends()
-    ```
+/// tip | Подсказка
+
+Рекомендуется использовать версию с `Annotated`, если возможно.
+
+///
+
+```Python
+commons: CommonQueryParams = Depends()
+```
+
+////
 
 Вы объявляете зависимость как тип параметра и используете `Depends()` без какого-либо параметра, вместо того чтобы *снова* писать полный класс внутри `Depends(CommonQueryParams)`.
 
 Аналогичный пример будет выглядеть следующим образом:
 
-=== "Python 3.10+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004_an_py310.py!}
-    ```
-
-=== "Python 3.9+"
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004_an_py39.py!}
-    ```
-
-=== "Python 3.6+"
-
-    ```Python hl_lines="20"
-    {!> ../../../docs_src/dependencies/tutorial004_an.py!}
-    ```
-
-=== "Python 3.10+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="17"
-    {!> ../../../docs_src/dependencies/tutorial004_py310.py!}
-    ```
-
-=== "Python 3.6+ без Annotated"
-
-    !!! tip "Подсказка"
-        Рекомендуется использовать версию с `Annotated` если возможно.
-
-    ```Python hl_lines="19"
-    {!> ../../../docs_src/dependencies/tutorial004.py!}
-    ```
+{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
 
 ...и **FastAPI** будет знать, что делать.
 
-!!! tip "Подсказка"
-    Если это покажется вам более запутанным, чем полезным, не обращайте внимания, это вам не *нужно*.
+/// tip | Подсказка
 
-    Это просто сокращение. Потому что **FastAPI** заботится о том, чтобы помочь вам свести к минимуму повторение кода.
+Если это покажется вам более запутанным, чем полезным, не обращайте внимания — это вам не *нужно*.
+
+Это просто сокращение. Потому что **FastAPI** заботится о том, чтобы помочь вам свести к минимуму повторение кода.
+
+///

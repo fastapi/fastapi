@@ -15,7 +15,7 @@
 
 ## ℹ 🔃 `Request` 🎚
 
-**FastAPI** 🤙 **💃** 🔘, ⏮️ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
+**FastAPI** 🤙 **💃** 🔘, ⏮️ 🧽 📚 🧰 🔛 🔝, 👆 💪 ⚙️ 💃 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 🎚 🔗 🕐❔ 👆 💪.
 
 ⚫️ 🔜 ⛓ 👈 🚥 👆 🤚 📊 ⚪️➡️ `Request` 🎚 🔗 (🖼, ✍ 💪) ⚫️ 🏆 🚫 ✔, 🗜 ⚖️ 📄 (⏮️ 🗄, 🏧 🛠️ 👩‍💻 🔢) FastAPI.
 
@@ -29,24 +29,28 @@
 
 👈 👆 💪 🔐 📨 🔗.
 
-```Python hl_lines="1  7-8"
-{!../../../docs_src/using_request_directly/tutorial001.py!}
-```
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 📣 *➡ 🛠️ 🔢* 🔢 ⏮️ 🆎 ➖ `Request` **FastAPI** 🔜 💭 🚶‍♀️ `Request` 👈 🔢.
 
-!!! tip
-    🗒 👈 👉 💼, 👥 📣 ➡ 🔢 ⤴️ 📨 🔢.
+/// tip
 
-    , ➡ 🔢 🔜 ⚗, ✔, 🗜 ✔ 🆎 &amp; ✍ ⏮️ 🗄.
+🗒 👈 👉 💼, 👥 📣 ➡ 🔢 ⤴️ 📨 🔢.
 
-    🎏 🌌, 👆 💪 📣 🙆 🎏 🔢 🛎, &amp; ➡, 🤚 `Request` 💁‍♂️.
+, ➡ 🔢 🔜 ⚗, ✔, 🗜 ✔ 🆎 &amp; ✍ ⏮️ 🗄.
+
+🎏 🌌, 👆 💪 📣 🙆 🎏 🔢 🛎, &amp; ➡, 🤚 `Request` 💁‍♂️.
+
+///
 
 ## `Request` 🧾
 
-👆 💪 ✍ 🌅 ℹ 🔃 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request` 🎚 🛂 💃 🧾 🕸</a>.
+👆 💪 ✍ 🌅 ℹ 🔃 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request` 🎚 🛂 💃 🧾 🕸</a>.
 
-!!! note "📡 ℹ"
-    👆 💪 ⚙️ `from starlette.requests import Request`.
+/// note | 📡 ℹ
 
-    **FastAPI** 🚚 ⚫️ 🔗 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+👆 💪 ⚙️ `from starlette.requests import Request`.
+
+**FastAPI** 🚚 ⚫️ 🔗 🏪 👆, 👩‍💻. ✋️ ⚫️ 👟 🔗 ⚪️➡️ 💃.
+
+///

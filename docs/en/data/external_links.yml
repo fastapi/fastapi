@@ -1,5 +1,25 @@
 Articles:
   English:
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://apitally.io/blog/getting-started-with-logging-in-fastapi
+    title: Getting started with logging in FastAPI
+  - author: Balthazar Rouberol
+    author_link: https://balthazar-rouberol.com
+    link: https://blog.balthazar-rouberol.com/how-to-profile-a-fastapi-asynchronous-request
+    title: How to profile a FastAPI asynchronous request
+  - author: Stephen Siegert - Neon
+    link: https://neon.tech/blog/deploy-a-serverless-fastapi-app-with-neon-postgres-and-aws-app-runner-at-any-scale
+    title: Deploy a Serverless FastAPI App with Neon Postgres and AWS App Runner at any scale
+  - author: Kurtis Pykes - NVIDIA
+    link: https://developer.nvidia.com/blog/building-a-machine-learning-microservice-with-fastapi/
+    title: Building a Machine Learning Microservice with FastAPI
+  - author: Ravgeet Dhillon - Twilio
+    link: https://www.twilio.com/en-us/blog/booking-appointments-twilio-notion-fastapi
+    title: Booking Appointments with Twilio, Notion, and FastAPI
+  - author: Abhinav Tripathi - Microsoft Blogs
+    link: https://devblogs.microsoft.com/cosmosdb/azure-cosmos-db-python-and-fastapi/
+    title: Write a Python data layer with Azure Cosmos DB and FastAPI
   - author: Donny Peeters
     author_link: https://github.com/Donnype
     link: https://bitestreams.com/blog/fastapi-sqlalchemy/
@@ -15,7 +35,7 @@ Articles:
   - author: Nicoló Lino
     author_link: https://www.nlino.com
     link: https://github.com/softwarebloat/python-tracing-demo
-    title: Instrument a FastAPI service adding tracing with OpenTelemetry and send/show traces in Grafana Tempo
+    title: Instrument FastAPI with OpenTelemetry tracing and visualize traces in Grafana Tempo.
   - author: Mikhail Rozhkov, Elena Samuylova
     author_link: https://www.linkedin.com/in/mnrozhkov/
     link: https://www.evidentlyai.com/blog/fastapi-tutorial
@@ -105,11 +125,11 @@ Articles:
     link: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
     title: Deploy a dockerized FastAPI application to AWS
   - author: Amit Chaudhary
-    author_link: https://twitter.com/amitness
+    author_link: https://x.com/amitness
     link: https://amitness.com/2020/06/fastapi-vs-flask/
     title: FastAPI for Flask Users
   - author: Louis Guitton
-    author_link: https://twitter.com/louis_guitton
+    author_link: https://x.com/louis_guitton
     link: https://guitton.co/posts/fastapi-monitoring/
     title: How to monitor your FastAPI service
   - author: Precious Ndubueze
@@ -133,7 +153,7 @@ Articles:
     link: https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072
     title: Introducing Dispatch
   - author: Stavros Korokithakis
-    author_link: https://twitter.com/Stavros
+    author_link: https://x.com/Stavros
     link: https://www.stavros.io/posts/fastapi-with-django/
     title: Using FastAPI with Django
   - author: Twilio
@@ -141,11 +161,11 @@ Articles:
     link: https://www.twilio.com/blog/build-secure-twilio-webhook-python-fastapi
     title: Build a Secure Twilio Webhook with Python and FastAPI
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe
     title: Build a web API from scratch with FastAPI - the workshop
   - author: Paul Sec
-    author_link: https://twitter.com/PaulWebSec
+    author_link: https://x.com/PaulWebSec
     link: https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/
     title: FastAPI + Zeit.co = 🚀
   - author: cuongld2
@@ -153,7 +173,7 @@ Articles:
     link: https://dev.to/cuongld2/build-simple-api-service-with-python-fastapi-part-1-581o
     title: Build simple API service with Python FastAPI — Part 1
   - author: Paurakh Sharma Humagain
-    author_link: https://twitter.com/PaurakhSharma
+    author_link: https://x.com/PaurakhSharma
     link: https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc
     title: Microservice in Python using FastAPI
   - author: Guillermo Cruz
@@ -165,7 +185,7 @@ Articles:
     link: https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/
     title: Create and Deploy FastAPI app to Heroku without using Docker
   - author: Arthur Henrique
-    author_link: https://twitter.com/arthurheinrique
+    author_link: https://x.com/arthurheinrique
     link: https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb
     title: 'Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest'
   - author: Shane Soh
@@ -205,7 +225,7 @@ Articles:
     link: https://towardsdatascience.com/how-to-deploy-a-machine-learning-model-dc51200fe8cf
     title: How to Deploy a Machine Learning Model
   - author: Johannes Gontrum
-    author_link: https://twitter.com/gntrm
+    author_link: https://x.com/gntrm
     link: https://medium.com/@gntrm/jwt-authentication-with-fastapi-and-aws-cognito-1333f7f2729e
     title: JWT Authentication with FastAPI and AWS Cognito
   - author: Ankush Thakur
@@ -241,20 +261,32 @@ Articles:
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
   - author: Mukul Mantosh
-    author_link: https://twitter.com/MantoshMukul
+    author_link: https://x.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
   - author: KrishNa
     author_link: https://medium.com/@krishnardt365
     link: https://medium.com/@krishnardt365/fastapi-docker-and-postgres-91943e71be92
     title: Fastapi, Docker(Docker compose) and Postgres
+  - author: Devon Ray
+    author_link: https://devonray.com
+    link: https://devonray.com/blog/deploying-a-fastapi-project-using-aws-lambda-aurora-cdk
+    title: Deployment using Docker, Lambda, Aurora, CDK & GH Actions
+  - author: Shubhendra Kushwaha
+    author_link: https://www.linkedin.com/in/theshubhendra/
+    link: https://theshubhendra.medium.com/mastering-soft-delete-advanced-sqlalchemy-techniques-4678f4738947
+    title: 'Mastering Soft Delete: Advanced SQLAlchemy Techniques'
+  - author: Shubhendra Kushwaha
+    author_link: https://www.linkedin.com/in/theshubhendra/
+    link: https://theshubhendra.medium.com/role-based-row-filtering-advanced-sqlalchemy-techniques-733e6b1328f6
+    title: 'Role based row filtering: Advanced SQLAlchemy Techniques'
   German:
   - author: Marcel Sander (actidoo)
     author_link: https://www.actidoo.com
     link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
     title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
-    author_link: https://twitter.com/_nicoax
+    author_link: https://x.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
     title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
   - author: Felix Schürmeyer
@@ -311,6 +343,10 @@ Articles:
     link: https://qiita.com/mtitg/items/47770e9a562dd150631d
     title: FastAPI｜DB接続してCRUDするPython製APIサーバーを構築
   Portuguese:
+  - author: Eduardo Mendes
+    author_link: https://bolha.us/@dunossauro
+    link: https://fastapidozero.dunossauro.com/
+    title: FastAPI do ZERO
   - author: Jessica Temporal
     author_link: https://jtemporal.com/socials
     link: https://jtemporal.com/dicas-para-migrar-de-flask-para-fastapi-e-vice-versa/
@@ -338,8 +374,21 @@ Articles:
     author_link: http://editor.leonh.space/
     link: https://editor.leonh.space/2022/tortoise/
     title: 'Tortoise ORM / FastAPI 整合快速筆記'
+  Spanish:
+  - author: Eduardo Zepeda
+    author_link: https://coffeebytes.dev/en/authors/eduardo-zepeda/
+    link: https://coffeebytes.dev/es/python-fastapi-el-mejor-framework-de-python/
+    title: 'Tutorial de FastAPI, ¿el mejor framework de Python?'
 Podcasts:
   English:
+  - author: Real Python
+    author_link: https://realpython.com/
+    link: https://realpython.com/podcasts/rpp/72/
+    title: Starting With FastAPI and Examining Python's Import System - Episode 72
+  - author: Python Bytes FM
+    author_link: https://pythonbytes.fm/
+    link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
+    title: 'Do you dare to press "."? - Episode 247 - Dan #6: SQLModel - use the same models for SQL and FastAPI'
   - author: Podcast.`__init__`
     author_link: https://www.pythonpodcast.com/
     link: https://www.pythonpodcast.com/fastapi-web-application-framework-episode-259/
@@ -355,14 +404,19 @@ Talks:
     link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
     title: 'PyCon AU 2023: Testing asynchronous applications with FastAPI and pytest'
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://www.youtube.com/watch?v=PnpTY1f4k2U
     title: '[VIRTUAL] Py.Amsterdam''s flying Software Circus: Intro to FastAPI'
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://www.youtube.com/watch?v=z9K5pwb0rt8
     title: 'PyConBY 2020: Serve ML models easily with FastAPI'
   - author: Chris Withers
-    author_link: https://twitter.com/chriswithers13
+    author_link: https://x.com/chriswithers13
     link: https://www.youtube.com/watch?v=3DLwPcrE5mA
     title: 'PyCon UK 2019: FastAPI from the ground up'
+  Taiwanese:
+  - author: Blueswen
+    author_link: https://github.com/blueswen
+    link: https://www.youtube.com/watch?v=y3sumuoDq4w
+    title: 'PyCon TW 2024: 全方位強化 Python 服務可觀測性：以 FastAPI 和 Grafana Stack 為例'

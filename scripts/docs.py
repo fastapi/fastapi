@@ -11,13 +11,11 @@ from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-import mkdocs.commands.build
-import mkdocs.commands.serve
-import mkdocs.config
 import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+from ruff.__main__ import find_ruff_bin
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,14 +24,27 @@ app = typer.Typer()
 mkdocs_name = "mkdocs.yml"
 
 missing_translation_snippet = """
-{!../../../docs/missing-translation.md!}
+{!../../docs/missing-translation.md!}
 """
+
+non_translated_sections = [
+    "reference/",
+    "release-notes.md",
+    "fastapi-people.md",
+    "external-links.md",
+    "newsletter.md",
+    "management-tasks.md",
+    "management.md",
+    "contributing.md",
+]
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
 en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
+
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
 
 
 @lru_cache
@@ -145,9 +156,21 @@ index_sponsors_template = """
 """
 
 
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
@@ -165,6 +188,13 @@ def generate_readme_content() -> str:
     pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
     new_content = pre_content + message + post_content
+    # Remove content between <!-- only-mkdocs --> and <!-- /only-mkdocs -->
+    new_content = re.sub(
+        r"<!-- only-mkdocs -->.*?<!-- /only-mkdocs -->",
+        "",
+        new_content,
+        flags=re.DOTALL,
+    )
     return new_content
 
 
@@ -247,6 +277,7 @@ def live(
     lang: str = typer.Argument(
         None, callback=lang_callback, autocompletion=complete_existing_lang
     ),
+    dirty: bool = False,
 ) -> None:
     """
     Serve with livereload a docs site for a specific language.
@@ -258,12 +289,16 @@ def live(
     en.
     """
     # Enable line numbers during local development to make it easier to highlight
-    os.environ["LINENUMS"] = "true"
     if lang is None:
         lang = "en"
     lang_path: Path = docs_path / lang
-    os.chdir(lang_path)
-    mkdocs.commands.serve.serve(dev_addr="127.0.0.1:8008")
+    # Enable line numbers during local development to make it easier to highlight
+    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
+    if dirty:
+        args.append("--dirty")
+    subprocess.run(
+        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+    )
 
 
 def get_updated_config_content() -> Dict[str, Any]:
@@ -325,9 +360,33 @@ def verify_config() -> None:
 
 
 @app.command()
+def verify_non_translated() -> None:
+    """
+    Verify there are no files in the non translatable pages.
+    """
+    print("Verifying non translated pages")
+    lang_paths = get_lang_paths()
+    error_paths = []
+    for lang in lang_paths:
+        if lang.name == "en":
+            continue
+        for non_translatable in non_translated_sections:
+            non_translatable_path = lang / "docs" / non_translatable
+            if non_translatable_path.exists():
+                error_paths.append(non_translatable_path)
+    if error_paths:
+        print("Non-translated pages found, remove them:")
+        for error_path in error_paths:
+            print(error_path)
+        raise typer.Abort()
+    print("No non-translated pages found ✅")
+
+
+@app.command()
 def verify_docs():
     verify_readme()
     verify_config()
+    verify_non_translated()
 
 
 @app.command()
@@ -337,6 +396,42 @@ def langs_json():
         if lang_path.is_dir():
             langs.append(lang_path.name)
     print(json.dumps(langs))
+
+
+@app.command()
+def generate_docs_src_versions_for_file(file_path: Path) -> None:
+    target_versions = ["py39", "py310"]
+    base_content = file_path.read_text(encoding="utf-8")
+    previous_content = {base_content}
+    for target_version in target_versions:
+        version_result = subprocess.run(
+            [
+                find_ruff_bin(),
+                "check",
+                "--target-version",
+                target_version,
+                "--fix",
+                "--unsafe-fixes",
+                "-",
+            ],
+            input=base_content.encode("utf-8"),
+            capture_output=True,
+        )
+        content_target = version_result.stdout.decode("utf-8")
+        format_result = subprocess.run(
+            [find_ruff_bin(), "format", "-"],
+            input=content_target.encode("utf-8"),
+            capture_output=True,
+        )
+        content_format = format_result.stdout.decode("utf-8")
+        if content_format in previous_content:
+            continue
+        previous_content.add(content_format)
+        version_file = file_path.with_name(
+            file_path.name.replace(".py", f"_{target_version}.py")
+        )
+        logging.info(f"Writing to {version_file}")
+        version_file.write_text(content_format, encoding="utf-8")
 
 
 if __name__ == "__main__":

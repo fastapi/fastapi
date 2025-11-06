@@ -1,9 +1,10 @@
 from typing import Any, Dict, Optional, Sequence, Type, Union
 
+from annotated_doc import Doc
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated
 
 
 class HTTPException(StarletteHTTPException):
@@ -143,6 +144,13 @@ WebSocketErrorModel: Type[BaseModel] = create_model("WebSocket")
 class FastAPIError(RuntimeError):
     """
     A generic, FastAPI-specific error.
+    """
+
+
+class DependencyScopeError(FastAPIError):
+    """
+    A dependency declared that it depends on another dependency with an invalid
+    (narrower) scope.
     """
 
 

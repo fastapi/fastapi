@@ -2,9 +2,7 @@
 
 🙅 FastAPI 📁 💪 👀 💖 👉:
 
-```Python
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 📁 👈 📁 `main.py`.
 
@@ -24,12 +22,15 @@ $ uvicorn main:app --reload
 
 </div>
 
-!!! note
-    📋 `uvicorn main:app` 🔗:
+/// note
 
-    * `main`: 📁 `main.py` (🐍 "🕹").
-    * `app`: 🎚 ✍ 🔘 `main.py` ⏮️ ⏸ `app = FastAPI()`.
-    * `--reload`: ⚒ 💽 ⏏ ⏮️ 📟 🔀. 🕴 ⚙️ 🛠️.
+📋 `uvicorn main:app` 🔗:
+
+* `main`: 📁 `main.py` (🐍 "🕹").
+* `app`: 🎚 ✍ 🔘 `main.py` ⏮️ ⏸ `app = FastAPI()`.
+* `--reload`: ⚒ 💽 ⏏ ⏮️ 📟 🔀. 🕴 ⚙️ 🛠️.
+
+///
 
 🔢, 📤 ⏸ ⏮️ 🕳 💖:
 
@@ -130,22 +131,21 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### 🔁 1️⃣: 🗄 `FastAPI`
 
-```Python hl_lines="1"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 🐍 🎓 👈 🚚 🌐 🛠️ 👆 🛠️.
 
-!!! note "📡 ℹ"
-    `FastAPI` 🎓 👈 😖 🔗 ⚪️➡️ `Starlette`.
+/// note | 📡 ℹ
 
-    👆 💪 ⚙️ 🌐 <a href="https://www.starlette.io/" class="external-link" target="_blank">💃</a> 🛠️ ⏮️ `FastAPI` 💁‍♂️.
+`FastAPI` 🎓 👈 😖 🔗 ⚪️➡️ `Starlette`.
+
+👆 💪 ⚙️ 🌐 <a href="https://www.starlette.dev/" class="external-link" target="_blank">💃</a> 🛠️ ⏮️ `FastAPI` 💁‍♂️.
+
+///
 
 ### 🔁 2️⃣: ✍ `FastAPI` "👐"
 
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 📥 `app` 🔢 🔜 "👐" 🎓 `FastAPI`.
 
@@ -165,9 +165,7 @@ $ uvicorn main:app --reload
 
 🚥 👆 ✍ 👆 📱 💖:
 
-```Python hl_lines="3"
-{!../../../docs_src/first_steps/tutorial002.py!}
-```
+{* ../../docs_src/first_steps/tutorial002.py hl[3] *}
 
 &amp; 🚮 ⚫️ 📁 `main.py`, ⤴️ 👆 🔜 🤙 `uvicorn` 💖:
 
@@ -199,8 +197,11 @@ https://example.com/items/foo
 /items/foo
 ```
 
-!!! info
-     "➡" 🛎 🤙 "🔗" ⚖️ "🛣".
+/// info
+
+"➡" 🛎 🤙 "🔗" ⚖️ "🛣".
+
+///
 
 ⏪ 🏗 🛠️, "➡" 👑 🌌 🎏 "⚠" &amp; "ℹ".
 
@@ -241,25 +242,26 @@ https://example.com/items/foo
 
 #### 🔬 *➡ 🛠️ 👨‍🎨*
 
-```Python hl_lines="6"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 💬 **FastAPI** 👈 🔢 ▶️️ 🔛 🈚 🚚 📨 👈 🚶:
 
 * ➡ `/`
 * ⚙️ <abbr title="an HTTP GET method"><code>get</code> 🛠️</abbr>
 
-!!! info "`@decorator` ℹ"
-    👈 `@something` ❕ 🐍 🤙 "👨‍🎨".
+/// info | `@decorator` ℹ
 
-    👆 🚮 ⚫️ 🔛 🔝 🔢. 💖 📶 📔 👒 (👤 💭 👈 🌐❔ ⚖ 👟 ⚪️➡️).
+👈 `@something` ❕ 🐍 🤙 "👨‍🎨".
 
-     "👨‍🎨" ✊ 🔢 🔛 &amp; 🔨 🕳 ⏮️ ⚫️.
+👆 🚮 ⚫️ 🔛 🔝 🔢. 💖 📶 📔 👒 (👤 💭 👈 🌐❔ ⚖ 👟 ⚪️➡️).
 
-    👆 💼, 👉 👨‍🎨 💬 **FastAPI** 👈 🔢 🔛 🔗 **➡** `/` ⏮️ **🛠️** `get`.
+ "👨‍🎨" ✊ 🔢 🔛 &amp; 🔨 🕳 ⏮️ ⚫️.
 
-    ⚫️ "**➡ 🛠️ 👨‍🎨**".
+👆 💼, 👉 👨‍🎨 💬 **FastAPI** 👈 🔢 🔛 🔗 **➡** `/` ⏮️ **🛠️** `get`.
+
+⚫️ "**➡ 🛠️ 👨‍🎨**".
+
+///
 
 👆 💪 ⚙️ 🎏 🛠️:
 
@@ -274,14 +276,17 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-!!! tip
-    👆 🆓 ⚙️ 🔠 🛠️ (🇺🇸🔍 👩‍🔬) 👆 🎋.
+/// tip
 
-    **FastAPI** 🚫 🛠️ 🙆 🎯 🔑.
+👆 🆓 ⚙️ 🔠 🛠️ (🇺🇸🔍 👩‍🔬) 👆 🎋.
 
-    ℹ 📥 🎁 📄, 🚫 📄.
+**FastAPI** 🚫 🛠️ 🙆 🎯 🔑.
 
-    🖼, 🕐❔ ⚙️ 🕹 👆 🛎 🎭 🌐 🎯 ⚙️ 🕴 `POST` 🛠️.
+ℹ 📥 🎁 📄, 🚫 📄.
+
+🖼, 🕐❔ ⚙️ 🕹 👆 🛎 🎭 🌐 🎯 ⚙️ 🕴 `POST` 🛠️.
+
+///
 
 ### 🔁 4️⃣: 🔬 **➡ 🛠️ 🔢**
 
@@ -291,9 +296,7 @@ https://example.com/items/foo
 * **🛠️**: `get`.
 * **🔢**: 🔢 🔛 "👨‍🎨" (🔛 `@app.get("/")`).
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 👉 🐍 🔢.
 
@@ -305,18 +308,17 @@ https://example.com/items/foo
 
 👆 💪 🔬 ⚫️ 😐 🔢 ↩️ `async def`:
 
-```Python hl_lines="7"
-{!../../../docs_src/first_steps/tutorial003.py!}
-```
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
-!!! note
-    🚥 👆 🚫 💭 🔺, ✅ [🔁: *"🏃 ❓"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+/// note
+
+🚥 👆 🚫 💭 🔺, ✅ [🔁: *"🏃 ❓"*](../async.md#_2){.internal-link target=_blank}.
+
+///
 
 ### 🔁 5️⃣: 📨 🎚
 
-```Python hl_lines="8"
-{!../../../docs_src/first_steps/tutorial001.py!}
-```
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 👆 💪 📨 `dict`, `list`, ⭐ 💲 `str`, `int`, ♒️.
 

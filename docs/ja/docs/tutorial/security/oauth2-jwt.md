@@ -44,10 +44,13 @@ $ pip install python-jose[cryptography]
 
 ここでは、推奨されているものを使用します：<a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>。
 
-!!! tip "豆知識"
-    このチュートリアルでは以前、<a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>を使用していました。
+/// tip | 豆知識
 
-    しかし、Python-joseは、PyJWTのすべての機能に加えて、後に他のツールと統合して構築する際におそらく必要となる可能性のあるいくつかの追加機能を提供しています。そのため、代わりにPython-joseを使用するように更新されました。
+このチュートリアルでは以前、<a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>を使用していました。
+
+しかし、Python-joseは、PyJWTのすべての機能に加えて、後に他のツールと統合して構築する際におそらく必要となる可能性のあるいくつかの追加機能を提供しています。そのため、代わりにPython-joseを使用するように更新されました。
+
+///
 
 ## パスワードのハッシュ化
 
@@ -83,13 +86,15 @@ $ pip install passlib[bcrypt]
 
 </div>
 
-!!! tip "豆知識"
-    `passlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
+/// tip | 豆知識
 
-    例えば、Djangoアプリケーションからデータベース内の同じデータをFastAPIアプリケーションと共有できるだけではなく、同じデータベースを使用してDjangoアプリケーションを徐々に移行することもできます。
+`passlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
 
-    また、ユーザーはDjangoアプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
+例えば、Djangoアプリケーションからデータベース内の同じデータをFastAPIアプリケーションと共有できるだけではなく、同じデータベースを使用してDjangoアプリケーションを徐々に移行することもできます。
 
+また、ユーザーはDjangoアプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
+
+///
 
 ## パスワードのハッシュ化と検証
 
@@ -97,12 +102,15 @@ $ pip install passlib[bcrypt]
 
 PassLib の「context」を作成します。これは、パスワードのハッシュ化と検証に使用されるものです。
 
-!!! tip "豆知識"
-    PassLibのcontextには、検証だけが許された非推奨の古いハッシュアルゴリズムを含む、様々なハッシュアルゴリズムを使用した検証機能もあります。
+/// tip | 豆知識
 
-    例えば、この機能を使用して、別のシステム（Djangoなど）によって生成されたパスワードを読み取って検証し、Bcryptなどの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
+PassLibのcontextには、検証だけが許された非推奨の古いハッシュアルゴリズムを含む、様々なハッシュアルゴリズムを使用した検証機能もあります。
 
-    そして、同時にそれらはすべてに互換性があります。
+例えば、この機能を使用して、別のシステム（Djangoなど）によって生成されたパスワードを読み取って検証し、Bcryptなどの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
+
+そして、同時にそれらはすべてに互換性があります。
+
+///
 
 ユーザーから送られてきたパスワードをハッシュ化するユーティリティー関数を作成します。
 
@@ -110,12 +118,13 @@ PassLib の「context」を作成します。これは、パスワードのハ�
 
 さらに、ユーザーを認証して返す関数も作成します。
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[7,48,55:56,59:60,69:75] *}
 
-!!! note "備考"
-    新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`
+/// note | 備考
+
+新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`
+
+///
 
 ## JWTトークンの取り扱い
 
@@ -145,9 +154,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 新しいアクセストークンを生成するユーティリティ関数を作成します。
 
-```Python hl_lines="6  12-14  28-30  78-86"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[6,12:14,28:30,78:86] *}
 
 ## 依存関係の更新
 
@@ -157,9 +164,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 トークンが無効な場合は、すぐにHTTPエラーを返します。
 
-```Python hl_lines="89-106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[89:106] *}
 
 ## `/token` パスオペレーションの更新
 
@@ -167,9 +172,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 JWTアクセストークンを作成し、それを返します。
 
-```Python hl_lines="115-130"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004.py hl[115:130] *}
 
 ### JWTの"subject" `sub` についての技術的な詳細
 
@@ -208,8 +211,11 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-!!! check "確認"
-    コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+/// check | 確認
+
+コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+
+///
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -230,8 +236,11 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image10.png">
 
-!!! note "備考"
-    ヘッダーの`Authorization`には、`Bearer`で始まる値があります。
+/// note | 備考
+
+ヘッダーの`Authorization`には、`Bearer`で始まる値があります。
+
+///
 
 ## `scopes` を使った高度なユースケース
 
@@ -263,4 +272,4 @@ OAuth2には、「スコープ」という概念があります。
 
 また、OAuth2のような安全で標準的なプロトコルを比較的簡単な方法で使用できるだけではなく、実装することもできます。
 
-OAuth2の「スコープ」を使って、同じ基準でより細かい権限システムを実現する方法については、**高度なユーザーガイド**で詳しく説明しています。スコープ付きのOAuth2は、Facebook、Google、GitHub、Microsoft、Twitterなど、多くの大手認証プロバイダが、サードパーティのアプリケーションと自社のAPIとのやり取りをユーザーに代わって認可するために使用している仕組みです。
+OAuth2の「スコープ」を使って、同じ基準でより細かい権限システムを実現する方法については、**高度なユーザーガイド**で詳しく説明しています。スコープ付きのOAuth2は、Facebook、Google、GitHub、Microsoft、X (Twitter)など、多くの大手認証プロバイダが、サードパーティのアプリケーションと自社のAPIとのやり取りをユーザーに代わって認可するために使用している仕組みです。

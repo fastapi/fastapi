@@ -1,11 +1,12 @@
 from typing import Optional
 
+from annotated_doc import Doc
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated
 
 
 class OpenIdConnect(SecurityBase):
@@ -49,7 +50,7 @@ class OpenIdConnect(SecurityBase):
             bool,
             Doc(
                 """
-                By default, if no HTTP Auhtorization header is provided, required for
+                By default, if no HTTP Authorization header is provided, required for
                 OpenID Connect authentication, it will automatically cancel the request
                 and send the client an error.
 
