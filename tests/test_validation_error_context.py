@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request, WebSocket
 from fastapi.exceptions import (
     RequestValidationError,
     ResponseValidationError,
-    WebSocketException,
     WebSocketRequestValidationError,
 )
 from fastapi.testclient import TestClient
@@ -113,4 +112,3 @@ def test_validation_error_with_no_context():
     assert "1 validation error:" in error_str
     assert "Endpoint" not in error_str
     assert 'File "' not in error_str
-
