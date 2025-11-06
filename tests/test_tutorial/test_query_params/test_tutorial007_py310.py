@@ -15,7 +15,7 @@ def test_foo_needy_very(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {
         "query": 2,
-        "string_mapping": {"query": "2", "foo": "baz"},
-        "mapping_query_int": {"query": 2},
-        "sequence_mapping_queries": {"query": [1, 2], "foo": []},
+        "string_mapping": {"foo": "baz"},
+        "mapping_query_int": {},
+        "sequence_mapping_queries": {},
     }

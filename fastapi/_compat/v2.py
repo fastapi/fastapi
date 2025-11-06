@@ -352,6 +352,16 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
     return shared.field_annotation_is_scalar_sequence(field.field_info.annotation)
 
 
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    return shared.field_annotation_is_scalar_mapping(field.field_info.annotation)
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    return shared.field_annotation_is_scalar_sequence_mapping(
+        field.field_info.annotation
+    )
+
+
 def is_bytes_field(field: ModelField) -> bool:
     return shared.is_bytes_or_nonable_bytes_annotation(field.type_)
 

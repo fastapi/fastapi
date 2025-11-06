@@ -37,7 +37,9 @@ from fastapi._compat import (
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
+    is_scalar_mapping_field,
     is_scalar_sequence_field,
+    is_scalar_sequence_mapping_field,
     is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
@@ -512,6 +514,7 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
+                or is_scalar_sequence_mapping_field(field)
                 or (
                     _is_model_class(field.type_)
                     # For Pydantic v1
@@ -707,6 +710,20 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
+    if (
+        errors_
+        and isinstance(field.field_info, params.Query)
+        and isinstance(value, Mapping)
+        and (is_scalar_sequence_mapping_field(field) or is_scalar_mapping_field(field))
+    ):
+        # Remove failing keys from the dict and try to re-validate
+        invalid_keys = {err["loc"][2] for err in errors_ if len(err["loc"]) >= 3}
+        v_, errors_ = field.validate(
+            {k: v for k, v in value.items() if k not in invalid_keys},
+            values,
+            loc=loc,
+        )
+
     if _is_error_wrapper(errors_):  # type: ignore[arg-type]
         return None, [errors_]
     elif isinstance(errors_, list):
@@ -720,10 +737,19 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or field.alias
+    value: Any = None
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
-    else:
-        value = values.get(alias, None)
+    elif alias in values:
+        value = values[alias]
+    elif values and is_scalar_mapping_field(field) and isinstance(values, QueryParams):
+        value = dict(values)
+    elif (
+        values
+        and is_scalar_sequence_mapping_field(field)
+        and isinstance(values, QueryParams)
+    ):
+        value = {key: values.getlist(key) for key in values.keys()}
     if (
         value is None
         or (
@@ -820,6 +846,13 @@ def request_params_to_args(
             errors.extend(errors_)
         else:
             values[field.name] = v_
+    # remove keys which were captured by a mapping query field but were otherwise specified
+    for field in fields:
+        if isinstance(values.get(field.name), dict) and (
+            is_scalar_mapping_field(field) or is_scalar_sequence_mapping_field(field)
+        ):
+            for f_ in fields:
+                values[field.name].pop(f_.alias, None)
     return values, errors
 
 

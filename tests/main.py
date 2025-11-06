@@ -191,12 +191,12 @@ def get_query_param_required_type(query: int = Query()):
 
 @app.get("/query/mapping-params")
 def get_mapping_query_params(queries: Dict[str, str] = Query({})):
-    return f"foo bar {queries['foo']} {queries['bar']}"
+    return {"queries": queries}
 
 
 @app.get("/query/mapping-sequence-params")
 def get_sequence_mapping_query_params(queries: Dict[str, List[int]] = Query({})):
-    return f"foo bar {dict(queries)}"
+    return {"queries": queries}
 
 
 @app.get("/query/mixed-params")
@@ -205,10 +205,13 @@ def get_mixed_mapping_query_params(
     mapping_query: Dict[str, str] = Query(),
     query: str = Query(),
 ):
-    return (
-        f"foo bar {sequence_mapping_queries['foo'][0]} {sequence_mapping_queries['foo'][1]} "
-        f"{mapping_query['foo']} {mapping_query['bar']} {query}"
-    )
+    return {
+        "queries": {
+            "query": query,
+            "mapping_query": mapping_query,
+            "sequence_mapping_queries": sequence_mapping_queries,
+        }
+    }
 
 
 @app.get("/query/mixed-type-params")
@@ -218,7 +221,14 @@ def get_mixed_mapping_mixed_type_query_params(
     mapping_query_int: Dict[str, int] = Query({}),
     query: int = Query(),
 ):
-    return f"foo bar {query} {mapping_query_str}  {mapping_query_int} {dict(sequence_mapping_queries)}"
+    return {
+        "queries": {
+            "query": query,
+            "mapping_query_str": mapping_query_str,
+            "mapping_query_int": mapping_query_int,
+            "sequence_mapping_queries": sequence_mapping_queries,
+        }
+    }
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)

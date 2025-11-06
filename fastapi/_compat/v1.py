@@ -6,6 +6,7 @@ from typing import (
     Callable,
     Dict,
     List,
+    Mapping,
     Sequence,
     Set,
     Tuple,
@@ -84,6 +85,7 @@ else:
     from pydantic.v1.fields import (
         SHAPE_FROZENSET,
         SHAPE_LIST,
+        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
@@ -143,6 +145,11 @@ sequence_shape_to_type = {
     SHAPE_SEQUENCE: list,
     SHAPE_TUPLE_ELLIPSIS: list,
 }
+
+mapping_shapes = {
+    SHAPE_MAPPING,
+}
+mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
 
 
 @dataclass
@@ -219,6 +226,30 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
+def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is not None:  # type: ignore[attr-defined]
+            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+                if not is_scalar_sequence_field(sub_field):
+                    return False
+        return True
+    return False
+
+
+def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(  # type: ignore[attr-defined]
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is not None:  # type: ignore[attr-defined]
+            for sub_field in field.sub_fields:  # type: ignore[attr-defined]
+                if not is_scalar_field(sub_field):
+                    return False
+        return True
+    return False
+
+
 def _model_rebuild(model: Type[BaseModel]) -> None:
     model.update_forward_refs()
 
@@ -275,6 +306,14 @@ def is_sequence_field(field: ModelField) -> bool:
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
     return is_pv1_scalar_sequence_field(field)
+
+
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    return is_pv1_scalar_mapping_field(field)
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    return is_pv1_scalar_sequence_mapping_field(field)
 
 
 def is_bytes_field(field: ModelField) -> bool:

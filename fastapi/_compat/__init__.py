@@ -24,7 +24,9 @@ from .main import get_schema_from_model_field as get_schema_from_model_field
 from .main import is_bytes_field as is_bytes_field
 from .main import is_bytes_sequence_field as is_bytes_sequence_field
 from .main import is_scalar_field as is_scalar_field
+from .main import is_scalar_mapping_field as is_scalar_mapping_field
 from .main import is_scalar_sequence_field as is_scalar_sequence_field
+from .main import is_scalar_sequence_mapping_field as is_scalar_sequence_mapping_field
 from .main import is_sequence_field as is_sequence_field
 from .main import serialize_sequence_value as serialize_sequence_value
 from .main import (
