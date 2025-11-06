@@ -243,6 +243,7 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     _endpoint_context_cache[func_id] = ctx
     return ctx
 
+
 async def serialize_response(
     *,
     field: Optional[ModelField] = None,
@@ -354,7 +355,11 @@ def get_request_handler(
         )
 
         # Extract endpoint context for error messages
-        endpoint_ctx = _extract_endpoint_context(dependant.call) if dependant.call else EndpointContext()
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
         if dependant.path:
             endpoint_ctx["path"] = f"{request.method} {dependant.path}"
 
@@ -480,7 +485,11 @@ def get_websocket_app(
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
-        endpoint_ctx = _extract_endpoint_context(dependant.call) if dependant.call else EndpointContext()
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
         if dependant.path:
             endpoint_ctx["path"] = f"WS {dependant.path}"
 
