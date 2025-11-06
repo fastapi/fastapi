@@ -765,7 +765,11 @@ class Depends:
     scope: Union[Literal["function", "request"], None] = None
 
     def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
+        self,
+        dependency: Optional[Callable[..., Any]] = None,
+        *,
+        use_cache: bool = True,
+        scope: Union[Literal["function", "request"], None] = None,
     ):
         # Validate that dependency is used correctly
         if dependency is not None:
@@ -800,6 +804,7 @@ class Depends:
 
         self.dependency = dependency
         self.use_cache = use_cache
+        self.scope = scope
 
     def __repr__(self) -> str:
         attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
