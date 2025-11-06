@@ -38,6 +38,7 @@ if not PYDANTIC_V2:
     from pydantic.fields import (  # type: ignore[attr-defined]
         SHAPE_FROZENSET,
         SHAPE_LIST,
+        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
