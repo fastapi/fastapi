@@ -97,7 +97,6 @@ def test_websocket_validation_error_includes_endpoint_context():
 
 
 def test_validation_error_with_only_path():
-    """Test formatting when only endpoint_path is available (lines 175-176)."""
     errors = [{"type": "missing", "loc": ("body", "name"), "msg": "Field required"}]
     exc = RequestValidationError(errors, endpoint_ctx={"path": "GET /api/test"})
     error_str = str(exc)
@@ -106,7 +105,6 @@ def test_validation_error_with_only_path():
 
 
 def test_validation_error_with_no_context():
-    """Test formatting when no context is available (line 177)."""
     errors = [{"type": "missing", "loc": ("body", "name"), "msg": "Field required"}]
     exc = RequestValidationError(errors, endpoint_ctx={})
     error_str = str(exc)
