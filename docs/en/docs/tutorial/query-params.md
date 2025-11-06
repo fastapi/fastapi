@@ -200,31 +200,3 @@ Sometimes you want to receive some query parameters, but you don't know in advan
 And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will that OpenAPI supports this format of query parameter:
 
 <img src="/img/tutorial/path-params/image01.png">
-
-However, since the query parameters are declared in the request as
-
-```
-http://127.0.0.1:8000/query/mixed-type-params?query=1&foo=bar&foo=baz
-```
-
-**FastAPI** greedily adds all the query parameters to every `Query` argument for which it is valid. The above request will be parsed as:
-
-```Python
-{
-  "query": 1,
-  "string_mapping": {
-    "query": "1",
-    "foo": "baz"
-  },
-  "mapping_query_int": {
-    "query": 1
-  },
-  "sequence_mapping_queries": {
-    "query": [
-      "1"
-    ],
-    "foo": []
-  }
-}
-```
-As you can see the `query` parameter is added to every `Query` argument for which it is valid. This is because **FastAPI** does not know which `Query` argument you want to add the `query` parameter to, and `1` validates as both an `int` and a `str`. `List[str]`. `foo` is only added to the `string_mapping` and `sequence_mapping_queries` arguments because it is not a valid `int`.
