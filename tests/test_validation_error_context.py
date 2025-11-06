@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, WebSocket
 from fastapi.exceptions import (
     RequestValidationError,
     ResponseValidationError,
+    WebSocketException,
     WebSocketRequestValidationError,
 )
 from fastapi.testclient import TestClient
@@ -93,3 +94,23 @@ def test_websocket_validation_error_includes_endpoint_context():
     error_str = str(captured_exception.exception)
     assert "websocket_endpoint" in error_str
     assert "/ws/" in error_str
+
+
+def test_validation_error_with_only_path():
+    """Test formatting when only endpoint_path is available (lines 175-176)."""
+    errors = [{"type": "missing", "loc": ("body", "name"), "msg": "Field required"}]
+    exc = RequestValidationError(errors, endpoint_ctx={"path": "GET /api/test"})
+    error_str = str(exc)
+    assert "Endpoint: GET /api/test" in error_str
+    assert 'File "' not in error_str
+
+
+def test_validation_error_with_no_context():
+    """Test formatting when no context is available (line 177)."""
+    errors = [{"type": "missing", "loc": ("body", "name"), "msg": "Field required"}]
+    exc = RequestValidationError(errors, endpoint_ctx={})
+    error_str = str(exc)
+    assert "1 validation error:" in error_str
+    assert "Endpoint" not in error_str
+    assert 'File "' not in error_str
+
