@@ -780,20 +780,21 @@ class Depends:
 
             # Check if dependency is callable
             if not callable(dependency):
-                # Provide helpful error based on the type
                 dep_type = type(dependency).__name__
                 error_msg = f"Depends() expects a callable (function or class), but received {dep_type}. "
 
-                # Add specific hints for common mistakes
                 if isinstance(dependency, (dict, list, str, int, float, bool)):
                     error_msg += (
                         "\n\nIt looks like you may have called the dependency function instead of passing it. "
                         "\n✓ Correct: Depends(my_function)"
                         "\n✗ Wrong: Depends(my_function())"
                     )
-                elif callable(dependency):
-                    # Might be an instance of a callable class
-                    error_msg += "\n\nIf you're using a callable class, make sure to pass the class itself or a callable instance."
+                else:
+                    # Might be a user-defined object or instance of a callable class
+                    error_msg += (
+                        "\n\nIf you're using a callable class, make sure to pass the class itself or "
+                        "a callable instance (i.e., define __call__)."
+                    )
 
                 raise TypeError(error_msg)
 
