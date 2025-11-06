@@ -171,7 +171,6 @@ class ValidationException(Exception):
         return self._errors
 
     def _format_endpoint_context(self) -> str:
-        """Format endpoint context in native Python traceback format."""
         if not (self.endpoint_file and self.endpoint_line and self.endpoint_function):
             if self.endpoint_path:
                 return f"\n  Endpoint: {self.endpoint_path}"

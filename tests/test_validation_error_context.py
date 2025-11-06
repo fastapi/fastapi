@@ -1,4 +1,3 @@
-import pytest
 from fastapi import FastAPI, Request, WebSocket
 from fastapi.exceptions import (
     RequestValidationError,
@@ -10,8 +9,8 @@ from pydantic import BaseModel
 
 
 class Item(BaseModel):
+    id: int
     name: str
-    id: int  # Required field
 
 
 class ExceptionCapture:
@@ -23,7 +22,6 @@ class ExceptionCapture:
         return exc
 
 
-# App with custom exception handlers that capture exceptions for testing
 app = FastAPI()
 captured_exception = ExceptionCapture()
 
