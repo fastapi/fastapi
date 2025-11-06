@@ -5,11 +5,13 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
 from typing_extensions import Annotated, Doc
 
+
 class EndpointContext(TypedDict, total=False):
     function: str
     path: str
     file: str
     line: int
+
 
 class HTTPException(StarletteHTTPException):
     """
