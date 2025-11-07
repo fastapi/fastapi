@@ -344,9 +344,16 @@ def remove_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
                 v.pop(loc[0], None)
             elif len(loc) == 2 and isinstance(v.get(loc[0]), list):
                 try:
-                    v[loc[0]].pop(int(loc[1]))
+                    v[loc[0]][loc[1]] = None
                 except (ValueError, IndexError):
                     pass
+        # remove the None values from lists
+        for key in list(v.keys()):
+            if isinstance(v[key], list):
+                v[key] = [item for item in v[key] if item is not None]
+            # remove empty lists
+            if v[key] == []:
+                v.pop(key)
         return handler(v)
 
 
@@ -519,13 +526,6 @@ def analyze_param(
 
         field_info.alias = alias
 
-        if is_scalar_sequence_field(field) or is_scalar_sequence_mapping_field(field):
-            # Wrap the validator to remove invalid values from scalar sequence
-            # and scalar sequence mapping fields instead of failing the whole validation
-            field_info.metadata = getattr(field_info, "metadata", []) + [
-                WrapValidator(remove_invalid)
-            ]
-
         field = create_model_field(
             name=param_name,
             type_=use_annotation_from_field_info,
@@ -550,6 +550,21 @@ def analyze_param(
                     and getattr(field, "shape", 1) == 1
                 )
             )
+            if is_scalar_sequence_field(field) or is_scalar_sequence_mapping_field(
+                field
+            ):
+                field_info.metadata = getattr(field_info, "metadata", []) + [
+                    WrapValidator(remove_invalid)
+                ]
+                field = create_model_field(
+                    name=param_name,
+                    type_=use_annotation_from_field_info,
+                    default=field_info.default,
+                    alias=alias,
+                    required=field_info.default
+                    in (RequiredParam, may_v1.RequiredParam, Undefined),
+                    field_info=field_info,
+                )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 

@@ -16,8 +16,8 @@ def test_foo_needy_very(client: TestClient):
     assert response.json() == {
         "query": 2,
         "mapping_query_str_or_int": {"foo": "baz"},
-        "mapping_query_int": None,
-        "sequence_mapping_int": None,
+        "mapping_query_int": {},
+        "sequence_mapping_int": {},
     }
 
 
