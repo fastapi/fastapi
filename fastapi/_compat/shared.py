@@ -173,7 +173,10 @@ def field_annotation_is_scalar_sequence_mapping(
             if field_annotation_is_scalar_sequence_mapping(arg):
                 at_least_one_scalar_mapping = True
                 continue
-            elif not field_annotation_is_scalar(arg):
+            elif not (
+                field_annotation_is_scalar_sequence_mapping(arg)
+                or field_annotation_is_scalar_mapping(arg)
+            ):
                 return False
         return at_least_one_scalar_mapping
     return lenient_issubclass(origin, Mapping) and all(

@@ -15,7 +15,21 @@ def test_foo_needy_very(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {
         "query": 2,
-        "string_mapping": {"foo": "baz"},
-        "mapping_query_int": {},
-        "sequence_mapping_queries": {},
+        "mapping_query_str_or_int": {"foo": "baz"},
+        "mapping_query_int": None,
+        "sequence_mapping_int": None,
     }
+
+
+def test_just_string_not_scalar_mapping(client: TestClient):
+    response = client.get(
+        "/query/mixed-type-params?&query=2&foo=1&bar=3&foo=2&foo=baz"
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "query": 2,
+        "mapping_query_str_or_int": {"bar": "3", "foo": "baz"},
+        "mapping_query_int": {"bar": 3},
+        "sequence_mapping_int": {"bar": [3], "foo": [1, 2]},
+    }
+
