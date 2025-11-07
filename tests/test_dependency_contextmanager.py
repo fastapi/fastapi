@@ -16,12 +16,11 @@ state = {
     "context_b": "not started b",
     "bg": "not set",
     "sync_bg": "not set",
+    "dep_with_bg_tasks": "not started",
     "sync_bg_task_pre": "not executed",
     "sync_bg_task_post": "not executed",
     "async_bg_task_pre": "not executed",
     "async_bg_task_post": "not executed",
-    "sync_bg_endpoint": "not started",
-    "async_bg_endpoint": "not started",
 }
 
 errors = []
@@ -93,32 +92,6 @@ async def context_b(state: dict = Depends(context_a)):
         state["context_b"] = f"finished b with a: {state['context_a']}"
 
 
-def sync_dependency_with_bg_tasks(
-    background_tasks: BackgroundTasks,
-    state: dict = Depends(get_state),
-):
-    """Sync generator dependency that adds background tasks before and after yield."""
-
-    def sync_bg_task_pre():
-        state["sync_bg_task_pre"] = "executed"
-
-    async def async_bg_task_pre():
-        state["async_bg_task_pre"] = "executed"
-
-    def sync_bg_task_post():
-        state["sync_bg_task_post"] = "executed"
-
-    async def async_bg_task_post():
-        state["async_bg_task_post"] = "executed"
-
-    state["sync_bg_endpoint"] = "started"
-    background_tasks.add_task(sync_bg_task_pre)
-    background_tasks.add_task(async_bg_task_pre)
-    yield state
-    background_tasks.add_task(sync_bg_task_post)
-    background_tasks.add_task(async_bg_task_post)
-
-
 async def async_dependency_with_bg_tasks(
     background_tasks: BackgroundTasks,
     state: dict = Depends(get_state),
@@ -126,23 +99,36 @@ async def async_dependency_with_bg_tasks(
     """Async generator dependency that adds background tasks before and after yield."""
 
     def sync_bg_task_pre():
-        state["sync_bg_task_pre"] = "executed"
+        assert state["sync_bg_task_pre"] == "not executed"
+        state["sync_bg_task_pre"] = (
+            f"executed with dependency {state['dep_with_bg_tasks']}"
+        )
 
     async def async_bg_task_pre():
-        state["async_bg_task_pre"] = "executed"
+        assert state["async_bg_task_pre"] == "not executed"
+        state["async_bg_task_pre"] = (
+            f"executed with dependency {state['dep_with_bg_tasks']}"
+        )
 
     def sync_bg_task_post():
-        state["sync_bg_task_post"] = "executed"
+        assert state["sync_bg_task_post"] == "not executed"
+        state["sync_bg_task_post"] = (
+            f"executed with dependency {state['dep_with_bg_tasks']}"
+        )
 
     async def async_bg_task_post():
-        state["async_bg_task_post"] = "executed"
+        assert state["async_bg_task_post"] == "not executed"
+        state["async_bg_task_post"] = (
+            f"executed with dependency {state['dep_with_bg_tasks']}"
+        )
 
-    state["async_bg_endpoint"] = "started"
+    state["dep_with_bg_tasks"] = "started"
     background_tasks.add_task(sync_bg_task_pre)
     background_tasks.add_task(async_bg_task_pre)
     yield state
     background_tasks.add_task(sync_bg_task_post)
     background_tasks.add_task(async_bg_task_post)
+    state["dep_with_bg_tasks"] = "finished"
 
 
 @app.get("/async")
@@ -200,15 +186,8 @@ async def get_context_b_bg(tasks: BackgroundTasks, state: dict = Depends(context
     return state
 
 
-@app.get("/sync_bg_after_yield")
-def sync_bg_after_yield_endpoint(
-    state: dict = Depends(sync_dependency_with_bg_tasks),
-):
-    return state
-
-
-@app.get("/async_bg_after_yield")
-async def async_bg_after_yield_endpoint(
+@app.get("/bg_before_after_yield")
+async def bg_before_after_yield_endpoint(
     state: dict = Depends(async_dependency_with_bg_tasks),
 ):
     return state
@@ -475,45 +454,15 @@ def test_sync_background_tasks():
     )
 
 
-def test_sync_dependency_background_tasks_after_yield():
-    # Reset states before test
-    global state
-    state["sync_bg_task_pre"] = "not executed"
-    state["async_bg_task_pre"] = "not executed"
-    state["sync_bg_task_post"] = "not executed"
-    state["async_bg_task_post"] = "not executed"
-
-    response = client.get("/sync_bg_after_yield")
+def test_background_tasks_before_after_yield():
+    response = client.get("/bg_before_after_yield")
     assert response.status_code == 200
     data = response.json()
-    assert data["sync_bg_endpoint"] == "started"
     assert data["sync_bg_task_pre"] == "not executed"
     assert data["async_bg_task_pre"] == "not executed"
     assert data["sync_bg_task_post"] == "not executed"
     assert data["async_bg_task_post"] == "not executed"
-    assert state["sync_bg_task_pre"] == "executed"
-    assert state["async_bg_task_pre"] == "executed"
-    assert state["sync_bg_task_post"] == "executed"
-    assert state["async_bg_task_post"] == "executed"
-
-
-def test_async_dependency_background_tasks_after_yield():
-    # Reset states before test
-    global state
-    state["sync_bg_task_pre"] = "not executed"
-    state["async_bg_task_pre"] = "not executed"
-    state["sync_bg_task_post"] = "not executed"
-    state["async_bg_task_post"] = "not executed"
-
-    response = client.get("/async_bg_after_yield")
-    assert response.status_code == 200
-    data = response.json()
-    assert data["async_bg_endpoint"] == "started"
-    assert data["sync_bg_task_pre"] == "not executed"
-    assert data["async_bg_task_pre"] == "not executed"
-    assert data["sync_bg_task_post"] == "not executed"
-    assert data["async_bg_task_post"] == "not executed"
-    assert state["sync_bg_task_pre"] == "executed"
-    assert state["async_bg_task_pre"] == "executed"
-    assert state["sync_bg_task_post"] == "executed"
-    assert state["async_bg_task_post"] == "executed"
+    assert state["sync_bg_task_pre"] == "executed with dependency finished"
+    assert state["async_bg_task_pre"] == "executed with dependency finished"
+    assert state["sync_bg_task_post"] == "executed with dependency finished"
+    assert state["async_bg_task_post"] == "executed with dependency finished"
