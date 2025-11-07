@@ -702,7 +702,7 @@ async def solve_dependencies(
     )
 
 
-def _extract_error_locs(errors_: Sequence[Any] | List[Dict[str, Any]]) -> Set[str]:
+def _extract_error_locs(errors_: Sequence[Any]) -> Set[str]:
     if isinstance(errors_, list):
         errors_ = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
 
