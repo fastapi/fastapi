@@ -348,4 +348,3 @@ def create_body_model(
 
 def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
     return list(model.__fields__.values())  # type: ignore[attr-defined]
-

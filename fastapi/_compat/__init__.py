@@ -21,7 +21,6 @@ from .main import get_compat_model_name_map as get_compat_model_name_map
 from .main import get_definitions as get_definitions
 from .main import get_missing_field_error as get_missing_field_error
 from .main import get_schema_from_model_field as get_schema_from_model_field
-from .main import ignore_invalid as ignore_invalid
 from .main import is_bytes_field as is_bytes_field
 from .main import is_bytes_sequence_field as is_bytes_sequence_field
 from .main import is_scalar_field as is_scalar_field
@@ -29,6 +28,7 @@ from .main import is_scalar_mapping_field as is_scalar_mapping_field
 from .main import is_scalar_sequence_field as is_scalar_sequence_field
 from .main import is_scalar_sequence_mapping_field as is_scalar_sequence_mapping_field
 from .main import is_sequence_field as is_sequence_field
+from .main import omit_by_default as omit_by_default
 from .main import serialize_sequence_value as serialize_sequence_value
 from .main import (
     with_info_plain_validator_function as with_info_plain_validator_function,
@@ -42,6 +42,9 @@ from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
+from .shared import (
+    field_annotation_is_scalar_sequence_mapping as field_annotation_is_scalar_sequence_mapping,
+)
 from .shared import (
     is_uploadfile_or_nonable_uploadfile_annotation as is_uploadfile_or_nonable_uploadfile_annotation,
 )

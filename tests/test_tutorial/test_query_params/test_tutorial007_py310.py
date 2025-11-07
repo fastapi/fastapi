@@ -17,7 +17,7 @@ def test_foo_needy_very(client: TestClient):
         "query": 2,
         "mapping_query_str_or_int": {"foo": "baz"},
         "mapping_query_int": {},
-        "sequence_mapping_int": {},
+        "sequence_mapping_int": {"foo": []},
     }
 
 

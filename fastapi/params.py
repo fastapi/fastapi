@@ -305,6 +305,7 @@ class Query(Param):  # type: ignore[misc]
             json_schema_extra=json_schema_extra,
             **extra,
         )
+        self.annotation = self.annotation
 
 
 class Header(Param):  # type: ignore[misc]

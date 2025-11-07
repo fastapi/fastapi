@@ -5,7 +5,6 @@ from collections import deque
 from dataclasses import is_dataclass
 from typing import (
     Any,
-    Callable,
     Deque,
     FrozenSet,
     List,
@@ -19,7 +18,7 @@ from typing import (
 
 from fastapi._compat import may_v1
 from fastapi.types import UnionType
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, get_args, get_origin

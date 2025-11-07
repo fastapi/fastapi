@@ -17,8 +17,8 @@ from typing import (
 
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
-from fastapi.types import IncEx, ModelNameMap
-from pydantic import BaseModel, TypeAdapter, WrapValidator, create_model
+from fastapi.types import IncEx, ModelNameMap, UnionType
+from pydantic import BaseModel, OnErrorOmit, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -488,3 +488,21 @@ def get_flat_models_from_fields(
 def get_long_model_name(model: TypeModelOrEnum) -> str:
     return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
 
+
+def omit_by_default(annotation: Any) -> Any:
+    # Update the annotation to use OnErrorOmit for the inner type(s)
+    origin = get_origin(annotation)
+    if origin is Union or origin is UnionType:
+        new_args = []
+        for arg in get_args(annotation):
+            new_arg = omit_by_default(arg)
+            new_args.append(new_arg)
+        return Union[tuple(new_args)]  # type: ignore[return-value]
+    elif origin is Annotated:
+        annotated_args = get_args(annotation)
+        base_annotation = annotated_args[0]
+        new_base_annotation = omit_by_default(base_annotation)
+        new_metadata = annotated_args[1:]
+        return Annotated[new_base_annotation + new_metadata]  # type: ignore[return-value]
+    else:
+        return OnErrorOmit[annotation]  # type: ignore[return-value]
