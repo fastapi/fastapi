@@ -360,8 +360,11 @@ def get_request_handler(
             if dependant.call
             else EndpointContext()
         )
+
         if dependant.path:
-            endpoint_ctx["path"] = f"{request.method} {dependant.path}"
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = request.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"{request.method} {mount_path}{dependant.path}"
 
         # Read body and auto-close files
         try:
@@ -491,8 +494,9 @@ def get_websocket_app(
             else EndpointContext()
         )
         if dependant.path:
-            endpoint_ctx["path"] = f"WS {dependant.path}"
-
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = websocket.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"WS {mount_path}{dependant.path}"
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
