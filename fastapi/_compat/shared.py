@@ -252,30 +252,3 @@ def annotation_is_pydantic_v1(annotation: Any) -> bool:
             if annotation_is_pydantic_v1(sub_annotation):
                 return True
     return False
-
-
-def remove_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
-    try:
-        return handler(v)
-    except ValidationError as exc:
-        if not isinstance(v, dict):
-            raise exc
-        # remove invalid values from invalid keys and revalidate
-        errors = may_v1._regenerate_error_with_loc(errors=[exc.errors()], loc_prefix=())
-        for err in errors:
-            loc = err.get("loc", ())
-            if len(loc) == 1:
-                v.pop(loc[0], None)
-            elif len(loc) == 2 and isinstance(v.get(loc[0]), list):
-                try:
-                    v[loc[0]][loc[1]] = None
-                except (ValueError, IndexError):
-                    pass
-        # remove the None values from lists
-        for key in list(v.keys()):
-            if isinstance(v[key], list):
-                v[key] = [item for item in v[key] if item is not None]
-            # remove empty lists
-            if v[key] == []:
-                v.pop(key)
-        return handler(v)

@@ -34,7 +34,6 @@ from fastapi._compat import (
     get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
-    ignore_invalid,
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
@@ -64,7 +63,7 @@ from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
+from pydantic import BaseModel, TypeAdapter
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -527,15 +526,7 @@ def analyze_param(
             if is_scalar_sequence_field(field) or is_scalar_sequence_mapping_field(
                 field
             ):
-                field = create_model_field(
-                    name=param_name,
-                    type_=use_annotation_from_field_info,
-                    default=field_info.default,
-                    alias=alias,
-                    required=field_info.default
-                    in (RequiredParam, may_v1.RequiredParam, Undefined),
-                    field_info=ignore_invalid(field_info),
-                )
+                field._type_adapter.core_schema["on_error"] = "omit"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 

@@ -488,10 +488,3 @@ def get_flat_models_from_fields(
 def get_long_model_name(model: TypeModelOrEnum) -> str:
     return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
 
-
-def ignore_invalid(field_info: FieldInfo) -> FieldInfo:
-    new_field_info = copy(field_info)
-    new_field_info.metadata = getattr(field_info, "metadata", []) + [
-        WrapValidator(shared.remove_invalid)
-    ]
-    return new_field_info
