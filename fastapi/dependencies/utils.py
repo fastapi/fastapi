@@ -701,6 +701,13 @@ async def solve_dependencies(
     )
 
 
+def _extract_error_locs(errors_):
+    if isinstance(errors_, list):
+        errors_ = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
+
+    return {err["loc"][2] for err in errors_ if len(err["loc"]) >= 3}
+
+
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: Dict[str, Any], loc: Tuple[str, ...]
 ) -> Tuple[Any, List[Any]]:
@@ -717,7 +724,7 @@ def _validate_value_with_model_field(
         and (is_scalar_sequence_mapping_field(field) or is_scalar_mapping_field(field))
     ):
         # Remove failing keys from the dict and try to re-validate
-        invalid_keys = {err["loc"][2] for err in errors_ if len(err["loc"]) >= 3}
+        invalid_keys = _extract_error_locs(errors_)
         v_, errors_ = field.validate(
             {k: v for k, v in value.items() if k not in invalid_keys},
             values,

@@ -6,7 +6,6 @@ from typing import (
     Callable,
     Dict,
     List,
-    Mapping,
     Sequence,
     Set,
     Tuple,
@@ -36,9 +35,9 @@ if not PYDANTIC_V2:
     from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
+        MAPPING_LIKE_SHAPES,
         SHAPE_FROZENSET,
         SHAPE_LIST,
-        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
@@ -84,9 +83,9 @@ else:
     from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.v1.errors import MissingError
     from pydantic.v1.fields import (
+        MAPPING_LIKE_SHAPES,
         SHAPE_FROZENSET,
         SHAPE_LIST,
-        SHAPE_MAPPING,
         SHAPE_SEQUENCE,
         SHAPE_SET,
         SHAPE_SINGLETON,
@@ -147,10 +146,7 @@ sequence_shape_to_type = {
     SHAPE_TUPLE_ELLIPSIS: list,
 }
 
-mapping_shapes = {
-    SHAPE_MAPPING,
-}
-mapping_shapes_to_type = {SHAPE_MAPPING: Mapping}
+mapping_shapes = MAPPING_LIKE_SHAPES
 
 
 @dataclass
@@ -233,7 +229,9 @@ def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
     ):
         if field.sub_fields is not None:
             for sub_field in field.sub_fields:
-                if not is_scalar_sequence_field(sub_field):
+                if not (
+                    is_scalar_sequence_field(sub_field) or is_scalar_field(sub_field)
+                ):
                     return False
         return True
     return False
