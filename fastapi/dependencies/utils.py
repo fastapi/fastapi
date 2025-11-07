@@ -34,6 +34,7 @@ from fastapi._compat import (
     get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
+    ignore_invalid,
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
@@ -63,7 +64,7 @@ from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel, ValidationError, WrapValidator
+from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -330,33 +331,6 @@ def add_non_field_param_to_dependency(
     return None
 
 
-def remove_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
-    try:
-        return handler(v)
-    except ValidationError as exc:
-        if not isinstance(v, dict):
-            raise exc
-        # remove invalid values from invalid keys and revalidate
-        errors = may_v1._regenerate_error_with_loc(errors=[exc.errors()], loc_prefix=())
-        for err in errors:
-            loc = err.get("loc", ())
-            if len(loc) == 1:
-                v.pop(loc[0], None)
-            elif len(loc) == 2 and isinstance(v.get(loc[0]), list):
-                try:
-                    v[loc[0]][loc[1]] = None
-                except (ValueError, IndexError):
-                    pass
-        # remove the None values from lists
-        for key in list(v.keys()):
-            if isinstance(v[key], list):
-                v[key] = [item for item in v[key] if item is not None]
-            # remove empty lists
-            if v[key] == []:
-                v.pop(key)
-        return handler(v)
-
-
 @dataclass
 class ParamDetails:
     type_annotation: Any
@@ -553,9 +527,6 @@ def analyze_param(
             if is_scalar_sequence_field(field) or is_scalar_sequence_mapping_field(
                 field
             ):
-                field_info.metadata = getattr(field_info, "metadata", []) + [
-                    WrapValidator(remove_invalid)
-                ]
                 field = create_model_field(
                     name=param_name,
                     type_=use_annotation_from_field_info,
@@ -563,7 +534,7 @@ def analyze_param(
                     alias=alias,
                     required=field_info.default
                     in (RequiredParam, may_v1.RequiredParam, Undefined),
-                    field_info=field_info,
+                    field_info=ignore_invalid(field_info),
                 )
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)

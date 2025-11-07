@@ -28,6 +28,7 @@ if PYDANTIC_V2:
     from .v2 import Validator as Validator
     from .v2 import evaluate_forwardref as evaluate_forwardref
     from .v2 import get_missing_field_error as get_missing_field_error
+    from .v2 import ignore_invalid as ignore_invalid
     from .v2 import (
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
@@ -44,6 +45,7 @@ else:
     from .v1 import Validator as Validator
     from .v1 import evaluate_forwardref as evaluate_forwardref
     from .v1 import get_missing_field_error as get_missing_field_error
+    from .v1 import ignore_invalid as ignore_invalid
     from .v1 import (  # type: ignore[assignment]
         with_info_plain_validator_function as with_info_plain_validator_function,
     )

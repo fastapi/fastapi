@@ -18,7 +18,7 @@ from typing import (
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap
-from pydantic import BaseModel, TypeAdapter, create_model
+from pydantic import BaseModel, TypeAdapter, WrapValidator, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -487,3 +487,11 @@ def get_flat_models_from_fields(
 
 def get_long_model_name(model: TypeModelOrEnum) -> str:
     return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
+
+
+def ignore_invalid(field_info: FieldInfo) -> FieldInfo:
+    new_field_info = copy(field_info)
+    new_field_info.metadata = getattr(field_info, "metadata", []) + [
+        WrapValidator(shared.remove_invalid)
+    ]
+    return new_field_info

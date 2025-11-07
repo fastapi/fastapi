@@ -21,6 +21,7 @@ from .main import get_compat_model_name_map as get_compat_model_name_map
 from .main import get_definitions as get_definitions
 from .main import get_missing_field_error as get_missing_field_error
 from .main import get_schema_from_model_field as get_schema_from_model_field
+from .main import ignore_invalid as ignore_invalid
 from .main import is_bytes_field as is_bytes_field
 from .main import is_bytes_sequence_field as is_bytes_sequence_field
 from .main import is_scalar_field as is_scalar_field
