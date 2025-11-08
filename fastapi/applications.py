@@ -15,9 +15,9 @@ from typing import (
     Union,
 )
 
+from annotated_doc import Doc
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
-from fastapi.dependencies.utils import is_coroutine_callable
 from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
@@ -36,7 +36,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.routing import merge_lifespan_context
 from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import generate_unique_id
+from fastapi.utils import generate_unique_id, call_asynchronously
 from starlette.applications import Starlette
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import State
@@ -49,7 +49,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -81,7 +81,7 @@ class FastAPI(Starlette):
                 errors.
 
                 Read more in the
-                [Starlette docs for Applications](https://www.starlette.io/applications/#instantiating-the-application).
+                [Starlette docs for Applications](https://www.starlette.dev/applications/#instantiating-the-application).
                 """
             ),
         ] = False,
@@ -944,7 +944,7 @@ class FastAPI(Starlette):
                 This is simply inherited from Starlette.
 
                 Read more about it in the
-                [Starlette docs for Applications](https://www.starlette.io/applications/#storing-state-on-the-app-instance).
+                [Starlette docs for Applications](https://www.starlette.dev/applications/#storing-state-on-the-app-instance).
                 """
             ),
         ] = State()
@@ -1069,10 +1069,7 @@ class FastAPI(Starlette):
             )
             try:
                 for handler in self._on_startup:
-                    if is_coroutine_callable(handler):
-                        await handler()
-                    else:
-                        await run_in_threadpool(handler)
+                    await call_asynchronously(handler)
                 yield {
                     "__fastapi__": {
                         "lifespan_scoped_dependencies": lifespan_scoped_dependencies
@@ -1080,10 +1077,7 @@ class FastAPI(Starlette):
                 }
             finally:
                 for handler in self._on_shutdown:
-                    if is_coroutine_callable(handler):
-                        await handler()
-                    else:
-                        await run_in_threadpool(handler)
+                    await call_asynchronously(handler)
 
     def openapi(self) -> Dict[str, Any]:
         """

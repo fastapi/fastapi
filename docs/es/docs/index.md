@@ -123,7 +123,7 @@ Si estás construyendo una aplicación de <abbr title="Interfaz de Línea de Com
 
 FastAPI se apoya en hombros de gigantes:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para las partes web.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> para las partes web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> para las partes de datos.
 
 ## Instalación
@@ -229,7 +229,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Acerca del comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 Por defecto, `fastapi dev` comenzará con auto-recarga habilitada para el desarrollo local.
 
@@ -470,7 +470,7 @@ Usadas por Starlette:
 
 Usadas por FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
 * `fastapi-cli` - para proporcionar el comando `fastapi`.
 
 ### Sin Dependencias `standard`

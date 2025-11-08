@@ -21,7 +21,7 @@ from fastapi import (
 )
 from fastapi.dependencies.utils import get_endpoint_dependant
 from fastapi.exceptions import (
-    DependencyScopeConflict,
+    DependencyScopeError,
     InvalidDependencyScope,
     UninitializedLifespanDependency,
 )
@@ -103,7 +103,7 @@ def test_endpoint_dependencies(
             None,
             Depends(
                 dependency_factory.get_dependency(),
-                dependency_scope="lifespan",
+                scope="lifespan",
                 use_cache=use_cache,
             ),
         ],
@@ -138,7 +138,7 @@ def test_router_dependencies(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -171,19 +171,19 @@ def test_router_dependencies(
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
-@pytest.mark.parametrize("main_dependency_scope", ["endpoint", "lifespan"])
+@pytest.mark.parametrize("main_dependency_scope", ["request", "function", "lifespan"])
 def test_dependency_cache_in_same_dependency(
     dependency_style: DependencyStyle,
     routing_style,
     use_cache,
-    main_dependency_scope: Literal["endpoint", "lifespan"],
+    main_dependency_scope: Literal["request", "function", "lifespan"],
     is_websocket: bool,
 ):
     dependency_factory = DependencyFactory(dependency_style)
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -210,7 +210,7 @@ def test_dependency_cache_in_same_dependency(
             Depends(
                 dependency,
                 use_cache=use_cache,
-                dependency_scope=main_dependency_scope,
+                scope=main_dependency_scope,
             ),
         ],
     )
@@ -253,7 +253,7 @@ def test_dependency_cache_in_same_endpoint(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -315,7 +315,7 @@ def test_dependency_cache_in_different_endpoints(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -391,7 +391,7 @@ def test_no_cached_dependency(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=False,
     )
 
@@ -448,13 +448,13 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
 
     app = FastAPI()
 
-    with pytest.raises(DependencyScopeConflict):
+    with pytest.raises(DependencyScopeError):
         create_endpoint_1_annotation(
             router=app,
             path="/test",
             is_websocket=is_websocket,
             annotation=Annotated[
-                None, Depends(dependency_func, dependency_scope="lifespan")
+                None, Depends(dependency_func, scope="lifespan")
             ],
         )
 
@@ -469,7 +469,7 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
     async def lifespan_scoped_dependency(
         param: Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+            Depends(dependency_factory.get_dependency(), scope="lifespan"),
         ],
     ) -> AsyncGenerator[int, None]:
         yield param
@@ -503,8 +503,12 @@ def test_lifespan_scoped_dependency_can_use_other_lifespan_scoped_dependencies(
         (DependencyStyle.ASYNC_GENERATOR, True),
     ],
 )
+@pytest.mark.parametrize("endpoint_dependency_scope", ["request", "function"])
 def test_the_same_dependency_can_work_in_different_scopes(
-    dependency_style: DependencyStyle, supports_teardown, is_websocket
+    dependency_style: DependencyStyle,
+    supports_teardown,
+    is_websocket,
+    endpoint_dependency_scope: Literal["request", "function"],
 ):
     dependency_factory = DependencyFactory(dependency_style)
     app = FastAPI()
@@ -515,11 +519,11 @@ def test_the_same_dependency_can_work_in_different_scopes(
         is_websocket=is_websocket,
         annotation1=Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="endpoint"),
+            Depends(dependency_factory.get_dependency(), scope=endpoint_dependency_scope),
         ],
         annotation2=Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+            Depends(dependency_factory.get_dependency(), scope="lifespan"),
         ],
     )
     if is_websocket:
@@ -620,7 +624,7 @@ def test_lifespan_scoped_dependency_can_be_used_alongside_custom_lifespans(
         is_websocket=is_websocket,
         annotation=Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+            Depends(dependency_factory.get_dependency(), scope="lifespan"),
         ],
         expected_value=1,
     )
@@ -650,13 +654,13 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
 
     app = FastAPI()
 
-    with pytest.raises(DependencyScopeConflict):
+    with pytest.raises(DependencyScopeError):
         create_endpoint_1_annotation(
             router=app,
             path="/test",
             is_websocket=is_websocket,
             annotation=Annotated[
-                None, Depends(dependency_func, dependency_scope="lifespan")
+                None, Depends(dependency_func, scope="lifespan")
             ],
         )
 
@@ -679,7 +683,7 @@ def test_dependencies_must_provide_correct_dependency_scope(
 
     with pytest.raises(
         InvalidDependencyScope,
-        match=r'Dependency "value" of .* has an invalid scope: ' r'"incorrect"',
+        match=r'Dependency received an invalid scope: "incorrect"',
     ):
         create_endpoint_1_annotation(
             router=router,
@@ -689,7 +693,7 @@ def test_dependencies_must_provide_correct_dependency_scope(
                 None,
                 Depends(
                     dependency_factory.get_dependency(),
-                    dependency_scope="incorrect",
+                    scope="incorrect",
                     use_cache=use_cache,
                 ),
             ],
@@ -714,12 +718,12 @@ def test_endpoints_report_incorrect_dependency_scope(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
     # We intentionally change the dependency scope here to bypass the
     # validation at the function level.
-    depends.dependency_scope = "asdad"
+    depends.scope = "asdad"
 
     with pytest.raises(InvalidDependencyScope):
         create_endpoint_1_annotation(
@@ -739,11 +743,11 @@ def test_endpoints_report_incorrect_dependency_scope_at_router_scope(
 ):
     dependency_factory = DependencyFactory(DependencyStyle.ASYNC_GENERATOR)
 
-    depends = Depends(dependency_factory.get_dependency(), dependency_scope="lifespan")
+    depends = Depends(dependency_factory.get_dependency(), scope="lifespan")
 
     # We intentionally change the dependency scope here to bypass the
     # validation at the function level.
-    depends.dependency_scope = "asdad"
+    depends.scope = "asdad"
 
     if routing_style == "app":
         app = FastAPI(dependencies=[depends])
@@ -777,7 +781,7 @@ def test_endpoints_report_uninitialized_dependency(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -827,7 +831,7 @@ def test_endpoints_report_uninitialized_internal_lifespan(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -867,7 +871,7 @@ def test_bad_lifespan_scoped_dependencies(
     dependency_factory = DependencyFactory(dependency_style, should_error=True)
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -904,7 +908,7 @@ def test_endpoint_dependant_backwards_compatibility():
         dependency1: Annotated[int, Depends(dependency_factory.get_dependency())],
         dependency2: Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+            Depends(dependency_factory.get_dependency(), scope="lifespan"),
         ],
     ):
         pass  # pragma: nocover

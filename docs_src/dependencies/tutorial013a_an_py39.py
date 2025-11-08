@@ -28,7 +28,7 @@ async def get_database_connection():
 
 
 GlobalDatabaseConnection = Annotated[
-    MyDatabaseConnection, Depends(get_database_connection, dependency_scope="lifespan")
+    MyDatabaseConnection, Depends(get_database_connection, scope="lifespan")
 ]
 
 

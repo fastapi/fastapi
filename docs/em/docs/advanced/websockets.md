@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 💡 🌅 🔃 🎛, ✅ 💃 🧾:
 
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank"> `WebSocket` 🎓</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">🎓-⚓️ *️⃣ 🚚</a>.
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank"> `WebSocket` 🎓</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">🎓-⚓️ *️⃣ 🚚</a>.

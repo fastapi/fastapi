@@ -1,9 +1,10 @@
 from typing import Any, Dict, Optional, Sequence, Type, Union
 
+from annotated_doc import Doc
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class HTTPException(StarletteHTTPException):
@@ -145,22 +146,30 @@ class FastAPIError(RuntimeError):
     A generic, FastAPI-specific error.
     """
 
-
 class DependencyError(FastAPIError):
+    """
+    A generic error regarding to dependencies.
+    """
     pass
-
 
 class InvalidDependencyScope(DependencyError):
+    """
+    A dependency was declared with an unsupported scope value.
+    """
     pass
 
-
-class DependencyScopeConflict(DependencyError):
-    pass
-
+class DependencyScopeError(DependencyError):
+    """
+    A dependency declared that it depends on another dependency with an invalid
+    (narrower) scope.
+    """
 
 class UninitializedLifespanDependency(DependencyError):
+    """
+    A bug in FastAPI caused a lifespan-scoped dependency to not initialize properly
+    at the point where we handled a request that depended on it.
+    """
     pass
-
 
 class ValidationException(Exception):
     def __init__(self, errors: Sequence[Any]) -> None:

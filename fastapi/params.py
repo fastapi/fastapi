@@ -1,4 +1,5 @@
 import warnings
+from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
@@ -11,9 +12,11 @@ from ._compat import (
     PYDANTIC_VERSION_MINOR_TUPLE,
     Undefined,
 )
+from .exceptions import InvalidDependencyScope
 
 _Unset: Any = Undefined
-DependencyScope: TypeAlias = Literal["endpoint", "lifespan"]
+_EndpointDependencyScope: TypeAlias = Literal["request", "function"]
+DependencyScope: TypeAlias = Union[Literal["lifespan"], _EndpointDependencyScope]
 
 
 class ParamTypes(Enum):
@@ -762,38 +765,18 @@ class File(Form):  # type: ignore[misc]
         )
 
 
+@dataclass
 class Depends:
-    def __init__(
-        self,
-        dependency: Optional[Callable[..., Any]] = None,
-        *,
-        use_cache: bool = True,
-        dependency_scope: DependencyScope = "endpoint",
-    ):
-        self.dependency = dependency
-        self.use_cache = use_cache
-        self.dependency_scope = dependency_scope
+    dependency: Optional[Callable[..., Any]] = None
+    use_cache: bool = True
+    scope: Union[DependencyScope, None] = None
 
-    def __repr__(self) -> str:
-        attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
-        cache = "" if self.use_cache else ", use_cache=False"
-        if self.dependency_scope == "endpoint":
-            dependency_scope = ""
-        else:
-            dependency_scope = f', dependency_scope="{self.dependency_scope}"'
-
-        return f"{self.__class__.__name__}({attr}{cache}{dependency_scope})"
+    def __post_init__(self):
+        if self.scope not in ("lifespan", "request", "function", None):
+            raise InvalidDependencyScope(f"Dependency received an invalid scope: \"{self.scope}\"")
 
 
+@dataclass
 class Security(Depends):
-    def __init__(
-        self,
-        dependency: Optional[Callable[..., Any]] = None,
-        *,
-        scopes: Optional[Sequence[str]] = None,
-        use_cache: bool = True,
-    ):
-        super().__init__(
-            dependency=dependency, use_cache=use_cache, dependency_scope="endpoint"
-        )
-        self.scopes = scopes or []
+    scope: Union[_EndpointDependencyScope, None] = None
+    scopes: Optional[Sequence[str]] = None

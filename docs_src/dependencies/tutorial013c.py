@@ -31,7 +31,7 @@ async def get_configuration() -> dict:
     }
 
 
-GlobalConfiguration = Depends(get_configuration, dependency_scope="lifespan")
+GlobalConfiguration = Depends(get_configuration, scope="lifespan")
 
 
 async def get_database_connection(configuration: dict = GlobalConfiguration):
@@ -39,7 +39,7 @@ async def get_database_connection(configuration: dict = GlobalConfiguration):
         yield connection
 
 
-GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan")
+GlobalDatabaseConnection = Depends(get_database_connection, scope="lifespan")
 
 
 @app.get("/users/{user_id}")

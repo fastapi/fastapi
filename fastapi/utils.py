@@ -1,5 +1,8 @@
+import inspect
 import re
+import sys
 import warnings
+from collections.abc import Callable
 from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
@@ -10,9 +13,11 @@ from typing import (
     Set,
     Type,
     Union,
-    cast,
+    cast, Awaitable, TypeVar,
 )
 from weakref import WeakKeyDictionary
+
+from starlette.concurrency import run_in_threadpool
 
 import fastapi
 from fastapi._compat import (
@@ -25,15 +30,24 @@ from fastapi._compat import (
     Validator,
     annotation_is_pydantic_v1,
     lenient_issubclass,
-    v1,
+    may_v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeIs, ParamSpec
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
+
+
+_T = TypeVar("_T")
+_P = ParamSpec("_P")
 
 # Cache for `create_cloned_field`
 _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
@@ -87,8 +101,8 @@ def create_model_field(
 ) -> ModelField:
     class_validators = class_validators or {}
 
-    v1_model_config = v1.BaseConfig
-    v1_field_info = field_info or v1.FieldInfo()
+    v1_model_config = may_v1.BaseConfig
+    v1_field_info = field_info or may_v1.FieldInfo()
     v1_kwargs = {
         "name": name,
         "field_info": v1_field_info,
@@ -102,9 +116,11 @@ def create_model_field(
 
     if (
         annotation_is_pydantic_v1(type_)
-        or isinstance(field_info, v1.FieldInfo)
+        or isinstance(field_info, may_v1.FieldInfo)
         or version == "1"
     ):
+        from fastapi._compat import v1
+
         try:
             return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
@@ -122,6 +138,8 @@ def create_model_field(
             raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
     # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
     # a Pydantic v1 type, like a constrained int
+    from fastapi._compat import v1
+
     try:
         return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:
@@ -138,6 +156,9 @@ def create_cloned_field(
 
         if isinstance(field, v2.ModelField):
             return field
+
+    from fastapi._compat import v1
+
     # cloned_types caches already cloned types to support recursive models and improve
     # performance by avoiding unnecessary cloning
     if cloned_types is None:
@@ -245,3 +266,24 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def _is_coroutine_callable(
+        callable_: Callable[..., Any]
+) -> TypeIs[Callable[..., Awaitable[Any]]]:
+    if inspect.isroutine(callable_):
+        return iscoroutinefunction(callable_)
+    if inspect.isclass(callable_):
+        return False
+    dunder_call = getattr(callable_, "__call__", None)  # noqa: B004
+    return iscoroutinefunction(dunder_call)
+
+async def call_asynchronously(
+        callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
+        *args: _P.args,
+        **kwargs: _P.kwargs
+) -> _T:
+    if _is_coroutine_callable(callable_):
+        return await callable_(*args, **kwargs)
+    else:
+        return await run_in_threadpool(callable_, *args, **kwargs)

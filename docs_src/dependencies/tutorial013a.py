@@ -27,7 +27,7 @@ async def get_database_connection():
         yield connection
 
 
-GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan")
+GlobalDatabaseConnection = Depends(get_database_connection, scope="lifespan")
 
 
 @app.get("/users/")

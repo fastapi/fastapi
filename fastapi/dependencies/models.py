@@ -1,20 +1,24 @@
+import inspect
+import sys
 from dataclasses import dataclass, field
-from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
+from functools import cached_property
+from typing import Any, Callable, List, Optional, Sequence, Union, Tuple, cast
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
-from typing_extensions import TypeAlias
+from fastapi.types import EndpointDependencyCacheKey, LifespanDependencyCacheKey
+from typing_extensions import Literal, TypeAlias
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
 
 
 @dataclass
 class SecurityRequirement:
     security_scheme: SecurityBase
     scopes: Optional[Sequence[str]] = None
-
-
-LifespanDependantCacheKey: TypeAlias = Union[
-    Tuple[Callable[..., Any], Union[str, int]], Callable[..., Any]
-]
 
 
 @dataclass
@@ -25,40 +29,55 @@ class LifespanDependant:
     name: Optional[str] = None
     use_cache: bool = True
     index: Optional[int] = None
-    cache_key: LifespanDependantCacheKey = field(init=False)
 
-    def __post_init__(self) -> None:
+    @cached_property
+    def is_gen_callable(self) -> bool:
+        if inspect.isgeneratorfunction(self.call):
+            return True
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return inspect.isgeneratorfunction(dunder_call)
+
+    @cached_property
+    def is_async_gen_callable(self) -> bool:
+        if inspect.isasyncgenfunction(self.call):
+            return True
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return inspect.isasyncgenfunction(dunder_call)
+
+    @cached_property
+    def is_coroutine_callable(self) -> bool:
+        if inspect.isroutine(self.call):
+            return iscoroutinefunction(self.call)
+        if inspect.isclass(self.call):
+            return False
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return iscoroutinefunction(dunder_call)
+
+    @cached_property
+    def cache_key(self) -> LifespanDependencyCacheKey:
         if self.use_cache:
-            self.cache_key = self.call
+            return self.call
         elif self.name is not None:
-            self.cache_key = (self.caller, self.name)
+            return self.caller, self.name
         else:
             assert self.index is not None, (
                 "Lifespan dependency must have an associated name or index."
             )
-            self.cache_key = (self.caller, self.index)
-
-
-EndpointDependantCacheKey: TypeAlias = Tuple[
-    Optional[Callable[..., Any]], Tuple[str, ...]
-]
-
+            return self.caller, self.index
 
 @dataclass
 class EndpointDependant:
-    endpoint_dependencies: List["EndpointDependant"] = field(default_factory=list)
-    lifespan_dependencies: List[LifespanDependant] = field(default_factory=list)
-    name: Optional[str] = None
-    call: Optional[Callable[..., Any]] = None
-    use_cache: bool = True
-    index: Optional[int] = None
-    cache_key: Tuple[Optional[Callable[..., Any]], Tuple[str, ...]] = field(init=False)
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
     header_params: List[ModelField] = field(default_factory=list)
     cookie_params: List[ModelField] = field(default_factory=list)
     body_params: List[ModelField] = field(default_factory=list)
+    endpoint_dependencies: List["EndpointDependant"] = field(default_factory=list)
+    lifespan_dependencies: List[LifespanDependant] = field(default_factory=list)
     security_requirements: List[SecurityRequirement] = field(default_factory=list)
+    name: Optional[str] = None
+    call: Optional[Callable[..., Any]] = None
+    index: Optional[int] = None
     request_param_name: Optional[str] = None
     websocket_param_name: Optional[str] = None
     http_connection_param_name: Optional[str] = None
@@ -66,10 +85,48 @@ class EndpointDependant:
     background_tasks_param_name: Optional[str] = None
     security_scopes_param_name: Optional[str] = None
     security_scopes: Optional[List[str]] = None
+    use_cache: bool = True
     path: Optional[str] = None
+    scope: Union[Literal["function", "request"], None] = None
 
-    def __post_init__(self) -> None:
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+    @cached_property
+    def cache_key(self) -> EndpointDependencyCacheKey:
+        return (
+            self.call,
+            tuple(sorted(set(self.security_scopes or []))),
+            self.computed_scope or "",
+        )
+
+    @cached_property
+    def is_gen_callable(self) -> bool:
+        if inspect.isgeneratorfunction(self.call):
+            return True
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return inspect.isgeneratorfunction(dunder_call)
+
+    @cached_property
+    def is_async_gen_callable(self) -> bool:
+        if inspect.isasyncgenfunction(self.call):
+            return True
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return inspect.isasyncgenfunction(dunder_call)
+
+    @cached_property
+    def is_coroutine_callable(self) -> bool:
+        if inspect.isroutine(self.call):
+            return iscoroutinefunction(self.call)
+        if inspect.isclass(self.call):
+            return False
+        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        return iscoroutinefunction(dunder_call)
+
+    @cached_property
+    def computed_scope(self) -> Union[str, None]:
+        if self.scope:
+            return self.scope
+        if self.is_gen_callable or self.is_async_gen_callable:
+            return "request"
+        return None
 
     # Kept for backwards compatibility
     @property
@@ -87,5 +144,4 @@ class EndpointDependant:
 
 
 # Kept for backwards compatibility
-Dependant = EndpointDependant
-CacheKey: TypeAlias = Union[EndpointDependantCacheKey, LifespanDependantCacheKey]
+Dependant: TypeAlias = EndpointDependant

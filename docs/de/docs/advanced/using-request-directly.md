@@ -15,7 +15,7 @@ Es gibt jedoch Situationen, in denen Sie möglicherweise direkt auf das `Request
 
 ## Details zum `Request`-Objekt { #details-about-the-request-object }
 
-Da **FastAPI** unter der Haube eigentlich **Starlette** ist, mit einer Ebene von mehreren Tools darüber, können Sie Starlettes <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a>-Objekt direkt verwenden, wenn Sie es benötigen.
+Da **FastAPI** unter der Haube eigentlich **Starlette** ist, mit einer Ebene von mehreren Tools darüber, können Sie Starlettes <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a>-Objekt direkt verwenden, wenn Sie es benötigen.
 
 Das bedeutet allerdings auch, dass, wenn Sie Daten direkt vom `Request`-Objekt nehmen (z. B. dessen Body lesen), diese von FastAPI nicht validiert, konvertiert oder dokumentiert werden (mit OpenAPI, für die automatische API-Benutzeroberfläche).
 
@@ -45,7 +45,7 @@ Auf die gleiche Weise können Sie wie gewohnt jeden anderen Parameter deklariere
 
 ## `Request`-Dokumentation { #request-documentation }
 
-Weitere Details zum <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`-Objekt finden Sie in der offiziellen Starlette-Dokumentation</a>.
+Weitere Details zum <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`-Objekt finden Sie in der offiziellen Starlette-Dokumentation</a>.
 
 /// note | Technische Details
 

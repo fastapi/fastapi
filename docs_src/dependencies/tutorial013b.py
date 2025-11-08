@@ -30,9 +30,9 @@ async def get_database_connection():
         yield connection
 
 
-GlobalDatabaseConnection = Depends(get_database_connection, dependency_scope="lifespan")
+GlobalDatabaseConnection = Depends(get_database_connection, scope="lifespan")
 DedicatedDatabaseConnection = Depends(
-    get_database_connection, dependency_scope="lifespan", use_cache=False
+    get_database_connection, scope="lifespan", use_cache=False
 )
 
 

@@ -46,4 +46,4 @@
 
 ///
 
-사용 가능한 모든 매개변수와 옵션은 <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Starlette 문서</a>에서 확인할 수 있습니다.
+사용 가능한 모든 매개변수와 옵션은 <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Starlette 문서</a>에서 확인할 수 있습니다.

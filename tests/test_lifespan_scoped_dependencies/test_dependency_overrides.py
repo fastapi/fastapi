@@ -16,7 +16,7 @@ from fastapi import (
     Request,
     WebSocket,
 )
-from fastapi.exceptions import DependencyScopeConflict
+from fastapi.exceptions import DependencyScopeError
 from fastapi.params import Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
@@ -107,7 +107,7 @@ def test_endpoint_dependencies(
             None,
             Depends(
                 dependency_factory.get_dependency(),
-                dependency_scope="lifespan",
+                scope="lifespan",
                 use_cache=use_cache,
             ),
         ],
@@ -147,7 +147,7 @@ def test_router_dependencies(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -185,12 +185,12 @@ def test_router_dependencies(
 @pytest.mark.parametrize("use_cache", [True, False])
 @pytest.mark.parametrize("dependency_style", list(DependencyStyle))
 @pytest.mark.parametrize("routing_style", ["app", "router"])
-@pytest.mark.parametrize("main_dependency_scope", ["endpoint", "lifespan"])
+@pytest.mark.parametrize("main_dependency_scope", ["function", "request", "lifespan"])
 def test_dependency_cache_in_same_dependency(
     dependency_style: DependencyStyle,
     routing_style,
     use_cache,
-    main_dependency_scope: Literal["endpoint", "lifespan"],
+    main_dependency_scope: Literal["function", "request", "lifespan"],
     is_websocket,
 ):
     dependency_factory = DependencyFactory(dependency_style)
@@ -198,7 +198,7 @@ def test_dependency_cache_in_same_dependency(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -225,7 +225,7 @@ def test_dependency_cache_in_same_dependency(
             Depends(
                 dependency,
                 use_cache=use_cache,
-                dependency_scope=main_dependency_scope,
+                scope=main_dependency_scope,
             ),
         ],
     )
@@ -275,7 +275,7 @@ def test_dependency_cache_in_same_endpoint(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -344,7 +344,7 @@ def test_dependency_cache_in_different_endpoints(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 
@@ -425,7 +425,7 @@ def test_no_cached_dependency(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=False,
     )
 
@@ -495,11 +495,11 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_paramete
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[
-            None, Depends(dependency_func, dependency_scope="lifespan")
+            None, Depends(dependency_func, scope="lifespan")
         ],
     )
 
-    with pytest.raises(DependencyScopeConflict):
+    with pytest.raises(DependencyScopeError):
         with TestClient(app):
             pass
 
@@ -515,7 +515,7 @@ def test_non_override_lifespan_scoped_dependency_can_use_overridden_lifespan_sco
     async def lifespan_scoped_dependency(
         param: Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), dependency_scope="lifespan"),
+            Depends(dependency_factory.get_dependency(), scope="lifespan"),
         ],
     ) -> AsyncGenerator[int, None]:
         yield param
@@ -527,7 +527,7 @@ def test_non_override_lifespan_scoped_dependency_can_use_overridden_lifespan_sco
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[
-            int, Depends(lifespan_scoped_dependency, dependency_scope="lifespan")
+            int, Depends(lifespan_scoped_dependency, scope="lifespan")
         ],
     )
 
@@ -568,13 +568,13 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
         path="/test",
         is_websocket=is_websocket,
         annotation=Annotated[
-            None, Depends(dependency_func, dependency_scope="lifespan")
+            None, Depends(dependency_func, scope="lifespan")
         ],
     )
 
     app.dependency_overrides[dependency_func] = override_dependency_func
 
-    with pytest.raises(DependencyScopeConflict):
+    with pytest.raises(DependencyScopeError):
         with TestClient(app):
             pass
 
@@ -591,7 +591,7 @@ def test_bad_override_lifespan_scoped_dependencies(
 
     depends = Depends(
         dependency_factory.get_dependency(),
-        dependency_scope="lifespan",
+        scope="lifespan",
         use_cache=use_cache,
     )
 

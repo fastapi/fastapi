@@ -3,7 +3,7 @@ from __future__ import annotations
 from contextlib import AsyncExitStack
 from typing import TYPE_CHECKING, Any, Callable, Dict, List
 
-from fastapi.dependencies.models import LifespanDependant, LifespanDependantCacheKey
+from fastapi.dependencies.models import LifespanDependant, LifespanDependencyCacheKey
 from fastapi.dependencies.utils import solve_lifespan_dependant
 from fastapi.routing import APIRoute, APIWebSocketRoute
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:  # pragma: nocover
 
 
 def _get_lifespan_dependants(app: FastAPI) -> List[LifespanDependant]:
-    lifespan_dependants_cache: Dict[LifespanDependantCacheKey, LifespanDependant] = {}
+    lifespan_dependants_cache: Dict[LifespanDependencyCacheKey, LifespanDependant] = {}
     for route in app.router.routes:
         if not isinstance(route, (APIWebSocketRoute, APIRoute)):
             continue
@@ -28,9 +28,9 @@ def _get_lifespan_dependants(app: FastAPI) -> List[LifespanDependant]:
 
 async def resolve_lifespan_dependants(
     *, app: FastAPI, async_exit_stack: AsyncExitStack
-) -> Dict[LifespanDependantCacheKey, Callable[..., Any]]:
+) -> Dict[LifespanDependencyCacheKey, Callable[..., Any]]:
     lifespan_dependants = _get_lifespan_dependants(app)
-    dependency_cache: Dict[LifespanDependantCacheKey, Callable[..., Any]] = {}
+    dependency_cache: Dict[LifespanDependencyCacheKey, Callable[..., Any]] = {}
     for lifespan_dependant in lifespan_dependants:
         solved_dependency = await solve_lifespan_dependant(
             dependant=lifespan_dependant,

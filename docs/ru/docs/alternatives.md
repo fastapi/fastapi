@@ -417,7 +417,7 @@ Pydantic — это библиотека для определения вали�
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> { #starlette }
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
 Starlette — это лёгкий <abbr title="Новый стандарт построения асинхронных веб-сервисов Python">ASGI</abbr> фреймворк/набор инструментов, идеально подходящий для создания высокопроизводительных asyncio‑сервисов.
 
@@ -462,7 +462,7 @@ ASGI — это новый «стандарт», разрабатываемый 
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
 
 Uvicorn — молниеносный ASGI-сервер, построенный на uvloop и httptools.
 
