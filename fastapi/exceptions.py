@@ -147,11 +147,36 @@ class FastAPIError(RuntimeError):
     """
 
 
-class DependencyScopeError(FastAPIError):
+class DependencyError(FastAPIError):
+    """
+    A generic error regarding to dependencies.
+    """
+
+    pass
+
+
+class InvalidDependencyScope(DependencyError):
+    """
+    A dependency was declared with an unsupported scope value.
+    """
+
+    pass
+
+
+class DependencyScopeError(DependencyError):
     """
     A dependency declared that it depends on another dependency with an invalid
     (narrower) scope.
     """
+
+
+class UninitializedLifespanDependency(DependencyError):
+    """
+    A bug in FastAPI caused a lifespan-scoped dependency to not initialize properly
+    at the point where we handled a request that depended on it.
+    """
+
+    pass
 
 
 class ValidationException(Exception):

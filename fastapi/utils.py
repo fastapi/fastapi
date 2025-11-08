@@ -1,14 +1,19 @@
+import inspect
 import re
+import sys
 import warnings
 from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
+    Awaitable,
+    Callable,
     Dict,
     MutableMapping,
     Optional,
     Set,
     Type,
+    TypeVar,
     Union,
     cast,
 )
@@ -30,10 +35,20 @@ from fastapi._compat import (
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
-from typing_extensions import Literal
+from starlette.concurrency import run_in_threadpool
+from typing_extensions import Literal, ParamSpec, TypeIs
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
+
+
+_T = TypeVar("_T")
+_P = ParamSpec("_P")
 
 # Cache for `create_cloned_field`
 _CLONED_TYPES_CACHE: MutableMapping[Type[BaseModel], Type[BaseModel]] = (
@@ -252,3 +267,25 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def _is_coroutine_callable(
+    callable_: Union[Callable[..., _T], Callable[..., Awaitable[_T]]],
+) -> TypeIs[Callable[..., Awaitable[_T]]]:
+    if inspect.isroutine(callable_):
+        return iscoroutinefunction(callable_)
+    if inspect.isclass(callable_):
+        return False
+    dunder_call = getattr(callable_, "__call__", None)  # noqa: B004
+    return iscoroutinefunction(dunder_call)
+
+
+async def call_asynchronously(
+    callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
+    *args: _P.args,
+    **kwargs: _P.kwargs,
+) -> _T:
+    if _is_coroutine_callable(callable_):
+        return await callable_(*args, **kwargs)
+    else:
+        return await run_in_threadpool(callable_, *args, **kwargs)

@@ -1,6 +1,8 @@
+from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum
 from typing import (
     Any,
+    AsyncGenerator,
     Awaitable,
     Callable,
     Coroutine,
@@ -22,6 +24,7 @@ from fastapi.exception_handlers import (
     websocket_request_validation_exception_handler,
 )
 from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.lifespan import resolve_lifespan_dependants
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -31,8 +34,9 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.routing import merge_lifespan_context
 from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import generate_unique_id
+from fastapi.utils import call_asynchronously, generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
@@ -960,12 +964,26 @@ class FastAPI(Starlette):
                 """
             ),
         ] = {}
+        if lifespan is None:
+            lifespan = FastAPI._internal_lifespan
+        else:
+            lifespan = merge_lifespan_context(FastAPI._internal_lifespan, lifespan)
+
+        # Since we always use a lifespan, starlette will no longer run event
+        # handlers which are defined in the scope of the application.
+        # We therefore need to call them ourselves.
+        if on_startup is None:
+            on_startup = []
+
+        if on_shutdown is None:
+            on_shutdown = []
+        self._on_startup = list(on_startup)
+        self._on_shutdown = list(on_shutdown)
+
         self.router: routing.APIRouter = routing.APIRouter(
             routes=routes,
             redirect_slashes=redirect_slashes,
             dependency_overrides_provider=self,
-            on_startup=on_startup,
-            on_shutdown=on_shutdown,
             lifespan=lifespan,
             default_response_class=default_response_class,
             dependencies=dependencies,
@@ -1041,6 +1059,24 @@ class FastAPI(Starlette):
         for cls, args, kwargs in reversed(middleware):
             app = cls(app, *args, **kwargs)
         return app
+
+    @asynccontextmanager
+    async def _internal_lifespan(self) -> AsyncGenerator[Dict[str, Any], None]:
+        async with AsyncExitStack() as exit_stack:
+            lifespan_scoped_dependencies = await resolve_lifespan_dependants(
+                app=self, async_exit_stack=exit_stack
+            )
+            try:
+                for handler in self._on_startup:
+                    await call_asynchronously(handler)
+                yield {
+                    "__fastapi__": {
+                        "lifespan_scoped_dependencies": lifespan_scoped_dependencies
+                    }
+                }
+            finally:
+                for handler in self._on_shutdown:
+                    await call_asynchronously(handler)
 
     def openapi(self) -> Dict[str, Any]:
         """
@@ -4572,7 +4608,15 @@ class FastAPI(Starlette):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
-        return self.router.on_event(event_type)
+
+        def decorator(func: DecoratedCallable) -> DecoratedCallable:
+            if event_type == "startup":
+                self._on_startup.append(func)
+            else:
+                self._on_shutdown.append(func)
+            return func
+
+        return decorator
 
     def middleware(
         self,

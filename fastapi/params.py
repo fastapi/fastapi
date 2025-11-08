@@ -5,13 +5,15 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, Literal, deprecated
+from typing_extensions import Annotated, deprecated
 
 from ._compat import (
     PYDANTIC_V2,
     PYDANTIC_VERSION_MINOR_TUPLE,
     Undefined,
 )
+from .exceptions import InvalidDependencyScope
+from .types import DependencyScope, EndpointDependencyScope
 
 _Unset: Any = Undefined
 
@@ -766,9 +768,16 @@ class File(Form):  # type: ignore[misc]
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
-    scope: Union[Literal["function", "request"], None] = None
+    scope: DependencyScope = None
+
+    def __post_init__(self) -> None:
+        if self.scope not in ("lifespan", "request", "function", None):
+            raise InvalidDependencyScope(
+                f'Dependency received an invalid scope: "{self.scope}"'
+            )
 
 
 @dataclass
 class Security(Depends):
+    scope: EndpointDependencyScope = None
     scopes: Optional[Sequence[str]] = None
