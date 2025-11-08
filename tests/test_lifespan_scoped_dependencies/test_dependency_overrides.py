@@ -494,9 +494,7 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_paramete
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[
-            None, Depends(dependency_func, scope="lifespan")
-        ],
+        annotation=Annotated[None, Depends(dependency_func, scope="lifespan")],
     )
 
     with pytest.raises(DependencyScopeError):
@@ -567,9 +565,7 @@ def test_override_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependen
         router=app,
         path="/test",
         is_websocket=is_websocket,
-        annotation=Annotated[
-            None, Depends(dependency_func, scope="lifespan")
-        ],
+        annotation=Annotated[None, Depends(dependency_func, scope="lifespan")],
     )
 
     app.dependency_overrides[dependency_func] = override_dependency_func

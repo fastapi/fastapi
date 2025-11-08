@@ -773,7 +773,9 @@ class Depends:
 
     def __post_init__(self):
         if self.scope not in ("lifespan", "request", "function", None):
-            raise InvalidDependencyScope(f"Dependency received an invalid scope: \"{self.scope}\"")
+            raise InvalidDependencyScope(
+                f'Dependency received an invalid scope: "{self.scope}"'
+            )
 
 
 @dataclass

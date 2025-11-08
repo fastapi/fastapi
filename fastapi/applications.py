@@ -36,9 +36,8 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.routing import merge_lifespan_context
 from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import generate_unique_id, call_asynchronously
+from fastapi.utils import call_asynchronously, generate_unique_id
 from starlette.applications import Starlette
-from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
 from starlette.middleware import Middleware

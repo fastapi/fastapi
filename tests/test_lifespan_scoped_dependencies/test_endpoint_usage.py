@@ -453,9 +453,7 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_parameters(
             router=app,
             path="/test",
             is_websocket=is_websocket,
-            annotation=Annotated[
-                None, Depends(dependency_func, scope="lifespan")
-            ],
+            annotation=Annotated[None, Depends(dependency_func, scope="lifespan")],
         )
 
 
@@ -519,7 +517,9 @@ def test_the_same_dependency_can_work_in_different_scopes(
         is_websocket=is_websocket,
         annotation1=Annotated[
             int,
-            Depends(dependency_factory.get_dependency(), scope=endpoint_dependency_scope),
+            Depends(
+                dependency_factory.get_dependency(), scope=endpoint_dependency_scope
+            ),
         ],
         annotation2=Annotated[
             int,
@@ -659,9 +659,7 @@ def test_lifespan_scoped_dependency_cannot_use_endpoint_scoped_dependencies(
             router=app,
             path="/test",
             is_websocket=is_websocket,
-            annotation=Annotated[
-                None, Depends(dependency_func, scope="lifespan")
-            ],
+            annotation=Annotated[None, Depends(dependency_func, scope="lifespan")],
         )
 
 

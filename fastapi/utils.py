@@ -7,17 +7,17 @@ from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
+    Awaitable,
     Dict,
     MutableMapping,
     Optional,
     Set,
     Type,
+    TypeVar,
     Union,
-    cast, Awaitable, TypeVar,
+    cast,
 )
 from weakref import WeakKeyDictionary
-
-from starlette.concurrency import run_in_threadpool
 
 import fastapi
 from fastapi._compat import (
@@ -35,7 +35,8 @@ from fastapi._compat import (
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
-from typing_extensions import Literal, TypeIs, ParamSpec
+from starlette.concurrency import run_in_threadpool
+from typing_extensions import Literal, ParamSpec, TypeIs
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -269,7 +270,7 @@ def get_value_or_default(
 
 
 def _is_coroutine_callable(
-        callable_: Callable[..., Any]
+    callable_: Callable[..., Any],
 ) -> TypeIs[Callable[..., Awaitable[Any]]]:
     if inspect.isroutine(callable_):
         return iscoroutinefunction(callable_)
@@ -278,10 +279,11 @@ def _is_coroutine_callable(
     dunder_call = getattr(callable_, "__call__", None)  # noqa: B004
     return iscoroutinefunction(dunder_call)
 
+
 async def call_asynchronously(
-        callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
-        *args: _P.args,
-        **kwargs: _P.kwargs
+    callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
+    *args: _P.args,
+    **kwargs: _P.kwargs,
 ) -> _T:
     if _is_coroutine_callable(callable_):
         return await callable_(*args, **kwargs)
