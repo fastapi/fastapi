@@ -2,7 +2,6 @@ import inspect
 import re
 import sys
 import warnings
-from collections.abc import Callable
 from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
@@ -13,7 +12,10 @@ from typing import (
     Set,
     Type,
     Union,
-    cast, Awaitable, TypeVar,
+    cast,
+    Awaitable,
+    TypeVar,
+    Callable,
 )
 from weakref import WeakKeyDictionary
 
@@ -269,8 +271,8 @@ def get_value_or_default(
 
 
 def _is_coroutine_callable(
-        callable_: Callable[..., Any]
-) -> TypeIs[Callable[..., Awaitable[Any]]]:
+    callable_: Union[Callable[..., _T], Callable[..., Awaitable[_T]]],
+) -> TypeIs[Callable[..., Awaitable[_T]]]:
     if inspect.isroutine(callable_):
         return iscoroutinefunction(callable_)
     if inspect.isclass(callable_):
@@ -278,10 +280,11 @@ def _is_coroutine_callable(
     dunder_call = getattr(callable_, "__call__", None)  # noqa: B004
     return iscoroutinefunction(dunder_call)
 
+
 async def call_asynchronously(
-        callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
-        *args: _P.args,
-        **kwargs: _P.kwargs
+    callable_: Union[Callable[_P, _T], Callable[_P, Awaitable[_T]]],
+    *args: _P.args,
+    **kwargs: _P.kwargs,
 ) -> _T:
     if _is_coroutine_callable(callable_):
         return await callable_(*args, **kwargs)

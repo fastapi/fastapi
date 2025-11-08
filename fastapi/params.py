@@ -770,9 +770,11 @@ class Depends:
     use_cache: bool = True
     scope: DependencyScope = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if self.scope not in ("lifespan", "request", "function", None):
-            raise InvalidDependencyScope(f"Dependency received an invalid scope: \"{self.scope}\"")
+            raise InvalidDependencyScope(
+                f'Dependency received an invalid scope: "{self.scope}"'
+            )
 
 
 @dataclass

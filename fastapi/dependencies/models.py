@@ -11,7 +11,7 @@ from fastapi.types import (
     LifespanDependencyCacheKey,
     DependencyScope,
     LifespanDependencyScope,
-    EndpointDependencyScope
+    EndpointDependencyScope,
 )
 from typing_extensions import TypeAlias
 
@@ -77,6 +77,7 @@ class LifespanDependant(_BaseDependant):
                 "Lifespan dependency must have an associated name or index."
             )
             return self.caller, self.index
+
 
 @dataclass
 class EndpointDependant(_BaseDependant):

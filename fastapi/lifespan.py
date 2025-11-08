@@ -3,9 +3,10 @@ from __future__ import annotations
 from contextlib import AsyncExitStack
 from typing import TYPE_CHECKING, Any, Callable, Dict, List
 
-from fastapi.dependencies.models import LifespanDependant, LifespanDependencyCacheKey
+from fastapi.dependencies.models import LifespanDependant
 from fastapi.dependencies.utils import solve_lifespan_dependant
 from fastapi.routing import APIRoute, APIWebSocketRoute
+from fastapi.types import LifespanDependencyCacheKey
 
 if TYPE_CHECKING:  # pragma: nocover
     from fastapi import FastAPI
