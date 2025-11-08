@@ -10,6 +10,12 @@ from pydantic import BaseModel
 class State(BaseModel):
     app_startup: bool = False
     app_shutdown: bool = False
+    app_class_startup: bool = False
+    app_instance_startup: bool = False
+    app_instance_shutdown: bool = False
+    app_class_shutdown: bool = False
+    app_call_protocol_startup: bool = False
+    app_call_protocol_shutdown: bool = False
     router_startup: bool = False
     router_shutdown: bool = False
     sub_router_startup: bool = False
@@ -39,6 +45,26 @@ def test_router_events(state: State) -> None:
     def app_shutdown() -> None:
         state.app_shutdown = True
 
+    @app.on_event("startup")
+    class AppStartup:
+        def __init__(self) -> None:
+            state.app_class_startup = True
+
+        def __call__(self):
+            state.app_instance_startup = True
+
+    app.on_event("startup")(AppStartup.__new__(AppStartup))
+
+    @app.on_event("shutdown")
+    class AppShutdown:
+        def __init__(self):
+            state.app_class_shutdown = True
+
+        def __call__(self):
+            state.app_instance_shutdown = True
+
+    app.on_event("shutdown")(AppShutdown.__new__(AppShutdown))
+
     router = APIRouter()
 
     @router.on_event("startup")
@@ -63,25 +89,37 @@ def test_router_events(state: State) -> None:
     app.include_router(router)
 
     assert state.app_startup is False
+    assert state.app_class_startup is False
+    assert state.app_instance_startup is False
     assert state.router_startup is False
     assert state.sub_router_startup is False
     assert state.app_shutdown is False
+    assert state.app_class_shutdown is False
+    assert state.app_instance_shutdown is False
     assert state.router_shutdown is False
     assert state.sub_router_shutdown is False
     with TestClient(app) as client:
         assert state.app_startup is True
+        assert state.app_class_startup is True
+        assert state.app_instance_startup is True
         assert state.router_startup is True
         assert state.sub_router_startup is True
         assert state.app_shutdown is False
+        assert state.app_class_shutdown is False
+        assert state.app_instance_shutdown is False
         assert state.router_shutdown is False
         assert state.sub_router_shutdown is False
         response = client.get("/")
         assert response.status_code == 200, response.text
         assert response.json() == {"message": "Hello World"}
     assert state.app_startup is True
+    assert state.app_class_startup is True
+    assert state.app_instance_startup is True
     assert state.router_startup is True
     assert state.sub_router_startup is True
     assert state.app_shutdown is True
+    assert state.app_class_shutdown is True
+    assert state.app_instance_shutdown is True
     assert state.router_shutdown is True
     assert state.sub_router_shutdown is True
 
