@@ -7,11 +7,11 @@ from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
 from fastapi.types import (
-    EndpointDependencyCacheKey,
-    LifespanDependencyCacheKey,
     DependencyScope,
-    LifespanDependencyScope,
+    EndpointDependencyCacheKey,
     EndpointDependencyScope,
+    LifespanDependencyCacheKey,
+    LifespanDependencyScope,
 )
 from typing_extensions import TypeAlias
 

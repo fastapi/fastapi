@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, Literal, TypeAlias, deprecated
+from typing_extensions import Annotated, deprecated
 
 from ._compat import (
     PYDANTIC_V2,
@@ -13,7 +13,7 @@ from ._compat import (
     Undefined,
 )
 from .exceptions import InvalidDependencyScope
-from .types import EndpointDependencyScope, DependencyScope
+from .types import DependencyScope, EndpointDependencyScope
 
 _Unset: Any = Undefined
 

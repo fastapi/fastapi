@@ -6,16 +6,16 @@ from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
+    Awaitable,
+    Callable,
     Dict,
     MutableMapping,
     Optional,
     Set,
     Type,
+    TypeVar,
     Union,
     cast,
-    Awaitable,
-    TypeVar,
-    Callable,
 )
 from weakref import WeakKeyDictionary
 
