@@ -2,7 +2,7 @@
 
 ## Intro
 
-So far we've used dependencies which are evaluated once for every incoming request. However, 
+So far we've used dependencies which are evaluated once for every incoming request. However,
 this is not always ideal:
 
 * Sometimes dependencies have a large setup/teardown time. Running it for every request will result in bad performance.
@@ -19,7 +19,7 @@ For such cases can be solved by using "lifespan scoped dependencies".
 
 ## What is a lifespan scoped dependency?
 Lifespan scoped dependencies work similarly to the (endpoint scoped)
-dependencies we've worked with so far except for the following differences: 
+dependencies we've worked with so far except for the following differences:
 
 * Lifespan scoped dependencies will only be called once, during the application's startup process.
 * Lifespan scoped dependencies will share their values amongst all requests the application receives.
@@ -41,8 +41,8 @@ the exact same annotation in both endpoints. However, it is recommended that you
 do save the annotation to a variable so you won't accidentally forget to pass
 `scope="lifespan"` to some of the endpoints (Causing the endpoint
 to create a new database connection for every request).
-It will also be more intuitive to use the exact same annotation, reminding us that the 
-we are using the exact same value across all endpoints. 
+It will also be more intuitive to use the exact same annotation, reminding us that the
+we are using the exact same value across all endpoints.
 
 ///
 
@@ -57,20 +57,20 @@ shuts down, **FastAPI** will make sure to gracefully close the connection object
 The `use_cache` argument works similarly to the way it worked with endpoint
 scoped dependencies. Meaning, as **FastAPI** gathers lifespan scoped dependencies, it
 will cache dependencies it already encountered before. However, you can disable
-this behavior by passing `use_cache=False` to `Depends`. This will cause a new lifespan 
+this behavior by passing `use_cache=False` to `Depends`. This will cause a new lifespan
 dependency to be created for every endpoint/dependency/router where it shows up:
 
 {* ../../docs_src/dependencies/tutorial013b_an_py39.py *}
 
 In this example, we used a lifespan scoped dependency in a total of 4 places:
- 
+
 * The `read_item` endpoint (with `use_cache=True`)
 * The `read_items` endpoint (with `use_cache=True`)
 * The `read_users` endpoint (with `use_cache=False`)
 * The `read_groups` endpoint (with `use_cache=False`)
 
 Since the `read_item` and `read_items` endpoints enabled the cache, they will use the same connection.
-However, since the `read_user` and `read_groups` disabled the cache, each of them will receive a new, 
+However, since the `read_user` and `read_groups` disabled the cache, each of them will receive a new,
 dedicated connection for the application lifespan.
 
 In total, we will have 3 connections created for our application which will remain for its entire lifespan:
@@ -89,8 +89,8 @@ Endpoint scoped dependencies may use lifespan scoped sub dependencies as well:
 
 {* ../../docs_src/dependencies/tutorial013d_an_py39.py *}
 
-Here, we defined an endpoint-scoped dependency called `get_user_record` which will fetch 
-the information of the given user from the database. It uses a lifespan-scoped sub-dependency called 
+Here, we defined an endpoint-scoped dependency called `get_user_record` which will fetch
+the information of the given user from the database. It uses a lifespan-scoped sub-dependency called
 `get_database_connection`, which allows us to re-use the same connection each time the dependency is called.
 
 ## Dependency Scope Conflicts
