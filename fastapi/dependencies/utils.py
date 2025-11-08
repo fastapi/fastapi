@@ -59,7 +59,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
-from fastapi.types import EndpointDependencyCacheKey, LifespanDependencyCacheKey
+from fastapi.types import EndpointDependencyCacheKey, LifespanDependencyCacheKey, LifespanDependencyScope
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
@@ -143,6 +143,7 @@ def get_parameterless_sub_dependant(
             call=depends.dependency,
             use_cache=depends.use_cache,
             index=index,
+            scope=depends.scope,
         )
     else:
         raise InvalidDependencyScope(
@@ -247,6 +248,7 @@ def get_lifespan_dependant(
     *,
     caller: Callable[..., Any],
     call: Callable[..., Any],
+    scope: LifespanDependencyScope,
     name: Optional[str] = None,
     use_cache: bool = True,
     index: Optional[int] = None,
@@ -254,7 +256,7 @@ def get_lifespan_dependant(
     dependency_signature = get_typed_signature(call)
     signature_params = dependency_signature.parameters
     dependant = LifespanDependant(
-        call=call, name=name, use_cache=use_cache, caller=caller, index=index
+        call=call, name=name, use_cache=use_cache, caller=caller, index=index, scope=scope
     )
     for param_name, param in signature_params.items():
         param_details = analyze_param(
@@ -265,7 +267,7 @@ def get_lifespan_dependant(
         )
         if param_details.depends is None:
             raise DependencyScopeError(
-                f'Dependency "{dependant.name}" has "lifespan" scope, but was defined'
+                f'Dependency "{dependant.name}" has "{scope}" scope, but was defined'
                 f'with an invalid argument: "{param_name}" which is '
                 f'not a valid sub-dependency. Lifespan scoped dependencies may only '
                 f"use lifespan scoped sub-dependencies."
@@ -273,7 +275,7 @@ def get_lifespan_dependant(
 
         if param_details.depends.scope != "lifespan":
             raise DependencyScopeError(
-                f'Dependency "{dependant.name}" has "lifespan" scope, but was defined with the '
+                f'Dependency "{dependant.name}" has "{scope}" scope, but was defined with the '
                 f'sub-dependency "{param_name}" which has "{param_details.depends.scope}" scope. Lifespan scoped '
                 f'dependencies may only use lifespan scoped sub-dependencies.'
             )
@@ -285,6 +287,7 @@ def get_lifespan_dependant(
             call=param_details.depends.dependency,
             use_cache=param_details.depends.use_cache,
             caller=call,
+            scope=scope
         )
         dependant.dependencies.append(sub_dependant)
 
@@ -351,7 +354,8 @@ def get_endpoint_dependant(
                     call=param_details.depends.dependency,
                     name=param_name,
                     use_cache=param_details.depends.use_cache,
-                    index=index
+                    index=index,
+                    scope=param_details.depends.scope
                 ))
             elif param_details.depends.scope in ("request", "function", None):
                 dependant.endpoint_dependencies.append(get_endpoint_dependant(
@@ -672,6 +676,7 @@ async def solve_lifespan_dependant(
             name=dependant.name,
             use_cache=dependant.use_cache,
             index=dependant.index,
+            scope=dependant.scope
         )
 
     dependency_arguments: Dict[str, Any] = {}

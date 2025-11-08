@@ -13,10 +13,9 @@ from ._compat import (
     Undefined,
 )
 from .exceptions import InvalidDependencyScope
+from .types import EndpointDependencyScope, DependencyScope
 
 _Unset: Any = Undefined
-_EndpointDependencyScope: TypeAlias = Literal["request", "function"]
-DependencyScope: TypeAlias = Union[Literal["lifespan"], _EndpointDependencyScope]
 
 
 class ParamTypes(Enum):
@@ -769,7 +768,7 @@ class File(Form):  # type: ignore[misc]
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
-    scope: Union[DependencyScope, None] = None
+    scope: DependencyScope = None
 
     def __post_init__(self):
         if self.scope not in ("lifespan", "request", "function", None):
@@ -778,5 +777,5 @@ class Depends:
 
 @dataclass
 class Security(Depends):
-    scope: Union[_EndpointDependencyScope, None] = None
+    scope: EndpointDependencyScope = None
     scopes: Optional[Sequence[str]] = None
