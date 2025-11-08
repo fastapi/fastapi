@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.121.1
+
 ### Fixes
 
 * 🐛 Fix `Depends(func, scope='function')` for top level (parameterless) dependencies. PR [#14301](https://github.com/fastapi/fastapi/pull/14301) by [@luzzodev](https://github.com/luzzodev).
