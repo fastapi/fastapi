@@ -1,6 +1,5 @@
 from typing import Any, List
 
-import pytest
 from dirty_equals import IsOneOf
 from fastapi.params import Body, Cookie, Header, Param, Path, Query
 

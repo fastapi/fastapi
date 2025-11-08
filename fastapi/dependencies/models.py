@@ -2,7 +2,7 @@ import inspect
 import sys
 from dataclasses import dataclass, field
 from functools import cached_property
-from typing import Any, Callable, List, Optional, Sequence, Union, Tuple, cast
+from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase

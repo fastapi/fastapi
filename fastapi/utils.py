@@ -19,8 +19,6 @@ from typing import (
 )
 from weakref import WeakKeyDictionary
 
-from starlette.concurrency import run_in_threadpool
-
 import fastapi
 from fastapi._compat import (
     PYDANTIC_V2,
@@ -37,7 +35,8 @@ from fastapi._compat import (
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
-from typing_extensions import Literal, TypeIs, ParamSpec
+from starlette.concurrency import run_in_threadpool
+from typing_extensions import Literal, ParamSpec, TypeIs
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute

@@ -32,9 +32,7 @@ async def get_configuration() -> dict:
     }
 
 
-GlobalConfiguration = Annotated[
-    dict, Depends(get_configuration, scope="lifespan")
-]
+GlobalConfiguration = Annotated[dict, Depends(get_configuration, scope="lifespan")]
 
 
 async def get_database_connection(configuration: GlobalConfiguration):
