@@ -676,6 +676,52 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
+def _detect_route_conflicts(
+    new_route: "APIRoute",
+    existing_routes: Sequence[BaseRoute],
+) -> List[str]:
+    """
+    Detect and warn about route conflicts.
+
+    Checks if route patterns could shadow each other. Only warns when HTTP methods overlap.
+    """
+    import warnings
+
+    conflicts = []
+
+    if not isinstance(new_route, APIRoute):
+        return conflicts
+
+    for existing in existing_routes:
+        if not isinstance(existing, APIRoute):
+            continue
+
+        if not (new_route.methods & existing.methods):
+            continue
+
+        if new_route.path == existing.path:
+            continue
+
+        methods_str = ", ".join(sorted(new_route.methods))
+
+        if new_route.path_regex.match(existing.path):
+            conflicts.append(
+                f"Route {new_route.path} ({methods_str}) "
+                f"may shadow existing route {existing.path}"
+            )
+        elif existing.path_regex.match(new_route.path):
+            conflicts.append(
+                f"Route {new_route.path} ({methods_str}) "
+                f"may be shadowed by existing route {existing.path}"
+            )
+
+    if conflicts:
+        for conflict in conflicts:
+            warnings.warn(conflict, UserWarning, stacklevel=4)
+
+    return conflicts
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -1042,6 +1088,8 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
         )
+        # Detect and warn about potential route conflicts
+        _detect_route_conflicts(route, self.routes)
         self.routes.append(route)
 
     def api_route(
