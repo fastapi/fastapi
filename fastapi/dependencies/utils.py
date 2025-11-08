@@ -393,10 +393,6 @@ def get_endpoint_dependant(
     return dependant
 
 
-# Kept for backwards compatibility
-get_dependant = get_endpoint_dependant
-
-
 def add_non_field_param_to_dependency(
     *, param_name: str, type_annotation: Any, dependant: EndpointDependant
 ) -> Optional[bool]:
