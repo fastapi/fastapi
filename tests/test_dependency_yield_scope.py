@@ -2,7 +2,7 @@ import json
 from typing import Any, Tuple
 
 import pytest
-from fastapi import Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, HTTPException
 from fastapi.exceptions import FastAPIError
 from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
@@ -18,6 +18,11 @@ def dep_session() -> Any:
     s = Session()
     yield s
     s.open = False
+
+
+def raise_after_yield() -> Any:
+    yield
+    raise HTTPException(status_code=503, detail="Exception after yield")
 
 
 SessionFuncDep = Annotated[Session, Depends(dep_session, scope="function")]
@@ -64,6 +69,12 @@ RegularSessionsDep = Annotated[
 ]
 
 app = FastAPI()
+router = APIRouter()
+
+
+@router.get("/")
+def get_index():
+    return {"status": "ok"}
 
 
 @app.get("/function-scope")
@@ -124,6 +135,18 @@ def get_regular_function_scope(sessions: RegularSessionsDep) -> Any:
     return StreamingResponse(iter_data())
 
 
+app.include_router(
+    prefix="/router-scope-function",
+    router=router,
+    dependencies=[Depends(raise_after_yield, scope="function")],
+)
+
+app.include_router(
+    prefix="/router-scope-request",
+    router=router,
+    dependencies=[Depends(raise_after_yield, scope="request")],
+)
+
 client = TestClient(app)
 
 
@@ -182,3 +205,42 @@ def test_regular_function_scope() -> None:
     data = response.json()
     assert data["named_session_open"] is True
     assert data["session_open"] is False
+
+
+def test_router_level_dep_scope_function() -> None:
+    response = client.get("/router-scope-function/")
+    assert response.status_code == 503
+    assert response.json() == {"detail": "Exception after yield"}
+
+
+def test_router_level_dep_scope_request() -> None:
+    with TestClient(app, raise_server_exceptions=False) as client:
+        response = client.get("/router-scope-request/")
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
+
+
+def test_app_level_dep_scope_function() -> None:
+    app = FastAPI(dependencies=[Depends(raise_after_yield, scope="function")])
+
+    @app.get("/app-scope-function")
+    def get_app_scope_function():
+        return {"status": "ok"}
+
+    with TestClient(app) as client:
+        response = client.get("/app-scope-function")
+        assert response.status_code == 503
+        assert response.json() == {"detail": "Exception after yield"}
+
+
+def test_app_level_dep_scope_request() -> None:
+    app = FastAPI(dependencies=[Depends(raise_after_yield, scope="request")])
+
+    @app.get("/app-scope-request")
+    def get_app_scope_request():
+        return {"status": "ok"}
+
+    with TestClient(app, raise_server_exceptions=False) as client:
+        response = client.get("/app-scope-request")
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
