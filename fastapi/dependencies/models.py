@@ -27,13 +27,10 @@ class SecurityRequirement:
     scopes: Optional[Sequence[str]] = None
 
 
-@dataclass(kw_only=True, slots=True)
+@dataclass
 class _BaseDependant:
-    name: Optional[str] = None
-    index: Optional[int] = None
-    call: Optional[Callable[..., Any]] = None
-    scope: DependencyScope = None
-    use_cache: bool = True
+    call: Optional[Callable[..., Any]]
+    scope: DependencyScope
 
     @cached_property
     def is_gen_callable(self) -> bool:
@@ -65,6 +62,9 @@ class LifespanDependant(_BaseDependant):
     caller: Callable[..., Any]
     call: Callable[..., Any]
     dependencies: List["LifespanDependant"] = field(default_factory=list)
+    use_cache: bool = True
+    name: Optional[str] = None
+    index: Optional[int] = None
 
     @cached_property
     def cache_key(self) -> LifespanDependencyCacheKey:
@@ -81,6 +81,10 @@ class LifespanDependant(_BaseDependant):
 
 @dataclass
 class EndpointDependant(_BaseDependant):
+    name: Optional[str] = None
+    index: Optional[int] = None
+    call: Optional[Callable[..., Any]] = None
+    use_cache: bool = True
     scope: EndpointDependencyScope = None
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
