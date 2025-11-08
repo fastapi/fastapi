@@ -184,6 +184,51 @@ Wenn Sie in dem Code der *Pfadoperation-Funktion* irgendeine Exception auslösen
 
 ///
 
+## Frühzeitig beenden und `scope` { #early-exit-and-scope }
+
+Normalerweise wird der Exit-Code von Abhängigkeiten mit `yield` ausgeführt **nachdem die Response** an den Client gesendet wurde.
+
+Wenn Sie aber wissen, dass Sie die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* nicht mehr benötigen, können Sie `Depends(scope="function")` verwenden, um FastAPI mitzuteilen, dass es die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* schließen soll, jedoch **bevor** die **Response gesendet wird**.
+
+{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+
+`Depends()` erhält einen `scope`-Parameter, der sein kann:
+
+* `"function"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet, beendet die Abhängigkeit nach dem Ende der *Pfadoperation-Funktion*, aber **bevor** die Response an den Client zurückgesendet wird. Die Abhängigkeitsfunktion wird also **um** die *Pfadoperation-**Funktion*** herum ausgeführt.
+* `"request"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet (ähnlich wie bei `"function"`), beendet sie jedoch **nachdem** die Response an den Client zurückgesendet wurde. Die Abhängigkeitsfunktion wird also **um** den **Request**- und Response-Zyklus herum ausgeführt.
+
+Wenn nicht angegeben und die Abhängigkeit `yield` hat, hat sie standardmäßig einen `scope` von `"request"`.
+
+### `scope` für Unterabhängigkeiten { #scope-for-sub-dependencies }
+
+Wenn Sie eine Abhängigkeit mit `scope="request"` (dem Default) deklarieren, muss jede Unterabhängigkeit ebenfalls einen `scope` von `"request"` haben.
+
+Eine Abhängigkeit mit `scope` von `"function"` kann jedoch Abhängigkeiten mit `scope` von `"function"` und `scope` von `"request"` haben.
+
+Das liegt daran, dass jede Abhängigkeit in der Lage sein muss, ihren Exit-Code vor den Unterabhängigkeiten auszuführen, da sie diese während ihres Exit-Codes möglicherweise noch verwenden muss.
+
+```mermaid
+sequenceDiagram
+
+participant client as Client
+participant dep_req as Abhängigkeit scope="request"
+participant dep_func as Abhängigkeit scope="function"
+participant operation as Pfadoperation
+
+    client ->> dep_req: Startet den Request
+    Note over dep_req: Führt den Code bis zum yield aus
+    dep_req ->> dep_func: Reicht Abhängigkeit weiter
+    Note over dep_func: Führt den Code bis zum yield aus
+    dep_func ->> operation: Führt Pfadoperation mit Abhängigkeit aus
+    operation ->> dep_func: Kehrt aus Pfadoperation zurück
+    Note over dep_func: Führt Code nach yield aus
+    Note over dep_func: ✅ Abhängigkeit geschlossen
+    dep_func ->> client: Sendet Response an Client
+    Note over client: Response gesendet
+    Note over dep_req: Führt Code nach yield aus
+    Note over dep_req: ✅ Abhängigkeit geschlossen
+```
+
 ## Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 Abhängigkeiten mit `yield` haben sich im Laufe der Zeit weiterentwickelt, um verschiedene Anwendungsfälle abzudecken und einige Probleme zu beheben.
