@@ -111,7 +111,6 @@ nav:
     - Path:
       - tutorial/path-params.md
       - tutorial/path-params-numeric-validations.md
-      - tutorial/path-operation-configuration.md
     - Query:
       - tutorial/query-params.md
       - tutorial/query-params-str-validations.md
@@ -139,6 +138,7 @@ nav:
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
     - tutorial/handling-errors.md
+    - tutorial/path-operation-configuration.md
     - tutorial/encoder.md
     - Dependencies:
       - tutorial/dependencies/index.md
