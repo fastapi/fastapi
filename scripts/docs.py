@@ -297,7 +297,7 @@ def live(
     if dirty:
         args.append("--dirty")
     subprocess.run(
-        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+        args, env={**os.environ, "LINENUMS": "true", "PYTHONUTF8": "1"}, cwd=lang_path, check=True
     )
 
 
