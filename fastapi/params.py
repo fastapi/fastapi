@@ -762,13 +762,13 @@ class File(Form):  # type: ignore[misc]
         )
 
 
-@dataclass
+@dataclass(unsafe_hash=True)
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
     scope: Union[Literal["function", "request"], None] = None
 
 
-@dataclass
+@dataclass(unsafe_hash=True)
 class Security(Depends):
     scopes: Optional[Sequence[str]] = None
