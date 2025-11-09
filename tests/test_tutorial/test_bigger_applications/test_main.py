@@ -1,4 +1,5 @@
 import importlib
+import warnings
 
 import pytest
 from dirty_equals import IsDict
@@ -16,9 +17,21 @@ from ...utils import needs_py39
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.bigger_applications.{request.param}")
+    # Suppress route conflict warnings.
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message="Route .* may shadow existing route .*",
+            category=UserWarning,
+        )
+        warnings.filterwarnings(
+            "ignore",
+            message="Route .* may be shadowed by existing route .*",
+            category=UserWarning,
+        )
+        mod = importlib.import_module(f"docs_src.bigger_applications.{request.param}")
 
-    client = TestClient(mod.app)
+        client = TestClient(mod.app)
     return client
 
 
