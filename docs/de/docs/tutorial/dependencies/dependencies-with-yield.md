@@ -184,7 +184,7 @@ Wenn Sie in dem Code der *Pfadoperation-Funktion* irgendeine Exception auslösen
 
 ///
 
-## Frühzeitig beenden und `scope` { #early-exit-and-scope }
+## Frühes Beenden und `scope` { #early-exit-and-scope }
 
 Normalerweise wird der Exit-Code von Abhängigkeiten mit `yield` ausgeführt **nachdem die Response** an den Client gesendet wurde.
 
@@ -194,8 +194,8 @@ Wenn Sie aber wissen, dass Sie die Abhängigkeit nach der Rückkehr aus der *Pfa
 
 `Depends()` erhält einen `scope`-Parameter, der sein kann:
 
-* `"function"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet, beendet die Abhängigkeit nach dem Ende der *Pfadoperation-Funktion*, aber **bevor** die Response an den Client zurückgesendet wird. Die Abhängigkeitsfunktion wird also **um** die *Pfadoperation-**Funktion*** herum ausgeführt.
-* `"request"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet (ähnlich wie bei `"function"`), beendet sie jedoch **nachdem** die Response an den Client zurückgesendet wurde. Die Abhängigkeitsfunktion wird also **um** den **Request**- und Response-Zyklus herum ausgeführt.
+* `"function"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet, beendet die Abhängigkeit nach dem Ende der *Pfadoperation-Funktion*, aber **bevor** die Response an den Client zurückgesendet wird. Die Abhängigkeitsfunktion wird also **um** die *Pfadoperation-**Funktion*** **herum** ausgeführt.
+* `"request"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet (ähnlich wie bei `"function"`), beendet sie jedoch **nachdem** die Response an den Client zurückgesendet wurde. Die Abhängigkeitsfunktion wird also **um** den **Request**- und Response-Zyklus **herum** ausgeführt.
 
 Wenn nicht angegeben und die Abhängigkeit `yield` hat, hat sie standardmäßig einen `scope` von `"request"`.
 
