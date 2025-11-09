@@ -2,13 +2,17 @@ from fastapi.testclient import TestClient
 
 from docs_src.behind_a_proxy.tutorial001 import app
 
-client = TestClient(app, root_path="/api/v1")
+client = TestClient(app, base_url="http://example.com/api/v1", root_path="/api/v1")
 
 
 def test_main():
     response = client.get("/app")
     assert response.status_code == 200
-    assert response.json() == {"message": "Hello World", "root_path": "/api/v1"}
+    assert response.json() == {
+        "message": "Hello World",
+        "path": "/api/v1/app",
+        "root_path": "/api/v1"
+    }
 
 
 def test_openapi():
