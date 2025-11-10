@@ -11,7 +11,7 @@ from fastapi._compat import PYDANTIC_V2, Undefined
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, ValidationError
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv2
 
 
 class Person:
@@ -149,29 +149,6 @@ def test_encode_custom_json_encoders_model_pydanticv2():
     assert jsonable_encoder(subclass_model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
-# TODO: remove when deprecating Pydantic v1
-@needs_pydanticv1
-def test_encode_custom_json_encoders_model_pydanticv1():
-    class ModelWithCustomEncoder(BaseModel):
-        dt_field: datetime
-
-        class Config:
-            json_encoders = {
-                datetime: lambda dt: dt.replace(
-                    microsecond=0, tzinfo=timezone.utc
-                ).isoformat()
-            }
-
-    class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
-        class Config:
-            pass
-
-    model = ModelWithCustomEncoder(dt_field=datetime(2019, 1, 1, 8))
-    assert jsonable_encoder(model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
-    subclass_model = ModelWithCustomEncoderSubclass(dt_field=datetime(2019, 1, 1, 8))
-    assert jsonable_encoder(subclass_model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
-
-
 def test_encode_model_with_config():
     model = ModelWithConfig(role=RoleEnum.admin)
     assert jsonable_encoder(model) == {"role": "admin"}
@@ -203,26 +180,6 @@ def test_encode_model_with_default():
         "bar": "bar",
         "bla": "bla",
     }
-
-
-@needs_pydanticv1
-def test_custom_encoders():
-    class safe_datetime(datetime):
-        pass
-
-    class MyModel(BaseModel):
-        dt_field: safe_datetime
-
-    instance = MyModel(dt_field=safe_datetime.now())
-
-    encoded_instance = jsonable_encoder(
-        instance, custom_encoder={safe_datetime: lambda o: o.strftime("%H:%M:%S")}
-    )
-    assert encoded_instance["dt_field"] == instance.dt_field.strftime("%H:%M:%S")
-
-    encoded_instance2 = jsonable_encoder(instance)
-    assert encoded_instance2["dt_field"] == instance.dt_field.isoformat()
-
 
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
@@ -283,15 +240,6 @@ def test_encode_model_with_pure_windows_path():
 
     obj = ModelWithPath(path=PureWindowsPath("/foo", "bar"))
     assert jsonable_encoder(obj) == {"path": "\\foo\\bar"}
-
-
-@needs_pydanticv1
-def test_encode_root():
-    class ModelWithRoot(BaseModel):
-        __root__: str
-
-    model = ModelWithRoot(__root__="Foo")
-    assert jsonable_encoder(model) == "Foo"
 
 
 @needs_pydanticv2
