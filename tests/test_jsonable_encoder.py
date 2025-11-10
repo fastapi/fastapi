@@ -181,6 +181,7 @@ def test_encode_model_with_default():
         "bla": "bla",
     }
 
+
 def test_custom_enum_encoders():
     def custom_enum_encoder(v: Enum):
         return v.value.lower()
