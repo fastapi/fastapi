@@ -350,7 +350,13 @@ def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
     return list(model.__fields__.values())  # type: ignore[attr-defined]
 
 
-def ignore_invalid(cls, v, values, field, **kwargs) -> Any:
+def ignore_invalid(
+    cls: Any,
+    v: Dict[str, Any],
+    values: Dict[str, Any],
+    field: ModelField,
+    **kwargs: Any,
+) -> Any:
     from .may_v1 import _regenerate_error_with_loc
 
     field_copy = deepcopy(field)
@@ -398,6 +404,8 @@ def ignore_invalid(cls, v, values, field, **kwargs) -> Any:
     return v
 
 
-def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict]:
+def omit_by_default(
+    field_info: FieldInfo,
+) -> Tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
     """add a wrap validator to omit invalid values by default."""
     return field_info, {"ignore_invalid": Validator(ignore_invalid, pre=True)}

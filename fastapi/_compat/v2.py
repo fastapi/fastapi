@@ -493,7 +493,7 @@ def get_long_model_name(model: TypeModelOrEnum) -> str:
 if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
     # Omit by default for scalar mapping and scalar sequence mapping annotations
     # added in Pydantic v2.6 https://github.com/pydantic/pydantic/releases/tag/v2.6.0
-    def _omit_by_default(annotation):
+    def _omit_by_default(annotation: Any) -> Any:
         origin = getattr(annotation, "__origin__", None)
         args = getattr(annotation, "__args__", ())
 
@@ -501,13 +501,15 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
             new_args = tuple(_omit_by_default(arg) for arg in args)
             return Union[new_args]
         elif origin in (list, List):
-            return List[_omit_by_default(args[0])]
+            return List[_omit_by_default(args[0])]  # type: ignore[misc]
         elif origin in (dict, Dict):
-            return Dict[args[0], _omit_by_default(args[1])]
+            return Dict[args[0], _omit_by_default(args[1])]  # type: ignore[misc,valid-type]
         else:
-            return OnErrorOmit[annotation]
+            return OnErrorOmit[annotation]  # type: ignore[misc]
 
-    def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict]:
+    def omit_by_default(
+        field_info: FieldInfo,
+    ) -> tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
         new_annotation = _omit_by_default(field_info.annotation)
         new_field_info = copy_field_info(
             field_info=field_info, annotation=new_annotation
@@ -554,7 +556,9 @@ else:
 
             return handler(v)
 
-    def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict]:
+    def omit_by_default(
+        field_info: FieldInfo,
+    ) -> tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
         """add a wrap validator to omit invalid values by default."""
         field_info.metadata = field_info.metadata or [] + [
             WrapValidator(ignore_invalid)

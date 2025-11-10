@@ -506,7 +506,7 @@ def analyze_param(
         field_info.alias = alias
 
         # Omit by default for scalar mapping and scalar sequence mapping query fields
-        class_validators: dict[str, list[Any]] = {}
+        class_validators: Dict[str, Callable[..., Any]] = {}
         if isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)) and (
             field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
             or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
