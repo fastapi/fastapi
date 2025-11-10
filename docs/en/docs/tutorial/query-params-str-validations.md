@@ -257,12 +257,12 @@ For example, you might try:
 q: Annotated[str | None, Query(min_length=3)] = ...
 ```
 
-But this will still expect a **string** value, and if the client omits `q` or tries to send `q=None`, FastAPI will raise a validation error.
+But this will still expect a **string** value, and if the client omits `q` or tries to send `q=None`, FastAPI will raise a **request validation error**.
 In other words, `None` is not an acceptable runtime value for query parameters — only strings are.
 
 If you want to accept special values (like `"None"` or an empty string) and interpret them as `None` in your application, you can handle them manually in your function:
 
-{* ../../docs_src/query_params_str_validations/tutorial006d_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006d_an_py310.py hl[9,11] *}
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
