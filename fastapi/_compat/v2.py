@@ -510,10 +510,13 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
     def omit_by_default(field_info: FieldInfo) -> FieldInfo:
         """Set omit by default on a FieldInfo's annotation."""
         new_annotation = _omit_by_default(field_info.annotation)
-        new_field_info = copy_field_info(field_info=field_info, annotation=new_annotation)
+        new_field_info = copy_field_info(
+            field_info=field_info, annotation=new_annotation
+        )
         return new_field_info
 
 else:
+
     def ignore_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
         try:
             return handler(v)
@@ -531,7 +534,12 @@ else:
                 # Handle nested list validation errors (e.g., dict[str, list[str]])
                 elif isinstance(loc[0], str) and isinstance(v, dict):
                     key = loc[0]
-                    if len(loc) > 1 and isinstance(loc[1], int) and key in v and isinstance(v[key], list):
+                    if (
+                        len(loc) > 1
+                        and isinstance(loc[1], int)
+                        and key in v
+                        and isinstance(v[key], list)
+                    ):
                         list_index = loc[1]
                         v[key][list_index] = None
                     elif key in v:
@@ -549,5 +557,7 @@ else:
 
     def omit_by_default(field_info: FieldInfo) -> FieldInfo:
         """add a wrap validator to omit invalid values by default."""
-        field_info.metadata = field_info.metadata or [] + [WrapValidator(ignore_invalid)]
+        field_info.metadata = field_info.metadata or [] + [
+            WrapValidator(ignore_invalid)
+        ]
         return field_info

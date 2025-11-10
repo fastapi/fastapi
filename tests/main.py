@@ -1,5 +1,5 @@
 import http
-from typing import Dict, FrozenSet, List, Optional, Union
+from typing import Dict, FrozenSet, List, Optional
 
 from fastapi import FastAPI, Path, Query
 

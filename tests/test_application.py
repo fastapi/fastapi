@@ -55,7 +55,7 @@ def test_enum_status_code_response():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json()["paths"] == {
+    assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "externalDocs": {
@@ -986,7 +986,10 @@ def test_openapi_schema():
                             "required": False,
                             "schema": IsDict(
                                 {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                    "anyOf": [
+                                        {"type": "integer"},
+                                        {"type": "null"},
+                                    ],
                                     "title": "Query",
                                 }
                             )
@@ -1520,4 +1523,4 @@ def test_openapi_schema():
                 },
             }
         },
-    }["paths"]
+    }
