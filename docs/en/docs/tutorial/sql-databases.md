@@ -55,7 +55,7 @@ Later we'll improve it increasing security and versatility with **multiple model
 
 Import `SQLModel` and create a database model:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:12] hl[8:12] *}
 
 The `Hero` class is very similar to a Pydantic model (in fact, underneath, it actually *is a Pydantic model*).
 
@@ -77,7 +77,7 @@ A SQLModel `engine` (underneath it's actually a SQLAlchemy `engine`) is what **h
 
 You would have **one single `engine` object** for all your code to connect to the same database.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[15:19] hl[15:16,18:19] *}
 
 Using `check_same_thread=False` allows FastAPI to use the same SQLite database in different threads. This is necessary as **one single request** could use **more than one thread** (for example in dependencies).
 
@@ -87,7 +87,7 @@ Don't worry, with the way the code is structured, we'll make sure we use **a sin
 
 We then add a function that uses `SQLModel.metadata.create_all(engine)` to **create the tables** for all the *table models*.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[22:23] hl[22:23] *}
 
 ### Create a Session Dependency { #create-a-session-dependency }
 
@@ -97,15 +97,17 @@ We will create a FastAPI **dependency** with `yield` that will provide a new `Se
 
 Then we create an `Annotated` dependency `SessionDep` to simplify the rest of the code that will use this dependency.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[26:31]  hl[26:28,31] *}
 
 ### Create Database Tables on Startup { #create-database-tables-on-startup }
 
 We will create the database tables when the application starts.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[34:40] hl[34:37,40] *}
 
-Here we create the tables on an application startup event.
+Here we create the tables on an application startup using the `lifespan` function.
+
+You can read more about it in the [Lifespan Events](../advanced/events.md){.internal-link target=_blank}.
 
 For production you would probably use a migration script that runs before you start your app. 🤓
 
@@ -123,7 +125,7 @@ For example, if you declare a parameter of type `Hero`, it will be read from the
 
 The same way, you can declare it as the function's **return type**, and then the shape of the data will show up in the automatic API docs UI.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[43:48] hl[43:48] *}
 
 Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to the `Session` instance, commit the changes to the database, refresh the data in the `hero`, and then return it.
 
@@ -131,19 +133,19 @@ Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to t
 
 We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[51:58] hl[54:55,57] *}
 
 ### Read One Hero { #read-one-hero }
 
 We can **read** a single `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[61:66] hl[63] *}
 
 ### Delete a Hero { #delete-a-hero }
 
 We can also **delete** a `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[69:76] hl[74] *}
 
 ### Run the App { #run-the-app }
 

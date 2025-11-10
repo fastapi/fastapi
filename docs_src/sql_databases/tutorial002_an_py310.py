@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Query
@@ -45,12 +46,15 @@ def get_session():
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
-app = FastAPI()
 
 
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     create_db_and_tables()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/heroes/", response_model=HeroPublic)
