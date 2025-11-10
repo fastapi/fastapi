@@ -509,7 +509,7 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
 
     def omit_by_default(
         field_info: FieldInfo,
-    ) -> tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
+    ) -> Tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
         new_annotation = _omit_by_default(field_info.annotation)
         new_field_info = copy_field_info(
             field_info=field_info, annotation=new_annotation
@@ -558,7 +558,7 @@ else:
 
     def omit_by_default(
         field_info: FieldInfo,
-    ) -> tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
+    ) -> Tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
         """add a wrap validator to omit invalid values by default."""
         field_info.metadata = field_info.metadata or [] + [
             WrapValidator(ignore_invalid)
