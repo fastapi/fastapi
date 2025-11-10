@@ -129,7 +129,10 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     if isinstance(depends, params.Security) and depends.scopes:
         use_security_scopes.extend(depends.scopes)
     return get_dependant(
-        path=path, call=depends.dependency, security_scopes=use_security_scopes
+        path=path,
+        call=depends.dependency,
+        scope=depends.scope,
+        security_scopes=use_security_scopes,
     )
 
 
