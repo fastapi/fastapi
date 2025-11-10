@@ -559,9 +559,8 @@ async def _solve_generator(
         dependency_name = getattr(call, "__name__", "(unknown)")
         raise FastAPIError(
             f"Dependency {dependency_name} raised: {ex}. There's a high chance that "
-            "this is a dependency with yield that has a block with a bare except, or a "
-            "block with except Exception, and is not raising the exception again. Read "
-            "more about it in the docs: "
+            "this is a dependency with yield that catches an exception using except, "
+            "but doesn't raise the exception again. Read more about it in the docs: "
             "https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield"
             "/#dependencies-with-yield-and-except"
         ) from ex
