@@ -193,7 +193,9 @@ def get_query_param_required_type(query: int = Query()):
 def get_mapping_query_params(queries: Dict[str, str] = Query({})):
     return {"queries": queries}
 
+
 from pydantic import OnErrorOmit
+
 
 @app.get("/query/mixed-params")
 def get_mixed_mapping_query_params(
@@ -209,8 +211,11 @@ def get_mixed_mapping_query_params(
         }
     }
 
+
 @app.get("/query/mapping-sequence-params")
-def get_sequence_mapping_query_params(queries: Dict[str, List[OnErrorOmit[int]]] = Query({})):
+def get_sequence_mapping_query_params(
+    queries: Dict[str, List[OnErrorOmit[int]]] = Query({}),
+):
     return {"queries": queries}
 
 

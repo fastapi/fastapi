@@ -426,10 +426,12 @@ def test_mapping_query():
     assert response.status_code == 200
     assert response.json() == {"queries": {"bar": "buzz", "foo": "fuzz"}}
 
+
 def test_sequence_mapping_query():
     response = client.get("/query/mapping-sequence-params/?foo=1&foo=2")
     assert response.status_code == 200
     assert response.json() == {"queries": {"foo": [1, 2]}}
+
 
 def test_mapping_with_non_mapping_query():
     response = client.get("/query/mixed-params/?foo=fuzz&foo=baz&bar=buzz&query=fizz")
