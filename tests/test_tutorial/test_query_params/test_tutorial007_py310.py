@@ -1,9 +1,10 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from tests.utils import needs_py310
 
 
-@needs_py310
+@pytest.fixture(name="client", marks=[needs_py310])
 def get_client():
     from docs_src.query_params.tutorial007_py310 import app
 
