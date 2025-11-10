@@ -207,11 +207,31 @@ def get_definitions(
     override_mode: Union[Literal["validation"], None] = (
         None if separate_input_output_schemas else "validation"
     )
-    flat_models = get_flat_models_from_fields(fields, known_models=set())
-    flat_model_fields = [
-        ModelField(field_info=FieldInfo(annotation=model), name=model.__name__)
-        for model in flat_models
+    validation_fields = [field for field in fields if field.mode == "validation"]
+    serialization_fields = [field for field in fields if field.mode == "serialization"]
+    flat_validation_models = get_flat_models_from_fields(
+        validation_fields, known_models=set()
+    )
+    flat_serialization_models = get_flat_models_from_fields(
+        serialization_fields, known_models=set()
+    )
+    flat_validation_model_fields = [
+        ModelField(
+            field_info=FieldInfo(annotation=model),
+            name=model.__name__,
+            mode="validation",
+        )
+        for model in flat_validation_models
     ]
+    flat_serialization_model_fields = [
+        ModelField(
+            field_info=FieldInfo(annotation=model),
+            name=model.__name__,
+            mode="serialization",
+        )
+        for model in flat_serialization_models
+    ]
+    flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
     input_types = {f.type_ for f in fields}
     unique_flat_model_fields = {
         f for f in flat_model_fields if f.type_ not in input_types
