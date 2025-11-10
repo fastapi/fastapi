@@ -1,7 +1,9 @@
-from fastapi import FastAPI, Query
 from typing import Annotated
 
+from fastapi import FastAPI, Query
+
 app = FastAPI()
+
 
 @app.get("/items/")
 async def read_items(q: Annotated[str | None, Query()] = ...):
