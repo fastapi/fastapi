@@ -1,4 +1,5 @@
-from typing import Annotated, Optional, Union
+from typing import Optional, Union
+from typing_extensions import Annotated
 
 from fastapi import FastAPI, Query
 from pydantic import BeforeValidator
