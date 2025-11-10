@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import (
     Any,
+    Callable,
     Dict,
     List,
     Sequence,
@@ -18,7 +19,7 @@ from typing import (
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap
-from pydantic import BaseModel, TypeAdapter, create_model
+from pydantic import BaseModel, OnErrorOmit, TypeAdapter, WrapValidator, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -487,3 +488,66 @@ def get_flat_models_from_fields(
 
 def get_long_model_name(model: TypeModelOrEnum) -> str:
     return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
+
+
+if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
+    # Omit by default for scalar mapping and scalar sequence mapping annotations
+    # added in Pydantic v2.6 https://github.com/pydantic/pydantic/releases/tag/v2.6.0
+    def _omit_by_default(annotation):
+        origin = getattr(annotation, "__origin__", None)
+        args = getattr(annotation, "__args__", ())
+
+        if origin is Union:
+            new_args = tuple(_omit_by_default(arg) for arg in args)
+            return Union[new_args]
+        elif origin in (list, List):
+            return List[_omit_by_default(args[0])]
+        elif origin in (dict, Dict):
+            return Dict[args[0], _omit_by_default(args[1])]
+        else:
+            return OnErrorOmit[annotation]
+
+    def omit_by_default(field_info: FieldInfo) -> FieldInfo:
+        """Set omit by default on a FieldInfo's annotation."""
+        new_annotation = _omit_by_default(field_info.annotation)
+        new_field_info = copy_field_info(field_info=field_info, annotation=new_annotation)
+        return new_field_info
+
+else:
+    def ignore_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
+        try:
+            return handler(v)
+        except ValidationError as exc:
+            # pop the keys or elements that caused the validation errors and revalidate
+            for error in exc.errors():
+                loc = error["loc"]
+                if len(loc) == 0:
+                    continue
+                if isinstance(loc[0], int) and isinstance(v, list):
+                    index = loc[0]
+                    if 0 <= index < len(v):
+                        v[index] = None
+
+                # Handle nested list validation errors (e.g., dict[str, list[str]])
+                elif isinstance(loc[0], str) and isinstance(v, dict):
+                    key = loc[0]
+                    if len(loc) > 1 and isinstance(loc[1], int) and key in v and isinstance(v[key], list):
+                        list_index = loc[1]
+                        v[key][list_index] = None
+                    elif key in v:
+                        v.pop(key)
+
+            if isinstance(v, list):
+                v = [el for el in v if el is not None]
+
+            if isinstance(v, dict):
+                for key in v.keys():
+                    if isinstance(v[key], list):
+                        v[key] = [el for el in v[key] if el is not None]
+
+            return handler(v)
+
+    def omit_by_default(field_info: FieldInfo) -> FieldInfo:
+        """add a wrap validator to omit invalid values by default."""
+        field_info.metadata = field_info.metadata or [] + [WrapValidator(ignore_invalid)]
+        return field_info

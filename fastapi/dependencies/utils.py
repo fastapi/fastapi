@@ -505,11 +505,12 @@ def analyze_param(
 
         field_info.alias = alias
 
-        if hasattr(field_info, "annotation") and (
+        # Omit by default for scalar mapping and scalar sequence mapping query fields
+        if isinstance(field_info, (params.Query)) and (
             field_annotation_is_scalar_sequence_mapping(field_info.annotation)
             or field_annotation_is_scalar_mapping(field_info.annotation)
         ):
-            field_info.annotation = omit_by_default(field_info.annotation)
+            field_info = omit_by_default(field_info)
 
         field = create_model_field(
             name=param_name,

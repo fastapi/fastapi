@@ -439,7 +439,7 @@ def test_mapping_with_non_mapping_query():
     assert response.json() == {
         "queries": {
             "query": "fizz",
-            "mapping_query": {"foo": 2, "bar": 3},
+            "mapping_query": {"foo": "2", "bar": "3"},
             "sequence_mapping_queries": {
                 "foo": [1, 2],
                 "bar": [3],

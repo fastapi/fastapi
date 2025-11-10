@@ -196,8 +196,8 @@ def get_mapping_query_params(queries: Dict[str, str] = Query({})):
 
 @app.get("/query/mixed-params")
 def get_mixed_mapping_query_params(
-    sequence_mapping_queries: Dict[str, List[Union[int]]] = Query({}),
-    mapping_query: Dict[str, int] = Query(),
+    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
+    mapping_query: Dict[str, str] = Query(),
     query: str = Query(),
 ):
     return {
@@ -212,6 +212,23 @@ def get_mixed_mapping_query_params(
 @app.get("/query/mapping-sequence-params")
 def get_sequence_mapping_query_params(queries: Dict[str, List[int]] = Query({})):
     return {"queries": queries}
+
+
+@app.get("/query/mixed-type-params")
+def get_mixed_mapping_mixed_type_query_params(
+    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
+    mapping_query_str: Dict[str, str] = Query({}),
+    mapping_query_int: Dict[str, int] = Query({}),
+    query: int = Query(),
+):
+    return {
+        "queries": {
+            "query": query,
+            "mapping_query_str": mapping_query_str,
+            "mapping_query_int": mapping_query_int,
+            "sequence_mapping_queries": sequence_mapping_queries,
+        }
+    }
 
 
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)

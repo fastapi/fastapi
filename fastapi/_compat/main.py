@@ -28,6 +28,7 @@ if PYDANTIC_V2:
     from .v2 import Validator as Validator
     from .v2 import evaluate_forwardref as evaluate_forwardref
     from .v2 import get_missing_field_error as get_missing_field_error
+    from .v2 import omit_by_default as omit_by_default
     from .v2 import (
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
@@ -44,6 +45,7 @@ else:
     from .v1 import Validator as Validator
     from .v1 import evaluate_forwardref as evaluate_forwardref
     from .v1 import get_missing_field_error as get_missing_field_error
+    from .v1 import omit_by_default as omit_by_default
     from .v1 import (  # type: ignore[assignment]
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
@@ -384,22 +386,3 @@ def _is_model_class(value: Any) -> bool:
 
         return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]
     return False
-
-
-def omit_by_default(annotation):
-    from typing import Union
-
-    from pydantic import OnErrorOmit
-
-    origin = getattr(annotation, "__origin__", None)
-    args = getattr(annotation, "__args__", ())
-
-    if origin is Union:
-        new_args = tuple(omit_by_default(arg) for arg in args)
-        return Union[new_args]
-    elif origin in (list, List):
-        return List[omit_by_default(args[0])]
-    elif origin in (dict, Dict):
-        return Dict[args[0], omit_by_default(args[1])]
-    else:
-        return OnErrorOmit[annotation]
