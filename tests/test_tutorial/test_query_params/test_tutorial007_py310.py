@@ -1,5 +1,9 @@
 import pytest
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
+
+if not PYDANTIC_V2:
+    pytest.skip("This test is only for Pydantic v2", allow_module_level=True)
 
 
 @pytest.fixture(name="client")

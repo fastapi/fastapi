@@ -31,7 +31,6 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
-    field_annotation_is_scalar_sequence_mapping,
     get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
@@ -46,7 +45,6 @@ from fastapi._compat import (
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
     may_v1,
-    omit_by_default,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
@@ -488,11 +486,6 @@ def analyze_param(
         ):
             field_info.in_ = params.ParamTypes.query
 
-        if isinstance(
-            field_info, (params.Query, temp_pydantic_v1_params.Query)
-        ) and field_annotation_is_scalar_sequence_mapping(use_annotation):
-            use_annotation = omit_by_default(use_annotation)
-
         use_annotation_from_field_info = get_annotation_from_field_info(
             use_annotation,
             field_info,
@@ -525,6 +518,7 @@ def analyze_param(
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or is_scalar_sequence_mapping_field(field)
+                or is_scalar_mapping_field(field)
                 or (
                     _is_model_class(field.type_)
                     # For Pydantic v1
