@@ -1,4 +1,4 @@
-from copy import copy
+from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
@@ -350,6 +350,54 @@ def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
     return list(model.__fields__.values())  # type: ignore[attr-defined]
 
 
-def omit_by_default(field_info: FieldInfo) -> FieldInfo:
+def ignore_invalid(cls, v, values, field, **kwargs) -> Any:
+    from .may_v1 import _regenerate_error_with_loc
+
+    field_copy = deepcopy(field)
+    field_copy.pre_validators = [
+        validator
+        for validator in field_copy.pre_validators
+        if getattr(validator, "__name__", "") != "ignore_invalid"
+    ]
+    v, errors = field_copy.validate(v, values, loc=field.name)
+    if not errors:
+        return v
+
+    # pop the keys or elements that caused the validation errors and revalidate
+    for error in _regenerate_error_with_loc(errors=errors, loc_prefix=()):
+        loc = error["loc"][1:]
+        if len(loc) == 0:
+            continue
+        if isinstance(loc[0], int) and isinstance(v, list):
+            index = loc[0]
+            if 0 <= index < len(v):
+                v[index] = None
+
+        # Handle nested list validation errors (e.g., dict[str, list[str]])
+        elif isinstance(loc[0], str) and isinstance(v, dict):
+            key = loc[0]
+            if (
+                len(loc) > 1
+                and isinstance(loc[1], int)
+                and key in v
+                and isinstance(v[key], list)
+            ):
+                list_index = loc[1]
+                v[key][list_index] = None
+            elif key in v:
+                v.pop(key)
+
+    if isinstance(v, list):
+        v = [el for el in v if el is not None]
+
+    if isinstance(v, dict):
+        for key in v.keys():
+            if isinstance(v[key], list):
+                v[key] = [el for el in v[key] if el is not None]
+
+    return v
+
+
+def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict]:
     """add a wrap validator to omit invalid values by default."""
-    raise NotImplementedError("This function is a placeholder in Pydantic v1.")
+    return field_info, {"ignore_invalid": Validator(ignore_invalid, pre=True)}

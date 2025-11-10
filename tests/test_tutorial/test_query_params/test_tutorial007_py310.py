@@ -1,9 +1,5 @@
 import pytest
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-
-if not PYDANTIC_V2:
-    pytest.skip("This test is only for Pydantic v2", allow_module_level=True)
 
 
 @pytest.fixture(name="client")
@@ -19,7 +15,7 @@ def test_foo_needy_very(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {
         "query": 2,
-        "mapping_query_str_or_int": {"foo": "baz"},
+        "mapping_query_str": {"foo": "baz"},
         "mapping_query_int": {},
         "sequence_mapping_int": {"foo": []},
     }
@@ -30,7 +26,7 @@ def test_just_string_not_scalar_mapping(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {
         "query": 2,
-        "mapping_query_str_or_int": {"bar": "3", "foo": "baz"},
+        "mapping_query_str": {"bar": "3", "foo": "baz"},
         "mapping_query_int": {"bar": 3},
         "sequence_mapping_int": {"bar": [3], "foo": [1, 2]},
     }

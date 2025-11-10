@@ -506,11 +506,12 @@ def analyze_param(
         field_info.alias = alias
 
         # Omit by default for scalar mapping and scalar sequence mapping query fields
-        if isinstance(field_info, (params.Query)) and (
-            field_annotation_is_scalar_sequence_mapping(field_info.annotation)
-            or field_annotation_is_scalar_mapping(field_info.annotation)
+        class_validators: dict[str, list[Any]] = {}
+        if isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)) and (
+            field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
+            or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
         ):
-            field_info = omit_by_default(field_info)
+            field_info, class_validators = omit_by_default(field_info)
 
         field = create_model_field(
             name=param_name,
@@ -520,6 +521,7 @@ def analyze_param(
             required=field_info.default
             in (RequiredParam, may_v1.RequiredParam, Undefined),
             field_info=field_info,
+            class_validators=class_validators,
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
@@ -529,8 +531,8 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
-                or is_scalar_sequence_mapping_field(field)
                 or is_scalar_mapping_field(field)
+                or is_scalar_sequence_mapping_field(field)
                 or (
                     _is_model_class(field.type_)
                     # For Pydantic v1

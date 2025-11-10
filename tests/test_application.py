@@ -1219,14 +1219,7 @@ def test_openapi_schema():
                             "schema": {
                                 "additionalProperties": {
                                     "items": {
-                                        "anyOf": [
-                                            {
-                                                "type": "string",
-                                            },
-                                            {
-                                                "type": "integer",
-                                            },
-                                        ],
+                                        "type": "integer",
                                     },
                                     "type": "array",
                                 },
