@@ -556,7 +556,7 @@ async def _solve_generator(
         if str(ex) != "generator didn't yield":
             raise ex
 
-        dependency_name = getattr(call, "__name__", "(unknown)")
+        dependency_name = getattr(dependant.call, "__name__", "(unknown)")
         raise FastAPIError(
             f"Dependency {dependency_name} raised: {ex}. There's a high chance that "
             "this is a dependency with yield that catches an exception using except, "
