@@ -11,6 +11,7 @@ def get_client():
     c = TestClient(app)
     return c
 
+
 @needs_py310
 def test_foo_needy_very(client: TestClient):
     response = client.get("/query/mixed-type-params?query=1&query=2&foo=bar&foo=baz")
@@ -21,6 +22,7 @@ def test_foo_needy_very(client: TestClient):
         "mapping_query_int": {},
         "sequence_mapping_int": {"foo": []},
     }
+
 
 @needs_py310
 def test_just_string_not_scalar_mapping(client: TestClient):
