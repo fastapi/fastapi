@@ -58,7 +58,7 @@
 
 이후 저는 **Pydantic**이 JSON Schema와 완벽히 호환되도록 개선하고, 다양한 제약 조건 선언을 지원하며, 여러 편집기에서의 자동 완성과 타입 검사 기능을 향상하기 위해 기여했습니다.
 
-또한, 또 다른 주요 필요조건이었던 [Starlette](https://www.starlette.io/)에도 기여했습니다.
+또한, 또 다른 주요 필요조건이었던 [Starlette](https://www.starlette.dev/)에도 기여했습니다.
 
 ---
 

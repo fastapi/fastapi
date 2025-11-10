@@ -182,5 +182,5 @@ Se você precisa de algo fácil de integrar com o FastAPI, mas que seja mais rob
 
 Para aprender mais sobre as opções, verifique a documentação do Starlette para:
 
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">A classe `WebSocket`</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Manipulação de WebSockets baseada em classes</a>.
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">A classe `WebSocket`</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Manipulação de WebSockets baseada em classes</a>.

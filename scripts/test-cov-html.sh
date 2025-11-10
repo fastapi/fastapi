@@ -4,6 +4,4 @@ set -e
 set -x
 
 bash scripts/test.sh ${@}
-coverage combine
-coverage report
-coverage html
+bash scripts/coverage.sh

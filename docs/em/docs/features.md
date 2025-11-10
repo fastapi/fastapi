@@ -159,7 +159,7 @@ FastAPI 🔌 📶 ⏩ ⚙️, ✋️ 📶 🏋️ <abbr title='also known as "co
 
 ## 💃 ⚒
 
-**FastAPI** 🍕 🔗 ⏮️ (&amp; ⚓️ 🔛) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>💃</strong></a>. , 🙆 🌖 💃 📟 👆 ✔️, 🔜 👷.
+**FastAPI** 🍕 🔗 ⏮️ (&amp; ⚓️ 🔛) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>💃</strong></a>. , 🙆 🌖 💃 📟 👆 ✔️, 🔜 👷.
 
 `FastAPI` 🤙 🎧-🎓 `Starlette`. , 🚥 👆 ⏪ 💭 ⚖️ ⚙️ 💃, 🌅 🛠️ 🔜 👷 🎏 🌌.
 

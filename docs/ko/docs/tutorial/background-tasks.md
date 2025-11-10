@@ -61,7 +61,7 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 ## 기술적 세부사항
 
-`BackgroundTasks` 클래스는 <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>에서 직접 가져옵니다.
+`BackgroundTasks` 클래스는 <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>에서 직접 가져옵니다.
 
 `BackgroundTasks` 클래스는 FastAPI에서 직접 임포트하거나 포함하기 때문에 실수로 `BackgroundTask` (끝에 `s`가 없음)을 임포트하더라도 starlette.background에서 `BackgroundTask`를 가져오는 것을 방지할 수 있습니다.
 
@@ -69,7 +69,7 @@ _경로 작동 함수_ 내에서 작업 함수를 `.add_task()` 함수 통해 _�
 
 FastAPI에서 `BackgroundTask`를 단독으로 사용하는 것은 여전히 가능합니다. 하지만 객체를 코드에서 생성하고, 이 객체를 포함하는 Starlette `Response`를 반환해야 합니다.
 
-<a href="https://www.starlette.io/background/" class="external-link" target="_blank">`Starlette의 공식 문서`</a>에서 백그라운드 작업에 대한 자세한 내용을 확인할 수 있습니다.
+<a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`Starlette의 공식 문서`</a>에서 백그라운드 작업에 대한 자세한 내용을 확인할 수 있습니다.
 
 ## 경고
 

@@ -102,7 +102,7 @@ def test_schema():
 
 def test_get_invalid():
     response = client.get("/foo")
-    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.status_code == 422
 
 
 def test_get_valid():

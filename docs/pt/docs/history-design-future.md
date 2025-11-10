@@ -58,7 +58,7 @@ Após testar várias alternativas, eu decidi que usaria o <a href="https://docs.
 
 Então eu contribuí com ele, para deixá-lo completamente de acordo com o JSON Schema, para dar suporte a diferentes maneiras de definir declarações de restrições, e melhorar o suporte a editores (conferências de tipos, auto completações) baseado nos testes em vários editores.
 
-Durante o desenvolvimento, eu também contribuí com o <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, outro requisito chave.
+Durante o desenvolvimento, eu também contribuí com o <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, outro requisito chave.
 
 ## Desenvolvimento
 
