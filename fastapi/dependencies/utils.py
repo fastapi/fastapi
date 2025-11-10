@@ -45,11 +45,16 @@ from fastapi._compat import (
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
     may_v1,
+    omit_by_default,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
 )
-from fastapi._compat.shared import annotation_is_pydantic_v1
+from fastapi._compat.shared import (
+    annotation_is_pydantic_v1,
+    field_annotation_is_scalar_mapping,
+    field_annotation_is_scalar_sequence_mapping,
+)
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
@@ -500,6 +505,12 @@ def analyze_param(
 
         field_info.alias = alias
 
+        if hasattr(field_info, "annotation") and (
+            field_annotation_is_scalar_sequence_mapping(field_info.annotation)
+            or field_annotation_is_scalar_mapping(field_info.annotation)
+        ):
+            field_info.annotation = omit_by_default(field_info.annotation)
+
         field = create_model_field(
             name=param_name,
             type_=use_annotation_from_field_info,
@@ -833,7 +844,8 @@ def request_params_to_args(
             errors.extend(errors_)
         else:
             values[field.name] = v_
-    # remove keys which were captured by a mapping query field but were otherwise specified
+    # remove keys which were captured by a mapping query field but were
+    # specified as individual fields
     for field in fields:
         if isinstance(values.get(field.name), dict) and (
             is_scalar_mapping_field(field) or is_scalar_sequence_mapping_field(field)

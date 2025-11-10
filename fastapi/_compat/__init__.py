@@ -28,6 +28,7 @@ from .main import is_scalar_mapping_field as is_scalar_mapping_field
 from .main import is_scalar_sequence_field as is_scalar_sequence_field
 from .main import is_scalar_sequence_mapping_field as is_scalar_sequence_mapping_field
 from .main import is_sequence_field as is_sequence_field
+from .main import omit_by_default as omit_by_default
 from .main import serialize_sequence_value as serialize_sequence_value
 from .main import (
     with_info_plain_validator_function as with_info_plain_validator_function,

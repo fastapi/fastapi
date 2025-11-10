@@ -384,3 +384,22 @@ def _is_model_class(value: Any) -> bool:
 
         return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]
     return False
+
+
+def omit_by_default(annotation):
+    from typing import Union
+
+    from pydantic import OnErrorOmit
+
+    origin = getattr(annotation, "__origin__", None)
+    args = getattr(annotation, "__args__", ())
+
+    if origin is Union:
+        new_args = tuple(omit_by_default(arg) for arg in args)
+        return Union[new_args]
+    elif origin in (list, List):
+        return List[omit_by_default(args[0])]
+    elif origin in (dict, Dict):
+        return Dict[args[0], omit_by_default(args[1])]
+    else:
+        return OnErrorOmit[annotation]
