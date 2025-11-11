@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Any
 
 from fastapi import FastAPI, Query
 
@@ -16,7 +16,7 @@ async def read_items(
         ),
     ] = None,
 ):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    results: dict[str, Any] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
-        results.update({"q": q})
+        results["q"] = q
     return results

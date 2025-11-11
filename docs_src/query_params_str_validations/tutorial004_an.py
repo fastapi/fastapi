@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Any
 
 from fastapi import FastAPI, Query
 from typing_extensions import Annotated
@@ -12,7 +12,7 @@ async def read_items(
         Union[str, None], Query(min_length=3, max_length=50, pattern="^fixedquery$")
     ] = None,
 ):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    results: dict[str, Any] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
-        results.update({"q": q})
+        results["q"] = q
     return results
