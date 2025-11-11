@@ -105,9 +105,11 @@ We will create the database tables when the application starts.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[35:41] hl[35:38,41] *}
 
-Here we create the tables on an application startup using the `lifespan` function.
+Here we create the tables on an application startup using the async `lifespan` function.
 
-You can read more about it in the [Lifespan Events](../advanced/events.md){.internal-link target=_blank}.
+Since `create_db_and_tables()` is synchronous, we run it inside `asyncio.to_thread()` to prevent blocking the event loop.
+
+You can read more about the application startup in the [Lifespan Events](../advanced/events.md){.internal-link target=_blank}.
 
 For production you would probably use a migration script that runs before you start your app. 🤓
 
