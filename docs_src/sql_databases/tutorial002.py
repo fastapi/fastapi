@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import asynccontextmanager
 from typing import List, Union
 
@@ -47,7 +48,8 @@ def get_session():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    create_db_and_tables()
+    loop = asyncio.get_running_loop()
+    await loop.run_in_executor(None, create_db_and_tables)
     yield
 
 
