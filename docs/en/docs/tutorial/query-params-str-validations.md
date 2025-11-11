@@ -264,6 +264,8 @@ If you want to accept special values (like `"None"` or an empty string) and inte
 
 {* ../../docs_src/query_params_str_validations/tutorial006d_an_py310.py hl[9,11] *}
 
+> **Note**: This example uses `BeforeValidator`, which is only available in **Pydantic v2**.
+
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
 When you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.
