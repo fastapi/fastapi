@@ -262,7 +262,7 @@ In other words, `None` is not an acceptable runtime value for query parameters â
 
 If you want to accept special values (like `"None"` or an empty string) and interpret them as `None` in your application, you can handle them manually in your function:
 
-{* ../../docs_src/query_params_str_validations/tutorial006d_an_py310.py hl[9:13,18] *}
+{* ../../docs_src/query_params_str_validations/tutorial006d_an_py310.py hl[10:13,18] *}
 
 /// note
 
