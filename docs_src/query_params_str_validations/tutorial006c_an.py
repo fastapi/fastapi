@@ -1,4 +1,4 @@
-from typing import Union, Any
+from typing import Any, Union
 
 from fastapi import FastAPI, Query
 from typing_extensions import Annotated
