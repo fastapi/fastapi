@@ -1,10 +1,10 @@
-# Dependências
+# Dependências { #dependencies }
 
-O **FastAPI** possui um poderoso, mas intuitivo sistema de **<abbr title="também conhecidos como, recursos, provedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
+O **FastAPI** possui um poderoso, mas intuitivo sistema de **<abbr title="também conhecidos como: componentes, recursos, provedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
 
 Esse sistema foi pensado para ser fácil de usar, e permitir que qualquer desenvolvedor possa integrar facilmente outros componentes ao **FastAPI**.
 
-## O que é "Injeção de Dependência"
+## O que é "Injeção de Dependência" { #what-is-dependency-injection }
 
 **"Injeção de Dependência"** no mundo da programação significa, que existe uma maneira de declarar no seu código (nesse caso, suas *funções de operação de rota*) para declarar as coisas que ele precisa para funcionar e que serão utilizadas: "dependências".
 
@@ -19,13 +19,13 @@ Isso é bastante útil quando você precisa:
 
 Tudo isso, enquanto minimizamos a repetição de código.
 
-## Primeiros passos
+## Primeiros passos { #first-steps }
 
 Vamos ver um exemplo simples. Tão simples que não será muito útil, por enquanto.
 
 Mas dessa forma podemos focar em como o sistema de **Injeção de Dependência** funciona.
 
-### Criando uma dependência, ou "injetável"
+### Criando uma dependência, ou "injetável" { #create-a-dependency-or-dependable }
 
 Primeiro vamos focar na dependência.
 
@@ -57,15 +57,15 @@ FastAPI passou a suportar a notação `Annotated` (e começou a recomendá-la) n
 
 Se você utiliza uma versão anterior, ocorrerão erros ao tentar utilizar `Annotated`.
 
-Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#atualizando-as-versoes-do-fastapi){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
+Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
-### Importando `Depends`
+### Importando `Depends` { #import-depends }
 
 {* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
-### Declarando a dependência, no "dependente"
+### Declarando a dependência, no "dependente" { #declare-the-dependency-in-the-dependant }
 
 Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *função de operação de rota*, utilize `Depends` com um novo parâmetro:
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 Assim, você escreve um código compartilhado apenas uma vez e o **FastAPI** se encarrega de chamá-lo em suas *operações de rota*.
 
-/// check | Checando
+/// check | Verifique
 
 Perceba que você não precisa criar uma classe especial e enviar a dependência para algum outro lugar em que o **FastAPI** a "registre" ou realize qualquer operação similar.
 
@@ -114,7 +114,7 @@ Você apenas envia para `Depends` e o **FastAPI** sabe como fazer o resto.
 
 ///
 
-## Compartilhando dependências `Annotated`
+## Compartilhando dependências `Annotated` { #share-annotated-dependencies }
 
 Nos exemplos acima, você pode ver que existe uma pequena **duplicação de código**.
 
@@ -140,7 +140,7 @@ As dependências continuarão funcionando como esperado, e a **melhor parte** é
 
 Isso é especialmente útil para uma **base de código grande** onde **as mesmas dependências** são utilizadas repetidamente em **muitas *operações de rota***.
 
-## `Async` ou não, eis a questão
+## `Async` ou não, eis a questão { #to-async-or-not-to-async }
 
 Como as dependências também serão chamadas pelo **FastAPI** (da mesma forma que *funções de operação de rota*), as mesmas regras se aplicam ao definir suas funções.
 
@@ -152,11 +152,11 @@ Não faz diferença. O **FastAPI** sabe o que fazer.
 
 /// note | Nota
 
-Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#com-pressa){.internal-link target=_blank} a sessão acerca de `async` e `await` na documentação.
+Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#in-a-hurry){.internal-link target=_blank} a sessão acerca de `async` e `await` na documentação.
 
 ///
 
-## Integrando com OpenAPI
+## Integrando com OpenAPI { #integrated-with-openapi }
 
 Todas as declarações de requisições, validações e requisitos para suas dependências (e sub-dependências) serão integradas em um mesmo esquema OpenAPI.
 
@@ -164,7 +164,7 @@ Então, a documentação interativa também terá toda a informação sobre essa
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-## Caso de Uso Simples
+## Caso de Uso Simples { #simple-usage }
 
 Se você parar para ver, *funções de operação de rota* são declaradas para serem usadas sempre que uma *rota* e uma *operação* se encaixam, e então o **FastAPI** se encarrega de chamar a função correspondente com os argumentos corretos, extraindo os dados da requisição.
 
@@ -182,7 +182,7 @@ Outros termos comuns para essa mesma ideia de "injeção de dependência" são:
 * injetáveis
 * componentes
 
-## Plug-ins em **FastAPI**
+## Plug-ins em **FastAPI** { #fastapi-plug-ins }
 
 Integrações e "plug-ins" podem ser construídos com o sistema de **Injeção de Dependência**. Mas na verdade, **não há necessidade de criar "plug-ins"**, já que utilizando dependências é possível declarar um número infinito de integrações e interações que se tornam disponíveis para as suas *funções de operação de rota*.
 
@@ -190,7 +190,7 @@ E as dependências pode ser criadas de uma forma bastante simples e intuitiva qu
 
 Você verá exemplos disso nos próximos capítulos, acerca de bancos de dados relacionais e NoSQL, segurança, etc.
 
-## Compatibilidade do **FastAPI**
+## Compatibilidade do **FastAPI** { #fastapi-compatibility }
 
 A simplicidade do sistema de injeção de dependência do **FastAPI** faz ele compatível com:
 
@@ -203,7 +203,7 @@ A simplicidade do sistema de injeção de dependência do **FastAPI** faz ele co
 * sistemas de injeção de dados de resposta
 * etc.
 
-## Simples e Poderoso
+## Simples e Poderoso { #simple-and-powerful }
 
 Mesmo que o sistema hierárquico de injeção de dependência seja simples de definir e utilizar, ele ainda é bastante poderoso.
 
@@ -243,7 +243,7 @@ admin_user --> activate_user
 paying_user --> pro_items
 ```
 
-## Integração com **OpenAPI**
+## Integração com **OpenAPI** { #integrated-with-openapi_1 }
 
 Todas essas dependências, ao declarar os requisitos para suas *operações de rota*, também adicionam parâmetros, validações, etc.
 
