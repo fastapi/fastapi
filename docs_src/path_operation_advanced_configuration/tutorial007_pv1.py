@@ -28,7 +28,7 @@ async def create_item(request: Request):
     except yaml.YAMLError:
         raise HTTPException(status_code=422, detail="Invalid YAML")
     try:
-        item = Item.parse_obj(data)
+        item = Item.model_validate(data)
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
     return item
