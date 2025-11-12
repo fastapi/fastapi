@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Sync Russian docs. PR [#14331](https://github.com/fastapi/fastapi/pull/14331) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync German docs. PR [#14317](https://github.com/fastapi/fastapi/pull/14317) by [@nilslindemann](https://github.com/nilslindemann).
 
 ## 0.121.1
