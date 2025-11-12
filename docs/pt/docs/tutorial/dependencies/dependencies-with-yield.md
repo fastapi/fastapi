@@ -184,12 +184,56 @@ Se você levantar qualquer exceção no código da *função de operação de ro
 
 ///
 
+## Saída antecipada e `scope` { #early-exit-and-scope }
+
+Normalmente, o código de saída das dependências com `yield` é executado **após a resposta** ser enviada ao cliente.
+
+Mas se você sabe que não precisará usar a dependência depois de retornar da *função de operação de rota*, você pode usar `Depends(scope="function")` para dizer ao FastAPI que deve fechar a dependência depois que a *função de operação de rota* retornar, mas **antes** de a **resposta ser enviada**.
+
+{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+
+`Depends()` recebe um parâmetro `scope` que pode ser:
+
+* `"function"`: iniciar a dependência antes da *função de operação de rota* que trata a requisição, encerrar a dependência depois que a *função de operação de rota* termina, mas **antes** de a resposta ser enviada de volta ao cliente. Assim, a função da dependência será executada **em torno** da *função de operação de rota*.
+* `"request"`: iniciar a dependência antes da *função de operação de rota* que trata a requisição (semelhante a quando se usa `"function"`), mas encerrar **depois** que a resposta é enviada de volta ao cliente. Assim, a função da dependência será executada **em torno** do ciclo de **requisição** e resposta.
+
+Se não for especificado e a dependência tiver `yield`, ela terá `scope` igual a `"request"` por padrão.
+
+### `scope` para subdependências { #scope-for-sub-dependencies }
+
+Quando você declara uma dependência com `scope="request"` (o padrão), qualquer subdependência também precisa ter `scope` igual a `"request"`.
+
+Mas uma dependência com `scope` igual a `"function"` pode ter dependências com `scope` igual a `"function"` e com `scope` igual a `"request"`.
+
+Isso porque qualquer dependência precisa conseguir executar seu código de saída antes das subdependências, pois pode ainda precisar usá-las durante seu código de saída.
+
+```mermaid
+sequenceDiagram
+
+participant client as Cliente
+participant dep_req as Dep scope="request"
+participant dep_func as Dep scope="function"
+participant operation as Operação de Rota
+
+    client ->> dep_req: Iniciar requisição
+    Note over dep_req: Executar código até o yield
+    dep_req ->> dep_func: Passar dependência
+    Note over dep_func: Executar código até o yield
+    dep_func ->> operation: Executar operação de rota com dependência
+    operation ->> dep_func: Retornar da operação de rota
+    Note over dep_func: Executar código após o yield
+    Note over dep_func: ✅ Dependência fechada
+    dep_func ->> client: Enviar resposta ao cliente
+    Note over client: Resposta enviada
+    Note over dep_req: Executar código após o yield
+    Note over dep_req: ✅ Dependência fechada
+```
+
 ## Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 Dependências com `yield` evoluíram ao longo do tempo para cobrir diferentes casos de uso e corrigir alguns problemas.
 
 Se você quiser ver o que mudou em diferentes versões do FastAPI, você pode ler mais sobre isso no guia avançado, em [Dependências Avançadas - Dependências com `yield`, `HTTPException`, `except` e Tarefas de Background](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}.
-
 ## Gerenciadores de contexto { #context-managers }
 
 ### O que são "Gerenciadores de Contexto" { #what-are-context-managers }
