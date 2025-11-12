@@ -70,11 +70,21 @@ Se você entendeu tudo isso, você já sabe como essas funções utilitárias pa
 
 Muito provavelmente você não precisa desses detalhes técnicos.
 
-Esses detalhes são úteis principalmente se você tinha uma aplicação FastAPI anterior à versão 0.118.0 e está enfrentando problemas com dependências com `yield`.
+Esses detalhes são úteis principalmente se você tinha uma aplicação FastAPI anterior à versão 0.121.0 e está enfrentando problemas com dependências com `yield`.
 
 ///
 
 Dependências com `yield` evoluíram ao longo do tempo para contemplar diferentes casos de uso e corrigir alguns problemas, aqui está um resumo do que mudou.
+
+### Dependências com `yield` e `scope` { #dependencies-with-yield-and-scope }
+
+Na versão 0.121.0, o FastAPI adicionou suporte a `Depends(scope="function")` para dependências com `yield`.
+
+Usando `Depends(scope="function")`, o código de saída após o `yield` é executado logo depois que a *função de operação de rota* termina, antes de a response ser enviada de volta ao cliente.
+
+E ao usar `Depends(scope="request")` (o padrão), o código de saída após o `yield` é executado depois que a response é enviada.
+
+Você pode ler mais na documentação em [Dependências com `yield` - Saída antecipada e `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
 
 ### Dependências com `yield` e `StreamingResponse`, Detalhes Técnicos { #dependencies-with-yield-and-streamingresponse-technical-details }
 
