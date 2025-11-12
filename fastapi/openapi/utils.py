@@ -8,6 +8,7 @@ from fastapi._compat import (
     JsonSchemaValue,
     ModelField,
     Undefined,
+    get_cached_model_fields,
     get_compat_model_name_map,
     get_definitions,
     get_schema_from_model_field,
@@ -23,7 +24,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
-from fastapi.params import Body, ParamTypes
+from fastapi.params import Body, File, Form, ParamTypes
 from fastapi.responses import Response
 from fastapi.types import ModelNameMap
 from fastapi.utils import (
@@ -185,6 +186,16 @@ def get_openapi_operation_request_body(
     )
     field_info = cast(Body, body_field.field_info)
     request_media_type = field_info.media_type
+    if (
+        isinstance(field_info, Form)
+        and request_media_type == "application/x-www-form-urlencoded"
+        and lenient_issubclass(body_field.type_, BaseModel)
+    ):  # Enforce multipart/form-data media type for Form models with File fields
+        form_model_fields = get_cached_model_fields(body_field.type_)
+        if any(
+            isinstance(form_field.field_info, File) for form_field in form_model_fields
+        ):
+            request_media_type = "multipart/form-data"
     required = body_field.required
     request_body_oai: Dict[str, Any] = {}
     if required:
