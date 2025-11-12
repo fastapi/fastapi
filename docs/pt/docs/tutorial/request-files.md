@@ -71,7 +71,7 @@ Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 `UploadFile` tem os seguintes atributos:
 
 * `filename`: Uma `str` com o nome do arquivo original que foi enviado (por exemplo, `myimage.jpg`).
-* `content_type`: Uma `str` com o tipo de conteúdo (tipo MIME / tipo de mídia) (por exemplo, `image/jpeg`).
+* `content_type`: Uma `str` com o tipo de conteúdo (MIME type / media type) (por exemplo, `image/jpeg`).
 * `file`: Um <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (um <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> objeto). Este é o objeto de arquivo Python que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto semelhante a um arquivo("file-like").
 
 `UploadFile` tem os seguintes métodos `assíncronos`. Todos eles chamam os métodos de arquivo correspondentes por baixo dos panos (usando o `SpooledTemporaryFile` interno).
@@ -117,7 +117,7 @@ O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servid
 
 /// note | Detalhes Técnicos
 
-Dados de formulários normalmente são codificados usando o "media type" (tipo de mídia) `application/x-www-form-urlencoded` quando não incluem arquivos.
+Dados de formulários normalmente são codificados usando o "media type" `application/x-www-form-urlencoded` quando não incluem arquivos.
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo da requisição.
 
