@@ -182,7 +182,7 @@ class HTTPBasic(HTTPBase):
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
-        self.realm = realm
+        self.realm = realm or ""
         self.auto_error = auto_error
 
     async def __call__(  # type: ignore
@@ -190,10 +190,8 @@ class HTTPBasic(HTTPBase):
     ) -> Optional[HTTPBasicCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
-        if self.realm:
-            unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
-        else:
-            unauthorized_headers = {"WWW-Authenticate": "Basic"}
+        # The "realm" is required, as per https://datatracker.ietf.org/doc/html/rfc7617#section-2.
+        unauthorized_headers = {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
                 raise HTTPException(
