@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.121.2
+
 ### Fixes
 
 * 🐛 Fix handling of JSON Schema attributes named "$ref". PR [#14349](https://github.com/fastapi/fastapi/pull/14349) by [@tiangolo](https://github.com/tiangolo).
