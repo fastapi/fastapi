@@ -61,7 +61,6 @@ from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -174,11 +173,28 @@ def get_flat_dependant(
 def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
-    first_field = fields[0]
-    if len(fields) == 1 and _is_model_class(first_field.type_):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
-        return fields_to_extract
-    return fields
+
+    return [field for field, _ in _get_flat_fields_from_params_with_origin(fields)]
+
+
+def _get_flat_fields_from_params_with_origin(
+    fields: Sequence[ModelField],
+) -> Sequence[Tuple[ModelField, ModelField]]:
+    """Same as :func:`_get_flat_fields_from_params`, but returns the result
+    as tuples ``(flat_field, origin_field)``.
+    """
+    result = []
+    for field in fields:
+        if _is_model_class(field.type_):
+            result.extend(
+                [
+                    (model_field, field)
+                    for model_field in get_cached_model_fields(field.type_)
+                ]
+            )
+        else:
+            result.append((field, field))
+    return result
 
 
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
@@ -753,30 +769,23 @@ def request_params_to_args(
     if not fields:
         return values, errors
 
-    first_field = fields[0]
-    fields_to_extract = fields
-    single_not_embedded_field = False
-    default_convert_underscores = True
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
-        single_not_embedded_field = True
-        # If headers are in a Pydantic model, the way to disable convert_underscores
-        # would be with Header(convert_underscores=False) at the Pydantic model level
-        default_convert_underscores = getattr(
-            first_field.field_info, "convert_underscores", True
-        )
-
+    fields_to_extract = _get_flat_fields_from_params_with_origin(fields)
     params_to_process: Dict[str, Any] = {}
 
     processed_keys = set()
 
-    for field in fields_to_extract:
+    for field, base_field in fields_to_extract:
         alias = None
         if isinstance(received_params, Headers):
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
+
+            # If headers are in a Pydantic model, the way to disable convert_underscores
+            # would be with Header(convert_underscores=False) at the Pydantic model level
             convert_underscores = getattr(
-                field.field_info, "convert_underscores", default_convert_underscores
+                field.field_info,
+                "convert_underscores",
+                getattr(base_field.field_info, "convert_underscores", True),
             )
             if convert_underscores:
                 alias = (
@@ -794,24 +803,18 @@ def request_params_to_args(
         if key not in processed_keys:
             params_to_process[key] = value
 
-    if single_not_embedded_field:
-        field_info = first_field.field_info
-        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
-            "Params must be subclasses of Param"
-        )
-        loc: Tuple[str, ...] = (field_info.in_.value,)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
-        )
-        return {first_field.name: v_}, errors_
-
     for field in fields:
-        value = _get_multidict_value(field, received_params)
         field_info = field.field_info
         assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
             "Params must be subclasses of Param"
         )
-        loc = (field_info.in_.value, field.alias)
+
+        if _is_model_class(field.type_):
+            value = params_to_process
+            loc: tuple[str, ...] = (field_info.in_.value,)
+        else:
+            value = _get_multidict_value(field, received_params)
+            loc = (field_info.in_.value, field.alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
         )
