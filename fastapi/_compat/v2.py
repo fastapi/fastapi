@@ -264,7 +264,7 @@ def _replace_refs(
         if key == "$ref":
             print(f"schema:{schema}")
             # ref_name = schema["$ref"].split("/")[-1]
-            ref_name = schema["$ref"]
+            ref_value = schema["$ref"]
             if isinstance(ref_value, str):
                 # Normal case
                 ref_name = ref_value.split("/")[-1]
