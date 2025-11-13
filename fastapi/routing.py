@@ -52,6 +52,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
+from fastapi.responses import JSONResponse, PydanticJSONResponse, Response
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
@@ -67,7 +68,6 @@ from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
 from starlette.routing import (
     BaseRoute,
     Match,
@@ -229,11 +229,13 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    to_json: bool = False,
 ) -> Any:
     if field:
         errors = []
         if not hasattr(field, "serialize"):
             # pydantic v1
+            assert not to_json, "PydanticJSONResponse requires a pydantic v2 model"
             response_content = _prepare_response_content(
                 response_content,
                 exclude_unset=exclude_unset,
@@ -256,6 +258,16 @@ async def serialize_response(
             )
 
         if hasattr(field, "serialize"):
+            if to_json:
+                return field.serialize_json(
+                    value,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
             return field.serialize(
                 value,
                 include=include,
@@ -420,6 +432,7 @@ def get_request_handler(
                     exclude_defaults=response_model_exclude_defaults,
                     exclude_none=response_model_exclude_none,
                     is_coroutine=is_coroutine,
+                    to_json=issubclass(actual_response_class, PydanticJSONResponse),
                 )
                 response = actual_response_class(content, **response_args)
                 if not is_body_allowed_for_status_code(response.status_code):
