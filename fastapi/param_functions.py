@@ -1,4 +1,16 @@
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import (
+    Any,
+    AsyncGenerator,
+    Awaitable,
+    Callable,
+    Dict,
+    Generator,
+    List,
+    Optional,
+    Sequence,
+    TypeVar,
+    Union,
+)
 
 from annotated_doc import Doc
 from fastapi import params
@@ -7,6 +19,7 @@ from fastapi.openapi.models import Example
 from typing_extensions import Annotated, Literal, deprecated
 
 _Unset: Any = Undefined
+_RT = TypeVar("_RT")
 
 
 def Path(  # noqa: N802
@@ -2220,7 +2233,17 @@ def File(  # noqa: N802
 
 def Depends(  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Optional[
+            Callable[
+                ...,
+                Union[
+                    AsyncGenerator[_RT, Any],
+                    Generator[_RT, Any, None],
+                    Awaitable[_RT],
+                    _RT,
+                ],
+            ]
+        ],
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2265,7 +2288,7 @@ def Depends(  # noqa: N802
             """
         ),
     ] = None,
-) -> Any:
+) -> _RT:
     """
     Declare a FastAPI dependency.
 
@@ -2295,7 +2318,7 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
+    return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)  # type: ignore[return-value]
 
 
 def Security(  # noqa: N802
