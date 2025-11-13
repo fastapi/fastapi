@@ -136,6 +136,33 @@ class UploadFile(StarletteUploadFile):
         To be awaitable, compatible with async, this is run in threadpool.
         """
         return await super().close()
+    
+    async def read_text(
+        self,
+        encoding: Annotated[
+            str,
+            Doc("The text encoding to use when decoding bytes. Defaults to 'utf-8'."),
+        ] = "utf-8",
+        ) -> str:
+
+        """
+            Read the entire file as a text string.
+            This is a convenience wrapper around `await self.read()`
+            that decodes the bytes using the given encoding.
+            ## Example
+            ```python
+            @app.post("/upload-text/")
+            async def upload_text(file: UploadFile):
+                text = await file.read_text()
+                return {"length": len(text)}
+            ```
+            Args:
+                encoding: The text encoding to use (default: 'utf-8').
+            Returns:
+                The decoded file content as a string.
+        """
+        data = await self.read()
+        return data.decode(encoding)
 
     @classmethod
     def __get_validators__(cls: Type["UploadFile"]) -> Iterable[Callable[..., Any]]:
