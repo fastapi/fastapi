@@ -262,18 +262,18 @@ def _replace_refs(
     new_schema = deepcopy(schema)
     for key, value in new_schema.items():
         if key == "$ref":
-            # ref_name = schema["$ref"].split("/")[-1]
-            ref_name = schema["$ref"]
+            print(f"schema:{schema}")
+            #ref_name = schema["$ref"].split("/")[-1]
+            ref_name = schema["$ref"]            
             if isinstance(ref_value, str):
                 # Normal case
                 ref_name = ref_value.split("/")[-1]
             elif isinstance(ref_value, dict):
-                # Handle dict case
+                # Handle dict case 
                 ref_name = ref_value.get("title") or "unknown_ref"
             else:
                 # Unexpected type
                 ref_name = "invalid_ref"
-
             if ref_name in old_name_to_new_name_map:
                 new_name = old_name_to_new_name_map[ref_name]
                 new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
