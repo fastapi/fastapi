@@ -22,6 +22,7 @@ from typing import (
     Tuple,
     Type,
     Union,
+    cast,
 )
 
 from annotated_doc import Doc
@@ -34,6 +35,7 @@ from fastapi._compat import (
     _normalize_errors,
     lenient_issubclass,
 )
+from fastapi.background import BackgroundTasks
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import (
@@ -104,14 +106,26 @@ def request_response(
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
+            background_tasks: BackgroundTasks | None = None
+
             async with AsyncExitStack() as request_stack:
                 scope["fastapi_inner_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
                     scope["fastapi_function_astack"] = function_stack
                     response = await f(request)
+                # Extract background tasks from Request to process them after
+                # AsyncExitStack cleanup
+                background_tasks = cast(
+                    Union[BackgroundTasks, None], response.background
+                )
+                response.background = None
                 await response(scope, receive, send)
                 # Continues customization
                 response_awaited = True
+
+            if background_tasks:
+                await background_tasks()
+
             if not response_awaited:
                 raise FastAPIError(
                     "Response not awaited. There's a high chance that the "
