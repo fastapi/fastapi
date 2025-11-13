@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add EuroPython talk & podcast episode with Sebastián Ramírez. PR [#14260](https://github.com/fastapi/fastapi/pull/14260) by [@clytaemnestra](https://github.com/clytaemnestra).
 * ✏️ Fix links and add missing permalink in docs. PR [#14217](https://github.com/fastapi/fastapi/pull/14217) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ### Translations
