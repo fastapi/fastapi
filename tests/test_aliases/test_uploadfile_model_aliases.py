@@ -1,8 +1,9 @@
 from typing import List, Optional
 
-from fastapi import FastAPI, File, UploadFile
+import pytest
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from ..utils import needs_pydanticv2
 
@@ -12,43 +13,56 @@ app = FastAPI()
 
 # =====================================================================================
 # Field(alias=...)
-# Current situation: Works
+# Current situation: doesn't work (neither validation nor schema generation)
 
 # ------------------------------
 # required field
 
 
 class RequiredFieldAliasModel(BaseModel):
-    file: UploadFile = Field(alias="file_alias")
+    file: UploadFile = File(alias="file_alias")
 
 
 @app.post("/required-field-alias-model")
-async def required_field_alias_model(data: RequiredFieldAliasModel = File(...)):
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form()):
     return {"file_size": data.file.size}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_required_field_alias_model_by_name():
     client = TestClient(app)
     resp = client.post("/required-field-alias-model", files={"file": b"content"})
     assert resp.status_code == 422
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "file_alias" in detail[0]["loc"]
+    # assert 200 == 422
+
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "file_alias" in detail[0]["loc"]
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_required_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post("/required-field-alias-model", files={"file_alias": b"content"})
     assert resp.status_code == 200, resp.text
-    assert resp.json() == {"file_size": 7}
+    # AssertionError: assert 422 == 200
+    # {"detail":[{"type":"missing","loc":["body","file"],"msg":"Field required","input":{"file_alias":{"filename":"upload","file":{"_file":{},"_max_size":1048576,"_rolled":false,"_TemporaryFileArgs":{"mode":"w+b","buffering":-1,"suffix":null,"prefix":null,"encoding":null,"newline":null,"dir":null,"errors":null}},"size":7,"headers":{"content-disposition":"form-data; name=\"file_alias\"; filename=\"upload\"","content-type":"application/octet-stream"},"_max_mem_size":1048576}}}]}
+
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_size": 7}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_required_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["RequiredFieldAliasModel"]
     assert body_schema["properties"] == {
         "file_alias": {"title": "File Alias", "type": "string", "format": "binary"}
     }
+    # AssertionError: assert
+    # {'file': {'type': 'string', 'format': 'binary', 'title': 'File'}} ==
+    # {'file_alias': {'title': 'File Alias', 'type': 'string', 'format': 'binary'}}
 
 
 # ------------------------------
@@ -56,30 +70,35 @@ def test_required_field_alias_model_schema():
 
 
 class OptionalFieldAliasModel(BaseModel):
-    file: Optional[UploadFile] = Field(None, alias="file_alias")
+    file: Optional[UploadFile] = File(None, alias="file_alias")
 
 
 @app.post("/optional-field-alias-model")
-async def optional_field_alias_model(data: OptionalFieldAliasModel = File(...)):
+async def optional_field_alias_model(data: OptionalFieldAliasModel = Form()):
     if data.file is None:
         return {"file_size": None}
     return {"file_size": data.file.size}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_model_by_name():
     client = TestClient(app)
     resp = client.post("/optional-field-alias-model", files={"file": b"content"})
     assert resp.status_code == 200
     assert resp.json() == {"file_size": None}
+    # AssertionError: assert {'file_size': 7} == {'file_size': None}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post("/optional-field-alias-model", files={"file_alias": b"content"})
     assert resp.status_code == 200, resp.text
     assert resp.json() == {"file_size": 7}
+    # AssertionError: assert {'file_size': None} == {'file_size': 7}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["OptionalFieldAliasModel"]
@@ -89,6 +108,9 @@ def test_optional_field_alias_model_schema():
             "title": "File Alias",
         },
     }
+    # AssertionError: assert
+    # {'file': {'anyOf': [{'type': 'string', 'format': 'binary'}, {'type': 'null'}], 'title': 'File'}} ==
+    # {'file_alias': {'anyOf': [{'type': 'string', 'format': 'binary'}, {'type': 'null'}], 'title': 'File Alias'}}
 
 
 # ------------------------------
@@ -96,14 +118,15 @@ def test_optional_field_alias_model_schema():
 
 
 class ListFieldAliasModel(BaseModel):
-    files: List[UploadFile] = Field(alias="files_alias")
+    files: List[UploadFile] = File(alias="files_alias")
 
 
 @app.post("/list-field-alias-model")
-async def list_field_alias_model(data: ListFieldAliasModel = File(...)):
+async def list_field_alias_model(data: ListFieldAliasModel = Form()):
     return {"file_sizes": [file.size for file in data.files]}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_list_field_alias_model_by_name():
     client = TestClient(app)
     resp = client.post(
@@ -111,11 +134,14 @@ def test_list_field_alias_model_by_name():
         files=[("files", b"content1"), ("files", b"content2")],
     )
     assert resp.status_code == 422
-    detail = resp.json()["detail"]
-    assert detail[0]["msg"] == "Field required"
-    assert "files_alias" in detail[0]["loc"]
+
+    # Uncomment when the assertion above passes:
+    # detail = resp.json()["detail"]
+    # assert detail[0]["msg"] == "Field required"
+    # assert "files_alias" in detail[0]["loc"]
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_list_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -123,9 +149,12 @@ def test_list_field_alias_model_by_alias():
         files=[("files_alias", b"content1"), ("files_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    assert resp.json() == {"file_sizes": [8, 8]}
+
+    # Uncomment when the assertion above passes:
+    # assert resp.json() == {"file_sizes": [8, 8]}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_list_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["ListFieldAliasModel"]
@@ -143,16 +172,17 @@ def test_list_field_alias_model_schema():
 
 
 class OptionalListFieldAliasModel(BaseModel):
-    files: Optional[List[UploadFile]] = Field(None, alias="files_alias")
+    files: Optional[List[UploadFile]] = File(None, alias="files_alias")
 
 
 @app.post("/optional-list-field-alias-model")
-async def optional_list_field_alias_model(data: OptionalListFieldAliasModel = File()):
+async def optional_list_field_alias_model(data: OptionalListFieldAliasModel = Form()):
     if data.files is None:
         return {"file_sizes": None}
     return {"file_sizes": [file.size for file in data.files]}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_model_by_name():
     client = TestClient(app)
     resp = client.post(
@@ -163,6 +193,7 @@ def test_optional_list_field_alias_model_by_name():
     assert resp.json() == {"file_sizes": None}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -173,6 +204,7 @@ def test_optional_list_field_alias_model_by_alias():
     assert resp.json() == {"file_sizes": [8, 8]}
 
 
+@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["OptionalListFieldAliasModel"]
@@ -197,7 +229,7 @@ def test_optional_list_field_alias_model_schema():
 
 
 class RequiredFieldValidationAliasModel(BaseModel):
-    file: UploadFile = Field(validation_alias="file_val_alias")
+    file: UploadFile = File(validation_alias="file_val_alias")
 
 
 @app.post(
@@ -205,7 +237,7 @@ class RequiredFieldValidationAliasModel(BaseModel):
     operation_id="required_field_validation_alias_model",
 )
 async def required_field_validation_alias_model(
-    data: RequiredFieldValidationAliasModel = File(...),
+    data: RequiredFieldValidationAliasModel = Form(),
 ):
     return {"file_size": data.file.size}
 
@@ -247,7 +279,7 @@ def test_required_field_validation_alias_model_schema():
 
 
 class OptionalFieldValidationAliasModel(BaseModel):
-    file: Optional[UploadFile] = Field(None, validation_alias="file_val_alias")
+    file: Optional[UploadFile] = File(None, validation_alias="file_val_alias")
 
 
 @app.post(
@@ -255,7 +287,7 @@ class OptionalFieldValidationAliasModel(BaseModel):
     operation_id="optional_field_validation_alias_model",
 )
 async def optional_field_validation_alias_model(
-    data: OptionalFieldValidationAliasModel = File(...),
+    data: OptionalFieldValidationAliasModel = Form(),
 ):
     if data.file is None:
         return {"file_size": None}
@@ -296,7 +328,7 @@ def test_optional_field_validation_alias_model_schema():
 
 
 class ListFieldValidationAliasModel(BaseModel):
-    files: List[UploadFile] = Field(validation_alias="files_val_alias")
+    files: List[UploadFile] = File(validation_alias="files_val_alias")
 
 
 @app.post(
@@ -304,7 +336,7 @@ class ListFieldValidationAliasModel(BaseModel):
     operation_id="list_field_validation_alias_model",
 )
 async def list_field_validation_alias_model(
-    data: ListFieldValidationAliasModel = File(...),
+    data: ListFieldValidationAliasModel = Form(),
 ):
     return {"file_sizes": [file.size for file in data.files]}
 
@@ -350,7 +382,7 @@ def test_list_field_validation_alias_model_schema():
 
 
 class OptionalListFieldValidationAliasModel(BaseModel):
-    files: Optional[List[UploadFile]] = Field(None, validation_alias="files_val_alias")
+    files: Optional[List[UploadFile]] = File(None, validation_alias="files_val_alias")
 
 
 @app.post(
@@ -358,7 +390,7 @@ class OptionalListFieldValidationAliasModel(BaseModel):
     operation_id="optional_list_field_validation_alias_model",
 )
 async def optional_list_field_validation_alias_model(
-    data: OptionalListFieldValidationAliasModel = File(...),
+    data: OptionalListFieldValidationAliasModel = Form(),
 ):
     if data.files is None:
         return {"file_sizes": None}
@@ -414,7 +446,7 @@ def test_optional_list_field_validation_alias_model_schema():
 
 
 class RequiredFieldAliasAndValidationAliasModel(BaseModel):
-    file: UploadFile = Field(alias="file_alias", validation_alias="file_val_alias")
+    file: UploadFile = File(alias="file_alias", validation_alias="file_val_alias")
 
 
 @app.post(
@@ -422,7 +454,7 @@ class RequiredFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="required_field_alias_and_validation_alias_model",
 )
 async def required_field_alias_and_validation_alias_model(
-    data: RequiredFieldAliasAndValidationAliasModel = File(...),
+    data: RequiredFieldAliasAndValidationAliasModel = Form(),
 ):
     return {"file_size": data.file.size}
 
@@ -479,7 +511,7 @@ def test_required_field_alias_and_validation_alias_model_schema():
 
 
 class OptionalFieldAliasAndValidationAliasModel(BaseModel):
-    file: Optional[UploadFile] = Field(
+    file: Optional[UploadFile] = File(
         None, alias="file_alias", validation_alias="file_val_alias"
     )
 
@@ -489,7 +521,7 @@ class OptionalFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="optional_field_alias_and_validation_alias_model",
 )
 async def optional_field_alias_and_validation_alias_model(
-    data: OptionalFieldAliasAndValidationAliasModel = File(...),
+    data: OptionalFieldAliasAndValidationAliasModel = Form(),
 ):
     if data.file is None:
         return {"file_size": None}
@@ -543,7 +575,7 @@ def test_optional_field_alias_and_validation_alias_model_schema():
 
 
 class ListFieldAliasAndValidationAliasModel(BaseModel):
-    files: List[UploadFile] = Field(
+    files: List[UploadFile] = File(
         alias="files_alias", validation_alias="files_val_alias"
     )
 
@@ -553,7 +585,7 @@ class ListFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="list_field_alias_and_validation_alias_model",
 )
 async def list_field_alias_and_validation_alias_model(
-    data: ListFieldAliasAndValidationAliasModel = File(...),
+    data: ListFieldAliasAndValidationAliasModel = Form(),
 ):
     return {"file_sizes": [file.size for file in data.files]}
 
@@ -613,7 +645,7 @@ def test_list_field_alias_and_validation_alias_model_schema():
 
 
 class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
-    files: Optional[List[UploadFile]] = Field(
+    files: Optional[List[UploadFile]] = File(
         None, alias="files_alias", validation_alias="files_val_alias"
     )
 
@@ -623,7 +655,7 @@ class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
     operation_id="optional_list_field_alias_and_validation_alias_model",
 )
 async def optional_list_field_alias_and_validation_alias_model(
-    data: OptionalListFieldAliasAndValidationAliasModel = File(...),
+    data: OptionalListFieldAliasAndValidationAliasModel = Form(),
 ):
     if data.files is None:
         return {"file_sizes": None}
