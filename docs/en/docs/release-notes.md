@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* ✏️ Fix links and add missing permalink in docs. PR [#14217](https://github.com/fastapi/fastapi/pull/14217) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Translations
 
 * 🌐 Update Portuguese translations with LLM prompt. PR [#14228](https://github.com/fastapi/fastapi/pull/14228) by [@ceb10n](https://github.com/ceb10n).
