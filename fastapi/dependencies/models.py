@@ -2,7 +2,7 @@ import inspect
 import sys
 from dataclasses import dataclass, field
 from functools import cached_property
-from typing import Any, Callable, List, Optional, Sequence, Union
+from typing import Any, Callable, List, Optional, Sequence, Set, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -32,12 +32,12 @@ class Dependant:
     security_requirements: List[SecurityRequirement] = field(default_factory=list)
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
-    request_param_name: Optional[str] = None
-    websocket_param_name: Optional[str] = None
-    http_connection_param_name: Optional[str] = None
-    response_param_name: Optional[str] = None
-    background_tasks_param_name: Optional[str] = None
-    security_scopes_param_name: Optional[str] = None
+    request_param_names: Set[str] = field(default_factory=set)
+    websocket_param_names: Set[str] = field(default_factory=set)
+    http_connection_param_names: Set[str] = field(default_factory=set)
+    response_param_names: Set[str] = field(default_factory=set)
+    background_tasks_param_names: Set[str] = field(default_factory=set)
+    security_scopes_param_names: Set[str] = field(default_factory=set)
     security_scopes: Optional[List[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
