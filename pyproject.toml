@@ -172,6 +172,9 @@ addopts = [
 ]
 xfail_strict = true
 junit_family = "xunit2"
+markers = [
+    "asyncio: mark test to run with asyncio event loop",
+]
 filterwarnings = [
     "error",
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
