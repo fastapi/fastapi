@@ -1,4 +1,5 @@
 import sys
+from typing import Any
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -19,9 +20,9 @@ class ModelWithRef(BaseModel):
     model_config = ConfigDict(validate_by_alias=True, serialize_by_alias=True)
 
 
-@app.get("/")
-async def read_root() -> ModelWithRef:
-    return ModelWithRef(ref="some-ref")
+@app.get("/", response_model=ModelWithRef)
+async def read_root() -> Any:
+    return {"$ref": "some-ref"}
 
 
 client = TestClient(app)
