@@ -136,7 +136,7 @@ class UploadFile(StarletteUploadFile):
         To be awaitable, compatible with async, this is run in threadpool.
         """
         return await super().close()
-    
+
     async def read_text(
         self,
         encoding: Annotated[
