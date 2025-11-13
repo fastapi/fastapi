@@ -263,13 +263,13 @@ def _replace_refs(
     for key, value in new_schema.items():
         if key == "$ref":
             print(f"schema:{schema}")
-            #ref_name = schema["$ref"].split("/")[-1]
-            ref_name = schema["$ref"]            
+            # ref_name = schema["$ref"].split("/")[-1]
+            ref_name = schema["$ref"]
             if isinstance(ref_value, str):
                 # Normal case
                 ref_name = ref_value.split("/")[-1]
             elif isinstance(ref_value, dict):
-                # Handle dict case 
+                # Handle dict case
                 ref_name = ref_value.get("title") or "unknown_ref"
             else:
                 # Unexpected type
