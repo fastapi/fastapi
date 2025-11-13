@@ -1,9 +1,9 @@
 from typing import List, Optional
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from ..utils import needs_pydanticv1
 
@@ -20,11 +20,11 @@ app = FastAPI()
 
 
 class RequiredFieldAliasModel(BaseModel):
-    file: UploadFile = Field(alias="file_alias")
+    file: UploadFile = File(alias="file_alias")
 
 
 @app.post("/required-field-alias-model")
-async def required_field_alias_model(data: RequiredFieldAliasModel = File(...)):
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form()):
     return {"file_size": data.file.size}
 
 
@@ -58,10 +58,10 @@ def test_required_field_alias_model_schema():
 if not PYDANTIC_V2:
 
     class OptionalFieldAliasModel(BaseModel):
-        file: Optional[UploadFile] = Field(None, alias="file_alias", nullable=True)
+        file: Optional[UploadFile] = File(None, alias="file_alias", nullable=True)
 
     @app.post("/optional-field-alias-model")
-    async def optional_field_alias_model(data: OptionalFieldAliasModel = File(...)):
+    async def optional_field_alias_model(data: OptionalFieldAliasModel = Form()):
         if data.file is None:
             return {"file_size": None}
         return {"file_size": data.file.size}
@@ -99,11 +99,11 @@ def test_optional_field_alias_model_schema():
 
 
 class ListFieldAliasModel(BaseModel):
-    files: List[UploadFile] = Field(alias="files_alias")
+    files: List[UploadFile] = File(alias="files_alias")
 
 
 @app.post("/list-field-alias-model")
-async def list_field_alias_model(data: ListFieldAliasModel = File(...)):
+async def list_field_alias_model(data: ListFieldAliasModel = Form()):
     return {"file_sizes": [file.size for file in data.files]}
 
 
@@ -147,13 +147,13 @@ def test_list_field_alias_model_schema():
 if not PYDANTIC_V2:
 
     class OptionalListFieldAliasModel(BaseModel):
-        files: Optional[List[UploadFile]] = Field(
+        files: Optional[List[UploadFile]] = File(
             None, alias="files_alias", nullable=True
         )
 
     @app.post("/optional-list-field-alias-model")
     async def optional_list_field_alias_model(
-        data: OptionalListFieldAliasModel = File(),
+        data: OptionalListFieldAliasModel = Form(),
     ):
         if data.files is None:
             return {"file_sizes": None}

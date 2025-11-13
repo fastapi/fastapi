@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-import pytest
 from fastapi import FastAPI, Form
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -14,7 +14,6 @@ app = FastAPI()
 # =====================================================================================
 # Field(alias=...)
 # Current situation: works
-# Schema generation for optional field and optional list fails due to issue likely not related to aliases
 
 # ------------------------------
 # required field
@@ -56,14 +55,14 @@ def test_required_field_alias_model_schema():
 # ------------------------------
 # optional field
 
+if not PYDANTIC_V2:
 
-class OptionalFieldAliasModel(BaseModel):
-    param: Optional[str] = Field(None, alias="param_alias")
+    class OptionalFieldAliasModel(BaseModel):
+        param: Optional[str] = Field(None, alias="param_alias", nullable=True)
 
-
-@app.post("/optional-field-alias-model")
-async def optional_field_alias_model(data: OptionalFieldAliasModel = Form(...)):
-    return {"param": data.param}
+    @app.post("/optional-field-alias-model")
+    async def optional_field_alias_model(data: OptionalFieldAliasModel = Form(...)):
+        return {"param": data.param}
 
 
 def test_optional_field_alias_model_by_name():
@@ -80,20 +79,16 @@ def test_optional_field_alias_model_by_alias():
     assert resp.json() == {"param": "123"}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["OptionalFieldAliasModel"]
     assert body_schema["properties"] == {
         "param_alias": {
-            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "type": "string",
+            "nullable": True,
             "title": "Param Alias",
         },
     }
-    # Fails with:
-    # AssertionError: assert
-    # {'param_alias': {'type': 'string', 'title': 'Param Alias'}} ==
-    # {'param_alias': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'title': 'Param Alias'}}
 
 
 # ------------------------------
@@ -140,16 +135,16 @@ def test_list_field_alias_model_schema():
 # ------------------------------
 # optional list field
 
+if not PYDANTIC_V2:
 
-class OptionalListFieldAliasModel(BaseModel):
-    param: Optional[List[str]] = Field(None, alias="param_alias")
+    class OptionalListFieldAliasModel(BaseModel):
+        param: Optional[List[str]] = Field(None, alias="param_alias", nullable=True)
 
-
-@app.post("/optional-list-field-alias-model")
-async def optional_list_field_alias_model(
-    data: OptionalListFieldAliasModel = Form(...),
-):
-    return {"param": data.param}
+    @app.post("/optional-list-field-alias-model")
+    async def optional_list_field_alias_model(
+        data: OptionalListFieldAliasModel = Form(...),
+    ):
+        return {"param": data.param}
 
 
 def test_optional_list_field_alias_model_by_name():
@@ -170,17 +165,14 @@ def test_optional_list_field_alias_model_by_alias():
     assert resp.json() == {"param": ["123", "456"]}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_model_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["OptionalListFieldAliasModel"]
     assert body_schema["properties"] == {
         "param_alias": {
-            "anyOf": [{"items": {"type": "string"}, "type": "array"}, {"type": "null"}],
+            "items": {"type": "string"},
+            "type": "array",
+            "nullable": True,
             "title": "Param Alias",
         }
     }
-    # Fails with:
-    # AssertionError: assert
-    # {'param_alias': {'items': {'type': 'string'}, 'type': 'array', 'title': 'Param Alias'}} ==
-    # {'param_alias': {'anyOf': [{'items': {'type': 'string'}, 'type': 'array'}, {'type': 'null'}], 'title': 'Param Alias'}}

@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-import pytest
 from fastapi import FastAPI, File
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 
 from ..utils import needs_pydanticv1
@@ -13,7 +13,6 @@ app = FastAPI()
 # =====================================================================================
 # File(alias=...)
 # Current situation: Works
-# Schema generation for optional field and optional list fails due to issue likely not related to aliases
 
 # ------------------------------
 # required field
@@ -51,14 +50,15 @@ def test_required_field_alias_schema():
 # ------------------------------
 # optional field
 
+if not PYDANTIC_V2:
 
-@app.post("/optional-field-alias", operation_id="optional_field_alias")
-async def optional_field_alias(
-    file: Optional[bytes] = File(None, alias="file_alias"),
-):
-    if file is None:
-        return {"file_size": None}
-    return {"file_size": len(file)}
+    @app.post("/optional-field-alias", operation_id="optional_field_alias")
+    async def optional_field_alias(
+        file: Optional[bytes] = File(None, alias="file_alias", nullable=True),
+    ):
+        if file is None:
+            return {"file_size": None}
+        return {"file_size": len(file)}
 
 
 def test_optional_field_alias_by_name():
@@ -75,20 +75,17 @@ def test_optional_field_alias_by_alias():
     assert resp.json() == {"file_size": 7}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["Body_optional_field_alias"]
     assert body_schema["properties"] == {
         "file_alias": {
-            "anyOf": [{"type": "string", "format": "binary"}, {"type": "null"}],
+            "type": "string",
+            "nullable": True,
+            "format": "binary",
             "title": "File Alias",
         }
     }
-    # Fails with:
-    # AssertionError: assert
-    # {'file_alias': {'type': 'string', 'format': 'binary', 'title': 'File Alias'}} ==
-    # {'file_alias': {'anyOf': [{'type': 'string', 'format': 'binary'}, {'type': 'null'}], 'title': 'File Alias'}}
 
 
 # ------------------------------
@@ -137,13 +134,15 @@ def test_list_field_alias_schema():
 # optional list field
 
 
-@app.post("/optional-list-field-alias", operation_id="optional_list_field_alias")
-async def optional_list_field_alias(
-    files: Optional[List[bytes]] = File(None, alias="files_alias"),
-):
-    if files is None:
-        return {"file_sizes": None}
-    return {"file_sizes": [len(file) for file in files]}
+if not PYDANTIC_V2:
+
+    @app.post("/optional-list-field-alias", operation_id="optional_list_field_alias")
+    async def optional_list_field_alias(
+        files: Optional[List[bytes]] = File(None, alias="files_alias", nullable=True),
+    ):
+        if files is None:
+            return {"file_sizes": None}
+        return {"file_sizes": [len(file) for file in files]}
 
 
 def test_optional_list_field_alias_by_name():
@@ -165,20 +164,14 @@ def test_optional_list_field_alias_by_alias():
     assert resp.json() == {"file_sizes": [8, 8]}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_schema():
     openapi = app.openapi()
     body_schema = openapi["components"]["schemas"]["Body_optional_list_field_alias"]
     assert body_schema["properties"] == {
         "files_alias": {
-            "anyOf": [
-                {"items": {"type": "string", "format": "binary"}, "type": "array"},
-                {"type": "null"},
-            ],
+            "items": {"format": "binary", "type": "string"},
+            "nullable": True,
             "title": "Files Alias",
+            "type": "array",
         },
     }
-    # Fails with:
-    # AssertionError: assert
-    # {'files_alias': {'items': {'type': 'string', 'format': 'binary'}, 'type': 'array', 'title': 'Files Alias'}} ==
-    # {'files_alias': {'anyOf': [{'items': {'type': 'string', 'format': 'binary'}, 'type': 'array'}, {'type': 'null'}], 'title': 'Files Alias'}}

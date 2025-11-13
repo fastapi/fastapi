@@ -1,10 +1,9 @@
 from typing import List, Optional
 
-import pytest
-from fastapi import FastAPI, File
+from fastapi import FastAPI, File, Form
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from ..utils import needs_pydanticv1
 
@@ -14,20 +13,18 @@ app = FastAPI()
 
 # =====================================================================================
 # Field(alias=...)
-# Current situation: doesn't work due to validation error
+# Current situation: works
 
 # ------------------------------
 # required field
 
 
 class RequiredFieldAliasModel(BaseModel):
-    file: bytes = Field(alias="file_alias")
+    file: bytes = File(alias="file_alias")
 
 
 @app.post("/required-field-alias-model")
-async def required_field_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
-    data: RequiredFieldAliasModel = File(...),
-):
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form()):
     return {"file_size": len(data.file)}
 
 
@@ -40,17 +37,11 @@ def test_required_field_alias_model_by_name():
     assert "file_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_required_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post("/required-field-alias-model", files={"file_alias": b"content"})
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"loc":["body","file_alias"],"msg":"byte type expected","type":"type_error.bytes"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_size": 7}
+    assert resp.json() == {"file_size": 7}
 
 
 def test_required_field_alias_model_schema():
@@ -67,12 +58,10 @@ def test_required_field_alias_model_schema():
 if not PYDANTIC_V2:
 
     class OptionalFieldAliasModel(BaseModel):
-        file: Optional[bytes] = Field(None, alias="file_alias", nullable=True)
+        file: Optional[bytes] = File(None, alias="file_alias", nullable=True)
 
     @app.post("/optional-field-alias-model")
-    async def optional_field_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
-        data: OptionalFieldAliasModel = File(...),
-    ):
+    async def optional_field_alias_model(data: OptionalFieldAliasModel = Form()):
         if data.file is None:
             return {"file_size": None}
         return {"file_size": len(data.file)}
@@ -85,17 +74,11 @@ def test_optional_field_alias_model_by_name():
     assert resp.json() == {"file_size": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post("/optional-field-alias-model", files={"file_alias": b"content"})
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"loc":["body","file_alias"],"msg":"byte type expected","type":"type_error.bytes"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_size": 7}
+    assert resp.json() == {"file_size": 7}
 
 
 def test_optional_field_alias_model_schema():
@@ -116,13 +99,11 @@ def test_optional_field_alias_model_schema():
 
 
 class ListFieldAliasModel(BaseModel):
-    files: List[bytes] = Field(alias="files_alias")
+    files: List[bytes] = File(alias="files_alias")
 
 
 @app.post("/list-field-alias-model")
-async def list_field_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
-    data: ListFieldAliasModel = File(...),
-):
+async def list_field_alias_model(data: ListFieldAliasModel = Form()):
     return {"file_sizes": [len(file) for file in data.files]}
 
 
@@ -138,7 +119,6 @@ def test_list_field_alias_model_by_name():
     assert "files_alias" in detail[0]["loc"]
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_list_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -146,12 +126,7 @@ def test_list_field_alias_model_by_alias():
         files=[("files_alias", b"content1"), ("files_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"loc":["body","files_alias",0],"msg":"byte type expected","type":"type_error.bytes"},{"loc":["body","files_alias",1],"msg":"byte type expected","type":"type_error.bytes"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_list_field_alias_model_schema():
@@ -173,11 +148,11 @@ def test_list_field_alias_model_schema():
 if not PYDANTIC_V2:
 
     class OptionalListFieldAliasModel(BaseModel):
-        files: Optional[List[bytes]] = Field(None, alias="files_alias", nullable=True)
+        files: Optional[List[bytes]] = File(None, alias="files_alias", nullable=True)
 
     @app.post("/optional-list-field-alias-model")
-    async def optional_list_field_alias_model(  # pragma: no cover (remove `no cover` when bug fixed)
-        data: OptionalListFieldAliasModel = File(),
+    async def optional_list_field_alias_model(
+        data: OptionalListFieldAliasModel = Form(),
     ):
         if data.files is None:
             return {"file_sizes": None}
@@ -194,7 +169,6 @@ def test_optional_list_field_alias_model_by_name():
     assert resp.json() == {"file_sizes": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 def test_optional_list_field_alias_model_by_alias():
     client = TestClient(app)
     resp = client.post(
@@ -202,12 +176,7 @@ def test_optional_list_field_alias_model_by_alias():
         files=[("files_alias", b"content1"), ("files_alias", b"content2")],
     )
     assert resp.status_code == 200, resp.text
-    # Fails with:
-    # AssertionError: assert 422 == 200
-    # {"detail":[{"loc":["body","files_alias",0],"msg":"byte type expected","type":"type_error.bytes"},{"loc":["body","files_alias",1],"msg":"byte type expected","type":"type_error.bytes"}]}
-
-    # Uncomment when the assertion above passes:
-    # assert resp.json() == {"file_sizes": [8, 8]}
+    assert resp.json() == {"file_sizes": [8, 8]}
 
 
 def test_optional_list_field_alias_model_schema():
