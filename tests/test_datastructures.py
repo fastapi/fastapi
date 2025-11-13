@@ -70,3 +70,16 @@ async def test_upload_file():
     await file.seek(0)
     assert await file.read() == b"data and more data!"
     await file.close()
+
+
+@pytest.mark.asyncio
+async def test_uploadfile_read_text(tmp_path):
+
+    file_path = tmp_path / "sample.txt"
+    file_path.write_text("Hello FastAPI!")
+
+    with open(file_path, "rb") as f:
+        upload = UploadFile(filename="sample.txt", file=f)
+        content = await upload.read_text()
+        assert content == "Hello FastAPI!"
+        assert upload.filename == "sample.txt" # make sure .read_text() doesn't modify filename or headers
