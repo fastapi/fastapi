@@ -17,3 +17,4 @@ griffe-typingdoc==0.3.0
 black==25.1.0
 mkdocs-macros-plugin==1.4.1
 markdown-include-variants==0.0.5
+python-slugify
