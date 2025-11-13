@@ -771,4 +771,4 @@ class Depends:
 
 @dataclass
 class Security(Depends):
-    scopes: Optional[Sequence[str]] = None
+    scopes: Optional[Union[str, Sequence[str]]] = None
