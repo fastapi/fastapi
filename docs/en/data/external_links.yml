@@ -381,6 +381,10 @@ Articles:
     title: 'Tutorial de FastAPI, ¿el mejor framework de Python?'
 Podcasts:
   English:
+  - author: Behind the Commit
+    author_link: https://www.youtube.com/@BehindtheCommit
+    link: https://youtu.be/iaDRYUQ0OMM
+    title: Why FastAPI Became Python’s Fastest‑Growing Framework – Chat with Sebastián Ramírez
   - author: Real Python
     author_link: https://realpython.com/
     link: https://realpython.com/podcasts/rpp/72/
@@ -399,6 +403,10 @@ Podcasts:
     title: FastAPI on PythonBytes
 Talks:
   English:
+  - author: Sebastián Ramírez (tiangolo)
+    author_link: https://x.com/tiangolo
+    link: https://www.youtube.com/watch?v=mwvmfl8nN_U
+    title: 'Keynote: Behind the scenes of FastAPI and friends for developers and builders — Sebastián Ramírez'
   - author: Jeny Sadadia
     author_link: https://github.com/JenySadadia
     link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
