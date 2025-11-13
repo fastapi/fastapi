@@ -36,6 +36,14 @@ You can verify it in the docs UI at `/docs`:
 <img src="/img/tutorial/request-form-models/image01.png">
 </div>
 
+## Including `File` Fields { #including-file-fields }
+
+You can also include **file fields** inside a form model by using `UploadFile` or `bytes` as field types and annotating them with `File`.
+
+If there is at least one `File` field in the form model, **FastAPI** will automatically set the request content media type to `multipart/form-data` for this path operation.
+
+{* ../../docs_src/request_form_models/tutorial001b_an_py39.py hl[3,12,16] *}
+
 ## Forbid Extra Form Fields { #forbid-extra-form-fields }
 
 In some special use cases (probably not very common), you might want to **restrict** the form fields to only those declared in the Pydantic model. And **forbid** any **extra** fields.
@@ -75,4 +83,4 @@ They will receive an error response telling them that the field `extra` is not a
 
 ## Summary { #summary }
 
-You can use Pydantic models to declare form fields in FastAPI. 😎
+You can use Pydantic models to declare form fields - including file uploads - in FastAPI. 😎
