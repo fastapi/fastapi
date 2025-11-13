@@ -1,39 +1,38 @@
-import sys
 from typing import Any
 
+import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-
-from tests.utils import skip_module_if_py_gte_314
-
-if sys.version_info >= (3, 14):
-    skip_module_if_py_gte_314()
-
 from pydantic import BaseModel, ConfigDict, Field
 
-app = FastAPI()
+from tests.utils import needs_pydanticv2
 
 
-class ModelWithRef(BaseModel):
-    ref: str = Field(validation_alias="$ref", serialization_alias="$ref")
-    model_config = ConfigDict(validate_by_alias=True, serialize_by_alias=True)
+@pytest.fixture(name="client")
+def get_client():
+    app = FastAPI()
+
+    class ModelWithRef(BaseModel):
+        ref: str = Field(validation_alias="$ref", serialization_alias="$ref")
+        model_config = ConfigDict(validate_by_alias=True, serialize_by_alias=True)
+
+    @app.get("/", response_model=ModelWithRef)
+    async def read_root() -> Any:
+        return {"$ref": "some-ref"}
+
+    client = TestClient(app)
+    return client
 
 
-@app.get("/", response_model=ModelWithRef)
-async def read_root() -> Any:
-    return {"$ref": "some-ref"}
-
-
-client = TestClient(app)
-
-
-def test_get():
+@needs_pydanticv2
+def test_get(client: TestClient):
     response = client.get("/")
     assert response.json() == {"$ref": "some-ref"}
 
 
-def test_openapi_schema():
+@needs_pydanticv2
+def test_openapi_schema(client: TestClient):
     response = client.get("openapi.json")
     assert response.json() == snapshot(
         {
