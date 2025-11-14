@@ -35,4 +35,3 @@ def test_query_method_in_openapi():
     assert request_body["required"] is True
     content_schema = request_body["content"]["application/json"]["schema"]
     assert content_schema == {"$ref": "#/components/schemas/QueryPayload"}
-
