@@ -58,7 +58,6 @@ def get_client(request: pytest.FixtureRequest):
                     tasks_store[task_id].update(
                         {"title": title, "description": description, "status": status}
                     )
-                    return None
                 return None
 
             if "INSERT INTO tasks" in query:
