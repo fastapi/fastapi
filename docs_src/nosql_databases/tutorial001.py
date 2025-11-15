@@ -89,7 +89,9 @@ def create_task(task: TaskCreate, session=Depends(get_db)):
         VALUES (%s, %s, %s, %s, toTimestamp(now()), toTimestamp(now()))
     """
     session.execute(query, (task_id, task.title, task.description, task.status))
-    return Task(id=task_id, title=task.title, description=task.description, status=task.status)
+    return Task(
+        id=task_id, title=task.title, description=task.description, status=task.status
+    )
 
 
 @app.get("/tasks/", response_model=List[Task])
@@ -108,7 +110,9 @@ def read_task(task_id: UUID, session=Depends(get_db)):
     row = session.execute(query, (task_id,)).one()
     if not row:
         raise HTTPException(status_code=404, detail="Task not found")
-    return Task(id=row.id, title=row.title, description=row.description, status=row.status)
+    return Task(
+        id=row.id, title=row.title, description=row.description, status=row.status
+    )
 
 
 @app.put("/tasks/{task_id}", response_model=Task)
@@ -124,10 +128,10 @@ def update_task(task_id: UUID, task: TaskCreate, session=Depends(get_db)):
         SET title = %s, description = %s, status = %s, updated_at = toTimestamp(now())
         WHERE id = %s
     """
-    session.execute(
-        update_query, (task.title, task.description, task.status, task_id)
+    session.execute(update_query, (task.title, task.description, task.status, task_id))
+    return Task(
+        id=task_id, title=task.title, description=task.description, status=task.status
     )
-    return Task(id=task_id, title=task.title, description=task.description, status=task.status)
 
 
 @app.delete("/tasks/{task_id}")

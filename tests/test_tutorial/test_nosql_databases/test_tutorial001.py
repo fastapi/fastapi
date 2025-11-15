@@ -4,7 +4,7 @@ from unittest.mock import MagicMock, patch
 from uuid import UUID
 
 import pytest
-from dirty_equals import IsDict, IsStr, IsUUID
+from dirty_equals import IsDict, IsUUID
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -144,7 +144,11 @@ def test_crud_app(client: TestClient):
 
     response = client.post(
         "/tasks/",
-        json={"title": "Walk the dog", "description": "In the park", "status": "pending"},
+        json={
+            "title": "Walk the dog",
+            "description": "In the park",
+            "status": "pending",
+        },
     )
     assert response.status_code == 200, response.text
 
@@ -204,7 +208,9 @@ def test_openapi_schema(client: TestClient):
                             "required": True,
                             "content": {
                                 "application/json": {
-                                    "schema": {"$ref": "#/components/schemas/TaskCreate"}
+                                    "schema": {
+                                        "$ref": "#/components/schemas/TaskCreate"
+                                    }
                                 }
                             },
                         },
@@ -239,7 +245,9 @@ def test_openapi_schema(client: TestClient):
                                     "application/json": {
                                         "schema": {
                                             "type": "array",
-                                            "items": {"$ref": "#/components/schemas/Task"},
+                                            "items": {
+                                                "$ref": "#/components/schemas/Task"
+                                            },
                                             "title": "Response Read Tasks Tasks  Get",
                                         }
                                     }
@@ -257,7 +265,11 @@ def test_openapi_schema(client: TestClient):
                                 "name": "task_id",
                                 "in": "path",
                                 "required": True,
-                                "schema": {"type": "string", "format": "uuid", "title": "Task Id"},
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "title": "Task Id",
+                                },
                             }
                         ],
                         "responses": {
@@ -289,14 +301,20 @@ def test_openapi_schema(client: TestClient):
                                 "name": "task_id",
                                 "in": "path",
                                 "required": True,
-                                "schema": {"type": "string", "format": "uuid", "title": "Task Id"},
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "title": "Task Id",
+                                },
                             }
                         ],
                         "requestBody": {
                             "required": True,
                             "content": {
                                 "application/json": {
-                                    "schema": {"$ref": "#/components/schemas/TaskCreate"}
+                                    "schema": {
+                                        "$ref": "#/components/schemas/TaskCreate"
+                                    }
                                 }
                             },
                         },
@@ -329,7 +347,11 @@ def test_openapi_schema(client: TestClient):
                                 "name": "task_id",
                                 "in": "path",
                                 "required": True,
-                                "schema": {"type": "string", "format": "uuid", "title": "Task Id"},
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "title": "Task Id",
+                                },
                             }
                         ],
                         "responses": {
@@ -356,7 +378,9 @@ def test_openapi_schema(client: TestClient):
                     "HTTPValidationError": {
                         "properties": {
                             "detail": {
-                                "items": {"$ref": "#/components/schemas/ValidationError"},
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
                                 "type": "array",
                                 "title": "Detail",
                             }
@@ -377,7 +401,11 @@ def test_openapi_schema(client: TestClient):
                                 # TODO: remove when deprecating Pydantic v1
                                 {"type": "string", "title": "Description"}
                             ),
-                            "status": {"type": "string", "default": "pending", "title": "Status"},
+                            "status": {
+                                "type": "string",
+                                "default": "pending",
+                                "title": "Status",
+                            },
                             "id": {"type": "string", "format": "uuid", "title": "Id"},
                         },
                         "type": "object",
@@ -397,7 +425,11 @@ def test_openapi_schema(client: TestClient):
                                 # TODO: remove when deprecating Pydantic v1
                                 {"type": "string", "title": "Description"}
                             ),
-                            "status": {"type": "string", "default": "pending", "title": "Status"},
+                            "status": {
+                                "type": "string",
+                                "default": "pending",
+                                "title": "Status",
+                            },
                         },
                         "type": "object",
                         "required": ["title"],
@@ -406,7 +438,9 @@ def test_openapi_schema(client: TestClient):
                     "ValidationError": {
                         "properties": {
                             "loc": {
-                                "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
                                 "type": "array",
                                 "title": "Location",
                             },
