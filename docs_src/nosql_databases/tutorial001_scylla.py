@@ -22,7 +22,10 @@ class Task(TaskBase):
 
 
 class ScyllaDBConnection:
-    def __init__(self, hosts=["scylladb"], port=9042):
+    def __init__(self, hosts=None, port=9042):
+        if hosts is None:
+            hosts = ["scylladb"]
+
         self.cluster = Cluster(hosts, port=port)
         self.session = None
         self.keyspace = "task_manager"

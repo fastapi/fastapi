@@ -22,7 +22,10 @@ class Task(TaskBase):
 
 
 class CassandraConnection:
-    def __init__(self, hosts=["cassandra"], port=9042):
+    def __init__(self, hosts=None, port=9042):
+        if hosts is None:
+            hosts = ["cassandra"]
+
         self.cluster = Cluster(hosts, port=port)
         self.session = None
         self.keyspace = "task_manager"
