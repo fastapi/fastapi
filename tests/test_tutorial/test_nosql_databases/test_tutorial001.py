@@ -191,6 +191,17 @@ def test_crud_app(client: TestClient):
     assert response.status_code == 404, response.text
     assert response.json() == snapshot({"detail": "Task not found"})
 
+    response = client.put(
+        f"/tasks/{task_id}",
+        json={
+            "title": "Updated non-existent task",
+            "description": "This should fail",
+            "status": "pending",
+        },
+    )
+    assert response.status_code == 404, response.text
+    assert response.json() == snapshot({"detail": "Task not found"})
+
 
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
