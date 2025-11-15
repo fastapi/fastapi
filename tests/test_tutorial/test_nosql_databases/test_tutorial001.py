@@ -1,5 +1,5 @@
 import importlib
-from typing import Any
+from typing import Any, List
 from unittest.mock import MagicMock, patch
 from uuid import UUID
 
@@ -18,7 +18,7 @@ class MockRow:
 
 
 class MockResult:
-    def __init__(self, rows: list[MockRow]):
+    def __init__(self, rows: List[MockRow]):
         self._rows = rows
         self._iter = iter(rows)
 

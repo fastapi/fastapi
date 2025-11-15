@@ -89,7 +89,7 @@ def create_task(task: TaskCreate, session=Depends(get_db)):
         VALUES (%s, %s, %s, %s, toTimestamp(now()), toTimestamp(now()))
     """
     session.execute(query, (task_id, task.title, task.description, task.status))
-    return Task(id=task_id, **task.model_dump())
+    return Task(id=task_id, title=task.title, description=task.description, status=task.status)
 
 
 @app.get("/tasks/", response_model=List[Task])
@@ -127,7 +127,7 @@ def update_task(task_id: UUID, task: TaskCreate, session=Depends(get_db)):
     session.execute(
         update_query, (task.title, task.description, task.status, task_id)
     )
-    return Task(id=task_id, **task.model_dump())
+    return Task(id=task_id, title=task.title, description=task.description, status=task.status)
 
 
 @app.delete("/tasks/{task_id}")
