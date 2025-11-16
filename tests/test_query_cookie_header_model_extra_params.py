@@ -47,6 +47,7 @@ def test_query_pass_extra_list():
         "param2": ["456", "789"],
     }
 
+
 def test_query_pass_extra_single():
     client = TestClient(app)
     resp = client.get(
@@ -61,7 +62,6 @@ def test_query_pass_extra_single():
         "param": "123",
         "param2": "456",
     }
-
 
 
 def test_header_pass_extra_list():
