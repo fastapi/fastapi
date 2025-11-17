@@ -352,7 +352,7 @@ There are many other objects and models that will be automatically converted to 
 
 ### Step 6: Deploy it { #step-6-deploy-it }
 
-Deploy your app to **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> with one command: `fastapi deploy`. 🎉
+Deploy your app to **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** with one command: `fastapi deploy`. 🎉
 
 #### About FastAPI Cloud { #about-fastapi-cloud }
 
