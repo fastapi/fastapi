@@ -32,6 +32,12 @@ def get_client():
 
 
 @needs_pydanticv2
+def test_get(client: TestClient):
+    response = client.get("/users")
+    assert response.json() == {"username": "alice", "role": "admin"}
+
+
+@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("openapi.json")
     assert response.json() == snapshot(
