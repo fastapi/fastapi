@@ -143,6 +143,42 @@ And there are dozens of alternatives, all based on OpenAPI. You could easily add
 
 You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications.
 
+### Deploy your app (optional) { #deploy-your-app-optional }
+
+You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
+
+If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+
+Before deploying, make sure you are logged in:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Then deploy your app:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+That's it! Now you can access your app at that URL. ✨
+
 ## Recap, step by step { #recap-step-by-step }
 
 ### Step 1: import `FastAPI` { #step-1-import-fastapi }
@@ -314,6 +350,26 @@ You can also return Pydantic models (you'll see more about that later).
 
 There are many other objects and models that will be automatically converted to JSON (including ORMs, etc). Try using your favorite ones, it's highly probable that they are already supported.
 
+### Step 6: Deploy it { #step-6-deploy-it }
+
+Deploy your app to **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> with one command: `fastapi deploy`. 🎉
+
+#### About FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
+
+It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
+
+It brings the same **developer experience** of building apps with FastAPI to **deploying** them to the cloud. 🎉
+
+FastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and friends* open source projects. ✨
+
+#### Deploy to other cloud providers { #deploy-to-other-cloud-providers }
+
+FastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose.
+
+Follow your cloud provider's guides to deploy FastAPI apps with them. 🤓
+
 ## Recap { #recap }
 
 * Import `FastAPI`.
@@ -321,3 +377,4 @@ There are many other objects and models that will be automatically converted to 
 * Write a **path operation decorator** using decorators like `@app.get("/")`.
 * Define a **path operation function**; for example, `def root(): ...`.
 * Run the development server using the command `fastapi dev`.
+* Optionally deploy your app with `fastapi deploy`.
