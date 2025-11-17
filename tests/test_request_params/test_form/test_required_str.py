@@ -1,0 +1,501 @@
+import pytest
+from dirty_equals import IsDict, IsOneOf
+from fastapi import FastAPI, Form
+from fastapi._compat import PYDANTIC_V2
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
+
+from tests.utils import needs_pydanticv2
+
+from .utils import get_body_model_name
+
+app = FastAPI()
+
+# =====================================================================================
+# Without aliases
+
+
+@app.post("/required-str", operation_id="required_str")
+async def read_required_str(p: str = Form(...)):
+    return {"p": p}
+
+
+class FormModelRequiredStr(BaseModel):
+    p: str
+
+
+@app.post("/model-required-str", operation_id="model_required_str")
+async def read_model_required_str(p: FormModelRequiredStr = Form()):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-str", "/model-required-str"],
+)
+def test_required_str_schema(path: str):
+    openapi = app.openapi()
+    body_model_name = get_body_model_name(openapi, path)
+
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p": {"title": "P", "type": "string"},
+        },
+        "required": ["p"],
+        "title": body_model_name,
+        "type": "object",
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-str", "/model-required-str"],
+)
+def test_required_str_missing(path: str):
+    client = TestClient(app)
+    response = client.post(path)
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "p"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "p"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-str", "/model-required-str"],
+)
+def test_required_str(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": "hello"})
+    assert response.status_code == 200
+    assert response.json() == {"p": "hello"}
+
+
+# =====================================================================================
+# Alias
+
+
+@app.post("/required-alias", operation_id="required_alias")
+async def read_required_alias(p: str = Form(..., alias="p_alias")):
+    return {"p": p}
+
+
+class FormModelRequiredAlias(BaseModel):
+    p: str = Field(..., alias="p_alias")
+
+
+@app.post("/model-required-alias", operation_id="model_required_alias")
+async def read_model_required_alias(p: FormModelRequiredAlias = Form()):
+    return {"p": p.p}
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-alias",
+            marks=pytest.mark.xfail(
+                raises=AssertionError,
+                condition=PYDANTIC_V2,
+                reason="Fails only with PDv2",
+                strict=False,
+            ),
+        ),
+        "/model-required-alias",
+    ],
+)
+def test_required_str_alias_schema(path: str):
+    openapi = app.openapi()
+    body_model_name = get_body_model_name(openapi, path)
+
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_alias": {"title": "P Alias", "type": "string"},
+        },
+        "required": ["p_alias"],
+        "title": body_model_name,
+        "type": "object",
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-alias", "/model-required-alias"],
+)
+def test_required_alias_missing(path: str):
+    client = TestClient(app)
+    response = client.post(path)
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "p_alias"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {}),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "p_alias"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-alias", "/model-required-alias"],
+)
+def test_required_alias_by_name(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": "hello"})
+    assert response.status_code == 422
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "p_alias"],
+                    "msg": "Field required",
+                    "input": IsOneOf(None, {"p": "hello"}),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "p_alias"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required-alias", "/model-required-alias"],
+)
+def test_required_alias_by_alias(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p_alias": "hello"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": "hello"}
+
+
+# =====================================================================================
+# Validation alias
+
+
+@app.post("/required-validation-alias", operation_id="required_validation_alias")
+def read_required_validation_alias(
+    p: str = Form(..., validation_alias="p_val_alias"),
+):
+    return {"p": p}
+
+
+class FormModelRequiredValidationAlias(BaseModel):
+    p: str = Field(..., validation_alias="p_val_alias")
+
+
+@app.post(
+    "/model-required-validation-alias", operation_id="model_required_validation_alias"
+)
+def read_model_required_validation_alias(
+    p: FormModelRequiredValidationAlias = Form(),
+):
+    return {"p": p.p}
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    ["/required-validation-alias", "/model-required-validation-alias"],
+)
+def test_required_validation_alias_schema(path: str):
+    openapi = app.openapi()
+    body_model_name = get_body_model_name(openapi, path)
+
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_val_alias": {"title": "P Val Alias", "type": "string"},
+        },
+        "required": ["p_val_alias"],
+        "title": body_model_name,
+        "type": "object",
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-validation-alias",
+    ],
+)
+def test_required_validation_alias_missing(path: str):
+    client = TestClient(app)
+    response = client.post(path)
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "p_val_alias",  # /required-validation-alias fails here
+                ],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-validation-alias",
+    ],
+)
+def test_required_validation_alias_by_name(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": "hello"})
+    assert response.status_code == 422, (  # /required-validation-alias fails here
+        response.text
+    )
+
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_val_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": "hello"}),
+            }
+        ]
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-validation-alias",
+    ],
+)
+def test_required_validation_alias_by_validation_alias(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p_val_alias": "hello"})
+    assert response.status_code == 200, (  # /required-validation-alias fails here
+        response.text
+    )
+
+    assert response.json() == {"p": "hello"}
+
+
+# =====================================================================================
+# Alias and validation alias
+
+
+@app.post(
+    "/required-alias-and-validation-alias",
+    operation_id="required_alias_and_validation_alias",
+)
+def read_required_alias_and_validation_alias(
+    p: str = Form(..., alias="p_alias", validation_alias="p_val_alias"),
+):
+    return {"p": p}
+
+
+class FormModelRequiredAliasAndValidationAlias(BaseModel):
+    p: str = Field(..., alias="p_alias", validation_alias="p_val_alias")
+
+
+@app.post(
+    "/model-required-alias-and-validation-alias",
+    operation_id="model_required_alias_and_validation_alias",
+)
+def read_model_required_alias_and_validation_alias(
+    p: FormModelRequiredAliasAndValidationAlias = Form(),
+):
+    return {"p": p.p}
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/required-alias-and-validation-alias",
+        "/model-required-alias-and-validation-alias",
+    ],
+)
+def test_required_alias_and_validation_alias_schema(path: str):
+    openapi = app.openapi()
+    body_model_name = get_body_model_name(openapi, path)
+
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_val_alias": {"title": "P Val Alias", "type": "string"},
+        },
+        "required": ["p_val_alias"],
+        "title": body_model_name,
+        "type": "object",
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-alias-and-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-alias-and-validation-alias",
+    ],
+)
+def test_required_alias_and_validation_alias_missing(path: str):
+    client = TestClient(app)
+    response = client.post(path)
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "p_val_alias",  # /required-alias-and-validation-alias fails here
+                ],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-alias-and-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-alias-and-validation-alias",
+    ],
+)
+def test_required_alias_and_validation_alias_by_name(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p": "hello"})
+    assert response.status_code == 422
+
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": [
+                    "body",
+                    "p_val_alias",  # /required-alias-and-validation-alias fails here
+                ],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": "hello"}),
+            }
+        ]
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-alias-and-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-alias-and-validation-alias",
+    ],
+)
+def test_required_alias_and_validation_alias_by_alias(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p_alias": "hello"})
+    assert response.status_code == 422, (
+        response.text  # /required-alias-and-validation-alias fails here
+    )
+
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_val_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p_alias": "hello"}),
+            }
+        ]
+    }
+
+
+@needs_pydanticv2
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/required-alias-and-validation-alias",
+            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
+        ),
+        "/model-required-alias-and-validation-alias",
+    ],
+)
+def test_required_alias_and_validation_alias_by_validation_alias(path: str):
+    client = TestClient(app)
+    response = client.post(path, data={"p_val_alias": "hello"})
+    assert response.status_code == 200, (
+        response.text  # /required-alias-and-validation-alias fails here
+    )
+
+    assert response.json() == {"p": "hello"}
