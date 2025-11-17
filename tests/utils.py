@@ -8,6 +8,9 @@ needs_py39 = pytest.mark.skipif(sys.version_info < (3, 9), reason="requires pyth
 needs_py310 = pytest.mark.skipif(
     sys.version_info < (3, 10), reason="requires python3.10+"
 )
+needs_py311 = pytest.mark.skipif(
+    sys.version_info < (3, 11), reason="requires python3.11+"
+)
 needs_py_lt_314 = pytest.mark.skipif(
     sys.version_info > (3, 13), reason="requires python3.13-"
 )
