@@ -786,7 +786,7 @@ def request_params_to_args(
                 )
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[field.name] = value
+            params_to_process[field.alias] = value
         processed_keys.add(alias or field.alias)
         processed_keys.add(field.name)
 
