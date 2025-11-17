@@ -788,7 +788,6 @@ def request_params_to_args(
         if value is not None:
             params_to_process[field.alias] = value
         processed_keys.add(alias or field.alias)
-        processed_keys.add(field.name)
 
     for key, value in received_params.items():
         if key not in processed_keys:
