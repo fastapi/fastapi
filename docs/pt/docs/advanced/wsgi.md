@@ -1,22 +1,22 @@
-# Adicionando WSGI - Flask, Django, entre outros
+# Adicionando WSGI - Flask, Django, entre outros { #including-wsgi-flask-django-others }
 
-Como você viu em [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank} e [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank}, você pode **"montar"** aplicações WSGI.
+Como você viu em [Subaplicações - Montagens](sub-applications.md){.internal-link target=_blank} e [Atrás de um Proxy](behind-a-proxy.md){.internal-link target=_blank}, você pode montar aplicações WSGI.
 
 Para isso, você pode utilizar o `WSGIMiddleware` para encapsular a sua aplicação WSGI, como por exemplo Flask, Django, etc.
 
-## Usando o `WSGIMiddleware`
+## Usando `WSGIMiddleware` { #using-wsgimiddleware }
 
 Você precisa importar o `WSGIMiddleware`.
 
-Em seguinda, encapsular a aplicação WSGI (e.g. Flask) com o middleware.
+Em seguida, encapsule a aplicação WSGI (e.g. Flask) com o middleware.
 
-E então **"montar"** em um caminho de rota.
+E então monte isso sob um path.
 
-{* ../../docs_src/wsgi/tutorial001.py hl[2:3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[2:3,3] *}
 
-## Conferindo
+## Confira { #check-it }
 
-Agora todas as requisições sob o caminho `/v1/` serão manipuladas pela aplicação utilizando Flask.
+Agora, todas as requisições sob o path `/v1/` serão manipuladas pela aplicação Flask.
 
 E o resto será manipulado pelo **FastAPI**.
 
