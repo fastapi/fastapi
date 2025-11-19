@@ -14,7 +14,7 @@ Das steht im Gegensatz zu den **Entwicklungsphasen**, in denen Sie ständig den 
 
 Es gibt mehrere Möglichkeiten, dies zu tun, abhängig von Ihrem spezifischen Anwendungsfall und den von Ihnen verwendeten Tools.
 
-Sie könnten mithilfe einer Kombination von Tools selbst **einen Server bereitstellen**, Sie könnten einen **Cloud-Dienst** nutzen, der einen Teil der Arbeit für Sie erledigt, oder andere mögliche Optionen.
+Sie könnten mithilfe einer Kombination von Tools selbst **einen Server deployen**, Sie könnten einen **Cloud-Dienst** nutzen, der einen Teil der Arbeit für Sie erledigt, oder andere mögliche Optionen.
 
 Ich zeige Ihnen einige der wichtigsten Konzepte, die Sie beim Deployment einer **FastAPI**-Anwendung wahrscheinlich berücksichtigen sollten (obwohl das meiste davon auch für jede andere Art von Webanwendung gilt).
 

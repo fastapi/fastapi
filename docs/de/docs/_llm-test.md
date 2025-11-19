@@ -443,7 +443,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 * die Workload
 
 * das Deployment
-* bereitstellen
+* deployen
 
 * das SDK
 * das Software Development Kit
