@@ -107,7 +107,7 @@ And you will also see how it gets automatically integrated into the interactive 
 
 ## API Key in Header
 
-An API key is a simple secret string that a client sends with every request.  
+An API key is a simple secret string that a client sends with every request.
 It is often used for:
 
 - machine-to-machine communication,
@@ -120,7 +120,7 @@ FastAPI provides tools for these in the `fastapi.security` module, including `AP
 
 ### Define an API key in a header
 
-In this example, the client must send an API key in the HTTP header `X-API-Key`.  
+In this example, the client must send an API key in the HTTP header `X-API-Key`.
 We’ll require the exact value `"supersecret"` to access a protected route.
 
 ```Python
@@ -135,5 +135,3 @@ API_KEY = "supersecret"
 API_KEY_NAME = "X-API-Key"
 
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-
-
