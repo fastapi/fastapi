@@ -1,7 +1,17 @@
 import warnings
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    FrozenSet,
+    List,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+)
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
@@ -771,4 +781,11 @@ class Depends:
 
 @dataclass
 class Security(Depends):
-    scopes: Optional[Sequence[str]] = None
+    scopes: Optional[
+        Union[
+            List[str],
+            Tuple[str, ...],
+            Set[str],
+            FrozenSet[str],
+        ]
+    ] = None

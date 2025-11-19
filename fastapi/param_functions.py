@@ -1,8 +1,19 @@
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    FrozenSet,
+    List,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+)
 
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
+from fastapi.exceptions import FastAPIError
 from fastapi.openapi.models import Example
 from typing_extensions import Annotated, Literal, deprecated
 
@@ -2312,7 +2323,14 @@ def Security(  # noqa: N802
     ] = None,
     *,
     scopes: Annotated[
-        Optional[Sequence[str]],
+        Optional[
+            Union[
+                List[str],
+                Tuple[str, ...],
+                Set[str],
+                FrozenSet[str],
+            ]
+        ],
         Doc(
             """
             OAuth2 scopes required for the *path operation* that uses this Security
@@ -2378,4 +2396,18 @@ def Security(  # noqa: N802
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
+
+    if isinstance(scopes, str):
+        if scopes in ("function", "request"):
+            raise FastAPIError(
+                "Invalid value for `scopes` parameter in Security(). "
+                "You probably meant to use the `scope` parameter instead of `scopes`. "
+                "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string."
+            )
+        raise FastAPIError(
+            "Invalid value for `scopes` parameter in Security(). "
+            "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string. "
+            "Wrap it in a list: scopes=['your_scope'] instead of scopes='your_scope'."
+        )
+
     return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
