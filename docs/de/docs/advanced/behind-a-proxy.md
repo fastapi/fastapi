@@ -64,7 +64,7 @@ Wenn Sie mehr über HTTPS erfahren möchten, lesen Sie den Leitfaden [Über HTTP
 
 ///
 
-### Wie Proxy-Forwarded-Header funktionieren
+### Wie Proxy-Forwarded-Header funktionieren { #how-proxy-forwarded-headers-work }
 
 Hier ist eine visuelle Darstellung, wie der **Proxy** weitergeleitete Header zwischen dem Client und dem **Anwendungsserver** hinzufügt:
 
@@ -228,7 +228,7 @@ Die Übergabe des `root_path` an `FastAPI` wäre das Äquivalent zur Übergabe d
 
 Beachten Sie, dass der Server (Uvicorn) diesen `root_path` für nichts anderes verwendet als für die Weitergabe an die Anwendung.
 
-Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Response:
+Aber wenn Sie mit Ihrem Browser auf <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> gehen, sehen Sie die normale Response:
 
 ```JSON
 {
