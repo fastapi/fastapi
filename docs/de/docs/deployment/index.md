@@ -16,6 +16,8 @@ Es gibt mehrere Möglichkeiten, dies zu tun, abhängig von Ihrem spezifischen An
 
 Sie könnten mithilfe einer Kombination von Tools selbst **einen Server bereitstellen**, Sie könnten einen **Cloud-Dienst** nutzen, der einen Teil der Arbeit für Sie erledigt, oder andere mögliche Optionen.
 
+Zum Beispiel haben wir, das Team hinter FastAPI, <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a> entwickelt, um das Deployment von FastAPI-Apps in der Cloud so reibungslos wie möglich zu gestalten, mit derselben Developer-Experience wie beim Arbeiten mit FastAPI.
+
 Ich zeige Ihnen einige der wichtigsten Konzepte, die Sie beim Deployment einer **FastAPI**-Anwendung wahrscheinlich berücksichtigen sollten (obwohl das meiste davon auch für jede andere Art von Webanwendung gilt).
 
 In den nächsten Abschnitten erfahren Sie mehr über die zu beachtenden Details und über die Techniken, das zu tun. ✨
