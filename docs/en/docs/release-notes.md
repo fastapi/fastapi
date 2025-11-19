@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.121.3
+
 ### Refactors
 
 * ♻️ Make the result of `Depends()` and `Security()` hashable, as a workaround for other tools interacting with these internal parts. PR [#14372](https://github.com/fastapi/fastapi/pull/14372) by [@tiangolo](https://github.com/tiangolo).
