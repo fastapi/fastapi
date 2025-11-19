@@ -38,7 +38,11 @@ jobs:
               },
               "waiting": {
                 "delay": 2628000,
-                "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR."
+                "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR.",
+                "reminder": {
+                    "before": "P3D",
+                    "message": "Heads-up: this will be closed in 3 days unless there’s new activity."
+                }
               },
               "invalid": {
                 "delay": 0,

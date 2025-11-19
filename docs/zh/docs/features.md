@@ -165,7 +165,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 
 ## Starlette 特性
 
-**FastAPI** 和 <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a> 完全兼容(并基于)。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette`的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
+**FastAPI** 和 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> 完全兼容(并基于)。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette`的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
 
 通过 **FastAPI** 你可以获得所有 **Starlette** 的特性 ( FastAPI 就像加强版的 Starlette )：
 

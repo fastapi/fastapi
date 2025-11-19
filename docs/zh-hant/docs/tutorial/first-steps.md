@@ -163,7 +163,7 @@ OpenAPI schema 驅動了兩個互動式文件系統。
 
 `FastAPI` 是一個直接繼承自 `Starlette` 的類別。
 
-你同樣可以透過 `FastAPI` 來使用 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 所有的功能。
+你同樣可以透過 `FastAPI` 來使用 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 所有的功能。
 
 ///
 

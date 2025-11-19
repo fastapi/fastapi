@@ -123,7 +123,7 @@ Eğer API yerine, terminalde kullanılmak üzere bir <abbr title="Komut Satırı
 
 FastAPI iki devin omuzları üstünde duruyor:
 
-* Web tarafı için <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+* Web tarafı için <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>.
 * Data tarafı için <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## Kurulum
@@ -138,7 +138,7 @@ $ pip install fastapi
 
 </div>
 
-Uygulamamızı kullanılabilir hale getirmek için <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> ya da <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> gibi bir ASGI sunucusuna ihtiyacımız olacak.
+Uygulamamızı kullanılabilir hale getirmek için <a href="http://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> ya da <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a> gibi bir ASGI sunucusuna ihtiyacımız olacak.
 
 <div class="termy">
 
@@ -463,7 +463,7 @@ Starlette tarafında kullanılan:
 
 Hem FastAPI hem de Starlette tarafından kullanılan:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı servis edecek web sunucusu görevini üstlenir.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - oluşturduğumuz uygulamayı servis edecek web sunucusu görevini üstlenir.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse` kullanacaksanız gereklidir.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse` kullanacaksanız gerekli.
 

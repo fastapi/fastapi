@@ -1,12 +1,12 @@
-# Requisições Personalizadas e Classes da APIRoute
+# Request e classe APIRoute personalizadas { #custom-request-and-apiroute-class }
 
-Em algum casos, você pode querer sobreescrever a lógica usada pelas classes `Request`e `APIRoute`.
+Em alguns casos, você pode querer sobrescrever a lógica usada pelas classes `Request` e `APIRoute`.
 
-Em particular, isso pode ser uma boa alternativa para uma lógica em um middleware
+Em particular, isso pode ser uma boa alternativa para uma lógica em um middleware.
 
 Por exemplo, se você quiser ler ou manipular o corpo da requisição antes que ele seja processado pela sua aplicação.
 
-/// danger | Perigo
+/// danger | Cuidado
 
 Isso é um recurso "avançado".
 
@@ -14,7 +14,7 @@ Se você for um iniciante em **FastAPI** você deve considerar pular essa seçã
 
 ///
 
-## Casos de Uso
+## Casos de Uso { #use-cases }
 
 Alguns casos de uso incluem:
 
@@ -22,13 +22,13 @@ Alguns casos de uso incluem:
 * Descomprimir corpos de requisição comprimidos com gzip.
 * Registrar automaticamente todos os corpos de requisição.
 
-## Manipulando codificações de corpo de requisição personalizadas
+## Manipulando codificações de corpo de requisição personalizadas { #handling-custom-request-body-encodings }
 
 Vamos ver como usar uma subclasse personalizada de `Request` para descomprimir requisições gzip.
 
 E uma subclasse de `APIRoute` para usar essa classe de requisição personalizada.
 
-### Criar uma classe `GzipRequest` personalizada
+### Criar uma classe `GzipRequest` personalizada { #create-a-custom-gziprequest-class }
 
 /// tip | Dica
 
@@ -44,7 +44,7 @@ Dessa forma, a mesma classe de rota pode lidar com requisições comprimidas ou 
 
 {* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
 
-### Criar uma classe `GzipRoute` personalizada
+### Criar uma classe `GzipRoute` personalizada { #create-a-custom-gziproute-class }
 
 Em seguida, criamos uma subclasse personalizada de `fastapi.routing.APIRoute` que fará uso do `GzipRequest`.
 
@@ -58,7 +58,7 @@ Aqui nós usamos para criar um `GzipRequest` a partir da requisição original.
 
 /// note | Detalhes Técnicos
 
-Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
+Um `Request` tem um atributo `request.scope`, que é apenas um `dict` do Python contendo os metadados relacionados à requisição.
 
 Um `Request` também tem um `request.receive`, que é uma função para "receber" o corpo da requisição.
 
@@ -66,7 +66,7 @@ O dicionário `scope` e a função `receive` são ambos parte da especificação
 
 E essas duas coisas, `scope` e `receive`, são o que é necessário para criar uma nova instância de `Request`.
 
-Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">documentação do Starlette sobre Requests</a>.
+Para aprender mais sobre o `Request` confira a <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">documentação do Starlette sobre Requests</a>.
 
 ///
 
@@ -78,7 +78,7 @@ Depois disso, toda a lógica de processamento é a mesma.
 
 Mas por causa das nossas mudanças em `GzipRequest.body`, o corpo da requisição será automaticamente descomprimido quando for carregado pelo **FastAPI** quando necessário.
 
-## Acessando o corpo da requisição em um manipulador de exceção
+## Acessando o corpo da requisição em um manipulador de exceção { #accessing-the-request-body-in-an-exception-handler }
 
 /// tip | Dica
 
@@ -98,9 +98,9 @@ Se uma exceção ocorrer, a instância `Request` ainda estará em escopo, então
 
 {* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
 
-## Classe `APIRoute` personalizada em um router
+## Classe `APIRoute` personalizada em um router { #custom-apiroute-class-in-a-router }
 
-você também pode definir o parametro `route_class` de uma `APIRouter`;
+Você também pode definir o parâmetro `route_class` de uma `APIRouter`:
 
 {* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 

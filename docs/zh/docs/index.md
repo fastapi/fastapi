@@ -120,7 +120,7 @@ Python 及更高版本
 
 FastAPI 站在以下巨人的肩膀之上：
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> 负责 web 部分。
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 负责数据部分。
 
 ## 安装
@@ -135,7 +135,7 @@ $ pip install fastapi
 
 </div>
 
-你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
+你还会需要一个 ASGI 服务器，生产环境可以使用 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> 或者 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>。
 
 <div class="termy">
 
@@ -459,7 +459,7 @@ item: Item
 
 用于 FastAPI / Starlette：
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - 用于加载和运行你的应用程序的服务器。
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - 使用 `ORJSONResponse` 时安装。
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - 使用 `UJSONResponse` 时安装。
 

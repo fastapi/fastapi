@@ -1,6 +1,6 @@
 # 🔬
 
-👏 <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">💃</a>, 🔬 **FastAPI** 🈸 ⏩ &amp; 😌.
+👏 <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">💃</a>, 🔬 **FastAPI** 🈸 ⏩ &amp; 😌.
 
 ⚫️ ⚓️ 🔛 <a href="https://www.python-httpx.org" class="external-link" target="_blank">🇸🇲</a>, ❔ 🔄 🏗 ⚓️ 🔛 📨, ⚫️ 📶 😰 &amp; 🏋️.
 

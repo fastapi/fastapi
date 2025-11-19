@@ -61,7 +61,7 @@
 
 ## 📡 ℹ
 
-🎓 `BackgroundTasks` 👟 🔗 ⚪️➡️ <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+🎓 `BackgroundTasks` 👟 🔗 ⚪️➡️ <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 ⚫️ 🗄/🔌 🔗 🔘 FastAPI 👈 👆 💪 🗄 ⚫️ ⚪️➡️ `fastapi` &amp; ❎ 😫 🗄 🎛 `BackgroundTask` (🍵 `s` 🔚) ⚪️➡️ `starlette.background`.
 
@@ -69,7 +69,7 @@
 
 ⚫️ 💪 ⚙️ `BackgroundTask` 😞 FastAPI, ✋️ 👆 ✔️ ✍ 🎚 👆 📟 &amp; 📨 💃 `Response` 🔌 ⚫️.
 
-👆 💪 👀 🌖 ℹ <a href="https://www.starlette.io/background/" class="external-link" target="_blank">💃 🛂 🩺 🖥 📋</a>.
+👆 💪 👀 🌖 ℹ <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">💃 🛂 🩺 🖥 📋</a>.
 
 ## ⚠
 

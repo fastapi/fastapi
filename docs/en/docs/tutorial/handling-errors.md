@@ -81,7 +81,7 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 
 ## Install custom exception handlers { #install-custom-exception-handlers }
 
-You can add custom exception handlers with <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
+You can add custom exception handlers with <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">the same exception utilities from Starlette</a>.
 
 Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 
