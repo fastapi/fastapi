@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add missing hash part. PR [#14369](https://github.com/fastapi/fastapi/pull/14369) by [@nilslindemann](https://github.com/nilslindemann).
 * 📝 Fix typos in code comments. PR [#14364](https://github.com/fastapi/fastapi/pull/14364) by [@Edge-Seven](https://github.com/Edge-Seven).
 * 📝 Add docs for using FastAPI Cloud. PR [#14359](https://github.com/fastapi/fastapi/pull/14359) by [@tiangolo](https://github.com/tiangolo).
 
