@@ -79,7 +79,14 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Literal, TypeAliasType, TypeGuard, get_args, get_origin
+from typing_extensions import (
+    Annotated,
+    Literal,
+    TypeAliasType,
+    TypeGuard,
+    get_args,
+    get_origin,
+)
 
 try:
     from types import GenericAlias
