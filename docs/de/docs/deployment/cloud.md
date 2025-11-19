@@ -1,8 +1,8 @@
-# FastAPI bei Cloudanbietern bereitstellen { #deploy-fastapi-on-cloud-providers }
+# FastAPI bei Cloudanbietern deployen { #deploy-fastapi-on-cloud-providers }
 
 Sie können praktisch **jeden Cloudanbieter** verwenden, um Ihre FastAPI-Anwendung bereitzustellen.
 
-In den meisten Fällen bieten die großen Cloudanbieter Anleitungen zum Bereitstellen von FastAPI an.
+In den meisten Fällen bieten die großen Cloudanbieter Anleitungen zum Deployment von FastAPI an.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
