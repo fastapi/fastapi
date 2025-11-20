@@ -7,9 +7,58 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔧 Upgrade Material for MkDocs and remove insiders. PR [#14375](https://github.com/fastapi/fastapi/pull/14375) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.121.3
+
+### Refactors
+
+* ♻️ Make the result of `Depends()` and `Security()` hashable, as a workaround for other tools interacting with these internal parts. PR [#14372](https://github.com/fastapi/fastapi/pull/14372) by [@tiangolo](https://github.com/tiangolo).
+
+### Upgrades
+
+* ⬆️ Bump Starlette to <`0.51.0`. PR [#14282](https://github.com/fastapi/fastapi/pull/14282) by [@musicinmybrain](https://github.com/musicinmybrain).
+
+### Docs
+
+* 📝 Add missing hash part. PR [#14369](https://github.com/fastapi/fastapi/pull/14369) by [@nilslindemann](https://github.com/nilslindemann).
+* 📝 Fix typos in code comments. PR [#14364](https://github.com/fastapi/fastapi/pull/14364) by [@Edge-Seven](https://github.com/Edge-Seven).
+* 📝 Add docs for using FastAPI Cloud. PR [#14359](https://github.com/fastapi/fastapi/pull/14359) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.121.2
+
+### Fixes
+
+* 🐛 Fix handling of JSON Schema attributes named "$ref". PR [#14349](https://github.com/fastapi/fastapi/pull/14349) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Add EuroPython talk & podcast episode with Sebastián Ramírez. PR [#14260](https://github.com/fastapi/fastapi/pull/14260) by [@clytaemnestra](https://github.com/clytaemnestra).
+* ✏️ Fix links and add missing permalink in docs. PR [#14217](https://github.com/fastapi/fastapi/pull/14217) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Translations
+
+* 🌐 Update Portuguese translations with LLM prompt. PR [#14228](https://github.com/fastapi/fastapi/pull/14228) by [@ceb10n](https://github.com/ceb10n).
+* 🔨 Add Portuguese translations LLM prompt. PR [#14208](https://github.com/fastapi/fastapi/pull/14208) by [@ceb10n](https://github.com/ceb10n).
+* 🌐 Sync Russian docs. PR [#14331](https://github.com/fastapi/fastapi/pull/14331) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Sync German docs. PR [#14317](https://github.com/fastapi/fastapi/pull/14317) by [@nilslindemann](https://github.com/nilslindemann).
+
+## 0.121.1
+
+### Fixes
+
+* 🐛 Fix `Depends(func, scope='function')` for top level (parameterless) dependencies. PR [#14301](https://github.com/fastapi/fastapi/pull/14301) by [@luzzodev](https://github.com/luzzodev).
+
 ### Docs
 
 * 📝 Upate docs for advanced dependencies with `yield`, noting the changes in 0.121.0, adding `scope`. PR [#14287](https://github.com/fastapi/fastapi/pull/14287) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump ruff from 0.13.2 to 0.14.3. PR [#14276](https://github.com/fastapi/fastapi/pull/14276) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14289](https://github.com/fastapi/fastapi/pull/14289) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 
 ## 0.121.0
 

@@ -1,3 +1,3 @@
-# Sobre
+# Sobre { #about }
 
-Sobre o FastAPI, seus padrões, inspirações e muito mais. 🤓
+Sobre o FastAPI, seu design, inspiração e mais. 🤓
