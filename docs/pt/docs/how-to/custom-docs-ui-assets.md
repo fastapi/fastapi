@@ -18,7 +18,7 @@ O primeiro passo é desativar a documentação automática, pois por padrão, el
 
 Para desativá-los, defina suas URLs como `None` ao criar sua aplicação FastAPI:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[12] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Incluir a documentação personalizada { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Você pode reutilizar as funções internas do FastAPI para criar as páginas HT
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[4:8,15:24,27:29,32:39] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:20,23:25,28:35] *}
 
 /// tip | Dica
 
@@ -50,7 +50,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[42:44] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[38:40] *}
 
 ### Teste { #test-it }
 
@@ -118,7 +118,7 @@ Depois disso, sua estrutura de arquivos deve se parecer com:
 * Importe `StaticFiles`.
 * "Monte" a instância `StaticFiles()` em um caminho específico.
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9,15] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Teste os arquivos estáticos { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Da mesma forma que ao usar um CDN personalizado, o primeiro passo é desativar a
 
 Para desativá-los, defina suas URLs como `None` ao criar sua aplicação FastAPI:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[13] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Incluir a documentação personalizada para arquivos estáticos { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Novamente, você pode reutilizar as funções internas do FastAPI para criar as 
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[4:8,18:27,30:32,35:42] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:23,26:28,31:38] *}
 
 /// tip | Dica
 
@@ -176,7 +176,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[45:47] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[41:43] *}
 
 ### Teste a UI de Arquivos Estáticos { #test-static-files-ui }
 

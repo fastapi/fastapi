@@ -1,5 +1,3 @@
-import os
-
 from fastapi import FastAPI, Request
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -7,9 +5,7 @@ from fastapi.openapi.docs import (
     get_swagger_ui_oauth2_redirect_html,
 )
 
-root_path = os.getenv("ROOT_PATH", "")
-
-app = FastAPI(docs_url=None, redoc_url=None, root_path=root_path)
+app = FastAPI(docs_url=None, redoc_url=None)
 
 
 @app.get("/docs", include_in_schema=False)

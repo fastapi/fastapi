@@ -1,91 +1,65 @@
-import importlib
 import os
 from pathlib import Path
-from typing import TypedDict
 
 import pytest
 from fastapi.testclient import TestClient
 
 
-class Params(TypedDict):
-    app_root_path: str
-    asgi_root_path: str
-    request_prefix: str
-
-
 @pytest.fixture(
-    params=[
-        Params(app_root_path="", asgi_root_path="", request_prefix=""),
-        Params(app_root_path="/api", asgi_root_path="", request_prefix="/api"),
-        Params(app_root_path="/api", asgi_root_path="", request_prefix=""),
-        Params(app_root_path="", asgi_root_path="/api", request_prefix="/api"),
-        Params(app_root_path="", asgi_root_path="/api", request_prefix=""),
-    ],
-    ids=[
-        "Without root_path, request without prefix",
-        "FastAPI(root_path=root_path), request with prefix",
-        "FastAPI(root_path=root_path), request without prefix",
-        "TestClient(root_path=root_path), request with prefix",
-        "TestClient(root_path=root_path), request without prefix",
-    ],
+    params=["", "/api"],
+    ids=["Without path prefix", "With /api path prefix"],
 )
-def params(request: pytest.FixtureRequest):
+def path_prefix(request: pytest.FixtureRequest):
     return request.param
 
 
 @pytest.fixture
-def client(params: Params, monkeypatch):
+def client(path_prefix: str):
     static_dir: Path = Path(os.getcwd()) / "static"
     print(static_dir)
     static_dir.mkdir(exist_ok=True)
-    monkeypatch.setenv("ROOT_PATH", params["app_root_path"])
-    from docs_src.custom_docs_ui import tutorial001
+    from docs_src.custom_docs_ui.tutorial001 import app
 
-    importlib.reload(tutorial001)
-    app = tutorial001.app
-
-    with TestClient(app, root_path=params["asgi_root_path"]) as client:
+    with TestClient(app, root_path=path_prefix, base_url="http://server") as client:
         yield client
 
     static_dir.rmdir()
 
 
-def test_swagger_ui_html(client: TestClient, params: Params):
-    request_prefix = params["request_prefix"]
-    root_path = params["app_root_path"] or params["asgi_root_path"]
-
-    response = client.get(f"{request_prefix}/docs")
+def test_swagger_ui_html(client: TestClient, path_prefix: str):
+    response = client.get(f"{path_prefix}/docs")
+    assert response.request.url == f"http://server{path_prefix}/docs"
     assert response.status_code == 200, response.text
     assert "https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js" in response.text
     assert "https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" in response.text
-    assert f"{root_path}/docs/oauth2-redirect" in response.text
-
-    response = client.get(f"{request_prefix}/openapi.json")
-    assert response.status_code == 200
+    assert f"{path_prefix}/openapi.json" in response.text
+    assert f"{path_prefix}/docs/oauth2-redirect" in response.text
 
 
-def test_swagger_ui_oauth2_redirect_html(client: TestClient, params: Params):
-    request_prefix = params["request_prefix"]
+def test_openapi_json(client: TestClient, path_prefix: str):
+    response = client.get(f"{path_prefix}/openapi.json")
+    assert response.request.url == f"http://server{path_prefix}/openapi.json"
+    assert response.status_code == 200, response.text
+    assert response.json()["openapi"] == "3.1.0"
 
-    response = client.get(f"{request_prefix}/docs/oauth2-redirect")
+
+def test_swagger_ui_oauth2_redirect_html(client: TestClient, path_prefix: str):
+    response = client.get(f"{path_prefix}/docs/oauth2-redirect")
+    assert response.request.url == f"http://server{path_prefix}/docs/oauth2-redirect"
     assert response.status_code == 200, response.text
     assert "window.opener.swaggerUIRedirectOauth2" in response.text
 
 
-def test_redoc_html(client: TestClient, params: Params):
-    request_prefix = params["request_prefix"]
-
-    response = client.get(f"{request_prefix}/redoc")
+def test_redoc_html(client: TestClient, path_prefix: str):
+    response = client.get(f"{path_prefix}/redoc")
+    assert response.request.url == f"http://server{path_prefix}/redoc"
     assert response.status_code == 200, response.text
     assert "https://unpkg.com/redoc@2/bundles/redoc.standalone.js" in response.text
-
-    response = client.get(f"{request_prefix}/openapi.json")
-    assert response.status_code == 200
+    assert f"{path_prefix}/openapi.json" in response.text
 
 
-def test_api(client: TestClient, params: Params):
-    request_prefix = params["request_prefix"]
-
-    response = client.get(f"{request_prefix}/users/john")
+def test_api(client: TestClient, path_prefix: str):
+    response = client.get(f"{path_prefix}/users/john")
+    assert response.request.url == f"http://server{path_prefix}/users/john"
     assert response.status_code == 200, response.text
     assert response.json()["message"] == "Hello john"
