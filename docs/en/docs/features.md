@@ -159,7 +159,7 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ## Starlette features { #starlette-features }
 
-**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
+**FastAPI** is fully compatible with (and based on) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. So, any additional Starlette code you have, will also work.
 
 `FastAPI` is actually a sub-class of `Starlette`. So, if you already know or use Starlette, most of the functionality will work the same way.
 

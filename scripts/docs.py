@@ -4,10 +4,8 @@ import os
 import re
 import shutil
 import subprocess
-from functools import lru_cache
 from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -81,12 +79,6 @@ def slugify(text: str) -> str:
     )
 
 
-@lru_cache
-def is_mkdocs_insiders() -> bool:
-    version = metadata.version("mkdocs-material")
-    return "insiders" in version
-
-
 def get_en_config() -> Dict[str, Any]:
     return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
@@ -111,9 +103,7 @@ def complete_existing_lang(incomplete: str):
 
 @app.callback()
 def callback() -> None:
-    if is_mkdocs_insiders():
-        os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
-    # For MacOS with insiders and Cairo
+    # For MacOS with Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
 
@@ -149,10 +139,6 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    insiders_env_file = os.environ.get("INSIDERS_FILE")
-    print(f"Insiders file {insiders_env_file}")
-    if is_mkdocs_insiders():
-        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
@@ -179,14 +165,20 @@ def build_lang(
 
 
 index_sponsors_template = """
-{% if sponsors %}
+### Keystone Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+### Gold and Silver Sponsors
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
-{% endif %}
+
 """
 
 
