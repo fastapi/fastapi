@@ -1,3 +1,4 @@
+import dataclasses
 import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -129,7 +130,10 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     if isinstance(depends, params.Security) and depends.scopes:
         use_security_scopes.extend(depends.scopes)
     return get_dependant(
-        path=path, call=depends.dependency, security_scopes=use_security_scopes
+        path=path,
+        call=depends.dependency,
+        scope=depends.scope,
+        security_scopes=use_security_scopes,
     )
 
 
@@ -425,7 +429,7 @@ def analyze_param(
     if depends is not None and depends.dependency is None:
         # Copy `depends` before mutating it
         depends = copy(depends)
-        depends.dependency = type_annotation
+        depends = dataclasses.replace(depends, dependency=type_annotation)
 
     # Handle non-param type annotations like Request
     if lenient_issubclass(

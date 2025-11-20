@@ -192,6 +192,7 @@ nav:
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
