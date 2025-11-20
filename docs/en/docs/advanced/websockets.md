@@ -1,10 +1,10 @@
-# WebSockets
+# WebSockets { #websockets }
 
 You can use <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a> with **FastAPI**.
 
-## Install `WebSockets`
+## Install `websockets` { #install-websockets }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets`:
+Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `websockets` (a Python library that makes it easy to use the "WebSocket" protocol):
 
 <div class="termy">
 
@@ -16,9 +16,9 @@ $ pip install websockets
 
 </div>
 
-## WebSockets client
+## WebSockets client { #websockets-client }
 
-### In production
+### In production { #in-production }
 
 In your production system, you probably have a frontend created with a modern framework like React, Vue.js or Angular.
 
@@ -40,7 +40,7 @@ But it's the simplest way to focus on the server-side of WebSockets and have a w
 
 {* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
 
-## Create a `websocket`
+## Create a `websocket` { #create-a-websocket }
 
 In your **FastAPI** application, create a `websocket`:
 
@@ -54,7 +54,7 @@ You could also use `from starlette.websockets import WebSocket`.
 
 ///
 
-## Await for messages and send messages
+## Await for messages and send messages { #await-for-messages-and-send-messages }
 
 In your WebSocket route you can `await` for messages and send messages.
 
@@ -62,7 +62,7 @@ In your WebSocket route you can `await` for messages and send messages.
 
 You can receive and send binary, text, and JSON data.
 
-## Try it
+## Try it { #try-it }
 
 If your file is named `main.py`, run your application with:
 
@@ -96,7 +96,7 @@ You can send (and receive) many messages:
 
 And all of them will use the same WebSocket connection.
 
-## Using `Depends` and others
+## Using `Depends` and others { #using-depends-and-others }
 
 In WebSocket endpoints you can import from `fastapi` and use:
 
@@ -119,7 +119,7 @@ You can use a closing code from the <a href="https://tools.ietf.org/html/rfc6455
 
 ///
 
-### Try the WebSockets with dependencies
+### Try the WebSockets with dependencies { #try-the-websockets-with-dependencies }
 
 If your file is named `main.py`, run your application with:
 
@@ -150,7 +150,7 @@ With that you can connect the WebSocket and then send and receive messages:
 
 <img src="/img/tutorial/websockets/image05.png">
 
-## Handling disconnections and multiple clients
+## Handling disconnections and multiple clients { #handling-disconnections-and-multiple-clients }
 
 When a WebSocket connection is closed, the `await websocket.receive_text()` will raise a `WebSocketDisconnect` exception, which you can then catch and handle like in this example.
 
@@ -178,9 +178,9 @@ If you need something easy to integrate with FastAPI but that is more robust, su
 
 ///
 
-## More info
+## More info { #more-info }
 
 To learn more about the options, check Starlette's documentation for:
 
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.

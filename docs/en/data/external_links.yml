@@ -1,5 +1,9 @@
 Articles:
   English:
+  - author: Apitally
+    author_link: https://apitally.io
+    link: https://apitally.io/blog/getting-started-with-logging-in-fastapi
+    title: Getting started with logging in FastAPI
   - author: Balthazar Rouberol
     author_link: https://balthazar-rouberol.com
     link: https://blog.balthazar-rouberol.com/how-to-profile-a-fastapi-asynchronous-request
@@ -121,11 +125,11 @@ Articles:
     link: https://valonjanuzaj.medium.com/deploy-a-dockerized-fastapi-application-to-aws-cc757830ba1b
     title: Deploy a dockerized FastAPI application to AWS
   - author: Amit Chaudhary
-    author_link: https://twitter.com/amitness
+    author_link: https://x.com/amitness
     link: https://amitness.com/2020/06/fastapi-vs-flask/
     title: FastAPI for Flask Users
   - author: Louis Guitton
-    author_link: https://twitter.com/louis_guitton
+    author_link: https://x.com/louis_guitton
     link: https://guitton.co/posts/fastapi-monitoring/
     title: How to monitor your FastAPI service
   - author: Precious Ndubueze
@@ -149,7 +153,7 @@ Articles:
     link: https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072
     title: Introducing Dispatch
   - author: Stavros Korokithakis
-    author_link: https://twitter.com/Stavros
+    author_link: https://x.com/Stavros
     link: https://www.stavros.io/posts/fastapi-with-django/
     title: Using FastAPI with Django
   - author: Twilio
@@ -157,11 +161,11 @@ Articles:
     link: https://www.twilio.com/blog/build-secure-twilio-webhook-python-fastapi
     title: Build a Secure Twilio Webhook with Python and FastAPI
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://dev.to/tiangolo/build-a-web-api-from-scratch-with-fastapi-the-workshop-2ehe
     title: Build a web API from scratch with FastAPI - the workshop
   - author: Paul Sec
-    author_link: https://twitter.com/PaulWebSec
+    author_link: https://x.com/PaulWebSec
     link: https://paulsec.github.io/posts/fastapi_plus_zeit_serverless_fu/
     title: FastAPI + Zeit.co = 🚀
   - author: cuongld2
@@ -169,7 +173,7 @@ Articles:
     link: https://dev.to/cuongld2/build-simple-api-service-with-python-fastapi-part-1-581o
     title: Build simple API service with Python FastAPI — Part 1
   - author: Paurakh Sharma Humagain
-    author_link: https://twitter.com/PaurakhSharma
+    author_link: https://x.com/PaurakhSharma
     link: https://dev.to/paurakhsharma/microservice-in-python-using-fastapi-24cc
     title: Microservice in Python using FastAPI
   - author: Guillermo Cruz
@@ -181,7 +185,7 @@ Articles:
     link: https://www.tutlinks.com/create-and-deploy-fastapi-app-to-heroku/
     title: Create and Deploy FastAPI app to Heroku without using Docker
   - author: Arthur Henrique
-    author_link: https://twitter.com/arthurheinrique
+    author_link: https://x.com/arthurheinrique
     link: https://medium.com/@arthur393/another-boilerplate-to-fastapi-azure-pipeline-ci-pytest-3c8d9a4be0bb
     title: 'Another Boilerplate to FastAPI: Azure Pipeline CI + Pytest'
   - author: Shane Soh
@@ -221,7 +225,7 @@ Articles:
     link: https://towardsdatascience.com/how-to-deploy-a-machine-learning-model-dc51200fe8cf
     title: How to Deploy a Machine Learning Model
   - author: Johannes Gontrum
-    author_link: https://twitter.com/gntrm
+    author_link: https://x.com/gntrm
     link: https://medium.com/@gntrm/jwt-authentication-with-fastapi-and-aws-cognito-1333f7f2729e
     title: JWT Authentication with FastAPI and AWS Cognito
   - author: Ankush Thakur
@@ -257,7 +261,7 @@ Articles:
     link: https://medium.com/@williamhayes/fastapi-starlette-debug-vs-prod-5f7561db3a59
     title: FastAPI/Starlette debug vs prod
   - author: Mukul Mantosh
-    author_link: https://twitter.com/MantoshMukul
+    author_link: https://x.com/MantoshMukul
     link: https://www.jetbrains.com/pycharm/guide/tutorials/fastapi-aws-kubernetes/
     title: Developing FastAPI Application using K8s & AWS
   - author: KrishNa
@@ -282,7 +286,7 @@ Articles:
     link: https://www.actidoo.com/de/blog/python-fastapi-domain-driven-design
     title: Domain-driven Design mit Python und FastAPI
   - author: Nico Axtmann
-    author_link: https://twitter.com/_nicoax
+    author_link: https://x.com/_nicoax
     link: https://blog.codecentric.de/2019/08/inbetriebnahme-eines-scikit-learn-modells-mit-onnx-und-fastapi/
     title: Inbetriebnahme eines scikit-learn-Modells mit ONNX und FastAPI
   - author: Felix Schürmeyer
@@ -377,6 +381,10 @@ Articles:
     title: 'Tutorial de FastAPI, ¿el mejor framework de Python?'
 Podcasts:
   English:
+  - author: Behind the Commit
+    author_link: https://www.youtube.com/@BehindtheCommit
+    link: https://youtu.be/iaDRYUQ0OMM
+    title: Why FastAPI Became Python’s Fastest‑Growing Framework – Chat with Sebastián Ramírez
   - author: Real Python
     author_link: https://realpython.com/
     link: https://realpython.com/podcasts/rpp/72/
@@ -395,20 +403,24 @@ Podcasts:
     title: FastAPI on PythonBytes
 Talks:
   English:
+  - author: Sebastián Ramírez (tiangolo)
+    author_link: https://x.com/tiangolo
+    link: https://www.youtube.com/watch?v=mwvmfl8nN_U
+    title: 'Keynote: Behind the scenes of FastAPI and friends for developers and builders — Sebastián Ramírez'
   - author: Jeny Sadadia
     author_link: https://github.com/JenySadadia
     link: https://www.youtube.com/watch?v=uZdTe8_Z6BQ
     title: 'PyCon AU 2023: Testing asynchronous applications with FastAPI and pytest'
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://www.youtube.com/watch?v=PnpTY1f4k2U
     title: '[VIRTUAL] Py.Amsterdam''s flying Software Circus: Intro to FastAPI'
   - author: Sebastián Ramírez (tiangolo)
-    author_link: https://twitter.com/tiangolo
+    author_link: https://x.com/tiangolo
     link: https://www.youtube.com/watch?v=z9K5pwb0rt8
     title: 'PyConBY 2020: Serve ML models easily with FastAPI'
   - author: Chris Withers
-    author_link: https://twitter.com/chriswithers13
+    author_link: https://x.com/chriswithers13
     link: https://www.youtube.com/watch?v=3DLwPcrE5mA
     title: 'PyCon UK 2019: FastAPI from the ground up'
   Taiwanese:

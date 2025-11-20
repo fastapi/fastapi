@@ -1,8 +1,8 @@
-# Statische Dateien
+# Statische Dateien { #static-files }
 
 Mit `StaticFiles` können Sie statische Dateien aus einem Verzeichnis automatisch bereitstellen.
 
-## `StaticFiles` verwenden
+## `StaticFiles` verwenden { #use-staticfiles }
 
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
@@ -17,7 +17,7 @@ Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 
 ///
 
-### Was ist „Mounten“?
+### Was ist „Mounten“ { #what-is-mounting }
 
 „Mounten“ bedeutet das Hinzufügen einer vollständigen „unabhängigen“ Anwendung an einem bestimmten Pfad, die sich dann um die Handhabung aller Unterpfade kümmert.
 
@@ -25,7 +25,7 @@ Dies unterscheidet sich von der Verwendung eines `APIRouter`, da eine gemountete
 
 Weitere Informationen hierzu finden Sie im [Handbuch für fortgeschrittene Benutzer](../advanced/index.md){.internal-link target=_blank}.
 
-## Einzelheiten
+## Einzelheiten { #details }
 
 Das erste `"/static"` bezieht sich auf den Unterpfad, auf dem diese „Unteranwendung“ „gemountet“ wird. Daher wird jeder Pfad, der mit `"/static"` beginnt, von ihr verarbeitet.
 
@@ -33,8 +33,8 @@ Das `directory="static"` bezieht sich auf den Namen des Verzeichnisses, das Ihre
 
 Das `name="static"` gibt dieser Unteranwendung einen Namen, der intern von **FastAPI** verwendet werden kann.
 
-Alle diese Parameter können anders als "`static`" lauten, passen Sie sie an die Bedürfnisse und spezifischen Details Ihrer eigenen Anwendung an.
+Alle diese Parameter können anders als „`static`“ lauten, passen Sie sie an die Bedürfnisse und spezifischen Details Ihrer eigenen Anwendung an.
 
-## Weitere Informationen
+## Weitere Informationen { #more-info }
 
-Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.
+Weitere Details und Optionen finden Sie in der <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Dokumentation von Starlette zu statischen Dateien</a>.

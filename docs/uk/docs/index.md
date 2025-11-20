@@ -82,7 +82,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 "_I’m over the moon excited about **FastAPI**. It’s so fun!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -96,7 +96,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 "_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -112,7 +112,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 FastAPI стоїть на плечах гігантів:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для web частини.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> для web частини.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для частини даних.
 
 ## Вставновлення
@@ -127,7 +127,7 @@ $ pip install fastapi
 
 </div>
 
-Вам також знадобиться сервер ASGI для продакшину, наприклад <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> або <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Вам також знадобиться сервер ASGI для продакшину, наприклад <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> або <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -452,7 +452,7 @@ Starlette використовує:
 
 FastAPI / Starlette використовують:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - для сервера, який завантажує та обслуговує вашу програму.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - для сервера, який завантажує та обслуговує вашу програму.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Необхідно, якщо Ви хочете використовувати `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Необхідно, якщо Ви хочете використовувати `UJSONResponse`.
 

@@ -1,6 +1,6 @@
 # 테스팅
 
-<a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 를 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
+<a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> 덕분에 **FastAPI** 를 테스트하는 일은 쉽고 즐거운 일이 되었습니다.
 
 Starlette는 <a href="https://www.python-httpx.org\" class="external-link" target="_blank">HTTPX</a>를 기반으로 하며, 이는 Requests를 기반으로 설계되었기 때문에 매우 친숙하고 직관적입니다.
 

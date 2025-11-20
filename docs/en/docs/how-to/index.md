@@ -1,4 +1,4 @@
-# How To - Recipes
+# How To - Recipes { #how-to-recipes }
 
 Here you will see different recipes or "how to" guides for **several topics**.
 

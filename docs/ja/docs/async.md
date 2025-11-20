@@ -338,7 +338,7 @@ async def read_burgers():
 
 以前のバージョンのPythonでは、スレッドや<a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>が利用できました。しかし、コードは理解、デバック、そして、考察がはるかに複雑です。
 
-以前のバージョンのNodeJS / ブラウザJavaScriptでは、「コールバック」を使用していました。これは、<a href="http://callbackhell.com/" class="external-link" target="_blank">コールバック地獄</a>につながります。
+以前のバージョンのNodeJS / ブラウザJavaScriptでは、「コールバック」を使用していました。これは、「コールバック地獄」につながります。
 
 ## コルーチン
 

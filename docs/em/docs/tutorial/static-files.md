@@ -37,4 +37,4 @@
 
 ## 🌅 ℹ
 
-🌖 ℹ &amp; 🎛 ✅ <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">💃 🩺 🔃 🎻 📁</a>.
+🌖 ℹ &amp; 🎛 ✅ <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">💃 🩺 🔃 🎻 📁</a>.

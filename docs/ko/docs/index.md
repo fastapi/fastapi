@@ -88,7 +88,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_**FastAPI**가 너무 좋아서 구름 위를 걷는듯 합니다. 정말 즐겁습니다!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 팟캐스트 호스트</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> 팟캐스트 호스트</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -102,7 +102,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_우리 **API**를 **FastAPI**로 바꿨습니다  [...] 아마 여러분도 좋아하실 것입니다 [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 설립자 - <a href="https://spacy.io" target="_blank">spaCy</a> 제작자</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> 설립자 - <a href="https://spacy.io" target="_blank">spaCy</a> 제작자</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -118,7 +118,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
-* 웹 부분을 위한 <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>.
+* 웹 부분을 위한 <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>.
 * 데이터 부분을 위한 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>.
 
 ## 설치
@@ -133,7 +133,7 @@ $ pip install fastapi
 
 </div>
 
-프로덕션을 위해 <a href="http://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
+프로덕션을 위해 <a href="http://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> 또는 <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>과 같은 ASGI 서버도 필요할 겁니다.
 
 <div class="termy">
 
@@ -457,7 +457,7 @@ Starlette이 사용하는:
 
 FastAPI / Starlette이 사용하는:
 
-* <a href="http://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
+* <a href="http://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - 애플리케이션을 로드하고 제공하는 서버.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - `ORJSONResponse`을 사용하려면 필요.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - `UJSONResponse`를 사용하려면 필요.
 

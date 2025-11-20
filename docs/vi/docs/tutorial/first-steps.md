@@ -139,7 +139,7 @@ Bạn cũng có thể sử dụng nó để sinh code tự động, với các c
 
 `FastAPI` là một class kế thừa trực tiếp `Starlette`.
 
-Bạn cũng có thể sử dụng tất cả <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> chức năng với `FastAPI`.
+Bạn cũng có thể sử dụng tất cả <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> chức năng với `FastAPI`.
 
 ///
 

@@ -4,9 +4,7 @@ import os
 import re
 import shutil
 import subprocess
-from functools import lru_cache
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -44,11 +42,7 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
-
-@lru_cache
-def is_mkdocs_insiders() -> bool:
-    version = metadata.version("mkdocs-material")
-    return "insiders" in version
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
 
 
 def get_en_config() -> Dict[str, Any]:
@@ -75,9 +69,7 @@ def complete_existing_lang(incomplete: str):
 
 @app.callback()
 def callback() -> None:
-    if is_mkdocs_insiders():
-        os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
-    # For MacOS with insiders and Cairo
+    # For MacOS with Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
 
@@ -113,10 +105,6 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    insiders_env_file = os.environ.get("INSIDERS_FILE")
-    print(f"Insiders file {insiders_env_file}")
-    if is_mkdocs_insiders():
-        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
@@ -143,20 +131,38 @@ def build_lang(
 
 
 index_sponsors_template = """
-{% if sponsors %}
+### Keystone Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+### Gold and Silver Sponsors
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
-{% endif %}
+
 """
+
+
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
 
 
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)

@@ -7,6 +7,8 @@ name = "fastapi"
 dynamic = ["version"]
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.8"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
@@ -31,7 +33,6 @@ classifiers = [
     "Framework :: Pydantic :: 1",
     "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -39,13 +40,15 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0,<0.47.0",
+    "starlette>=0.40.0,<0.51.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "annotated-doc>=0.0.2",
 ]
 
 [project.urls]
@@ -60,7 +63,7 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 standard = [
     "fastapi-cli[standard] >=0.0.8",
     # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -79,7 +82,7 @@ standard = [
 standard-no-fastapi-cloud-cli = [
     "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.8",
     # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -98,7 +101,7 @@ standard-no-fastapi-cloud-cli = [
 all = [
     "fastapi-cli[standard] >=0.0.8",
     # # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
     "jinja2 >=3.1.5",
     # For forms and file uploads
@@ -142,6 +145,7 @@ source-includes = [
 name = "fastapi-slim"
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 strict = true
 
 [[tool.mypy.overrides]]
@@ -171,8 +175,6 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # For passlib
-    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes

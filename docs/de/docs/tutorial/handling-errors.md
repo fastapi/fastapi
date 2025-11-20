@@ -1,49 +1,49 @@
-# Fehlerbehandlung
+# Fehler behandeln { #handling-errors }
 
-Es gibt viele Situationen, in denen Sie einem Client, der Ihre API benutzt, einen Fehler zurückgeben müssen.
+Es gibt viele Situationen, in denen Sie einem Client, der Ihre API nutzt, einen Fehler mitteilen müssen.
 
-Dieser Client könnte ein Browser mit einem Frontend, Code von jemand anderem, ein <abbr title="Internet of Things – Internet der Dinge: Geräte, die über das Internet Informationen austauschen">IoT</abbr>-Gerät, usw., sein.
+Dieser Client könnte ein Browser mit einem Frontend sein, ein Code von jemand anderem, ein IoT-Gerät usw.
 
-Sie müssten beispielsweise einem Client sagen:
+Sie könnten dem Client mitteilen müssen, dass:
 
-* Dass er nicht die notwendigen Berechtigungen hat, eine Aktion auszuführen.
-* Dass er zu einer Ressource keinen Zugriff hat.
-* Dass die Ressource, auf die er zugreifen möchte, nicht existiert.
+* Der Client nicht genügend Berechtigungen für diese Operation hat.
+* Der Client keinen Zugriff auf diese Ressource hat.
+* Die Ressource, auf die der Client versucht hat, zuzugreifen, nicht existiert.
 * usw.
 
-In diesen Fällen geben Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (400 bis 499) zurück.
+In diesen Fällen würden Sie normalerweise einen **HTTP-Statuscode** im Bereich **400** (von 400 bis 499) zurückgeben.
 
-Das ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“er Statuscodes bedeuten, dass der Request in einem bestimmten Aspekt ein „Success“ („Erfolg“) war.
+Dies ist vergleichbar mit den HTTP-Statuscodes im Bereich 200 (von 200 bis 299). Diese „200“-Statuscodes bedeuten, dass der <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> in irgendeiner Weise erfolgreich war.
 
-Die Statuscodes im 400er-Bereich bedeuten hingegen, dass es einen Fehler gab.
+Die Statuscodes im Bereich 400 bedeuten hingegen, dass es einen Fehler seitens des Clients gab.
 
-Erinnern Sie sich an all diese **404 Not Found** Fehler (und Witze)?
+Erinnern Sie sich an all diese **„404 Not Found“** Fehler (und Witze)?
 
-## `HTTPException` verwenden
+## `HTTPException` verwenden { #use-httpexception }
 
-Um HTTP-Responses mit Fehlern zum Client zurückzugeben, verwenden Sie `HTTPException`.
+Um HTTP-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> mit Fehlern an den Client zurückzugeben, verwenden Sie `HTTPException`.
 
-### `HTTPException` importieren
+### `HTTPException` importieren { #import-httpexception }
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-### Eine `HTTPException` in Ihrem Code auslösen
+### Eine `HTTPException` in Ihrem Code auslösen { #raise-an-httpexception-in-your-code }
 
-`HTTPException` ist eine normale Python-<abbr title="Exception – Ausnahme, Fehler: Python-Objekt, das einen Fehler nebst Metadaten repräsentiert">Exception</abbr> mit einigen zusätzlichen Daten, die für APIs relevant sind.
+`HTTPException` ist eine normale Python-Exception mit zusätzlichen Daten, die für APIs relevant sind.
 
-Weil es eine Python-Exception ist, geben Sie sie nicht zurück, (`return`), sondern Sie lösen sie aus (`raise`).
+Weil es eine Python-Exception ist, geben Sie sie nicht zurück (`return`), sondern lösen sie aus (`raise`).
 
-Das bedeutet auch, wenn Sie in einer Hilfsfunktion sind, die Sie von ihrer *Pfadoperation-Funktion* aus aufrufen, und Sie lösen eine `HTTPException` von innerhalb dieser Hilfsfunktion aus, dann wird der Rest der *Pfadoperation-Funktion* nicht ausgeführt, sondern der Request wird sofort abgebrochen und der HTTP-Error der `HTTP-Exception` wird zum Client gesendet.
+Das bedeutet auch, wenn Sie sich innerhalb einer Hilfsfunktion befinden, die Sie innerhalb Ihrer *Pfadoperation-Funktion* aufrufen, und Sie die `HTTPException` aus dieser Hilfsfunktion heraus auslösen, wird der restliche Code in der *Pfadoperation-Funktion* nicht ausgeführt. Der Request wird sofort abgebrochen und der HTTP-Error der `HTTPException` wird an den Client gesendet.
 
-Der Vorteil, eine Exception auszulösen (`raise`), statt sie zurückzugeben (`return`) wird im Abschnitt über Abhängigkeiten und Sicherheit klarer werden.
+Der Vorteil des Auslösens einer Exception gegenüber dem Zurückgeben eines Wertes wird im Abschnitt über Abhängigkeiten und Sicherheit deutlicher werden.
 
-Im folgenden Beispiel lösen wir, wenn der Client eine ID anfragt, die nicht existiert, eine Exception mit dem Statuscode `404` aus.
+In diesem Beispiel lösen wir eine Exception mit einem Statuscode von `404` aus, wenn der Client einen Artikel mit einer nicht existierenden ID anfordert:
 
 {* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
-### Die resultierende Response
+### Die resultierende Response { #the-resulting-response }
 
-Wenn der Client `http://example.com/items/foo` anfragt (ein `item_id` `"foo"`), erhält dieser Client einen HTTP-Statuscode 200 und folgende JSON-Response:
+Wenn der Client `http://example.com/items/foo` anfordert (ein `item_id` `"foo"`), erhält dieser Client einen HTTP-Statuscode 200 und diese JSON-Response:
 
 ```JSON
 {
@@ -51,7 +51,7 @@ Wenn der Client `http://example.com/items/foo` anfragt (ein `item_id` `"foo"`), 
 }
 ```
 
-Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „Not Found“-Fehler), und eine JSON-Response wie folgt:
+Aber wenn der Client `http://example.com/items/bar` anfordert (ein nicht-existierendes `item_id` `"bar"`), erhält er einen HTTP-Statuscode 404 (der „Not Found“-Error) und eine JSON-Response wie:
 
 ```JSON
 {
@@ -61,41 +61,41 @@ Aber wenn der Client `http://example.com/items/bar` anfragt (ein nicht-existiere
 
 /// tip | Tipp
 
-Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der nach JSON konvertiert werden kann, nicht nur `str`.
+Wenn Sie eine `HTTPException` auslösen, können Sie dem Parameter `detail` jeden Wert übergeben, der in JSON konvertiert werden kann, nicht nur `str`.
 
-Zum Beispiel ein `dict`, eine `list`, usw.
+Sie könnten ein `dict`, eine `list`, usw. übergeben.
 
-Das wird automatisch von **FastAPI** gehandhabt und der Wert nach JSON konvertiert.
+Diese werden von **FastAPI** automatisch gehandhabt und in JSON konvertiert.
 
 ///
 
-## Benutzerdefinierte Header hinzufügen
+## Benutzerdefinierte Header hinzufügen { #add-custom-headers }
 
-Es gibt Situationen, da ist es nützlich, dem HTTP-Error benutzerdefinierte Header hinzufügen zu können, etwa in einigen Sicherheitsszenarien.
+Es gibt Situationen, in denen es nützlich ist, dem HTTP-Error benutzerdefinierte Header hinzuzufügen. Zum Beispiel in einigen Sicherheitsszenarien.
 
-Sie müssen das wahrscheinlich nicht direkt in ihrem Code verwenden.
+Sie werden es wahrscheinlich nicht direkt in Ihrem Code verwenden müssen.
 
-Aber falls es in einem fortgeschrittenen Szenario notwendig ist, können Sie benutzerdefinierte Header wie folgt hinzufügen:
+Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie benutzerdefinierte Header hinzufügen:
 
 {* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-## Benutzerdefinierte Exceptionhandler definieren
+## Benutzerdefinierte Exceptionhandler installieren { #install-custom-exception-handlers }
 
-Sie können benutzerdefinierte <abbr title="Exceptionhandler – Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> hinzufügen, mithilfe <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">derselben Werkzeuge für Exceptions von Starlette</a>.
+Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
 
-Nehmen wir an, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
+Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 
 Und Sie möchten diese Exception global mit FastAPI handhaben.
 
-Sie könnten einen benutzerdefinierten Exceptionhandler mittels `@app.exception_handler()` hinzufügen:
+Sie könnten einen benutzerdefinierten Exceptionhandler mit `@app.exception_handler()` hinzufügen:
 
 {* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
-Wenn Sie nun `/unicorns/yolo` anfragen, `raise`d die *Pfadoperation* eine `UnicornException`.
+Hier, wenn Sie `/unicorns/yolo` anfordern, wird die *Pfadoperation* eine `UnicornException` `raise`n.
 
 Aber diese wird von `unicorn_exception_handler` gehandhabt.
 
-Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-Inhalt:
+Sie erhalten also einen sauberen Fehler mit einem HTTP-Statuscode von `418` und dem JSON-Inhalt:
 
 ```JSON
 {"message": "Oops! yolo did something. There goes a rainbow..."}
@@ -103,33 +103,33 @@ Sie erhalten also einen sauberen Error mit einem Statuscode `418` und dem JSON-I
 
 /// note | Technische Details
 
-Sie können auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
+Sie könnten auch `from starlette.requests import Request` und `from starlette.responses import JSONResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette. Das Gleiche gilt für `Request`.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette. Dasselbe gilt für `Request`.
 
 ///
 
-## Die Default-Exceptionhandler überschreiben
+## Die Default-Exceptionhandler überschreiben { #override-the-default-exception-handlers }
 
 **FastAPI** hat einige Default-Exceptionhandler.
 
-Diese Handler kümmern sich darum, Default-JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n, und wenn der Request ungültige Daten enthält.
+Diese Handler sind dafür verantwortlich, die Default-JSON-Responses zurückzugeben, wenn Sie eine `HTTPException` `raise`n und wenn der Request ungültige Daten enthält.
 
-Sie können diese Exceptionhandler mit ihren eigenen überschreiben.
+Sie können diese Exceptionhandler mit Ihren eigenen überschreiben.
 
-### Requestvalidierung-Exceptions überschreiben
+### Überschreiben von Request-Validierungs-Exceptions { #override-request-validation-exceptions }
 
 Wenn ein Request ungültige Daten enthält, löst **FastAPI** intern einen `RequestValidationError` aus.
 
-Und bietet auch einen Default-Exceptionhandler dafür.
+Und es enthält auch einen Default-Exceptionhandler für diesen.
 
-Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und verwenden Sie ihn in `@app.exception_handler(RequestValidationError)`, um Ihren Exceptionhandler zu dekorieren.
+Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und verwenden Sie ihn mit `@app.exception_handler(RequestValidationError)`, um den Exceptionhandler zu dekorieren.
 
-Der Exceptionhandler wird einen `Request` und die Exception entgegennehmen.
+Der Exceptionhandler erhält einen `Request` und die Exception.
 
 {* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
 
-Wenn Sie nun `/items/foo` besuchen, erhalten Sie statt des Default-JSON-Errors:
+Wenn Sie nun zu `/items/foo` gehen, erhalten Sie anstelle des standardmäßigen JSON-Fehlers mit:
 
 ```JSON
 {
@@ -146,7 +146,7 @@ Wenn Sie nun `/items/foo` besuchen, erhalten Sie statt des Default-JSON-Errors:
 }
 ```
 
-eine Textversion:
+eine Textversion mit:
 
 ```
 1 validation error
@@ -154,27 +154,27 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` vs. `ValidationError`
+#### `RequestValidationError` vs. `ValidationError` { #requestvalidationerror-vs-validationerror }
 
 /// warning | Achtung
 
-Das folgende sind technische Details, die Sie überspringen können, wenn sie für Sie nicht wichtig sind.
+Dies sind technische Details, die Sie überspringen können, wenn sie für Sie jetzt nicht wichtig sind.
 
 ///
 
-`RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://pydantic-docs.helpmanual.io/usage/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
-**FastAPI** verwendet diesen, sodass Sie, wenn Sie ein Pydantic-Modell für `response_model` verwenden, und ihre Daten fehlerhaft sind, einen Fehler in ihrem Log sehen.
+**FastAPI** verwendet diesen so, dass, wenn Sie ein Pydantic-Modell in `response_model` verwenden und Ihre Daten einen Fehler haben, Sie den Fehler in Ihrem Log sehen.
 
-Aber der Client/Benutzer sieht ihn nicht. Stattdessen erhält der Client einen <abbr title="Interner Server-Fehler">„Internal Server Error“</abbr> mit einem HTTP-Statuscode `500`.
+Aber der Client/Benutzer wird ihn nicht sehen. Stattdessen erhält der Client einen „Internal Server Error“ mit einem HTTP-Statuscode `500`.
 
-Das ist, wie es sein sollte, denn wenn Sie einen Pydantic-`ValidationError` in Ihrer *Response* oder irgendwo sonst in ihrem Code haben (es sei denn, im *Request* des Clients), ist das tatsächlich ein Bug in ihrem Code.
+Es sollte so sein, denn wenn Sie einen Pydantic `ValidationError` in Ihrer *Response* oder irgendwo anders in Ihrem Code haben (nicht im *Request* des Clients), ist es tatsächlich ein Fehler in Ihrem Code.
 
-Und während Sie den Fehler beheben, sollten ihre Clients/Benutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
+Und während Sie den Fehler beheben, sollten Ihre Clients/Benutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
 
-### den `HTTPException`-Handler überschreiben
+### Überschreiben des `HTTPException`-Fehlerhandlers { #override-the-httpexception-error-handler }
 
-Genauso können Sie den `HTTPException`-Handler überschreiben.
+Auf die gleiche Weise können Sie den `HTTPException`-Handler überschreiben.
 
 Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zurückgeben wollen:
 
@@ -182,21 +182,21 @@ Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zu
 
 /// note | Technische Details
 
-Sie können auch `from starlette.responses import PlainTextResponse` verwenden.
+Sie könnten auch `from starlette.responses import PlainTextResponse` verwenden.
 
-**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren Responses kommen aber direkt von Starlette.
+**FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
 
 ///
 
-### Den `RequestValidationError`-Body verwenden
+### Verwenden des `RequestValidationError`-Bodys { #use-the-requestvalidationerror-body }
 
 Der `RequestValidationError` enthält den empfangenen `body` mit den ungültigen Daten.
 
-Sie könnten diesen verwenden, während Sie Ihre Anwendung entwickeln, um den Body zu loggen und zu debuggen, ihn zum Benutzer zurückzugeben, usw.
+Sie könnten diesen während der Entwicklung Ihrer Anwendung verwenden, um den Body zu loggen und zu debuggen, ihn an den Benutzer zurückzugeben usw.
 
 {* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
-Jetzt versuchen Sie, einen ungültigen Artikel zu senden:
+Versuchen Sie nun, einen ungültigen Artikel zu senden:
 
 ```JSON
 {
@@ -205,7 +205,7 @@ Jetzt versuchen Sie, einen ungültigen Artikel zu senden:
 }
 ```
 
-Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind, und welche den empfangenen Body enthält.
+Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind und die den empfangenen Body enthält:
 
 ```JSON hl_lines="12-15"
 {
@@ -226,30 +226,30 @@ Sie erhalten eine Response, die Ihnen sagt, dass die Daten ungültig sind, und w
 }
 ```
 
-#### FastAPIs `HTTPException` vs. Starlettes `HTTPException`
+#### FastAPIs `HTTPException` vs. Starlettes `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI** hat seine eigene `HTTPException`.
 
-Und **FastAPI**s `HTTPException`-Fehlerklasse erbt von Starlettes `HTTPException`-Fehlerklasse.
+Und die `HTTPException`-Fehlerklasse von **FastAPI** erbt von der `HTTPException`-Fehlerklasse von Starlette.
 
-Der einzige Unterschied besteht darin, dass **FastAPIs** `HTTPException` alles für das Feld `detail` akzeptiert, was nach JSON konvertiert werden kann, während Starlettes `HTTPException` nur Strings zulässt.
+Der einzige Unterschied besteht darin, dass die `HTTPException` von **FastAPI** beliebige JSON-konvertierbare Daten für das `detail`-Feld akzeptiert, während die `HTTPException` von Starlette nur Strings dafür akzeptiert.
 
-Sie können also weiterhin **FastAPI**s `HTTPException` wie üblich in Ihrem Code auslösen.
+Sie können also weiterhin die `HTTPException` von **FastAPI** wie üblich in Ihrem Code auslösen.
 
-Aber wenn Sie einen Exceptionhandler registrieren, registrieren Sie ihn für Starlettes `HTTPException`.
+Aber wenn Sie einen Exceptionhandler registrieren, sollten Sie ihn für die `HTTPException` von Starlette registrieren.
 
-Auf diese Weise wird Ihr Handler, wenn irgendein Teil von Starlettes internem Code, oder eine Starlette-Erweiterung, oder -Plugin eine Starlette-`HTTPException` auslöst, in der Lage sein, diese zu fangen und zu handhaben.
+Auf diese Weise, wenn irgendein Teil des internen Codes von Starlette, oder eine Starlette-Erweiterung oder ein Plug-in, eine Starlette `HTTPException` auslöst, wird Ihr Handler in der Lage sein, diese abzufangen und zu handhaben.
 
-Damit wir in diesem Beispiel beide `HTTPException`s im selben Code haben können, benennen wir Starlettes Exception um zu `StarletteHTTPException`:
+Um in diesem Beispiel beide `HTTPException`s im selben Code zu haben, wird die Exception von Starlette zu `StarletteHTTPException` umbenannt:
 
 ```Python
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### **FastAPI**s Exceptionhandler wiederverwenden
+### Die Exceptionhandler von **FastAPI** wiederverwenden { #reuse-fastapis-exception-handlers }
 
-Wenn Sie die Exception zusammen mit denselben Default-Exceptionhandlern von **FastAPI** verwenden möchten, können Sie die Default-Exceptionhandler von `fastapi.Exception_handlers` importieren und wiederverwenden:
+Wenn Sie die Exception zusammen mit den gleichen Default-Exceptionhandlern von **FastAPI** verwenden möchten, können Sie die Default-Exceptionhandler aus `fastapi.exception_handlers` importieren und wiederverwenden:
 
 {* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
-In diesem Beispiel `print`en Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht, aber Sie sehen, worauf wir hinauswollen. Sie können mit der Exception etwas machen und dann einfach die Default-Exceptionhandler wiederverwenden.
+In diesem Beispiel geben Sie nur den Fehler mit einer sehr ausdrucksstarken Nachricht aus, aber Sie verstehen das Prinzip. Sie können die Exception verwenden und dann einfach die Default-Exceptionhandler wiederverwenden.

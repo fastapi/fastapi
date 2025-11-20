@@ -1,16 +1,16 @@
-# Escopos OAuth2
+# Escopos OAuth2 { #oauth2-scopes }
 
 Você pode utilizar escopos do OAuth2 diretamente com o **FastAPI**, eles são integrados para funcionar perfeitamente.
 
 Isso permitiria que você tivesse um sistema de permissionamento mais refinado, seguindo o padrão do OAuth2 integrado na sua aplicação OpenAPI (e as documentações da API).
 
-OAuth2 com escopos é o mecanismo utilizado por muitos provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, Twitter, etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
+OAuth2 com escopos é o mecanismo utilizado por muitos provedores de autenticação, como o Facebook, Google, GitHub, Microsoft, X (Twitter), etc. Eles utilizam isso para prover permissões específicas para os usuários e aplicações.
 
-Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, Twitter, aquela aplicação está utilizando o OAuth2 com escopos.
+Toda vez que você "se autentica com" Facebook, Google, GitHub, Microsoft, X (Twitter), aquela aplicação está utilizando o OAuth2 com escopos.
 
 Nesta seção, você verá como gerenciar a autenticação e autorização com os mesmos escopos do OAuth2 em sua aplicação **FastAPI**.
 
-/// warning | Aviso
+/// warning | Atenção
 
 Isso é uma seção mais ou menos avançada. Se você está apenas começando, você pode pular.
 
@@ -18,7 +18,7 @@ Você não necessariamente precisa de escopos do OAuth2, e você pode lidar com 
 
 Mas o OAuth2 com escopos pode ser integrado de maneira fácil em sua API (com OpenAPI) e a sua documentação de API.
 
-No entando, você ainda aplica estes escopos, ou qualquer outro requisito de segurança/autorização, conforme necessário, em seu código.
+No entanto, você ainda aplica estes escopos, ou qualquer outro requisito de segurança/autorização, conforme necessário, em seu código.
 
 Em muitos casos, OAuth2 com escopos pode ser um exagero.
 
@@ -26,7 +26,7 @@ Mas se você sabe que precisa, ou está curioso, continue lendo.
 
 ///
 
-## Escopos OAuth2 e OpenAPI
+## Escopos OAuth2 e OpenAPI { #oauth2-scopes-and-openapi }
 
 A especificação OAuth2 define "escopos" como uma lista de strings separadas por espaços.
 
@@ -58,15 +58,15 @@ Para o OAuth2, eles são apenas strings.
 
 ///
 
-## Visão global
+## Visão global { #global-view }
 
 Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos do **Tutorial - Guia de Usuário** para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Agora utilizando escopos OAuth2:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:125,129:135,140,156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Agora vamos revisar essas mudanças passo a passo.
 
-## Esquema de segurança OAuth2
+## Esquema de segurança OAuth2 { #oauth2-security-scheme }
 
 A primeira mudança é que agora nós estamos declarando o esquema de segurança OAuth2 com dois escopos disponíveis, `me` e `items`.
 
@@ -82,9 +82,9 @@ Este é o mesmo mecanismo utilizado quando você adiciona permissões enquanto s
 
 <img src="/img/tutorial/security/image11.png">
 
-## Token JWT com escopos
+## Token JWT com escopos { #jwt-token-with-scopes }
 
-Agora, modifique o *caminho de rota* para retornar os escopos solicitados.
+Agora, modifique a *operação de rota* do token para retornar os escopos solicitados.
 
 Nós ainda estamos utilizando o mesmo `OAuth2PasswordRequestForm`. Ele inclui a propriedade `scopes` com uma `list` de `str`, com cada escopo que ele recebeu na requisição.
 
@@ -98,15 +98,15 @@ Porém em sua aplicação, por segurança, você deve garantir que você apenas 
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
-## Declare escopos em *operações de rota* e dependências
+## Declare escopos em *operações de rota* e dependências { #declare-scopes-in-path-operations-and-dependencies }
 
 Agora nós declaramos que a *operação de rota* para `/users/me/items/` exige o escopo `items`.
 
 Para isso, nós importamos e utilizamos `Security` de `fastapi`.
 
-Você pode utilizar `Security` para declarar dependências (assim como `Depends`), porém o `Security` também recebe o parâmetros `scopes` com uma lista de escopos (strings).
+Você pode utilizar `Security` para declarar dependências (assim como `Depends`), porém o `Security` também recebe o parâmetro `scopes` com uma lista de escopos (strings).
 
 Neste caso, nós passamos a função `get_current_active_user` como dependência para `Security` (da mesma forma que nós faríamos com `Depends`).
 
@@ -124,9 +124,9 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Informações Técnicas
+/// info | Detalhes Técnicos
 
 `Security` é na verdade uma subclasse de `Depends`, e ele possui apenas um parâmetro extra que veremos depois.
 
@@ -136,7 +136,7 @@ Mas quando você importa `Query`, `Path`, `Depends`, `Security` entre outros de 
 
 ///
 
-## Utilize `SecurityScopes`
+## Utilize `SecurityScopes` { #use-securityscopes }
 
 Agora atualize a dependência `get_current_user`.
 
@@ -152,7 +152,7 @@ A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utili
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## Utilize os `scopes`
+## Utilize os `scopes` { #use-the-scopes }
 
 O parâmetro `security_scopes` será do tipo `SecurityScopes`.
 
@@ -166,7 +166,7 @@ Nesta exceção, nós incluímos os escopos necessários (se houver algum) como 
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
 
-## Verifique o `username` e o formato dos dados
+## Verifique o `username` e o formato dos dados { #verify-the-username-and-data-shape }
 
 Nós verificamos que nós obtemos um `username`, e extraímos os escopos.
 
@@ -180,17 +180,17 @@ No lugar de, por exemplo, um `dict`, ou alguma outra coisa, que poderia quebrar 
 
 Nós também verificamos que nós temos um usuário com o "*username*", e caso contrário, nós levantamos a mesma exceção que criamos anteriormente.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:128] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
-## Verifique os `scopes`
+## Verifique os `scopes` { #verify-the-scopes }
 
 Nós verificamos agora que todos os escopos necessários, por essa dependência e todos os dependentes (incluindo as *operações de rota*) estão incluídas nos escopos fornecidos pelo token recebido, caso contrário, levantamos uma `HTTPException`.
 
 Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com todos esses escopos como uma `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[129:135] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
-## Árvore de dependência e escopos
+## Árvore de dependência e escopos { #dependency-tree-and-scopes }
 
 Vamos rever novamente essa árvore de dependência e os escopos.
 
@@ -223,7 +223,7 @@ Tudo depende dos `scopes` declarados em cada *operação de rota* e cada depend�
 
 ///
 
-## Mais detalhes sobre `SecurityScopes`
+## Mais detalhes sobre `SecurityScopes` { #more-details-about-securityscopes }
 
 Você pode utilizar `SecurityScopes` em qualquer lugar, e em diversos lugares. Ele não precisa estar na dependência "raiz".
 
@@ -233,9 +233,9 @@ Porque o `SecurityScopes` terá todos os escopos declarados por dependentes, voc
 
 Todos eles serão validados independentemente para cada *operação de rota*.
 
-## Verifique
+## Verifique { #check-it }
 
-Se você abrir os documentos da API, você pode antenticar e especificar quais escopos você quer autorizar.
+Se você abrir os documentos da API, você pode autenticar e especificar quais escopos você quer autorizar.
 
 <img src="/img/tutorial/security/image11.png">
 
@@ -245,9 +245,9 @@ E se você selecionar o escopo `me`, mas não o escopo `items`, você poderá ac
 
 Isso é o que aconteceria se uma aplicação terceira que tentou acessar uma dessas *operações de rota* com um token fornecido por um usuário, dependendo de quantas permissões o usuário forneceu para a aplicação.
 
-## Sobre integrações de terceiros
+## Sobre integrações de terceiros { #about-third-party-integrations }
 
-Neste exemplos nós estamos utilizando o fluxo de senha do OAuth2.
+Neste exemplo nós estamos utilizando o fluxo de senha do OAuth2.
 
 Isso é apropriado quando nós estamos autenticando em nossa própria aplicação, provavelmente com o nosso próprio "*frontend*".
 
@@ -269,6 +269,6 @@ Mas no final, eles estão implementando o mesmo padrão OAuth2.
 
 O **FastAPI** inclui utilitários para todos esses fluxos de autenticação OAuth2 em `fastapi.security.oauth2`.
 
-## `Security` em docoradores de `dependências`
+## `Security` em decoradores de `dependencies` { #security-in-decorator-dependencies }
 
-Da mesma forma que você pode definir uma `list` de `Depends` no parâmetro de `dependencias` do decorador (como explicado em [Dependências em decoradores de operações de rota](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), você também pode utilizar `Security` com escopos lá.
+Da mesma forma que você pode definir uma `list` de `Depends` no parâmetro `dependencies` do decorador (como explicado em [Dependências em decoradores de operações de rota](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), você também pode utilizar `Security` com escopos lá.
