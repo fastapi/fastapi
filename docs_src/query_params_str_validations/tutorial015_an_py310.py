@@ -1,7 +1,7 @@
 import random
 from typing import Annotated
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import AfterValidator
 
 app = FastAPI()
@@ -25,6 +25,8 @@ async def read_items(
 ):
     if id:
         item = data.get(id)
+        if item is None:
+            raise HTTPException(status_code=404, detail=f"Item with id '{id}' not found")
     else:
         id, item = random.choice(list(data.items()))
     return {"id": id, "name": item}
