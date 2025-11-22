@@ -412,7 +412,7 @@ def get_request_handler(
                     # solved_result.background_tasks is always BackgroundTasks (from dependencies/utils.py)
                     if isinstance(solved_result.background_tasks, BackgroundTasks):
                         combined_tasks.tasks.extend(solved_result.background_tasks.tasks)
-                    elif isinstance(solved_result.background_tasks, BackgroundTask):
+                    elif isinstance(solved_result.background_tasks, BackgroundTask):  # pragma: no cover
                          # Should not happen for BackgroundTasks dependency but safe to handle
                         combined_tasks.tasks.append(solved_result.background_tasks)
                         
