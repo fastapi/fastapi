@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated, Literal, deprecated
 
 from ._compat import (
     PYDANTIC_V2,
@@ -762,12 +762,13 @@ class File(Form):  # type: ignore[misc]
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
+    scope: Union[Literal["function", "request"], None] = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Security(Depends):
     scopes: Optional[Sequence[str]] = None
