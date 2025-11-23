@@ -7,7 +7,6 @@ on:
       - synchronize
 
 env:
-  UV_SYSTEM_PYTHON: 1
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
@@ -41,6 +40,10 @@ jobs:
             requirements**.txt
             pyproject.toml
             uv.lock
+      - name: Install Dependencies
+        run: |
+          uv venv
+          uv pip install -r requirements.txt
       - name: Run pre-commit
         id: precommit
         run: |
@@ -69,7 +72,7 @@ jobs:
         run: exit 1
 
   # https://github.com/marketplace/actions/alls-green#why
-  alls-green:  # This job does nothing and is only used for the branch protection
+  pre-commit-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
       - pre-commit
