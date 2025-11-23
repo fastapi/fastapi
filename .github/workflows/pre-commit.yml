@@ -7,7 +7,6 @@ on:
       - synchronize
 
 env:
-  # UV_SYSTEM_PYTHON: 1
   IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
 
 jobs:
