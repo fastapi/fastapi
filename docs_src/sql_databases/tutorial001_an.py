@@ -1,3 +1,5 @@
+import asyncio
+from contextlib import asynccontextmanager
 from typing import List, Union
 
 from fastapi import Depends, FastAPI, HTTPException, Query
@@ -30,12 +32,15 @@ def get_session():
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    loop = asyncio.get_running_loop()
+    await loop.run_in_executor(None, create_db_and_tables)
+    yield
 
 
-@app.on_event("startup")
-def on_startup():
-    create_db_and_tables()
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/heroes/")
