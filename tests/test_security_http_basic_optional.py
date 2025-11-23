@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPBasic(auto_error=False)
+security = HTTPBasic(realm="simple", auto_error=False)
 
 
 @app.get("/users/me")
@@ -37,7 +37,7 @@ def test_security_http_basic_invalid_credentials():
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
     assert response.json() == {"detail": "Invalid authentication credentials"}
 
 
@@ -46,7 +46,7 @@ def test_security_http_basic_non_basic_credentials():
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="simple"'
     assert response.json() == {"detail": "Invalid authentication credentials"}
 
 
