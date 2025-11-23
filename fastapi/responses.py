@@ -1,3 +1,4 @@
+import json
 from typing import Any
 
 from starlette.responses import FileResponse as FileResponse  # noqa
@@ -18,6 +19,18 @@ try:
     import orjson
 except ImportError:  # pragma: nocover
     orjson = None  # type: ignore
+
+
+try:
+    import bson  # type: ignore[import-untyped]
+except ImportError:  # pragma: nocover
+    bson = None
+
+
+try:
+    import bsonjs  # type: ignore
+except ImportError:  # pragma: nocover
+    bsonjs = None
 
 
 class UJSONResponse(JSONResponse):
@@ -46,3 +59,35 @@ class ORJSONResponse(JSONResponse):
         return orjson.dumps(
             content, option=orjson.OPT_NON_STR_KEYS | orjson.OPT_SERIALIZE_NUMPY
         )
+
+
+class BSONResponse(Response):
+    """
+    BSON response using the current Python bson library for data serialization.
+
+    Note: This is a temporary solution. Soon, a custom Rust wrapper will be implemented for BSON serialization/deserialization to improve performance and reliability.
+
+    Read more about it in the
+    [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+    """
+
+    media_type = "application/bson"
+
+    def render(self, content: Any) -> Any:
+        assert bson is not None, "bson must be installed to use BSONResponse"
+        return bson.dumps(content)
+
+
+class BSONJSResponse(BSONResponse):
+    """
+    BSON response using the C-backed python-bsonjs library to serialize BSON
+
+    Read more about it in the
+    [FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+    """
+
+    media_type = "application/bson"
+
+    def render(self, content: Any) -> Any:
+        assert bsonjs is not None, "bsonjs must be installed to use BSONJSResponse"
+        return bsonjs.loads(json.dumps(content))
