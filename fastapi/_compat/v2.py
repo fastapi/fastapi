@@ -71,6 +71,18 @@ class ModelField:
         return a if a is not None else self.name
 
     @property
+    def validation_alias(self) -> Union[str, None]:
+        va = self.field_info.validation_alias
+        if isinstance(va, str) and va:
+            return va
+        return None
+
+    @property
+    def serialization_alias(self) -> Union[str, None]:
+        sa = self.field_info.serialization_alias
+        return sa or None
+
+    @property
     def required(self) -> bool:
         return self.field_info.is_required()
 
@@ -183,12 +195,18 @@ def get_schema_from_model_field(
     override_mode: Union[Literal["validation"], None] = (
         None if separate_input_output_schemas else "validation"
     )
+    field_alias = (
+        (field.validation_alias or field.alias)
+        if field.mode == "validation"
+        else (field.serialization_alias or field.alias)
+    )
+
     # This expects that GenerateJsonSchema was already used to generate the definitions
     json_schema = field_mapping[(field, override_mode or field.mode)]
     if "$ref" not in json_schema:
         # TODO remove when deprecating Pydantic v1
         # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-        json_schema["title"] = field.field_info.title or field.alias.title().replace(
+        json_schema["title"] = field.field_info.title or field_alias.title().replace(
             "_", " "
         )
     return json_schema
