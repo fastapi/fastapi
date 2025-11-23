@@ -676,6 +676,87 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
+def _detect_route_conflicts(
+    new_route: "BaseRoute",
+    existing_routes: Sequence[BaseRoute],
+) -> List[str]:
+    """
+    Detect and warn about route conflicts.
+
+    Checks if route patterns could shadow each other. Only compares routes of the same type
+    and warns when HTTP methods overlap. Different route types (APIRoute vs WebSocketRoute)
+    are not compared as they handle different protocols.
+    """
+    import warnings
+
+    conflicts = []
+
+    # Only check routes that have path_regex attribute (APIRoute, WebSocketRoute, etc.)
+    if not hasattr(new_route, "path_regex"):
+        return conflicts
+
+    # Cache new_route attributes once before loop for performance
+    new_methods = getattr(new_route, "methods", None)
+    new_path = getattr(new_route, "path", None)
+    new_path_regex = getattr(new_route, "path_regex", None)
+
+    # Skip if new route doesn't have path attribute
+    if new_path is None:
+        return conflicts
+
+    # Build method string for warning message
+    methods_str = ""
+    if new_methods is not None:
+        methods_str = f" ({', '.join(sorted(new_methods))})"
+
+    for existing in existing_routes:
+        # Only compare routes of the exact same type
+        if type(new_route) is not type(existing):
+            continue
+
+        # Skip if existing route doesn't have path_regex
+        if not hasattr(existing, "path_regex"):
+            continue
+
+        # Check if methods overlap (both routes must have methods attribute)
+        existing_methods = getattr(existing, "methods", None)
+        if new_methods is not None and existing_methods is not None:
+            if not (new_methods & existing_methods):
+                continue
+
+        # Get existing path attributes safely
+        existing_path = getattr(existing, "path", None)
+
+        # Skip if existing route doesn't have path attribute
+        if existing_path is None:
+            continue
+
+        # Skip if paths are identical (route override, not a conflict)
+        if new_path == existing_path:
+            continue
+
+        # Get existing path_regex attribute safely
+        existing_path_regex = getattr(existing, "path_regex", None)
+
+        # Check for shadowing patterns
+        if new_path_regex and new_path_regex.match(existing_path):
+            conflicts.append(
+                f"Route {new_path}{methods_str} "
+                f"may shadow existing route {existing_path}"
+            )
+        elif existing_path_regex and existing_path_regex.match(new_path):
+            conflicts.append(
+                f"Route {new_path}{methods_str} "
+                f"may be shadowed by existing route {existing_path}"
+            )
+
+    if conflicts:
+        for conflict in conflicts:
+            warnings.warn(conflict, UserWarning, stacklevel=4)
+
+    return conflicts
+
+
 class APIRouter(routing.Router):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
@@ -1042,6 +1123,8 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
         )
+        # Detect and warn about potential route conflicts
+        _detect_route_conflicts(route, self.routes)
         self.routes.append(route)
 
     def api_route(
