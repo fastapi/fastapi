@@ -41,6 +41,8 @@ jobs:
             requirements**.txt
             pyproject.toml
             uv.lock
+      - name: Install Dependencies
+        run: uv pip install -r requirements-tests.txt
       - name: Run pre-commit
         id: precommit
         run: |
