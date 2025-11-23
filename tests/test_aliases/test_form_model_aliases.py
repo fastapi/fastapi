@@ -1,0 +1,630 @@
+from typing import List, Optional
+
+from fastapi import FastAPI, Form
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, Field
+
+from ..utils import needs_pydanticv2
+
+pytestmark = needs_pydanticv2
+
+app = FastAPI()
+
+# =====================================================================================
+# Field(alias=...)
+# Current situation: fully works
+
+# ------------------------------
+# required field
+
+
+class RequiredFieldAliasModel(BaseModel):
+    param: str = Field(alias="param_alias")
+
+
+@app.post("/required-field-alias-model")
+async def required_field_alias_model(data: RequiredFieldAliasModel = Form(...)):
+    return {"param": data.param}
+
+
+def test_required_field_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post("/required-field-alias-model", data={"param": "123"})
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_alias" in detail[0]["loc"]
+
+
+def test_required_field_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post("/required-field-alias-model", data={"param_alias": "123"})
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_required_field_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["RequiredFieldAliasModel"]
+    assert body_schema["properties"] == {
+        "param_alias": {"title": "Param Alias", "type": "string"}
+    }
+
+
+# ------------------------------
+# optional field
+
+
+class OptionalFieldAliasModel(BaseModel):
+    param: Optional[str] = Field(None, alias="param_alias")
+
+
+@app.post("/optional-field-alias-model")
+async def optional_field_alias_model(data: OptionalFieldAliasModel = Form(...)):
+    return {"param": data.param}
+
+
+def test_optional_field_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post("/optional-field-alias-model", data={"param": "123"})
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+def test_optional_field_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post("/optional-field-alias-model", data={"param_alias": "123"})
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_optional_field_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["OptionalFieldAliasModel"]
+    assert body_schema["properties"] == {
+        "param_alias": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "title": "Param Alias",
+        },
+    }
+
+
+# ------------------------------
+# list field
+
+
+class ListFieldAliasModel(BaseModel):
+    param: List[str] = Field(alias="param_alias")
+
+
+@app.post("/list-field-alias-model")
+async def list_field_alias_model(data: ListFieldAliasModel = Form(...)):
+    return {"param": data.param}
+
+
+def test_list_field_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post("/list-field-alias-model", data={"param": ["123", "456"]})
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_alias" in detail[0]["loc"]
+
+
+def test_list_field_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post("/list-field-alias-model", data={"param_alias": ["123", "456"]})
+    assert resp.status_code == 200
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_list_field_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["ListFieldAliasModel"]
+    assert body_schema["properties"] == {
+        "param_alias": {
+            "items": {"type": "string"},
+            "title": "Param Alias",
+            "type": "array",
+        },
+    }
+
+
+# ------------------------------
+# optional list field
+
+
+class OptionalListFieldAliasModel(BaseModel):
+    param: Optional[List[str]] = Field(None, alias="param_alias")
+
+
+@app.post("/optional-list-field-alias-model")
+async def optional_list_field_alias_model(
+    data: OptionalListFieldAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_optional_list_field_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-alias-model", data={"param": ["123", "456"]}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+def test_optional_list_field_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-alias-model", data={"param_alias": ["123", "456"]}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_optional_list_field_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["OptionalListFieldAliasModel"]
+    assert body_schema["properties"] == {
+        "param_alias": {
+            "anyOf": [{"items": {"type": "string"}, "type": "array"}, {"type": "null"}],
+            "title": "Param Alias",
+        }
+    }
+
+
+# =====================================================================================
+# Field(validation_alias=...)
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
+
+# ------------------------------
+# required field
+
+
+class RequiredFieldValidationAliasModel(BaseModel):
+    param: str = Field(validation_alias="param_val_alias")
+
+
+@app.post(
+    "/required-field-validation-alias-model",
+    operation_id="required_field_validation_alias_model",
+)
+async def required_field_validation_alias_model(
+    data: RequiredFieldValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_required_field_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post("/required-field-validation-alias-model", data={"param": "123"})
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+def test_required_field_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/required-field-validation-alias-model", data={"param_val_alias": "123"}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_required_field_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["RequiredFieldValidationAliasModel"]
+    assert body_schema["properties"] == {
+        "param_val_alias": {"title": "Param Val Alias", "type": "string"}
+    }
+
+
+# ------------------------------
+# optional field
+
+
+class OptionalFieldValidationAliasModel(BaseModel):
+    param: Optional[str] = Field(None, validation_alias="param_val_alias")
+
+
+@app.post(
+    "/optional-field-validation-alias-model",
+    operation_id="optional_field_validation_alias_model",
+)
+async def optional_field_validation_alias_model(
+    data: OptionalFieldValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_optional_field_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post("/optional-field-validation-alias-model", data={"param": "123"})
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+def test_optional_field_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-field-validation-alias-model", data={"param_val_alias": "123"}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_optional_field_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["OptionalFieldValidationAliasModel"]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "title": "Param Val Alias",
+        },
+    }
+
+
+# ------------------------------
+# list field
+
+
+class ListFieldValidationAliasModel(BaseModel):
+    param: List[str] = Field(validation_alias="param_val_alias")
+
+
+@app.post(
+    "/list-field-validation-alias-model",
+    operation_id="list_field_validation_alias_model",
+)
+async def list_field_validation_alias_model(
+    data: ListFieldValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_list_field_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/list-field-validation-alias-model", data={"param": ["123", "456"]}
+    )
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
+def test_list_field_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/list-field-validation-alias-model", data={"param_val_alias": ["123", "456"]}
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_list_field_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"]["ListFieldValidationAliasModel"]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "items": {"type": "string"},
+            "title": "Param Val Alias",
+            "type": "array",
+        }
+    }
+
+
+# ------------------------------
+# optional list field
+
+
+class OptionalListFieldValidationAliasModel(BaseModel):
+    param: Optional[List[str]] = Field(None, validation_alias="param_val_alias")
+
+
+@app.post(
+    "/optional-list-field-validation-alias-model",
+    operation_id="optional_list_field_validation_alias_model",
+)
+async def optional_list_field_validation_alias_model(
+    data: OptionalListFieldValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_optional_list_field_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-validation-alias-model", data={"param": ["123", "456"]}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
+def test_optional_list_field_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-validation-alias-model",
+        data={"param_val_alias": ["123", "456"]},
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_optional_list_field_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"][
+        "OptionalListFieldValidationAliasModel"
+    ]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "anyOf": [{"items": {"type": "string"}, "type": "array"}, {"type": "null"}],
+            "title": "Param Val Alias",
+        },
+    }
+
+
+# =====================================================================================
+# Field(alias=..., validation_alias=...)
+# Current situation: Works (with fix #14303), but there is still an issue with `validation_alias`
+# (values are extracted as extra parameters, not as declared parameters)
+
+# ------------------------------
+# required field
+
+
+class RequiredFieldAliasAndValidationAliasModel(BaseModel):
+    param: str = Field(alias="param_alias", validation_alias="param_val_alias")
+
+
+@app.post(
+    "/required-field-alias-and-validation-alias-model",
+    operation_id="required_field_alias_and_validation_alias_model",
+)
+async def required_field_alias_and_validation_alias_model(
+    data: RequiredFieldAliasAndValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_required_field_alias_and_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/required-field-alias-and-validation-alias-model", data={"param": "123"}
+    )
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+def test_required_field_alias_and_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/required-field-alias-and-validation-alias-model", data={"param_alias": "123"}
+    )
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+def test_required_field_alias_and_validation_alias_model_by_validation_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/required-field-alias-and-validation-alias-model",
+        data={"param_val_alias": "123"},
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_required_field_alias_and_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"][
+        "RequiredFieldAliasAndValidationAliasModel"
+    ]
+    assert body_schema["properties"] == {
+        "param_val_alias": {"title": "Param Val Alias", "type": "string"}
+    }
+
+
+# ------------------------------
+# optional field
+
+
+class OptionalFieldAliasAndValidationAliasModel(BaseModel):
+    param: Optional[str] = Field(
+        None, alias="param_alias", validation_alias="param_val_alias"
+    )
+
+
+@app.post(
+    "/optional-field-alias-and-validation-alias-model",
+    operation_id="optional_field_alias_and_validation_alias_model",
+)
+async def optional_field_alias_and_validation_alias_model(
+    data: OptionalFieldAliasAndValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_optional_field_alias_and_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-field-alias-and-validation-alias-model", data={"param": "123"}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+def test_optional_field_alias_and_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-field-alias-and-validation-alias-model", data={"param_alias": "123"}
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": None}
+
+
+def test_optional_field_alias_and_validation_alias_model_by_validation_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-field-alias-and-validation-alias-model",
+        data={"param_val_alias": "123"},
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"param": "123"}
+
+
+def test_optional_field_alias_and_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"][
+        "OptionalFieldAliasAndValidationAliasModel"
+    ]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "anyOf": [{"type": "string"}, {"type": "null"}],
+            "title": "Param Val Alias",
+        }
+    }
+
+
+# ------------------------------
+# list field
+
+
+class ListFieldAliasAndValidationAliasModel(BaseModel):
+    param: List[str] = Field(alias="param_alias", validation_alias="param_val_alias")
+
+
+@app.post(
+    "/list-field-alias-and-validation-alias-model",
+    operation_id="list_field_alias_and_validation_alias_model",
+)
+async def list_field_alias_and_validation_alias_model(
+    data: ListFieldAliasAndValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_list_field_alias_and_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/list-field-alias-and-validation-alias-model", data={"param": ["123", "456"]}
+    )
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+def test_list_field_alias_and_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/list-field-alias-and-validation-alias-model",
+        data={"param_alias": ["123", "456"]},
+    )
+    assert resp.status_code == 422
+    detail = resp.json()["detail"]
+    assert detail[0]["msg"] == "Field required"
+    assert "param_val_alias" in detail[0]["loc"]
+
+
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
+def test_list_field_alias_and_validation_alias_model_by_validation_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/list-field-alias-and-validation-alias-model",
+        data={"param_val_alias": ["123", "456"]},
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_list_field_alias_and_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"][
+        "ListFieldAliasAndValidationAliasModel"
+    ]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "items": {"type": "string"},
+            "title": "Param Val Alias",
+            "type": "array",
+        }
+    }
+
+
+# ------------------------------
+# optional list field
+
+
+class OptionalListFieldAliasAndValidationAliasModel(BaseModel):
+    param: Optional[List[str]] = Field(
+        None, alias="param_alias", validation_alias="param_val_alias"
+    )
+
+
+@app.post(
+    "/optional-list-field-alias-and-validation-alias-model",
+    operation_id="optional_list_field_alias_and_validation_alias_model",
+)
+async def optional_list_field_alias_and_validation_alias_model(
+    data: OptionalListFieldAliasAndValidationAliasModel = Form(...),
+):
+    return {"param": data.param}
+
+
+def test_optional_list_field_alias_and_validation_alias_model_by_name():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-alias-and-validation-alias-model",
+        data={"param": ["123", "456"]},
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": None}
+
+
+def test_optional_list_field_alias_and_validation_alias_model_by_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-alias-and-validation-alias-model",
+        data={"param_alias": ["123", "456"]},
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": None}
+
+
+# This currently passes (with fix #14303), but it works incorrectly internally
+# (values are extracted as extra parameters, not as declared parameters)
+def test_optional_list_field_alias_and_validation_alias_model_by_validation_alias():
+    client = TestClient(app)
+    resp = client.post(
+        "/optional-list-field-alias-and-validation-alias-model",
+        data={"param_val_alias": ["123", "456"]},
+    )
+    assert resp.status_code == 200, resp.text
+    assert resp.json() == {"param": ["123", "456"]}
+
+
+def test_optional_list_field_alias_and_validation_alias_model_schema():
+    openapi = app.openapi()
+    body_schema = openapi["components"]["schemas"][
+        "OptionalListFieldAliasAndValidationAliasModel"
+    ]
+    assert body_schema["properties"] == {
+        "param_val_alias": {
+            "anyOf": [{"items": {"type": "string"}, "type": "array"}, {"type": "null"}],
+            "title": "Param Val Alias",
+        }
+    }
