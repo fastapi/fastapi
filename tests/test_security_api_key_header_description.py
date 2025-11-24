@@ -35,7 +35,7 @@ def test_security_api_key_no_key():
     response = client.get("/users/me")
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
-    assert response.headers["WWW-Authenticate"] == 'ApiKey in="header", name="key"'
+    assert response.headers["WWW-Authenticate"] == "APIKey"
 
 
 def test_openapi_schema():
