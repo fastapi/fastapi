@@ -185,7 +185,7 @@ Example:
         # FastAPI in Containern - Docker { #fastapi-in-containers-docker }
         »»»
 
-3.1) Do not apply rule 3 when there is no space before or no space after the dash.
+3.1) Do not apply rule 3 when there is no space before or no space after the hyphen.
 
 Example:
 
@@ -195,13 +195,13 @@ Example:
         ## Type hints and annotations { #type-hints-and-annotations }
         »»»
 
-    Translate with (German) – use a short dash:
+    Translate with (German) – notice the hyphen:
 
         «««
         ## Typhinweise und -annotationen { #type-hints-and-annotations }
         »»»
 
-    Do NOT translate with (German):
+    Do NOT translate with (German) – notice the dash:
 
         «««
         ## Typhinweise und –annotationen { #type-hints-and-annotations }
@@ -222,7 +222,7 @@ Ich versuche nicht, alles einzudeutschen. Das bezieht sich besonders auf Begriff
 
 ### List of English terms and their preferred German translations
 
-Below is a list of English terms and their preferred German translations, separated by a colon («:»). Use these translations, do not use your own. If an existing translation does not use these terms, update it to use them. A term or a translation may be followed by an explanation in brackets, which explains when to translate the term this way. If a translation is preceded by «NOT», then that means: do NOT use this translation for this term. English nouns, starting with the word «the», have the German genus – «der», «die», «das» – prepended to their German translation, to help you to grammatically decline them in the translation. They are given in singular case, unless they have «(plural)» attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word «to».
+Below is a list of English terms and their preferred German translations, separated by a colon («:»). Use these translations, do not use your own. If an existing translation does not use these terms, update it to use them. In the below list, a term or a translation may be followed by an explanation in brackets, which explains when to translate the term this way. If a translation is preceded by «NOT», then that means: do NOT use this translation for this term. English nouns, starting with the word «the», have the German genus – «der», «die», «das» – prepended to their German translation, to help you to grammatically decline them in the translation. They are given in singular case, unless they have «(plural)» attached, which means they are given in plural case. Verbs are given in the full infinitive – starting with the word «to».
 
 * «/// check»: «/// check | Testen»
 * «/// danger»: «/// danger | Gefahr»

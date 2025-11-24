@@ -15,7 +15,7 @@
 
 ## `Request` 객체에 대한 세부 사항
 
-**FastAPI**는 실제로 내부에 **Starlette**을 사용하며, 그 위에 여러 도구를 덧붙인 구조입니다. 따라서 여러분이 필요할 때 Starlette의 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> 객체를 직접 사용할 수 있습니다.
+**FastAPI**는 실제로 내부에 **Starlette**을 사용하며, 그 위에 여러 도구를 덧붙인 구조입니다. 따라서 여러분이 필요할 때 Starlette의 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 객체를 직접 사용할 수 있습니다.
 
 `Request` 객체에서 데이터를 직접 가져오는 경우(예: 본문을 읽기)에는 FastAPI가 해당 데이터를 검증하거나 변환하지 않으며, 문서화(OpenAPI를 통한 문서 자동화(로 생성된) API 사용자 인터페이스)도 되지 않습니다.
 
@@ -45,7 +45,7 @@
 
 ## `Request` 설명서
 
-여러분은 `Request` 객체에 대한 더 자세한 내용을 <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">공식 Starlette 설명서 사이트</a>에서 읽어볼 수 있습니다.
+여러분은 `Request` 객체에 대한 더 자세한 내용을 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">공식 Starlette 설명서 사이트</a>에서 읽어볼 수 있습니다.
 
 /// note | 기술 세부사항
 

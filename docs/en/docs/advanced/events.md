@@ -154,7 +154,7 @@ Underneath, in the ASGI technical specification, this is part of the <a href="ht
 
 /// info
 
-You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
 
 Including how to handle lifespan state that can be used in other areas of your code.
 

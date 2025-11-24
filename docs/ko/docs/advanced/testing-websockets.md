@@ -8,6 +8,6 @@
 
 /// note | 참고
 
-자세한 내용은 Starlette의 <a href="https://www.starlette.io/testclient/#testing-websocket-sessions" class="external-link" target="_blank"> WebSocket 테스트</a>에 관한 설명서를 참고하시길 바랍니다.
+자세한 내용은 Starlette의 <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank"> WebSocket 테스트</a>에 관한 설명서를 참고하시길 바랍니다.
 
 ///
