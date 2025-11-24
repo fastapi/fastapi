@@ -1339,10 +1339,6 @@ class APIRouter(routing.Router):
         app.include_router(internal_router)
         ```
         """
-        assert self is not router, (
-            "Cannot include the same APIRouter instance into itself. "
-            "Did you mean to include a different router?"
-        )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
             assert not prefix.endswith("/"), (
