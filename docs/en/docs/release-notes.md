@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👷 Add custom pre-commit CI. PR [#14397](https://github.com/fastapi/fastapi/pull/14397) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump actions/checkout from 5 to 6. PR [#14381](https://github.com/fastapi/fastapi/pull/14381) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Upgrade `latest-changes` GitHub Action and pin `actions/checkout@v5`. PR [#14403](https://github.com/fastapi/fastapi/pull/14403) by [@svlandeg](https://github.com/svlandeg).
 * 🛠️ Add `add-permalinks` and `add-permalinks-page` to `scripts/docs.py`. PR [#14033](https://github.com/fastapi/fastapi/pull/14033) by [@YuriiMotov](https://github.com/YuriiMotov).
