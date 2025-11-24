@@ -25,7 +25,7 @@ from fastapi.exception_handlers import (
 from fastapi.exceptions import (
     RequestMalformedError,
     RequestValidationError,
-    WebSocketRequestValidationError
+    WebSocketRequestValidationError,
 )
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
