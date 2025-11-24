@@ -1,39 +1,38 @@
-# Geral - Como Fazer - Receitas
+# Geral - Como Fazer - Receitas { #general-how-to-recipes }
 
 Aqui estão vários links para outros locais na documentação, para perguntas gerais ou frequentes
 
-## Filtro de dados- Segurança
+## Filtro de dados- Segurança { #filter-data-security }
 
-Para assegurar que você não vai retornar mais dados do que deveria, leia a seção [Tutorial - Response Model - Return Type](../tutorial/response-model.md){.internal-link target=_blank}.
+Para assegurar que você não vai retornar mais dados do que deveria, leia a seção [Tutorial - Modelo de Resposta - Tipo de Retorno](../tutorial/response-model.md){.internal-link target=_blank}.
 
-## Tags de Documentação - OpenAPI
-Para adicionar tags às suas *rotas* e agrupá-las na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
+## Tags de Documentação - OpenAPI { #documentation-tags-openapi }
+Para adicionar tags às suas *operações de rota* e agrupá-las na UI da documentação, leia a seção [Tutorial - Configurações da Operação de Rota - Tags](../tutorial/path-operation-configuration.md#tags){.internal-link target=_blank}.
 
-## Resumo e Descrição da documentação - OpenAPI
+## Resumo e Descrição da documentação - OpenAPI { #documentation-summary-and-description-openapi }
 
-Para adicionar um resumo e uma descrição às suas *rotas* e exibi-los na UI da documentação, leia a seção [Tutorial - Path Operation Configurations - Summary and Description](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank}.
+Para adicionar um resumo e uma descrição às suas *operações de rota* e exibi-los na UI da documentação, leia a seção [Tutorial - Configurações da Operação de Rota - Resumo e Descrição](../tutorial/path-operation-configuration.md#summary-and-description){.internal-link target=_blank}.
 
-## Documentação das Descrições de Resposta - OpenAPI
+## Documentação das Descrições de Resposta - OpenAPI { #documentation-response-description-openapi }
 
-Para definir a descrição de uma resposta exibida na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Response description](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank}.
+Para definir a descrição de uma resposta exibida na interface da documentação, leia a seção [Tutorial - Configurações da Operação de Rota - Descrição da Resposta](../tutorial/path-operation-configuration.md#response-description){.internal-link target=_blank}.
 
-## Documentação para Depreciar uma *Operação de Rota* - OpenAPI
+## Documentação para Depreciar uma *Operação de Rota* - OpenAPI { #documentation-deprecate-a-path-operation-openapi }
 
-Para depreciar uma *operação de rota* e exibi-la na interface da documentação, leia a seção [Tutorial - Path Operation Configurations - Deprecation](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
+Para depreciar uma *operação de rota* e exibi-la na interface da documentação, leia a seção [Tutorial - Configurações da Operação de Rota - Depreciação](../tutorial/path-operation-configuration.md#deprecate-a-path-operation){.internal-link target=_blank}.
 
-## Converter qualquer dado para JSON
+## Converter qualquer dado para compatível com JSON { #convert-any-data-to-json-compatible }
 
+Para converter qualquer dado para um formato compatível com JSON, leia a seção [Tutorial - Codificador Compatível com JSON](../tutorial/encoder.md){.internal-link target=_blank}.
 
-Para converter qualquer dado para um formato compatível com JSON, leia a seção [Tutorial - JSON Compatible Encoder](../tutorial/encoder.md){.internal-link target=_blank}.
+## OpenAPI Metadata - Docs { #openapi-metadata-docs }
 
-## OpenAPI Metadata - Docs
+Para adicionar metadados ao seu esquema OpenAPI, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md){.internal-link target=_blank}.
 
-Para adicionar metadados ao seu esquema OpenAPI, incluindo  licensa, versão, contato, etc, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md){.internal-link target=_blank}.
+## OpenAPI com URL customizada { #openapi-custom-url }
 
-## OpenAPI com URL customizada
+Para customizar a URL do OpenAPI (ou removê-la), leia a seção [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md#openapi-url){.internal-link target=_blank}.
 
-Para customizar a URL do OpenAPI (ou removê-la), leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#openapi-url){.internal-link target=_blank}.
+## URLs de documentação do OpenAPI { #openapi-docs-urls }
 
-## URLs de documentação do OpenAPI
-
-Para alterar as URLs usadas ​​para as interfaces de usuário da documentação gerada automaticamente, leia a seção [Tutorial - Metadata and Docs URLs](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
+Para alterar as URLs usadas ​​para as interfaces de usuário da documentação gerada automaticamente, leia a seção [Tutorial - Metadados e URLs da Documentação](../tutorial/metadata.md#docs-urls){.internal-link target=_blank}.
