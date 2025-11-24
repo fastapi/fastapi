@@ -12,7 +12,7 @@ async def get_username_reraises():
         async with await open_file("/non_existing/path.txt", "r") as f:
             yield await f.read()  # pragma: no cover
     except OSError as ex:
-        raise RuntimeError("File something something, wubba lubba dub dub!") from ex
+        raise RuntimeError("File read error") from ex
 
 
 async def get_username_doesnt_reraise():
