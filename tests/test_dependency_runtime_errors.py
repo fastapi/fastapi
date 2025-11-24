@@ -9,7 +9,7 @@ app_doesnt_reraise = FastAPI()
 
 async def get_username_reraises():
     try:
-        async with await open_file("/path/to/sanchez.txt", "r") as f:
+        async with await open_file("/non_existing/path.txt", "r") as f:
             yield await f.read()  # pragma: no cover
     except OSError as ex:
         raise RuntimeError("File something something, wubba lubba dub dub!") from ex
