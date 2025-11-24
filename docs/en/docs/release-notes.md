@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.122.0
+
 ### Fixes
 
 * 🐛 Use `401` status code in security classes when credentials are missing. PR [#13786](https://github.com/fastapi/fastapi/pull/13786) by [@YuriiMotov](https://github.com/YuriiMotov).
