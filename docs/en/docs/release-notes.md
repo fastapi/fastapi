@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Use `401` status code in security classes when credentials are missing. PR [#13786](https://github.com/fastapi/fastapi/pull/13786) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
 * 🔧 Configure labeler to exclude files that start from underscore for `lang-all` label. PR [#14213](https://github.com/fastapi/fastapi/pull/14213) by [@YuriiMotov](https://github.com/YuriiMotov).
