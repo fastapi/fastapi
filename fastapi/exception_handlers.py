@@ -1,5 +1,9 @@
 from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import RequestMalformedError, RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestMalformedError,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.utils import is_body_allowed_for_status_code
 from fastapi.websockets import WebSocket
 from starlette.exceptions import HTTPException
