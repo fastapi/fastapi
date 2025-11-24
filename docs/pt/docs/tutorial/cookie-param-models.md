@@ -1,4 +1,4 @@
-# Modelos de Parâmetros de Cookie
+# Modelos de Parâmetros de Cookie { #cookie-parameter-models }
 
 Se você possui um grupo de **cookies** que estão relacionados, você pode criar um **modelo Pydantic** para declará-los. 🍪
 
@@ -16,7 +16,7 @@ Essa mesma técnica se aplica para `Query`, `Cookie`, e `Header`. 😎
 
 ///
 
-## Cookies com Modelos Pydantic
+## Cookies com Modelos Pydantic { #cookies-with-a-pydantic-model }
 
 Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, e depois declare o parâmetro como um `Cookie`:
 
@@ -24,9 +24,9 @@ Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, 
 
 O **FastAPI** irá **extrair** os dados para **cada campo** dos **cookies** recebidos na requisição e lhe fornecer o modelo Pydantic que você definiu.
 
-## Verifique os Documentos
+## Verifique a Documentação { #check-the-docs }
 
-Você pode ver os cookies definidos na IU dos documentos em `/docs`:
+Você pode ver os cookies definidos na IU da documentação em `/docs`:
 
 <div class="screenshot">
 <img src="/img/tutorial/cookie-param-models/image01.png">
@@ -36,17 +36,17 @@ Você pode ver os cookies definidos na IU dos documentos em `/docs`:
 
 Tenha em mente que, como os **navegadores lidam com cookies** de maneira especial e por baixo dos panos, eles **não** permitem facilmente que o **JavaScript** lidem com eles.
 
-Se você for na **IU de documentos da API** em `/docs` você poderá ver a **documentação** para cookies das suas *operações de rotas*.
+Se você for na **IU da documentação da API** em `/docs` você poderá ver a **documentação** para cookies das suas *operações de rotas*.
 
-Mas mesmo que você **adicionar os dados** e clicar em "Executar", pelo motivo da IU dos documentos trabalharem com **JavaScript**, os cookies não serão enviados, e você verá uma mensagem de **erro** como se você não tivesse escrito nenhum dado.
+Mas mesmo que você **adicionar os dados** e clicar em "Executar", pelo motivo da IU da documentação trabalhar com **JavaScript**, os cookies não serão enviados, e você verá uma mensagem de **erro** como se você não tivesse escrito nenhum dado.
 
 ///
 
-## Proibir Cookies Adicionais
+## Proibir Cookies Adicionais { #forbid-extra-cookies }
 
 Em alguns casos especiais (provavelmente não muito comuns), você pode querer **restringir** os cookies que você deseja receber.
 
-Agora a sua API possui o poder de contrar o seu próprio <abbr title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</abbr>. 🤪🍪
+Agora a sua API possui o poder de controlar o seu próprio <abbr title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</abbr>. 🤪🍪
 
 
  Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer campo `extra`.
@@ -58,7 +58,7 @@ Se o cliente tentar enviar alguns **cookies extras**, eles receberão um retorno
 
 Coitados dos banners de cookies com todo o seu esforço para obter o seu consentimento para a <abbr title="Isso é uma outra piada. Não preste atenção em mim. Beba um café com o seu cookie. ☕">API rejeitá-lo</abbr>. 🍪
 
-Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o <abbr title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie `santa_tracker` is not allowed</abbr>:
+Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o `santa_tracker` <abbr title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie não é permitido</abbr>:
 
 ```json
 {
@@ -73,6 +73,6 @@ Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de
 }
 ```
 
-## Resumo
+## Resumo { #summary }
 
 Você consegue utilizar **modelos Pydantic** para declarar <abbr title="Coma um último biscoito antes de você ir embora. 🍪">**cookies**</abbr> no **FastAPI**. 😎

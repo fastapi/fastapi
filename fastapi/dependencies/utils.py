@@ -1,3 +1,4 @@
+import dataclasses
 import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -428,7 +429,7 @@ def analyze_param(
     if depends is not None and depends.dependency is None:
         # Copy `depends` before mutating it
         depends = copy(depends)
-        depends.dependency = type_annotation
+        depends = dataclasses.replace(depends, dependency=type_annotation)
 
     # Handle non-param type annotations like Request
     if lenient_issubclass(
