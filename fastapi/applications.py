@@ -18,7 +18,7 @@ from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
-    request_malformed_exception_handler
+    request_malformed_exception_handler,
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
