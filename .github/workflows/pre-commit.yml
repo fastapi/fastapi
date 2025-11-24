@@ -17,7 +17,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         name: Checkout PR for own repo
         if: env.IS_FORK == 'false'
         with:
@@ -26,7 +26,7 @@ jobs:
           # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
           token: ${{ secrets.PRE_COMMIT }}
       # pre-commit lite ci needs the default checkout configs to work
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         name: Checkout PR for fork
         if: env.IS_FORK == 'true'
       - name: Set up Python
