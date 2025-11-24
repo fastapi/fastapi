@@ -54,6 +54,7 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
+from fastapi.datastructures import UploadFile as FastAPIUploadFile
 from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
@@ -875,31 +876,39 @@ async def _extract_form_body(
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
-        if (
+        if (  # fmt: skip
             isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
-            and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
-            value = await value.read()
-        elif (
-            is_bytes_sequence_field(field)
-            and isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
+            if is_bytes_field(field):
+                value = await value.read()
+            else:
+                value = FastAPIUploadFile.from_starlette(value)
+        elif (  # fmt: skip
+            isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
             and value_is_sequence(value)
         ):
-            # For types
-            assert isinstance(value, sequence_types)  # type: ignore[arg-type]
-            results: List[Union[bytes, str]] = []
+            if is_bytes_sequence_field(field):
+                # For types
+                assert isinstance(value, sequence_types)  # type: ignore[arg-type]
+                results: List[Union[bytes, str]] = []
 
-            async def process_fn(
-                fn: Callable[[], Coroutine[Any, Any, Any]],
-            ) -> None:
-                result = await fn()
-                results.append(result)  # noqa: B023
+                async def process_fn(
+                    fn: Callable[[], Coroutine[Any, Any, Any]],
+                ) -> None:
+                    result = await fn()
+                    results.append(result)  # noqa: B023
 
-            async with anyio.create_task_group() as tg:
-                for sub_value in value:
-                    tg.start_soon(process_fn, sub_value.read)
-            value = serialize_sequence_value(field=field, value=results)
+                async with anyio.create_task_group() as tg:
+                    for sub_value in value:
+                        tg.start_soon(process_fn, sub_value.read)
+                value = serialize_sequence_value(field=field, value=results)
+            else:
+                value = [
+                    FastAPIUploadFile.from_starlette(sub_value)
+                    for sub_value in value
+                    if isinstance(sub_value, UploadFile)
+                ]
         if value is not None:
             values[field.alias] = value
     for key, value in received_body.items():
