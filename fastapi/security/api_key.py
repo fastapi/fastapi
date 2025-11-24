@@ -5,8 +5,8 @@ from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
-from typing_extensions import Annotated, Literal, deprecated
+from starlette.status import HTTP_401_UNAUTHORIZED
+from typing_extensions import Annotated
 
 
 class APIKeyBase(SecurityBase):
@@ -17,12 +17,8 @@ class APIKeyBase(SecurityBase):
         description: Union[str, None],
         scheme_name: Union[str, None],
         auto_error: bool,
-        not_authenticated_status_code: Literal[401, 403],
     ):
-        self.parameter_location = location.value
-        self.parameter_name = name
         self.auto_error = auto_error
-        self.not_authenticated_status_code = not_authenticated_status_code
 
         self.model: APIKey = APIKey(
             **{"in": location},
@@ -31,31 +27,26 @@ class APIKeyBase(SecurityBase):
         )
         self.scheme_name = scheme_name or self.__class__.__name__
 
-    def format_www_authenticate_header_value(self) -> str:
+    def make_not_authenticated_error(self) -> HTTPException:
         """
-        The WWW-Authenticate header is not standardized for API Key authentication.
-        It's considered good practice to include information about the authentication
-        challange.
-        This method follows one of the common templates.
-        If a different format is required, override this method in a subclass.
-        """
+        The WWW-Authenticate header is not standardized for API Key authentication but
+        the HTTP specification requires that an error of 401 "Unauthorized" must
+        include a WWW-Authenticate header.
 
-        return f'ApiKey in="{self.parameter_location}", name="{self.parameter_name}"'
+        Ref: https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized
+
+        For this, this method sends a custom challenge `APIKey`.
+        """
+        return HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "APIKey"},
+        )
 
     def check_api_key(self, api_key: Optional[str]) -> Optional[str]:
         if not api_key:
             if self.auto_error:
-                if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
-                    raise HTTPException(
-                        status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                    )
-                else:  # By default use 401
-                    www_authenticate = self.format_www_authenticate_header_value()
-                    raise HTTPException(
-                        status_code=HTTP_401_UNAUTHORIZED,
-                        detail="Not authenticated",
-                        headers={"WWW-Authenticate": www_authenticate},
-                    )
+                raise self.make_not_authenticated_error()
             return None
         return api_key
 
@@ -138,34 +129,6 @@ class APIKeyQuery(APIKeyBase):
                 """
             ),
         ] = True,
-        not_authenticated_status_code: Annotated[
-            Literal[401, 403],
-            Doc(
-                """
-                By default, if the query parameter is not provided and `auto_error` is
-                set to `True`, `APIKeyQuery` will automatically raise an
-                `HTTPException` with the status code `401`.
-
-                If your client relies on the old (incorrect) behavior and expects the
-                status code to be `403`, you can set `not_authenticated_status_code` to
-                `403` to achieve it.
-
-                Keep in mind that this parameter is temporary and will be removed in
-                the near future.
-                Consider updating your clients to align with the new behavior.
-                """
-            ),
-            deprecated(
-                """
-                This parameter is temporary. It was introduced to give users time
-                to upgrade their clients to follow the new behavior and will eventually
-                be removed.
-
-                Use it as a short-term workaround, but consider updating your clients
-                to align with the new behavior.
-                """
-            ),
-        ] = 401,
     ):
         super().__init__(
             location=APIKeyIn.query,
@@ -173,7 +136,6 @@ class APIKeyQuery(APIKeyBase):
             scheme_name=scheme_name,
             description=description,
             auto_error=auto_error,
-            not_authenticated_status_code=not_authenticated_status_code,
         )
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -255,34 +217,6 @@ class APIKeyHeader(APIKeyBase):
                 """
             ),
         ] = True,
-        not_authenticated_status_code: Annotated[
-            Literal[401, 403],
-            Doc(
-                """
-                By default, if the header is not provided and `auto_error` is
-                set to `True`, `APIKeyHeader` will automatically raise an
-                `HTTPException` with the status code `401`.
-
-                If your client relies on the old (incorrect) behavior and expects the
-                status code to be `403`, you can set `not_authenticated_status_code` to
-                `403` to achieve it.
-
-                Keep in mind that this parameter is temporary and will be removed in
-                the near future.
-                Consider updating your clients to align with the new behavior.
-                """
-            ),
-            deprecated(
-                """
-                This parameter is temporary. It was introduced to give users time
-                to upgrade their clients to follow the new behavior and will eventually
-                be removed.
-
-                Use it as a short-term workaround, but consider updating your clients
-                to align with the new behavior.
-                """
-            ),
-        ] = 401,
     ):
         super().__init__(
             location=APIKeyIn.header,
@@ -290,7 +224,6 @@ class APIKeyHeader(APIKeyBase):
             scheme_name=scheme_name,
             description=description,
             auto_error=auto_error,
-            not_authenticated_status_code=not_authenticated_status_code,
         )
 
     async def __call__(self, request: Request) -> Optional[str]:
@@ -372,34 +305,6 @@ class APIKeyCookie(APIKeyBase):
                 """
             ),
         ] = True,
-        not_authenticated_status_code: Annotated[
-            Literal[401, 403],
-            Doc(
-                """
-                By default, if the cookie is not provided and `auto_error` is
-                set to `True`, `APIKeyCookie` will automatically raise an
-                `HTTPException` with the status code `401`.
-
-                If your client relies on the old (incorrect) behavior and expects the
-                status code to be `403`, you can set `not_authenticated_status_code` to
-                `403` to achieve it.
-
-                Keep in mind that this parameter is temporary and will be removed in
-                the near future.
-                Consider updating your clients to align with the new behavior.
-                """
-            ),
-            deprecated(
-                """
-                This parameter is temporary. It was introduced to give users time
-                to upgrade their clients to follow the new behavior and will eventually
-                be removed.
-
-                Use it as a short-term workaround, but consider updating your clients
-                to align with the new behavior.
-                """
-            ),
-        ] = 401,
     ):
         super().__init__(
             location=APIKeyIn.cookie,
@@ -407,7 +312,6 @@ class APIKeyCookie(APIKeyBase):
             scheme_name=scheme_name,
             description=description,
             auto_error=auto_error,
-            not_authenticated_status_code=not_authenticated_status_code,
         )
 
     async def __call__(self, request: Request) -> Optional[str]:

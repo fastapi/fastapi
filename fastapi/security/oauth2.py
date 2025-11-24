@@ -8,10 +8,10 @@ from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Literal, deprecated
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -370,56 +370,40 @@ class OAuth2(SecurityBase):
                 """
             ),
         ] = True,
-        not_authenticated_status_code: Annotated[
-            Literal[401, 403],
-            Doc(
-                """
-                By default, if no HTTP Authorization header provided and `auto_error`
-                is set to `True`, it will automatically raise an`HTTPException` with
-                the status code `401`.
-
-                If your client relies on the old (incorrect) behavior and expects the
-                status code to be `403`, you can set `not_authenticated_status_code` to
-                `403` to achieve it.
-
-                Keep in mind that this parameter is temporary and will be removed in
-                the near future.
-                """
-            ),
-            deprecated(
-                """
-                This parameter is temporary. It was introduced to give users time
-                to upgrade their clients to follow the new behavior and will eventually
-                be removed.
-
-                Use it as a short-term workaround, but consider updating your clients
-                to align with the new behavior.
-                """
-            ),
-        ] = 401,
     ):
         self.model = OAuth2Model(
             flows=cast(OAuthFlowsModel, flows), description=description
         )
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
-        self.not_authenticated_status_code = not_authenticated_status_code
+
+    def make_not_authenticated_error(self) -> HTTPException:
+        """
+        The OAuth 2 specification doesn't define the challenge that should be used,
+        because a `Bearer` token is not really the only option to authenticate.
+
+        But declaring any other authentication challenge would be application-specific
+        as it's not defined in the specification.
+
+        For practical reasons, this method uses the `Bearer` challenge by default, as
+        it's probably the most common one.
+
+        If you are implementing an OAuth2 authentication scheme other than the provided
+        ones in FastAPI (based on bearer tokens), you might want to override this.
+
+        Ref: https://datatracker.ietf.org/doc/html/rfc6749
+        """
+        return HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
 
     async def __call__(self, request: Request) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
-                if self.not_authenticated_status_code == HTTP_403_FORBIDDEN:
-                    raise HTTPException(
-                        status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                    )
-                else:
-                    raise HTTPException(
-                        status_code=HTTP_401_UNAUTHORIZED,
-                        detail="Not authenticated",
-                        headers={"WWW-Authenticate": "Bearer"},
-                    )
-
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return authorization
@@ -527,11 +511,7 @@ class OAuth2PasswordBearer(OAuth2):
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
-                    headers={"WWW-Authenticate": "Bearer"},
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return param
@@ -637,11 +617,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
-                    headers={"WWW-Authenticate": "Bearer"},
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None  # pragma: nocover
         return param
