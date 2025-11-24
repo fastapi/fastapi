@@ -1,6 +1,6 @@
 import binascii
 from base64 import b64decode
-from typing import Optional
+from typing import Dict, Optional
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -82,7 +82,7 @@ class HTTPBase(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> dict[str, str]:
+    def make_authenticate_headers(self) -> Dict[str, str]:
         return {"WWW-Authenticate": f"{self.model.scheme.title()}"}
 
     def make_not_authenticated_error(self) -> HTTPException:
@@ -197,7 +197,7 @@ class HTTPBasic(HTTPBase):
         self.realm = realm
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> dict[str, str]:
+    def make_authenticate_headers(self) -> Dict[str, str]:
         if self.realm:
             return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         return {"WWW-Authenticate": "Basic"}
