@@ -19,6 +19,25 @@ First, import `BackgroundTasks` and define a parameter in your *path operation f
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
 
+### Example
+
+```python
+from fastapi import FastAPI, BackgroundTasks
+
+app = FastAPI()
+
+def write_log(message: str):
+    with open("log.txt", "a") as file:
+        file.write(message + "\n")
+
+@app.post("/send-message/")
+async def send_message(message: str, background_tasks: BackgroundTasks):
+    # This will run *after* sending the response
+    background_tasks.add_task(write_log, message)
+    return {"message": "Message received"}
+```
+
+
 ## Create a task function { #create-a-task-function }
 
 Create a function to be run as the background task.
