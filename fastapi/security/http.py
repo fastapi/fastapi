@@ -92,13 +92,6 @@ class HTTPBase(SecurityBase):
             headers=self.make_authenticate_headers(),
         )
 
-    def make_invalid_user_credentials_error(self) -> HTTPException:
-        return HTTPException(
-            status_code=HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
-            headers=self.make_authenticate_headers(),
-        )
-
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
@@ -222,10 +215,10 @@ class HTTPBasic(HTTPBase):
         try:
             data = b64decode(param).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error) as e:
-            raise self.make_invalid_user_credentials_error() from e
+            raise self.make_not_authenticated_error() from e
         username, separator, password = data.partition(":")
         if not separator:
-            raise self.make_invalid_user_credentials_error()
+            raise self.make_not_authenticated_error()
         return HTTPBasicCredentials(username=username, password=password)
 
 
@@ -322,7 +315,7 @@ class HTTPBearer(HTTPBase):
                 return None
         if scheme.lower() != "bearer":
             if self.auto_error:
-                raise self.make_invalid_user_credentials_error()
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
@@ -425,7 +418,7 @@ class HTTPDigest(HTTPBase):
                 return None
         if scheme.lower() != "digest":
             if self.auto_error:
-                raise self.make_invalid_user_credentials_error()
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return HTTPAuthorizationCredentials(scheme=scheme, credentials=credentials)
