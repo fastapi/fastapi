@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 🔧 Configure labeler to exclude files that start from underscore for `lang-all` label. PR [#14213](https://github.com/fastapi/fastapi/pull/14213) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Add pre-commit config with local script for permalinks. PR [#14398](https://github.com/fastapi/fastapi/pull/14398) by [@tiangolo](https://github.com/tiangolo).
 * 💄 Use font Fira Code to fix display of Rich panels in docs in Windows. PR [#14387](https://github.com/fastapi/fastapi/pull/14387) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Add custom pre-commit CI. PR [#14397](https://github.com/fastapi/fastapi/pull/14397) by [@tiangolo](https://github.com/tiangolo).
