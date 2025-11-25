@@ -2453,7 +2453,28 @@ def Security(  # noqa: N802
             stacklevel=2,
         )
 
+    # Handle case when `scopes="function"` is mistakenly used instead of `scope="function"`
+    if isinstance(scopes, str) and (scopes in ("function", "request")):
+        raise FastAPIError(
+            "Invalid value for the 'scopes' parameter in Security(). "
+            "Expected a sequence of strings (e.g., ['admin', 'user']), but received "
+            "a single string. "
+            f'Did you mean to use scope="{scopes}" to specify when the exit code '
+            "of dependencies with yield should run? "
+        )
+
+    oauth_scopes_param = "oauth_scopes" if (oauth_scopes is not None) else "scopes"
     oauth_scopes = oauth_scopes or scopes
+
+    # Handle case when single string is passed to `scopes` or `oauth_scopes` instead of
+    # a list of strings
+    if isinstance(oauth_scopes, str):
+        raise FastAPIError(
+            f"Invalid value for the '{oauth_scopes_param}' parameter in Security(). "
+            "Expected a sequence of strings (e.g., ['admin', 'user']), but received a "
+            "single string. Wrap it in a list: oauth_scopes=['your_scope'] instead of "
+            "oauth_scopes='your_scope'."
+        )
 
     return params.Security(
         dependency=dependency,

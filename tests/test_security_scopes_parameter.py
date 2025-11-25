@@ -3,24 +3,35 @@ from fastapi import Security
 from fastapi.exceptions import FastAPIError
 
 
-def test_pass_single_str():
+@pytest.mark.parametrize("parameter_name", ["scopes", "oauth_scopes"])
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+def test_pass_single_str(parameter_name: str):
+    """
+    Test passing single string instead of list of strings to `scopes` or `oauth_scopes`.
+    """
+
     with pytest.raises(FastAPIError) as exc_info:
-        Security(dependency=lambda: None, scopes="admin")
+        Security(dependency=lambda: None, **{parameter_name: "admin"})
 
     assert str(exc_info.value) == (
-        "Invalid value for `scopes` parameter in Security(). "
+        f"Invalid value for the '{parameter_name}' parameter in Security(). "
         "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string. "
-        "Wrap it in a list: scopes=['your_scope'] instead of scopes='your_scope'."
+        "Wrap it in a list: oauth_scopes=['your_scope'] instead of oauth_scopes='your_scope'."
     )
 
 
 @pytest.mark.parametrize("value", ["function", "request"])
-def test_pass_scope_instead_of_scopes(value: str):
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+def test_pass_scope_as_scopes(value: str):
+    """
+    Test passing `scopes="function"` instead of `scope="function"` to `Security`.
+    """
+
     with pytest.raises(FastAPIError) as exc_info:
         Security(dependency=lambda: None, scopes=value)
 
     assert str(exc_info.value) == (
-        "Invalid value for `scopes` parameter in Security(). "
-        "You probably meant to use the `scope` parameter instead of `scopes`. "
-        "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string."
+        "Invalid value for the 'scopes' parameter in Security(). "
+        "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string. "
+        f'Did you mean to use scope="{value}" to specify when the exit code of dependencies with yield should run? '
     )
