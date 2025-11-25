@@ -1,14 +1,14 @@
-# Corpo - Múltiplos parâmetros
+# Corpo - Múltiplos parâmetros { #body-multiple-parameters }
 
 Agora que nós vimos como usar `Path` e `Query`, veremos usos mais avançados de declarações no corpo da requisição.
 
-## Misture `Path`, `Query` e parâmetros de corpo
+## Misture `Path`, `Query` e parâmetros de corpo { #mix-path-query-and-body-parameters }
 
 Primeiro, é claro, você pode misturar `Path`, `Query` e declarações de parâmetro no corpo da requisição livremente e o **FastAPI** saberá o que fazer.
 
 E você também pode declarar parâmetros de corpo como opcionais, definindo o valor padrão com `None`:
 
-{* ../../docs_src/body_multiple_params/tutorial001_py310.py hl[17:19] *}
+{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
 
 /// note | Nota
 
@@ -16,7 +16,7 @@ Repare que, neste caso, o `item` que seria capturado a partir do corpo é opcion
 
 ///
 
-## Múltiplos parâmetros de corpo
+## Múltiplos parâmetros de corpo { #multiple-body-parameters }
 
 No exemplo anterior, as *operações de rota* esperariam um JSON no corpo contendo os atributos de um `Item`, exemplo:
 
@@ -62,7 +62,7 @@ O **FastAPI** fará a conversão automática a partir da requisição, assim ess
 
 Ele executará a validação dos dados compostos e irá documentá-los de maneira compatível com o esquema OpenAPI e documentação automática.
 
-## Valores singulares no corpo
+## Valores singulares no corpo { #singular-values-in-body }
 
 Assim como existem uma `Query` e uma `Path` para definir dados adicionais para parâmetros de consulta e de rota, o **FastAPI** provê o equivalente para `Body`.
 
@@ -72,7 +72,7 @@ Se você declará-lo como é, porque é um valor singular, o **FastAPI** assumir
 
 Mas você pode instruir o **FastAPI** para tratá-lo como outra chave do corpo usando `Body`:
 
-{* ../../docs_src/body_multiple_params/tutorial003.py hl[22] *}
+{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
 
 Neste caso, o **FastAPI** esperará um corpo como:
 
@@ -94,7 +94,7 @@ Neste caso, o **FastAPI** esperará um corpo como:
 
 Mais uma vez, ele converterá os tipos de dados, validar, documentar, etc.
 
-## Múltiplos parâmetros de corpo e consulta
+## Múltiplos parâmetros de corpo e consulta { #multiple-body-params-and-query }
 
 Obviamente, você também pode declarar parâmetros de consulta assim que você precisar, de modo adicional a quaisquer parâmetros de corpo.
 
@@ -112,7 +112,7 @@ q: str | None = None
 
 Por exemplo:
 
-{* ../../docs_src/body_multiple_params/tutorial004_py310.py hl[26] *}
+{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
 /// info | Informação
 
@@ -120,7 +120,7 @@ Por exemplo:
 
 ///
 
-## Declare um único parâmetro de corpo indicando sua chave
+## Declare um único parâmetro de corpo indicando sua chave { #embed-a-single-body-parameter }
 
 Suponha que você tem um único parâmetro de corpo `item`, a partir de um modelo Pydantic `Item`.
 
@@ -134,7 +134,7 @@ item: Item = Body(embed=True)
 
 como em:
 
-{* ../../docs_src/body_multiple_params/tutorial005_py310.py hl[15] *}
+{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
 
 Neste caso o **FastAPI** esperará um corpo como:
 
@@ -160,7 +160,7 @@ ao invés de:
 }
 ```
 
-## Recapitulando
+## Recapitulando { #recap }
 
 Você pode adicionar múltiplos parâmetros de corpo para sua *função de operação de rota*, mesmo que a requisição possa ter somente um único corpo.
 
