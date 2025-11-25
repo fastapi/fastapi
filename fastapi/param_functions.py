@@ -2307,6 +2307,16 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
+
+    # Handle case when `scope` parameter value is invalid
+    if scope not in ("function", "request", None):
+        raise FastAPIError(
+            "Invalid value for 'scope' parameter in Depends(). "
+            "Expected 'function', 'request', or None. "
+            f'Did you mean to use Security(dependency_fn, oauth_scopes="{scope}") '
+            "to specify OAuth2 scopes instead?"
+        )
+
     return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
 
 
@@ -2493,6 +2503,14 @@ def Security(  # noqa: N802
             "Expected a sequence of strings (e.g., ['admin', 'user']), but received a "
             "single string. Wrap it in a list: oauth_scopes=['your_scope'] instead of "
             "oauth_scopes='your_scope'."
+        )
+
+    # Handle case when `scope` parameter value is invalid
+    if scope not in ("function", "request", None):
+        raise FastAPIError(
+            "Invalid value for 'scope' parameter in Security(). "
+            "Expected 'function', 'request', or None. "
+            f'Did you mean oauth_scopes="{scope}" to specify OAuth2 scopes instead?'
         )
 
     return params.Security(

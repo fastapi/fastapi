@@ -1,5 +1,5 @@
 import pytest
-from fastapi import Security
+from fastapi import Depends, Security
 from fastapi.exceptions import FastAPIError
 
 
@@ -34,4 +34,34 @@ def test_pass_scope_as_scopes(value: str):
         "Invalid value for the 'scopes' parameter in Security(). "
         "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string. "
         f'Did you mean to use scope="{value}" to specify when the exit code of dependencies with yield should run? '
+    )
+
+
+def test_pass_invalid_scope_value_to_security():
+    """
+    Test passing invalid value to `scope` parameter in `Security`.
+    """
+
+    with pytest.raises(FastAPIError) as exc_info:
+        Security(dependency=lambda: None, scope="invalid_scope")
+
+    assert str(exc_info.value) == (
+        "Invalid value for 'scope' parameter in Security(). "
+        "Expected 'function', 'request', or None. "
+        'Did you mean oauth_scopes="invalid_scope" to specify OAuth2 scopes instead?'
+    )
+
+
+def test_pass_invalid_scope_value_to_depends():
+    """
+    Test passing invalid value to `scope` parameter in `Depends`.
+    """
+
+    with pytest.raises(FastAPIError) as exc_info:
+        Depends(dependency=lambda: None, scope="invalid_scope")
+
+    assert str(exc_info.value) == (
+        "Invalid value for 'scope' parameter in Depends(). "
+        "Expected 'function', 'request', or None. "
+        'Did you mean to use Security(dependency_fn, oauth_scopes="invalid_scope") to specify OAuth2 scopes instead?'
     )
