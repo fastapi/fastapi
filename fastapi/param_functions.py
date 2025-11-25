@@ -2386,7 +2386,26 @@ def Security(  # noqa: N802
             ```python
             Security(dependency_fn, oauth_scopes=["items", "users"])
             ```
-            )
+            """
+        ),
+    ] = None,
+    scope: Annotated[
+        Union[Literal["function", "request"], None],
+        Doc(
+            """
+            Mainly for dependencies with `yield`, define when the dependency function
+            should start (the code before `yield`) and when it should end (the code
+            after `yield`).
+
+            * `"function"`: start the dependency before the *path operation function*
+                that handles the request, end the dependency after the *path operation
+                function* ends, but **before** the response is sent back to the client.
+                So, the dependency function will be executed **around** the *path operation
+                **function***.
+            * `"request"`: start the dependency before the *path operation function*
+                that handles the request (similar to when using `"function"`), but end
+                **after** the response is sent back to the client. So, the dependency
+                function will be executed **around** the **request** and response cycle.
             """
         ),
     ] = None,
@@ -2480,4 +2499,5 @@ def Security(  # noqa: N802
         dependency=dependency,
         oauth_scopes=oauth_scopes,
         use_cache=use_cache,
+        scope=scope,
     )
