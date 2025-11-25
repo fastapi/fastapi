@@ -110,9 +110,9 @@ You can use `Security` to declare dependencies (just like `Depends`), but `Secur
 
 /// note
 
-Before version 0.121.4, the name of this parameter was `scopes`.
+Before version 0.122.X, the name of this parameter was `scopes`.
 
-Since FastAPI 0.121.4, the `scopes` parameter has been deprecated in favor of `oauth_scopes`
+In FastAPI 0.122.X, the `scopes` parameter was deprecated in favor of `oauth_scopes`
 to avoid confusing it with the `scope` parameter, which is used to specify when the exit code
 of dependencies with `yield` should run.
 
