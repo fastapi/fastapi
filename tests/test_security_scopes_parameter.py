@@ -3,6 +3,23 @@ from fastapi import Depends, Security
 from fastapi.exceptions import FastAPIError
 
 
+def test_scopes_deprecation_warning():
+    """
+    Test that using `scopes` parameter raises a deprecation warning.
+    """
+
+    with pytest.warns(DeprecationWarning) as record:
+        Security(dependency=lambda: None, scopes=["admin"])
+
+    assert len(record) == 1
+    warning = record[0]
+    assert issubclass(warning.category, DeprecationWarning)
+    assert str(warning.message) == (
+        "The 'scopes' parameter in Security() is deprecated in favor of "
+        "'oauth_scopes' in order to avoid confusion with 'scope' parameter."
+    )
+
+
 @pytest.mark.parametrize("parameter_name", ["scopes", "oauth_scopes"])
 @pytest.mark.filterwarnings("ignore::DeprecationWarning")
 def test_pass_single_str(parameter_name: str):
