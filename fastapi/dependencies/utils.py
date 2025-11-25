@@ -126,8 +126,8 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         "A parameter-less dependency must have a callable dependency"
     )
     use_security_scopes: List[str] = []
-    if isinstance(depends, params.Security) and depends.scopes:
-        use_security_scopes.extend(depends.scopes)
+    if isinstance(depends, params.Security) and depends.oauth_scopes:
+        use_security_scopes.extend(depends.oauth_scopes)
     return get_dependant(
         path=path,
         call=depends.dependency,
@@ -276,8 +276,8 @@ def get_dependant(
                 )
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
-                if param_details.depends.scopes:
-                    use_security_scopes.extend(param_details.depends.scopes)
+                if param_details.depends.oauth_scopes:
+                    use_security_scopes.extend(param_details.depends.oauth_scopes)
             sub_dependant = get_dependant(
                 path=path,
                 call=param_details.depends.dependency,

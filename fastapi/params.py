@@ -781,7 +781,7 @@ class Depends:
 
 @dataclass
 class Security(Depends):
-    scopes: Optional[
+    oauth_scopes: Optional[
         Union[
             List[str],
             Tuple[str, ...],

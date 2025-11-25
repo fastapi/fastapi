@@ -1,3 +1,4 @@
+import warnings
 from typing import (
     Any,
     Callable,
@@ -2322,6 +2323,29 @@ def Security(  # noqa: N802
         ),
     ] = None,
     *,
+    oauth_scopes: Annotated[
+        Optional[
+            Union[
+                List[str],
+                Tuple[str, ...],
+                Set[str],
+                FrozenSet[str],
+            ]
+        ],
+        Doc(
+            """
+            OAuth2 scopes required for the *path operation* that uses this Security
+            dependency.
+
+            The term "scope" comes from the OAuth2 specification, it seems to be
+            intentionally vague and interpretable. It normally refers to permissions,
+            in cases to roles.
+
+            These scopes are integrated with OpenAPI (and the API docs at `/docs`).
+            So they are visible in the OpenAPI specification.
+            """
+        ),
+    ] = None,
     scopes: Annotated[
         Optional[
             Union[
@@ -2342,6 +2366,26 @@ def Security(  # noqa: N802
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
             So they are visible in the OpenAPI specification.
+
+            This parameter is deprecated in favor of `oauth_scopes`.
+            """
+        ),
+        deprecated(
+            """
+            In order to avoid confusion with `scope` parameter, the `scopes` parameter
+            is deprecated in favor of `oauth_scopes`.
+
+            To specify dependency scope for dependencies with `yield` use `scope` parameter:
+
+            ```python
+            Security(dependency_fn, scope="function")
+            ```
+
+            To specify OAuth2 scopes use `oauth_scopes` parameter:
+
+            ```python
+            Security(dependency_fn, oauth_scopes=["items", "users"])
+            ```
             )
             """
         ),
@@ -2391,23 +2435,28 @@ def Security(  # noqa: N802
 
     @app.get("/users/me/items/")
     async def read_own_items(
-        current_user: Annotated[User, Security(get_current_active_user, scopes=["items"])]
+        current_user: Annotated[
+            User, Security(get_current_active_user, oauth_scopes=["items"])
+        ]
     ):
         return [{"item_id": "Foo", "owner": current_user.username}]
     ```
     """
 
-    if isinstance(scopes, str):
-        if scopes in ("function", "request"):
-            raise FastAPIError(
-                "Invalid value for `scopes` parameter in Security(). "
-                "You probably meant to use the `scope` parameter instead of `scopes`. "
-                "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string."
-            )
-        raise FastAPIError(
-            "Invalid value for `scopes` parameter in Security(). "
-            "Expected a sequence of strings (e.g., ['admin', 'user']), but received a single string. "
-            "Wrap it in a list: scopes=['your_scope'] instead of scopes='your_scope'."
+    if scopes is not None:
+        warnings.warn(
+            (
+                "The 'scopes' parameter in Security() is deprecated in favor of "
+                "'oauth_scopes' in order to avoid confusion with 'scope' parameter."
+            ),
+            DeprecationWarning,
+            stacklevel=2,
         )
 
-    return params.Security(dependency=dependency, scopes=scopes, use_cache=use_cache)
+    oauth_scopes = oauth_scopes or scopes
+
+    return params.Security(
+        dependency=dependency,
+        oauth_scopes=oauth_scopes,
+        use_cache=use_cache,
+    )
