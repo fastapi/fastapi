@@ -2396,6 +2396,8 @@ def Security(  # noqa: N802
             ```python
             Security(dependency_fn, oauth_scopes=["items", "users"])
             ```
+
+            &#8203;
             """
         ),
     ] = None,
@@ -2438,8 +2440,8 @@ def Security(  # noqa: N802
     Declare a FastAPI Security dependency.
 
     The only difference with a regular dependency is that it can declare OAuth2
-    scopes that will be integrated with OpenAPI and the automatic UI docs (by default
-    at `/docs`).
+    scopes (`oauth_scopes` parameter) that will be integrated with OpenAPI and the
+    automatic UI docs (by default at `/docs`).
 
     It takes a single "dependable" callable (like a function).
 
