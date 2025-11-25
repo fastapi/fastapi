@@ -207,11 +207,31 @@ def get_definitions(
     override_mode: Union[Literal["validation"], None] = (
         None if separate_input_output_schemas else "validation"
     )
-    flat_models = get_flat_models_from_fields(fields, known_models=set())
-    flat_model_fields = [
-        ModelField(field_info=FieldInfo(annotation=model), name=model.__name__)
-        for model in flat_models
+    validation_fields = [field for field in fields if field.mode == "validation"]
+    serialization_fields = [field for field in fields if field.mode == "serialization"]
+    flat_validation_models = get_flat_models_from_fields(
+        validation_fields, known_models=set()
+    )
+    flat_serialization_models = get_flat_models_from_fields(
+        serialization_fields, known_models=set()
+    )
+    flat_validation_model_fields = [
+        ModelField(
+            field_info=FieldInfo(annotation=model),
+            name=model.__name__,
+            mode="validation",
+        )
+        for model in flat_validation_models
     ]
+    flat_serialization_model_fields = [
+        ModelField(
+            field_info=FieldInfo(annotation=model),
+            name=model.__name__,
+            mode="serialization",
+        )
+        for model in flat_serialization_models
+    ]
+    flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
     input_types = {f.type_ for f in fields}
     unique_flat_model_fields = {
         f for f in flat_model_fields if f.type_ not in input_types
@@ -242,12 +262,12 @@ def _replace_refs(
     new_schema = deepcopy(schema)
     for key, value in new_schema.items():
         if key == "$ref":
-            ref_name = schema["$ref"].split("/")[-1]
-            if ref_name in old_name_to_new_name_map:
-                new_name = old_name_to_new_name_map[ref_name]
-                new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
-            else:
-                new_schema["$ref"] = schema["$ref"]
+            value = schema["$ref"]
+            if isinstance(value, str):
+                ref_name = schema["$ref"].split("/")[-1]
+                if ref_name in old_name_to_new_name_map:
+                    new_name = old_name_to_new_name_map[ref_name]
+                    new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
             continue
         if isinstance(value, dict):
             new_schema[key] = _replace_refs(
