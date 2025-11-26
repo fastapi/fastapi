@@ -48,7 +48,7 @@ In some cases, you might still have to use Pydantic's version of `dataclasses`. 
 
 In that case, you can simply swap the standard `dataclasses` with `pydantic.dataclasses`, which is a drop-in replacement:
 
-{* ../../docs_src/dataclasses/tutorial003.py hl[1,5,8:11,14:17,23:25,28] *}
+{* ../../docs_src/dataclasses/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. We still import `field` from standard `dataclasses`.
 
