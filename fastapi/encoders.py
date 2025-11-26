@@ -278,6 +278,9 @@ def jsonable_encoder(
         if exclude is not None:
             allowed_keys -= set(exclude)
         for key, value in obj.items():
+            use_exclude_none = (
+                exclude_none if key not in ("example", "examples") else False
+            )
             if (
                 (
                     not sqlalchemy_safe
@@ -299,7 +302,7 @@ def jsonable_encoder(
                     value,
                     by_alias=by_alias,
                     exclude_unset=exclude_unset,
-                    exclude_none=exclude_none,
+                    exclude_none=use_exclude_none,
                     custom_encoder=custom_encoder,
                     sqlalchemy_safe=sqlalchemy_safe,
                 )
