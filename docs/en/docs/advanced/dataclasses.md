@@ -32,7 +32,7 @@ But if you have a bunch of dataclasses laying around, this is a nice trick to us
 
 You can also use `dataclasses` in the `response_model` parameter:
 
-{* ../../docs_src/dataclasses/tutorial002.py hl[1,7:13,19] *}
+{* ../../docs_src/dataclasses/tutorial002_py310.py hl[1,6:12,18] *}
 
 The dataclass will be automatically converted to a Pydantic dataclass.
 
