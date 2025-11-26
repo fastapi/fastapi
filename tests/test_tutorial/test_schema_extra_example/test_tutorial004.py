@@ -32,6 +32,7 @@ def test_post_body_example(client: TestClient):
             "description": "A very nice Item",
             "price": 35.4,
             "tax": 3.2,
+            "extra": None,
         },
     )
     assert response.status_code == 200
@@ -68,6 +69,7 @@ def test_openapi_schema(client: TestClient):
                                                 "description": "A very nice Item",
                                                 "price": 35.4,
                                                 "tax": 3.2,
+                                                "extra": None,
                                             },
                                             {"name": "Bar", "price": "35.4"},
                                             {
@@ -90,6 +92,7 @@ def test_openapi_schema(client: TestClient):
                                                 "description": "A very nice Item",
                                                 "price": 35.4,
                                                 "tax": 3.2,
+                                                "extra": None,
                                             },
                                             {"name": "Bar", "price": "35.4"},
                                             {
@@ -161,6 +164,16 @@ def test_openapi_schema(client: TestClient):
                         | IsDict(
                             # TODO: remove when deprecating Pydantic v1
                             {"title": "Tax", "type": "number"}
+                        ),
+                        "extra": IsDict(
+                            {
+                                "title": "Extra",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            },
+                        )
+                        | IsDict(
+                            # TODO: remove when deprecating Pydantic v1
+                            {"title": "Extra", "type": "string"}
                         ),
                     },
                 },

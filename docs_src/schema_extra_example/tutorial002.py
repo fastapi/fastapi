@@ -11,6 +11,7 @@ class Item(BaseModel):
     description: Union[str, None] = Field(default=None, examples=["A very nice Item"])
     price: float = Field(examples=[35.4])
     tax: Union[float, None] = Field(default=None, examples=[3.2])
+    extra: Union[str, None] = Field(default=None, examples=[None])
 
 
 @app.put("/items/{item_id}")

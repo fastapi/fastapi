@@ -10,13 +10,13 @@
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[14:26] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
+{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[14:25] *}
 
 ////
 
@@ -60,7 +60,7 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 При использовании `Field()` с моделями Pydantic вы также можете объявлять дополнительные `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:12] *}
 
 ## `examples` в JSON Schema — OpenAPI { #examples-in-json-schema-openapi }
 
@@ -80,19 +80,19 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 Здесь мы передаём `examples`, содержащий один пример данных, ожидаемых в `Body()`:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[23:31] *}
 
 ### Пример в UI документации { #example-in-the-docs-ui }
 
 С любым из перечисленных выше методов это будет выглядеть так в `/docs`:
 
-<img src="/img/tutorial/body-fields/image01.png">
+<img src="/img/tutorial/schema-extra-example/image01.png">
 
 ### `Body` с несколькими `examples` { #body-with-multiple-examples }
 
 Конечно, вы можете передать и несколько `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[24:40] *}
 
 Когда вы делаете это, примеры становятся частью внутренней **JSON Schema** для данных тела запроса.
 
@@ -133,13 +133,13 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 Использовать это можно так:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[24:51] *}
 
 ### OpenAPI-примеры  в UI документации { #openapi-examples-in-the-docs-ui }
 
 С `openapi_examples`, добавленным в `Body()`, страница `/docs` будет выглядеть так:
 
-<img src="/img/tutorial/body-fields/image02.png">
+<img src="/img/tutorial/schema-extra-example/image02.png">
 
 ## Технические детали { #technical-details }
 

@@ -9,6 +9,7 @@ class Item(BaseModel):
     description: str | None = None
     price: float
     tax: float | None = None
+    extra: str | None = None
 
     class Config:
         schema_extra = {
@@ -18,6 +19,7 @@ class Item(BaseModel):
                     "description": "A very nice Item",
                     "price": 35.4,
                     "tax": 3.2,
+                    "extra": None,
                 }
             ]
         }

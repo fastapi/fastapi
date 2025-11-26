@@ -12,6 +12,7 @@ class Item(BaseModel):
     description: Union[str, None] = None
     price: float
     tax: Union[float, None] = None
+    extra: Union[str, None] = None
 
 
 @app.put("/items/{item_id}")
@@ -30,6 +31,7 @@ async def update_item(
                         "description": "A very nice Item",
                         "price": 35.4,
                         "tax": 3.2,
+                        "extra": None,
                     },
                 },
                 "converted": {

@@ -29,6 +29,7 @@ def test_post_body_example(client: TestClient):
             "description": "A very nice Item",
             "price": 35.4,
             "tax": 3.2,
+            "extra": None,
         },
     )
     assert response.status_code == 200
@@ -101,6 +102,7 @@ def test_openapi_schema(client: TestClient):
                         "description": {"type": "string", "title": "Description"},
                         "price": {"type": "number", "title": "Price"},
                         "tax": {"type": "number", "title": "Tax"},
+                        "extra": {"type": "string", "title": "Extra"},
                     },
                     "type": "object",
                     "required": ["name", "price"],
@@ -111,6 +113,7 @@ def test_openapi_schema(client: TestClient):
                             "description": "A very nice Item",
                             "price": 35.4,
                             "tax": 3.2,
+                            "extra": None,
                         }
                     ],
                 },

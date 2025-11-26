@@ -10,13 +10,13 @@ You can declare `examples` for a Pydantic model that will be added to the genera
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[14:26] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
+{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[14:25] *}
 
 ////
 
@@ -60,7 +60,7 @@ You can read more at the end of this page.
 
 When using `Field()` with Pydantic models, you can also declare additional `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:12] *}
 
 ## `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -80,19 +80,19 @@ you can also declare a group of `examples` with additional information that will
 
 Here we pass `examples` containing one example of the data expected in `Body()`:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[23:31] *}
 
 ### Example in the docs UI { #example-in-the-docs-ui }
 
 With any of the methods above it would look like this in the `/docs`:
 
-<img src="/img/tutorial/body-fields/image01.png">
+<img src="/img/tutorial/schema-extra-example/image01.png">
 
 ### `Body` with multiple `examples` { #body-with-multiple-examples }
 
 You can of course also pass multiple `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[24:40] *}
 
 When you do this, the examples will be part of the internal **JSON Schema** for that body data.
 
@@ -133,13 +133,13 @@ Each specific example `dict` in the `examples` can contain:
 
 You can use it like this:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[24:51] *}
 
 ### OpenAPI Examples in the Docs UI { #openapi-examples-in-the-docs-ui }
 
 With `openapi_examples` added to `Body()` the `/docs` would look like:
 
-<img src="/img/tutorial/body-fields/image02.png">
+<img src="/img/tutorial/schema-extra-example/image02.png">
 
 ## Technical Details { #technical-details }
 
