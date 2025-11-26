@@ -4,7 +4,7 @@ FastAPI is built on top of **Pydantic**, and I have been showing you how to use 
 
 But FastAPI also supports using <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> the same way:
 
-{* ../../docs_src/dataclasses/tutorial001.py hl[1,7:12,19:20] *}
+{* ../../docs_src/dataclasses/tutorial001_py310.py hl[1,6:11,18:19] *}
 
 This is still supported thanks to **Pydantic**, as it has <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">internal support for `dataclasses`</a>.
 
