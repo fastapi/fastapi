@@ -237,7 +237,7 @@ You can use that technique to reuse some predefined responses in your *path oper
 
 For example:
 
-{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
 ## More information about OpenAPI responses { #more-information-about-openapi-responses }
 
