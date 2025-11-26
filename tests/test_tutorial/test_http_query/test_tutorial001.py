@@ -29,4 +29,7 @@ def test_openapi_schema():
     assert "query" in schema["paths"]["/items/"]
     operation = schema["paths"]["/items/"]["query"]
     assert "requestBody" in operation
-    assert "ItemSearch" in operation["requestBody"]["content"]["application/json"]["schema"]["$ref"]
+    assert (
+        "ItemSearch"
+        in operation["requestBody"]["content"]["application/json"]["schema"]["$ref"]
+    )
