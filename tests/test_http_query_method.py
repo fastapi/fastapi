@@ -37,9 +37,7 @@ client = TestClient(app)
 
 
 def test_query_item():
-    response = client.request(
-        "QUERY", "/items/", json={"name": "Foo", "price": 50.5}
-    )
+    response = client.request("QUERY", "/items/", json={"name": "Foo", "price": 50.5})
     assert response.status_code == 200
     assert response.json() == {
         "name": "Foo",
