@@ -175,7 +175,7 @@ You can use this same `responses` parameter to add different media types for the
 
 For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
-{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
 /// note
 
