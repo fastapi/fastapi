@@ -304,7 +304,7 @@ def _remap_definitions_and_field_mappings(
     old_name_to_new_name_map = {}
     for field_key, schema in sorted(
         field_mapping.items(),
-        key=lambda x: model_name_map.get(x[0][0].type_),
+        key=lambda x: model_name_map.get(x[0][0].type_, ""),
     ):
         model = field_key[0].type_
         if model not in model_name_map:
