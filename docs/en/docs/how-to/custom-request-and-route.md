@@ -42,7 +42,7 @@ If there's no `gzip` in the header, it will not try to decompress the body.
 
 That way, the same route class can handle gzip compressed or uncompressed requests.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
 ### Create a custom `GzipRoute` class { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@ This method returns a function. And that function is what will receive a request
 
 Here we use it to create a `GzipRequest` from the original request.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
 
 /// note | Technical Details
 
