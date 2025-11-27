@@ -50,7 +50,7 @@ Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate
 
 It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Additional Responses { #additional-responses }
 
