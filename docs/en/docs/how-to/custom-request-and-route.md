@@ -102,8 +102,8 @@ If an exception occurs, the`Request` instance will still be in scope, so we can 
 
 You can also set the `route_class` parameter of an `APIRouter`:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
