@@ -1,14 +1,26 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
 from tests.utils import needs_pydanticv2
 
+from ...utils import needs_py39, needs_py310
 
-@pytest.fixture
-def client():
-    from docs_src.query_params_str_validations.tutorial006d_an_py310 import app
 
-    yield TestClient(app)
+@pytest.fixture(
+    name="client",
+    params=[
+        "tutorial006c_an",
+        pytest.param("tutorial006c_an_py310", marks=needs_py310),
+        pytest.param("tutorial006c_an_py39", marks=needs_py39),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(
+        f"docs_src.query_params_str_validations.{request.param}"
+    )
+    yield TestClient(mod.app)
 
 
 @needs_pydanticv2
