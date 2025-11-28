@@ -167,9 +167,25 @@ class RequestValidationError(ValidationException):
         super().__init__(errors)
         self.body = body
 
+    def __str__(self) -> str:
+        message = f"{len(self._errors)} validation error"
+        if len(self._errors) > 1:
+            message += "s"
+        message += " for request:\n"
+        for err in self._errors:
+            message += f"  {err}\n"
+        return message
+
 
 class WebSocketRequestValidationError(ValidationException):
-    pass
+    def __str__(self) -> str:
+        message = f"{len(self._errors)} validation error"
+        if len(self._errors) > 1:
+            message += "s"
+        message += " for WebSocket request:\n"
+        for err in self._errors:
+            message += f"  {err}\n"
+        return message
 
 
 class ResponseValidationError(ValidationException):
