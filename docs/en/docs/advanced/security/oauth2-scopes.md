@@ -106,7 +106,17 @@ Now we declare that the *path operation* for `/users/me/items/` requires the sco
 
 For this, we import and use `Security` from `fastapi`.
 
-You can use `Security` to declare dependencies (just like `Depends`), but `Security` also receives a parameter `scopes` with a list of scopes (strings).
+You can use `Security` to declare dependencies (just like `Depends`), but `Security` also receives a parameter `oauth_scopes` with a list of scopes (strings).
+
+/// note
+
+Before version 0.122.X, the name of this parameter was `scopes`.
+
+In FastAPI 0.122.X, the `scopes` parameter was deprecated in favor of `oauth_scopes`
+to avoid confusing it with the `scope` parameter, which is used to specify when the exit code
+of dependencies with `yield` should run.
+
+///
 
 In this case, we pass a dependency function `get_current_active_user` to `Security` (the same way we would do with `Depends`).
 
@@ -124,7 +134,7 @@ We are doing it here to demonstrate how **FastAPI** handles scopes declared at d
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,173] *}
 
 /// info | Technical Details
 
@@ -213,13 +223,13 @@ Here's how the hierarchy of dependencies and scopes looks like:
                         * This `security_scopes` parameter has a property `scopes` with a `list` containing all these scopes declared above, so:
                             * `security_scopes.scopes` will contain `["me", "items"]` for the *path operation* `read_own_items`.
                             * `security_scopes.scopes` will contain `["me"]` for the *path operation* `read_users_me`, because it is declared in the dependency `get_current_active_user`.
-                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `scopes`, and its dependency, `get_current_user`, doesn't declare any `scopes` either.
+                            * `security_scopes.scopes` will contain `[]` (nothing) for the *path operation* `read_system_status`, because it didn't declare any `Security` with `oauth_scopes`, and its dependency, `get_current_user`, doesn't declare any `oauth_scopes` either.
 
 /// tip
 
 The important and "magic" thing here is that `get_current_user` will have a different list of `scopes` to check for each *path operation*.
 
-All depending on the `scopes` declared in each *path operation* and each dependency in the dependency tree for that specific *path operation*.
+All depending on the `oauth_scopes` declared in each *path operation* and each dependency in the dependency tree for that specific *path operation*.
 
 ///
 
@@ -271,4 +281,4 @@ But in the end, they are implementing the same OAuth2 standard.
 
 ## `Security` in decorator `dependencies` { #security-in-decorator-dependencies }
 
-The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `scopes` there.
+The same way you can define a `list` of `Depends` in the decorator's `dependencies` parameter (as explained in [Dependencies in path operation decorators](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), you could also use `Security` with `oauth_scopes` there.
