@@ -260,11 +260,19 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 ### Required, can be `None` { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
+You can make a query parameter **required** but still allow `None` as a value.
 
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+This forces the client to **send the parameter**, even if the value is `null`.
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+Use `str | None` **without** a default value:
+
+{* ../../docs_src/query_params_str_validations/tutorial006c_fixed.py hl[9] *}
+
+/// tip | "How to send `None`"
+To send `null`, use `?q=null` in the URL.
+
+FastAPI treats missing param as error (required), but `"null"` → `None` in Python.
+///
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
