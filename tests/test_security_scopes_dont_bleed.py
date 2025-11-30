@@ -26,8 +26,8 @@ async def dep3(
 app = FastAPI()
 
 
-@app.get("/recursive_scopes")
-def recursive_scopes(
+@app.get("/scopes")
+def get_scopes(
     dep3: Annotated[Dict[str, Any], Security(dep3, scopes=["scope3"])],
 ):
     return dep3
@@ -36,8 +36,8 @@ def recursive_scopes(
 client = TestClient(app)
 
 
-def test_recursive_scopes():
-    response = client.get("recursive_scopes")
+def test_security_scopes_dont_bleed():
+    response = client.get("/scopes")
     assert response.status_code == 200
     assert response.json() == {
         "dep1": ["scope3", "scope1"],
