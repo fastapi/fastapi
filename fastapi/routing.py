@@ -318,7 +318,6 @@ def get_request_handler(
         actual_response_class = response_class
 
     async def app(request: Request) -> Response:
-        response: Union[Response, None] = None
         file_stack = request.scope.get("fastapi_middleware_astack")
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
@@ -373,7 +372,6 @@ def get_request_handler(
             raise http_error from e
 
         # Solve dependencies and run path operation function, auto-closing dependencies
-        errors: List[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
@@ -387,52 +385,41 @@ def get_request_handler(
             embed_body_fields=embed_body_fields,
         )
         errors = solved_result.errors
-        if not errors:
-            raw_response = await run_endpoint_function(
-                dependant=dependant,
-                values=solved_result.values,
-                is_coroutine=is_coroutine,
-            )
-            if isinstance(raw_response, Response):
-                if raw_response.background is None:
-                    raw_response.background = solved_result.background_tasks
-                response = raw_response
-            else:
-                response_args: Dict[str, Any] = {
-                    "background": solved_result.background_tasks
-                }
-                # If status_code was set, use it, otherwise use the default from the
-                # response class, in the case of redirect it's 307
-                current_status_code = (
-                    status_code if status_code else solved_result.response.status_code
-                )
-                if current_status_code is not None:
-                    response_args["status_code"] = current_status_code
-                if solved_result.response.status_code:
-                    response_args["status_code"] = solved_result.response.status_code
-                content = await serialize_response(
-                    field=response_field,
-                    response_content=raw_response,
-                    include=response_model_include,
-                    exclude=response_model_exclude,
-                    by_alias=response_model_by_alias,
-                    exclude_unset=response_model_exclude_unset,
-                    exclude_defaults=response_model_exclude_defaults,
-                    exclude_none=response_model_exclude_none,
-                    is_coroutine=is_coroutine,
-                )
-                response = actual_response_class(content, **response_args)
-                if not is_body_allowed_for_status_code(response.status_code):
-                    response.body = b""
-                response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
-            validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body
-            )
-            raise validation_error
+            raise RequestValidationError(_normalize_errors(errors), body=body)
 
-        # Return response
-        assert response
+        raw_response = await run_endpoint_function(
+            dependant=dependant,
+            values=solved_result.values,
+            is_coroutine=is_coroutine,
+        )
+        if isinstance(raw_response, Response):
+            if raw_response.background is None:
+                raw_response.background = solved_result.background_tasks
+            return raw_response
+
+        response_args: Dict[str, Any] = {"background": solved_result.background_tasks}
+        # If status_code was set, use it, otherwise use the default from the
+        # response class, in the case of redirect it's 307
+        if solved_result.response.status_code:
+            response_args["status_code"] = solved_result.response.status_code
+        elif status_code is not None:
+            response_args["status_code"] = status_code
+        content = await serialize_response(
+            field=response_field,
+            response_content=raw_response,
+            include=response_model_include,
+            exclude=response_model_exclude,
+            by_alias=response_model_by_alias,
+            exclude_unset=response_model_exclude_unset,
+            exclude_defaults=response_model_exclude_defaults,
+            exclude_none=response_model_exclude_none,
+            is_coroutine=is_coroutine,
+        )
+        response = actual_response_class(content, **response_args)
+        if not is_body_allowed_for_status_code(response.status_code):
+            response.body = b""
+        response.headers.raw.extend(solved_result.response.headers.raw)
         return response
 
     return app
