@@ -278,7 +278,9 @@ def get_dependant(
             use_security_scopes = security_scopes or []
             if isinstance(param_details.depends, params.Security):
                 if param_details.depends.scopes:
-                    use_security_scopes.extend(param_details.depends.scopes)
+                    use_security_scopes = use_security_scopes + list(
+                        param_details.depends.scopes
+                    )
             sub_dependant = get_dependant(
                 path=path,
                 call=param_details.depends.dependency,
