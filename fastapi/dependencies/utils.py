@@ -58,8 +58,7 @@ from fastapi.dependencies.models import Dependant, SecurityRequirement
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
-from fastapi.security.oauth2 import OAuth2, SecurityScopes
-from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
