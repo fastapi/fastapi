@@ -192,7 +192,8 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    nsobj = inspect.unwrap(call)
+    globalns = getattr(nsobj, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
