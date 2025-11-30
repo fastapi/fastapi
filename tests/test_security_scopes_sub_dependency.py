@@ -59,7 +59,7 @@ def app_fixture(call_counts: Dict[str, int]):
     @app.get("/")
     def path_operation(
         user_me: Annotated[dict, Depends(get_user_me)],
-        user_items: Annotated[dict, Security(get_user_items, scopes=["not_me"])],
+        user_items: Annotated[dict, Security(get_user_items, scopes=["items"])],
     ):
         return {
             "user_me": user_me,
@@ -99,7 +99,7 @@ def test_security_scopes_sub_dependency_caching(
                 "user_me": "user_me_2",
                 "current_user": {
                     "user": "user_2",
-                    "scopes": ["not_me", "me"],
+                    "scopes": ["items", "me"],
                     "db_session": "db_session_1",
                 },
             },
