@@ -36,7 +36,7 @@ def get_scopes(
 client = TestClient(app)
 
 
-def test_security_scopes_dont_bleed():
+def test_security_scopes_dont_propagate():
     response = client.get("/scopes")
     assert response.status_code == 200
     assert response.json() == {
