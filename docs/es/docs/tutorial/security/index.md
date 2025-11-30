@@ -103,3 +103,35 @@ FastAPI proporciona varias herramientas para cada uno de estos esquemas de segur
 En los siguientes capítulos verás cómo agregar seguridad a tu API usando esas herramientas proporcionadas por **FastAPI**.
 
 Y también verás cómo se integra automáticamente en el sistema de documentación interactiva.
+
+
+## API Key en el Header
+
+Una API key es una cadena secreta sencilla que un cliente envía con cada petición.
+Suele utilizarse para:
+
+- comunicación entre servicios,
+- servicios internos,
+- autenticación simple por “acceso al servicio” en lugar de cuentas de usuario completas.
+
+En OpenAPI, esto se representa con el esquema de seguridad `apiKey`, que puede enviarse en un **parámetro de consulta**, un **header**, o una **cookie**.
+
+FastAPI incluye utilidades para esto en el módulo `fastapi.security`, incluyendo `APIKeyHeader` para API keys basadas en headers.
+
+### Definir la API key en un header
+
+En este ejemplo, el cliente debe enviar una API key en el header HTTP `X-API-Key`.
+Requeriremos que el valor sea exactamente `"supersecret"` para acceder a una ruta protegida.
+
+```Python
+from typing import Optional
+
+from fastapi import FastAPI, HTTPException, Security, status
+from fastapi.security import APIKeyHeader
+
+app = FastAPI()
+
+API_KEY = "supersecret"
+API_KEY_NAME = "X-API-Key"
+
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
