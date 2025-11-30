@@ -1,4 +1,4 @@
-from copy import copy
+from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
@@ -35,6 +35,7 @@ if not PYDANTIC_V2:
     from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.errors import MissingError
     from pydantic.fields import (  # type: ignore[attr-defined]
+        MAPPING_LIKE_SHAPES,
         SHAPE_FROZENSET,
         SHAPE_LIST,
         SHAPE_SEQUENCE,
@@ -82,6 +83,7 @@ else:
     from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
     from pydantic.v1.errors import MissingError
     from pydantic.v1.fields import (
+        MAPPING_LIKE_SHAPES,
         SHAPE_FROZENSET,
         SHAPE_LIST,
         SHAPE_SEQUENCE,
@@ -143,6 +145,8 @@ sequence_shape_to_type = {
     SHAPE_SEQUENCE: list,
     SHAPE_TUPLE_ELLIPSIS: list,
 }
+
+mapping_shapes = MAPPING_LIKE_SHAPES
 
 
 @dataclass
@@ -219,6 +223,32 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
+def is_pv1_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
+                if not (
+                    is_scalar_sequence_field(sub_field) or is_scalar_field(sub_field)
+                ):
+                    return False
+        return True
+    return False
+
+
+def is_pv1_scalar_mapping_field(field: ModelField) -> bool:
+    if (field.shape in mapping_shapes) and not lenient_issubclass(
+        field.type_, BaseModel
+    ):
+        if field.sub_fields is not None:
+            for sub_field in field.sub_fields:
+                if not is_scalar_field(sub_field):
+                    return False
+        return True
+    return False
+
+
 def _model_rebuild(model: Type[BaseModel]) -> None:
     model.update_forward_refs()
 
@@ -277,6 +307,14 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
     return is_pv1_scalar_sequence_field(field)
 
 
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    return is_pv1_scalar_mapping_field(field)
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    return is_pv1_scalar_sequence_mapping_field(field)
+
+
 def is_bytes_field(field: ModelField) -> bool:
     return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
 
@@ -310,3 +348,64 @@ def create_body_model(
 
 def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
     return list(model.__fields__.values())  # type: ignore[attr-defined]
+
+
+def ignore_invalid(
+    cls: Any,
+    v: Dict[str, Any],
+    values: Dict[str, Any],
+    field: ModelField,
+    **kwargs: Any,
+) -> Any:
+    from .may_v1 import _regenerate_error_with_loc
+
+    field_copy = deepcopy(field)
+    field_copy.pre_validators = [
+        validator
+        for validator in field_copy.pre_validators
+        if getattr(validator, "__name__", "") != "ignore_invalid"
+    ]
+    v, errors = field_copy.validate(v, values, loc=field.name)
+    if not errors:
+        return v
+
+    # pop the keys or elements that caused the validation errors and revalidate
+    for error in _regenerate_error_with_loc(errors=errors, loc_prefix=()):
+        loc = error["loc"][1:]
+        if len(loc) == 0:
+            continue
+        if isinstance(loc[0], int) and isinstance(v, list):
+            index = loc[0]
+            if 0 <= index < len(v):
+                v[index] = None
+
+        # Handle nested list validation errors (e.g., dict[str, list[str]])
+        elif isinstance(loc[0], str) and isinstance(v, dict):
+            key = loc[0]
+            if (
+                len(loc) > 1
+                and isinstance(loc[1], int)
+                and key in v
+                and isinstance(v[key], list)
+            ):
+                list_index = loc[1]
+                v[key][list_index] = None
+            elif key in v:
+                v.pop(key)
+
+    if isinstance(v, list):
+        v = [el for el in v if el is not None]
+
+    if isinstance(v, dict):
+        for key in v.keys():
+            if isinstance(v[key], list):
+                v[key] = [el for el in v[key] if el is not None]
+
+    return v
+
+
+def omit_by_default(
+    field_info: FieldInfo,
+) -> Tuple[FieldInfo, Dict[str, Callable[..., Any]]]:
+    """add a wrap validator to omit invalid values by default."""
+    return field_info, {"ignore_invalid": Validator(ignore_invalid, pre=True)}
