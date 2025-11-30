@@ -1,3 +1,5 @@
+from typing import Any
+
 from fastapi import FastAPI, Query
 
 app = FastAPI()
@@ -16,7 +18,7 @@ async def read_items(
         deprecated=True,
     ),
 ):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    results: dict[str, Any] = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
     if q:
-        results.update({"q": q})
+        results["q"] = q
     return results
