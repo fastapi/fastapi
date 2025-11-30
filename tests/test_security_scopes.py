@@ -42,6 +42,4 @@ def test_security_scopes_dependency_called_once(
     response = client.get("/")
 
     assert response.status_code == 200
-    assert call_counter["count"] == 1, (
-        f"get_db called {call_counter['count']}x (expected: 1)"
-    )
+    assert call_counter["count"] == 1
