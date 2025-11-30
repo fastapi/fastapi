@@ -334,7 +334,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of global dependencies, they will be applied to each
@@ -346,11 +346,12 @@ class FastAPI(Starlette):
                 **Example**
 
                 ```python
+                from typing import Annotated
                 from fastapi import Depends, FastAPI
 
                 from .dependencies import func_dep_1, func_dep_2
-
-                app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2)])
+                annotated_dep=Annotated[str,Depends(lambda:"annotated")]
+                app = FastAPI(dependencies=[Depends(func_dep_1), Depends(func_dep_2),annotated_dep])
                 ```
                 """
             ),
@@ -1141,7 +1142,7 @@ class FastAPI(Starlette):
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[Depends]] = None,
+        dependencies: Optional[Sequence[Union[Depends, routing.AnnotatedType]]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
@@ -1199,7 +1200,7 @@ class FastAPI(Starlette):
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
         tags: Optional[List[Union[str, Enum]]] = None,
-        dependencies: Optional[Sequence[Depends]] = None,
+        dependencies: Optional[Sequence[Union[Depends, routing.AnnotatedType]]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
@@ -1258,7 +1259,7 @@ class FastAPI(Starlette):
         endpoint: Callable[..., Any],
         name: Optional[str] = None,
         *,
-        dependencies: Optional[Sequence[Depends]] = None,
+        dependencies: Optional[Sequence[Union[Depends, routing.AnnotatedType]]] = None,
     ) -> None:
         self.router.add_api_websocket_route(
             path,
@@ -1287,7 +1288,7 @@ class FastAPI(Starlette):
         ] = None,
         *,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be used for this
@@ -1352,7 +1353,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to all the
@@ -1611,7 +1612,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -1984,7 +1985,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2362,7 +2363,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -2740,7 +2741,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3113,7 +3114,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3486,7 +3487,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -3859,7 +3860,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
@@ -4237,7 +4238,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         dependencies: Annotated[
-            Optional[Sequence[Depends]],
+            Optional[Sequence[Union[Depends, routing.AnnotatedType]]],
             Doc(
                 """
                 A list of dependencies (using `Depends()`) to be applied to the
