@@ -154,13 +154,13 @@ class HTTPBasic(HTTPBase):
             ),
         ] = None,
         realm: Annotated[
-            Optional[str],
+            str,
             Doc(
                 """
                 HTTP Basic authentication realm.
                 """
             ),
-        ] = None,
+        ],
         description: Annotated[
             Optional[str],
             Doc(

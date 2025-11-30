@@ -5,7 +5,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 app = FastAPI()
 
-security = HTTPBasic()
+security = HTTPBasic(realm="simple")
 
 
 @app.get("/users/me")

@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 
 app = FastAPI()
 
-security = HTTPBasic(auto_error=False)
+security = HTTPBasic(realm="simple", auto_error=False)
 
 
 @app.get("/users/me")
