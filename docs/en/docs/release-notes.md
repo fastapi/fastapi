@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.0
+
 ### Fixes
 
 * 🐛 Cache dependencies that don't use scopes and don't have sub-dependencies with scopes. PR [#14419](https://github.com/fastapi/fastapi/pull/14419) by [@tiangolo](https://github.com/tiangolo).
