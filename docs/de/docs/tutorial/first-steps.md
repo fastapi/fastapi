@@ -143,6 +143,42 @@ Es gibt dutzende Alternativen, die alle auf OpenAPI basieren. Sie können jede d
 
 Ebenfalls können Sie es verwenden, um automatisch Code für Clients zu generieren, die mit Ihrer API kommunizieren. Zum Beispiel für Frontend-, Mobile- oder IoT-Anwendungen.
 
+### Ihre App deployen (optional) { #deploy-your-app-optional }
+
+Sie können optional Ihre FastAPI-App in der <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> deployen, treten Sie der Warteliste bei, falls Sie es noch nicht getan haben. 🚀
+
+Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem Befehl deployen.
+
+Vor dem Deployen, stellen Sie sicher, dass Sie eingeloggt sind:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Dann stellen Sie Ihre App bereit:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+Das war's! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
+
 ## Zusammenfassung, Schritt für Schritt { #recap-step-by-step }
 
 ### Schritt 1: `FastAPI` importieren { #step-1-import-fastapi }
@@ -314,6 +350,26 @@ Sie können auch Pydantic-Modelle zurückgeben (dazu später mehr).
 
 Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert werden (einschließlich ORMs, usw.). Versuchen Sie, Ihre Lieblingsobjekte zu verwenden. Es ist sehr wahrscheinlich, dass sie bereits unterstützt werden.
 
+### Schritt 6: Deployen { #step-6-deploy-it }
+
+Stellen Sie Ihre App in der **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** mit einem Befehl bereit: `fastapi deploy`. 🎉
+
+#### Über FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** wird vom selben Autor und Team hinter **FastAPI** entwickelt.
+
+Es vereinfacht den Prozess des Erstellens, Deployens und des Zugriffs auf eine API mit minimalem Aufwand.
+
+Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
+
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+
+#### Zu anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
+
+FastAPI ist Open Source und basiert auf Standards. Sie können FastAPI-Apps bei jedem Cloudanbieter Ihrer Wahl deployen.
+
+Folgen Sie den Anleitungen Ihres Cloudanbieters, um dort FastAPI-Apps bereitzustellen. 🤓
+
 ## Zusammenfassung { #recap }
 
 * Importieren Sie `FastAPI`.
@@ -321,3 +377,4 @@ Es gibt viele andere Objekte und Modelle, die automatisch zu JSON konvertiert we
 * Schreiben Sie einen **Pfadoperation-Dekorator** unter Verwendung von Dekoratoren wie `@app.get("/")`.
 * Definieren Sie eine **Pfadoperation-Funktion**, zum Beispiel `def root(): ...`.
 * Starten Sie den Entwicklungsserver mit dem Befehl `fastapi dev`.
+* Optional: Ihre App mit `fastapi deploy` deployen.

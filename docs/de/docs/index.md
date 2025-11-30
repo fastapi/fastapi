@@ -52,14 +52,20 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- sponsors -->
 
-{% if sponsors %}
+### Keystone-Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+
+### Gold- und Silber-Sponsoren
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
-{% endif %}
 
 <!-- /sponsors -->
 
@@ -443,6 +449,58 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
     * **CORS**
     * **Cookie-Sessions**
     * ... und mehr.
+
+### Ihre App deployen (optional) { #deploy-your-app-optional }
+
+Optional können Sie Ihre FastAPI-App in die <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> deployen, treten Sie der Warteliste bei, falls noch nicht geschehen. 🚀
+
+Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem einzigen Befehl deployen.
+
+Stellen Sie vor dem Deployen sicher, dass Sie eingeloggt sind:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Stellen Sie dann Ihre App bereit:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+Das war’s! Jetzt können Sie unter dieser URL auf Ihre App zugreifen. ✨
+
+#### Über FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** wird vom selben Autor und Team hinter **FastAPI** entwickelt.
+
+Es vereinfacht den Prozess des **Erstellens**, **Deployens** und **Zugreifens** auf eine API mit minimalem Aufwand.
+
+Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
+
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+
+#### Bei anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
+
+FastAPI ist Open Source und basiert auf Standards. Sie können FastAPI-Apps bei jedem Cloudanbieter Ihrer Wahl deployen.
+
+Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort bereitzustellen. 🤓
 
 ## Performanz { #performance }
 
