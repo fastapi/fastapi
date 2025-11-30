@@ -121,57 +121,7 @@ It has a `POST` operation that could return several errors.
 
 Both *path operations* require an `X-Token` header.
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Extended testing file { #extended-testing-file }
 
