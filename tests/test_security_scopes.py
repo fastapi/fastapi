@@ -1,8 +1,9 @@
-from typing import Annotated, Dict
+from typing import Dict
 
 import pytest
 from fastapi import Depends, FastAPI, Security
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 
 @pytest.fixture(name="call_counter")
