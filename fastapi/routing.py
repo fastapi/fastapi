@@ -943,6 +943,20 @@ class APIRouter(routing.Router):
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
 
+    @deprecated(
+        "Mounting sub-application on router is not supported. "
+        "Use the `mount` method of FastAPI instance instead."
+    )
+    def mount(self, *args, **kwargs) -> None:  # pragma: no cover
+        raise NotImplementedError(
+            "APIRouter does not support mounting other ASGI applications."
+        )
+
+    def _mount(
+        self, path: str, app: ASGIApp, name: str | None = None
+    ) -> None:  # pragma: no cover
+        super().mount(path=path, app=app, name=name)
+
     def route(
         self,
         path: str,
