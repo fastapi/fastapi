@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.122.1
+
 ### Fixes
 
 * 🐛 Fix hierarchical security scope propagation. PR [#5624](https://github.com/fastapi/fastapi/pull/5624) by [@kristjanvalur](https://github.com/kristjanvalur).
