@@ -48,6 +48,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     FastAPIError,
+    RequestMalformedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
@@ -350,7 +351,7 @@ def get_request_handler(
                         else:
                             body = body_bytes
         except json.JSONDecodeError as e:
-            validation_error = RequestValidationError(
+            raise RequestMalformedError(
                 [
                     {
                         "type": "json_invalid",
@@ -361,8 +362,7 @@ def get_request_handler(
                     }
                 ],
                 body=e.doc,
-            )
-            raise validation_error from e
+            ) from e
         except HTTPException:
             # If a middleware raises an HTTPException, it should be raised again
             raise
