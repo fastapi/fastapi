@@ -162,7 +162,7 @@ These are technical details that you might skip if it's not important for you no
 
 ///
 
-`RequestValidationError` is a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+`RequestValidationError` is a **FastAPI-specific exception** (it inherits from `fastapi.exceptions.ValidationException`). It is **not** a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
 
 **FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
 
