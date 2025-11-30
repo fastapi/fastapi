@@ -1,17 +1,36 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
-from docs_src.custom_request_and_route.tutorial002 import app
-
-client = TestClient(app)
+from tests.utils import needs_py39, needs_py310
 
 
-def test_endpoint_works():
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial002"),
+        pytest.param("tutorial002_py39", marks=needs_py39),
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        pytest.param("tutorial002_an"),
+        pytest.param("tutorial002_an_py39", marks=needs_py39),
+        pytest.param("tutorial002_an_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.custom_request_and_route.{request.param}")
+
+    client = TestClient(mod.app)
+    return client
+
+
+def test_endpoint_works(client: TestClient):
     response = client.post("/", json=[1, 2, 3])
     assert response.json() == 6
 
 
-def test_exception_handler_body_access():
+def test_exception_handler_body_access(client: TestClient):
     response = client.post("/", json={"numbers": [1, 2, 3]})
     assert response.json() == IsDict(
         {
