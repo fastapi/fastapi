@@ -1,9 +1,16 @@
 /* Fira Code, including characters used by Rich output, like the "heavy right-pointing angle bracket ornament", not included in Google Fonts */
 @import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+/* Noto Color Emoji for emoji support with the same font everywhere */
+@import url(https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap);
 
 /* Override default code font in Material for MkDocs to Fira Code */
 :root {
-    --md-code-font: "Fira Code", monospace;
+    --md-code-font: "Fira Code", monospace, "Noto Color Emoji";
+}
+
+/* Override default regular font in Material for MkDocs to include Noto Color Emoji */
+:root {
+    --md-text-font: "Roboto", "Noto Color Emoji";
 }
 
 .termynal-comment {
