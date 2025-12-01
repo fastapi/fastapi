@@ -4,7 +4,7 @@ You can use virtually **any cloud provider** to deploy your FastAPI application.
 
 In most of the cases, the main cloud providers have guides to deploy FastAPI with them.
 
-## FastAPI Cloud
+## FastAPI Cloud { #fastapi-cloud }
 
 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
 
