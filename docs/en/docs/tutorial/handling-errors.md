@@ -154,7 +154,31 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` vs `ValidationError` { #requestvalidationerror-vs-validationerror }
+This only affects validation of incoming **request** data. It does not change how validation errors are handled for your `response_model` data or for other Pydantic validations that you perform in your own code.
+
+### Override response validation exceptions { #override-response-validation-exceptions }
+
+When you declare a `response_model`, **FastAPI** also validates the data returned by your *path operation* against that model. If the returned data doesn't conform to the declared schema, **FastAPI** raises a `ResponseValidationError` while building the response.
+
+By default, this is treated as an internal server error: the client receives an HTTP status code `500 Internal Server Error`, and the detailed validation errors are available in your server logs.
+
+This behavior is intentional. If you have a validation error while building a *response* or anywhere else in your code (not in the client's *request*), it's considered a bug in your application code, not an error from the client.
+
+If you want to customize how these response validation errors are handled, you can register your own exception handler:
+
+```Python
+from fastapi import FastAPI
+from fastapi.exceptions import ResponseValidationError
+
+app = FastAPI()
+
+@app.exception_handler(ResponseValidationError)
+async def response_validation_exception_handler(request, exc):
+    # For example, log extra details and return a custom 500 response
+    ...
+```
+
+### `RequestValidationError` vs `ValidationError` { #requestvalidationerror-vs-validationerror }
 
 /// warning
 
@@ -162,15 +186,41 @@ These are technical details that you might skip if it's not important for you no
 
 ///
 
-`RequestValidationError` is a **FastAPI-specific exception** (it inherits from `fastapi.exceptions.ValidationException`). It is **not** a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
+FastAPI defines its own validation exception hierarchy:
 
-**FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
+- `RequestValidationError`, `WebSocketRequestValidationError`, and `ResponseValidationError` are FastAPI-specific exceptions that all inherit from `fastapi.exceptions.ValidationException`.
+- Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a> comes from `pydantic-core` and cannot be subclassed, so FastAPI cannot make `RequestValidationError` a subclass of it.
 
-But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with an HTTP status code `500`.
+Because of that:
 
-It should be this way because if you have a Pydantic `ValidationError` in your *response* or anywhere in your code (not in the client's *request*), it's actually a bug in your code.
+- A handler for Pydantic's `ValidationError` will **not** catch `RequestValidationError` or `ResponseValidationError`.
+- If you want to customize all of them, you should register handlers for each specific error type you care about.
 
-And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
+In practice:
+
+- Use `RequestValidationError` for invalid **request** data (e.g. wrong types in the body, query parameters, path parameters, or dependency inputs). These errors are considered client errors and return a `422` response by default.
+- Use `ResponseValidationError` for invalid **response** data produced by your application when using `response_model`. These errors are considered server errors (bugs in your code) and result in a `500` response by default.
+- Use Pydantic's `ValidationError` for validations that you run explicitly in your own code (for example, while parsing external data or validating JWT contents), and handle it however is appropriate for that context.
+
+For example, you might register multiple handlers side by side:
+
+```Python
+from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
+from pydantic import ValidationError
+
+app = FastAPI()
+
+@app.exception_handler(RequestValidationError)
+async def request_validation_exception_handler(request, exc):
+    ...
+
+@app.exception_handler(ValidationError)
+async def pydantic_validation_exception_handler(request, exc):
+    ...
+```
+
+Each handler will only run for its own error type.
 
 ### Override the `HTTPException` error handler { #override-the-httpexception-error-handler }
 
