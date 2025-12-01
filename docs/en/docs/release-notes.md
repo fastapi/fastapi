@@ -7,9 +7,33 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔧 Update sponsors: add Greptile. PR [#14429](https://github.com/fastapi/fastapi/pull/14429) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14426](https://github.com/fastapi/fastapi/pull/14426) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump markdown-include-variants from 0.0.6 to 0.0.7. PR [#14423](https://github.com/fastapi/fastapi/pull/14423) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👥 Update FastAPI People - Sponsors. PR [#14422](https://github.com/fastapi/fastapi/pull/14422) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14420](https://github.com/fastapi/fastapi/pull/14420) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.0
+
+### Fixes
+
+* 🐛 Cache dependencies that don't use scopes and don't have sub-dependencies with scopes. PR [#14419](https://github.com/fastapi/fastapi/pull/14419) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.122.1
+
+### Fixes
+
+* 🐛 Fix hierarchical security scope propagation. PR [#5624](https://github.com/fastapi/fastapi/pull/5624) by [@kristjanvalur](https://github.com/kristjanvalur).
+
 ### Docs
 
 * 💅 Update CSS to explicitly use emoji font. PR [#14415](https://github.com/fastapi/fastapi/pull/14415) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump markdown-include-variants from 0.0.5 to 0.0.6. PR [#14418](https://github.com/fastapi/fastapi/pull/14418) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.122.0
 
