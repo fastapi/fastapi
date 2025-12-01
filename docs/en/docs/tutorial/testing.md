@@ -127,7 +127,7 @@ Both *path operations* require an `X-Token` header.
 
 You could then update `test_main.py` with the extended tests:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
 Whenever you need the client to pass information in the request and you don't know how to, you can search (Google) how to do it in `httpx`, or even how to do it with `requests`, as HTTPX's design is based on Requests' design.
