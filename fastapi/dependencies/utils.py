@@ -127,7 +127,7 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     )
     own_oauth_scopes: List[str] = []
     if isinstance(depends, params.Security) and depends.oauth_scopes:
-        own_oauth_scopes.extend(depends.scopes)
+        own_oauth_scopes.extend(depends.oauth_scopes)
     return get_dependant(
         path=path,
         call=depends.dependency,
