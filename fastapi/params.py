@@ -772,14 +772,14 @@ class File(Form):  # type: ignore[misc]
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
     scope: Union[Literal["function", "request"], None] = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Security(Depends):
     oauth_scopes: Optional[
         Union[
