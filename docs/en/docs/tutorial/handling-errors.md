@@ -178,7 +178,7 @@ async def response_validation_exception_handler(request, exc):
     ...
 ```
 
-### `RequestValidationError` vs `ValidationError` { #requestvalidationerror-vs-validationerror }
+### FastAPI validation errors vs Pydantic `ValidationError` { #requestvalidationerror-vs-validationerror }
 
 /// warning
 
