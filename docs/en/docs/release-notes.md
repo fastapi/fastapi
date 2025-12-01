@@ -9,6 +9,40 @@ hide:
 
 ### Internal
 
+* 👥 Update FastAPI GitHub topic repositories. PR [#14426](https://github.com/fastapi/fastapi/pull/14426) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump markdown-include-variants from 0.0.6 to 0.0.7. PR [#14423](https://github.com/fastapi/fastapi/pull/14423) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👥 Update FastAPI People - Sponsors. PR [#14422](https://github.com/fastapi/fastapi/pull/14422) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14420](https://github.com/fastapi/fastapi/pull/14420) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.0
+
+### Fixes
+
+* 🐛 Cache dependencies that don't use scopes and don't have sub-dependencies with scopes. PR [#14419](https://github.com/fastapi/fastapi/pull/14419) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.122.1
+
+### Fixes
+
+* 🐛 Fix hierarchical security scope propagation. PR [#5624](https://github.com/fastapi/fastapi/pull/5624) by [@kristjanvalur](https://github.com/kristjanvalur).
+
+### Docs
+
+* 💅 Update CSS to explicitly use emoji font. PR [#14415](https://github.com/fastapi/fastapi/pull/14415) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump markdown-include-variants from 0.0.5 to 0.0.6. PR [#14418](https://github.com/fastapi/fastapi/pull/14418) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.122.0
+
+### Fixes
+
+* 🐛 Use `401` status code in security classes when credentials are missing. PR [#13786](https://github.com/fastapi/fastapi/pull/13786) by [@YuriiMotov](https://github.com/YuriiMotov).
+    * If your code depended on these classes raising the old (less correct) `403` status code, check the new docs about how to override the classes, to use the same old behavior: [Use Old 403 Authentication Error Status Codes](https://fastapi.tiangolo.com/how-to/authentication-error-status-code/).
+
+### Internal
+
 * 🔧 Configure labeler to exclude files that start from underscore for `lang-all` label. PR [#14213](https://github.com/fastapi/fastapi/pull/14213) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Add pre-commit config with local script for permalinks. PR [#14398](https://github.com/fastapi/fastapi/pull/14398) by [@tiangolo](https://github.com/tiangolo).
 * 💄 Use font Fira Code to fix display of Rich panels in docs in Windows. PR [#14387](https://github.com/fastapi/fastapi/pull/14387) by [@tiangolo](https://github.com/tiangolo).
