@@ -14,41 +14,6 @@ def read_current_user(credentials: HTTPAuthorizationCredentials = Security(secur
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/users/me": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    }
-                },
-                "summary": "Read Current User",
-                "operationId": "read_current_user_users_me_get",
-                "security": [{"HTTPDigest": []}],
-            }
-        }
-    },
-    "components": {
-        "securitySchemes": {
-            "HTTPDigest": {
-                "type": "http",
-                "scheme": "digest",
-                "description": "HTTPDigest scheme",
-            }
-        }
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
-
 
 def test_security_http_digest():
     response = client.get("/users/me", headers={"Authorization": "Digest foobar"})
@@ -58,13 +23,48 @@ def test_security_http_digest():
 
 def test_security_http_digest_no_credentials():
     response = client.get("/users/me")
-    assert response.status_code == 403, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Digest"
 
 
 def test_security_http_digest_incorrect_scheme_credentials():
     response = client.get(
         "/users/me", headers={"Authorization": "Other invalidauthorization"}
     )
-    assert response.status_code == 403, response.text
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.status_code == 401, response.text
+    assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Digest"
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "openapi": "3.1.0",
+        "info": {"title": "FastAPI", "version": "0.1.0"},
+        "paths": {
+            "/users/me": {
+                "get": {
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {"application/json": {"schema": {}}},
+                        }
+                    },
+                    "summary": "Read Current User",
+                    "operationId": "read_current_user_users_me_get",
+                    "security": [{"HTTPDigest": []}],
+                }
+            }
+        },
+        "components": {
+            "securitySchemes": {
+                "HTTPDigest": {
+                    "type": "http",
+                    "scheme": "digest",
+                    "description": "HTTPDigest scheme",
+                }
+            }
+        },
+    }

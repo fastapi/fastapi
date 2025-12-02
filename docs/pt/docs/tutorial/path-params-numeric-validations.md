@@ -1,118 +1,128 @@
-# Parâmetros da Rota e Validações Numéricas
+# Parâmetros de path e validações numéricas { #path-parameters-and-numeric-validations }
 
-Do mesmo modo que você pode declarar mais validações e metadados para parâmetros de consulta com `Query`, você pode declarar os mesmos tipos de validações e metadados para parâmetros de rota com `Path`.
+Da mesma forma que você pode declarar mais validações e metadados para parâmetros de consulta com `Query`, você pode declarar o mesmo tipo de validações e metadados para parâmetros de path com `Path`.
 
-## Importe `Path`
+## Importe `Path` { #import-path }
 
-Primeiro, importe `Path` de `fastapi`:
+Primeiro, importe `Path` de `fastapi`, e importe `Annotated`:
 
-=== "Python 3.6 e superiores"
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+/// info | Informação
 
-=== "Python 3.10 e superiores"
+O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 0.95.0.
 
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+Se você tiver uma versão mais antiga, verá erros ao tentar usar `Annotated`.
 
-## Declare metadados
+Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
-Você pode declarar todos os parâmetros da mesma maneira que na `Query`.
+///
 
-Por exemplo para declarar um valor de metadado `title` para o parâmetro de rota `item_id` você pode digitar:
+## Declare metadados { #declare-metadata }
 
-=== "Python 3.6 e superiores"
+Você pode declarar todos os mesmos parâmetros que em `Query`.
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001.py!}
-    ```
+Por exemplo, para declarar um valor de metadado `title` para o parâmetro de path `item_id` você pode digitar:
 
-=== "Python 3.10 e superiores"
+{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/path_params_numeric_validations/tutorial001_py310.py!}
-    ```
+/// note | Nota
 
-!!! note "Nota"
-    Um parâmetro de rota é sempre obrigatório, como se fizesse parte da rota.
+Um parâmetro de path é sempre obrigatório, pois precisa fazer parte do path. Mesmo que você o declare como `None` ou defina um valor padrão, isso não afetaria nada, ele ainda seria sempre obrigatório.
 
-    Então, você deve declará-lo com `...` para marcá-lo como obrigatório.
+///
 
-    Mesmo que você declare-o como `None` ou defina um valor padrão, isso não teria efeito algum, o parâmetro ainda seria obrigatório.
+## Ordene os parâmetros de acordo com sua necessidade { #order-the-parameters-as-you-need }
 
-## Ordene os parâmetros de acordo com sua necessidade
+/// tip | Dica
 
-Suponha que você queira declarar o parâmetro de consulta `q` como uma `str` obrigatória.
+Isso provavelmente não é tão importante ou necessário se você usar `Annotated`.
 
-E você não precisa declarar mais nada em relação a este parâmetro, então você não precisa necessariamente usar `Query`.
+///
 
-Mas você ainda precisa usar `Path` para o parâmetro de rota `item_id`.
+Vamos supor que você queira declarar o parâmetro de consulta `q` como uma `str` obrigatória.
 
-O Python irá acusar se você colocar um elemento com um valor padrão definido antes de outro que não tenha um valor padrão.
+E você não precisa declarar mais nada para esse parâmetro, então você realmente não precisa usar `Query`.
 
-Mas você pode reordená-los, colocando primeiro o elemento sem o valor padrão (o parâmetro de consulta `q`).
+Mas você ainda precisa usar `Path` para o parâmetro de path `item_id`. E você não quer usar `Annotated` por algum motivo.
 
-Isso não faz diferença para o **FastAPI**. Ele vai detectar os parâmetros pelos seus nomes, tipos e definições padrão (`Query`, `Path`, etc), sem se importar com a ordem.
+O Python vai reclamar se você colocar um valor com “padrão” antes de um valor que não tem “padrão”.
+
+Mas você pode reordená-los e colocar primeiro o valor sem padrão (o parâmetro de consulta `q`).
+
+Isso não faz diferença para o **FastAPI**. Ele vai detectar os parâmetros pelos seus nomes, tipos e declarações de padrão (`Query`, `Path`, etc.), sem se importar com a ordem.
 
 Então, você pode declarar sua função assim:
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial002.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
 
-## Ordene os parâmetros de a acordo com sua necessidade, truques
+Mas tenha em mente que, se você usar `Annotated`, você não terá esse problema, não fará diferença, pois você não está usando valores padrão de parâmetros de função para `Query()` ou `Path()`.
 
-Se você quiser declarar o parâmetro de consulta `q` sem um `Query` nem um valor padrão, e o parâmetro de rota `item_id` usando `Path`, e definí-los em uma ordem diferente, Python tem um pequeno truque na sintaxe para isso.
+{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
+
+## Ordene os parâmetros de acordo com sua necessidade, truques { #order-the-parameters-as-you-need-tricks }
+
+/// tip | Dica
+
+Isso provavelmente não é tão importante ou necessário se você usar `Annotated`.
+
+///
+
+Aqui vai um pequeno truque que pode ser útil, mas você não vai precisar dele com frequência.
+
+Se você quiser:
+
+* declarar o parâmetro de consulta `q` sem um `Query` nem qualquer valor padrão
+* declarar o parâmetro de path `item_id` usando `Path`
+* tê-los em uma ordem diferente
+* não usar `Annotated`
+
+...o Python tem uma pequena sintaxe especial para isso.
 
 Passe `*`, como o primeiro parâmetro da função.
 
-O Python não vai fazer nada com esse `*`, mas ele vai saber que a partir dali os parâmetros seguintes deverão ser chamados argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não possuam um valor padrão.
+O Python não fará nada com esse `*`, mas saberá que todos os parâmetros seguintes devem ser chamados como argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não tenham um valor padrão.
 
-```Python hl_lines="7"
-{!../../../docs_src/path_params_numeric_validations/tutorial003.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
-## Validações numéricas: maior que ou igual
+### Melhor com `Annotated` { #better-with-annotated }
 
-Com `Query` e `Path` (e outras que você verá mais tarde) você pode declarar restrições numéricas.
+Tenha em mente que, se você usar `Annotated`, como você não está usando valores padrão de parâmetros de função, você não terá esse problema e provavelmente não precisará usar `*`.
 
-Aqui, com `ge=1`, `item_id` precisará ser um número inteiro maior que ("`g`reater than") ou igual ("`e`qual") a 1.
+{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
 
-```Python hl_lines="8"
-{!../../../docs_src/path_params_numeric_validations/tutorial004.py!}
-```
+## Validações numéricas: maior que ou igual { #number-validations-greater-than-or-equal }
 
-## Validações numéricas: maior que e menor que ou igual
+Com `Query` e `Path` (e outras que você verá depois) você pode declarar restrições numéricas.
 
-O mesmo se aplica para:
+Aqui, com `ge=1`, `item_id` precisará ser um número inteiro “`g`reater than or `e`qual” a `1`.
+
+{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
+
+## Validações numéricas: maior que e menor que ou igual { #number-validations-greater-than-and-less-than-or-equal }
+
+O mesmo se aplica a:
 
 * `gt`: maior que (`g`reater `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-```Python hl_lines="9"
-{!../../../docs_src/path_params_numeric_validations/tutorial005.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
 
-## Validações numéricas: valores do tipo float, maior que e menor que
+## Validações numéricas: floats, maior que e menor que { #number-validations-floats-greater-than-and-less-than }
 
-Validações numéricas também funcionam para valores do tipo `float`.
+Validações numéricas também funcionam para valores `float`.
 
-Aqui é onde se torna importante a possibilidade de declarar <abbr title="greater than"><code>gt</code></abbr> e não apenas <abbr title="greater than or equal"><code>ge</code></abbr>. Com isso você pode especificar, por exemplo, que um valor deve ser maior que `0`, ainda que seja menor que `1`.
+Aqui é onde se torna importante poder declarar <abbr title="greater than – maior que"><code>gt</code></abbr> e não apenas <abbr title="greater than or equal – maior que ou igual"><code>ge</code></abbr>. Com isso você pode exigir, por exemplo, que um valor seja maior que `0`, mesmo que seja menor que `1`.
 
-Assim, `0.5` seria um valor válido. Mas `0.0` ou `0` não seria.
+Assim, `0.5` seria um valor válido. Mas `0.0` ou `0` não seriam.
 
-E o mesmo para <abbr title="less than"><code>lt</code></abbr>.
+E o mesmo para <abbr title="less than – menor que"><code>lt</code></abbr>.
 
-```Python hl_lines="11"
-{!../../../docs_src/path_params_numeric_validations/tutorial006.py!}
-```
+{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 
-## Recapitulando
+## Recapitulando { #recap }
 
-Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de texto do mesmo modo que com [Parâmetros de consulta e validações de texto](query-params-str-validations.md){.internal-link target=_blank}.
+Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de string do mesmo modo que em [Parâmetros de consulta e validações de string](query-params-str-validations.md){.internal-link target=_blank}.
 
 E você também pode declarar validações numéricas:
 
@@ -121,18 +131,24 @@ E você também pode declarar validações numéricas:
 * `lt`: menor que (`l`ess `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-!!! info "Informação"
-    `Query`, `Path` e outras classes que você verá a frente são subclasses de uma classe comum `Param`.
+/// info | Informação
 
-    Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
+`Query`, `Path` e outras classes que você verá depois são subclasses de uma classe comum `Param`.
 
-!!! note "Detalhes Técnicos"
-    Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
+Todas elas compartilham os mesmos parâmetros para validação adicional e metadados que você viu.
 
-    Que quando chamadas, retornam instâncias de classes de mesmo nome.
+///
 
-    Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+/// note | Detalhes Técnicos
 
-    Estas funções são assim (ao invés de apenas usar as classes diretamente) para que seu editor não acuse erros sobre seus tipos.
+Quando você importa `Query`, `Path` e outras de `fastapi`, elas são na verdade funções.
 
-    Dessa maneira você pode user seu editor e ferramentas de desenvolvimento sem precisar adicionar configurações customizadas para ignorar estes erros.
+Que, quando chamadas, retornam instâncias de classes de mesmo nome.
+
+Então, você importa `Query`, que é uma função. E quando você a chama, ela retorna uma instância de uma classe também chamada `Query`.
+
+Essas funções existem (em vez de usar diretamente as classes) para que seu editor não marque erros sobre seus tipos.
+
+Dessa forma, você pode usar seu editor e ferramentas de codificação normais sem precisar adicionar configurações personalizadas para desconsiderar esses erros.
+
+///

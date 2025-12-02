@@ -1,25 +1,3 @@
-const div = document.querySelector('.github-topic-projects')
-
-async function getDataBatch(page) {
-    const response = await fetch(`https://api.github.com/search/repositories?q=topic:fastapi&per_page=100&page=${page}`, { headers: { Accept: 'application/vnd.github.mercy-preview+json' } })
-    const data = await response.json()
-    return data
-}
-
-async function getData() {
-    let page = 1
-    let data = []
-    let dataBatch = await getDataBatch(page)
-    data = data.concat(dataBatch.items)
-    const totalCount = dataBatch.total_count
-    while (data.length < totalCount) {
-        page += 1
-        dataBatch = await getDataBatch(page)
-        data = data.concat(dataBatch.items)
-    }
-    return data
-}
-
 function setupTermynal() {
     document.querySelectorAll(".use-termynal").forEach(node => {
         node.style.display = "block";
@@ -35,7 +13,7 @@ function setupTermynal() {
 
     function createTermynals() {
         document
-            .querySelectorAll(`.${termynalActivateClass} .highlight`)
+            .querySelectorAll(`.${termynalActivateClass} .highlight code`)
             .forEach(node => {
                 const text = node.textContent;
                 const lines = text.split("\n");
@@ -147,7 +125,7 @@ async function showRandomAnnouncement(groupId, timeInterval) {
         children = shuffle(children)
         let index = 0
         const announceRandom = () => {
-            children.forEach((el, i) => {el.style.display = "none"});
+            children.forEach((el, i) => { el.style.display = "none" });
             children[index].style.display = "block"
             index = (index + 1) % children.length
         }
@@ -157,24 +135,44 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
-async function main() {
-    if (div) {
-        data = await getData()
-        div.innerHTML = '<ul></ul>'
-        const ul = document.querySelector('.github-topic-projects ul')
-        data.forEach(v => {
-            if (v.full_name === 'tiangolo/fastapi') {
-                return
-            }
-            const li = document.createElement('li')
-            li.innerHTML = `<a href="${v.html_url}" target="_blank">★ ${v.stargazers_count} - ${v.full_name}</a> by <a href="${v.owner.html_url}" target="_blank">@${v.owner.login}</a>`
-            ul.append(li)
-        })
-    }
+function handleSponsorImages() {
+    const announceRight = document.getElementById('announce-right');
+    if(!announceRight) return;
 
-    setupTermynal();
-    showRandomAnnouncement('announce-left', 5000)
-    showRandomAnnouncement('announce-right', 10000)
+    const sponsorImages = document.querySelectorAll('.sponsor-image');
+
+    const imagePromises = Array.from(sponsorImages).map(img => {
+        return new Promise((resolve, reject) => {
+            if (img.complete && img.naturalHeight !== 0) {
+                resolve();
+            } else {
+                img.addEventListener('load', () => {
+                    if (img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+                img.addEventListener('error', reject);
+            }
+        });
+    });
+
+    Promise.all(imagePromises)
+        .then(() => {
+            announceRight.style.display = 'block';
+            showRandomAnnouncement('announce-right', 10000);
+        })
+        .catch(() => {
+            // do nothing
+        });
 }
 
-main()
+async function main() {
+    setupTermynal();
+    showRandomAnnouncement('announce-left', 5000)
+    handleSponsorImages();
+}
+document$.subscribe(() => {
+    main()
+})

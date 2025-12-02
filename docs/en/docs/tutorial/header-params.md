@@ -1,50 +1,36 @@
-# Header Parameters
+# Header Parameters { #header-parameters }
 
 You can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.
 
-## Import `Header`
+## Import `Header` { #import-header }
 
 First import `Header`:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-    ```Python hl_lines="3"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="1"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
-
-## Declare `Header` parameters
+## Declare `Header` parameters { #declare-header-parameters }
 
 Then declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.
 
-The first value is the default value, you can pass all the extra validation or annotation parameters:
+You can define the default value as well as all the extra validation or annotation parameters:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial001.py!}
-    ```
+/// note | Technical Details
 
-=== "Python 3.10 and above"
+`Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
 
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial001_py310.py!}
-    ```
+But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
 
-!!! note "Technical Details"
-    `Header` is a "sister" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.
+///
 
-    But remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.
+/// info
 
-!!! info
-    To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
+To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
 
-## Automatic conversion
+///
+
+## Automatic conversion { #automatic-conversion }
 
 `Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.
 
@@ -60,22 +46,15 @@ So, you can use `user_agent` as you normally would in Python code, instead of ne
 
 If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:
 
-=== "Python 3.6 and above"
+{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
-    ```Python hl_lines="10"
-    {!> ../../../docs_src/header_params/tutorial002.py!}
-    ```
+/// warning
 
-=== "Python 3.10 and above"
+Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
 
-    ```Python hl_lines="8"
-    {!> ../../../docs_src/header_params/tutorial002_py310.py!}
-    ```
+///
 
-!!! warning
-    Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.
-
-## Duplicate headers
+## Duplicate headers { #duplicate-headers }
 
 It is possible to receive duplicate headers. That means, the same header with multiple values.
 
@@ -85,23 +64,7 @@ You will receive all the values from the duplicate header as a Python `list`.
 
 For example, to declare a header of `X-Token` that can appear more than once, you can write:
 
-=== "Python 3.6 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003.py!}
-    ```
-
-=== "Python 3.9 and above"
-
-    ```Python hl_lines="9"
-    {!> ../../../docs_src/header_params/tutorial003_py39.py!}
-    ```
-
-=== "Python 3.10 and above"
-
-    ```Python hl_lines="7"
-    {!> ../../../docs_src/header_params/tutorial003_py310.py!}
-    ```
+{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
 If you communicate with that *path operation* sending two HTTP headers like:
 
@@ -121,7 +84,7 @@ The response would be like:
 }
 ```
 
-## Recap
+## Recap { #recap }
 
 Declare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.
 
