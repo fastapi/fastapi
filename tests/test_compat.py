@@ -1,7 +1,5 @@
-import sys
 from typing import Any, Dict, List, Union
 
-import pytest
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
@@ -16,7 +14,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_py_lt_314, needs_pydanticv2
+from .utils import needs_py310, needs_py_lt_314, needs_pydanticv2
 
 
 @needs_pydanticv2
@@ -151,10 +149,7 @@ def test_serialize_sequence_value_with_optional_list():
 
 
 @needs_pydanticv2
-@pytest.mark.skipif(
-    sys.version_info < (3, 10),
-    reason="Requires new union syntax",
-)
+@needs_py310
 def test_serialize_sequence_value_with_optional_list_pipe_union():
     """Test that serialize_sequence_value handles optional lists correctly (with new syntax)."""
     from fastapi._compat import v2
