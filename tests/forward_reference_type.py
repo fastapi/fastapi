@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 
-def forwardref_method(input: "ForwardRef") -> "ForwardRef":
-    return ForwardRef(x=input.x + 1)
+def forwardref_method(input: "ForwardRefModel") -> "ForwardRefModel":
+    return ForwardRefModel(x=input.x + 1)
 
 
-class ForwardRef(BaseModel):
+class ForwardRefModel(BaseModel):
     x: int = 0
