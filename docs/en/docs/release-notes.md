@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.1
+
 ### Fixes
 
 * 🐛 Avoid accessing non-existing "$ref" key for Pydantic v2 compat remapping. PR [#14361](https://github.com/fastapi/fastapi/pull/14361) by [@svlandeg](https://github.com/svlandeg).
