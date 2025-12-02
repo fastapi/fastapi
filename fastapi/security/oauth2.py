@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Optional, Union, cast
 
+from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import OAuth2 as OAuth2Model
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
@@ -7,10 +8,10 @@ from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
-from starlette.status import HTTP_401_UNAUTHORIZED, HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 
 # TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -376,13 +377,33 @@ class OAuth2(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
+    def make_not_authenticated_error(self) -> HTTPException:
+        """
+        The OAuth 2 specification doesn't define the challenge that should be used,
+        because a `Bearer` token is not really the only option to authenticate.
+
+        But declaring any other authentication challenge would be application-specific
+        as it's not defined in the specification.
+
+        For practical reasons, this method uses the `Bearer` challenge by default, as
+        it's probably the most common one.
+
+        If you are implementing an OAuth2 authentication scheme other than the provided
+        ones in FastAPI (based on bearer tokens), you might want to override this.
+
+        Ref: https://datatracker.ietf.org/doc/html/rfc6749
+        """
+        return HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     async def __call__(self, request: Request) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return authorization
@@ -490,11 +511,7 @@ class OAuth2PasswordBearer(OAuth2):
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
-                    headers={"WWW-Authenticate": "Bearer"},
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return param
@@ -600,11 +617,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_401_UNAUTHORIZED,
-                    detail="Not authenticated",
-                    headers={"WWW-Authenticate": "Bearer"},
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None  # pragma: nocover
         return param
