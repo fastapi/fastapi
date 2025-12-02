@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.3
+
 ### Fixes
 
 * 🐛 Fix Query\Header\Cookie parameter model alias. PR [#14360](https://github.com/fastapi/fastapi/pull/14360) by [@YuriiMotov](https://github.com/YuriiMotov).
