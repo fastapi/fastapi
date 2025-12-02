@@ -4,6 +4,7 @@ from typing import AsyncGenerator, Generator
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -67,108 +68,141 @@ methods_dependency = MethodsDependency()
 
 @app.get("/partial-function-dependency")
 async def get_partial_function_dependency(
-    value: str = Depends(partial(function_dependency, "partial-function-dependency")),
+    value: Annotated[
+        str, Depends(partial(function_dependency, "partial-function-dependency"))
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-async-function-dependency")
 async def get_partial_async_function_dependency(
-    value: str = Depends(
-        partial(async_function_dependency, "partial-async-function-dependency")
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(async_function_dependency, "partial-async-function-dependency")
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-gen-dependency")
 async def get_partial_gen_dependency(
-    value: str = Depends(partial(gen_dependency, "partial-gen-dependency")),
+    value: Annotated[str, Depends(partial(gen_dependency, "partial-gen-dependency"))],
 ) -> str:
     return value
 
 
 @app.get("/partial-async-gen-dependency")
 async def get_partial_async_gen_dependency(
-    value: str = Depends(partial(async_gen_dependency, "partial-async-gen-dependency")),
+    value: Annotated[
+        str, Depends(partial(async_gen_dependency, "partial-async-gen-dependency"))
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-callable-dependency")
 async def get_partial_callable_dependency(
-    value: str = Depends(partial(callable_dependency, "partial-callable-dependency")),
+    value: Annotated[
+        str, Depends(partial(callable_dependency, "partial-callable-dependency"))
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-callable-gen-dependency")
 async def get_partial_callable_gen_dependency(
-    value: str = Depends(
-        partial(callable_gen_dependency, "partial-callable-gen-dependency")
-    ),
+    value: Annotated[
+        str,
+        Depends(partial(callable_gen_dependency, "partial-callable-gen-dependency")),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-async-callable-dependency")
 async def get_partial_async_callable_dependency(
-    value: str = Depends(
-        partial(async_callable_dependency, "partial-async-callable-dependency")
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(async_callable_dependency, "partial-async-callable-dependency")
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-async-callable-gen-dependency")
 async def get_partial_async_callable_gen_dependency(
-    value: str = Depends(
-        partial(async_callable_gen_dependency, "partial-async-callable-gen-dependency")
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(
+                async_callable_gen_dependency, "partial-async-callable-gen-dependency"
+            )
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-synchronous-method-dependency")
 async def get_partial_synchronous_method_dependency(
-    value: str = Depends(
-        partial(methods_dependency.synchronous, "partial-synchronous-method-dependency")
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(
+                methods_dependency.synchronous, "partial-synchronous-method-dependency"
+            )
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-synchronous-method-gen-dependency")
 async def get_partial_synchronous_method_gen_dependency(
-    value: str = Depends(
-        partial(
-            methods_dependency.synchronous_gen,
-            "partial-synchronous-method-gen-dependency",
-        )
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(
+                methods_dependency.synchronous_gen,
+                "partial-synchronous-method-gen-dependency",
+            )
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-asynchronous-method-dependency")
 async def get_partial_asynchronous_method_dependency(
-    value: str = Depends(
-        partial(
-            methods_dependency.asynchronous, "partial-asynchronous-method-dependency"
-        )
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(
+                methods_dependency.asynchronous,
+                "partial-asynchronous-method-dependency",
+            )
+        ),
+    ],
 ) -> str:
     return value
 
 
 @app.get("/partial-asynchronous-method-gen-dependency")
 async def get_partial_asynchronous_method_gen_dependency(
-    value: str = Depends(
-        partial(
-            methods_dependency.asynchronous_gen,
-            "partial-asynchronous-method-gen-dependency",
-        )
-    ),
+    value: Annotated[
+        str,
+        Depends(
+            partial(
+                methods_dependency.asynchronous_gen,
+                "partial-asynchronous-method-gen-dependency",
+            )
+        ),
+    ],
 ) -> str:
     return value
 
