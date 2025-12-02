@@ -3,7 +3,6 @@ import warnings
 from copy import copy, deepcopy
 from dataclasses import dataclass
 from enum import Enum
-from types import UnionType
 from typing import (
     Any,
     Dict,
@@ -18,7 +17,7 @@ from typing import (
 
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
-from fastapi.types import IncEx, ModelNameMap
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
