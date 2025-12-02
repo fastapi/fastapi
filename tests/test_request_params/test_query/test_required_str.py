@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi import FastAPI, Query
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
