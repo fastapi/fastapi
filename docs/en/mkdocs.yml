@@ -215,6 +215,7 @@ nav:
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
     - how-to/testing-database.md
+    - how-to/authentication-error-status-code.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md

@@ -5,7 +5,7 @@ from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.status import HTTP_403_FORBIDDEN
+from starlette.status import HTTP_401_UNAUTHORIZED
 from typing_extensions import Annotated
 
 
@@ -13,6 +13,11 @@ class OpenIdConnect(SecurityBase):
     """
     OpenID Connect authentication class. An instance of it would be used as a
     dependency.
+
+    **Warning**: this is only a stub to connect the components with OpenAPI in FastAPI,
+    but it doesn't implement the full OpenIdConnect scheme, for example, it doesn't use
+    the OpenIDConnect URL. You would need to to subclass it and implement it in your
+    code.
     """
 
     def __init__(
@@ -73,13 +78,18 @@ class OpenIdConnect(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
+    def make_not_authenticated_error(self) -> HTTPException:
+        return HTTPException(
+            status_code=HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
     async def __call__(self, request: Request) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
-                raise HTTPException(
-                    status_code=HTTP_403_FORBIDDEN, detail="Not authenticated"
-                )
+                raise self.make_not_authenticated_error()
             else:
                 return None
         return authorization
