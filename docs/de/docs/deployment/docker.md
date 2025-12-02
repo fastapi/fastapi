@@ -1,6 +1,6 @@
 # FastAPI in Containern – Docker { #fastapi-in-containers-docker }
 
-Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten bereitstellen.
+Beim Deployment von FastAPI-Anwendungen besteht ein gängiger Ansatz darin, ein **Linux-Containerimage** zu erstellen. Normalerweise erfolgt dies mit <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>. Sie können dieses Containerimage dann auf eine von mehreren möglichen Arten deployen.
 
 Die Verwendung von Linux-Containern bietet mehrere Vorteile, darunter **Sicherheit**, **Replizierbarkeit**, **Einfachheit** und andere.
 
@@ -40,7 +40,7 @@ Linux-Container werden mit demselben Linux-Kernel des Hosts (Maschine, virtuelle
 
 Auf diese Weise verbrauchen Container **wenig Ressourcen**, eine Menge vergleichbar mit der direkten Ausführung der Prozesse (eine virtuelle Maschine würde viel mehr verbrauchen).
 
-Container verfügen außerdem über ihre eigenen **isoliert** laufenden Prozesse (üblicherweise nur einen Prozess), über ihr eigenes Dateisystem und ihr eigenes Netzwerk, was die Bereitstellung, Sicherheit, Entwicklung usw. vereinfacht.
+Container verfügen außerdem über ihre eigenen **isoliert** laufenden Prozesse (üblicherweise nur einen Prozess), über ihr eigenes Dateisystem und ihr eigenes Netzwerk, was Deployment, Sicherheit, Entwicklung usw. vereinfacht.
 
 ## Was ist ein Containerimage { #what-is-a-container-image }
 
@@ -598,7 +598,7 @@ Zum Beispiel:
 * Mit einem **Kubernetes**-Cluster
 * Mit einem Docker Swarm Mode-Cluster
 * Mit einem anderen Tool wie Nomad
-* Mit einem Cloud-Dienst, der Ihr Containerimage nimmt und es bereitstellt
+* Mit einem Cloud-Dienst, der Ihr Containerimage nimmt und es deployt
 
 ## Docker-Image mit `uv` { #docker-image-with-uv }
 
