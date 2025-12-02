@@ -21,6 +21,10 @@ hide:
 * 🔥 Remove dangling extra condiitonal no longer needed. PR [#14435](https://github.com/fastapi/fastapi/pull/14435) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor internals, update `is_coroutine` check to reuse internal supported variants (unwrap, check class). PR [#14434](https://github.com/fastapi/fastapi/pull/14434) by [@tiangolo](https://github.com/tiangolo).
 
+### Translations
+
+* 🌐 Sync German docs. PR [#14367](https://github.com/fastapi/fastapi/pull/14367) by [@nilslindemann](https://github.com/nilslindemann).
+
 ## 0.123.4
 
 ### Fixes
