@@ -5,7 +5,6 @@ from starlette.testclient import TestClient
 from typing_extensions import Annotated
 
 app = FastAPI()
-client = TestClient(app)
 
 
 @app.post("/urlencoded")
@@ -19,6 +18,9 @@ async def post_multi_part(
     file: Annotated[Optional[bytes], File()] = None,
 ):
     return {"file": file, "age": age}
+
+
+client = TestClient(app)
 
 
 def test_form_default_url_encoded():
