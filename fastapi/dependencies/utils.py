@@ -787,13 +787,19 @@ def request_params_to_args(
                 )
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[field.name] = value
+            params_to_process[field.alias] = value
         processed_keys.add(alias or field.alias)
-        processed_keys.add(field.name)
 
-    for key, value in received_params.items():
+    for key in received_params.keys():
         if key not in processed_keys:
-            params_to_process[key] = value
+            if hasattr(received_params, "getlist"):
+                value = received_params.getlist(key)
+                if isinstance(value, list) and (len(value) == 1):
+                    params_to_process[key] = value[0]
+                else:
+                    params_to_process[key] = value
+            else:
+                params_to_process[key] = received_params.get(key)
 
     if single_not_embedded_field:
         field_info = first_field.field_info
@@ -902,9 +908,14 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
-    for key, value in received_body.items():
-        if key not in values:
-            values[key] = value
+    field_aliases = {field.alias for field in body_fields}
+    for key in received_body.keys():
+        if key not in field_aliases:
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                values[key] = param_values[0]
+            else:
+                values[key] = param_values
     return values
 
 
