@@ -3,6 +3,7 @@ import warnings
 from copy import copy, deepcopy
 from dataclasses import dataclass
 from enum import Enum
+from types import UnionType
 from typing import (
     Any,
     Dict,
@@ -371,7 +372,7 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
-    if origin_type is Union:  # Handle optional sequences
+    if origin_type is Union or origin_type is UnionType:  # Handle optional sequences
         union_args = get_args(field.field_info.annotation)
         for union_arg in union_args:
             if union_arg is type(None):
