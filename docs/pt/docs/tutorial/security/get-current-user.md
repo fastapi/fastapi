@@ -1,4 +1,4 @@
-# Obter Usuário Atual
+# Obter Usuário Atual { #get-current-user }
 
 No capítulo anterior, o sistema de segurança (que é baseado no sistema de injeção de dependências) estava fornecendo à *função de operação de rota* um `token` como uma `str`:
 
@@ -8,7 +8,7 @@ Mas isso ainda não é tão útil.
 
 Vamos fazer com que ele nos forneça o usuário atual.
 
-## Criar um modelo de usuário
+## Criar um modelo de usuário { #create-a-user-model }
 
 Primeiro, vamos criar um modelo de usuário com Pydantic.
 
@@ -16,7 +16,7 @@ Da mesma forma que usamos o Pydantic para declarar corpos, podemos usá-lo em qu
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
 
-## Criar uma dependência `get_current_user`
+## Criar uma dependência `get_current_user` { #create-a-get-current-user-dependency }
 
 Vamos criar uma dependência chamada `get_current_user`.
 
@@ -28,13 +28,13 @@ Da mesma forma que estávamos fazendo antes diretamente na *operação de rota*,
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
 
-## Obter o usuário
+## Obter o usuário { #get-the-user }
 
 `get_current_user` usará uma função utilitária (falsa) que criamos, que recebe um token como uma `str` e retorna nosso modelo Pydantic `User`:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
 
-## Injetar o usuário atual
+## Injetar o usuário atual { #inject-the-current-user }
 
 Então agora nós podemos usar o mesmo `Depends` com nosso `get_current_user` na *operação de rota*:
 
@@ -60,7 +60,7 @@ Não estamos restritos a ter apenas uma dependência que possa retornar esse tip
 
 ///
 
-## Outros modelos
+## Outros modelos { #other-models }
 
 Agora você pode obter o usuário atual diretamente nas *funções de operação de rota* e lidar com os mecanismos de segurança no nível da **Injeção de Dependências**, usando `Depends`.
 
@@ -76,7 +76,7 @@ Na verdade, você não tem usuários que fazem login no seu aplicativo, mas sim 
 
 Apenas use qualquer tipo de modelo, qualquer tipo de classe, qualquer tipo de banco de dados que você precise para a sua aplicação. O **FastAPI** cobre tudo com o sistema de injeção de dependências.
 
-## Tamanho do código
+## Tamanho do código { #code-size }
 
 Este exemplo pode parecer verboso. Lembre-se de que estamos misturando segurança, modelos de dados, funções utilitárias e *operações de rota* no mesmo arquivo.
 
@@ -94,7 +94,7 @@ E todos esses milhares de *operações de rota* podem ter apenas 3 linhas:
 
 {* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
 
-## Recapitulação
+## Recapitulação { #recap }
 
 Agora você pode obter o usuário atual diretamente na sua *função de operação de rota*.
 

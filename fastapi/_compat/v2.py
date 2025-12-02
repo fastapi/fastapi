@@ -262,12 +262,12 @@ def _replace_refs(
     new_schema = deepcopy(schema)
     for key, value in new_schema.items():
         if key == "$ref":
-            ref_name = schema["$ref"].split("/")[-1]
-            if ref_name in old_name_to_new_name_map:
-                new_name = old_name_to_new_name_map[ref_name]
-                new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
-            else:
-                new_schema["$ref"] = schema["$ref"]
+            value = schema["$ref"]
+            if isinstance(value, str):
+                ref_name = schema["$ref"].split("/")[-1]
+                if ref_name in old_name_to_new_name_map:
+                    new_name = old_name_to_new_name_map[ref_name]
+                    new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
             continue
         if isinstance(value, dict):
             new_schema[key] = _replace_refs(
@@ -304,7 +304,7 @@ def _remap_definitions_and_field_mappings(
     old_name_to_new_name_map = {}
     for field_key, schema in field_mapping.items():
         model = field_key[0].type_
-        if model not in model_name_map:
+        if model not in model_name_map or "$ref" not in schema:
             continue
         new_name = model_name_map[model]
         old_name = schema["$ref"].split("/")[-1]

@@ -4,7 +4,7 @@ from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated, Literal, deprecated
 
 _Unset: Any = Undefined
 
@@ -2245,6 +2245,26 @@ def Depends(  # noqa: N802
             """
         ),
     ] = True,
+    scope: Annotated[
+        Union[Literal["function", "request"], None],
+        Doc(
+            """
+            Mainly for dependencies with `yield`, define when the dependency function
+            should start (the code before `yield`) and when it should end (the code
+            after `yield`).
+
+            * `"function"`: start the dependency before the *path operation function*
+                that handles the request, end the dependency after the *path operation
+                function* ends, but **before** the response is sent back to the client.
+                So, the dependency function will be executed **around** the *path operation
+                **function***.
+            * `"request"`: start the dependency before the *path operation function*
+                that handles the request (similar to when using `"function"`), but end
+                **after** the response is sent back to the client. So, the dependency
+                function will be executed **around** the **request** and response cycle.
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2275,7 +2295,7 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache)
+    return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
 
 
 def Security(  # noqa: N802
