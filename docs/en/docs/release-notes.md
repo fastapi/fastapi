@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.2
+
 ### Fixes
 
 * 🐛 Fix unformatted `{type_}` in FastAPIError. PR [#14416](https://github.com/fastapi/fastapi/pull/14416) by [@Just-Helpful](https://github.com/Just-Helpful).
