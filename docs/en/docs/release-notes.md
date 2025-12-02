@@ -9,6 +9,7 @@ hide:
 
 ### Features
 
+* ✨ Add support for wrapped functions (e.g. `@functools.wraps()`) used with forward references. PR [#5077](https://github.com/fastapi/fastapi/pull/5077) by [@lucaswiman](https://github.com/lucaswiman).
 * ✨ Handle wrapped dependencies. PR [#9555](https://github.com/fastapi/fastapi/pull/9555) by [@phy1729](https://github.com/phy1729).
 
 ### Fixes
