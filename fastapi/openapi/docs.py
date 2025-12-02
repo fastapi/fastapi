@@ -189,7 +189,7 @@ def get_redoc_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js",
+    ] = "https://unpkg.com/redoc@latest/bundles/redoc.standalone.js",
     redoc_favicon_url: Annotated[
         str,
         Doc(
