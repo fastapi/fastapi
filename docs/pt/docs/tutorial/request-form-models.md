@@ -1,4 +1,4 @@
-# Modelos de Formulários
+# Modelos de Formulários { #form-models }
 
 Você pode utilizar **Modelos Pydantic** para declarar **campos de formulários** no FastAPI.
 
@@ -20,7 +20,7 @@ Isto é suportado desde a versão `0.113.0` do FastAPI. 🤓
 
 ///
 
-## Modelos Pydantic para Formulários
+## Modelos Pydantic para Formulários { #pydantic-models-for-forms }
 
 Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja receber como **campos de formulários**, e então declarar o parâmetro como um `Form`:
 
@@ -28,7 +28,7 @@ Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja re
 
 O **FastAPI** irá **extrair** as informações para **cada campo** dos **dados do formulário** na requisição e dar para você o modelo Pydantic que você definiu.
 
-## Confira os Documentos
+## Confira os Documentos { #check-the-docs }
 
 Você pode verificar na UI de documentação em `/docs`:
 
@@ -36,7 +36,7 @@ Você pode verificar na UI de documentação em `/docs`:
 <img src="/img/tutorial/request-form-models/image01.png">
 </div>
 
-## Proibir Campos Extras de Formulários
+## Proibir Campos Extras de Formulários { #forbid-extra-form-fields }
 
 Em alguns casos de uso especiais (provavelmente não muito comum), você pode desejar **restringir** os campos do formulário para aceitar apenas os declarados no modelo Pydantic. E **proibir** qualquer campo **extra**.
 
@@ -73,6 +73,6 @@ Ele receberá um retorno de erro informando-o que o campo `extra` não é permit
 }
 ```
 
-## Resumo
+## Resumo { #summary }
 
 Você pode utilizar modelos Pydantic para declarar campos de formulários no FastAPI. 😎
