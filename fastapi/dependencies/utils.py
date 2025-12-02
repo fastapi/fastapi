@@ -903,9 +903,13 @@ async def _extract_form_body(
         if value is not None:
             values[field.alias] = value
     field_aliases = {field.alias for field in body_fields}
-    for key, value in received_body.items():
+    for key in received_body.keys():
         if key not in field_aliases:
-            values[key] = value
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                values[key] = param_values[0]
+            else:
+                values[key] = param_values
     return values
 
 
