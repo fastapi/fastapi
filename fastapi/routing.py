@@ -80,9 +80,9 @@ from starlette.websockets import WebSocket
 from typing_extensions import Annotated, deprecated
 
 if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
+    pass
 else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
+    pass
 
 
 # Copy of starlette.routing.request_response modified to include the
