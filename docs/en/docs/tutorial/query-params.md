@@ -187,7 +187,7 @@ You could also use `Enum`s the same way as with [Path Parameters](path-params.md
 
 ///
 
-## Free Form Query Parameters
+## Free Form Query Parameters { #free-form-query-parameters }
 
 Sometimes you want to receive some query parameters, but you don't know in advance what they are called. **FastAPI** provides support for this use case as well.
 
