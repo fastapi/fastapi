@@ -1,14 +1,17 @@
-import asyncio
 import dataclasses
 import email.message
+import functools
 import inspect
 import json
+import sys
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
     Any,
     AsyncIterator,
+    Awaitable,
     Callable,
+    Collection,
     Coroutine,
     Dict,
     List,
@@ -21,7 +24,8 @@ from typing import (
     Union,
 )
 
-from fastapi import params
+from annotated_doc import Doc
+from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -58,6 +62,8 @@ from fastapi.utils import (
 )
 from pydantic import BaseModel
 from starlette import routing
+from starlette._exception_handler import wrap_app_handling_exceptions
+from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
@@ -67,13 +73,84 @@ from starlette.routing import (
     Match,
     compile_path,
     get_name,
-    request_response,
-    websocket_session,
 )
 from starlette.routing import Mount as Mount  # noqa
-from starlette.types import AppType, ASGIApp, Lifespan, Scope
+from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
+
+
+# Copy of starlette.routing.request_response modified to include the
+# dependencies' AsyncExitStack
+def request_response(
+    func: Callable[[Request], Union[Awaitable[Response], Response]],
+) -> ASGIApp:
+    """
+    Takes a function or coroutine `func(request) -> response`,
+    and returns an ASGI application.
+    """
+    f: Callable[[Request], Awaitable[Response]] = (
+        func if is_async_callable(func) else functools.partial(run_in_threadpool, func)  # type:ignore
+    )
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        request = Request(scope, receive, send)
+
+        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+            # Starts customization
+            response_awaited = False
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    response = await f(request)
+                await response(scope, receive, send)
+                # Continues customization
+                response_awaited = True
+            if not response_awaited:
+                raise FastAPIError(
+                    "Response not awaited. There's a high chance that the "
+                    "application code is raising an exception and a dependency with yield "
+                    "has a block with a bare except, or a block with except Exception, "
+                    "and is not raising the exception again. Read more about it in the "
+                    "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
+                )
+
+        # Same as in Starlette
+        await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+
+    return app
+
+
+# Copy of starlette.routing.websocket_session modified to include the
+# dependencies' AsyncExitStack
+def websocket_session(
+    func: Callable[[WebSocket], Awaitable[None]],
+) -> ASGIApp:
+    """
+    Takes a coroutine `func(session)`, and returns an ASGI application.
+    """
+    # assert asyncio.iscoroutinefunction(func), "WebSocket endpoints must be async"
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        session = WebSocket(scope, receive=receive, send=send)
+
+        async def app(scope: Scope, receive: Receive, send: Send) -> None:
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    await func(session)
+
+        # Same as in Starlette
+        await wrap_app_handling_exceptions(app, session)(scope, receive, send)
+
+    return app
 
 
 def _prepare_response_content(
@@ -119,6 +196,7 @@ def _prepare_response_content(
             for k, v in res.items()
         }
     elif dataclasses.is_dataclass(res):
+        assert not isinstance(res, type)
         return dataclasses.asdict(res)
     return res
 
@@ -230,8 +308,10 @@ def get_request_handler(
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = asyncio.iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    is_coroutine = iscoroutinefunction(dependant.call)
+    is_body_form = body_field and isinstance(
+        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
+    )
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
     else:
@@ -239,119 +319,120 @@ def get_request_handler(
 
     async def app(request: Request) -> Response:
         response: Union[Response, None] = None
-        async with AsyncExitStack() as file_stack:
-            try:
-                body: Any = None
-                if body_field:
-                    if is_body_form:
-                        body = await request.form()
-                        file_stack.push_async_callback(body.close)
-                    else:
-                        body_bytes = await request.body()
-                        if body_bytes:
-                            json_body: Any = Undefined
-                            content_type_value = request.headers.get("content-type")
-                            if not content_type_value:
-                                json_body = await request.json()
-                            else:
-                                message = email.message.Message()
-                                message["content-type"] = content_type_value
-                                if message.get_content_maintype() == "application":
-                                    subtype = message.get_content_subtype()
-                                    if subtype == "json" or subtype.endswith("+json"):
-                                        json_body = await request.json()
-                            if json_body != Undefined:
-                                body = json_body
-                            else:
-                                body = body_bytes
-            except json.JSONDecodeError as e:
-                validation_error = RequestValidationError(
-                    [
-                        {
-                            "type": "json_invalid",
-                            "loc": ("body", e.pos),
-                            "msg": "JSON decode error",
-                            "input": {},
-                            "ctx": {"error": e.msg},
-                        }
-                    ],
-                    body=e.doc,
-                )
-                raise validation_error from e
-            except HTTPException:
-                # If a middleware raises an HTTPException, it should be raised again
-                raise
-            except Exception as e:
-                http_error = HTTPException(
-                    status_code=400, detail="There was an error parsing the body"
-                )
-                raise http_error from e
-            errors: List[Any] = []
-            async with AsyncExitStack() as async_exit_stack:
-                solved_result = await solve_dependencies(
-                    request=request,
-                    dependant=dependant,
-                    body=body,
-                    dependency_overrides_provider=dependency_overrides_provider,
-                    async_exit_stack=async_exit_stack,
-                    embed_body_fields=embed_body_fields,
-                )
-                errors = solved_result.errors
-                if not errors:
-                    raw_response = await run_endpoint_function(
-                        dependant=dependant,
-                        values=solved_result.values,
-                        is_coroutine=is_coroutine,
-                    )
-                    if isinstance(raw_response, Response):
-                        if raw_response.background is None:
-                            raw_response.background = solved_result.background_tasks
-                        response = raw_response
-                    else:
-                        response_args: Dict[str, Any] = {
-                            "background": solved_result.background_tasks
-                        }
-                        # If status_code was set, use it, otherwise use the default from the
-                        # response class, in the case of redirect it's 307
-                        current_status_code = (
-                            status_code
-                            if status_code
-                            else solved_result.response.status_code
-                        )
-                        if current_status_code is not None:
-                            response_args["status_code"] = current_status_code
-                        if solved_result.response.status_code:
-                            response_args["status_code"] = (
-                                solved_result.response.status_code
-                            )
-                        content = await serialize_response(
-                            field=response_field,
-                            response_content=raw_response,
-                            include=response_model_include,
-                            exclude=response_model_exclude,
-                            by_alias=response_model_by_alias,
-                            exclude_unset=response_model_exclude_unset,
-                            exclude_defaults=response_model_exclude_defaults,
-                            exclude_none=response_model_exclude_none,
-                            is_coroutine=is_coroutine,
-                        )
-                        response = actual_response_class(content, **response_args)
-                        if not is_body_allowed_for_status_code(response.status_code):
-                            response.body = b""
-                        response.headers.raw.extend(solved_result.response.headers.raw)
-            if errors:
-                validation_error = RequestValidationError(
-                    _normalize_errors(errors), body=body
-                )
-                raise validation_error
-        if response is None:
-            raise FastAPIError(
-                "No response object was returned. There's a high chance that the "
-                "application code is raising an exception and a dependency with yield "
-                "has a block with a bare except, or a block with except Exception, "
-                "and is not raising the exception again. Read more about it in the "
-                "docs: https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#dependencies-with-yield-and-except"
+        file_stack = request.scope.get("fastapi_middleware_astack")
+        assert isinstance(file_stack, AsyncExitStack), (
+            "fastapi_middleware_astack not found in request scope"
+        )
+
+        # Read body and auto-close files
+        try:
+            body: Any = None
+            if body_field:
+                if is_body_form:
+                    body = await request.form()
+                    file_stack.push_async_callback(body.close)
+                else:
+                    body_bytes = await request.body()
+                    if body_bytes:
+                        json_body: Any = Undefined
+                        content_type_value = request.headers.get("content-type")
+                        if not content_type_value:
+                            json_body = await request.json()
+                        else:
+                            message = email.message.Message()
+                            message["content-type"] = content_type_value
+                            if message.get_content_maintype() == "application":
+                                subtype = message.get_content_subtype()
+                                if subtype == "json" or subtype.endswith("+json"):
+                                    json_body = await request.json()
+                        if json_body != Undefined:
+                            body = json_body
+                        else:
+                            body = body_bytes
+        except json.JSONDecodeError as e:
+            validation_error = RequestValidationError(
+                [
+                    {
+                        "type": "json_invalid",
+                        "loc": ("body", e.pos),
+                        "msg": "JSON decode error",
+                        "input": {},
+                        "ctx": {"error": e.msg},
+                    }
+                ],
+                body=e.doc,
             )
+            raise validation_error from e
+        except HTTPException:
+            # If a middleware raises an HTTPException, it should be raised again
+            raise
+        except Exception as e:
+            http_error = HTTPException(
+                status_code=400, detail="There was an error parsing the body"
+            )
+            raise http_error from e
+
+        # Solve dependencies and run path operation function, auto-closing dependencies
+        errors: List[Any] = []
+        async_exit_stack = request.scope.get("fastapi_inner_astack")
+        assert isinstance(async_exit_stack, AsyncExitStack), (
+            "fastapi_inner_astack not found in request scope"
+        )
+        solved_result = await solve_dependencies(
+            request=request,
+            dependant=dependant,
+            body=body,
+            dependency_overrides_provider=dependency_overrides_provider,
+            async_exit_stack=async_exit_stack,
+            embed_body_fields=embed_body_fields,
+        )
+        errors = solved_result.errors
+        if not errors:
+            raw_response = await run_endpoint_function(
+                dependant=dependant,
+                values=solved_result.values,
+                is_coroutine=is_coroutine,
+            )
+            if isinstance(raw_response, Response):
+                if raw_response.background is None:
+                    raw_response.background = solved_result.background_tasks
+                response = raw_response
+            else:
+                response_args: Dict[str, Any] = {
+                    "background": solved_result.background_tasks
+                }
+                # If status_code was set, use it, otherwise use the default from the
+                # response class, in the case of redirect it's 307
+                current_status_code = (
+                    status_code if status_code else solved_result.response.status_code
+                )
+                if current_status_code is not None:
+                    response_args["status_code"] = current_status_code
+                if solved_result.response.status_code:
+                    response_args["status_code"] = solved_result.response.status_code
+                content = await serialize_response(
+                    field=response_field,
+                    response_content=raw_response,
+                    include=response_model_include,
+                    exclude=response_model_exclude,
+                    by_alias=response_model_by_alias,
+                    exclude_unset=response_model_exclude_unset,
+                    exclude_defaults=response_model_exclude_defaults,
+                    exclude_none=response_model_exclude_none,
+                    is_coroutine=is_coroutine,
+                )
+                response = actual_response_class(content, **response_args)
+                if not is_body_allowed_for_status_code(response.status_code):
+                    response.body = b""
+                response.headers.raw.extend(solved_result.response.headers.raw)
+        if errors:
+            validation_error = RequestValidationError(
+                _normalize_errors(errors), body=body
+            )
+            raise validation_error
+
+        # Return response
+        assert response
         return response
 
     return app
@@ -363,24 +444,23 @@ def get_websocket_app(
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
-        async with AsyncExitStack() as async_exit_stack:
-            # TODO: remove this scope later, after a few releases
-            # This scope fastapi_astack is no longer used by FastAPI, kept for
-            # compatibility, just in case
-            websocket.scope["fastapi_astack"] = async_exit_stack
-            solved_result = await solve_dependencies(
-                request=websocket,
-                dependant=dependant,
-                dependency_overrides_provider=dependency_overrides_provider,
-                async_exit_stack=async_exit_stack,
-                embed_body_fields=embed_body_fields,
+        async_exit_stack = websocket.scope.get("fastapi_inner_astack")
+        assert isinstance(async_exit_stack, AsyncExitStack), (
+            "fastapi_inner_astack not found in request scope"
+        )
+        solved_result = await solve_dependencies(
+            request=websocket,
+            dependant=dependant,
+            dependency_overrides_provider=dependency_overrides_provider,
+            async_exit_stack=async_exit_stack,
+            embed_body_fields=embed_body_fields,
+        )
+        if solved_result.errors:
+            raise WebSocketRequestValidationError(
+                _normalize_errors(solved_result.errors)
             )
-            if solved_result.errors:
-                raise WebSocketRequestValidationError(
-                    _normalize_errors(solved_result.errors)
-                )
-            assert dependant.call is not None, "dependant.call must be a function"
-            await dependant.call(**solved_result.values)
+        assert dependant.call is not None, "dependant.call must be a function"
+        await dependant.call(**solved_result.values)
 
     return app
 
@@ -400,7 +480,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -504,9 +586,9 @@ class APIRoute(routing.Route):
             status_code = int(status_code)
         self.status_code = status_code
         if self.response_model:
-            assert is_body_allowed_for_status_code(
-                status_code
-            ), f"Status code {status_code} must not have a response body"
+            assert is_body_allowed_for_status_code(status_code), (
+                f"Status code {status_code} must not have a response body"
+            )
             response_name = "Response_" + self.unique_id
             self.response_field = create_model_field(
                 name=response_name,
@@ -537,9 +619,9 @@ class APIRoute(routing.Route):
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
             if model:
-                assert is_body_allowed_for_status_code(
-                    additional_status_code
-                ), f"Status code {additional_status_code} must not have a response body"
+                assert is_body_allowed_for_status_code(additional_status_code), (
+                    f"Status code {additional_status_code} must not have a response body"
+                )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -551,7 +633,9 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -814,7 +898,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -844,9 +928,9 @@ class APIRouter(routing.Router):
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         self.prefix = prefix
         self.tags: List[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
@@ -862,7 +946,7 @@ class APIRouter(routing.Router):
     def route(
         self,
         path: str,
-        methods: Optional[List[str]] = None,
+        methods: Optional[Collection[str]] = None,
         name: Optional[str] = None,
         include_in_schema: bool = True,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
@@ -1256,9 +1340,9 @@ class APIRouter(routing.Router):
         """
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
-            assert not prefix.endswith(
-                "/"
-            ), "A path prefix must not end with '/', as the routes will start with '/'"
+            assert not prefix.endswith("/"), (
+                "A path prefix must not end with '/', as the routes will start with '/'"
+            )
         else:
             for r in router.routes:
                 path = getattr(r, "path")  # noqa: B009
@@ -1626,7 +1710,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2003,7 +2087,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2385,7 +2469,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -2767,7 +2851,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3144,7 +3228,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3521,7 +3605,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -3903,7 +3987,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,
@@ -4285,7 +4369,7 @@ class APIRouter(routing.Router):
                 This affects the generated OpenAPI (e.g. visible at `/docs`).
 
                 Read more about it in the
-                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-from-openapi).
+                [FastAPI docs for Query Parameters and String Validations](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi).
                 """
             ),
         ] = True,

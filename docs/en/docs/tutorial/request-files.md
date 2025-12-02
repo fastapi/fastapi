@@ -1,4 +1,4 @@
-# Request Files
+# Request Files { #request-files }
 
 You can define files to be uploaded by the client using `File`.
 
@@ -16,13 +16,13 @@ This is because uploaded files are sent as "form data".
 
 ///
 
-## Import `File`
+## Import `File` { #import-file }
 
 Import `File` and `UploadFile` from `fastapi`:
 
 {* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
-## Define `File` Parameters
+## Define `File` Parameters { #define-file-parameters }
 
 Create file parameters the same way you would for `Body` or `Form`:
 
@@ -50,7 +50,7 @@ Keep in mind that this means that the whole contents will be stored in memory. T
 
 But there are several cases in which you might benefit from using `UploadFile`.
 
-## File Parameters with `UploadFile`
+## File Parameters with `UploadFile` { #file-parameters-with-uploadfile }
 
 Define a file parameter with a type of `UploadFile`:
 
@@ -66,7 +66,7 @@ Using `UploadFile` has several advantages over `bytes`:
 * It has a <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> `async` interface.
 * It exposes an actual Python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> object that you can pass directly to other libraries that expect a file-like object.
 
-### `UploadFile`
+### `UploadFile` { #uploadfile }
 
 `UploadFile` has the following attributes:
 
@@ -109,7 +109,7 @@ When you use the `async` methods, **FastAPI** runs the file methods in a threadp
 
 ///
 
-## What is "Form Data"
+## What is "Form Data" { #what-is-form-data }
 
 The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
@@ -133,19 +133,19 @@ This is not a limitation of **FastAPI**, it's part of the HTTP protocol.
 
 ///
 
-## Optional File Upload
+## Optional File Upload { #optional-file-upload }
 
 You can make a file optional by using standard type annotations and setting a default value of `None`:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
-## `UploadFile` with Additional Metadata
+## `UploadFile` with Additional Metadata { #uploadfile-with-additional-metadata }
 
 You can also use `File()` with `UploadFile`, for example, to set additional metadata:
 
 {* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
-## Multiple File Uploads
+## Multiple File Uploads { #multiple-file-uploads }
 
 It's possible to upload several files at the same time.
 
@@ -165,12 +165,12 @@ You could also use `from starlette.responses import HTMLResponse`.
 
 ///
 
-### Multiple File Uploads with Additional Metadata
+### Multiple File Uploads with Additional Metadata { #multiple-file-uploads-with-additional-metadata }
 
 And the same way as before, you can use `File()` to set additional parameters, even for `UploadFile`:
 
 {* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
-## Recap
+## Recap { #recap }
 
 Use `File`, `bytes`, and `UploadFile` to declare files to be uploaded in the request, sent as form data.

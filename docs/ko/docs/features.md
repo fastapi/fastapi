@@ -159,7 +159,7 @@ FastAPI는 사용하기 매우 간편하지만, 엄청난 <abbr title='"컴포�
 
 ## Starlette 기능
 
-**FastAPI**는 <a href="https://www.starlette.io/" class="external-link" target="_blank"><strong>Starlette</strong></a>를 기반으로 구축되었으며, 이와 완전히 호환됩니다. 따라서, 여러분이 보유하고 있는 어떤 추가적인 Starlette 코드도 작동할 것입니다.
+**FastAPI**는 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>를 기반으로 구축되었으며, 이와 완전히 호환됩니다. 따라서, 여러분이 보유하고 있는 어떤 추가적인 Starlette 코드도 작동할 것입니다.
 
 `FastAPI`는 실제로 `Starlette`의 하위 클래스입니다. 그래서, 여러분이 이미 Starlette을 알고 있거나 사용하고 있으면, 대부분의 기능이 같은 방식으로 작동할 것입니다.
 

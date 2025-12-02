@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
+from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
@@ -216,9 +217,12 @@ def test_custom_encoders():
     instance = MyModel(dt_field=safe_datetime.now())
 
     encoded_instance = jsonable_encoder(
-        instance, custom_encoder={safe_datetime: lambda o: o.isoformat()}
+        instance, custom_encoder={safe_datetime: lambda o: o.strftime("%H:%M:%S")}
     )
-    assert encoded_instance["dt_field"] == instance.dt_field.isoformat()
+    assert encoded_instance["dt_field"] == instance.dt_field.strftime("%H:%M:%S")
+
+    encoded_instance2 = jsonable_encoder(instance)
+    assert encoded_instance2["dt_field"] == instance.dt_field.isoformat()
 
 
 def test_custom_enum_encoders():
@@ -301,6 +305,20 @@ def test_decimal_encoder_float():
 def test_decimal_encoder_int():
     data = {"value": Decimal(2)}
     assert jsonable_encoder(data) == {"value": 2}
+
+
+@needs_pydanticv2
+def test_decimal_encoder_nan():
+    data = {"value": Decimal("NaN")}
+    assert isnan(jsonable_encoder(data)["value"])
+
+
+@needs_pydanticv2
+def test_decimal_encoder_infinity():
+    data = {"value": Decimal("Infinity")}
+    assert isinf(jsonable_encoder(data)["value"])
+    data = {"value": Decimal("-Infinity")}
+    assert isinf(jsonable_encoder(data)["value"])
 
 
 def test_encode_deque_encodes_child_models():

@@ -6,7 +6,7 @@
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
-    <img src="https://github.com/fastapi/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi" target="_blank">
     <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
@@ -40,28 +40,35 @@ The key features are:
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* estimation based on tests on an internal development team, building production applications.</small>
+<small>* estimation based on tests conducted by an internal development team, building production applications.</small>
 
 ## Sponsors
 
 <!-- sponsors -->
+### Keystone Sponsor
+
+<a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
+
+### Gold and Silver Sponsors
 
 <a href="https://blockbee.io?ref=fastapi" target="_blank" title="BlockBee Cryptocurrency Payment Gateway"><img src="https://fastapi.tiangolo.com/img/sponsors/blockbee.png"></a>
-<a href="https://platform.sh/try-it-now/?utm_source=fastapi-signup&utm_medium=banner&utm_campaign=FastAPI-signup-June-2023" target="_blank" title="Build, run and scale your apps on a modern, reliable, and secure PaaS."><img src="https://fastapi.tiangolo.com/img/sponsors/platform-sh.png"></a>
-<a href="https://www.porter.run" target="_blank" title="Deploy FastAPI on AWS with a few clicks"><img src="https://fastapi.tiangolo.com/img/sponsors/porter.png"></a>
-<a href="https://bump.sh/fastapi?utm_source=fastapi&utm_medium=referral&utm_campaign=sponsor" target="_blank" title="Automate FastAPI documentation generation with Bump.sh"><img src="https://fastapi.tiangolo.com/img/sponsors/bump-sh.svg"></a>
 <a href="https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=main-badge" target="_blank" title="Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files"><img src="https://fastapi.tiangolo.com/img/sponsors/scalar.svg"></a>
 <a href="https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge" target="_blank" title="Auth, user management and more for your B2B product"><img src="https://fastapi.tiangolo.com/img/sponsors/propelauth.png"></a>
-<a href="https://www.withcoherence.com/?utm_medium=advertising&utm_source=fastapi&utm_campaign=website" target="_blank" title="Coherence"><img src="https://fastapi.tiangolo.com/img/sponsors/coherence.png"></a>
-<a href="https://www.mongodb.com/developer/languages/python/python-quickstart-fastapi/?utm_campaign=fastapi_framework&utm_source=fastapi_sponsorship&utm_medium=web_referral" target="_blank" title="Simplify Full Stack Development with FastAPI & MongoDB"><img src="https://fastapi.tiangolo.com/img/sponsors/mongodb.png"></a>
-<a href="https://zuplo.link/fastapi-gh" target="_blank" title="Zuplo: Scale, Protect, Document, and Monetize your FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/zuplo.png"></a>
+<a href="https://zuplo.link/fastapi-gh" target="_blank" title="Zuplo: Deploy, Secure, Document, and Monetize your FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/zuplo.png"></a>
 <a href="https://liblab.com?utm_source=fastapi" target="_blank" title="liblab - Generate SDKs from FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/liblab.png"></a>
 <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Deploy & scale any full-stack web app on Render. Focus on building apps, not infra."><img src="https://fastapi.tiangolo.com/img/sponsors/render.svg"></a>
-<a href="https://github.com/deepset-ai/haystack/" target="_blank" title="Build powerful search from composable, open source building blocks"><img src="https://fastapi.tiangolo.com/img/sponsors/haystack-fastapi.svg"></a>
-<a href="https://databento.com/" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a>
-<a href="https://speakeasy.com?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy.png"></a>
+<a href="https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi" target="_blank" title="Cut Code Review Time & Bugs in Half with CodeRabbit"><img src="https://fastapi.tiangolo.com/img/sponsors/coderabbit.png"></a>
+<a href="https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source" target="_blank" title="The Gold Standard in Retail Account Linking"><img src="https://fastapi.tiangolo.com/img/sponsors/subtotal.svg"></a>
+<a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a>
+<a href="https://serpapi.com/?utm_source=fastapi_website" target="_blank" title="SerpApi: Web Search API"><img src="https://fastapi.tiangolo.com/img/sponsors/serpapi.png"></a>
+<a href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank" title="Greptile: The AI Code Reviewer"><img src="https://fastapi.tiangolo.com/img/sponsors/greptile.png"></a>
+<a href="https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a>
+<a href="https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship" target="_blank" title="SDKs for your API | Speakeasy"><img src="https://fastapi.tiangolo.com/img/sponsors/speakeasy.png"></a>
 <a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a>
 <a href="https://www.stainlessapi.com/?utm_source=fastapi&utm_medium=referral" target="_blank" title="Stainless | Generate best-in-class SDKs"><img src="https://fastapi.tiangolo.com/img/sponsors/stainless.png"></a>
+<a href="https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi" target="_blank" title="Fine-Grained Authorization for FastAPI"><img src="https://fastapi.tiangolo.com/img/sponsors/permit.png"></a>
+<a href="https://www.interviewpal.com/?utm_source=fastapi&utm_medium=open-source&utm_campaign=dev-hiring" target="_blank" title="InterviewPal - AI Interview Coach for Engineers and Devs"><img src="https://fastapi.tiangolo.com/img/sponsors/interviewpal.png"></a>
+<a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a>
 
 <!-- /sponsors -->
 
@@ -89,7 +96,7 @@ The key features are:
 
 "_I’m over the moon excited about **FastAPI**. It’s so fun!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -103,7 +110,7 @@ The key features are:
 
 "_We've switched over to **FastAPI** for our **APIs** [...] I think you'll like it [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">Explosion AI</a> founders - <a href="https://spacy.io" target="_blank">spaCy</a> creators</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -125,7 +132,7 @@ If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be 
 
 FastAPI stands on the shoulders of giants:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> for the web parts.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> for the web parts.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> for the data parts.
 
 ## Installation
@@ -148,7 +155,7 @@ $ pip install "fastapi[standard]"
 
 ### Create it
 
-* Create a file `main.py` with:
+Create a file `main.py` with:
 
 ```Python
 from typing import Union
@@ -231,7 +238,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>About the command <code>fastapi dev main.py</code>...</summary>
 
-The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+The command `fastapi dev` reads your `main.py` file, detects the **FastAPI** app in it, and starts a server using <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 By default, `fastapi dev` will start with auto-reload enabled for local development.
 
@@ -446,6 +453,58 @@ For a more complete example including more features, see the <a href="https://fa
     * **Cookie Sessions**
     * ...and more.
 
+### Deploy your app (optional)
+
+You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
+
+If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
+
+Before deploying, make sure you are logged in:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Then deploy your app:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+That's it! Now you can access your app at that URL. ✨
+
+#### About FastAPI Cloud
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is built by the same author and team behind **FastAPI**.
+
+It streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.
+
+It brings the same **developer experience** of building apps with FastAPI to **deploying** them to the cloud. 🎉
+
+FastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and friends* open source projects. ✨
+
+#### Deploy to other cloud providers
+
+FastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose.
+
+Follow your cloud provider's guides to deploy FastAPI apps with them. 🤓
+
 ## Performance
 
 Independent TechEmpower benchmarks show **FastAPI** applications running under Uvicorn as <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">one of the fastest Python frameworks available</a>, only below Starlette and Uvicorn themselves (used internally by FastAPI). (*)
@@ -470,14 +529,19 @@ Used by Starlette:
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Required if you want to use the default template configuration.
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Required if you want to support form <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>, with `request.form()`.
 
-Used by FastAPI / Starlette:
+Used by FastAPI:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
-* `fastapi-cli` - to provide the `fastapi` command.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - for the server that loads and serves your application. This includes `uvicorn[standard]`, which includes some dependencies (e.g. `uvloop`) needed for high performance serving.
+* `fastapi-cli[standard]` - to provide the `fastapi` command.
+    * This includes `fastapi-cloud-cli`, which allows you to deploy your FastAPI application to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
 ### Without `standard` Dependencies
 
 If you don't want to include the `standard` optional dependencies, you can install with `pip install fastapi` instead of `pip install "fastapi[standard]"`.
+
+### Without `fastapi-cloud-cli`
+
+If you want to install FastAPI with the standard dependencies but without the `fastapi-cloud-cli`, you can install with `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ### Additional Optional Dependencies
 

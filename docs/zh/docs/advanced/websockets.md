@@ -172,5 +172,5 @@ Client #1596980209979 left the chat
 
 要了解更多选项，请查看 Starlette 的文档：
 
-* [WebSocket 类](https://www.starlette.io/websockets/)
-* [基于类的 WebSocket 处理](https://www.starlette.io/endpoints/#websocketendpoint)。
+* [WebSocket 类](https://www.starlette.dev/websockets/)
+* [基于类的 WebSocket 处理](https://www.starlette.dev/endpoints/#websocketendpoint)。
