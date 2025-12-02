@@ -443,6 +443,14 @@ Die Dokumentationsoberfläche interagiert mit dem von Ihnen ausgewählten Server
 
 ///
 
+/// note | Technische Details
+
+Die Eigenschaft `servers` in der OpenAPI-Spezifikation ist optional.
+
+Wenn Sie den Parameter `servers` nicht angeben und `root_path` den Wert `/` hat, wird die Eigenschaft `servers` im generierten OpenAPI-Schema standardmäßig vollständig weggelassen, was dem Äquivalent eines einzelnen Servers mit einem `url`-Wert von `/` entspricht.
+
+///
+
 ### Den automatischen Server von `root_path` deaktivieren { #disable-automatic-server-from-root-path }
 
 Wenn Sie nicht möchten, dass **FastAPI** einen automatischen Server inkludiert, welcher `root_path` verwendet, können Sie den Parameter `root_path_in_servers=False` verwenden:
