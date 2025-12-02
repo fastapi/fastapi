@@ -304,7 +304,7 @@ def _remap_definitions_and_field_mappings(
     old_name_to_new_name_map = {}
     for field_key, schema in field_mapping.items():
         model = field_key[0].type_
-        if model not in model_name_map:
+        if model not in model_name_map or "$ref" not in schema:
             continue
         new_name = model_name_map[model]
         old_name = schema["$ref"].split("/")[-1]
@@ -371,6 +371,13 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
+    if origin_type is Union:  # Handle optional sequences
+        union_args = get_args(field.field_info.annotation)
+        for union_arg in union_args:
+            if union_arg is type(None):
+                continue
+            origin_type = get_origin(union_arg) or union_arg
+            break
     assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
     return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 
