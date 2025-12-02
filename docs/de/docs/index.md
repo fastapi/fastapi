@@ -46,7 +46,7 @@ Seine Schlüssel-Merkmale sind:
 * **Robust**: Erhalten Sie produktionsreifen Code. Mit automatischer, interaktiver Dokumentation.
 * **Standards-basiert**: Basierend auf (und vollständig kompatibel mit) den offenen Standards für APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (früher bekannt als Swagger) und <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Schätzung basierend auf Tests in einem internen Entwicklungsteam, das Produktionsanwendungen erstellt.</small>
+<small>* Schätzung basierend auf Tests, die von einem internen Entwicklungsteam durchgeführt wurden, das Produktionsanwendungen erstellt.</small>
 
 ## Sponsoren { #sponsors }
 
