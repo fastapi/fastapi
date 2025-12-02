@@ -192,7 +192,8 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    unwrapped = inspect.unwrap(call)
+    globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
@@ -217,12 +218,13 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     signature = inspect.signature(call)
+    unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
     if annotation is inspect.Signature.empty:
         return None
 
-    globalns = getattr(call, "__globals__", {})
+    globalns = getattr(unwrapped, "__globals__", {})
     return get_typed_annotation(annotation, globalns)
 
 
