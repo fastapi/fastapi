@@ -1,5 +1,5 @@
-# Aprender
+# Aprender { #learn }
 
-Nesta parte da documentação encontramos as seções introdutórias e os tutoriais para aprendermos como usar o **FastAPI**.
+Aqui estão as seções introdutórias e os tutoriais para aprender o **FastAPI**.
 
-Nós poderíamos considerar isto um **livro**, **curso**, a maneira **oficial** e recomendada de aprender o FastAPI. 😎
+Pode considerar isto um **livro**, um **curso**, a forma **oficial** e recomendada de aprender o FastAPI. 😎
