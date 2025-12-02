@@ -79,38 +79,32 @@ class Dependant:
     def _unwrapped_call(self) -> Any:
         if self.call is None:
             return self.call  # pragma: no cover
-        return inspect.unwrap(self.call)
+        unwrapped = inspect.unwrap(self.call)
+        if isinstance(unwrapped, partial):
+            unwrapped = unwrapped.func
+        return unwrapped
 
     @cached_property
     def is_gen_callable(self) -> bool:
-        use_call: Any = self._unwrapped_call
-        if isinstance(use_call, partial):
-            use_call = use_call.func
-        if inspect.isgeneratorfunction(use_call):
+        if inspect.isgeneratorfunction(self._unwrapped_call):
             return True
-        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return inspect.isgeneratorfunction(dunder_call)
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
-        use_call: Any = self._unwrapped_call
-        if isinstance(use_call, partial):
-            use_call = use_call.func
-        if inspect.isasyncgenfunction(use_call):
+        if inspect.isasyncgenfunction(self._unwrapped_call):
             return True
-        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return inspect.isasyncgenfunction(dunder_call)
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
-        use_call: Any = self._unwrapped_call
-        if isinstance(use_call, partial):
-            use_call = use_call.func
-        if inspect.isroutine(use_call):
-            return iscoroutinefunction(use_call)
-        if inspect.isclass(use_call):
+        if inspect.isroutine(self._unwrapped_call):
+            return iscoroutinefunction(self._unwrapped_call)
+        if inspect.isclass(self._unwrapped_call):
             return False
-        dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return iscoroutinefunction(dunder_call)
 
     @cached_property
