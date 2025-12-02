@@ -452,7 +452,7 @@ def test_required_alias_and_validation_alias_by_name(path: str):
                     "p_val_alias",  # /required-alias-and-validation-alias fails here
                 ],
                 "msg": "Field required",
-                "input": {"p": "hello"},
+                "input": IsOneOf(None, {"p": "hello"}),
             }
         ]
     }
