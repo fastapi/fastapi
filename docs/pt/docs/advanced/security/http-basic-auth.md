@@ -1,10 +1,10 @@
-# HTTP Basic Auth
+# HTTP Basic Auth { #http-basic-auth }
 
 Para os casos mais simples, você pode utilizar o HTTP Basic Auth.
 
 No HTTP Basic Auth, a aplicação espera um cabeçalho que contém um usuário e uma senha.
 
-Caso ela não receba, ela retorna um erro HTTP 401 "Unauthorized" (*Não Autorizado*).
+Caso ela não receba, ela retorna um erro HTTP 401 "Unauthorized".
 
 E retorna um cabeçalho `WWW-Authenticate` com o valor `Basic`, e um parâmetro opcional `realm`.
 
@@ -12,7 +12,7 @@ Isso sinaliza ao navegador para mostrar o prompt integrado para um usuário e se
 
 Então, quando você digitar o usuário e senha, o navegador os envia automaticamente no cabeçalho.
 
-## HTTP Basic Auth Simples
+## HTTP Basic Auth Simples { #simple-http-basic-auth }
 
 * Importe `HTTPBasic` e `HTTPBasicCredentials`.
 * Crie um "esquema `security`" utilizando `HTTPBasic`.
@@ -22,11 +22,11 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 
 {* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
 
-Quando você tentar abrir a URL pela primeira vez (ou clicar no botão "Executar" nos documentos) o navegador vai pedir pelo seu usuário e senha:
+Quando você tentar abrir a URL pela primeira vez (ou clicar no botão "Executar" na documentação) o navegador vai pedir pelo seu usuário e senha:
 
 <img src="/img/tutorial/security/image12.png">
 
-## Verifique o usuário
+## Verifique o usuário { #check-the-username }
 
 Aqui está um exemplo mais completo.
 
@@ -52,7 +52,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks" (ataques de temporização).
 
-### Ataques de Temporização
+### Ataques de Temporização { #timing-attacks }
 
 Mas o que é um "timing attack" (ataque de temporização)?
 
@@ -80,19 +80,19 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 O Python terá que comparar todo o `stanleyjobso` tanto em `stanleyjobsox` como em `stanleyjobson` antes de perceber que as strings não são a mesma. Então isso levará alguns microssegundos a mais para retornar "Usuário ou senha incorretos".
 
-#### O tempo para responder ajuda os invasores
+#### O tempo para responder ajuda os invasores { #the-time-to-answer-helps-the-attackers }
 
 Neste ponto, ao perceber que o servidor demorou alguns microssegundos a mais para enviar o retorno "Usuário ou senha incorretos", os invasores irão saber que eles acertaram _alguma coisa_, algumas das letras iniciais estavam certas.
 
 E eles podem tentar de novo sabendo que provavelmente é algo mais parecido com `stanleyjobsox` do que com `johndoe`.
 
-#### Um ataque "profissional"
+#### Um ataque "profissional" { #a-professional-attack }
 
 Claro, os invasores não tentariam tudo isso de forma manual, eles escreveriam um programa para fazer isso, possivelmente com milhares ou milhões de testes por segundo. E obteriam apenas uma letra a mais por vez.
 
 Mas fazendo isso, em alguns minutos ou horas os invasores teriam adivinhado o usuário e senha corretos, com a "ajuda" da nossa aplicação, apenas usando o tempo levado para responder.
 
-#### Corrija com o `secrets.compare_digest()`
+#### Corrija com o `secrets.compare_digest()` { #fix-it-with-secrets-compare-digest }
 
 Mas em nosso código já estamos utilizando o `secrets.compare_digest()`.
 
@@ -100,8 +100,7 @@ Resumindo, levará o mesmo tempo para comparar `stanleyjobsox` com `stanleyjobso
 
 Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação, ela estará a salvo contra toda essa gama de ataques de segurança.
 
-
-### Retorne o erro
+### Retorne o erro { #return-the-error }
 
 Após detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
 

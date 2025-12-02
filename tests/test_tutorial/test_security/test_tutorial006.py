@@ -41,7 +41,7 @@ def test_security_http_basic_invalid_credentials(client: TestClient):
     )
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_security_http_basic_non_basic_credentials(client: TestClient):
@@ -50,7 +50,7 @@ def test_security_http_basic_non_basic_credentials(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_openapi_schema(client: TestClient):

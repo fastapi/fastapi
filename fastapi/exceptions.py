@@ -147,6 +147,13 @@ class FastAPIError(RuntimeError):
     """
 
 
+class DependencyScopeError(FastAPIError):
+    """
+    A dependency declared that it depends on another dependency with an invalid
+    (narrower) scope.
+    """
+
+
 class ValidationException(Exception):
     def __init__(self, errors: Sequence[Any]) -> None:
         self._errors = errors
