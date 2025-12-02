@@ -64,7 +64,7 @@ If you want to learn more about HTTPS, check the guide [About HTTPS](../deployme
 
 ///
 
-### How Proxy Forwarded Headers Work
+### How Proxy Forwarded Headers Work { #how-proxy-forwarded-headers-work }
 
 Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
 
@@ -228,7 +228,7 @@ Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--r
 
 Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
-But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
+But if you go with your browser to <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
 
 ```JSON
 {
