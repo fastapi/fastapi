@@ -1,7 +1,7 @@
 import inspect
 import sys
 from dataclasses import dataclass, field
-from functools import cached_property
+from functools import cached_property, partial
 from typing import Any, Callable, List, Optional, Sequence, Union
 
 from fastapi._compat import ModelField
@@ -79,7 +79,10 @@ class Dependant:
     def _unwrapped_call(self) -> Any:
         if self.call is None:
             return self.call  # pragma: no cover
-        return inspect.unwrap(self.call)
+        unwrapped = inspect.unwrap(self.call)
+        if isinstance(unwrapped, partial):
+            unwrapped = unwrapped.func
+        return unwrapped
 
     @cached_property
     def is_gen_callable(self) -> bool:
