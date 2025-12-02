@@ -110,7 +110,9 @@ def create_model_field(
         try:
             return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
         except RuntimeError:
-            raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+            raise fastapi.exceptions.FastAPIError(
+                _invalid_args_message.format(type_=type_)
+            ) from None
     elif PYDANTIC_V2:
         from ._compat import v2
 
@@ -121,7 +123,9 @@ def create_model_field(
         try:
             return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
         except PydanticSchemaGenerationError:
-            raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+            raise fastapi.exceptions.FastAPIError(
+                _invalid_args_message.format(type_=type_)
+            ) from None
     # Pydantic v2 is not installed, but it's not a Pydantic v1 ModelField, it could be
     # a Pydantic v1 type, like a constrained int
     from fastapi._compat import v1
@@ -129,7 +133,9 @@ def create_model_field(
     try:
         return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
     except RuntimeError:
-        raise fastapi.exceptions.FastAPIError(_invalid_args_message) from None
+        raise fastapi.exceptions.FastAPIError(
+            _invalid_args_message.format(type_=type_)
+        ) from None
 
 
 def create_cloned_field(
