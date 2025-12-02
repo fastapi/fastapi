@@ -394,14 +394,6 @@ This is a more advanced use case. Feel free to skip it.
 
 By default, **FastAPI** will create a `server` in the OpenAPI schema with the URL for the `root_path`.
 
-/// note | Technical Details
-
-The `servers` property in the OpenAPI specification is optional.
-
-If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely. Clients should interpret this as a single server with a `url` value of `/`.
-
-///
-
 But you can also provide other alternative `servers`, for example if you want *the same* docs UI to interact with both a staging and a production environment.
 
 If you pass a custom list of `servers` and there's a `root_path` (because your API lives behind a proxy), **FastAPI** will insert a "server" with this `root_path` at the beginning of the list.
@@ -448,6 +440,14 @@ In the docs UI at <a href="http://127.0.0.1:9999/api/v1/docs" class="external-li
 /// tip
 
 The docs UI will interact with the server that you select.
+
+///
+
+/// note | Technical Details
+
+The `servers` property in the OpenAPI specification is optional.
+
+If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely by default, which is the equivalent of a single server with a `url` value of `/`.
 
 ///
 
