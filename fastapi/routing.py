@@ -80,9 +80,9 @@ from starlette.websockets import WebSocket
 from typing_extensions import Annotated, deprecated
 
 if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
+    pass
 else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
+    pass
 
 
 # Copy of starlette.routing.request_response modified to include the
@@ -308,7 +308,7 @@ def get_request_handler(
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = iscoroutinefunction(dependant.call)
+    is_coroutine = dependant.is_coroutine_callable
     is_body_form = body_field and isinstance(
         body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
     )

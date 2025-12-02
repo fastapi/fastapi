@@ -38,24 +38,54 @@ class Dependant:
     response_param_name: Optional[str] = None
     background_tasks_param_name: Optional[str] = None
     security_scopes_param_name: Optional[str] = None
-    security_scopes: Optional[List[str]] = None
+    own_oauth_scopes: Optional[List[str]] = None
+    parent_oauth_scopes: Optional[List[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
     scope: Union[Literal["function", "request"], None] = None
 
     @cached_property
+    def oauth_scopes(self) -> List[str]:
+        scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
+        # This doesn't use a set to preserve order, just in case
+        for scope in self.own_oauth_scopes or []:
+            if scope not in scopes:
+                scopes.append(scope)
+        return scopes
+
+    @cached_property
     def cache_key(self) -> DependencyCacheKey:
+        scopes_for_cache = (
+            tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
+        )
         return (
             self.call,
-            tuple(sorted(set(self.security_scopes or []))),
+            scopes_for_cache,
             self.computed_scope or "",
         )
 
     @cached_property
+    def _uses_scopes(self) -> bool:
+        if self.own_oauth_scopes:
+            return True
+        if self.security_scopes_param_name is not None:
+            return True
+        for sub_dep in self.dependencies:
+            if sub_dep._uses_scopes:
+                return True
+        return False
+
+    @cached_property
+    def _unwrapped_call(self) -> Any:
+        if self.call is None:
+            return self.call  # pragma: no cover
+        return inspect.unwrap(self.call)
+
+    @cached_property
     def is_gen_callable(self) -> bool:
-        use_call: Any = self.call
-        if isinstance(self.call, partial):
-            use_call = self.call.func
+        use_call: Any = self._unwrapped_call
+        if isinstance(use_call, partial):
+            use_call = use_call.func
         if inspect.isgeneratorfunction(use_call):
             return True
         dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
@@ -63,9 +93,9 @@ class Dependant:
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
-        use_call: Any = self.call
-        if isinstance(self.call, partial):
-            use_call = self.call.func
+        use_call: Any = self._unwrapped_call
+        if isinstance(use_call, partial):
+            use_call = use_call.func
         if inspect.isasyncgenfunction(use_call):
             return True
         dunder_call = getattr(use_call, "__call__", None)  # noqa: B004
@@ -73,9 +103,9 @@ class Dependant:
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
-        use_call: Any = self.call
-        if isinstance(self.call, partial):
-            use_call = self.call.func
+        use_call: Any = self._unwrapped_call
+        if isinstance(use_call, partial):
+            use_call = use_call.func
         if inspect.isroutine(use_call):
             return iscoroutinefunction(use_call)
         if inspect.isclass(use_call):
