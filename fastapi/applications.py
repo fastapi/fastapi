@@ -303,9 +303,10 @@ class FastAPI(Starlette):
                 If the servers `list` is not provided, or is an empty `list`, the
                 `servers` property in the generated OpenAPI will be:
 
-                * a `dict` with a `url` value of application's mounting point
+                * a `dict` with a `url` value of the application's mounting point
                 (`root_path`) if it's different from `/`.
-                * otherwise, `servers` property will be omitted from the OpenAPI schema.
+                * otherwise, the `servers` property will be omitted from the OpenAPI
+                schema.
 
                 Each item in the `list` is a `dict` containing:
 
