@@ -4,6 +4,7 @@ from typing import (
     Any,
     Dict,
     List,
+    Optional,
     Sequence,
     Tuple,
     Type,
@@ -20,6 +21,7 @@ from .model_field import ModelField
 if PYDANTIC_V2:
     from .v2 import BaseConfig as BaseConfig
     from .v2 import FieldInfo as FieldInfo
+    from .v2 import GenerateJsonSchema as GenerateJsonSchema
     from .v2 import PydanticSchemaGenerationError as PydanticSchemaGenerationError
     from .v2 import RequiredParam as RequiredParam
     from .v2 import Undefined as Undefined
@@ -34,6 +36,7 @@ if PYDANTIC_V2:
 else:
     from .v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
     from .v1 import FieldInfo as FieldInfo
+    from .v1 import GenerateJsonSchema as GenerateJsonSchema  # type: ignore[assignment]
     from .v1 import (  # type: ignore[assignment]
         PydanticSchemaGenerationError as PydanticSchemaGenerationError,
     )
@@ -269,6 +272,7 @@ def get_definitions(
     fields: List[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
+    schema_generator: Optional[GenerateJsonSchema] = None,
 ) -> Tuple[
     Dict[
         Tuple[ModelField, Literal["validation", "serialization"]],
@@ -307,6 +311,7 @@ def get_definitions(
             fields=v2_fields,
             model_name_map=model_name_map,
             separate_input_output_schemas=separate_input_output_schemas,
+            schema_generator=schema_generator,
         )
         return v2_field_maps, v2_definitions
 
