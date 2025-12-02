@@ -193,12 +193,17 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     signature = inspect.signature(call)
     globalns = getattr(call, "__globals__", {})
+
     typed_params = [
         inspect.Parameter(
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=get_typed_annotation(param.annotation, globalns),
+            annotation=get_typed_annotation(
+                param.annotation,
+                globalns,
+                collect_outer_locals(),
+            ),
         )
         for param in signature.parameters.values()
     ]
@@ -206,10 +211,30 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     return typed_signature
 
 
-def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
+def collect_outer_locals() -> Dict[str, Any]:
+    frame = inspect.currentframe()
+
+    locals = {}
+    finded = False
+    while frame is not None:
+        if finded:
+            locals.update(frame.f_locals)
+
+        # Find first FastAPI outer frame
+        if frame.f_code.co_name == "decorator":
+            finded = True
+
+        frame = frame.f_back
+
+    return locals
+
+
+def get_typed_annotation(
+    annotation: Any, globalns: Dict[str, Any], localns: Dict[str, Any]
+) -> Any:
     if isinstance(annotation, str):
         annotation = ForwardRef(annotation)
-        annotation = evaluate_forwardref(annotation, globalns, globalns)
+        annotation = evaluate_forwardref(annotation, globalns, localns)
         if annotation is type(None):
             return None
     return annotation
@@ -223,7 +248,11 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
         return None
 
     globalns = getattr(call, "__globals__", {})
-    return get_typed_annotation(annotation, globalns)
+    return get_typed_annotation(
+        annotation,
+        globalns,
+        collect_outer_locals(),
+    )
 
 
 def get_dependant(
