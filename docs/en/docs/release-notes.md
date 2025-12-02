@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.5
+
 ### Features
 
 * ✨ Allow using dependables with `functools.partial()`. PR [#9753](https://github.com/fastapi/fastapi/pull/9753) by [@lieryan](https://github.com/lieryan).
