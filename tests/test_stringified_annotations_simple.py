@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, Request
 from fastapi.testclient import TestClient
-from starlette.requests import Request
 from typing_extensions import Annotated
 
 from .utils import needs_py310
