@@ -1,5 +1,13 @@
+import sys
+import os
+import uvicorn
+
+# Добавляем корень проекта в sys.path, чтобы Python видел пакет fastapi
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from typing import Any, Dict, List
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -71,6 +79,21 @@ async def get_local_variable() -> Dict[str, Any]:
     }
     return response_data
 
+@app.get("/edge_cases/explicit_response")
+def get_explicit_response() -> JSONResponse:
+    return JSONResponse({"should_not_be_inferred": True})
+
+@app.get("/edge_cases/nested_function")
+async def get_nested_function() -> Dict[str, Any]:
+    def inner_function():
+        return {"inner": "value"}
+    
+    return {"outer": "value"}
+
+@app.get("/edge_cases/invalid_keys")
+def get_invalid_keys() -> Dict[Any, Any]:
+    return {1: "value", "valid": "key"}
+
 client = TestClient(app)
 
 def test_openapi_schema_ast_inference():
@@ -111,4 +134,22 @@ def test_openapi_schema_ast_inference():
     
     assert expr_props["calc_int"]["type"] == "integer"
     assert expr_props["calc_bool"]["type"] == "boolean"
-    
+
+    explicit_schema = paths["/edge_cases/explicit_response"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" not in explicit_schema
+
+    nested_schema = paths["/edge_cases/nested_function"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" in nested_schema
+    nested_ref = nested_schema["$ref"].split("/")[-1]
+    nested_props = schema["components"]["schemas"][nested_ref]["properties"]
+    assert "outer" in nested_props
+    assert "inner" not in nested_props
+
+    invalid_keys_schema = paths["/edge_cases/invalid_keys"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" not in invalid_keys_schema
+
+if __name__ == "__main__":
+    # test_openapi_schema_ast_inference()
+    print("Запуск сервера для проверки Swagger UI...")
+    print("Откройте в браузере: http://127.0.0.1:8000/docs")
+    uvicorn.run(app, host="127.0.0.1", port=8000)

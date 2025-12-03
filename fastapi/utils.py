@@ -366,10 +366,21 @@ def infer_response_model_from_ast(
         return None
         
     return_stmt = None
-    for node in ast.walk(func_def):
+    
+
+    nodes_to_visit = list(func_def.body)
+    while nodes_to_visit:
+        node = nodes_to_visit.pop(0)
+        
         if isinstance(node, ast.Return):
             return_stmt = node
             break
+            
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            continue
+            
+        for child in ast.iter_child_nodes(node):
+            nodes_to_visit.append(child)
             
     if not return_stmt:
         return None
@@ -401,6 +412,10 @@ def infer_response_model_from_ast(
     for key, value in zip(dict_node.keys, dict_node.values):
         if not isinstance(key, ast.Constant):
             continue
+            
+        if not isinstance(key.value, str):
+            return None
+            
         field_name = key.value
         
         field_type = _infer_type_from_ast(
@@ -418,4 +433,7 @@ def infer_response_model_from_ast(
         from pydantic import create_model
 
     model_name = f"ResponseModel_{endpoint_function.__name__}"
-    return create_model(model_name, **fields)
+    try:
+        return create_model(model_name, **fields)
+    except Exception:
+        return None
