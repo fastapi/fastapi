@@ -1,10 +1,14 @@
+import ast
+import inspect
 import re
+
 import warnings
 from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
     Dict,
+    List,
     MutableMapping,
     Optional,
     Set,
@@ -258,3 +262,160 @@ def get_value_or_default(
         if not isinstance(item, DefaultPlaceholder):
             return item
     return first_item
+
+
+def _infer_type_from_ast(
+    node: ast.AST,
+    func_def: Union[ast.FunctionDef, ast.AsyncFunctionDef],
+    context_name: str,
+) -> Any:
+    if isinstance(node, ast.Constant):
+        return type(node.value)
+
+    if isinstance(node, ast.List):
+        if not node.elts:
+            return List[Any]
+
+        first_type = _infer_type_from_ast(node.elts[0], func_def, context_name + "Item")
+        
+        for elt in node.elts[1:]:
+            current_type = _infer_type_from_ast(elt, func_def, context_name + "Item")
+            if current_type != first_type:
+                return List[Any]
+        
+        if first_type is not Any:
+            return List[first_type]
+        return List[Any]
+
+    if isinstance(node, ast.BinOp):
+        left_type = _infer_type_from_ast(node.left, func_def, context_name)
+        right_type = _infer_type_from_ast(node.right, func_def, context_name)
+        if left_type == right_type and left_type in (int, float, str):
+             return left_type
+        if {left_type, right_type} == {int, float}:
+            return float
+
+    if isinstance(node, ast.Compare):
+        return bool
+
+    if isinstance(node, ast.Dict):
+        fields = {}
+        for key, value in zip(node.keys, node.values):
+            if not isinstance(key, ast.Constant):
+                continue
+            field_name = key.value
+            field_type = _infer_type_from_ast(
+                value, func_def, context_name + "_" + str(field_name)
+            )
+            fields[field_name] = (field_type, ...)
+
+        if not fields:
+            return Dict[str, Any]
+
+        if PYDANTIC_V2:
+            from pydantic import create_model
+        else:
+            from pydantic import create_model
+
+        return create_model(f"Model_{context_name}", **fields)
+
+    if isinstance(node, ast.Name):
+        arg_name = node.id
+        for arg in func_def.args.args:
+            if arg.arg == arg_name and arg.annotation:
+                if isinstance(arg.annotation, ast.Name):
+                    if arg.annotation.id == "int":
+                        return int
+                    if arg.annotation.id == "str":
+                        return str
+                    if arg.annotation.id == "bool":
+                        return bool
+                    if arg.annotation.id == "float":
+                        return float
+                    if arg.annotation.id == "list":
+                        return List[Any]
+                    if arg.annotation.id == "dict":
+                        return Dict[str, Any]
+
+    return Any
+
+
+def infer_response_model_from_ast(
+    endpoint_function: Any,
+) -> Optional[Type[BaseModel]]:
+    """
+    Analyze the endpoint function's source code to infer a Pydantic model
+    from a returned dictionary literal or variable assignment.
+    """
+    try:
+        source = inspect.getsource(endpoint_function)
+    except (OSError, TypeError):
+        return None
+    
+    source = inspect.cleandoc(source)
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return None
+        
+    if not tree.body:
+        return None
+        
+    func_def = tree.body[0]
+    if not isinstance(func_def, (ast.FunctionDef, ast.AsyncFunctionDef)):
+        return None
+        
+    return_stmt = None
+    for node in ast.walk(func_def):
+        if isinstance(node, ast.Return):
+            return_stmt = node
+            break
+            
+    if not return_stmt:
+        return None
+
+    returned_value = return_stmt.value
+    dict_node = None
+    
+    if isinstance(returned_value, ast.Dict):
+        dict_node = returned_value
+    elif isinstance(returned_value, ast.Name):
+        variable_name = returned_value.id
+        # Find assignment
+        for node in func_def.body:
+            if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name) and node.target.id == variable_name:
+                 if isinstance(node.value, ast.Dict):
+                     dict_node = node.value
+                     break
+            elif isinstance(node, ast.Assign):
+                 for target in node.targets:
+                     if isinstance(target, ast.Name) and target.id == variable_name:
+                         if isinstance(node.value, ast.Dict):
+                             dict_node = node.value
+                             break
+    
+    if not dict_node:
+        return None
+
+    fields = {}
+    for key, value in zip(dict_node.keys, dict_node.values):
+        if not isinstance(key, ast.Constant):
+            continue
+        field_name = key.value
+        
+        field_type = _infer_type_from_ast(
+            value, func_def, f"{endpoint_function.__name__}_{field_name}"
+        )
+        
+        fields[field_name] = (field_type, ...)
+
+    if not fields:
+        return None
+
+    if PYDANTIC_V2:
+        from pydantic import create_model
+    else:
+        from pydantic import create_model
+
+    model_name = f"ResponseModel_{endpoint_function.__name__}"
+    return create_model(model_name, **fields)

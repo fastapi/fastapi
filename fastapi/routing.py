@@ -57,6 +57,7 @@ from fastapi.utils import (
     create_model_field,
     generate_unique_id,
     get_value_or_default,
+    infer_response_model_from_ast,
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
@@ -544,6 +545,12 @@ class APIRoute(routing.Route):
                 response_model = None
             else:
                 response_model = return_annotation
+        
+        if not lenient_issubclass(response_model, BaseModel):
+            inferred = infer_response_model_from_ast(endpoint)
+            if inferred:
+                response_model = inferred
+
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
