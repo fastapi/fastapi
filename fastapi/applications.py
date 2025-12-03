@@ -908,8 +908,10 @@ class FastAPI(Starlette):
         ] = "3.1.0"
         self.openapi_schema: Optional[Dict[str, Any]] = None
         if self.openapi_url:
-            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
-            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+            if not self.title:
+                raise ValueError("A title must be provided for OpenAPI, e.g.: 'My API'")
+            if not self.version:
+                raise ValueError("A version must be provided for OpenAPI, e.g.: '2.1.0'")
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
