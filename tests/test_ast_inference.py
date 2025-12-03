@@ -121,8 +121,6 @@ def get_arg_types(a: int, b: str, c: bool, d: float) -> Dict[str, Any]:
     return {"int_val": a, "str_val": b, "bool_val": c, "float_val": d}
 
 
-
-
 client = TestClient(app)
 
 
@@ -317,7 +315,6 @@ def test_openapi_schema_ast_inference():
     assert arg_types_props["str_val"]["type"] == "string"
     assert arg_types_props["bool_val"]["type"] == "boolean"
     assert arg_types_props["float_val"]["type"] == "number"
-
 
 
 def test_infer_response_model_edge_cases() -> None:
