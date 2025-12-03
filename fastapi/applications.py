@@ -2646,14 +2646,11 @@ class FastAPI(Starlette):
                 """
             ),
         ] = 1000,
-        form_max_part_size: Annotated[
+        max_part_size: Annotated[
             int,
             Doc(
                 """
-                Maximum size (in bytes) for each part in a form submission.
-
-                This limits the size of each part in a form submission to prevent
-                potential denial-of-service attacks.
+                Maximum size (in bytes) for each part in a multipart form submission.
                 """
             ),
         ] = 1024 * 1024,
@@ -2704,7 +2701,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             form_max_fields=form_max_fields,
             form_max_files=form_max_files,
-            form_max_part_size=form_max_part_size,
+            max_part_size=max_part_size,
         )
 
     def delete(

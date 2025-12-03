@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 
 
-@app.post("/", form_max_files=2, form_max_part_size=1024, form_max_fields=2)
+@app.post("/", form_max_files=2, max_part_size=1024, form_max_fields=2)
 async def upload_files(files: List[UploadFile] = File(...)):
     return {"filenames": [file.filename for file in files]}
 
@@ -54,7 +54,7 @@ def test_max_part_size_exceeds_custom_limit():
         "small content\r\n"
         f"--{boundary}\r\n"
         f'Content-Disposition: form-data; name="large"\r\n\r\n'
-        + ("x" * 1024 * 10 + "x")  # 1MB + 1 byte of data
+        + ("x" * 1024 + "x")  # 1KB + 1 byte of data
         + "\r\n"
         f"--{boundary}--\r\n"
     ).encode("utf-8")

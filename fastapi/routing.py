@@ -302,7 +302,7 @@ def get_request_handler(
     embed_body_fields: bool = False,
     form_max_fields: int = 1000,
     form_max_files: int = 1000,
-    form_max_part_size: int = 1024 * 1024,
+    max_part_size: int = 1024 * 1024,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
@@ -329,7 +329,7 @@ def get_request_handler(
                     body = await request.form(
                         max_fields=form_max_fields,
                         max_files=form_max_files,
-                        max_part_size=form_max_part_size,
+                        max_part_size=max_part_size,
                     )
                     file_stack.push_async_callback(body.close)
                 else:
@@ -544,7 +544,7 @@ class APIRoute(routing.Route):
         ] = Default(generate_unique_id),
         form_max_fields: int = 1000,
         form_max_files: int = 1000,
-        form_max_part_size: int = 1024 * 1024,
+        max_part_size: int = 1024 * 1024,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -577,7 +577,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.form_max_fields = form_max_fields
         self.form_max_files = form_max_files
-        self.form_max_part_size = form_max_part_size
+        self.max_part_size = max_part_size
         if methods is None:
             methods = ["GET"]
         self.methods: Set[str] = {method.upper() for method in methods}
@@ -676,7 +676,7 @@ class APIRoute(routing.Route):
             embed_body_fields=self._embed_body_fields,
             form_max_fields=self.form_max_fields,
             form_max_files=self.form_max_files,
-            form_max_part_size=self.form_max_part_size,
+            max_part_size=self.max_part_size,
         )
 
     def matches(self, scope: Scope) -> Tuple[Match, Scope]:
@@ -1056,7 +1056,7 @@ class APIRouter(routing.Router):
             generate_unique_id_function=current_generate_unique_id,
             form_max_fields=form_max_fields,
             form_max_files=form_max_files,
-            form_max_part_size=form_max_part_size,
+            max_part_size=form_max_part_size,
         )
         self.routes.append(route)
 
@@ -2581,14 +2581,11 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = 1000,
-        form_max_part_size: Annotated[
+        max_part_size: Annotated[
             int,
             Doc(
                 """
-                Maximum size (in bytes) for each part in a form submission.
-
-                This limits the size of each part in a form submission to prevent
-                potential denial-of-service attacks.
+                Maximum size (in bytes) for each part in a multipart form submission.
                 """
             ),
         ] = 1024 * 1024,
@@ -2643,7 +2640,7 @@ class APIRouter(routing.Router):
             generate_unique_id_function=generate_unique_id_function,
             form_max_fields=form_max_fields,
             form_max_files=form_max_files,
-            form_max_part_size=form_max_part_size,
+            form_max_part_size=max_part_size,
         )
 
     def delete(
