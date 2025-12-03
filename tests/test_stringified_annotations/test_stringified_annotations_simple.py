@@ -11,16 +11,17 @@ app = FastAPI()
 client = TestClient(app)
 
 
-class Test:
+class Dep:
     def __call__(self, request: Request):
         return "test"
 
 
-@needs_py310
-def test_call():
-    @app.get("/test/")
-    def call(test: str = Depends(Test())):
-        return {"test": test}
+@app.get("/test/")
+def call(test: str = Depends(Dep())):
+    return {"test": test}
 
+
+@needs_py310
+def test_stringified_annotations():
     response = client.get("/test")
     assert response.status_code == 200

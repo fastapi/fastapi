@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
 from ..utils import needs_py310
-from .login_tool import login_required
+from .wrapper import wrap
 
 app = FastAPI()
 client = TestClient(app)
@@ -21,9 +21,9 @@ class Item(BaseModel):
 
 
 @needs_py310
-def test_future_6465():
+def test_stringified_annotations_import():
     @app.get("/items/")
-    @login_required
+    @wrap
     def get_item(item_id: int) -> Item:
         return Item(name="name", price=42.42)
 
