@@ -283,7 +283,7 @@ def _infer_type_from_ast(
                 return List[Any]
 
         if first_type is not Any:
-            return List[first_type]
+            return List[first_type]  # type: ignore
         return List[Any]
 
     if isinstance(node, ast.BinOp):
@@ -316,7 +316,7 @@ def _infer_type_from_ast(
         else:
             from pydantic import create_model
 
-        return create_model(f"Model_{context_name}", **fields)
+        return create_model(f"Model_{context_name}", **fields)  # type: ignore[call-overload]
 
     if isinstance(node, ast.Name):
         arg_name = node.id
@@ -366,7 +366,7 @@ def infer_response_model_from_ast(
 
     return_stmt = None
 
-    nodes_to_visit = list(func_def.body)
+    nodes_to_visit: List[ast.AST] = list(func_def.body)
     while nodes_to_visit:
         node = nodes_to_visit.pop(0)
 
@@ -436,6 +436,6 @@ def infer_response_model_from_ast(
 
     model_name = f"ResponseModel_{endpoint_function.__name__}"
     try:
-        return create_model(model_name, **fields)
+        return create_model(model_name, **fields)  # type: ignore[call-overload,no-any-return]
     except Exception:
         return None

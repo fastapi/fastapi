@@ -549,9 +549,10 @@ class APIRoute(routing.Route):
                     not lenient_issubclass(response_model, BaseModel)
                     and not dataclasses.is_dataclass(response_model)
                 ):
-                    inferred = infer_response_model_from_ast(endpoint)
-                    if inferred:
-                        response_model = inferred
+                    if return_annotation is not None:
+                        inferred = infer_response_model_from_ast(endpoint)
+                        if inferred:
+                            response_model = inferred
 
         self.response_model = response_model
         self.summary = summary
