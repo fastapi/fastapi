@@ -1,7 +1,6 @@
 import ast
 import inspect
 import re
-
 import warnings
 from dataclasses import is_dataclass
 from typing import (
@@ -277,12 +276,12 @@ def _infer_type_from_ast(
             return List[Any]
 
         first_type = _infer_type_from_ast(node.elts[0], func_def, context_name + "Item")
-        
+
         for elt in node.elts[1:]:
             current_type = _infer_type_from_ast(elt, func_def, context_name + "Item")
             if current_type != first_type:
                 return List[Any]
-        
+
         if first_type is not Any:
             return List[first_type]
         return List[Any]
@@ -291,7 +290,7 @@ def _infer_type_from_ast(
         left_type = _infer_type_from_ast(node.left, func_def, context_name)
         right_type = _infer_type_from_ast(node.right, func_def, context_name)
         if left_type == right_type and left_type in (int, float, str):
-             return left_type
+            return left_type
         if {left_type, right_type} == {int, float}:
             return float
 
@@ -351,60 +350,63 @@ def infer_response_model_from_ast(
         source = inspect.getsource(endpoint_function)
     except (OSError, TypeError):
         return None
-    
+
     source = inspect.cleandoc(source)
     try:
         tree = ast.parse(source)
     except SyntaxError:
         return None
-        
+
     if not tree.body:
         return None
-        
+
     func_def = tree.body[0]
     if not isinstance(func_def, (ast.FunctionDef, ast.AsyncFunctionDef)):
         return None
-        
+
     return_stmt = None
-    
 
     nodes_to_visit = list(func_def.body)
     while nodes_to_visit:
         node = nodes_to_visit.pop(0)
-        
+
         if isinstance(node, ast.Return):
             return_stmt = node
             break
-            
+
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             continue
-            
+
         for child in ast.iter_child_nodes(node):
             nodes_to_visit.append(child)
-            
+
     if not return_stmt:
         return None
 
     returned_value = return_stmt.value
     dict_node = None
-    
+
     if isinstance(returned_value, ast.Dict):
         dict_node = returned_value
     elif isinstance(returned_value, ast.Name):
         variable_name = returned_value.id
         # Find assignment
         for node in func_def.body:
-            if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name) and node.target.id == variable_name:
-                 if isinstance(node.value, ast.Dict):
-                     dict_node = node.value
-                     break
+            if (
+                isinstance(node, ast.AnnAssign)
+                and isinstance(node.target, ast.Name)
+                and node.target.id == variable_name
+            ):
+                if isinstance(node.value, ast.Dict):
+                    dict_node = node.value
+                    break
             elif isinstance(node, ast.Assign):
-                 for target in node.targets:
-                     if isinstance(target, ast.Name) and target.id == variable_name:
-                         if isinstance(node.value, ast.Dict):
-                             dict_node = node.value
-                             break
-    
+                for target in node.targets:
+                    if isinstance(target, ast.Name) and target.id == variable_name:
+                        if isinstance(node.value, ast.Dict):
+                            dict_node = node.value
+                            break
+
     if not dict_node:
         return None
 
@@ -412,16 +414,16 @@ def infer_response_model_from_ast(
     for key, value in zip(dict_node.keys, dict_node.values):
         if not isinstance(key, ast.Constant):
             continue
-            
+
         if not isinstance(key.value, str):
             return None
-            
+
         field_name = key.value
-        
+
         field_type = _infer_type_from_ast(
             value, func_def, f"{endpoint_function.__name__}_{field_name}"
         )
-        
+
         fields[field_name] = (field_type, ...)
 
     if not fields:
