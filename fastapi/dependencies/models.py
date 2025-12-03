@@ -15,7 +15,7 @@ else:  # pragma: no cover
     from asyncio import iscoroutinefunction
 
 
-def _unwrapped_call(call: Optional[Callable[..., Any]]) -> Optional[Callable[..., Any]]:
+def _unwrapped_call(call: Optional[Callable[..., Any]]) -> Any:
     if call is None:
         return call  # pragma: no cover
     unwrapped = inspect.unwrap(_impartial(call))
