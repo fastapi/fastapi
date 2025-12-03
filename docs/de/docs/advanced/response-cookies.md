@@ -1,14 +1,12 @@
-# Response-Cookies
+# Response-Cookies { #response-cookies }
 
-## Einen `Response`-Parameter verwenden
+## Einen `Response`-Parameter verwenden { #use-a-response-parameter }
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren.
 
-Und dann können Sie Cookies in diesem *vorübergehenden* Response-Objekt setzen.
+Und dann können Sie Cookies in diesem *vorübergehenden* <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Objekt setzen.
 
-```Python hl_lines="1  8-9"
-{!../../../docs_src/response_cookies/tutorial002.py!}
-```
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 Anschließend können Sie wie gewohnt jedes gewünschte Objekt zurückgeben (ein `dict`, ein Datenbankmodell, usw.).
 
@@ -18,7 +16,7 @@ Und wenn Sie ein `response_model` deklariert haben, wird es weiterhin zum Filter
 
 Sie können den `Response`-Parameter auch in Abhängigkeiten deklarieren und darin Cookies (und Header) setzen.
 
-## Eine `Response` direkt zurückgeben
+## Eine `Response` direkt zurückgeben { #return-a-response-directly }
 
 Sie können Cookies auch erstellen, wenn Sie eine `Response` direkt in Ihrem Code zurückgeben.
 
@@ -26,11 +24,9 @@ Dazu können Sie eine Response erstellen, wie unter [Eine Response direkt zurüc
 
 Setzen Sie dann Cookies darin und geben Sie sie dann zurück:
 
-```Python hl_lines="10-12"
-{!../../../docs_src/response_cookies/tutorial001.py!}
-```
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Beachten Sie, dass, wenn Sie eine Response direkt zurückgeben, anstatt den `Response`-Parameter zu verwenden, FastAPI diese direkt zurückgibt.
 
@@ -40,9 +36,9 @@ Und auch, dass Sie keine Daten senden, die durch ein `response_model` hätten ge
 
 ///
 
-### Mehr Informationen
+### Mehr Informationen { #more-info }
 
-/// note | "Technische Details"
+/// note | Technische Details
 
 Sie können auch `from starlette.responses import Response` oder `from starlette.responses import JSONResponse` verwenden.
 
@@ -52,4 +48,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.
+Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">Dokumentation in Starlette</a> an.

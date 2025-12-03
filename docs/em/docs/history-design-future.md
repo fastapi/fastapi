@@ -58,7 +58,7 @@
 
 ⤴️ 👤 📉 ⚫️, ⚒ ⚫️ 🍕 🛠️ ⏮️ 🎻 🔗, 🐕‍🦺 🎏 🌌 🔬 ⚛ 📄, &amp; 📉 👨‍🎨 🐕‍🦺 (🆎 ✅, ✍) ⚓️ 🔛 💯 📚 👨‍🎨.
 
-⏮️ 🛠️, 👤 📉 <a href="https://www.starlette.io/" class="external-link" target="_blank">**💃**</a>, 🎏 🔑 📄.
+⏮️ 🛠️, 👤 📉 <a href="https://www.starlette.dev/" class="external-link" target="_blank">**💃**</a>, 🎏 🔑 📄.
 
 ## 🛠️
 

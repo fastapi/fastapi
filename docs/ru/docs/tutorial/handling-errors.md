@@ -1,4 +1,4 @@
-# Обработка ошибок
+# Обработка ошибок { #handling-errors }
 
 Существует множество ситуаций, когда необходимо сообщить об ошибке клиенту, использующему ваш API.
 
@@ -19,17 +19,15 @@
 
 Помните ли ошибки **"404 Not Found "** (и шутки) ?
 
-## Использование `HTTPException`
+## Использование `HTTPException` { #use-httpexception }
 
 Для возврата клиенту HTTP-ответов с ошибками используется `HTTPException`.
 
-### Импортируйте `HTTPException`
+### Импортируйте `HTTPException` { #import-httpexception }
 
-```Python hl_lines="1"
-{!../../../docs_src/handling_errors/tutorial001.py!}
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
-### Вызовите `HTTPException` в своем коде
+### Вызовите `HTTPException` в своем коде { #raise-an-httpexception-in-your-code }
 
 `HTTPException` - это обычное исключение Python с дополнительными данными, актуальными для API.
 
@@ -41,11 +39,9 @@
 
 В данном примере, когда клиент запрашивает элемент по несуществующему ID, возникает исключение со статус-кодом `404`:
 
-```Python hl_lines="11"
-{!../../../docs_src/handling_errors/tutorial001.py!}
-```
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
-### Возвращаемый ответ
+### Возвращаемый ответ { #the-resulting-response }
 
 Если клиент запросит `http://example.com/items/foo` (`item_id` `"foo"`), то он получит статус-код 200 и ответ в формате JSON:
 
@@ -63,7 +59,7 @@
 }
 ```
 
-/// tip | "Подсказка"
+/// tip | Подсказка
 
 При вызове `HTTPException` в качестве параметра `detail` можно передавать любое значение, которое может быть преобразовано в JSON, а не только `str`.
 
@@ -73,7 +69,7 @@
 
 ///
 
-## Добавление пользовательских заголовков
+## Добавление пользовательских заголовков { #add-custom-headers }
 
 В некоторых ситуациях полезно иметь возможность добавлять пользовательские заголовки к ошибке HTTP. Например, для некоторых типов безопасности.
 
@@ -81,13 +77,11 @@
 
 Но в случае, если это необходимо для продвинутого сценария, можно добавить пользовательские заголовки:
 
-```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial002.py!}
-```
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
-## Установка пользовательских обработчиков исключений
+## Установка пользовательских обработчиков исключений { #install-custom-exception-handlers }
 
-Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">то же самое исключение - утилиты от Starlette</a>.
+Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">то же самое исключение - утилиты от Starlette</a>.
 
 Допустим, у вас есть пользовательское исключение `UnicornException`, которое вы (или используемая вами библиотека) можете `вызвать`.
 
@@ -95,9 +89,7 @@
 
 Можно добавить собственный обработчик исключений с помощью `@app.exception_handler()`:
 
-```Python hl_lines="5-7  13-18  24"
-{!../../../docs_src/handling_errors/tutorial003.py!}
-```
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 Здесь, если запросить `/unicorns/yolo`, то *операция пути* вызовет `UnicornException`.
 
@@ -109,7 +101,7 @@
 {"message": "Oops! yolo did something. There goes a rainbow..."}
 ```
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Также можно использовать `from starlette.requests import Request` и `from starlette.responses import JSONResponse`.
 
@@ -117,7 +109,7 @@
 
 ///
 
-## Переопределение стандартных обработчиков исключений
+## Переопределение стандартных обработчиков исключений { #override-the-default-exception-handlers }
 
 **FastAPI** имеет некоторые обработчики исключений по умолчанию.
 
@@ -125,7 +117,7 @@
 
 Вы можете переопределить эти обработчики исключений на свои собственные.
 
-### Переопределение исключений проверки запроса
+### Переопределение исключений проверки запроса { #override-request-validation-exceptions }
 
 Когда запрос содержит недопустимые данные, **FastAPI** внутренне вызывает ошибку `RequestValidationError`.
 
@@ -135,9 +127,7 @@
 
 Обработчик исключения получит объект `Request` и исключение.
 
-```Python hl_lines="2  14-16"
-{!../../../docs_src/handling_errors/tutorial004.py!}
-```
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
 
 Теперь, если перейти к `/items/foo`, то вместо стандартной JSON-ошибки с:
 
@@ -164,9 +154,9 @@ path -> item_id
   value is not a valid integer (type=type_error.integer)
 ```
 
-#### `RequestValidationError` или `ValidationError`
+#### `RequestValidationError` или `ValidationError` { #requestvalidationerror-vs-validationerror }
 
-/// warning | "Внимание"
+/// warning | Внимание
 
 Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
 
@@ -182,17 +172,15 @@ path -> item_id
 
 И пока вы не устраните ошибку, ваши клиенты/пользователи не должны иметь доступа к внутренней информации о ней, так как это может привести к уязвимости в системе безопасности.
 
-### Переопределите обработчик ошибок `HTTPException`
+### Переопределите обработчик ошибок `HTTPException` { #override-the-httpexception-error-handler }
 
 Аналогичным образом можно переопределить обработчик `HTTPException`.
 
 Например, для этих ошибок можно вернуть обычный текстовый ответ вместо JSON:
 
-```Python hl_lines="3-4  9-11  22"
-{!../../../docs_src/handling_errors/tutorial004.py!}
-```
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
 
-/// note | "Технические детали"
+/// note | Технические детали
 
 Можно также использовать `from starlette.responses import PlainTextResponse`.
 
@@ -200,15 +188,13 @@ path -> item_id
 
 ///
 
-### Используйте тело `RequestValidationError`
+### Используйте тело `RequestValidationError` { #use-the-requestvalidationerror-body }
 
 Ошибка `RequestValidationError` содержит полученное `тело` с недопустимыми данными.
 
 Вы можете использовать его при разработке приложения для регистрации тела и его отладки, возврата пользователю и т.д.
 
-```Python hl_lines="14"
-{!../../../docs_src/handling_errors/tutorial005.py!}
-```
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 Теперь попробуйте отправить недействительный элемент, например:
 
@@ -240,21 +226,19 @@ path -> item_id
 }
 ```
 
-#### `HTTPException` в FastAPI или в Starlette
+#### `HTTPException` в FastAPI или в Starlette { #fastapis-httpexception-vs-starlettes-httpexception }
 
 **FastAPI** имеет собственный `HTTPException`.
 
 Класс ошибок **FastAPI** `HTTPException` наследует от класса ошибок Starlette `HTTPException`.
 
-Единственное отличие заключается в том, что `HTTPException` от **FastAPI** позволяет добавлять заголовки, которые будут включены в ответ.
-
-Он необходим/используется внутри системы для OAuth 2.0 и некоторых утилит безопасности.
+Единственное отличие состоит в том, что `HTTPException` в **FastAPI** принимает любые данные, пригодные для преобразования в JSON, в поле `detail`, тогда как `HTTPException` в Starlette принимает для него только строки.
 
 Таким образом, вы можете продолжать вызывать `HTTPException` от **FastAPI** как обычно в своем коде.
 
 Но когда вы регистрируете обработчик исключений, вы должны зарегистрировать его для `HTTPException` от Starlette.
 
-Таким образом, если какая-либо часть внутреннего кода Starlette, расширение или плагин Starlette вызовет исключение Starlette `HTTPException`, ваш обработчик сможет перехватить и обработать его.
+Таким образом, если какая-либо часть внутреннего кодa Starlette, расширение или плагин Starlette вызовет исключение Starlette `HTTPException`, ваш обработчик сможет перехватить и обработать его.
 
 В данном примере, чтобы иметь возможность использовать оба `HTTPException` в одном коде, исключения Starlette переименованы в `StarletteHTTPException`:
 
@@ -262,12 +246,10 @@ path -> item_id
 from starlette.exceptions import HTTPException as StarletteHTTPException
 ```
 
-### Переиспользование обработчиков исключений **FastAPI**
+### Переиспользование обработчиков исключений **FastAPI** { #reuse-fastapis-exception-handlers }
 
 Если вы хотите использовать исключение вместе с теми же обработчиками исключений по умолчанию из **FastAPI**, вы можете импортировать и повторно использовать обработчики исключений по умолчанию из `fastapi.exception_handlers`:
 
-```Python hl_lines="2-5  15  21"
-{!../../../docs_src/handling_errors/tutorial006.py!}
-```
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 В этом примере вы просто `выводите в терминал` ошибку с очень выразительным сообщением, но идея вам понятна. Вы можете использовать исключение, а затем просто повторно использовать стандартные обработчики исключений.

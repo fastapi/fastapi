@@ -1,4 +1,4 @@
-# Security - First Steps
+# Security - First Steps { #security-first-steps }
 
 Let's imagine that you have your **backend** API in some domain.
 
@@ -12,45 +12,17 @@ But let's save you the time of reading the full long specification just to find 
 
 Let's use the tools provided by **FastAPI** to handle security.
 
-## How it looks
+## How it looks { #how-it-looks }
 
 Let's first just use the code and see how it works, and then we'll come back to understand what's happening.
 
-## Create `main.py`
+## Create `main.py` { #create-main-py }
 
 Copy the example in a file `main.py`:
 
-//// tab | Python 3.9+
+{* ../../docs_src/security/tutorial001_an_py39.py *}
 
-```Python
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python
-{!> ../../../docs_src/security/tutorial001.py!}
-```
-
-////
-
-## Run it
+## Run it { #run-it }
 
 /// info
 
@@ -80,7 +52,7 @@ $ fastapi dev main.py
 
 </div>
 
-## Check it
+## Check it { #check-it }
 
 Go to the interactive docs at: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -88,7 +60,7 @@ You will see something like this:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | "Authorize button!"
+/// check | Authorize button!
 
 You already have a shiny new "Authorize" button.
 
@@ -114,7 +86,7 @@ It can be used by third party applications and systems.
 
 And it can also be used by yourself, to debug, check and test the same application.
 
-## The `password` flow
+## The `password` flow { #the-password-flow }
 
 Now let's go back a bit and understand what is all that.
 
@@ -140,7 +112,7 @@ So, let's review it from that simplified point of view:
     * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.
     * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.
 
-## **FastAPI**'s `OAuth2PasswordBearer`
+## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
 **FastAPI** provides several tools, at different levels of abstraction, to implement these security features.
 
@@ -152,7 +124,7 @@ A "bearer" token is not the only option.
 
 But it's the best one for our use case.
 
-And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that suits better your needs.
+And it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that better suits your needs.
 
 In that case, **FastAPI** also provides you with the tools to build it.
 
@@ -160,35 +132,7 @@ In that case, **FastAPI** also provides you with the tools to build it.
 
 When we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="8"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="7"
-{!> ../../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="6"
-{!> ../../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
 
 /// tip
 
@@ -222,45 +166,17 @@ oauth2_scheme(some, parameters)
 
 So, it can be used with `Depends`.
 
-### Use it
+### Use it { #use-it }
 
 Now you can pass that `oauth2_scheme` in a dependency with `Depends`.
 
-//// tab | Python 3.9+
-
-```Python hl_lines="12"
-{!> ../../../docs_src/security/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python  hl_lines="11"
-{!> ../../../docs_src/security/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="10"
-{!> ../../../docs_src/security/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
 
 This dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.
 
 **FastAPI** will know that it can use this dependency to define a "security scheme" in the OpenAPI schema (and the automatic API docs).
 
-/// info | "Technical Details"
+/// info | Technical Details
 
 **FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.
 
@@ -268,7 +184,7 @@ All the security utilities that integrate with OpenAPI (and the automatic API do
 
 ///
 
-## What it does
+## What it does { #what-it-does }
 
 It will go and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.
 
@@ -282,6 +198,6 @@ You can try it already in the interactive docs:
 
 We are not verifying the validity of the token yet, but that's a start already.
 
-## Recap
+## Recap { #recap }
 
 So, in just 3 or 4 extra lines, you already have some primitive form of security.

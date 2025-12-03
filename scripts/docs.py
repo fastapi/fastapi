@@ -4,9 +4,8 @@ import os
 import re
 import shutil
 import subprocess
-from functools import lru_cache
+from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
@@ -15,6 +14,8 @@ import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
+from ruff.__main__ import find_ruff_bin
+from slugify import slugify as py_slugify
 
 logging.basicConfig(level=logging.INFO)
 
@@ -23,18 +24,19 @@ app = typer.Typer()
 mkdocs_name = "mkdocs.yml"
 
 missing_translation_snippet = """
-{!../../../docs/missing-translation.md!}
+{!../../docs/missing-translation.md!}
 """
 
-non_translated_sections = [
-    "reference/",
+non_translated_sections = (
+    f"reference{os.sep}",
     "release-notes.md",
     "fastapi-people.md",
     "external-links.md",
     "newsletter.md",
     "management-tasks.md",
     "management.md",
-]
+    "contributing.md",
+)
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
@@ -42,11 +44,39 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
+header_pattern = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
+header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
+code_block3_pattern = re.compile(r"^\s*```")
+code_block4_pattern = re.compile(r"^\s*````")
 
-@lru_cache
-def is_mkdocs_insiders() -> bool:
-    version = metadata.version("mkdocs-material")
-    return "insiders" in version
+
+class VisibleTextExtractor(HTMLParser):
+    """Extract visible text from a string with HTML tags."""
+
+    def __init__(self):
+        super().__init__()
+        self.text_parts = []
+
+    def handle_data(self, data):
+        self.text_parts.append(data)
+
+    def extract_visible_text(self, html: str) -> str:
+        self.reset()
+        self.text_parts = []
+        self.feed(html)
+        return "".join(self.text_parts).strip()
+
+
+def slugify(text: str) -> str:
+    return py_slugify(
+        text,
+        replacements=[
+            ("`", ""),  # `dict`s -> dicts
+            ("'s", "s"),  # it's -> its
+            ("'t", "t"),  # don't -> dont
+            ("**", ""),  # **FastAPI**s -> FastAPIs
+        ],
+    )
 
 
 def get_en_config() -> Dict[str, Any]:
@@ -73,9 +103,7 @@ def complete_existing_lang(incomplete: str):
 
 @app.callback()
 def callback() -> None:
-    if is_mkdocs_insiders():
-        os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
-    # For MacOS with insiders and Cairo
+    # For MacOS with Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
 
@@ -111,10 +139,6 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    insiders_env_file = os.environ.get("INSIDERS_FILE")
-    print(f"Insiders file {insiders_env_file}")
-    if is_mkdocs_insiders():
-        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
@@ -141,20 +165,38 @@ def build_lang(
 
 
 index_sponsors_template = """
-{% if sponsors %}
+### Keystone Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+### Gold and Silver Sponsors
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
-{% endif %}
+
 """
+
+
+def remove_header_permalinks(content: str):
+    lines: list[str] = []
+    for line in content.split("\n"):
+        match = header_with_permalink_pattern.match(line)
+        if match:
+            hashes, title, *_ = match.groups()
+            line = f"{hashes} {title}"
+        lines.append(line)
+    return "\n".join(lines)
 
 
 def generate_readme_content() -> str:
     en_index = en_docs_path / "docs" / "index.md"
     content = en_index.read_text("utf-8")
+    content = remove_header_permalinks(content)  # remove permalinks from headers
     match_pre = re.search(r"</style>\n\n", content)
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
@@ -380,6 +422,120 @@ def langs_json():
         if lang_path.is_dir():
             langs.append(lang_path.name)
     print(json.dumps(langs))
+
+
+@app.command()
+def generate_docs_src_versions_for_file(file_path: Path) -> None:
+    target_versions = ["py39", "py310"]
+    base_content = file_path.read_text(encoding="utf-8")
+    previous_content = {base_content}
+    for target_version in target_versions:
+        version_result = subprocess.run(
+            [
+                find_ruff_bin(),
+                "check",
+                "--target-version",
+                target_version,
+                "--fix",
+                "--unsafe-fixes",
+                "-",
+            ],
+            input=base_content.encode("utf-8"),
+            capture_output=True,
+        )
+        content_target = version_result.stdout.decode("utf-8")
+        format_result = subprocess.run(
+            [find_ruff_bin(), "format", "-"],
+            input=content_target.encode("utf-8"),
+            capture_output=True,
+        )
+        content_format = format_result.stdout.decode("utf-8")
+        if content_format in previous_content:
+            continue
+        previous_content.add(content_format)
+        version_file = file_path.with_name(
+            file_path.name.replace(".py", f"_{target_version}.py")
+        )
+        logging.info(f"Writing to {version_file}")
+        version_file.write_text(content_format, encoding="utf-8")
+
+
+@app.command()
+def add_permalinks_page(path: Path, update_existing: bool = False):
+    """
+    Add or update header permalinks in specific page of En docs.
+    """
+
+    if not path.is_relative_to(en_docs_path / "docs"):
+        raise RuntimeError(f"Path must be inside {en_docs_path}")
+    rel_path = path.relative_to(en_docs_path / "docs")
+
+    # Skip excluded sections
+    if str(rel_path).startswith(non_translated_sections):
+        return
+
+    visible_text_extractor = VisibleTextExtractor()
+    updated_lines = []
+    in_code_block3 = False
+    in_code_block4 = False
+    permalinks = set()
+
+    with path.open("r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        # Handle codeblocks start and end
+        if not (in_code_block3 or in_code_block4):
+            if code_block4_pattern.match(line):
+                in_code_block4 = True
+            elif code_block3_pattern.match(line):
+                in_code_block3 = True
+        else:
+            if in_code_block4 and code_block4_pattern.match(line):
+                in_code_block4 = False
+            elif in_code_block3 and code_block3_pattern.match(line):
+                in_code_block3 = False
+
+        # Process Headers only outside codeblocks
+        if not (in_code_block3 or in_code_block4):
+            match = header_pattern.match(line)
+            if match:
+                hashes, title, _permalink = match.groups()
+                if (not _permalink) or update_existing:
+                    slug = slugify(visible_text_extractor.extract_visible_text(title))
+                    if slug in permalinks:
+                        # If the slug is already used, append a number to make it unique
+                        count = 1
+                        original_slug = slug
+                        while slug in permalinks:
+                            slug = f"{original_slug}_{count}"
+                            count += 1
+                    permalinks.add(slug)
+
+                    line = f"{hashes} {title} {{ #{slug} }}\n"
+
+        updated_lines.append(line)
+
+    with path.open("w", encoding="utf-8") as f:
+        f.writelines(updated_lines)
+
+
+@app.command()
+def add_permalinks_pages(pages: List[Path], update_existing: bool = False) -> None:
+    """
+    Add or update header permalinks in specific pages of En docs.
+    """
+    for md_file in pages:
+        add_permalinks_page(md_file, update_existing=update_existing)
+
+
+@app.command()
+def add_permalinks(update_existing: bool = False) -> None:
+    """
+    Add or update header permalinks in all pages of En docs.
+    """
+    for md_file in en_docs_path.rglob("*.md"):
+        add_permalinks_page(md_file, update_existing=update_existing)
 
 
 if __name__ == "__main__":

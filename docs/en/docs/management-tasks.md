@@ -171,7 +171,7 @@ Esto es un consejo.
 Those don't have to be translated, but if they are, they need to be written as:
 
 ```
-/// tip | "consejo"
+/// tip | consejo
 
 Esto es un consejo.
 
@@ -181,7 +181,7 @@ Esto es un consejo.
 
 Which looks like:
 
-/// tip | "consejo"
+/// tip | consejo
 
 Esto es un consejo.
 

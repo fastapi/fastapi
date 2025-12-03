@@ -1,58 +1,116 @@
-from typing import Any, Callable, List, Optional, Sequence
+import inspect
+import sys
+from dataclasses import dataclass, field
+from functools import cached_property, partial
+from typing import Any, Callable, List, Optional, Sequence, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
+from fastapi.types import DependencyCacheKey
+from typing_extensions import Literal
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
 
 
+@dataclass
 class SecurityRequirement:
-    def __init__(
-        self, security_scheme: SecurityBase, scopes: Optional[Sequence[str]] = None
-    ):
-        self.security_scheme = security_scheme
-        self.scopes = scopes
+    security_scheme: SecurityBase
+    scopes: Optional[Sequence[str]] = None
 
 
+@dataclass
 class Dependant:
-    def __init__(
-        self,
-        *,
-        path_params: Optional[List[ModelField]] = None,
-        query_params: Optional[List[ModelField]] = None,
-        header_params: Optional[List[ModelField]] = None,
-        cookie_params: Optional[List[ModelField]] = None,
-        body_params: Optional[List[ModelField]] = None,
-        dependencies: Optional[List["Dependant"]] = None,
-        security_schemes: Optional[List[SecurityRequirement]] = None,
-        name: Optional[str] = None,
-        call: Optional[Callable[..., Any]] = None,
-        request_param_name: Optional[str] = None,
-        websocket_param_name: Optional[str] = None,
-        http_connection_param_name: Optional[str] = None,
-        response_param_name: Optional[str] = None,
-        background_tasks_param_name: Optional[str] = None,
-        security_scopes_param_name: Optional[str] = None,
-        security_scopes: Optional[List[str]] = None,
-        use_cache: bool = True,
-        path: Optional[str] = None,
-    ) -> None:
-        self.path_params = path_params or []
-        self.query_params = query_params or []
-        self.header_params = header_params or []
-        self.cookie_params = cookie_params or []
-        self.body_params = body_params or []
-        self.dependencies = dependencies or []
-        self.security_requirements = security_schemes or []
-        self.request_param_name = request_param_name
-        self.websocket_param_name = websocket_param_name
-        self.http_connection_param_name = http_connection_param_name
-        self.response_param_name = response_param_name
-        self.background_tasks_param_name = background_tasks_param_name
-        self.security_scopes = security_scopes
-        self.security_scopes_param_name = security_scopes_param_name
-        self.name = name
-        self.call = call
-        self.use_cache = use_cache
-        # Store the path to be able to re-generate a dependable from it in overrides
-        self.path = path
-        # Save the cache key at creation to optimize performance
-        self.cache_key = (self.call, tuple(sorted(set(self.security_scopes or []))))
+    path_params: List[ModelField] = field(default_factory=list)
+    query_params: List[ModelField] = field(default_factory=list)
+    header_params: List[ModelField] = field(default_factory=list)
+    cookie_params: List[ModelField] = field(default_factory=list)
+    body_params: List[ModelField] = field(default_factory=list)
+    dependencies: List["Dependant"] = field(default_factory=list)
+    security_requirements: List[SecurityRequirement] = field(default_factory=list)
+    name: Optional[str] = None
+    call: Optional[Callable[..., Any]] = None
+    request_param_name: Optional[str] = None
+    websocket_param_name: Optional[str] = None
+    http_connection_param_name: Optional[str] = None
+    response_param_name: Optional[str] = None
+    background_tasks_param_name: Optional[str] = None
+    security_scopes_param_name: Optional[str] = None
+    own_oauth_scopes: Optional[List[str]] = None
+    parent_oauth_scopes: Optional[List[str]] = None
+    use_cache: bool = True
+    path: Optional[str] = None
+    scope: Union[Literal["function", "request"], None] = None
+
+    @cached_property
+    def oauth_scopes(self) -> List[str]:
+        scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
+        # This doesn't use a set to preserve order, just in case
+        for scope in self.own_oauth_scopes or []:
+            if scope not in scopes:
+                scopes.append(scope)
+        return scopes
+
+    @cached_property
+    def cache_key(self) -> DependencyCacheKey:
+        scopes_for_cache = (
+            tuple(sorted(set(self.oauth_scopes or []))) if self._uses_scopes else ()
+        )
+        return (
+            self.call,
+            scopes_for_cache,
+            self.computed_scope or "",
+        )
+
+    @cached_property
+    def _uses_scopes(self) -> bool:
+        if self.own_oauth_scopes:
+            return True
+        if self.security_scopes_param_name is not None:
+            return True
+        for sub_dep in self.dependencies:
+            if sub_dep._uses_scopes:
+                return True
+        return False
+
+    @cached_property
+    def _unwrapped_call(self) -> Any:
+        if self.call is None:
+            return self.call  # pragma: no cover
+        unwrapped = inspect.unwrap(self.call)
+        if isinstance(unwrapped, partial):
+            unwrapped = unwrapped.func
+        return unwrapped
+
+    @cached_property
+    def is_gen_callable(self) -> bool:
+        if inspect.isgeneratorfunction(self._unwrapped_call):
+            return True
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
+        return inspect.isgeneratorfunction(dunder_call)
+
+    @cached_property
+    def is_async_gen_callable(self) -> bool:
+        if inspect.isasyncgenfunction(self._unwrapped_call):
+            return True
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
+        return inspect.isasyncgenfunction(dunder_call)
+
+    @cached_property
+    def is_coroutine_callable(self) -> bool:
+        if inspect.isroutine(self._unwrapped_call):
+            return iscoroutinefunction(self._unwrapped_call)
+        if inspect.isclass(self._unwrapped_call):
+            return False
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
+        return iscoroutinefunction(dunder_call)
+
+    @cached_property
+    def computed_scope(self) -> Union[str, None]:
+        if self.scope:
+            return self.scope
+        if self.is_gen_callable or self.is_async_gen_callable:
+            return "request"
+        return None

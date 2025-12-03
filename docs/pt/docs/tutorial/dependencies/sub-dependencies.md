@@ -1,4 +1,4 @@
-# Subdependências
+# Subdependências { #sub-dependencies }
 
 Você pode criar dependências que possuem **subdependências**.
 
@@ -6,186 +6,36 @@ Elas podem ter o nível de **profundidade** que você achar necessário.
 
 O **FastAPI** se encarrega de resolver essas dependências.
 
-## Primeira dependência "injetável"
+## Primeira dependência "dependable" { #first-dependency-dependable }
 
-Você pode criar uma primeira dependência (injetável) dessa forma:
+Você pode criar uma primeira dependência ("dependable") dessa forma:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-10"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
 
 Esse código declara um parâmetro de consulta opcional, `q`, com o tipo `str`, e então retorna esse parâmetro.
 
 Isso é bastante simples (e não muito útil), mas irá nos ajudar a focar em como as subdependências funcionam.
 
-## Segunda dependência, "injetável" e "dependente"
+## Segunda dependência, "dependable" e "dependente" { #second-dependency-dependable-and-dependant }
 
-Então, você pode criar uma outra função para uma dependência (um "injetável") que ao mesmo tempo declara sua própria dependência (o que faz dela um "dependente" também):
+Então, você pode criar uma outra função para uma dependência (um "dependable") que ao mesmo tempo declara sua própria dependência (o que faz dela um "dependente" também):
 
-//// tab | Python 3.10+
-
-```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="14"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="11"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="13"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
 
 Vamos focar nos parâmetros declarados:
 
-* Mesmo que essa função seja uma dependência ("injetável") por si mesma, ela também declara uma outra dependência (ela "depende" de outra coisa).
+* Mesmo que essa função seja uma dependência ("dependable") por si mesma, ela também declara uma outra dependência (ela "depende" de outra coisa).
     * Ela depende do `query_extractor`, e atribui o valor retornado pela função ao parâmetro `q`.
 * Ela também declara um cookie opcional `last_query`, do tipo `str`.
     * Se o usuário não passou nenhuma consulta `q`, a última consulta é utilizada, que foi salva em um cookie anteriormente.
 
-## Utilizando a dependência
+## Utilizando a dependência { #use-the-dependency }
 
 Então podemos utilizar a dependência com:
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="23"
-{!> ../../../docs_src/dependencies/tutorial005_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="24"
-{!> ../../../docs_src/dependencies/tutorial005_an.py!}
-```
-
-////
-
-//// tab | Python 3.10 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial005_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8 non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="22"
-{!> ../../../docs_src/dependencies/tutorial005.py!}
-```
-
-////
-
-/// info | "Informação"
+/// info | Informação
 
 Perceba que nós estamos declarando apenas uma dependência na *função de operação de rota*, em `query_or_cookie_extractor`.
 
@@ -204,7 +54,7 @@ read_query["/items/"]
 query_extractor --> query_or_cookie_extractor --> read_query
 ```
 
-## Utilizando a mesma dependência múltiplas vezes
+## Utilizando a mesma dependência múltiplas vezes { #using-the-same-dependency-multiple-times }
 
 Se uma de suas dependências é declarada várias vezes para a mesma *operação de rota*, por exemplo, múltiplas dependências com uma mesma subdependência, o **FastAPI** irá chamar essa subdependência uma única vez para cada requisição.
 
@@ -223,7 +73,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 //// tab | Python 3.8+ non-Annotated
 
-/// tip | "Dica"
+/// tip | Dica
 
 Utilize a versão com `Annotated` se possível.
 
@@ -236,7 +86,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 ////
 
-## Recapitulando
+## Recapitulando { #recap }
 
 Com exceção de todas as palavras complicadas usadas aqui, o sistema de **Injeção de Dependência** é bastante simples.
 
@@ -244,7 +94,7 @@ Consiste apenas de funções que parecem idênticas a *funções de operação d
 
 Mas ainda assim, é bastante poderoso, e permite que você declare grafos (árvores) de dependências com uma profundidade arbitrária.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Tudo isso pode não parecer muito útil com esses exemplos.
 

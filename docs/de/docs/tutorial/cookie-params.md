@@ -1,135 +1,45 @@
-# Cookie-Parameter
+# Cookie-Parameter { #cookie-parameters }
 
-So wie `Query`- und `Path`-Parameter können Sie auch <abbr title='Cookie – „Keks“: Mechanismus, der kurze Daten in Textform im Browser des Benutzers speichert und abfragt'>Cookie</abbr>-Parameter definieren.
+Sie können Cookie-Parameter auf die gleiche Weise definieren wie `Query`- und `Path`-Parameter.
 
-## `Cookie` importieren
+## `Cookie` importieren { #import-cookie }
 
 Importieren Sie zuerst `Cookie`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
 
-```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
+## `Cookie`-Parameter deklarieren { #declare-cookie-parameters }
 
-////
+Deklarieren Sie dann die Cookie-Parameter mit derselben Struktur wie bei `Path` und `Query`.
 
-//// tab | Python 3.9+
+Sie können den Defaultwert sowie alle zusätzlichen Validierungen oder Annotierungsparameter definieren:
 
-```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
+{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
 
-////
+/// note | Technische Details
 
-//// tab | Python 3.8+
+`Cookie` ist eine „Schwester“-Klasse von `Path` und `Query`. Sie erbt auch von derselben gemeinsamen `Param`-Klasse.
 
-```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
+Aber denken Sie daran, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, die spezielle Klassen zurückgeben.
 
 ///
 
-```Python hl_lines="1"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-```
+/// info | Info
 
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
+Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da die Parameter sonst als Query-Parameter interpretiert würden.
 
 ///
 
-```Python hl_lines="3"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
-```
+/// info | Info
 
-////
+Beachten Sie, dass **Browser Cookies auf besondere Weise und hinter den Kulissen handhaben** und **JavaScript** **nicht** ohne Weiteres erlauben, auf sie zuzugreifen.
 
-## `Cookie`-Parameter deklarieren
+Wenn Sie zur **API-Dokumentations-UI** unter `/docs` gehen, können Sie die **Dokumentation** zu Cookies für Ihre *Pfadoperationen* sehen.
 
-Dann deklarieren Sie Ihre Cookie-Parameter, auf die gleiche Weise, wie Sie auch `Path`- und `Query`-Parameter deklarieren.
-
-Der erste Wert ist der Typ. Sie können `Cookie` die gehabten Extra Validierungs- und Beschreibungsparameter hinzufügen. Danach können Sie einen Defaultwert vergeben:
-
-//// tab | Python 3.10+
-
-```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10"
-{!> ../../../docs_src/cookie_params/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
+Aber selbst wenn Sie die **Daten ausfüllen** und auf „Execute“ klicken, da die Dokumentations-UI mit **JavaScript** arbeitet, werden die Cookies nicht gesendet, und Sie sehen eine **Fehler**-Meldung, als hätten Sie keine Werte eingegeben.
 
 ///
 
-```Python hl_lines="7"
-{!> ../../../docs_src/cookie_params/tutorial001_py310.py!}
-```
+## Zusammenfassung { #recap }
 
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9"
-{!> ../../../docs_src/cookie_params/tutorial001.py!}
-```
-
-////
-
-/// note | "Technische Details"
-
-`Cookie` ist eine Schwesterklasse von `Path` und `Query`. Sie erbt von derselben gemeinsamen `Param`-Elternklasse.
-
-Aber erinnern Sie sich, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `fastapi` importieren, diese tatsächlich Funktionen sind, welche spezielle Klassen zurückgeben.
-
-///
-
-/// info
-
-Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da diese Parameter sonst als Query-Parameter interpretiert werden würden.
-
-///
-
-## Zusammenfassung
-
-Deklarieren Sie Cookies mittels `Cookie`, auf die gleiche Weise wie bei `Query` und `Path`.
+Deklarieren Sie Cookies mit `Cookie` und verwenden Sie dabei das gleiche allgemeine Muster wie bei `Query` und `Path`.

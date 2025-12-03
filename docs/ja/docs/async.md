@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "備考"
+/// note | 備考
 
 `async def` を使用して作成された関数の内部でしか `await` は使用できません。
 
@@ -338,7 +338,7 @@ async def read_burgers():
 
 以前のバージョンのPythonでは、スレッドや<a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>が利用できました。しかし、コードは理解、デバック、そして、考察がはるかに複雑です。
 
-以前のバージョンのNodeJS / ブラウザJavaScriptでは、「コールバック」を使用していました。これは、<a href="http://callbackhell.com/" class="external-link" target="_blank">コールバック地獄</a>につながります。
+以前のバージョンのNodeJS / ブラウザJavaScriptでは、「コールバック」を使用していました。これは、「コールバック地獄」につながります。
 
 ## コルーチン
 
@@ -358,7 +358,7 @@ async def read_burgers():
 
 ## 非常に発展的な技術的詳細
 
-/// warning | "注意"
+/// warning | 注意
 
 恐らくスキップしても良いでしょう。
 

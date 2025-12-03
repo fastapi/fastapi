@@ -21,7 +21,7 @@ async def read_results():
     return results
 ```
 
-/// note | "Not"
+/// note | Not
 
 Sadece `async def` ile tanımlanan fonksiyonlar içinde `await` kullanabilirsiniz.
 
@@ -346,7 +346,7 @@ Ancak bundan önce, asenkron kodu işlemek oldukça karmaşık ve zordu.
 
 Python'un önceki sürümlerinde, threadlerı veya <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a> kullanıyor olabilirdin. Ancak kodu anlamak, hata ayıklamak ve düşünmek çok daha karmaşık olurdu.
 
-NodeJS / Browser JavaScript'in önceki sürümlerinde, "callback" kullanırdınız. Bu da <a href="http://callbackhell.com/" class="external-link" target="_blank">callbacks cehennemine</a> yol açar.
+NodeJS / Browser JavaScript'in önceki sürümlerinde, "callback" kullanırdınız. Bu da "callbacks cehennemine" yol açar.
 
 ## Coroutine'ler
 

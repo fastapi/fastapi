@@ -1,52 +1,24 @@
-# Abhängigkeiten in Pfadoperation-Dekoratoren
+# Abhängigkeiten in Pfadoperation-Dekoratoren { #dependencies-in-path-operation-decorators }
 
 Manchmal benötigen Sie den Rückgabewert einer Abhängigkeit innerhalb Ihrer *Pfadoperation-Funktion* nicht wirklich.
 
 Oder die Abhängigkeit gibt keinen Wert zurück.
 
-Aber Sie müssen Sie trotzdem ausführen/auflösen.
+Aber Sie müssen sie trotzdem ausführen/auflösen.
 
 In diesen Fällen können Sie, anstatt einen Parameter der *Pfadoperation-Funktion* mit `Depends` zu deklarieren, eine `list`e von `dependencies` zum *Pfadoperation-Dekorator* hinzufügen.
 
-## `dependencies` zum *Pfadoperation-Dekorator* hinzufügen
+## `dependencies` zum *Pfadoperation-Dekorator* hinzufügen { #add-dependencies-to-the-path-operation-decorator }
 
 Der *Pfadoperation-Dekorator* erhält ein optionales Argument `dependencies`.
 
 Es sollte eine `list`e von `Depends()` sein:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
 
 Diese Abhängigkeiten werden auf die gleiche Weise wie normale Abhängigkeiten ausgeführt/aufgelöst. Aber ihr Wert (falls sie einen zurückgeben) wird nicht an Ihre *Pfadoperation-Funktion* übergeben.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Einige Editoren prüfen, ob Funktionsparameter nicht verwendet werden, und zeigen das als Fehler an.
 
@@ -56,7 +28,7 @@ Damit wird auch vermieden, neue Entwickler möglicherweise zu verwirren, die ein
 
 ///
 
-/// info
+/// info | Info
 
 In diesem Beispiel verwenden wir zwei erfundene benutzerdefinierte Header `X-Key` und `X-Token`.
 
@@ -64,118 +36,34 @@ Aber in realen Fällen würden Sie bei der Implementierung von Sicherheit mehr V
 
 ///
 
-## Abhängigkeitsfehler und -Rückgabewerte
+## Abhängigkeitsfehler und -Rückgabewerte { #dependencies-errors-and-return-values }
 
 Sie können dieselben Abhängigkeits-*Funktionen* verwenden, die Sie normalerweise verwenden.
 
-### Abhängigkeitsanforderungen
+### Abhängigkeitsanforderungen { #dependency-requirements }
 
-Sie können Anforderungen für einen Request (wie Header) oder andere Unterabhängigkeiten deklarieren:
+Sie können Anforderungen für einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> (wie Header) oder andere Unterabhängigkeiten deklarieren:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 
-```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7  12"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="6  11"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-### Exceptions auslösen
+### Exceptions auslösen { #raise-exceptions }
 
 Die Abhängigkeiten können Exceptions `raise`n, genau wie normale Abhängigkeiten:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
 
-```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-### Rückgabewerte
+### Rückgabewerte { #return-values }
 
 Und sie können Werte zurückgeben oder nicht, die Werte werden nicht verwendet.
 
 Sie können also eine normale Abhängigkeit (die einen Wert zurückgibt), die Sie bereits an anderer Stelle verwenden, wiederverwenden, und auch wenn der Wert nicht verwendet wird, wird die Abhängigkeit ausgeführt:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
 
-```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-## Abhängigkeiten für eine Gruppe von *Pfadoperationen*
+## Abhängigkeiten für eine Gruppe von *Pfadoperationen* { #dependencies-for-a-group-of-path-operations }
 
 Wenn Sie später lesen, wie Sie größere Anwendungen strukturieren ([Größere Anwendungen – Mehrere Dateien](../../tutorial/bigger-applications.md){.internal-link target=_blank}), möglicherweise mit mehreren Dateien, lernen Sie, wie Sie einen einzelnen `dependencies`-Parameter für eine Gruppe von *Pfadoperationen* deklarieren.
 
-## Globale Abhängigkeiten
+## Globale Abhängigkeiten { #global-dependencies }
 
 Als Nächstes werden wir sehen, wie man Abhängigkeiten zur gesamten `FastAPI`-Anwendung hinzufügt, sodass sie für jede *Pfadoperation* gelten.

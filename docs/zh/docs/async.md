@@ -251,7 +251,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 这与 **FastAPI** 的性能水平相同。
 
-您可以同时拥有并行性和异步性，您可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下， Go 是一种更接近于 C 的编译语言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">全部归功于 Starlette</a>）。
+你可以同时拥有并行性和异步性，你可以获得比大多数经过测试的 NodeJS 框架更高的性能，并且与 Go 不相上下， Go 是一种更接近于 C 的编译语言（<a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">全部归功于 Starlette</a>）。
 
 ### 并发比并行好吗？
 
@@ -275,7 +275,7 @@ Python 的现代版本支持通过一种叫**"协程"**——使用 `async` 和 
 
 但在这种情况下，如果你能带上 8 名前收银员/厨师，现在是清洁工一起清扫，他们中的每一个人（加上你）都能占据房子的一个区域来清扫，你就可以在额外的帮助下并行的更快地完成所有工作。
 
-在这个场景中，每个清洁工（包括您）都将是一个处理器，完成这个工作的一部分。
+在这个场景中，每个清洁工（包括你）都将是一个处理器，完成这个工作的一部分。
 
 由于大多数执行时间是由实际工作（而不是等待）占用的，并且计算机中的工作是由 <abbr title="Central Processing Unit">CPU</abbr> 完成的，所以他们称这些问题为"CPU 密集型"。
 
@@ -292,9 +292,9 @@ CPU 密集型操作的常见示例是需要复杂的数学处理。
 
 ### 并发 + 并行: Web + 机器学习
 
-使用 **FastAPI**，您可以利用 Web 开发中常见的并发机制的优势（NodeJS 的主要吸引力）。
+使用 **FastAPI**，你可以利用 Web 开发中常见的并发机制的优势（NodeJS 的主要吸引力）。
 
-并且，您也可以利用并行和多进程（让多个进程并行运行）的优点来处理与机器学习系统中类似的 **CPU 密集型** 工作。
+并且，你也可以利用并行和多进程（让多个进程并行运行）的优点来处理与机器学习系统中类似的 **CPU 密集型** 工作。
 
 这一点，再加上 Python 是**数据科学**、机器学习（尤其是深度学习）的主要语言这一简单事实，使得 **FastAPI** 与数据科学/机器学习 Web API 和应用程序（以及其他许多应用程序）非常匹配。
 
@@ -304,7 +304,7 @@ CPU 密集型操作的常见示例是需要复杂的数学处理。
 
 现代版本的 Python 有一种非常直观的方式来定义异步代码。这使它看起来就像正常的"顺序"代码，并在适当的时候"等待"。
 
-当有一个操作需要等待才能给出结果，且支持这个新的 Python 特性时，您可以编写如下代码：
+当有一个操作需要等待才能给出结果，且支持这个新的 Python 特性时，你可以编写如下代码：
 
 ```Python
 burgers = await get_burgers(2)
@@ -340,7 +340,7 @@ burgers = get_burgers(2)
 
 ---
 
-因此，如果您使用的库告诉您可以使用 `await` 调用它，则需要使用 `async def` 创建路径操作函数 ，如：
+因此，如果你使用的库告诉你可以使用 `await` 调用它，则需要使用 `async def` 创建路径操作函数 ，如：
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -351,15 +351,15 @@ async def read_burgers():
 
 ### 更多技术细节
 
-您可能已经注意到，`await` 只能在 `async def` 定义的函数内部使用。
+你可能已经注意到，`await` 只能在 `async def` 定义的函数内部使用。
 
 但与此同时，必须"等待"通过 `async def` 定义的函数。因此，带 `async def` 的函数也只能在 `async def` 定义的函数内部调用。
 
 那么，这关于先有鸡还是先有蛋的问题，如何调用第一个 `async` 函数？
 
-如果您使用 **FastAPI**，你不必担心这一点，因为"第一个"函数将是你的路径操作函数，FastAPI 将知道如何做正确的事情。
+如果你使用 **FastAPI**，你不必担心这一点，因为"第一个"函数将是你的路径操作函数，FastAPI 将知道如何做正确的事情。
 
-但如果您想在没有 FastAPI 的情况下使用 `async` / `await`，则可以这样做。
+但如果你想在没有 FastAPI 的情况下使用 `async` / `await`，则可以这样做。
 
 ### 编写自己的异步代码
 
@@ -367,7 +367,9 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 特别是，你可以直接使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 来处理高级的并发用例，这些用例需要在自己的代码中使用更高级的模式。
 
-即使您没有使用 **FastAPI**，您也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 编写自己的异步程序，使其拥有较高的兼容性并获得一些好处（例如， 结构化并发）。
+即使你没有使用 **FastAPI**，你也可以使用 <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> 编写自己的异步程序，使其拥有较高的兼容性并获得一些好处（例如， 结构化并发）。
+
+我（指原作者 —— 译者注）基于 AnyIO 新建了一个库，作为一个轻量级的封装层，用来优化类型注解，同时提供了更好的**自动补全**、**内联错误提示**等功能。这个库还附带了一个友好的入门指南和教程，能帮助你**理解**并编写**自己的异步代码**：<a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>。如果你有**结合使用异步代码和常规**（阻塞/同步）代码的需求，这个库会特别有用。
 
 ### 其他形式的异步代码
 
@@ -381,7 +383,7 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 在以前版本的 Python，你可以使用多线程或者 <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>。但代码的理解、调试和思考都要复杂许多。
 
-在以前版本的 NodeJS / 浏览器 JavaScript 中，你会使用"回调"，因此也可能导致<a href="http://callbackhell.com/" class="external-link" target="_blank">回调地狱</a>。
+在以前版本的 NodeJS / 浏览器 JavaScript 中，你会使用"回调"，因此也可能导致“回调地狱”。
 
 ## 协程
 
@@ -407,7 +409,7 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 这些都是 FastAPI 如何在内部工作的技术细节。
 
-如果您有相当多的技术知识（协程、线程、阻塞等），并且对 FastAPI 如何处理 `async def` 与常规 `def` 感到好奇，请继续。
+如果你有相当多的技术知识（协程、线程、阻塞等），并且对 FastAPI 如何处理 `async def` 与常规 `def` 感到好奇，请继续。
 
 ///
 
@@ -415,9 +417,9 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 当你使用 `def` 而不是 `async def` 来声明一个*路径操作函数*时，它运行在外部的线程池中并等待其结果，而不是直接调用（因为它会阻塞服务器）。
 
-如果您使用过另一个不以上述方式工作的异步框架，并且您习惯于用普通的 `def` 定义普通的仅计算路径操作函数，以获得微小的性能增益（大约100纳秒），请注意，在 FastAPI 中，效果将完全相反。在这些情况下，最好使用 `async def`，除非路径操作函数内使用执行阻塞 <abbr title="输入/输出：磁盘读写，网络通讯.">I/O</abbr> 的代码。
+如果你使用过另一个不以上述方式工作的异步框架，并且你习惯于用普通的 `def` 定义普通的仅计算路径操作函数，以获得微小的性能增益（大约100纳秒），请注意，在 FastAPI 中，效果将完全相反。在这些情况下，最好使用 `async def`，除非路径操作函数内使用执行阻塞 <abbr title="输入/输出：磁盘读写，网络通讯.">I/O</abbr> 的代码。
 
-在这两种情况下，与您之前的框架相比，**FastAPI** 可能[仍然很快](index.md#_11){.internal-link target=_blank}。
+在这两种情况下，与你之前的框架相比，**FastAPI** 可能[仍然很快](index.md#_11){.internal-link target=_blank}。
 
 ### 依赖
 
@@ -429,9 +431,9 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 ### 其他函数
 
-您可直接调用通过 `def` 或 `async def` 创建的任何其他函数，FastAPI 不会影响您调用它们的方式。
+你可直接调用通过 `def` 或 `async def` 创建的任何其他函数，FastAPI 不会影响你调用它们的方式。
 
-这与 FastAPI 为您调用*路径操作函数*和依赖项的逻辑相反。
+这与 FastAPI 为你调用*路径操作函数*和依赖项的逻辑相反。
 
 如果你的函数是通过 `def` 声明的，它将被直接调用（在代码中编写的地方），而不会在线程池中，如果这个函数通过 `async def` 声明，当在代码中调用时，你就应该使用 `await` 等待函数的结果。
 
@@ -439,4 +441,4 @@ Starlette （和 **FastAPI**） 是基于 <a href="https://anyio.readthedocs.io/
 
 再次提醒，这些是非常技术性的细节，如果你来搜索它可能对你有用。
 
-否则，您最好应该遵守的指导原则<a href="#_1">赶时间吗？</a>.
+否则，你最好应该遵守的指导原则<a href="#_1">赶时间吗？</a>.

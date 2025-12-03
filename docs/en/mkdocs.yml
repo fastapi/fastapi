@@ -1,4 +1,4 @@
-INHERIT: ../en/mkdocs.maybe-insiders.yml
+INHERIT: ../en/mkdocs.env.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
@@ -6,7 +6,7 @@ theme:
   name: material
   custom_dir: ../en/overrides
   palette:
-  - media: "(prefers-color-scheme)"
+  - media: (prefers-color-scheme)
     toggle:
       icon: material/lightbulb-auto
       name: Switch to light mode
@@ -27,7 +27,6 @@ theme:
   features:
   - content.code.annotate
   - content.code.copy
-  # - content.code.select
   - content.footnote.tooltips
   - content.tabs.link
   - content.tooltips
@@ -35,7 +34,6 @@ theme:
   - navigation.indexes
   - navigation.instant
   - navigation.instant.prefetch
-  # - navigation.instant.preview
   - navigation.instant.progress
   - navigation.path
   - navigation.tabs
@@ -46,7 +44,6 @@ theme:
   - search.share
   - search.suggest
   - toc.follow
-
   icon:
     repo: fontawesome/brands/github-alt
   logo: img/icon-white.svg
@@ -55,29 +52,32 @@ theme:
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
-  # Material for MkDocs
-  search:
-  # Configured in mkdocs.insiders.yml
-  # social:
-  # Other plugins
+  social:
+    cards_layout_options:
+      logo: ../en/docs/img/icon-white.svg
+  typeset:
+  search: null
   macros:
     include_yaml:
     - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
+    - contributors: ../en/data/contributors.yml
+    - translators: ../en/data/translators.yml
+    - translation_reviewers: ../en/data/translation_reviewers.yml
+    - skip_users: ../en/data/skip_users.yml
     - members: ../en/data/members.yml
     - sponsors_badge: ../en/data/sponsors_badge.yml
     - sponsors: ../en/data/sponsors.yml
+    - topic_repos: ../en/data/topic_repos.yml
   redirects:
     redirect_maps:
       deployment/deta.md: deployment/cloud.md
-      advanced/sql-databases-peewee.md: how-to/sql-databases-peewee.md
-      advanced/async-sql-databases.md: how-to/async-sql-encode-databases.md
-      advanced/nosql-databases.md: how-to/nosql-databases-couchbase.md
       advanced/graphql.md: how-to/graphql.md
       advanced/custom-request-and-route.md: how-to/custom-request-and-route.md
       advanced/conditional-openapi.md: how-to/conditional-openapi.md
       advanced/extending-openapi.md: how-to/extending-openapi.md
+      advanced/testing-database.md: how-to/testing-database.md
   mkdocstrings:
     handlers:
       python:
@@ -100,7 +100,6 @@ plugins:
           signature_crossrefs: true
           show_symbol_type_heading: true
           show_symbol_type_toc: true
-
 nav:
 - FastAPI: index.md
 - features.md
@@ -118,6 +117,7 @@ nav:
     - tutorial/body.md
     - tutorial/query-params-str-validations.md
     - tutorial/path-params-numeric-validations.md
+    - tutorial/query-param-models.md
     - tutorial/body-multiple-params.md
     - tutorial/body-fields.md
     - tutorial/body-nested-models.md
@@ -125,10 +125,13 @@ nav:
     - tutorial/extra-data-types.md
     - tutorial/cookie-params.md
     - tutorial/header-params.md
+    - tutorial/cookie-param-models.md
+    - tutorial/header-param-models.md
     - tutorial/response-model.md
     - tutorial/extra-models.md
     - tutorial/response-status-code.md
     - tutorial/request-forms.md
+    - tutorial/request-form-models.md
     - tutorial/request-files.md
     - tutorial/request-forms-and-files.md
     - tutorial/handling-errors.md
@@ -183,7 +186,6 @@ nav:
     - advanced/testing-websockets.md
     - advanced/testing-events.md
     - advanced/testing-dependencies.md
-    - advanced/testing-database.md
     - advanced/async-tests.md
     - advanced/settings.md
     - advanced/openapi-callbacks.md
@@ -194,6 +196,7 @@ nav:
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
@@ -203,6 +206,7 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -210,9 +214,8 @@ nav:
     - how-to/separate-openapi-schemas.md
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
-    - how-to/sql-databases-peewee.md
-    - how-to/async-sql-encode-databases.md
-    - how-to/nosql-databases-couchbase.md
+    - how-to/testing-database.md
+    - how-to/authentication-error-status-code.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -254,34 +257,31 @@ nav:
   - benchmarks.md
   - management.md
 - release-notes.md
-
 markdown_extensions:
-  # Python Markdown
-  abbr:
-  attr_list:
-  footnotes:
-  md_in_html:
-  tables:
+  material.extensions.preview:
+    targets:
+      include:
+        - "*"
+  abbr: null
+  attr_list: null
+  footnotes: null
+  md_in_html: null
+  tables: null
   toc:
     permalink: true
-
-  # Python Markdown Extensions
-  pymdownx.betterem:
-    smart_enable: all
-  pymdownx.caret:
+  pymdownx.betterem: null
+  pymdownx.caret: null
   pymdownx.highlight:
     line_spans: __span
-  pymdownx.inlinehilite:
-  pymdownx.keys:
-  pymdownx.mark:
+  pymdownx.inlinehilite: null
+  pymdownx.keys: null
+  pymdownx.mark: null
   pymdownx.superfences:
     custom_fences:
     - name: mermaid
       class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_code_format
-  pymdownx.tilde:
-
-  # pymdownx blocks
+      format: !!python/name:pymdownx.superfences.fence_code_format ''
+  pymdownx.tilde: null
   pymdownx.blocks.admonition:
     types:
     - note
@@ -292,57 +292,28 @@ markdown_extensions:
     - tip
     - hint
     - warning
-    # Custom types
     - info
     - check
-  pymdownx.blocks.details:
+  pymdownx.blocks.details: null
   pymdownx.blocks.tab:
-    alternate_style: True
-
-  # Other extensions
-  mdx_include:
-    base_path: docs
-
+    alternate_style: true
+  mdx_include: null
+  markdown_include_variants: null
 extra:
-  analytics:
-    provider: google
-    property: G-YNEVN69SC3
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: This page was helpful
-          data: 1
-          note: >-
-            Thanks for your feedback!
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: 0
-          note: >-
-            Thanks for your feedback!
   social:
   - icon: fontawesome/brands/github-alt
     link: https://github.com/fastapi/fastapi
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/fastapi
+    link: https://x.com/fastapi
   - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/tiangolo
-  - icon: fontawesome/brands/dev
-    link: https://dev.to/tiangolo
-  - icon: fontawesome/brands/medium
-    link: https://medium.com/@tiangolo
+    link: https://www.linkedin.com/company/fastapi
   - icon: fontawesome/solid/globe
     link: https://tiangolo.com
-
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /bn/
-    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
@@ -351,20 +322,10 @@ extra:
     name: fa - فارسی
   - link: /fr/
     name: fr - français
-  - link: /he/
-    name: he - עברית
-  - link: /hu/
-    name: hu - magyar
-  - link: /id/
-    name: id - Bahasa Indonesia
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /pl/
-    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -373,26 +334,19 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /ur/
-    name: ur - اردو
   - link: /vi/
     name: vi - Tiếng Việt
-  - link: /yo/
-    name: yo - Yorùbá
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
   - link: /em/
     name: 😉
-
 extra_css:
 - css/termynal.css
 - css/custom.css
-
 extra_javascript:
 - js/termynal.js
 - js/custom.js
-
 hooks:
 - ../../scripts/mkdocs_hooks.py

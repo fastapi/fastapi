@@ -1,8 +1,8 @@
-# Einfaches OAuth2 mit Password und Bearer
+# Einfaches OAuth2 mit Password und Bearer { #simple-oauth2-with-password-and-bearer }
 
 Lassen Sie uns nun auf dem vorherigen Kapitel aufbauen und die fehlenden Teile hinzufügen, um einen vollständigen Sicherheits-Flow zu erhalten.
 
-## `username` und `password` entgegennehmen
+## `username` und `password` entgegennehmen { #get-the-username-and-password }
 
 Wir werden **FastAPIs** Sicherheits-Werkzeuge verwenden, um den `username` und das `password` entgegenzunehmen.
 
@@ -18,7 +18,7 @@ Aber für die Login-*Pfadoperation* müssen wir diese Namen verwenden, um mit de
 
 Die Spezifikation besagt auch, dass `username` und `password` als Formulardaten gesendet werden müssen (hier also kein JSON).
 
-### <abbr title="Geltungsbereich">`scope`</abbr>
+### <abbr title="Geltungsbereich">`scope`</abbr> { #scope }
 
 Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" („Geltungsbereich“) senden kann.
 
@@ -32,7 +32,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info
+/// info | Info
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -44,74 +44,24 @@ Für OAuth2 sind es einfach nur Strings.
 
 ///
 
-## Code, um `username` und `password` entgegenzunehmen.
+## Code, um `username` und `password` entgegenzunehmen { #code-to-get-the-username-and-password }
 
 Lassen Sie uns nun die von **FastAPI** bereitgestellten Werkzeuge verwenden, um das zu erledigen.
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
 Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als Abhängigkeit mit `Depends` in der *Pfadoperation* für `/token`:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="4  78"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4  78"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4  79"
-{!> ../../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="2  74"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="4  76"
-{!> ../../../docs_src/security/tutorial003.py!}
-```
-
-////
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formularbody deklariert mit:
 
 * Dem `username`.
 * Dem `password`.
 * Einem optionalen `scope`-Feld als langem String, bestehend aus durch Leerzeichen getrennten Strings.
-* Einem optionalen `grant_type` („Art der Anmeldung“).
+* Einem optionalen <abbr title="Art der Anmeldung">`grant_type`</abbr>.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die OAuth2-Spezifikation *erfordert* tatsächlich ein Feld `grant_type` mit dem festen Wert `password`, aber `OAuth2PasswordRequestForm` erzwingt dies nicht.
 
@@ -122,7 +72,7 @@ Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` a
 * Eine optionale `client_id` (benötigen wir für unser Beispiel nicht).
 * Ein optionales `client_secret` (benötigen wir für unser Beispiel nicht).
 
-/// info
+/// info | Info
 
 `OAuth2PasswordRequestForm` ist keine spezielle Klasse für **FastAPI**, so wie `OAuth2PasswordBearer`.
 
@@ -134,9 +84,9 @@ Da es sich jedoch um einen häufigen Anwendungsfall handelt, wird er zur Vereinf
 
 ///
 
-### Die Formulardaten verwenden
+### Die Formulardaten verwenden { #use-the-form-data }
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Die Instanz der Klassenabhängigkeit `OAuth2PasswordRequestForm` verfügt, statt eines Attributs `scope` mit dem durch Leerzeichen getrennten langen String, über das Attribut `scopes` mit einer tatsächlichen Liste von Strings, einem für jeden gesendeten Scope.
 
@@ -150,59 +100,9 @@ Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung „Incorrect u
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
-//// tab | Python 3.10+
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-```Python hl_lines="3  79-81"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3  79-81"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3  80-82"
-{!> ../../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1  75-77"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="3  77-79"
-{!> ../../../docs_src/security/tutorial003.py!}
-```
-
-////
-
-### Das Passwort überprüfen
+### Das Passwort überprüfen { #check-the-password }
 
 Zu diesem Zeitpunkt liegen uns die Benutzerdaten aus unserer Datenbank vor, das Passwort haben wir jedoch noch nicht überprüft.
 
@@ -212,7 +112,7 @@ Sie sollten niemals Klartext-Passwörter speichern, daher verwenden wir ein (gef
 
 Wenn die Passwörter nicht übereinstimmen, geben wir denselben Fehler zurück.
 
-#### Passwort-Hashing
+#### Passwort-Hashing { #password-hashing }
 
 „Hashing“ bedeutet: Konvertieren eines Inhalts (in diesem Fall eines Passworts) in eine Folge von Bytes (ein schlichter String), die wie Kauderwelsch aussieht.
 
@@ -220,65 +120,15 @@ Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
-##### Warum Passwort-Hashing verwenden?
+##### Warum Passwort-Hashing verwenden? { #why-use-password-hashing }
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-//// tab | Python 3.10+
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-```Python hl_lines="82-85"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="82-85"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="83-86"
-{!> ../../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="78-81"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="80-83"
-{!> ../../../docs_src/security/tutorial003.py!}
-```
-
-////
-
-#### Über `**user_dict`
+#### Über `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` bedeutet:
 
@@ -294,15 +144,15 @@ UserInDB(
 )
 ```
 
-/// info
+/// info | Info
 
-Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#uber-user_indict){.internal-link target=_blank}.
+Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-dict){.internal-link target=_blank}.
 
 ///
 
-## Den Token zurückgeben
+## Den Token zurückgeben { #return-the-token }
 
-Die Response des `token`-Endpunkts muss ein JSON-Objekt sein.
+Die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> des `token`-Endpunkts muss ein JSON-Objekt sein.
 
 Es sollte einen `token_type` haben. Da wir in unserem Fall „Bearer“-Token verwenden, sollte der Token-Typ "`bearer`" sein.
 
@@ -310,7 +160,7 @@ Und es sollte einen `access_token` haben, mit einem String, der unseren Zugriffs
 
 In diesem einfachen Beispiel gehen wir einfach völlig unsicher vor und geben denselben `username` wie der Token zurück.
 
-/// tip | "Tipp"
+/// tip | Tipp
 
 Im nächsten Kapitel sehen Sie eine wirklich sichere Implementierung mit Passwort-Hashing und <abbr title="JSON Web Tokens">JWT</abbr>-Tokens.
 
@@ -318,59 +168,9 @@ Aber konzentrieren wir uns zunächst auf die spezifischen Details, die wir benö
 
 ///
 
-//// tab | Python 3.10+
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
-```Python hl_lines="87"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="87"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="88"
-{!> ../../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="83"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="85"
-{!> ../../../docs_src/security/tutorial003.py!}
-```
-
-////
-
-/// tip | "Tipp"
+/// tip | Tipp
 
 Gemäß der Spezifikation sollten Sie ein JSON mit einem `access_token` und einem `token_type` zurückgeben, genau wie in diesem Beispiel.
 
@@ -382,7 +182,7 @@ Den Rest erledigt **FastAPI** für Sie.
 
 ///
 
-## Die Abhängigkeiten aktualisieren
+## Die Abhängigkeiten aktualisieren { #update-the-dependencies }
 
 Jetzt werden wir unsere Abhängigkeiten aktualisieren.
 
@@ -394,59 +194,9 @@ Beide Abhängigkeiten geben nur dann einen HTTP-Error zurück, wenn der Benutzer
 
 In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer existiert, korrekt authentifiziert wurde und aktiv ist:
 
-//// tab | Python 3.10+
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-```Python hl_lines="58-66  69-74  94"
-{!> ../../../docs_src/security/tutorial003_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="58-66  69-74  94"
-{!> ../../../docs_src/security/tutorial003_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="59-67  70-75  95"
-{!> ../../../docs_src/security/tutorial003_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="56-64  67-70  88"
-{!> ../../../docs_src/security/tutorial003_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | "Tipp"
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="58-66  69-72  90"
-{!> ../../../docs_src/security/tutorial003.py!}
-```
-
-////
-
-/// info
+/// info | Info
 
 Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
 
@@ -464,11 +214,11 @@ Das ist der Vorteil von Standards ...
 
 ///
 
-## Es in Aktion sehen
+## Es in Aktion sehen { #see-it-in-action }
 
 Öffnen Sie die interaktive Dokumentation: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-### Authentifizieren
+### Authentifizieren { #authenticate }
 
 Klicken Sie auf den Button „Authorize“.
 
@@ -484,7 +234,7 @@ Nach der Authentifizierung im System sehen Sie Folgendes:
 
 <img src="/img/tutorial/security/image05.png">
 
-### Die eigenen Benutzerdaten ansehen
+### Die eigenen Benutzerdaten ansehen { #get-your-own-user-data }
 
 Verwenden Sie nun die Operation `GET` mit dem Pfad `/users/me`.
 
@@ -510,7 +260,7 @@ Wenn Sie auf das Schlosssymbol klicken und sich abmelden und dann den gleichen V
 }
 ```
 
-### Inaktiver Benutzer
+### Inaktiver Benutzer { #inactive-user }
 
 Versuchen Sie es nun mit einem inaktiven Benutzer und authentisieren Sie sich mit:
 
@@ -528,7 +278,7 @@ Sie erhalten die Fehlermeldung „Inactive user“:
 }
 ```
 
-## Zusammenfassung
+## Zusammenfassung { #recap }
 
 Sie verfügen jetzt über die Tools, um ein vollständiges Sicherheitssystem basierend auf `username` und `password` für Ihre API zu implementieren.
 

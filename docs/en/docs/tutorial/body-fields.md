@@ -1,62 +1,13 @@
-# Body - Fields
+# Body - Fields { #body-fields }
 
 The same way you can declare additional validation and metadata in *path operation function* parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
-## Import `Field`
+## Import `Field` { #import-field }
 
 First, you have to import it:
 
-//// tab | Python 3.10+
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
-```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="2"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="4"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
 
 /// warning
 
@@ -64,65 +15,15 @@ Notice that `Field` is imported directly from `pydantic`, not from `fastapi` as 
 
 ///
 
-## Declare model attributes
+## Declare model attributes { #declare-model-attributes }
 
 You can then use `Field` with model attributes:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="12-15"
-{!> ../../../docs_src/body_fields/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="9-12"
-{!> ../../../docs_src/body_fields/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip
-
-Prefer to use the `Annotated` version if possible.
-
-///
-
-```Python hl_lines="11-14"
-{!> ../../../docs_src/body_fields/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
 
 `Field` works the same way as `Query`, `Path` and `Body`, it has all the same parameters, etc.
 
-/// note | "Technical Details"
+/// note | Technical Details
 
 Actually, `Query`, `Path` and others you'll see next create objects of subclasses of a common `Param` class, which is itself a subclass of Pydantic's `FieldInfo` class.
 
@@ -140,7 +41,7 @@ Notice how each model's attribute with a type, default value and `Field` has the
 
 ///
 
-## Add extra information
+## Add extra information { #add-extra-information }
 
 You can declare extra information in `Field`, `Query`, `Body`, etc. And it will be included in the generated JSON Schema.
 
@@ -153,7 +54,7 @@ As these keys may not necessarily be part of the OpenAPI specification, some Ope
 
 ///
 
-## Recap
+## Recap { #recap }
 
 You can use Pydantic's `Field` to declare extra validations and metadata for model attributes.
 

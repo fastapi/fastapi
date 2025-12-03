@@ -7,6 +7,8 @@ name = "fastapi"
 dynamic = ["version"]
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.8"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
@@ -29,21 +31,24 @@ classifiers = [
     "Framework :: FastAPI",
     "Framework :: Pydantic",
     "Framework :: Pydantic :: 1",
+    "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.37.2,<0.39.0",
+    "starlette>=0.40.0,<0.51.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
+    "annotated-doc>=0.0.2",
 ]
 
 [project.urls]
@@ -56,13 +61,32 @@ Changelog = "https://fastapi.tiangolo.com/release-notes/"
 [project.optional-dependencies]
 
 standard = [
-    "fastapi-cli[standard] >=0.0.5",
+    "fastapi-cli[standard] >=0.0.8",
     # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.18",
+    # To validate email fields
+    "email-validator >=2.0.0",
+    # Uvicorn with uvloop
+    "uvicorn[standard] >=0.12.0",
+    # TODO: this should be part of some pydantic optional extra dependencies
+    # # Settings management
+    # "pydantic-settings >=2.0.0",
+    # # Extra Pydantic data types
+    # "pydantic-extra-types >=2.0.0",
+]
+
+standard-no-fastapi-cloud-cli = [
+    "fastapi-cli[standard-no-fastapi-cloud-cli] >=0.0.8",
+    # For the test client
+    "httpx >=0.23.0,<1.0.0",
+    # For templates
+    "jinja2 >=3.1.5",
+    # For forms and file uploads
+    "python-multipart >=0.0.18",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -75,13 +99,13 @@ standard = [
 ]
 
 all = [
-    "fastapi-cli[standard] >=0.0.5",
+    "fastapi-cli[standard] >=0.0.8",
     # # For the test client
-    "httpx >=0.23.0",
+    "httpx >=0.23.0,<1.0.0",
     # For templates
-    "jinja2 >=2.11.2",
+    "jinja2 >=3.1.5",
     # For forms and file uploads
-    "python-multipart >=0.0.7",
+    "python-multipart >=0.0.18",
     # For Starlette's SessionMiddleware, not commonly used with FastAPI
     "itsdangerous >=1.1.0",
     # For Starlette's schema generation, would not be used with FastAPI
@@ -121,6 +145,7 @@ source-includes = [
 name = "fastapi-slim"
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 strict = true
 
 [[tool.mypy.overrides]]
@@ -150,8 +175,6 @@ junit_family = "xunit2"
 filterwarnings = [
     "error",
     'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
-    # For passlib
-    "ignore:'crypt' is deprecated and slated for removal in Python 3.13:DeprecationWarning",
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes
@@ -161,6 +184,8 @@ filterwarnings = [
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
+    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
+    'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
 ]
 
 [tool.coverage.run]
@@ -241,3 +266,7 @@ known-third-party = ["fastapi", "pydantic", "starlette"]
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.
 keep-runtime-typing = true
+
+[tool.inline-snapshot]
+# default-flags=["fix"]
+# default-flags=["create"]

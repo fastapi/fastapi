@@ -1,10 +1,10 @@
-# Dependências
+# Dependências { #dependencies }
 
-O **FastAPI** possui um poderoso, mas intuitivo sistema de **<abbr title="também conhecidos como, recursos, provedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
+O **FastAPI** possui um poderoso, mas intuitivo sistema de **<abbr title="também conhecidos como: componentes, recursos, provedores, serviços, injetáveis">Injeção de Dependência</abbr>**.
 
 Esse sistema foi pensado para ser fácil de usar, e permitir que qualquer desenvolvedor possa integrar facilmente outros componentes ao **FastAPI**.
 
-## O que é "Injeção de Dependência"
+## O que é "Injeção de Dependência" { #what-is-dependency-injection }
 
 **"Injeção de Dependência"** no mundo da programação significa, que existe uma maneira de declarar no seu código (nesse caso, suas *funções de operação de rota*) para declarar as coisas que ele precisa para funcionar e que serão utilizadas: "dependências".
 
@@ -19,69 +19,19 @@ Isso é bastante útil quando você precisa:
 
 Tudo isso, enquanto minimizamos a repetição de código.
 
-## Primeiros passos
+## Primeiros passos { #first-steps }
 
 Vamos ver um exemplo simples. Tão simples que não será muito útil, por enquanto.
 
 Mas dessa forma podemos focar em como o sistema de **Injeção de Dependência** funciona.
 
-### Criando uma dependência, ou "injetável"
+### Criando uma dependência, ou "injetável" { #create-a-dependency-or-dependable }
 
 Primeiro vamos focar na dependência.
 
 Ela é apenas uma função que pode receber os mesmos parâmetros de uma *função de operação de rota*:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="8-9"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9-12"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="6-7"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="8-11"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
 
 E pronto.
 
@@ -101,125 +51,25 @@ Neste caso, a dependência espera por:
 
 E então retorna um `dict` contendo esses valores.
 
-/// info | "Informação"
+/// info | Informação
 
 FastAPI passou a suportar a notação `Annotated` (e começou a recomendá-la) na versão 0.95.0.
 
 Se você utiliza uma versão anterior, ocorrerão erros ao tentar utilizar `Annotated`.
 
-Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#atualizando-as-versoes-do-fastapi){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
+Certifique-se de [Atualizar a versão do FastAPI](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
-### Importando `Depends`
+### Importando `Depends` { #import-depends }
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
 
-```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="1"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="3"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
-
-### Declarando a dependência, no "dependente"
+### Declarando a dependência, no "dependente" { #declare-the-dependency-in-the-dependant }
 
 Da mesma forma que você utiliza `Body`, `Query`, etc. Como parâmetros de sua *função de operação de rota*, utilize `Depends` com um novo parâmetro:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="13  18"
-{!> ../../../docs_src/dependencies/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="16  21"
-{!> ../../../docs_src/dependencies/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | "Dica"
-
-Utilize a versão com `Annotated` se possível.
-
-///
-
-```Python hl_lines="15  20"
-{!> ../../../docs_src/dependencies/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
 
 Ainda que `Depends` seja utilizado nos parâmetros da função da mesma forma que `Body`, `Query`, etc, `Depends` funciona de uma forma um pouco diferente.
 
@@ -231,7 +81,7 @@ Você **não chama a função** diretamente (não adicione os parênteses no fin
 
 E essa função vai receber os parâmetros da mesma forma que uma *função de operação de rota*.
 
-/// tip | "Dica"
+/// tip | Dica
 
 Você verá quais outras "coisas", além de funções, podem ser usadas como dependências no próximo capítulo.
 
@@ -256,7 +106,7 @@ common_parameters --> read_users
 
 Assim, você escreve um código compartilhado apenas uma vez e o **FastAPI** se encarrega de chamá-lo em suas *operações de rota*.
 
-/// check | "Checando"
+/// check | Verifique
 
 Perceba que você não precisa criar uma classe especial e enviar a dependência para algum outro lugar em que o **FastAPI** a "registre" ou realize qualquer operação similar.
 
@@ -264,7 +114,7 @@ Você apenas envia para `Depends` e o **FastAPI** sabe como fazer o resto.
 
 ///
 
-## Compartilhando dependências `Annotated`
+## Compartilhando dependências `Annotated` { #share-annotated-dependencies }
 
 Nos exemplos acima, você pode ver que existe uma pequena **duplicação de código**.
 
@@ -276,31 +126,9 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Mas como estamos utilizando `Annotated`, podemos guardar esse valor `Annotated` em uma variável e utilizá-la em múltiplos locais:
 
-//// tab | Python 3.10+
+{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
 
-```Python hl_lines="12  16  21"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="14  18  23"
-{!> ../../../docs_src/dependencies/tutorial001_02_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="15  19  24"
-{!> ../../../docs_src/dependencies/tutorial001_02_an.py!}
-```
-
-////
-
-/// tip | "Dica"
+/// tip | Dica
 
 Isso é apenas Python padrão, essa funcionalidade é chamada de "type alias", e na verdade não é específica ao **FastAPI**.
 
@@ -312,7 +140,7 @@ As dependências continuarão funcionando como esperado, e a **melhor parte** é
 
 Isso é especialmente útil para uma **base de código grande** onde **as mesmas dependências** são utilizadas repetidamente em **muitas *operações de rota***.
 
-## `Async` ou não, eis a questão
+## `Async` ou não, eis a questão { #to-async-or-not-to-async }
 
 Como as dependências também serão chamadas pelo **FastAPI** (da mesma forma que *funções de operação de rota*), as mesmas regras se aplicam ao definir suas funções.
 
@@ -322,13 +150,13 @@ E você pode declarar dependências utilizando `async def` dentro de *funções 
 
 Não faz diferença. O **FastAPI** sabe o que fazer.
 
-/// note | "Nota"
+/// note | Nota
 
-Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#com-pressa){.internal-link target=_blank} a sessão acerca de `async` e `await` na documentação.
+Caso você não conheça, veja em [Async: *"Com Pressa?"*](../../async.md#in-a-hurry){.internal-link target=_blank} a sessão acerca de `async` e `await` na documentação.
 
 ///
 
-## Integrando com OpenAPI
+## Integrando com OpenAPI { #integrated-with-openapi }
 
 Todas as declarações de requisições, validações e requisitos para suas dependências (e sub-dependências) serão integradas em um mesmo esquema OpenAPI.
 
@@ -336,7 +164,7 @@ Então, a documentação interativa também terá toda a informação sobre essa
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-## Caso de Uso Simples
+## Caso de Uso Simples { #simple-usage }
 
 Se você parar para ver, *funções de operação de rota* são declaradas para serem usadas sempre que uma *rota* e uma *operação* se encaixam, e então o **FastAPI** se encarrega de chamar a função correspondente com os argumentos corretos, extraindo os dados da requisição.
 
@@ -354,7 +182,7 @@ Outros termos comuns para essa mesma ideia de "injeção de dependência" são:
 * injetáveis
 * componentes
 
-## Plug-ins em **FastAPI**
+## Plug-ins em **FastAPI** { #fastapi-plug-ins }
 
 Integrações e "plug-ins" podem ser construídos com o sistema de **Injeção de Dependência**. Mas na verdade, **não há necessidade de criar "plug-ins"**, já que utilizando dependências é possível declarar um número infinito de integrações e interações que se tornam disponíveis para as suas *funções de operação de rota*.
 
@@ -362,7 +190,7 @@ E as dependências pode ser criadas de uma forma bastante simples e intuitiva qu
 
 Você verá exemplos disso nos próximos capítulos, acerca de bancos de dados relacionais e NoSQL, segurança, etc.
 
-## Compatibilidade do **FastAPI**
+## Compatibilidade do **FastAPI** { #fastapi-compatibility }
 
 A simplicidade do sistema de injeção de dependência do **FastAPI** faz ele compatível com:
 
@@ -375,7 +203,7 @@ A simplicidade do sistema de injeção de dependência do **FastAPI** faz ele co
 * sistemas de injeção de dados de resposta
 * etc.
 
-## Simples e Poderoso
+## Simples e Poderoso { #simple-and-powerful }
 
 Mesmo que o sistema hierárquico de injeção de dependência seja simples de definir e utilizar, ele ainda é bastante poderoso.
 
@@ -415,7 +243,7 @@ admin_user --> activate_user
 paying_user --> pro_items
 ```
 
-## Integração com **OpenAPI**
+## Integração com **OpenAPI** { #integrated-with-openapi_1 }
 
 Todas essas dependências, ao declarar os requisitos para suas *operações de rota*, também adicionam parâmetros, validações, etc.
 

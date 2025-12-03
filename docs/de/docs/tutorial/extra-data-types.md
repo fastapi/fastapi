@@ -1,4 +1,4 @@
-# Zusätzliche Datentypen
+# Zusätzliche Datentypen { #extra-data-types }
 
 Bisher haben Sie gängige Datentypen verwendet, wie zum Beispiel:
 
@@ -12,12 +12,12 @@ Sie können aber auch komplexere Datentypen verwenden.
 Und Sie haben immer noch dieselbe Funktionalität wie bisher gesehen:
 
 * Großartige Editor-Unterstützung.
-* Datenkonvertierung bei eingehenden Requests.
-* Datenkonvertierung für Response-Daten.
+* Datenkonvertierung bei eingehenden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>.
+* Datenkonvertierung für <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-Daten.
 * Datenvalidierung.
 * Automatische Annotation und Dokumentation.
 
-## Andere Datentypen
+## Andere Datentypen { #other-data-types }
 
 Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 
@@ -36,11 +36,11 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `datetime.timedelta`:
     * Ein Python-`datetime.timedelta`.
     * Wird in Requests und Responses als `float` der Gesamtsekunden dargestellt.
-    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#json_encoders" class="external-link" target="_blank">Weitere Informationen finden Sie in der Dokumentation</a>.
+    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, <a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">siehe die Dokumentation für weitere Informationen</a>.
 * `frozenset`:
     * Wird in Requests und Responses wie ein `set` behandelt:
         * Bei Requests wird eine Liste gelesen, Duplikate entfernt und in ein `set` umgewandelt.
-        * Bei Responses wird das `set` in eine `list`e umgewandelt.
+        * Bei Responses wird das `set` in eine `list` umgewandelt.
         * Das generierte Schema zeigt an, dass die `set`-Werte eindeutig sind (unter Verwendung von JSON Schemas `uniqueItems`).
 * `bytes`:
     * Standard-Python-`bytes`.
@@ -49,114 +49,14 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `Decimal`:
     * Standard-Python-`Decimal`.
     * In Requests und Responses wird es wie ein `float` behandelt.
-* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>.
+* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic-Datentypen</a>.
 
-## Beispiel
+## Beispiel { #example }
 
 Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der oben genannten Typen verwenden.
 
-//// tab | Python 3.10+
-
-```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  3  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  3  13-17"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1  2  11-15"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="1  2  12-16"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Datentyp haben und Sie beispielsweise normale Datumsmanipulationen durchführen können, wie zum Beispiel:
 
-//// tab | Python 3.10+
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="19-20"
-{!> ../../../docs_src/extra_data_types/tutorial001_an.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="17-18"
-{!> ../../../docs_src/extra_data_types/tutorial001_py310.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python hl_lines="18-19"
-{!> ../../../docs_src/extra_data_types/tutorial001.py!}
-```
-
-////
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}

@@ -1,12 +1,17 @@
 import warnings
+from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated, Literal, deprecated
 
-from ._compat import PYDANTIC_V2, PYDANTIC_VERSION, Undefined
+from ._compat import (
+    PYDANTIC_V2,
+    PYDANTIC_VERSION_MINOR_TUPLE,
+    Undefined,
+)
 
 _Unset: Any = Undefined
 
@@ -18,7 +23,7 @@ class ParamTypes(Enum):
     cookie = "cookie"
 
 
-class Param(FieldInfo):
+class Param(FieldInfo):  # type: ignore[misc]
     in_: ParamTypes
 
     def __init__(
@@ -91,7 +96,7 @@ class Param(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -105,7 +110,7 @@ class Param(FieldInfo):
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
@@ -132,7 +137,7 @@ class Param(FieldInfo):
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Path(Param):
+class Path(Param):  # type: ignore[misc]
     in_ = ParamTypes.path
 
     def __init__(
@@ -218,7 +223,7 @@ class Path(Param):
         )
 
 
-class Query(Param):
+class Query(Param):  # type: ignore[misc]
     in_ = ParamTypes.query
 
     def __init__(
@@ -302,7 +307,7 @@ class Query(Param):
         )
 
 
-class Header(Param):
+class Header(Param):  # type: ignore[misc]
     in_ = ParamTypes.header
 
     def __init__(
@@ -388,7 +393,7 @@ class Header(Param):
         )
 
 
-class Cookie(Param):
+class Cookie(Param):  # type: ignore[misc]
     in_ = ParamTypes.cookie
 
     def __init__(
@@ -472,14 +477,14 @@ class Cookie(Param):
         )
 
 
-class Body(FieldInfo):
+class Body(FieldInfo):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
         *,
         default_factory: Union[Callable[[], Any], None] = _Unset,
         annotation: Optional[Any] = None,
-        embed: bool = False,
+        embed: Union[bool, None] = None,
         media_type: str = "application/json",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
@@ -547,7 +552,7 @@ class Body(FieldInfo):
             max_length=max_length,
             discriminator=discriminator,
             multiple_of=multiple_of,
-            allow_nan=allow_inf_nan,
+            allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
             decimal_places=decimal_places,
             **extra,
@@ -556,12 +561,12 @@ class Body(FieldInfo):
             kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
-                "`regex` has been depreacated, please use `pattern` instead",
+                "`regex` has been deprecated, please use `pattern` instead",
                 category=DeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION < "2.7.0":
+        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
@@ -589,7 +594,7 @@ class Body(FieldInfo):
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Form(Body):
+class Form(Body):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -642,7 +647,6 @@ class Form(Body):
             default=default,
             default_factory=default_factory,
             annotation=annotation,
-            embed=True,
             media_type=media_type,
             alias=alias,
             alias_priority=alias_priority,
@@ -674,7 +678,7 @@ class Form(Body):
         )
 
 
-class File(Form):
+class File(Form):  # type: ignore[misc]
     def __init__(
         self,
         default: Any = Undefined,
@@ -758,26 +762,13 @@ class File(Form):
         )
 
 
+@dataclass(frozen=True)
 class Depends:
-    def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
-    ):
-        self.dependency = dependency
-        self.use_cache = use_cache
-
-    def __repr__(self) -> str:
-        attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
-        cache = "" if self.use_cache else ", use_cache=False"
-        return f"{self.__class__.__name__}({attr}{cache})"
+    dependency: Optional[Callable[..., Any]] = None
+    use_cache: bool = True
+    scope: Union[Literal["function", "request"], None] = None
 
 
+@dataclass(frozen=True)
 class Security(Depends):
-    def __init__(
-        self,
-        dependency: Optional[Callable[..., Any]] = None,
-        *,
-        scopes: Optional[Sequence[str]] = None,
-        use_cache: bool = True,
-    ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
-        self.scopes = scopes or []
+    scopes: Optional[Sequence[str]] = None

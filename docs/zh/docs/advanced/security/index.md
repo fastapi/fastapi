@@ -4,7 +4,7 @@
 
 除 [教程 - 用户指南: 安全性](../../tutorial/security/index.md){.internal-link target=_blank} 中涵盖的功能之外，还有一些额外的功能来处理安全性.
 
-/// tip | "小贴士"
+/// tip | 小贴士
 
 接下来的章节 **并不一定是 "高级的"**.
 

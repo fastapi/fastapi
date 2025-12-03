@@ -1,4 +1,4 @@
-# Зависимости в декораторах операции пути
+# Зависимости в декораторах операции пути { #dependencies-in-path-operation-decorators }
 
 В некоторых случаях, возвращаемое значение зависимости не используется внутри *функции операции пути*.
 
@@ -8,45 +8,17 @@
 
 Для таких ситуаций, вместо объявления *функции операции пути* с параметром `Depends`, вы можете добавить список зависимостей `dependencies` в *декоратор операции пути*.
 
-## Добавление `dependencies` в *декоратор операции пути*
+## Добавление `dependencies` (зависимостей) в *декоратор операции пути* { #add-dependencies-to-the-path-operation-decorator }
 
 *Декоратор операции пути* получает необязательный аргумент `dependencies`.
 
 Это должен быть `list` состоящий из `Depends()`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="19"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="18"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 без Annotated
-
-/// подсказка
-
-Рекомендуется использовать версию с Annotated, если возможно.
-
-///
-
-```Python hl_lines="17"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
 
 Зависимости из dependencies выполнятся так же, как и обычные зависимости. Но их значения (если они были) не будут переданы в *функцию операции пути*.
 
-/// подсказка
+/// tip | Подсказка
 
 Некоторые редакторы кода определяют неиспользуемые параметры функций и подсвечивают их как ошибку.
 
@@ -56,7 +28,7 @@
 
 ///
 
-/// дополнительная | информация
+/// info | Примечание
 
 В этом примере мы используем выдуманные пользовательские заголовки `X-Key` и `X-Token`.
 
@@ -64,118 +36,34 @@
 
 ///
 
-## Исключения в dependencies и возвращаемые значения
+## Исключения в Зависимостях и возвращаемые значения { #dependencies-errors-and-return-values }
 
 Вы можете использовать те же *функции* зависимостей, что и обычно.
 
-### Требования к зависимостям
+### Требования к зависимостям { #dependency-requirements }
 
 Они могут объявлять требования к запросу (например заголовки) или другие подзависимости:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 
-```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="7  12"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 без Annotated
-
-/// подсказка
-
-Рекомендуется использовать версию с Annotated, если возможно.
-
-///
-
-```Python hl_lines="6  11"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-### Вызов исключений
+### Вызов исключений { #raise-exceptions }
 
 Зависимости из dependencies могут вызывать исключения с помощью `raise`, как и обычные зависимости:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
 
-```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 без Annotated
-
-/// подсказка
-
-Рекомендуется использовать версию с Annotated, если возможно.
-
-///
-
-```Python hl_lines="8  13"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-### Возвращаемые значения
+### Возвращаемые значения { #return-values }
 
 И они могут возвращать значения или нет, эти значения использоваться не будут.
 
 Таким образом, вы можете переиспользовать обычную зависимость (возвращающую значение), которую вы уже используете где-то в другом месте, и хотя значение не будет использоваться, зависимость будет выполнена:
 
-//// tab | Python 3.9+
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
 
-```Python hl_lines="11  16"
-{!> ../../../docs_src/dependencies/tutorial006_an_py39.py!}
-```
+## Зависимости для группы *операций путей* { #dependencies-for-a-group-of-path-operations }
 
-////
+Позже, читая о том как структурировать большие приложения ([Большие приложения — несколько файлов](../../tutorial/bigger-applications.md){.internal-link target=_blank}), возможно, многофайловые, вы узнаете как объявить единый параметр `dependencies` для всей группы *операций путей*.
 
-//// tab | Python 3.8+
-
-```Python hl_lines="10  15"
-{!> ../../../docs_src/dependencies/tutorial006_an.py!}
-```
-
-////
-
-//// tab | Python 3.8 без Annotated
-
-/// подсказка
-
-Рекомендуется использовать версию с Annotated, если возможно.
-
-///
-
-```Python hl_lines="9  14"
-{!> ../../../docs_src/dependencies/tutorial006.py!}
-```
-
-////
-
-## Dependencies для группы *операций путей*
-
-Позже, читая о том как структурировать большие приложения ([Bigger Applications - Multiple Files](../../tutorial/bigger-applications.md){.internal-link target=_blank}), возможно, многофайловые, вы узнаете как объявить единый параметр `dependencies` для всей группы *операций путей*.
-
-## Глобальный Dependencies
+## Глобальные Зависимости { #global-dependencies }
 
 Далее мы увидим, как можно добавить dependencies для всего `FastAPI` приложения, так чтобы они применялись к каждой *операции пути*.
