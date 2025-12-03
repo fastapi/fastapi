@@ -11,7 +11,6 @@ registered handler is async.
 
 from functools import wraps
 
-import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 
