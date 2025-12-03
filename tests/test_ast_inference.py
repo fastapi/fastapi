@@ -382,9 +382,6 @@ def test_infer_response_model_success(func, expected_fields):
 
 def test_infer_response_model_invalid_field_name():
     """Test that invalid field names are handled gracefully (either skipped or model creation fails safely)."""
-    # This specifically tests protections against things like {"__class__": ...}
-    # It might return None (if create_model fails) or a model (if pydantic handles it)
-    # We just want to ensure it doesn't raise an unhandled exception
     _test_invalid_field_name()
 
 
@@ -440,6 +437,20 @@ def test_infer_response_model_not_function_def():
     func()
     with patch("inspect.getsource", return_value="class A: pass"):
         assert infer_response_model_from_ast(func) is None
+
+
+def test_infer_response_model_create_model_error():
+    def func():
+        return {"a": 1}
+
+    func()
+    from fastapi.utils import PYDANTIC_V2
+
+    target = "pydantic.create_model" if PYDANTIC_V2 else "fastapi._compat.v1.create_model"
+    
+    with patch(target, side_effect=Exception("Boom")):
+        assert infer_response_model_from_ast(func) is None
+
 
 
 def test_contains_response() -> None:
