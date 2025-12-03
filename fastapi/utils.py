@@ -346,12 +346,14 @@ def infer_response_model_from_ast(
     Analyze the endpoint function's source code to infer a Pydantic model
     from a returned dictionary literal or variable assignment.
     """
+    import textwrap
+
     try:
         source = inspect.getsource(endpoint_function)
     except (OSError, TypeError):
         return None
 
-    source = inspect.cleandoc(source)
+    source = textwrap.dedent(source)
     try:
         tree = ast.parse(source)
     except SyntaxError:
