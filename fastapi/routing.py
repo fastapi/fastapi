@@ -21,6 +21,8 @@ from typing import (
     Tuple,
     Type,
     Union,
+    get_args,
+    get_origin,
 )
 
 from annotated_doc import Doc
@@ -120,6 +122,18 @@ def request_response(
         await wrap_app_handling_exceptions(app, request)(scope, receive, send)
 
     return app
+
+
+def _contains_response(annotation: Any) -> bool:
+    if lenient_issubclass(annotation, Response):
+        return True
+
+    args = get_args(annotation)
+    for arg in args:
+        if _contains_response(arg):
+            return True
+
+    return False
 
 
 # Copy of starlette.routing.websocket_session modified to include the
@@ -549,7 +563,9 @@ class APIRoute(routing.Route):
                     not lenient_issubclass(response_model, BaseModel)
                     and not dataclasses.is_dataclass(response_model)
                 ):
-                    if return_annotation is not None:
+                    if return_annotation is not None and not _contains_response(
+                        return_annotation
+                    ):
                         inferred = infer_response_model_from_ast(endpoint)
                         if inferred:
                             response_model = inferred

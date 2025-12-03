@@ -429,6 +429,12 @@ def infer_response_model_from_ast(
     if not fields:
         return None
 
+    # Don't create a model if all fields are Any - this provides no additional
+    # type information compared to Dict[str, Any] and would override explicit
+    # type annotations unnecessarily
+    if all(field_type is Any for field_type, _ in fields.values()):
+        return None
+
     if PYDANTIC_V2:
         from pydantic import create_model
     else:
