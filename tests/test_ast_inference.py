@@ -446,11 +446,12 @@ def test_infer_response_model_create_model_error():
     func()
     from fastapi.utils import PYDANTIC_V2
 
-    target = "pydantic.create_model" if PYDANTIC_V2 else "fastapi._compat.v1.create_model"
-    
+    target = (
+        "pydantic.create_model" if PYDANTIC_V2 else "fastapi._compat.v1.create_model"
+    )
+
     with patch(target, side_effect=Exception("Boom")):
         assert infer_response_model_from_ast(func) is None
-
 
 
 def test_contains_response() -> None:
