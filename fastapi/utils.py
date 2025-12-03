@@ -321,20 +321,28 @@ def _infer_type_from_ast(
     if isinstance(node, ast.Name):
         arg_name = node.id
         for arg in func_def.args.args:
-            if arg.arg == arg_name and arg.annotation:
-                if isinstance(arg.annotation, ast.Name):
-                    if arg.annotation.id == "int":
-                        return int
-                    if arg.annotation.id == "str":
-                        return str
-                    if arg.annotation.id == "bool":
-                        return bool
-                    if arg.annotation.id == "float":
-                        return float
-                    if arg.annotation.id == "list":
-                        return List[Any]
-                    if arg.annotation.id == "dict":
-                        return Dict[str, Any]
+            if arg.arg != arg_name:
+                continue
+
+            if not arg.annotation:
+                continue
+
+            if not isinstance(arg.annotation, ast.Name):
+                continue
+
+            annotation_id = arg.annotation.id
+            if annotation_id == "int":
+                return int
+            if annotation_id == "str":
+                return str
+            if annotation_id == "bool":
+                return bool
+            if annotation_id == "float":
+                return float
+            if annotation_id == "list":
+                return List[Any]
+            if annotation_id == "dict":
+                return Dict[str, Any]
 
     return Any
 
