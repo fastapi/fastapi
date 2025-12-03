@@ -86,6 +86,12 @@ class Dependant:
 
     @cached_property
     def is_gen_callable(self) -> bool:
+        if self.call is not None:
+            if inspect.isgeneratorfunction(self.call):
+                return True
+            call_dunder = getattr(self.call, "__call__", None)  # noqa: B004
+            if inspect.isgeneratorfunction(call_dunder):
+                return True
         if inspect.isgeneratorfunction(self._unwrapped_call):
             return True
         dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
@@ -93,6 +99,12 @@ class Dependant:
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
+        if self.call is not None:
+            if inspect.isasyncgenfunction(self.call):
+                return True
+            call_dunder = getattr(self.call, "__call__", None)  # noqa: B004
+            if inspect.isasyncgenfunction(call_dunder):
+                return True
         if inspect.isasyncgenfunction(self._unwrapped_call):
             return True
         dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
@@ -100,6 +112,14 @@ class Dependant:
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
+        if self.call is not None:
+            if inspect.isroutine(self.call):
+                if iscoroutinefunction(self.call):
+                    return True
+            else:
+                call_dunder = getattr(self.call, "__call__", None)  # noqa: B004
+                if iscoroutinefunction(call_dunder):
+                    return True
         if inspect.isroutine(self._unwrapped_call):
             return iscoroutinefunction(self._unwrapped_call)
         if inspect.isclass(self._unwrapped_call):
