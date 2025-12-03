@@ -314,7 +314,7 @@ def _infer_type_from_ast(
         if PYDANTIC_V2:
             from pydantic import create_model
         else:
-            from pydantic import create_model
+            from fastapi._compat.v1 import create_model
 
         return create_model(f"Model_{context_name}", **fields)  # type: ignore[call-overload]
 
@@ -448,7 +448,7 @@ def infer_response_model_from_ast(
     if PYDANTIC_V2:
         from pydantic import create_model
     else:
-        from pydantic import create_model
+        from fastapi._compat.v1 import create_model
 
     model_name = f"ResponseModel_{endpoint_function.__name__}"
     try:
