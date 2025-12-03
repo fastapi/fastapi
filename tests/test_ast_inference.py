@@ -317,8 +317,13 @@ def test_openapi_schema_ast_inference():
         "properties"
     ]
     assert empty_structures_props["empty_list"]["type"] == "array"
-    assert "items" not in empty_structures_props["empty_list"] or not empty_structures_props["empty_list"].get("items")
-    assert "type" not in empty_structures_props["empty_dict"] or empty_structures_props["empty_dict"]["type"] == "object"
+    assert "items" not in empty_structures_props[
+        "empty_list"
+    ] or not empty_structures_props["empty_list"].get("items")
+    assert (
+        "type" not in empty_structures_props["empty_dict"]
+        or empty_structures_props["empty_dict"]["type"] == "object"
+    )
 
     local_variable_schema = paths["/edge_cases/local_variable"]["get"]["responses"][
         "200"
