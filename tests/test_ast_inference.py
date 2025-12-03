@@ -1,10 +1,3 @@
-import sys
-import os
-import uvicorn
-
-# Добавляем корень проекта в sys.path, чтобы Python видел пакет fastapi
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from typing import Any, Dict, List
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
@@ -94,6 +87,25 @@ async def get_nested_function() -> Dict[str, Any]:
 def get_invalid_keys() -> Dict[Any, Any]:
     return {1: "value", "valid": "key"}
 
+
+class FakeDB:
+    def get_user(self) -> Dict[str, Any]:
+        return {"id": 1, "username": "db_user"}
+
+fake_db = FakeDB()
+
+@app.get("/db/direct_return")
+def get_db_direct() -> Dict[str, Any]:
+    return fake_db.get_user()
+
+@app.get("/db/dict_construction")
+def get_db_constructed() -> Dict[str, Any]:
+    data = fake_db.get_user()
+    return {
+        "db_id": data["id"],
+        "source": "database"
+    }
+
 client = TestClient(app)
 
 def test_openapi_schema_ast_inference():
@@ -148,8 +160,14 @@ def test_openapi_schema_ast_inference():
     invalid_keys_schema = paths["/edge_cases/invalid_keys"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
     assert "$ref" not in invalid_keys_schema
 
-if __name__ == "__main__":
-    # test_openapi_schema_ast_inference()
-    print("Запуск сервера для проверки Swagger UI...")
-    print("Откройте в браузере: http://127.0.0.1:8000/docs")
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    db_direct_schema = paths["/db/direct_return"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" not in db_direct_schema
+
+    db_constructed_schema = paths["/db/dict_construction"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+    assert "$ref" in db_constructed_schema
+    db_constructed_ref = db_constructed_schema["$ref"].split("/")[-1]
+    db_constructed_props = schema["components"]["schemas"][db_constructed_ref]["properties"]
+    
+    assert db_constructed_props["source"]["type"] == "string"
+    assert "type" not in db_constructed_props["db_id"] or db_constructed_props["db_id"] == {}
+
