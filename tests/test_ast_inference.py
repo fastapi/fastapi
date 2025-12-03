@@ -306,6 +306,7 @@ def test_openapi_schema_ast_inference():
     assert arg_types_props["bool_val"]["type"] == "boolean"
     assert arg_types_props["float_val"]["type"] == "number"
 
+
 @pytest.mark.parametrize(
     "func",
     [
