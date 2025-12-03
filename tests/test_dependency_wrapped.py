@@ -1,5 +1,5 @@
 import inspect
-from asyncio import iscoroutinefunction
+import sys
 from functools import wraps
 from typing import AsyncGenerator, Generator
 
@@ -7,6 +7,11 @@ import pytest
 from fastapi import Depends, FastAPI
 from fastapi.concurrency import iterate_in_threadpool, run_in_threadpool
 from fastapi.testclient import TestClient
+
+if sys.version_info >= (3, 13):  # pragma: no cover
+    from inspect import iscoroutinefunction
+else:  # pragma: no cover
+    from asyncio import iscoroutinefunction
 
 
 def noop_wrap(func):
