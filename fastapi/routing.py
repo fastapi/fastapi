@@ -22,7 +22,6 @@ from typing import (
     Type,
     Union,
     get_args,
-    get_origin,
 )
 
 from annotated_doc import Doc
