@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.123.8
+
 ### Fixes
 
 * 🐛 Fix OpenAPI security scheme OAuth2 scopes declaration, deduplicate security schemes with different scopes. PR [#14455](https://github.com/fastapi/fastapi/pull/14455) by [@tiangolo](https://github.com/tiangolo).
