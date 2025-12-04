@@ -1,7 +1,7 @@
 import inspect
 import sys
 from dataclasses import dataclass, field
-from functools import cached_property
+from functools import cached_property, partial
 from typing import Any, Callable, List, Optional, Sequence, Union
 
 from fastapi._compat import ModelField
@@ -76,26 +76,35 @@ class Dependant:
         return False
 
     @cached_property
+    def _unwrapped_call(self) -> Any:
+        if self.call is None:
+            return self.call  # pragma: no cover
+        unwrapped = inspect.unwrap(self.call)
+        if isinstance(unwrapped, partial):
+            unwrapped = unwrapped.func
+        return unwrapped
+
+    @cached_property
     def is_gen_callable(self) -> bool:
-        if inspect.isgeneratorfunction(self.call):
+        if inspect.isgeneratorfunction(self._unwrapped_call):
             return True
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return inspect.isgeneratorfunction(dunder_call)
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
-        if inspect.isasyncgenfunction(self.call):
+        if inspect.isasyncgenfunction(self._unwrapped_call):
             return True
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return inspect.isasyncgenfunction(dunder_call)
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
-        if inspect.isroutine(self.call):
-            return iscoroutinefunction(self.call)
-        if inspect.isclass(self.call):
+        if inspect.isroutine(self._unwrapped_call):
+            return iscoroutinefunction(self._unwrapped_call)
+        if inspect.isclass(self._unwrapped_call):
             return False
-        dunder_call = getattr(self.call, "__call__", None)  # noqa: B004
+        dunder_call = getattr(self._unwrapped_call, "__call__", None)  # noqa: B004
         return iscoroutinefunction(dunder_call)
 
     @cached_property
