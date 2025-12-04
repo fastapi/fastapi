@@ -99,9 +99,18 @@ class Dependant:
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
             return False  # pragma: no cover
-        return inspect.isgeneratorfunction(
+        if inspect.isgeneratorfunction(
             _impartial(dunder_call)
-        ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_call))
+        ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_call)):
+            return True
+        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+        if dunder_unwrapped_call is None:
+            return False  # pragma: no cover
+        if inspect.isgeneratorfunction(
+            _impartial(dunder_unwrapped_call)
+        ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_unwrapped_call)):
+            return True
+        return False
 
     @cached_property
     def is_async_gen_callable(self) -> bool:
@@ -114,9 +123,18 @@ class Dependant:
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
             return False  # pragma: no cover
-        return inspect.isasyncgenfunction(
+        if inspect.isasyncgenfunction(
             _impartial(dunder_call)
-        ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_call))
+        ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_call)):
+            return True
+        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+        if dunder_unwrapped_call is None:
+            return False  # pragma: no cover
+        if inspect.isasyncgenfunction(
+            _impartial(dunder_unwrapped_call)
+        ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_unwrapped_call)):
+            return True
+        return False
 
     @cached_property
     def is_coroutine_callable(self) -> bool:
@@ -136,6 +154,13 @@ class Dependant:
         if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
             _unwrapped_call(dunder_call)
         ):
+            return True
+        dunder_unwrapped_call = getattr(_unwrapped_call(self.call), "__call__", None)  # noqa: B004
+        if dunder_unwrapped_call is None:
+            return False  # pragma: no cover
+        if iscoroutinefunction(
+            _impartial(dunder_unwrapped_call)
+        ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call)):
             return True
         # if inspect.isclass(self.call): False, covered by default return
         return False
