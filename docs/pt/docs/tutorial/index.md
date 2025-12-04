@@ -1,4 +1,4 @@
-# Tutorial - Guia de Usuário
+# Tutorial - Guia de Usuário { #tutorial-user-guide }
 
 Esse tutorial mostra como usar o **FastAPI** com a maior parte de seus recursos, passo a passo.
 
@@ -6,11 +6,11 @@ Cada seção constrói, gradualmente, sobre as anteriores, mas sua estrutura sã
 
 Ele também foi construído para servir como uma referência futura, então você pode voltar e ver exatamente o que você precisa.
 
-## Rode o código
+## Rode o código { #run-the-code }
 
 Todos os blocos de código podem ser copiados e utilizados diretamente (eles são, na verdade, arquivos Python testados).
 
-Para rodar qualquer um dos exemplos, copie o codigo para um arquivo `main.py`, e inicie o `uvivorn` com:
+Para rodar qualquer um dos exemplos, copie o código para um arquivo `main.py`, e inicie o `fastapi dev` com:
 
 <div class="termy">
 
@@ -54,15 +54,15 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 É **ALTAMENTE recomendado** que você escreva ou copie o código, edite-o e rode-o localmente.
 
-Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ver quão pouco código você tem que escrever, todas as conferências de tipo, auto completações etc.
+Usá-lo em seu editor é o que realmente te mostra os benefícios do FastAPI, ver quão pouco código você tem que escrever, todas as conferências de tipo, preenchimento automático, etc.
 
 ---
 
-## Instale o FastAPI
+## Instale o FastAPI { #install-fastapi }
 
 O primeiro passo é instalar o FastAPI.
 
-Para o tutorial, você deve querer instalá-lo com todas as dependências e recursos opicionais.
+Certifique-se de criar um [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então **instalar o FastAPI**:
 
 <div class="termy">
 
@@ -76,17 +76,19 @@ $ pip install "fastapi[standard]"
 
 /// note | Nota
 
-Quando você instala com pip install "fastapi[standard]", ele vem com algumas dependências opcionais padrão.
+Quando você instala com `pip install "fastapi[standard]"`, ele vem com algumas dependências opcionais padrão, incluindo `fastapi-cloud-cli`, que permite fazer deploy na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
-Se você não quiser ter essas dependências opcionais, pode instalar pip install fastapi em vez disso.
+Se você não quiser ter essas dependências opcionais, pode instalar `pip install fastapi` em vez disso.
+
+Se você quiser instalar as dependências padrão, mas sem o `fastapi-cloud-cli`, você pode instalar com `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ///
 
-## Guia Avançado de Usuário
+## Guia Avançado de Usuário { #advanced-user-guide }
 
 Há também um **Guia Avançado de Usuário** que você pode ler após esse **Tutorial - Guia de Usuário**.
 
-O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e te ensina alguns recursos extras.
+O **Guia Avançado de Usuário** constrói sobre esse, usa os mesmos conceitos e te ensina algumas funcionalidades extras.
 
 Mas você deveria ler primeiro o **Tutorial - Guia de Usuário** (que você está lendo agora).
 

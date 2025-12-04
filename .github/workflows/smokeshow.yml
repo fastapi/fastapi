@@ -21,7 +21,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: '3.9'
@@ -34,7 +34,7 @@ jobs:
             requirements**.txt
             pyproject.toml
       - run: uv pip install -r requirements-github-actions.txt
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: coverage-html
           path: htmlcov
