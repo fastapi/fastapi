@@ -149,8 +149,8 @@ async def get_wrapped_class_instance_async_dependency(
 
 
 @app.get("/wrapped-class-dependency/")
-async def get_wrapped_class_dependency(value: bool = Depends(wrapped_class_dep)):
-    return value
+async def get_wrapped_class_dependency(value: ClassDep = Depends(wrapped_class_dep)):
+    return value.value
 
 
 @app.get("/wrapped-endpoint/")
@@ -232,9 +232,9 @@ async def get_wrapped_class_instance_async_dependency_async_wrapper(
 
 @app.get("/wrapped-class-dependency-async-wrapper/")
 async def get_wrapped_class_dependency_async_wrapper(
-    value: bool = Depends(wrapped_class_dep_async_wrapper),
+    value: ClassDep = Depends(wrapped_class_dep_async_wrapper),
 ):
-    return value
+    return value.value
 
 
 @app.get("/wrapped-endpoint-async-wrapper/")
