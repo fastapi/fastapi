@@ -49,11 +49,15 @@ def test_openapi_mixed_pydantic_models_with_separate_input_output_schemas() -> N
     app = FastAPI(separate_input_output_schemas=True)
 
     @app.post("/v1-users/", response_model=UserV1)
-    def create_v1_user(user: UserV1) -> UserV1:  # pragma: no cover - behavior tested via OpenAPI
+    def create_v1_user(
+        user: UserV1,
+    ) -> UserV1:  # pragma: no cover - behavior tested via OpenAPI
         return user
 
     @app.post("/v2-users/", response_model=UserV2)
-    def create_v2_user(user: UserV2) -> UserV2:  # pragma: no cover - behavior tested via OpenAPI
+    def create_v2_user(
+        user: UserV2,
+    ) -> UserV2:  # pragma: no cover - behavior tested via OpenAPI
         return user
 
     client = TestClient(app)
@@ -71,19 +75,27 @@ def test_openapi_mixed_pydantic_models_with_separate_input_output_schemas() -> N
 
     assert user_v1_keys, "Expected at least one schema for UserV1 (Pydantic v1 model)."
     assert user_v2_keys, "Expected at least one schema for UserV2 (Pydantic v2 model)."
-    assert address_v1_keys, "Expected at least one schema for AddressV1 (Pydantic v1 model)."
-    assert address_v2_keys, "Expected at least one schema for AddressV2 (Pydantic v2 model)."
+    assert address_v1_keys, (
+        "Expected at least one schema for AddressV1 (Pydantic v1 model)."
+    )
+    assert address_v2_keys, (
+        "Expected at least one schema for AddressV2 (Pydantic v2 model)."
+    )
 
     # Ensure that references in the OpenAPI document point to schemas for both versions
     all_refs = list(_collect_refs(openapi_schema))
-    assert any("UserV1" in ref for ref in all_refs), "Expected at least one $ref to a UserV1 schema."
-    assert any("UserV2" in ref for ref in all_refs), "Expected at least one $ref to a UserV2 schema."
-    assert any(
-        "AddressV1" in ref for ref in all_refs
-    ), "Expected at least one $ref to an AddressV1 schema."
-    assert any(
-        "AddressV2" in ref for ref in all_refs
-    ), "Expected at least one $ref to an AddressV2 schema."
+    assert any("UserV1" in ref for ref in all_refs), (
+        "Expected at least one $ref to a UserV1 schema."
+    )
+    assert any("UserV2" in ref for ref in all_refs), (
+        "Expected at least one $ref to a UserV2 schema."
+    )
+    assert any("AddressV1" in ref for ref in all_refs), (
+        "Expected at least one $ref to an AddressV1 schema."
+    )
+    assert any("AddressV2" in ref for ref in all_refs), (
+        "Expected at least one $ref to an AddressV2 schema."
+    )
 
 
 @needs_pydanticv2
@@ -92,11 +104,15 @@ def test_openapi_mixed_pydantic_models_without_separate_input_output_schemas() -
     app = FastAPI(separate_input_output_schemas=False)
 
     @app.post("/v1-users/", response_model=UserV1)
-    def create_v1_user(user: UserV1) -> UserV1:  # pragma: no cover - behavior tested via OpenAPI
+    def create_v1_user(
+        user: UserV1,
+    ) -> UserV1:  # pragma: no cover - behavior tested via OpenAPI
         return user
 
     @app.post("/v2-users/", response_model=UserV2)
-    def create_v2_user(user: UserV2) -> UserV2:  # pragma: no cover - behavior tested via OpenAPI
+    def create_v2_user(
+        user: UserV2,
+    ) -> UserV2:  # pragma: no cover - behavior tested via OpenAPI
         return user
 
     client = TestClient(app)
@@ -114,9 +130,15 @@ def test_openapi_mixed_pydantic_models_without_separate_input_output_schemas() -
 
     assert user_v1_keys, "Expected at least one schema for UserV1 (Pydantic v1 model)."
     assert user_v2_keys, "Expected at least one schema for UserV2 (Pydantic v2 model)."
-    assert address_v1_keys, "Expected at least one schema for AddressV1 (Pydantic v1 model)."
-    assert address_v2_keys, "Expected at least one schema for AddressV2 (Pydantic v2 model)."
+    assert address_v1_keys, (
+        "Expected at least one schema for AddressV1 (Pydantic v1 model)."
+    )
+    assert address_v2_keys, (
+        "Expected at least one schema for AddressV2 (Pydantic v2 model)."
+    )
 
     # Check that there are no obviously broken references (all $ref values should target components/schemas)
     all_refs = list(_collect_refs(openapi_schema))
-    assert all(ref.startswith("#/components/schemas/") for ref in all_refs), "Found a $ref outside components/schemas."
+    assert all(ref.startswith("#/components/schemas/") for ref in all_refs), (
+        "Found a $ref outside components/schemas."
+    )
