@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+## 0.123.6
+
+### Fixes
+
+* 🐛 Fix support for functools wraps and partial combined, for async and regular functions and classes in path operations and dependencies. PR [#14448](https://github.com/fastapi/fastapi/pull/14448) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.123.5
 
 ### Features
