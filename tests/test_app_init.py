@@ -1,7 +1,6 @@
 """Tests for initialization of FastAPI app instance."""
 
 import pytest
-
 from fastapi import FastAPI
 
 
