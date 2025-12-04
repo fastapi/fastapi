@@ -242,6 +242,26 @@ $ python -m pip install --upgrade pip
 
 </div>
 
+/// tip | Tipp
+
+Manchmal kann beim Versuch, `pip` zu aktualisieren, der Fehler **`No module named pip`** auftreten.
+
+Wenn das passiert, installieren und aktualisieren Sie `pip` mit dem folgenden Befehl:
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+Dieser Befehl installiert `pip`, falls es noch nicht installiert ist, und stellt außerdem sicher, dass die installierte Version von `pip` mindestens so aktuell ist wie die in `ensurepip` verfügbare.
+
+///
+
 ## `.gitignore` hinzufügen { #add-gitignore }
 
 Wenn Sie **Git** verwenden (was Sie sollten), fügen Sie eine `.gitignore`-Datei hinzu, um alles in Ihrem `.venv` von Git auszuschließen.

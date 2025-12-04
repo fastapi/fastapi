@@ -17,7 +17,7 @@ from typing import (
 
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
-from fastapi.types import IncEx, ModelNameMap
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
@@ -381,7 +381,7 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
-    if origin_type is Union:  # Handle optional sequences
+    if origin_type is Union or origin_type is UnionType:  # Handle optional sequences
         union_args = get_args(field.field_info.annotation)
         for union_arg in union_args:
             if union_arg is type(None):

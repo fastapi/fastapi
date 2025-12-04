@@ -3,7 +3,6 @@ import email.message
 import functools
 import inspect
 import json
-import sys
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
@@ -78,11 +77,6 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import Annotated, deprecated
-
-if sys.version_info >= (3, 13):  # pragma: no cover
-    pass
-else:  # pragma: no cover
-    pass
 
 
 # Copy of starlette.routing.request_response modified to include the

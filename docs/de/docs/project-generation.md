@@ -25,4 +25,4 @@ GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
 - ✅ Tests mit [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) als Reverse-Proxy / Load Balancer.
 - 🚢 Deployment-Anleitungen unter Verwendung von Docker Compose, einschließlich der Einrichtung eines Frontend-Traefik-Proxys zur Handhabung automatischer HTTPS-Zertifikate.
-- 🏭 CI (kontinuierliche Integration) und CD (kontinuierliche Bereitstellung) basierend auf GitHub Actions.
+- 🏭 CI (kontinuierliche Integration) und CD (kontinuierliches Deployment) basierend auf GitHub Actions.
