@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -191,7 +192,10 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
-    signature = inspect.signature(call)
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
     unwrapped = inspect.unwrap(call)
     globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
@@ -217,7 +221,10 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
-    signature = inspect.signature(call)
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
     unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
@@ -548,10 +555,10 @@ async def _solve_generator(
     *, dependant: Dependant, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
     assert dependant.call
-    if dependant.is_gen_callable:
-        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    elif dependant.is_async_gen_callable:
+    if dependant.is_async_gen_callable:
         cm = asynccontextmanager(dependant.call)(**sub_values)
+    elif dependant.is_gen_callable:
+        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
 
 
