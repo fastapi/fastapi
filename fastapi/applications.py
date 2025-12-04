@@ -911,7 +911,9 @@ class FastAPI(Starlette):
             if not self.title:
                 raise ValueError("A title must be provided for OpenAPI, e.g.: 'My API'")
             if not self.version:
-                raise ValueError("A version must be provided for OpenAPI, e.g.: '2.1.0'")
+                raise ValueError(
+                    "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+                )
         # TODO: remove when discarding the openapi_prefix parameter
         if openapi_prefix:
             logger.warning(
