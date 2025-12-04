@@ -385,6 +385,20 @@ def test_infer_response_model_invalid_field_name():
     _test_invalid_field_name()
 
 
+def _test_multiple_returns(flag: bool):
+    if flag:
+        return {"spam": "spam"}
+    else:
+        return {"eggs": "eggs"}
+
+
+def test_infer_response_model_multiple_returns():
+    """Test that multiple return statements result in None (no inference)."""
+    _test_multiple_returns(True)
+    _test_multiple_returns(False)
+    assert infer_response_model_from_ast(_test_multiple_returns) is None
+
+
 def _test_arg_no_annotation(a):
     return {"x": a}
 
