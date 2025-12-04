@@ -2,10 +2,11 @@
 
 from typing import Optional
 
-from fastapi import APIRouter, FastAPI, Security
+from fastapi import APIRouter, Depends, FastAPI, Security
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
+from typing_extensions import Annotated
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
     authorizationUrl="authorize",
@@ -14,7 +15,12 @@ oauth2_scheme = OAuth2AuthorizationCodeBearer(
     scopes={"read": "Read access", "write": "Write access"},
 )
 
-app = FastAPI(dependencies=[Security(oauth2_scheme)])
+
+async def get_token(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
+    return token
+
+
+app = FastAPI(dependencies=[Depends(get_token)])
 
 
 @app.get("/")
@@ -22,11 +28,26 @@ async def root():
     return {"message": "Hello World"}
 
 
+@app.get(
+    "/with-oauth2-scheme",
+    dependencies=[Security(oauth2_scheme, scopes=["read", "write"])],
+)
+async def read_with_oauth2_scheme():
+    return {"message": "Admin Access"}
+
+
+@app.get(
+    "/with-get-token", dependencies=[Security(get_token, scopes=["read", "write"])]
+)
+async def read_with_get_token():
+    return {"message": "Admin Access"}
+
+
 router = APIRouter(dependencies=[Security(oauth2_scheme, scopes=["read"])])
 
 
 @router.get("/items/")
-async def read_items(token: Optional[str] = Security(oauth2_scheme)):
+async def read_items(token: Optional[str] = Depends(oauth2_scheme)):
     return {"token": token}
 
 
@@ -79,6 +100,36 @@ def test_openapi_schema():
                             }
                         },
                         "security": [{"OAuth2AuthorizationCodeBearer": []}],
+                    }
+                },
+                "/with-oauth2-scheme": {
+                    "get": {
+                        "summary": "Read With Oauth2 Scheme",
+                        "operationId": "read_with_oauth2_scheme_with_oauth2_scheme_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "security": [
+                            {"OAuth2AuthorizationCodeBearer": ["read", "write"]}
+                        ],
+                    }
+                },
+                "/with-get-token": {
+                    "get": {
+                        "summary": "Read With Get Token",
+                        "operationId": "read_with_get_token_with_get_token_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "security": [
+                            {"OAuth2AuthorizationCodeBearer": ["read", "write"]}
+                        ],
                     }
                 },
                 "/items/": {
