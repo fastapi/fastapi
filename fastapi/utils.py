@@ -363,8 +363,7 @@ def infer_response_model_from_ast(
         source = inspect.getsource(endpoint_function)
     except (OSError, TypeError):
         logger.debug(
-            f"AST inference skipped for '{func_name}': "
-            "could not retrieve source code"
+            f"AST inference skipped for '{func_name}': could not retrieve source code"
         )
         return None
 
@@ -373,7 +372,7 @@ def infer_response_model_from_ast(
         tree = ast.parse(source)
     except SyntaxError:
         logger.debug(
-            f"AST inference skipped for '{func_name}': " "syntax error in source code"
+            f"AST inference skipped for '{func_name}': syntax error in source code"
         )
         return None
 
@@ -403,7 +402,7 @@ def infer_response_model_from_ast(
 
     if not return_statements:
         logger.debug(
-            f"AST inference skipped for '{func_name}': " "no return statement found"
+            f"AST inference skipped for '{func_name}': no return statement found"
         )
         return None
 
@@ -455,22 +454,19 @@ def infer_response_model_from_ast(
 
         if not isinstance(key.value, str):
             logger.debug(
-                f"AST inference skipped for '{func_name}': "
-                "non-string key found in dict"
+                f"AST inference skipped for '{func_name}': non-string key found in dict"
             )
             return None
 
         field_name = key.value
 
-        field_type = _infer_type_from_ast(
-            value, func_def, f"{func_name}_{field_name}"
-        )
+        field_type = _infer_type_from_ast(value, func_def, f"{func_name}_{field_name}")
 
         fields[field_name] = (field_type, ...)
 
     if not fields:
         logger.debug(
-            f"AST inference skipped for '{func_name}': " "no fields could be inferred"
+            f"AST inference skipped for '{func_name}': no fields could be inferred"
         )
         return None
 
@@ -479,8 +475,7 @@ def infer_response_model_from_ast(
     # type annotations unnecessarily
     if all(field_type is Any for field_type, _ in fields.values()):
         logger.debug(
-            f"AST inference skipped for '{func_name}': "
-            "all fields resolved to Any type"
+            f"AST inference skipped for '{func_name}': all fields resolved to Any type"
         )
         return None
 
@@ -494,7 +489,6 @@ def infer_response_model_from_ast(
         return create_model(model_name, **fields)  # type: ignore[call-overload,no-any-return]
     except Exception as e:
         logger.debug(
-            f"AST inference skipped for '{func_name}': "
-            f"failed to create model: {e}"
+            f"AST inference skipped for '{func_name}': failed to create model: {e}"
         )
         return None
