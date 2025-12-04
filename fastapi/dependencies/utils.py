@@ -881,6 +881,8 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
     return False
 
 
+from fastapi.exceptions import RequestEntityTooLarge
+
 async def _extract_form_body(
     body_fields: List[ModelField],
     received_body: FormData,
@@ -892,10 +894,28 @@ async def _extract_form_body(
         field_info = field.field_info
         if (
             isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
-            and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
-            value = await value.read()
+            #If a file size limit is defined through max_size
+            max_size = getattr(field_info, "max_size", None)
+            if max_size is not None:
+                CHUNK = 8192
+                total = 0
+                content = bytearray()
+
+                while True:
+                    chunk = await value.read(CHUNK)
+                    if not chunk:
+                        break
+                    total += len(chunk)
+                    if total > max_size:
+                        raise RequestEntityTooLarge(
+                                f"Uploaded file '{field.alias}' exceeded max size={max_size} bytes"
+                                )
+                        content.extend(chunk)
+                    value = bytes(content)
+                else:
+                    value = await value.read()
         elif (
             is_bytes_sequence_field(field)
             and isinstance(field_info, (params.File, temp_pydantic_v1_params.File))

@@ -182,3 +182,8 @@ class ResponseValidationError(ValidationException):
         for err in self._errors:
             message += f"  {err}\n"
         return message
+
+class RequestEntityTooLarge(Exception):
+    """Raised when uploaded content exceeds the configured max_size."""
+    pass
+

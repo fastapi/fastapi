@@ -725,6 +725,7 @@ class File(Form):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        max_size: Optional[int] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -760,6 +761,7 @@ class File(Form):  # type: ignore[misc]
             json_schema_extra=json_schema_extra,
             **extra,
         )
+        self.max_size = max_size
 
 
 @dataclass(frozen=True)

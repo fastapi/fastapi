@@ -20,8 +20,9 @@ from fastapi.exception_handlers import (
     http_exception_handler,
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
+    request_entity_too_large_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError, RequestEntityTooLarge
 from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
@@ -992,6 +993,11 @@ class FastAPI(Starlette):
             # Starlette still has incorrect type specification for the handlers
             websocket_request_validation_exception_handler,  # type: ignore
         )
+        self.exception_handlers.setdefault(
+                RequestEntityTooLarge,
+                request_entity_too_large_exception_handler,
+                )
+
 
         self.user_middleware: List[Middleware] = (
             [] if middleware is None else list(middleware)
