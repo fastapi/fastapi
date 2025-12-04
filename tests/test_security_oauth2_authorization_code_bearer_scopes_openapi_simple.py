@@ -1,18 +1,14 @@
 # Ref: https://github.com/fastapi/fastapi/issues/14454
 
-from fastapi import APIRouter, Depends, FastAPI, Security
-from fastapi.security import OAuth2AuthorizationCodeBearer, SecurityScopes
+from fastapi import Depends, FastAPI, Security
+from fastapi.security import OAuth2AuthorizationCodeBearer
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from typing_extensions import Annotated
 
-app = FastAPI()
-
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
     authorizationUrl="api/oauth/authorize",
     tokenUrl="/api/oauth/token",
-    refreshUrl="/api/oauth/token",
-    auto_error=False,
     scopes={"read": "Read access", "write": "Write access"},
 )
 
@@ -21,34 +17,13 @@ async def get_token(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
     return token
 
 
-AccessToken = Annotated[str, Depends(get_token)]
+app = FastAPI(dependencies=[Depends(get_token)])
 
 
-async def require_oauth_scopes(
-    security_scopes: SecurityScopes, token: AccessToken
-) -> None:
-    pass
+@app.get("/admin", dependencies=[Security(get_token, scopes=["read", "write"])])
+async def read_admin():
+    return {"message": "Admin Access"}
 
-
-async def check_limit(token: AccessToken) -> None:
-    pass
-
-
-router = APIRouter(prefix="/v1", dependencies=[Depends(check_limit)])
-
-channels_router = APIRouter(prefix="/channels", tags=["Channels"])
-
-
-@channels_router.get(
-    "/", dependencies=[Security(require_oauth_scopes, scopes=["read"])]
-)
-def read_items():
-    return {"msg": "You have READ access"}
-
-
-router.include_router(channels_router)
-
-app.include_router(router)
 
 client = TestClient(app)
 
@@ -61,18 +36,19 @@ def test_openapi_schema():
             "openapi": "3.1.0",
             "info": {"title": "FastAPI", "version": "0.1.0"},
             "paths": {
-                "/v1/channels/": {
+                "/admin": {
                     "get": {
-                        "tags": ["Channels"],
-                        "summary": "Read Items",
-                        "operationId": "read_items_v1_channels__get",
+                        "summary": "Read Admin",
+                        "operationId": "read_admin_admin_get",
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
                                 "content": {"application/json": {"schema": {}}},
                             }
                         },
-                        "security": [{"OAuth2AuthorizationCodeBearer": ["read"]}],
+                        "security": [
+                            {"OAuth2AuthorizationCodeBearer": ["read", "write"]}
+                        ],
                     }
                 }
             },
@@ -82,7 +58,6 @@ def test_openapi_schema():
                         "type": "oauth2",
                         "flows": {
                             "authorizationCode": {
-                                "refreshUrl": "/api/oauth/token",
                                 "scopes": {
                                     "read": "Read access",
                                     "write": "Write access",
