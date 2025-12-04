@@ -91,14 +91,14 @@ class Dependant:
     @cached_property
     def is_gen_callable(self) -> bool:
         if self.call is None:
-            return False
+            return False  # pragma: no cover
         if inspect.isgeneratorfunction(
             _impartial(self.call)
         ) or inspect.isgeneratorfunction(_unwrapped_call(self.call)):
             return True
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
-            return False
+            return False  # pragma: no cover
         return inspect.isgeneratorfunction(
             _impartial(dunder_call)
         ) or inspect.isgeneratorfunction(_unwrapped_call(dunder_call))
@@ -106,14 +106,14 @@ class Dependant:
     @cached_property
     def is_async_gen_callable(self) -> bool:
         if self.call is None:
-            return False
+            return False  # pragma: no cover
         if inspect.isasyncgenfunction(
             _impartial(self.call)
         ) or inspect.isasyncgenfunction(_unwrapped_call(self.call)):
             return True
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
-            return False
+            return False  # pragma: no cover
         return inspect.isasyncgenfunction(
             _impartial(dunder_call)
         ) or inspect.isasyncgenfunction(_unwrapped_call(dunder_call))
@@ -121,7 +121,7 @@ class Dependant:
     @cached_property
     def is_coroutine_callable(self) -> bool:
         if self.call is None:
-            return False
+            return False  # pragma: no cover
         if inspect.isroutine(_impartial(self.call)) and iscoroutinefunction(
             _impartial(self.call)
         ):
@@ -132,7 +132,7 @@ class Dependant:
             return True
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
-            return False
+            return False  # pragma: no cover
         if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
             _unwrapped_call(dunder_call)
         ):
