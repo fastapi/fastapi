@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -191,7 +192,10 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
-    signature = inspect.signature(call)
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
     unwrapped = inspect.unwrap(call)
     globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
@@ -217,7 +221,10 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
-    signature = inspect.signature(call)
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
     unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
