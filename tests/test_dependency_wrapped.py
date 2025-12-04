@@ -65,6 +65,24 @@ wrapped_class_instance_dep = noop_wrap(class_instance_dep)
 wrapped_class_instance_dep_async_wrapper = noop_wrap_async(class_instance_dep)
 
 
+class ClassInstanceWrappedDep:
+    @noop_wrap
+    def __call__(self):
+        return True
+
+
+class_instance_wrapped_dep = ClassInstanceWrappedDep()
+
+
+class ClassInstanceWrappedAsyncDep:
+    @noop_wrap_async
+    def __call__(self):
+        return True
+
+
+class_instance_wrapped_async_dep = ClassInstanceWrappedAsyncDep()
+
+
 class ClassDep:
     def __init__(self):
         self.value = True
@@ -79,10 +97,30 @@ class ClassInstanceAsyncDep:
         return True
 
 
-wrapped_class_instance_async_dep = noop_wrap(ClassInstanceAsyncDep())
+class_instance_async_dep = ClassInstanceAsyncDep()
+wrapped_class_instance_async_dep = noop_wrap(class_instance_async_dep)
 wrapped_class_instance_async_dep_async_wrapper = noop_wrap_async(
-    ClassInstanceAsyncDep()
+    class_instance_async_dep
 )
+
+
+class ClassInstanceAsyncWrappedDep:
+    @noop_wrap
+    async def __call__(self):
+        return True
+
+
+class_instance_async_wrapped_dep = ClassInstanceAsyncWrappedDep()
+
+
+class ClassInstanceAsyncWrappedAsyncDep:
+    @noop_wrap_async
+    async def __call__(self):
+        return True
+
+
+class_instance_async_wrapped_async_dep = ClassInstanceAsyncWrappedAsyncDep()
+
 
 app = FastAPI()
 
@@ -141,6 +179,34 @@ async def get_wrapped_class_instance_dependency(
 @app.get("/wrapped-class-instance-async-dependency/")
 async def get_wrapped_class_instance_async_dependency(
     value: bool = Depends(wrapped_class_instance_async_dep),
+):
+    return value
+
+
+@app.get("/class-instance-wrapped-dependency/")
+async def get_class_instance_wrapped_dependency(
+    value: bool = Depends(class_instance_wrapped_dep),
+):
+    return value
+
+
+@app.get("/class-instance-wrapped-async-dependency/")
+async def get_class_instance_wrapped_async_dependency(
+    value: bool = Depends(class_instance_wrapped_async_dep),
+):
+    return value
+
+
+@app.get("/class-instance-async-wrapped-dependency/")
+async def get_class_instance_async_wrapped_dependency(
+    value: bool = Depends(class_instance_async_wrapped_dep),
+):
+    return value
+
+
+@app.get("/class-instance-async-wrapped-async-dependency/")
+async def get_class_instance_async_wrapped_async_dependency(
+    value: bool = Depends(class_instance_async_wrapped_async_dep),
 ):
     return value
 
@@ -258,6 +324,10 @@ client = TestClient(app)
         "/async-wrapped-gen-dependency/",
         "/wrapped-class-instance-dependency/",
         "/wrapped-class-instance-async-dependency/",
+        "/class-instance-wrapped-dependency/",
+        "/class-instance-wrapped-async-dependency/",
+        "/class-instance-async-wrapped-dependency/",
+        "/class-instance-async-wrapped-async-dependency/",
         "/wrapped-class-dependency/",
         "/wrapped-endpoint/",
         "/async-wrapped-endpoint/",
