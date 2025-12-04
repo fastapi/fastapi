@@ -7,6 +7,7 @@ from typing import (
     Any,
     Dict,
     List,
+    Mapping,
     Sequence,
     Set,
     Tuple,
@@ -208,15 +209,7 @@ def get_definitions(
     Dict[Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
     Dict[str, Dict[str, Any]],
 ]:
-    has_computed_fields: bool = any(
-        field._type_adapter.core_schema.get("schema", {}).get("computed_fields", [])
-        for field in fields
-    )
-
     schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
-    override_mode: Union[Literal["validation"], None] = (
-        None if (separate_input_output_schemas or has_computed_fields) else "validation"
-    )
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
     flat_validation_models = get_flat_models_from_fields(
@@ -246,11 +239,26 @@ def get_definitions(
     unique_flat_model_fields = {
         f for f in flat_model_fields if f.type_ not in input_types
     }
+    inputs: List[
+        Tuple[
+            ModelField,
+            Literal["validation", "serialization"],
+            Mapping[str, Any],
+        ]
+    ] = []
+    for field in list(fields) + list(unique_flat_model_fields):
+        has_computed_fields: bool = field._type_adapter.core_schema.get(
+            "schema", {}
+        ).get("computed_fields", [])
+        override_mode: Union[Literal["validation"], None] = (
+            None
+            if (separate_input_output_schemas or has_computed_fields)
+            else "validation"
+        )
+        inputs.append(
+            (field, override_mode or field.mode, field._type_adapter.core_schema)
+        )
 
-    inputs = [
-        (field, override_mode or field.mode, field._type_adapter.core_schema)
-        for field in list(fields) + list(unique_flat_model_fields)
-    ]
     field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)
     for item_def in cast(Dict[str, Dict[str, Any]], definitions).values():
         if "description" in item_def:
