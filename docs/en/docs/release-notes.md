@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix evaluating stringified annotations in Python 3.10. PR [#11355](https://github.com/fastapi/fastapi/pull/11355) by [@chaen](https://github.com/chaen).
+
 ## 0.123.6
 
 ### Fixes
