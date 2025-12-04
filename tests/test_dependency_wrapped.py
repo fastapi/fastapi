@@ -69,9 +69,6 @@ class ClassDep:
     def __init__(self):
         self.value = True
 
-    def __bool__(self):
-        return True
-
 
 wrapped_class_dep = noop_wrap(ClassDep)
 wrapped_class_dep_async_wrapper = noop_wrap_async(ClassDep)
