@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_py_lt_314, needs_pydanticv2
+from .utils import needs_py310, needs_py_lt_314, needs_pydanticv2
 
 
 @needs_pydanticv2
@@ -134,6 +134,43 @@ def test_is_uploadfile_sequence_annotation():
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
     assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+
+
+@needs_pydanticv2
+def test_serialize_sequence_value_with_optional_list():
+    """Test that serialize_sequence_value handles optional lists correctly."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=Union[List[str], None])
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
+    assert result == ["a", "b", "c"]
+    assert isinstance(result, list)
+
+
+@needs_pydanticv2
+@needs_py310
+def test_serialize_sequence_value_with_optional_list_pipe_union():
+    """Test that serialize_sequence_value handles optional lists correctly (with new syntax)."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=list[str] | None)
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
+    assert result == ["a", "b", "c"]
+    assert isinstance(result, list)
+
+
+@needs_pydanticv2
+def test_serialize_sequence_value_with_none_first_in_union():
+    """Test that serialize_sequence_value handles Union[None, List[...]] correctly."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=Union[None, List[str]])
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["x", "y"])
+    assert result == ["x", "y"]
+    assert isinstance(result, list)
 
 
 @needs_py_lt_314

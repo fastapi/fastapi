@@ -1,6 +1,6 @@
 nilslindemann:
   login: nilslindemann
-  count: 124
+  count: 125
   avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
   url: https://github.com/nilslindemann
 jaystone776:
@@ -8,16 +8,16 @@ jaystone776:
   count: 46
   avatarUrl: https://avatars.githubusercontent.com/u/11191137?u=299205a95e9b6817a43144a48b643346a5aac5cc&v=4
   url: https://github.com/jaystone776
+ceb10n:
+  login: ceb10n
+  count: 29
+  avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
+  url: https://github.com/ceb10n
 valentinDruzhinin:
   login: valentinDruzhinin
   count: 29
   avatarUrl: https://avatars.githubusercontent.com/u/12831905?u=aae1ebc675c91e8fa582df4fcc4fc4128106344d&v=4
   url: https://github.com/valentinDruzhinin
-ceb10n:
-  login: ceb10n
-  count: 27
-  avatarUrl: https://avatars.githubusercontent.com/u/235213?u=edcce471814a1eba9f0cdaa4cd0de18921a940a6&v=4
-  url: https://github.com/ceb10n
 tokusumi:
   login: tokusumi
   count: 23
@@ -286,7 +286,7 @@ hsuanchi:
 alejsdev:
   login: alejsdev
   count: 3
-  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=447d12a1b347f466b35378bee4c7104cc9b2c571&v=4
+  avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=85ceac49fb87138aebe8d663912e359447329090&v=4
   url: https://github.com/alejsdev
 riroan:
   login: riroan
@@ -358,6 +358,11 @@ ruzia:
   count: 3
   avatarUrl: https://avatars.githubusercontent.com/u/24503?v=4
   url: https://github.com/ruzia
+YuriiMotov:
+  login: YuriiMotov
+  count: 3
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
 izaguerreiro:
   login: izaguerreiro
   count: 2
@@ -543,8 +548,3 @@ EdmilsonRodrigues:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/62777025?u=217d6f3cd6cc750bb8818a3af7726c8d74eb7c2d&v=4
   url: https://github.com/EdmilsonRodrigues
-YuriiMotov:
-  login: YuriiMotov
-  count: 2
-  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
-  url: https://github.com/YuriiMotov
