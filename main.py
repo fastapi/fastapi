@@ -1,6 +1,6 @@
 from typing import Union
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -30,7 +30,7 @@ def update_item(item_id: int, item: Item):
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(max_size=500)):
     total_bytes = 0
-    
+
     # Safest: process in chunks instead of reading whole file
     while True:
         chunk = await file.read(1024 * 1024)  # 1MB
@@ -39,5 +39,3 @@ async def upload_file(file: UploadFile = File(max_size=500)):
         total_bytes += len(chunk)
 
     return {"filename": file.filename, "size": total_bytes}
-
-

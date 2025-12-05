@@ -36,7 +36,6 @@ from fastapi._compat import (
     get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
-    is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
     is_scalar_sequence_field,
@@ -883,6 +882,7 @@ def _should_embed_body_fields(fields: List[ModelField]) -> bool:
 
 from fastapi.exceptions import RequestEntityTooLarge
 
+
 async def _extract_form_body(
     body_fields: List[ModelField],
     received_body: FormData,
@@ -892,11 +892,10 @@ async def _extract_form_body(
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
-        if (
-            isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
-            and isinstance(value, UploadFile)
-        ):
-            #If a file size limit is defined through max_size
+        if isinstance(
+            field_info, (params.File, temp_pydantic_v1_params.File)
+        ) and isinstance(value, UploadFile):
+            # If a file size limit is defined through max_size
             max_size = getattr(field_info, "max_size", None)
             if max_size is not None:
                 CHUNK = 8192
@@ -910,8 +909,8 @@ async def _extract_form_body(
                     total += len(chunk)
                     if total > max_size:
                         raise RequestEntityTooLarge(
-                                f"Uploaded file '{field.alias}' exceeded max size={max_size} bytes"
-                                )
+                            f"Uploaded file '{field.alias}' exceeded max size={max_size} bytes"
+                        )
                         content.extend(chunk)
                     value = bytes(content)
                 else:

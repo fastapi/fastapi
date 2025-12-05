@@ -183,7 +183,8 @@ class ResponseValidationError(ValidationException):
             message += f"  {err}\n"
         return message
 
+
 class RequestEntityTooLarge(Exception):
     """Raised when uploaded content exceeds the configured max_size."""
-    pass
 
+    pass
