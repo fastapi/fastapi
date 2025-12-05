@@ -7,6 +7,19 @@ hide:
 
 ## Latest Changes
 
+## 0.123.10
+
+### Fixes
+
+* 🐛 Fix using class (not instance) dependency that has `__call__` method. PR [#14458](https://github.com/fastapi/fastapi/pull/14458) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🐛 Fix `separate_input_output_schemas=False` with `computed_field`. PR [#14453](https://github.com/fastapi/fastapi/pull/14453) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.123.9
+
+### Fixes
+
+* 🐛 Fix OAuth2 scopes in OpenAPI in extra corner cases, parent dependency with scopes, sub-dependency security scheme without scopes. PR [#14459](https://github.com/fastapi/fastapi/pull/14459) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.123.8
 
 ### Fixes
