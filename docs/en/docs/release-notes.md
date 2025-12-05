@@ -7,6 +7,16 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `separate_input_output_schemas=False` with `computed_field`. PR [#14453](https://github.com/fastapi/fastapi/pull/14453) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.123.9
+
+### Fixes
+
+* 🐛 Fix OAuth2 scopes in OpenAPI in extra corner cases, parent dependency with scopes, sub-dependency security scheme without scopes. PR [#14459](https://github.com/fastapi/fastapi/pull/14459) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.123.8
 
 ### Fixes

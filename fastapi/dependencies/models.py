@@ -2,7 +2,7 @@ import inspect
 import sys
 from dataclasses import dataclass, field
 from functools import cached_property, partial
-from typing import Any, Callable, List, Optional, Sequence, Union
+from typing import Any, Callable, List, Optional, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -29,12 +29,6 @@ def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
 
 
 @dataclass
-class SecurityRequirement:
-    security_scheme: SecurityBase
-    scopes: Optional[Sequence[str]] = None
-
-
-@dataclass
 class Dependant:
     path_params: List[ModelField] = field(default_factory=list)
     query_params: List[ModelField] = field(default_factory=list)
@@ -42,7 +36,6 @@ class Dependant:
     cookie_params: List[ModelField] = field(default_factory=list)
     body_params: List[ModelField] = field(default_factory=list)
     dependencies: List["Dependant"] = field(default_factory=list)
-    security_requirements: List[SecurityRequirement] = field(default_factory=list)
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
     request_param_name: Optional[str] = None
@@ -83,10 +76,31 @@ class Dependant:
             return True
         if self.security_scopes_param_name is not None:
             return True
+        if self._is_security_scheme:
+            return True
         for sub_dep in self.dependencies:
             if sub_dep._uses_scopes:
                 return True
         return False
+
+    @cached_property
+    def _is_security_scheme(self) -> bool:
+        if self.call is None:
+            return False  # pragma: no cover
+        unwrapped = _unwrapped_call(self.call)
+        return isinstance(unwrapped, SecurityBase)
+
+    # Mainly to get the type of SecurityBase, but it's the same self.call
+    @cached_property
+    def _security_scheme(self) -> SecurityBase:
+        unwrapped = _unwrapped_call(self.call)
+        assert isinstance(unwrapped, SecurityBase)
+        return unwrapped
+
+    @cached_property
+    def _security_dependencies(self) -> List["Dependant"]:
+        security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
+        return security_deps
 
     @cached_property
     def is_gen_callable(self) -> bool:
