@@ -1,11 +1,21 @@
 from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions import (
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.utils import is_body_allowed_for_status_code
 from fastapi.websockets import WebSocket
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.status import WS_1008_POLICY_VIOLATION
+
+
+async def request_entity_too_large_exception_handler(request, exc: Exception):
+    return JSONResponse(
+        status_code=413,
+        content={"detail": str(exc) or "Uploaded file too large"},
+    )
 
 
 async def http_exception_handler(request: Request, exc: HTTPException) -> Response:
