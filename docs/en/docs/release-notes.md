@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+## 0.123.9
+
+### Fixes
+
+* 🐛 Fix OAuth2 scopes in OpenAPI in extra corner cases, parent dependency with scopes, sub-dependency security scheme without scopes. PR [#14459](https://github.com/fastapi/fastapi/pull/14459) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.123.8
 
 ### Fixes
