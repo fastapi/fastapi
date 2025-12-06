@@ -19,6 +19,7 @@ from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     get_flat_dependant,
     get_flat_params,
+    get_validation_alias,
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
@@ -141,7 +142,7 @@ def _get_openapi_operation_parameters(
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
             )
-            name = param.alias
+            name = get_validation_alias(param)
             convert_underscores = getattr(
                 param.field_info,
                 "convert_underscores",
@@ -149,7 +150,7 @@ def _get_openapi_operation_parameters(
             )
             if (
                 param_type == ParamTypes.header
-                and param.alias == param.name
+                and name == param.name
                 and convert_underscores
             ):
                 name = param.name.replace("_", "-")
