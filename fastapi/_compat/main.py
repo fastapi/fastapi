@@ -28,6 +28,7 @@ if PYDANTIC_V2:
     from .v2 import Validator as Validator
     from .v2 import evaluate_forwardref as evaluate_forwardref
     from .v2 import get_missing_field_error as get_missing_field_error
+    from .v2 import omit_by_default as omit_by_default
     from .v2 import (
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
@@ -44,6 +45,7 @@ else:
     from .v1 import Validator as Validator
     from .v1 import evaluate_forwardref as evaluate_forwardref
     from .v1 import get_missing_field_error as get_missing_field_error
+    from .v1 import omit_by_default as omit_by_default
     from .v1 import (  # type: ignore[assignment]
         with_info_plain_validator_function as with_info_plain_validator_function,
     )
@@ -207,6 +209,30 @@ def is_sequence_field(field: ModelField) -> bool:
         from . import v2
 
         return v2.is_sequence_field(field)  # type: ignore[arg-type]
+
+
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
+        return v1.is_scalar_mapping_field(field)
+    else:
+        assert PYDANTIC_V2
+        from . import v2
+
+        return v2.is_scalar_mapping_field(field)  # type: ignore[arg-type]
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
+        return v1.is_scalar_sequence_mapping_field(field)
+    else:
+        assert PYDANTIC_V2
+        from . import v2
+
+        return v2.is_scalar_sequence_mapping_field(field)  # type: ignore[arg-type]
 
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:

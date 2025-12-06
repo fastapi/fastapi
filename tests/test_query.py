@@ -392,12 +392,6 @@ def test_query_param_required_int_query_foo():
     )
 
 
-def test_query_frozenset_query_1_query_1_query_2():
-    response = client.get("/query/frozenset/?query=1&query=1&query=2")
-    assert response.status_code == 200
-    assert response.json() == "1,2"
-
-
 def test_query_list():
     response = client.get("/query/list/?device_ids=1&device_ids=2")
     assert response.status_code == 200
@@ -419,3 +413,36 @@ def test_query_list_default_empty():
     response = client.get("/query/list-default/")
     assert response.status_code == 200
     assert response.json() == []
+
+
+def test_query_frozenset_query_1_query_1_query_2():
+    response = client.get("/query/frozenset/?query=1&query=1&query=2")
+    assert response.status_code == 200
+    assert response.json() == "1,2"
+
+
+def test_mapping_query():
+    response = client.get("/query/mapping-params/?foo=fuzz&bar=buzz")
+    assert response.status_code == 200
+    assert response.json() == {"queries": {"bar": "buzz", "foo": "fuzz"}}
+
+
+def test_sequence_mapping_query():
+    response = client.get("/query/mapping-sequence-params/?foo=1&foo=2")
+    assert response.status_code == 200
+    assert response.json() == {"queries": {"foo": [1, 2]}}
+
+
+def test_mapping_with_non_mapping_query():
+    response = client.get("/query/mixed-params/?foo=1&foo=2&bar=3&query=fizz")
+    assert response.status_code == 200
+    assert response.json() == {
+        "queries": {
+            "query": "fizz",
+            "mapping_query": {"foo": "2", "bar": "3"},
+            "sequence_mapping_queries": {
+                "foo": [1, 2],
+                "bar": [3],
+            },
+        }
+    }
