@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.124.0
+
 ### Features
 
 * 🚸  Improve tracebacks by adding endpoint metadata. PR [#14306](https://github.com/fastapi/fastapi/pull/14306) by [@savannahostrowski](https://github.com/savannahostrowski).
