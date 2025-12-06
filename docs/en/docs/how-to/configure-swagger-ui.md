@@ -40,7 +40,7 @@ FastAPI includes some default configuration parameters appropriate for most of t
 
 It includes these default configurations:
 
-{* ../../fastapi/openapi/docs.py ln[8:23] hl[17:23] *}
+{* ../../fastapi/openapi/docs.py ln[9:24] hl[18:24] *}
 
 You can override any of them by setting a different value in the argument `swagger_ui_parameters`.
 
