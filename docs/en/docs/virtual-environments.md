@@ -281,7 +281,7 @@ Do this **once**, right after you create the virtual environment.
 <div class="termy">
 
 ```console
-$ echo "*" > .venv/.gitignore
+$ echo ".venv" > .gitignore
 ```
 
 </div>
