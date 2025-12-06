@@ -114,7 +114,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 为此，你可以声明`None`是一个有效的类型，并仍然使用`default=...`：
 
-{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
 /// tip
 
