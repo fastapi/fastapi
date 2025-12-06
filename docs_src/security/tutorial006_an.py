@@ -4,7 +4,7 @@ from typing_extensions import Annotated
 
 app = FastAPI()
 
-security = HTTPBasic()
+security = HTTPBasic(realm="simple")
 
 
 @app.get("/users/me")
