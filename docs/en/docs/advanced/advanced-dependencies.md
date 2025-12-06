@@ -120,7 +120,7 @@ The exit code, the automatic closing of the `Session` in:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
 
-...would be run after the the response finishes sending the slow data:
+...would be run after the response finishes sending the slow data:
 
 {* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
 
