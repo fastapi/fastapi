@@ -1,10 +1,23 @@
-from typing import Any, Dict, Optional, Sequence, Type, TypedDict, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    Optional,
+    Sequence,
+    Type,
+    TypedDict,
+    Union,
+)
 
 from annotated_doc import Doc
+from fastapi._compat import display_errors
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
 from typing_extensions import Annotated
+
+if TYPE_CHECKING:  # pragma: nocover
+    from fastapi._compat import ErrorDict
 
 
 class EndpointContext(TypedDict, total=False):
@@ -164,7 +177,7 @@ class DependencyScopeError(FastAPIError):
 class ValidationException(Exception):
     def __init__(
         self,
-        errors: Sequence[Any],
+        errors: Sequence["ErrorDict"],
         *,
         endpoint_ctx: Optional[EndpointContext] = None,
     ) -> None:
@@ -177,7 +190,7 @@ class ValidationException(Exception):
         self.endpoint_file = ctx.get("file")
         self.endpoint_line = ctx.get("line")
 
-    def errors(self) -> Sequence[Any]:
+    def errors(self) -> Sequence["ErrorDict"]:
         return self._errors
 
     def _format_endpoint_context(self) -> str:
@@ -193,8 +206,7 @@ class ValidationException(Exception):
 
     def __str__(self) -> str:
         message = f"{len(self._errors)} validation error{'s' if len(self._errors) != 1 else ''}:\n"
-        for err in self._errors:
-            message += f"  {err}\n"
+        message += display_errors(self._errors)
         message += self._format_endpoint_context()
         return message.rstrip()
 
@@ -202,7 +214,7 @@ class ValidationException(Exception):
 class RequestValidationError(ValidationException):
     def __init__(
         self,
-        errors: Sequence[Any],
+        errors: Sequence["ErrorDict"],
         *,
         body: Any = None,
         endpoint_ctx: Optional[EndpointContext] = None,
@@ -224,7 +236,7 @@ class WebSocketRequestValidationError(ValidationException):
 class ResponseValidationError(ValidationException):
     def __init__(
         self,
-        errors: Sequence[Any],
+        errors: Sequence["ErrorDict"],
         *,
         body: Any = None,
         endpoint_ctx: Optional[EndpointContext] = None,

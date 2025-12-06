@@ -1,5 +1,16 @@
 import sys
-from typing import Any, Dict, List, Literal, Sequence, Tuple, Type, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Dict,
+    List,
+    Literal,
+    Sequence,
+    Tuple,
+    Type,
+    TypedDict,
+    Union,
+)
 
 from fastapi.types import ModelNameMap
 
@@ -58,6 +69,23 @@ if sys.version_info >= (3, 14):
 
     from .v2 import ValidationError, create_model
 
+    def _display_error_loc(error: "ErrorDict") -> str:
+        return " -> ".join(str(e) for e in error["loc"])
+
+    def _display_error_type_and_ctx(error: "ErrorDict") -> str:
+        t = "type=" + error["type"]
+        ctx = error.get("ctx")
+        if ctx:  # pragma: no cover
+            return t + "".join(f"; {k}={v}" for k, v in ctx.items())
+        else:
+            return t
+
+    def display_errors(errors: List["ErrorDict"]) -> str:
+        return "\n".join(
+            f"{_display_error_loc(e)}\n  {e['msg']} ({_display_error_type_and_ctx(e)})"
+            for e in errors
+        )
+
     def get_definitions(
         *,
         fields: List[ModelField],
@@ -70,6 +98,17 @@ if sys.version_info >= (3, 14):
         Dict[str, Dict[str, Any]],
     ]:
         return {}, {}  # pragma: no cover
+
+    if TYPE_CHECKING:  # pragma: no cover
+        Loc = Tuple[Union[int, str], ...]
+
+        class _ErrorDictRequired(TypedDict):
+            loc: Loc
+            msg: str
+            type: str
+
+        class ErrorDict(_ErrorDictRequired, total=False):
+            ctx: Dict[str, Any]
 
 
 else:
@@ -91,7 +130,11 @@ else:
     from .v1 import UndefinedType as UndefinedType
     from .v1 import Url as Url
     from .v1 import ValidationError, create_model
+    from .v1 import display_errors as display_errors
     from .v1 import get_definitions as get_definitions
+
+    if TYPE_CHECKING:  # pragma: no cover
+        from .v1 import ErrorDict as ErrorDict
 
 
 RequestErrorModel: Type[BaseModel] = create_model("Request")

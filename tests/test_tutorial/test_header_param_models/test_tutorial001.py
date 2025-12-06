@@ -5,7 +5,7 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py39, needs_py310, pydantic_snapshot
 
 
 @pytest.fixture(
@@ -62,10 +62,10 @@ def test_header_param_model_defaults(client: TestClient):
 def test_header_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                IsDict(
+    assert response.json() == pydantic_snapshot(
+        v2=snapshot(
+            {
+                "detail": [
                     {
                         "type": "missing",
                         "loc": ["header", "save_data"],
@@ -78,18 +78,21 @@ def test_header_param_model_invalid(client: TestClient):
                             "connection": "keep-alive",
                             "user-agent": "testclient",
                         },
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
+                    },
+                ]
+            }
+        ),
+        v1=snapshot(
+            {
+                "detail": [
                     {
                         "type": "value_error.missing",
                         "loc": ["header", "save_data"],
                         "msg": "field required",
-                    }
-                )
-            ]
-        }
+                    },
+                ],
+            },
+        ),
     )
 
 

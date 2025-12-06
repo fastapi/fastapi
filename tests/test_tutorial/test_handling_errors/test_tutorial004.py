@@ -1,24 +1,46 @@
-from fastapi.testclient import TestClient
+import inspect
 
-from docs_src.handling_errors.tutorial004 import app
+from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
+
+import docs_src.handling_errors.tutorial004 as tutorial004
+from tests.utils import pydantic_snapshot
+
+app = tutorial004.app
 
 client = TestClient(app)
 
 
 def test_get_validation_error():
+    source_file = inspect.getsourcefile(tutorial004.read_item)
+    line_number = inspect.getsourcelines(tutorial004.read_item)[1]
+    func_name = tutorial004.read_item.__name__
+
     response = client.get("/items/foo")
     assert response.status_code == 400, response.text
-    # TODO: remove when deprecating Pydantic v1
-    assert (
-        # TODO: remove when deprecating Pydantic v1
-        "path -> item_id" in response.text
-        or "'loc': ('path', 'item_id')" in response.text
-    )
-    assert (
-        # TODO: remove when deprecating Pydantic v1
-        "value is not a valid integer" in response.text
-        or "Input should be a valid integer, unable to parse string as an integer"
-        in response.text
+    assert response.text == pydantic_snapshot(
+        v2=snapshot(
+            "\n".join(
+                [
+                    "1 validation error:",
+                    "path -> item_id",
+                    "  Input should be a valid integer, unable to parse string as an integer (type=int_parsing)",
+                    f'  File "{source_file}", line {line_number}, in {func_name}',
+                    "    GET /items/{item_id}",
+                ]
+            )
+        ),
+        v1=snapshot(
+            "\n".join(
+                [
+                    "1 validation error:",
+                    "path -> item_id",
+                    "  value is not a valid integer (type=type_error.integer)",
+                    f'  File "{source_file}", line {line_number}, in {func_name}',
+                    "    GET /items/{item_id}",
+                ]
+            )
+        ),
     )
 
 
