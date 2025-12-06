@@ -34,7 +34,7 @@ Sie können die internen Funktionen von FastAPI wiederverwenden, um die HTML-Sei
 
 Und ähnlich für ReDoc ...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:20,23:25,28:35] *}
 
 /// tip | Tipp
 
@@ -50,7 +50,7 @@ Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „U
 
 Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[38:40] *}
 
 ### Es testen { #test-it }
 
@@ -160,7 +160,7 @@ Auch hier können Sie die internen Funktionen von FastAPI wiederverwenden, um di
 
 Und ähnlich für ReDoc ...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:23,26:28,31:38] *}
 
 /// tip | Tipp
 
@@ -176,7 +176,7 @@ Swagger UI erledigt das hinter den Kulissen für Sie, benötigt aber diesen „U
 
 Um nun testen zu können, ob alles funktioniert, erstellen Sie eine *Pfadoperation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[41:43] *}
 
 ### Benutzeroberfläche mit statischen Dateien testen { #test-static-files-ui }
 
