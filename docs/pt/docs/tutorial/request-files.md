@@ -1,4 +1,4 @@
-# Arquivos de Requisição
+# Arquivos de Requisição { #request-files }
 
 Você pode definir arquivos para serem enviados pelo cliente usando `File`.
 
@@ -16,13 +16,13 @@ Isso é necessário, visto que os arquivos enviados são enviados como "dados de
 
 ///
 
-## Importe `File`
+## Importe `File` { #import-file }
 
 Importe `File` e `UploadFile` de `fastapi`:
 
 {* ../../docs_src/request_files/tutorial001_an_py39.py hl[3] *}
 
-## Definir Parâmetros `File`
+## Definir Parâmetros `File` { #define-file-parameters }
 
 Crie parâmetros de arquivo da mesma forma que você faria para `Body` ou `Form`:
 
@@ -50,7 +50,7 @@ Mantenha em mente que isso significa que todo o conteúdo será armazenado na me
 
 Mas há muitos casos em que você pode se beneficiar do uso de `UploadFile`.
 
-## Parâmetros de Arquivo com `UploadFile`
+## Parâmetros de Arquivo com `UploadFile` { #file-parameters-with-uploadfile }
 
 Defina um parâmetro de arquivo com um tipo de `UploadFile`:
 
@@ -66,12 +66,12 @@ Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 * Ele tem uma <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> interface `assíncrona`.
 * Ele expõe um objeto python <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> que você pode passar diretamente para outras bibliotecas que esperam um objeto semelhante a um arquivo("file-like").
 
-### `UploadFile`
+### `UploadFile` { #uploadfile }
 
 `UploadFile` tem os seguintes atributos:
 
 * `filename`: Uma `str` com o nome do arquivo original que foi enviado (por exemplo, `myimage.jpg`).
-* `content_type`: Uma `str` com o tipo de conteúdo (tipo MIME / tipo de mídia) (por exemplo, `image/jpeg`).
+* `content_type`: Uma `str` com o tipo de conteúdo (MIME type / media type) (por exemplo, `image/jpeg`).
 * `file`: Um <a href="https://docs.python.org/3/library/tempfile.html#tempfile.SpooledTemporaryFile" class="external-link" target="_blank">`SpooledTemporaryFile`</a> (um <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> objeto). Este é o objeto de arquivo Python que você pode passar diretamente para outras funções ou bibliotecas que esperam um objeto semelhante a um arquivo("file-like").
 
 `UploadFile` tem os seguintes métodos `assíncronos`. Todos eles chamam os métodos de arquivo correspondentes por baixo dos panos (usando o `SpooledTemporaryFile` interno).
@@ -105,11 +105,11 @@ Quando você usa os métodos `async`, o **FastAPI** executa os métodos de arqui
 
 /// note | Detalhes Técnicos do Starlette
 
-O `UploadFile` do ***FastAPI** herda diretamente do `UploadFile` do **Starlette** , mas adiciona algumas partes necessárias para torná-lo compatível com o **Pydantic** e as outras partes do FastAPI.
+O `UploadFile` do **FastAPI** herda diretamente do `UploadFile` do **Starlette**, mas adiciona algumas partes necessárias para torná-lo compatível com o **Pydantic** e as outras partes do FastAPI.
 
 ///
 
-## O que é "Form Data"
+## O que é "Form Data" { #what-is-form-data }
 
 O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, a qual é diferente do JSON.
 
@@ -117,15 +117,15 @@ O jeito que os formulários HTML (`<form></form>`) enviam os dados para o servid
 
 /// note | Detalhes Técnicos
 
-Dados de formulários normalmente são codificados usando o "media type" (tipo de mídia) `application/x-www-form-urlencoded` quando não incluem arquivos.
+Dados de formulários normalmente são codificados usando o "media type" `application/x-www-form-urlencoded` quando não incluem arquivos.
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Se você usar `File`, o **FastAPI** saberá que tem que pegar os arquivos da parte correta do corpo da requisição.
 
-Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network">MDN</abbr> web docs para <code>POST</code></a>.
+Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><abbr title="Mozilla Developer Network – Rede de Desenvolvedores da Mozilla">MDN</abbr> web docs para <code>POST</code></a>.
 
 ///
 
-/// warning | Aviso
+/// warning | Atenção
 
 Você pode declarar múltiplos parâmetros `File` e `Form` em uma *operação de rota*, mas você não pode declarar campos `Body` que você espera receber como JSON, pois a requisição terá o corpo codificado usando `multipart/form-data` ao invés de `application/json`.
 
@@ -133,19 +133,19 @@ Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
 ///
 
-## Upload de Arquivo Opcional
+## Upload de Arquivo Opcional { #optional-file-upload }
 
 Você pode tornar um arquivo opcional usando anotações de tipo padrão e definindo um valor padrão de `None`:
 
 {* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
 
-## `UploadFile` com Metadados Adicionais
+## `UploadFile` com Metadados Adicionais { #uploadfile-with-additional-metadata }
 
 Você também pode usar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
 {* ../../docs_src/request_files/tutorial001_03_an_py39.py hl[9,15] *}
 
-## Uploads de Múltiplos Arquivos
+## Uploads de Múltiplos Arquivos { #multiple-file-uploads }
 
 É possível realizar o upload de vários arquivos ao mesmo tempo.
 
@@ -165,12 +165,12 @@ Você pode também pode usar `from starlette.responses import HTMLResponse`.
 
 ///
 
-### Uploads de Múltiplos Arquivos com Metadados Adicionais
+### Uploads de Múltiplos Arquivos com Metadados Adicionais { #multiple-file-uploads-with-additional-metadata }
 
 Da mesma forma de antes, você pode usar `File()` para definir parâmetros adicionais, mesmo para `UploadFile`:
 
 {* ../../docs_src/request_files/tutorial003_an_py39.py hl[11,18:20] *}
 
-## Recapitulando
+## Recapitulando { #recap }
 
 Utilize `File`, `bytes` e `UploadFile` para declarar arquivos a serem enviados na requisição, enviados como dados de formulário.

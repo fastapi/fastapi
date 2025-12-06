@@ -1,6 +1,6 @@
 # Тестирование { #testing }
 
-Благодаря <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, тестировать приложения **FastAPI** легко и приятно.
+Благодаря <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, тестировать приложения **FastAPI** легко и приятно.
 
 Тестирование основано на библиотеке <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, которая в свою очередь основана на библиотеке Requests, так что все действия знакомы и интуитивно понятны.
 

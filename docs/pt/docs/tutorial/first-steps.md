@@ -1,4 +1,4 @@
-# Primeiros Passos
+# Primeiros Passos { #first-steps }
 
 O arquivo FastAPI mais simples pode se parecer com:
 
@@ -48,15 +48,15 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-Na saída, temos:
+Na saída, há uma linha com algo como:
 
 ```hl_lines="4"
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-Essa linha mostra a URL onde a sua aplicação está sendo servida, que nesse caso é a sua máquina local.
+Essa linha mostra a URL onde a sua aplicação está sendo servida, na sua máquina local.
 
-### Confira
+### Confira { #check-it }
 
 Abra o seu navegador em <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
 
@@ -66,7 +66,7 @@ Você verá essa resposta em JSON:
 {"message": "Hello World"}
 ```
 
-### Documentação Interativa de APIs
+### Documentação Interativa de APIs { #interactive-api-docs }
 
 Agora vá para <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -74,7 +74,7 @@ Você verá a documentação interativa automática da API (fornecida por <a hre
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Documentação Alternativa de APIs
+### Documentação Alternativa de APIs { #alternative-api-docs }
 
 E agora, vá para <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -82,31 +82,31 @@ Você verá a documentação alternativa automática (fornecida por <a href="htt
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-### OpenAPI
+### OpenAPI { #openapi }
 
 O **FastAPI** gera um "*schema*" com toda a sua API usando o padrão **OpenAPI** para definir APIs.
 
-#### "*Schema*"
+#### "*Schema*" { #schema }
 
 Um "*schema*" é uma definição ou descrição de algo. Não o código que o implementa, mas apenas uma descrição abstrata.
 
-#### API "*schema*"
+#### API "*schema*" { #api-schema }
 
 Nesse caso, <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> é uma especificação que determina como definir um *schema* da sua API.
 
-Esta definição de *schema* inclui as rotas da sua API, os parâmetros possíveis que elas usam, etc.
+Esta definição de *schema* inclui os paths da sua API, os parâmetros possíveis que eles usam, etc.
 
-#### "*Schema*" de dados
+#### "*Schema*" de dados { #data-schema }
 
 O termo "*schema*" também pode se referir à forma de alguns dados, como um conteúdo JSON.
 
 Nesse caso, significaria os atributos JSON e os tipos de dados que eles possuem, etc.
 
-#### OpenAPI e JSON *Schema*
+#### OpenAPI e JSON Schema { #openapi-and-json-schema }
 
-OpenAPI define um *schema* de API para sua API. E esse *schema* inclui definições (ou "*schemas*") dos dados enviados e recebidos por sua API usando **JSON *Schema***, o padrão para *schemas* de dados JSON.
+OpenAPI define um *schema* de API para sua API. E esse *schema* inclui definições (ou "*schemas*") dos dados enviados e recebidos por sua API usando **JSON Schema**, o padrão para *schemas* de dados JSON.
 
-#### Verifique o `openapi.json`
+#### Verifique o `openapi.json` { #check-the-openapi-json }
 
 Se você está curioso(a) sobre a aparência do *schema* bruto OpenAPI, o FastAPI gera automaticamente um JSON (*schema*) com as descrições de toda a sua API.
 
@@ -116,7 +116,7 @@ Ele mostrará um JSON começando com algo como:
 
 ```JSON
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"
@@ -135,7 +135,7 @@ Ele mostrará um JSON começando com algo como:
 ...
 ```
 
-#### Para que serve o OpenAPI
+#### Para que serve o OpenAPI { #what-is-openapi-for }
 
 O *schema* OpenAPI é o que possibilita os dois sistemas de documentação interativos mostrados.
 
@@ -143,23 +143,23 @@ E existem dezenas de alternativas, todas baseadas em OpenAPI. Você pode facilme
 
 Você também pode usá-lo para gerar código automaticamente para clientes que se comunicam com sua API. Por exemplo, aplicativos front-end, móveis ou IoT.
 
-## Recapitulando, passo a passo
+## Recapitulando, passo a passo { #recap-step-by-step }
 
-### Passo 1: importe `FastAPI`
+### Passo 1: importe `FastAPI` { #step-1-import-fastapi }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
-/// note | Detalhes técnicos
+/// note | Detalhes Técnicos
 
 `FastAPI` é uma classe que herda diretamente de `Starlette`.
 
-Você pode usar todas as funcionalidades do <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> com `FastAPI` também.
+Você pode usar todas as funcionalidades do <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> com `FastAPI` também.
 
 ///
 
-### Passo 2: crie uma "instância" de `FastAPI`
+### Passo 2: crie uma "instância" de `FastAPI` { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
@@ -167,11 +167,11 @@ Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
 
 Este será o principal ponto de interação para criar toda a sua API.
 
-### Passo 3: crie uma *rota*
+### Passo 3: crie uma operação de rota { #step-3-create-a-path-operation }
 
-#### Rota
+#### Path { #path }
 
-"Rota" aqui se refere à última parte da URL, começando do primeiro `/`.
+"Path" aqui se refere à última parte da URL, começando do primeiro `/`.
 
 Então, em uma URL como:
 
@@ -179,7 +179,7 @@ Então, em uma URL como:
 https://example.com/items/foo
 ```
 
-...a rota seria:
+...o path seria:
 
 ```
 /items/foo
@@ -187,13 +187,13 @@ https://example.com/items/foo
 
 /// info | Informação
 
-Uma "rota" também é comumente chamada de "endpoint".
+Um "path" também é comumente chamado de "endpoint" ou de "rota".
 
 ///
 
-Ao construir uma API, a "rota" é a principal forma de separar "preocupações" e "recursos".
+Ao construir uma API, o "path" é a principal forma de separar "preocupações" e "recursos".
 
-#### Operação
+#### Operação { #operation }
 
 "Operação" aqui se refere a um dos "métodos" HTTP.
 
@@ -211,7 +211,7 @@ Um dos:
 * `PATCH`
 * `TRACE`
 
-No protocolo HTTP, você pode se comunicar com cada rota usando um (ou mais) desses "métodos".
+No protocolo HTTP, você pode se comunicar com cada path usando um (ou mais) desses "métodos".
 
 ---
 
@@ -228,16 +228,16 @@ Portanto, no OpenAPI, cada um dos métodos HTTP é chamado de "operação".
 
 Vamos chamá-los de "**operações**" também.
 
-#### Defina um *decorador de rota*
+#### Defina um decorador de operação de rota { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
 
-* a rota `/`
-* usando o  <abbr title="o método HTTP GET">operador <code>get</code></abbr>
+* o path `/`
+* usando uma <abbr title="um método HTTP GET">operação <code>get</code></abbr>
 
-/// info | `@decorador`
+/// info | Informações sobre `@decorator`
 
 Essa sintaxe `@alguma_coisa` em Python é chamada de "decorador".
 
@@ -245,9 +245,9 @@ Você o coloca em cima de uma função. Como um chapéu decorativo (acho que é 
 
 Um "decorador" pega a função abaixo e faz algo com ela.
 
-Em nosso caso, este decorador informa ao **FastAPI** que a função abaixo corresponde a **rota** `/` com uma **operação** `get`.
+Em nosso caso, este decorador informa ao **FastAPI** que a função abaixo corresponde ao **path** `/` com uma **operação** `get`.
 
-É o "**decorador de rota**".
+É o "**decorador de operação de rota**".
 
 ///
 
@@ -276,11 +276,11 @@ Por exemplo, ao usar GraphQL, você normalmente executa todas as ações usando 
 
 ///
 
-### Passo 4: defina uma **função de rota**
+### Passo 4: defina a função de operação de rota { #step-4-define-the-path-operation-function }
 
-Esta é a nossa "**função de rota**":
+Esta é a nossa "**função de operação de rota**":
 
-* **rota**: é `/`.
+* **path**: é `/`.
 * **operação**: é `get`.
 * **função**: é a função abaixo do "decorador" (abaixo do `@app.get("/")`).
 
@@ -288,9 +288,9 @@ Esta é a nossa "**função de rota**":
 
 Esta é uma função Python.
 
-Ela será chamada pelo **FastAPI** sempre que receber uma requisição para a URL "`/ `" usando uma operação `GET`.
+Ela será chamada pelo **FastAPI** sempre que receber uma requisição para a URL "`/`" usando uma operação `GET`.
 
-Neste caso, é uma função `assíncrona`.
+Neste caso, é uma função `async`.
 
 ---
 
@@ -300,11 +300,11 @@ Você também pode defini-la como uma função normal em vez de `async def`:
 
 /// note | Nota
 
-Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#com-pressa){.internal-link target=_blank}.
+Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
 
 ///
 
-### Passo 5: retorne o conteúdo
+### Passo 5: retorne o conteúdo { #step-5-return-the-content }
 
 {* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
@@ -314,10 +314,10 @@ Você também pode devolver modelos Pydantic (você verá mais sobre isso mais t
 
 Existem muitos outros objetos e modelos que serão convertidos automaticamente para JSON (incluindo ORMs, etc). Tente usar seus favoritos, é altamente provável que já sejam compatíveis.
 
-## Recapitulando
+## Recapitulando { #recap }
 
 * Importe `FastAPI`.
 * Crie uma instância do `app`.
-* Coloque o **decorador que define a operação** (como `@app.get("/")`).
-* Escreva uma **função para a operação da rota** (como `def root(): ...`) abaixo.
-* Execute o servidor de desenvolvimento (como `uvicorn main:app --reload`).
+* Escreva um **decorador de operação de rota** usando decoradores como `@app.get("/")`.
+* Defina uma **função de operação de rota**; por exemplo, `def root(): ...`.
+* Execute o servidor de desenvolvimento usando o comando `fastapi dev`.

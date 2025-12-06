@@ -1,4 +1,4 @@
-INHERIT: ../en/mkdocs.maybe-insiders.yml
+INHERIT: ../en/mkdocs.env.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
@@ -52,6 +52,10 @@ theme:
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
+  social:
+    cards_layout_options:
+      logo: ../en/docs/img/icon-white.svg
+  typeset:
   search: null
   macros:
     include_yaml:
@@ -192,6 +196,7 @@ nav:
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
@@ -201,6 +206,7 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -209,6 +215,7 @@ nav:
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
     - how-to/testing-database.md
+    - how-to/authentication-error-status-code.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -251,6 +258,10 @@ nav:
   - management.md
 - release-notes.md
 markdown_extensions:
+  material.extensions.preview:
+    targets:
+      include:
+        - "*"
   abbr: null
   attr_list: null
   footnotes: null

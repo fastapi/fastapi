@@ -17,14 +17,16 @@ from types import GeneratorType
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 from uuid import UUID
 
+from annotated_doc import Doc
+from fastapi._compat import may_v1
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated, Doc
+from typing_extensions import Annotated
 
-from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+from ._compat import Url, _is_undefined, _model_dump
 
 
 # Taken from Pydantic v1 as is
@@ -32,14 +34,14 @@ def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
 
 
-# Taken from Pydantic v1 as is
+# Adapted from Pydantic v1
 # TODO: pv2 should this return strings instead?
 def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     """
-    Encodes a Decimal as int of there's no exponent, otherwise float
+    Encodes a Decimal as int if there's no exponent, otherwise float
 
     This is useful when we use ConstrainedDecimal to represent Numeric(x,0)
-    where a integer (but not int typed) is used. Encoding this as a float
+    where an integer (but not int typed) is used. Encoding this as a float
     results in failed round-tripping between encode and parse.
     Our Id type is a prime example of this.
 
@@ -48,8 +50,12 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
     >>> decimal_encoder(Decimal("1"))
     1
+
+    >>> decimal_encoder(Decimal("NaN"))
+    nan
     """
-    if dec_value.as_tuple().exponent >= 0:  # type: ignore[operator]
+    exponent = dec_value.as_tuple().exponent
+    if isinstance(exponent, int) and exponent >= 0:
         return int(dec_value)
     else:
         return float(dec_value)
@@ -58,6 +64,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
+    may_v1.Color: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -74,14 +81,19 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
     IPv6Interface: str,
     IPv6Network: str,
     NameEmail: str,
+    may_v1.NameEmail: str,
     Path: str,
     Pattern: lambda o: o.pattern,
     SecretBytes: str,
+    may_v1.SecretBytes: str,
     SecretStr: str,
+    may_v1.SecretStr: str,
     set: list,
     UUID: str,
     Url: str,
+    may_v1.Url: str,
     AnyUrl: str,
+    may_v1.AnyUrl: str,
 }
 
 
@@ -213,10 +225,10 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, BaseModel):
+    if isinstance(obj, (BaseModel, may_v1.BaseModel)):
         # TODO: remove when deprecating Pydantic v1
         encoders: Dict[Any, Any] = {}
-        if not PYDANTIC_V2:
+        if isinstance(obj, may_v1.BaseModel):
             encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}
@@ -260,7 +272,7 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
-    if isinstance(obj, UndefinedType):
+    if _is_undefined(obj):
         return None
     if isinstance(obj, dict):
         encoded_dict = {}

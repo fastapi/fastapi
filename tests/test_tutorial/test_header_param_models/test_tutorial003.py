@@ -77,7 +77,7 @@ def test_header_param_model_no_underscore(client: TestClient):
                             "user-agent": "testclient",
                             "save-data": "true",
                             "if-modified-since": "yesterday",
-                            "x-tag": "two",
+                            "x-tag": ["one", "two"],
                         },
                     }
                 )

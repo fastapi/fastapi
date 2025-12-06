@@ -13,6 +13,7 @@ from typing import (
     Union,
 )
 
+from annotated_doc import Doc
 from fastapi import routing
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
@@ -43,7 +44,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, Doc, deprecated
+from typing_extensions import Annotated, deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -75,7 +76,7 @@ class FastAPI(Starlette):
                 errors.
 
                 Read more in the
-                [Starlette docs for Applications](https://www.starlette.io/applications/#instantiating-the-application).
+                [Starlette docs for Applications](https://www.starlette.dev/applications/#instantiating-the-application).
                 """
             ),
         ] = False,
@@ -300,7 +301,12 @@ class FastAPI(Starlette):
                 browser tabs open). Or if you want to leave fixed the possible URLs.
 
                 If the servers `list` is not provided, or is an empty `list`, the
-                default value would be a `dict` with a `url` value of `/`.
+                `servers` property in the generated OpenAPI will be:
+
+                * a `dict` with a `url` value of the application's mounting point
+                (`root_path`) if it's different from `/`.
+                * otherwise, the `servers` property will be omitted from the OpenAPI
+                schema.
 
                 Each item in the `list` is a `dict` containing:
 
@@ -938,7 +944,7 @@ class FastAPI(Starlette):
                 This is simply inherited from Starlette.
 
                 Read more about it in the
-                [Starlette docs for Applications](https://www.starlette.io/applications/#storing-state-on-the-app-instance).
+                [Starlette docs for Applications](https://www.starlette.dev/applications/#storing-state-on-the-app-instance).
                 """
             ),
         ] = State()

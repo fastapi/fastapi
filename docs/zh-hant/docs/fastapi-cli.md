@@ -60,7 +60,7 @@ FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動�
 
 在生產環境，你應該使用 `fastapi run` 命令。 🚀
 
-**FastAPI CLI** 內部使用了 <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>，這是一個高效能、適合生產環境的 ASGI 伺服器。 😎
+**FastAPI CLI** 內部使用了 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>，這是一個高效能、適合生產環境的 ASGI 伺服器。 😎
 
 ## `fastapi dev`
 

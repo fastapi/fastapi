@@ -3,7 +3,6 @@ import email.message
 import functools
 import inspect
 import json
-import sys
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
@@ -24,7 +23,8 @@ from typing import (
     Union,
 )
 
-from fastapi import params
+from annotated_doc import Doc
+from fastapi import params, temp_pydantic_v1_params
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -46,6 +46,7 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
+    EndpointContext,
     FastAPIError,
     RequestValidationError,
     ResponseValidationError,
@@ -76,12 +77,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, Doc, deprecated
-
-if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
-else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
+from typing_extensions import Annotated, deprecated
 
 
 # Copy of starlette.routing.request_response modified to include the
@@ -103,10 +99,11 @@ def request_response(
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
-            async with AsyncExitStack() as stack:
-                scope["fastapi_inner_astack"] = stack
-                # Same as in Starlette
-                response = await f(request)
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    response = await f(request)
                 await response(scope, receive, send)
                 # Continues customization
                 response_awaited = True
@@ -139,11 +136,11 @@ def websocket_session(
         session = WebSocket(scope, receive=receive, send=send)
 
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
-            # Starts customization
-            async with AsyncExitStack() as stack:
-                scope["fastapi_inner_astack"] = stack
-                # Same as in Starlette
-                await func(session)
+            async with AsyncExitStack() as request_stack:
+                scope["fastapi_inner_astack"] = request_stack
+                async with AsyncExitStack() as function_stack:
+                    scope["fastapi_function_astack"] = function_stack
+                    await func(session)
 
         # Same as in Starlette
         await wrap_app_handling_exceptions(app, session)(scope, receive, send)
@@ -216,6 +213,33 @@ def _merge_lifespan_context(
     return merged_lifespan  # type: ignore[return-value]
 
 
+# Cache for endpoint context to avoid re-extracting on every request
+_endpoint_context_cache: Dict[int, EndpointContext] = {}
+
+
+def _extract_endpoint_context(func: Any) -> EndpointContext:
+    """Extract endpoint context with caching to avoid repeated file I/O."""
+    func_id = id(func)
+
+    if func_id in _endpoint_context_cache:
+        return _endpoint_context_cache[func_id]
+
+    try:
+        ctx: EndpointContext = {}
+
+        if (source_file := inspect.getsourcefile(func)) is not None:
+            ctx["file"] = source_file
+        if (line_number := inspect.getsourcelines(func)[1]) is not None:
+            ctx["line"] = line_number
+        if (func_name := getattr(func, "__name__", None)) is not None:
+            ctx["function"] = func_name
+    except Exception:
+        ctx = EndpointContext()
+
+    _endpoint_context_cache[func_id] = ctx
+    return ctx
+
+
 async def serialize_response(
     *,
     field: Optional[ModelField] = None,
@@ -227,6 +251,7 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
     if field:
         errors = []
@@ -249,8 +274,11 @@ async def serialize_response(
         elif errors_:
             errors.append(errors_)
         if errors:
+            ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
-                errors=_normalize_errors(errors), body=response_content
+                errors=_normalize_errors(errors),
+                body=response_content,
+                endpoint_ctx=ctx,
             )
 
         if hasattr(field, "serialize"):
@@ -306,8 +334,10 @@ def get_request_handler(
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    is_coroutine = dependant.is_coroutine_callable
+    is_body_form = body_field and isinstance(
+        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
+    )
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: Type[Response] = response_class.value
     else:
@@ -319,6 +349,18 @@ def get_request_handler(
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
         )
+
+        # Extract endpoint context for error messages
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
+
+        if dependant.path:
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = request.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"{request.method} {mount_path}{dependant.path}"
 
         # Read body and auto-close files
         try:
@@ -357,6 +399,7 @@ def get_request_handler(
                     }
                 ],
                 body=e.doc,
+                endpoint_ctx=endpoint_ctx,
             )
             raise validation_error from e
         except HTTPException:
@@ -416,6 +459,7 @@ def get_request_handler(
                     exclude_defaults=response_model_exclude_defaults,
                     exclude_none=response_model_exclude_none,
                     is_coroutine=is_coroutine,
+                    endpoint_ctx=endpoint_ctx,
                 )
                 response = actual_response_class(content, **response_args)
                 if not is_body_allowed_for_status_code(response.status_code):
@@ -423,7 +467,7 @@ def get_request_handler(
                 response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body
+                _normalize_errors(errors), body=body, endpoint_ctx=endpoint_ctx
             )
             raise validation_error
 
@@ -440,6 +484,15 @@ def get_websocket_app(
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
+        if dependant.path:
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = websocket.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"WS {mount_path}{dependant.path}"
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
@@ -453,7 +506,8 @@ def get_websocket_app(
         )
         if solved_result.errors:
             raise WebSocketRequestValidationError(
-                _normalize_errors(solved_result.errors)
+                _normalize_errors(solved_result.errors),
+                endpoint_ctx=endpoint_ctx,
             )
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**solved_result.values)
@@ -476,7 +530,9 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.name = get_name(endpoint) if name is None else name
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
@@ -627,7 +683,9 @@ class APIRoute(routing.Route):
             self.response_fields = {}
 
         assert callable(endpoint), "An endpoint must be a callable"
-        self.dependant = get_dependant(path=self.path_format, call=self.endpoint)
+        self.dependant = get_dependant(
+            path=self.path_format, call=self.endpoint, scope="function"
+        )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,
