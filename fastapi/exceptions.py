@@ -200,8 +200,14 @@ class ValidationException(Exception):
 
 
 class RequestMalformedError(ValidationException):
-    def __init__(self, errors: Sequence[Any], *, body: Any = None) -> None:
-        super().__init__(errors)
+    def __init__(
+        self,
+        errors: Sequence[Any],
+        *,
+        body: Any = None,
+        endpoint_ctx: Optional[EndpointContext] = None,
+    ) -> None:
+        super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
 
 
