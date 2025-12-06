@@ -4628,10 +4628,10 @@ class FastAPI(Starlette):
     def exception_handler(
         self,
         exc_class_or_status_code: Annotated[
-            Union[int, Type[Exception]],
+            Union[int, Type[Exception], Sequence[int], Sequence[Type[Exception]]],
             Doc(
                 """
-                The Exception class this would handle, or a status code.
+                The Exception class, a status code or a sequence of them this would handle.
                 """
             ),
         ],
@@ -4667,7 +4667,11 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_exception_handler(exc_class_or_status_code, func)
+            if isinstance(exc_class_or_status_code, Sequence):
+                for exc_class_or_status_code_ in exc_class_or_status_code:
+                    self.add_exception_handler(exc_class_or_status_code_, func)
+            else:
+                self.add_exception_handler(exc_class_or_status_code, func)
             return func
 
         return decorator
