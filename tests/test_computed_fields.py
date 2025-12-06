@@ -6,8 +6,9 @@ from .utils import needs_pydanticv2
 
 
 @pytest.fixture(name="client")
-def get_client():
-    app = FastAPI()
+def get_client(request):
+    separate_input_output_schemas = request.param
+    app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
 
     from pydantic import BaseModel, computed_field
 
@@ -32,6 +33,7 @@ def get_client():
     return client
 
 
+@pytest.mark.parametrize("client", [True, False], indirect=True)
 @pytest.mark.parametrize("path", ["/", "/responses"])
 @needs_pydanticv2
 def test_get(client: TestClient, path: str):
@@ -40,6 +42,7 @@ def test_get(client: TestClient, path: str):
     assert response.json() == {"width": 3, "length": 4, "area": 12}
 
 
+@pytest.mark.parametrize("client", [True, False], indirect=True)
 @needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")

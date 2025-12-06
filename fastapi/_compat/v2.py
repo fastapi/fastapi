@@ -17,7 +17,7 @@ from typing import (
 
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
-from fastapi.types import IncEx, ModelNameMap
+from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
@@ -171,6 +171,13 @@ def _get_model_config(model: BaseModel) -> Any:
     return model.model_config
 
 
+def _has_computed_fields(field: ModelField) -> bool:
+    computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
+        "computed_fields", []
+    )
+    return len(computed_fields) > 0
+
+
 def get_schema_from_model_field(
     *,
     field: ModelField,
@@ -181,7 +188,9 @@ def get_schema_from_model_field(
     separate_input_output_schemas: bool = True,
 ) -> Dict[str, Any]:
     override_mode: Union[Literal["validation"], None] = (
-        None if separate_input_output_schemas else "validation"
+        None
+        if (separate_input_output_schemas or _has_computed_fields(field))
+        else "validation"
     )
     # This expects that GenerateJsonSchema was already used to generate the definitions
     json_schema = field_mapping[(field, override_mode or field.mode)]
@@ -204,9 +213,6 @@ def get_definitions(
     Dict[str, Dict[str, Any]],
 ]:
     schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
-    override_mode: Union[Literal["validation"], None] = (
-        None if separate_input_output_schemas else "validation"
-    )
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
     flat_validation_models = get_flat_models_from_fields(
@@ -236,9 +242,16 @@ def get_definitions(
     unique_flat_model_fields = {
         f for f in flat_model_fields if f.type_ not in input_types
     }
-
     inputs = [
-        (field, override_mode or field.mode, field._type_adapter.core_schema)
+        (
+            field,
+            (
+                field.mode
+                if (separate_input_output_schemas or _has_computed_fields(field))
+                else "validation"
+            ),
+            field._type_adapter.core_schema,
+        )
         for field in list(fields) + list(unique_flat_model_fields)
     ]
     field_mapping, definitions = schema_generator.generate_definitions(inputs=inputs)
@@ -304,7 +317,7 @@ def _remap_definitions_and_field_mappings(
     old_name_to_new_name_map = {}
     for field_key, schema in field_mapping.items():
         model = field_key[0].type_
-        if model not in model_name_map:
+        if model not in model_name_map or "$ref" not in schema:
             continue
         new_name = model_name_map[model]
         old_name = schema["$ref"].split("/")[-1]
@@ -371,6 +384,13 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     origin_type = get_origin(field.field_info.annotation) or field.field_info.annotation
+    if origin_type is Union or origin_type is UnionType:  # Handle optional sequences
+        union_args = get_args(field.field_info.annotation)
+        for union_arg in union_args:
+            if union_arg is type(None):
+                continue
+            origin_type = get_origin(union_arg) or union_arg
+            break
     assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
     return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
 

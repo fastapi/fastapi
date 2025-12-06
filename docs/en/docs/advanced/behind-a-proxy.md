@@ -443,6 +443,14 @@ The docs UI will interact with the server that you select.
 
 ///
 
+/// note | Technical Details
+
+The `servers` property in the OpenAPI specification is optional.
+
+If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely by default, which is the equivalent of a single server with a `url` value of `/`.
+
+///
+
 ### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
