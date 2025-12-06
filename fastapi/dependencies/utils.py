@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -54,12 +55,10 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.dependencies.models import Dependant
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
-from fastapi.security.base import SecurityBase
-from fastapi.security.oauth2 import OAuth2, SecurityScopes
-from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
 from pydantic import BaseModel
@@ -126,14 +125,14 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
     )
-    use_security_scopes: List[str] = []
+    own_oauth_scopes: List[str] = []
     if isinstance(depends, params.Security) and depends.scopes:
-        use_security_scopes.extend(depends.scopes)
+        own_oauth_scopes.extend(depends.scopes)
     return get_dependant(
         path=path,
         call=depends.dependency,
         scope=depends.scope,
-        security_scopes=use_security_scopes,
+        own_oauth_scopes=own_oauth_scopes,
     )
 
 
@@ -142,10 +141,14 @@ def get_flat_dependant(
     *,
     skip_repeats: bool = False,
     visited: Optional[List[DependencyCacheKey]] = None,
+    parent_oauth_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
     visited.append(dependant.cache_key)
+    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
+        dependant.oauth_scopes or []
+    )
 
     flat_dependant = Dependant(
         path_params=dependant.path_params.copy(),
@@ -153,22 +156,37 @@ def get_flat_dependant(
         header_params=dependant.header_params.copy(),
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
-        security_requirements=dependant.security_requirements.copy(),
+        name=dependant.name,
+        call=dependant.call,
+        request_param_name=dependant.request_param_name,
+        websocket_param_name=dependant.websocket_param_name,
+        http_connection_param_name=dependant.http_connection_param_name,
+        response_param_name=dependant.response_param_name,
+        background_tasks_param_name=dependant.background_tasks_param_name,
+        security_scopes_param_name=dependant.security_scopes_param_name,
+        own_oauth_scopes=dependant.own_oauth_scopes,
+        parent_oauth_scopes=use_parent_oauth_scopes,
         use_cache=dependant.use_cache,
         path=dependant.path,
+        scope=dependant.scope,
     )
     for sub_dependant in dependant.dependencies:
         if skip_repeats and sub_dependant.cache_key in visited:
             continue
         flat_sub = get_flat_dependant(
-            sub_dependant, skip_repeats=skip_repeats, visited=visited
+            sub_dependant,
+            skip_repeats=skip_repeats,
+            visited=visited,
+            parent_oauth_scopes=flat_dependant.oauth_scopes,
         )
+        flat_dependant.dependencies.append(flat_sub)
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
         flat_dependant.header_params.extend(flat_sub.header_params)
         flat_dependant.cookie_params.extend(flat_sub.cookie_params)
         flat_dependant.body_params.extend(flat_sub.body_params)
-        flat_dependant.security_requirements.extend(flat_sub.security_requirements)
+        flat_dependant.dependencies.extend(flat_sub.dependencies)
+
     return flat_dependant
 
 
@@ -192,8 +210,12 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
 
 
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
-    signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
+    unwrapped = inspect.unwrap(call)
+    globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
@@ -217,13 +239,17 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
-    signature = inspect.signature(call)
+    if sys.version_info >= (3, 10):
+        signature = inspect.signature(call, eval_str=True)
+    else:
+        signature = inspect.signature(call)
+    unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
     if annotation is inspect.Signature.empty:
         return None
 
-    globalns = getattr(call, "__globals__", {})
+    globalns = getattr(unwrapped, "__globals__", {})
     return get_typed_annotation(annotation, globalns)
 
 
@@ -232,7 +258,8 @@ def get_dependant(
     path: str,
     call: Callable[..., Any],
     name: Optional[str] = None,
-    security_scopes: Optional[List[str]] = None,
+    own_oauth_scopes: Optional[List[str]] = None,
+    parent_oauth_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
     scope: Union[Literal["function", "request"], None] = None,
 ) -> Dependant:
@@ -240,21 +267,15 @@ def get_dependant(
         call=call,
         name=name,
         path=path,
-        security_scopes=security_scopes,
         use_cache=use_cache,
         scope=scope,
+        own_oauth_scopes=own_oauth_scopes,
+        parent_oauth_scopes=parent_oauth_scopes,
     )
+    current_scopes = (parent_oauth_scopes or []) + (own_oauth_scopes or [])
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    if isinstance(call, SecurityBase):
-        use_scopes: List[str] = []
-        if isinstance(call, (OAuth2, OpenIdConnect)):
-            use_scopes = security_scopes or use_scopes
-        security_requirement = SecurityRequirement(
-            security_scheme=call, scopes=use_scopes
-        )
-        dependant.security_requirements.append(security_requirement)
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -275,15 +296,16 @@ def get_dependant(
                     f'The dependency "{dependant.call.__name__}" has a scope of '
                     '"request", it cannot depend on dependencies with scope "function".'
                 )
-            use_security_scopes = security_scopes or []
+            sub_own_oauth_scopes: List[str] = []
             if isinstance(param_details.depends, params.Security):
                 if param_details.depends.scopes:
-                    use_security_scopes.extend(param_details.depends.scopes)
+                    sub_own_oauth_scopes = list(param_details.depends.scopes)
             sub_dependant = get_dependant(
                 path=path,
                 call=param_details.depends.dependency,
                 name=param_name,
-                security_scopes=use_security_scopes,
+                own_oauth_scopes=sub_own_oauth_scopes,
+                parent_oauth_scopes=current_scopes,
                 use_cache=param_details.depends.use_cache,
                 scope=param_details.depends.scope,
             )
@@ -546,10 +568,10 @@ async def _solve_generator(
     *, dependant: Dependant, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
     assert dependant.call
-    if dependant.is_gen_callable:
-        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    elif dependant.is_async_gen_callable:
+    if dependant.is_async_gen_callable:
         cm = asynccontextmanager(dependant.call)(**sub_values)
+    elif dependant.is_gen_callable:
+        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
 
 
@@ -609,7 +631,7 @@ async def solve_dependencies(
                 path=use_path,
                 call=call,
                 name=sub_dependant.name,
-                security_scopes=sub_dependant.security_scopes,
+                parent_oauth_scopes=sub_dependant.oauth_scopes,
                 scope=sub_dependant.scope,
             )
 
@@ -691,7 +713,7 @@ async def solve_dependencies(
         values[dependant.response_param_name] = response
     if dependant.security_scopes_param_name:
         values[dependant.security_scopes_param_name] = SecurityScopes(
-            scopes=dependant.security_scopes
+            scopes=dependant.oauth_scopes
         )
     return SolvedDependency(
         values=values,
@@ -787,13 +809,19 @@ def request_params_to_args(
                 )
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[field.name] = value
+            params_to_process[field.alias] = value
         processed_keys.add(alias or field.alias)
-        processed_keys.add(field.name)
 
-    for key, value in received_params.items():
+    for key in received_params.keys():
         if key not in processed_keys:
-            params_to_process[key] = value
+            if hasattr(received_params, "getlist"):
+                value = received_params.getlist(key)
+                if isinstance(value, list) and (len(value) == 1):
+                    params_to_process[key] = value[0]
+                else:
+                    params_to_process[key] = value
+            else:
+                params_to_process[key] = received_params.get(key)
 
     if single_not_embedded_field:
         field_info = first_field.field_info
@@ -902,9 +930,14 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
-    for key, value in received_body.items():
-        if key not in values:
-            values[key] = value
+    field_aliases = {field.alias for field in body_fields}
+    for key in received_body.keys():
+        if key not in field_aliases:
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                values[key] = param_values[0]
+            else:
+                values[key] = param_values
     return values
 
 
