@@ -255,6 +255,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the default value»: «der Defaultwert»
 * «the default value»: NOT «der Standardwert»
 * «the default declaration»: «die Default-Deklaration»
+* «the deployment»: «das Deployment»
 * «the dict»: «das Dict»
 * «the dictionary»: «das Dictionary»
 * «the enumeration»: «die Enumeration»
@@ -316,6 +317,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the worker process»: «der Workerprozess»
 * «the worker process»: NOT «der Arbeiterprozess»
 * «to commit»: «committen»
+* «to deploy» (in the cloud): «deployen»
 * «to modify»: «ändern»
 * «to serve» (an application): «bereitstellen»
 * «to serve» (a response): «ausliefern»

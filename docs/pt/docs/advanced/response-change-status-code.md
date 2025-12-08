@@ -1,10 +1,10 @@
-# Retorno - Altere o Código de Status
+# Retorno - Altere o Código de Status { #response-change-status-code }
 
 Você provavelmente leu anteriormente que você pode definir um [Código de Status do Retorno](../tutorial/response-status-code.md){.internal-link target=_blank} padrão.
 
 Porém em alguns casos você precisa retornar um código de status diferente do padrão.
 
-## Caso de uso
+## Caso de uso { #use-case }
 
 Por exemplo, imagine que você deseja retornar um código de status HTTP de "OK" `200` por padrão.
 
@@ -14,7 +14,7 @@ Mas você ainda quer ser capaz de filtrar e converter o dado que você retornar�
 
 Para estes casos, você pode utilizar um parâmetro `Response`.
 
-## Use um parâmetro `Response`
+## Use um parâmetro `Response` { #use-a-response-parameter }
 
 Você pode declarar um parâmetro do tipo `Response` em sua *função de operação de rota* (assim como você pode fazer para cookies e headers).
 

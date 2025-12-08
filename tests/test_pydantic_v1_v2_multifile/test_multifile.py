@@ -1028,17 +1028,6 @@ def test_openapi_schema():
                                 "type": "object",
                                 "title": "HTTPValidationError",
                             },
-                            "SubItem-Output": {
-                                "properties": {
-                                    "new_sub_name": {
-                                        "type": "string",
-                                        "title": "New Sub Name",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["new_sub_name"],
-                                "title": "SubItem",
-                            },
                             "ValidationError": {
                                 "properties": {
                                     "loc": {
@@ -1113,11 +1102,11 @@ def test_openapi_schema():
                                         "title": "New Description",
                                     },
                                     "new_sub": {
-                                        "$ref": "#/components/schemas/SubItem-Output"
+                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                                     },
                                     "new_multi": {
                                         "items": {
-                                            "$ref": "#/components/schemas/SubItem-Output"
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                                         },
                                         "type": "array",
                                         "title": "New Multi",

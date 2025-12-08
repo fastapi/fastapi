@@ -132,7 +132,7 @@ def on_pre_page(page: Page, *, config: MkDocsConfig, files: Files) -> Page:
 def on_page_markdown(
     markdown: str, *, page: Page, config: MkDocsConfig, files: Files
 ) -> str:
-    # Set matadata["social"]["cards_layout_options"]["title"] to clean title (without
+    # Set metadata["social"]["cards_layout_options"]["title"] to clean title (without
     # permalink)
     title = page.title
     clean_title = title.split("{ #")[0]

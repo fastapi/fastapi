@@ -28,3 +28,6 @@ archive.zip
 
 # macOS
 .DS_Store
+
+# Ignore while the setup still depends on requirements.txt files
+uv.lock

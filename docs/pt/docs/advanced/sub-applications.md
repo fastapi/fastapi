@@ -1,41 +1,41 @@
-# Sub Aplicações - Montagens
+# Sub Aplicações - Montagens { #sub-applications-mounts }
 
 Se você precisar ter duas aplicações FastAPI independentes, cada uma com seu próprio OpenAPI e suas próprias interfaces de documentação, você pode ter um aplicativo principal e "montar" uma (ou mais) sub-aplicações.
 
-## Montando uma aplicação **FastAPI**
+## Montando uma aplicação **FastAPI** { #mounting-a-fastapi-application }
 
-"Montar" significa adicionar uma aplicação completamente "independente" em um caminho específico, que então se encarrega de lidar com tudo sob esse caminho, com as operações de rota declaradas nessa sub-aplicação.
+"Montar" significa adicionar uma aplicação completamente "independente" em um path específico, que então se encarrega de lidar com tudo sob esse path, com as _operações de rota_ declaradas nessa sub-aplicação.
 
-### Aplicação de nível superior
+### Aplicação de nível superior { #top-level-application }
 
 Primeiro, crie a aplicação principal, de nível superior, **FastAPI**, e suas *operações de rota*:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[3,6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
-### Sub-aplicação
+### Sub-aplicação { #sub-application }
 
 Em seguida, crie sua sub-aplicação e suas *operações de rota*.
 
 Essa sub-aplicação é apenas outra aplicação FastAPI padrão, mas esta é a que será "montada":
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11,14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
-### Monte a sub-aplicação
+### Monte a sub-aplicação { #mount-the-sub-application }
 
 Na sua aplicação de nível superior, `app`, monte a sub-aplicação, `subapi`.
 
-Neste caso, ela será montada no caminho `/subapi`:
+Neste caso, ela será montada no path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001.py hl[11,19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
-### Verifique a documentação automática da API
+### Verifique a documentação automática da API { #check-the-automatic-api-docs }
 
-Agora, execute `uvicorn` com a aplicação principal, se o seu arquivo for `main.py`, seria:
+Agora, execute o comando `fastapi` com o seu arquivo:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -50,17 +50,17 @@ Você verá a documentação automática da API para a aplicação principal, in
 
 E então, abra a documentação para a sub-aplicação, em <a href="http://127.0.0.1:8000/subapi/docs" class="external-link" target="_blank">http://127.0.0.1:8000/subapi/docs</a>.
 
-Você verá a documentação automática da API para a sub-aplicação, incluindo apenas suas próprias _operações de rota_, todas sob o prefixo de sub-caminho correto `/subapi`:
+Você verá a documentação automática da API para a sub-aplicação, incluindo apenas suas próprias _operações de rota_, todas sob o prefixo de sub-path correto `/subapi`:
 
 <img src="/img/tutorial/sub-applications/image02.png">
 
 Se você tentar interagir com qualquer uma das duas interfaces de usuário, elas funcionarão corretamente, porque o navegador será capaz de se comunicar com cada aplicação ou sub-aplicação específica.
 
-### Detalhes Técnicos: `root_path`
+### Detalhes Técnicos: `root_path` { #technical-details-root-path }
 
-Quando você monta uma sub-aplicação como descrito acima, o FastAPI se encarrega de comunicar o caminho de montagem para a sub-aplicação usando um mecanismo da especificação ASGI chamado `root_path`.
+Quando você monta uma sub-aplicação como descrito acima, o FastAPI se encarrega de comunicar o path de montagem para a sub-aplicação usando um mecanismo da especificação ASGI chamado `root_path`.
 
-Dessa forma, a sub-aplicação saberá usar esse prefixo de caminho para a interface de documentação.
+Dessa forma, a sub-aplicação saberá usar esse prefixo de path para a interface de documentação.
 
 E a sub-aplicação também poderia ter suas próprias sub-aplicações montadas e tudo funcionaria corretamente, porque o FastAPI lida com todos esses `root_path`s automaticamente.
 

@@ -1,8 +1,8 @@
-# Metadados e Urls de Documentos
+# Metadados e Urls de Documentos { #metadata-and-docs-urls }
 
 Você pode personalizar várias configurações de metadados na sua aplicação **FastAPI**.
 
-## Metadados para API
+## Metadados para API { #metadata-for-api }
 
 Você pode definir os seguintes campos que são usados na especificação OpenAPI e nas interfaces automáticas de documentação da API:
 
@@ -30,7 +30,7 @@ Com essa configuração, a documentação automática da API se pareceria com:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## Identificador de Licença
+## Identificador de Licença { #license-identifier }
 
 Desde o OpenAPI 3.1.0 e FastAPI 0.99.0, você também pode definir o license_info com um identifier em vez de uma url.
 
@@ -38,7 +38,7 @@ Por exemplo:
 
 {* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
 
-## Metadados para tags
+## Metadados para tags { #metadata-for-tags }
 
 Você também pode adicionar metadados adicionais para as diferentes tags usadas para agrupar suas operações de rota com o parâmetro `openapi_tags`.
 
@@ -52,7 +52,7 @@ Cada dicionário pode conter:
     * `description`: uma `str` com uma breve descrição da documentação externa.
     * `url` (**obrigatório**): uma `str` com a URL da documentação externa.
 
-### Criar Metadados para tags
+### Criar Metadados para tags { #create-metadata-for-tags }
 
 Vamos tentar isso em um exemplo com tags para `users` e `items`.
 
@@ -68,31 +68,31 @@ Você não precisa adicionar metadados para todas as tags que você usa.
 
 ///
 
-### Use suas tags
+### Use suas tags { #use-your-tags }
 
 Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atribuí-los a diferentes tags:
 
 {* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
 
-/// info  | Informação
+/// info | Informação
 
-Leia mais sobre tags em [Configuração de Operação de Caminho](path-operation-configuration.md#tags){.internal-link target=_blank}.
+Leia mais sobre tags em [Configuração de operação de rota](path-operation-configuration.md#tags){.internal-link target=_blank}.
 
 ///
 
-### Cheque os documentos
+### Cheque os documentos { #check-the-docs }
 
 Agora, se você verificar a documentação, ela exibirá todos os metadados adicionais:
 
 <img src="/img/tutorial/metadata/image02.png">
 
-### Ordem das tags
+### Ordem das tags { #order-of-tags }
 
 A ordem de cada dicionário de metadados de tag também define a ordem exibida na interface de documentação.
 
 Por exemplo, embora `users` apareça após `items` em ordem alfabética, ele é exibido antes deles, porque adicionamos seus metadados como o primeiro dicionário na lista.
 
-## URL da OpenAPI
+## URL da OpenAPI { #openapi-url }
 
 Por padrão, o esquema OpenAPI é servido em `/openapi.json`.
 
@@ -104,7 +104,7 @@ Por exemplo, para defini-lo para ser servido em `/api/v1/openapi.json`:
 
 Se você quiser desativar completamente o esquema OpenAPI, pode definir `openapi_url=None`, o que também desativará as interfaces de documentação que o utilizam.
 
-## URLs da Documentação
+## URLs da Documentação { #docs-urls }
 
 Você pode configurar as duas interfaces de documentação incluídas:
 

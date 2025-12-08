@@ -1,4 +1,4 @@
-# Webhooks OpenAPI
+# Webhooks OpenAPI { #openapi-webhooks }
 
 Existem situações onde você deseja informar os **usuários** da sua API que a sua aplicação pode chamar a aplicação *deles* (enviando uma requisição) com alguns dados, normalmente para **notificar** algum tipo de **evento**.
 
@@ -6,7 +6,7 @@ Isso significa que no lugar do processo normal de seus usuários enviarem requis
 
 Isso normalmente é chamado de **webhook**.
 
-## Etapas dos Webhooks
+## Etapas dos webhooks { #webhooks-steps }
 
 Normalmente, o processo é que **você define** em seu código qual é a mensagem que você irá mandar, o **corpo da sua requisição**.
 
@@ -16,7 +16,7 @@ E os **seus usuários** definem de alguma forma (em algum painel por exemplo) a 
 
 Toda a **lógica** sobre como cadastrar as URLs para os webhooks e o código para enviar de fato as requisições cabe a você definir. Você escreve da maneira que você desejar no **seu próprio código**.
 
-## Documentando webhooks com o FastAPI e OpenAPI
+## Documentando webhooks com o FastAPI e OpenAPI { #documenting-webhooks-with-fastapi-and-openapi }
 
 Com o **FastAPI**, utilizando o OpenAPI, você pode definir os nomes destes webhooks, os tipos das operações HTTP que a sua aplicação pode enviar (e.g. `POST`, `PUT`, etc.) e os **corpos** da requisição que a sua aplicação enviaria.
 
@@ -28,7 +28,7 @@ Webhooks estão disponíveis a partir do OpenAPI 3.1.0, e possui suporte do Fast
 
 ///
 
-## Uma aplicação com webhooks
+## Uma aplicação com webhooks { #an-app-with-webhooks }
 
 Quando você cria uma aplicação com o **FastAPI**, existe um atributo chamado `webhooks`, que você utilizar para defini-los da mesma maneira que você definiria as suas **operações de rotas**, utilizando por exemplo `@app.webhooks.post()`.
 
@@ -42,11 +42,11 @@ O objeto `app.webhooks` é na verdade apenas um `APIRouter`, o mesmo tipo que vo
 
 ///
 
-Note que utilizando webhooks você não está de fato declarando uma **rota** (como `/items/`), o texto que informa é apenas um **identificador** do webhook (o nome do evento), por exemplo em `@app.webhooks.post("new-subscription")`, o nome do webhook é `new-subscription`.
+Note que utilizando webhooks você não está de fato declarando um *path* (como `/items/`), o texto que informa é apenas um **identificador** do webhook (o nome do evento), por exemplo em `@app.webhooks.post("new-subscription")`, o nome do webhook é `new-subscription`.
 
-Isto porque espera-se que os **seus usuários** definam o verdadeiro **caminho da URL** onde eles desejam receber a requisição do webhook de algum outra maneira. (e.g. um painel).
+Isto porque espera-se que os **seus usuários** definam o verdadeiro **URL path** onde eles desejam receber a requisição do webhook de algum outra maneira. (e.g. um painel).
 
-### Confira a documentação
+### Confira a documentação { #check-the-docs }
 
 Agora você pode iniciar a sua aplicação e ir até <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 

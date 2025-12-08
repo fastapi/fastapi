@@ -1,10 +1,11 @@
 import warnings
+from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Sequence, Union
 
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, deprecated
+from typing_extensions import Annotated, Literal, deprecated
 
 from ._compat import (
     PYDANTIC_V2,
@@ -761,26 +762,13 @@ class File(Form):  # type: ignore[misc]
         )
 
 
+@dataclass(frozen=True)
 class Depends:
-    def __init__(
-        self, dependency: Optional[Callable[..., Any]] = None, *, use_cache: bool = True
-    ):
-        self.dependency = dependency
-        self.use_cache = use_cache
-
-    def __repr__(self) -> str:
-        attr = getattr(self.dependency, "__name__", type(self.dependency).__name__)
-        cache = "" if self.use_cache else ", use_cache=False"
-        return f"{self.__class__.__name__}({attr}{cache})"
+    dependency: Optional[Callable[..., Any]] = None
+    use_cache: bool = True
+    scope: Union[Literal["function", "request"], None] = None
 
 
+@dataclass(frozen=True)
 class Security(Depends):
-    def __init__(
-        self,
-        dependency: Optional[Callable[..., Any]] = None,
-        *,
-        scopes: Optional[Sequence[str]] = None,
-        use_cache: bool = True,
-    ):
-        super().__init__(dependency=dependency, use_cache=use_cache)
-        self.scopes = scopes or []
+    scopes: Optional[Sequence[str]] = None
