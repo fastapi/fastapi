@@ -419,8 +419,7 @@ def get_openapi_path(
             all_route_params = get_flat_params(route.dependant)
             requires_validation_error = bool(all_route_params or route.body_field)
             has_validation_response = any(
-                status in operation["responses"] 
-                for status in ("422", "4XX", "default")
+                status in operation["responses"] for status in ("422", "4XX", "default")
             )
             if requires_validation_error and not has_validation_response:
                 operation["responses"][http422] = {
