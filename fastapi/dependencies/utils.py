@@ -572,7 +572,7 @@ async def _solve_generator(
         cm = asynccontextmanager(dependant.call)(**sub_values)
     elif dependant.is_gen_callable:
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    
+
     try:
         solved = await stack.enter_async_context(cm)
     except RuntimeError as ex:
