@@ -153,17 +153,6 @@ class UploadFile(StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
 
-    # TODO: remove when deprecating Pydantic v1
-    @classmethod
-    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
-        field_schema.update({"type": "string", "format": "binary"})
-
-    @classmethod
-    def __get_pydantic_json_schema__(
-        cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-    ) -> JsonSchemaValue:
-        return {"type": "string", "format": "binary"}
-
     @classmethod
     def __get_pydantic_core_schema__(
         cls, source: Type[Any], handler: Callable[[Any], CoreSchema]
