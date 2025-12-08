@@ -14,7 +14,7 @@ GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
     - 💾 [PostgreSQL](https://www.postgresql.org) als SQL-Datenbank.
 - 🚀 [React](https://react.dev) für das Frontend.
     - 💃 Verwendung von TypeScript, Hooks, [Vite](https://vitejs.dev) und anderen Teilen eines modernen Frontend-Stacks.
-    - 🎨 [Chakra UI](https://chakra-ui.com) für die Frontend-Komponenten.
+    - 🎨 [Tailwind CSS](https://tailwindcss.com) und [shadcn/ui](https://ui.shadcn.com) für die Frontend-Komponenten.
     - 🤖 Ein automatisch generierter Frontend-Client.
     - 🧪 [Playwright](https://playwright.dev) für End-to-End-Tests.
     - 🦇 Unterstützung des Dunkelmodus.
@@ -25,4 +25,4 @@ GitHub-Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
 - ✅ Tests mit [Pytest](https://pytest.org).
 - 📞 [Traefik](https://traefik.io) als Reverse-Proxy / Load Balancer.
 - 🚢 Deployment-Anleitungen unter Verwendung von Docker Compose, einschließlich der Einrichtung eines Frontend-Traefik-Proxys zur Handhabung automatischer HTTPS-Zertifikate.
-- 🏭 CI (kontinuierliche Integration) und CD (kontinuierliche Bereitstellung) basierend auf GitHub Actions.
+- 🏭 CI (kontinuierliche Integration) und CD (kontinuierliches Deployment) basierend auf GitHub Actions.

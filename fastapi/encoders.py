@@ -34,14 +34,14 @@ def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
 
 
-# Taken from Pydantic v1 as is
+# Adapted from Pydantic v1
 # TODO: pv2 should this return strings instead?
 def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     """
-    Encodes a Decimal as int of there's no exponent, otherwise float
+    Encodes a Decimal as int if there's no exponent, otherwise float
 
     This is useful when we use ConstrainedDecimal to represent Numeric(x,0)
-    where a integer (but not int typed) is used. Encoding this as a float
+    where an integer (but not int typed) is used. Encoding this as a float
     results in failed round-tripping between encode and parse.
     Our Id type is a prime example of this.
 
@@ -50,8 +50,12 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
     >>> decimal_encoder(Decimal("1"))
     1
+
+    >>> decimal_encoder(Decimal("NaN"))
+    nan
     """
-    if dec_value.as_tuple().exponent >= 0:  # type: ignore[operator]
+    exponent = dec_value.as_tuple().exponent
+    if isinstance(exponent, int) and exponent >= 0:
         return int(dec_value)
     else:
         return float(dec_value)

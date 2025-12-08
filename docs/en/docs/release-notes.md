@@ -7,6 +7,140 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Update tech stack in project generation docs. PR [#14472](https://github.com/fastapi/fastapi/pull/14472) by [@alejsdev](https://github.com/alejsdev).
+
+## 0.124.0
+
+### Features
+
+* 🚸  Improve tracebacks by adding endpoint metadata. PR [#14306](https://github.com/fastapi/fastapi/pull/14306) by [@savannahostrowski](https://github.com/savannahostrowski).
+
+### Internal
+
+* ✏️ Fix typo in `scripts/mkdocs_hooks.py`. PR [#14457](https://github.com/fastapi/fastapi/pull/14457) by [@yujiteshima](https://github.com/yujiteshima).
+
+## 0.123.10
+
+### Fixes
+
+* 🐛 Fix using class (not instance) dependency that has `__call__` method. PR [#14458](https://github.com/fastapi/fastapi/pull/14458) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🐛 Fix `separate_input_output_schemas=False` with `computed_field`. PR [#14453](https://github.com/fastapi/fastapi/pull/14453) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.123.9
+
+### Fixes
+
+* 🐛 Fix OAuth2 scopes in OpenAPI in extra corner cases, parent dependency with scopes, sub-dependency security scheme without scopes. PR [#14459](https://github.com/fastapi/fastapi/pull/14459) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.8
+
+### Fixes
+
+* 🐛 Fix OpenAPI security scheme OAuth2 scopes declaration, deduplicate security schemes with different scopes. PR [#14455](https://github.com/fastapi/fastapi/pull/14455) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.7
+
+### Fixes
+
+* 🐛 Fix evaluating stringified annotations in Python 3.10. PR [#11355](https://github.com/fastapi/fastapi/pull/11355) by [@chaen](https://github.com/chaen).
+
+## 0.123.6
+
+### Fixes
+
+* 🐛 Fix support for functools wraps and partial combined, for async and regular functions and classes in path operations and dependencies. PR [#14448](https://github.com/fastapi/fastapi/pull/14448) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.5
+
+### Features
+
+* ✨ Allow using dependables with `functools.partial()`. PR [#9753](https://github.com/fastapi/fastapi/pull/9753) by [@lieryan](https://github.com/lieryan).
+* ✨ Add support for wrapped functions (e.g. `@functools.wraps()`) used with forward references. PR [#5077](https://github.com/fastapi/fastapi/pull/5077) by [@lucaswiman](https://github.com/lucaswiman).
+* ✨ Handle wrapped dependencies. PR [#9555](https://github.com/fastapi/fastapi/pull/9555) by [@phy1729](https://github.com/phy1729).
+
+### Fixes
+
+* 🐛 Fix optional sequence handling with new union syntax from Python 3.10. PR [#14430](https://github.com/fastapi/fastapi/pull/14430) by [@Viicos](https://github.com/Viicos).
+
+### Refactors
+
+* 🔥 Remove dangling extra condiitonal no longer needed. PR [#14435](https://github.com/fastapi/fastapi/pull/14435) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor internals, update `is_coroutine` check to reuse internal supported variants (unwrap, check class). PR [#14434](https://github.com/fastapi/fastapi/pull/14434) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Sync German docs. PR [#14367](https://github.com/fastapi/fastapi/pull/14367) by [@nilslindemann](https://github.com/nilslindemann).
+
+## 0.123.4
+
+### Fixes
+
+* 🐛 Fix OpenAPI schema support for computed fields when using `separate_input_output_schemas=False`. PR [#13207](https://github.com/fastapi/fastapi/pull/13207) by [@vgrafe](https://github.com/vgrafe).
+
+### Docs
+
+* 📝 Fix docstring of `servers` parameter. PR [#14405](https://github.com/fastapi/fastapi/pull/14405) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.123.3
+
+### Fixes
+
+* 🐛 Fix Query\Header\Cookie parameter model alias. PR [#14360](https://github.com/fastapi/fastapi/pull/14360) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🐛 Fix optional sequence handling in `serialize sequence value` with Pydantic V2. PR [#14297](https://github.com/fastapi/fastapi/pull/14297) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.123.2
+
+### Fixes
+
+* 🐛 Fix unformatted `{type_}` in FastAPIError. PR [#14416](https://github.com/fastapi/fastapi/pull/14416) by [@Just-Helpful](https://github.com/Just-Helpful).
+* 🐛 Fix parsing extra non-body parameter list. PR [#14356](https://github.com/fastapi/fastapi/pull/14356) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🐛 Fix parsing extra `Form` parameter list. PR [#14303](https://github.com/fastapi/fastapi/pull/14303) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🐛 Fix support for form values with empty strings interpreted as missing (`None` if that's the default), for compatibility with HTML forms. PR [#13537](https://github.com/fastapi/fastapi/pull/13537) by [@MarinPostma](https://github.com/MarinPostma).
+
+### Docs
+
+* 📝 Add tip on how to install `pip` in case of `No module named pip` error in `virtual-environments.md`. PR [#14211](https://github.com/fastapi/fastapi/pull/14211) by [@zadevhub](https://github.com/zadevhub).
+* 📝 Update Primary Key notes for the SQL databases tutorial to avoid confusion. PR [#14120](https://github.com/fastapi/fastapi/pull/14120) by [@FlaviusRaducu](https://github.com/FlaviusRaducu).
+* 📝 Clarify estimation note in documentation. PR [#14070](https://github.com/fastapi/fastapi/pull/14070) by [@SaisakthiM](https://github.com/SaisakthiM).
+
+## 0.123.1
+
+### Fixes
+
+* 🐛 Avoid accessing non-existing "$ref" key for Pydantic v2 compat remapping. PR [#14361](https://github.com/fastapi/fastapi/pull/14361) by [@svlandeg](https://github.com/svlandeg).
+* 🐛 Fix `TypeError` when encoding a decimal with a `NaN` or `Infinity` value. PR [#12935](https://github.com/fastapi/fastapi/pull/12935) by [@kentwelcome](https://github.com/kentwelcome).
+
+### Internal
+
+* 🐛 Fix Windows UnicodeEncodeError in CLI test. PR [#14295](https://github.com/fastapi/fastapi/pull/14295) by [@hemanth-thirthahalli](https://github.com/hemanth-thirthahalli).
+* 🔧 Update sponsors: add Greptile. PR [#14429](https://github.com/fastapi/fastapi/pull/14429) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14426](https://github.com/fastapi/fastapi/pull/14426) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump markdown-include-variants from 0.0.6 to 0.0.7. PR [#14423](https://github.com/fastapi/fastapi/pull/14423) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 👥 Update FastAPI People - Sponsors. PR [#14422](https://github.com/fastapi/fastapi/pull/14422) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14420](https://github.com/fastapi/fastapi/pull/14420) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.123.0
+
+### Fixes
+
+* 🐛 Cache dependencies that don't use scopes and don't have sub-dependencies with scopes. PR [#14419](https://github.com/fastapi/fastapi/pull/14419) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.122.1
+
+### Fixes
+
+* 🐛 Fix hierarchical security scope propagation. PR [#5624](https://github.com/fastapi/fastapi/pull/5624) by [@kristjanvalur](https://github.com/kristjanvalur).
+
+### Docs
+
+* 💅 Update CSS to explicitly use emoji font. PR [#14415](https://github.com/fastapi/fastapi/pull/14415) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump markdown-include-variants from 0.0.5 to 0.0.6. PR [#14418](https://github.com/fastapi/fastapi/pull/14418) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.122.0
 
 ### Fixes
