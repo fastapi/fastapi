@@ -2,7 +2,6 @@ from typing import (
     Any,
     BinaryIO,
     Callable,
-    Dict,
     Iterable,
     Optional,
     Type,
@@ -13,8 +12,6 @@ from typing import (
 from annotated_doc import Doc
 from fastapi._compat import (
     CoreSchema,
-    GetJsonSchemaHandler,
-    JsonSchemaValue,
 )
 from starlette.datastructures import URL as URL  # noqa: F401
 from starlette.datastructures import Address as Address  # noqa: F401
