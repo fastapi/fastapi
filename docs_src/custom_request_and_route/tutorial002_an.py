@@ -3,6 +3,7 @@ from typing import Callable, List
 from fastapi import Body, FastAPI, HTTPException, Request, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.routing import APIRoute
+from typing_extensions import Annotated
 
 
 class ValidationErrorLoggingRoute(APIRoute):
@@ -25,5 +26,5 @@ app.router.route_class = ValidationErrorLoggingRoute
 
 
 @app.post("/")
-async def sum_numbers(numbers: List[int] = Body()):
+async def sum_numbers(numbers: Annotated[List[int], Body()]):
     return sum(numbers)
