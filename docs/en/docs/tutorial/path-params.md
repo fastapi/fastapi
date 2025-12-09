@@ -166,7 +166,7 @@ Because the available values for the *path parameter* are predefined, the intera
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Common Validation Errors with Enums { #enum-validation-errors }
+### Common Validation Errors with Enums { #common-validation-errors-with-enums }
 
 When using an `Enum` for a path parameter, FastAPI will validate the value automatically.
 
