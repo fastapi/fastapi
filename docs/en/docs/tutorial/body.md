@@ -20,6 +20,13 @@ As it is discouraged, the interactive docs with Swagger UI won't show the docume
 
 ## Import Pydantic's `BaseModel` { #import-pydantics-basemodel }
 
+/// note
+
+`BaseModel` is the main class from Pydantic used for creating data models.  
+FastAPI needs this import to validate request bodies and generate documentation.
+
+///
+
 First, you need to import `BaseModel` from `pydantic`:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[2] *}
