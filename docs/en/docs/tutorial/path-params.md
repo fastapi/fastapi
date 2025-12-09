@@ -166,6 +166,40 @@ Because the available values for the *path parameter* are predefined, the intera
 
 <img src="/img/tutorial/path-params/image03.png">
 
+### Common Validation Errors with Enums { #enum-validation-errors }
+
+When using an `Enum` for a path parameter, FastAPI will validate the value automatically.
+
+For example, if your `ModelName` enum only allows:
+
+- `"alexnet"`
+- `"resnet"`
+- `"lenet"`
+
+And the client sends an invalid value:
+
+```
+GET /models/vgg16
+```
+
+FastAPI returns a clear validation error:
+
+```
+{
+  "detail": [
+    {
+      "type": "enum",
+      "loc": ["path", "model_name"],
+      "msg": "Input should be 'alexnet', 'resnet' or 'lenet'",
+      "input": "vgg16"
+    }
+  ]
+}
+
+```
+
+This helps catch invalid requests before they reach your logic and keeps your API behavior predictable.
+
 ### Working with Python *enumerations* { #working-with-python-enumerations }
 
 The value of the *path parameter* will be an *enumeration member*.
