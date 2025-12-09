@@ -22,7 +22,7 @@ As it is discouraged, the interactive docs with Swagger UI won't show the docume
 
 /// note
 
-`BaseModel` is the main class from Pydantic used for creating data models.  
+`BaseModel` is the main class from Pydantic used for creating data models.
 FastAPI needs this import to validate request bodies and generate documentation.
 
 ///
