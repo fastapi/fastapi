@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 🔥 Remove external links section. PR [#14486](https://github.com/fastapi/fastapi/pull/14486) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.124.2
 
 ### Fixes
