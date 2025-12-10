@@ -26,7 +26,7 @@ class QueryModelRequiredListStr(BaseModel):
 
 
 @app.get("/model-required-list-str")
-def read_model_required_list_str(p: QueryModelRequiredListStr = Query()):
+def read_model_required_list_str(p: Annotated[QueryModelRequiredListStr, Query()]):
     return {"p": p.p}
 
 
@@ -106,7 +106,9 @@ class QueryModelRequiredListAlias(BaseModel):
 
 
 @app.get("/model-required-list-alias")
-async def read_model_required_list_alias(p: QueryModelRequiredListAlias = Query()):
+async def read_model_required_list_alias(
+    p: Annotated[QueryModelRequiredListAlias, Query()],
+):
     return {"p": p.p}  # pragma: no cover
 
 
@@ -244,7 +246,7 @@ class QueryModelRequiredListValidationAlias(BaseModel):
 
 @app.get("/model-required-list-validation-alias")
 async def read_model_required_list_validation_alias(
-    p: QueryModelRequiredListValidationAlias = Query(),
+    p: Annotated[QueryModelRequiredListValidationAlias, Query()],
 ):
     return {"p": p.p}  # pragma: no cover
 
@@ -359,7 +361,7 @@ class QueryModelRequiredListAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-required-list-alias-and-validation-alias")
 def read_model_required_list_alias_and_validation_alias(
-    p: QueryModelRequiredListAliasAndValidationAlias = Query(),
+    p: Annotated[QueryModelRequiredListAliasAndValidationAlias, Query()],
 ):
     return {"p": p.p}  # pragma: no cover
 

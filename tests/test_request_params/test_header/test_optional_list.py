@@ -27,7 +27,9 @@ class HeaderModelOptionalListStr(BaseModel):
 
 
 @app.get("/model-optional-list-str")
-async def read_model_optional_list_str(p: HeaderModelOptionalListStr = Header()):
+async def read_model_optional_list_str(
+    p: Annotated[HeaderModelOptionalListStr, Header()],
+):
     return {"p": p.p}
 
 
@@ -101,7 +103,9 @@ class HeaderModelOptionalListAlias(BaseModel):
 
 
 @app.get("/model-optional-list-alias")
-async def read_model_optional_list_alias(p: HeaderModelOptionalListAlias = Header()):
+async def read_model_optional_list_alias(
+    p: Annotated[HeaderModelOptionalListAlias, Header()],
+):
     return {"p": p.p}
 
 
@@ -199,7 +203,7 @@ class HeaderModelOptionalListValidationAlias(BaseModel):
 
 @app.get("/model-optional-list-validation-alias")
 def read_model_optional_list_validation_alias(
-    p: HeaderModelOptionalListValidationAlias = Header(),
+    p: Annotated[HeaderModelOptionalListValidationAlias, Header()],
 ):
     return {"p": p.p}
 
@@ -297,7 +301,7 @@ class HeaderModelOptionalListAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-optional-list-alias-and-validation-alias")
 def read_model_optional_list_alias_and_validation_alias(
-    p: HeaderModelOptionalListAliasAndValidationAlias = Header(),
+    p: Annotated[HeaderModelOptionalListAliasAndValidationAlias, Header()],
 ):
     return {"p": p.p}
 

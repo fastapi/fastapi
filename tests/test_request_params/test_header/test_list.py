@@ -26,7 +26,7 @@ class HeaderModelRequiredListStr(BaseModel):
 
 
 @app.get("/model-required-list-str")
-def read_model_required_list_str(p: HeaderModelRequiredListStr = Header()):
+def read_model_required_list_str(p: Annotated[HeaderModelRequiredListStr, Header()]):
     return {"p": p.p}
 
 
@@ -106,7 +106,9 @@ class HeaderModelRequiredListAlias(BaseModel):
 
 
 @app.get("/model-required-list-alias")
-async def read_model_required_list_alias(p: HeaderModelRequiredListAlias = Header()):
+async def read_model_required_list_alias(
+    p: Annotated[HeaderModelRequiredListAlias, Header()],
+):
     return {"p": p.p}  # pragma: no cover
 
 
@@ -244,7 +246,7 @@ class HeaderModelRequiredListValidationAlias(BaseModel):
 
 @app.get("/model-required-list-validation-alias")
 async def read_model_required_list_validation_alias(
-    p: HeaderModelRequiredListValidationAlias = Header(),
+    p: Annotated[HeaderModelRequiredListValidationAlias, Header()],
 ):
     return {"p": p.p}  # pragma: no cover
 
@@ -361,7 +363,7 @@ class HeaderModelRequiredListAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-required-list-alias-and-validation-alias")
 def read_model_required_list_alias_and_validation_alias(
-    p: HeaderModelRequiredListAliasAndValidationAlias = Header(),
+    p: Annotated[HeaderModelRequiredListAliasAndValidationAlias, Header()],
 ):
     return {"p": p.p}  # pragma: no cover
 

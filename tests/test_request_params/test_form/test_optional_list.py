@@ -30,7 +30,7 @@ class FormModelOptionalListStr(BaseModel):
 
 
 @app.post("/model-optional-list-str", operation_id="model_optional_list_str")
-async def read_model_optional_list_str(p: FormModelOptionalListStr = Form()):
+async def read_model_optional_list_str(p: Annotated[FormModelOptionalListStr, Form()]):
     return {"p": p.p}
 
 
@@ -106,7 +106,9 @@ class FormModelOptionalListAlias(BaseModel):
 
 
 @app.post("/model-optional-list-alias", operation_id="model_optional_list_alias")
-async def read_model_optional_list_alias(p: FormModelOptionalListAlias = Form()):
+async def read_model_optional_list_alias(
+    p: Annotated[FormModelOptionalListAlias, Form()],
+):
     return {"p": p.p}
 
 
@@ -214,7 +216,7 @@ class FormModelOptionalListValidationAlias(BaseModel):
     operation_id="model_optional_list_validation_alias",
 )
 def read_model_optional_list_validation_alias(
-    p: FormModelOptionalListValidationAlias = Form(),
+    p: Annotated[FormModelOptionalListValidationAlias, Form()],
 ):
     return {"p": p.p}
 
@@ -332,7 +334,7 @@ class FormModelOptionalListAliasAndValidationAlias(BaseModel):
     operation_id="model_optional_list_alias_and_validation_alias",
 )
 def read_model_optional_list_alias_and_validation_alias(
-    p: FormModelOptionalListAliasAndValidationAlias = Form(),
+    p: Annotated[FormModelOptionalListAliasAndValidationAlias, Form()],
 ):
     return {"p": p.p}
 

@@ -26,7 +26,7 @@ class FormModelRequiredStr(BaseModel):
 
 
 @app.post("/model-required-str", operation_id="model_required_str")
-async def read_model_required_str(p: FormModelRequiredStr = Form()):
+async def read_model_required_str(p: Annotated[FormModelRequiredStr, Form()]):
     return {"p": p.p}
 
 
@@ -106,7 +106,7 @@ class FormModelRequiredAlias(BaseModel):
 
 
 @app.post("/model-required-alias", operation_id="model_required_alias")
-async def read_model_required_alias(p: FormModelRequiredAlias = Form()):
+async def read_model_required_alias(p: Annotated[FormModelRequiredAlias, Form()]):
     return {"p": p.p}
 
 
@@ -235,7 +235,7 @@ class FormModelRequiredValidationAlias(BaseModel):
     "/model-required-validation-alias", operation_id="model_required_validation_alias"
 )
 def read_model_required_validation_alias(
-    p: FormModelRequiredValidationAlias = Form(),
+    p: Annotated[FormModelRequiredValidationAlias, Form()],
 ):
     return {"p": p.p}
 
@@ -363,7 +363,7 @@ class FormModelRequiredAliasAndValidationAlias(BaseModel):
     operation_id="model_required_alias_and_validation_alias",
 )
 def read_model_required_alias_and_validation_alias(
-    p: FormModelRequiredAliasAndValidationAlias = Form(),
+    p: Annotated[FormModelRequiredAliasAndValidationAlias, Form()],
 ):
     return {"p": p.p}
 

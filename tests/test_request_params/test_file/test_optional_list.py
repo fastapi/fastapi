@@ -36,9 +36,12 @@ class FormModelOptionalListBytes(BaseModel):
 
 @app.post("/model-optional-list-bytes")
 async def read_model_optional_list_bytes(
-    p: FormModelOptionalListBytes = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListBytes,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [len(file) for file in p.p] if p.p else None}
 
@@ -49,9 +52,12 @@ class FormModelOptionalListUploadFile(BaseModel):
 
 @app.post("/model-optional-list-uploadfile")
 async def read_model_optional_list_uploadfile(
-    p: FormModelOptionalListUploadFile = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListUploadFile,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [file.size for file in p.p] if p.p else None}
 
@@ -171,9 +177,12 @@ class FormModelOptionalListBytesAlias(BaseModel):
 
 @app.post("/model-optional-list-bytes-alias")
 async def read_model_optional_list_bytes_alias(
-    p: FormModelOptionalListBytesAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListBytesAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [len(file) for file in p.p] if p.p else None}
 
@@ -184,9 +193,12 @@ class FormModelOptionalListUploadFileAlias(BaseModel):
 
 @app.post("/model-optional-list-uploadfile-alias")
 async def read_model_optional_list_uploadfile_alias(
-    p: FormModelOptionalListUploadFileAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListUploadFileAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [file.size for file in p.p] if p.p else None}
 
@@ -358,9 +370,12 @@ class FormModelOptionalListBytesValidationAlias(BaseModel):
 
 @app.post("/model-optional-list-bytes-validation-alias")
 def read_model_optional_list_bytes_validation_alias(
-    p: FormModelOptionalListBytesValidationAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListBytesValidationAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [len(file) for file in p.p] if p.p else None}
 
@@ -371,9 +386,12 @@ class FormModelOptionalListUploadFileValidationAlias(BaseModel):
 
 @app.post("/model-optional-list-uploadfile-validation-alias")
 def read_model_optional_list_uploadfile_validation_alias(
-    p: FormModelOptionalListUploadFileValidationAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListUploadFileValidationAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [file.size for file in p.p] if p.p else None}
 
@@ -530,9 +548,12 @@ class FormModelOptionalListBytesAliasAndValidationAlias(BaseModel):
 
 @app.post("/model-optional-list-bytes-alias-and-validation-alias")
 def read_model_optional_list_bytes_alias_and_validation_alias(
-    p: FormModelOptionalListBytesAliasAndValidationAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListBytesAliasAndValidationAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [len(file) for file in p.p] if p.p else None}
 
@@ -545,9 +566,12 @@ class FormModelOptionalListUploadFileAliasAndValidationAlias(BaseModel):
 
 @app.post("/model-optional-list-uploadfile-alias-and-validation-alias")
 def read_model_optional_list_uploadfile_alias_and_validation_alias(
-    p: FormModelOptionalListUploadFileAliasAndValidationAlias = Form(
-        media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-    ),
+    p: Annotated[
+        FormModelOptionalListUploadFileAliasAndValidationAlias,
+        Form(
+            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
+        ),
+    ],
 ):
     return {"file_size": [file.size for file in p.p] if p.p else None}
 

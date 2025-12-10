@@ -28,7 +28,7 @@ class FormModelOptionalStr(BaseModel):
 
 
 @app.post("/model-optional-str", operation_id="model_optional_str")
-async def read_model_optional_str(p: FormModelOptionalStr = Form()):
+async def read_model_optional_str(p: Annotated[FormModelOptionalStr, Form()]):
     return {"p": p.p}
 
 
@@ -101,7 +101,7 @@ class FormModelOptionalAlias(BaseModel):
 
 
 @app.post("/model-optional-alias", operation_id="model_optional_alias")
-async def read_model_optional_alias(p: FormModelOptionalAlias = Form()):
+async def read_model_optional_alias(p: Annotated[FormModelOptionalAlias, Form()]):
     return {"p": p.p}
 
 
@@ -199,7 +199,7 @@ class FormModelOptionalValidationAlias(BaseModel):
     "/model-optional-validation-alias", operation_id="model_optional_validation_alias"
 )
 def read_model_optional_validation_alias(
-    p: FormModelOptionalValidationAlias = Form(),
+    p: Annotated[FormModelOptionalValidationAlias, Form()],
 ):
     return {"p": p.p}
 
@@ -309,7 +309,7 @@ class FormModelOptionalAliasAndValidationAlias(BaseModel):
     operation_id="model_optional_alias_and_validation_alias",
 )
 def read_model_optional_alias_and_validation_alias(
-    p: FormModelOptionalAliasAndValidationAlias = Form(),
+    p: Annotated[FormModelOptionalAliasAndValidationAlias, Form()],
 ):
     return {"p": p.p}
 

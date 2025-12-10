@@ -25,7 +25,7 @@ class CookieModelOptionalStr(BaseModel):
 
 
 @app.get("/model-optional-str")
-async def read_model_optional_str(p: CookieModelOptionalStr = Cookie()):
+async def read_model_optional_str(p: Annotated[CookieModelOptionalStr, Cookie()]):
     return {"p": p.p}
 
 
@@ -97,7 +97,7 @@ class CookieModelOptionalAlias(BaseModel):
 
 
 @app.get("/model-optional-alias")
-async def read_model_optional_alias(p: CookieModelOptionalAlias = Cookie()):
+async def read_model_optional_alias(p: Annotated[CookieModelOptionalAlias, Cookie()]):
     return {"p": p.p}
 
 
@@ -188,7 +188,7 @@ class CookieModelOptionalValidationAlias(BaseModel):
 
 @app.get("/model-optional-validation-alias")
 def read_model_optional_validation_alias(
-    p: CookieModelOptionalValidationAlias = Cookie(),
+    p: Annotated[CookieModelOptionalValidationAlias, Cookie()],
 ):
     return {"p": p.p}
 
@@ -282,7 +282,7 @@ class CookieModelOptionalAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-optional-alias-and-validation-alias")
 def read_model_optional_alias_and_validation_alias(
-    p: CookieModelOptionalAliasAndValidationAlias = Cookie(),
+    p: Annotated[CookieModelOptionalAliasAndValidationAlias, Cookie()],
 ):
     return {"p": p.p}
 

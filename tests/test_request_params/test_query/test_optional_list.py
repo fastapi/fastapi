@@ -27,7 +27,9 @@ class QueryModelOptionalListStr(BaseModel):
 
 
 @app.get("/model-optional-list-str")
-async def read_model_optional_list_str(p: QueryModelOptionalListStr = Query()):
+async def read_model_optional_list_str(
+    p: Annotated[QueryModelOptionalListStr, Query()],
+):
     return {"p": p.p}
 
 
@@ -101,7 +103,9 @@ class QueryModelOptionalListAlias(BaseModel):
 
 
 @app.get("/model-optional-list-alias")
-async def read_model_optional_list_alias(p: QueryModelOptionalListAlias = Query()):
+async def read_model_optional_list_alias(
+    p: Annotated[QueryModelOptionalListAlias, Query()],
+):
     return {"p": p.p}
 
 
@@ -199,7 +203,7 @@ class QueryModelOptionalListValidationAlias(BaseModel):
 
 @app.get("/model-optional-list-validation-alias")
 def read_model_optional_list_validation_alias(
-    p: QueryModelOptionalListValidationAlias = Query(),
+    p: Annotated[QueryModelOptionalListValidationAlias, Query()],
 ):
     return {"p": p.p}
 
@@ -295,7 +299,7 @@ class QueryModelOptionalListAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-optional-list-alias-and-validation-alias")
 def read_model_optional_list_alias_and_validation_alias(
-    p: QueryModelOptionalListAliasAndValidationAlias = Query(),
+    p: Annotated[QueryModelOptionalListAliasAndValidationAlias, Query()],
 ):
     return {"p": p.p}
 

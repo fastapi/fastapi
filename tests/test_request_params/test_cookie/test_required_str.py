@@ -24,7 +24,7 @@ class CookieModelRequiredStr(BaseModel):
 
 
 @app.get("/model-required-str")
-async def read_model_required_str(p: CookieModelRequiredStr = Cookie()):
+async def read_model_required_str(p: Annotated[CookieModelRequiredStr, Cookie()]):
     return {"p": p.p}
 
 
@@ -102,7 +102,7 @@ class CookieModelRequiredAlias(BaseModel):
 
 
 @app.get("/model-required-alias")
-async def read_model_required_alias(p: CookieModelRequiredAlias = Cookie()):
+async def read_model_required_alias(p: Annotated[CookieModelRequiredAlias, Cookie()]):
     return {"p": p.p}  # pragma: no cover
 
 
@@ -239,7 +239,7 @@ class CookieModelRequiredValidationAlias(BaseModel):
 
 @app.get("/model-required-validation-alias")
 def read_model_required_validation_alias(
-    p: CookieModelRequiredValidationAlias = Cookie(),
+    p: Annotated[CookieModelRequiredValidationAlias, Cookie()],
 ):
     return {"p": p.p}
 
@@ -361,7 +361,7 @@ class CookieModelRequiredAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-required-alias-and-validation-alias")
 def read_model_required_alias_and_validation_alias(
-    p: CookieModelRequiredAliasAndValidationAlias = Cookie(),
+    p: Annotated[CookieModelRequiredAliasAndValidationAlias, Cookie()],
 ):
     return {"p": p.p}
 

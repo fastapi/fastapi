@@ -25,7 +25,7 @@ class QueryModelOptionalStr(BaseModel):
 
 
 @app.get("/model-optional-str")
-async def read_model_optional_str(p: QueryModelOptionalStr = Query()):
+async def read_model_optional_str(p: Annotated[QueryModelOptionalStr, Query()]):
     return {"p": p.p}
 
 
@@ -96,7 +96,7 @@ class QueryModelOptionalAlias(BaseModel):
 
 
 @app.get("/model-optional-alias")
-async def read_model_optional_alias(p: QueryModelOptionalAlias = Query()):
+async def read_model_optional_alias(p: Annotated[QueryModelOptionalAlias, Query()]):
     return {"p": p.p}
 
 
@@ -185,7 +185,7 @@ class QueryModelOptionalValidationAlias(BaseModel):
 
 @app.get("/model-optional-validation-alias")
 def read_model_optional_validation_alias(
-    p: QueryModelOptionalValidationAlias = Query(),
+    p: Annotated[QueryModelOptionalValidationAlias, Query()],
 ):
     return {"p": p.p}
 
@@ -277,7 +277,7 @@ class QueryModelOptionalAliasAndValidationAlias(BaseModel):
 
 @app.get("/model-optional-alias-and-validation-alias")
 def read_model_optional_alias_and_validation_alias(
-    p: QueryModelOptionalAliasAndValidationAlias = Query(),
+    p: Annotated[QueryModelOptionalAliasAndValidationAlias, Query()],
 ):
     return {"p": p.p}
 

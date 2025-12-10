@@ -28,7 +28,7 @@ class FormModelRequiredListStr(BaseModel):
 
 
 @app.post("/model-required-list-str", operation_id="model_required_list_str")
-def read_model_required_list_str(p: FormModelRequiredListStr = Form()):
+def read_model_required_list_str(p: Annotated[FormModelRequiredListStr, Form()]):
     return {"p": p.p}
 
 
@@ -111,7 +111,9 @@ class FormModelRequiredListAlias(BaseModel):
 
 
 @app.post("/model-required-list-alias", operation_id="model_required_list_alias")
-async def read_model_required_list_alias(p: FormModelRequiredListAlias = Form()):
+async def read_model_required_list_alias(
+    p: Annotated[FormModelRequiredListAlias, Form()],
+):
     return {"p": p.p}  # pragma: no cover
 
 
@@ -260,7 +262,7 @@ class FormModelRequiredListValidationAlias(BaseModel):
     operation_id="model_required_list_validation_alias",
 )
 async def read_model_required_list_validation_alias(
-    p: FormModelRequiredListValidationAlias = Form(),
+    p: Annotated[FormModelRequiredListValidationAlias, Form()],
 ):
     return {"p": p.p}  # pragma: no cover
 
@@ -385,7 +387,7 @@ class FormModelRequiredListAliasAndValidationAlias(BaseModel):
     operation_id="model_required_list_alias_and_validation_alias",
 )
 def read_model_required_list_alias_and_validation_alias(
-    p: FormModelRequiredListAliasAndValidationAlias = Form(),
+    p: Annotated[FormModelRequiredListAliasAndValidationAlias, Form()],
 ):
     return {"p": p.p}  # pragma: no cover
 
