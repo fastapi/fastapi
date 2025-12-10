@@ -209,11 +209,21 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
     return path_params + query_params + header_params + cookie_params
 
 
-def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
     if sys.version_info >= (3, 10):
-        signature = inspect.signature(call, eval_str=True)
+        try:
+            signature = inspect.signature(call, eval_str=True)
+        except NameError:
+            # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
+            # e.g. dependency return types
+            signature = inspect.signature(call)
     else:
         signature = inspect.signature(call)
+    return signature
+
+
+def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
+    signature = _get_signature(call)
     unwrapped = inspect.unwrap(call)
     globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
@@ -239,10 +249,7 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
-    if sys.version_info >= (3, 10):
-        signature = inspect.signature(call, eval_str=True)
-    else:
-        signature = inspect.signature(call)
+    signature = _get_signature(call)
     unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
