@@ -1,7 +1,7 @@
 import re
 import warnings
 from copy import copy, deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
     Any,
@@ -18,7 +18,7 @@ from typing import (
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
-from pydantic import BaseModel, TypeAdapter, create_model
+from pydantic import BaseModel, ConfigDict, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -64,6 +64,7 @@ class ModelField:
     field_info: FieldInfo
     name: str
     mode: Literal["validation", "serialization"] = "validation"
+    config: Union[ConfigDict, None] = None
 
     @property
     def alias(self) -> str:
@@ -94,8 +95,14 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
+            annotated_args = (
+                self.field_info.annotation,
+                *self.field_info.metadata,
+                self.field_info,
+            )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[self.field_info.annotation, self.field_info]
+                Annotated[annotated_args],
+                config=self.config,
             )
 
     def get_default(self) -> Any:
@@ -412,10 +419,21 @@ def create_body_model(
 
 
 def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
-    return [
-        ModelField(field_info=field_info, name=name)
-        for name, field_info in model.model_fields.items()
-    ]
+    model_fields: List[ModelField] = []
+    for name, field_info in model.model_fields.items():
+        type_ = field_info.annotation
+        if lenient_issubclass(type_, (BaseModel, dict)) or is_dataclass(type_):
+            model_config = None
+        else:
+            model_config = model.model_config
+        model_fields.append(
+            ModelField(
+                field_info=field_info,
+                name=name,
+                config=model_config,
+            )
+        )
+    return model_fields
 
 
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
