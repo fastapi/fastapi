@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.124.2
+
 ### Fixes
 
 * 🐛 Fix support for `if TYPE_CHECKING`,  non-evaluated stringified annotations. PR [#14485](https://github.com/fastapi/fastapi/pull/14485) by [@tiangolo](https://github.com/tiangolo).
