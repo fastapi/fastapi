@@ -59,7 +59,6 @@ plugins:
   search: null
   macros:
     include_yaml:
-    - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
     - contributors: ../en/data/contributors.yml
