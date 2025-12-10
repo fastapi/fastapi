@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.124.1
+
 ### Fixes
 
 * 🐛 Fix handling arbitrary types when using `arbitrary_types_allowed=True`. PR [#14482](https://github.com/fastapi/fastapi/pull/14482) by [@tiangolo](https://github.com/tiangolo).
