@@ -6,6 +6,7 @@ from fastapi import Body, FastAPI
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -18,7 +19,9 @@ app = FastAPI()
 
 
 @app.post("/optional-list-str", operation_id="optional_list_str")
-async def read_optional_list_str(p: Optional[List[str]] = Body(None, embed=True)):
+async def read_optional_list_str(
+    p: Annotated[Optional[List[str]], Body(embed=True)] = None,
+):
     return {"p": p}
 
 
@@ -129,7 +132,7 @@ def test_optional_list_str(path: str):
 
 @app.post("/optional-list-alias", operation_id="optional_list_alias")
 async def read_optional_list_alias(
-    p: Optional[List[str]] = Body(None, embed=True, alias="p_alias"),
+    p: Annotated[Optional[List[str]], Body(embed=True, alias="p_alias")] = None,
 ):
     return {"p": p}
 
@@ -269,7 +272,9 @@ def test_optional_list_alias_by_alias(path: str):
     "/optional-list-validation-alias", operation_id="optional_list_validation_alias"
 )
 def read_optional_list_validation_alias(
-    p: Optional[List[str]] = Body(None, embed=True, validation_alias="p_val_alias"),
+    p: Annotated[
+        Optional[List[str]], Body(embed=True, validation_alias="p_val_alias")
+    ] = None,
 ):
     return {"p": p}
 
@@ -421,9 +426,10 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
     operation_id="optional_list_alias_and_validation_alias",
 )
 def read_optional_list_alias_and_validation_alias(
-    p: Optional[List[str]] = Body(
-        None, embed=True, alias="p_alias", validation_alias="p_val_alias"
-    ),
+    p: Annotated[
+        Optional[List[str]],
+        Body(embed=True, alias="p_alias", validation_alias="p_val_alias"),
+    ] = None,
 ):
     return {"p": p}
 

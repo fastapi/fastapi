@@ -1,6 +1,7 @@
 import pytest
 from fastapi import FastAPI, Path
 from fastapi.testclient import TestClient
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -8,25 +9,25 @@ app = FastAPI()
 
 
 @app.get("/required-str/{p}")
-async def read_required_str(p: str = Path(...)):
+async def read_required_str(p: Annotated[str, Path()]):
     return {"p": p}
 
 
 @app.get("/required-alias/{p_alias}")
-async def read_required_alias(p: str = Path(..., alias="p_alias")):
+async def read_required_alias(p: Annotated[str, Path(alias="p_alias")]):
     return {"p": p}
 
 
 @app.get("/required-validation-alias/{p_val_alias}")
 def read_required_validation_alias(
-    p: str = Path(..., validation_alias="p_val_alias"),
+    p: Annotated[str, Path(validation_alias="p_val_alias")],
 ):
     return {"p": p}  # pragma: no cover
 
 
 @app.get("/required-alias-and-validation-alias/{p_val_alias}")
 def read_required_alias_and_validation_alias(
-    p: str = Path(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[str, Path(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}  # pragma: no cover
 

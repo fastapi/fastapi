@@ -5,6 +5,7 @@ from dirty_equals import IsDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -15,7 +16,9 @@ app = FastAPI()
 
 
 @app.get("/optional-list-str")
-async def read_optional_list_str(p: Optional[List[str]] = Header(None)):
+async def read_optional_list_str(
+    p: Annotated[Optional[List[str]], Header()] = None,
+):
     return {"p": p}
 
 
@@ -88,7 +91,7 @@ def test_optional_list_str(path: str):
 
 @app.get("/optional-list-alias")
 async def read_optional_list_alias(
-    p: Optional[List[str]] = Header(None, alias="p_alias"),
+    p: Annotated[Optional[List[str]], Header(alias="p_alias")] = None,
 ):
     return {"p": p}
 
@@ -185,7 +188,7 @@ def test_optional_list_alias_by_alias(path: str):
 
 @app.get("/optional-list-validation-alias")
 def read_optional_list_validation_alias(
-    p: Optional[List[str]] = Header(None, validation_alias="p_val_alias"),
+    p: Annotated[Optional[List[str]], Header(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
@@ -279,9 +282,9 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
 
 @app.get("/optional-list-alias-and-validation-alias")
 def read_optional_list_alias_and_validation_alias(
-    p: Optional[List[str]] = Header(
-        None, alias="p_alias", validation_alias="p_val_alias"
-    ),
+    p: Annotated[
+        Optional[List[str]], Header(alias="p_alias", validation_alias="p_val_alias")
+    ] = None,
 ):
     return {"p": p}
 

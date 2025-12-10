@@ -6,6 +6,7 @@ from fastapi import Body, FastAPI
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -18,7 +19,7 @@ app = FastAPI()
 
 
 @app.post("/required-str", operation_id="required_str")
-async def read_required_str(p: str = Body(..., embed=True)):
+async def read_required_str(p: Annotated[str, Body(embed=True)]):
     return {"p": p}
 
 
@@ -99,12 +100,14 @@ def test_required_str(path: str):
 
 
 @app.post("/required-alias", operation_id="required_alias")
-async def read_required_alias(p: str = Body(..., embed=True, alias="p_alias")):
+async def read_required_alias(
+    p: Annotated[str, Body(embed=True, alias="p_alias")],
+):
     return {"p": p}
 
 
 class FormModelRequiredAlias(BaseModel):
-    p: str = Field(..., alias="p_alias")
+    p: str = Field(alias="p_alias")
 
 
 @app.post("/model-required-alias", operation_id="model_required_alias")
@@ -225,13 +228,13 @@ def test_required_alias_by_alias(path: str):
 
 @app.post("/required-validation-alias", operation_id="required_validation_alias")
 def read_required_validation_alias(
-    p: str = Body(..., embed=True, validation_alias="p_val_alias"),
+    p: Annotated[str, Body(embed=True, validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class FormModelRequiredValidationAlias(BaseModel):
-    p: str = Field(..., validation_alias="p_val_alias")
+    p: str = Field(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -354,13 +357,15 @@ def test_required_validation_alias_by_validation_alias(path: str):
     operation_id="required_alias_and_validation_alias",
 )
 def read_required_alias_and_validation_alias(
-    p: str = Body(..., embed=True, alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[
+        str, Body(embed=True, alias="p_alias", validation_alias="p_val_alias")
+    ],
 ):
     return {"p": p}
 
 
 class FormModelRequiredAliasAndValidationAlias(BaseModel):
-    p: str = Field(..., alias="p_alias", validation_alias="p_val_alias")
+    p: str = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

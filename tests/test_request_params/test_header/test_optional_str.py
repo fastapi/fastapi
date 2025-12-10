@@ -5,6 +5,7 @@ from dirty_equals import IsDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -15,7 +16,7 @@ app = FastAPI()
 
 
 @app.get("/optional-str")
-async def read_optional_str(p: Optional[str] = Header(None)):
+async def read_optional_str(p: Annotated[Optional[str], Header()] = None):
     return {"p": p}
 
 
@@ -84,7 +85,9 @@ def test_optional_str(path: str):
 
 
 @app.get("/optional-alias")
-async def read_optional_alias(p: Optional[str] = Header(None, alias="p_alias")):
+async def read_optional_alias(
+    p: Annotated[Optional[str], Header(alias="p_alias")] = None,
+):
     return {"p": p}
 
 
@@ -171,7 +174,7 @@ def test_optional_alias_by_alias(path: str):
 
 @app.get("/optional-validation-alias")
 def read_optional_validation_alias(
-    p: Optional[str] = Header(None, validation_alias="p_val_alias"),
+    p: Annotated[Optional[str], Header(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
@@ -261,7 +264,9 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 
 @app.get("/optional-alias-and-validation-alias")
 def read_optional_alias_and_validation_alias(
-    p: Optional[str] = Header(None, alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[
+        Optional[str], Header(alias="p_alias", validation_alias="p_val_alias")
+    ] = None,
 ):
     return {"p": p}
 

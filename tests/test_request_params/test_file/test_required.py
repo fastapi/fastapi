@@ -4,6 +4,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -16,17 +17,17 @@ app = FastAPI()
 
 
 @app.post("/required-bytes", operation_id="required_bytes")
-async def read_required_bytes(p: bytes = File(...)):
+async def read_required_bytes(p: Annotated[bytes, File()]):
     return {"file_size": len(p)}
 
 
 @app.post("/required-uploadfile", operation_id="required_uploadfile")
-async def read_required_uploadfile(p: UploadFile = File(...)):
+async def read_required_uploadfile(p: Annotated[UploadFile, File()]):
     return {"file_size": p.size}
 
 
 class FormModelRequiredBytes(BaseModel):
-    p: bytes = File(...)
+    p: bytes = File()
 
 
 @app.post("/model-required-bytes", operation_id="model_required_bytes")
@@ -39,7 +40,7 @@ async def read_model_required_bytes(
 
 
 class FormModelRequiredUploadFile(BaseModel):
-    p: UploadFile = File(...)
+    p: UploadFile = File()
 
 
 @app.post("/model-required-uploadfile", operation_id="model_required_uploadfile")
@@ -133,17 +134,19 @@ def test_required(path: str):
 
 
 @app.post("/required-bytes-alias", operation_id="required_bytes_alias")
-async def read_required_bytes_alias(p: bytes = File(..., alias="p_alias")):
+async def read_required_bytes_alias(p: Annotated[bytes, File(alias="p_alias")]):
     return {"file_size": len(p)}
 
 
 @app.post("/required-uploadfile-alias", operation_id="required_uploadfile_alias")
-async def read_required_uploadfile_alias(p: UploadFile = File(..., alias="p_alias")):
+async def read_required_uploadfile_alias(
+    p: Annotated[UploadFile, File(alias="p_alias")],
+):
     return {"file_size": p.size}
 
 
 class FormModelRequiredBytesAlias(BaseModel):
-    p: bytes = File(..., alias="p_alias")
+    p: bytes = File(alias="p_alias")
 
 
 @app.post("/model-required-bytes-alias", operation_id="model_required_bytes_alias")
@@ -156,7 +159,7 @@ async def read_model_required_bytes_alias(
 
 
 class FormModelRequiredUploadFileAlias(BaseModel):
-    p: UploadFile = File(..., alias="p_alias")
+    p: UploadFile = File(alias="p_alias")
 
 
 @app.post(
@@ -353,7 +356,7 @@ def test_required_alias_by_alias(path: str):
     "/required-bytes-validation-alias", operation_id="required_bytes_validation_alias"
 )
 def read_required_bytes_validation_alias(
-    p: bytes = File(..., validation_alias="p_val_alias"),
+    p: Annotated[bytes, File(validation_alias="p_val_alias")],
 ):
     return {"file_size": len(p)}
 
@@ -363,13 +366,13 @@ def read_required_bytes_validation_alias(
     operation_id="required_uploadfile_validation_alias",
 )
 def read_required_uploadfile_validation_alias(
-    p: UploadFile = File(..., validation_alias="p_val_alias"),
+    p: Annotated[UploadFile, File(validation_alias="p_val_alias")],
 ):
     return {"file_size": p.size}
 
 
 class FormModelRequiredBytesValidationAlias(BaseModel):
-    p: bytes = File(..., validation_alias="p_val_alias")
+    p: bytes = File(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -385,7 +388,7 @@ def read_model_required_bytes_validation_alias(
 
 
 class FormModelRequiredUploadFileValidationAlias(BaseModel):
-    p: UploadFile = File(..., validation_alias="p_val_alias")
+    p: UploadFile = File(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -540,7 +543,7 @@ def test_required_validation_alias_by_validation_alias(path: str):
     operation_id="required_bytes_alias_and_validation_alias",
 )
 def read_required_bytes_alias_and_validation_alias(
-    p: bytes = File(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[bytes, File(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"file_size": len(p)}
 
@@ -550,13 +553,13 @@ def read_required_bytes_alias_and_validation_alias(
     operation_id="required_uploadfile_alias_and_validation_alias",
 )
 def read_required_uploadfile_alias_and_validation_alias(
-    p: UploadFile = File(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[UploadFile, File(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"file_size": p.size}
 
 
 class FormModelRequiredBytesAliasAndValidationAlias(BaseModel):
-    p: bytes = File(..., alias="p_alias", validation_alias="p_val_alias")
+    p: bytes = File(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(
@@ -572,7 +575,7 @@ def read_model_required_bytes_alias_and_validation_alias(
 
 
 class FormModelRequiredUploadFileAliasAndValidationAlias(BaseModel):
-    p: UploadFile = File(..., alias="p_alias", validation_alias="p_val_alias")
+    p: UploadFile = File(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

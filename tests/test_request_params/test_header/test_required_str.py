@@ -4,6 +4,7 @@ from fastapi import FastAPI, Header
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -14,7 +15,7 @@ app = FastAPI()
 
 
 @app.get("/required-str")
-async def read_required_str(p: str = Header(...)):
+async def read_required_str(p: Annotated[str, Header()]):
     return {"p": p}
 
 
@@ -91,12 +92,12 @@ def test_required_str(path: str):
 
 
 @app.get("/required-alias")
-async def read_required_alias(p: str = Header(..., alias="p_alias")):
+async def read_required_alias(p: Annotated[str, Header(alias="p_alias")]):
     return {"p": p}
 
 
 class HeaderModelRequiredAlias(BaseModel):
-    p: str = Field(..., alias="p_alias")
+    p: str = Field(alias="p_alias")
 
 
 @app.get("/model-required-alias")
@@ -221,13 +222,13 @@ def test_required_alias_by_alias(path: str):
 
 @app.get("/required-validation-alias")
 def read_required_validation_alias(
-    p: str = Header(..., validation_alias="p_val_alias"),
+    p: Annotated[str, Header(validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class HeaderModelRequiredValidationAlias(BaseModel):
-    p: str = Field(..., validation_alias="p_val_alias")
+    p: str = Field(validation_alias="p_val_alias")
 
 
 @app.get("/model-required-validation-alias")
@@ -341,13 +342,13 @@ def test_required_validation_alias_by_validation_alias(path: str):
 
 @app.get("/required-alias-and-validation-alias")
 def read_required_alias_and_validation_alias(
-    p: str = Header(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[str, Header(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class HeaderModelRequiredAliasAndValidationAlias(BaseModel):
-    p: str = Field(..., alias="p_alias", validation_alias="p_val_alias")
+    p: str = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.get("/model-required-alias-and-validation-alias")

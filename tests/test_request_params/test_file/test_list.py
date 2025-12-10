@@ -6,6 +6,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -18,17 +19,17 @@ app = FastAPI()
 
 
 @app.post("/list-bytes", operation_id="list_bytes")
-async def read_list_bytes(p: List[bytes] = File(...)):
+async def read_list_bytes(p: Annotated[List[bytes], File()]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile", operation_id="list_uploadfile")
-async def read_list_uploadfile(p: List[UploadFile] = File(...)):
+async def read_list_uploadfile(p: Annotated[List[UploadFile], File()]):
     return {"file_size": [file.size for file in p]}
 
 
 class FormModelListBytes(BaseModel):
-    p: List[bytes] = File(...)
+    p: List[bytes] = File()
 
 
 @app.post("/model-list-bytes", operation_id="model_list_bytes")
@@ -41,7 +42,7 @@ async def read_model_list_bytes(
 
 
 class FormModelListUploadFile(BaseModel):
-    p: List[UploadFile] = File(...)
+    p: List[UploadFile] = File()
 
 
 @app.post("/model-list-uploadfile", operation_id="model_list_uploadfile")
@@ -155,17 +156,19 @@ def test_list(path: str):
 
 
 @app.post("/list-bytes-alias", operation_id="list_bytes_alias")
-async def read_list_bytes_alias(p: List[bytes] = File(..., alias="p_alias")):
+async def read_list_bytes_alias(p: Annotated[List[bytes], File(alias="p_alias")]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile-alias", operation_id="list_uploadfile_alias")
-async def read_list_uploadfile_alias(p: List[UploadFile] = File(..., alias="p_alias")):
+async def read_list_uploadfile_alias(
+    p: Annotated[List[UploadFile], File(alias="p_alias")],
+):
     return {"file_size": [file.size for file in p]}
 
 
 class FormModelListBytesAlias(BaseModel):
-    p: List[bytes] = File(..., alias="p_alias")
+    p: List[bytes] = File(alias="p_alias")
 
 
 @app.post("/model-list-bytes-alias", operation_id="model_list_bytes_alias")
@@ -178,7 +181,7 @@ async def read_model_list_bytes_alias(
 
 
 class FormModelListUploadFileAlias(BaseModel):
-    p: List[UploadFile] = File(..., alias="p_alias")
+    p: List[UploadFile] = File(alias="p_alias")
 
 
 @app.post("/model-list-uploadfile-alias", operation_id="model_list_uploadfile_alias")
@@ -390,7 +393,7 @@ def test_list_alias_by_alias(path: str):
 
 @app.post("/list-bytes-validation-alias", operation_id="list_bytes_validation_alias")
 def read_list_bytes_validation_alias(
-    p: List[bytes] = File(..., validation_alias="p_val_alias"),
+    p: Annotated[List[bytes], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -400,13 +403,13 @@ def read_list_bytes_validation_alias(
     operation_id="list_uploadfile_validation_alias",
 )
 def read_list_uploadfile_validation_alias(
-    p: List[UploadFile] = File(..., validation_alias="p_val_alias"),
+    p: Annotated[List[UploadFile], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [file.size for file in p]}
 
 
 class FormModelRequiredBytesValidationAlias(BaseModel):
-    p: List[bytes] = File(..., validation_alias="p_val_alias")
+    p: List[bytes] = File(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -422,7 +425,7 @@ def read_model_list_bytes_validation_alias(
 
 
 class FormModelRequiredUploadFileValidationAlias(BaseModel):
-    p: List[UploadFile] = File(..., validation_alias="p_val_alias")
+    p: List[UploadFile] = File(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -586,7 +589,7 @@ def test_list_validation_alias_by_validation_alias(path: str):
     operation_id="list_bytes_alias_and_validation_alias",
 )
 def read_list_bytes_alias_and_validation_alias(
-    p: List[bytes] = File(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[List[bytes], File(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -596,13 +599,15 @@ def read_list_bytes_alias_and_validation_alias(
     operation_id="list_uploadfile_alias_and_validation_alias",
 )
 def read_list_uploadfile_alias_and_validation_alias(
-    p: List[UploadFile] = File(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[
+        List[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
+    ],
 ):
     return {"file_size": [file.size for file in p]}
 
 
 class FormModelRequiredBytesAliasAndValidationAlias(BaseModel):
-    p: List[bytes] = File(..., alias="p_alias", validation_alias="p_val_alias")
+    p: List[bytes] = File(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(
@@ -618,7 +623,7 @@ def read_model_list_bytes_alias_and_validation_alias(
 
 
 class FormModelRequiredUploadFileAliasAndValidationAlias(BaseModel):
-    p: List[UploadFile] = File(..., alias="p_alias", validation_alias="p_val_alias")
+    p: List[UploadFile] = File(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

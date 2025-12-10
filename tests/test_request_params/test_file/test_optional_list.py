@@ -6,6 +6,7 @@ from fastapi import FastAPI, File, Form, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -18,17 +19,19 @@ app = FastAPI()
 
 
 @app.post("/optional-list-bytes")
-async def read_optional_list_bytes(p: Optional[List[bytes]] = File(None)):
+async def read_optional_list_bytes(p: Annotated[Optional[List[bytes]], File()] = None):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile")
-async def read_optional_list_uploadfile(p: Optional[List[UploadFile]] = File(None)):
+async def read_optional_list_uploadfile(
+    p: Annotated[Optional[List[UploadFile]], File()] = None,
+):
     return {"file_size": [file.size for file in p] if p else None}
 
 
 class FormModelOptionalListBytes(BaseModel):
-    p: Optional[List[bytes]] = File(None)
+    p: Optional[List[bytes]] = File(default=None)
 
 
 @app.post("/model-optional-list-bytes")
@@ -41,7 +44,7 @@ async def read_model_optional_list_bytes(
 
 
 class FormModelOptionalListUploadFile(BaseModel):
-    p: Optional[List[UploadFile]] = File(None)
+    p: Optional[List[UploadFile]] = File(default=None)
 
 
 @app.post("/model-optional-list-uploadfile")
@@ -150,20 +153,20 @@ def test_optional_list(path: str):
 
 @app.post("/optional-list-bytes-alias")
 async def read_optional_list_bytes_alias(
-    p: Optional[List[bytes]] = File(None, alias="p_alias"),
+    p: Annotated[Optional[List[bytes]], File(alias="p_alias")] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile-alias")
 async def read_optional_list_uploadfile_alias(
-    p: Optional[List[UploadFile]] = File(None, alias="p_alias"),
+    p: Annotated[Optional[List[UploadFile]], File(alias="p_alias")] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
 
 class FormModelOptionalListBytesAlias(BaseModel):
-    p: Optional[List[bytes]] = File(None, alias="p_alias")
+    p: Optional[List[bytes]] = File(default=None, alias="p_alias")
 
 
 @app.post("/model-optional-list-bytes-alias")
@@ -176,7 +179,7 @@ async def read_model_optional_list_bytes_alias(
 
 
 class FormModelOptionalListUploadFileAlias(BaseModel):
-    p: Optional[List[UploadFile]] = File(None, alias="p_alias")
+    p: Optional[List[UploadFile]] = File(default=None, alias="p_alias")
 
 
 @app.post("/model-optional-list-uploadfile-alias")
@@ -335,20 +338,22 @@ def test_optional_list_alias_by_alias(path: str):
 
 @app.post("/optional-list-bytes-validation-alias")
 def read_optional_list_bytes_validation_alias(
-    p: Optional[List[bytes]] = File(None, validation_alias="p_val_alias"),
+    p: Annotated[Optional[List[bytes]], File(validation_alias="p_val_alias")] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile-validation-alias")
 def read_optional_list_uploadfile_validation_alias(
-    p: Optional[List[UploadFile]] = File(None, validation_alias="p_val_alias"),
+    p: Annotated[
+        Optional[List[UploadFile]], File(validation_alias="p_val_alias")
+    ] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
 
 class FormModelOptionalListBytesValidationAlias(BaseModel):
-    p: Optional[List[bytes]] = File(None, validation_alias="p_val_alias")
+    p: Optional[List[bytes]] = File(default=None, validation_alias="p_val_alias")
 
 
 @app.post("/model-optional-list-bytes-validation-alias")
@@ -361,7 +366,7 @@ def read_model_optional_list_bytes_validation_alias(
 
 
 class FormModelOptionalListUploadFileValidationAlias(BaseModel):
-    p: Optional[List[UploadFile]] = File(None, validation_alias="p_val_alias")
+    p: Optional[List[UploadFile]] = File(default=None, validation_alias="p_val_alias")
 
 
 @app.post("/model-optional-list-uploadfile-validation-alias")
@@ -500,25 +505,26 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 
 @app.post("/optional-list-bytes-alias-and-validation-alias")
 def read_optional_list_bytes_alias_and_validation_alias(
-    p: Optional[List[bytes]] = File(
-        None, alias="p_alias", validation_alias="p_val_alias"
-    ),
+    p: Annotated[
+        Optional[List[bytes]], File(alias="p_alias", validation_alias="p_val_alias")
+    ] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile-alias-and-validation-alias")
 def read_optional_list_uploadfile_alias_and_validation_alias(
-    p: Optional[List[UploadFile]] = File(
-        None, alias="p_alias", validation_alias="p_val_alias"
-    ),
+    p: Annotated[
+        Optional[List[UploadFile]],
+        File(alias="p_alias", validation_alias="p_val_alias"),
+    ] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
 
 class FormModelOptionalListBytesAliasAndValidationAlias(BaseModel):
     p: Optional[List[bytes]] = File(
-        None, alias="p_alias", validation_alias="p_val_alias"
+        default=None, alias="p_alias", validation_alias="p_val_alias"
     )
 
 
@@ -533,7 +539,7 @@ def read_model_optional_list_bytes_alias_and_validation_alias(
 
 class FormModelOptionalListUploadFileAliasAndValidationAlias(BaseModel):
     p: Optional[List[UploadFile]] = File(
-        None, alias="p_alias", validation_alias="p_val_alias"
+        default=None, alias="p_alias", validation_alias="p_val_alias"
     )
 
 

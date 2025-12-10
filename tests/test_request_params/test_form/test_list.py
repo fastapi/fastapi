@@ -6,6 +6,7 @@ from fastapi import FastAPI, Form
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -18,7 +19,7 @@ app = FastAPI()
 
 
 @app.post("/required-list-str", operation_id="required_list_str")
-async def read_required_list_str(p: List[str] = Form(...)):
+async def read_required_list_str(p: Annotated[List[str], Form()]):
     return {"p": p}
 
 
@@ -101,12 +102,12 @@ def test_required_list_str(path: str):
 
 
 @app.post("/required-list-alias", operation_id="required_list_alias")
-async def read_required_list_alias(p: List[str] = Form(..., alias="p_alias")):
+async def read_required_list_alias(p: Annotated[List[str], Form(alias="p_alias")]):
     return {"p": p}
 
 
 class FormModelRequiredListAlias(BaseModel):
-    p: List[str] = Field(..., alias="p_alias")
+    p: List[str] = Field(alias="p_alias")
 
 
 @app.post("/model-required-list-alias", operation_id="model_required_list_alias")
@@ -245,13 +246,13 @@ def test_required_list_alias_by_alias(path: str):
     "/required-list-validation-alias", operation_id="required_list_validation_alias"
 )
 def read_required_list_validation_alias(
-    p: List[str] = Form(..., validation_alias="p_val_alias"),
+    p: Annotated[List[str], Form(validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class FormModelRequiredListValidationAlias(BaseModel):
-    p: List[str] = Field(..., validation_alias="p_val_alias")
+    p: List[str] = Field(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -370,13 +371,13 @@ def test_required_list_validation_alias_by_validation_alias(path: str):
     operation_id="required_list_alias_and_validation_alias",
 )
 def read_required_list_alias_and_validation_alias(
-    p: List[str] = Form(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[List[str], Form(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class FormModelRequiredListAliasAndValidationAlias(BaseModel):
-    p: List[str] = Field(..., alias="p_alias", validation_alias="p_val_alias")
+    p: List[str] = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(

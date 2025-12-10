@@ -6,6 +6,7 @@ from fastapi import FastAPI, Query
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
+from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -16,7 +17,7 @@ app = FastAPI()
 
 
 @app.get("/required-list-str")
-async def read_required_list_str(p: List[str] = Query(...)):
+async def read_required_list_str(p: Annotated[List[str], Query()]):
     return {"p": p}
 
 
@@ -96,12 +97,12 @@ def test_required_list_str(path: str):
 
 
 @app.get("/required-list-alias")
-async def read_required_list_alias(p: List[str] = Query(..., alias="p_alias")):
+async def read_required_list_alias(p: Annotated[List[str], Query(alias="p_alias")]):
     return {"p": p}
 
 
 class QueryModelRequiredListAlias(BaseModel):
-    p: List[str] = Field(..., alias="p_alias")
+    p: List[str] = Field(alias="p_alias")
 
 
 @app.get("/model-required-list-alias")
@@ -232,13 +233,13 @@ def test_required_list_alias_by_alias(path: str):
 
 @app.get("/required-list-validation-alias")
 def read_required_list_validation_alias(
-    p: List[str] = Query(..., validation_alias="p_val_alias"),
+    p: Annotated[List[str], Query(validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class QueryModelRequiredListValidationAlias(BaseModel):
-    p: List[str] = Field(..., validation_alias="p_val_alias")
+    p: List[str] = Field(validation_alias="p_val_alias")
 
 
 @app.get("/model-required-list-validation-alias")
@@ -347,13 +348,13 @@ def test_required_list_validation_alias_by_validation_alias(path: str):
 
 @app.get("/required-list-alias-and-validation-alias")
 def read_required_list_alias_and_validation_alias(
-    p: List[str] = Query(..., alias="p_alias", validation_alias="p_val_alias"),
+    p: Annotated[List[str], Query(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class QueryModelRequiredListAliasAndValidationAlias(BaseModel):
-    p: List[str] = Field(..., alias="p_alias", validation_alias="p_val_alias")
+    p: List[str] = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.get("/model-required-list-alias-and-validation-alias")
