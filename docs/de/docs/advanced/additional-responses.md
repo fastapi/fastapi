@@ -175,7 +175,7 @@ Sie können denselben `responses`-Parameter verwenden, um verschiedene Medientyp
 
 Sie können beispielsweise einen zusätzlichen Medientyp `image/png` hinzufügen und damit deklarieren, dass Ihre *Pfadoperation* ein JSON-Objekt (mit dem Medientyp `application/json`) oder ein PNG-Bild zurückgeben kann:
 
-{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
 /// note | Hinweis
 
@@ -237,7 +237,7 @@ Mit dieser Technik können Sie einige vordefinierte Responses in Ihren *Pfadoper
 
 Zum Beispiel:
 
-{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
 ## Weitere Informationen zu OpenAPI-Responses { #more-information-about-openapi-responses }
 
