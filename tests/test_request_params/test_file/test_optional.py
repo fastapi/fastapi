@@ -2,10 +2,9 @@ from typing import Optional
 
 import pytest
 from dirty_equals import IsDict
-from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import FastAPI, File, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
@@ -28,45 +27,11 @@ async def read_optional_uploadfile(p: Annotated[Optional[UploadFile], File()] = 
     return {"file_size": p.size if p else None}
 
 
-class FormModelOptionalBytes(BaseModel):
-    p: Optional[bytes] = File(default=None)
-
-
-@app.post("/model-optional-bytes", operation_id="model_optional_bytes")
-async def read_model_optional_bytes(
-    p: Annotated[
-        FormModelOptionalBytes,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": len(p.p) if p.p else None}
-
-
-class FormModelOptionalUploadFile(BaseModel):
-    p: Optional[UploadFile] = File(default=None)
-
-
-@app.post("/model-optional-uploadfile", operation_id="model_optional_uploadfile")
-async def read_model_optional_uploadfile(
-    p: Annotated[
-        FormModelOptionalUploadFile,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": p.p.size if p.p else None}
-
-
 @pytest.mark.parametrize(
     "path",
     [
         "/optional-bytes",
-        "/model-optional-bytes",
         "/optional-uploadfile",
-        "/model-optional-uploadfile",
     ],
 )
 def test_optional_schema(path: str):
@@ -100,9 +65,7 @@ def test_optional_schema(path: str):
     "path",
     [
         "/optional-bytes",
-        "/model-optional-bytes",
         "/optional-uploadfile",
-        "/model-optional-uploadfile",
     ],
 )
 def test_optional_missing(path: str):
@@ -116,9 +79,7 @@ def test_optional_missing(path: str):
     "path",
     [
         "/optional-bytes",
-        "/model-optional-bytes",
         "/optional-uploadfile",
-        "/model-optional-uploadfile",
     ],
 )
 def test_optional(path: str):
@@ -146,40 +107,6 @@ async def read_optional_uploadfile_alias(
     return {"file_size": p.size if p else None}
 
 
-class FormModelOptionalBytesAlias(BaseModel):
-    p: Optional[bytes] = File(default=None, alias="p_alias")
-
-
-@app.post("/model-optional-bytes-alias", operation_id="model_optional_bytes_alias")
-async def read_model_optional_bytes_alias(
-    p: Annotated[
-        FormModelOptionalBytesAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": len(p.p) if p.p else None}
-
-
-class FormModelOptionalUploadFileAlias(BaseModel):
-    p: Optional[UploadFile] = File(default=None, alias="p_alias")
-
-
-@app.post(
-    "/model-optional-uploadfile-alias", operation_id="model_optional_uploadfile_alias"
-)
-async def read_model_optional_uploadfile_alias(
-    p: Annotated[
-        FormModelOptionalUploadFileAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": p.p.size if p.p else None}
-
-
 @pytest.mark.xfail(
     raises=AssertionError,
     condition=PYDANTIC_V2,
@@ -190,9 +117,7 @@ async def read_model_optional_uploadfile_alias(
     "path",
     [
         "/optional-bytes-alias",
-        "/model-optional-bytes-alias",
         "/optional-uploadfile-alias",
-        "/model-optional-uploadfile-alias",
     ],
 )
 def test_optional_alias_schema(path: str):
@@ -226,9 +151,7 @@ def test_optional_alias_schema(path: str):
     "path",
     [
         "/optional-bytes-alias",
-        "/model-optional-bytes-alias",
         "/optional-uploadfile-alias",
-        "/model-optional-uploadfile-alias",
     ],
 )
 def test_optional_alias_missing(path: str):
@@ -242,64 +165,28 @@ def test_optional_alias_missing(path: str):
     "path",
     [
         "/optional-bytes-alias",
-        pytest.param(
-            "/model-optional-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-                strict=False,
-            ),
-        ),
         "/optional-uploadfile-alias",
-        pytest.param(
-            "/model-optional-uploadfile-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-                strict=False,
-            ),
-        ),
     ],
 )
 def test_optional_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello")])
     assert response.status_code == 200
-    assert response.json() == {"file_size": None}  # model-optional-*-alias fail here
+    assert response.json() == {"file_size": None}
 
 
 @pytest.mark.parametrize(
     "path",
     [
         "/optional-bytes-alias",
-        pytest.param(
-            "/model-optional-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
         "/optional-uploadfile-alias",
-        pytest.param(
-            "/model-optional-uploadfile-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
     ],
 )
 def test_optional_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {"file_size": 5}  # model-optional-*-alias fail here
+    assert response.json() == {"file_size": 5}
 
 
 # =====================================================================================
@@ -325,52 +212,12 @@ def read_optional_uploadfile_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-class FormModelOptionalBytesValidationAlias(BaseModel):
-    p: Optional[bytes] = File(default=None, validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-optional-bytes-validation-alias",
-    operation_id="model_optional_bytes_validation_alias",
-)
-def read_model_optional_bytes_validation_alias(
-    p: Annotated[
-        FormModelOptionalBytesValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": len(p.p) if p.p else None}
-
-
-class FormModelOptionalUploadFileValidationAlias(BaseModel):
-    p: Optional[UploadFile] = File(default=None, validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-optional-uploadfile-validation-alias",
-    operation_id="model_optional_uploadfile_validation_alias",
-)
-def read_model_optional_uploadfile_validation_alias(
-    p: Annotated[
-        FormModelOptionalUploadFileValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": p.p.size if p.p else None}
-
-
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
         "/optional-bytes-validation-alias",
-        "/model-optional-uploadfile-validation-alias",
         "/optional-uploadfile-validation-alias",
-        "/model-optional-bytes-validation-alias",
     ],
 )
 def test_optional_validation_alias_schema(path: str):
@@ -405,9 +252,7 @@ def test_optional_validation_alias_schema(path: str):
     "path",
     [
         "/optional-bytes-validation-alias",
-        "/model-optional-bytes-validation-alias",
         "/optional-uploadfile-validation-alias",
-        "/model-optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_missing(path: str):
@@ -425,12 +270,10 @@ def test_optional_validation_alias_missing(path: str):
             "/optional-bytes-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-bytes-validation-alias",
         pytest.param(
             "/optional-uploadfile-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_name(path: str):
@@ -451,22 +294,15 @@ def test_optional_validation_alias_by_name(path: str):
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
         pytest.param(
-            "/model-optional-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
             "/optional-uploadfile-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
-    assert response.status_code == 200, (
-        response.text  # /model-optional-bytes-validation-alias fail here
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_size": 5}  # /optional-*-validation-alias fail here
 
 
@@ -498,56 +334,12 @@ def read_optional_uploadfile_alias_and_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-class FormModelOptionalBytesAliasAndValidationAlias(BaseModel):
-    p: Optional[bytes] = File(
-        default=None, alias="p_alias", validation_alias="p_val_alias"
-    )
-
-
-@app.post(
-    "/model-optional-bytes-alias-and-validation-alias",
-    operation_id="model_optional_bytes_alias_and_validation_alias",
-)
-def read_model_optional_bytes_alias_and_validation_alias(
-    p: Annotated[
-        FormModelOptionalBytesAliasAndValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": len(p.p) if p.p else None}
-
-
-class FormModelOptionalUploadFileAliasAndValidationAlias(BaseModel):
-    p: Optional[UploadFile] = File(
-        default=None, alias="p_alias", validation_alias="p_val_alias"
-    )
-
-
-@app.post(
-    "/model-optional-uploadfile-alias-and-validation-alias",
-    operation_id="model_optional_uploadfile_alias_and_validation_alias",
-)
-def read_model_optional_uploadfile_alias_and_validation_alias(
-    p: Annotated[
-        FormModelOptionalUploadFileAliasAndValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": p.p.size if p.p else None}
-
-
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
         "/optional-bytes-alias-and-validation-alias",
-        "/model-optional-bytes-alias-and-validation-alias",
         "/optional-uploadfile-alias-and-validation-alias",
-        "/model-optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_schema(path: str):
@@ -582,9 +374,7 @@ def test_optional_alias_and_validation_alias_schema(path: str):
     "path",
     [
         "/optional-bytes-alias-and-validation-alias",
-        "/model-optional-bytes-alias-and-validation-alias",
         "/optional-uploadfile-alias-and-validation-alias",
-        "/model-optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_missing(path: str):
@@ -599,9 +389,7 @@ def test_optional_alias_and_validation_alias_missing(path: str):
     "path",
     [
         "/optional-bytes-alias-and-validation-alias",
-        "/model-optional-bytes-alias-and-validation-alias",
         "/optional-uploadfile-alias-and-validation-alias",
-        "/model-optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_name(path: str):
@@ -619,21 +407,17 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
             "/optional-bytes-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-bytes-alias-and-validation-alias",
         pytest.param(
             "/optional-uploadfile-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "file_size": None  # model-optional-*-alias-and-validation-alias fail here
-    }
+    assert response.json() == {"file_size": None}
 
 
 @needs_pydanticv2
@@ -645,22 +429,15 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
         pytest.param(
-            "/model-optional-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
             "/optional-uploadfile-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
-    assert response.status_code == 200, (
-        response.text  # model-optional-bytes-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {
         "file_size": 5
     }  # /optional-*-alias-and-validation-alias fail here

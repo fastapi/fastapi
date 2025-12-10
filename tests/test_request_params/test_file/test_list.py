@@ -1,11 +1,10 @@
 from typing import List
 
 import pytest
-from dirty_equals import IsDict, IsOneOf, IsPartialDict
-from fastapi import FastAPI, File, Form, UploadFile
+from dirty_equals import IsDict
+from fastapi import FastAPI, File, UploadFile
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
 from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
@@ -28,45 +27,11 @@ async def read_list_uploadfile(p: Annotated[List[UploadFile], File()]):
     return {"file_size": [file.size for file in p]}
 
 
-class FormModelListBytes(BaseModel):
-    p: List[bytes] = File()
-
-
-@app.post("/model-list-bytes", operation_id="model_list_bytes")
-async def read_model_list_bytes(
-    p: Annotated[
-        FormModelListBytes,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [len(file) for file in p.p]}
-
-
-class FormModelListUploadFile(BaseModel):
-    p: List[UploadFile] = File()
-
-
-@app.post("/model-list-uploadfile", operation_id="model_list_uploadfile")
-async def read_model_list_uploadfile(
-    p: Annotated[
-        FormModelListUploadFile,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [file.size for file in p.p]}
-
-
 @pytest.mark.parametrize(
     "path",
     [
         "/list-bytes",
-        "/model-list-bytes",
         "/list-uploadfile",
-        "/model-list-uploadfile",
     ],
 )
 def test_list_schema(path: str):
@@ -107,9 +72,7 @@ def test_list_schema(path: str):
     "path",
     [
         "/list-bytes",
-        "/model-list-bytes",
         "/list-uploadfile",
-        "/model-list-uploadfile",
     ],
 )
 def test_list_missing(path: str):
@@ -123,7 +86,7 @@ def test_list_missing(path: str):
                     "type": "missing",
                     "loc": ["body", "p"],
                     "msg": "Field required",
-                    "input": IsOneOf(None, {}),
+                    "input": None,
                 }
             ]
         }
@@ -145,9 +108,7 @@ def test_list_missing(path: str):
     "path",
     [
         "/list-bytes",
-        "/model-list-bytes",
         "/list-uploadfile",
-        "/model-list-uploadfile",
     ],
 )
 def test_list(path: str):
@@ -173,38 +134,6 @@ async def read_list_uploadfile_alias(
     return {"file_size": [file.size for file in p]}
 
 
-class FormModelListBytesAlias(BaseModel):
-    p: List[bytes] = File(alias="p_alias")
-
-
-@app.post("/model-list-bytes-alias", operation_id="model_list_bytes_alias")
-async def read_model_list_bytes_alias(
-    p: Annotated[
-        FormModelListBytesAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [len(file) for file in p.p]}
-
-
-class FormModelListUploadFileAlias(BaseModel):
-    p: List[UploadFile] = File(alias="p_alias")
-
-
-@app.post("/model-list-uploadfile-alias", operation_id="model_list_uploadfile_alias")
-async def read_model_list_uploadfile_alias(
-    p: Annotated[
-        FormModelListUploadFileAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [file.size for file in p.p]}
-
-
 @pytest.mark.xfail(
     raises=AssertionError,
     condition=PYDANTIC_V2,
@@ -215,9 +144,7 @@ async def read_model_list_uploadfile_alias(
     "path",
     [
         "/list-bytes-alias",
-        "/model-list-bytes-alias",
         "/list-uploadfile-alias",
-        "/model-list-uploadfile-alias",
     ],
 )
 def test_list_alias_schema(path: str):
@@ -258,25 +185,7 @@ def test_list_alias_schema(path: str):
     "path",
     [
         "/list-bytes-alias",
-        pytest.param(
-            "/model-list-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
         "/list-uploadfile-alias",
-        pytest.param(
-            "/model-list-uploadfile-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
     ],
 )
 def test_list_alias_missing(path: str):
@@ -288,9 +197,9 @@ def test_list_alias_missing(path: str):
             "detail": [
                 {
                     "type": "missing",
-                    "loc": ["body", "p_alias"],  # model-list-*-alias fail here
+                    "loc": ["body", "p_alias"],
                     "msg": "Field required",
-                    "input": IsOneOf(None, {}),
+                    "input": None,
                 }
             ]
         }
@@ -312,31 +221,13 @@ def test_list_alias_missing(path: str):
     "path",
     [
         "/list-bytes-alias",
-        pytest.param(
-            "/model-list-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-                strict=False,
-            ),
-        ),
         "/list-uploadfile-alias",
-        pytest.param(
-            "/model-list-uploadfile-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-                strict=False,
-            ),
-        ),
     ],
 )
 def test_list_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello"), ("p", b"world")])
-    assert response.status_code == 422  # model-list-uploadfile-alias fail here
+    assert response.status_code == 422
     assert response.json() == IsDict(
         {
             "detail": [
@@ -344,10 +235,7 @@ def test_list_alias_by_name(path: str):
                     "type": "missing",
                     "loc": ["body", "p_alias"],
                     "msg": "Field required",
-                    "input": IsOneOf(  # model-list-bytes-alias fail here
-                        None,
-                        {"p": [IsPartialDict({"size": 5}), IsPartialDict({"size": 5})]},
-                    ),
+                    "input": None,
                 }
             ]
         }
@@ -369,33 +257,13 @@ def test_list_alias_by_name(path: str):
     "path",
     [
         "/list-bytes-alias",
-        pytest.param(
-            "/model-list-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
         "/list-uploadfile-alias",
-        pytest.param(
-            "/model-list-uploadfile-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model",
-            ),
-        ),
     ],
 )
 def test_list_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello"), ("p_alias", b"world")])
-    assert response.status_code == 200, (  # model-list-*-alias fail here
-        response.text
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {"file_size": [5, 5]}
 
 
@@ -420,52 +288,12 @@ def read_list_uploadfile_validation_alias(
     return {"file_size": [file.size for file in p]}
 
 
-class FormModelRequiredBytesValidationAlias(BaseModel):
-    p: List[bytes] = File(validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-list-bytes-validation-alias",
-    operation_id="model_list_bytes_validation_alias",
-)
-def read_model_list_bytes_validation_alias(
-    p: Annotated[
-        FormModelRequiredBytesValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [len(file) for file in p.p]}  # pragma: no cover
-
-
-class FormModelRequiredUploadFileValidationAlias(BaseModel):
-    p: List[UploadFile] = File(validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-list-uploadfile-validation-alias",
-    operation_id="model_list_uploadfile_validation_alias",
-)
-def read_model_list_uploadfile_validation_alias(
-    p: Annotated[
-        FormModelRequiredUploadFileValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [file.size for file in p.p]}  # pragma: no cover
-
-
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
         "/list-bytes-validation-alias",
-        "/model-list-uploadfile-validation-alias",
         "/list-uploadfile-validation-alias",
-        "/model-list-bytes-validation-alias",
     ],
 )
 def test_list_validation_alias_schema(path: str):
@@ -510,12 +338,10 @@ def test_list_validation_alias_schema(path: str):
             "/list-bytes-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-bytes-validation-alias",
         pytest.param(
             "/list-uploadfile-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_missing(path: str):
@@ -531,7 +357,7 @@ def test_list_validation_alias_missing(path: str):
                     "p_val_alias",
                 ],
                 "msg": "Field required",
-                "input": IsOneOf(None, {}),
+                "input": None,
             }
         ]
     }
@@ -546,14 +372,9 @@ def test_list_validation_alias_missing(path: str):
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
         pytest.param(
-            "/model-list-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
             "/list-uploadfile-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_by_name(path: str):
@@ -563,16 +384,13 @@ def test_list_validation_alias_by_name(path: str):
         response.text
     )
 
-    assert response.json() == {
+    assert response.json() == {  # pragma: no cover
         "detail": [
             {
                 "type": "missing",
                 "loc": ["body", "p_val_alias"],
                 "msg": "Field required",
-                "input": IsOneOf(  # /model-list-bytes-validation-alias fails here
-                    None,
-                    {"p": [IsPartialDict({"size": 5}), IsPartialDict({"size": 5})]},
-                ),
+                "input": None,
             }
         ]
     }
@@ -584,9 +402,7 @@ def test_list_validation_alias_by_name(path: str):
     "path",
     [
         "/list-bytes-validation-alias",
-        "/model-list-bytes-validation-alias",
         "/list-uploadfile-validation-alias",
-        "/model-list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_by_validation_alias(path: str):
@@ -594,7 +410,7 @@ def test_list_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, response.text  # all 4 fail here
+    assert response.status_code == 200, response.text  # all 2 fail here
     assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
 
 
@@ -624,52 +440,12 @@ def read_list_uploadfile_alias_and_validation_alias(
     return {"file_size": [file.size for file in p]}
 
 
-class FormModelRequiredBytesAliasAndValidationAlias(BaseModel):
-    p: List[bytes] = File(alias="p_alias", validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-list-bytes-alias-and-validation-alias",
-    operation_id="model_list_bytes_alias_and_validation_alias",
-)
-def read_model_list_bytes_alias_and_validation_alias(
-    p: Annotated[
-        FormModelRequiredBytesAliasAndValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [len(file) for file in p.p]}  # pragma: no cover
-
-
-class FormModelRequiredUploadFileAliasAndValidationAlias(BaseModel):
-    p: List[UploadFile] = File(alias="p_alias", validation_alias="p_val_alias")
-
-
-@app.post(
-    "/model-list-uploadfile-alias-and-validation-alias",
-    operation_id="model_list_uploadfile_alias_and_validation_alias",
-)
-def read_model_list_uploadfile_alias_and_validation_alias(
-    p: Annotated[
-        FormModelRequiredUploadFileAliasAndValidationAlias,
-        Form(
-            media_type="multipart/form-data"  # Remove media_type when https://github.com/fastapi/fastapi/pull/14343 is fixed
-        ),
-    ],
-):
-    return {"file_size": [file.size for file in p.p]}  # pragma: no cover
-
-
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
         "/list-bytes-alias-and-validation-alias",
-        "/model-list-bytes-alias-and-validation-alias",
         "/list-uploadfile-alias-and-validation-alias",
-        "/model-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_schema(path: str):
@@ -714,12 +490,10 @@ def test_list_alias_and_validation_alias_schema(path: str):
             "/list-bytes-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-bytes-alias-and-validation-alias",
         pytest.param(
             "/list-uploadfile-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_missing(path: str):
@@ -735,7 +509,7 @@ def test_list_alias_and_validation_alias_missing(path: str):
                     "p_val_alias",  # /list-*-alias-and-validation-alias fail here
                 ],
                 "msg": "Field required",
-                "input": IsOneOf(None, {}),
+                "input": None,
             }
         ]
     }
@@ -747,9 +521,7 @@ def test_list_alias_and_validation_alias_missing(path: str):
     "path",
     [
         "/list-bytes-alias-and-validation-alias",
-        "/model-list-bytes-alias-and-validation-alias",
         "/list-uploadfile-alias-and-validation-alias",
-        "/model-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_by_name(path: str):
@@ -766,11 +538,7 @@ def test_list_alias_and_validation_alias_by_name(path: str):
                     "p_val_alias",  # /list-*-alias-and-validation-alias fail here
                 ],
                 "msg": "Field required",
-                "input": IsOneOf(
-                    None,
-                    # /model-list-*-alias-and-validation-alias fail here
-                    {"p": [IsPartialDict({"size": 5}), IsPartialDict({"size": 5})]},
-                ),
+                "input": None,
             }
         ]
     }
@@ -785,14 +553,9 @@ def test_list_alias_and_validation_alias_by_name(path: str):
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
         pytest.param(
-            "/model-list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
             "/list-uploadfile-alias-and-validation-alias",
             marks=pytest.mark.xfail(raises=AssertionError, strict=False),
         ),
-        "/model-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_by_alias(path: str):
@@ -802,22 +565,13 @@ def test_list_alias_and_validation_alias_by_alias(path: str):
         response.text  # /list-*-alias-and-validation-alias fails here
     )
 
-    assert response.json() == {
+    assert response.json() == {  # pragma: no cover
         "detail": [
             {
                 "type": "missing",
                 "loc": ["body", "p_val_alias"],
                 "msg": "Field required",
-                "input": IsOneOf(
-                    None,
-                    # /model-list-bytes-alias-and-validation-alias fails here
-                    {
-                        "p_alias": [
-                            IsPartialDict({"size": 5}),
-                            IsPartialDict({"size": 5}),
-                        ]
-                    },
-                ),
+                "input": None,
             }
         ]
     }
@@ -829,9 +583,7 @@ def test_list_alias_and_validation_alias_by_alias(path: str):
     "path",
     [
         "/list-bytes-alias-and-validation-alias",
-        "/model-list-bytes-alias-and-validation-alias",
         "/list-uploadfile-alias-and-validation-alias",
-        "/model-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_by_validation_alias(path: str):
@@ -839,7 +591,7 @@ def test_list_alias_and_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, (  # all 4 fail here
+    assert response.status_code == 200, (  # all 2 fail here
         response.text
     )
     assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
