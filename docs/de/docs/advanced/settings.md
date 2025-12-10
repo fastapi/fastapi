@@ -148,7 +148,7 @@ Dies könnte besonders beim Testen nützlich sein, da es sehr einfach ist, eine 
 
 Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
 
 Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
 
@@ -174,7 +174,7 @@ Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einf
 
 Dann wäre es sehr einfach, beim Testen ein anderes Einstellungsobjekt bereitzustellen, indem man eine Abhängigkeitsüberschreibung für `get_settings` erstellt:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
 
 Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_email` fest, wenn wir das neue `Settings`-Objekt erstellen, und geben dann dieses neue Objekt zurück.
 
@@ -217,7 +217,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Tipp
 
@@ -229,7 +229,7 @@ Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. 
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
+{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
 
 /// tip | Tipp
 
