@@ -200,11 +200,13 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> Dict[str, Any]:
-    override_mode: Union[Literal["validation"], None] = (
-        None
-        if (separate_input_output_schemas or _has_computed_fields(field))
-        else "validation"
-    )
+    override_mode: Union[Literal["validation"], None] = None
+    if not separate_input_output_schemas:
+        override_mode = (
+            None
+            if (separate_input_output_schemas or _has_computed_fields(field))
+            else "validation"
+        )
     # This expects that GenerateJsonSchema was already used to generate the definitions
     json_schema = field_mapping[(field, override_mode or field.mode)]
     if "$ref" not in json_schema:
