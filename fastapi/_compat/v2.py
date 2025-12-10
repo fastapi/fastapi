@@ -18,7 +18,7 @@ from typing import (
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
-from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
+from pydantic import BaseModel, ConfigDict, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -95,11 +95,10 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
-            f_dict = self.field_info.asdict()
             annotated_args = (
-                f_dict["annotation"],
-                *f_dict["metadata"],
-                Field(**f_dict["attributes"]),
+                self.field_info.annotation,
+                *self.field_info.metadata,
+                self.field_info,
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[annotated_args],
