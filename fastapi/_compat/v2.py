@@ -171,11 +171,17 @@ def _get_model_config(model: BaseModel) -> Any:
     return model.model_config
 
 
+def _model_has_computed_fields(model_or_enum: Any) -> bool:
+    if lenient_issubclass(model_or_enum, BaseModel):
+        model_schema = model_or_enum.__pydantic_core_schema__.get("schema", {})
+        computed_fields = model_schema.get("computed_fields", [])
+        return len(computed_fields) > 0
+    return False
+
+
 def _has_computed_fields(field: ModelField) -> bool:
-    computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
-        "computed_fields", []
-    )
-    return len(computed_fields) > 0
+    models = get_flat_models_from_field(field, known_models=set())
+    return any(_model_has_computed_fields(model) for model in models)
 
 
 def get_schema_from_model_field(
