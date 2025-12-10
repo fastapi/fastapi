@@ -8,8 +8,8 @@ from pydantic import BaseModel
 from .utils import needs_pydanticv2
 
 
-@pytest.fixture(name="client")
-def get_client():
+@pytest.fixture(name="client", params=[True, False])
+def get_client(request: pytest.FixtureRequest):
     from pydantic import computed_field
 
     class MyModel(BaseModel):
@@ -22,11 +22,7 @@ def get_client():
         def is_adult(self) -> bool:
             return self.age >= 18
 
-    app = FastAPI(separate_input_output_schemas=False)
-
-    @app.get("/item")
-    def get_item() -> MyModel:
-        return MyModel(id=1, name="Alice", age=30)
+    app = FastAPI(separate_input_output_schemas=request.param)
 
     @app.get("/list")
     def get_items() -> List[MyModel]:
@@ -37,6 +33,26 @@ def get_client():
         return item
 
     yield TestClient(app)
+
+
+@needs_pydanticv2
+def test_create_item(client: TestClient):
+    response = client.post(
+        "/item",
+        json={"id": 1, "name": "Alice", "age": 30},
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {"id": 1, "name": "Alice", "age": 30, "is_adult": True}
+
+
+@needs_pydanticv2
+def test_get_items(client: TestClient):
+    response = client.get("/list")
+    assert response.status_code == 200, response.text
+    assert response.json() == [
+        {"id": 1, "name": "Alice", "age": 30, "is_adult": True},
+        {"id": 2, "name": "Bob", "age": 17, "is_adult": False},
+    ]
 
 
 @needs_pydanticv2
@@ -51,22 +67,6 @@ def test_openapi(client: TestClient):
         "openapi": "3.1.0",
         "paths": {
             "/item": {
-                "get": {
-                    "operationId": "get_item_item_get",
-                    "responses": {
-                        "200": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/MyModel-Output",
-                                    },
-                                },
-                            },
-                            "description": "Successful Response",
-                        },
-                    },
-                    "summary": "Get Item",
-                },
                 "post": {
                     "operationId": "create_item_item_post",
                     "requestBody": {

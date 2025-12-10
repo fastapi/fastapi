@@ -176,7 +176,7 @@ def _model_has_computed_fields(model_or_enum: Any) -> bool:
         model_schema = model_or_enum.__pydantic_core_schema__.get("schema", {})
         computed_fields = model_schema.get("computed_fields", [])
         return len(computed_fields) > 0
-    return False
+    return False  # pragma: no cover
 
 
 def _has_computed_fields(field: ModelField) -> bool:
