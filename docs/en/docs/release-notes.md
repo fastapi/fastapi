@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add variants for code examples in "Advanced User Guide". PR [#14413](https://github.com/fastapi/fastapi/pull/14413) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update tech stack in project generation docs. PR [#14472](https://github.com/fastapi/fastapi/pull/14472) by [@alejsdev](https://github.com/alejsdev).
 
 ### Internal
