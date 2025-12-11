@@ -78,7 +78,6 @@ jobs:
           - os: windows-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v2"
-            coverage: no coverage
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
