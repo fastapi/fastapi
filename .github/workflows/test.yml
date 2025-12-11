@@ -49,7 +49,7 @@ jobs:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
         python-version: [ "3.14" ]
         pydantic-version: [ "pydantic-v2" ]
-        coverage: [true]
+        coverage: ["coverage"]
         include:
           - os: macos-latest
             python-version: "3.8"
@@ -63,23 +63,22 @@ jobs:
           - os: macos-latest
             python-version: "3.10"
             pydantic-version: "pydantic-v2"
-            coverage: false
+            coverage: no coverage
           - os: windows-latest
             python-version: "3.11"
             pydantic-version: "pydantic-v1"
-            coverage: false
+            coverage: no coverage
           - os: ubuntu-latest
             python-version: "3.12"
             pydantic-version: "pydantic-v2"
-            coverage: false
+            coverage: no coverage
           - os: macos-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v1"
-            coverage: false
           - os: windows-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v2"
-            coverage: false
+            coverage: no coverage
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -120,7 +119,7 @@ jobs:
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
-        if: matrix.coverage == true
+        if: matrix.coverage == 'coverage'
         uses: actions/upload-artifact@v5
         with:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
