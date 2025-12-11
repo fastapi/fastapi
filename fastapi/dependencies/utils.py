@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import sys
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -54,10 +55,9 @@ from fastapi.concurrency import (
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
-from fastapi.dependencies.models import Dependant, SecurityRequirement
+from fastapi.dependencies.models import Dependant
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
-from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
@@ -141,10 +141,14 @@ def get_flat_dependant(
     *,
     skip_repeats: bool = False,
     visited: Optional[List[DependencyCacheKey]] = None,
+    parent_oauth_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     if visited is None:
         visited = []
     visited.append(dependant.cache_key)
+    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
+        dependant.oauth_scopes or []
+    )
 
     flat_dependant = Dependant(
         path_params=dependant.path_params.copy(),
@@ -152,22 +156,37 @@ def get_flat_dependant(
         header_params=dependant.header_params.copy(),
         cookie_params=dependant.cookie_params.copy(),
         body_params=dependant.body_params.copy(),
-        security_requirements=dependant.security_requirements.copy(),
+        name=dependant.name,
+        call=dependant.call,
+        request_param_name=dependant.request_param_name,
+        websocket_param_name=dependant.websocket_param_name,
+        http_connection_param_name=dependant.http_connection_param_name,
+        response_param_name=dependant.response_param_name,
+        background_tasks_param_name=dependant.background_tasks_param_name,
+        security_scopes_param_name=dependant.security_scopes_param_name,
+        own_oauth_scopes=dependant.own_oauth_scopes,
+        parent_oauth_scopes=use_parent_oauth_scopes,
         use_cache=dependant.use_cache,
         path=dependant.path,
+        scope=dependant.scope,
     )
     for sub_dependant in dependant.dependencies:
         if skip_repeats and sub_dependant.cache_key in visited:
             continue
         flat_sub = get_flat_dependant(
-            sub_dependant, skip_repeats=skip_repeats, visited=visited
+            sub_dependant,
+            skip_repeats=skip_repeats,
+            visited=visited,
+            parent_oauth_scopes=flat_dependant.oauth_scopes,
         )
+        flat_dependant.dependencies.append(flat_sub)
         flat_dependant.path_params.extend(flat_sub.path_params)
         flat_dependant.query_params.extend(flat_sub.query_params)
         flat_dependant.header_params.extend(flat_sub.header_params)
         flat_dependant.cookie_params.extend(flat_sub.cookie_params)
         flat_dependant.body_params.extend(flat_sub.body_params)
-        flat_dependant.security_requirements.extend(flat_sub.security_requirements)
+        flat_dependant.dependencies.extend(flat_sub.dependencies)
+
     return flat_dependant
 
 
@@ -190,9 +209,23 @@ def get_flat_params(dependant: Dependant) -> List[ModelField]:
     return path_params + query_params + header_params + cookie_params
 
 
+def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
+    if sys.version_info >= (3, 10):
+        try:
+            signature = inspect.signature(call, eval_str=True)
+        except NameError:
+            # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
+            # e.g. dependency return types
+            signature = inspect.signature(call)
+    else:
+        signature = inspect.signature(call)
+    return signature
+
+
 def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
-    signature = inspect.signature(call)
-    globalns = getattr(call, "__globals__", {})
+    signature = _get_signature(call)
+    unwrapped = inspect.unwrap(call)
+    globalns = getattr(unwrapped, "__globals__", {})
     typed_params = [
         inspect.Parameter(
             name=param.name,
@@ -216,13 +249,14 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
 
 
 def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
-    signature = inspect.signature(call)
+    signature = _get_signature(call)
+    unwrapped = inspect.unwrap(call)
     annotation = signature.return_annotation
 
     if annotation is inspect.Signature.empty:
         return None
 
-    globalns = getattr(call, "__globals__", {})
+    globalns = getattr(unwrapped, "__globals__", {})
     return get_typed_annotation(annotation, globalns)
 
 
@@ -249,11 +283,6 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
-    if isinstance(call, SecurityBase):
-        security_requirement = SecurityRequirement(
-            security_scheme=call, scopes=current_scopes
-        )
-        dependant.security_requirements.append(security_requirement)
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -546,10 +575,10 @@ async def _solve_generator(
     *, dependant: Dependant, stack: AsyncExitStack, sub_values: Dict[str, Any]
 ) -> Any:
     assert dependant.call
-    if dependant.is_gen_callable:
-        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    elif dependant.is_async_gen_callable:
+    if dependant.is_async_gen_callable:
         cm = asynccontextmanager(dependant.call)(**sub_values)
+    elif dependant.is_gen_callable:
+        cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
 
 
@@ -787,13 +816,19 @@ def request_params_to_args(
                 )
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[field.name] = value
+            params_to_process[field.alias] = value
         processed_keys.add(alias or field.alias)
-        processed_keys.add(field.name)
 
-    for key, value in received_params.items():
+    for key in received_params.keys():
         if key not in processed_keys:
-            params_to_process[key] = value
+            if hasattr(received_params, "getlist"):
+                value = received_params.getlist(key)
+                if isinstance(value, list) and (len(value) == 1):
+                    params_to_process[key] = value[0]
+                else:
+                    params_to_process[key] = value
+            else:
+                params_to_process[key] = received_params.get(key)
 
     if single_not_embedded_field:
         field_info = first_field.field_info
@@ -902,9 +937,14 @@ async def _extract_form_body(
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[field.alias] = value
-    for key, value in received_body.items():
-        if key not in values:
-            values[key] = value
+    field_aliases = {field.alias for field in body_fields}
+    for key in received_body.keys():
+        if key not in field_aliases:
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                values[key] = param_values[0]
+            else:
+                values[key] = param_values
     return values
 
 

@@ -122,63 +122,13 @@ Sie verfügt über eine `POST`-Operation, die mehrere Fehler zurückgeben könnt
 
 Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ nicht annotiert
-
-/// tip | Tipp
-
-Bevorzugen Sie die `Annotated`-Version, falls möglich.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Erweiterte Testdatei { #extended-testing-file }
 
 Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisieren:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
 Wenn Sie möchten, dass der Client Informationen im Request übergibt und Sie nicht wissen, wie das geht, können Sie suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
