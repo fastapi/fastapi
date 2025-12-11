@@ -34,7 +34,7 @@ Sie können beispielsweise kein Pydantic-Modell in eine `JSONResponse` einfügen
 
 In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu konvertieren, bevor Sie sie an eine Response übergeben:
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | Technische Details
 

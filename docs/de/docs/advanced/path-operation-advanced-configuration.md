@@ -50,7 +50,7 @@ Das Hinzufügen eines `\f` (ein maskiertes „Form Feed“-Zeichen) führt dazu,
 
 Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) können den Rest verwenden.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Zusätzliche Responses { #additional-responses }
 
@@ -155,13 +155,13 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[15:20, 22] *}
 
 ////
 
@@ -179,13 +179,13 @@ Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[24:31] *}
 
 ////
 
