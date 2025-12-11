@@ -52,13 +52,13 @@ The key features are:
 
 <!-- sponsors -->
 
-### Keystone Sponsor
+### Keystone Sponsor { #keystone-sponsor }
 
 {% for sponsor in sponsors.keystone -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 
-### Gold and Silver Sponsors
+### Gold and Silver Sponsors { #gold-and-silver-sponsors }
 
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
