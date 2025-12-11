@@ -48,6 +48,7 @@ jobs:
     strategy:
       matrix:
         python-version:
+          - "3.14t"
           - "3.14"
           - "3.13"
           - "3.12"
@@ -58,6 +59,8 @@ jobs:
         pydantic-version: ["pydantic-v1", "pydantic-v2"]
         exclude:
           - python-version: "3.14"
+            pydantic-version: "pydantic-v1"
+          - python-version: "3.14t"
             pydantic-version: "pydantic-v1"
       fail-fast: false
     steps:
@@ -90,6 +93,10 @@ jobs:
       - name: Install older AnyIO in Python 3.8
         if: matrix.python-version == '3.8'
         run: uv pip install "anyio[trio]<4.0.0"
+#      - name: Set PYTHON_GIL
+#        if: endsWith(matrix.python-version, 't')
+#        run: |
+#          echo "PYTHON_GIL=0" >> "$GITHUB_ENV"
       - run: mkdir coverage
       - name: Test
         run: bash scripts/test.sh
