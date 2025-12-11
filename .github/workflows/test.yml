@@ -46,15 +46,13 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
         pydantic-version: [ "pydantic-v2" ]
-        coverage: ["coverage"]
         include:
           - os: macos-latest
             python-version: "3.8"
             pydantic-version: "pydantic-v1"
-            coverage: coverage
           - os: windows-latest
             python-version: "3.8"
             pydantic-version: "pydantic-v2"
@@ -75,9 +73,12 @@ jobs:
           - os: macos-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v1"
-            coverage: coverage
           - os: windows-latest
             python-version: "3.13"
+            pydantic-version: "pydantic-v2"
+            coverage: coverage
+          - os: ubuntu-latest
+            python-version: "3.14"
             pydantic-version: "pydantic-v2"
             coverage: coverage
       fail-fast: false
