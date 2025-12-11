@@ -4,15 +4,14 @@ from types import ModuleType
 import pytest
 from pytest import MonkeyPatch
 
-from ...utils import needs_py39, needs_pydanticv2
+from ...utils import needs_pydanticv2
 
 
 @pytest.fixture(
     name="mod_path",
     params=[
-        pytest.param("app02"),
-        pytest.param("app02_an"),
-        pytest.param("app02_an_py39", marks=needs_py39),
+        pytest.param("app02_py39"),
+        pytest.param("app02_an_py39"),
     ],
 )
 def get_mod_path(request: pytest.FixtureRequest):
