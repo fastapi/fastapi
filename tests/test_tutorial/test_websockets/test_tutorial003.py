@@ -4,14 +4,11 @@ from types import ModuleType
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="mod",
     params=[
-        pytest.param("tutorial003"),
-        pytest.param("tutorial003_py39", marks=needs_py39),
+        pytest.param("tutorial003_py39"),
     ],
 )
 def get_mod(request: pytest.FixtureRequest):
@@ -32,13 +29,11 @@ def get_client(mod: ModuleType):
     return client
 
 
-@needs_py39
 def test_get(client: TestClient, html: str):
     response = client.get("/")
     assert response.text == html
 
 
-@needs_py39
 def test_websocket_handle_disconnection(client: TestClient):
     with client.websocket_connect("/ws/1234") as connection, client.websocket_connect(
         "/ws/5678"

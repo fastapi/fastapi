@@ -38,13 +38,13 @@ In production you would have one of the options above.
 
 But it's the simplest way to focus on the server-side of WebSockets and have a working example:
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
 
 ## Create a `websocket` { #create-a-websocket }
 
 In your **FastAPI** application, create a `websocket`:
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
 
 /// note | Technical Details
 
@@ -58,7 +58,7 @@ You could also use `from starlette.websockets import WebSocket`.
 
 In your WebSocket route you can `await` for messages and send messages.
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
 
 You can receive and send binary, text, and JSON data.
 
