@@ -54,7 +54,7 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
 
 But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
@@ -83,7 +83,7 @@ Pass `*`, as the first parameter of the function.
 
 Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
 
 ### Better with `Annotated` { #better-with-annotated }
 
