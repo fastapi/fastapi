@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Tweak links format. PR [#14505](https://github.com/fastapi/fastapi/pull/14505) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs about re-raising validation errors, do not include string as is to not leak information. PR [#14487](https://github.com/fastapi/fastapi/pull/14487) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove external links section. PR [#14486](https://github.com/fastapi/fastapi/pull/14486) by [@tiangolo](https://github.com/tiangolo).
 
