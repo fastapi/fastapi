@@ -121,63 +121,13 @@ $ pip install httpx
 
 Обе *операции пути* требуют наличия в запросе заголовка `X-Token`.
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ без Annotated
-
-/// tip | Подсказка
-
-По возможности используйте версию с `Annotated`.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ без Annotated
-
-/// tip | Подсказка
-
-По возможности используйте версию с `Annotated`.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Расширенный файл тестов { #extended-testing-file }
 
 Теперь обновим файл `test_main.py`, добавив в него тестов:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
 Если Вы не знаете, как передать информацию в запросе, можете воспользоваться поисковиком (погуглить) и задать вопрос: "Как передать информацию в запросе с помощью `httpx`", можно даже спросить: "Как передать информацию в запросе с помощью `requests`", поскольку дизайн HTTPX основан на дизайне Requests.
