@@ -22,14 +22,14 @@ async def read_required_alias(p: Annotated[str, Path(alias="p_alias")]):
 def read_required_validation_alias(
     p: Annotated[str, Path(validation_alias="p_val_alias")],
 ):
-    return {"p": p}  # pragma: no cover
+    return {"p": p}
 
 
 @app.get("/required-alias-and-validation-alias/{p_val_alias}")
 def read_required_alias_and_validation_alias(
     p: Annotated[str, Path(alias="p_alias", validation_alias="p_val_alias")],
 ):
-    return {"p": p}  # pragma: no cover
+    return {"p": p}
 
 
 @pytest.mark.parametrize(
@@ -44,20 +44,14 @@ def read_required_alias_and_validation_alias(
             "p_val_alias",
             "P Val Alias",
             id="required-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
+            marks=needs_pydanticv2,
         ),
         pytest.param(
             "/required-alias-and-validation-alias/{p_val_alias}",
             "p_val_alias",
             "P Val Alias",
             id="required-alias-and-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
+            marks=needs_pydanticv2,
         ),
     ],
 )
@@ -80,18 +74,12 @@ def test_schema(path: str, expected_name: str, expected_title: str):
         pytest.param(
             "/required-validation-alias",
             id="required-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
+            marks=needs_pydanticv2,
         ),
         pytest.param(
             "/required-alias-and-validation-alias",
             id="required-alias-and-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
+            marks=needs_pydanticv2,
         ),
     ],
 )

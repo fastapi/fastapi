@@ -3,7 +3,6 @@ from typing import Any, Dict, Union
 import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi import Body, FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
@@ -118,15 +117,7 @@ async def read_model_required_alias(p: BodyModelRequiredAlias):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2",
-                strict=False,
-            ),
-        ),
+        "/required-alias",
         "/model-required-alias",
     ],
 )
@@ -270,10 +261,7 @@ def test_required_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-validation-alias",
         "/model-required-validation-alias",
     ],
 )
@@ -287,9 +275,7 @@ def test_required_validation_alias_missing(
         "detail": [
             {
                 "type": "missing",
-                "loc": IsOneOf(  # /required-validation-alias fails here
-                    ["body", "p_val_alias"], ["body"]
-                ),
+                "loc": IsOneOf(["body", "p_val_alias"], ["body"]),
                 "msg": "Field required",
                 "input": IsOneOf(None, {}),
             }
@@ -301,19 +287,14 @@ def test_required_validation_alias_missing(
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-validation-alias",
         "/model-required-validation-alias",
     ],
 )
 def test_required_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p": "hello"})
-    assert response.status_code == 422, (  # /required-validation-alias fails here
-        response.text
-    )
+    assert response.status_code == 422, response.text
 
     assert response.json() == {
         "detail": [
@@ -331,19 +312,14 @@ def test_required_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-validation-alias",
         "/model-required-validation-alias",
     ],
 )
 def test_required_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p_val_alias": "hello"})
-    assert response.status_code == 200, (  # /required-validation-alias fails here
-        response.text
-    )
+    assert response.status_code == 200, response.text
 
     assert response.json() == {"p": "hello"}
 
@@ -405,10 +381,7 @@ def test_required_alias_and_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-alias-and-validation-alias",
         "/model-required-alias-and-validation-alias",
     ],
 )
@@ -422,9 +395,7 @@ def test_required_alias_and_validation_alias_missing(
         "detail": [
             {
                 "type": "missing",
-                "loc": IsOneOf(  # /required-alias-and-validation-alias fails here
-                    ["body"], ["body", "p_val_alias"]
-                ),
+                "loc": IsOneOf(["body"], ["body", "p_val_alias"]),
                 "msg": "Field required",
                 "input": IsOneOf(None, {}),
             }
@@ -436,10 +407,7 @@ def test_required_alias_and_validation_alias_missing(
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-alias-and-validation-alias",
         "/model-required-alias-and-validation-alias",
     ],
 )
@@ -454,7 +422,7 @@ def test_required_alias_and_validation_alias_by_name(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /required-alias-and-validation-alias fails here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": IsOneOf(None, {"p": "hello"}),
@@ -467,19 +435,14 @@ def test_required_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-alias-and-validation-alias",
         "/model-required-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p_alias": "hello"})
-    assert response.status_code == 422, (
-        response.text  # /required-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 422, response.text
 
     assert response.json() == {
         "detail": [
@@ -497,18 +460,13 @@ def test_required_alias_and_validation_alias_by_alias(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-alias-and-validation-alias",
         "/model-required-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p_val_alias": "hello"})
-    assert response.status_code == 200, (
-        response.text  # /required-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 200, response.text
 
     assert response.json() == {"p": "hello"}
