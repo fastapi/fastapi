@@ -61,7 +61,7 @@ Y luego otra tarea en segundo plano generada en la *path operation function* esc
 
 ## Detalles Técnicos
 
-La clase `BackgroundTasks` proviene directamente de <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+La clase `BackgroundTasks` proviene directamente de <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 Se importa/incluye directamente en FastAPI para que puedas importarla desde `fastapi` y evitar importar accidentalmente la alternativa `BackgroundTask` (sin la `s` al final) de `starlette.background`.
 
@@ -69,7 +69,7 @@ Al usar solo `BackgroundTasks` (y no `BackgroundTask`), es posible usarla como u
 
 Todavía es posible usar `BackgroundTask` solo en FastAPI, pero debes crear el objeto en tu código y devolver una `Response` de Starlette incluyéndolo.
 
-Puedes ver más detalles en <a href="https://www.starlette.io/background/" class="external-link" target="_blank">la documentación oficial de Starlette sobre Background Tasks</a>.
+Puedes ver más detalles en <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">la documentación oficial de Starlette sobre Background Tasks</a>.
 
 ## Advertencia
 

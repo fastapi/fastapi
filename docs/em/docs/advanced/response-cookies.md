@@ -48,4 +48,4 @@
 
 ///
 
-👀 🌐 💪 🔢 &amp; 🎛, ✅ <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">🧾 💃</a>.
+👀 🌐 💪 🔢 &amp; 🎛, ✅ <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">🧾 💃</a>.

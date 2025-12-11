@@ -185,7 +185,15 @@ def test_openapi_schema():
                                 "title": "Age",
                                 "anyOf": [
                                     {"exclusiveMinimum": 0.0, "type": "number"},
-                                    {"type": "string"},
+                                    IsOneOf(
+                                        # pydantic < 2.12.0
+                                        {"type": "string"},
+                                        # pydantic >= 2.12.0
+                                        {
+                                            "type": "string",
+                                            "pattern": r"^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$",
+                                        },
+                                    ),
                                 ],
                             }
                         )

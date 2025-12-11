@@ -162,7 +162,7 @@ async with lifespan(app):
 
 /// info | 说明
 
-有关事件处理器的详情，请参阅 <a href="https://www.starlette.io/lifespan/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
+有关事件处理器的详情，请参阅 <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette 官档 - 事件</a>。
 
 包括如何处理生命周期状态，这可以用于程序的其他部分。
 

@@ -124,4 +124,4 @@ Item ID: 42
 
 ## 더 많은 세부 사항
 
-템플릿 테스트를 포함한 더 많은 세부 사항은 <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette의 템플릿 문서</a>를 확인하세요.
+템플릿 테스트를 포함한 더 많은 세부 사항은 <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette의 템플릿 문서</a>를 확인하세요.

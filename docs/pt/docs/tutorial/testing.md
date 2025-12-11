@@ -1,12 +1,12 @@
-# Testando
+# Testando { #testing }
 
-Graças ao <a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
+Graças ao <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
 
 Ele é baseado no <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
 Com ele, você pode usar o <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> diretamente com **FastAPI**.
 
-## Usando `TestClient`
+## Usando `TestClient` { #using-testclient }
 
 /// info | Informação
 
@@ -42,7 +42,7 @@ Isso permite que você use `pytest` diretamente sem complicações.
 
 ///
 
-/// note | Detalhes técnicos
+/// note | Detalhes Técnicos
 
 Você também pode usar `from starlette.testclient import TestClient`.
 
@@ -56,15 +56,15 @@ Se você quiser chamar funções `async` em seus testes além de enviar solicita
 
 ///
 
-## Separando testes
+## Separando testes { #separating-tests }
 
 Em uma aplicação real, você provavelmente teria seus testes em um arquivo diferente.
 
 E seu aplicativo **FastAPI** também pode ser composto de vários arquivos/módulos, etc.
 
-### Arquivo do aplicativo **FastAPI**
+### Arquivo do aplicativo **FastAPI** { #fastapi-app-file }
 
-Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicativos maiores](bigger-applications.md){.internal-link target=_blank}:
+Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicações maiores](bigger-applications.md){.internal-link target=_blank}:
 
 ```
 .
@@ -78,7 +78,7 @@ No arquivo `main.py` você tem seu aplicativo **FastAPI**:
 
 {* ../../docs_src/app_testing/main.py *}
 
-### Arquivo de teste
+### Arquivo de teste { #testing-file }
 
 Então você poderia ter um arquivo `test_main.py` com seus testes. Ele poderia estar no mesmo pacote Python (o mesmo diretório com um arquivo `__init__.py`):
 
@@ -96,11 +96,11 @@ Como esse arquivo está no mesmo pacote, você pode usar importações relativas
 
 ...e ter o código para os testes como antes.
 
-## Testando: exemplo estendido
+## Testando: exemplo estendido { #testing-extended-example }
 
 Agora vamos estender este exemplo e adicionar mais detalhes para ver como testar diferentes partes.
 
-### Arquivo de aplicativo **FastAPI** estendido
+### Arquivo de aplicativo **FastAPI** estendido { #extended-fastapi-app-file }
 
 Vamos continuar com a mesma estrutura de arquivo de antes:
 
@@ -172,7 +172,7 @@ Prefira usar a versão `Annotated` se possível.
 
 ////
 
-### Arquivo de teste estendido
+### Arquivo de teste estendido { #extended-testing-file }
 
 Você pode então atualizar `test_main.py` com os testes estendidos:
 
@@ -200,7 +200,7 @@ Se você tiver um modelo Pydantic em seu teste e quiser enviar seus dados para o
 
 ///
 
-## Execute-o
+## Execute-o { #run-it }
 
 Depois disso, você só precisa instalar o `pytest`.
 

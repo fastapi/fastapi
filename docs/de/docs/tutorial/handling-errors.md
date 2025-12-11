@@ -81,7 +81,7 @@ Aber falls Sie es für ein fortgeschrittenes Szenario benötigen, können Sie be
 
 ## Benutzerdefinierte Exceptionhandler installieren { #install-custom-exception-handlers }
 
-Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
+Sie können benutzerdefinierte <abbr title="Ausnahmebehandler: Funktion, die sich um die Bearbeitung einer Exception kümmert">Exceptionhandler</abbr> mit <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">den gleichen Exception-Werkzeugen von Starlette</a> hinzufügen.
 
 Angenommen, Sie haben eine benutzerdefinierte Exception `UnicornException`, die Sie (oder eine Bibliothek, die Sie verwenden) `raise`n könnten.
 
@@ -127,7 +127,7 @@ Um diesen zu überschreiben, importieren Sie den `RequestValidationError` und ve
 
 Der Exceptionhandler erhält einen `Request` und die Exception.
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 Wenn Sie nun zu `/items/foo` gehen, erhalten Sie anstelle des standardmäßigen JSON-Fehlers mit:
 
@@ -149,28 +149,9 @@ Wenn Sie nun zu `/items/foo` gehen, erhalten Sie anstelle des standardmäßigen 
 eine Textversion mit:
 
 ```
-1 validation error
-path -> item_id
-  value is not a valid integer (type=type_error.integer)
+Validation errors:
+Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
-
-#### `RequestValidationError` vs. `ValidationError` { #requestvalidationerror-vs-validationerror }
-
-/// warning | Achtung
-
-Dies sind technische Details, die Sie überspringen können, wenn sie für Sie jetzt nicht wichtig sind.
-
-///
-
-`RequestValidationError` ist eine Unterklasse von Pydantics <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
-
-**FastAPI** verwendet diesen so, dass, wenn Sie ein Pydantic-Modell in `response_model` verwenden und Ihre Daten einen Fehler haben, Sie den Fehler in Ihrem Log sehen.
-
-Aber der Client/Benutzer wird ihn nicht sehen. Stattdessen erhält der Client einen „Internal Server Error“ mit einem HTTP-Statuscode `500`.
-
-Es sollte so sein, denn wenn Sie einen Pydantic `ValidationError` in Ihrer *Response* oder irgendwo anders in Ihrem Code haben (nicht im *Request* des Clients), ist es tatsächlich ein Fehler in Ihrem Code.
-
-Und während Sie den Fehler beheben, sollten Ihre Clients/Benutzer keinen Zugriff auf interne Informationen über den Fehler haben, da das eine Sicherheitslücke aufdecken könnte.
 
 ### Überschreiben des `HTTPException`-Fehlerhandlers { #override-the-httpexception-error-handler }
 
@@ -178,13 +159,21 @@ Auf die gleiche Weise können Sie den `HTTPException`-Handler überschreiben.
 
 Zum Beispiel könnten Sie eine Klartext-Response statt JSON für diese Fehler zurückgeben wollen:
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | Technische Details
 
 Sie könnten auch `from starlette.responses import PlainTextResponse` verwenden.
 
 **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, nur als Annehmlichkeit für Sie, den Entwickler. Aber die meisten verfügbaren Responses kommen direkt von Starlette.
+
+///
+
+/// warning | Achtung
+
+Beachten Sie, dass der `RequestValidationError` Informationen über den Dateinamen und die Zeile enthält, in der der Validierungsfehler auftritt, sodass Sie ihn bei Bedarf mit den relevanten Informationen in Ihren Logs anzeigen können.
+
+Das bedeutet aber auch, dass, wenn Sie ihn einfach in einen String umwandeln und diese Informationen direkt zurückgeben, Sie möglicherweise ein paar Informationen über Ihr System preisgeben. Daher extrahiert und zeigt der Code hier jeden Fehler getrennt.
 
 ///
 

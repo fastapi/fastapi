@@ -48,4 +48,4 @@
 
 ///
 
-Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">документацией Starlette</a>.
+Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">документацией Starlette</a>.

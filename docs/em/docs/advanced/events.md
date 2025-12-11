@@ -140,7 +140,7 @@ async with lifespan(app):
 
 /// info
 
-👆 💪 ✍ 🌅 🔃 👫 🎉 🐕‍🦺 <a href="https://www.starlette.io/events/" class="external-link" target="_blank">💃 🎉' 🩺</a>.
+👆 💪 ✍ 🌅 🔃 👫 🎉 🐕‍🦺 <a href="https://www.starlette.dev/events/" class="external-link" target="_blank">💃 🎉' 🩺</a>.
 
 ///
 

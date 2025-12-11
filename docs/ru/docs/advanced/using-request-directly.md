@@ -15,7 +15,7 @@
 
 ## Подробности об объекте `Request` { #details-about-the-request-object }
 
-Так как под капотом **FastAPI** — это **Starlette** с дополнительным слоем инструментов, вы можете при необходимости напрямую использовать объект <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">`Request`</a> из Starlette.
+Так как под капотом **FastAPI** — это **Starlette** с дополнительным слоем инструментов, вы можете при необходимости напрямую использовать объект <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> из Starlette.
 
 Это также означает, что если вы получаете данные напрямую из объекта `Request` (например, читаете тело запроса), то они не будут валидироваться, конвертироваться или документироваться (с OpenAPI, для автоматического пользовательского интерфейса API) средствами FastAPI.
 
@@ -45,7 +45,7 @@
 
 ## Документация по `Request` { #request-documentation }
 
-Подробнее об <a href="https://www.starlette.io/requests/" class="external-link" target="_blank">объекте `Request` на официальном сайте документации Starlette</a>.
+Подробнее об <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">объекте `Request` на официальном сайте документации Starlette</a>.
 
 /// note | Технические детали
 

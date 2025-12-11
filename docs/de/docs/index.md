@@ -46,20 +46,26 @@ Seine Schlüssel-Merkmale sind:
 * **Robust**: Erhalten Sie produktionsreifen Code. Mit automatischer, interaktiver Dokumentation.
 * **Standards-basiert**: Basierend auf (und vollständig kompatibel mit) den offenen Standards für APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (früher bekannt als Swagger) und <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
-<small>* Schätzung basierend auf Tests in einem internen Entwicklungsteam, das Produktionsanwendungen erstellt.</small>
+<small>* Schätzung basierend auf Tests, die von einem internen Entwicklungsteam durchgeführt wurden, das Produktionsanwendungen erstellt.</small>
 
 ## Sponsoren { #sponsors }
 
 <!-- sponsors -->
 
-{% if sponsors %}
+### Keystone-Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+
+### Gold- und Silber-Sponsoren
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
-{% endif %}
 
 <!-- /sponsors -->
 
@@ -123,7 +129,7 @@ Wenn Sie eine <abbr title="Command Line Interface – Kommandozeilen-Schnittstel
 
 FastAPI steht auf den Schultern von Giganten:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> für die Webanteile.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> für die Webanteile.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> für die Datenanteile.
 
 ## Installation { #installation }
@@ -229,7 +235,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Was der Befehl <code>fastapi dev main.py</code> macht ...</summary>
 
-Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 Standardmäßig wird `fastapi dev` mit aktiviertem Auto-Reload für die lokale Entwicklung gestartet.
 
@@ -444,6 +450,58 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
     * **Cookie-Sessions**
     * ... und mehr.
 
+### Ihre App deployen (optional) { #deploy-your-app-optional }
+
+Optional können Sie Ihre FastAPI-App in die <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> deployen, treten Sie der Warteliste bei, falls noch nicht geschehen. 🚀
+
+Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem einzigen Befehl deployen.
+
+Stellen Sie vor dem Deployen sicher, dass Sie eingeloggt sind:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Stellen Sie dann Ihre App bereit:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+Das war’s! Jetzt können Sie unter dieser URL auf Ihre App zugreifen. ✨
+
+#### Über FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** wird vom selben Autor und Team hinter **FastAPI** entwickelt.
+
+Es vereinfacht den Prozess des **Erstellens**, **Deployens** und **Zugreifens** auf eine API mit minimalem Aufwand.
+
+Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
+
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+
+#### Bei anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
+
+FastAPI ist Open Source und basiert auf Standards. Sie können FastAPI-Apps bei jedem Cloudanbieter Ihrer Wahl deployen.
+
+Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort bereitzustellen. 🤓
+
 ## Performanz { #performance }
 
 Unabhängige TechEmpower-Benchmarks zeigen **FastAPI**-Anwendungen, die unter Uvicorn laufen, als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">eines der schnellsten verfügbaren Python-Frameworks</a>, nur hinter Starlette und Uvicorn selbst (intern von FastAPI verwendet). (*)
@@ -470,7 +528,7 @@ Verwendet von Starlette:
 
 Verwendet von FastAPI:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> – für den Server, der Ihre Anwendung lädt und bereitstellt. Dies umfasst `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) beinhaltet, die für eine Bereitstellung mit hoher Performanz benötigt werden.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> – für den Server, der Ihre Anwendung lädt und bereitstellt. Dies umfasst `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) beinhaltet, die für eine Bereitstellung mit hoher Performanz benötigt werden.
 * `fastapi-cli[standard]` – um den `fastapi`-Befehl bereitzustellen.
     * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> bereitzustellen.
 
