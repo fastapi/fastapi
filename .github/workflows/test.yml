@@ -54,30 +54,31 @@ jobs:
           - os: macos-latest
             python-version: "3.8"
             pydantic-version: "pydantic-v1"
+            coverage: coverage
           - os: windows-latest
             python-version: "3.8"
             pydantic-version: "pydantic-v2"
+            coverage: coverage
           - os: ubuntu-latest
             python-version: "3.9"
             pydantic-version: "pydantic-v1"
           - os: macos-latest
             python-version: "3.10"
             pydantic-version: "pydantic-v2"
-            coverage: no coverage
           - os: windows-latest
             python-version: "3.11"
             pydantic-version: "pydantic-v1"
-            coverage: no coverage
           - os: ubuntu-latest
             python-version: "3.12"
             pydantic-version: "pydantic-v2"
-            coverage: no coverage
           - os: macos-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v1"
+            coverage: coverage
           - os: windows-latest
             python-version: "3.13"
             pydantic-version: "pydantic-v2"
+            coverage: coverage
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
