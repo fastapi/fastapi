@@ -136,7 +136,7 @@ It accepts the following parameters:
 
 FastAPI (actually Starlette) will automatically include a Content-Length header. It will also include a Content-Type header, based on the `media_type` and appending a charset for text types.
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
