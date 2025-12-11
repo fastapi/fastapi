@@ -25,12 +25,12 @@ async def read_optional_list_str(
     return {"p": p}
 
 
-class FormModelOptionalListStr(BaseModel):
+class BodyModelOptionalListStr(BaseModel):
     p: Optional[List[str]] = None
 
 
 @app.post("/model-optional-list-str", operation_id="model_optional_list_str")
-async def read_model_optional_list_str(p: FormModelOptionalListStr):
+async def read_model_optional_list_str(p: BodyModelOptionalListStr):
     return {"p": p.p}
 
 
@@ -137,12 +137,12 @@ async def read_optional_list_alias(
     return {"p": p}
 
 
-class FormModelOptionalListAlias(BaseModel):
+class BodyModelOptionalListAlias(BaseModel):
     p: Optional[List[str]] = Field(None, alias="p_alias")
 
 
 @app.post("/model-optional-list-alias", operation_id="model_optional_list_alias")
-async def read_model_optional_list_alias(p: FormModelOptionalListAlias):
+async def read_model_optional_list_alias(p: BodyModelOptionalListAlias):
     return {"p": p.p}
 
 
@@ -279,7 +279,7 @@ def read_optional_list_validation_alias(
     return {"p": p}
 
 
-class FormModelOptionalListValidationAlias(BaseModel):
+class BodyModelOptionalListValidationAlias(BaseModel):
     p: Optional[List[str]] = Field(None, validation_alias="p_val_alias")
 
 
@@ -288,7 +288,7 @@ class FormModelOptionalListValidationAlias(BaseModel):
     operation_id="model_optional_list_validation_alias",
 )
 def read_model_optional_list_validation_alias(
-    p: FormModelOptionalListValidationAlias,
+    p: BodyModelOptionalListValidationAlias,
 ):
     return {"p": p.p}
 
@@ -434,7 +434,7 @@ def read_optional_list_alias_and_validation_alias(
     return {"p": p}
 
 
-class FormModelOptionalListAliasAndValidationAlias(BaseModel):
+class BodyModelOptionalListAliasAndValidationAlias(BaseModel):
     p: Optional[List[str]] = Field(
         None, alias="p_alias", validation_alias="p_val_alias"
     )
@@ -445,7 +445,7 @@ class FormModelOptionalListAliasAndValidationAlias(BaseModel):
     operation_id="model_optional_list_alias_and_validation_alias",
 )
 def read_model_optional_list_alias_and_validation_alias(
-    p: FormModelOptionalListAliasAndValidationAlias,
+    p: BodyModelOptionalListAliasAndValidationAlias,
 ):
     return {"p": p.p}
 

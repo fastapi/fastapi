@@ -23,12 +23,12 @@ async def read_required_list_str(p: Annotated[List[str], Body(embed=True)]):
     return {"p": p}
 
 
-class FormModelRequiredListStr(BaseModel):
+class BodyModelRequiredListStr(BaseModel):
     p: List[str]
 
 
 @app.post("/model-required-list-str", operation_id="model_required_list_str")
-def read_model_required_list_str(p: FormModelRequiredListStr):
+def read_model_required_list_str(p: BodyModelRequiredListStr):
     return {"p": p.p}
 
 
@@ -109,12 +109,12 @@ async def read_required_list_alias(
     return {"p": p}
 
 
-class FormModelRequiredListAlias(BaseModel):
+class BodyModelRequiredListAlias(BaseModel):
     p: List[str] = Field(alias="p_alias")
 
 
 @app.post("/model-required-list-alias", operation_id="model_required_list_alias")
-async def read_model_required_list_alias(p: FormModelRequiredListAlias):
+async def read_model_required_list_alias(p: BodyModelRequiredListAlias):
     return {"p": p.p}  # pragma: no cover
 
 
@@ -242,7 +242,7 @@ def read_required_list_validation_alias(
     return {"p": p}
 
 
-class FormModelRequiredListValidationAlias(BaseModel):
+class BodyModelRequiredListValidationAlias(BaseModel):
     p: List[str] = Field(validation_alias="p_val_alias")
 
 
@@ -251,7 +251,7 @@ class FormModelRequiredListValidationAlias(BaseModel):
     operation_id="model_required_list_validation_alias",
 )
 async def read_model_required_list_validation_alias(
-    p: FormModelRequiredListValidationAlias,
+    p: BodyModelRequiredListValidationAlias,
 ):
     return {"p": p.p}  # pragma: no cover
 
@@ -375,7 +375,7 @@ def read_required_list_alias_and_validation_alias(
     return {"p": p}
 
 
-class FormModelRequiredListAliasAndValidationAlias(BaseModel):
+class BodyModelRequiredListAliasAndValidationAlias(BaseModel):
     p: List[str] = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
@@ -384,7 +384,7 @@ class FormModelRequiredListAliasAndValidationAlias(BaseModel):
     operation_id="model_required_list_alias_and_validation_alias",
 )
 def read_model_required_list_alias_and_validation_alias(
-    p: FormModelRequiredListAliasAndValidationAlias,
+    p: BodyModelRequiredListAliasAndValidationAlias,
 ):
     return {"p": p.p}  # pragma: no cover
 

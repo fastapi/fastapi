@@ -23,12 +23,12 @@ async def read_required_str(p: Annotated[str, Body(embed=True)]):
     return {"p": p}
 
 
-class FormModelRequiredStr(BaseModel):
+class BodyModelRequiredStr(BaseModel):
     p: str
 
 
 @app.post("/model-required-str", operation_id="model_required_str")
-async def read_model_required_str(p: FormModelRequiredStr):
+async def read_model_required_str(p: BodyModelRequiredStr):
     return {"p": p.p}
 
 
@@ -106,12 +106,12 @@ async def read_required_alias(
     return {"p": p}
 
 
-class FormModelRequiredAlias(BaseModel):
+class BodyModelRequiredAlias(BaseModel):
     p: str = Field(alias="p_alias")
 
 
 @app.post("/model-required-alias", operation_id="model_required_alias")
-async def read_model_required_alias(p: FormModelRequiredAlias):
+async def read_model_required_alias(p: BodyModelRequiredAlias):
     return {"p": p.p}
 
 
@@ -233,7 +233,7 @@ def read_required_validation_alias(
     return {"p": p}
 
 
-class FormModelRequiredValidationAlias(BaseModel):
+class BodyModelRequiredValidationAlias(BaseModel):
     p: str = Field(validation_alias="p_val_alias")
 
 
@@ -241,7 +241,7 @@ class FormModelRequiredValidationAlias(BaseModel):
     "/model-required-validation-alias", operation_id="model_required_validation_alias"
 )
 def read_model_required_validation_alias(
-    p: FormModelRequiredValidationAlias,
+    p: BodyModelRequiredValidationAlias,
 ):
     return {"p": p.p}
 
@@ -364,7 +364,7 @@ def read_required_alias_and_validation_alias(
     return {"p": p}
 
 
-class FormModelRequiredAliasAndValidationAlias(BaseModel):
+class BodyModelRequiredAliasAndValidationAlias(BaseModel):
     p: str = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
@@ -373,7 +373,7 @@ class FormModelRequiredAliasAndValidationAlias(BaseModel):
     operation_id="model_required_alias_and_validation_alias",
 )
 def read_model_required_alias_and_validation_alias(
-    p: FormModelRequiredAliasAndValidationAlias,
+    p: BodyModelRequiredAliasAndValidationAlias,
 ):
     return {"p": p.p}
 

@@ -23,12 +23,12 @@ async def read_optional_str(p: Annotated[Optional[str], Body(embed=True)] = None
     return {"p": p}
 
 
-class FormModelOptionalStr(BaseModel):
+class BodyModelOptionalStr(BaseModel):
     p: Optional[str] = None
 
 
 @app.post("/model-optional-str", operation_id="model_optional_str")
-async def read_model_optional_str(p: FormModelOptionalStr):
+async def read_model_optional_str(p: BodyModelOptionalStr):
     return {"p": p.p}
 
 
@@ -132,12 +132,12 @@ async def read_optional_alias(
     return {"p": p}
 
 
-class FormModelOptionalAlias(BaseModel):
+class BodyModelOptionalAlias(BaseModel):
     p: Optional[str] = Field(None, alias="p_alias")
 
 
 @app.post("/model-optional-alias", operation_id="model_optional_alias")
-async def read_model_optional_alias(p: FormModelOptionalAlias):
+async def read_model_optional_alias(p: BodyModelOptionalAlias):
     return {"p": p.p}
 
 
@@ -265,7 +265,7 @@ def read_optional_validation_alias(
     return {"p": p}
 
 
-class FormModelOptionalValidationAlias(BaseModel):
+class BodyModelOptionalValidationAlias(BaseModel):
     p: Optional[str] = Field(None, validation_alias="p_val_alias")
 
 
@@ -273,7 +273,7 @@ class FormModelOptionalValidationAlias(BaseModel):
     "/model-optional-validation-alias", operation_id="model_optional_validation_alias"
 )
 def read_model_optional_validation_alias(
-    p: FormModelOptionalValidationAlias,
+    p: BodyModelOptionalValidationAlias,
 ):
     return {"p": p.p}
 
@@ -412,7 +412,7 @@ def read_optional_alias_and_validation_alias(
     return {"p": p}
 
 
-class FormModelOptionalAliasAndValidationAlias(BaseModel):
+class BodyModelOptionalAliasAndValidationAlias(BaseModel):
     p: Optional[str] = Field(None, alias="p_alias", validation_alias="p_val_alias")
 
 
@@ -421,7 +421,7 @@ class FormModelOptionalAliasAndValidationAlias(BaseModel):
     operation_id="model_optional_alias_and_validation_alias",
 )
 def read_model_optional_alias_and_validation_alias(
-    p: FormModelOptionalAliasAndValidationAlias,
+    p: BodyModelOptionalAliasAndValidationAlias,
 ):
     return {"p": p.p}
 
