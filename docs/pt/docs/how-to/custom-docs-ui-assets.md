@@ -34,7 +34,7 @@ Você pode reutilizar as funções internas do FastAPI para criar as páginas HT
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:20,23:25,28:35] *}
 
 /// tip | Dica
 
@@ -50,7 +50,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[38:40] *}
 
 ### Teste { #test-it }
 
@@ -160,7 +160,7 @@ Novamente, você pode reutilizar as funções internas do FastAPI para criar as 
 
 E de forma semelhante para o ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:23,26:28,31:38] *}
 
 /// tip | Dica
 
@@ -176,7 +176,7 @@ Swagger UI lidará com isso nos bastidores para você, mas ele precisa desse aux
 
 Agora, para poder testar se tudo funciona, crie uma *operação de rota*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[41:43] *}
 
 ### Teste a UI de Arquivos Estáticos { #test-static-files-ui }
 
