@@ -26,6 +26,7 @@ from fastapi.logger import logger
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
+    get_stoplight_elements_html,
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
@@ -466,6 +467,30 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "/docs/oauth2-redirect",
+        stoplight_elements_url: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The path to the alternative automatic interactive API documentation
+                provided by Stoplight Elements.
+
+                The default URL is `/elements`. You can disable it by setting it to `None`.
+
+                If `openapi_url` is set to `None`, this will be automatically disabled.
+
+                Read more in the
+                [FastAPI docs for Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/#docs-urls).
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(docs_url="/documentation", stoplight_elements_url="elementsdocs")
+                ```
+                """
+            ),
+        ] = "/elements",
         swagger_ui_init_oauth: Annotated[
             Optional[Dict[str, Any]],
             Doc(
@@ -869,6 +894,7 @@ class FastAPI(Starlette):
         self.docs_url = docs_url
         self.redoc_url = redoc_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
+        self.stoplight_elements_url = stoplight_elements_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
         self.servers = servers or []
@@ -1132,6 +1158,21 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+
+        if self.openapi_url and self.stoplight_elements_url:
+
+            async def stoplight_elements_html(req: Request) -> HTMLResponse:
+                root_path = req.scope.get("root_path", "").rstrip("/")
+                openapi_url = root_path + self.openapi_url
+                return get_stoplight_elements_html(
+                    openapi_url=openapi_url, title=self.title + " - Stoplight Elements"
+                )
+
+            self.add_route(
+                self.stoplight_elements_url,
+                stoplight_elements_html,
+                include_in_schema=False,
+            )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
