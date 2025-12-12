@@ -202,3 +202,50 @@ Here we reuse the same Pydantic model.
 But the same way, we could have validated it in some other way.
 
 ///
+
+## Non-standard HTTP methods (e.g., QUERY) { #non-standard-http-methods }
+
+Some proposals introduce non-standard HTTP methods like `QUERY` that allow a request body with a safe semantics.
+
+/// info
+
+**FastAPI follows OpenAPI for schema and docs generation.** OpenAPI `PathItem` only defines the standard HTTP operations: `get`, `put`, `post`, `delete`, `options`, `head`, `patch`, and `trace`. Methods like `QUERY` are not part of OpenAPI, so they won't be shown in the generated docs or supported by Swagger UI.
+
+///
+
+### Recommended approach
+
+If you need to send a complex filter/query payload, prefer using `POST` with a request body, even if the operation is logically a read. This is a common industry practice and fully supported by OpenAPI and the automatic docs.
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+class QuerySpec(BaseModel):
+    tags: list[str] | None = None
+    topics: list[str] | None = None
+
+app = FastAPI()
+
+@app.post("/query/subjects")
+def query_subjects(spec: QuerySpec):
+    # Filter your results based on `spec`
+    return {"items": []}
+```
+
+### Advanced: custom method without OpenAPI support
+
+You can still register a custom method such as `QUERY` with FastAPI/Starlette, but it won't be included in OpenAPI, and it won't appear in the automatic docs. If you still want to do it, exclude it from the schema:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.api_route("/query/subjects", methods=["QUERY"], include_in_schema=False)
+def query_subjects(payload: dict):
+    # Handle custom method; not documented in OpenAPI/Swagger UI
+    return {"items": []}
+```
+
+This allows advanced setups while keeping the generated documentation consistent with OpenAPI.
