@@ -1,7 +1,6 @@
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -112,12 +111,6 @@ async def read_required_uploadfile_alias(
     return {"file_size": p.size}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -278,14 +271,8 @@ def test_required_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-validation-alias",
+        "/required-uploadfile-validation-alias",
     ],
 )
 def test_required_validation_alias_missing(path: str):
@@ -296,7 +283,7 @@ def test_required_validation_alias_missing(path: str):
         "detail": [
             {
                 "type": "missing",
-                "loc": [  # /required-*-validation-alias fail here
+                "loc": [
                     "body",
                     "p_val_alias",
                 ],
@@ -311,24 +298,16 @@ def test_required_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-validation-alias",
+        "/required-uploadfile-validation-alias",
     ],
 )
 def test_required_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello")])
-    assert response.status_code == 422, (  # /required-*-validation-alias fail here
-        response.text
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -344,23 +323,15 @@ def test_required_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-validation-alias",
+        "/required-uploadfile-validation-alias",
     ],
 )
 def test_required_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
-    assert response.status_code == 200, (  # all 2 fail here
-        response.text
-    )
-    assert response.json() == {"file_size": 5}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": 5}
 
 
 # =====================================================================================
@@ -417,14 +388,8 @@ def test_required_alias_and_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-alias-and-validation-alias",
+        "/required-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_missing(path: str):
@@ -437,7 +402,7 @@ def test_required_alias_and_validation_alias_missing(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /required-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -450,14 +415,8 @@ def test_required_alias_and_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-alias-and-validation-alias",
+        "/required-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_by_name(path: str):
@@ -471,7 +430,7 @@ def test_required_alias_and_validation_alias_by_name(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /required-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -484,24 +443,16 @@ def test_required_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-alias-and-validation-alias",
+        "/required-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello")])
-    assert response.status_code == 422, (
-        response.text  # /required-*-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -517,20 +468,12 @@ def test_required_alias_and_validation_alias_by_alias(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/required-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-bytes-alias-and-validation-alias",
+        "/required-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_required_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
-    assert response.status_code == 200, (  # all 2 fail here
-        response.text
-    )
-    assert response.json() == {"file_size": 5}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": 5}

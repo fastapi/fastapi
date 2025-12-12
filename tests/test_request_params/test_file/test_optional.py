@@ -3,7 +3,6 @@ from typing import Optional
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -107,12 +106,6 @@ async def read_optional_uploadfile_alias(
     return {"file_size": p.size if p else None}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -266,44 +259,30 @@ def test_optional_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-validation-alias",
+        "/optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {  # /optional-*-validation-alias fail here
-        "file_size": None
-    }
+    assert response.json() == {"file_size": None}
 
 
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-validation-alias",
+        "/optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {"file_size": 5}  # /optional-*-validation-alias fail here
+    assert response.json() == {"file_size": 5}
 
 
 # =====================================================================================
@@ -403,14 +382,8 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-alias-and-validation-alias",
+        "/optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_alias(path: str):
@@ -424,20 +397,12 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-alias-and-validation-alias",
+        "/optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "file_size": 5
-    }  # /optional-*-alias-and-validation-alias fail here
+    assert response.json() == {"file_size": 5}

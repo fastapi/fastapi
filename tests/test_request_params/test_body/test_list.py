@@ -3,7 +3,6 @@ from typing import List, Union
 import pytest
 from dirty_equals import IsDict, IsOneOf, IsPartialDict
 from fastapi import Body, FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 from typing_extensions import Annotated
@@ -115,21 +114,13 @@ class BodyModelRequiredListAlias(BaseModel):
 
 @app.post("/model-required-list-alias", operation_id="model_required_list_alias")
 async def read_model_required_list_alias(p: BodyModelRequiredListAlias):
-    return {"p": p.p}  # pragma: no cover
+    return {"p": p.p}
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-alias",
-            marks=pytest.mark.xfail(
-                raises=AssertionError,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 models",
-                strict=False,
-            ),
-        ),
+        "/required-list-alias",
         "/model-required-list-alias",
     ],
 )
@@ -253,7 +244,7 @@ class BodyModelRequiredListValidationAlias(BaseModel):
 async def read_model_required_list_validation_alias(
     p: BodyModelRequiredListValidationAlias,
 ):
-    return {"p": p.p}  # pragma: no cover
+    return {"p": p.p}
 
 
 @needs_pydanticv2
@@ -284,10 +275,7 @@ def test_required_list_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-validation-alias",
         "/model-required-list-validation-alias",
     ],
 )
@@ -299,9 +287,7 @@ def test_required_list_validation_alias_missing(path: str, json: Union[dict, Non
         "detail": [
             {
                 "type": "missing",
-                "loc": IsOneOf(  # /required-validation-alias fails here
-                    ["body"], ["body", "p_val_alias"]
-                ),
+                "loc": IsOneOf(["body"], ["body", "p_val_alias"]),
                 "msg": "Field required",
                 "input": IsOneOf(None, {}),
             }
@@ -313,19 +299,14 @@ def test_required_list_validation_alias_missing(path: str, json: Union[dict, Non
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-validation-alias",
         "/model-required-list-validation-alias",
     ],
 )
 def test_required_list_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p": ["hello", "world"]})
-    assert response.status_code == 422, (
-        response.text  # /required-list-validation-alias fails here
-    )
+    assert response.status_code == 422, response.text
 
     assert response.json() == {
         "detail": [
@@ -343,19 +324,14 @@ def test_required_list_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-validation-alias",
         "/model-required-list-validation-alias",
     ],
 )
 def test_required_list_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p_val_alias": ["hello", "world"]})
-    assert response.status_code == 200, (
-        response.text  # /required-list-validation-alias fails here
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {"p": ["hello", "world"]}
 
 
@@ -386,7 +362,7 @@ class BodyModelRequiredListAliasAndValidationAlias(BaseModel):
 def read_model_required_list_alias_and_validation_alias(
     p: BodyModelRequiredListAliasAndValidationAlias,
 ):
-    return {"p": p.p}  # pragma: no cover
+    return {"p": p.p}
 
 
 @needs_pydanticv2
@@ -420,10 +396,7 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-alias-and-validation-alias",
         "/model-required-list-alias-and-validation-alias",
     ],
 )
@@ -435,9 +408,7 @@ def test_required_list_alias_and_validation_alias_missing(path: str, json):
         "detail": [
             {
                 "type": "missing",
-                "loc": IsOneOf(  # /required-list-alias-and-validation-alias fails here
-                    ["body"], ["body", "p_val_alias"]
-                ),
+                "loc": IsOneOf(["body"], ["body", "p_val_alias"]),
                 "msg": "Field required",
                 "input": IsOneOf(None, {}),
             }
@@ -449,10 +420,7 @@ def test_required_list_alias_and_validation_alias_missing(path: str, json):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-alias-and-validation-alias",
         "/model-required-list-alias-and-validation-alias",
     ],
 )
@@ -464,7 +432,7 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
         "detail": [
             {
                 "type": "missing",
-                "loc": [  # /required-list-alias-and-validation-alias fails here
+                "loc": [
                     "body",
                     "p_val_alias",
                 ],
@@ -479,10 +447,7 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-alias-and-validation-alias",
         "/model-required-list-alias-and-validation-alias",
     ],
 )
@@ -507,17 +472,12 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/required-list-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/required-list-alias-and-validation-alias",
         "/model-required-list-alias-and-validation-alias",
     ],
 )
 def test_required_list_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, json={"p_val_alias": ["hello", "world"]})
-    assert response.status_code == 200, (
-        response.text  # /required-list-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {"p": ["hello", "world"]}
