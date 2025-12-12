@@ -144,7 +144,7 @@ checker(q="somequery")
 
 ### Фоновые задачи и зависимости с `yield`, технические детали { #background-tasks-and-dependencies-with-yield-technical-details }
 
-До FastAPI 0.106.0 вызывать исключения после `yield` было невозможно: код после `yield` в зависимостях выполнялся уже после отправки ответа, поэтому [Обработчики исключений](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} к тому моменту уже отработали.
+До FastAPI 0.106.0 вызывать исключения после `yield` было невозможно: код после `yield` в зависимостях выполнялся уже после отправки ответа, поэтому [Обработчики исключений](../tutorial/handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank} к тому моменту уже отработали.
 
 Так было сделано в основном для того, чтобы можно было использовать те же объекты, «отданные» зависимостями через `yield`, внутри фоновых задач, потому что код после `yield` выполнялся после завершения фоновых задач.
 

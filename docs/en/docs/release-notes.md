@@ -7,14 +7,37 @@ hide:
 
 ## Latest Changes
 
+## 0.124.4
+
+### Fixes
+
+* 🐛 Fix parameter aliases. PR [#14371](https://github.com/fastapi/fastapi/pull/14371) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.124.3
+
+### Fixes
+
+* 🐛 Fix support for tagged union with discriminator inside of `Annotated` with `Body()`. PR [#14512](https://github.com/fastapi/fastapi/pull/14512) by [@tiangolo](https://github.com/tiangolo).
+
+### Refactors
+
+* ✅ Add set of tests for request parameters and alias. PR [#14358](https://github.com/fastapi/fastapi/pull/14358) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Docs
 
+* 📝 Tweak links format. PR [#14505](https://github.com/fastapi/fastapi/pull/14505) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs about re-raising validation errors, do not include string as is to not leak information. PR [#14487](https://github.com/fastapi/fastapi/pull/14487) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove external links section. PR [#14486](https://github.com/fastapi/fastapi/pull/14486) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
 
+* 🌐 Sync Russian docs. PR [#14509](https://github.com/fastapi/fastapi/pull/14509) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync German docs. PR [#14488](https://github.com/fastapi/fastapi/pull/14488) by [@nilslindemann](https://github.com/nilslindemann).
+
+### Internal
+
+* 👷 Tweak coverage to not pass Smokeshow max file size limit. PR [#14507](https://github.com/fastapi/fastapi/pull/14507) by [@tiangolo](https://github.com/tiangolo).
+* ✅ Expand test matrix to include Windows and MacOS. PR [#14171](https://github.com/fastapi/fastapi/pull/14171) by [@svlandeg](https://github.com/svlandeg).
 
 ## 0.124.2
 

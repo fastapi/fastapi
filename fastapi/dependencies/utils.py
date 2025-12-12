@@ -752,7 +752,7 @@ def _validate_value_with_model_field(
 def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
-    alias = alias or field.alias
+    alias = alias or get_validation_alias(field)
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
@@ -809,15 +809,13 @@ def request_params_to_args(
                 field.field_info, "convert_underscores", default_convert_underscores
             )
             if convert_underscores:
-                alias = (
-                    field.alias
-                    if field.alias != field.name
-                    else field.name.replace("_", "-")
-                )
+                alias = get_validation_alias(field)
+                if alias == field.name:
+                    alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[field.alias] = value
-        processed_keys.add(alias or field.alias)
+            params_to_process[get_validation_alias(field)] = value
+        processed_keys.add(alias or get_validation_alias(field))
 
     for key in received_params.keys():
         if key not in processed_keys:
@@ -847,7 +845,7 @@ def request_params_to_args(
         assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
             "Params must be subclasses of Param"
         )
-        loc = (field_info.in_.value, field.alias)
+        loc = (field_info.in_.value, get_validation_alias(field))
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
         )
@@ -936,8 +934,8 @@ async def _extract_form_body(
                     tg.start_soon(process_fn, sub_value.read)
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
-            values[field.alias] = value
-    field_aliases = {field.alias for field in body_fields}
+            values[get_validation_alias(field)] = value
+    field_aliases = {get_validation_alias(field) for field in body_fields}
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)
@@ -979,11 +977,11 @@ async def request_body_to_args(
         )
         return {first_field.name: v_}, errors_
     for field in body_fields:
-        loc = ("body", field.alias)
+        loc = ("body", get_validation_alias(field))
         value: Optional[Any] = None
         if body_to_process is not None:
             try:
-                value = body_to_process.get(field.alias)
+                value = body_to_process.get(get_validation_alias(field))
             # If the received body is a list, not a dict
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
@@ -1062,3 +1060,8 @@ def get_body_field(
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
     return final_field
+
+
+def get_validation_alias(field: ModelField) -> str:
+    va = getattr(field, "validation_alias", None)
+    return va or field.alias

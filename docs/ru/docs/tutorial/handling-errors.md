@@ -81,7 +81,7 @@
 
 ## Установка пользовательских обработчиков исключений { #install-custom-exception-handlers }
 
-Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">то же самое исключение - утилиты от Starlette</a>.
+Вы можете добавить пользовательские обработчики исключений с помощью <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">тех же утилит обработки исключений из Starlette</a>.
 
 Допустим, у вас есть пользовательское исключение `UnicornException`, которое вы (или используемая вами библиотека) можете `вызвать`.
 
@@ -117,7 +117,7 @@
 
 Вы можете переопределить эти обработчики исключений на свои собственные.
 
-### Переопределение исключений проверки запроса { #override-request-validation-exceptions }
+### Переопределение обработчика исключений проверки запроса { #override-request-validation-exceptions }
 
 Когда запрос содержит недопустимые данные, **FastAPI** внутренне вызывает ошибку `RequestValidationError`.
 
@@ -127,7 +127,7 @@
 
 Обработчик исключения получит объект `Request` и исключение.
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:16] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 Теперь, если перейти к `/items/foo`, то вместо стандартной JSON-ошибки с:
 
@@ -149,28 +149,9 @@
 вы получите текстовую версию:
 
 ```
-1 validation error
-path -> item_id
-  value is not a valid integer (type=type_error.integer)
+Validation errors:
+Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
-
-#### `RequestValidationError` или `ValidationError` { #requestvalidationerror-vs-validationerror }
-
-/// warning | Внимание
-
-Это технические детали, которые можно пропустить, если они не важны для вас сейчас.
-
-///
-
-`RequestValidationError` является подклассом Pydantic <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
-
-**FastAPI** использует его для того, чтобы, если вы используете Pydantic-модель в `response_model`, и ваши данные содержат ошибку, вы увидели ошибку в журнале.
-
-Но клиент/пользователь этого не увидит. Вместо этого клиент получит сообщение "Internal Server Error" с кодом состояния HTTP `500`.
-
-Так и должно быть, потому что если в вашем *ответе* или где-либо в вашем коде (не в *запросе* клиента) возникает Pydantic `ValidationError`, то это действительно ошибка в вашем коде.
-
-И пока вы не устраните ошибку, ваши клиенты/пользователи не должны иметь доступа к внутренней информации о ней, так как это может привести к уязвимости в системе безопасности.
 
 ### Переопределите обработчик ошибок `HTTPException` { #override-the-httpexception-error-handler }
 
@@ -178,13 +159,21 @@ path -> item_id
 
 Например, для этих ошибок можно вернуть обычный текстовый ответ вместо JSON:
 
-{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,22] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | Технические детали
 
 Можно также использовать `from starlette.responses import PlainTextResponse`.
 
 **FastAPI** предоставляет тот же `starlette.responses`, что и `fastapi.responses`, просто для удобства разработчика. Однако большинство доступных ответов поступает непосредственно из Starlette.
+
+///
+
+/// warning | Внимание
+
+Имейте в виду, что `RequestValidationError` содержит информацию об имени файла и строке, где произошла ошибка валидации, чтобы вы могли при желании отобразить её в логах с релевантными данными.
+
+Но это означает, что если вы просто преобразуете её в строку и вернёте эту информацию напрямую, вы можете допустить небольшую утечку информации о своей системе, поэтому здесь код извлекает и показывает каждую ошибку отдельно.
 
 ///
 
