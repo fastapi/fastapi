@@ -154,7 +154,7 @@ q: Union[str, None] = Query(default=None, min_length=3)
 
 👈, 👆 💪 📣 👈 `None` ☑ 🆎 ✋️ ⚙️ `default=...`:
 
-{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
 /// tip
 
