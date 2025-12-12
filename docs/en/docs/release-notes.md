@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+## 0.124.3
+
+### Fixes
+
+* 🐛 Fix support for tagged union with discriminator inside of `Annotated` with `Body()`. PR [#14512](https://github.com/fastapi/fastapi/pull/14512) by [@tiangolo](https://github.com/tiangolo).
+
 ### Refactors
 
 * ✅ Add set of tests for request parameters and alias. PR [#14358](https://github.com/fastapi/fastapi/pull/14358) by [@YuriiMotov](https://github.com/YuriiMotov).
@@ -19,6 +25,7 @@ hide:
 
 ### Translations
 
+* 🌐 Sync Russian docs. PR [#14509](https://github.com/fastapi/fastapi/pull/14509) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync German docs. PR [#14488](https://github.com/fastapi/fastapi/pull/14488) by [@nilslindemann](https://github.com/nilslindemann).
 
 ### Internal
