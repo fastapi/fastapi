@@ -26,9 +26,8 @@ def client_fixture() -> TestClient:
         barks: float
 
     def get_pet_type(v):
-        if isinstance(v, dict):
-            return v.get("pet_type", "")
-        return getattr(v, "pet_type", "")
+        assert isinstance(v, dict)
+        return v.get("pet_type", "")
 
     Pet = Annotated[
         Union[Annotated[Cat, Tag("cat")], Annotated[Dog, Tag("dog")]],
