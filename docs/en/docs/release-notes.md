@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Remove translations for removed docs. PR [#14516](https://github.com/fastapi/fastapi/pull/14516) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ➕ Add requirements for translations. PR [#14515](https://github.com/fastapi/fastapi/pull/14515) by [@tiangolo](https://github.com/tiangolo).
