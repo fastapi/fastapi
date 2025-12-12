@@ -78,10 +78,15 @@ _Attrs = {
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 def asdict(field_info: FieldInfo) -> Dict[str, Any]:
+    attributes = {}
+    for attr in _Attrs:
+        value = getattr(field_info, attr, Undefined)
+        if value is not Undefined:
+            attributes[attr] = value
     return {
         "annotation": field_info.annotation,
         "metadata": field_info.metadata,
-        "attributes": {attr: getattr(field_info, attr) for attr in _Attrs},
+        "attributes": attributes,
     }
 
 
