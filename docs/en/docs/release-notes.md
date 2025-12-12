@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.124.3
+
 ### Fixes
 
 * 🐛 Fix support for tagged union with discriminator inside of `Annotated` with `Body()`. PR [#14512](https://github.com/fastapi/fastapi/pull/14512) by [@tiangolo](https://github.com/tiangolo).
