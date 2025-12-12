@@ -71,6 +71,8 @@ class Param(FieldInfo):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: str = _Unset,
+        explode: bool = _Unset,
         **extra: Any,
     ):
         if example is not _Unset:
@@ -132,6 +134,8 @@ class Param(FieldInfo):  # type: ignore[misc]
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
         super().__init__(**use_kwargs)
+        self.style = style
+        self.explode = explode
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.default})"
@@ -185,6 +189,8 @@ class Path(Param):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: Literal["matrix", "label", "simple"] = "simple",
+        explode: bool = False,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -219,6 +225,8 @@ class Path(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -271,8 +279,14 @@ class Query(Param):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: Literal[
+            "form", "spaceDelimited", "pipeDelimited", "deepObject"
+        ] = "form",
+        explode: bool = _Unset,
         **extra: Any,
     ):
+        if explode is _Unset:
+            explode = False if style != "form" else True
         super().__init__(
             default=default,
             default_factory=default_factory,
@@ -303,6 +317,8 @@ class Query(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -356,6 +372,8 @@ class Header(Param):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: Literal["simple"] = "simple",
+        explode: bool = False,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -389,6 +407,8 @@ class Header(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
+            style=style,
+            explode=explode,
             **extra,
         )
 
@@ -441,6 +461,8 @@ class Cookie(Param):  # type: ignore[misc]
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
         json_schema_extra: Union[Dict[str, Any], None] = None,
+        style: Literal["form"] = "form",
+        explode: bool = False,
         **extra: Any,
     ):
         super().__init__(
@@ -473,6 +495,8 @@ class Cookie(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
+            style=style,
+            explode=explode,
             **extra,
         )
 
