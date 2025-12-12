@@ -98,7 +98,7 @@ jobs:
         run: uv pip install -r requirements-docs.txt
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
           path: docs/${{ matrix.lang }}/.cache
