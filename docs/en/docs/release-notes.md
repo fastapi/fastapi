@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.124.4
+
 ### Fixes
 
 * 🐛 Fix parameter aliases. PR [#14371](https://github.com/fastapi/fastapi/pull/14371) by [@YuriiMotov](https://github.com/YuriiMotov).
