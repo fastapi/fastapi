@@ -1,3 +1,4 @@
+import copy
 import http.client
 import inspect
 import warnings
@@ -378,7 +379,7 @@ def get_openapi_path(
                     additional_status_code,
                     additional_response,
                 ) in route.responses.items():
-                    process_response = additional_response.copy()
+                    process_response = copy.deepcopy(additional_response)
                     process_response.pop("model", None)
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
