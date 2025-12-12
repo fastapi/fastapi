@@ -243,6 +243,7 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
 async def serialize_response(
     *,
     field: Optional[ModelField] = None,
+    response_model: Any = Default(None),
     response_content: Any,
     include: Optional[IncEx] = None,
     exclude: Optional[IncEx] = None,
@@ -253,7 +254,10 @@ async def serialize_response(
     is_coroutine: bool = True,
     endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
-    if field:
+    if not field:
+        return jsonable_encoder(response_content)
+
+    if type(response_content) is not response_model:
         errors = []
         if not hasattr(field, "serialize"):
             # pydantic v1
@@ -291,18 +295,18 @@ async def serialize_response(
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )
-
-        return jsonable_encoder(
-            value,
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
     else:
-        return jsonable_encoder(response_content)
+        value = response_content
+
+    return jsonable_encoder(
+        value,
+        include=include,
+        exclude=exclude,
+        by_alias=by_alias,
+        exclude_unset=exclude_unset,
+        exclude_defaults=exclude_defaults,
+        exclude_none=exclude_none,
+    )
 
 
 async def run_endpoint_function(
@@ -324,6 +328,7 @@ def get_request_handler(
     status_code: Optional[int] = None,
     response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
+    response_model: Any = Default(None),
     response_model_include: Optional[IncEx] = None,
     response_model_exclude: Optional[IncEx] = None,
     response_model_by_alias: bool = True,
@@ -452,6 +457,7 @@ def get_request_handler(
                 content = await serialize_response(
                     field=response_field,
                     response_content=raw_response,
+                    response_model=response_model,
                     include=response_model_include,
                     exclude=response_model_exclude,
                     by_alias=response_model_by_alias,
@@ -709,6 +715,7 @@ class APIRoute(routing.Route):
             status_code=self.status_code,
             response_class=self.response_class,
             response_field=self.secure_cloned_response_field,
+            response_model=self.response_model,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
             response_model_by_alias=self.response_model_by_alias,
