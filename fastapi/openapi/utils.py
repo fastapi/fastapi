@@ -42,6 +42,7 @@ from .._compat import _is_model_field
 validation_error_definition = {
     "title": "ValidationError",
     "type": "object",
+    "description": "A message detailing how and where the input diverges from the schema.",
     "properties": {
         "loc": {
             "title": "Location",
@@ -49,7 +50,11 @@ validation_error_definition = {
             "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
         },
         "msg": {"title": "Message", "type": "string"},
-        "type": {"title": "Error Type", "type": "string"},
+        "type": {
+            "title": "Error Type",
+            "type": "string",
+            "description": "Free-form; when type is 'missing', it pertains to absent required fields.",
+        },
     },
     "required": ["loc", "msg", "type"],
 }
@@ -57,6 +62,7 @@ validation_error_definition = {
 validation_error_response_definition = {
     "title": "HTTPValidationError",
     "type": "object",
+    "description": "A collection of messages detailing errors in the input.",
     "properties": {
         "detail": {
             "title": "Detail",
