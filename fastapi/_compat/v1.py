@@ -278,11 +278,13 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_bytes_field(field: ModelField) -> bool:
-    return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
+    return lenient_issubclass(shared.unwrap_newtype(field.type_), (bytes, SecretBytes))  # type: ignore[no-any-return]
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
-    return field.shape in sequence_shapes and lenient_issubclass(field.type_, bytes)
+    return field.shape in sequence_shapes and lenient_issubclass(
+        shared.unwrap_newtype(field.type_), (bytes, SecretBytes)
+    )
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
