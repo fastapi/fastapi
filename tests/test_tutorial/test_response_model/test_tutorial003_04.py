@@ -9,7 +9,7 @@ from ...utils import needs_py310
 @pytest.mark.parametrize(
     "module_name",
     [
-        "tutorial003_04",
+        pytest.param("tutorial003_04_py39"),
         pytest.param("tutorial003_04_py310", marks=needs_py310),
     ],
 )

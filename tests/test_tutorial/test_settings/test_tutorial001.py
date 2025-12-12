@@ -10,8 +10,8 @@ from ...utils import needs_pydanticv1, needs_pydanticv2
 @pytest.fixture(
     name="app",
     params=[
-        pytest.param("tutorial001", marks=needs_pydanticv2),
-        pytest.param("tutorial001_pv1", marks=needs_pydanticv1),
+        pytest.param("tutorial001_py39", marks=needs_pydanticv2),
+        pytest.param("tutorial001_pv1_py39", marks=needs_pydanticv1),
     ],
 )
 def get_app(request: pytest.FixtureRequest, monkeypatch: MonkeyPatch):

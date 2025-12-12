@@ -1,4 +1,4 @@
-from docs_src.app_testing.tutorial001 import client, test_read_main
+from docs_src.app_testing.tutorial001_py39 import client, test_read_main
 
 
 def test_main():

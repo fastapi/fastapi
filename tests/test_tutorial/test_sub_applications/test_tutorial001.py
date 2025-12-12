@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.sub_applications.tutorial001 import app
+from docs_src.sub_applications.tutorial001_py39 import app
 
 client = TestClient(app)
 

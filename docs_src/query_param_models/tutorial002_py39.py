@@ -1,6 +1,7 @@
+from typing import Literal
+
 from fastapi import FastAPI, Query
 from pydantic import BaseModel, Field
-from typing_extensions import Literal
 
 app = FastAPI()
 

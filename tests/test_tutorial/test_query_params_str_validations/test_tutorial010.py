@@ -5,16 +5,15 @@ from dirty_equals import IsDict
 from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial010",
+        pytest.param("tutorial010_py39"),
         pytest.param("tutorial010_py310", marks=needs_py310),
-        "tutorial010_an",
-        pytest.param("tutorial010_an_py39", marks=needs_py39),
+        pytest.param("tutorial010_an_py39"),
         pytest.param("tutorial010_an_py310", marks=needs_py310),
     ],
 )

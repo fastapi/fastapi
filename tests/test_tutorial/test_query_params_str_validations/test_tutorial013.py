@@ -3,15 +3,12 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial013",
-        "tutorial013_an",
-        pytest.param("tutorial013_an_py39", marks=needs_py39),
+        "tutorial013_py39",
+        "tutorial013_an_py39",
     ],
 )
 def get_client(request: pytest.FixtureRequest):

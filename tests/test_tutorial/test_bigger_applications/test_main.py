@@ -4,15 +4,12 @@ import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="client",
     params=[
-        "app_an.main",
-        pytest.param("app_an_py39.main", marks=needs_py39),
-        "app.main",
+        "app_py39.main",
+        "app_an_py39.main",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
