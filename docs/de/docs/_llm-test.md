@@ -15,7 +15,7 @@ So verwenden:
 
 Die Tests:
 
-## Codeschnipsel { #code-snippets}
+## Codeschnipsel { #code-snippets }
 
 //// tab | Test
 
@@ -53,7 +53,7 @@ Siehe zum Beispiel den Abschnitt `### Quotes` in `docs/de/llm-prompt.md`.
 
 ////
 
-## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
+## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets }
 
 //// tab | Test
 
