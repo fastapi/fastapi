@@ -736,7 +736,7 @@ def _validate_value_with_model_field(
 ) -> Tuple[Any, List[Any]]:
     if value is None:
         if field.required:
-            return None, [get_missing_field_error(loc=loc)]
+            return None, []
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
@@ -796,7 +796,7 @@ def request_params_to_args(
             first_field.field_info, "convert_underscores", True
         )
 
-    params_to_process: Dict[str, Any] = {}
+    data: Dict[str, Any] = {}
 
     processed_keys = set()
 
@@ -814,7 +814,7 @@ def request_params_to_args(
                     alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not None:
-            params_to_process[get_validation_alias(field)] = value
+            data[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
 
     for key in received_params.keys():
@@ -822,11 +822,11 @@ def request_params_to_args(
             if hasattr(received_params, "getlist"):
                 value = received_params.getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
-                    params_to_process[key] = value[0]
+                    data[key] = value[0]
                 else:
-                    params_to_process[key] = value
+                    data[key] = value
             else:
-                params_to_process[key] = received_params.get(key)
+                data[key] = received_params.get(key)
 
     if single_not_embedded_field:
         field_info = first_field.field_info
@@ -835,7 +835,7 @@ def request_params_to_args(
         )
         loc: Tuple[str, ...] = (field_info.in_.value,)
         v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
+            field=first_field, value=data, values=values, loc=loc
         )
         return {first_field.name: v_}, errors_
 
