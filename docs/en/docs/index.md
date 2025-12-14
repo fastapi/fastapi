@@ -123,7 +123,9 @@ The key features are:
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** is FastAPI's little sibling, intended to be the **FastAPI of CLIs**.
+
+🚀
 
 ## Requirements { #requirements }
 
