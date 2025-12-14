@@ -2,7 +2,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+   <em>FastAPI framework: high performance, easy to learn, fast to code, and ready for production</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -126,7 +126,9 @@ The key features are:
 
 If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
-**Typer** is FastAPI's little sibling. And it's intended to be the **FastAPI of CLIs**. ⌨️ 🚀
+**Typer** is FastAPI's little sibling, intended to be the **FastAPI of CLIs**.
+
+🚀
 
 ## Requirements
 
@@ -178,7 +180,11 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <details markdown="1">
 <summary>Or use <code>async def</code>...</summary>
 
-If your code uses `async` / `await`, use `async def`:
+!!! tip
+    Use `async def` only when your code performs non-blocking I/O,
+    such as database queries or external API calls.
+
+
 
 ```Python hl_lines="9  14"
 from typing import Union
