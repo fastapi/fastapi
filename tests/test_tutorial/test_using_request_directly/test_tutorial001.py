@@ -98,9 +98,13 @@ def test_openapi():
                             "title": "Error Type",
                             "type": "string",
                         },
-                "input": {"title": "Input"},
-                "ctx": {"title": "Context", "type": "object"},
-                "url": {"title": "Error URL", "type": "string", "format": "uri"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                     "required": [
                         "loc",
