@@ -407,7 +407,7 @@ def get_request_handler(
             raise
         except Exception as e:
             http_error = HTTPException(
-                status_code=400, detail="There was an error parsing the body"
+                status_code=400, detail="An error occurred while parsing the body"
             )
             raise http_error from e
 
