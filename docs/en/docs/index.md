@@ -178,6 +178,9 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <summary>Or use <code>async def</code>...</summary>
 
 > **Tip:** Use `async def` when performing I/O-bound operations to fully benefit from FastAPI's asynchronous performance.
+**Tip**: Use `async def` only when your code performs non-blocking I/O
+(e.g. database calls, external APIs). For CPU-bound or blocking code,
+prefer `def` to avoid performance issues.
 
 
 ```Python hl_lines="9  14"
