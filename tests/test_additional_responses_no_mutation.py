@@ -4,6 +4,7 @@ don't accumulate duplicate $ref entries in anyOf arrays.
 See https://github.com/fastapi/fastapi/pull/14463
 """
 
+from typing import Union
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -20,7 +21,7 @@ class ModelB(BaseModel):
 app = FastAPI(
     responses={
         500: {
-            "model": ModelA | ModelB,
+            "model": Union[ModelA, ModelB],
             "content": {"application/json": {"examples": {"Case A": {"value": "a"}}}},
         }
     }
