@@ -178,8 +178,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 <summary>Or use <code>async def</code>...</summary>
 
 !!! tip
-    Use `async def` only when your code performs non-blocking I/O,
-    such as database queries or external API calls.
+    To learn more about when to use `async def`, check the Async and await documentation.
 
 
 
