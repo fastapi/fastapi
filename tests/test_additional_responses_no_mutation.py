@@ -5,9 +5,8 @@ See https://github.com/fastapi/fastapi/pull/14463
 """
 
 from fastapi import FastAPI
-from pydantic import BaseModel
-
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 
 class ModelA(BaseModel):
@@ -21,21 +20,19 @@ class ModelB(BaseModel):
 app = FastAPI(
     responses={
         500: {
-            'model': ModelA | ModelB,
-            'content': {"application/json": {
-                'examples': {"Case A": {"value": "a"}}
-            }}
+            "model": ModelA | ModelB,
+            "content": {"application/json": {"examples": {"Case A": {"value": "a"}}}},
         }
     }
 )
 
 
-@app.get('/route1')
+@app.get("/route1")
 def route1():
     return "test"
 
 
-@app.get('/route2')
+@app.get("/route2")
 def route2():
     return "test"
 
@@ -48,10 +45,7 @@ def test_openapi_schema():
     assert response.status_code == 200, response.text
     assert response.json() == {
         "openapi": "3.1.0",
-        "info": {
-            "title": "FastAPI",
-            "version": "0.1.0"
-        },
+        "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
             "/route1": {
                 "get": {
@@ -60,11 +54,7 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {}
-                                }
-                            }
+                            "content": {"application/json": {"schema": {}}},
                         },
                         "500": {
                             "description": "Internal Server Error",
@@ -72,24 +62,16 @@ def test_openapi_schema():
                                 "application/json": {
                                     "schema": {
                                         "anyOf": [
-                                            {
-                                                "$ref": "#/components/schemas/ModelA"
-                                            },
-                                            {
-                                                "$ref": "#/components/schemas/ModelB"
-                                            }
+                                            {"$ref": "#/components/schemas/ModelA"},
+                                            {"$ref": "#/components/schemas/ModelB"},
                                         ],
-                                        "title": "Response 500 Route1 Route1 Get"
+                                        "title": "Response 500 Route1 Route1 Get",
                                     },
-                                    "examples": {
-                                        "Case A": {
-                                            "value": "a"
-                                        }
-                                    }
+                                    "examples": {"Case A": {"value": "a"}},
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 }
             },
             "/route2": {
@@ -99,11 +81,7 @@ def test_openapi_schema():
                     "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {}
-                                }
-                            }
+                            "content": {"application/json": {"schema": {}}},
                         },
                         "500": {
                             "description": "Internal Server Error",
@@ -111,55 +89,33 @@ def test_openapi_schema():
                                 "application/json": {
                                     "schema": {
                                         "anyOf": [
-                                            {
-                                                "$ref": "#/components/schemas/ModelA"
-                                            },
-                                            {
-                                                "$ref": "#/components/schemas/ModelB"
-                                            }
+                                            {"$ref": "#/components/schemas/ModelA"},
+                                            {"$ref": "#/components/schemas/ModelB"},
                                         ],
-                                        "title": "Response 500 Route2 Route2 Get"
+                                        "title": "Response 500 Route2 Route2 Get",
                                     },
-                                    "examples": {
-                                        "Case A": {
-                                            "value": "a"
-                                        }
-                                    }
+                                    "examples": {"Case A": {"value": "a"}},
                                 }
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 }
-            }
+            },
         },
         "components": {
             "schemas": {
                 "ModelA": {
-                    "properties": {
-                        "a": {
-                            "type": "string",
-                            "title": "A"
-                        }
-                    },
+                    "properties": {"a": {"type": "string", "title": "A"}},
                     "type": "object",
-                    "required": [
-                        "a"
-                    ],
-                    "title": "ModelA"
+                    "required": ["a"],
+                    "title": "ModelA",
                 },
                 "ModelB": {
-                    "properties": {
-                        "b": {
-                            "type": "string",
-                            "title": "B"
-                        }
-                    },
+                    "properties": {"b": {"type": "string", "title": "B"}},
                     "type": "object",
-                    "required": [
-                        "b"
-                    ],
-                    "title": "ModelB"
-                }
+                    "required": ["b"],
+                    "title": "ModelB",
+                },
             }
-        }
+        },
     }
