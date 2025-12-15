@@ -31,12 +31,12 @@ app = FastAPI(
 
 @app.get("/route1")
 async def route1():
-    pass # pragma: no cover
+    pass  # pragma: no cover
 
 
 @app.get("/route2")
 async def route2():
-    pass # pragma: no cover
+    pass  # pragma: no cover
 
 
 client = TestClient(app)
