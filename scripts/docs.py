@@ -353,7 +353,6 @@ def get_updated_config_content() -> Dict[str, Any]:
             raise typer.Abort()
         use_name = f"{code} - {local_language_names[code]}"
         new_alternate.append({"link": url, "name": use_name})
-    new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
     return config
 
