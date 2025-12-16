@@ -914,7 +914,7 @@ def list_all_removable() -> list[Path]:
 
 
 @app.command()
-def remove_removable(language: str) -> None:
+def remove_removable(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
     removable_paths = list_removable(language)
     for path in removable_paths:
         path.unlink()
