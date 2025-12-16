@@ -69,11 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # TODO: uncomment this
-        # lang: ${{ fromJson(needs.langs.outputs.langs) }}
-        # command: ${{ fromJson(needs.langs.outputs.commands) }}
-        lang: ["es"]
-        command: ["update-outdated"]
+        lang: ${{ fromJson(needs.langs.outputs.langs) }}
+        command: ${{ fromJson(needs.langs.outputs.commands) }}
     permissions:
       contents: write
     steps:
