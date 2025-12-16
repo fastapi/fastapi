@@ -1,4 +1,4 @@
-# Response Personalizado - HTML, Stream, Archivo, otros
+# Response Personalizado - HTML, Stream, Archivo, otros { #custom-response-html-stream-file-others }
 
 Por defecto, **FastAPI** devolverá los responses usando `JSONResponse`.
 
@@ -18,7 +18,7 @@ Si usas una clase de response sin media type, FastAPI esperará que tu response 
 
 ///
 
-## Usa `ORJSONResponse`
+## Usa `ORJSONResponse` { #use-orjsonresponse }
 
 Por ejemplo, si estás exprimendo el rendimiento, puedes instalar y usar <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a> y establecer el response como `ORJSONResponse`.
 
@@ -48,7 +48,7 @@ El `ORJSONResponse` solo está disponible en FastAPI, no en Starlette.
 
 ///
 
-## Response HTML
+## Response HTML { #html-response }
 
 Para devolver un response con HTML directamente desde **FastAPI**, usa `HTMLResponse`.
 
@@ -67,7 +67,7 @@ Y se documentará así en OpenAPI.
 
 ///
 
-### Devuelve una `Response`
+### Devuelve una `Response` { #return-a-response }
 
 Como se ve en [Devolver una Response directamente](response-directly.md){.internal-link target=_blank}, también puedes sobrescribir el response directamente en tu *path operation*, devolviéndolo.
 
@@ -87,13 +87,13 @@ Por supuesto, el `Content-Type` header real, el código de estado, etc., provend
 
 ///
 
-### Documenta en OpenAPI y sobrescribe `Response`
+### Documenta en OpenAPI y sobrescribe `Response` { #document-in-openapi-and-override-response }
 
 Si quieres sobrescribir el response desde dentro de la función pero al mismo tiempo documentar el "media type" en OpenAPI, puedes usar el parámetro `response_class` Y devolver un objeto `Response`.
 
 El `response_class` solo se usará para documentar el OpenAPI *path operation*, pero tu `Response` se usará tal cual.
 
-#### Devuelve un `HTMLResponse` directamente
+#### Devuelve un `HTMLResponse` directamente { #return-an-htmlresponse-directly }
 
 Por ejemplo, podría ser algo así:
 
@@ -101,13 +101,13 @@ Por ejemplo, podría ser algo así:
 
 En este ejemplo, la función `generate_html_response()` ya genera y devuelve una `Response` en lugar de devolver el HTML en un `str`.
 
-Al devolver el resultado de llamar a `generate_html_response()`, ya estás devolviendo una `Response` que sobrescribirá el comportamiento predeterminado de **FastAPI**.
+Al devolver el resultado de llamar a `generate_html_response()`, ya estás devolviendo una `Response` que sobrescribirá el comportamiento por defecto de **FastAPI**.
 
 Pero como pasaste `HTMLResponse` en el `response_class` también, **FastAPI** sabrá cómo documentarlo en OpenAPI y la documentación interactiva como HTML con `text/html`:
 
 <img src="/img/tutorial/custom-response/image01.png">
 
-## Responses disponibles
+## Responses disponibles { #available-responses }
 
 Aquí hay algunos de los responses disponibles.
 
@@ -121,7 +121,7 @@ También podrías usar `from starlette.responses import HTMLResponse`.
 
 ///
 
-### `Response`
+### `Response` { #response }
 
 La clase principal `Response`, todos los otros responses heredan de ella.
 
@@ -138,23 +138,23 @@ FastAPI (de hecho Starlette) incluirá automáticamente un header Content-Length
 
 {* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
-### `HTMLResponse`
+### `HTMLResponse` { #htmlresponse }
 
 Toma algún texto o bytes y devuelve un response HTML, como leíste arriba.
 
-### `PlainTextResponse`
+### `PlainTextResponse` { #plaintextresponse }
 
 Toma algún texto o bytes y devuelve un response de texto plano.
 
 {* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
-### `JSONResponse`
+### `JSONResponse` { #jsonresponse }
 
 Toma algunos datos y devuelve un response codificado como `application/json`.
 
-Este es el response predeterminado usado en **FastAPI**, como leíste arriba.
+Este es el response usado por defecto en **FastAPI**, como leíste arriba.
 
-### `ORJSONResponse`
+### `ORJSONResponse` { #orjsonresponse }
 
 Un response JSON rápido alternativo usando <a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>, como leíste arriba.
 
@@ -164,7 +164,7 @@ Esto requiere instalar `orjson`, por ejemplo, con `pip install orjson`.
 
 ///
 
-### `UJSONResponse`
+### `UJSONResponse` { #ujsonresponse }
 
 Un response JSON alternativo usando <a href="https://github.com/ultrajson/ultrajson" class="external-link" target="_blank">`ujson`</a>.
 
@@ -188,7 +188,7 @@ Es posible que `ORJSONResponse` sea una alternativa más rápida.
 
 ///
 
-### `RedirectResponse`
+### `RedirectResponse` { #redirectresponse }
 
 Devuelve una redirección HTTP. Usa un código de estado 307 (Redirección Temporal) por defecto.
 
@@ -204,7 +204,7 @@ O puedes usarlo en el parámetro `response_class`:
 
 Si haces eso, entonces puedes devolver la URL directamente desde tu *path operation function*.
 
-En este caso, el `status_code` utilizado será el predeterminado para `RedirectResponse`, que es `307`.
+En este caso, el `status_code` utilizado será el por defecto para `RedirectResponse`, que es `307`.
 
 ---
 
@@ -212,13 +212,13 @@ También puedes usar el parámetro `status_code` combinado con el parámetro `re
 
 {* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
-### `StreamingResponse`
+### `StreamingResponse` { #streamingresponse }
 
 Toma un generador `async` o un generador/iterador normal y transmite el cuerpo del response.
 
 {* ../../docs_src/custom_response/tutorial007.py hl[2,14] *}
 
-#### Usando `StreamingResponse` con objetos similares a archivos
+#### Usando `StreamingResponse` con objetos similares a archivos { #using-streamingresponse-with-file-like-objects }
 
 Si tienes un objeto similar a un archivo (por ejemplo, el objeto devuelto por `open()`), puedes crear una función generadora para iterar sobre ese objeto similar a un archivo.
 
@@ -242,7 +242,7 @@ Nota que aquí como estamos usando `open()` estándar que no admite `async` y `a
 
 ///
 
-### `FileResponse`
+### `FileResponse` { #fileresponse }
 
 Transmite un archivo asincrónicamente como response.
 
@@ -263,7 +263,7 @@ También puedes usar el parámetro `response_class`:
 
 En este caso, puedes devolver la path del archivo directamente desde tu *path operation* function.
 
-## Clase de response personalizada
+## Clase de response personalizada { #custom-response-class }
 
 Puedes crear tu propia clase de response personalizada, heredando de `Response` y usándola.
 
@@ -291,7 +291,7 @@ Ahora en lugar de devolver:
 
 Por supuesto, probablemente encontrarás formas mucho mejores de aprovechar esto que formatear JSON. 😉
 
-## Clase de response predeterminada
+## Clase de response por defecto { #default-response-class }
 
 Al crear una instance de la clase **FastAPI** o un `APIRouter`, puedes especificar qué clase de response usar por defecto.
 
@@ -307,6 +307,6 @@ Todavía puedes sobrescribir `response_class` en *path operations* como antes.
 
 ///
 
-## Documentación adicional
+## Documentación adicional { #additional-documentation }
 
 También puedes declarar el media type y muchos otros detalles en OpenAPI usando `responses`: [Responses Adicionales en OpenAPI](additional-responses.md){.internal-link target=_blank}.

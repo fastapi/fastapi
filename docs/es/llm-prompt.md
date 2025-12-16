@@ -96,3 +96,4 @@ For the next terms, use the following translations:
 * load balancer: load balancer (do not translate to "balanceador de carga")
 * load balance: load balance (do not translate to "balancear carga")
 * self hosting: self hosting (do not translate to "auto alojamiento")
+* timing attack: timing attack (do not translate to "ataque de temporización")
