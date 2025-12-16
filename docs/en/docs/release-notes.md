@@ -15,6 +15,7 @@ hide:
 
 ### Internal
 
+* 👷 Run Smokeshow always, even on test failures. PR [#14538](https://github.com/fastapi/fastapi/pull/14538) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Make Pydantic versions customizable in CI. PR [#14535](https://github.com/fastapi/fastapi/pull/14535) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix checkout GitHub Action fetch-depth for LLM translations, enable cron monthly. PR [#14531](https://github.com/fastapi/fastapi/pull/14531) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix Typer command for CI LLM translations. PR [#14530](https://github.com/fastapi/fastapi/pull/14530) by [@tiangolo](https://github.com/tiangolo).
