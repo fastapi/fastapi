@@ -16,7 +16,7 @@ Você precisa ter certeza que ele é único para cada operação.
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operationId` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
+Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operation_id` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
 
 Você deve fazer isso depois de adicionar todas as suas *operações de rota*.
 
@@ -50,7 +50,7 @@ Adicionar um `\f` (um caractere de escape para alimentação de formulário) faz
 
 Ele não será mostrado na documentação, mas outras ferramentas (como o Sphinx) serão capazes de utilizar o resto do texto.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Respostas Adicionais { #additional-responses }
 
@@ -155,13 +155,13 @@ Por exemplo, nesta aplicação nós não usamos a funcionalidade integrada ao Fa
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[15:20, 22] *}
 
 ////
 
@@ -179,13 +179,13 @@ E então no nosso código, nós analisamos o conteúdo YAML diretamente, e estam
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[24:31] *}
 
 ////
 

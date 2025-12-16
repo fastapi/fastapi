@@ -205,7 +205,7 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 ### O abbr fornece uma explicação { #the-abbr-gives-an-explanation }
 
 * <abbr title="Um grupo de máquinas configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</abbr>
-* <abbr title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Aprendizado Profundo</abbr>
+* <abbr title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Deep Learning</abbr>
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
@@ -273,7 +273,7 @@ Para algumas instruções específicas do idioma, veja, por exemplo, a seção `
 * a documentação automática
 
 * Ciência de Dados
-* Aprendizado Profundo
+* Deep Learning
 * Aprendizado de Máquina
 * Injeção de Dependências
 * autenticação HTTP Basic
