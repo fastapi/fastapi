@@ -1,6 +1,6 @@
 # LLM-Testdatei { #llm-test-file }
 
-Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachspezifische Prompt wird an `general_prompt` angehängt.
+Dieses Dokument testet, ob das <abbr title="Large Language Model – Großes Sprachmodell">LLM</abbr>, das die Dokumentation übersetzt, den <abbr title="General Prompt – Allgemeiner Prompt">`general_prompt`</abbr> in `scripts/translate.py` und den sprachspezifischen Prompt in `docs/{language code}/llm-prompt.md` versteht. Der sprachsspezifische Prompt wird an `general_prompt` angehängt.
 
 Hier hinzugefügte Tests werden von allen Erstellern sprachspezifischer Prompts gesehen.
 
@@ -35,7 +35,7 @@ Siehe Abschnitt `### Content of code snippets` im allgemeinen Prompt in `scripts
 
 //// tab | Test
 
-Gestern schrieb mein Freund: „Wenn man unkorrekt korrekt schreibt, hat man es unkorrekt geschrieben“. Worauf ich antwortete: „Korrekt, aber ‚unkorrekt‘ ist unkorrekterweise nicht ‚„unkorrekt“‘“.
+Gestern schrieb mein Freund: „Wenn man ‚incorrectly‘ korrekt buchstabiert, hat man es falsch buchstabiert“. Worauf ich antwortete: „Korrekt, aber ‚incorrectly‘ ist inkorrekt nicht ‚‚„incorrectly“‘‘“.
 
 /// note | Hinweis
 
