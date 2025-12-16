@@ -947,9 +947,10 @@ def make_pr(
     if not repo.is_dirty(untracked_files=True):
         print("Repository is clean, no changes to commit")
         return
-    subprocess.run(["git", "config", "user.name", "github-actions"], check=True)
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions@github.com"], check=True
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        check=True,
     )
     branch_name = "translate"
     if language:
