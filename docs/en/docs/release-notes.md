@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🔥 Remove inactive/scarce translations to Persian. PR [#14542](https://github.com/fastapi/fastapi/pull/14542) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove translation to emoji to simplify the new setup with LLM autotranslations. PR [#14541](https://github.com/fastapi/fastapi/pull/14541) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for pt (update-outdated). PR [#14537](https://github.com/fastapi/fastapi/pull/14537) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for es (update-outdated). PR [#14532](https://github.com/fastapi/fastapi/pull/14532) by [@tiangolo](https://github.com/tiangolo).
