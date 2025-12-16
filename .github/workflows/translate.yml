@@ -1,6 +1,11 @@
 name: Translate
 
 on:
+  # TODO: remove this
+  push:
+    branches:
+      - translate-again
+
   workflow_dispatch:
     inputs:
       debug_enabled:
@@ -66,8 +71,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        lang: ${{ fromJson(needs.langs.outputs.langs) }}
-        command: ${{ fromJson(needs.langs.outputs.commands) }}
+        # TODO: uncomment this
+        # lang: ${{ fromJson(needs.langs.outputs.langs) }}
+        # command: ${{ fromJson(needs.langs.outputs.commands) }}
+        lang: ["es"]
+        command: ["update-outdated"]
     permissions:
       contents: write
     steps:
@@ -76,6 +84,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
