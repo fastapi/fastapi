@@ -126,7 +126,3 @@ Below is a list of English terms and their preferred French translations, separa
 
 * «cheat sheet»: «cheat sheet»
 * «plug-in»: «plug-in»
-
-### Other rules
-
-Preserve indentation. Keep emoticons. Encode in utf-8. Use Linux line breaks (LF).
