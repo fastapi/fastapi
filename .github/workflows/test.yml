@@ -73,10 +73,6 @@ jobs:
             python-version: "3.13"
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
-          # - os: ubuntu-latest
-          #   python-version: "3.13"
-          #   pydantic-version: "pydantic>=2.0.2,<2.7.0"
-          #   coverage: coverage
           - os: ubuntu-latest
             python-version: "3.14"
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
