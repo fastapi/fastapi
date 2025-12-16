@@ -52,7 +52,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 Pero al usar `secrets.compare_digest()` será seguro contra un tipo de ataques llamados "timing attacks".
 
-### Ataques de temporización { #timing-attacks }
+### Timing attacks { #timing-attacks }
 
 ¿Pero qué es un "timing attack"?
 
