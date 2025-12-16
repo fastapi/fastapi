@@ -120,7 +120,7 @@ jobs:
         if: matrix.coverage == 'coverage'
         uses: actions/upload-artifact@v5
         with:
-          name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
+          name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
 
