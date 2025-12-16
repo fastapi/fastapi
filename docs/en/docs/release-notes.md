@@ -13,6 +13,7 @@ hide:
 
 ### Internal
 
+* 👷 Fix checkout GitHub Action fetch-depth for LLM translations, enable cron monthly. PR [#14531](https://github.com/fastapi/fastapi/pull/14531) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Fix Typer command for CI LLM translations. PR [#14530](https://github.com/fastapi/fastapi/pull/14530) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update LLM translation CI, add language matrix and extra commands, prepare for scheduled run. PR [#14529](https://github.com/fastapi/fastapi/pull/14529) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Update github-actions user for GitHub Actions workflows. PR [#14528](https://github.com/fastapi/fastapi/pull/14528) by [@tiangolo](https://github.com/tiangolo).
