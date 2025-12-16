@@ -89,7 +89,7 @@ Below is a list of English terms and their preferred French translations, separa
 * «/// check»: «/// check | vérifier»
 * «/// info»: «/// info»
 
-* «the docs»: «la documentation»
+* «the docs»: «les documents»
 * «the documentation»: «la documentation»
 
 * «framework»: «framework» (do not translate to «cadre»)
@@ -104,8 +104,8 @@ Below is a list of English terms and their preferred French translations, separa
 * «the request» (what the client sends to the server): «la requête»
 * «the response» (what the server sends back to the client): «la réponse»
 
-* «the request body»: «le corps de requête»
-* «the response body»: «le corps de réponse»
+* «the request body»: «le corps de la requête»
+* «the response body»: «le corps de la réponse»
 
 * «path operation»: «opération de chemin»
 * «path operations» (plural): «opérations de chemin»
@@ -119,10 +119,10 @@ Below is a list of English terms and their preferred French translations, separa
 * «the `Response`»: «`Response`» (keep as code identifier)
 
 * «deployment»: «déploiement»
-* «to upgrade»: «mettre à jour»
+* «to upgrade»: «mettre à niveau»
 
 * «deprecated»: «déprécié»
 * «to deprecate»: «déprécier»
 
-* «cheat sheet»: «cheat sheet»
+* «cheat sheet»: «aide-mémoire»
 * «plug-in»: «plug-in»
