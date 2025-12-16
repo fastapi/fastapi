@@ -1,10 +1,8 @@
 name: Translate
 
 on:
-  # TODO: remove this
-  push:
-    branches:
-      - translate-again
+  schedule:
+    - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
 
   workflow_dispatch:
     inputs:
