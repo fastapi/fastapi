@@ -154,7 +154,6 @@ jobs:
           merge-multiple: true
       - run: ls -la coverage
       - run: coverage combine coverage
-      - run: coverage report
       - run: coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
         uses: actions/upload-artifact@v5
@@ -162,6 +161,7 @@ jobs:
           name: coverage-html
           path: htmlcov
           include-hidden-files: true
+      - run: coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
   check:  # This job does nothing and is only used for the branch protection
