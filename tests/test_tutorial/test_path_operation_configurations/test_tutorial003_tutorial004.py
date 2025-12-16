@@ -13,13 +13,13 @@ skip_for_pydantic_v1 = needs_pydanticv2
 DESCRIPTIONS = {
     "tutorial003": "Create an item with all the information, name, description, price, tax and a set of unique tags",
     "tutorial004": dedent("""
-    Create an item with all the information:
+        Create an item with all the information:
 
-    - **name**: each item must have a name
-    - **description**: a long description
-    - **price**: required
-    - **tax**: if the item doesn't have tax, you can omit this
-    - **tags**: a set of unique tag strings for this item
+        - **name**: each item must have a name
+        - **description**: a long description
+        - **price**: required
+        - **tax**: if the item doesn't have tax, you can omit this
+        - **tags**: a set of unique tag strings for this item
     """).strip(),
 }
 
