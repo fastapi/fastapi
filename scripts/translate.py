@@ -1,3 +1,4 @@
+import json
 import secrets
 import subprocess
 from collections.abc import Iterable
@@ -828,6 +829,65 @@ def translate_lang(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) ->
         print(f"Done translating: {p}")
 
 
+def get_llm_translatable() -> list[str]:
+    translatable_langs = []
+    langs = get_langs()
+    for lang in langs:
+        if lang == "en":
+            continue
+        lang_prompt_path = Path(f"docs/{lang}/llm-prompt.md")
+        if lang_prompt_path.exists():
+            translatable_langs.append(lang)
+    return translatable_langs
+
+
+@app.command()
+def list_llm_translatable() -> list[str]:
+    translatable_langs = get_llm_translatable()
+    print("LLM translatable languages:", translatable_langs)
+    return translatable_langs
+
+
+@app.command()
+def llm_translatable_json(
+    language: Annotated[str | None, typer.Option(envvar="LANGUAGE")] = None,
+) -> None:
+    translatable_langs = get_llm_translatable()
+    if language:
+        if language in translatable_langs:
+            print(json.dumps([language]))
+            return
+        else:
+            raise typer.Exit(code=1)
+    print(json.dumps(translatable_langs))
+
+
+@app.command()
+def commands_json(
+    command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
+) -> None:
+    available_commands = [
+        "translate-page",
+        "translate-lang",
+        "update-outdated",
+        "add-missing",
+        "update-and-add",
+        "remove-removable",
+    ]
+    default_commands = [
+        "remove-removable",
+        "update-outdated",
+        "add-missing",
+    ]
+    if command:
+        if command in available_commands:
+            print(json.dumps([command]))
+            return
+        else:
+            raise typer.Exit(code=1)
+    print(json.dumps(default_commands))
+
+
 @app.command()
 def list_removable(language: str) -> list[Path]:
     removable_paths: list[Path] = []
@@ -939,6 +999,7 @@ def update_and_add(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) ->
 def make_pr(
     *,
     language: Annotated[str | None, typer.Option(envvar="LANGUAGE")] = None,
+    command: Annotated[str | None, typer.Option(envvar="COMMAND")] = None,
     github_token: Annotated[str, typer.Option(envvar="GITHUB_TOKEN")],
     github_repository: Annotated[str, typer.Option(envvar="GITHUB_REPOSITORY")],
 ) -> None:
@@ -955,6 +1016,8 @@ def make_pr(
     branch_name = "translate"
     if language:
         branch_name += f"-{language}"
+    if command:
+        branch_name += f"-{command}"
     branch_name += f"-{secrets.token_hex(4)}"
     print(f"Creating a new branch {branch_name}")
     subprocess.run(["git", "checkout", "-b", branch_name], check=True)
@@ -965,6 +1028,8 @@ def make_pr(
     message = "🌐 Update translations"
     if language:
         message += f" for {language}"
+    if command:
+        message += f" ({command})"
     subprocess.run(["git", "commit", "-m", message], check=True)
     print("Pushing branch")
     subprocess.run(["git", "push", "origin", branch_name], check=True)
