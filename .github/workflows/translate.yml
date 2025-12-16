@@ -75,7 +75,7 @@ jobs:
         # lang: ${{ fromJson(needs.langs.outputs.langs) }}
         # command: ${{ fromJson(needs.langs.outputs.commands) }}
         lang: ["es"]
-        command: ["update-outdated"]
+        command: ["add-missing"]
     permissions:
       contents: write
     steps:
