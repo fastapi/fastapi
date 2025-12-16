@@ -66,17 +66,17 @@ jobs:
           - os: ubuntu-latest
             python-version: "3.12"
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
+          # Run one test with Pydantic < 2.7 to test changes across versions
+          - os: ubuntu-latest
+            python-version: "3.12"
+            pydantic-version: "pydantic>=2.0.2,<2.7.0"
+            coverage: coverage
           - os: macos-latest
             python-version: "3.13"
             pydantic-version: "pydantic>=1.10.0,<2.0.0"
           - os: windows-latest
             python-version: "3.13"
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
-            coverage: coverage
-          # Run one test with Pydantic < 2.7 to test changes across versions
-          - os: ubuntu-latest
-            python-version: "3.12"
-            pydantic-version: "pydantic>=2.0.2,<2.7.0"
             coverage: coverage
           - os: ubuntu-latest
             python-version: "3.14"
