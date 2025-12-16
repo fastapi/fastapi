@@ -1,15 +1,26 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py39, needs_py310, needs_pydanticv2
+
+skip_for_pydantic_v1 = needs_pydanticv2
 
 
 @pytest.fixture(
     name="client",
     params=[
+        "tutorial002",
+        pytest.param("tutorial002_py310", marks=needs_py310),
+        "tutorial002_an",
+        pytest.param("tutorial002_an_py39", marks=needs_py39),
+        pytest.param("tutorial002_an_py310", marks=needs_py310),
+        "tutorial003",
+        pytest.param("tutorial003_py310", marks=needs_py310),
+        "tutorial003_an",
+        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py310", marks=needs_py310),
         "tutorial004",
         pytest.param("tutorial004_py310", marks=needs_py310),
         "tutorial004_an",
@@ -108,16 +119,10 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Q",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Q", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Q",
+                            },
                             "name": "q",
                             "in": "query",
                         },
