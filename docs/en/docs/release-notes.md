@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.125.0
+
 ### Breaking Changes
 
 * 🔧 Drop support for Python 3.8. PR [#14563](https://github.com/fastapi/fastapi/pull/14563) by [@tiangolo](https://github.com/tiangolo).
