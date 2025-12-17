@@ -1,7 +1,8 @@
+from typing import Annotated
+
 import pytest
 from fastapi import FastAPI, Path
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 

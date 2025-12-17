@@ -3,7 +3,6 @@
 # Made an issue in:
 # https://github.com/fastapi/fastapi/issues/14247
 from enum import Enum
-from typing import List
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -25,7 +24,7 @@ class MessageEvent(BaseModel):
 
 class MessageOutput(BaseModel):
     body: str = ""
-    events: List[MessageEvent] = []
+    events: list[MessageEvent] = []
 
 
 class Message(BaseModel):

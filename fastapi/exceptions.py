@@ -1,10 +1,10 @@
-from typing import Any, Dict, Optional, Sequence, Type, TypedDict, Union
+from collections.abc import Sequence
+from typing import Annotated, Any, Optional, TypedDict, Union
 
 from annotated_doc import Doc
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated
 
 
 class EndpointContext(TypedDict, total=False):
@@ -62,7 +62,7 @@ class HTTPException(StarletteHTTPException):
             ),
         ] = None,
         headers: Annotated[
-            Optional[Dict[str, str]],
+            Optional[dict[str, str]],
             Doc(
                 """
                 Any headers to send to the client in the response.
@@ -144,8 +144,8 @@ class WebSocketException(StarletteWebSocketException):
         super().__init__(code=code, reason=reason)
 
 
-RequestErrorModel: Type[BaseModel] = create_model("Request")
-WebSocketErrorModel: Type[BaseModel] = create_model("WebSocket")
+RequestErrorModel: type[BaseModel] = create_model("Request")
+WebSocketErrorModel: type[BaseModel] = create_model("WebSocket")
 
 
 class FastAPIError(RuntimeError):

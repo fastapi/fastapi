@@ -1,5 +1,7 @@
+from collections.abc import AsyncGenerator
+from contextlib import AbstractContextManager
 from contextlib import asynccontextmanager as asynccontextmanager
-from typing import AsyncGenerator, ContextManager, TypeVar
+from typing import TypeVar
 
 import anyio.to_thread
 from anyio import CapacityLimiter
@@ -14,7 +16,7 @@ _T = TypeVar("_T")
 
 @asynccontextmanager
 async def contextmanager_in_threadpool(
-    cm: ContextManager[_T],
+    cm: AbstractContextManager[_T],
 ) -> AsyncGenerator[_T, None]:
     # blocking __exit__ from running waiting on a free thread
     # can create race conditions/deadlocks if the context manager itself
