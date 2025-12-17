@@ -377,7 +377,7 @@ Este estilo de usar `async` y `await` es relativamente nuevo en el lenguaje.
 
 Pero hace que trabajar con código asíncrono sea mucho más fácil.
 
-Esta misma sintaxis (or casi idéntica) también se incluyó recientemente en las versiones modernas de JavaScript (en el Navegador y NodeJS).
+Esta misma sintaxis (o casi idéntica) también se incluyó recientemente en las versiones modernas de JavaScript (en el Navegador y NodeJS).
 
 Pero antes de eso, manejar el código asíncrono era mucho más complejo y difícil.
 

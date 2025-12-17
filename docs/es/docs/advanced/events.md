@@ -50,7 +50,7 @@ Lo primero que hay que notar es que estamos definiendo una función asíncrona c
 
 {* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
-La primera parte de la función, antes del `yield`, será ejecutada **before** de que la aplicación comience.
+La primera parte de la función, antes del `yield`, será ejecutada **antes** de que la aplicación comience.
 
 Y la parte después del `yield` será ejecutada **después** de que la aplicación haya terminado.
 
