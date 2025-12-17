@@ -119,6 +119,11 @@ jobs:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
+      - name: CodSpeed benchmarks
+        uses: CodSpeedHQ/action@v4
+        with:
+          mode: simulation
+          run: pytest tests/ --codspeed
 
   coverage-combine:
     needs: [test]
