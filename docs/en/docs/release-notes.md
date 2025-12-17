@@ -11,6 +11,10 @@ hide:
 
 * 🔧 Drop support for Python 3.8. PR [#14563](https://github.com/fastapi/fastapi/pull/14563) by [@tiangolo](https://github.com/tiangolo).
 
+### Refactors
+
+* ♻️ Upgrade internal syntax to Python 3.9+ 🎉. PR [#14564](https://github.com/fastapi/fastapi/pull/14564) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * ⚰️ Remove Python 3.8 from CI and remove Python 3.8 examples from source docs. PR [#14559](https://github.com/fastapi/fastapi/pull/14559) by [@tiangolo](https://github.com/tiangolo).
