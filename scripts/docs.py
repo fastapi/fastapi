@@ -263,7 +263,11 @@ def build_all() -> None:
     """
     update_languages()
     shutil.rmtree(site_path, ignore_errors=True)
-    langs = [lang.name for lang in get_lang_paths() if (lang.is_dir() and lang.name in SUPPORTED_LANGS)]
+    langs = [
+        lang.name
+        for lang in get_lang_paths()
+        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
+    ]
     cpu_count = os.cpu_count() or 1
     process_pool_size = cpu_count * 4
     typer.echo(f"Using process pool size: {process_pool_size}")
