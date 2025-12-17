@@ -305,9 +305,7 @@ def get_typed_annotation(annotation: Any, globalns: Dict[str, Any]) -> Any:
     return annotation
 
 
-def _try_resolve_annotated_string(
-    annotation_str: str, globalns: Dict[str, Any]
-) -> Any:
+def _try_resolve_annotated_string(annotation_str: str, globalns: Dict[str, Any]) -> Any:
     """
     Try to partially resolve an Annotated string annotation.
 
@@ -347,9 +345,7 @@ def _try_resolve_annotated_string(
 
     # Try to resolve the type part, keep as ForwardRef if it fails
     try:
-        resolved_type = evaluate_forwardref(
-            ForwardRef(type_part), globalns, globalns
-        )
+        resolved_type = evaluate_forwardref(ForwardRef(type_part), globalns, globalns)
     except Exception:
         resolved_type = ForwardRef(type_part)
 
