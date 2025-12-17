@@ -1,11 +1,10 @@
-from typing import Any, Dict, Union
+from typing import Annotated, Any, Union
 
 import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -54,7 +53,7 @@ def test_required_str_schema(path: str):
     "path",
     ["/required-str", "/model-required-str"],
 )
-def test_required_str_missing(path: str, json: Union[Dict[str, Any], None]):
+def test_required_str_missing(path: str, json: Union[dict[str, Any], None]):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422
@@ -140,7 +139,7 @@ def test_required_str_alias_schema(path: str):
     "path",
     ["/required-alias", "/model-required-alias"],
 )
-def test_required_alias_missing(path: str, json: Union[Dict[str, Any], None]):
+def test_required_alias_missing(path: str, json: Union[dict[str, Any], None]):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422
@@ -266,7 +265,7 @@ def test_required_validation_alias_schema(path: str):
     ],
 )
 def test_required_validation_alias_missing(
-    path: str, json: Union[Dict[str, Any], None]
+    path: str, json: Union[dict[str, Any], None]
 ):
     client = TestClient(app)
     response = client.post(path, json=json)
@@ -386,7 +385,7 @@ def test_required_alias_and_validation_alias_schema(path: str):
     ],
 )
 def test_required_alias_and_validation_alias_missing(
-    path: str, json: Union[Dict[str, Any], None]
+    path: str, json: Union[dict[str, Any], None]
 ):
     client = TestClient(app)
     response = client.post(path, json=json)

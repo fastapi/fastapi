@@ -1,15 +1,10 @@
+from collections.abc import Sequence
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from typing import (
     Any,
     Callable,
-    Dict,
-    List,
-    Sequence,
-    Set,
-    Tuple,
-    Type,
     Union,
 )
 
@@ -124,7 +119,7 @@ else:
 
 
 GetJsonSchemaHandler = Any
-JsonSchemaValue = Dict[str, Any]
+JsonSchemaValue = dict[str, Any]
 CoreSchema = Any
 Url = AnyUrl
 
@@ -154,7 +149,7 @@ class PydanticSchemaGenerationError(Exception):
     pass
 
 
-RequestErrorModel: Type[BaseModel] = create_model("Request")
+RequestErrorModel: type[BaseModel] = create_model("Request")
 
 
 def with_info_plain_validator_function(
@@ -169,10 +164,10 @@ def with_info_plain_validator_function(
 
 def get_model_definitions(
     *,
-    flat_models: Set[Union[Type[BaseModel], Type[Enum]]],
-    model_name_map: Dict[Union[Type[BaseModel], Type[Enum]], str],
-) -> Dict[str, Any]:
-    definitions: Dict[str, Dict[str, Any]] = {}
+    flat_models: set[Union[type[BaseModel], type[Enum]]],
+    model_name_map: dict[Union[type[BaseModel], type[Enum]], str],
+) -> dict[str, Any]:
+    definitions: dict[str, dict[str, Any]] = {}
     for model in flat_models:
         m_schema, m_definitions, m_nested_models = model_process_schema(
             model, model_name_map=model_name_map, ref_prefix=REF_PREFIX
@@ -219,7 +214,7 @@ def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
     return False
 
 
-def _model_rebuild(model: Type[BaseModel]) -> None:
+def _model_rebuild(model: type[BaseModel]) -> None:
     model.update_forward_refs()
 
 
@@ -237,11 +232,11 @@ def get_schema_from_model_field(
     *,
     field: ModelField,
     model_name_map: ModelNameMap,
-    field_mapping: Dict[
-        Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    field_mapping: dict[
+        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
     separate_input_output_schemas: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     return field_schema(  # type: ignore[no-any-return]
         field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
     )[0]
@@ -254,12 +249,12 @@ def get_schema_from_model_field(
 
 def get_definitions(
     *,
-    fields: List[ModelField],
+    fields: list[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
-) -> Tuple[
-    Dict[Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
-    Dict[str, Dict[str, Any]],
+) -> tuple[
+    dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
+    dict[str, dict[str, Any]],
 ]:
     models = get_flat_models_from_fields(fields, known_models=set())
     return {}, get_model_definitions(flat_models=models, model_name_map=model_name_map)
@@ -293,7 +288,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return]
 
 
-def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
+def get_missing_field_error(loc: tuple[str, ...]) -> dict[str, Any]:
     missing_field_error = ErrorWrapper(MissingError(), loc=loc)
     new_error = ValidationError([missing_field_error], RequestErrorModel)
     return new_error.errors()[0]  # type: ignore[return-value]
@@ -301,12 +296,12 @@ def get_missing_field_error(loc: Tuple[str, ...]) -> Dict[str, Any]:
 
 def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
-) -> Type[BaseModel]:
+) -> type[BaseModel]:
     BodyModel = create_model(model_name)
     for f in fields:
         BodyModel.__fields__[f.name] = f  # type: ignore[index]
     return BodyModel
 
 
-def get_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return list(model.__fields__.values())  # type: ignore[attr-defined]
