@@ -147,8 +147,8 @@ Se você for ao `/items/foo`, em vez de receber o JSON padrão com o erro:
 você receberá a versão em texto:
 
 ```
-Erros de validação:
-Campo: ('path', 'item_id'), Erro: A entrada deve ser um inteiro válido; não foi possível interpretar a string como um inteiro
+Validation errors:
+Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer
 ```
 
 ### Sobrescreva o manipulador de erro `HTTPException` { #override-the-httpexception-error-handler }
