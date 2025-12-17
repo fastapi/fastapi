@@ -312,6 +312,10 @@ def _try_resolve_annotated_string(annotation_str: str, globalns: Dict[str, Any])
     When we have "Annotated[ForwardRef, metadata1, metadata2]" and ForwardRef
     can't be resolved, we still want to preserve the Annotated structure with
     the metadata (like Depends) so that FastAPI can extract dependencies.
+
+    IMPORTANT: This function ONLY returns a value when the metadata is a Depends
+    instance, because replacing the type with Any would break type detection for
+    other parameter types (File, Form, Query, etc.).
     """
     # Remove "Annotated[" prefix and trailing "]"
     if not annotation_str.startswith("Annotated[") or not annotation_str.endswith("]"):
@@ -343,12 +347,6 @@ def _try_resolve_annotated_string(annotation_str: str, globalns: Dict[str, Any])
     type_part = inner[:first_comma_idx].strip()
     metadata_part = inner[first_comma_idx + 1 :].strip()
 
-    # Try to resolve the type part, keep as ForwardRef if it fails
-    try:
-        resolved_type = evaluate_forwardref(ForwardRef(type_part), globalns, globalns)
-    except Exception:
-        resolved_type = ForwardRef(type_part)
-
     # Try to evaluate the metadata parts
     # The metadata is usually Depends(func), Query(), etc.
     try:
@@ -360,12 +358,28 @@ def _try_resolve_annotated_string(annotation_str: str, globalns: Dict[str, Any])
         # that should be evaluable in the context of the module
         metadata_value = eval(metadata_part, eval_globals)  # noqa: S307
 
+        # ONLY return Annotated[..., metadata] for Depends
+        # For other metadata types (File, Form, Query, etc.), we need the actual type
+        # to correctly identify the parameter kind, so return None to let the
+        # original logic handle it
+        if not isinstance(metadata_value, params.Depends):
+            return None
+
+        # Try to resolve the type part
+        try:
+            resolved_type = evaluate_forwardref(
+                ForwardRef(type_part), globalns, globalns
+            )
+        except Exception:
+            resolved_type = None
+
         # Construct the Annotated type
-        if isinstance(resolved_type, ForwardRef):
-            # Keep the ForwardRef but wrap in Annotated with the metadata
-            return Annotated[Any, metadata_value]  # type: ignore[return-value]
+        if resolved_type is None or isinstance(resolved_type, ForwardRef):
+            # Keep Any as the type since this is a Depends and the actual type
+            # will be resolved from the dependency function's return annotation
+            return Annotated[Any, metadata_value]
         else:
-            return Annotated[resolved_type, metadata_value]  # type: ignore[return-value]
+            return Annotated[resolved_type, metadata_value]
     except Exception:
         return None
 
