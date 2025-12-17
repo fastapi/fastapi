@@ -9,7 +9,7 @@ from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
-from starlette.requests import Request
+from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
 from typing_extensions import Annotated
 
@@ -93,7 +93,7 @@ class HTTPBase(SecurityBase):
         )
 
     async def __call__(
-        self, request: Request
+        self, request: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
@@ -203,7 +203,7 @@ class HTTPBasic(HTTPBase):
         return {"WWW-Authenticate": "Basic"}
 
     async def __call__(  # type: ignore
-        self, request: Request
+        self, request: HTTPConnection
     ) -> Optional[HTTPBasicCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
@@ -304,7 +304,7 @@ class HTTPBearer(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, request: Request
+        self, request: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
@@ -407,7 +407,7 @@ class HTTPDigest(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, request: Request
+        self, request: HTTPConnection
     ) -> Optional[HTTPAuthorizationCredentials]:
         authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
