@@ -1,4 +1,4 @@
-# Tipos de Datos Extra
+# Tipos de Datos Extra { #extra-data-types }
 
 Hasta ahora, has estado usando tipos de datos comunes, como:
 
@@ -17,7 +17,7 @@ Y seguirás teniendo las mismas funcionalidades como hasta ahora:
 * Validación de datos.
 * Anotación y documentación automática.
 
-## Otros tipos de datos
+## Otros tipos de datos { #other-data-types }
 
 Aquí hay algunos de los tipos de datos adicionales que puedes usar:
 
@@ -51,7 +51,7 @@ Aquí hay algunos de los tipos de datos adicionales que puedes usar:
     * En requests y responses, manejado igual que un `float`.
 * Puedes revisar todos los tipos de datos válidos de Pydantic aquí: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Tipos de datos de Pydantic</a>.
 
-## Ejemplo
+## Ejemplo { #example }
 
 Aquí tienes un ejemplo de una *path operation* con parámetros usando algunos de los tipos anteriores.
 

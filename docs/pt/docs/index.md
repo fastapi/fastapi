@@ -52,14 +52,20 @@ Os recursos chave são:
 
 <!-- sponsors -->
 
-{% if sponsors %}
+### Patrocinador Keystone { #keystone-sponsor }
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+
+### Patrocinadores Ouro e Prata { #gold-and-silver-sponsors }
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
-{% endif %}
 
 <!-- /sponsors -->
 
@@ -443,6 +449,58 @@ Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fas
     * **CORS**
     * **Cookie Sessions**
     * ...e mais.
+
+### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
+
+Você pode opcionalmente implantar sua aplicação FastAPI na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, inscreva-se na lista de espera se ainda não o fez. 🚀
+
+Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode implantar sua aplicação com um único comando.
+
+Antes de implantar, certifique-se de que está autenticado:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Depois, implemente sua aplicação:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+É isso! Agora você pode acessar sua aplicação nesse URL. ✨
+
+#### Sobre a FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** é construída pelo mesmo autor e equipe por trás do **FastAPI**.
+
+Ela simplifica o processo de **construir**, **implantar** e **acessar** uma API com esforço mínimo.
+
+Traz a mesma **experiência do desenvolvedor** de construir aplicações com FastAPI para **implantá-las** na nuvem. 🎉
+
+A FastAPI Cloud é a principal patrocinadora e financiadora dos projetos open source do ecossistema *FastAPI and friends*. ✨
+
+#### Implante em outros provedores de nuvem { #deploy-to-other-cloud-providers }
+
+FastAPI é open source e baseado em padrões. Você pode implantar aplicações FastAPI em qualquer provedor de nuvem que escolher.
+
+Siga os tutoriais do seu provedor de nuvem para implantar aplicações FastAPI com eles. 🤓
 
 ## Performance { #performance }
 

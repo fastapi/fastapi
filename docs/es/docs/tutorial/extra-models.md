@@ -1,4 +1,4 @@
-# Modelos Extra
+# Modelos Extra { #extra-models }
 
 Continuando con el ejemplo anterior, será común tener más de un modelo relacionado.
 
@@ -16,7 +16,7 @@ Si no lo sabes, aprenderás qué es un "hash de contraseña" en los [capítulos 
 
 ///
 
-## Múltiples modelos
+## Múltiples modelos { #multiple-models }
 
 Aquí tienes una idea general de cómo podrían ser los modelos con sus campos de contraseña y los lugares donde se utilizan:
 
@@ -30,9 +30,9 @@ Los ejemplos aquí usan `.dict()` para compatibilidad con Pydantic v1, pero debe
 
 ///
 
-### Acerca de `**user_in.dict()`
+### Acerca de `**user_in.dict()` { #about-user-in-dict }
 
-#### `.dict()` de Pydantic
+#### `.dict()` de Pydantic { #pydantics-dict }
 
 `user_in` es un modelo Pydantic de la clase `UserIn`.
 
@@ -69,7 +69,7 @@ obtendremos un `dict` de Python con:
 }
 ```
 
-#### Desempaquetando un `dict`
+#### Desempaquetando un `dict` { #unpacking-a-dict }
 
 Si tomamos un `dict` como `user_dict` y lo pasamos a una función (o clase) con `**user_dict`, Python lo "desempaquetará". Pasará las claves y valores del `user_dict` directamente como argumentos clave-valor.
 
@@ -101,7 +101,7 @@ UserInDB(
 )
 ```
 
-#### Un modelo Pydantic a partir del contenido de otro
+#### Un modelo Pydantic a partir del contenido de otro { #a-pydantic-model-from-the-contents-of-another }
 
 Como en el ejemplo anterior obtuvimos `user_dict` de `user_in.dict()`, este código:
 
@@ -120,7 +120,7 @@ UserInDB(**user_in.dict())
 
 Así, obtenemos un modelo Pydantic a partir de los datos en otro modelo Pydantic.
 
-#### Desempaquetando un `dict` y palabras clave adicionales
+#### Desempaquetando un `dict` y palabras clave adicionales { #unpacking-a-dict-and-extra-keywords }
 
 Y luego agregando el argumento de palabra clave adicional `hashed_password=hashed_password`, como en:
 
@@ -146,7 +146,7 @@ Las funciones adicionales de soporte `fake_password_hasher` y `fake_save_user` s
 
 ///
 
-## Reducir duplicación
+## Reducir duplicación { #reduce-duplication }
 
 Reducir la duplicación de código es una de las ideas centrales en **FastAPI**.
 
@@ -156,7 +156,7 @@ Y estos modelos están compartiendo muchos de los datos y duplicando nombres y t
 
 Podríamos hacerlo mejor.
 
-Podemos declarar un modelo `UserBase` que sirva como base para nuestros otros modelos. Y luego podemos hacer subclases de ese modelo que heredan sus atributos (declaraciones de tipo, validación, etc).
+Podemos declarar un modelo `UserBase` que sirva como base para nuestros otros modelos. Y luego podemos hacer subclases de ese modelo que heredan sus atributos (anotaciones de tipos, validación, etc).
 
 Toda la conversión de datos, validación, documentación, etc. seguirá funcionando normalmente.
 
@@ -164,13 +164,13 @@ De esa manera, podemos declarar solo las diferencias entre los modelos (con `pas
 
 {* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
 
-## `Union` o `anyOf`
+## `Union` o `anyOf` { #union-or-anyof }
 
 Puedes declarar un response que sea la `Union` de dos o más tipos, eso significa que el response sería cualquiera de ellos.
 
 Se definirá en OpenAPI con `anyOf`.
 
-Para hacerlo, usa el type hint estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
+Para hacerlo, usa la anotación de tipos estándar de Python <a href="https://docs.python.org/3/library/typing.html#typing.Union" class="external-link" target="_blank">`typing.Union`</a>:
 
 /// note | Nota
 
@@ -181,21 +181,21 @@ Al definir una <a href="https://docs.pydantic.dev/latest/concepts/types/#unions"
 {* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
 
 
-### `Union` en Python 3.10
+### `Union` en Python 3.10 { #union-in-python-3-10 }
 
 En este ejemplo pasamos `Union[PlaneItem, CarItem]` como el valor del argumento `response_model`.
 
-Porque lo estamos pasando como un **valor a un argumento** en lugar de ponerlo en una **anotación de tipo**, tenemos que usar `Union` incluso en Python 3.10.
+Porque lo estamos pasando como un **valor a un argumento** en lugar de ponerlo en **anotaciones de tipos**, tenemos que usar `Union` incluso en Python 3.10.
 
-Si estuviera en una anotación de tipo podríamos haber usado la barra vertical, como:
+Si estuviera en anotaciones de tipos podríamos haber usado la barra vertical, como:
 
 ```Python
 some_variable: PlaneItem | CarItem
 ```
 
-Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obtendríamos un error, porque Python intentaría realizar una **operación inválida** entre `PlaneItem` y `CarItem` en lugar de interpretar eso como una anotación de tipo.
+Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obtendríamos un error, porque Python intentaría realizar una **operación inválida** entre `PlaneItem` y `CarItem` en lugar de interpretar eso como anotaciones de tipos.
 
-## Lista de modelos
+## Lista de modelos { #list-of-models }
 
 De la misma manera, puedes declarar responses de listas de objetos.
 
@@ -204,7 +204,7 @@ Para eso, usa el `typing.List` estándar de Python (o simplemente `list` en Pyth
 {* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
 
 
-## Response con `dict` arbitrario
+## Response con `dict` arbitrario { #response-with-arbitrary-dict }
 
 También puedes declarar un response usando un `dict` arbitrario plano, declarando solo el tipo de las claves y valores, sin usar un modelo Pydantic.
 
@@ -215,7 +215,7 @@ En este caso, puedes usar `typing.Dict` (o solo `dict` en Python 3.9 y posterior
 {* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
 
 
-## Recapitulación
+## Recapitulación { #recap }
 
 Usa múltiples modelos Pydantic y hereda libremente para cada caso.
 

@@ -171,19 +171,14 @@ def test_optional_list_alias_by_name(path: str):
     "path",
     [
         "/optional-list-alias",
-        pytest.param(
-            "/model-optional-list-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/model-optional-list-alias",
     ],
 )
 def test_optional_list_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.get(path, headers=[("p_alias", "hello"), ("p_alias", "world")])
     assert response.status_code == 200
-    assert response.json() == {
-        "p": ["hello", "world"]  # /model-optional-list-alias fails here
-    }
+    assert response.json() == {"p": ["hello", "world"]}
 
 
 # =====================================================================================
@@ -209,7 +204,6 @@ def read_model_optional_list_validation_alias(
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -247,10 +241,7 @@ def test_optional_list_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-list-validation-alias",
         "/model-optional-list-validation-alias",
     ],
 )
@@ -258,11 +249,10 @@ def test_optional_list_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.get(path, headers=[("p", "hello"), ("p", "world")])
     assert response.status_code == 200
-    assert response.json() == {"p": None}  # /optional-list-validation-alias fails here
+    assert response.json() == {"p": None}
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -272,12 +262,8 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
     response = client.get(
         path, headers=[("p_val_alias", "hello"), ("p_val_alias", "world")]
     )
-    assert response.status_code == 200, (
-        response.text  # /model-optional-list-validation-alias fails here
-    )
-    assert response.json() == {  # /optional-list-validation-alias fails here
-        "p": ["hello", "world"]
-    }
+    assert response.status_code == 200, response.text
+    assert response.json() == {"p": ["hello", "world"]}
 
 
 # =====================================================================================
@@ -307,7 +293,6 @@ def read_model_optional_list_alias_and_validation_alias(
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     [
@@ -366,10 +351,7 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-list-alias-and-validation-alias",
         "/model-optional-list-alias-and-validation-alias",
     ],
 )
@@ -377,13 +359,10 @@ def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.get(path, headers=[("p_alias", "hello"), ("p_alias", "world")])
     assert response.status_code == 200
-    assert response.json() == {
-        "p": None  # /optional-list-alias-and-validation-alias fails here
-    }
+    assert response.json() == {"p": None}
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     [
@@ -396,11 +375,9 @@ def test_optional_list_alias_and_validation_alias_by_validation_alias(path: str)
     response = client.get(
         path, headers=[("p_val_alias", "hello"), ("p_val_alias", "world")]
     )
-    assert response.status_code == 200, (
-        response.text  # /model-optional-list-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 200, response.text
     assert response.json() == {
-        "p": [  # /optional-list-alias-and-validation-alias fails here
+        "p": [
             "hello",
             "world",
         ]

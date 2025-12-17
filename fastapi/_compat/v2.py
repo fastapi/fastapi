@@ -18,7 +18,7 @@ from typing import (
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
-from pydantic import BaseModel, ConfigDict, TypeAdapter, create_model
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -50,6 +50,45 @@ UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
 Validator = Any
 
+# TODO: remove when dropping support for Pydantic < v2.12.3
+_Attrs = {
+    "default": ...,
+    "default_factory": None,
+    "alias": None,
+    "alias_priority": None,
+    "validation_alias": None,
+    "serialization_alias": None,
+    "title": None,
+    "field_title_generator": None,
+    "description": None,
+    "examples": None,
+    "exclude": None,
+    "exclude_if": None,
+    "discriminator": None,
+    "deprecated": None,
+    "json_schema_extra": None,
+    "frozen": None,
+    "validate_default": None,
+    "repr": True,
+    "init": None,
+    "init_var": None,
+    "kw_only": None,
+}
+
+
+# TODO: remove when dropping support for Pydantic < v2.12.3
+def asdict(field_info: FieldInfo) -> Dict[str, Any]:
+    attributes = {}
+    for attr in _Attrs:
+        value = getattr(field_info, attr, Undefined)
+        if value is not Undefined:
+            attributes[attr] = value
+    return {
+        "annotation": field_info.annotation,
+        "metadata": field_info.metadata,
+        "attributes": attributes,
+    }
+
 
 class BaseConfig:
     pass
@@ -70,6 +109,18 @@ class ModelField:
     def alias(self) -> str:
         a = self.field_info.alias
         return a if a is not None else self.name
+
+    @property
+    def validation_alias(self) -> Union[str, None]:
+        va = self.field_info.validation_alias
+        if isinstance(va, str) and va:
+            return va
+        return None
+
+    @property
+    def serialization_alias(self) -> Union[str, None]:
+        sa = self.field_info.serialization_alias
+        return sa or None
 
     @property
     def required(self) -> bool:
@@ -95,10 +146,15 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
+            # TODO: remove after dropping support for Python 3.8 and
+            # setting the min Pydantic to v2.12.3 that adds asdict()
+            field_dict = asdict(self.field_info)
             annotated_args = (
-                self.field_info.annotation,
-                *self.field_info.metadata,
-                self.field_info,
+                field_dict["annotation"],
+                *field_dict["metadata"],
+                # this FieldInfo needs to be created again so that it doesn't include
+                # the old field info metadata and only the rest of the attributes
+                Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
                 Annotated[annotated_args],
@@ -199,12 +255,18 @@ def get_schema_from_model_field(
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
     )
+    field_alias = (
+        (field.validation_alias or field.alias)
+        if field.mode == "validation"
+        else (field.serialization_alias or field.alias)
+    )
+
     # This expects that GenerateJsonSchema was already used to generate the definitions
     json_schema = field_mapping[(field, override_mode or field.mode)]
     if "$ref" not in json_schema:
         # TODO remove when deprecating Pydantic v1
         # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
-        json_schema["title"] = field.field_info.title or field.alias.title().replace(
+        json_schema["title"] = field.field_info.title or field_alias.title().replace(
             "_", " "
         )
     return json_schema

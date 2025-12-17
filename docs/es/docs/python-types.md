@@ -1,4 +1,4 @@
-# Introducción a Tipos en Python
+# Introducción a Tipos en Python { #python-types-intro }
 
 Python tiene soporte para "anotaciones de tipos" opcionales (también llamadas "type hints").
 
@@ -18,7 +18,7 @@ Si eres un experto en Python, y ya sabes todo sobre las anotaciones de tipos, sa
 
 ///
 
-## Motivación
+## Motivación { #motivation }
 
 Comencemos con un ejemplo simple:
 
@@ -38,7 +38,7 @@ La función hace lo siguiente:
 
 {* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
-### Edítalo
+### Edítalo { #edit-it }
 
 Es un programa muy simple.
 
@@ -58,7 +58,7 @@ Pero, tristemente, no obtienes nada útil:
 
 <img src="/img/python-types/image01.png">
 
-### Añadir tipos
+### Añadir tipos { #add-types }
 
 Modifiquemos una sola línea de la versión anterior.
 
@@ -102,7 +102,7 @@ Con eso, puedes desplazarte, viendo las opciones, hasta que encuentres la que "t
 
 <img src="/img/python-types/image03.png">
 
-## Más motivación
+## Más motivación { #more-motivation }
 
 Revisa esta función, ya tiene anotaciones de tipos:
 
@@ -116,13 +116,13 @@ Ahora sabes que debes corregirlo, convertir `age` a un string con `str(age)`:
 
 {* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
-## Declaración de tipos
+## Declaración de tipos { #declaring-types }
 
 Acabas de ver el lugar principal para declarar anotaciones de tipos. Como parámetros de función.
 
 Este también es el lugar principal donde los utilizarías con **FastAPI**.
 
-### Tipos simples
+### Tipos simples { #simple-types }
 
 Puedes declarar todos los tipos estándar de Python, no solo `str`.
 
@@ -135,7 +135,7 @@ Puedes usar, por ejemplo:
 
 {* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
-### Tipos genéricos con parámetros de tipo
+### Tipos genéricos con parámetros de tipo { #generic-types-with-type-parameters }
 
 Hay algunas estructuras de datos que pueden contener otros valores, como `dict`, `list`, `set` y `tuple`. Y los valores internos también pueden tener su propio tipo.
 
@@ -143,7 +143,7 @@ Estos tipos que tienen tipos internos se denominan tipos "**genéricos**". Y es 
 
 Para declarar esos tipos y los tipos internos, puedes usar el módulo estándar de Python `typing`. Existe específicamente para soportar estas anotaciones de tipos.
 
-#### Versiones más recientes de Python
+#### Versiones más recientes de Python { #newer-versions-of-python }
 
 La sintaxis que utiliza `typing` es **compatible** con todas las versiones, desde Python 3.6 hasta las versiones más recientes, incluyendo Python 3.9, Python 3.10, etc.
 
@@ -157,7 +157,7 @@ Por ejemplo, "**Python 3.6+**" significa que es compatible con Python 3.6 o supe
 
 Si puedes usar las **últimas versiones de Python**, utiliza los ejemplos para la última versión, esos tendrán la **mejor y más simple sintaxis**, por ejemplo, "**Python 3.10+**".
 
-#### Lista
+#### Lista { #list }
 
 Por ejemplo, vamos a definir una variable para ser una `list` de `str`.
 
@@ -221,7 +221,7 @@ Nota que la variable `item` es uno de los elementos en la lista `items`.
 
 Y aún así, el editor sabe que es un `str` y proporciona soporte para eso.
 
-#### Tuple y Set
+#### Tuple y Set { #tuple-and-set }
 
 Harías lo mismo para declarar `tuple`s y `set`s:
 
@@ -246,7 +246,7 @@ Esto significa:
 * La variable `items_t` es un `tuple` con 3 ítems, un `int`, otro `int`, y un `str`.
 * La variable `items_s` es un `set`, y cada uno de sus ítems es del tipo `bytes`.
 
-#### Dict
+#### Dict { #dict }
 
 Para definir un `dict`, pasas 2 parámetros de tipo, separados por comas.
 
@@ -276,7 +276,7 @@ Esto significa:
     * Las claves de este `dict` son del tipo `str` (digamos, el nombre de cada ítem).
     * Los valores de este `dict` son del tipo `float` (digamos, el precio de cada ítem).
 
-#### Union
+#### Union { #union }
 
 Puedes declarar que una variable puede ser cualquier de **varios tipos**, por ejemplo, un `int` o un `str`.
 
@@ -302,7 +302,7 @@ En Python 3.10 también hay una **nueva sintaxis** donde puedes poner los posibl
 
 En ambos casos, esto significa que `item` podría ser un `int` o un `str`.
 
-#### Posiblemente `None`
+#### Posiblemente `None` { #possibly-none }
 
 Puedes declarar que un valor podría tener un tipo, como `str`, pero que también podría ser `None`.
 
@@ -334,7 +334,7 @@ Esto también significa que en Python 3.10, puedes usar `Something | None`:
 
 ////
 
-//// tab | Python 3.8+ alternative
+//// tab | Python 3.8+ alternativa
 
 ```Python hl_lines="1  4"
 {!> ../../docs_src/python_types/tutorial009b.py!}
@@ -342,7 +342,7 @@ Esto también significa que en Python 3.10, puedes usar `Something | None`:
 
 ////
 
-#### Uso de `Union` u `Optional`
+#### Uso de `Union` u `Optional` { #using-union-or-optional }
 
 Si estás usando una versión de Python inferior a 3.10, aquí tienes un consejo desde mi punto de vista muy **subjetivo**:
 
@@ -377,7 +377,7 @@ La buena noticia es que, una vez que estés en Python 3.10, no tendrás que preo
 
 Y entonces no tendrás que preocuparte por nombres como `Optional` y `Union`. 😎
 
-#### Tipos genéricos
+#### Tipos genéricos { #generic-types }
 
 Estos tipos que toman parámetros de tipo en corchetes se llaman **Tipos Genéricos** o **Genéricos**, por ejemplo:
 
@@ -429,7 +429,7 @@ Y lo mismo que con Python 3.8, desde el módulo `typing`:
 
 ////
 
-### Clases como tipos
+### Clases como tipos { #classes-as-types }
 
 También puedes declarar una clase como el tipo de una variable.
 
@@ -449,7 +449,7 @@ Nota que esto significa "`one_person` es una **instance** de la clase `Person`".
 
 No significa "`one_person` es la **clase** llamada `Person`".
 
-## Modelos Pydantic
+## Modelos Pydantic { #pydantic-models }
 
 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> es un paquete de Python para realizar la validación de datos.
 
@@ -503,13 +503,13 @@ Pydantic tiene un comportamiento especial cuando utilizas `Optional` o `Union[So
 
 ///
 
-## Anotaciones de tipos con metadata
+## Anotaciones de tipos con metadata { #type-hints-with-metadata-annotations }
 
-Python también tiene una funcionalidad que permite poner **<abbr title="Datos sobre los datos, en este caso, información sobre el tipo, por ejemplo, una descripción.">metadata</abbr> adicional** en estas anotaciones de tipos usando `Annotated`.
+Python también tiene una funcionalidad que permite poner **<abbr title="Datos sobre los datos, en este caso, información sobre el tipo, por ejemplo, una descripción.">metadatos</abbr> adicional** en estas anotaciones de tipos usando `Annotated`.
 
 //// tab | Python 3.9+
 
-En Python 3.9, `Annotated` es parte de la librería estándar, así que puedes importarlo desde `typing`.
+En Python 3.9, `Annotated` es parte de la standard library, así que puedes importarlo desde `typing`.
 
 ```Python hl_lines="1  4"
 {!> ../../docs_src/python_types/tutorial013_py39.py!}
@@ -547,7 +547,7 @@ Y también que tu código será muy compatible con muchas otras herramientas y p
 
 ///
 
-## Anotaciones de tipos en **FastAPI**
+## Anotaciones de tipos en **FastAPI** { #type-hints-in-fastapi }
 
 **FastAPI** aprovecha estas anotaciones de tipos para hacer varias cosas.
 

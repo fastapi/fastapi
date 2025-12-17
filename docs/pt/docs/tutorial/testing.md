@@ -1,6 +1,6 @@
 # Testando { #testing }
 
-Graças ao <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicativos **FastAPI** é fácil e agradável.
+Graças ao <a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a>, testar aplicações **FastAPI** é fácil e agradável.
 
 Ele é baseado no <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
@@ -22,7 +22,7 @@ $ pip install httpx
 
 Importe `TestClient`.
 
-Crie um `TestClient` passando seu aplicativo **FastAPI** para ele.
+Crie um `TestClient` passando sua aplicação **FastAPI** para ele.
 
 Crie funções com um nome que comece com `test_` (essa é a convenção padrão do `pytest`).
 
@@ -52,7 +52,7 @@ Você também pode usar `from starlette.testclient import TestClient`.
 
 /// tip | Dica
 
-Se você quiser chamar funções `async` em seus testes além de enviar solicitações ao seu aplicativo FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md){.internal-link target=_blank} no tutorial avançado.
+Se você quiser chamar funções `async` em seus testes além de enviar solicitações à sua aplicação FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md){.internal-link target=_blank} no tutorial avançado.
 
 ///
 
@@ -60,9 +60,9 @@ Se você quiser chamar funções `async` em seus testes além de enviar solicita
 
 Em uma aplicação real, você provavelmente teria seus testes em um arquivo diferente.
 
-E seu aplicativo **FastAPI** também pode ser composto de vários arquivos/módulos, etc.
+E sua aplicação **FastAPI** também pode ser composta de vários arquivos/módulos, etc.
 
-### Arquivo do aplicativo **FastAPI** { #fastapi-app-file }
+### Arquivo da aplicação **FastAPI** { #fastapi-app-file }
 
 Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicações maiores](bigger-applications.md){.internal-link target=_blank}:
 
@@ -73,7 +73,7 @@ Digamos que você tenha uma estrutura de arquivo conforme descrito em [Aplicaç�
 │   └── main.py
 ```
 
-No arquivo `main.py` você tem seu aplicativo **FastAPI**:
+No arquivo `main.py` você tem sua aplicação **FastAPI**:
 
 
 {* ../../docs_src/app_testing/main.py *}
@@ -100,7 +100,7 @@ Como esse arquivo está no mesmo pacote, você pode usar importações relativas
 
 Agora vamos estender este exemplo e adicionar mais detalhes para ver como testar diferentes partes.
 
-### Arquivo de aplicativo **FastAPI** estendido { #extended-fastapi-app-file }
+### Arquivo de aplicação **FastAPI** estendido { #extended-fastapi-app-file }
 
 Vamos continuar com a mesma estrutura de arquivo de antes:
 
@@ -112,7 +112,7 @@ Vamos continuar com a mesma estrutura de arquivo de antes:
 │   └── test_main.py
 ```
 
-Digamos que agora o arquivo `main.py` com seu aplicativo **FastAPI** tenha algumas outras **operações de rotas**.
+Digamos que agora o arquivo `main.py` com sua aplicação **FastAPI** tenha algumas outras **operações de rotas**.
 
 Ele tem uma operação `GET` que pode retornar um erro.
 
@@ -120,63 +120,13 @@ Ele tem uma operação `POST` que pode retornar vários erros.
 
 Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an_py39/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/app_testing/app_b_an/main.py!}
-```
-
-////
-
-//// tab | Python 3.10+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b_py310/main.py!}
-```
-
-////
-
-//// tab | Python 3.8+ non-Annotated
-
-/// tip | Dica
-
-Prefira usar a versão `Annotated` se possível.
-
-///
-
-```Python
-{!> ../../docs_src/app_testing/app_b/main.py!}
-```
-
-////
+{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
 ### Arquivo de teste estendido { #extended-testing-file }
 
 Você pode então atualizar `test_main.py` com os testes estendidos:
 
-{* ../../docs_src/app_testing/app_b/test_main.py *}
+{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX é baseado no design do Requests.
 

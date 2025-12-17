@@ -1,4 +1,4 @@
-# Plantillas
+# Plantillas { #templates }
 
 Puedes usar cualquier motor de plantillas que desees con **FastAPI**.
 
@@ -6,7 +6,7 @@ Una elección común es Jinja2, el mismo que usa Flask y otras herramientas.
 
 Hay utilidades para configurarlo fácilmente que puedes usar directamente en tu aplicación de **FastAPI** (proporcionadas por Starlette).
 
-## Instalar dependencias
+## Instala dependencias { #install-dependencies }
 
 Asegúrate de crear un [entorno virtual](../virtual-environments.md){.internal-link target=_blank}, activarlo e instalar `jinja2`:
 
@@ -20,7 +20,7 @@ $ pip install jinja2
 
 </div>
 
-## Usando `Jinja2Templates`
+## Usando `Jinja2Templates` { #using-jinja2templates }
 
 * Importa `Jinja2Templates`.
 * Crea un objeto `templates` que puedas reutilizar más tarde.
@@ -51,7 +51,7 @@ También podrías usar `from starlette.templating import Jinja2Templates`.
 
 ///
 
-## Escribiendo plantillas
+## Escribiendo plantillas { #writing-templates }
 
 Luego puedes escribir una plantilla en `templates/item.html` con, por ejemplo:
 
@@ -59,7 +59,7 @@ Luego puedes escribir una plantilla en `templates/item.html` con, por ejemplo:
 {!../../docs_src/templates/templates/item.html!}
 ```
 
-### Valores de Contexto de la Plantilla
+### Valores de Contexto de la Plantilla { #template-context-values }
 
 En el HTML que contiene:
 
@@ -83,7 +83,7 @@ Por ejemplo, con un ID de `42`, esto se renderizaría como:
 Item ID: 42
 ```
 
-### Argumentos de la Plantilla `url_for`
+### Argumentos de la Plantilla `url_for` { #template-url-for-arguments }
 
 También puedes usar `url_for()` dentro de la plantilla, toma como argumentos los mismos que usaría tu *path operation function*.
 
@@ -105,7 +105,7 @@ Por ejemplo, con un ID de `42`, esto se renderizaría como:
 <a href="/items/42">
 ```
 
-## Plantillas y archivos estáticos
+## Plantillas y archivos estáticos { #templates-and-static-files }
 
 También puedes usar `url_for()` dentro de la plantilla, y usarlo, por ejemplo, con los `StaticFiles` que montaste con el `name="static"`.
 
@@ -121,6 +121,6 @@ En este ejemplo, enlazaría a un archivo CSS en `static/styles.css` con:
 
 Y porque estás usando `StaticFiles`, ese archivo CSS sería servido automáticamente por tu aplicación de **FastAPI** en la URL `/static/styles.css`.
 
-## Más detalles
+## Más detalles { #more-details }
 
 Para más detalles, incluyendo cómo testear plantillas, revisa <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">la documentación de Starlette sobre plantillas</a>.
