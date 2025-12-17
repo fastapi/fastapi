@@ -98,7 +98,7 @@ Below is a list of English terms and their preferred French translations, separa
 * «type hints»: «annotations de type»
 * «type annotations»: «annotations de type»
 
-* «autocomplete»: «auto-complétion»
+* «autocomplete»: «autocomplétion»
 * «autocompletion»: «autocomplétion»
 
 * «the request» (what the client sends to the server): «la requête»
