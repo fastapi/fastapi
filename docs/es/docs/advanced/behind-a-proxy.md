@@ -414,11 +414,11 @@ Generará un esquema de OpenAPI como:
         },
         {
             "url": "https://stag.example.com",
-            "description": "Entorno de pruebas"
+            "description": "Staging environment"
         },
         {
             "url": "https://prod.example.com",
-            "description": "Entorno de producción"
+            "description": "Production environment"
         }
     ],
     "paths": {
