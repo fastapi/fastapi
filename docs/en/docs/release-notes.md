@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* 🔧 Temporarily disable translations still in progress, being migrated to the new LLM setup. PR [#14555](https://github.com/fastapi/fastapi/pull/14555) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Update test workflow config, remove commented code. PR [#14540](https://github.com/fastapi/fastapi/pull/14540) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Configure coverage, error on main tests, don't wait for Smokeshow. PR [#14536](https://github.com/fastapi/fastapi/pull/14536) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run Smokeshow always, even on test failures. PR [#14538](https://github.com/fastapi/fastapi/pull/14538) by [@tiangolo](https://github.com/tiangolo).
