@@ -109,6 +109,37 @@ You could also use `from starlette.requests import Request` and `from starlette.
 
 ///
 
+### Handle multiple exceptions or status codes
+
+You can register the same handler for multiple exceptions or multiple status codes at once. Just pass a list or tuple of them to `@app.exception_handler(...)`.
+
+This is useful when you want to group related errors together and respond with the same logic.
+
+For example, if you want to treat 401 Unauthorized and 403 Forbidden as access-related issues:
+
+{* ../../docs_src/handling_errors/tutorial007.py hl[15:20,33,37] *}
+
+Raising an `HTTPException` with either a `401` or `403` status code will result in the same response detail:
+
+```JSON
+{"detail": "Access denied. Check your credentials or permissions."}
+```
+
+Or you can handle multiple exception classes like this:
+
+{* ../../docs_src/handling_errors/tutorial008.py hl[10:12,15:17,20:25,32,38] *}
+
+Here, if your request causes either a `FileTooLargeError` or an `UnsupportedFileTypeError`, the `custom_exception_handler` will be used to handle the exception and add a `hint` field to the response:
+
+```JSON
+{
+  "error": "The uploaded file is too large.",
+  "hint": "Need help? Contact support@example.com"
+}
+```
+
+This allows for simpler, more maintainable error handling when several conditions should result in the same kind of response.
+
 ## Override the default exception handlers { #override-the-default-exception-handlers }
 
 **FastAPI** has some default exception handlers.
