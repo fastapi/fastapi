@@ -340,6 +340,9 @@ def get_updated_config_content() -> Dict[str, Any]:
     for lang_path in get_lang_paths():
         if lang_path.name in {"en", "em"} or not lang_path.is_dir():
             continue
+        if lang_path.name not in ("de", "es", "pt", "ru"):
+            # Skip languages that are not yet ready
+            continue
         code = lang_path.name
         languages.append({code: f"/{code}/"})
     for lang_dict in languages:
