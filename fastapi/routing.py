@@ -21,6 +21,7 @@ from typing import (
     Tuple,
     Type,
     Union,
+    get_args,
 )
 
 from annotated_doc import Doc
@@ -58,6 +59,7 @@ from fastapi.utils import (
     create_model_field,
     generate_unique_id,
     get_value_or_default,
+    infer_response_model_from_ast,
     is_body_allowed_for_status_code,
 )
 from pydantic import BaseModel
@@ -120,6 +122,18 @@ def request_response(
         await wrap_app_handling_exceptions(app, request)(scope, receive, send)
 
     return app
+
+
+def _contains_response(annotation: Any) -> bool:
+    if lenient_issubclass(annotation, Response):
+        return True
+
+    args = get_args(annotation)
+    for arg in args:
+        if _contains_response(arg):
+            return True
+
+    return False
 
 
 # Copy of starlette.routing.websocket_session modified to include the
@@ -600,6 +614,17 @@ class APIRoute(routing.Route):
                 response_model = None
             else:
                 response_model = return_annotation
+                if response_model is None or (
+                    not lenient_issubclass(response_model, BaseModel)
+                    and not dataclasses.is_dataclass(response_model)
+                ):
+                    if return_annotation is not None and not _contains_response(
+                        return_annotation
+                    ):
+                        inferred = infer_response_model_from_ast(endpoint)
+                        if inferred:
+                            response_model = inferred
+
         self.response_model = response_model
         self.summary = summary
         self.response_description = response_description
