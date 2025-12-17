@@ -10,6 +10,7 @@ hide:
 ### Breaking Changes
 
 * 🔧 Drop support for Python 3.8. PR [#14563](https://github.com/fastapi/fastapi/pull/14563) by [@tiangolo](https://github.com/tiangolo).
+    * This would actually not be a _breaking_ change as no code would really break. Any Python 3.8 installer would just refuse to install the latest version of FastAPI and would only install 0.124.4. Only marking it as a "breaking change" to make it visible.
 
 ### Refactors
 
@@ -17,7 +18,7 @@ hide:
 
 ### Docs
 
-* ⚰️ Remove Python 3.8 from CI and remove Python 3.8 examples from source docs. PR [#14559](https://github.com/fastapi/fastapi/pull/14559) by [@tiangolo](https://github.com/tiangolo).
+* ⚰️ Remove Python 3.8 from CI and remove Python 3.8 examples from source docs. PR [#14559](https://github.com/fastapi/fastapi/pull/14559) by [@YuriiMotov](https://github.com/YuriiMotov) and [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
 
