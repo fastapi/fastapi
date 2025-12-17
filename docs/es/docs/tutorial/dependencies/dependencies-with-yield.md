@@ -29,15 +29,15 @@ Por ejemplo, podrías usar esto para crear una sesión de base de datos y cerrar
 
 Solo el código anterior e incluyendo la declaración `yield` se ejecuta antes de crear un response:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
 
 El valor generado es lo que se inyecta en *path operations* y otras dependencias:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
 
 El código posterior a la declaración `yield` se ejecuta después del response:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
 
 /// tip | Consejo
 
@@ -57,7 +57,7 @@ Por lo tanto, puedes buscar esa excepción específica dentro de la dependencia 
 
 Del mismo modo, puedes usar `finally` para asegurarte de que los pasos de salida se ejecuten, sin importar si hubo una excepción o no.
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
 
 ## Sub-dependencias con `yield` { #sub-dependencies-with-yield }
 
@@ -270,7 +270,7 @@ En Python, puedes crear Context Managers <a href="https://docs.python.org/3/refe
 También puedes usarlos dentro de las dependencias de **FastAPI** con `yield` usando
 `with` o `async with` en la función de dependencia:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
 
 /// tip | Consejo
 

@@ -62,7 +62,7 @@ Puedes usar todas las mismas funcionalidades de validación y herramientas que u
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ En Pydantic v1 importarías `BaseSettings` directamente desde `pydantic` en luga
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ Luego convertirá y validará los datos. Así que, cuando uses ese objeto `setti
 
 Luego puedes usar el nuevo objeto `settings` en tu aplicación:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Ejecutar el servidor { #run-the-server }
 
@@ -126,11 +126,11 @@ Podrías poner esas configuraciones en otro archivo de módulo como viste en [Ap
 
 Por ejemplo, podrías tener un archivo `config.py` con:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 Y luego usarlo en un archivo `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip | Consejo
 
