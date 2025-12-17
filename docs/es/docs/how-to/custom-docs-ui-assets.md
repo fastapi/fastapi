@@ -34,7 +34,7 @@ Puedes reutilizar las funciones internas de FastAPI para crear las páginas HTML
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:20,23:25,28:35] *}
 
 /// tip | Consejo
 
@@ -50,7 +50,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[38:40] *}
 
 ### Pruébalo { #test-it }
 
@@ -160,7 +160,7 @@ Nuevamente, puedes reutilizar las funciones internas de FastAPI para crear las p
 
 Y de manera similar para ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:23,26:28,31:38] *}
 
 /// tip | Consejo
 
@@ -176,7 +176,7 @@ Swagger UI lo manejará detrás de escena para ti, pero necesita este auxiliar d
 
 Ahora, para poder probar que todo funciona, crea una *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[41:43] *}
 
 ### Prueba la UI de Archivos Estáticos { #test-static-files-ui }
 
