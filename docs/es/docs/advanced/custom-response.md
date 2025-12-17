@@ -220,7 +220,7 @@ Toma un generador `async` o un generador/iterador normal y transmite el cuerpo d
 
 #### Usando `StreamingResponse` con objetos similares a archivos { #using-streamingresponse-with-file-like-objects }
 
-Si tienes un objeto similar a un archivo (por ejemplo, el objeto devuelto por `open()`), puedes crear una función generadora para iterar sobre ese objeto similar a un archivo.
+Si tienes un <a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">objeto similar a un archivo</a> (por ejemplo, el objeto devuelto por `open()`), puedes crear una función generadora para iterar sobre ese objeto similar a un archivo.
 
 De esa manera, no tienes que leerlo todo primero en memoria, y puedes pasar esa función generadora al `StreamingResponse`, y devolverlo.
 

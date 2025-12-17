@@ -19,6 +19,9 @@ from slugify import slugify as py_slugify
 
 logging.basicConfig(level=logging.INFO)
 
+SUPPORTED_LANGS = {"en", "de", "es", "pt", "ru"}
+
+
 app = typer.Typer()
 
 mkdocs_name = "mkdocs.yml"
@@ -260,7 +263,11 @@ def build_all() -> None:
     """
     update_languages()
     shutil.rmtree(site_path, ignore_errors=True)
-    langs = [lang.name for lang in get_lang_paths() if lang.is_dir()]
+    langs = [
+        lang.name
+        for lang in get_lang_paths()
+        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
+    ]
     cpu_count = os.cpu_count() or 1
     process_pool_size = cpu_count * 4
     typer.echo(f"Using process pool size: {process_pool_size}")
@@ -340,6 +347,9 @@ def get_updated_config_content() -> Dict[str, Any]:
     for lang_path in get_lang_paths():
         if lang_path.name in {"en", "em"} or not lang_path.is_dir():
             continue
+        if lang_path.name not in SUPPORTED_LANGS:
+            # Skip languages that are not yet ready
+            continue
         code = lang_path.name
         languages.append({code: f"/{code}/"})
     for lang_dict in languages:
@@ -418,7 +428,7 @@ def verify_docs():
 def langs_json():
     langs = []
     for lang_path in get_lang_paths():
-        if lang_path.is_dir():
+        if lang_path.is_dir() and lang_path.name in SUPPORTED_LANGS:
             langs.append(lang_path.name)
     print(json.dumps(langs))
 
