@@ -1,8 +1,8 @@
-# Metadata y URLs de Docs
+# Metadata y URLs de Docs { #metadata-and-docs-urls }
 
 Puedes personalizar varias configuraciones de metadata en tu aplicación **FastAPI**.
 
-## Metadata para la API
+## Metadata para la API { #metadata-for-api }
 
 Puedes establecer los siguientes campos que se usan en la especificación OpenAPI y en las interfaces automáticas de documentación de la API:
 
@@ -30,7 +30,7 @@ Con esta configuración, la documentación automática de la API se vería así:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## Identificador de licencia
+## Identificador de licencia { #license-identifier }
 
 Desde OpenAPI 3.1.0 y FastAPI 0.99.0, también puedes establecer la `license_info` con un `identifier` en lugar de una `url`.
 
@@ -38,7 +38,7 @@ Por ejemplo:
 
 {* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
 
-## Metadata para etiquetas
+## Metadata para etiquetas { #metadata-for-tags }
 
 También puedes agregar metadata adicional para las diferentes etiquetas usadas para agrupar tus path operations con el parámetro `openapi_tags`.
 
@@ -52,7 +52,7 @@ Cada diccionario puede contener:
     * `description`: un `str` con una breve descripción para la documentación externa.
     * `url` (**requerido**): un `str` con la URL para la documentación externa.
 
-### Crear metadata para etiquetas
+### Crear metadata para etiquetas { #create-metadata-for-tags }
 
 Probemos eso en un ejemplo con etiquetas para `users` y `items`.
 
@@ -68,7 +68,7 @@ No tienes que agregar metadata para todas las etiquetas que uses.
 
 ///
 
-### Usar tus etiquetas
+### Usar tus etiquetas { #use-your-tags }
 
 Usa el parámetro `tags` con tus *path operations* (y `APIRouter`s) para asignarlas a diferentes etiquetas:
 
@@ -80,19 +80,19 @@ Lee más sobre etiquetas en [Configuración de Path Operation](path-operation-co
 
 ///
 
-### Revisa la documentación
+### Revisa la documentación { #check-the-docs }
 
 Ahora, si revisas la documentación, mostrará toda la metadata adicional:
 
 <img src="/img/tutorial/metadata/image02.png">
 
-### Orden de las etiquetas
+### Orden de las etiquetas { #order-of-tags }
 
 El orden de cada diccionario de metadata de etiqueta también define el orden mostrado en la interfaz de documentación.
 
 Por ejemplo, aunque `users` iría después de `items` en orden alfabético, se muestra antes porque agregamos su metadata como el primer diccionario en la list.
 
-## URL de OpenAPI
+## URL de OpenAPI { #openapi-url }
 
 Por defecto, el esquema OpenAPI se sirve en `/openapi.json`.
 
@@ -104,7 +104,7 @@ Por ejemplo, para configurarlo para que se sirva en `/api/v1/openapi.json`:
 
 Si quieres deshabilitar el esquema OpenAPI completamente, puedes establecer `openapi_url=None`, eso también deshabilitará las interfaces de usuario de documentación que lo usan.
 
-## URLs de Docs
+## URLs de Docs { #docs-urls }
 
 Puedes configurar las dos interfaces de usuario de documentación incluidas:
 

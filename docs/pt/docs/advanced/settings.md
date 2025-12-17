@@ -148,7 +148,7 @@ Isso pode ser especialmente útil durante os testes, pois é muito fácil sobres
 
 Vindo do exemplo anterior, seu arquivo `config.py` poderia ser assim:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
 
 Perceba que agora não criamos uma instância padrão `settings = Settings()`.
 
@@ -174,7 +174,7 @@ E então podemos exigi-la na *função de operação de rota* como dependência 
 
 Então seria muito fácil fornecer um objeto de configurações diferente durante os testes criando uma sobrescrita de dependência para `get_settings`:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
 
 Na sobrescrita da dependência definimos um novo valor para `admin_email` ao criar o novo objeto `Settings`, e então retornamos esse novo objeto.
 
@@ -217,7 +217,7 @@ E então atualizar seu `config.py` com:
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Dica
 
@@ -229,7 +229,7 @@ O atributo `model_config` é usado apenas para configuração do Pydantic. Você
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
+{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
 
 /// tip | Dica
 

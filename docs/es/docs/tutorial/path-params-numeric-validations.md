@@ -1,8 +1,8 @@
-# Parámetros de Path y Validaciones Numéricas
+# Parámetros de Path y Validaciones Numéricas { #path-parameters-and-numeric-validations }
 
 De la misma manera que puedes declarar más validaciones y metadatos para los parámetros de query con `Query`, puedes declarar el mismo tipo de validaciones y metadatos para los parámetros de path con `Path`.
 
-## Importar Path
+## Importar Path { #import-path }
 
 Primero, importa `Path` de `fastapi`, e importa `Annotated`:
 
@@ -18,7 +18,7 @@ Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgr
 
 ///
 
-## Declarar metadatos
+## Declarar metadatos { #declare-metadata }
 
 Puedes declarar todos los mismos parámetros que para `Query`.
 
@@ -32,7 +32,7 @@ Un parámetro de path siempre es requerido ya que tiene que formar parte del pat
 
 ///
 
-## Ordena los parámetros como necesites
+## Ordena los parámetros como necesites { #order-the-parameters-as-you-need }
 
 /// tip | Consejo
 
@@ -60,7 +60,7 @@ Pero ten en cuenta que si usas `Annotated`, no tendrás este problema, no import
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py39.py *}
 
-## Ordena los parámetros como necesites, trucos
+## Ordena los parámetros como necesites, trucos { #order-the-parameters-as-you-need-tricks }
 
 /// tip | Consejo
 
@@ -85,13 +85,13 @@ Python no hará nada con ese `*`, pero sabrá que todos los parámetros siguient
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
 
-### Mejor con `Annotated`
+### Mejor con `Annotated` { #better-with-annotated }
 
 Ten en cuenta que si usas `Annotated`, como no estás usando valores por defecto de los parámetros de la función, no tendrás este problema y probablemente no necesitarás usar `*`.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_an_py39.py hl[10] *}
 
-## Validaciones numéricas: mayor o igual
+## Validaciones numéricas: mayor o igual { #number-validations-greater-than-or-equal }
 
 Con `Query` y `Path` (y otros que verás más adelante) puedes declarar restricciones numéricas.
 
@@ -99,7 +99,7 @@ Aquí, con `ge=1`, `item_id` necesitará ser un número entero "`g`reater than o
 
 {* ../../docs_src/path_params_numeric_validations/tutorial004_an_py39.py hl[10] *}
 
-## Validaciones numéricas: mayor que y menor o igual
+## Validaciones numéricas: mayor que y menor o igual { #number-validations-greater-than-and-less-than-or-equal }
 
 Lo mismo aplica para:
 
@@ -108,19 +108,19 @@ Lo mismo aplica para:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial005_an_py39.py hl[10] *}
 
-## Validaciones numéricas: flotantes, mayor y menor
+## Validaciones numéricas: flotantes, mayor y menor { #number-validations-floats-greater-than-and-less-than }
 
 Las validaciones numéricas también funcionan para valores `float`.
 
-Aquí es donde se convierte en importante poder declarar <abbr title="greater than"><code>gt</code></abbr> y no solo <abbr title="greater than or equal"><code>ge</code></abbr>. Ya que con esto puedes requerir, por ejemplo, que un valor sea mayor que `0`, incluso si es menor que `1`.
+Aquí es donde se convierte en importante poder declarar <abbr title="greater than – mayor que"><code>gt</code></abbr> y no solo <abbr title="greater than or equal – mayor o igual que"><code>ge</code></abbr>. Ya que con esto puedes requerir, por ejemplo, que un valor sea mayor que `0`, incluso si es menor que `1`.
 
 Así, `0.5` sería un valor válido. Pero `0.0` o `0` no lo serían.
 
-Y lo mismo para <abbr title="less than"><code>lt</code></abbr>.
+Y lo mismo para <abbr title="less than – menor que"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py39.py hl[13] *}
 
-## Resumen
+## Resumen { #recap }
 
 Con `Query`, `Path` (y otros que aún no has visto) puedes declarar metadatos y validaciones de string de las mismas maneras que con [Parámetros de Query y Validaciones de String](query-params-str-validations.md){.internal-link target=_blank}.
 
@@ -139,7 +139,7 @@ Todas ellas comparten los mismos parámetros para validación adicional y metada
 
 ///
 
-/// note | Nota técnica
+/// note | Detalles técnicos
 
 Cuando importas `Query`, `Path` y otros de `fastapi`, en realidad son funciones.
 

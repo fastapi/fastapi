@@ -155,17 +155,14 @@ def test_optional_alias_by_name(path: str):
     "path",
     [
         "/optional-alias",
-        pytest.param(
-            "/model-optional-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/model-optional-alias",
     ],
 )
 def test_optional_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_alias=hello")
     assert response.status_code == 200
-    assert response.json() == {"p": "hello"}  # /model-optional-alias fails here
+    assert response.json() == {"p": "hello"}
 
 
 # =====================================================================================
@@ -191,7 +188,6 @@ def read_model_optional_validation_alias(
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     ["/optional-validation-alias", "/model-optional-validation-alias"],
@@ -226,10 +222,7 @@ def test_optional_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-validation-alias",
         "/model-optional-validation-alias",
     ],
 )
@@ -244,10 +237,7 @@ def test_optional_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-validation-alias",
         "/model-optional-validation-alias",
     ],
 )
@@ -255,7 +245,7 @@ def test_optional_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_val_alias=hello")
     assert response.status_code == 200
-    assert response.json() == {"p": "hello"}  # /optional-validation-alias fails here
+    assert response.json() == {"p": "hello"}
 
 
 # =====================================================================================
@@ -283,7 +273,6 @@ def read_model_optional_alias_and_validation_alias(
 
 
 @needs_pydanticv2
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @pytest.mark.parametrize(
     "path",
     [
@@ -339,10 +328,7 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-alias-and-validation-alias",
         "/model-optional-alias-and-validation-alias",
     ],
 )
@@ -350,19 +336,14 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_alias=hello")
     assert response.status_code == 200
-    assert response.json() == {
-        "p": None  # /optional-alias-and-validation-alias fails here
-    }
+    assert response.json() == {"p": None}
 
 
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-alias-and-validation-alias",
         "/model-optional-alias-and-validation-alias",
     ],
 )
@@ -370,6 +351,4 @@ def test_optional_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.get(f"{path}?p_val_alias=hello")
     assert response.status_code == 200
-    assert response.json() == {
-        "p": "hello"  # /optional-alias-and-validation-alias fails here
-    }
+    assert response.json() == {"p": "hello"}

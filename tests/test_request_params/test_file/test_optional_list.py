@@ -3,7 +3,6 @@ from typing import List, Optional
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -87,15 +86,7 @@ def test_optional_list_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-bytes",
-            marks=pytest.mark.xfail(
-                raises=(TypeError, AssertionError),
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 due to #14297",
-                strict=False,
-            ),
-        ),
+        "/optional-list-bytes",
         "/optional-list-uploadfile",
     ],
 )
@@ -124,12 +115,6 @@ async def read_optional_list_uploadfile_alias(
     return {"file_size": [file.size for file in p] if p else None}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -202,15 +187,7 @@ def test_optional_list_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-bytes-alias",
-            marks=pytest.mark.xfail(
-                raises=(TypeError, AssertionError),
-                strict=False,
-                condition=PYDANTIC_V2,
-                reason="Fails only with PDv2 model due to #14297",
-            ),
-        ),
+        "/optional-list-bytes-alias",
         "/optional-list-uploadfile-alias",
     ],
 )
@@ -302,30 +279,17 @@ def test_optional_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-bytes-validation-alias",
-            marks=pytest.mark.xfail(
-                raises=(TypeError, AssertionError),
-                strict=False,
-                reason="Fails due to #14297",
-            ),
-        ),
-        pytest.param(
-            "/optional-list-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-list-bytes-validation-alias",
+        "/optional-list-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello"), ("p", b"world")])
     assert response.status_code == 200, response.text
-    assert response.json() == {  # /optional-list-uploadfile-validation-alias fails here
-        "file_size": None
-    }
+    assert response.json() == {"file_size": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
@@ -340,9 +304,7 @@ def test_optional_validation_alias_by_validation_alias(path: str):
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "file_size": [5, 5]  # /optional-list-*-validation-alias fail here
-    }
+    assert response.json() == {"file_size": [5, 5]}
 
 
 # =====================================================================================
@@ -444,30 +406,17 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(
-                raises=(TypeError, AssertionError),
-                strict=False,
-                reason="Fails due to #14297",
-            ),
-        ),
-        pytest.param(
-            "/optional-list-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-list-bytes-alias-and-validation-alias",
+        "/optional-list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello"), ("p_alias", b"world")])
     assert response.status_code == 200, response.text
-    assert (  # /optional-list-uploadfile-alias-and-validation-alias fails here
-        response.json() == {"file_size": None}
-    )
+    assert response.json() == {"file_size": None}
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
@@ -482,6 +431,4 @@ def test_optional_list_alias_and_validation_alias_by_validation_alias(path: str)
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "file_size": [5, 5]  # /optional-list-*-alias-and-validation-alias fail here
-    }
+    assert response.json() == {"file_size": [5, 5]}

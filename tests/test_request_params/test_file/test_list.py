@@ -3,7 +3,6 @@ from typing import List
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from typing_extensions import Annotated
 
@@ -134,12 +133,6 @@ async def read_list_uploadfile_alias(
     return {"file_size": [file.size for file in p]}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -334,14 +327,8 @@ def test_list_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-validation-alias",
+        "/list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_missing(path: str):
@@ -352,7 +339,7 @@ def test_list_validation_alias_missing(path: str):
         "detail": [
             {
                 "type": "missing",
-                "loc": [  # /list-*-validation-alias fail here
+                "loc": [
                     "body",
                     "p_val_alias",
                 ],
@@ -367,24 +354,16 @@ def test_list_validation_alias_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-validation-alias",
+        "/list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello"), ("p", b"world")])
-    assert response.status_code == 422, (  # /list-*-validation-alias fail here
-        response.text
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -396,7 +375,6 @@ def test_list_validation_alias_by_name(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
@@ -410,8 +388,8 @@ def test_list_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, response.text  # all 2 fail here
-    assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": [5, 5]}
 
 
 # =====================================================================================
@@ -486,14 +464,8 @@ def test_list_alias_and_validation_alias_schema(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-alias-and-validation-alias",
+        "/list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_missing(path: str):
@@ -506,7 +478,7 @@ def test_list_alias_and_validation_alias_missing(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /list-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -515,7 +487,6 @@ def test_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
@@ -535,7 +506,7 @@ def test_list_alias_and_validation_alias_by_name(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /list-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -548,24 +519,16 @@ def test_list_alias_and_validation_alias_by_name(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-alias-and-validation-alias",
+        "/list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello"), ("p_alias", b"world")])
-    assert response.status_code == 422, (
-        response.text  # /list-*-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -577,7 +540,6 @@ def test_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
 @needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
@@ -591,7 +553,5 @@ def test_list_alias_and_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, (  # all 2 fail here
-        response.text
-    )
-    assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": [5, 5]}

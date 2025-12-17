@@ -228,7 +228,7 @@ Passar o `root_path` para `FastAPI` seria o equivalente a passar a opção de li
 
 Tenha em mente que o servidor (Uvicorn) não usará esse `root_path` para nada além de passá-lo para a aplicação.
 
-Mas se você acessar com seu navegador <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> você verá a resposta normal:
+Mas se você acessar com seu navegador <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> você verá a resposta normal:
 
 ```JSON
 {
@@ -440,6 +440,14 @@ Na interface de documentação em <a href="http://127.0.0.1:9999/api/v1/docs" cl
 /// tip | Dica
 
 A interface de documentação interagirá com o servidor que você selecionar.
+
+///
+
+/// note | Detalhes Técnicos
+
+A propriedade `servers` na especificação OpenAPI é opcional.
+
+Se você não especificar o parâmetro `servers` e `root_path` for igual a `/`, a propriedade `servers` no OpenAPI gerado será totalmente omitida por padrão, o que equivale a um único servidor com valor de `url` igual a `/`.
 
 ///
 
