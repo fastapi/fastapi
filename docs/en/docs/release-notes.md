@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Sync German docs. PR [#14519](https://github.com/fastapi/fastapi/pull/14519) by [@nilslindemann](https://github.com/nilslindemann).
 * 🔥 Remove inactive/scarce translations to Vietnamese. PR [#14543](https://github.com/fastapi/fastapi/pull/14543) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove inactive/scarce translations to Persian. PR [#14542](https://github.com/fastapi/fastapi/pull/14542) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove translation to emoji to simplify the new setup with LLM autotranslations. PR [#14541](https://github.com/fastapi/fastapi/pull/14541) by [@tiangolo](https://github.com/tiangolo).
