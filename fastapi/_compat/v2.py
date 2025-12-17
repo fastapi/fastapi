@@ -457,7 +457,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
             origin_type = get_origin(union_arg) or union_arg
             break
     assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
-    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return]
+    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
 
 
 def get_missing_field_error(loc: tuple[str, ...]) -> dict[str, Any]:

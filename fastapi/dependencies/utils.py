@@ -915,7 +915,7 @@ async def _extract_form_body(
             and value_is_sequence(value)
         ):
             # For types
-            assert isinstance(value, sequence_types)  # type: ignore[arg-type]
+            assert isinstance(value, sequence_types)
             results: list[Union[bytes, str]] = []
 
             async def process_fn(

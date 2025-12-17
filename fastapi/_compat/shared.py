@@ -60,7 +60,7 @@ def lenient_issubclass(
 def _annotation_is_sequence(annotation: Union[type[Any], None]) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
-    return lenient_issubclass(annotation, sequence_types)  # type: ignore[arg-type]
+    return lenient_issubclass(annotation, sequence_types)
 
 
 def field_annotation_is_sequence(annotation: Union[type[Any], None]) -> bool:
@@ -76,7 +76,7 @@ def field_annotation_is_sequence(annotation: Union[type[Any], None]) -> bool:
 
 
 def value_is_sequence(value: Any) -> bool:
-    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))  # type: ignore[arg-type]
+    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))
 
 
 def _annotation_is_complex(annotation: Union[type[Any], None]) -> bool:
