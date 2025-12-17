@@ -96,7 +96,7 @@ Vamos criar uma **dependência** do FastAPI com `yield` que fornecerá uma nova 
 
 Então, criamos uma dependência `Annotated` chamada `SessionDep` para simplificar o restante do código que usará essa dependência.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30] hl[25:27,30] *}
 
 ### Criar Tabelas de Banco de Dados na Inicialização { #create-database-tables-on-startup }
 
