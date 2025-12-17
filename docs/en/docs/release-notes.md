@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for pt (add-missing). PR [#14539](https://github.com/fastapi/fastapi/pull/14539) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add LLM prompt file for French, generated from the existing French docs. PR [#14544](https://github.com/fastapi/fastapi/pull/14544) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Sync Portuguese docs (pages found with script). PR [#14554](https://github.com/fastapi/fastapi/pull/14554) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync Spanish docs (outdated pages found with script). PR [#14553](https://github.com/fastapi/fastapi/pull/14553) by [@YuriiMotov](https://github.com/YuriiMotov).
