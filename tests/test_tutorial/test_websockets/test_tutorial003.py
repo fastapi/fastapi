@@ -35,9 +35,10 @@ def test_get(client: TestClient, html: str):
 
 
 def test_websocket_handle_disconnection(client: TestClient):
-    with client.websocket_connect("/ws/1234") as connection, client.websocket_connect(
-        "/ws/5678"
-    ) as connection_two:
+    with (
+        client.websocket_connect("/ws/1234") as connection,
+        client.websocket_connect("/ws/5678") as connection_two,
+    ):
         connection.send_text("Hello from 1234")
         data1 = connection.receive_text()
         assert data1 == "You wrote: Hello from 1234"
