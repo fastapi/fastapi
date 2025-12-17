@@ -46,7 +46,7 @@ En estos casos, podría tener sentido almacenar las tags en un `Enum`.
 
 **FastAPI** soporta eso de la misma manera que con strings normales:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Resumen y Descripción { #summary-and-description }
 
@@ -92,7 +92,7 @@ Entonces, si no proporcionas una, **FastAPI** generará automáticamente una de 
 
 Si necesitas marcar una *path operation* como <abbr title="obsoleta, se recomienda no usarla">deprecated</abbr>, pero sin eliminarla, pasa el parámetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 Se marcará claramente como deprecado en la documentación interactiva:
 

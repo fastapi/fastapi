@@ -7,15 +7,13 @@ from fastapi.testclient import TestClient
 @pytest.fixture(
     name="client",
     params=[
-        ("tutorial001", "app"),
-        ("tutorial002", "my_awesome_api"),
-        ("tutorial003", "app"),
+        "tutorial001_py39",
+        "tutorial003_py39",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.first_steps.{request.param[0]}")
-    app = getattr(mod, request.param[1])
-    client = TestClient(app)
+    mod = importlib.import_module(f"docs_src.first_steps.{request.param}")
+    client = TestClient(mod.app)
     return client
 
 

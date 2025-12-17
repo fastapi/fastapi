@@ -24,13 +24,7 @@ from starlette.datastructures import UploadFile
 from typing_extensions import Annotated, get_args, get_origin
 
 # Copy from Pydantic v2, compatible with v1
-if sys.version_info < (3, 9):
-    # Pydantic no longer supports Python 3.8, this might be incorrect, but the code
-    # this is used for is also never reached in this codebase, as it's a copy of
-    # Pydantic's lenient_issubclass, just for compatibility with v1
-    # TODO: remove when dropping support for Python 3.8
-    WithArgsTypes: Tuple[Any, ...] = ()
-elif sys.version_info < (3, 10):
+if sys.version_info < (3, 10):
     WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
 else:
     WithArgsTypes: tuple[Any, ...] = (
