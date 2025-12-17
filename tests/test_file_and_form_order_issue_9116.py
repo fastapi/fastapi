@@ -4,12 +4,11 @@ See https://github.com/tiangolo/fastapi/discussions/9116
 """
 
 from pathlib import Path
-from typing import List
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI, File, Form
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -32,7 +31,7 @@ def file_after_form(
 
 @app.post("/file_list_before_form")
 def file_list_before_form(
-    files: Annotated[List[bytes], File()],
+    files: Annotated[list[bytes], File()],
     city: Annotated[str, Form()],
 ):
     return {"file_contents": files, "city": city}
@@ -41,7 +40,7 @@ def file_list_before_form(
 @app.post("/file_list_after_form")
 def file_list_after_form(
     city: Annotated[str, Form()],
-    files: Annotated[List[bytes], File()],
+    files: Annotated[list[bytes], File()],
 ):
     return {"file_contents": files, "city": city}
 

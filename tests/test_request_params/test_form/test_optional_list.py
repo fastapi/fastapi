@@ -1,11 +1,10 @@
-from typing import List, Optional
+from typing import Annotated, Optional
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -19,13 +18,13 @@ app = FastAPI()
 
 @app.post("/optional-list-str", operation_id="optional_list_str")
 async def read_optional_list_str(
-    p: Annotated[Optional[List[str]], Form()] = None,
+    p: Annotated[Optional[list[str]], Form()] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalListStr(BaseModel):
-    p: Optional[List[str]] = None
+    p: Optional[list[str]] = None
 
 
 @app.post("/model-optional-list-str", operation_id="model_optional_list_str")
@@ -95,13 +94,13 @@ def test_optional_list_str(path: str):
 
 @app.post("/optional-list-alias", operation_id="optional_list_alias")
 async def read_optional_list_alias(
-    p: Annotated[Optional[List[str]], Form(alias="p_alias")] = None,
+    p: Annotated[Optional[list[str]], Form(alias="p_alias")] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalListAlias(BaseModel):
-    p: Optional[List[str]] = Field(None, alias="p_alias")
+    p: Optional[list[str]] = Field(None, alias="p_alias")
 
 
 @app.post("/model-optional-list-alias", operation_id="model_optional_list_alias")
@@ -193,13 +192,13 @@ def test_optional_list_alias_by_alias(path: str):
     "/optional-list-validation-alias", operation_id="optional_list_validation_alias"
 )
 def read_optional_list_validation_alias(
-    p: Annotated[Optional[List[str]], Form(validation_alias="p_val_alias")] = None,
+    p: Annotated[Optional[list[str]], Form(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalListValidationAlias(BaseModel):
-    p: Optional[List[str]] = Field(None, validation_alias="p_val_alias")
+    p: Optional[list[str]] = Field(None, validation_alias="p_val_alias")
 
 
 @app.post(
@@ -300,14 +299,14 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
 )
 def read_optional_list_alias_and_validation_alias(
     p: Annotated[
-        Optional[List[str]], Form(alias="p_alias", validation_alias="p_val_alias")
+        Optional[list[str]], Form(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"p": p}
 
 
 class FormModelOptionalListAliasAndValidationAlias(BaseModel):
-    p: Optional[List[str]] = Field(
+    p: Optional[list[str]] = Field(
         None, alias="p_alias", validation_alias="p_val_alias"
     )
 

@@ -1,10 +1,9 @@
-from typing import List
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
@@ -17,12 +16,12 @@ app = FastAPI()
 
 
 @app.post("/list-bytes", operation_id="list_bytes")
-async def read_list_bytes(p: Annotated[List[bytes], File()]):
+async def read_list_bytes(p: Annotated[list[bytes], File()]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile", operation_id="list_uploadfile")
-async def read_list_uploadfile(p: Annotated[List[UploadFile], File()]):
+async def read_list_uploadfile(p: Annotated[list[UploadFile], File()]):
     return {"file_size": [file.size for file in p]}
 
 
@@ -122,13 +121,13 @@ def test_list(path: str):
 
 
 @app.post("/list-bytes-alias", operation_id="list_bytes_alias")
-async def read_list_bytes_alias(p: Annotated[List[bytes], File(alias="p_alias")]):
+async def read_list_bytes_alias(p: Annotated[list[bytes], File(alias="p_alias")]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile-alias", operation_id="list_uploadfile_alias")
 async def read_list_uploadfile_alias(
-    p: Annotated[List[UploadFile], File(alias="p_alias")],
+    p: Annotated[list[UploadFile], File(alias="p_alias")],
 ):
     return {"file_size": [file.size for file in p]}
 
@@ -266,7 +265,7 @@ def test_list_alias_by_alias(path: str):
 
 @app.post("/list-bytes-validation-alias", operation_id="list_bytes_validation_alias")
 def read_list_bytes_validation_alias(
-    p: Annotated[List[bytes], File(validation_alias="p_val_alias")],
+    p: Annotated[list[bytes], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -276,7 +275,7 @@ def read_list_bytes_validation_alias(
     operation_id="list_uploadfile_validation_alias",
 )
 def read_list_uploadfile_validation_alias(
-    p: Annotated[List[UploadFile], File(validation_alias="p_val_alias")],
+    p: Annotated[list[UploadFile], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [file.size for file in p]}
 
@@ -401,7 +400,7 @@ def test_list_validation_alias_by_validation_alias(path: str):
     operation_id="list_bytes_alias_and_validation_alias",
 )
 def read_list_bytes_alias_and_validation_alias(
-    p: Annotated[List[bytes], File(alias="p_alias", validation_alias="p_val_alias")],
+    p: Annotated[list[bytes], File(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -412,7 +411,7 @@ def read_list_bytes_alias_and_validation_alias(
 )
 def read_list_uploadfile_alias_and_validation_alias(
     p: Annotated[
-        List[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
+        list[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
     ],
 ):
     return {"file_size": [file.size for file in p]}

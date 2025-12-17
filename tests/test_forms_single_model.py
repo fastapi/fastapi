@@ -1,11 +1,10 @@
-from typing import List, Optional
+from typing import Annotated, Optional
 
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -14,7 +13,7 @@ class FormModel(BaseModel):
     username: str
     lastname: str
     age: Optional[int] = None
-    tags: List[str] = ["foo", "bar"]
+    tags: list[str] = ["foo", "bar"]
     alias_with: str = Field(alias="with", default="nothing")
 
 

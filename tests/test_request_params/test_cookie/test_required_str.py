@@ -1,9 +1,10 @@
+from typing import Annotated
+
 import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi import Cookie, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 

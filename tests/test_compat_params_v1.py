@@ -1,5 +1,5 @@
 import sys
-from typing import List, Optional
+from typing import Optional
 
 import pytest
 
@@ -7,6 +7,8 @@ from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
+
+from typing import Annotated
 
 from fastapi import FastAPI
 from fastapi._compat.v1 import BaseModel
@@ -21,7 +23,6 @@ from fastapi.temp_pydantic_v1_params import (
 )
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from typing_extensions import Annotated
 
 
 class Item(BaseModel):
@@ -112,7 +113,7 @@ def upload_file(
 
 @app.post("/upload-multiple/")
 def upload_multiple_files(
-    files: Annotated[List[bytes], File()],
+    files: Annotated[list[bytes], File()],
     note: Annotated[str, Form()] = "",
 ):
     return {

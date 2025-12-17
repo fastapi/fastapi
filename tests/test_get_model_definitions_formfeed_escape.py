@@ -1,4 +1,5 @@
-from typing import Any, Iterator, Set, Type
+from collections.abc import Iterator
+from typing import Any
 
 import fastapi._compat
 import fastapi.openapi.utils
@@ -143,11 +144,11 @@ class SortedTypeSet(set):
     Set of Types whose `__iter__()` method yields results sorted by the type names
     """
 
-    def __init__(self, seq: Set[Type[Any]], *, sort_reversed: bool):
+    def __init__(self, seq: set[type[Any]], *, sort_reversed: bool):
         super().__init__(seq)
         self.sort_reversed = sort_reversed
 
-    def __iter__(self) -> Iterator[Type[Any]]:
+    def __iter__(self) -> Iterator[type[Any]]:
         members_sorted = sorted(
             super().__iter__(),
             key=lambda type_: type_.__name__,
