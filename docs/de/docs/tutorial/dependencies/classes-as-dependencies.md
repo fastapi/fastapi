@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.8 nicht annotiert
+//// tab | Python 3.9+ nicht annotiert
 
 /// tip | Tipp
 
