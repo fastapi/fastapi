@@ -12,7 +12,7 @@ Você pode definir o `operationId` do OpenAPI que será utilizado na sua *opera�
 
 Você precisa ter certeza que ele é único para cada operação.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Se você quiser utilizar o nome das funções da sua API como `operationId`s, vo
 
 Você deve fazer isso depois de adicionar todas as suas *operações de rota*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Dica
 
@@ -40,7 +40,7 @@ Mesmo que elas estejam em módulos (arquivos Python) diferentes.
 
 Para excluir uma *operação de rota* do esquema OpenAPI gerado (e por consequência, dos sistemas de documentação automáticos), utilize o parâmetro `include_in_schema` e defina ele como `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Descrição avançada a partir de docstring { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@ Você pode estender o esquema do OpenAPI para uma *operação de rota* utilizand
 
 Esse parâmetro `openapi_extra` pode ser útil, por exemplo, para declarar [Extensões do OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Se você abrir os documentos criados automaticamente para a API, sua extensão aparecerá no final da *operação de rota* específica.
 
@@ -139,7 +139,7 @@ Por exemplo, você poderia optar por ler e validar a requisição com seu própr
 
 Você pode fazer isso com `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
 Nesse exemplo, nós não declaramos nenhum modelo do Pydantic. Na verdade, o corpo da requisição não está nem mesmo <abbr title="convertido de um formato plano, como bytes, para objetos Python">analisado</abbr> como JSON, ele é lido diretamente como `bytes` e a função `magic_data_reader()` seria a responsável por analisar ele de alguma forma.
 

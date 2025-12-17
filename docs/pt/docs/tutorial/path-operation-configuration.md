@@ -46,7 +46,7 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
 **FastAPI** suporta isso da mesma maneira que com strings simples:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Resumo e descrição { #summary-and-description }
 
@@ -92,7 +92,7 @@ Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma
 
 Se você precisar marcar uma *operação de rota* como <abbr title="obsoleta, recomendada não usá-la">descontinuada</abbr>, mas sem removê-la, passe o parâmetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 Ela será claramente marcada como descontinuada nas documentações interativas:
 
