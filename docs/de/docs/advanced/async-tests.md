@@ -32,12 +32,11 @@ Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größ
 
 Die Datei `main.py` hätte als Inhalt:
 
-{* ../../docs_src/async_tests/main.py *}
+{* ../../docs_src/async_tests/app_a_py39/main.py *}
 
 Die Datei `test_main.py` hätte die Tests für `main.py`, das könnte jetzt so aussehen:
 
-{* ../../docs_src/async_tests/test_main.py *}
-
+{* ../../docs_src/async_tests/app_a_py39/test_main.py *}
 ## Es ausführen { #run-it }
 
 Sie können Ihre Tests wie gewohnt ausführen mit:
@@ -56,7 +55,7 @@ $ pytest
 
 Der Marker `@pytest.mark.anyio` teilt pytest mit, dass diese Testfunktion asynchron aufgerufen werden soll:
 
-{* ../../docs_src/async_tests/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[7] *}
 
 /// tip | Tipp
 
@@ -66,7 +65,7 @@ Beachten Sie, dass die Testfunktion jetzt `async def` ist und nicht nur `def` wi
 
 Dann können wir einen `AsyncClient` mit der App erstellen und mit `await` asynchrone Requests an ihn senden.
 
-{* ../../docs_src/async_tests/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a_py39/test_main.py hl[9:12] *}
 
 Das ist das Äquivalent zu:
 
