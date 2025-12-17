@@ -750,26 +750,33 @@ def _validate_value_with_model_field(
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
+    field: ModelField,
+    values: Mapping[str, Any],
+    alias: Union[str, None] = None,
+    form_input: bool = False,
 ) -> Any:
     alias = alias or get_validation_alias(field)
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
-    if (
-        value is None
-        or (
-            isinstance(field.field_info, (params.Form, temp_pydantic_v1_params.Form))
-            and isinstance(value, str)  # For type checks
-            and value == ""
-        )
-        or (is_sequence_field(field) and len(value) == 0)
-    ):
-        if field.required:
-            return
-        else:
-            return deepcopy(field.default)
+
+    if form_input:
+        # Special handling for form inputs:
+        # Treat empty strings or empty lists as missing values
+        if (isinstance(value, str) and value == "") or (
+            is_sequence_field(field) and len(value) == 0
+        ):
+            return None
+    else:
+        # For non-form inputs:
+        # If value is None or an empty sequence, use the default (if not required) or
+        # treat as missing (if required)
+        if value is None or (is_sequence_field(field) and len(value) == 0):
+            if field.required:
+                return None
+            else:
+                return deepcopy(field.default)
     return value
 
 
@@ -906,7 +913,7 @@ async def _extract_form_body(
     values = {}
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        value = _get_multidict_value(field, received_body, form_input=True)
         field_info = field.field_info
         if (
             isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
