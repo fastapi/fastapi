@@ -1,6 +1,6 @@
-# Cookies de Response
+# Cookies de Response { #response-cookies }
 
-## Usar un parámetro `Response`
+## Usar un parámetro `Response` { #use-a-response-parameter }
 
 Puedes declarar un parámetro de tipo `Response` en tu *path operation function*.
 
@@ -16,7 +16,7 @@ Y si declaraste un `response_model`, todavía se utilizará para filtrar y conve
 
 También puedes declarar el parámetro `Response` en las dependencias, y establecer cookies (y headers) en ellas.
 
-## Devolver una `Response` directamente
+## Devolver una `Response` directamente { #return-a-response-directly }
 
 También puedes crear cookies al devolver una `Response` directamente en tu código.
 
@@ -36,7 +36,7 @@ Y también que no estés enviando ningún dato que debería haber sido filtrado 
 
 ///
 
-### Más información
+### Más información { #more-info }
 
 /// note | Detalles Técnicos
 

@@ -13,7 +13,7 @@ Repositorio de GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-t
     - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
     - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
-    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev), y otras partes de una stack moderna de frontend.
+    - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.
     - 🎨 [Tailwind CSS](https://tailwindcss.com) y [shadcn/ui](https://ui.shadcn.com) para los componentes del frontend.
     - 🤖 Un cliente de frontend generado automáticamente.
     - 🧪 [Playwright](https://playwright.dev) para escribir pruebas End-to-End.

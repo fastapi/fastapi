@@ -9,6 +9,8 @@ hide:
 
 ### Translations
 
+* 🌐 Sync Portuguese docs (pages found with script). PR [#14554](https://github.com/fastapi/fastapi/pull/14554) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Sync Spanish docs (outdated pages found with script). PR [#14553](https://github.com/fastapi/fastapi/pull/14553) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync German docs. PR [#14519](https://github.com/fastapi/fastapi/pull/14519) by [@nilslindemann](https://github.com/nilslindemann).
 * 🔥 Remove inactive/scarce translations to Vietnamese. PR [#14543](https://github.com/fastapi/fastapi/pull/14543) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove inactive/scarce translations to Persian. PR [#14542](https://github.com/fastapi/fastapi/pull/14542) by [@tiangolo](https://github.com/tiangolo).
