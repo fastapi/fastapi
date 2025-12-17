@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump `markdown-include-variants` from 0.0.7 to 0.0.8. PR [#14556](https://github.com/fastapi/fastapi/pull/14556) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Temporarily disable translations still in progress, being migrated to the new LLM setup. PR [#14555](https://github.com/fastapi/fastapi/pull/14555) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Update test workflow config, remove commented code. PR [#14540](https://github.com/fastapi/fastapi/pull/14540) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Configure coverage, error on main tests, don't wait for Smokeshow. PR [#14536](https://github.com/fastapi/fastapi/pull/14536) by [@tiangolo](https://github.com/tiangolo).
