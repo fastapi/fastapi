@@ -62,7 +62,7 @@ $ pip install "fastapi[all]"
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ $ pip install "fastapi[all]"
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ $ pip install "fastapi[all]"
 
 Затем вы можете использовать новый объект `settings` в вашем приложении:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Запуск сервера { #run-the-server }
 
@@ -126,11 +126,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Например, у вас может быть файл `config.py` со следующим содержимым:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 А затем использовать его в файле `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip | Совет
 

@@ -6,17 +6,15 @@ import pytest
 from fastapi import Request
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial001"),
-        pytest.param("tutorial001_py39", marks=needs_py39),
+        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial001_an"),
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        pytest.param("tutorial001_an_py39"),
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )

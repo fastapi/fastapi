@@ -20,7 +20,7 @@ Puedes declarar un parámetro de tipo `Response` en tu *path operation function*
 
 Y luego puedes establecer el `status_code` en ese objeto de response *temporal*.
 
-{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
 
 Y luego puedes devolver cualquier objeto que necesites, como lo harías normalmente (un `dict`, un modelo de base de datos, etc.).
 

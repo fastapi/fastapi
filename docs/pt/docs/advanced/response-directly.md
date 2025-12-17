@@ -54,7 +54,7 @@ Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.o
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
 ## Notas { #notes }
 

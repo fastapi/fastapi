@@ -29,15 +29,15 @@ FastAPI поддерживает зависимости, которые выпо
 
 Перед созданием ответа будет выполнен только код до и включая оператор `yield`:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
 
 Значение, полученное из `yield`, внедряется в *операции пути* и другие зависимости:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
 
 Код, следующий за оператором `yield`, выполняется после ответа:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
 
 /// tip | Подсказка
 
@@ -57,7 +57,7 @@ FastAPI поддерживает зависимости, которые выпо
 
 Точно так же можно использовать `finally`, чтобы убедиться, что обязательные шаги при выходе выполнены независимо от того, было ли исключение или нет.
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
 
 ## Подзависимости с `yield` { #sub-dependencies-with-yield }
 
@@ -269,7 +269,7 @@ with open("./somefile.txt") as f:
 Их также можно использовать внутри зависимостей **FastAPI** с `yield`, применяя операторы
 `with` или `async with` внутри функции зависимости:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
 
 /// tip | Подсказка
 
