@@ -15,7 +15,7 @@ Use da seguinte forma:
 
 Os testes:
 
-## Trechos de código { #code-snippets}
+## Trechos de código { #code-snippets }
 
 //// tab | Teste
 
@@ -53,7 +53,7 @@ Veja, por exemplo, a seção `### Quotes` em `docs/de/llm-prompt.md`.
 
 ////
 
-## Citações em trechos de código { #quotes-in-code-snippets}
+## Citações em trechos de código { #quotes-in-code-snippets }
 
 //// tab | Teste
 

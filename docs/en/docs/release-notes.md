@@ -9,6 +9,10 @@ hide:
 
 ### Translations
 
+* 🔧 Add LLM prompt file for French, generated from the existing French docs. PR [#14544](https://github.com/fastapi/fastapi/pull/14544) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Sync Portuguese docs (pages found with script). PR [#14554](https://github.com/fastapi/fastapi/pull/14554) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Sync Spanish docs (outdated pages found with script). PR [#14553](https://github.com/fastapi/fastapi/pull/14553) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Sync German docs. PR [#14519](https://github.com/fastapi/fastapi/pull/14519) by [@nilslindemann](https://github.com/nilslindemann).
 * 🔥 Remove inactive/scarce translations to Vietnamese. PR [#14543](https://github.com/fastapi/fastapi/pull/14543) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove inactive/scarce translations to Persian. PR [#14542](https://github.com/fastapi/fastapi/pull/14542) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove translation to emoji to simplify the new setup with LLM autotranslations. PR [#14541](https://github.com/fastapi/fastapi/pull/14541) by [@tiangolo](https://github.com/tiangolo).
@@ -19,6 +23,8 @@ hide:
 
 ### Internal
 
+* ⬆ Bump `markdown-include-variants` from 0.0.7 to 0.0.8. PR [#14556](https://github.com/fastapi/fastapi/pull/14556) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🔧 Temporarily disable translations still in progress, being migrated to the new LLM setup. PR [#14555](https://github.com/fastapi/fastapi/pull/14555) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🔧 Update test workflow config, remove commented code. PR [#14540](https://github.com/fastapi/fastapi/pull/14540) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Configure coverage, error on main tests, don't wait for Smokeshow. PR [#14536](https://github.com/fastapi/fastapi/pull/14536) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run Smokeshow always, even on test failures. PR [#14538](https://github.com/fastapi/fastapi/pull/14538) by [@tiangolo](https://github.com/tiangolo).
