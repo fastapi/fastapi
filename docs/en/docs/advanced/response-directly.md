@@ -54,7 +54,7 @@ Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML"
 
 You could put your XML content in a string, put that in a `Response`, and return it:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
 ## Notes { #notes }
 

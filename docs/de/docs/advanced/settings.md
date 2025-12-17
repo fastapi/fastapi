@@ -62,7 +62,7 @@ Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydan
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `
 
 Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Den Server ausführen { #run-the-server }
 
@@ -126,11 +126,11 @@ Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in
 
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 Und dann verwenden Sie diese in einer Datei `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip | Tipp
 

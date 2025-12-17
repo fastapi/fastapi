@@ -14,33 +14,13 @@ Isso fará com que tags seja uma lista de itens mesmo sem declarar o tipo dos el
 
 Mas o Python tem uma maneira específica de declarar listas com tipos internos ou "parâmetros de tipo":
 
-### Importe `List` do typing { #import-typings-list }
-
-No Python 3.9 e superior você pode usar a `list` padrão para declarar essas anotações de tipo, como veremos abaixo. 💡
-
-Mas nas versões do Python anteriores à 3.9 (3.6 e superiores), primeiro é necessário importar `List` do módulo padrão `typing` do Python:
-
-{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
 ### Declare uma `list` com um parâmetro de tipo { #declare-a-list-with-a-type-parameter }
 
-Para declarar tipos que têm parâmetros de tipo (tipos internos), como `list`, `dict`, `tuple`:
-
-* Se você estiver em uma versão do Python inferior a 3.9, importe a versão equivalente do módulo `typing`
-* Passe o(s) tipo(s) interno(s) como "parâmetros de tipo" usando colchetes: `[` e `]`
-
-No Python 3.9, seria:
+Para declarar tipos que têm parâmetros de tipo (tipos internos), como `list`, `dict`, `tuple`,
+passe o(s) tipo(s) interno(s) como "parâmetros de tipo" usando colchetes: `[` e `]`
 
 ```Python
 my_list: list[str]
-```
-
-Em versões do Python anteriores à 3.9, seria:
-
-```Python
-from typing import List
-
-my_list: List[str]
 ```
 
 Essa é a sintaxe padrão do Python para declarações de tipo.
@@ -177,12 +157,6 @@ Observe como `Offer` tem uma lista de `Item`s, que por sua vez têm uma lista op
 ## Corpos de listas puras { #bodies-of-pure-lists }
 
 Se o valor de primeiro nível do corpo JSON que você espera for um `array` do JSON (uma` lista` do Python), você pode declarar o tipo no parâmetro da função, da mesma forma que nos modelos do Pydantic:
-
-```Python
-images: List[Image]
-```
-
-ou no Python 3.9 e superior:
 
 ```Python
 images: list[Image]

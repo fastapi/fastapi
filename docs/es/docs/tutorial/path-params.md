@@ -2,7 +2,7 @@
 
 Puedes declarar "parámetros" o "variables" de path con la misma sintaxis que se usa en los format strings de Python:
 
-{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
 
 El valor del parámetro de path `item_id` se pasará a tu función como el argumento `item_id`.
 
@@ -16,7 +16,7 @@ Así que, si ejecutas este ejemplo y vas a <a href="http://127.0.0.1:8000/items/
 
 Puedes declarar el tipo de un parámetro de path en la función, usando anotaciones de tipos estándar de Python:
 
-{* ../../docs_src/path_params/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
 
 En este caso, `item_id` se declara como un `int`.
 
@@ -118,13 +118,13 @@ Y luego también puedes tener un path `/users/{user_id}` para obtener datos sobr
 
 Debido a que las *path operations* se evalúan en orden, necesitas asegurarte de que el path para `/users/me` se declara antes que el de `/users/{user_id}`:
 
-{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
 
 De lo contrario, el path para `/users/{user_id}` también coincidiría para `/users/me`, "pensando" que está recibiendo un parámetro `user_id` con un valor de `"me"`.
 
 De manera similar, no puedes redefinir una path operation:
 
-{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
 
 La primera siempre será utilizada ya que el path coincide primero.
 
@@ -140,13 +140,7 @@ Al heredar de `str`, la documentación de la API podrá saber que los valores de
 
 Luego crea atributos de clase con valores fijos, que serán los valores válidos disponibles:
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
-
-/// info | Información
-
-<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Las enumeraciones (o enums) están disponibles en Python</a> desde la versión 3.4.
-
-///
+{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
 
 /// tip | Consejo
 
@@ -158,7 +152,7 @@ Si te estás preguntando, "AlexNet", "ResNet" y "LeNet" son solo nombres de <abb
 
 Luego crea un *path parameter* con una anotación de tipo usando la clase enum que creaste (`ModelName`):
 
-{* ../../docs_src/path_params/tutorial005.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
 
 ### Revisa la documentación { #check-the-docs }
 
@@ -174,13 +168,13 @@ El valor del *path parameter* será un *miembro* de enumeración.
 
 Puedes compararlo con el *miembro* de enumeración en tu enum creada `ModelName`:
 
-{* ../../docs_src/path_params/tutorial005.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
 
 #### Obtener el valor de *enumeración* { #get-the-enumeration-value }
 
 Puedes obtener el valor actual (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
 
 /// tip | Consejo
 
@@ -194,7 +188,7 @@ Puedes devolver *miembros de enum* desde tu *path operation*, incluso anidados e
 
 Serán convertidos a sus valores correspondientes (cadenas en este caso) antes de devolverlos al cliente:
 
-{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
 
 En tu cliente recibirás un response JSON como:
 
@@ -233,7 +227,7 @@ En este caso, el nombre del parámetro es `file_path`, y la última parte, `:pat
 
 Así que, puedes usarlo con:
 
-{* ../../docs_src/path_params/tutorial004.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
 
 /// tip | Consejo
 

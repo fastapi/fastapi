@@ -167,7 +167,7 @@ Pero para el cliente generado podríamos **modificar** los operation IDs de Open
 
 Podríamos descargar el JSON de OpenAPI a un archivo `openapi.json` y luego podríamos **remover ese tag prefijado** con un script como este:
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py39.py *}
 
 //// tab | Node.js
 

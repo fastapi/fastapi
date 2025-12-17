@@ -161,7 +161,7 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 FastAPI sabrá que el valor de `q` no es requerido debido al valor por defecto `= None`.
 
-El `str | None` (Python 3.10+) o `Union` en `Union[str, None]` (Python 3.8+) no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
+El `str | None` (Python 3.10+) o `Union` en `Union[str, None]` (Python 3.9+) no es utilizado por FastAPI para determinar que el valor no es requerido, sabrá que no es requerido porque tiene un valor por defecto de `= None`.
 
 Pero agregar las anotaciones de tipos permitirá que tu editor te brinde un mejor soporte y detecte errores.
 

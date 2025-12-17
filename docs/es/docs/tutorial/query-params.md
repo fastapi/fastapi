@@ -2,7 +2,7 @@
 
 Cuando declaras otros parámetros de función que no son parte de los parámetros de path, son automáticamente interpretados como parámetros de "query".
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 La query es el conjunto de pares clave-valor que van después del `?` en una URL, separados por caracteres `&`.
 
@@ -127,7 +127,7 @@ Si no quieres agregar un valor específico pero solo hacer que sea opcional, est
 
 Pero cuando quieres hacer un parámetro de query requerido, simplemente no declares ningún valor por defecto:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 Aquí el parámetro de query `needy` es un parámetro de query requerido de tipo `str`.
 
