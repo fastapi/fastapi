@@ -1,8 +1,8 @@
-# Response Headers
+# Headers de Response { #response-headers }
 
-## Usa un parámetro `Response`
+## Usa un parámetro `Response` { #use-a-response-parameter }
 
-Puedes declarar un parámetro de tipo `Response` en tu *función de path operation* (como puedes hacer para cookies).
+Puedes declarar un parámetro de tipo `Response` en tu *path operation function* (como puedes hacer para cookies).
 
 Y luego puedes establecer headers en ese objeto de response *temporal*.
 
@@ -16,7 +16,7 @@ Y si declaraste un `response_model`, aún se usará para filtrar y convertir el 
 
 También puedes declarar el parámetro `Response` en dependencias y establecer headers (y cookies) en ellas.
 
-## Retorna una `Response` directamente
+## Retorna una `Response` directamente { #return-a-response-directly }
 
 También puedes agregar headers cuando devuelves un `Response` directamente.
 
@@ -34,8 +34,8 @@ Y como el `Response` se puede usar frecuentemente para establecer headers y cook
 
 ///
 
-## Headers Personalizados
+## Headers Personalizados { #custom-headers }
 
-Ten en cuenta que los headers propietarios personalizados se pueden agregar <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo 'X-'</a>.
+Ten en cuenta que los headers propietarios personalizados se pueden agregar <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando el prefijo `X-`</a>.
 
 Pero si tienes headers personalizados que quieres que un cliente en un navegador pueda ver, necesitas agregarlos a tus configuraciones de CORS (leer más en [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md){.internal-link target=_blank}), usando el parámetro `expose_headers` documentado en <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentación CORS de Starlette</a>.
