@@ -109,7 +109,7 @@ jobs:
           path: coverage
           include-hidden-files: true
       - name: CodSpeed benchmarks
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.14' && matrix.pydantic-version == 'pydantic>=2.0.2,<3.0.0'
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' && matrix.pydantic-version == 'pydantic>=2.0.2,<3.0.0'
         uses: CodSpeedHQ/action@v4
         with:
           mode: simulation
