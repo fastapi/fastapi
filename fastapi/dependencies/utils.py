@@ -18,7 +18,6 @@ from typing import (
     Type,
     Union,
     cast,
-    get_type_hints,
 )
 
 import anyio
@@ -228,40 +227,27 @@ def get_typed_signature(call: Callable[..., Any]) -> inspect.Signature:
     unwrapped = inspect.unwrap(call)
     globalns = getattr(unwrapped, "__globals__", {})
 
-    # Try to use get_type_hints first for better forward reference resolution
-    # This properly handles Annotated types with forward references when using
-    # `from __future__ import annotations` (PEP 563)
-    type_hints: Dict[str, Any] = {}
-    try:
-        # include_extras=True preserves Annotated metadata (like Depends)
-        type_hints = get_type_hints(unwrapped, globalns=globalns, include_extras=True)
-    except NameError:
-        # If get_type_hints fails due to unresolved names, try to get updated
-        # globalns from the module (in case classes were defined after the function)
-        module_name = getattr(unwrapped, "__module__", None)
-        if module_name:
-            import importlib
+    # Get updated globalns from the module (in case classes were defined after the function)
+    # This is needed for forward references when using `from __future__ import annotations`
+    module_name = getattr(unwrapped, "__module__", None)
+    if module_name:
+        import importlib
 
-            try:
-                module = importlib.import_module(module_name)
-                updated_globalns = vars(module)
-                type_hints = get_type_hints(
-                    unwrapped, globalns=updated_globalns, include_extras=True
-                )
-            except Exception:
-                pass
-    except Exception:
-        # Fall back to manual resolution if get_type_hints fails for other reasons
-        pass
+        try:
+            module = importlib.import_module(module_name)
+            # Merge module namespace with function's globalns
+            # Function's globalns takes precedence for imports made in the function's scope
+            updated_globalns = {**vars(module), **globalns}
+            globalns = updated_globalns
+        except Exception:
+            pass
 
     typed_params = [
         inspect.Parameter(
             name=param.name,
             kind=param.kind,
             default=param.default,
-            annotation=type_hints.get(param.name)
-            if param.name in type_hints
-            else get_typed_annotation(param.annotation, globalns),
+            annotation=get_typed_annotation(param.annotation, globalns),
         )
         for param in signature.parameters.values()
     ]
