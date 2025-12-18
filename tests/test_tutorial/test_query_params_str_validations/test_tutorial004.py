@@ -5,11 +5,12 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py310, needs_pydanticv2
 
-skip_for_pydantic_v1 = needs_pydanticv2
-
-pytestmark = pytest.mark.filterwarnings(
-    "ignore:`regex` has been deprecated, please use `pattern` instead:DeprecationWarning"
-)
+pytestmark = [
+    pytest.mark.filterwarnings(
+        "ignore:`regex` has been deprecated, please use `pattern` instead:DeprecationWarning"
+    ),
+    needs_pydanticv2,
+]
 
 
 @pytest.fixture(
