@@ -2,7 +2,6 @@ import json
 from typing import Annotated, Any, Optional
 
 from annotated_doc import Doc
-from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 
 swagger_ui_default_parameters: Annotated[
@@ -119,18 +118,20 @@ def get_swagger_ui_html(
         "showCommonExtensions": True,
         "presets": [
             "SwaggerUIBundle.presets.apis",
-            "SwaggerUIBundle.SwaggerUIStandalonePreset"
-        ]
+            "SwaggerUIBundle.SwaggerUIStandalonePreset",
+        ],
     }
-    
+
     if swagger_ui_parameters:
         swagger_config.update(swagger_ui_parameters)
-    
+
     if oauth2_redirect_url:
-        swagger_config["oauth2RedirectUrl"] = f"window.location.origin + '{oauth2_redirect_url}'"
-    
+        swagger_config["oauth2RedirectUrl"] = (
+            f"window.location.origin + '{oauth2_redirect_url}'"
+        )
+
     config_json = json.dumps(swagger_config, default=str)
-    
+
     html = f'''<!DOCTYPE html>
 <html>
 <head>
@@ -144,17 +145,17 @@ def get_swagger_ui_html(
 <script src="{swagger_js_url}"></script>
 <script>
 const ui = SwaggerUIBundle({config_json});'''
-    
+
     if init_oauth:
         init_oauth_json = json.dumps(init_oauth, default=str)
-        html += f'''
-ui.initOAuth({init_oauth_json});'''
-    
-    html += '''
+        html += f"""
+ui.initOAuth({init_oauth_json});"""
+
+    html += """
 </script>
 </body>
-</html>'''
-    
+</html>"""
+
     return HTMLResponse(html)
 
 
@@ -216,20 +217,20 @@ def get_redoc_html(
     Read more about it in the
     [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).
     """
-    
-    html = f'''<!DOCTYPE html>
+
+    html = f"""<!DOCTYPE html>
 <html>
 <head>
 <title>{title}</title>
 <!-- needed for adaptive design -->
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-'''
-    
+"""
+
     if with_google_fonts:
-        html += '''<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-'''
-    
+        html += """<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+"""
+
     html += f'''<link rel="shortcut icon" href="{redoc_favicon_url}">
 <!--
 ReDoc doesn't change outer page styles
@@ -249,7 +250,7 @@ ReDoc doesn't change outer page styles
 <script src="{redoc_js_url}"> </script>
 </body>
 </html>'''
-    
+
     return HTMLResponse(html)
 
 
@@ -259,7 +260,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
 
     You normally don't need to use or change this.
     """
-    
+
     html_content = """<!doctype html>
 <html lang="en-US">
 <head>
@@ -282,7 +283,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
 
         arr = qp.split("&");
         arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
-        qp = qp ? JSON.parse('{' + arr.join() + '}', 
+        qp = qp ? JSON.parse('{' + arr.join() + '}',
                 function (key, value) {
                     return key === "" ? value : decodeURIComponent(value);
                 }
@@ -291,8 +292,8 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
         isValid = qp.state === sentState;
 
         if ((
-          oauth2.auth.schema.get("flow") === "accessCode" || 
-          oauth2.auth.schema.get("flow") === "authorizationCode" || 
+          oauth2.auth.schema.get("flow") === "accessCode" ||
+          oauth2.auth.schema.get("flow") === "authorizationCode" ||
           oauth2.auth.schema.get("flow") === "authorization_code"
         ) && !oauth2.auth.code) {
             if (!isValid) {
@@ -339,5 +340,5 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
 </script>
 </body>
 </html>"""
-    
+
     return HTMLResponse(content=html_content)
