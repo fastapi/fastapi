@@ -131,24 +131,36 @@ def get_swagger_ui_html(
     const ui = SwaggerUIBundle({{
         url: '{openapi_url}',
     """
-
+    
     for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+        
+        encoded_value = jsonable_encoder(value)
+        safe_value = json.dumps(encoded_value)
+        
+        
+        if isinstance(value, str) and safe_value.startswith('"') and safe_value.endswith('"'):
+            safe_value = safe_value[1:-1]  # Remove aspas externas
+        
+        
+        html += f"        {key}: {safe_value},\n"
 
+  
     if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',\n"
 
-    html += """
-    presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
+   
+    html += """ presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
-    })"""
+    })
+    """
 
+    
     if init_oauth:
+        init_oauth_json = json.dumps(jsonable_encoder(init_oauth))
         html += f"""
-        ui.initOAuth({json.dumps(jsonable_encoder(init_oauth))})
-        """
+    ui.initOAuth({init_oauth_json})"""
 
     html += """
     </script>
