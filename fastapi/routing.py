@@ -3,11 +3,6 @@ import email.message
 import functools
 import inspect
 import json
-import sys
-from contextlib import AsyncExitStack, asynccontextmanager
-from enum import Enum, IntEnum
-from functools import cached_property
-
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -18,6 +13,7 @@ from collections.abc import (
 )
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
+from functools import cached_property
 from typing import (
     Annotated,
     Any,
@@ -678,7 +674,7 @@ class APIRoute(routing.Route):
         return create_cloned_field(self.response_field) if self.response_field else None
 
     @cached_property
-    def response_fields(self) -> Dict[Union[int, str], ModelField]:
+    def response_fields(self) -> dict[Union[int, str], ModelField]:
         response_fields = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
@@ -693,7 +689,7 @@ class APIRoute(routing.Route):
                 )
                 response_fields[additional_status_code] = response_field
         if response_fields:
-            self.response_fields: Dict[Union[int, str], ModelField] = response_fields
+            self.response_fields: dict[Union[int, str], ModelField] = response_fields
         else:
             self.response_fields = {}
 
