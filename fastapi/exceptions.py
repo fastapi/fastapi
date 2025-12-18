@@ -1,5 +1,5 @@
-from collections.abc import Sequence
-from typing import Annotated, Any, Mapping, Optional, TypedDict, Union
+from collections.abc import Mapping, Sequence
+from typing import Annotated, Any, Optional, TypedDict, Union
 
 from annotated_doc import Doc
 from pydantic import BaseModel, create_model
