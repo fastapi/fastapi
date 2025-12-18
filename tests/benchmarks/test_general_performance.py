@@ -6,7 +6,6 @@ from typing import Annotated, Any
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, v1
 
 if "--codspeed" not in sys.argv:
     pytest.skip(
@@ -49,12 +48,19 @@ def dep_b(a: Annotated[int, Depends(dep_a)]):
 @pytest.fixture(
     scope="module",
     params=[
-        pytest.param(BaseModel, id="pydantic-v2"),
-        pytest.param(v1.BaseModel, id="pydantic-v1"),
+        "pydantic-v2",
+        "pydantic-v1",
     ],
 )
 def basemodel_class(request: pytest.FixtureRequest) -> type[Any]:
-    return request.param
+    if request.param == "pydantic-v2":
+        from pydantic import BaseModel
+
+        return BaseModel
+    else:
+        from pydantic_v1 import BaseModel
+
+        return BaseModel
 
 
 @pytest.fixture(scope="module")
