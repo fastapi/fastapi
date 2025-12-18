@@ -1,6 +1,6 @@
 import json
 from collections.abc import Iterator
-from typing import Annotated, Any, Dict, List, Tuple
+from typing import Annotated, Any
 
 import pytest
 from fastapi import Depends, FastAPI
@@ -20,16 +20,16 @@ class ItemOut(BaseModel):
 
 
 class LargeIn(BaseModel):
-    items: List[Dict[str, Any]]
-    metadata: Dict[str, Any]
+    items: list[dict[str, Any]]
+    metadata: dict[str, Any]
 
 
 class LargeOut(BaseModel):
-    items: List[Dict[str, Any]]
-    metadata: Dict[str, Any]
+    items: list[dict[str, Any]]
+    metadata: dict[str, Any]
 
 
-LARGE_ITEMS: List[Dict[str, Any]] = [
+LARGE_ITEMS: list[dict[str, Any]] = [
     {
         "id": i,
         "name": f"item-{i}",
@@ -43,14 +43,14 @@ LARGE_ITEMS: List[Dict[str, Any]] = [
     for i in range(300)
 ]
 
-LARGE_METADATA: Dict[str, Any] = {
+LARGE_METADATA: dict[str, Any] = {
     "source": "benchmark",
     "version": 1,
     "flags": {"a": True, "b": False, "c": True},
     "notes": ["x" * 50, "y" * 50, "z" * 50],
 }
 
-LARGE_PAYLOAD: Dict[str, Any] = {"items": LARGE_ITEMS, "metadata": LARGE_METADATA}
+LARGE_PAYLOAD: dict[str, Any] = {"items": LARGE_ITEMS, "metadata": LARGE_METADATA}
 
 
 def dep_a():
@@ -165,11 +165,11 @@ def client(app: FastAPI) -> Iterator[TestClient]:
         yield client
 
 
-def _bench_get(benchmark, client: TestClient, path: str) -> Tuple[int, bytes]:
+def _bench_get(benchmark, client: TestClient, path: str) -> tuple[int, bytes]:
     warmup = client.get(path)
     assert warmup.status_code == 200
 
-    def do_request() -> Tuple[int, bytes]:
+    def do_request() -> tuple[int, bytes]:
         response = client.get(path)
         return response.status_code, response.content
 
@@ -177,12 +177,12 @@ def _bench_get(benchmark, client: TestClient, path: str) -> Tuple[int, bytes]:
 
 
 def _bench_post_json(
-    benchmark, client: TestClient, path: str, json: Dict[str, Any]
-) -> Tuple[int, bytes]:
+    benchmark, client: TestClient, path: str, json: dict[str, Any]
+) -> tuple[int, bytes]:
     warmup = client.post(path, json=json)
     assert warmup.status_code == 200
 
-    def do_request() -> Tuple[int, bytes]:
+    def do_request() -> tuple[int, bytes]:
         response = client.post(path, json=json)
         return response.status_code, response.content
 
