@@ -10,7 +10,7 @@ from dataclasses import dataclass
 if sys.version_info >= (3, 9):
     from typing import Annotated
 else:
-    from typing_extensions import Annotated
+    from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
