@@ -1,5 +1,6 @@
 import importlib
 from types import ModuleType
+from unittest.mock import patch
 
 import pytest
 from fastapi.testclient import TestClient
@@ -153,6 +154,26 @@ def test_token_nonexistent_user(mod: ModuleType):
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Could not validate credentials"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
+
+
+def test_token_inactive_user(mod: ModuleType):
+    client = TestClient(mod.app)
+    alice_user_data = {
+        "username": "alice",
+        "full_name": "Alice Wonderson",
+        "email": "alice@example.com",
+        "hashed_password": mod.get_password_hash("secretalice"),
+        "disabled": True,
+    }
+    with patch.dict(f"{mod.__name__}.fake_users_db", {"alice": alice_user_data}):
+        access_token = get_access_token(
+            username="alice", password="secretalice", client=client
+        )
+        response = client.get(
+            "/users/me", headers={"Authorization": f"Bearer {access_token}"}
+        )
+    assert response.status_code == 400, response.text
+    assert response.json() == {"detail": "Inactive user"}
 
 
 def test_read_items(mod: ModuleType):
