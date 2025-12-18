@@ -31,3 +31,5 @@ archive.zip
 
 # Ignore while the setup still depends on requirements.txt files
 uv.lock
+
+.codspeed

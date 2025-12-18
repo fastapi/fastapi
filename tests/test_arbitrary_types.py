@@ -1,10 +1,9 @@
-from typing import List
+from typing import Annotated
 
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from typing_extensions import Annotated
 
 from .utils import needs_pydanticv2
 
@@ -25,7 +24,7 @@ def get_client():
 
     FakeNumpyArrayPydantic = Annotated[
         FakeNumpyArray,
-        WithJsonSchema(TypeAdapter(List[float]).json_schema()),
+        WithJsonSchema(TypeAdapter(list[float]).json_schema()),
         PlainSerializer(lambda v: v.data),
     ]
 
@@ -66,7 +65,7 @@ def test_typeadapter():
 
     FakeNumpyArrayPydantic = Annotated[
         FakeNumpyArray,
-        WithJsonSchema(TypeAdapter(List[float]).json_schema()),
+        WithJsonSchema(TypeAdapter(list[float]).json_schema()),
         PlainSerializer(lambda v: v.data),
     ]
 

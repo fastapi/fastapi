@@ -14,33 +14,12 @@ Das bewirkt, dass `tags` eine Liste ist, wenngleich es nichts über den Typ der 
 
 Aber Python erlaubt es, Listen mit inneren Typen, auch „Typ-Parameter“ genannt, zu deklarieren.
 
-### `List` von `typing` importieren { #import-typings-list }
-
-In Python 3.9 oder darüber können Sie einfach `list` verwenden, um diese Typannotationen zu deklarieren, wie wir unten sehen werden. 💡
-
-In Python-Versionen vor 3.9 (3.6 und darüber), müssen Sie zuerst `List` von Pythons Standardmodul `typing` importieren.
-
-{* ../../docs_src/body_nested_models/tutorial002.py hl[1] *}
-
 ### Eine `list` mit einem Typ-Parameter deklarieren { #declare-a-list-with-a-type-parameter }
 
-Um Typen wie `list`, `dict`, `tuple` mit inneren Typ-Parametern (inneren Typen) zu deklarieren:
-
-* Wenn Sie eine Python-Version kleiner als 3.9 verwenden, importieren Sie das Äquivalent zum entsprechenden Typ vom `typing`-Modul
-* Überreichen Sie den/die inneren Typ(en) von eckigen Klammern umschlossen, `[` und `]`, als „Typ-Parameter“
-
-In Python 3.9 wäre das:
+Um Typen zu deklarieren, die Typ-Parameter (innere Typen) haben, wie `list`, `dict`, `tuple`, übergeben Sie den/die inneren Typ(en) als „Typ-Parameter“ in eckigen Klammern: `[` und `]`
 
 ```Python
 my_list: list[str]
-```
-
-Und in Python-Versionen vor 3.9:
-
-```Python
-from typing import List
-
-my_list: List[str]
 ```
 
 Das ist alles Standard-Python-Syntax für Typdeklarationen.
@@ -177,12 +156,6 @@ Beachten Sie, wie `Offer` eine Liste von `Item`s hat, die ihrerseits eine option
 ## Bodys aus reinen Listen { #bodies-of-pure-lists }
 
 Wenn das äußerste Element des JSON-Bodys, das Sie erwarten, ein JSON-`array` (eine Python-`list`) ist, können Sie den Typ im Funktionsparameter deklarieren, mit der gleichen Syntax wie in Pydantic-Modellen:
-
-```Python
-images: List[Image]
-```
-
-oder in Python 3.9 und darüber:
 
 ```Python
 images: list[Image]

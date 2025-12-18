@@ -1,12 +1,12 @@
 # Ref: https://github.com/fastapi/fastapi/discussions/6024#discussioncomment-8541913
 
-from typing import Dict
+
+from typing import Annotated
 
 import pytest
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 @pytest.fixture(name="call_counts")
@@ -20,7 +20,7 @@ def call_counts_fixture():
 
 
 @pytest.fixture(name="app")
-def app_fixture(call_counts: Dict[str, int]):
+def app_fixture(call_counts: dict[str, int]):
     def get_db_session():
         call_counts["get_db_session"] += 1
         return f"db_session_{call_counts['get_db_session']}"
@@ -75,7 +75,7 @@ def client_fixture(app: FastAPI):
 
 
 def test_security_scopes_sub_dependency_caching(
-    client: TestClient, call_counts: Dict[str, int]
+    client: TestClient, call_counts: dict[str, int]
 ):
     response = client.get("/")
 

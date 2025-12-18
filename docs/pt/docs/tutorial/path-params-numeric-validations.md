@@ -54,7 +54,7 @@ Isso não faz diferença para o **FastAPI**. Ele vai detectar os parâmetros pel
 
 Então, você pode declarar sua função assim:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
 
 Mas tenha em mente que, se você usar `Annotated`, você não terá esse problema, não fará diferença, pois você não está usando valores padrão de parâmetros de função para `Query()` ou `Path()`.
 
@@ -83,7 +83,7 @@ Passe `*`, como o primeiro parâmetro da função.
 
 O Python não fará nada com esse `*`, mas saberá que todos os parâmetros seguintes devem ser chamados como argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="Do inglês: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não tenham um valor padrão.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
 
 ### Melhor com `Annotated` { #better-with-annotated }
 

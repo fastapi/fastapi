@@ -5,15 +5,14 @@ import pytest
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
-from ...utils import needs_py39, needs_pydanticv1, needs_pydanticv2
+from ...utils import needs_pydanticv1, needs_pydanticv2
 
 
 @pytest.fixture(
     name="mod_path",
     params=[
-        pytest.param("app03"),
-        pytest.param("app03_an"),
-        pytest.param("app03_an_py39", marks=needs_py39),
+        pytest.param("app03_py39"),
+        pytest.param("app03_an_py39"),
     ],
 )
 def get_mod_path(request: pytest.FixtureRequest):

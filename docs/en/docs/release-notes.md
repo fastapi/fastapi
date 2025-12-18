@@ -7,8 +7,28 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 👷 Add performance tests with CodSpeed. PR [#14558](https://github.com/fastapi/fastapi/pull/14558) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.125.0
+
+### Breaking Changes
+
+* 🔧 Drop support for Python 3.8. PR [#14563](https://github.com/fastapi/fastapi/pull/14563) by [@tiangolo](https://github.com/tiangolo).
+    * This would actually not be a _breaking_ change as no code would really break. Any Python 3.8 installer would just refuse to install the latest version of FastAPI and would only install 0.124.4. Only marking it as a "breaking change" to make it visible.
+
+### Refactors
+
+* ♻️ Upgrade internal syntax to Python 3.9+ 🎉. PR [#14564](https://github.com/fastapi/fastapi/pull/14564) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* ⚰️ Remove Python 3.8 from CI and remove Python 3.8 examples from source docs. PR [#14559](https://github.com/fastapi/fastapi/pull/14559) by [@YuriiMotov](https://github.com/YuriiMotov) and [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
+* 🌐 Update translations for pt (add-missing). PR [#14539](https://github.com/fastapi/fastapi/pull/14539) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add LLM prompt file for French, generated from the existing French docs. PR [#14544](https://github.com/fastapi/fastapi/pull/14544) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Sync Portuguese docs (pages found with script). PR [#14554](https://github.com/fastapi/fastapi/pull/14554) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Sync Spanish docs (outdated pages found with script). PR [#14553](https://github.com/fastapi/fastapi/pull/14553) by [@YuriiMotov](https://github.com/YuriiMotov).
