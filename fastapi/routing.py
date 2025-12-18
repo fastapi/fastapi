@@ -675,7 +675,7 @@ class APIRoute(routing.Route):
 
     @cached_property
     def response_fields(self) -> dict[Union[int, str], ModelField]:
-        response_fields = {}
+        response_fields: dict[Union[int, str], ModelField] = {}
         for additional_status_code, response in self.responses.items():
             assert isinstance(response, dict), "An additional response must be a dict"
             model = response.get("model")
@@ -688,10 +688,8 @@ class APIRoute(routing.Route):
                     name=response_name, type_=model, mode="serialization"
                 )
                 response_fields[additional_status_code] = response_field
-        if response_fields:
-            self.response_fields: dict[Union[int, str], ModelField] = response_fields
-        else:
-            self.response_fields = {}
+
+        return response_fields
 
     @cached_property
     def dependant(self) -> Dependant:
