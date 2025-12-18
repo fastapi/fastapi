@@ -286,7 +286,7 @@ def get_typed_annotation(annotation: Any, globalns: dict[str, Any]) -> Any:
     return annotation
 
 
-def _try_resolve_annotated_string(annotation_str: str, globalns: Dict[str, Any]) -> Any:
+def _try_resolve_annotated_string(annotation_str: str, globalns: dict[str, Any]) -> Any:
     """
     Try to partially resolve an Annotated string annotation.
 

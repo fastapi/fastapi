@@ -2,15 +2,8 @@
 
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass
-
-# Annotated is available in typing from Python 3.9+
-# For Python 3.8, we need to import from typing_extensions
-if sys.version_info >= (3, 9):
-    from typing import Annotated
-else:
-    from typing import Annotated
+from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
