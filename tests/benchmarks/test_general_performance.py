@@ -5,29 +5,7 @@ from typing import Annotated, Any
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
-
-
-class ItemIn(BaseModel):
-    name: str
-    value: int
-
-
-class ItemOut(BaseModel):
-    name: str
-    value: int
-    dep: int
-
-
-class LargeIn(BaseModel):
-    items: list[dict[str, Any]]
-    metadata: dict[str, Any]
-
-
-class LargeOut(BaseModel):
-    items: list[dict[str, Any]]
-    metadata: dict[str, Any]
-
+from pydantic import BaseModel, v1
 
 LARGE_ITEMS: list[dict[str, Any]] = [
     {
@@ -61,8 +39,36 @@ def dep_b(a: Annotated[int, Depends(dep_a)]):
     return a + 2
 
 
+@pytest.fixture(
+    scope="module",
+    params=[
+        pytest.param(BaseModel, id="pydantic-v2"),
+        pytest.param(v1.BaseModel, id="pydantic-v1"),
+    ],
+)
+def basemodel_class(request: pytest.FixtureRequest) -> type[Any]:
+    return request.param
+
+
 @pytest.fixture(scope="module")
-def app() -> FastAPI:
+def app(basemodel_class: type[Any]) -> FastAPI:
+    class ItemIn(basemodel_class):
+        name: str
+        value: int
+
+    class ItemOut(basemodel_class):
+        name: str
+        value: int
+        dep: int
+
+    class LargeIn(basemodel_class):
+        items: list[dict[str, Any]]
+        metadata: dict[str, Any]
+
+    class LargeOut(basemodel_class):
+        items: list[dict[str, Any]]
+        metadata: dict[str, Any]
+
     app = FastAPI()
 
     @app.post("/sync/validated", response_model=ItemOut)
