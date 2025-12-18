@@ -14,7 +14,7 @@ from ...utils import needs_py310, needs_pydanticv1, needs_pydanticv2
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.dataclasses.{request.param}")
+    mod = importlib.import_module(f"docs_src.dataclasses_.{request.param}")
 
     client = TestClient(mod.app)
     client.headers.clear()

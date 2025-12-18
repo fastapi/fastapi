@@ -1,7 +1,7 @@
 import pytest
 from starlette.testclient import TestClient
 
-from docs_src.graphql.tutorial001_py39 import app
+from docs_src.graphql_.tutorial001_py39 import app
 
 
 @pytest.fixture(name="client")
