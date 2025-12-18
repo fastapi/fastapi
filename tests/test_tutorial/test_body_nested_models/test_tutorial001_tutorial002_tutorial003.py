@@ -4,7 +4,7 @@ import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310, needs_pydanticv2
+from ...utils import needs_py310, needs_pydanticv2
 
 skip_for_pydantic_v1 = needs_pydanticv2
 
@@ -18,13 +18,11 @@ SET_OF_STR_SCHEMA = {"type": "array", "items": {"type": "string"}, "uniqueItems"
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial001"),
+        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial002"),
-        pytest.param("tutorial002_py39", marks=needs_py39),
+        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial003"),
-        pytest.param("tutorial003_py39", marks=needs_py39),
+        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
     ],
 )

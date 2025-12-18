@@ -15,7 +15,7 @@ skip_for_pydantic_v1 = needs_pydanticv2
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("app01"),
+        pytest.param("app01_py39"),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest):

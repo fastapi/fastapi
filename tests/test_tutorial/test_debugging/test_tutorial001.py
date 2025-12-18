@@ -5,7 +5,7 @@ import unittest
 import pytest
 from fastapi.testclient import TestClient
 
-MOD_NAME = "docs_src.debugging.tutorial001"
+MOD_NAME = "docs_src.debugging.tutorial001_py39"
 
 
 @pytest.fixture(name="client")

@@ -12,7 +12,7 @@ def test_remove_tags(tmp_path: pathlib.Path):
     tmp_file.write_text(json.dumps(openapi_json))
 
     with patch("pathlib.Path", return_value=tmp_file):
-        importlib.import_module("docs_src.generate_clients.tutorial004")
+        importlib.import_module("docs_src.generate_clients.tutorial004_py39")
 
     modified_openapi = json.loads(tmp_file.read_text())
     assert modified_openapi == {

@@ -3,7 +3,7 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310, needs_pydanticv2
+from ...utils import needs_py310, needs_pydanticv2
 
 skip_for_pydantic_v1 = needs_pydanticv2
 
@@ -11,10 +11,9 @@ skip_for_pydantic_v1 = needs_pydanticv2
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial005",
+        pytest.param("tutorial005_py39"),
         pytest.param("tutorial005_py310", marks=needs_py310),
-        "tutorial005_an",
-        pytest.param("tutorial005_an_py39", marks=needs_py39),
+        pytest.param("tutorial005_an_py39"),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )

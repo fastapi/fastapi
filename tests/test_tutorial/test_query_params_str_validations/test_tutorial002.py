@@ -11,9 +11,9 @@ skip_for_pydantic_v1 = needs_pydanticv2
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002"),
+        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial002_an"),
+        pytest.param("tutorial002_an_py39"),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
 )
