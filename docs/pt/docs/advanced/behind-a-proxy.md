@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Por exemplo, suponha que você defina uma *operação de rota* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
 
 Se o cliente tentar ir para `/items`, por padrão, ele seria redirecionado para `/items/`.
 
@@ -115,7 +115,7 @@ Nesse caso, o path original `/app` seria servido em `/api/v1/app`.
 
 Embora todo o seu código esteja escrito assumindo que existe apenas `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
 
 E o proxy estaria **"removendo"** o **prefixo de path** dinamicamente antes de transmitir a solicitação para o servidor da aplicação (provavelmente Uvicorn via CLI do FastAPI), mantendo sua aplicação convencida de que está sendo servida em `/app`, para que você não precise atualizar todo o seu código para incluir o prefixo `/api/v1`.
 
@@ -193,7 +193,7 @@ Você pode obter o `root_path` atual usado pela sua aplicação para cada solici
 
 Aqui estamos incluindo-o na mensagem apenas para fins de demonstração.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
 
 Então, se você iniciar o Uvicorn com:
 
@@ -220,7 +220,7 @@ A resposta seria algo como:
 
 Alternativamente, se você não tiver uma maneira de fornecer uma opção de linha de comando como `--root-path` ou equivalente, você pode definir o parâmetro `root_path` ao criar sua aplicação FastAPI:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
 
 Passar o `root_path` para `FastAPI` seria o equivalente a passar a opção de linha de comando `--root-path` para Uvicorn ou Hypercorn.
 
@@ -228,7 +228,7 @@ Passar o `root_path` para `FastAPI` seria o equivalente a passar a opção de li
 
 Tenha em mente que o servidor (Uvicorn) não usará esse `root_path` para nada além de passá-lo para a aplicação.
 
-Mas se você acessar com seu navegador <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> você verá a resposta normal:
+Mas se você acessar com seu navegador <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> você verá a resposta normal:
 
 ```JSON
 {
@@ -400,7 +400,7 @@ Se você passar uma lista personalizada de `servers` e houver um `root_path` (po
 
 Por exemplo:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
 
 Gerará um OpenAPI schema como:
 
@@ -443,11 +443,19 @@ A interface de documentação interagirá com o servidor que você selecionar.
 
 ///
 
+/// note | Detalhes Técnicos
+
+A propriedade `servers` na especificação OpenAPI é opcional.
+
+Se você não especificar o parâmetro `servers` e `root_path` for igual a `/`, a propriedade `servers` no OpenAPI gerado será totalmente omitida por padrão, o que equivale a um único servidor com valor de `url` igual a `/`.
+
+///
+
 ### Desabilitar servidor automático de `root_path` { #disable-automatic-server-from-root-path }
 
 Se você não quiser que o **FastAPI** inclua um servidor automático usando o `root_path`, você pode usar o parâmetro `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
 
 e então ele não será incluído no OpenAPI schema.
 

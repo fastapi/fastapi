@@ -34,7 +34,7 @@ For example, you cannot put a Pydantic model in a `JSONResponse` without first c
 
 For those cases, you can use the `jsonable_encoder` to convert your data before passing it to a response:
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | Technical Details
 
@@ -54,7 +54,7 @@ Let's say that you want to return an <a href="https://en.wikipedia.org/wiki/XML"
 
 You could put your XML content in a string, put that in a `Response`, and return it:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
 ## Notes { #notes }
 

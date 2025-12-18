@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: Optional[float] = None
-    owner_ids: Optional[List[int]] = None
+    owner_ids: Optional[list[int]] = None
 
 
 @app.get("/items/valid", response_model=Item)
@@ -23,7 +23,7 @@ def get_coerce():
     return {"name": "coerce", "price": "1.0"}
 
 
-@app.get("/items/validlist", response_model=List[Item])
+@app.get("/items/validlist", response_model=list[Item])
 def get_validlist():
     return [
         {"name": "foo"},

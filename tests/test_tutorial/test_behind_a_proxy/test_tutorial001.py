@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.behind_a_proxy.tutorial001 import app
+from docs_src.behind_a_proxy.tutorial001_py39 import app
 
 client = TestClient(app, root_path="/api/v1")
 

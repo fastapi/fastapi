@@ -1,12 +1,33 @@
+import importlib
+from types import ModuleType
+
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.openapi_callbacks.tutorial001 import app, invoice_notification
-
-client = TestClient(app)
+from tests.utils import needs_py310
 
 
-def test_get():
+@pytest.fixture(
+    name="mod",
+    params=[
+        pytest.param("tutorial001_py39"),
+        pytest.param("tutorial001_py310", marks=needs_py310),
+    ],
+)
+def get_mod(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.openapi_callbacks.{request.param}")
+    return mod
+
+
+@pytest.fixture(name="client")
+def get_client(mod: ModuleType):
+    client = TestClient(mod.app)
+    client.headers.clear()
+    return client
+
+
+def test_get(client: TestClient):
     response = client.post(
         "/invoices/", json={"id": "fooinvoice", "customer": "John", "total": 5.3}
     )
@@ -14,12 +35,12 @@ def test_get():
     assert response.json() == {"msg": "Invoice received"}
 
 
-def test_dummy_callback():
+def test_dummy_callback(mod: ModuleType):
     # Just for coverage
-    invoice_notification({})
+    mod.invoice_notification({})
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {

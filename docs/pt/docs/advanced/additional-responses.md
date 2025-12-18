@@ -26,7 +26,7 @@ O **FastAPI** pegará este modelo, gerará o esquema JSON dele e incluirá no lo
 
 Por exemplo, para declarar um outro retorno com o status code `404` e um modelo do Pydantic chamado `Message`, você pode escrever:
 
-{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
 
 /// note | Nota
 
@@ -175,7 +175,7 @@ Você pode utilizar o mesmo parâmetro `responses` para adicionar diferentes med
 
 Por exemplo, você pode adicionar um media type adicional de `image/png`, declarando que a sua *operação de rota* pode retornar um objeto JSON (com o media type `application/json`) ou uma imagem PNG:
 
-{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
 /// note | Nota
 
@@ -203,7 +203,7 @@ Por exemplo, você pode declarar um retorno com o código de status `404` que ut
 
 E um retorno com o código de status `200` que utiliza o seu `response_model`, porém inclui um `example` customizado:
 
-{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
 
 Isso será combinado e incluído em seu OpenAPI, e disponibilizado na documentação da sua API:
 
@@ -237,7 +237,7 @@ Você pode utilizar essa técnica para reutilizar alguns retornos predefinidos n
 
 Por exemplo:
 
-{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
 ## Mais informações sobre retornos OpenAPI { #more-information-about-openapi-responses }
 

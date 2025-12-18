@@ -42,7 +42,7 @@ If there's no `gzip` in the header, it will not try to decompress the body.
 
 That way, the same route class can handle gzip compressed or uncompressed requests.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[8:15] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
 
 ### Create a custom `GzipRoute` class { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@ This method returns a function. And that function is what will receive a request
 
 Here we use it to create a `GzipRequest` from the original request.
 
-{* ../../docs_src/custom_request_and_route/tutorial001.py hl[18:26] *}
+{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
 
 /// note | Technical Details
 
@@ -92,18 +92,18 @@ We can also use this same approach to access the request body in an exception ha
 
 All we need to do is handle the request inside a `try`/`except` block:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[13,15] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
 
 If an exception occurs, the`Request` instance will still be in scope, so we can read and make use of the request body when handling the error:
 
-{* ../../docs_src/custom_request_and_route/tutorial002.py hl[16:18] *}
+{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
 
 ## Custom `APIRoute` class in a router { #custom-apiroute-class-in-a-router }
 
 You can also set the `route_class` parameter of an `APIRouter`:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
 
 In this example, the *path operations* under the `router` will use the custom `TimedRoute` class, and will have an extra `X-Response-Time` header in the response with the time it took to generate the response:
 
-{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}

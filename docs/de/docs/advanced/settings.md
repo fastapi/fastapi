@@ -62,7 +62,7 @@ Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydan
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ Als Nächstes werden die Daten konvertiert und validiert. Wenn Sie also dieses `
 
 Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Den Server ausführen { #run-the-server }
 
@@ -126,11 +126,11 @@ Sie könnten diese Einstellungen in eine andere Moduldatei einfügen, wie Sie in
 
 Sie könnten beispielsweise eine Datei `config.py` haben mit:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 Und dann verwenden Sie diese in einer Datei `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip | Tipp
 
@@ -148,7 +148,7 @@ Dies könnte besonders beim Testen nützlich sein, da es sehr einfach ist, eine 
 
 Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
 
 Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
 
@@ -174,7 +174,7 @@ Und dann können wir das von der *Pfadoperation-Funktion* als Abhängigkeit einf
 
 Dann wäre es sehr einfach, beim Testen ein anderes Einstellungsobjekt bereitzustellen, indem man eine Abhängigkeitsüberschreibung für `get_settings` erstellt:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
 
 Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_email` fest, wenn wir das neue `Settings`-Objekt erstellen, und geben dann dieses neue Objekt zurück.
 
@@ -217,7 +217,7 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Tipp
 
@@ -229,7 +229,7 @@ Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. 
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
+{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
 
 /// tip | Tipp
 

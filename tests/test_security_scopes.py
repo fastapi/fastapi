@@ -1,9 +1,8 @@
-from typing import Dict
+from typing import Annotated
 
 import pytest
 from fastapi import Depends, FastAPI, Security
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 @pytest.fixture(name="call_counter")
@@ -12,7 +11,7 @@ def call_counter_fixture():
 
 
 @pytest.fixture(name="app")
-def app_fixture(call_counter: Dict[str, int]):
+def app_fixture(call_counter: dict[str, int]):
     def get_db():
         call_counter["count"] += 1
         return f"db_{call_counter['count']}"
@@ -38,7 +37,7 @@ def client_fixture(app: FastAPI):
 
 
 def test_security_scopes_dependency_called_once(
-    client: TestClient, call_counter: Dict[str, int]
+    client: TestClient, call_counter: dict[str, int]
 ):
     response = client.get("/")
 
