@@ -58,7 +58,7 @@ def basemodel_class(request: pytest.FixtureRequest) -> type[Any]:
 
         return BaseModel
     else:
-        from pydantic_v1 import BaseModel
+        from pydantic.v1 import BaseModel
 
         return BaseModel
 
