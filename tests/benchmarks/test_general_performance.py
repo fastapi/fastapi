@@ -1,12 +1,11 @@
 import json
 from collections.abc import Iterator
-from typing import Any, Dict, List, Tuple
+from typing import Annotated, Any, Dict, List, Tuple
 
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 
 class ItemIn(BaseModel):
