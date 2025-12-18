@@ -1,14 +1,23 @@
+import importlib
+
 import pytest
 from fastapi.testclient import TestClient
 
 from ...utils import needs_pydanticv1
 
 
-@pytest.fixture(name="client")
-def get_client():
-    from docs_src.path_operation_advanced_configuration.tutorial007_pv1 import app
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial007_pv1_py39"),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(
+        f"docs_src.path_operation_advanced_configuration.{request.param}"
+    )
 
-    client = TestClient(app)
+    client = TestClient(mod.app)
     return client
 
 

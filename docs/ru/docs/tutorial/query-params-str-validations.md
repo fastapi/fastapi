@@ -55,7 +55,7 @@ q: str | None = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Union[str, None] = None
@@ -73,7 +73,7 @@ q: Annotated[str | None] = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Annotated[Union[str, None]] = None

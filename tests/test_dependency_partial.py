@@ -1,10 +1,10 @@
+from collections.abc import AsyncGenerator, Generator
 from functools import partial
-from typing import AsyncGenerator, Generator
+from typing import Annotated
 
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 app = FastAPI()
 

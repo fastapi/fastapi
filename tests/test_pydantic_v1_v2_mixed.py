@@ -1,5 +1,5 @@
 import sys
-from typing import Any, List, Union
+from typing import Any, Union
 
 from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
 
@@ -22,7 +22,7 @@ class Item(BaseModel):
     size: int
     description: Union[str, None] = None
     sub: SubItem
-    multi: List[SubItem] = []
+    multi: list[SubItem] = []
 
 
 class NewSubItem(NewBaseModel):
@@ -34,7 +34,7 @@ class NewItem(NewBaseModel):
     new_size: int
     new_description: Union[str, None] = None
     new_sub: NewSubItem
-    new_multi: List[NewSubItem] = []
+    new_multi: list[NewSubItem] = []
 
 
 app = FastAPI()
@@ -93,7 +93,7 @@ def handle_v2_item_to_v1_filter(data: NewItem) -> Any:
 
 
 @app.post("/v1-to-v2/item-to-list")
-def handle_v1_item_to_v2_list(data: Item) -> List[NewItem]:
+def handle_v1_item_to_v2_list(data: Item) -> list[NewItem]:
     converted = NewItem(
         new_title=data.title,
         new_size=data.size,
@@ -105,7 +105,7 @@ def handle_v1_item_to_v2_list(data: Item) -> List[NewItem]:
 
 
 @app.post("/v1-to-v2/list-to-list")
-def handle_v1_list_to_v2_list(data: List[Item]) -> List[NewItem]:
+def handle_v1_list_to_v2_list(data: list[Item]) -> list[NewItem]:
     result = []
     for item in data:
         result.append(
@@ -120,8 +120,8 @@ def handle_v1_list_to_v2_list(data: List[Item]) -> List[NewItem]:
     return result
 
 
-@app.post("/v1-to-v2/list-to-list-filter", response_model=List[NewItem])
-def handle_v1_list_to_v2_list_filter(data: List[Item]) -> Any:
+@app.post("/v1-to-v2/list-to-list-filter", response_model=list[NewItem])
+def handle_v1_list_to_v2_list_filter(data: list[Item]) -> Any:
     result = []
     for item in data:
         converted = {
@@ -140,7 +140,7 @@ def handle_v1_list_to_v2_list_filter(data: List[Item]) -> Any:
 
 
 @app.post("/v1-to-v2/list-to-item")
-def handle_v1_list_to_v2_item(data: List[Item]) -> NewItem:
+def handle_v1_list_to_v2_item(data: list[Item]) -> NewItem:
     if data:
         item = data[0]
         return NewItem(
@@ -154,7 +154,7 @@ def handle_v1_list_to_v2_item(data: List[Item]) -> NewItem:
 
 
 @app.post("/v2-to-v1/item-to-list")
-def handle_v2_item_to_v1_list(data: NewItem) -> List[Item]:
+def handle_v2_item_to_v1_list(data: NewItem) -> list[Item]:
     converted = Item(
         title=data.new_title,
         size=data.new_size,
@@ -166,7 +166,7 @@ def handle_v2_item_to_v1_list(data: NewItem) -> List[Item]:
 
 
 @app.post("/v2-to-v1/list-to-list")
-def handle_v2_list_to_v1_list(data: List[NewItem]) -> List[Item]:
+def handle_v2_list_to_v1_list(data: list[NewItem]) -> list[Item]:
     result = []
     for item in data:
         result.append(
@@ -181,8 +181,8 @@ def handle_v2_list_to_v1_list(data: List[NewItem]) -> List[Item]:
     return result
 
 
-@app.post("/v2-to-v1/list-to-list-filter", response_model=List[Item])
-def handle_v2_list_to_v1_list_filter(data: List[NewItem]) -> Any:
+@app.post("/v2-to-v1/list-to-list-filter", response_model=list[Item])
+def handle_v2_list_to_v1_list_filter(data: list[NewItem]) -> Any:
     result = []
     for item in data:
         converted = {
@@ -201,7 +201,7 @@ def handle_v2_list_to_v1_list_filter(data: List[NewItem]) -> Any:
 
 
 @app.post("/v2-to-v1/list-to-item")
-def handle_v2_list_to_v1_item(data: List[NewItem]) -> Item:
+def handle_v2_list_to_v1_item(data: list[NewItem]) -> Item:
     if data:
         item = data[0]
         return Item(

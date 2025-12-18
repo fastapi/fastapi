@@ -50,7 +50,7 @@
 
 Вы можете сконфигурировать Pydantic-модель так, чтобы запретить (`forbid`) любые дополнительные (`extra`) поля:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 Если клиент попробует отправить **дополнительные cookies**, то в ответ он получит **ошибку**.
 

@@ -1,12 +1,8 @@
 import sys
+from collections.abc import Sequence
 from functools import lru_cache
 from typing import (
     Any,
-    Dict,
-    List,
-    Sequence,
-    Tuple,
-    Type,
 )
 
 from fastapi._compat import may_v1
@@ -50,7 +46,7 @@ else:
 
 
 @lru_cache
-def get_cached_model_fields(model: Type[BaseModel]) -> List[ModelField]:
+def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
     if lenient_issubclass(model, may_v1.BaseModel):
         from fastapi._compat import v1
 
@@ -119,7 +115,7 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
-) -> Type[BaseModel]:
+) -> type[BaseModel]:
     if fields and isinstance(fields[0], may_v1.ModelField):
         from fastapi._compat import v1
 
@@ -221,7 +217,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
 
 
-def _model_rebuild(model: Type[BaseModel]) -> None:
+def _model_rebuild(model: type[BaseModel]) -> None:
     if lenient_issubclass(model, may_v1.BaseModel):
         from fastapi._compat import v1
 
@@ -232,7 +228,7 @@ def _model_rebuild(model: Type[BaseModel]) -> None:
         v2._model_rebuild(model)
 
 
-def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
+def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
     v1_model_fields = [
         field for field in fields if isinstance(field, may_v1.ModelField)
     ]
@@ -266,15 +262,15 @@ def get_compat_model_name_map(fields: List[ModelField]) -> ModelNameMap:
 
 def get_definitions(
     *,
-    fields: List[ModelField],
+    fields: list[ModelField],
     model_name_map: ModelNameMap,
     separate_input_output_schemas: bool = True,
-) -> Tuple[
-    Dict[
-        Tuple[ModelField, Literal["validation", "serialization"]],
+) -> tuple[
+    dict[
+        tuple[ModelField, Literal["validation", "serialization"]],
         may_v1.JsonSchemaValue,
     ],
-    Dict[str, Dict[str, Any]],
+    dict[str, dict[str, Any]],
 ]:
     if sys.version_info < (3, 14):
         v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
@@ -315,12 +311,12 @@ def get_schema_from_model_field(
     *,
     field: ModelField,
     model_name_map: ModelNameMap,
-    field_mapping: Dict[
-        Tuple[ModelField, Literal["validation", "serialization"]],
+    field_mapping: dict[
+        tuple[ModelField, Literal["validation", "serialization"]],
         may_v1.JsonSchemaValue,
     ],
     separate_input_output_schemas: bool = True,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     if isinstance(field, may_v1.ModelField):
         from fastapi._compat import v1
 

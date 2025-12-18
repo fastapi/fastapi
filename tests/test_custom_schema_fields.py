@@ -1,10 +1,9 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 from fastapi import FastAPI
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 if PYDANTIC_V2:
     from pydantic import WithJsonSchema
