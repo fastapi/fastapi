@@ -31,7 +31,7 @@ def get_client(request: pytest.FixtureRequest):
 def test_query_params_str_validations_no_query(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 200
-    assert response.json() == {
+    assert response.json() == {  # pragma: no cover
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
     }
 
@@ -42,7 +42,7 @@ def test_query_params_str_validations_no_query(client: TestClient):
 def test_query_params_str_validations_empty_str(client: TestClient):
     response = client.get("/items/?q=")
     assert response.status_code == 200
-    assert response.json() == {
+    assert response.json() == {  # pragma: no cover
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
     }
 

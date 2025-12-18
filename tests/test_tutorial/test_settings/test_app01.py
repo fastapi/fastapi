@@ -34,7 +34,7 @@ def get_test_client(mod_name: str, monkeypatch: MonkeyPatch) -> TestClient:
 def test_settings_validation_error(mod_name: str, monkeypatch: MonkeyPatch):
     monkeypatch.delenv("ADMIN_EMAIL", raising=False)
     if mod_name in sys.modules:
-        del sys.modules[mod_name]
+        del sys.modules[mod_name]  # pragma: no cover
 
     with pytest.raises(ValidationError) as exc_info:
         importlib.import_module(mod_name)
