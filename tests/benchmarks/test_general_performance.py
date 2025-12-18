@@ -1,4 +1,5 @@
 import json
+import sys
 from collections.abc import Iterator
 from typing import Annotated, Any
 
@@ -6,6 +7,12 @@ import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, v1
+
+if "--codspeed" not in sys.argv:
+    pytest.skip(
+        "Benchmark tests are skipped by default; run with --codspeed.",
+        allow_module_level=True,
+    )
 
 LARGE_ITEMS: list[dict[str, Any]] = [
     {
