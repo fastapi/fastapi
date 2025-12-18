@@ -1,10 +1,10 @@
-from typing import List, Optional
+from typing import Annotated, Optional
 
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
+from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
 
 app = FastAPI()
 
@@ -13,13 +13,29 @@ class FormModel(BaseModel):
     username: str
     lastname: str
     age: Optional[int] = None
-    tags: List[str] = ["foo", "bar"]
+    tags: list[str] = ["foo", "bar"]
     alias_with: str = Field(alias="with", default="nothing")
+
+
+class FormModelExtraAllow(BaseModel):
+    param: str
+
+    if PYDANTIC_V2:
+        model_config = {"extra": "allow"}
+    else:
+
+        class Config:
+            extra = "allow"
 
 
 @app.post("/form/")
 def post_form(user: Annotated[FormModel, Form()]):
     return user
+
+
+@app.post("/form-extra-allow/")
+def post_form_extra_allow(params: Annotated[FormModelExtraAllow, Form()]):
+    return params
 
 
 client = TestClient(app)
@@ -131,3 +147,33 @@ def test_no_data():
             ]
         }
     )
+
+
+def test_extra_param_single():
+    response = client.post(
+        "/form-extra-allow/",
+        data={
+            "param": "123",
+            "extra_param": "456",
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "param": "123",
+        "extra_param": "456",
+    }
+
+
+def test_extra_param_list():
+    response = client.post(
+        "/form-extra-allow/",
+        data={
+            "param": "123",
+            "extra_params": ["456", "789"],
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "param": "123",
+        "extra_params": ["456", "789"],
+    }

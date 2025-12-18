@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_py_lt_314, needs_pydanticv2
+from .utils import needs_py310, needs_py_lt_314, needs_pydanticv2
 
 
 @needs_pydanticv2
@@ -61,7 +61,7 @@ def test_complex():
     app = FastAPI()
 
     @app.post("/")
-    def foo(foo: Union[str, List[int]]):
+    def foo(foo: Union[str, list[int]]):
         return foo
 
     client = TestClient(app)
@@ -95,7 +95,7 @@ def test_propagates_pydantic2_model_config():
         embedded_model: EmbeddedModel = EmbeddedModel()
 
     @app.post("/")
-    def foo(req: Model) -> Dict[str, Union[str, None]]:
+    def foo(req: Model) -> dict[str, Union[str, None]]:
         return {
             "value": req.value or None,
             "embedded_value": req.embedded_model.value or None,
@@ -125,7 +125,7 @@ def test_is_bytes_sequence_annotation_union():
     # TODO: in theory this would allow declaring types that could be lists of bytes
     # to be read from files and other types, but I'm not even sure it's a good idea
     # to support it as a first class "feature"
-    assert is_bytes_sequence_annotation(Union[List[str], List[bytes]])
+    assert is_bytes_sequence_annotation(Union[list[str], list[bytes]])
 
 
 def test_is_uploadfile_sequence_annotation():
@@ -133,7 +133,44 @@ def test_is_uploadfile_sequence_annotation():
     # TODO: in theory this would allow declaring types that could be lists of UploadFile
     # and other types, but I'm not even sure it's a good idea to support it as a first
     # class "feature"
-    assert is_uploadfile_sequence_annotation(Union[List[str], List[UploadFile]])
+    assert is_uploadfile_sequence_annotation(Union[list[str], list[UploadFile]])
+
+
+@needs_pydanticv2
+def test_serialize_sequence_value_with_optional_list():
+    """Test that serialize_sequence_value handles optional lists correctly."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=Union[list[str], None])
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
+    assert result == ["a", "b", "c"]
+    assert isinstance(result, list)
+
+
+@needs_pydanticv2
+@needs_py310
+def test_serialize_sequence_value_with_optional_list_pipe_union():
+    """Test that serialize_sequence_value handles optional lists correctly (with new syntax)."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=list[str] | None)
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["a", "b", "c"])
+    assert result == ["a", "b", "c"]
+    assert isinstance(result, list)
+
+
+@needs_pydanticv2
+def test_serialize_sequence_value_with_none_first_in_union():
+    """Test that serialize_sequence_value handles Union[None, List[...]] correctly."""
+    from fastapi._compat import v2
+
+    field_info = FieldInfo(annotation=Union[None, list[str]])
+    field = v2.ModelField(name="items", field_info=field_info)
+    result = v2.serialize_sequence_value(field=field, value=["x", "y"])
+    assert result == ["x", "y"]
+    assert isinstance(result, list)
 
 
 @needs_py_lt_314
@@ -142,7 +179,7 @@ def test_is_pv1_scalar_field():
 
     # For coverage
     class Model(v1.BaseModel):
-        foo: Union[str, Dict[str, Any]]
+        foo: Union[str, dict[str, Any]]
 
     fields = v1.get_model_fields(Model)
     assert not is_scalar_field(fields[0])

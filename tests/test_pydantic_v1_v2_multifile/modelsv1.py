@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Union
 
 from fastapi._compat.v1 import BaseModel
 
@@ -12,7 +12,7 @@ class Item(BaseModel):
     size: int
     description: Union[str, None] = None
     sub: SubItem
-    multi: List[SubItem] = []
+    multi: list[SubItem] = []
 
 
 class ItemInList(BaseModel):

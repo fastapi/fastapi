@@ -9,7 +9,7 @@ from sqlalchemy import StaticPool
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.main import default_registry
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py310
 
 
 def clear_sqlmodel():
@@ -22,11 +22,9 @@ def clear_sqlmodel():
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001",
-        pytest.param("tutorial001_py39", marks=needs_py39),
+        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        pytest.param("tutorial001_an_py39"),
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -45,7 +43,7 @@ def get_client(request: pytest.FixtureRequest):
 
     with TestClient(mod.app) as c:
         yield c
-    # Clean up connection explicitely to avoid resource warning
+    # Clean up connection explicitly to avoid resource warning
     mod.engine.dispose()
 
 

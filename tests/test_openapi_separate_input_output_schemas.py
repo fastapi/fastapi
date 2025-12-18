@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -11,7 +11,7 @@ from .utils import PYDANTIC_V2, needs_pydanticv2
 class SubItem(BaseModel):
     subname: str
     sub_description: Optional[str] = None
-    tags: List[str] = []
+    tags: list[str] = []
     if PYDANTIC_V2:
         model_config = {"json_schema_serialization_defaults_required": True}
 
@@ -24,6 +24,18 @@ class Item(BaseModel):
         model_config = {"json_schema_serialization_defaults_required": True}
 
 
+if PYDANTIC_V2:
+    from pydantic import computed_field
+
+    class WithComputedField(BaseModel):
+        name: str
+
+        @computed_field
+        @property
+        def computed_field(self) -> str:
+            return f"computed {self.name}"
+
+
 def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
     app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
 
@@ -32,11 +44,11 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
         return item
 
     @app.post("/items-list/")
-    def create_item_list(item: List[Item]):
+    def create_item_list(item: list[Item]):
         return item
 
     @app.get("/items/")
-    def read_items() -> List[Item]:
+    def read_items() -> list[Item]:
         return [
             Item(
                 name="Portal Gun",
@@ -45,6 +57,14 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
             ),
             Item(name="Plumbus"),
         ]
+
+    if PYDANTIC_V2:
+
+        @app.post("/with-computed-field/")
+        def create_with_computed_field(
+            with_computed_field: WithComputedField,
+        ) -> WithComputedField:
+            return with_computed_field
 
     client = TestClient(app)
     return client
@@ -128,6 +148,23 @@ def test_read_items():
             },
             {"name": "Plumbus", "description": None, "sub": None},
         ]
+    )
+
+
+@needs_pydanticv2
+def test_with_computed_field():
+    client = get_app_client()
+    client_no = get_app_client(separate_input_output_schemas=False)
+    response = client.post("/with-computed-field/", json={"name": "example"})
+    response2 = client_no.post("/with-computed-field/", json={"name": "example"})
+    assert response.status_code == response2.status_code == 200, response.text
+    assert (
+        response.json()
+        == response2.json()
+        == {
+            "name": "example",
+            "computed_field": "computed example",
+        }
     )
 
 
@@ -245,6 +282,44 @@ def test_openapi_schema():
                         },
                     }
                 },
+                "/with-computed-field/": {
+                    "post": {
+                        "summary": "Create With Computed Field",
+                        "operationId": "create_with_computed_field_with_computed_field__post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/WithComputedField-Input"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/WithComputedField-Output"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    },
+                },
             },
             "components": {
                 "schemas": {
@@ -332,6 +407,25 @@ def test_openapi_schema():
                         "type": "object",
                         "required": ["subname", "sub_description", "tags"],
                         "title": "SubItem",
+                    },
+                    "WithComputedField-Input": {
+                        "properties": {"name": {"type": "string", "title": "Name"}},
+                        "type": "object",
+                        "required": ["name"],
+                        "title": "WithComputedField",
+                    },
+                    "WithComputedField-Output": {
+                        "properties": {
+                            "name": {"type": "string", "title": "Name"},
+                            "computed_field": {
+                                "type": "string",
+                                "title": "Computed Field",
+                                "readOnly": True,
+                            },
+                        },
+                        "type": "object",
+                        "required": ["name", "computed_field"],
+                        "title": "WithComputedField",
                     },
                     "ValidationError": {
                         "properties": {
@@ -458,6 +552,44 @@ def test_openapi_schema_no_separate():
                     },
                 }
             },
+            "/with-computed-field/": {
+                "post": {
+                    "summary": "Create With Computed Field",
+                    "operationId": "create_with_computed_field_with_computed_field__post",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WithComputedField-Input"
+                                }
+                            }
+                        },
+                        "required": True,
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/WithComputedField-Output"
+                                    }
+                                }
+                            },
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            },
+                        },
+                    },
+                },
+            },
         },
         "components": {
             "schemas": {
@@ -507,6 +639,25 @@ def test_openapi_schema_no_separate():
                     "type": "object",
                     "required": ["subname"],
                     "title": "SubItem",
+                },
+                "WithComputedField-Input": {
+                    "properties": {"name": {"type": "string", "title": "Name"}},
+                    "type": "object",
+                    "required": ["name"],
+                    "title": "WithComputedField",
+                },
+                "WithComputedField-Output": {
+                    "properties": {
+                        "name": {"type": "string", "title": "Name"},
+                        "computed_field": {
+                            "type": "string",
+                            "title": "Computed Field",
+                            "readOnly": True,
+                        },
+                    },
+                    "type": "object",
+                    "required": ["name", "computed_field"],
+                    "title": "WithComputedField",
                 },
                 "ValidationError": {
                     "properties": {

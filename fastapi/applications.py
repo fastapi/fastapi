@@ -1,14 +1,10 @@
+from collections.abc import Awaitable, Coroutine, Sequence
 from enum import Enum
 from typing import (
+    Annotated,
     Any,
-    Awaitable,
     Callable,
-    Coroutine,
-    Dict,
-    List,
     Optional,
-    Sequence,
-    Type,
     TypeVar,
     Union,
 )
@@ -44,7 +40,7 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, JSONResponse, Response
 from starlette.routing import BaseRoute
 from starlette.types import ASGIApp, ExceptionHandler, Lifespan, Receive, Scope, Send
-from typing_extensions import Annotated, deprecated
+from typing_extensions import deprecated
 
 AppType = TypeVar("AppType", bound="FastAPI")
 
@@ -81,7 +77,7 @@ class FastAPI(Starlette):
             ),
         ] = False,
         routes: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 **Note**: you probably shouldn't use this parameter, it is inherited
@@ -230,7 +226,7 @@ class FastAPI(Starlette):
             ),
         ] = "/openapi.json",
         openapi_tags: Annotated[
-            Optional[List[Dict[str, Any]]],
+            Optional[list[dict[str, Any]]],
             Doc(
                 """
                 A list of tags used by OpenAPI, these are the same `tags` you can set
@@ -290,7 +286,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         servers: Annotated[
-            Optional[List[Dict[str, Union[str, Any]]]],
+            Optional[list[dict[str, Union[str, Any]]]],
             Doc(
                 """
                 A `list` of `dict`s with connectivity information to a target server.
@@ -301,7 +297,12 @@ class FastAPI(Starlette):
                 browser tabs open). Or if you want to leave fixed the possible URLs.
 
                 If the servers `list` is not provided, or is an empty `list`, the
-                default value would be a `dict` with a `url` value of `/`.
+                `servers` property in the generated OpenAPI will be:
+
+                * a `dict` with a `url` value of the application's mounting point
+                (`root_path`) if it's different from `/`.
+                * otherwise, the `servers` property will be omitted from the OpenAPI
+                schema.
 
                 Each item in the `list` is a `dict` containing:
 
@@ -356,7 +357,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         default_response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 The default response class to be used.
@@ -462,7 +463,7 @@ class FastAPI(Starlette):
             ),
         ] = "/docs/oauth2-redirect",
         swagger_ui_init_oauth: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 OAuth2 configuration for the Swagger UI, by default shown at `/docs`.
@@ -488,8 +489,8 @@ class FastAPI(Starlette):
         ] = None,
         exception_handlers: Annotated[
             Optional[
-                Dict[
-                    Union[int, Type[Exception]],
+                dict[
+                    Union[int, type[Exception]],
                     Callable[[Request, Any], Coroutine[Any, Any, Response]],
                 ]
             ],
@@ -562,7 +563,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         contact: Annotated[
-            Optional[Dict[str, Union[str, Any]]],
+            Optional[dict[str, Union[str, Any]]],
             Doc(
                 """
                 A dictionary with the contact information for the exposed API.
@@ -595,7 +596,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         license_info: Annotated[
-            Optional[Dict[str, Union[str, Any]]],
+            Optional[dict[str, Union[str, Any]]],
             Doc(
                 """
                 A dictionary with the license information for the exposed API.
@@ -684,7 +685,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -700,7 +701,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations*.
@@ -757,7 +758,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         swagger_ui_parameters: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Parameters to configure Swagger UI, the autogenerated interactive API
@@ -815,7 +816,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         openapi_external_docs: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 This field allows you to provide additional external documentation links.
@@ -901,7 +902,7 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "3.1.0"
-        self.openapi_schema: Optional[Dict[str, Any]] = None
+        self.openapi_schema: Optional[dict[str, Any]] = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -944,7 +945,7 @@ class FastAPI(Starlette):
             ),
         ] = State()
         self.dependency_overrides: Annotated[
-            Dict[Callable[..., Any], Callable[..., Any]],
+            dict[Callable[..., Any], Callable[..., Any]],
             Doc(
                 """
                 A dictionary with overrides for the dependencies.
@@ -976,7 +977,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             defer_init=False,
         )
-        self.exception_handlers: Dict[
+        self.exception_handlers: dict[
             Any, Callable[[Request, Any], Union[Response, Awaitable[Response]]]
         ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
@@ -989,7 +990,7 @@ class FastAPI(Starlette):
             websocket_request_validation_exception_handler,  # type: ignore
         )
 
-        self.user_middleware: List[Middleware] = (
+        self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: Union[ASGIApp, None] = None
@@ -1043,7 +1044,7 @@ class FastAPI(Starlette):
             app = cls(app, *args, **kwargs)
         return app
 
-    def openapi(self) -> Dict[str, Any]:
+    def openapi(self) -> dict[str, Any]:
         """
         Generate the OpenAPI schema of the application. This is called by FastAPI
         internally.
@@ -1141,14 +1142,14 @@ class FastAPI(Starlette):
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
-        tags: Optional[List[Union[str, Enum]]] = None,
+        tags: Optional[list[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
-        methods: Optional[List[str]] = None,
+        methods: Optional[list[str]] = None,
         operation_id: Optional[str] = None,
         response_model_include: Optional[IncEx] = None,
         response_model_exclude: Optional[IncEx] = None,
@@ -1157,11 +1158,11 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+        response_class: Union[type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
         name: Optional[str] = None,
-        openapi_extra: Optional[Dict[str, Any]] = None,
+        openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -1199,14 +1200,14 @@ class FastAPI(Starlette):
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
-        tags: Optional[List[Union[str, Enum]]] = None,
+        tags: Optional[list[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
-        methods: Optional[List[str]] = None,
+        methods: Optional[list[str]] = None,
         operation_id: Optional[str] = None,
         response_model_include: Optional[IncEx] = None,
         response_model_exclude: Optional[IncEx] = None,
@@ -1215,9 +1216,9 @@ class FastAPI(Starlette):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = Default(JSONResponse),
+        response_class: type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        openapi_extra: Optional[Dict[str, Any]] = None,
+        openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Callable[[routing.APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -1339,7 +1340,7 @@ class FastAPI(Starlette):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -1381,7 +1382,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -1448,7 +1449,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         default_response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Default response class to be used for the *path operations* in this
@@ -1476,7 +1477,7 @@ class FastAPI(Starlette):
             ),
         ] = Default(JSONResponse),
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -1599,7 +1600,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1665,7 +1666,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -1806,7 +1807,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -1827,7 +1828,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -1843,7 +1844,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -1972,7 +1973,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2038,7 +2039,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2179,7 +2180,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2200,7 +2201,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2216,7 +2217,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2350,7 +2351,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2416,7 +2417,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2557,7 +2558,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2578,7 +2579,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2594,7 +2595,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2728,7 +2729,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2794,7 +2795,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2935,7 +2936,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2956,7 +2957,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2972,7 +2973,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3101,7 +3102,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3167,7 +3168,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3308,7 +3309,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -3329,7 +3330,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3345,7 +3346,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3474,7 +3475,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3540,7 +3541,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3681,7 +3682,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -3702,7 +3703,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3718,7 +3719,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3847,7 +3848,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3913,7 +3914,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -4054,7 +4055,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -4075,7 +4076,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4091,7 +4092,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4225,7 +4226,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -4291,7 +4292,7 @@ class FastAPI(Starlette):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -4432,7 +4433,7 @@ class FastAPI(Starlette):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -4453,7 +4454,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4469,7 +4470,7 @@ class FastAPI(Starlette):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4624,7 +4625,7 @@ class FastAPI(Starlette):
     def exception_handler(
         self,
         exc_class_or_status_code: Annotated[
-            Union[int, Type[Exception]],
+            Union[int, type[Exception]],
             Doc(
                 """
                 The Exception class this would handle, or a status code.

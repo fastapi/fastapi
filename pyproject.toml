@@ -9,7 +9,7 @@ description = "FastAPI framework, high performance, easy to learn, fast to code,
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
@@ -34,7 +34,6 @@ classifiers = [
     "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -45,7 +44,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0,<0.50.0",
+    "starlette>=0.40.0,<0.51.0",
     "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
     "typing-extensions>=4.8.0",
     "annotated-doc>=0.0.2",
@@ -196,10 +195,11 @@ source = [
     "tests",
     "fastapi"
 ]
+relative_files = true
 context = '${CONTEXT}'
 dynamic_context = "test_function"
 omit = [
-    "docs_src/response_model/tutorial003_04.py",
+    "docs_src/response_model/tutorial003_04_py39.py",
     "docs_src/response_model/tutorial003_04_py310.py",
 ]
 
@@ -229,34 +229,30 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
-"docs_src/dependencies/tutorial007.py" = ["F821"]
-"docs_src/dependencies/tutorial008.py" = ["F821"]
-"docs_src/dependencies/tutorial009.py" = ["F821"]
-"docs_src/dependencies/tutorial010.py" = ["F821"]
-"docs_src/custom_response/tutorial007.py" = ["B007"]
-"docs_src/dataclasses/tutorial003.py" = ["I001"]
-"docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
-"docs_src/path_operation_advanced_configuration/tutorial007_pv1.py" = ["B904"]
-"docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
-"docs_src/dependencies/tutorial008_an.py" = ["F821"]
+"docs_src/dependencies/tutorial007_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial008_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial009_py39.py" = ["F821"]
+"docs_src/dependencies/tutorial010_py39.py" = ["F821"]
+"docs_src/custom_response/tutorial007_py39.py" = ["B007"]
+"docs_src/dataclasses/tutorial003_py39.py" = ["I001"]
+"docs_src/path_operation_advanced_configuration/tutorial007_py39.py" = ["B904"]
+"docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_py39.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_py310.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_an_py39.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_an_py310.py" = ["B904"]
 "docs_src/dependencies/tutorial008_an_py39.py" = ["F821"]
-"docs_src/query_params_str_validations/tutorial012_an.py" = ["B006"]
 "docs_src/query_params_str_validations/tutorial012_an_py39.py" = ["B006"]
-"docs_src/query_params_str_validations/tutorial013_an.py" = ["B006"]
 "docs_src/query_params_str_validations/tutorial013_an_py39.py" = ["B006"]
-"docs_src/security/tutorial004.py" = ["B904"]
-"docs_src/security/tutorial004_an.py" = ["B904"]
-"docs_src/security/tutorial004_an_py310.py" = ["B904"]
+"docs_src/security/tutorial004_py39.py" = ["B904"]
 "docs_src/security/tutorial004_an_py39.py" = ["B904"]
+"docs_src/security/tutorial004_an_py310.py" = ["B904"]
 "docs_src/security/tutorial004_py310.py" = ["B904"]
-"docs_src/security/tutorial005.py" = ["B904"]
-"docs_src/security/tutorial005_an.py" = ["B904"]
 "docs_src/security/tutorial005_an_py310.py" = ["B904"]
 "docs_src/security/tutorial005_an_py39.py" = ["B904"]
 "docs_src/security/tutorial005_py310.py" = ["B904"]
 "docs_src/security/tutorial005_py39.py" = ["B904"]
-"docs_src/dependencies/tutorial008b.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_an.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_py39.py" = ["B904"]
 "docs_src/dependencies/tutorial008b_an_py39.py" = ["B904"]
 
 

@@ -62,7 +62,7 @@ You can use all the same validation features and tools you use for Pydantic mode
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead 
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ Next it will convert and validate the data. So, when you use that `settings` obj
 
 Then you can use the new `settings` object in your application:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Run the server { #run-the-server }
 
@@ -126,11 +126,11 @@ You could put those settings in another module file as you saw in [Bigger Applic
 
 For example, you could have a file `config.py` with:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 And then use it in a file `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip
 
@@ -148,7 +148,7 @@ This could be especially useful during testing, as it's very easy to override a 
 
 Coming from the previous example, your `config.py` file could look like:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
 
 Notice that now we don't create a default instance `settings = Settings()`.
 
@@ -174,7 +174,7 @@ And then we can require it from the *path operation function* as a dependency an
 
 Then it would be very easy to provide a different settings object during testing by creating a dependency override for `get_settings`:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
 
 In the dependency override we set a new value for the `admin_email` when creating the new `Settings` object, and then we return that new object.
 
@@ -217,7 +217,7 @@ And then update your `config.py` with:
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip
 
@@ -229,7 +229,7 @@ The `model_config` attribute is used just for Pydantic configuration. You can re
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
+{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
 
 /// tip
 
