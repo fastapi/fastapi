@@ -1,5 +1,5 @@
 from itertools import chain
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.routing import APIRoute
@@ -28,7 +28,7 @@ def check_if_initialized(route: APIRoute, should_not: bool = False):
 
 
 def create_test_router(
-    routes: Optional[List[BaseRoute]] = None, defer_init: bool = True
+    routes: Optional[list[BaseRoute]] = None, defer_init: bool = True
 ):
     router = APIRouter(routes=routes or [], defer_init=defer_init)
 
