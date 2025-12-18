@@ -1,13 +1,12 @@
 # Ref: https://github.com/fastapi/fastapi/discussions/14495
 
-from typing import Union
+from typing import Annotated, Union
 
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 from .utils import needs_pydanticv2
 

@@ -1,13 +1,12 @@
 from contextvars import ContextVar
-from typing import Any, Dict, Tuple
+from typing import Annotated, Any
 
 import pytest
 from fastapi import Depends, FastAPI, WebSocket
 from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
-global_context: ContextVar[Dict[str, Any]] = ContextVar("global_context", default={})  # noqa: B039
+global_context: ContextVar[dict[str, Any]] = ContextVar("global_context", default={})  # noqa: B039
 
 
 class Session:
@@ -43,7 +42,7 @@ def get_named_session(session: SessionRequestDep, session_b: SessionDefaultDep) 
     global_state["named_session_closed"] = True
 
 
-NamedSessionsDep = Annotated[Tuple[NamedSession, Session], Depends(get_named_session)]
+NamedSessionsDep = Annotated[tuple[NamedSession, Session], Depends(get_named_session)]
 
 
 def get_named_func_session(session: SessionFuncDep) -> Any:
@@ -60,14 +59,14 @@ def get_named_regular_func_session(session: SessionFuncDep) -> Any:
 
 
 BrokenSessionsDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_func_session)
+    tuple[NamedSession, Session], Depends(get_named_func_session)
 ]
 NamedSessionsFuncDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_func_session, scope="function")
+    tuple[NamedSession, Session], Depends(get_named_func_session, scope="function")
 ]
 
 RegularSessionsDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_regular_func_session)
+    tuple[NamedSession, Session], Depends(get_named_regular_func_session)
 ]
 
 app = FastAPI()

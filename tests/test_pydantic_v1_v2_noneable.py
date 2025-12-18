@@ -1,5 +1,5 @@
 import sys
-from typing import Any, List, Union
+from typing import Any, Union
 
 from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
 
@@ -22,7 +22,7 @@ class Item(BaseModel):
     size: int
     description: Union[str, None] = None
     sub: SubItem
-    multi: List[SubItem] = []
+    multi: list[SubItem] = []
 
 
 class NewSubItem(NewBaseModel):
@@ -34,7 +34,7 @@ class NewItem(NewBaseModel):
     new_size: int
     new_description: Union[str, None] = None
     new_sub: NewSubItem
-    new_multi: List[NewSubItem] = []
+    new_multi: list[NewSubItem] = []
 
 
 app = FastAPI()

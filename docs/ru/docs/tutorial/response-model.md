@@ -183,7 +183,7 @@ FastAPI делает несколько вещей внутри вместе с 
 
 Самый распространённый случай — [возвращать Response напрямую, как описано далее в разделах для продвинутых](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
 
 Этот простой случай обрабатывается FastAPI автоматически, потому что аннотация возвращаемого типа — это класс (или подкласс) `Response`.
 
@@ -193,7 +193,7 @@ FastAPI делает несколько вещей внутри вместе с 
 
 Вы также можете использовать подкласс `Response` в аннотации типа:
 
-{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
 
 Это тоже сработает, так как `RedirectResponse` — подкласс `Response`, и FastAPI автоматически обработает этот случай.
 

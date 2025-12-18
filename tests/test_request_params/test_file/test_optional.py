@@ -1,10 +1,9 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 from tests.utils import needs_pydanticv2
 
