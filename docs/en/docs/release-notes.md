@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 👷 Add performance tests with CodSpeed. PR [#14558](https://github.com/fastapi/fastapi/pull/14558) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.125.0
 
 ### Breaking Changes

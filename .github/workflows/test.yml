@@ -67,6 +67,10 @@ jobs:
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
           - os: ubuntu-latest
+            python-version: "3.13"
+            pydantic-version: "pydantic>=2.0.2,<3.0.0"
+            coverage: coverage
+          - os: ubuntu-latest
             python-version: "3.14"
             pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
@@ -100,6 +104,15 @@ jobs:
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
+      - name: CodSpeed benchmarks
+        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' && matrix.pydantic-version == 'pydantic>=2.0.2,<3.0.0'
+        uses: CodSpeedHQ/action@v4
+        env:
+            COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
+            CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
+        with:
+          mode: simulation
+          run: coverage run -m pytest tests/ --codspeed
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
