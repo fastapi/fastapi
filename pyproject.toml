@@ -201,7 +201,9 @@ dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04_py39.py",
     "docs_src/response_model/tutorial003_04_py310.py",
-    "docs_src/dependencies/tutorial008_an_py39.py",
+    "docs_src/dependencies/tutorial008_an_py39.py",  # difficult to mock
+    "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
+    "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
 ]
 
 [tool.coverage.report]
