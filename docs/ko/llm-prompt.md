@@ -43,7 +43,8 @@ Use the following preferred translations when they apply in documentation prose:
 - `/// warning | 경고`
 - `/// info | 정보`
 - `/// danger | 위험`
-
+- `/// note Technical Details | 기술 세부사항`
+- `/// check | 확인`
 Notes:
 
 - `details` blocks exist in Korean docs; keep `/// details` as-is and translate only the title after `|`.
