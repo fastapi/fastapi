@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🔧 Add LLM prompt file for Ukrainian, generated from the existing translations. PR [#14548](https://github.com/fastapi/fastapi/pull/14548) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ⬆️ Use prek as a pre-commit alternative. PR [#14572](https://github.com/fastapi/fastapi/pull/14572) by [@tiangolo](https://github.com/tiangolo).
