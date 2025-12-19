@@ -48,4 +48,4 @@ Use the following preferred translations when they apply in documentation prose:
 Notes:
 
 - `details` blocks exist in Korean docs; keep `/// details` as-is and translate only the title after `|`.
-- Example canonical title used: `/// details | 명령어 상세 설명`
+- Example canonical title used: `/// details | 상세 설명`
