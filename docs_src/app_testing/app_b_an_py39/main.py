@@ -3,20 +3,24 @@ from typing import Annotated, Union
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
+class Item(BaseModel):
+    id: str
+    title: str
+    description: Union[str, None] = None
+
+foo_item = Item(id="foo", title="Foo", description="There goes my hero")
+bar_item = Item(id="bar", title="Bar", description="The bartenders")
+
 fake_secret_token = "coneofsilence"
 
-fake_db = {
-    "foo": {"id": "foo", "title": "Foo", "description": "There goes my hero"},
-    "bar": {"id": "bar", "title": "Bar", "description": "The bartenders"},
+fake_db: dict[str, Item] = {
+    "foo": foo_item,
+    "bar": bar_item,
 }
 
 app = FastAPI()
 
 
-class Item(BaseModel):
-    id: str
-    title: str
-    description: Union[str, None] = None
 
 
 @app.get("/items/{item_id}", response_model=Item)
