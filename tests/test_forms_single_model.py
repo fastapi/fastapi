@@ -120,13 +120,13 @@ def test_no_data():
                     "type": "missing",
                     "loc": ["body", "username"],
                     "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                    "input": {},  # Fixed: defaults no longer included (issue #13399)
                 },
                 {
                     "type": "missing",
                     "loc": ["body", "lastname"],
                     "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                    "input": {},  # Fixed: defaults no longer included (issue #13399)
                 },
             ]
         }
