@@ -13,6 +13,7 @@ Language code: zh.
 
 1) Follow existing Simplified Chinese heading style (short and descriptive).
 2) Do not add trailing punctuation to headings.
+3) If a heading contains only the name of a FastAPI feature, do not translate it.
 
 ### Quotes and punctuation
 
