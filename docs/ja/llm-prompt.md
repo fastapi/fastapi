@@ -44,4 +44,4 @@ Use the following preferred translations when they apply in documentation prose:
 - `/// warning | 注意`
 - `/// info | 情報`
 - `/// check | 確認`
-- `/// danger | 危険`
+- `/// danger | 警告`
