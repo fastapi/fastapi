@@ -5,6 +5,22 @@ Related to issue #13399: https://github.com/fastapi/fastapi/issues/13399
 
 from typing import Annotated
 
+import pytest
+
+# Skip this entire module if Pydantic v1 is installed
+# field_validator is a Pydantic v2-only API
+try:
+    from pydantic import __version__ as pydantic_version
+
+    pydantic_major = int(pydantic_version.split(".")[0])
+    if pydantic_major < 2:
+        pytest.skip(
+            "This test module requires Pydantic v2 (uses field_validator)",
+            allow_module_level=True,
+        )
+except Exception:
+    pass
+
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, field_validator
