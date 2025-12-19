@@ -30,8 +30,8 @@ Use the following preferred translations when they apply in documentation prose:
 
 - request (HTTP): 요청
 - response (HTTP): 응답
-- path operation: 경로 작동
-- path operation function: 경로 작동 함수
+- path operation: 경로 처리
+- path operation function: 경로 처리 함수
 
 ### `///` admonitions
 
