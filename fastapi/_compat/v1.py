@@ -11,14 +11,12 @@ from typing import (
 from fastapi._compat import shared
 from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
 from fastapi.types import ModelNameMap
-from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
-from pydantic.v1 import BaseModel as BaseModel  # type: ignore[assignment]
-from pydantic.v1 import (  # type: ignore[assignment]
-    ValidationError as ValidationError,
-)
-from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
+from pydantic.v1 import BaseConfig as BaseConfig
+from pydantic.v1 import BaseModel as BaseModel
+from pydantic.v1 import ValidationError as ValidationError
+from pydantic.v1 import create_model as create_model
 from pydantic.v1.class_validators import Validator as Validator
-from pydantic.v1.color import Color as Color  # type: ignore[assignment]
+from pydantic.v1.color import Color as Color
 from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
 from pydantic.v1.fields import (
     SHAPE_FROZENSET,
@@ -29,19 +27,14 @@ from pydantic.v1.fields import (
     SHAPE_TUPLE,
     SHAPE_TUPLE_ELLIPSIS,
 )
-from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
+from pydantic.v1.fields import FieldInfo as FieldInfo
 from pydantic.v1.fields import ModelField as ModelField
 from pydantic.v1.fields import Undefined as Undefined
 from pydantic.v1.fields import UndefinedType as UndefinedType
 from pydantic.v1.networks import AnyUrl as AnyUrl
-from pydantic.v1.networks import (  # type: ignore[assignment]
-    NameEmail as NameEmail,
-)
+from pydantic.v1.networks import NameEmail as NameEmail
 from pydantic.v1.schema import TypeModelSet as TypeModelSet
-from pydantic.v1.schema import (
-    field_schema,
-    model_process_schema,
-)
+from pydantic.v1.schema import field_schema, model_process_schema
 from pydantic.v1.schema import (
     get_annotation_from_field_info as get_annotation_from_field_info,
 )
@@ -52,12 +45,8 @@ from pydantic.v1.schema import (
     get_flat_models_from_fields as get_flat_models_from_fields,
 )
 from pydantic.v1.schema import get_model_name_map as get_model_name_map
-from pydantic.v1.types import (  # type: ignore[assignment]
-    SecretBytes as SecretBytes,
-)
-from pydantic.v1.types import (  # type: ignore[assignment]
-    SecretStr as SecretStr,
-)
+from pydantic.v1.types import SecretBytes as SecretBytes
+from pydantic.v1.types import SecretStr as SecretStr
 from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
 from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -163,7 +152,7 @@ def _model_dump(
 
 
 def _get_model_config(model: BaseModel) -> Any:
-    return model.__config__  # type: ignore[attr-defined]
+    return model.__config__
 
 
 def get_schema_from_model_field(
@@ -175,8 +164,10 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> dict[str, Any]:
-    return field_schema(  # type: ignore[no-any-return]
-        field, model_name_map=model_name_map, ref_prefix=REF_PREFIX
+    return field_schema(
+        field,
+        model_name_map=model_name_map,  # type: ignore[arg-type]
+        ref_prefix=REF_PREFIX,
     )[0]
 
 
@@ -195,7 +186,7 @@ def get_definitions(
     dict[str, dict[str, Any]],
 ]:
     models = get_flat_models_from_fields(fields, known_models=set())
-    return {}, get_model_definitions(flat_models=models, model_name_map=model_name_map)
+    return {}, get_model_definitions(flat_models=models, model_name_map=model_name_map)  # type: ignore[arg-type]
 
 
 def is_scalar_field(field: ModelField) -> bool:
@@ -207,7 +198,7 @@ def is_sequence_field(field: ModelField) -> bool:
 
 
 def is_bytes_field(field: ModelField) -> bool:
-    return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
+    return lenient_issubclass(field.type_, bytes)
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
@@ -227,9 +218,9 @@ def create_body_model(
 ) -> type[BaseModel]:
     BodyModel = create_model(model_name)
     for f in fields:
-        BodyModel.__fields__[f.name] = f  # type: ignore[index]
+        BodyModel.__fields__[f.name] = f
     return BodyModel
 
 
 def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
-    return list(model.__fields__.values())  # type: ignore[attr-defined]
+    return list(model.__fields__.values())

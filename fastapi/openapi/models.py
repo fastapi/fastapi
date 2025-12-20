@@ -218,7 +218,7 @@ class Example(TypedDict, total=False):
     value: Optional[Any]
     externalValue: Optional[AnyUrl]
 
-    __pydantic_config__ = {"extra": "allow"}
+    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]
 
 
 class ParameterInType(Enum):

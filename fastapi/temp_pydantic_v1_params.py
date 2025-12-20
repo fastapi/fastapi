@@ -10,7 +10,7 @@ from ._compat.may_v1 import FieldInfo, Undefined
 _Unset: Any = Undefined
 
 
-class Param(FieldInfo):  # type: ignore[misc]
+class Param(FieldInfo):
     in_: ParamTypes
 
     def __init__(
@@ -108,7 +108,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Path(Param):  # type: ignore[misc]
+class Path(Param):
     in_ = ParamTypes.path
 
     def __init__(
@@ -194,7 +194,7 @@ class Path(Param):  # type: ignore[misc]
         )
 
 
-class Query(Param):  # type: ignore[misc]
+class Query(Param):
     in_ = ParamTypes.query
 
     def __init__(
@@ -278,7 +278,7 @@ class Query(Param):  # type: ignore[misc]
         )
 
 
-class Header(Param):  # type: ignore[misc]
+class Header(Param):
     in_ = ParamTypes.header
 
     def __init__(
@@ -364,7 +364,7 @@ class Header(Param):  # type: ignore[misc]
         )
 
 
-class Cookie(Param):  # type: ignore[misc]
+class Cookie(Param):
     in_ = ParamTypes.cookie
 
     def __init__(
@@ -448,7 +448,7 @@ class Cookie(Param):  # type: ignore[misc]
         )
 
 
-class Body(FieldInfo):  # type: ignore[misc]
+class Body(FieldInfo):
     def __init__(
         self,
         default: Any = Undefined,
@@ -549,7 +549,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         return f"{self.__class__.__name__}({self.default})"
 
 
-class Form(Body):  # type: ignore[misc]
+class Form(Body):
     def __init__(
         self,
         default: Any = Undefined,
@@ -633,7 +633,7 @@ class Form(Body):  # type: ignore[misc]
         )
 
 
-class File(Form):  # type: ignore[misc]
+class File(Form):
     def __init__(
         self,
         default: Any = Undefined,

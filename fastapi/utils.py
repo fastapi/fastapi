@@ -105,7 +105,7 @@ def create_model_field(
         from fastapi._compat import v1
 
         try:
-            return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+            return v1.ModelField(**v1_kwargs)  # type: ignore[return-value]
         except RuntimeError:
             raise fastapi.exceptions.FastAPIError(
                 _invalid_args_message.format(type_=type_)
@@ -126,7 +126,7 @@ def create_model_field(
     from fastapi._compat import v1
 
     try:
-        return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+        return v1.ModelField(**v1_kwargs)
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
             _invalid_args_message.format(type_=type_)

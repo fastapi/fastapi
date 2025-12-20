@@ -33,7 +33,7 @@ def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
     if lenient_issubclass(model, may_v1.BaseModel):
         from fastapi._compat import v1
 
-        return v1.get_model_fields(model)
+        return v1.get_model_fields(model)  # type: ignore[arg-type,return-value]
     else:
         from . import v2
 
@@ -166,7 +166,8 @@ def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
         from fastapi._compat import v1
 
         v1_flat_models = v1.get_flat_models_from_fields(
-            v1_model_fields, known_models=set()
+            v1_model_fields,  # type: ignore[arg-type]
+            known_models=set(),
         )
         all_flat_models = v1_flat_models
     else:
@@ -174,9 +175,9 @@ def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
 
     v2_model_fields = [field for field in fields if isinstance(field, v2.ModelField)]
     v2_flat_models = v2.get_flat_models_from_fields(v2_model_fields, known_models=set())
-    all_flat_models = all_flat_models.union(v2_flat_models)
+    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
 
-    model_name_map = v2.get_model_name_map(all_flat_models)
+    model_name_map = v2.get_model_name_map(all_flat_models)  # type: ignore[arg-type]
     return model_name_map
 
 
@@ -195,7 +196,7 @@ def get_definitions(
     if sys.version_info < (3, 14):
         v1_fields = [field for field in fields if isinstance(field, may_v1.ModelField)]
         v1_field_maps, v1_definitions = may_v1.get_definitions(
-            fields=v1_fields,
+            fields=v1_fields,  # type: ignore[arg-type]
             model_name_map=model_name_map,
             separate_input_output_schemas=separate_input_output_schemas,
         )
@@ -207,7 +208,7 @@ def get_definitions(
             separate_input_output_schemas=separate_input_output_schemas,
         )
         all_definitions = {**v1_definitions, **v2_definitions}
-        all_field_maps = {**v1_field_maps, **v2_field_maps}
+        all_field_maps = {**v1_field_maps, **v2_field_maps}  # type: ignore[misc]
         return all_field_maps, all_definitions
 
     # Pydantic v1 is not supported since Python 3.14
