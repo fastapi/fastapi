@@ -18,6 +18,7 @@ Language code: zh-hant.
 
 1) Keep punctuation style consistent with existing Traditional Chinese docs (they often mix English terms like “FastAPI” with Chinese text).
 2) Never change punctuation inside inline code, code blocks, URLs, or file paths.
+3) For more details, please follow the [Chinese Copywriting Guidelines](https://github.com/sparanoid/chinese-copywriting-guidelines).
 
 ### Ellipsis
 
