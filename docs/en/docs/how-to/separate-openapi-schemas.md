@@ -100,4 +100,3 @@ And now there will be one single schema for input and output for the model, only
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">
 </div>
-

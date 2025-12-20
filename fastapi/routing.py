@@ -1,4 +1,3 @@
-import dataclasses
 import email.message
 import functools
 import inspect

@@ -344,11 +344,11 @@ def test_v2_to_v1_nested_validation_error():
         {
             "detail": [
                 {
-                            "type": "missing",
-                            "loc": ["body", "new_sub", "new_sub_name"],
-                            "msg": "Field required",
-                            "input": {"wrong_field": "value"},
-                        }
+                    "type": "missing",
+                    "loc": ["body", "new_sub", "new_sub_name"],
+                    "msg": "Field required",
+                    "input": {"wrong_field": "value"},
+                }
             ]
         }
     )
@@ -444,13 +444,11 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -638,9 +636,9 @@ def test_openapi_schema():
                             "new_title": {"type": "string", "title": "New Title"},
                             "new_size": {"type": "integer", "title": "New Size"},
                             "new_description": {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "New Description",
-                                    },
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
                             "new_sub": {"$ref": "#/components/schemas/NewSubItem"},
                             "new_multi": {
                                 "items": {"$ref": "#/components/schemas/NewSubItem"},

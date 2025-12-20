@@ -22,9 +22,9 @@ Here's a general idea of how the models could look like with their password fiel
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-### About `**user_in.model_dump()` { #about-user-in-dict }
+### About `**user_in.model_dump()` { #about-user-in-model-dump }
 
-#### Pydantic's `.model_dump()` { #pydantics-dict }
+#### Pydantic's `.model_dump()` { #pydantics-model-dump }
 
 `user_in` is a Pydantic model of class `UserIn`.
 

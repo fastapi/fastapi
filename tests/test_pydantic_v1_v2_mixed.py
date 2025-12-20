@@ -979,13 +979,11 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
+                                        "allOf": [
+                                            {"$ref": "#/components/schemas/Item"}
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
