@@ -40,7 +40,7 @@ Use the following preferred translations when they apply in documentation prose:
 2) If a title is present, prefer these canonical titles:
 
 - `/// tip | 提示`
-- `/// note | 技术细节`
+- `/// note | 注意`
 - `/// warning | 警告`
 - `/// info | 信息`
 - `/// danger | 危险`
