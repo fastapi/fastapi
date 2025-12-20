@@ -51,15 +51,11 @@ jobs:
           - os: macos-latest
             python-version: "3.10"
             coverage: coverage
-          - os: ubuntu-latest
+          - os: windows-latest
             python-version: "3.12"
             coverage: coverage
-          - os: windows-latest
-            python-version: "3.13"
-            coverage: coverage
           - os: ubuntu-latest
             python-version: "3.13"
-            coverage: coverage
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
