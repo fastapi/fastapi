@@ -20,6 +20,7 @@ from typing import (
     Optional,
     Union,
 )
+from weakref import WeakKeyDictionary
 
 from annotated_doc import Doc
 from fastapi import params, temp_pydantic_v1_params
@@ -76,7 +77,6 @@ from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
-from weakref import WeakKeyDictionary
 
 
 # Copy of starlette.routing.request_response modified to include the
