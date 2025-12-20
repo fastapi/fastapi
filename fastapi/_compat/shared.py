@@ -13,6 +13,7 @@ from typing import (
 from fastapi._compat import may_v1
 from fastapi.types import UnionType
 from pydantic import BaseModel
+from pydantic.types import SecretBytes
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import get_args, get_origin
@@ -127,13 +128,23 @@ def field_annotation_is_scalar_sequence(annotation: Union[type[Any], None]) -> b
     )
 
 
+def unwrap_newtype(annotation: Any) -> Any:
+    """Unwrap NewType to get the underlying type."""
+    while (supertype := getattr(annotation, "__supertype__", None)) is not None:
+        annotation = supertype
+    return annotation
+
+
 def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, bytes):
+    annotation = unwrap_newtype(annotation)
+    if lenient_issubclass(annotation, (bytes, SecretBytes, may_v1.SecretBytes)):
         return True
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, bytes):
+            if lenient_issubclass(
+                unwrap_newtype(arg), (bytes, SecretBytes, may_v1.SecretBytes)
+            ):
                 return True
     return False
 
