@@ -30,7 +30,6 @@ classifiers = [
     "Framework :: AsyncIO",
     "Framework :: FastAPI",
     "Framework :: Pydantic",
-    "Framework :: Pydantic :: 1",
     "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
@@ -45,7 +44,7 @@ classifiers = [
 ]
 dependencies = [
     "starlette>=0.40.0,<0.51.0",
-    "pydantic>=1.7.4,!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0",
+    "pydantic>=2.7.0",
     "typing-extensions>=4.8.0",
     "annotated-doc>=0.0.2",
 ]
@@ -71,11 +70,10 @@ standard = [
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
-    # TODO: this should be part of some pydantic optional extra dependencies
     # # Settings management
-    # "pydantic-settings >=2.0.0",
+    "pydantic-settings >=2.0.0",
     # # Extra Pydantic data types
-    # "pydantic-extra-types >=2.0.0",
+    "pydantic-extra-types >=2.0.0",
 ]
 
 standard-no-fastapi-cloud-cli = [
@@ -90,11 +88,10 @@ standard-no-fastapi-cloud-cli = [
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
     "uvicorn[standard] >=0.12.0",
-    # TODO: this should be part of some pydantic optional extra dependencies
     # # Settings management
-    # "pydantic-settings >=2.0.0",
+    "pydantic-settings >=2.0.0",
     # # Extra Pydantic data types
-    # "pydantic-extra-types >=2.0.0",
+    "pydantic-extra-types >=2.0.0",
 ]
 
 all = [
@@ -183,8 +180,6 @@ filterwarnings = [
     # Ref: https://github.com/python-trio/trio/pull/3054
     # Remove once there's a new version of Trio
     'ignore:The `hash` argument is deprecated*:DeprecationWarning:trio',
-    # Ignore flaky coverage / pytest warning about SQLite connection, only applies to Python 3.13 and Pydantic v1
-    'ignore:Exception ignored in. <sqlite3\.Connection object.*:pytest.PytestUnraisableExceptionWarning',
 ]
 
 [tool.coverage.run]
