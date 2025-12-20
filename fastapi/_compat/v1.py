@@ -141,10 +141,6 @@ def is_pv1_scalar_field(field: ModelField) -> bool:
     return True
 
 
-def _model_rebuild(model: type[BaseModel]) -> None:
-    model.update_forward_refs()
-
-
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:
