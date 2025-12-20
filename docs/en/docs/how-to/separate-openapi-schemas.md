@@ -101,4 +101,3 @@ And now there will be one single schema for input and output for the model, only
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">
 </div>
 
-This is the same behavior as in Pydantic v1. 🤓
