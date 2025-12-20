@@ -20,7 +20,6 @@ from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
 from pydantic.v1.class_validators import Validator as Validator
 from pydantic.v1.color import Color as Color  # type: ignore[assignment]
 from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
-from pydantic.v1.errors import MissingError
 from pydantic.v1.fields import (
     SHAPE_FROZENSET,
     SHAPE_LIST,
@@ -153,20 +152,6 @@ def is_pv1_scalar_field(field: ModelField) -> bool:
     return True
 
 
-def is_pv1_scalar_sequence_field(field: ModelField) -> bool:
-    if (field.shape in sequence_shapes) and not lenient_issubclass(
-        field.type_, BaseModel
-    ):
-        if field.sub_fields is not None:
-            for sub_field in field.sub_fields:
-                if not is_pv1_scalar_field(sub_field):
-                    return False
-        return True
-    if shared._annotation_is_sequence(field.type_):
-        return True
-    return False
-
-
 def _model_rebuild(model: type[BaseModel]) -> None:
     model.update_forward_refs()
 
@@ -221,10 +206,6 @@ def is_sequence_field(field: ModelField) -> bool:
     return field.shape in sequence_shapes or shared._annotation_is_sequence(field.type_)
 
 
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    return is_pv1_scalar_sequence_field(field)
-
-
 def is_bytes_field(field: ModelField) -> bool:
     return lenient_issubclass(field.type_, bytes)  # type: ignore[no-any-return]
 
@@ -239,12 +220,6 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
 
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return sequence_shape_to_type[field.shape](value)  # type: ignore[no-any-return]
-
-
-def get_missing_field_error(loc: tuple[str, ...]) -> dict[str, Any]:
-    missing_field_error = ErrorWrapper(MissingError(), loc=loc)
-    new_error = ValidationError([missing_field_error], RequestErrorModel)
-    return new_error.errors()[0]  # type: ignore[return-value]
 
 
 def create_body_model(
