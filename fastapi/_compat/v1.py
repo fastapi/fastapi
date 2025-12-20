@@ -11,6 +11,56 @@ from typing import (
 from fastapi._compat import shared
 from fastapi.openapi.constants import REF_PREFIX as REF_PREFIX
 from fastapi.types import ModelNameMap
+from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
+from pydantic.v1 import BaseModel as BaseModel  # type: ignore[assignment]
+from pydantic.v1 import (  # type: ignore[assignment]
+    ValidationError as ValidationError,
+)
+from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
+from pydantic.v1.class_validators import Validator as Validator
+from pydantic.v1.color import Color as Color  # type: ignore[assignment]
+from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
+from pydantic.v1.errors import MissingError
+from pydantic.v1.fields import (
+    SHAPE_FROZENSET,
+    SHAPE_LIST,
+    SHAPE_SEQUENCE,
+    SHAPE_SET,
+    SHAPE_SINGLETON,
+    SHAPE_TUPLE,
+    SHAPE_TUPLE_ELLIPSIS,
+)
+from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
+from pydantic.v1.fields import ModelField as ModelField
+from pydantic.v1.fields import Undefined as Undefined
+from pydantic.v1.fields import UndefinedType as UndefinedType
+from pydantic.v1.networks import AnyUrl as AnyUrl
+from pydantic.v1.networks import (  # type: ignore[assignment]
+    NameEmail as NameEmail,
+)
+from pydantic.v1.schema import TypeModelSet as TypeModelSet
+from pydantic.v1.schema import (
+    field_schema,
+    model_process_schema,
+)
+from pydantic.v1.schema import (
+    get_annotation_from_field_info as get_annotation_from_field_info,
+)
+from pydantic.v1.schema import (
+    get_flat_models_from_field as get_flat_models_from_field,
+)
+from pydantic.v1.schema import (
+    get_flat_models_from_fields as get_flat_models_from_fields,
+)
+from pydantic.v1.schema import get_model_name_map as get_model_name_map
+from pydantic.v1.types import (  # type: ignore[assignment]
+    SecretBytes as SecretBytes,
+)
+from pydantic.v1.types import (  # type: ignore[assignment]
+    SecretStr as SecretStr,
+)
+from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
+from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from typing_extensions import Literal
 
@@ -19,103 +69,6 @@ PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 # Keeping old "Required" functionality from Pydantic V1, without
 # shadowing typing.Required.
 RequiredParam: Any = Ellipsis
-
-if not PYDANTIC_V2:
-    from pydantic import BaseConfig as BaseConfig
-    from pydantic import BaseModel as BaseModel
-    from pydantic import ValidationError as ValidationError
-    from pydantic import create_model as create_model
-    from pydantic.class_validators import Validator as Validator
-    from pydantic.color import Color as Color
-    from pydantic.error_wrappers import ErrorWrapper as ErrorWrapper
-    from pydantic.errors import MissingError
-    from pydantic.fields import (  # type: ignore[attr-defined]
-        SHAPE_FROZENSET,
-        SHAPE_LIST,
-        SHAPE_SEQUENCE,
-        SHAPE_SET,
-        SHAPE_SINGLETON,
-        SHAPE_TUPLE,
-        SHAPE_TUPLE_ELLIPSIS,
-    )
-    from pydantic.fields import FieldInfo as FieldInfo
-    from pydantic.fields import ModelField as ModelField  # type: ignore[attr-defined]
-    from pydantic.fields import Undefined as Undefined  # type: ignore[attr-defined]
-    from pydantic.fields import (  # type: ignore[attr-defined]
-        UndefinedType as UndefinedType,
-    )
-    from pydantic.networks import AnyUrl as AnyUrl
-    from pydantic.networks import NameEmail as NameEmail
-    from pydantic.schema import TypeModelSet as TypeModelSet
-    from pydantic.schema import (
-        field_schema,
-        model_process_schema,
-    )
-    from pydantic.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
-    from pydantic.schema import get_flat_models_from_field as get_flat_models_from_field
-    from pydantic.schema import (
-        get_flat_models_from_fields as get_flat_models_from_fields,
-    )
-    from pydantic.schema import get_model_name_map as get_model_name_map
-    from pydantic.types import SecretBytes as SecretBytes
-    from pydantic.types import SecretStr as SecretStr
-    from pydantic.typing import evaluate_forwardref as evaluate_forwardref
-    from pydantic.utils import lenient_issubclass as lenient_issubclass
-
-
-else:
-    from pydantic.v1 import BaseConfig as BaseConfig  # type: ignore[assignment]
-    from pydantic.v1 import BaseModel as BaseModel  # type: ignore[assignment]
-    from pydantic.v1 import (  # type: ignore[assignment]
-        ValidationError as ValidationError,
-    )
-    from pydantic.v1 import create_model as create_model  # type: ignore[no-redef]
-    from pydantic.v1.class_validators import Validator as Validator
-    from pydantic.v1.color import Color as Color  # type: ignore[assignment]
-    from pydantic.v1.error_wrappers import ErrorWrapper as ErrorWrapper
-    from pydantic.v1.errors import MissingError
-    from pydantic.v1.fields import (
-        SHAPE_FROZENSET,
-        SHAPE_LIST,
-        SHAPE_SEQUENCE,
-        SHAPE_SET,
-        SHAPE_SINGLETON,
-        SHAPE_TUPLE,
-        SHAPE_TUPLE_ELLIPSIS,
-    )
-    from pydantic.v1.fields import FieldInfo as FieldInfo  # type: ignore[assignment]
-    from pydantic.v1.fields import ModelField as ModelField
-    from pydantic.v1.fields import Undefined as Undefined
-    from pydantic.v1.fields import UndefinedType as UndefinedType
-    from pydantic.v1.networks import AnyUrl as AnyUrl
-    from pydantic.v1.networks import (  # type: ignore[assignment]
-        NameEmail as NameEmail,
-    )
-    from pydantic.v1.schema import TypeModelSet as TypeModelSet
-    from pydantic.v1.schema import (
-        field_schema,
-        model_process_schema,
-    )
-    from pydantic.v1.schema import (
-        get_annotation_from_field_info as get_annotation_from_field_info,
-    )
-    from pydantic.v1.schema import (
-        get_flat_models_from_field as get_flat_models_from_field,
-    )
-    from pydantic.v1.schema import (
-        get_flat_models_from_fields as get_flat_models_from_fields,
-    )
-    from pydantic.v1.schema import get_model_name_map as get_model_name_map
-    from pydantic.v1.types import (  # type: ignore[assignment]
-        SecretBytes as SecretBytes,
-    )
-    from pydantic.v1.types import (  # type: ignore[assignment]
-        SecretStr as SecretStr,
-    )
-    from pydantic.v1.typing import evaluate_forwardref as evaluate_forwardref
-    from pydantic.v1.utils import lenient_issubclass as lenient_issubclass
 
 
 GetJsonSchemaHandler = Any

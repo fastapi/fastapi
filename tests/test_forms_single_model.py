@@ -2,7 +2,6 @@ from typing import Annotated, Optional
 
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -20,12 +19,7 @@ class FormModel(BaseModel):
 class FormModelExtraAllow(BaseModel):
     param: str
 
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
-    else:
-
-        class Config:
-            extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 @app.post("/form/")

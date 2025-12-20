@@ -9,7 +9,6 @@ from pydantic.fields import FieldInfo
 from typing_extensions import Literal, deprecated
 
 from ._compat import (
-    PYDANTIC_V2,
     PYDANTIC_VERSION_MINOR_TUPLE,
     Undefined,
 )
@@ -115,25 +114,23 @@ class Param(FieldInfo):  # type: ignore[misc]
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            if serialization_alias in (_Unset, None) and isinstance(alias, str):
-                serialization_alias = alias
-            if validation_alias in (_Unset, None):
-                validation_alias = alias
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+
+        if serialization_alias in (_Unset, None) and isinstance(alias, str):
+            serialization_alias = alias
+        if validation_alias in (_Unset, None):
+            validation_alias = alias
+        kwargs.update(
+            {
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+            }
+        )
+        kwargs["pattern"] = pattern or regex
+
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
         super().__init__(**use_kwargs)
@@ -575,25 +572,21 @@ class Body(FieldInfo):  # type: ignore[misc]
             self.deprecated = deprecated
         else:
             kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            if serialization_alias in (_Unset, None) and isinstance(alias, str):
-                serialization_alias = alias
-            if validation_alias in (_Unset, None):
-                validation_alias = alias
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+        if serialization_alias in (_Unset, None) and isinstance(alias, str):
+            serialization_alias = alias
+        if validation_alias in (_Unset, None):
+            validation_alias = alias
+        kwargs.update(
+            {
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+            }
+        )
+        kwargs["pattern"] = pattern or regex
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 

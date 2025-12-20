@@ -18,7 +18,6 @@ from typing import (
 import anyio
 from fastapi import params
 from fastapi._compat import (
-    PYDANTIC_V2,
     ModelField,
     RequiredParam,
     Undefined,
@@ -445,9 +444,8 @@ def analyze_param(
             f" together for {param_name!r}"
         )
         field_info = value
-        if PYDANTIC_V2:
-            if isinstance(field_info, FieldInfo):
-                field_info.annotation = type_annotation
+        if isinstance(field_info, FieldInfo):
+            field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:

@@ -8,7 +8,7 @@ from pathlib import PurePath, PurePosixPath, PureWindowsPath
 from typing import Optional
 
 import pytest
-from fastapi._compat import PYDANTIC_V2, Undefined
+from fastapi._compat import Undefined
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, ValidationError
 
@@ -59,12 +59,7 @@ class RoleEnum(Enum):
 class ModelWithConfig(BaseModel):
     role: Optional[RoleEnum] = None
 
-    if PYDANTIC_V2:
-        model_config = {"use_enum_values": True}
-    else:
-
-        class Config:
-            use_enum_values = True
+    model_config = {"use_enum_values": True}
 
 
 class ModelWithAlias(BaseModel):
@@ -154,6 +149,7 @@ def test_encode_custom_json_encoders_model_pydanticv2():
 @needs_pydanticv1
 def test_encode_custom_json_encoders_model_pydanticv1():
     from pydantic import v1
+
     class ModelWithCustomEncoder(v1.BaseModel):
         dt_field: datetime
 
@@ -210,6 +206,7 @@ def test_encode_model_with_default():
 @needs_pydanticv1
 def test_custom_encoders():
     from pydantic import v1
+
     class safe_datetime(datetime):
         pass
 
@@ -246,12 +243,7 @@ def test_encode_model_with_pure_path():
     class ModelWithPath(BaseModel):
         path: PurePath
 
-        if PYDANTIC_V2:
-            model_config = {"arbitrary_types_allowed": True}
-        else:
-
-            class Config:
-                arbitrary_types_allowed = True
+        model_config = {"arbitrary_types_allowed": True}
 
     test_path = PurePath("/foo", "bar")
     obj = ModelWithPath(path=test_path)
@@ -262,12 +254,7 @@ def test_encode_model_with_pure_posix_path():
     class ModelWithPath(BaseModel):
         path: PurePosixPath
 
-        if PYDANTIC_V2:
-            model_config = {"arbitrary_types_allowed": True}
-        else:
-
-            class Config:
-                arbitrary_types_allowed = True
+        model_config = {"arbitrary_types_allowed": True}
 
     obj = ModelWithPath(path=PurePosixPath("/foo", "bar"))
     assert jsonable_encoder(obj) == {"path": "/foo/bar"}
@@ -277,12 +264,7 @@ def test_encode_model_with_pure_windows_path():
     class ModelWithPath(BaseModel):
         path: PureWindowsPath
 
-        if PYDANTIC_V2:
-            model_config = {"arbitrary_types_allowed": True}
-        else:
-
-            class Config:
-                arbitrary_types_allowed = True
+        model_config = {"arbitrary_types_allowed": True}
 
     obj = ModelWithPath(path=PureWindowsPath("/foo", "bar"))
     assert jsonable_encoder(obj) == {"path": "\\foo\\bar"}
@@ -291,6 +273,7 @@ def test_encode_model_with_pure_windows_path():
 @needs_pydanticv1
 def test_encode_root():
     from pydantic import v1
+
     class ModelWithRoot(v1.BaseModel):
         __root__: str
 
