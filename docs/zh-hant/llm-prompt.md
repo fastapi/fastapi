@@ -36,6 +36,8 @@ Language code: zh-hant.
 - path operation: 路徑操作
 - path operation function: 路徑操作函式
 
+The translation can optionally include the original English text only in the first occurrence of each page (e.g. "路徑操作 (path operation)") if the translation is hard to be comprehended by most of the Chinese readers.
+
 ### `///` admonitions
 
 1) Keep the admonition keyword in English (do not translate `note`, `tip`, etc.).
