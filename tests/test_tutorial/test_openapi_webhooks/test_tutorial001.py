@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from docs_src.openapi_webhooks.tutorial001 import app
+from docs_src.openapi_webhooks.tutorial001_py39 import app
 
 client = TestClient(app)
 

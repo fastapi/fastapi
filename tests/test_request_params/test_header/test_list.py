@@ -1,13 +1,10 @@
-from typing import List
+from typing import Annotated
 
 import pytest
 from dirty_equals import AnyThing, IsDict, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 app = FastAPI()
 
@@ -16,12 +13,12 @@ app = FastAPI()
 
 
 @app.get("/required-list-str")
-async def read_required_list_str(p: Annotated[List[str], Header()]):
+async def read_required_list_str(p: Annotated[list[str], Header()]):
     return {"p": p}
 
 
 class HeaderModelRequiredListStr(BaseModel):
-    p: List[str]
+    p: list[str]
 
 
 @app.get("/model-required-list-str")
@@ -96,12 +93,12 @@ def test_required_list_str(path: str):
 
 
 @app.get("/required-list-alias")
-async def read_required_list_alias(p: Annotated[List[str], Header(alias="p_alias")]):
+async def read_required_list_alias(p: Annotated[list[str], Header(alias="p_alias")]):
     return {"p": p}
 
 
 class HeaderModelRequiredListAlias(BaseModel):
-    p: List[str] = Field(alias="p_alias")
+    p: list[str] = Field(alias="p_alias")
 
 
 @app.get("/model-required-list-alias")
@@ -219,13 +216,13 @@ def test_required_list_alias_by_alias(path: str):
 
 @app.get("/required-list-validation-alias")
 def read_required_list_validation_alias(
-    p: Annotated[List[str], Header(validation_alias="p_val_alias")],
+    p: Annotated[list[str], Header(validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class HeaderModelRequiredListValidationAlias(BaseModel):
-    p: List[str] = Field(validation_alias="p_val_alias")
+    p: list[str] = Field(validation_alias="p_val_alias")
 
 
 @app.get("/model-required-list-validation-alias")
@@ -235,7 +232,6 @@ async def read_model_required_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -255,7 +251,6 @@ def test_required_list_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -282,7 +277,6 @@ def test_required_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -307,7 +301,6 @@ def test_required_list_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -328,13 +321,13 @@ def test_required_list_validation_alias_by_validation_alias(path: str):
 
 @app.get("/required-list-alias-and-validation-alias")
 def read_required_list_alias_and_validation_alias(
-    p: Annotated[List[str], Header(alias="p_alias", validation_alias="p_val_alias")],
+    p: Annotated[list[str], Header(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class HeaderModelRequiredListAliasAndValidationAlias(BaseModel):
-    p: List[str] = Field(alias="p_alias", validation_alias="p_val_alias")
+    p: list[str] = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.get("/model-required-list-alias-and-validation-alias")
@@ -344,7 +337,6 @@ def read_model_required_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -367,7 +359,6 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -394,7 +385,6 @@ def test_required_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -424,7 +414,6 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -451,7 +440,6 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

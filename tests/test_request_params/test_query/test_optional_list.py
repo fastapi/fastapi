@@ -1,13 +1,10 @@
-from typing import List, Optional
+from typing import Annotated, Optional
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 app = FastAPI()
 
@@ -17,13 +14,13 @@ app = FastAPI()
 
 @app.get("/optional-list-str")
 async def read_optional_list_str(
-    p: Annotated[Optional[List[str]], Query()] = None,
+    p: Annotated[Optional[list[str]], Query()] = None,
 ):
     return {"p": p}
 
 
 class QueryModelOptionalListStr(BaseModel):
-    p: Optional[List[str]] = None
+    p: Optional[list[str]] = None
 
 
 @app.get("/model-optional-list-str")
@@ -93,13 +90,13 @@ def test_optional_list_str(path: str):
 
 @app.get("/optional-list-alias")
 async def read_optional_list_alias(
-    p: Annotated[Optional[List[str]], Query(alias="p_alias")] = None,
+    p: Annotated[Optional[list[str]], Query(alias="p_alias")] = None,
 ):
     return {"p": p}
 
 
 class QueryModelOptionalListAlias(BaseModel):
-    p: Optional[List[str]] = Field(None, alias="p_alias")
+    p: Optional[list[str]] = Field(None, alias="p_alias")
 
 
 @app.get("/model-optional-list-alias")
@@ -187,13 +184,13 @@ def test_optional_list_alias_by_alias(path: str):
 
 @app.get("/optional-list-validation-alias")
 def read_optional_list_validation_alias(
-    p: Annotated[Optional[List[str]], Query(validation_alias="p_val_alias")] = None,
+    p: Annotated[Optional[list[str]], Query(validation_alias="p_val_alias")] = None,
 ):
     return {"p": p}
 
 
 class QueryModelOptionalListValidationAlias(BaseModel):
-    p: Optional[List[str]] = Field(None, validation_alias="p_val_alias")
+    p: Optional[list[str]] = Field(None, validation_alias="p_val_alias")
 
 
 @app.get("/model-optional-list-validation-alias")
@@ -203,7 +200,6 @@ def read_model_optional_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -225,7 +221,6 @@ def test_optional_list_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -237,7 +232,6 @@ def test_optional_list_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -252,7 +246,6 @@ def test_optional_list_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -271,14 +264,14 @@ def test_optional_list_validation_alias_by_validation_alias(path: str):
 @app.get("/optional-list-alias-and-validation-alias")
 def read_optional_list_alias_and_validation_alias(
     p: Annotated[
-        Optional[List[str]], Query(alias="p_alias", validation_alias="p_val_alias")
+        Optional[list[str]], Query(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"p": p}
 
 
 class QueryModelOptionalListAliasAndValidationAlias(BaseModel):
-    p: Optional[List[str]] = Field(
+    p: Optional[list[str]] = Field(
         None, alias="p_alias", validation_alias="p_val_alias"
     )
 
@@ -290,7 +283,6 @@ def read_model_optional_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -315,7 +307,6 @@ def test_optional_list_alias_and_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -330,7 +321,6 @@ def test_optional_list_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -345,7 +335,6 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -360,7 +349,6 @@ def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

@@ -1,11 +1,10 @@
+from typing import Annotated
+
 import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 app = FastAPI()
 
@@ -227,7 +226,6 @@ def read_model_required_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-validation-alias", "/model-required-validation-alias"],
@@ -243,7 +241,6 @@ def test_required_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -270,7 +267,6 @@ def test_required_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -295,7 +291,6 @@ def test_required_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -333,7 +328,6 @@ def read_model_required_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -352,7 +346,6 @@ def test_required_alias_and_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -379,7 +372,6 @@ def test_required_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -410,7 +402,6 @@ def test_required_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -438,7 +429,6 @@ def test_required_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

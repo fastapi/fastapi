@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Annotated
 
 import pytest
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from typing_extensions import Annotated
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import AsyncGenerator

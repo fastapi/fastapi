@@ -2,21 +2,23 @@
 
 If you have an old FastAPI app, you might be using Pydantic version 1.
 
-FastAPI has had support for either Pydantic v1 or v2 since version 0.100.0.
+FastAPI version 0.100.0 had support for either Pydantic v1 or v2. It would use whichever you had installed.
 
-If you had installed Pydantic v2, it would use it. If instead you had Pydantic v1, it would use that.
+FastAPI version 0.119.0 introduced partial support for Pydantic v1 from inside of Pydantic v2 (as `pydantic.v1`), to facilitate the migration to v2.
 
-Pydantic v1 is now deprecated and support for it will be removed in the next versions of FastAPI, you should **migrate to Pydantic v2**. This way you will get the latest features, improvements, and fixes.
+FastAPI 0.126.0 dropped support for Pydantic v1, while still supporting `pydantic.v1` for a little while.
 
 /// warning
 
-Also, the Pydantic team stopped support for Pydantic v1 for the latest versions of Python, starting with **Python 3.14**.
+The Pydantic team stopped support for Pydantic v1 for the latest versions of Python, starting with **Python 3.14**.
+
+This includes `pydantic.v1`, which is no longer supported in Python 3.14 and above.
 
 If you want to use the latest features of Python, you will need to make sure you use Pydantic v2.
 
 ///
 
-If you have an old FastAPI app with Pydantic v1, here I'll show you how to migrate it to Pydantic v2, and the **new features in FastAPI 0.119.0** to help you with a gradual migration.
+If you have an old FastAPI app with Pydantic v1, here I'll show you how to migrate it to Pydantic v2, and the **features in FastAPI 0.119.0** to help you with a gradual migration.
 
 ## Official Guide { #official-guide }
 
@@ -44,7 +46,7 @@ After this, you can run the tests and check if everything works. If it does, you
 
 ## Pydantic v1 in v2 { #pydantic-v1-in-v2 }
 
-Pydantic v2 includes everything from Pydantic v1 as a submodule `pydantic.v1`.
+Pydantic v2 includes everything from Pydantic v1 as a submodule `pydantic.v1`. But this is no longer supported in versions above Python 3.13.
 
 This means that you can install the latest version of Pydantic v2 and import and use the old Pydantic v1 components from this submodule, as if you had the old Pydantic v1 installed.
 

@@ -4,10 +4,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv1
 
 
-@needs_pydanticv2
 def test_pydanticv2():
     from pydantic import field_serializer
 
@@ -34,7 +33,9 @@ def test_pydanticv2():
 # TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_pydanticv1():
-    class ModelWithDatetimeField(BaseModel):
+    from pydantic import v1
+
+    class ModelWithDatetimeField(v1.BaseModel):
         dt_field: datetime
 
         class Config:

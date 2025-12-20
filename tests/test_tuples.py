@@ -1,5 +1,3 @@
-from typing import List, Tuple
-
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
@@ -9,7 +7,7 @@ app = FastAPI()
 
 
 class ItemGroup(BaseModel):
-    items: List[Tuple[str, str]]
+    items: list[tuple[str, str]]
 
 
 class Coordinate(BaseModel):
@@ -23,12 +21,12 @@ def post_model_with_tuple(item_group: ItemGroup):
 
 
 @app.post("/tuple-of-models/")
-def post_tuple_of_models(square: Tuple[Coordinate, Coordinate]):
+def post_tuple_of_models(square: tuple[Coordinate, Coordinate]):
     return square
 
 
 @app.post("/tuple-form/")
-def hello(values: Tuple[int, int] = Form()):
+def hello(values: tuple[int, int] = Form()):
     return values
 
 

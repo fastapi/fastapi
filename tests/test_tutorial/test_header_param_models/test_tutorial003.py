@@ -5,17 +5,15 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py39, needs_py310
+from tests.utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003",
-        pytest.param("tutorial003_py39", marks=needs_py39),
+        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
-        "tutorial003_an",
-        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py39"),
         pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )

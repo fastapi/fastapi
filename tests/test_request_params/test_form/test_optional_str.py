@@ -1,13 +1,10 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -195,7 +192,6 @@ def read_model_optional_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-validation-alias", "/model-optional-validation-alias"],
@@ -227,7 +223,6 @@ def test_optional_validation_alias_schema(path: str):
     )
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-validation-alias", "/model-optional-validation-alias"],
@@ -239,7 +234,6 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -254,7 +248,6 @@ def test_optional_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -299,7 +292,6 @@ def read_model_optional_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -334,7 +326,6 @@ def test_optional_alias_and_validation_alias_schema(path: str):
     )
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -349,7 +340,6 @@ def test_optional_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -364,7 +354,6 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -379,7 +368,6 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

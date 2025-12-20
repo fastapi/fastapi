@@ -1,7 +1,6 @@
 import sys
 
 import pytest
-from fastapi._compat import PYDANTIC_V2
 from inline_snapshot import snapshot
 
 from tests.utils import skip_module_if_py_gte_314
@@ -9,22 +8,18 @@ from tests.utils import skip_module_if_py_gte_314
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
-if not PYDANTIC_V2:
-    pytest.skip("This test is only for Pydantic v2", allow_module_level=True)
-
 
 import importlib
 
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial004_an",
-        pytest.param("tutorial004_an_py39", marks=needs_py39),
+        pytest.param("tutorial004_an_py39"),
         pytest.param("tutorial004_an_py310", marks=needs_py310),
     ],
 )

@@ -3,7 +3,6 @@ from typing import Union
 import pytest
 from dirty_equals import IsDict
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 
@@ -14,14 +13,9 @@ def create_app():
     class Item(BaseModel):
         data: str
 
-        if PYDANTIC_V2:
-            model_config = ConfigDict(
-                json_schema_extra={"example": {"data": "Data in schema_extra"}}
-            )
-        else:
-
-            class Config:
-                schema_extra = {"example": {"data": "Data in schema_extra"}}
+        model_config = ConfigDict(
+            json_schema_extra={"example": {"data": "Data in schema_extra"}}
+        )
 
     @app.post("/schema_extra/")
     def schema_extra(item: Item):

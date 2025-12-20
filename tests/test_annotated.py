@@ -1,8 +1,9 @@
+from typing import Annotated
+
 import pytest
 from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 app = FastAPI()
 

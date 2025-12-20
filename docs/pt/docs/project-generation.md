@@ -13,7 +13,7 @@ Repositório GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-tem
     - 🔍 [Pydantic](https://docs.pydantic.dev), usado pelo FastAPI, para validação de dados e gerenciamento de configurações.
     - 💾 [PostgreSQL](https://www.postgresql.org) como banco de dados SQL.
 - 🚀 [React](https://react.dev) para o frontend.
-    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev), e outras partes de uma _stack_ frontend moderna.
+    - 💃 Usando TypeScript, hooks, Vite, e outras partes de uma _stack_ frontend moderna.
     - 🎨 [Tailwind CSS](https://tailwindcss.com) e [shadcn/ui](https://ui.shadcn.com) para os componentes de frontend.
     - 🤖 Um cliente frontend automaticamente gerado.
     - 🧪 [Playwright](https://playwright.dev) para testes Ponta-a-Ponta.

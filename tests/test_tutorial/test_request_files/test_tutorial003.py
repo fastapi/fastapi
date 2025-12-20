@@ -4,16 +4,12 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial003",
-        "tutorial003_an",
-        pytest.param("tutorial003_py39", marks=needs_py39),
-        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        "tutorial003_py39",
+        "tutorial003_an_py39",
     ],
 )
 def get_app(request: pytest.FixtureRequest):

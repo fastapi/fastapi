@@ -57,13 +57,13 @@ Erzwingt, dass alle eingehenden <abbr title="Request – Anfrage: Daten, die der
 
 Alle eingehenden Requests an `http` oder `ws` werden stattdessen an das sichere Schema umgeleitet.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Erzwingt, dass alle eingehenden Requests einen korrekt gesetzten `Host`-Header haben, um sich vor HTTP-Host-Header-Angriffen zu schützen.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
 
 Die folgenden Argumente werden unterstützt:
 
@@ -78,7 +78,7 @@ Verarbeitet GZip-Responses für alle Requests, die `"gzip"` im `Accept-Encoding`
 
 Diese Middleware verarbeitet sowohl Standard- als auch Streaming-Responses.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
 
 Die folgenden Argumente werden unterstützt:
 

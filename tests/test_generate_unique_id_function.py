@@ -1,5 +1,4 @@
 import warnings
-from typing import List
 
 from fastapi import APIRouter, FastAPI
 from fastapi.routing import APIRoute
@@ -33,12 +32,12 @@ def test_top_level_generate_unique_id():
     app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
     router = APIRouter()
 
-    @app.post("/", response_model=List[Item], responses={404: {"model": List[Message]}})
+    @app.post("/", response_model=list[Item], responses={404: {"model": list[Message]}})
     def post_root(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @router.post(
-        "/router", response_model=List[Item], responses={404: {"model": List[Message]}}
+        "/router", response_model=list[Item], responses={404: {"model": list[Message]}}
     )
     def post_router(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
@@ -241,12 +240,12 @@ def test_router_overrides_generate_unique_id():
     app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
     router = APIRouter(generate_unique_id_function=custom_generate_unique_id2)
 
-    @app.post("/", response_model=List[Item], responses={404: {"model": List[Message]}})
+    @app.post("/", response_model=list[Item], responses={404: {"model": list[Message]}})
     def post_root(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @router.post(
-        "/router", response_model=List[Item], responses={404: {"model": List[Message]}}
+        "/router", response_model=list[Item], responses={404: {"model": list[Message]}}
     )
     def post_router(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
@@ -449,12 +448,12 @@ def test_router_include_overrides_generate_unique_id():
     app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
     router = APIRouter(generate_unique_id_function=custom_generate_unique_id2)
 
-    @app.post("/", response_model=List[Item], responses={404: {"model": List[Message]}})
+    @app.post("/", response_model=list[Item], responses={404: {"model": list[Message]}})
     def post_root(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @router.post(
-        "/router", response_model=List[Item], responses={404: {"model": List[Message]}}
+        "/router", response_model=list[Item], responses={404: {"model": list[Message]}}
     )
     def post_router(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
@@ -658,20 +657,20 @@ def test_subrouter_top_level_include_overrides_generate_unique_id():
     router = APIRouter()
     sub_router = APIRouter(generate_unique_id_function=custom_generate_unique_id2)
 
-    @app.post("/", response_model=List[Item], responses={404: {"model": List[Message]}})
+    @app.post("/", response_model=list[Item], responses={404: {"model": list[Message]}})
     def post_root(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @router.post(
-        "/router", response_model=List[Item], responses={404: {"model": List[Message]}}
+        "/router", response_model=list[Item], responses={404: {"model": list[Message]}}
     )
     def post_router(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @sub_router.post(
         "/subrouter",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
     )
     def post_subrouter(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
@@ -938,14 +937,14 @@ def test_router_path_operation_overrides_generate_unique_id():
     app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
     router = APIRouter(generate_unique_id_function=custom_generate_unique_id2)
 
-    @app.post("/", response_model=List[Item], responses={404: {"model": List[Message]}})
+    @app.post("/", response_model=list[Item], responses={404: {"model": list[Message]}})
     def post_root(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
 
     @router.post(
         "/router",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
         generate_unique_id_function=custom_generate_unique_id3,
     )
     def post_router(item1: Item, item2: Item):
@@ -1151,8 +1150,8 @@ def test_app_path_operation_overrides_generate_unique_id():
 
     @app.post(
         "/",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
         generate_unique_id_function=custom_generate_unique_id3,
     )
     def post_root(item1: Item, item2: Item):
@@ -1160,8 +1159,8 @@ def test_app_path_operation_overrides_generate_unique_id():
 
     @router.post(
         "/router",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
     )
     def post_router(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover
@@ -1366,8 +1365,8 @@ def test_callback_override_generate_unique_id():
 
     @callback_router.post(
         "/post-callback",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
         generate_unique_id_function=custom_generate_unique_id3,
     )
     def post_callback(item1: Item, item2: Item):
@@ -1375,8 +1374,8 @@ def test_callback_override_generate_unique_id():
 
     @app.post(
         "/",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
         generate_unique_id_function=custom_generate_unique_id3,
         callbacks=callback_router.routes,
     )
@@ -1385,8 +1384,8 @@ def test_callback_override_generate_unique_id():
 
     @app.post(
         "/tocallback",
-        response_model=List[Item],
-        responses={404: {"model": List[Message]}},
+        response_model=list[Item],
+        responses={404: {"model": list[Message]}},
     )
     def post_with_callback(item1: Item, item2: Item):
         return item1, item2  # pragma: nocover

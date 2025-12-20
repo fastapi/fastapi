@@ -1,12 +1,9 @@
-from typing import List, Optional
+from typing import Annotated, Optional
 
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -17,13 +14,13 @@ app = FastAPI()
 
 
 @app.post("/optional-list-bytes")
-async def read_optional_list_bytes(p: Annotated[Optional[List[bytes]], File()] = None):
+async def read_optional_list_bytes(p: Annotated[Optional[list[bytes]], File()] = None):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile")
 async def read_optional_list_uploadfile(
-    p: Annotated[Optional[List[UploadFile]], File()] = None,
+    p: Annotated[Optional[list[UploadFile]], File()] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
@@ -103,14 +100,14 @@ def test_optional_list(path: str):
 
 @app.post("/optional-list-bytes-alias")
 async def read_optional_list_bytes_alias(
-    p: Annotated[Optional[List[bytes]], File(alias="p_alias")] = None,
+    p: Annotated[Optional[list[bytes]], File(alias="p_alias")] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
 
 
 @app.post("/optional-list-uploadfile-alias")
 async def read_optional_list_uploadfile_alias(
-    p: Annotated[Optional[List[UploadFile]], File(alias="p_alias")] = None,
+    p: Annotated[Optional[list[UploadFile]], File(alias="p_alias")] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
@@ -204,7 +201,7 @@ def test_optional_list_alias_by_alias(path: str):
 
 @app.post("/optional-list-bytes-validation-alias")
 def read_optional_list_bytes_validation_alias(
-    p: Annotated[Optional[List[bytes]], File(validation_alias="p_val_alias")] = None,
+    p: Annotated[Optional[list[bytes]], File(validation_alias="p_val_alias")] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
 
@@ -212,13 +209,12 @@ def read_optional_list_bytes_validation_alias(
 @app.post("/optional-list-uploadfile-validation-alias")
 def read_optional_list_uploadfile_validation_alias(
     p: Annotated[
-        Optional[List[UploadFile]], File(validation_alias="p_val_alias")
+        Optional[list[UploadFile]], File(validation_alias="p_val_alias")
     ] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -260,7 +256,6 @@ def test_optional_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -275,7 +270,6 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -290,7 +284,6 @@ def test_optional_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -314,7 +307,7 @@ def test_optional_validation_alias_by_validation_alias(path: str):
 @app.post("/optional-list-bytes-alias-and-validation-alias")
 def read_optional_list_bytes_alias_and_validation_alias(
     p: Annotated[
-        Optional[List[bytes]], File(alias="p_alias", validation_alias="p_val_alias")
+        Optional[list[bytes]], File(alias="p_alias", validation_alias="p_val_alias")
     ] = None,
 ):
     return {"file_size": [len(file) for file in p] if p else None}
@@ -323,14 +316,13 @@ def read_optional_list_bytes_alias_and_validation_alias(
 @app.post("/optional-list-uploadfile-alias-and-validation-alias")
 def read_optional_list_uploadfile_alias_and_validation_alias(
     p: Annotated[
-        Optional[List[UploadFile]],
+        Optional[list[UploadFile]],
         File(alias="p_alias", validation_alias="p_val_alias"),
     ] = None,
 ):
     return {"file_size": [file.size for file in p] if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -372,7 +364,6 @@ def test_optional_list_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -387,7 +378,6 @@ def test_optional_list_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -402,7 +392,6 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -417,7 +406,6 @@ def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

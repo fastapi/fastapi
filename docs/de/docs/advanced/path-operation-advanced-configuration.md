@@ -12,7 +12,7 @@ Mit dem Parameter `operation_id` können Sie die OpenAPI `operationId` festlegen
 
 Sie müssten sicherstellen, dass sie für jede Operation eindeutig ist.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Verwendung des Namens der *Pfadoperation-Funktion* als operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Wenn Sie die Funktionsnamen Ihrer API als `operationId`s verwenden möchten, kö
 
 Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Tipp
 
@@ -40,7 +40,7 @@ Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
 
 Um eine *Pfadoperation* aus dem generierten OpenAPI-Schema (und damit aus den automatischen Dokumentationssystemen) auszuschließen, verwenden Sie den Parameter `include_in_schema` und setzen Sie ihn auf `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Fortgeschrittene Beschreibung mittels Docstring { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@ Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie de
 
 Dieses `openapi_extra` kann beispielsweise hilfreich sein, um [OpenAPI-Erweiterungen](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) zu deklarieren:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Wenn Sie die automatische API-Dokumentation öffnen, wird Ihre Erweiterung am Ende der spezifischen *Pfadoperation* angezeigt.
 
@@ -139,7 +139,7 @@ Sie könnten sich beispielsweise dafür entscheiden, den <abbr title="Request �
 
 Das könnte man mit `openapi_extra` machen:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
 In diesem Beispiel haben wir kein Pydantic-Modell deklariert. Tatsächlich wird der Requestbody nicht einmal als JSON <abbr title="von einem einfachen Format, wie Bytes, in Python-Objekte konvertieren">geparst</abbr>, sondern direkt als `bytes` gelesen und die Funktion `magic_data_reader()` wäre dafür verantwortlich, ihn in irgendeiner Weise zu parsen.
 

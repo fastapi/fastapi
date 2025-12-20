@@ -5,6 +5,7 @@ repos:
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
+        args: ['--maxkb=750']
       - id: check-toml
       - id: check-yaml
         args:

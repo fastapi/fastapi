@@ -5,17 +5,15 @@ import pytest
 from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="mod",
     params=[
-        "tutorial005",
+        pytest.param("tutorial005_py39"),
         pytest.param("tutorial005_py310", marks=needs_py310),
-        "tutorial005_an",
-        pytest.param("tutorial005_py39", marks=needs_py39),
-        pytest.param("tutorial005_an_py39", marks=needs_py39),
+        pytest.param("tutorial005_an_py39"),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )

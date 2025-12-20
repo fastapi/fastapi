@@ -4,14 +4,11 @@ import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial009",
-        pytest.param("tutorial009_py39", marks=needs_py39),
+        "tutorial009_py39",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
