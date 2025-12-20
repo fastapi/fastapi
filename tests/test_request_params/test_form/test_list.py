@@ -6,8 +6,6 @@ from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
-from tests.utils import needs_pydanticv2
-
 from .utils import get_body_model_name
 
 app = FastAPI()
@@ -247,7 +245,6 @@ async def read_model_required_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -270,7 +267,6 @@ def test_required_list_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -297,7 +293,6 @@ def test_required_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -322,7 +317,6 @@ def test_required_list_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -363,7 +357,6 @@ def read_model_required_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -389,7 +382,6 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -416,7 +408,6 @@ def test_required_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -446,7 +437,6 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -470,7 +460,6 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

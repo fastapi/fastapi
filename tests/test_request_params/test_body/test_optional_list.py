@@ -6,8 +6,6 @@ from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
-from tests.utils import needs_pydanticv2
-
 from .utils import get_body_model_name
 
 app = FastAPI()
@@ -283,7 +281,6 @@ def read_model_optional_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-list-validation-alias", "/model-optional-list-validation-alias"],
@@ -369,7 +366,6 @@ def test_optional_list_validation_alias_missing_empty_dict(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -384,7 +380,6 @@ def test_optional_list_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -432,7 +427,6 @@ def read_model_optional_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -524,7 +518,6 @@ def test_optional_list_alias_and_validation_alias_missing_empty_dict(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -539,7 +532,6 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -554,7 +546,6 @@ def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

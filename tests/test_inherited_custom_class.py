@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv1
 
 
 class MyUuid:
@@ -26,7 +26,6 @@ class MyUuid:
         raise TypeError("vars() argument must have __dict__ attribute")
 
 
-@needs_pydanticv2
 def test_pydanticv2():
     from pydantic import field_serializer
 
@@ -74,6 +73,7 @@ def test_pydanticv2():
 @needs_pydanticv1
 def test_pydanticv1():
     from pydantic import v1
+
     app = FastAPI()
 
     @app.get("/fast_uuid")

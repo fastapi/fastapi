@@ -4,10 +4,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv1
 
 
-@needs_pydanticv2
 def test_read_with_orm_mode() -> None:
     class PersonBase(BaseModel):
         name: str
@@ -49,6 +48,7 @@ def test_read_with_orm_mode() -> None:
 @needs_pydanticv1
 def test_read_with_orm_mode_pv1() -> None:
     from pydantic import v1
+
     class PersonBase(v1.BaseModel):
         name: str
         lastname: str

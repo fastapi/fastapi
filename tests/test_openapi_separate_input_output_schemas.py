@@ -5,8 +5,6 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, computed_field
 
-from .utils import needs_pydanticv2
-
 
 class SubItem(BaseModel):
     subname: str
@@ -144,7 +142,6 @@ def test_read_items():
     )
 
 
-@needs_pydanticv2
 def test_with_computed_field():
     client = get_app_client()
     client_no = get_app_client(separate_input_output_schemas=False)
@@ -161,7 +158,6 @@ def test_with_computed_field():
     )
 
 
-@needs_pydanticv2
 def test_openapi_schema():
     client = get_app_client()
     response = client.get("/openapi.json")
@@ -442,7 +438,6 @@ def test_openapi_schema():
     )
 
 
-@needs_pydanticv2
 def test_openapi_schema_no_separate():
     client = get_app_client(separate_input_output_schemas=False)
     response = client.get("/openapi.json")

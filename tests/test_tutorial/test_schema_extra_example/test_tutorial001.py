@@ -3,7 +3,7 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310, needs_pydanticv2
+from ...utils import needs_py310
 
 
 @pytest.fixture(
@@ -20,7 +20,6 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@needs_pydanticv2
 def test_post_body_example(client: TestClient):
     response = client.put(
         "/items/5",
@@ -34,7 +33,6 @@ def test_post_body_example(client: TestClient):
     assert response.status_code == 200
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text

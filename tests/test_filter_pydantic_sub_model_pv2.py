@@ -6,8 +6,6 @@ from fastapi import Depends, FastAPI
 from fastapi.exceptions import ResponseValidationError
 from fastapi.testclient import TestClient
 
-from .utils import needs_pydanticv2
-
 
 @pytest.fixture(name="client")
 def get_client():
@@ -43,7 +41,6 @@ def get_client():
     return client
 
 
-@needs_pydanticv2
 def test_filter_sub_model(client: TestClient):
     response = client.get("/model/modelA")
     assert response.status_code == 200, response.text
@@ -54,7 +51,6 @@ def test_filter_sub_model(client: TestClient):
     }
 
 
-@needs_pydanticv2
 def test_validator_is_cloned(client: TestClient):
     with pytest.raises(ResponseValidationError) as err:
         client.get("/model/modelX")
@@ -79,7 +75,6 @@ def test_validator_is_cloned(client: TestClient):
     ]
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text

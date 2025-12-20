@@ -12,7 +12,7 @@ from fastapi._compat import Undefined
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field, ValidationError
 
-from .utils import needs_pydanticv1, needs_pydanticv2
+from .utils import needs_pydanticv1
 
 
 class Person:
@@ -125,7 +125,6 @@ def test_encode_unsupported():
         jsonable_encoder(unserializable)
 
 
-@needs_pydanticv2
 def test_encode_custom_json_encoders_model_pydanticv2():
     from pydantic import field_serializer
 
@@ -281,25 +280,21 @@ def test_encode_root():
     assert jsonable_encoder(model) == "Foo"
 
 
-@needs_pydanticv2
 def test_decimal_encoder_float():
     data = {"value": Decimal(1.23)}
     assert jsonable_encoder(data) == {"value": 1.23}
 
 
-@needs_pydanticv2
 def test_decimal_encoder_int():
     data = {"value": Decimal(2)}
     assert jsonable_encoder(data) == {"value": 2}
 
 
-@needs_pydanticv2
 def test_decimal_encoder_nan():
     data = {"value": Decimal("NaN")}
     assert isnan(jsonable_encoder(data)["value"])
 
 
-@needs_pydanticv2
 def test_decimal_encoder_infinity():
     data = {"value": Decimal("Infinity")}
     assert isinf(jsonable_encoder(data)["value"])
@@ -316,7 +311,6 @@ def test_encode_deque_encodes_child_models():
     assert jsonable_encoder(dq)[0]["test"] == "test"
 
 
-@needs_pydanticv2
 def test_encode_pydantic_undefined():
     data = {"value": Undefined}
     assert jsonable_encoder(data) == {"value": None}
