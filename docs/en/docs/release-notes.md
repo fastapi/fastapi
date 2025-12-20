@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🔧 Add LLM prompt file for Japanese, generated from the existing translations. PR [#14545](https://github.com/fastapi/fastapi/pull/14545) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.126.0
 
 ### Upgrades
