@@ -158,15 +158,6 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
 
 
-def _model_rebuild(model: type[BaseModel]) -> None:
-    if lenient_issubclass(model, may_v1.BaseModel):
-        from fastapi._compat import v1
-
-        v1._model_rebuild(model)
-    else:
-        v2._model_rebuild(model)
-
-
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
     v1_model_fields = [
         field for field in fields if isinstance(field, may_v1.ModelField)

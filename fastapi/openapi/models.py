@@ -6,7 +6,6 @@ from fastapi._compat import (
     CoreSchema,
     GetJsonSchemaHandler,
     JsonSchemaValue,
-    _model_rebuild,
     with_info_plain_validator_function,
 )
 from fastapi.logger import logger
@@ -434,6 +433,6 @@ class OpenAPI(BaseModelWithConfig):
     externalDocs: Optional[ExternalDocumentation] = None
 
 
-_model_rebuild(Schema)
-_model_rebuild(Operation)
-_model_rebuild(Encoding)
+Schema.model_rebuild()
+Operation.model_rebuild()
+Encoding.model_rebuild()
