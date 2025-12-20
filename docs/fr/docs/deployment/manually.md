@@ -152,8 +152,7 @@ Vous pouvez désormais utiliser Trio en interne dans votre application. Ou mieux
 
 ## Concepts de déploiement
 
-Ces exemples lancent le programme serveur (e.g. Uvicorn), démarrant **un seul processus**, sur toutes les IPs (`0.0.
-0.0`) sur un port prédéfini (par example, `80`).
+Ces exemples lancent le programme serveur (e.g. Uvicorn), démarrant **un seul processus**, sur toutes les IPs (`0.0.0.0`) sur un port prédéfini (par exemple, `80`).
 
 C'est l'idée de base. Mais vous vous préoccuperez probablement de certains concepts supplémentaires, tels que ... :
 
