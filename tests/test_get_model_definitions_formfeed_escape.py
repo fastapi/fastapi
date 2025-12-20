@@ -1,15 +1,6 @@
-from collections.abc import Iterator
-from typing import Any
-
-import fastapi._compat
-import fastapi.openapi.utils
-import pydantic.schema
-import pytest
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.testclient import TestClient
-
-from .utils import needs_pydanticv1
 
 
 class Address(BaseModel):
@@ -137,21 +128,3 @@ def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == openapi_schema
-
-
-class SortedTypeSet(set):
-    """
-    Set of Types whose `__iter__()` method yields results sorted by the type names
-    """
-
-    def __init__(self, seq: set[type[Any]], *, sort_reversed: bool):
-        super().__init__(seq)
-        self.sort_reversed = sort_reversed
-
-    def __iter__(self) -> Iterator[type[Any]]:
-        members_sorted = sorted(
-            super().__iter__(),
-            key=lambda type_: type_.__name__,
-            reverse=self.sort_reversed,
-        )
-        yield from members_sorted
