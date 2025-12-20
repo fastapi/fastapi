@@ -27,7 +27,9 @@ Language code: zh-hant.
 
 ### Preferred translations / glossary
 
-Use the following preferred translations when they apply in documentation prose:
+1. Should avoid using simplified Chinese characters and terms. Always examine if the translation can be easily comprehended by the Traditional Chinese readers.
+2. For some Python-specific terms like "pickle", "list", "dict" etc, we don't have to translate them.
+3. Use the following preferred translations when they apply in documentation prose:
 
 - request (HTTP): 請求
 - response (HTTP): 回應
