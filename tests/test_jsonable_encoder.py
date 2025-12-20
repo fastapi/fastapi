@@ -281,6 +281,12 @@ def test_encode_model_with_pure_windows_path():
     assert jsonable_encoder(obj) == {"path": "\\foo\\bar"}
 
 
+def test_encode_pure_path():
+    test_path = PurePath("/foo", "bar")
+
+    assert jsonable_encoder({"path": test_path}) == {"path": str(test_path)}
+
+
 @needs_pydanticv1
 def test_encode_root():
     from pydantic import v1
