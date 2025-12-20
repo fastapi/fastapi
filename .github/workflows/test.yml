@@ -54,8 +54,10 @@ jobs:
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
+          # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
           - os: ubuntu-latest
             python-version: "3.13"
+            coverage: coverage
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
