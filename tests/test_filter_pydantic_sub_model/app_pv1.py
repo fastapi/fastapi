@@ -18,6 +18,7 @@ class ModelA(BaseModel):
     name: str
     description: Optional[str] = None
     model_b: ModelB
+    tags: dict[str, str] = {}
 
     @validator("name")
     def lower_username(cls, name: str, values):
@@ -32,4 +33,9 @@ async def get_model_c() -> ModelC:
 
 @app.get("/model/{name}", response_model=ModelA)
 async def get_model_a(name: str, model_c=Depends(get_model_c)):
-    return {"name": name, "description": "model-a-desc", "model_b": model_c}
+    return {
+        "name": name,
+        "description": "model-a-desc",
+        "model_b": model_c,
+        "tags": {"key1": "value1", "key2": "value2"},
+    }
