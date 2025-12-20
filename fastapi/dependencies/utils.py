@@ -18,7 +18,6 @@ from typing import (
 import anyio
 from fastapi import params
 from fastapi._compat import (
-    PYDANTIC_V2,
     ModelField,
     RequiredParam,
     Undefined,
@@ -410,7 +409,8 @@ def analyze_param(
         if isinstance(fastapi_annotation, (FieldInfo, may_v1.FieldInfo)):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
-                field_info=fastapi_annotation, annotation=use_annotation
+                field_info=fastapi_annotation,  # type: ignore[arg-type]
+                annotation=use_annotation,
             )
             assert field_info.default in {
                 Undefined,
@@ -444,10 +444,9 @@ def analyze_param(
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
         )
-        field_info = value
-        if PYDANTIC_V2:
-            if isinstance(field_info, FieldInfo):
-                field_info.annotation = type_annotation
+        field_info = value  # type: ignore[assignment]
+        if isinstance(field_info, FieldInfo):
+            field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
@@ -485,7 +484,7 @@ def analyze_param(
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
             if annotation_is_pydantic_v1(use_annotation):
-                field_info = temp_pydantic_v1_params.Body(
+                field_info = temp_pydantic_v1_params.Body(  # type: ignore[assignment]
                     annotation=use_annotation, default=default_value
                 )
             else:

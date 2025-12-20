@@ -7,10 +7,7 @@ from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
 from typing_extensions import Literal
 
-from .utils import needs_pydanticv2
 
-
-@needs_pydanticv2
 def test_discriminator_pydantic_v2() -> None:
     from pydantic import Tag
 

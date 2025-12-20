@@ -1,6 +1,6 @@
 import sys
 
-from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
@@ -292,23 +292,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
                                             }
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -344,18 +335,9 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
-                                            }
-                                        ),
-                                        v1=snapshot(
-                                            {
-                                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
-                                            }
-                                        ),
-                                    ),
+                                    "schema": {
+                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                                    },
                                 }
                             },
                             "required": True,
@@ -391,23 +373,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__Item"
                                             }
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -535,18 +508,9 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
-                                            }
-                                        ),
-                                        v1=snapshot(
-                                            {
-                                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
-                                            }
-                                        ),
-                                    ),
+                                    "schema": {
+                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                                    },
                                 }
                             },
                             "required": True,
@@ -587,18 +551,9 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "items": pydantic_snapshot(
-                                            v2=snapshot(
-                                                {
-                                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
-                                                }
-                                            ),
-                                            v1=snapshot(
-                                                {
-                                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
-                                                }
-                                            ),
-                                        ),
+                                        "items": {
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                                        },
                                         "type": "array",
                                         "title": "Data",
                                     }
@@ -642,18 +597,9 @@ def test_openapi_schema():
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "items": pydantic_snapshot(
-                                            v2=snapshot(
-                                                {
-                                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
-                                                }
-                                            ),
-                                            v1=snapshot(
-                                                {
-                                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
-                                                }
-                                            ),
-                                        ),
+                                        "items": {
+                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                                        },
                                         "type": "array",
                                         "title": "Data",
                                     }
@@ -767,460 +713,239 @@ def test_openapi_schema():
                 },
             },
             "components": {
-                "schemas": pydantic_snapshot(
-                    v1=snapshot(
-                        {
-                            "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post": {
-                                "properties": {
-                                    "data1": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList"
-                                        },
-                                        "type": "array",
-                                        "title": "Data1",
-                                    },
-                                    "data2": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList"
-                                        },
-                                        "type": "array",
-                                        "title": "Data2",
-                                    },
+                "schemas": {
+                    "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post": {
+                        "properties": {
+                            "data1": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList"
                                 },
-                                "type": "object",
-                                "required": ["data1", "data2"],
-                                "title": "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post",
+                                "type": "array",
+                                "title": "Data1",
                             },
-                            "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post": {
-                                "properties": {
-                                    "item1": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item"
-                                    },
-                                    "item2": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__Item"
-                                    },
+                            "data2": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList"
                                 },
-                                "type": "object",
-                                "required": ["item1", "item2"],
-                                "title": "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post",
+                                "type": "array",
+                                "title": "Data2",
                             },
-                            "HTTPValidationError": {
-                                "properties": {
-                                    "detail": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/ValidationError"
-                                        },
-                                        "type": "array",
-                                        "title": "Detail",
-                                    }
+                        },
+                        "type": "object",
+                        "required": ["data1", "data2"],
+                        "title": "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post",
+                    },
+                    "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post": {
+                        "properties": {
+                            "item1": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
+                            },
+                            "item2": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__Item"
+                            },
+                        },
+                        "type": "object",
+                        "required": ["item1", "item2"],
+                        "title": "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post",
+                    },
+                    "HTTPValidationError": {
+                        "properties": {
+                            "detail": {
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
                                 },
-                                "type": "object",
-                                "title": "HTTPValidationError",
-                            },
-                            "ValidationError": {
-                                "properties": {
-                                    "loc": {
-                                        "items": {
-                                            "anyOf": [
-                                                {"type": "string"},
-                                                {"type": "integer"},
-                                            ]
-                                        },
-                                        "type": "array",
-                                        "title": "Location",
-                                    },
-                                    "msg": {"type": "string", "title": "Message"},
-                                    "type": {"type": "string", "title": "Error Type"},
+                                "type": "array",
+                                "title": "Detail",
+                            }
+                        },
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                    },
+                    "ValidationError": {
+                        "properties": {
+                            "loc": {
+                                "items": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "integer"},
+                                    ]
                                 },
-                                "type": "object",
-                                "required": ["loc", "msg", "type"],
-                                "title": "ValidationError",
+                                "type": "array",
+                                "title": "Location",
                             },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__Item": {
-                                "properties": {
-                                    "title": {"type": "string", "title": "Title"},
-                                    "size": {"type": "integer", "title": "Size"},
-                                    "description": {
-                                        "type": "string",
-                                        "title": "Description",
-                                    },
-                                    "sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
-                                    },
-                                    "multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "Multi",
-                                        "default": [],
-                                    },
+                            "msg": {"type": "string", "title": "Message"},
+                            "type": {"type": "string", "title": "Error Type"},
+                        },
+                        "type": "object",
+                        "required": ["loc", "msg", "type"],
+                        "title": "ValidationError",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv1__Item": {
+                        "properties": {
+                            "title": {"type": "string", "title": "Title"},
+                            "size": {"type": "integer", "title": "Size"},
+                            "description": {
+                                "type": "string",
+                                "title": "Description",
+                            },
+                            "sub": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
+                            },
+                            "multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
                                 },
-                                "type": "object",
-                                "required": ["title", "size", "sub"],
-                                "title": "Item",
+                                "type": "array",
+                                "title": "Multi",
+                                "default": [],
                             },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__ItemInList": {
-                                "properties": {
-                                    "name1": {"type": "string", "title": "Name1"}
+                        },
+                        "type": "object",
+                        "required": ["title", "size", "sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv1__ItemInList": {
+                        "properties": {"name1": {"type": "string", "title": "Name1"}},
+                        "type": "object",
+                        "required": ["name1"],
+                        "title": "ItemInList",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem": {
+                        "properties": {"name": {"type": "string", "title": "Name"}},
+                        "type": "object",
+                        "required": ["name"],
+                        "title": "SubItem",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__Item": {
+                        "properties": {
+                            "new_title": {
+                                "type": "string",
+                                "title": "New Title",
+                            },
+                            "new_size": {
+                                "type": "integer",
+                                "title": "New Size",
+                            },
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
+                            "new_sub": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
+                            },
+                            "new_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                                 },
-                                "type": "object",
-                                "required": ["name1"],
-                                "title": "ItemInList",
+                                "type": "array",
+                                "title": "New Multi",
+                                "default": [],
                             },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem": {
-                                "properties": {
-                                    "name": {"type": "string", "title": "Name"}
+                        },
+                        "type": "object",
+                        "required": ["new_title", "new_size", "new_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input": {
+                        "properties": {
+                            "new_title": {
+                                "type": "string",
+                                "title": "New Title",
+                            },
+                            "new_size": {
+                                "type": "integer",
+                                "title": "New Size",
+                            },
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
+                            "new_sub": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
+                            },
+                            "new_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
                                 },
-                                "type": "object",
-                                "required": ["name"],
-                                "title": "SubItem",
+                                "type": "array",
+                                "title": "New Multi",
+                                "default": [],
                             },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__Item": {
-                                "properties": {
-                                    "new_title": {
-                                        "type": "string",
-                                        "title": "New Title",
-                                    },
-                                    "new_size": {
-                                        "type": "integer",
-                                        "title": "New Size",
-                                    },
-                                    "new_description": {
-                                        "type": "string",
-                                        "title": "New Description",
-                                    },
-                                    "new_sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                    },
-                                    "new_multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "New Multi",
-                                        "default": [],
-                                    },
+                        },
+                        "type": "object",
+                        "required": ["new_title", "new_size", "new_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList": {
+                        "properties": {"name2": {"type": "string", "title": "Name2"}},
+                        "type": "object",
+                        "required": ["name2"],
+                        "title": "ItemInList",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem": {
+                        "properties": {
+                            "new_sub_name": {
+                                "type": "string",
+                                "title": "New Sub Name",
+                            }
+                        },
+                        "type": "object",
+                        "required": ["new_sub_name"],
+                        "title": "SubItem",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__Item": {
+                        "properties": {
+                            "dup_title": {
+                                "type": "string",
+                                "title": "Dup Title",
+                            },
+                            "dup_size": {
+                                "type": "integer",
+                                "title": "Dup Size",
+                            },
+                            "dup_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Dup Description",
+                            },
+                            "dup_sub": {
+                                "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
+                            },
+                            "dup_multi": {
+                                "items": {
+                                    "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
                                 },
-                                "type": "object",
-                                "required": ["new_title", "new_size", "new_sub"],
-                                "title": "Item",
+                                "type": "array",
+                                "title": "Dup Multi",
+                                "default": [],
                             },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList": {
-                                "properties": {
-                                    "name2": {"type": "string", "title": "Name2"}
-                                },
-                                "type": "object",
-                                "required": ["name2"],
-                                "title": "ItemInList",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem": {
-                                "properties": {
-                                    "new_sub_name": {
-                                        "type": "string",
-                                        "title": "New Sub Name",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["new_sub_name"],
-                                "title": "SubItem",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__Item": {
-                                "properties": {
-                                    "dup_title": {
-                                        "type": "string",
-                                        "title": "Dup Title",
-                                    },
-                                    "dup_size": {
-                                        "type": "integer",
-                                        "title": "Dup Size",
-                                    },
-                                    "dup_description": {
-                                        "type": "string",
-                                        "title": "Dup Description",
-                                    },
-                                    "dup_sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
-                                    },
-                                    "dup_multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "Dup Multi",
-                                        "default": [],
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["dup_title", "dup_size", "dup_sub"],
-                                "title": "Item",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList": {
-                                "properties": {
-                                    "dup_name2": {
-                                        "type": "string",
-                                        "title": "Dup Name2",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["dup_name2"],
-                                "title": "ItemInList",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem": {
-                                "properties": {
-                                    "dup_sub_name": {
-                                        "type": "string",
-                                        "title": "Dup Sub Name",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["dup_sub_name"],
-                                "title": "SubItem",
-                            },
-                        }
-                    ),
-                    v2=snapshot(
-                        {
-                            "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post": {
-                                "properties": {
-                                    "data1": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList"
-                                        },
-                                        "type": "array",
-                                        "title": "Data1",
-                                    },
-                                    "data2": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList"
-                                        },
-                                        "type": "array",
-                                        "title": "Data2",
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["data1", "data2"],
-                                "title": "Body_handle_v2_items_in_list_to_v1_item_in_list_v2_to_v1_list_of_items_to_list_of_items_post",
-                            },
-                            "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post": {
-                                "properties": {
-                                    "item1": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input"
-                                    },
-                                    "item2": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__Item"
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["item1", "item2"],
-                                "title": "Body_handle_v2_same_name_to_v1_v2_to_v1_same_name_post",
-                            },
-                            "HTTPValidationError": {
-                                "properties": {
-                                    "detail": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/ValidationError"
-                                        },
-                                        "type": "array",
-                                        "title": "Detail",
-                                    }
-                                },
-                                "type": "object",
-                                "title": "HTTPValidationError",
-                            },
-                            "ValidationError": {
-                                "properties": {
-                                    "loc": {
-                                        "items": {
-                                            "anyOf": [
-                                                {"type": "string"},
-                                                {"type": "integer"},
-                                            ]
-                                        },
-                                        "type": "array",
-                                        "title": "Location",
-                                    },
-                                    "msg": {"type": "string", "title": "Message"},
-                                    "type": {"type": "string", "title": "Error Type"},
-                                },
-                                "type": "object",
-                                "required": ["loc", "msg", "type"],
-                                "title": "ValidationError",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__Item": {
-                                "properties": {
-                                    "title": {"type": "string", "title": "Title"},
-                                    "size": {"type": "integer", "title": "Size"},
-                                    "description": {
-                                        "type": "string",
-                                        "title": "Description",
-                                    },
-                                    "sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
-                                    },
-                                    "multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "Multi",
-                                        "default": [],
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["title", "size", "sub"],
-                                "title": "Item",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__ItemInList": {
-                                "properties": {
-                                    "name1": {"type": "string", "title": "Name1"}
-                                },
-                                "type": "object",
-                                "required": ["name1"],
-                                "title": "ItemInList",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv1__SubItem": {
-                                "properties": {
-                                    "name": {"type": "string", "title": "Name"}
-                                },
-                                "type": "object",
-                                "required": ["name"],
-                                "title": "SubItem",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__Item": {
-                                "properties": {
-                                    "new_title": {
-                                        "type": "string",
-                                        "title": "New Title",
-                                    },
-                                    "new_size": {
-                                        "type": "integer",
-                                        "title": "New Size",
-                                    },
-                                    "new_description": {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "New Description",
-                                    },
-                                    "new_sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                    },
-                                    "new_multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "New Multi",
-                                        "default": [],
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["new_title", "new_size", "new_sub"],
-                                "title": "Item",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__Item-Input": {
-                                "properties": {
-                                    "new_title": {
-                                        "type": "string",
-                                        "title": "New Title",
-                                    },
-                                    "new_size": {
-                                        "type": "integer",
-                                        "title": "New Size",
-                                    },
-                                    "new_description": {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "New Description",
-                                    },
-                                    "new_sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                    },
-                                    "new_multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "New Multi",
-                                        "default": [],
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["new_title", "new_size", "new_sub"],
-                                "title": "Item",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__ItemInList": {
-                                "properties": {
-                                    "name2": {"type": "string", "title": "Name2"}
-                                },
-                                "type": "object",
-                                "required": ["name2"],
-                                "title": "ItemInList",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2__SubItem": {
-                                "properties": {
-                                    "new_sub_name": {
-                                        "type": "string",
-                                        "title": "New Sub Name",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["new_sub_name"],
-                                "title": "SubItem",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__Item": {
-                                "properties": {
-                                    "dup_title": {
-                                        "type": "string",
-                                        "title": "Dup Title",
-                                    },
-                                    "dup_size": {
-                                        "type": "integer",
-                                        "title": "Dup Size",
-                                    },
-                                    "dup_description": {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "Dup Description",
-                                    },
-                                    "dup_sub": {
-                                        "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
-                                    },
-                                    "dup_multi": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem"
-                                        },
-                                        "type": "array",
-                                        "title": "Dup Multi",
-                                        "default": [],
-                                    },
-                                },
-                                "type": "object",
-                                "required": ["dup_title", "dup_size", "dup_sub"],
-                                "title": "Item",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList": {
-                                "properties": {
-                                    "dup_name2": {
-                                        "type": "string",
-                                        "title": "Dup Name2",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["dup_name2"],
-                                "title": "ItemInList",
-                            },
-                            "tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem": {
-                                "properties": {
-                                    "dup_sub_name": {
-                                        "type": "string",
-                                        "title": "Dup Sub Name",
-                                    }
-                                },
-                                "type": "object",
-                                "required": ["dup_sub_name"],
-                                "title": "SubItem",
-                            },
-                        }
-                    ),
-                ),
+                        },
+                        "type": "object",
+                        "required": ["dup_title", "dup_size", "dup_sub"],
+                        "title": "Item",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__ItemInList": {
+                        "properties": {
+                            "dup_name2": {
+                                "type": "string",
+                                "title": "Dup Name2",
+                            }
+                        },
+                        "type": "object",
+                        "required": ["dup_name2"],
+                        "title": "ItemInList",
+                    },
+                    "tests__test_pydantic_v1_v2_multifile__modelsv2b__SubItem": {
+                        "properties": {
+                            "dup_sub_name": {
+                                "type": "string",
+                                "title": "Dup Sub Name",
+                            }
+                        },
+                        "type": "object",
+                        "required": ["dup_sub_name"],
+                        "title": "SubItem",
+                    },
+                },
             },
         }
     )

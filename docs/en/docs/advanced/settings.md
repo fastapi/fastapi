@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info
-
-In Pydantic v1 it came included with the main package. Now it is distributed as this independent package so that you can choose to install it or not if you don't need that functionality.
-
-///
-
 ### Create the `Settings` object { #create-the-settings-object }
 
 Import `BaseSettings` from Pydantic and create a sub-class, very much like with a Pydantic model.
@@ -60,23 +54,7 @@ The same way as with Pydantic models, you declare class attributes with type ann
 
 You can use all the same validation features and tools you use for Pydantic models, like different data types and additional validations with `Field()`.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info
-
-In Pydantic v1 you would import `BaseSettings` directly from `pydantic` instead of from `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
 
 /// tip
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 And then update your `config.py` with:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip
 
 The `model_config` attribute is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip
-
-The `Config` class is used just for Pydantic configuration. You can read more at <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info
-
-In Pydantic version 1 the configuration was done in an internal class `Config`, in Pydantic version 2 it's done in an attribute `model_config`. This attribute takes a `dict`, and to get autocompletion and inline errors you can import and use `SettingsConfigDict` to define that `dict`.
 
 ///
 

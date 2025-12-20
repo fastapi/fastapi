@@ -216,10 +216,6 @@ def get_annotation_from_field_info(
     return annotation
 
 
-def _model_rebuild(model: type[BaseModel]) -> None:
-    model.model_rebuild()
-
-
 def _model_dump(
     model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
 ) -> Any:

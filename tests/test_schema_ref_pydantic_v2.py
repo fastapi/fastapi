@@ -6,8 +6,6 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, ConfigDict, Field
 
-from tests.utils import needs_pydanticv2
-
 
 @pytest.fixture(name="client")
 def get_client():
@@ -25,13 +23,11 @@ def get_client():
     return client
 
 
-@needs_pydanticv2
 def test_get(client: TestClient):
     response = client.get("/")
     assert response.json() == {"$ref": "some-ref"}
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("openapi.json")
     assert response.json() == snapshot(

@@ -11,7 +11,6 @@ from .main import _is_model_class as _is_model_class
 from .main import _is_model_field as _is_model_field
 from .main import _is_undefined as _is_undefined
 from .main import _model_dump as _model_dump
-from .main import _model_rebuild as _model_rebuild
 from .main import copy_field_info as copy_field_info
 from .main import create_body_model as create_body_model
 from .main import evaluate_forwardref as evaluate_forwardref
