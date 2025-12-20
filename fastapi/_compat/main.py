@@ -137,11 +137,6 @@ def is_scalar_field(field: ModelField) -> bool:
 
 
 def is_scalar_sequence_field(field: ModelField) -> bool:
-    if isinstance(field, may_v1.ModelField):
-        from fastapi._compat import v1
-
-        return v1.is_scalar_sequence_field(field)
-
     return v2.is_scalar_sequence_field(field)  # type: ignore[arg-type]
 
 
