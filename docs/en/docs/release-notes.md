@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ➖ Drop support for Pydantic v1, keeping short temporary support for Pydantic v2's `pydantic.v1`. PR [#14575](https://github.com/fastapi/fastapi/pull/14575) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Fix duplicated variable in `docs_src/python_types/tutorial005_py39.py`. PR [#14565](https://github.com/fastapi/fastapi/pull/14565) by [@paras-verma7454](https://github.com/paras-verma7454).
