@@ -12,6 +12,8 @@ hide:
 ### Upgrades
 
 * ➖ Drop support for Pydantic v1, keeping short temporary support for Pydantic v2's `pydantic.v1`. PR [#14575](https://github.com/fastapi/fastapi/pull/14575) by [@tiangolo](https://github.com/tiangolo).
+    * The minimum version of Pydantic installed is now `pydantic >=2.7.0`.
+    * The `standard` dependencies now include `pydantic-settings >=2.0.0` and `pydantic-extra-types >=2.0.0`.
 
 ### Docs
 
