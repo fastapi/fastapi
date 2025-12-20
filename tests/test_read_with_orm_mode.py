@@ -48,7 +48,8 @@ def test_read_with_orm_mode() -> None:
 
 @needs_pydanticv1
 def test_read_with_orm_mode_pv1() -> None:
-    class PersonBase(BaseModel):
+    from pydantic import v1
+    class PersonBase(v1.BaseModel):
         name: str
         lastname: str
 

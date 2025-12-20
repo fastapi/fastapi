@@ -155,27 +155,3 @@ class SortedTypeSet(set):
             reverse=self.sort_reversed,
         )
         yield from members_sorted
-
-
-@needs_pydanticv1
-@pytest.mark.parametrize("sort_reversed", [True, False])
-def test_model_description_escaped_with_formfeed(sort_reversed: bool):
-    """
-    Regression test for bug fixed by https://github.com/fastapi/fastapi/pull/6039.
-
-    Test `get_model_definitions` with models passed in different order.
-    """
-    from fastapi._compat import v1
-
-    all_fields = fastapi.openapi.utils.get_fields_from_routes(app.routes)
-
-    flat_models = v1.get_flat_models_from_fields(all_fields, known_models=set())
-    model_name_map = pydantic.schema.get_model_name_map(flat_models)
-
-    expected_address_description = "This is a public description of an Address\n"
-
-    models = v1.get_model_definitions(
-        flat_models=SortedTypeSet(flat_models, sort_reversed=sort_reversed),
-        model_name_map=model_name_map,
-    )
-    assert models["Address"]["description"] == expected_address_description

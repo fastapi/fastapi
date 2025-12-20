@@ -153,7 +153,8 @@ def test_encode_custom_json_encoders_model_pydanticv2():
 # TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
 def test_encode_custom_json_encoders_model_pydanticv1():
-    class ModelWithCustomEncoder(BaseModel):
+    from pydantic import v1
+    class ModelWithCustomEncoder(v1.BaseModel):
         dt_field: datetime
 
         class Config:
@@ -208,10 +209,11 @@ def test_encode_model_with_default():
 
 @needs_pydanticv1
 def test_custom_encoders():
+    from pydantic import v1
     class safe_datetime(datetime):
         pass
 
-    class MyModel(BaseModel):
+    class MyModel(v1.BaseModel):
         dt_field: safe_datetime
 
     instance = MyModel(dt_field=safe_datetime.now())
@@ -288,7 +290,8 @@ def test_encode_model_with_pure_windows_path():
 
 @needs_pydanticv1
 def test_encode_root():
-    class ModelWithRoot(BaseModel):
+    from pydantic import v1
+    class ModelWithRoot(v1.BaseModel):
         __root__: str
 
     model = ModelWithRoot(__root__="Foo")

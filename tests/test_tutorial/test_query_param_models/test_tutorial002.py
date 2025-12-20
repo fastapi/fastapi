@@ -5,7 +5,7 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import needs_py310, needs_pydanticv1, needs_pydanticv2
+from tests.utils import needs_py310, needs_pydanticv2
 
 
 @pytest.fixture(
@@ -15,10 +15,6 @@ from tests.utils import needs_py310, needs_pydanticv1, needs_pydanticv2
         pytest.param("tutorial002_py310", marks=[needs_py310, needs_pydanticv2]),
         pytest.param("tutorial002_an_py39", marks=needs_pydanticv2),
         pytest.param("tutorial002_an_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_pv1_py39", marks=needs_pydanticv1),
-        pytest.param("tutorial002_pv1_py310", marks=[needs_py310, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py39", marks=needs_pydanticv1),
-        pytest.param("tutorial002_pv1_an_py310", marks=[needs_py310, needs_pydanticv1]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):

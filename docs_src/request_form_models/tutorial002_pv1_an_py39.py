@@ -1,7 +1,8 @@
 from typing import Annotated
 
-from fastapi import FastAPI, Form
-from pydantic import BaseModel
+from fastapi import FastAPI
+from fastapi.temp_pydantic_v1_params import Form
+from pydantic.v1 import BaseModel
 
 app = FastAPI()
 
