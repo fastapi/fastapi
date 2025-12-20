@@ -3,7 +3,7 @@ from typing import Optional
 
 import pytest
 
-from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
@@ -588,23 +588,14 @@ def test_openapi_schema():
                             "required": True,
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "title": "Body",
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "title": "Body",
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
-                                                    }
-                                                ],
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                    }
                                 }
                             },
                         },
@@ -809,23 +800,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_create_item_embed_items_embed__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_create_item_embed_items_embed__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -855,23 +837,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/x-www-form-urlencoded": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_submit_form_form_data__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_submit_form_form_data__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -901,23 +874,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "multipart/form-data": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_upload_file_upload__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_upload_file_upload__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    },
                                 }
                             },
                             "required": True,
@@ -947,23 +911,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "multipart/form-data": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_upload_multiple_files_upload_multiple__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_upload_multiple_files_upload_multiple__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -990,21 +945,12 @@ def test_openapi_schema():
             "components": {
                 "schemas": {
                     "Body_create_item_embed_items_embed__post": {
-                        "properties": pydantic_snapshot(
-                            v1=snapshot(
-                                {"item": {"$ref": "#/components/schemas/Item"}}
-                            ),
-                            v2=snapshot(
-                                {
-                                    "item": {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                    }
-                                }
-                            ),
-                        ),
+                        "properties": {
+                            "item": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "title": "Item",
+                            }
+                        },
                         "type": "object",
                         "required": ["item"],
                         "title": "Body_create_item_embed_items_embed__post",
@@ -1030,17 +976,10 @@ def test_openapi_schema():
                     },
                     "Body_update_item_items__item_id__put": {
                         "properties": {
-                            "item": pydantic_snapshot(
-                                v1=snapshot({"$ref": "#/components/schemas/Item"}),
-                                v2=snapshot(
-                                    {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                    }
-                                ),
-                            ),
+                            "item": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "title": "Item",
+                            },
                             "importance": {
                                 "type": "integer",
                                 "maximum": 10.0,

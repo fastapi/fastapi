@@ -1,7 +1,7 @@
 import sys
 from typing import Any, Union
 
-from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
@@ -225,21 +225,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/SubItem"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/SubItem"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -275,21 +266,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/SubItem"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/SubItem"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -325,21 +307,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/Item"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -373,21 +346,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/Item"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
