@@ -4,13 +4,13 @@ import pytest
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
-from ...utils import needs_pydanticv1, needs_pydanticv2
+from ...utils import needs_pydanticv1
 
 
 @pytest.fixture(
     name="app",
     params=[
-        pytest.param("tutorial001_py39", marks=needs_pydanticv2),
+        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_pv1_py39", marks=needs_pydanticv1),
     ],
 )
