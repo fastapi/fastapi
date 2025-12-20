@@ -1,4 +1,3 @@
-from collections.abc import Iterable
 from typing import (
     Annotated,
     Any,
@@ -136,25 +135,10 @@ class UploadFile(StarletteUploadFile):
         return await super().close()
 
     @classmethod
-    def __get_validators__(cls: type["UploadFile"]) -> Iterable[Callable[..., Any]]:
-        yield cls.validate
-
-    @classmethod
-    def validate(cls: type["UploadFile"], v: Any) -> Any:
-        if not isinstance(v, StarletteUploadFile):
-            raise ValueError(f"Expected UploadFile, received: {type(v)}")
-        return v
-
-    @classmethod
     def _validate(cls, __input_value: Any, _: Any) -> "UploadFile":
         if not isinstance(__input_value, StarletteUploadFile):
             raise ValueError(f"Expected UploadFile, received: {type(__input_value)}")
         return cast(UploadFile, __input_value)
-
-    # TODO: remove when deprecating Pydantic v1
-    @classmethod
-    def __modify_schema__(cls, field_schema: dict[str, Any]) -> None:
-        field_schema.update({"type": "string", "format": "binary"})
 
     @classmethod
     def __get_pydantic_json_schema__(

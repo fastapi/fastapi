@@ -6,7 +6,6 @@ from fastapi.params import ParamTypes
 from typing_extensions import deprecated
 
 from ._compat.may_v1 import FieldInfo, Undefined
-from ._compat.shared import PYDANTIC_VERSION_MINOR_TUPLE
 
 _Unset: Any = Undefined
 
@@ -98,10 +97,7 @@ class Param(FieldInfo):  # type: ignore[misc]
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
+        kwargs["deprecated"] = deprecated
         kwargs["regex"] = pattern or regex
         kwargs.update(**current_json_schema_extra)
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
@@ -541,10 +537,7 @@ class Body(FieldInfo):  # type: ignore[misc]
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
+        kwargs["deprecated"] = deprecated
         kwargs["regex"] = pattern or regex
         kwargs.update(**current_json_schema_extra)
 

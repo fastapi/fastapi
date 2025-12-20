@@ -9,7 +9,6 @@ from pydantic.fields import FieldInfo
 from typing_extensions import Literal, deprecated
 
 from ._compat import (
-    PYDANTIC_VERSION_MINOR_TUPLE,
     Undefined,
 )
 
@@ -110,10 +109,7 @@ class Param(FieldInfo):  # type: ignore[misc]
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
+        kwargs["deprecated"] = deprecated
 
         if serialization_alias in (_Unset, None) and isinstance(alias, str):
             serialization_alias = alias
@@ -568,10 +564,7 @@ class Body(FieldInfo):  # type: ignore[misc]
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
+        kwargs["deprecated"] = deprecated
         if serialization_alias in (_Unset, None) and isinstance(alias, str):
             serialization_alias = alias
         if validation_alias in (_Unset, None):
