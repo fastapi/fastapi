@@ -9,4 +9,4 @@ def test_get_items():
         "item_d",
         "item_e",
     )
-    assert res == ("item_a", "item_b", "item_c", "item_d", "item_d", "item_e")
+    assert res == ("item_a", "item_b", "item_c", "item_d", "item_e")
