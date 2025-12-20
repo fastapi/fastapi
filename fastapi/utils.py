@@ -1,7 +1,6 @@
 import re
 import warnings
 from collections.abc import MutableMapping
-from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -150,8 +149,6 @@ def create_cloned_field(
         cloned_types = _CLONED_TYPES_CACHE
 
     original_type = field.type_
-    if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
-        original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, v1.BaseModel):
         original_type = cast(type[v1.BaseModel], original_type)
