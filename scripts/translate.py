@@ -727,7 +727,7 @@ def translate_page(
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai:gpt-5")
+    agent = Agent("openai:gpt-5.2")
 
     prompt_segments = [
         general_prompt,
