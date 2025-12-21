@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.127.0
+
 ### Breaking Changes
 
 * 🔊 Add deprecation warnings when using `pydantic.v1`. PR [#14583](https://github.com/fastapi/fastapi/pull/14583) by [@tiangolo](https://github.com/tiangolo).
