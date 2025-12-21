@@ -1,3 +1,4 @@
+import warnings
 from typing import Any
 
 from fastapi import FastAPI
@@ -73,10 +74,13 @@ def test_read_with_orm_mode_pv1() -> None:
 
     app = FastAPI()
 
-    @app.post("/people/", response_model=PersonRead)
-    def create_person(person: PersonCreate) -> Any:
-        db_person = Person.from_orm(person)
-        return db_person
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+
+        @app.post("/people/", response_model=PersonRead)
+        def create_person(person: PersonCreate) -> Any:
+            db_person = Person.from_orm(person)
+            return db_person
 
     client = TestClient(app)
 

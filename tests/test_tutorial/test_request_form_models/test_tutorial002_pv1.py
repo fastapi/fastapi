@@ -1,4 +1,5 @@
 import importlib
+import warnings
 
 import pytest
 from fastapi.testclient import TestClient
@@ -14,7 +15,13 @@ from ...utils import needs_pydanticv1
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.request_form_models.{request.param}")
+    with warnings.catch_warnings(record=True):
+        warnings.filterwarnings(
+            "ignore",
+            message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
+            category=DeprecationWarning,
+        )
+        mod = importlib.import_module(f"docs_src.request_form_models.{request.param}")
 
     client = TestClient(mod.app)
     return client
