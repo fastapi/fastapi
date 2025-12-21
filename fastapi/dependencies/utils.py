@@ -1,6 +1,7 @@
 import dataclasses
 import inspect
 import sys
+import warnings
 from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -322,6 +323,13 @@ def get_dependant(
             )
             continue
         assert param_details.field is not None
+        if isinstance(param_details.field, may_v1.ModelField):
+            warnings.warn(
+                "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+                f" Please update the param {param_name}: {param_details.type_annotation!r}.",
+                category=DeprecationWarning,
+                stacklevel=5,
+            )
         if isinstance(
             param_details.field.field_info, (params.Body, temp_pydantic_v1_params.Body)
         ):

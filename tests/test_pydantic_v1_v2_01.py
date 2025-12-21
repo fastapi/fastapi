@@ -1,4 +1,5 @@
 import sys
+import warnings
 from typing import Any, Union
 
 from tests.utils import skip_module_if_py_gte_314
@@ -26,30 +27,29 @@ class Item(BaseModel):
 
 app = FastAPI()
 
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
 
-@app.post("/simple-model")
-def handle_simple_model(data: SubItem) -> SubItem:
-    return data
+    @app.post("/simple-model")
+    def handle_simple_model(data: SubItem) -> SubItem:
+        return data
 
+    @app.post("/simple-model-filter", response_model=SubItem)
+    def handle_simple_model_filter(data: SubItem) -> Any:
+        extended_data = data.dict()
+        extended_data.update({"secret_price": 42})
+        return extended_data
 
-@app.post("/simple-model-filter", response_model=SubItem)
-def handle_simple_model_filter(data: SubItem) -> Any:
-    extended_data = data.dict()
-    extended_data.update({"secret_price": 42})
-    return extended_data
+    @app.post("/item")
+    def handle_item(data: Item) -> Item:
+        return data
 
-
-@app.post("/item")
-def handle_item(data: Item) -> Item:
-    return data
-
-
-@app.post("/item-filter", response_model=Item)
-def handle_item_filter(data: Item) -> Any:
-    extended_data = data.dict()
-    extended_data.update({"secret_data": "classified", "internal_id": 12345})
-    extended_data["sub"].update({"internal_id": 67890})
-    return extended_data
+    @app.post("/item-filter", response_model=Item)
+    def handle_item_filter(data: Item) -> Any:
+        extended_data = data.dict()
+        extended_data.update({"secret_data": "classified", "internal_id": 12345})
+        extended_data["sub"].update({"internal_id": 67890})
+        return extended_data
 
 
 client = TestClient(app)

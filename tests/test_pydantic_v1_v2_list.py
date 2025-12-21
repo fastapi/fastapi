@@ -1,4 +1,5 @@
 import sys
+import warnings
 from typing import Any, Union
 
 from tests.utils import skip_module_if_py_gte_314
@@ -27,49 +28,47 @@ class Item(BaseModel):
 app = FastAPI()
 
 
-@app.post("/item")
-def handle_item(data: Item) -> list[Item]:
-    return [data, data]
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
 
+    @app.post("/item")
+    def handle_item(data: Item) -> list[Item]:
+        return [data, data]
 
-@app.post("/item-filter", response_model=list[Item])
-def handle_item_filter(data: Item) -> Any:
-    extended_data = data.dict()
-    extended_data.update({"secret_data": "classified", "internal_id": 12345})
-    extended_data["sub"].update({"internal_id": 67890})
-    return [extended_data, extended_data]
-
-
-@app.post("/item-list")
-def handle_item_list(data: list[Item]) -> Item:
-    if data:
-        return data[0]
-    return Item(title="", size=0, sub=SubItem(name=""))
-
-
-@app.post("/item-list-filter", response_model=Item)
-def handle_item_list_filter(data: list[Item]) -> Any:
-    if data:
-        extended_data = data[0].dict()
-        extended_data.update({"secret_data": "classified", "internal_id": 12345})
-        extended_data["sub"].update({"internal_id": 67890})
-        return extended_data
-    return Item(title="", size=0, sub=SubItem(name=""))
-
-
-@app.post("/item-list-to-list")
-def handle_item_list_to_list(data: list[Item]) -> list[Item]:
-    return data
-
-
-@app.post("/item-list-to-list-filter", response_model=list[Item])
-def handle_item_list_to_list_filter(data: list[Item]) -> Any:
-    if data:
-        extended_data = data[0].dict()
+    @app.post("/item-filter", response_model=list[Item])
+    def handle_item_filter(data: Item) -> Any:
+        extended_data = data.dict()
         extended_data.update({"secret_data": "classified", "internal_id": 12345})
         extended_data["sub"].update({"internal_id": 67890})
         return [extended_data, extended_data]
-    return []
+
+    @app.post("/item-list")
+    def handle_item_list(data: list[Item]) -> Item:
+        if data:
+            return data[0]
+        return Item(title="", size=0, sub=SubItem(name=""))
+
+    @app.post("/item-list-filter", response_model=Item)
+    def handle_item_list_filter(data: list[Item]) -> Any:
+        if data:
+            extended_data = data[0].dict()
+            extended_data.update({"secret_data": "classified", "internal_id": 12345})
+            extended_data["sub"].update({"internal_id": 67890})
+            return extended_data
+        return Item(title="", size=0, sub=SubItem(name=""))
+
+    @app.post("/item-list-to-list")
+    def handle_item_list_to_list(data: list[Item]) -> list[Item]:
+        return data
+
+    @app.post("/item-list-to-list-filter", response_model=list[Item])
+    def handle_item_list_to_list_filter(data: list[Item]) -> Any:
+        if data:
+            extended_data = data[0].dict()
+            extended_data.update({"secret_data": "classified", "internal_id": 12345})
+            extended_data["sub"].update({"internal_id": 67890})
+            return [extended_data, extended_data]
+        return []
 
 
 client = TestClient(app)

@@ -1,4 +1,5 @@
 import sys
+import warnings
 from typing import Any, Union
 
 from tests.utils import skip_module_if_py_gte_314
@@ -39,179 +40,181 @@ class NewItem(NewBaseModel):
 
 app = FastAPI()
 
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
 
-@app.post("/v1-to-v2/item")
-def handle_v1_item_to_v2(data: Item) -> NewItem:
-    return NewItem(
-        new_title=data.title,
-        new_size=data.size,
-        new_description=data.description,
-        new_sub=NewSubItem(new_sub_name=data.sub.name),
-        new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
-    )
+    @app.post("/v1-to-v2/item")
+    def handle_v1_item_to_v2(data: Item) -> NewItem:
+        return NewItem(
+            new_title=data.title,
+            new_size=data.size,
+            new_description=data.description,
+            new_sub=NewSubItem(new_sub_name=data.sub.name),
+            new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
+        )
 
+    @app.post("/v1-to-v2/item-filter", response_model=NewItem)
+    def handle_v1_item_to_v2_filter(data: Item) -> Any:
+        result = {
+            "new_title": data.title,
+            "new_size": data.size,
+            "new_description": data.description,
+            "new_sub": {
+                "new_sub_name": data.sub.name,
+                "new_sub_secret": "sub_hidden",
+            },
+            "new_multi": [
+                {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"}
+                for s in data.multi
+            ],
+            "secret": "hidden_v1_to_v2",
+        }
+        return result
 
-@app.post("/v1-to-v2/item-filter", response_model=NewItem)
-def handle_v1_item_to_v2_filter(data: Item) -> Any:
-    result = {
-        "new_title": data.title,
-        "new_size": data.size,
-        "new_description": data.description,
-        "new_sub": {"new_sub_name": data.sub.name, "new_sub_secret": "sub_hidden"},
-        "new_multi": [
-            {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"} for s in data.multi
-        ],
-        "secret": "hidden_v1_to_v2",
-    }
-    return result
+    @app.post("/v2-to-v1/item")
+    def handle_v2_item_to_v1(data: NewItem) -> Item:
+        return Item(
+            title=data.new_title,
+            size=data.new_size,
+            description=data.new_description,
+            sub=SubItem(name=data.new_sub.new_sub_name),
+            multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
+        )
 
+    @app.post("/v2-to-v1/item-filter", response_model=Item)
+    def handle_v2_item_to_v1_filter(data: NewItem) -> Any:
+        result = {
+            "title": data.new_title,
+            "size": data.new_size,
+            "description": data.new_description,
+            "sub": {"name": data.new_sub.new_sub_name, "sub_secret": "sub_hidden"},
+            "multi": [
+                {"name": s.new_sub_name, "sub_secret": "sub_hidden"}
+                for s in data.new_multi
+            ],
+            "secret": "hidden_v2_to_v1",
+        }
+        return result
 
-@app.post("/v2-to-v1/item")
-def handle_v2_item_to_v1(data: NewItem) -> Item:
-    return Item(
-        title=data.new_title,
-        size=data.new_size,
-        description=data.new_description,
-        sub=SubItem(name=data.new_sub.new_sub_name),
-        multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
-    )
+    @app.post("/v1-to-v2/item-to-list")
+    def handle_v1_item_to_v2_list(data: Item) -> list[NewItem]:
+        converted = NewItem(
+            new_title=data.title,
+            new_size=data.size,
+            new_description=data.description,
+            new_sub=NewSubItem(new_sub_name=data.sub.name),
+            new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
+        )
+        return [converted, converted]
 
+    @app.post("/v1-to-v2/list-to-list")
+    def handle_v1_list_to_v2_list(data: list[Item]) -> list[NewItem]:
+        result = []
+        for item in data:
+            result.append(
+                NewItem(
+                    new_title=item.title,
+                    new_size=item.size,
+                    new_description=item.description,
+                    new_sub=NewSubItem(new_sub_name=item.sub.name),
+                    new_multi=[NewSubItem(new_sub_name=s.name) for s in item.multi],
+                )
+            )
+        return result
 
-@app.post("/v2-to-v1/item-filter", response_model=Item)
-def handle_v2_item_to_v1_filter(data: NewItem) -> Any:
-    result = {
-        "title": data.new_title,
-        "size": data.new_size,
-        "description": data.new_description,
-        "sub": {"name": data.new_sub.new_sub_name, "sub_secret": "sub_hidden"},
-        "multi": [
-            {"name": s.new_sub_name, "sub_secret": "sub_hidden"} for s in data.new_multi
-        ],
-        "secret": "hidden_v2_to_v1",
-    }
-    return result
+    @app.post("/v1-to-v2/list-to-list-filter", response_model=list[NewItem])
+    def handle_v1_list_to_v2_list_filter(data: list[Item]) -> Any:
+        result = []
+        for item in data:
+            converted = {
+                "new_title": item.title,
+                "new_size": item.size,
+                "new_description": item.description,
+                "new_sub": {
+                    "new_sub_name": item.sub.name,
+                    "new_sub_secret": "sub_hidden",
+                },
+                "new_multi": [
+                    {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"}
+                    for s in item.multi
+                ],
+                "secret": "hidden_v2_to_v1",
+            }
+            result.append(converted)
+        return result
 
-
-@app.post("/v1-to-v2/item-to-list")
-def handle_v1_item_to_v2_list(data: Item) -> list[NewItem]:
-    converted = NewItem(
-        new_title=data.title,
-        new_size=data.size,
-        new_description=data.description,
-        new_sub=NewSubItem(new_sub_name=data.sub.name),
-        new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
-    )
-    return [converted, converted]
-
-
-@app.post("/v1-to-v2/list-to-list")
-def handle_v1_list_to_v2_list(data: list[Item]) -> list[NewItem]:
-    result = []
-    for item in data:
-        result.append(
-            NewItem(
+    @app.post("/v1-to-v2/list-to-item")
+    def handle_v1_list_to_v2_item(data: list[Item]) -> NewItem:
+        if data:
+            item = data[0]
+            return NewItem(
                 new_title=item.title,
                 new_size=item.size,
                 new_description=item.description,
                 new_sub=NewSubItem(new_sub_name=item.sub.name),
                 new_multi=[NewSubItem(new_sub_name=s.name) for s in item.multi],
             )
+        return NewItem(new_title="", new_size=0, new_sub=NewSubItem(new_sub_name=""))
+
+    @app.post("/v2-to-v1/item-to-list")
+    def handle_v2_item_to_v1_list(data: NewItem) -> list[Item]:
+        converted = Item(
+            title=data.new_title,
+            size=data.new_size,
+            description=data.new_description,
+            sub=SubItem(name=data.new_sub.new_sub_name),
+            multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
         )
-    return result
+        return [converted, converted]
 
+    @app.post("/v2-to-v1/list-to-list")
+    def handle_v2_list_to_v1_list(data: list[NewItem]) -> list[Item]:
+        result = []
+        for item in data:
+            result.append(
+                Item(
+                    title=item.new_title,
+                    size=item.new_size,
+                    description=item.new_description,
+                    sub=SubItem(name=item.new_sub.new_sub_name),
+                    multi=[SubItem(name=s.new_sub_name) for s in item.new_multi],
+                )
+            )
+        return result
 
-@app.post("/v1-to-v2/list-to-list-filter", response_model=list[NewItem])
-def handle_v1_list_to_v2_list_filter(data: list[Item]) -> Any:
-    result = []
-    for item in data:
-        converted = {
-            "new_title": item.title,
-            "new_size": item.size,
-            "new_description": item.description,
-            "new_sub": {"new_sub_name": item.sub.name, "new_sub_secret": "sub_hidden"},
-            "new_multi": [
-                {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"}
-                for s in item.multi
-            ],
-            "secret": "hidden_v2_to_v1",
-        }
-        result.append(converted)
-    return result
+    @app.post("/v2-to-v1/list-to-list-filter", response_model=list[Item])
+    def handle_v2_list_to_v1_list_filter(data: list[NewItem]) -> Any:
+        result = []
+        for item in data:
+            converted = {
+                "title": item.new_title,
+                "size": item.new_size,
+                "description": item.new_description,
+                "sub": {
+                    "name": item.new_sub.new_sub_name,
+                    "sub_secret": "sub_hidden",
+                },
+                "multi": [
+                    {"name": s.new_sub_name, "sub_secret": "sub_hidden"}
+                    for s in item.new_multi
+                ],
+                "secret": "hidden_v2_to_v1",
+            }
+            result.append(converted)
+        return result
 
-
-@app.post("/v1-to-v2/list-to-item")
-def handle_v1_list_to_v2_item(data: list[Item]) -> NewItem:
-    if data:
-        item = data[0]
-        return NewItem(
-            new_title=item.title,
-            new_size=item.size,
-            new_description=item.description,
-            new_sub=NewSubItem(new_sub_name=item.sub.name),
-            new_multi=[NewSubItem(new_sub_name=s.name) for s in item.multi],
-        )
-    return NewItem(new_title="", new_size=0, new_sub=NewSubItem(new_sub_name=""))
-
-
-@app.post("/v2-to-v1/item-to-list")
-def handle_v2_item_to_v1_list(data: NewItem) -> list[Item]:
-    converted = Item(
-        title=data.new_title,
-        size=data.new_size,
-        description=data.new_description,
-        sub=SubItem(name=data.new_sub.new_sub_name),
-        multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
-    )
-    return [converted, converted]
-
-
-@app.post("/v2-to-v1/list-to-list")
-def handle_v2_list_to_v1_list(data: list[NewItem]) -> list[Item]:
-    result = []
-    for item in data:
-        result.append(
-            Item(
+    @app.post("/v2-to-v1/list-to-item")
+    def handle_v2_list_to_v1_item(data: list[NewItem]) -> Item:
+        if data:
+            item = data[0]
+            return Item(
                 title=item.new_title,
                 size=item.new_size,
                 description=item.new_description,
                 sub=SubItem(name=item.new_sub.new_sub_name),
                 multi=[SubItem(name=s.new_sub_name) for s in item.new_multi],
             )
-        )
-    return result
-
-
-@app.post("/v2-to-v1/list-to-list-filter", response_model=list[Item])
-def handle_v2_list_to_v1_list_filter(data: list[NewItem]) -> Any:
-    result = []
-    for item in data:
-        converted = {
-            "title": item.new_title,
-            "size": item.new_size,
-            "description": item.new_description,
-            "sub": {"name": item.new_sub.new_sub_name, "sub_secret": "sub_hidden"},
-            "multi": [
-                {"name": s.new_sub_name, "sub_secret": "sub_hidden"}
-                for s in item.new_multi
-            ],
-            "secret": "hidden_v2_to_v1",
-        }
-        result.append(converted)
-    return result
-
-
-@app.post("/v2-to-v1/list-to-item")
-def handle_v2_list_to_v1_item(data: list[NewItem]) -> Item:
-    if data:
-        item = data[0]
-        return Item(
-            title=item.new_title,
-            size=item.new_size,
-            description=item.new_description,
-            sub=SubItem(name=item.new_sub.new_sub_name),
-            multi=[SubItem(name=s.new_sub_name) for s in item.new_multi],
-        )
-    return Item(title="", size=0, sub=SubItem(name=""))
+        return Item(title="", size=0, sub=SubItem(name=""))
 
 
 client = TestClient(app)
