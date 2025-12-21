@@ -48,7 +48,7 @@ Sie können die verwendeten Zeilen aus dem Docstring einer *Pfadoperation-Funkti
 
 Das Hinzufügen eines `\f` (ein maskiertes „Form Feed“-Zeichen) führt dazu, dass **FastAPI** die für OpenAPI verwendete Ausgabe an dieser Stelle abschneidet.
 
-Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) können den Rest verwenden.
+Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (wie z. B. Sphinx) können den Rest verwenden.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
@@ -157,7 +157,7 @@ In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Fu
 
 Obwohl wir nicht die standardmäßig integrierte Funktionalität verwenden, verwenden wir dennoch ein Pydantic-Modell, um das JSON-Schema für die Daten, die wir in YAML empfangen möchten, manuell zu generieren.
 
-Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das bedeutet, dass FastAPI nicht einmal versucht, den Request-Payload als JSON zu parsen.
+Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das bedeutet, dass FastAPI nicht einmal versucht, die Request-Payload als JSON zu parsen.
 
 Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann wieder dasselbe Pydantic-Modell, um den YAML-Inhalt zu validieren:
 
