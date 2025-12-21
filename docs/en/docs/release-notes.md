@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 👷 Run CodSpeed tests in parallel to other tests to speed up CI. PR [#14586](https://github.com/fastapi/fastapi/pull/14586) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update scripts and pre-commit to autofix files. PR [#14585](https://github.com/fastapi/fastapi/pull/14585) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.127.0
