@@ -54,10 +54,14 @@ jobs:
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
-          # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
+            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+          - os: ubuntu-latest
+            python-version: "3.13"
+            coverage: coverage
+            codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
@@ -85,12 +89,13 @@ jobs:
         run: uv pip install -r requirements-tests.txt
       - run: mkdir coverage
       - name: Test
+        if: matrix.codspeed != 'codspeed'
         run: bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
       - name: CodSpeed benchmarks
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
+        if: matrix.codspeed == 'codspeed'
         uses: CodSpeedHQ/action@v4
         env:
             COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
