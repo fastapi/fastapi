@@ -19,7 +19,7 @@ from slugify import slugify as py_slugify
 
 logging.basicConfig(level=logging.INFO)
 
-SUPPORTED_LANGS = {"en", "de", "es", "pt", "ru"}
+SUPPORTED_LANGS = {"en", "de", "es", "pt", "ru", "fr"}
 
 
 app = typer.Typer()
