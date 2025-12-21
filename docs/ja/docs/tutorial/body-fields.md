@@ -49,7 +49,7 @@
 
 /// warning | 注意
 
-`Field`に渡された追加のキーは、結果として生成されるアプリケーションのOpenAPIスキーマにも含まれます。  
+`Field`に渡された追加のキーは、結果として生成されるアプリケーションのOpenAPIスキーマにも含まれます。
 これらのキーは必ずしもOpenAPI仕様の一部であるとは限らないため、例えば[OpenAPI validator](https://validator.swagger.io/)などの一部のOpenAPIツールは、生成されたスキーマでは動作しない場合があります。
 
 ///
