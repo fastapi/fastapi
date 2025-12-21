@@ -1,3 +1,4 @@
+import warnings
 from datetime import datetime, timezone
 
 from fastapi import FastAPI
@@ -48,9 +49,12 @@ def test_pydanticv1():
     app = FastAPI()
     model = ModelWithDatetimeField(dt_field=datetime(2019, 1, 1, 8))
 
-    @app.get("/model", response_model=ModelWithDatetimeField)
-    def get_model():
-        return model
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+
+        @app.get("/model", response_model=ModelWithDatetimeField)
+        def get_model():
+            return model
 
     client = TestClient(app)
     with client:
