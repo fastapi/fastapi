@@ -53,7 +53,7 @@ def test_openapi_schema():
     )
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     test_annotated_forward_ref()
     test_openapi_schema()
     print("All tests passed!")
