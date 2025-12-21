@@ -153,23 +153,7 @@ Und Sie könnten dies auch tun, wenn der Datentyp im Request nicht JSON ist.
 
 In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Funktionalität von FastAPI zum Extrahieren des JSON-Schemas aus Pydantic-Modellen noch die automatische Validierung für JSON. Tatsächlich deklarieren wir den Request-Content-Type als YAML und nicht als JSON:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[15:20, 22] *}
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
-
-///
 
 Obwohl wir nicht die standardmäßig integrierte Funktionalität verwenden, verwenden wir dennoch ein Pydantic-Modell, um das JSON-Schema für die Daten, die wir in YAML empfangen möchten, manuell zu generieren.
 
@@ -177,23 +161,7 @@ Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das 
 
 Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann wieder dasselbe Pydantic-Modell, um den YAML-Inhalt zu validieren:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[24:31] *}
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.
-
-///
 
 /// tip | Tipp
 
