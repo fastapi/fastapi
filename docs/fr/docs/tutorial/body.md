@@ -1,40 +1,40 @@
-# Corps de la requête
+# Corps de la requête { #request-body }
 
-Quand vous avez besoin d'envoyer de la donnée depuis un client (comme un navigateur) vers votre API, vous l'envoyez en tant que **corps de requête**.
+Quand vous avez besoin d'envoyer des données depuis un client (par exemple, un navigateur) vers votre API, vous les envoyez en tant que **corps de requête**.
 
-Le corps d'une **requête** est de la donnée envoyée par le client à votre API. Le corps d'une **réponse** est la donnée envoyée par votre API au client.
+Le corps d'une **requête** est la donnée envoyée par le client à votre API. Le corps d'une **réponse** est la donnée que votre API envoie au client.
 
-Votre API aura presque toujours à envoyer un corps de **réponse**. Mais un client n'a pas toujours à envoyer un corps de **requête**.
+Votre API doit presque toujours envoyer un corps de **réponse**. Mais les clients n'ont pas forcément besoin d'envoyer des **corps de requête** tout le temps, parfois ils ne demandent qu'un chemin, peut-être avec quelques paramètres de requête, mais n'envoient pas de corps.
 
-Pour déclarer un corps de **requête**, on utilise les modèles de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> en profitant de tous leurs avantages et fonctionnalités.
+Pour déclarer un corps de **requête**, vous utilisez des modèles <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> avec toute leur puissance et leurs avantages.
 
 /// info
 
-Pour envoyer de la donnée, vous devriez utiliser : `POST` (le plus populaire), `PUT`, `DELETE` ou `PATCH`.
+Pour envoyer des données, vous devriez utiliser l'une de ces méthodes : `POST` (la plus courante), `PUT`, `DELETE` ou `PATCH`.
 
-Envoyer un corps dans une requête `GET` a un comportement non défini dans les spécifications, cela est néanmoins supporté par **FastAPI**, seulement pour des cas d'utilisation très complexes/extrêmes.
+Envoyer un corps avec une requête `GET` a un comportement non défini dans les spécifications ; néanmoins, c'est supporté par FastAPI, seulement pour des cas d'utilisation très complexes/extrêmes.
 
-Ceci étant découragé, la documentation interactive générée par Swagger UI ne montrera pas de documentation pour le corps d'une requête `GET`, et les proxys intermédiaires risquent de ne pas le supporter.
+Comme c'est découragé, la documentation interactive avec Swagger UI n'affichera pas la documentation pour le corps lors de l'utilisation de `GET`, et des proxys intermédiaires pourraient ne pas le supporter.
 
 ///
 
-## Importez le `BaseModel` de Pydantic
+## Importer `BaseModel` de Pydantic { #import-pydantics-basemodel }
 
-Commencez par importer la classe `BaseModel` du module `pydantic` :
+Commencez par importer la classe `BaseModel` depuis `pydantic` :
 
-{* ../../docs_src/body/tutorial001.py hl[4] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## Créez votre modèle de données
+## Créer votre modèle de données { #create-your-data-model }
 
 Déclarez ensuite votre modèle de données en tant que classe qui hérite de `BaseModel`.
 
-Utilisez les types Python standard pour tous les attributs :
+Utilisez les types Python standards pour tous les attributs :
 
-{* ../../docs_src/body/tutorial001.py hl[7:11] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Tout comme pour la déclaration de paramètres de requête, quand un attribut de modèle a une valeur par défaut, il n'est pas nécessaire. Sinon, cet attribut doit être renseigné dans le corps de la requête. Pour rendre ce champ optionnel simplement, utilisez `None` comme valeur par défaut.
+Comme pour la déclaration de paramètres de requête, lorsqu'un attribut de modèle a une valeur par défaut, il n'est pas requis. Sinon, il est requis. Utilisez `None` pour le rendre simplement optionnel.
 
-Par exemple, le modèle ci-dessus déclare un "objet" JSON (ou `dict` Python) tel que :
+Par exemple, le modèle ci-dessus déclare un «`object`» JSON (ou `dict` Python) tel que :
 
 ```JSON
 {
@@ -45,7 +45,7 @@ Par exemple, le modèle ci-dessus déclare un "objet" JSON (ou `dict` Python) te
 }
 ```
 
-...`description` et `tax` étant des attributs optionnels (avec `None` comme valeur par défaut), cet "objet" JSON serait aussi valide :
+... comme `description` et `tax` sont optionnels (avec une valeur par défaut de `None`), cet «`object`» JSON serait aussi valide :
 
 ```JSON
 {
@@ -54,109 +54,111 @@ Par exemple, le modèle ci-dessus déclare un "objet" JSON (ou `dict` Python) te
 }
 ```
 
-## Déclarez-le comme paramètre
+## Le déclarer comme paramètre { #declare-it-as-a-parameter }
 
-Pour l'ajouter à votre *opération de chemin*, déclarez-le comme vous déclareriez des paramètres de chemin ou de requête :
+Pour l'ajouter à votre *opération de chemin*, déclarez-le de la même manière que vous déclarez des paramètres de chemin et de requête :
 
-{* ../../docs_src/body/tutorial001.py hl[18] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
-...et déclarez que son type est le modèle que vous avez créé : `Item`.
+... et déclarez son type comme étant le modèle que vous avez créé, `Item`.
 
-## Résultats
+## Résultats { #results }
 
-En utilisant uniquement les déclarations de type Python, **FastAPI** réussit à :
+Avec cette seule déclaration de type Python, **FastAPI** va :
 
-* Lire le contenu de la requête en tant que JSON.
+* Lire le corps de la requête en tant que JSON.
 * Convertir les types correspondants (si nécessaire).
 * Valider la donnée.
-    * Si la donnée est invalide, une erreur propre et claire sera renvoyée, indiquant exactement où était la donnée incorrecte.
-* Passer la donnée reçue dans le paramètre `item`.
-    * Ce paramètre ayant été déclaré dans la fonction comme étant de type `Item`, vous aurez aussi tout le support offert par l'éditeur (auto-complétion, etc.) pour tous les attributs de ce paramètre et les types de ces attributs.
-* Générer des définitions <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> pour votre modèle, qui peuvent être utilisées où vous en avez besoin dans votre projet ensuite.
-* Ces schémas participeront à la constitution du schéma généré OpenAPI, et seront donc utilisés par les documentations automatiquement générées.
+    * Si la donnée est invalide, renvoyer une erreur claire et explicite, indiquant exactement où et quelle donnée est incorrecte.
+* Vous fournir la donnée reçue dans le paramètre `item`.
+    * Comme vous l'avez déclaré dans la fonction comme étant de type `Item`, vous aurez aussi tout le support de l'éditeur (autocomplétion, etc.) pour tous ses attributs et leurs types.
+* Générer des définitions <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> pour votre modèle ; vous pouvez aussi les utiliser ailleurs si cela a du sens pour votre projet.
+* Ces schémas feront partie du schéma OpenAPI généré et seront utilisés par la documentation automatique <abbr title="User Interfaces – Interfaces utilisateur">UIs</abbr>.
 
-## Documentation automatique
+## Documentation automatique { #automatic-docs }
 
-Les schémas JSON de vos modèles seront intégrés au schéma OpenAPI global de votre application, et seront donc affichés dans la documentation interactive de l'API :
+Les schémas JSON de vos modèles feront partie du schéma OpenAPI généré et seront affichés dans la documentation interactive de l'API :
 
 <img src="/img/tutorial/body/image01.png">
 
-Et seront aussi utilisés dans chaque *opération de chemin* de la documentation utilisant ces modèles :
+Ils seront aussi utilisés dans chaque *opération de chemin* de la documentation qui en a besoin :
 
 <img src="/img/tutorial/body/image02.png">
 
-## Support de l'éditeur
+## Support de l'éditeur { #editor-support }
 
-Dans votre éditeur, vous aurez des annotations de types et de l'auto-complétion partout dans votre fonction (ce qui n'aurait pas été le cas si vous aviez utilisé un classique `dict` plutôt qu'un modèle Pydantic) :
+Dans votre éditeur, à l'intérieur de votre fonction, vous obtiendrez des annotations de type et de l'autocomplétion partout (ce qui n'arriverait pas si vous receviez un `dict` au lieu d'un modèle Pydantic) :
 
 <img src="/img/tutorial/body/image03.png">
 
-Et vous obtenez aussi de la vérification d'erreur pour les opérations incorrectes de types :
+Vous obtenez aussi des vérifications d'erreurs pour les opérations incorrectes sur les types :
 
 <img src="/img/tutorial/body/image04.png">
 
-Ce n'est pas un hasard, ce framework entier a été bâti avec ce design comme objectif.
+Ce n'est pas un hasard, tout le framework a été construit autour de ce design.
 
-Et cela a été rigoureusement testé durant la phase de design, avant toute implémentation, pour s'assurer que cela fonctionnerait avec tous les éditeurs.
+Et il a été rigoureusement testé lors de la phase de conception, avant toute implémentation, pour s'assurer qu'il fonctionne avec tous les éditeurs.
 
-Des changements sur Pydantic ont même été faits pour supporter cela.
+Des changements ont même été apportés à Pydantic lui‑même pour le supporter.
 
-Les captures d'écrans précédentes ont été prises sur <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
+Les captures d'écran précédentes ont été prises avec <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>.
 
-Mais vous auriez le même support de l'éditeur avec <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> et la majorité des autres éditeurs de code Python.
+Mais vous obtiendrez le même support de l'éditeur avec <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> et la plupart des autres éditeurs Python :
 
 <img src="/img/tutorial/body/image05.png">
 
 /// tip | Astuce
 
-Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le Plugin <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm Plugin</a>.
+Si vous utilisez <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> comme éditeur, vous pouvez utiliser le <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">plug-in Pydantic pour PyCharm</a>.
 
-Ce qui améliore le support pour les modèles Pydantic avec :
+Il améliore le support des modèles Pydantic avec :
 
-* de l'auto-complétion
-* des vérifications de type
-* du "refactoring" (ou remaniement de code)
-* de la recherche
-* de l'inspection
+* autocomplétion
+* vérifications de type
+* refactoring
+* recherche
+* inspections
 
 ///
 
-## Utilisez le modèle
+## Utiliser le modèle { #use-the-model }
 
-Dans la fonction, vous pouvez accéder à tous les attributs de l'objet du modèle directement :
+Dans la fonction, vous pouvez accéder directement à tous les attributs de l'objet du modèle :
 
-{* ../../docs_src/body/tutorial002.py hl[21] *}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-## Corps de la requête + paramètres de chemin
+## Corps de la requête + paramètres de chemin { #request-body-path-parameters }
 
-Vous pouvez déclarer des paramètres de chemin et un corps de requête pour la même *opération de chemin*.
+Vous pouvez déclarer des paramètres de chemin et un corps de requête en même temps.
 
-**FastAPI** est capable de reconnaître que les paramètres de la fonction qui correspondent aux paramètres de chemin doivent être **récupérés depuis le chemin**, et que les paramètres de fonctions déclarés comme modèles Pydantic devraient être **récupérés depuis le corps de la requête**.
+**FastAPI** reconnaîtra que les paramètres de la fonction qui correspondent aux paramètres de chemin doivent être **récupérés depuis le chemin**, et que les paramètres de fonction déclarés comme modèles Pydantic doivent être **récupérés depuis le corps de la requête**.
 
-{* ../../docs_src/body/tutorial003.py hl[17:18] *}
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## Corps de la requête + paramètres de chemin et de requête
+## Corps de la requête + paramètres de chemin et de requête { #request-body-path-query-parameters }
 
-Vous pouvez aussi déclarer un **corps**, et des paramètres de **chemin** et de **requête** dans la même *opération de chemin*.
+Vous pouvez aussi déclarer des paramètres de **corps**, de **chemin** et de **requête**, tous en même temps.
 
-**FastAPI** saura reconnaître chacun d'entre eux et récupérer la bonne donnée au bon endroit.
+**FastAPI** reconnaîtra chacun d'entre eux et récupérera la donnée au bon endroit.
 
-{* ../../docs_src/body/tutorial004.py hl[18] *}
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
-Les paramètres de la fonction seront reconnus comme tel :
+Les paramètres de la fonction seront reconnus comme suit :
 
 * Si le paramètre est aussi déclaré dans le **chemin**, il sera utilisé comme paramètre de chemin.
 * Si le paramètre est d'un **type singulier** (comme `int`, `float`, `str`, `bool`, etc.), il sera interprété comme un paramètre de **requête**.
-* Si le paramètre est déclaré comme ayant pour type un **modèle Pydantic**, il sera interprété comme faisant partie du **corps** de la requête.
+* Si le paramètre est déclaré comme étant du type d'un **modèle Pydantic**, il sera interprété comme faisant partie du **corps** de la requête.
 
-/// note
+/// note | Remarque
 
-**FastAPI** saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `=None`.
+FastAPI saura que la valeur de `q` n'est pas requise grâce à la valeur par défaut `= None`.
 
-Le type `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais sera utile à votre éditeur pour améliorer le support offert par ce dernier et détecter plus facilement des erreurs de type.
+L'annotation de type `str | None` (Python 3.10+) ou `Union` dans `Union[str, None]` (Python 3.9+) n'est pas utilisée par FastAPI pour déterminer que la valeur n'est pas requise, il le saura parce qu'il y a une valeur par défaut `= None`.
+
+Mais ajouter des annotations de type permettra à votre éditeur de vous offrir un meilleur support et de détecter des erreurs.
 
 ///
 
-## Sans Pydantic
+## Sans Pydantic { #without-pydantic }
 
-Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres de **Corps**. Pour cela, allez voir la partie de la documentation sur  [Corps de la requête - Paramètres multiples](body-multiple-params.md){.internal-link target=_blank}.
+Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres **Body**. Voir les documents pour [Corps de la requête - Paramètres multiples : Valeurs singulières dans le corps](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
