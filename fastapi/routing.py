@@ -29,7 +29,6 @@ from fastapi._compat import (
     _model_dump,
     _normalize_errors,
     lenient_issubclass,
-    may_v1,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -58,6 +57,7 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
+from pydantic import BaseModel
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
@@ -152,7 +152,7 @@ def _prepare_response_content(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
 ) -> Any:
-    if isinstance(res, may_v1.BaseModel):
+    if isinstance(res, BaseModel):
         read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)  # type: ignore[arg-type]
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
