@@ -35,11 +35,15 @@ See section `### Content of code snippets` in the general prompt in `scripts/tra
 
 //// tab | Test
 
-Yesterday, my friend wrote: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
+Yesterday, my friend wrote:
+“If you spell incorrectly correctly, then you have spelled it incorrectly.”
+
+I replied:
+“That is correct, but the word incorrectly is spelled incorrectly if it is written as ‘"incorrectly"’.”
 
 /// note
-
-The LLM will probably translate this wrong. Interesting is only if it keeps the fixed translation when retranslating.
+A language model might translate this incorrectly.
+It is only interesting if the model keeps the corrected version unchanged when translating it again.
 
 ///
 
@@ -47,7 +51,8 @@ The LLM will probably translate this wrong. Interesting is only if it keeps the 
 
 //// tab | Info
 
-The prompt designer may choose if they want to convert neutral quotes to typographic quotes. It is okay to leave them as is.
+The prompt designer can decide whether to convert straight (neutral) quotation marks into typographic (curly) quotes.
+It is also acceptable to leave the quotation marks as they are.
 
 See for example section `### Quotes` in `docs/de/llm-prompt.md`.
 
