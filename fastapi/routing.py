@@ -1,8 +1,8 @@
-import dataclasses
 import email.message
 import functools
 import inspect
 import json
+import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -30,7 +30,9 @@ from fastapi._compat import (
     _get_model_config,
     _model_dump,
     _normalize_errors,
+    annotation_is_pydantic_v1,
     lenient_issubclass,
+    may_v1,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -59,7 +61,6 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
@@ -154,8 +155,8 @@ def _prepare_response_content(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
 ) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)
+    if isinstance(res, may_v1.BaseModel):
+        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)  # type: ignore[arg-type]
         if read_with_orm_mode:
             # Let from_orm extract the data from this model instead of converting
             # it now to a dict.
@@ -163,7 +164,7 @@ def _prepare_response_content(
             # access instead of dict iteration, e.g. lazy relationships.
             return res
         return _model_dump(
-            res,
+            res,  # type: ignore[arg-type]
             by_alias=True,
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
@@ -189,9 +190,6 @@ def _prepare_response_content(
             )
             for k, v in res.items()
         }
-    elif dataclasses.is_dataclass(res):
-        assert not isinstance(res, type)
-        return dataclasses.asdict(res)
     return res
 
 
@@ -639,6 +637,14 @@ class APIRoute(routing.Route):
             assert is_body_allowed_for_status_code(status_code), (
                 f"Status code {status_code} must not have a response body"
             )
+            if annotation_is_pydantic_v1(self.response_model):
+                warnings.warn(
+                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+                    f" Please update the response model {self.response_model!r}.",
+                    category=DeprecationWarning,
+                    stacklevel=4,
+                )
+
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -684,6 +690,13 @@ class APIRoute(routing.Route):
                     f"Status code {additional_status_code} must not have a response body"
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
+                if annotation_is_pydantic_v1(model):
+                    warnings.warn(
+                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
+                        f" In responses={{}}, please update {model}.",
+                        category=DeprecationWarning,
+                        stacklevel=4,
+                    )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
                 )

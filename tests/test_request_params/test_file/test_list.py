@@ -5,8 +5,6 @@ from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_pydanticv2
-
 from .utils import get_body_model_name
 
 app = FastAPI()
@@ -280,7 +278,6 @@ def read_list_uploadfile_validation_alias(
     return {"file_size": [file.size for file in p]}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -322,7 +319,6 @@ def test_list_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -349,7 +345,6 @@ def test_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -374,7 +369,6 @@ def test_list_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -417,7 +411,6 @@ def read_list_uploadfile_alias_and_validation_alias(
     return {"file_size": [file.size for file in p]}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -459,7 +452,6 @@ def test_list_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -486,7 +478,6 @@ def test_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -514,7 +505,6 @@ def test_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -539,7 +529,6 @@ def test_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

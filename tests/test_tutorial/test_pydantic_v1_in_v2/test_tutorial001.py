@@ -2,7 +2,6 @@ import sys
 from typing import Any
 
 import pytest
-from fastapi._compat import PYDANTIC_V2
 
 from tests.utils import skip_module_if_py_gte_314
 
@@ -10,12 +9,7 @@ if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
 
-if not PYDANTIC_V2:
-    pytest.skip("This test is only for Pydantic v2", allow_module_level=True)
-
 import importlib
-
-import pytest
 
 from ...utils import needs_py310
 

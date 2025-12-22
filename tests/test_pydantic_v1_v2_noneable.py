@@ -1,7 +1,8 @@
 import sys
+import warnings
 from typing import Any, Union
 
-from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
@@ -39,65 +40,69 @@ class NewItem(NewBaseModel):
 
 app = FastAPI()
 
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
 
-@app.post("/v1-to-v2/")
-def handle_v1_item_to_v2(data: Item) -> Union[NewItem, None]:
-    if data.size < 0:
-        return None
-    return NewItem(
-        new_title=data.title,
-        new_size=data.size,
-        new_description=data.description,
-        new_sub=NewSubItem(new_sub_name=data.sub.name),
-        new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
-    )
+    @app.post("/v1-to-v2/")
+    def handle_v1_item_to_v2(data: Item) -> Union[NewItem, None]:
+        if data.size < 0:
+            return None
+        return NewItem(
+            new_title=data.title,
+            new_size=data.size,
+            new_description=data.description,
+            new_sub=NewSubItem(new_sub_name=data.sub.name),
+            new_multi=[NewSubItem(new_sub_name=s.name) for s in data.multi],
+        )
 
+    @app.post("/v1-to-v2/item-filter", response_model=Union[NewItem, None])
+    def handle_v1_item_to_v2_filter(data: Item) -> Any:
+        if data.size < 0:
+            return None
+        result = {
+            "new_title": data.title,
+            "new_size": data.size,
+            "new_description": data.description,
+            "new_sub": {
+                "new_sub_name": data.sub.name,
+                "new_sub_secret": "sub_hidden",
+            },
+            "new_multi": [
+                {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"}
+                for s in data.multi
+            ],
+            "secret": "hidden_v1_to_v2",
+        }
+        return result
 
-@app.post("/v1-to-v2/item-filter", response_model=Union[NewItem, None])
-def handle_v1_item_to_v2_filter(data: Item) -> Any:
-    if data.size < 0:
-        return None
-    result = {
-        "new_title": data.title,
-        "new_size": data.size,
-        "new_description": data.description,
-        "new_sub": {"new_sub_name": data.sub.name, "new_sub_secret": "sub_hidden"},
-        "new_multi": [
-            {"new_sub_name": s.name, "new_sub_secret": "sub_hidden"} for s in data.multi
-        ],
-        "secret": "hidden_v1_to_v2",
-    }
-    return result
+    @app.post("/v2-to-v1/item")
+    def handle_v2_item_to_v1(data: NewItem) -> Union[Item, None]:
+        if data.new_size < 0:
+            return None
+        return Item(
+            title=data.new_title,
+            size=data.new_size,
+            description=data.new_description,
+            sub=SubItem(name=data.new_sub.new_sub_name),
+            multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
+        )
 
-
-@app.post("/v2-to-v1/item")
-def handle_v2_item_to_v1(data: NewItem) -> Union[Item, None]:
-    if data.new_size < 0:
-        return None
-    return Item(
-        title=data.new_title,
-        size=data.new_size,
-        description=data.new_description,
-        sub=SubItem(name=data.new_sub.new_sub_name),
-        multi=[SubItem(name=s.new_sub_name) for s in data.new_multi],
-    )
-
-
-@app.post("/v2-to-v1/item-filter", response_model=Union[Item, None])
-def handle_v2_item_to_v1_filter(data: NewItem) -> Any:
-    if data.new_size < 0:
-        return None
-    result = {
-        "title": data.new_title,
-        "size": data.new_size,
-        "description": data.new_description,
-        "sub": {"name": data.new_sub.new_sub_name, "sub_secret": "sub_hidden"},
-        "multi": [
-            {"name": s.new_sub_name, "sub_secret": "sub_hidden"} for s in data.new_multi
-        ],
-        "secret": "hidden_v2_to_v1",
-    }
-    return result
+    @app.post("/v2-to-v1/item-filter", response_model=Union[Item, None])
+    def handle_v2_item_to_v1_filter(data: NewItem) -> Any:
+        if data.new_size < 0:
+            return None
+        result = {
+            "title": data.new_title,
+            "size": data.new_size,
+            "description": data.new_description,
+            "sub": {"name": data.new_sub.new_sub_name, "sub_secret": "sub_hidden"},
+            "multi": [
+                {"name": s.new_sub_name, "sub_secret": "sub_hidden"}
+                for s in data.new_multi
+            ],
+            "secret": "hidden_v2_to_v1",
+        }
+        return result
 
 
 client = TestClient(app)
@@ -312,38 +317,20 @@ def test_v2_to_v1_validation_error():
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
-            "detail": pydantic_snapshot(
-                v2=snapshot(
-                    [
-                        {
-                            "type": "missing",
-                            "loc": ["body", "new_size"],
-                            "msg": "Field required",
-                            "input": {"new_title": "Missing fields"},
-                        },
-                        {
-                            "type": "missing",
-                            "loc": ["body", "new_sub"],
-                            "msg": "Field required",
-                            "input": {"new_title": "Missing fields"},
-                        },
-                    ]
-                ),
-                v1=snapshot(
-                    [
-                        {
-                            "loc": ["body", "new_size"],
-                            "msg": "field required",
-                            "type": "value_error.missing",
-                        },
-                        {
-                            "loc": ["body", "new_sub"],
-                            "msg": "field required",
-                            "type": "value_error.missing",
-                        },
-                    ]
-                ),
-            )
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "new_size"],
+                    "msg": "Field required",
+                    "input": {"new_title": "Missing fields"},
+                },
+                {
+                    "type": "missing",
+                    "loc": ["body", "new_sub"],
+                    "msg": "Field required",
+                    "input": {"new_title": "Missing fields"},
+                },
+            ]
         }
     )
 
@@ -361,23 +348,12 @@ def test_v2_to_v1_nested_validation_error():
     assert response.json() == snapshot(
         {
             "detail": [
-                pydantic_snapshot(
-                    v2=snapshot(
-                        {
-                            "type": "missing",
-                            "loc": ["body", "new_sub", "new_sub_name"],
-                            "msg": "Field required",
-                            "input": {"wrong_field": "value"},
-                        }
-                    ),
-                    v1=snapshot(
-                        {
-                            "loc": ["body", "new_sub", "new_sub_name"],
-                            "msg": "field required",
-                            "type": "value_error.missing",
-                        }
-                    ),
-                )
+                {
+                    "type": "missing",
+                    "loc": ["body", "new_sub", "new_sub_name"],
+                    "msg": "Field required",
+                    "input": {"wrong_field": "value"},
+                }
             ]
         }
     )
@@ -396,23 +372,12 @@ def test_v2_to_v1_type_validation_error():
     assert response.json() == snapshot(
         {
             "detail": [
-                pydantic_snapshot(
-                    v2=snapshot(
-                        {
-                            "type": "int_parsing",
-                            "loc": ["body", "new_size"],
-                            "msg": "Input should be a valid integer, unable to parse string as an integer",
-                            "input": "not_a_number",
-                        }
-                    ),
-                    v1=snapshot(
-                        {
-                            "loc": ["body", "new_size"],
-                            "msg": "value is not a valid integer",
-                            "type": "type_error.integer",
-                        }
-                    ),
-                )
+                {
+                    "type": "int_parsing",
+                    "loc": ["body", "new_size"],
+                    "msg": "Input should be a valid integer, unable to parse string as an integer",
+                    "input": "not_a_number",
+                }
             ]
         }
     )
@@ -483,21 +448,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/Item"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -507,22 +463,15 @@ def test_openapi_schema():
                                 "description": "Successful Response",
                                 "content": {
                                     "application/json": {
-                                        "schema": pydantic_snapshot(
-                                            v2=snapshot(
+                                        "schema": {
+                                            "anyOf": [
                                                 {
-                                                    "anyOf": [
-                                                        {
-                                                            "$ref": "#/components/schemas/NewItem"
-                                                        },
-                                                        {"type": "null"},
-                                                    ],
-                                                    "title": "Response Handle V1 Item To V2 V1 To V2  Post",
-                                                }
-                                            ),
-                                            v1=snapshot(
-                                                {"$ref": "#/components/schemas/NewItem"}
-                                            ),
-                                        )
+                                                    "$ref": "#/components/schemas/NewItem"
+                                                },
+                                                {"type": "null"},
+                                            ],
+                                            "title": "Response Handle V1 Item To V2 V1 To V2  Post",
+                                        }
                                     }
                                 },
                             },
@@ -546,21 +495,12 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Item"
-                                                    }
-                                                ],
-                                                "title": "Data",
-                                            }
-                                        ),
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {"$ref": "#/components/schemas/Item"}
-                                        ),
-                                    )
+                                        ],
+                                        "title": "Data",
+                                    }
                                 }
                             },
                             "required": True,
@@ -570,22 +510,15 @@ def test_openapi_schema():
                                 "description": "Successful Response",
                                 "content": {
                                     "application/json": {
-                                        "schema": pydantic_snapshot(
-                                            v2=snapshot(
+                                        "schema": {
+                                            "anyOf": [
                                                 {
-                                                    "anyOf": [
-                                                        {
-                                                            "$ref": "#/components/schemas/NewItem"
-                                                        },
-                                                        {"type": "null"},
-                                                    ],
-                                                    "title": "Response Handle V1 Item To V2 Filter V1 To V2 Item Filter Post",
-                                                }
-                                            ),
-                                            v1=snapshot(
-                                                {"$ref": "#/components/schemas/NewItem"}
-                                            ),
-                                        )
+                                                    "$ref": "#/components/schemas/NewItem"
+                                                },
+                                                {"type": "null"},
+                                            ],
+                                            "title": "Response Handle V1 Item To V2 Filter V1 To V2 Item Filter Post",
+                                        }
                                     }
                                 },
                             },
@@ -707,17 +640,10 @@ def test_openapi_schema():
                         "properties": {
                             "new_title": {"type": "string", "title": "New Title"},
                             "new_size": {"type": "integer", "title": "New Size"},
-                            "new_description": pydantic_snapshot(
-                                v2=snapshot(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "New Description",
-                                    }
-                                ),
-                                v1=snapshot(
-                                    {"type": "string", "title": "New Description"}
-                                ),
-                            ),
+                            "new_description": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "New Description",
+                            },
                             "new_sub": {"$ref": "#/components/schemas/NewSubItem"},
                             "new_multi": {
                                 "items": {"$ref": "#/components/schemas/NewSubItem"},

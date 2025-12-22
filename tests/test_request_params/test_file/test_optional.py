@@ -5,8 +5,6 @@ from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
 
-from tests.utils import needs_pydanticv2
-
 from .utils import get_body_model_name
 
 app = FastAPI()
@@ -204,7 +202,6 @@ def read_optional_uploadfile_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -239,7 +236,6 @@ def test_optional_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -254,7 +250,6 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -269,7 +264,6 @@ def test_optional_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -312,7 +306,6 @@ def read_optional_uploadfile_alias_and_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -347,7 +340,6 @@ def test_optional_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -362,7 +354,6 @@ def test_optional_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -377,7 +368,6 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -392,7 +382,6 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

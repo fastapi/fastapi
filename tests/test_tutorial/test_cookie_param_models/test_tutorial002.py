@@ -5,25 +5,16 @@ from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from tests.utils import (
-    needs_py310,
-    needs_pydanticv1,
-    needs_pydanticv2,
-    pydantic_snapshot,
-)
+from tests.utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39", marks=needs_pydanticv2),
-        pytest.param("tutorial002_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_an_py39", marks=needs_pydanticv2),
-        pytest.param("tutorial002_an_py310", marks=[needs_py310, needs_pydanticv2]),
-        pytest.param("tutorial002_pv1_py39", marks=needs_pydanticv1),
-        pytest.param("tutorial002_pv1_py310", marks=[needs_py310, needs_pydanticv1]),
-        pytest.param("tutorial002_pv1_an_py39", marks=needs_pydanticv1),
-        pytest.param("tutorial002_pv1_an_py310", marks=[needs_py310, needs_pydanticv1]),
+        pytest.param("tutorial002_py39"),
+        pytest.param("tutorial002_py310", marks=[needs_py310]),
+        pytest.param("tutorial002_an_py39"),
+        pytest.param("tutorial002_an_py310", marks=[needs_py310]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -62,31 +53,16 @@ def test_cookie_param_model_defaults(client: TestClient):
 def test_cookie_param_model_invalid(client: TestClient):
     response = client.get("/items/")
     assert response.status_code == 422
-    assert response.json() == pydantic_snapshot(
-        v2=snapshot(
+    assert response.json() == {
+        "detail": [
             {
-                "detail": [
-                    {
-                        "type": "missing",
-                        "loc": ["cookie", "session_id"],
-                        "msg": "Field required",
-                        "input": {},
-                    }
-                ]
+                "type": "missing",
+                "loc": ["cookie", "session_id"],
+                "msg": "Field required",
+                "input": {},
             }
-        ),
-        v1=snapshot(
-            {
-                "detail": [
-                    {
-                        "type": "value_error.missing",
-                        "loc": ["cookie", "session_id"],
-                        "msg": "field required",
-                    }
-                ]
-            }
-        ),
-    )
+        ]
+    }
 
 
 def test_cookie_param_model_extra(client: TestClient):
@@ -146,24 +122,13 @@ def test_openapi_schema(client: TestClient):
                                 "name": "fatebook_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": pydantic_snapshot(
-                                    v2=snapshot(
-                                        {
-                                            "anyOf": [
-                                                {"type": "string"},
-                                                {"type": "null"},
-                                            ],
-                                            "title": "Fatebook Tracker",
-                                        }
-                                    ),
-                                    v1=snapshot(
-                                        # TODO: remove when deprecating Pydantic v1
-                                        {
-                                            "type": "string",
-                                            "title": "Fatebook Tracker",
-                                        }
-                                    ),
-                                ),
+                                "schema": {
+                                    "anyOf": [
+                                        {"type": "string"},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Fatebook Tracker",
+                                },
                             },
                             {
                                 "name": "googall_tracker",
