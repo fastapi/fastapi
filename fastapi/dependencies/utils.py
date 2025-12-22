@@ -734,19 +734,21 @@ async def solve_dependencies(
         dependency_cache=dependency_cache,
     )
 
+
 if sys.hexversion >= 0x030A0000 and sys.hexversion < 0x030E0000:
 
     def _allows_none(field: ModelField) -> bool:
         origin = get_origin(field.type_)
-        return (origin is Union or origin is types.UnionType) and type(None) in get_args(
-            field.type_
-        )
+        return (origin is Union or origin is types.UnionType) and type(
+            None
+        ) in get_args(field.type_)
 
 else:
 
     def _allows_none(field: ModelField) -> bool:
         origin = get_origin(field.type_)
         return origin is Union and type(None) in get_args(field.type_)
+
 
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
