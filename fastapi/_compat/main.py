@@ -175,8 +175,10 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
 
     return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
 
+
 def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict[str, Any]]:
     return v2.omit_by_default(field_info=field_info)  # type: ignore[arg-type]
+
 
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
     v1_model_fields = [
