@@ -219,6 +219,13 @@ The fast food store has 8 processors (cashiers/cooks). While the concurrent burg
 
 But still, the final experience is not the best. 😞
 
+/// note
+
+This example focuses on an <abbr title="Input and Output">I/O</abbr>-bound scenario with significant waiting. Parallelism shines instead for <abbr title="Central Processing Unit">CPU</abbr>-bound work, where multiple workers actively perform computation at the same time.
+
+///
+
+
 ---
 
 This would be the parallel equivalent story for burgers. 🍔
