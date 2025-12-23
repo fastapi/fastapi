@@ -1,4 +1,4 @@
-# Scopes de OAuth2
+# Scopes de OAuth2 { #oauth2-scopes }
 
 Puedes usar scopes de OAuth2 directamente con **FastAPI**, están integrados para funcionar de manera fluida.
 
@@ -26,7 +26,7 @@ Pero si sabes que lo necesitas, o tienes curiosidad, sigue leyendo.
 
 ///
 
-## Scopes de OAuth2 y OpenAPI
+## Scopes de OAuth2 y OpenAPI { #oauth2-scopes-and-openapi }
 
 La especificación de OAuth2 define "scopes" como una lista de strings separados por espacios.
 
@@ -58,15 +58,15 @@ Para OAuth2 son solo strings.
 
 ///
 
-## Vista global
+## Vista global { #global-view }
 
 Primero, echemos un vistazo rápido a las partes que cambian desde los ejemplos en el **Tutorial - User Guide** principal para [OAuth2 con Password (y hashing), Bearer con tokens JWT](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Ahora usando scopes de OAuth2:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:125,129:135,140,156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Ahora revisemos esos cambios paso a paso.
 
-## Esquema de seguridad OAuth2
+## Esquema de seguridad OAuth2 { #oauth2-security-scheme }
 
 El primer cambio es que ahora estamos declarando el esquema de seguridad OAuth2 con dos scopes disponibles, `me` y `items`.
 
@@ -82,7 +82,7 @@ Este es el mismo mecanismo utilizado cuando das permisos al iniciar sesión con 
 
 <img src="/img/tutorial/security/image11.png">
 
-## Token JWT con scopes
+## Token JWT con scopes { #jwt-token-with-scopes }
 
 Ahora, modifica la *path operation* del token para devolver los scopes solicitados.
 
@@ -98,9 +98,9 @@ Pero en tu aplicación, por seguridad, deberías asegurarte de añadir solo los 
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[156] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
 
-## Declarar scopes en *path operations* y dependencias
+## Declarar scopes en *path operations* y dependencias { #declare-scopes-in-path-operations-and-dependencies }
 
 Ahora declaramos que la *path operation* para `/users/me/items/` requiere el scope `items`.
 
@@ -124,7 +124,7 @@ Lo estamos haciendo aquí para demostrar cómo **FastAPI** maneja scopes declara
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,140,171] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
 /// info | Información Técnica
 
@@ -136,7 +136,7 @@ Pero cuando importas `Query`, `Path`, `Depends`, `Security` y otros de `fastapi`
 
 ///
 
-## Usar `SecurityScopes`
+## Usar `SecurityScopes` { #use-securityscopes }
 
 Ahora actualiza la dependencia `get_current_user`.
 
@@ -152,7 +152,7 @@ Esta clase `SecurityScopes` es similar a `Request` (`Request` se usó para obten
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## Usar los `scopes`
+## Usar los `scopes` { #use-the-scopes }
 
 El parámetro `security_scopes` será del tipo `SecurityScopes`.
 
@@ -166,7 +166,7 @@ En esta excepción, incluimos los scopes requeridos (si los hay) como un string 
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
 
-## Verificar el `username` y la forma de los datos
+## Verificar el `username` y la forma de los datos { #verify-the-username-and-data-shape }
 
 Verificamos que obtenemos un `username`, y extraemos los scopes.
 
@@ -180,17 +180,17 @@ En lugar de, por ejemplo, un `dict`, o algo más, ya que podría romper la aplic
 
 También verificamos que tenemos un usuario con ese username, y si no, lanzamos esa misma excepción que creamos antes.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:128] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
 
-## Verificar los `scopes`
+## Verificar los `scopes` { #verify-the-scopes }
 
 Ahora verificamos que todos los scopes requeridos, por esta dependencia y todos los dependientes (incluyendo *path operations*), estén incluidos en los scopes proporcionados en el token recibido, de lo contrario, lanzamos una `HTTPException`.
 
 Para esto, usamos `security_scopes.scopes`, que contiene una `list` con todos estos scopes como `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[129:135] *}
+{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
 
-## Árbol de dependencias y scopes
+## Árbol de dependencias y scopes { #dependency-tree-and-scopes }
 
 Revisemos de nuevo este árbol de dependencias y los scopes.
 
@@ -223,7 +223,7 @@ Todo depende de los `scopes` declarados en cada *path operation* y cada dependen
 
 ///
 
-## Más detalles sobre `SecurityScopes`
+## Más detalles sobre `SecurityScopes` { #more-details-about-securityscopes }
 
 Puedes usar `SecurityScopes` en cualquier punto, y en múltiples lugares, no tiene que ser en la dependencia "raíz".
 
@@ -233,7 +233,7 @@ Debido a que `SecurityScopes` tendrá todos los scopes declarados por dependient
 
 Serán verificados independientemente para cada *path operation*.
 
-## Revisa
+## Revisa { #check-it }
 
 Si abres la documentación de la API, puedes autenticarte y especificar qué scopes deseas autorizar.
 
@@ -245,7 +245,7 @@ Y si seleccionas el scope `me` pero no el scope `items`, podrás acceder a `/use
 
 Eso es lo que pasaría a una aplicación de terceros que intentara acceder a una de estas *path operations* con un token proporcionado por un usuario, dependiendo de cuántos permisos el usuario otorgó a la aplicación.
 
-## Acerca de las integraciones de terceros
+## Acerca de las integraciones de terceros { #about-third-party-integrations }
 
 En este ejemplo estamos usando el flujo de OAuth2 "password".
 
@@ -269,6 +269,6 @@ Pero al final, están implementando el mismo estándar OAuth2.
 
 **FastAPI** incluye utilidades para todos estos flujos de autenticación OAuth2 en `fastapi.security.oauth2`.
 
-## `Security` en `dependencies` del decorador
+## `Security` en `dependencies` del decorador { #security-in-decorator-dependencies }
 
 De la misma manera que puedes definir una `list` de `Depends` en el parámetro `dependencies` del decorador (como se explica en [Dependencias en decoradores de path operation](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), también podrías usar `Security` con `scopes` allí.

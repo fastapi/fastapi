@@ -17,5 +17,5 @@ griffe-warnings-deprecated==1.1.0
 # For griffe, it formats with black
 black==25.1.0
 mkdocs-macros-plugin==1.4.1
-markdown-include-variants==0.0.7
+markdown-include-variants==0.0.8
 python-slugify==8.0.4

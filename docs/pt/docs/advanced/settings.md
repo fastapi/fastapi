@@ -62,7 +62,7 @@ Você pode usar as mesmas funcionalidades e ferramentas de validação que usa e
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -74,7 +74,7 @@ No Pydantic v1 você importaria `BaseSettings` diretamente de `pydantic` em vez 
 
 ///
 
-{* ../../docs_src/settings/tutorial001_pv1.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
 
 ////
 
@@ -92,7 +92,7 @@ Em seguida, ele converterá e validará os dados. Assim, quando você usar esse 
 
 Depois você pode usar o novo objeto `settings` na sua aplicação:
 
-{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
 
 ### Executar o servidor { #run-the-server }
 
@@ -126,11 +126,11 @@ Você pode colocar essas configurações em outro arquivo de módulo como visto 
 
 Por exemplo, você poderia ter um arquivo `config.py` com:
 
-{* ../../docs_src/settings/app01/config.py *}
+{* ../../docs_src/settings/app01_py39/config.py *}
 
 E então usá-lo em um arquivo `main.py`:
 
-{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
 
 /// tip | Dica
 
@@ -148,7 +148,7 @@ Isso pode ser especialmente útil durante os testes, pois é muito fácil sobres
 
 Vindo do exemplo anterior, seu arquivo `config.py` poderia ser assim:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
 
 Perceba que agora não criamos uma instância padrão `settings = Settings()`.
 
@@ -174,7 +174,7 @@ E então podemos exigi-la na *função de operação de rota* como dependência 
 
 Então seria muito fácil fornecer um objeto de configurações diferente durante os testes criando uma sobrescrita de dependência para `get_settings`:
 
-{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
 
 Na sobrescrita da dependência definimos um novo valor para `admin_email` ao criar o novo objeto `Settings`, e então retornamos esse novo objeto.
 
@@ -217,7 +217,7 @@ E então atualizar seu `config.py` com:
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/settings/app03_an/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Dica
 
@@ -229,7 +229,7 @@ O atributo `model_config` é usado apenas para configuração do Pydantic. Você
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/settings/app03_an/config_pv1.py hl[9:10] *}
+{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
 
 /// tip | Dica
 

@@ -2,7 +2,7 @@
 
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
@@ -128,7 +128,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 Here the query parameter `needy` is a required query parameter of type `str`.
 

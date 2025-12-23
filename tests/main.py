@@ -1,5 +1,5 @@
 import http
-from typing import Dict, FrozenSet, List, Optional
+from typing import Optional
 
 from fastapi import FastAPI, Path, Query
 
@@ -190,14 +190,14 @@ def get_query_param_required_type(query: int = Query()):
 
 
 @app.get("/query/mapping-params")
-def get_mapping_query_params(queries: Dict[str, str] = Query({})):
+def get_mapping_query_params(queries: dict[str, str] = Query({})):
     return {"queries": queries}
 
 
 @app.get("/query/mixed-params")
 def get_mixed_mapping_query_params(
-    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
-    mapping_query: Dict[str, str] = Query(),
+    sequence_mapping_queries: dict[str, list[int]] = Query({}),
+    mapping_query: dict[str, str] = Query(),
     query: str = Query(),
 ):
     return {
@@ -210,15 +210,15 @@ def get_mixed_mapping_query_params(
 
 
 @app.get("/query/mapping-sequence-params")
-def get_sequence_mapping_query_params(queries: Dict[str, List[int]] = Query({})):
+def get_sequence_mapping_query_params(queries: dict[str, list[int]] = Query({})):
     return {"queries": queries}
 
 
 @app.get("/query/mixed-type-params")
 def get_mixed_mapping_mixed_type_query_params(
-    sequence_mapping_queries: Dict[str, List[int]] = Query({}),
-    mapping_query_str: Dict[str, str] = Query({}),
-    mapping_query_int: Dict[str, int] = Query({}),
+    sequence_mapping_queries: dict[str, list[int]] = Query({}),
+    mapping_query_str: dict[str, str] = Query({}),
+    mapping_query_int: dict[str, int] = Query({}),
     query: int = Query(),
 ):
     return {
@@ -237,15 +237,15 @@ def get_enum_status_code():
 
 
 @app.get("/query/frozenset")
-def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
+def get_query_type_frozenset(query: frozenset[int] = Query(...)):
     return ",".join(map(str, sorted(query)))
 
 
 @app.get("/query/list")
-def get_query_list(device_ids: List[int] = Query()) -> List[int]:
+def get_query_list(device_ids: list[int] = Query()) -> list[int]:
     return device_ids
 
 
 @app.get("/query/list-default")
-def get_query_list_default(device_ids: List[int] = Query(default=[])) -> List[int]:
+def get_query_list_default(device_ids: list[int] = Query(default=[])) -> list[int]:
     return device_ids

@@ -1,5 +1,6 @@
 import sys
-from typing import Any, Dict, List, Literal, Sequence, Tuple, Type, Union
+from collections.abc import Sequence
+from typing import Any, Literal, Union
 
 from fastapi.types import ModelNameMap
 
@@ -60,14 +61,14 @@ if sys.version_info >= (3, 14):
 
     def get_definitions(
         *,
-        fields: List[ModelField],
+        fields: list[ModelField],
         model_name_map: ModelNameMap,
         separate_input_output_schemas: bool = True,
-    ) -> Tuple[
-        Dict[
-            Tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+    ) -> tuple[
+        dict[
+            tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
         ],
-        Dict[str, Dict[str, Any]],
+        dict[str, dict[str, Any]],
     ]:
         return {}, {}  # pragma: no cover
 
@@ -94,14 +95,14 @@ else:
     from .v1 import get_definitions as get_definitions
 
 
-RequestErrorModel: Type[BaseModel] = create_model("Request")
+RequestErrorModel: type[BaseModel] = create_model("Request")
 
 
-def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
-    use_errors: List[Any] = []
+def _normalize_errors(errors: Sequence[Any]) -> list[dict[str, Any]]:
+    use_errors: list[Any] = []
     for error in errors:
         if isinstance(error, ErrorWrapper):
-            new_errors = ValidationError(  # type: ignore[call-arg]
+            new_errors = ValidationError(
                 errors=[error], model=RequestErrorModel
             ).errors()
             use_errors.extend(new_errors)
@@ -113,9 +114,9 @@ def _normalize_errors(errors: Sequence[Any]) -> List[Dict[str, Any]]:
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: Tuple[Union[str, int], ...]
-) -> List[Dict[str, Any]]:
-    updated_loc_errors: List[Any] = [
+    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+) -> list[dict[str, Any]]:
+    updated_loc_errors: list[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())}
         for err in _normalize_errors(errors)
     ]

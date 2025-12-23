@@ -1,8 +1,5 @@
 from typing import (
     Any,
-    Dict,
-    List,
-    Tuple,
     Union,
 )
 
@@ -34,10 +31,10 @@ class ModelField(Protocol):
     def validate(
         self,
         value: Any,
-        values: Dict[str, Any] = {},  # noqa: B006
+        values: dict[str, Any] = {},  # noqa: B006
         *,
-        loc: Tuple[Union[int, str], ...] = (),
-    ) -> Tuple[Any, Union[List[Dict[str, Any]], None]]: ...
+        loc: tuple[Union[int, str], ...] = (),
+    ) -> tuple[Any, Union[list[dict[str, Any]], None]]: ...
 
     def serialize(
         self,
