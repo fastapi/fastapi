@@ -5,7 +5,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 app = FastAPI()
 
-security = HTTPBasic()
+security = HTTPBasic(realm="simple")
 
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
@@ -23,7 +23,7 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Basic"},
+            headers={"WWW-Authenticate": 'Basic realm="simple"'},
         )
     return credentials.username
 
