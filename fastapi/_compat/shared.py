@@ -128,7 +128,7 @@ def field_annotation_is_scalar_sequence(annotation: Union[type[Any], None]) -> b
 
 
 def field_annotation_is_scalar_mapping(
-    annotation: Union[Type[Any], None],
+    annotation: Union[type[Any], None],
 ) -> bool:
     origin = get_origin(annotation)
     if origin is Annotated:
@@ -149,7 +149,7 @@ def field_annotation_is_scalar_mapping(
 
 
 def field_annotation_is_scalar_sequence_mapping(
-    annotation: Union[Type[Any], None],
+    annotation: Union[type[Any], None],
 ) -> bool:
     origin = get_origin(annotation)
     if origin is Annotated:
