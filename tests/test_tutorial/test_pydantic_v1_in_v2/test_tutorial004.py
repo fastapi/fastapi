@@ -1,4 +1,5 @@
 import sys
+import warnings
 
 import pytest
 from inline_snapshot import snapshot
@@ -24,7 +25,13 @@ from ...utils import needs_py310
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.pydantic_v1_in_v2.{request.param}")
+    with warnings.catch_warnings(record=True):
+        warnings.filterwarnings(
+            "ignore",
+            message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
+            category=DeprecationWarning,
+        )
+        mod = importlib.import_module(f"docs_src.pydantic_v1_in_v2.{request.param}")
 
     c = TestClient(mod.app)
     return c

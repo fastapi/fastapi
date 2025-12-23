@@ -21,10 +21,28 @@ repos:
       - id: ruff-format
   - repo: local
     hooks:
-      - id: local-script
+      - id: add-permalinks-pages
         language: unsupported
-        name: local script
+        name: add-permalinks-pages
         entry: uv run ./scripts/docs.py add-permalinks-pages
         args:
           - --update-existing
         files: ^docs/en/docs/.*\.md$
+      - id: generate-readme
+        language: unsupported
+        name: generate README.md from index.md
+        entry: uv run ./scripts/docs.py generate-readme
+        files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
+        pass_filenames: false
+      - id: update-languages
+        language: unsupported
+        name: update languages
+        entry: uv run ./scripts/docs.py update-languages
+        files: ^docs/.*|scripts/docs\.py$
+        pass_filenames: false
+      - id: ensure-non-translated
+        language: unsupported
+        name: ensure non-translated files are not modified
+        entry: uv run ./scripts/docs.py ensure-non-translated
+        files: ^docs/(?!en/).*|^scripts/docs\.py$
+        pass_filenames: false

@@ -7,6 +7,17 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 👷 Run CodSpeed tests in parallel to other tests to speed up CI. PR [#14586](https://github.com/fastapi/fastapi/pull/14586) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update scripts and pre-commit to autofix files. PR [#14585](https://github.com/fastapi/fastapi/pull/14585) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.127.0
+
+### Breaking Changes
+
+* 🔊 Add deprecation warnings when using `pydantic.v1`. PR [#14583](https://github.com/fastapi/fastapi/pull/14583) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🔧 Add LLM prompt file for Korean, generated from the existing translations. PR [#14546](https://github.com/fastapi/fastapi/pull/14546) by [@tiangolo](https://github.com/tiangolo).
