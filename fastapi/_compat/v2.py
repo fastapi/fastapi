@@ -4,18 +4,20 @@ from collections.abc import Sequence
 from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
-from typing import (
-    Annotated,
-    Any,
-    Union,
-    cast,
-    Callable
-)
+from typing import Annotated, Any, Callable, Union, cast
 
 from fastapi._compat import may_v1, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
-from pydantic import BaseModel, OnErrorOmit, TypeAdapter, WrapValidator, create_model, ConfigDict, Field
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    OnErrorOmit,
+    TypeAdapter,
+    WrapValidator,
+    create_model,
+)
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError

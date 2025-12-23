@@ -1,5 +1,3 @@
-from typing import Optional
-
 import pytest
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
