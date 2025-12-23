@@ -10,6 +10,7 @@ from typing import (
 )
 from weakref import WeakKeyDictionary
 
+
 import fastapi
 from fastapi._compat import (
     BaseConfig,
