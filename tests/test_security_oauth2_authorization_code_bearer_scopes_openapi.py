@@ -1,12 +1,11 @@
 # Ref: https://github.com/fastapi/fastapi/issues/14454
 
-from typing import Optional
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, FastAPI, Security
 from fastapi.security import OAuth2AuthorizationCodeBearer
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from typing_extensions import Annotated
 
 oauth2_scheme = OAuth2AuthorizationCodeBearer(
     authorizationUrl="authorize",

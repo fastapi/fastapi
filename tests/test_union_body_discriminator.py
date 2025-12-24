@@ -1,16 +1,13 @@
-from typing import Any, Dict, Union
+from typing import Annotated, Any, Union
 
 from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated, Literal
-
-from .utils import needs_pydanticv2
+from typing_extensions import Literal
 
 
-@needs_pydanticv2
 def test_discriminator_pydantic_v2() -> None:
     from pydantic import Tag
 
@@ -32,7 +29,7 @@ def test_discriminator_pydantic_v2() -> None:
     @app.post("/items/")
     def save_union_body_discriminator(
         item: Item, q: Annotated[str, Field(description="Query string")]
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         return {"item": item}
 
     client = TestClient(app)

@@ -1,4 +1,5 @@
-from typing import List, Union
+import warnings
+from typing import Union
 
 import pytest
 from fastapi import FastAPI
@@ -191,7 +192,7 @@ def response_model_filtering_model_annotation_submodel_return_submodel() -> DBUs
     return DBUser(name="John", surname="Doe", password_hash="secret")
 
 
-@app.get("/response_model_list_of_model-no_annotation", response_model=List[User])
+@app.get("/response_model_list_of_model-no_annotation", response_model=list[User])
 def response_model_list_of_model_no_annotation():
     return [
         DBUser(name="John", surname="Doe", password_hash="secret"),
@@ -200,7 +201,7 @@ def response_model_list_of_model_no_annotation():
 
 
 @app.get("/no_response_model-annotation_list_of_model")
-def no_response_model_annotation_list_of_model() -> List[User]:
+def no_response_model_annotation_list_of_model() -> list[User]:
     return [
         DBUser(name="John", surname="Doe", password_hash="secret"),
         DBUser(name="Jane", surname="Does", password_hash="secret2"),
@@ -208,7 +209,7 @@ def no_response_model_annotation_list_of_model() -> List[User]:
 
 
 @app.get("/no_response_model-annotation_forward_ref_list_of_model")
-def no_response_model_annotation_forward_ref_list_of_model() -> "List[User]":
+def no_response_model_annotation_forward_ref_list_of_model() -> "list[User]":
     return [
         DBUser(name="John", surname="Doe", password_hash="secret"),
         DBUser(name="Jane", surname="Does", password_hash="secret2"),
@@ -521,11 +522,14 @@ def test_invalid_response_model_field_pv1():
     class Model(v1.BaseModel):
         foo: str
 
-    with pytest.raises(FastAPIError) as e:
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
 
-        @app.get("/")
-        def read_root() -> Union[Response, Model, None]:
-            return Response(content="Foo")  # pragma: no cover
+        with pytest.raises(FastAPIError) as e:
+
+            @app.get("/")
+            def read_root() -> Union[Response, Model, None]:
+                return Response(content="Foo")  # pragma: no cover
 
     assert "valid Pydantic field type" in e.value.args[0]
     assert "parameter response_model=None" in e.value.args[0]

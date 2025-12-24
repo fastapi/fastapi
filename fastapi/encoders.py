@@ -14,7 +14,7 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Annotated, Any, Callable, Optional, Union
 from uuid import UUID
 
 from annotated_doc import Doc
@@ -24,7 +24,6 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated
 
 from ._compat import Url, _is_undefined, _model_dump
 
@@ -61,7 +60,7 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
         return float(dec_value)
 
 
-ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
+ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
     may_v1.Color: str,
@@ -98,9 +97,9 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]],
-) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
-    encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
+    type_encoder_map: dict[Any, Callable[[Any], Any]],
+) -> dict[Callable[[Any], Any], tuple[Any, ...]]:
+    encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultdict(
         tuple
     )
     for type_, encoder in type_encoder_map.items():
@@ -180,7 +179,7 @@ def jsonable_encoder(
         ),
     ] = False,
     custom_encoder: Annotated[
-        Optional[Dict[Any, Callable[[Any], Any]]],
+        Optional[dict[Any, Callable[[Any], Any]]],
         Doc(
             """
             Pydantic's `custom_encoder` parameter, passed to Pydantic models to define
@@ -227,13 +226,13 @@ def jsonable_encoder(
         exclude = set(exclude)
     if isinstance(obj, (BaseModel, may_v1.BaseModel)):
         # TODO: remove when deprecating Pydantic v1
-        encoders: Dict[Any, Any] = {}
+        encoders: dict[Any, Any] = {}
         if isinstance(obj, may_v1.BaseModel):
-            encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
+            encoders = getattr(obj.__config__, "json_encoders", {})
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
-            obj,
+            obj,  # type: ignore[arg-type]
             mode="json",
             include=include,
             exclude=exclude,
@@ -336,7 +335,7 @@ def jsonable_encoder(
     try:
         data = dict(obj)
     except Exception as e:
-        errors: List[Exception] = []
+        errors: list[Exception] = []
         errors.append(e)
         try:
             data = vars(obj)

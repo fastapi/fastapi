@@ -29,15 +29,15 @@ Por exemplo, você poderia utilizar isso para criar uma sessão do banco de dado
 
 Apenas o código anterior à declaração com `yield` e o código contendo essa declaração são executados antes de criar uma resposta:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
 
 O valor gerado (yielded) é o que é injetado nas *operações de rota* e outras dependências:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
 
 O código após o `yield` é executado após a resposta:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
 
 /// tip | Dica
 
@@ -57,7 +57,7 @@ Então, você pode procurar por essa exceção específica dentro da dependênci
 
 Da mesma forma, você pode utilizar `finally` para garantir que os passos de saída são executados, com ou sem exceções.
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
 
 ## Subdependências com `yield` { #sub-dependencies-with-yield }
 
@@ -269,7 +269,7 @@ Em Python, você pode criar Gerenciadores de Contexto ao <a href="https://docs.p
 Você também pode usá-los dentro de dependências com `yield` do **FastAPI** ao utilizar
 `with` ou `async with` dentro da função da dependência:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
 
 /// tip | Dica
 

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -12,7 +12,7 @@ class Item(BaseModel):
     dup_size: int
     dup_description: Union[str, None] = None
     dup_sub: SubItem
-    dup_multi: List[SubItem] = []
+    dup_multi: list[SubItem] = []
 
 
 class ItemInList(BaseModel):

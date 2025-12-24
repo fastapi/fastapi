@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 import pytest
 from fastapi import FastAPI, Query
@@ -16,7 +16,7 @@ def test_invalid_sequence():
             title: str
 
         @app.get("/items/")
-        def read_items(q: List[Item] = Query(default=None)):
+        def read_items(q: list[Item] = Query(default=None)):
             pass  # pragma: no cover
 
 
@@ -31,7 +31,7 @@ def test_invalid_tuple():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Tuple[Item, Item] = Query(default=None)):
+        def read_items(q: tuple[Item, Item] = Query(default=None)):
             pass  # pragma: no cover
 
 
@@ -46,7 +46,7 @@ def test_invalid_dict():
             title: str
 
         @app.get("/items/")
-        def read_items(q: Dict[str, Item] = Query(default=None)):
+        def read_items(q: dict[str, Item] = Query(default=None)):
             pass  # pragma: no cover
 
 

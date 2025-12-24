@@ -1,12 +1,15 @@
 import sys
-from typing import List, Optional
+import warnings
+from typing import Optional
 
 import pytest
 
-from tests.utils import pydantic_snapshot, skip_module_if_py_gte_314
+from tests.utils import skip_module_if_py_gte_314
 
 if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
+
+from typing import Annotated
 
 from fastapi import FastAPI
 from fastapi._compat.v1 import BaseModel
@@ -21,7 +24,6 @@ from fastapi.temp_pydantic_v1_params import (
 )
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from typing_extensions import Annotated
 
 
 class Item(BaseModel):
@@ -32,94 +34,90 @@ class Item(BaseModel):
 
 app = FastAPI()
 
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
 
-@app.get("/items/{item_id}")
-def get_item_with_path(
-    item_id: Annotated[int, Path(title="The ID of the item", ge=1, le=1000)],
-):
-    return {"item_id": item_id}
+    @app.get("/items/{item_id}")
+    def get_item_with_path(
+        item_id: Annotated[int, Path(title="The ID of the item", ge=1, le=1000)],
+    ):
+        return {"item_id": item_id}
 
+    @app.get("/items/")
+    def get_items_with_query(
+        q: Annotated[
+            Optional[str],
+            Query(min_length=3, max_length=50, pattern="^[a-zA-Z0-9 ]+$"),
+        ] = None,
+        skip: Annotated[int, Query(ge=0)] = 0,
+        limit: Annotated[int, Query(ge=1, le=100, examples=[5])] = 10,
+    ):
+        return {"q": q, "skip": skip, "limit": limit}
 
-@app.get("/items/")
-def get_items_with_query(
-    q: Annotated[
-        Optional[str], Query(min_length=3, max_length=50, pattern="^[a-zA-Z0-9 ]+$")
-    ] = None,
-    skip: Annotated[int, Query(ge=0)] = 0,
-    limit: Annotated[int, Query(ge=1, le=100, examples=[5])] = 10,
-):
-    return {"q": q, "skip": skip, "limit": limit}
+    @app.get("/users/")
+    def get_user_with_header(
+        x_custom: Annotated[Optional[str], Header()] = None,
+        x_token: Annotated[Optional[str], Header(convert_underscores=True)] = None,
+    ):
+        return {"x_custom": x_custom, "x_token": x_token}
 
+    @app.get("/cookies/")
+    def get_cookies(
+        session_id: Annotated[Optional[str], Cookie()] = None,
+        tracking_id: Annotated[Optional[str], Cookie(min_length=10)] = None,
+    ):
+        return {"session_id": session_id, "tracking_id": tracking_id}
 
-@app.get("/users/")
-def get_user_with_header(
-    x_custom: Annotated[Optional[str], Header()] = None,
-    x_token: Annotated[Optional[str], Header(convert_underscores=True)] = None,
-):
-    return {"x_custom": x_custom, "x_token": x_token}
+    @app.post("/items/")
+    def create_item(
+        item: Annotated[
+            Item,
+            Body(
+                examples=[{"name": "Foo", "price": 35.4, "description": "The Foo item"}]
+            ),
+        ],
+    ):
+        return {"item": item}
 
+    @app.post("/items-embed/")
+    def create_item_embed(
+        item: Annotated[Item, Body(embed=True)],
+    ):
+        return {"item": item}
 
-@app.get("/cookies/")
-def get_cookies(
-    session_id: Annotated[Optional[str], Cookie()] = None,
-    tracking_id: Annotated[Optional[str], Cookie(min_length=10)] = None,
-):
-    return {"session_id": session_id, "tracking_id": tracking_id}
+    @app.put("/items/{item_id}")
+    def update_item(
+        item_id: Annotated[int, Path(ge=1)],
+        item: Annotated[Item, Body()],
+        importance: Annotated[int, Body(gt=0, le=10)],
+    ):
+        return {"item": item, "importance": importance}
 
+    @app.post("/form-data/")
+    def submit_form(
+        username: Annotated[str, Form(min_length=3, max_length=50)],
+        password: Annotated[str, Form(min_length=8)],
+        email: Annotated[Optional[str], Form()] = None,
+    ):
+        return {"username": username, "password": password, "email": email}
 
-@app.post("/items/")
-def create_item(
-    item: Annotated[
-        Item,
-        Body(examples=[{"name": "Foo", "price": 35.4, "description": "The Foo item"}]),
-    ],
-):
-    return {"item": item}
+    @app.post("/upload/")
+    def upload_file(
+        file: Annotated[bytes, File()],
+        description: Annotated[Optional[str], Form()] = None,
+    ):
+        return {"file_size": len(file), "description": description}
 
-
-@app.post("/items-embed/")
-def create_item_embed(
-    item: Annotated[Item, Body(embed=True)],
-):
-    return {"item": item}
-
-
-@app.put("/items/{item_id}")
-def update_item(
-    item_id: Annotated[int, Path(ge=1)],
-    item: Annotated[Item, Body()],
-    importance: Annotated[int, Body(gt=0, le=10)],
-):
-    return {"item": item, "importance": importance}
-
-
-@app.post("/form-data/")
-def submit_form(
-    username: Annotated[str, Form(min_length=3, max_length=50)],
-    password: Annotated[str, Form(min_length=8)],
-    email: Annotated[Optional[str], Form()] = None,
-):
-    return {"username": username, "password": password, "email": email}
-
-
-@app.post("/upload/")
-def upload_file(
-    file: Annotated[bytes, File()],
-    description: Annotated[Optional[str], Form()] = None,
-):
-    return {"file_size": len(file), "description": description}
-
-
-@app.post("/upload-multiple/")
-def upload_multiple_files(
-    files: Annotated[List[bytes], File()],
-    note: Annotated[str, Form()] = "",
-):
-    return {
-        "file_count": len(files),
-        "total_size": sum(len(f) for f in files),
-        "note": note,
-    }
+    @app.post("/upload-multiple/")
+    def upload_multiple_files(
+        files: Annotated[list[bytes], File()],
+        note: Annotated[str, Form()] = "",
+    ):
+        return {
+            "file_count": len(files),
+            "total_size": sum(len(f) for f in files),
+            "note": note,
+        }
 
 
 client = TestClient(app)
@@ -210,10 +208,10 @@ def test_header_params_none():
 
 # Cookie parameter tests
 def test_cookie_params():
-    with TestClient(app) as client:
-        client.cookies.set("session_id", "abc123")
-        client.cookies.set("tracking_id", "1234567890abcdef")
-        response = client.get("/cookies/")
+    with TestClient(app) as test_client:
+        test_client.cookies.set("session_id", "abc123")
+        test_client.cookies.set("tracking_id", "1234567890abcdef")
+        response = test_client.get("/cookies/")
     assert response.status_code == 200
     assert response.json() == {
         "session_id": "abc123",
@@ -222,9 +220,9 @@ def test_cookie_params():
 
 
 def test_cookie_tracking_id_too_short():
-    with TestClient(app) as client:
-        client.cookies.set("tracking_id", "short")
-        response = client.get("/cookies/")
+    with TestClient(app) as test_client:
+        test_client.cookies.set("tracking_id", "short")
+        response = test_client.get("/cookies/")
     assert response.status_code == 422
     assert response.json() == snapshot(
         {
@@ -587,23 +585,14 @@ def test_openapi_schema():
                             "required": True,
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "title": "Body",
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "title": "Body",
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
-                                                    }
-                                                ],
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                    }
                                 }
                             },
                         },
@@ -808,23 +797,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/json": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_create_item_embed_items_embed__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_create_item_embed_items_embed__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -854,23 +834,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "application/x-www-form-urlencoded": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_submit_form_form_data__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_submit_form_form_data__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -900,23 +871,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "multipart/form-data": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_upload_file_upload__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_upload_file_upload__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    },
                                 }
                             },
                             "required": True,
@@ -946,23 +908,14 @@ def test_openapi_schema():
                         "requestBody": {
                             "content": {
                                 "multipart/form-data": {
-                                    "schema": pydantic_snapshot(
-                                        v1=snapshot(
+                                    "schema": {
+                                        "allOf": [
                                             {
                                                 "$ref": "#/components/schemas/Body_upload_multiple_files_upload_multiple__post"
                                             }
-                                        ),
-                                        v2=snapshot(
-                                            {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/components/schemas/Body_upload_multiple_files_upload_multiple__post"
-                                                    }
-                                                ],
-                                                "title": "Body",
-                                            }
-                                        ),
-                                    ),
+                                        ],
+                                        "title": "Body",
+                                    }
                                 }
                             },
                             "required": True,
@@ -989,21 +942,12 @@ def test_openapi_schema():
             "components": {
                 "schemas": {
                     "Body_create_item_embed_items_embed__post": {
-                        "properties": pydantic_snapshot(
-                            v1=snapshot(
-                                {"item": {"$ref": "#/components/schemas/Item"}}
-                            ),
-                            v2=snapshot(
-                                {
-                                    "item": {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                    }
-                                }
-                            ),
-                        ),
+                        "properties": {
+                            "item": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "title": "Item",
+                            }
+                        },
                         "type": "object",
                         "required": ["item"],
                         "title": "Body_create_item_embed_items_embed__post",
@@ -1029,17 +973,10 @@ def test_openapi_schema():
                     },
                     "Body_update_item_items__item_id__put": {
                         "properties": {
-                            "item": pydantic_snapshot(
-                                v1=snapshot({"$ref": "#/components/schemas/Item"}),
-                                v2=snapshot(
-                                    {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                    }
-                                ),
-                            ),
+                            "item": {
+                                "allOf": [{"$ref": "#/components/schemas/Item"}],
+                                "title": "Item",
+                            },
                             "importance": {
                                 "type": "integer",
                                 "maximum": 10.0,
