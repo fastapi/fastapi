@@ -45,6 +45,60 @@ Inside of your *path operation function*, pass your task function to the *backgr
 * Any sequence of arguments that should be passed to the task function in order (`email`).
 * Any keyword arguments that should be passed to the task function (`message="some notification"`).
 
+## Important: Exception Handling
+
+Background tasks run **after** the response is sent. If an exception occurs in a background task, it won't affect the response (which already succeeded), and **the exception will not be propagated to the request handler and may go unnoticed unless explicitly handled (e.g. logging, retries, alerts)**.
+
+This is expected behavior, but it is easy to overlook when building production systems.
+
+### Silent Failure Example
+```python
+def send_email(email: str):
+    # If this fails, the exception goes unnoticed
+    smtp_client.send(to=email, subject="Hello")
+    # User gets 200 OK, but email may never be sent!
+
+@app.post("/notify/")
+async def notify(background_tasks: BackgroundTasks, email: str):
+    background_tasks.add_task(send_email, email)
+    return {"message": "Notification sent"}  
+    # Returns success even if email fails!
+```
+
+### Proper Error Handling
+```python
+import logging
+
+logger = logging.getLogger(__name__)
+
+def send_email(email: str):
+    try:
+        smtp_client.send(to=email, subject="Hello")
+        logger.info(f"Email sent successfully to {email}")
+    except Exception as e:
+        # Now the error is visible
+        logger.error(f"Failed to send email to {email}: {e}")
+        # You can: retry, alert ops, save to dead-letter queue, etc.
+
+@app.post("/notify/")
+async def notify(background_tasks: BackgroundTasks, email: str):
+    background_tasks.add_task(send_email, email)
+    return {"message": "Notification queued"}
+```
+
+This example uses logging for simplicity. In production, you might also:
+
+- Trigger retries
+- Notify operators
+- Persist failures for later inspection
+
+!!! tip
+    For production systems with complex background jobs, consider:
+    
+    - [Celery](https://docs.celeryq.dev) - Distributed task queue
+    - [arq](https://arq-docs.helpmanual.io/) - Async task queue for Python
+    - [Dramatiq](https://dramatiq.io/) - Fast and reliable task processing
+
 ## Dependency Injection { #dependency-injection }
 
 Using `BackgroundTasks` also works with the dependency injection system, you can declare a parameter of type `BackgroundTasks` at multiple levels: in a *path operation function*, in a dependency (dependable), in a sub-dependency, etc.
