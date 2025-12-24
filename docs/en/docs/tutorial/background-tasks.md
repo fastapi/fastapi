@@ -45,13 +45,13 @@ Inside of your *path operation function*, pass your task function to the *backgr
 * Any sequence of arguments that should be passed to the task function in order (`email`).
 * Any keyword arguments that should be passed to the task function (`message="some notification"`).
 
-## Important: Exception Handling
+## Important: Exception Handling { #important-exception-handling }
 
 Background tasks run **after** the response is sent. If an exception occurs in a background task, it won't affect the response (which already succeeded), and **the exception will not be propagated to the request handler and may go unnoticed unless explicitly handled (e.g. logging, retries, alerts)**.
 
 This is expected behavior, but it is easy to overlook when building production systems.
 
-### Silent Failure Example
+### Silent Failure Example { #silent-failure-example }
 ```python
 def send_email(email: str):
     # If this fails, the exception goes unnoticed
@@ -61,11 +61,11 @@ def send_email(email: str):
 @app.post("/notify/")
 async def notify(background_tasks: BackgroundTasks, email: str):
     background_tasks.add_task(send_email, email)
-    return {"message": "Notification sent"}  
+    return {"message": "Notification sent"}
     # Returns success even if email fails!
 ```
 
-### Proper Error Handling
+### Proper Error Handling { #proper-error-handling }
 ```python
 import logging
 
@@ -94,7 +94,7 @@ This example uses logging for simplicity. In production, you might also:
 
 !!! tip
     For production systems with complex background jobs, consider:
-    
+
     - [Celery](https://docs.celeryq.dev) - Distributed task queue
     - [arq](https://arq-docs.helpmanual.io/) - Async task queue for Python
     - [Dramatiq](https://dramatiq.io/) - Fast and reliable task processing
