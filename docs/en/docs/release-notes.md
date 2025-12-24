@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for de (update-outdated). PR [#14581](https://github.com/fastapi/fastapi/pull/14581) by [@nilslindemann](https://github.com/nilslindemann).
+
 ### Internal
 
 * 👷 Update secrets check. PR [#14592](https://github.com/fastapi/fastapi/pull/14592) by [@tiangolo](https://github.com/tiangolo).
