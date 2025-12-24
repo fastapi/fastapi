@@ -8,7 +8,6 @@ Linuxコンテナの使用には、**セキュリティ**、**反復可能性（
 
 /// tip
 
-TODO: なぜか遷移できない
 お急ぎで、すでにこれらの情報をご存じですか？ [以下の`Dockerfile`の箇所👇](#build-a-docker-image-for-fastapi)へジャンプしてください。
 
 ///
@@ -100,7 +99,7 @@ Docker Hubは 多くのツールや環境、データベース、アプリケー
 
 しかし、**少なくとも1つの実行中のプロセス**がなければ、実行中のコンテナを持つことはできないです。メイン・プロセスが停止すれば、コンテナも停止します。
 
-## Build a Docker Image for FastAPI
+## Build a Docker Image for FastAPI { #build-a-docker-image-for-fastapi }
 
 ということで、何か作りましょう！🚀
 
