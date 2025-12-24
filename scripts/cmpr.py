@@ -476,7 +476,9 @@ def process_one_file(
     en_doc_path = Path(en_doc_path_str)
     lang_doc_path = Path(lang_doc_path_str)
     if not en_doc_path.exists():
-        print(f"❌🔎 {en_doc_path_str} - doesn't exist")
+        print(
+            f"{'❌🔎 ' if config.interactive else ''}{en_doc_path_str} - doesn't exist"
+        )
         return False
 
     en_doc_text = en_doc_path.read_text(encoding="utf-8")
@@ -513,7 +515,7 @@ def process_one_file(
             )
 
     except CompareError as e:
-        print(f"❔❌ {lang_doc_path_str} Error: {e}")
+        print(f"{'❔❌ ' if config.interactive else ''}{lang_doc_path_str} Error: {e}")
         if not config.interactive:
             return False
         subprocess.run([VSCODE_COMMAND, "--diff", lang_doc_path_str, en_doc_path_str])
@@ -529,7 +531,9 @@ def process_one_file(
         raise Retry() from None
 
     if lang_doc_text_orig != lang_doc_text:
-        print(f"❔🆚 {lang_doc_path_str} - non-empty diff")
+        print(
+            f"{'❔🆚 ' if config.interactive else ''}{lang_doc_path_str} - non-empty diff"
+        )
         if not config.interactive:
             return False
         tmp_path = ROOT / TMP_DOCS_PATH / Path(lang_doc_path_str)
@@ -547,7 +551,7 @@ def process_one_file(
                 print(f"❌ {lang_doc_path_str} skipped with non-empty diff")
                 return
 
-    print(f"✅ {lang_doc_path_str}")
+    print(f"{'✅ ' if config.interactive else ''}{lang_doc_path_str} - Ok")
     return True
 
 
