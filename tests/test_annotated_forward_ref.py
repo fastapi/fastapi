@@ -86,9 +86,7 @@ def test_try_resolve_annotated_string_eval_failure():
     from fastapi.dependencies.utils import _try_resolve_annotated_string
 
     # Invalid metadata expression that can't be evaluated
-    result = _try_resolve_annotated_string(
-        "Annotated[str, UndefinedFunction()]", {}
-    )
+    result = _try_resolve_annotated_string("Annotated[str, UndefinedFunction()]", {})
     assert result is None
 
 
@@ -124,9 +122,7 @@ def test_try_resolve_annotated_string_forwardref_type_fails():
     )
     # Should return Annotated[Any, Depends(...)] since type can't be resolved
     if result is not None:
-        from typing import Any, get_args, get_origin
-
-        from typing_extensions import Annotated
+        from typing import Annotated, Any, get_args, get_origin
 
         assert get_origin(result) is Annotated
         args = get_args(result)
@@ -145,7 +141,12 @@ def test_get_typed_annotation_with_resolved_annotated():
         return "value"
 
     # Create a resolvable Annotated string
-    globalns = {"Annotated": Annotated, "str": str, "Depends": Depends, "get_value": get_value}
+    globalns = {
+        "Annotated": Annotated,
+        "str": str,
+        "Depends": Depends,
+        "get_value": get_value,
+    }
     result = get_typed_annotation("Annotated[str, Depends(get_value)]", globalns)
     # Should resolve successfully
     from typing import get_origin
@@ -167,9 +168,7 @@ def test_get_typed_annotation_exception_with_partial_resolution():
         "Annotated[UndefinedType, Depends(get_value)]", globalns
     )
     # Should fall back to partial resolution and return Annotated[Any, Depends(...)]
-    from typing import Any, get_args, get_origin
-
-    from typing_extensions import Annotated
+    from typing import Annotated, Any, get_args, get_origin
 
     if get_origin(result) is Annotated:
         args = get_args(result)
@@ -193,7 +192,6 @@ def test_get_typed_signature_no_module():
 
 def test_get_typed_annotation_with_forwardref_result():
     """Test get_typed_annotation when evaluate_forwardref returns a ForwardRef."""
-    from typing import ForwardRef
 
     from fastapi import Depends
     from fastapi.dependencies.utils import get_typed_annotation
@@ -205,16 +203,16 @@ def test_get_typed_annotation_with_forwardref_result():
     # This happens when the type can't be resolved
     globalns = {"Depends": Depends, "get_value": get_value}
     # UndefinedClass will create a ForwardRef that can't be resolved
-    result = get_typed_annotation("Annotated[UndefinedClass, Depends(get_value)]", globalns)
+    result = get_typed_annotation(
+        "Annotated[UndefinedClass, Depends(get_value)]", globalns
+    )
     # The result should be valid (either ForwardRef or Annotated with Any)
     assert result is not None
 
 
 def test_try_resolve_annotated_string_with_resolved_type():
     """Test _try_resolve_annotated_string when type can be resolved."""
-    from typing import get_args, get_origin
-
-    from typing_extensions import Annotated
+    from typing import Annotated, get_args, get_origin
 
     from fastapi import Depends
     from fastapi.dependencies.utils import _try_resolve_annotated_string
