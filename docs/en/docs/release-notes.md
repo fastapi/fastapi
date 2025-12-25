@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add documentary to website. PR [#14600](https://github.com/fastapi/fastapi/pull/14600) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Update translations for de (update-outdated). PR [#14581](https://github.com/fastapi/fastapi/pull/14581) by [@nilslindemann](https://github.com/nilslindemann).
