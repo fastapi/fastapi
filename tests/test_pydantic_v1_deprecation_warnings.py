@@ -9,90 +9,58 @@ if sys.version_info >= (3, 14):
 
 from fastapi import FastAPI
 from fastapi._compat.v1 import BaseModel
-from fastapi.testclient import TestClient
+from fastapi.exceptions import PydanticV1NotSupportedError
 
 
-def test_warns_pydantic_v1_model_in_endpoint_param() -> None:
+def test_raises_pydantic_v1_model_in_endpoint_param() -> None:
     class ParamModelV1(BaseModel):
         name: str
 
     app = FastAPI()
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=r"pydantic\.v1 is deprecated.*Please update the param data:",
-    ):
+    with pytest.raises(PydanticV1NotSupportedError):
 
         @app.post("/param")
-        def endpoint(data: ParamModelV1):
+        def endpoint(data: ParamModelV1):  # pragma: no cover
             return data
 
-    client = TestClient(app)
-    response = client.post("/param", json={"name": "test"})
-    assert response.status_code == 200, response.text
-    assert response.json() == {"name": "test"}
 
-
-def test_warns_pydantic_v1_model_in_return_type() -> None:
+def test_raises_pydantic_v1_model_in_return_type() -> None:
     class ReturnModelV1(BaseModel):
         name: str
 
     app = FastAPI()
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=r"pydantic\.v1 is deprecated.*Please update the response model",
-    ):
+    with pytest.raises(PydanticV1NotSupportedError):
 
         @app.get("/return")
-        def endpoint() -> ReturnModelV1:
+        def endpoint() -> ReturnModelV1:  # pragma: no cover
             return ReturnModelV1(name="test")
 
-    client = TestClient(app)
-    response = client.get("/return")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"name": "test"}
 
-
-def test_warns_pydantic_v1_model_in_response_model() -> None:
+def test_raises_pydantic_v1_model_in_response_model() -> None:
     class ResponseModelV1(BaseModel):
         name: str
 
     app = FastAPI()
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=r"pydantic\.v1 is deprecated.*Please update the response model",
-    ):
+    with pytest.raises(PydanticV1NotSupportedError):
 
         @app.get("/response-model", response_model=ResponseModelV1)
-        def endpoint():
+        def endpoint():  # pragma: no cover
             return {"name": "test"}
 
-    client = TestClient(app)
-    response = client.get("/response-model")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"name": "test"}
 
-
-def test_warns_pydantic_v1_model_in_additional_responses_model() -> None:
+def test_raises_pydantic_v1_model_in_additional_responses_model() -> None:
     class ErrorModelV1(BaseModel):
         detail: str
 
     app = FastAPI()
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=r"pydantic\.v1 is deprecated.*In responses=\{\}, please update",
-    ):
+    with pytest.raises(PydanticV1NotSupportedError):
 
         @app.get(
             "/responses", response_model=None, responses={400: {"model": ErrorModelV1}}
         )
-        def endpoint():
+        def endpoint():  # pragma: no cover
             return {"ok": True}
-
-    client = TestClient(app)
-    response = client.get("/responses")
-    assert response.status_code == 200, response.text
-    assert response.json() == {"ok": True}
