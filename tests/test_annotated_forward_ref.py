@@ -109,7 +109,7 @@ def test_try_resolve_annotated_string_with_nested_brackets():
 
 def test_try_resolve_annotated_string_forwardref_type_fails():
     """Test when type part can't be resolved as ForwardRef."""
-    from fastapi import Depends
+    from fastapi import Depends, params
     from fastapi.dependencies.utils import _try_resolve_annotated_string
 
     def get_item():
@@ -127,7 +127,7 @@ def test_try_resolve_annotated_string_forwardref_type_fails():
         assert get_origin(result) is Annotated
         args = get_args(result)
         assert args[0] is Any
-        assert isinstance(args[1], Depends)
+        assert isinstance(args[1], params.Depends)
 
 
 def test_get_typed_annotation_with_resolved_annotated():
@@ -156,7 +156,7 @@ def test_get_typed_annotation_with_resolved_annotated():
 
 def test_get_typed_annotation_exception_with_partial_resolution():
     """Test get_typed_annotation exception handling with partial resolution fallback."""
-    from fastapi import Depends
+    from fastapi import Depends, params
     from fastapi.dependencies.utils import get_typed_annotation
 
     def get_value() -> str:
@@ -173,7 +173,7 @@ def test_get_typed_annotation_exception_with_partial_resolution():
     if get_origin(result) is Annotated:
         args = get_args(result)
         assert args[0] is Any
-        assert isinstance(args[1], Depends)
+        assert isinstance(args[1], params.Depends)
 
 
 def test_get_typed_signature_no_module():
@@ -214,7 +214,7 @@ def test_try_resolve_annotated_string_with_resolved_type():
     """Test _try_resolve_annotated_string when type can be resolved."""
     from typing import Annotated, get_args, get_origin
 
-    from fastapi import Depends
+    from fastapi import Depends, params
     from fastapi.dependencies.utils import _try_resolve_annotated_string
 
     def get_value() -> str:
@@ -229,7 +229,7 @@ def test_try_resolve_annotated_string_with_resolved_type():
     assert get_origin(result) is Annotated
     args = get_args(result)
     assert args[0] is str
-    assert isinstance(args[1], Depends)
+    assert isinstance(args[1], params.Depends)
 
 
 if __name__ == "__main__":  # pragma: no cover
