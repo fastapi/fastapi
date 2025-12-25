@@ -2,7 +2,6 @@ import email.message
 import functools
 import inspect
 import json
-import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -48,6 +47,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
     FastAPIError,
+    PydanticV1NotSupportedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
@@ -637,11 +637,9 @@ class APIRoute(routing.Route):
             )
             response_name = "Response_" + self.unique_id
             if annotation_is_pydantic_v1(self.response_model):
-                warnings.warn(
-                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                    f" Please update the response model {self.response_model!r}.",
-                    category=DeprecationWarning,
-                    stacklevel=4,
+                raise PydanticV1NotSupportedError(
+                    "pydantic.v1 models are no longer supported by FastAPI."
+                    f" Please update the response model {self.response_model!r}."
                 )
             self.response_field = create_model_field(
                 name=response_name,
@@ -677,11 +675,9 @@ class APIRoute(routing.Route):
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 if annotation_is_pydantic_v1(model):
-                    warnings.warn(
-                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                        f" In responses={{}}, please update {model}.",
-                        category=DeprecationWarning,
-                        stacklevel=4,
+                    raise PydanticV1NotSupportedError(
+                        "pydantic.v1 models are no longer supported by FastAPI."
+                        f" In responses={{}}, please update {model}."
                     )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"

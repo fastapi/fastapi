@@ -231,3 +231,9 @@ class ResponseValidationError(ValidationException):
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
+
+
+class PydanticV1NotSupportedError(FastAPIError):
+    """
+    A pydantic.v1 model is used, which is no longer supported.
+    """
