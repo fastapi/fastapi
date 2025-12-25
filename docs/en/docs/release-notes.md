@@ -7,8 +7,17 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Add documentary to website. PR [#14600](https://github.com/fastapi/fastapi/pull/14600) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for de (update-outdated). PR [#14581](https://github.com/fastapi/fastapi/pull/14581) by [@nilslindemann](https://github.com/nilslindemann).
+
 ### Internal
 
+* 👷 Update secrets check. PR [#14592](https://github.com/fastapi/fastapi/pull/14592) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run CodSpeed tests in parallel to other tests to speed up CI. PR [#14586](https://github.com/fastapi/fastapi/pull/14586) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update scripts and pre-commit to autofix files. PR [#14585](https://github.com/fastapi/fastapi/pull/14585) by [@tiangolo](https://github.com/tiangolo).
 
