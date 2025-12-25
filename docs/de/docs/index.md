@@ -117,6 +117,12 @@ Seine Schlüssel-Merkmale sind:
 
 ---
 
+## FastAPI Mini-Dokumentarfilm { #fastapi-mini-documentary }
+
+Es gibt einen <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI-Mini-Dokumentarfilm</a>, veröffentlicht Ende 2025, Sie können ihn online ansehen:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini-Dokumentarfilm"></a>
+
 ## **Typer**, das FastAPI der CLIs { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
