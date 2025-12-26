@@ -18,6 +18,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update pre-commit to use local Ruff instead of hook. PR [#14604](https://github.com/fastapi/fastapi/pull/14604) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Add missing tests for code examples. PR [#14569](https://github.com/fastapi/fastapi/pull/14569) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Remove `lint` job from `test` CI workflow. PR [#14593](https://github.com/fastapi/fastapi/pull/14593) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Update secrets check. PR [#14592](https://github.com/fastapi/fastapi/pull/14592) by [@tiangolo](https://github.com/tiangolo).
