@@ -1,6 +1,7 @@
 import warnings
 from typing import Annotated, Any, Callable, Optional, Union
 
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
 from fastapi.params import ParamTypes
 from typing_extensions import deprecated
@@ -63,7 +64,7 @@ class Param(FieldInfo):
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -93,7 +94,7 @@ class Param(FieldInfo):
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
@@ -503,7 +504,7 @@ class Body(FieldInfo):
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -533,7 +534,7 @@ class Body(FieldInfo):
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
