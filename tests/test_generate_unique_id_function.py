@@ -222,6 +222,13 @@ def test_top_level_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -423,6 +430,13 @@ def test_router_overrides_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -624,6 +638,13 @@ def test_router_include_overrides_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -898,6 +919,13 @@ def test_subrouter_top_level_include_overrides_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -1102,6 +1130,13 @@ def test_router_path_operation_overrides_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -1310,6 +1345,13 @@ def test_app_path_operation_overrides_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }
@@ -1596,6 +1638,13 @@ def test_callback_override_generate_unique_id():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
+                        "url": {
+                            "title": "Error URL",
+                            "type": "string",
+                            "format": "uri",
+                        },
                     },
                 },
             }

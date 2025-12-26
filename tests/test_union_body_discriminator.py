@@ -174,6 +174,13 @@ def test_discriminator_pydantic_v2() -> None:
                             },
                             "msg": {"type": "string", "title": "Message"},
                             "type": {"type": "string", "title": "Error Type"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                            "url": {
+                                "title": "Error URL",
+                                "type": "string",
+                                "format": "uri",
+                            },
                         },
                         "type": "object",
                         "required": ["loc", "msg", "type"],
