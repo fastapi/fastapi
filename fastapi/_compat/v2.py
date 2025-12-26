@@ -503,19 +503,9 @@ def normalize_name(name: str) -> str:
 
 def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str]:
     name_model_map = {}
-    conflicting_names: set[str] = set()
     for model in unique_models:
         model_name = normalize_name(model.__name__)
-        if model_name in conflicting_names:
-            model_name = get_long_model_name(model)
-            name_model_map[model_name] = model
-        elif model_name in name_model_map:
-            conflicting_names.add(model_name)
-            conflicting_model = name_model_map.pop(model_name)
-            name_model_map[get_long_model_name(conflicting_model)] = conflicting_model
-            name_model_map[get_long_model_name(model)] = model
-        else:
-            name_model_map[model_name] = model
+        name_model_map[model_name] = model
     return {v: k for k, v in name_model_map.items()}
 
 
@@ -565,7 +555,3 @@ def get_flat_models_from_fields(
     for field in fields:
         get_flat_models_from_field(field, known_models=known_models)
     return known_models
-
-
-def get_long_model_name(model: TypeModelOrEnum) -> str:
-    return f"{model.__module__}__{model.__qualname__}".replace(".", "__")

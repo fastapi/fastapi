@@ -81,9 +81,7 @@ def value_is_sequence(value: Any) -> bool:
 
 def _annotation_is_complex(annotation: Union[type[Any], None]) -> bool:
     return (
-        lenient_issubclass(
-            annotation, (BaseModel, may_v1.BaseModel, Mapping, UploadFile)
-        )
+        lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
         or is_dataclass(annotation)
     )
