@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 
 from ...utils import needs_py310, needs_pydanticv2
 
-# Remove when deprecating Pydantic v1
+# TODO: Remove when deprecating Pydantic v1
 pytestmark = [
     pytest.mark.filterwarnings(
         "ignore:The `copy` method is deprecated; use `model_copy` instead.:DeprecationWarning",
