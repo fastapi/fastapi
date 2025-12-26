@@ -5,7 +5,7 @@ from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import Optional
+from typing import Optional, TypedDict
 
 import pytest
 from fastapi._compat import Undefined
@@ -200,6 +200,24 @@ def test_encode_model_with_default():
         "bar": "bar",
         "bla": "bla",
     }
+
+
+def test_custom_encoders():
+    class safe_datetime(datetime):
+        pass
+
+    class MyDict(TypedDict):
+        dt_field: safe_datetime
+
+    instance = MyDict(dt_field=safe_datetime.now())
+
+    encoded_instance = jsonable_encoder(
+        instance, custom_encoder={safe_datetime: lambda o: o.strftime("%H:%M:%S")}
+    )
+    assert encoded_instance["dt_field"] == instance["dt_field"].strftime("%H:%M:%S")
+
+    encoded_instance2 = jsonable_encoder(instance)
+    assert encoded_instance2["dt_field"] == instance["dt_field"].isoformat()
 
 
 def test_custom_enum_encoders():
