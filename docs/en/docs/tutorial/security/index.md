@@ -103,4 +103,10 @@ FastAPI provides several tools for each of these security schemes in the `fastap
 
 In the next chapters you will see how to add security to your API using those tools provided by **FastAPI**.
 
+You will learn about:
+
+* **API Key Authentication**: Simple authentication using API keys in headers, query parameters, or cookies
+* **OAuth2 with Password (and hashing), Bearer with JWT tokens**: Full OAuth2 implementation with JWT tokens
+* **Login system**: How to create a complete login system
+
 And you will also see how it gets automatically integrated into the interactive documentation system.
