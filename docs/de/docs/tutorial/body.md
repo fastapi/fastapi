@@ -127,14 +127,6 @@ Innerhalb der Funktion können Sie alle Attribute des Modellobjekts direkt verwe
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info | Info
-
-In Pydantic v1 hieß die Methode `.dict()`, sie wurde in Pydantic v2 deprecatet (aber weiterhin unterstützt) und in `.model_dump()` umbenannt.
-
-Die Beispiele hier verwenden `.dict()` zur Kompatibilität mit Pydantic v1, aber Sie sollten stattdessen `.model_dump()` verwenden, wenn Sie Pydantic v2 nutzen können.
-
-///
-
 ## Requestbody- + Pfad-Parameter { #request-body-path-parameters }
 
 Sie können Pfad-Parameter und den Requestbody gleichzeitig deklarieren.
