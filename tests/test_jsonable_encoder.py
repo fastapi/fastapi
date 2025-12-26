@@ -1,3 +1,4 @@
+import warnings
 from collections import deque
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -12,8 +13,6 @@ from fastapi._compat import Undefined
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import PydanticV1NotSupportedError
 from pydantic import BaseModel, Field, ValidationError
-
-from .utils import needs_pydanticv1
 
 
 class Person:
@@ -157,9 +156,10 @@ def test_encode_custom_json_encoders_model_pydanticv2():
     assert jsonable_encoder(subclass_model) == {"dt_field": "2019-01-01T08:00:00+00:00"}
 
 
-@needs_pydanticv1
 def test_json_encoder_error_with_pydanticv1():
-    from pydantic import v1
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1
 
     class ModelV1(v1.BaseModel):
         name: str

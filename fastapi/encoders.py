@@ -25,7 +25,12 @@ from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 
-from ._compat import Url, _is_undefined, _model_dump, may_v1
+from ._compat import (
+    Url,
+    _is_undefined,
+    _model_dump,
+    is_pydantic_v1_model_instance,
+)
 
 
 # Taken from Pydantic v1 as is
@@ -218,7 +223,7 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if isinstance(obj, may_v1.BaseModel):
+    if is_pydantic_v1_model_instance(obj):
         raise PydanticV1NotSupportedError(
             "pydantic.v1 models are no longer supported by FastAPI."
             f" Please update the model {obj!r}."

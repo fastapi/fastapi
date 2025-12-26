@@ -1,9 +1,6 @@
 from collections.abc import Sequence
 from typing import Any, Union
 
-from pydantic.v1 import BaseModel as BaseModel
-from pydantic.v1.fields import ModelField as ModelField
-
 
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]

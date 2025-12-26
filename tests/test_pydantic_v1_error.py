@@ -1,4 +1,5 @@
 import sys
+import warnings
 
 import pytest
 
@@ -8,8 +9,11 @@ if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
 from fastapi import FastAPI
-from fastapi._compat.may_v1 import BaseModel
 from fastapi.exceptions import PydanticV1NotSupportedError
+
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore", UserWarning)
+    from pydantic.v1 import BaseModel
 
 
 def test_raises_pydantic_v1_model_in_endpoint_param() -> None:

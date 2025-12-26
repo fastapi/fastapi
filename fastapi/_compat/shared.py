@@ -1,6 +1,7 @@
 import sys
 import types
 import typing
+import warnings
 from collections import deque
 from collections.abc import Mapping, Sequence
 from dataclasses import is_dataclass
@@ -10,7 +11,6 @@ from typing import (
     Union,
 )
 
-from fastapi._compat import may_v1
 from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
@@ -177,13 +177,27 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
     )
 
 
+def is_pydantic_v1_model_instance(obj: Any) -> bool:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1
+    return isinstance(obj, v1.BaseModel)
+
+
+def is_pydantic_v1_model_class(cls: Any) -> bool:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1
+    return lenient_issubclass(cls, v1.BaseModel)
+
+
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, may_v1.BaseModel):
+    if is_pydantic_v1_model_class(annotation):
         return True
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, may_v1.BaseModel):
+            if is_pydantic_v1_model_class(arg):
                 return True
     if field_annotation_is_sequence(annotation):
         for sub_annotation in get_args(annotation):
