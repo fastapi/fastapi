@@ -4,7 +4,7 @@ FastAPI é construído em cima do **Pydantic**, e eu tenho mostrado como usar mo
 
 Mas o FastAPI também suporta o uso de <a href="https://docs.python.org/3/library/dataclasses.html" class="external-link" target="_blank">`dataclasses`</a> da mesma forma:
 
-{* ../../docs_src/dataclasses/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
 Isso ainda é suportado graças ao **Pydantic**, pois ele tem <a href="https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel" class="external-link" target="_blank">suporte interno para `dataclasses`</a>.
 
@@ -32,7 +32,7 @@ Mas se você tem um monte de dataclasses por aí, este é um truque legal para u
 
 Você também pode usar `dataclasses` no parâmetro `response_model`:
 
-{* ../../docs_src/dataclasses/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
 
 A dataclass será automaticamente convertida para uma dataclass Pydantic.
 
@@ -48,7 +48,7 @@ Em alguns casos, você ainda pode ter que usar a versão do Pydantic das `datacl
 
 Nesse caso, você pode simplesmente trocar as `dataclasses` padrão por `pydantic.dataclasses`, que é um substituto direto:
 
-{* ../../docs_src/dataclasses/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. Ainda importamos `field` das `dataclasses` padrão.
 

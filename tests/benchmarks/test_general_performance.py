@@ -6,6 +6,7 @@ from typing import Annotated, Any
 
 import pytest
 from fastapi import Depends, FastAPI
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
 
 if "--codspeed" not in sys.argv:
@@ -89,7 +90,7 @@ def app(basemodel_class: type[Any]) -> FastAPI:
         warnings.filterwarnings(
             "ignore",
             message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
-            category=DeprecationWarning,
+            category=FastAPIDeprecationWarning,
         )
 
         @app.post("/sync/validated", response_model=ItemOut)

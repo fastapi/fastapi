@@ -237,3 +237,10 @@ class PydanticV1NotSupportedError(FastAPIError):
     """
     A pydantic.v1 model is used, which is no longer supported.
     """
+
+
+class FastAPIDeprecationWarning(UserWarning):
+    """
+    A custom deprecation warning as DeprecationWarning is ignored
+    Ref: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries
+    """

@@ -23,6 +23,7 @@ from fastapi.dependencies.utils import (
     get_validation_alias,
 )
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.constants import METHODS_WITH_BODY, REF_PREFIX
 from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
@@ -215,9 +216,9 @@ def generate_operation_id(
     *, route: routing.APIRoute, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
-        "fastapi.openapi.utils.generate_operation_id() was deprecated, "
+        message="fastapi.openapi.utils.generate_operation_id() was deprecated, "
         "it is not used internally, and will be removed soon",
-        DeprecationWarning,
+        category=FastAPIDeprecationWarning,
         stacklevel=2,
     )
     if route.operation_id:
