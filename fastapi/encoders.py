@@ -234,8 +234,6 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
-        if "__root__" in obj_dict:
-            obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,

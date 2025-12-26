@@ -48,7 +48,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant
-from fastapi.exceptions import DependencyScopeError, PydanticV1NotSupportedError
+from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
@@ -318,11 +318,6 @@ def get_dependant(
             )
             continue
         assert param_details.field is not None
-        if isinstance(param_details.field, may_v1.ModelField):
-            raise PydanticV1NotSupportedError(
-                "pydantic.v1 models are no longer supported by FastAPI."
-                f" Please update the param {param_name}: {param_details.type_annotation!r}."
-            )
         if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:

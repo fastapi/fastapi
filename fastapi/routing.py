@@ -144,36 +144,6 @@ def websocket_session(
     return app
 
 
-def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-) -> Any:
-    if isinstance(res, list):
-        return [
-            _prepare_response_content(
-                item,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for item in res
-        ]
-    elif isinstance(res, dict):
-        return {
-            k: _prepare_response_content(
-                v,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for k, v in res.items()
-        }
-    return res
-
-
 def _merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
