@@ -1,6 +1,6 @@
-# Тіло — Оновлення
+# Тіло — Оновлення { #body-updates }
 
-## Оновлення із заміною за допомогою `PUT`
+## Оновлення із заміною за допомогою `PUT` { #update-replacing-with-put }
 
 Щоб оновити елемент, ви можете використати <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> операцію.
 
@@ -26,7 +26,7 @@
 
 І дані будуть збережені з цим "новим" значенням `tax` = `10.5`.
 
-## Часткові оновлення з `PATCH`
+## Часткові оновлення з `PATCH` { #partial-updates-with-patch }
 
 Ви також можете використовувати операцію <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> для *часткового* оновлення даних.
 
