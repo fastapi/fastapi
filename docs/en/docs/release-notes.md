@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for de (update-outdated). PR [#14602](https://github.com/fastapi/fastapi/pull/14602) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Update translations for de (update-outdated). PR [#14581](https://github.com/fastapi/fastapi/pull/14581) by [@nilslindemann](https://github.com/nilslindemann).
 
 ### Internal
