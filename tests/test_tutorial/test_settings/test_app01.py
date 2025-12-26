@@ -7,10 +7,6 @@ from fastapi.testclient import TestClient
 from pydantic import ValidationError
 from pytest import MonkeyPatch
 
-from ...utils import needs_pydanticv2
-
-pytestmark = needs_pydanticv2
-
 
 @pytest.fixture(
     name="mod_name",

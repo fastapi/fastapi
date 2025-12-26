@@ -5,10 +5,7 @@ import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310, needs_pydanticv2
-
-pytestmark = needs_pydanticv2
-
+from ...utils import needs_py310
 
 DESCRIPTIONS = {
     "tutorial003": "Create an item with all the information, name, description, price, tax and a set of unique tags",

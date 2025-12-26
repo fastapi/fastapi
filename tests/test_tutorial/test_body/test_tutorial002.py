@@ -4,15 +4,7 @@ from typing import Union
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310, needs_pydanticv2
-
-# TODO: Remove when deprecating Pydantic v1
-pytestmark = [
-    pytest.mark.filterwarnings(
-        "ignore:The `dict` method is deprecated; use `model_dump` instead.:DeprecationWarning"
-    ),
-    needs_pydanticv2,
-]
+from ...utils import needs_py310
 
 
 @pytest.fixture(

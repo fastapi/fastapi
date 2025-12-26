@@ -3,9 +3,7 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py310, needs_pydanticv2
-
-pytestmark = needs_pydanticv2
+from ...utils import needs_py310
 
 
 @pytest.fixture(

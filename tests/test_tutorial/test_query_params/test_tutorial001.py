@@ -3,10 +3,6 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
-
-pytestmark = needs_pydanticv2
-
 
 @pytest.fixture(
     name="client",

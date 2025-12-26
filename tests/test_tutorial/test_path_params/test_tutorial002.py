@@ -2,11 +2,7 @@ from fastapi.testclient import TestClient
 
 from docs_src.path_params.tutorial002_py39 import app
 
-from ...utils import needs_pydanticv2
-
 client = TestClient(app)
-
-pytestmark = needs_pydanticv2
 
 
 def test_get_items():
