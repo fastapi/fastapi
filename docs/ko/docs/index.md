@@ -117,6 +117,12 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 ---
 
+## FastAPI 미니 다큐멘터리 { #fastapi-mini-documentary }
+
+2025년 말에 공개된 <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI 미니 다큐멘터리</a>가 있습니다. 온라인에서 시청할 수 있습니다:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+
 ## **Typer**, CLI를 위한 FastAPI { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
