@@ -1,13 +1,12 @@
 import json
 import sys
-import warnings
 from collections.abc import Iterator
 from typing import Annotated, Any
 
 import pytest
 from fastapi import Depends, FastAPI
-from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
+from pydantic import BaseModel
 
 if "--codspeed" not in sys.argv:
     pytest.skip(
@@ -47,148 +46,143 @@ def dep_b(a: Annotated[int, Depends(dep_a)]):
     return a + 2
 
 
-@pytest.fixture(
-    scope="module",
-    params=[
-        "pydantic-v2",
-        "pydantic-v1",
-    ],
-)
-def basemodel_class(request: pytest.FixtureRequest) -> type[Any]:
-    if request.param == "pydantic-v2":
-        from pydantic import BaseModel
-
-        return BaseModel
-    else:
-        from pydantic.v1 import BaseModel
-
-        return BaseModel
+class ItemIn(BaseModel):
+    name: str
+    value: int
 
 
-@pytest.fixture(scope="module")
-def app(basemodel_class: type[Any]) -> FastAPI:
-    class ItemIn(basemodel_class):
-        name: str
-        value: int
+class ItemOut(BaseModel):
+    name: str
+    value: int
+    dep: int
 
-    class ItemOut(basemodel_class):
-        name: str
-        value: int
-        dep: int
 
-    class LargeIn(basemodel_class):
-        items: list[dict[str, Any]]
-        metadata: dict[str, Any]
+class LargeIn(BaseModel):
+    items: list[dict[str, Any]]
+    metadata: dict[str, Any]
 
-    class LargeOut(basemodel_class):
-        items: list[dict[str, Any]]
-        metadata: dict[str, Any]
 
-    app = FastAPI()
+class LargeOut(BaseModel):
+    items: list[dict[str, Any]]
+    metadata: dict[str, Any]
 
-    with warnings.catch_warnings(record=True):
-        warnings.filterwarnings(
-            "ignore",
-            message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
-            category=FastAPIDeprecationWarning,
-        )
 
-        @app.post("/sync/validated", response_model=ItemOut)
-        def sync_validated(item: ItemIn, dep: Annotated[int, Depends(dep_b)]):
-            return ItemOut(name=item.name, value=item.value, dep=dep)
+app = FastAPI()
 
-        @app.get("/sync/dict-no-response-model")
-        def sync_dict_no_response_model():
-            return {"name": "foo", "value": 123}
 
-        @app.get("/sync/dict-with-response-model", response_model=ItemOut)
-        def sync_dict_with_response_model(
-            dep: Annotated[int, Depends(dep_b)],
-        ):
-            return {"name": "foo", "value": 123, "dep": dep}
+@app.post("/sync/validated", response_model=ItemOut)
+def sync_validated(item: ItemIn, dep: Annotated[int, Depends(dep_b)]):
+    return ItemOut(name=item.name, value=item.value, dep=dep)
 
-        @app.get("/sync/model-no-response-model")
-        def sync_model_no_response_model(dep: Annotated[int, Depends(dep_b)]):
-            return ItemOut(name="foo", value=123, dep=dep)
 
-        @app.get("/sync/model-with-response-model", response_model=ItemOut)
-        def sync_model_with_response_model(dep: Annotated[int, Depends(dep_b)]):
-            return ItemOut(name="foo", value=123, dep=dep)
+@app.get("/sync/dict-no-response-model")
+def sync_dict_no_response_model():
+    return {"name": "foo", "value": 123}
 
-        @app.post("/async/validated", response_model=ItemOut)
-        async def async_validated(
-            item: ItemIn,
-            dep: Annotated[int, Depends(dep_b)],
-        ):
-            return ItemOut(name=item.name, value=item.value, dep=dep)
 
-        @app.post("/sync/large-receive")
-        def sync_large_receive(payload: LargeIn):
-            return {"received": len(payload.items)}
+@app.get("/sync/dict-with-response-model", response_model=ItemOut)
+def sync_dict_with_response_model(
+    dep: Annotated[int, Depends(dep_b)],
+):
+    return {"name": "foo", "value": 123, "dep": dep}
 
-        @app.post("/async/large-receive")
-        async def async_large_receive(payload: LargeIn):
-            return {"received": len(payload.items)}
 
-        @app.get("/sync/large-dict-no-response-model")
-        def sync_large_dict_no_response_model():
-            return LARGE_PAYLOAD
+@app.get("/sync/model-no-response-model")
+def sync_model_no_response_model(dep: Annotated[int, Depends(dep_b)]):
+    return ItemOut(name="foo", value=123, dep=dep)
 
-        @app.get("/sync/large-dict-with-response-model", response_model=LargeOut)
-        def sync_large_dict_with_response_model():
-            return LARGE_PAYLOAD
 
-        @app.get("/sync/large-model-no-response-model")
-        def sync_large_model_no_response_model():
-            return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+@app.get("/sync/model-with-response-model", response_model=ItemOut)
+def sync_model_with_response_model(dep: Annotated[int, Depends(dep_b)]):
+    return ItemOut(name="foo", value=123, dep=dep)
 
-        @app.get("/sync/large-model-with-response-model", response_model=LargeOut)
-        def sync_large_model_with_response_model():
-            return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
 
-        @app.get("/async/large-dict-no-response-model")
-        async def async_large_dict_no_response_model():
-            return LARGE_PAYLOAD
+@app.post("/async/validated", response_model=ItemOut)
+async def async_validated(
+    item: ItemIn,
+    dep: Annotated[int, Depends(dep_b)],
+):
+    return ItemOut(name=item.name, value=item.value, dep=dep)
 
-        @app.get("/async/large-dict-with-response-model", response_model=LargeOut)
-        async def async_large_dict_with_response_model():
-            return LARGE_PAYLOAD
 
-        @app.get("/async/large-model-no-response-model")
-        async def async_large_model_no_response_model():
-            return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+@app.post("/sync/large-receive")
+def sync_large_receive(payload: LargeIn):
+    return {"received": len(payload.items)}
 
-        @app.get("/async/large-model-with-response-model", response_model=LargeOut)
-        async def async_large_model_with_response_model():
-            return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
 
-        @app.get("/async/dict-no-response-model")
-        async def async_dict_no_response_model():
-            return {"name": "foo", "value": 123}
+@app.post("/async/large-receive")
+async def async_large_receive(payload: LargeIn):
+    return {"received": len(payload.items)}
 
-        @app.get("/async/dict-with-response-model", response_model=ItemOut)
-        async def async_dict_with_response_model(
-            dep: Annotated[int, Depends(dep_b)],
-        ):
-            return {"name": "foo", "value": 123, "dep": dep}
 
-        @app.get("/async/model-no-response-model")
-        async def async_model_no_response_model(
-            dep: Annotated[int, Depends(dep_b)],
-        ):
-            return ItemOut(name="foo", value=123, dep=dep)
+@app.get("/sync/large-dict-no-response-model")
+def sync_large_dict_no_response_model():
+    return LARGE_PAYLOAD
 
-        @app.get("/async/model-with-response-model", response_model=ItemOut)
-        async def async_model_with_response_model(
-            dep: Annotated[int, Depends(dep_b)],
-        ):
-            return ItemOut(name="foo", value=123, dep=dep)
 
-    return app
+@app.get("/sync/large-dict-with-response-model", response_model=LargeOut)
+def sync_large_dict_with_response_model():
+    return LARGE_PAYLOAD
+
+
+@app.get("/sync/large-model-no-response-model")
+def sync_large_model_no_response_model():
+    return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+
+
+@app.get("/sync/large-model-with-response-model", response_model=LargeOut)
+def sync_large_model_with_response_model():
+    return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+
+
+@app.get("/async/large-dict-no-response-model")
+async def async_large_dict_no_response_model():
+    return LARGE_PAYLOAD
+
+
+@app.get("/async/large-dict-with-response-model", response_model=LargeOut)
+async def async_large_dict_with_response_model():
+    return LARGE_PAYLOAD
+
+
+@app.get("/async/large-model-no-response-model")
+async def async_large_model_no_response_model():
+    return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+
+
+@app.get("/async/large-model-with-response-model", response_model=LargeOut)
+async def async_large_model_with_response_model():
+    return LargeOut(items=LARGE_ITEMS, metadata=LARGE_METADATA)
+
+
+@app.get("/async/dict-no-response-model")
+async def async_dict_no_response_model():
+    return {"name": "foo", "value": 123}
+
+
+@app.get("/async/dict-with-response-model", response_model=ItemOut)
+async def async_dict_with_response_model(
+    dep: Annotated[int, Depends(dep_b)],
+):
+    return {"name": "foo", "value": 123, "dep": dep}
+
+
+@app.get("/async/model-no-response-model")
+async def async_model_no_response_model(
+    dep: Annotated[int, Depends(dep_b)],
+):
+    return ItemOut(name="foo", value=123, dep=dep)
+
+
+@app.get("/async/model-with-response-model", response_model=ItemOut)
+async def async_model_with_response_model(
+    dep: Annotated[int, Depends(dep_b)],
+):
+    return ItemOut(name="foo", value=123, dep=dep)
 
 
 @pytest.fixture(scope="module")
-def client(app: FastAPI) -> Iterator[TestClient]:
+def client() -> Iterator[TestClient]:
     with TestClient(app) as client:
         yield client
 
