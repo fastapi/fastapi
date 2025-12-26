@@ -221,7 +221,7 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 #### 파일과 같은 객체를 사용한 `StreamingResponse` { #using-streamingresponse-with-file-like-objects }
 
-파일과 같은 객체(예: `open()`으로 반환된 객체)가 있는 경우, 해당 파일과 같은 객체를 반복(iterate)하는 제너레이터 함수를 만들 수 있습니다.
+<a href="https://docs.python.org/3/glossary.html#term-file-like-object" class="external-link" target="_blank">file-like</a> 객체(예: `open()`으로 반환된 객체)가 있는 경우, 해당 file-like 객체를 반복(iterate)하는 제너레이터 함수를 만들 수 있습니다.
 
 이 방식으로, 파일 전체를 메모리에 먼저 읽어들일 필요 없이, 제너레이터 함수를 `StreamingResponse`에 전달하여 반환할 수 있습니다.
 

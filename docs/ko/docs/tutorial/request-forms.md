@@ -56,7 +56,7 @@ HTML 폼(`<form></form>`)이 데이터를 서버로 보내는 방식은 일반�
 
 그러나 폼에 파일이 포함된 경우, `multipart/form-data`로 인코딩합니다. 다음 장에서 파일 처리에 대해 읽을 겁니다.
 
-이러한 인코딩 및 폼 필드에 대해 더 읽고 싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><code>POST</code>에 대한 <abbr title="Mozilla Developer Network">MDN</abbr> 웹 문서를 참조하세요.
+이러한 인코딩 및 폼 필드에 대해 더 읽고 싶다면, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST" class="external-link" target="_blank"><code>POST</code>에 대한 <abbr title="Mozilla Developer Network">MDN</abbr> 웹 문서를 참조하세요</a>.
 
 ///
 
