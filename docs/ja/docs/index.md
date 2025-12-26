@@ -117,6 +117,12 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 ---
 
+## FastAPI ミニドキュメンタリー { #fastapi-mini-documentary }
+
+2025 年末に公開された <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI ミニドキュメンタリー</a>があります。オンラインで視聴できます:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+
 ## **Typer**、CLI 版 FastAPI { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
