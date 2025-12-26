@@ -8,7 +8,7 @@ if sys.version_info >= (3, 14):
     skip_module_if_py_gte_314()
 
 from fastapi import FastAPI
-from fastapi._compat.v1 import BaseModel
+from fastapi._compat.may_v1 import BaseModel
 from fastapi.exceptions import PydanticV1NotSupportedError
 
 
