@@ -149,6 +149,24 @@ def is_sequence_field(field: ModelField) -> bool:
     return v2.is_sequence_field(field)  # type: ignore[arg-type]
 
 
+def is_scalar_mapping_field(field: ModelField) -> bool:
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
+        return v1.is_scalar_mapping_field(field)
+
+    return v2.is_scalar_mapping_field(field)  # type: ignore[arg-type]
+
+
+def is_scalar_sequence_mapping_field(field: ModelField) -> bool:
+    if isinstance(field, may_v1.ModelField):
+        from fastapi._compat import v1
+
+        return v1.is_scalar_sequence_mapping_field(field)
+
+    return v2.is_scalar_sequence_mapping_field(field)  # type: ignore[arg-type]
+
+
 def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     if isinstance(field, may_v1.ModelField):
         from fastapi._compat import v1
@@ -156,6 +174,10 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
         return v1.serialize_sequence_value(field=field, value=value)
 
     return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
+
+
+def omit_by_default(field_info: FieldInfo) -> tuple[FieldInfo, dict[str, Any]]:
+    return v2.omit_by_default(field_info=field_info)  # type: ignore[arg-type]
 
 
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
