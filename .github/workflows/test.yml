@@ -16,29 +16,6 @@ env:
   UV_SYSTEM_PYTHON: 1
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-      - name: Setup uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          cache-dependency-glob: |
-            requirements**.txt
-            pyproject.toml
-      - name: Install Dependencies
-        run: uv pip install -r requirements-tests.txt
-      - name: Lint
-        run: bash scripts/lint.sh
-
   test:
     strategy:
       matrix:
@@ -54,10 +31,14 @@ jobs:
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
-          # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
+            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+          - os: ubuntu-latest
+            python-version: "3.13"
+            coverage: coverage
+            codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
@@ -85,12 +66,13 @@ jobs:
         run: uv pip install -r requirements-tests.txt
       - run: mkdir coverage
       - name: Test
+        if: matrix.codspeed != 'codspeed'
         run: bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
       - name: CodSpeed benchmarks
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
+        if: matrix.codspeed == 'codspeed'
         uses: CodSpeedHQ/action@v4
         env:
             COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
