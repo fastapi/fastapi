@@ -183,7 +183,7 @@ There might be cases where you return something that is not a valid Pydantic fie
 
 The most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
 
 This simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.
 
@@ -193,7 +193,7 @@ And tools will also be happy because both `RedirectResponse` and `JSONResponse` 
 
 You can also use a subclass of `Response` in the type annotation:
 
-{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
 
 This will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case.
 
@@ -249,20 +249,6 @@ So, if you send a request to that *path operation* for the item with ID `foo`, t
     "price": 50.2
 }
 ```
-
-/// info
-
-In Pydantic v1 the method was called `.dict()`, it was deprecated (but still supported) in Pydantic v2, and renamed to `.model_dump()`.
-
-The examples here use `.dict()` for compatibility with Pydantic v1, but you should use `.model_dump()` instead if you can use Pydantic v2.
-
-///
-
-/// info
-
-FastAPI uses Pydantic model's `.dict()` with <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">its `exclude_unset` parameter</a> to achieve this.
-
-///
 
 /// info
 

@@ -1,36 +1,22 @@
-# External Links and Articles
+# External Links
 
 **FastAPI** has a great community constantly growing.
 
 There are many posts, articles, tools, and projects, related to **FastAPI**.
 
-Here's an incomplete list of some of them.
+You could easily use a search engine or video platform to find many resources related to FastAPI.
 
-/// tip
+/// info
 
-If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+Before, this page used to list links to external articles.
+
+But now that FastAPI is the backend framework with the most GitHub stars across languages, and the most starred and used framework in Python, it no longer makes sense to attempt to list all articles written about it.
 
 ///
 
-{% for section_name, section_content in external_links.items() %}
-
-## {{ section_name }}
-
-{% for lang_name, lang_content in section_content.items() %}
-
-### {{ lang_name }}
-
-{% for item in lang_content %}
-
-* <a href="{{ item.link }}" class="external-link" target="_blank">{{ item.title }}</a> by <a href="{{ item.author_link }}" class="external-link" target="_blank">{{ item.author }}</a>.
-
-{% endfor %}
-{% endfor %}
-{% endfor %}
-
 ## GitHub Repositories
 
-Most starred GitHub repositories with the topic `fastapi`:
+Most starred <a href="https://github.com/topics/fastapi" class="external-link" target="_blank">GitHub repositories with the topic `fastapi`</a>:
 
 {% for repo in topic_repos %}
 

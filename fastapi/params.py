@@ -1,15 +1,15 @@
 import warnings
+from collections.abc import Sequence
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from typing import Annotated, Any, Callable, Optional, Union
 
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
 from pydantic.fields import FieldInfo
-from typing_extensions import Annotated, Literal, deprecated
+from typing_extensions import Literal, deprecated
 
 from ._compat import (
-    PYDANTIC_V2,
-    PYDANTIC_VERSION_MINOR_TUPLE,
     Undefined,
 )
 
@@ -59,7 +59,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -67,16 +67,16 @@ class Param(FieldInfo):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -106,29 +106,28 @@ class Param(FieldInfo):  # type: ignore[misc]
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+        kwargs["deprecated"] = deprecated
+
+        if serialization_alias in (_Unset, None) and isinstance(alias, str):
+            serialization_alias = alias
+        if validation_alias in (_Unset, None):
+            validation_alias = alias
+        kwargs.update(
+            {
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+            }
+        )
+        kwargs["pattern"] = pattern or regex
+
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
         super().__init__(**use_kwargs)
@@ -173,7 +172,7 @@ class Path(Param):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -181,10 +180,10 @@ class Path(Param):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -259,7 +258,7 @@ class Query(Param):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -267,10 +266,10 @@ class Query(Param):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -344,7 +343,7 @@ class Header(Param):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -352,10 +351,10 @@ class Header(Param):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -429,7 +428,7 @@ class Cookie(Param):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -437,10 +436,10 @@ class Cookie(Param):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -513,7 +512,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -521,10 +520,10 @@ class Body(FieldInfo):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         self.embed = embed
@@ -532,7 +531,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -562,29 +561,26 @@ class Body(FieldInfo):  # type: ignore[misc]
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
-        if PYDANTIC_VERSION_MINOR_TUPLE < (2, 7):
-            self.deprecated = deprecated
-        else:
-            kwargs["deprecated"] = deprecated
-        if PYDANTIC_V2:
-            kwargs.update(
-                {
-                    "annotation": annotation,
-                    "alias_priority": alias_priority,
-                    "validation_alias": validation_alias,
-                    "serialization_alias": serialization_alias,
-                    "strict": strict,
-                    "json_schema_extra": current_json_schema_extra,
-                }
-            )
-            kwargs["pattern"] = pattern or regex
-        else:
-            kwargs["regex"] = pattern or regex
-            kwargs.update(**current_json_schema_extra)
+        kwargs["deprecated"] = deprecated
+        if serialization_alias in (_Unset, None) and isinstance(alias, str):
+            serialization_alias = alias
+        if validation_alias in (_Unset, None):
+            validation_alias = alias
+        kwargs.update(
+            {
+                "annotation": annotation,
+                "alias_priority": alias_priority,
+                "validation_alias": validation_alias,
+                "serialization_alias": serialization_alias,
+                "strict": strict,
+                "json_schema_extra": current_json_schema_extra,
+            }
+        )
+        kwargs["pattern"] = pattern or regex
 
         use_kwargs = {k: v for k, v in kwargs.items() if v is not _Unset}
 
@@ -629,7 +625,7 @@ class Form(Body):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -637,10 +633,10 @@ class Form(Body):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(
@@ -713,7 +709,7 @@ class File(Form):  # type: ignore[misc]
         allow_inf_nan: Union[bool, None] = _Unset,
         max_digits: Union[int, None] = _Unset,
         decimal_places: Union[int, None] = _Unset,
-        examples: Optional[List[Any]] = None,
+        examples: Optional[list[Any]] = None,
         example: Annotated[
             Optional[Any],
             deprecated(
@@ -721,10 +717,10 @@ class File(Form):  # type: ignore[misc]
                 "although still supported. Use examples instead."
             ),
         ] = _Unset,
-        openapi_examples: Optional[Dict[str, Example]] = None,
+        openapi_examples: Optional[dict[str, Example]] = None,
         deprecated: Union[deprecated, str, bool, None] = None,
         include_in_schema: bool = True,
-        json_schema_extra: Union[Dict[str, Any], None] = None,
+        json_schema_extra: Union[dict[str, Any], None] = None,
         **extra: Any,
     ):
         super().__init__(

@@ -1,15 +1,17 @@
+from typing import Annotated
+
 import pytest
 from dirty_equals import IsDict
 from fastapi import FastAPI, Query
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 from .utils import needs_py310
 
 
 def get_client():
     app = FastAPI()
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/items/")
         async def read_items(

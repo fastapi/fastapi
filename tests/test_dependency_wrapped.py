@@ -1,7 +1,7 @@
 import inspect
 import sys
+from collections.abc import AsyncGenerator, Generator
 from functools import wraps
-from typing import AsyncGenerator, Generator
 
 import pytest
 from fastapi import Depends, FastAPI

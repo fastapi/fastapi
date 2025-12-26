@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 import mkdocs.utils
 import typer
@@ -18,6 +18,15 @@ from ruff.__main__ import find_ruff_bin
 from slugify import slugify as py_slugify
 
 logging.basicConfig(level=logging.INFO)
+
+SUPPORTED_LANGS = {
+    "en",
+    "de",
+    "es",
+    "pt",
+    "ru",
+}
+
 
 app = typer.Typer()
 
@@ -79,11 +88,11 @@ def slugify(text: str) -> str:
     )
 
 
-def get_en_config() -> Dict[str, Any]:
+def get_en_config() -> dict[str, Any]:
     return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
 
-def get_lang_paths() -> List[Path]:
+def get_lang_paths() -> list[Path]:
     return sorted(docs_path.iterdir())
 
 
@@ -229,27 +238,15 @@ def generate_readme() -> None:
     """
     Generate README.md content from main index.md
     """
-    typer.echo("Generating README")
     readme_path = Path("README.md")
+    old_content = readme_path.read_text()
     new_content = generate_readme_content()
-    readme_path.write_text(new_content, encoding="utf-8")
-
-
-@app.command()
-def verify_readme() -> None:
-    """
-    Verify README.md content from main index.md
-    """
-    typer.echo("Verifying README")
-    readme_path = Path("README.md")
-    generated_content = generate_readme_content()
-    readme_content = readme_path.read_text("utf-8")
-    if generated_content != readme_content:
-        typer.secho(
-            "README.md outdated from the latest index.md", color=typer.colors.RED
-        )
-        raise typer.Abort()
-    typer.echo("Valid README ✅")
+    if new_content != old_content:
+        print("README.md outdated from the latest index.md")
+        print("Updating README.md")
+        readme_path.write_text(new_content, encoding="utf-8")
+        raise typer.Exit(1)
+    print("README.md is up to date ✅")
 
 
 @app.command()
@@ -260,7 +257,11 @@ def build_all() -> None:
     """
     update_languages()
     shutil.rmtree(site_path, ignore_errors=True)
-    langs = [lang.name for lang in get_lang_paths() if lang.is_dir()]
+    langs = [
+        lang.name
+        for lang in get_lang_paths()
+        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
+    ]
     cpu_count = os.cpu_count() or 1
     process_pool_size = cpu_count * 4
     typer.echo(f"Using process pool size: {process_pool_size}")
@@ -273,7 +274,17 @@ def update_languages() -> None:
     """
     Update the mkdocs.yml file Languages section including all the available languages.
     """
-    update_config()
+    old_config = get_en_config()
+    updated_config = get_updated_config_content()
+    if old_config != updated_config:
+        print("docs/en/mkdocs.yml outdated")
+        print("Updating docs/en/mkdocs.yml")
+        en_config_path.write_text(
+            yaml.dump(updated_config, sort_keys=False, width=200, allow_unicode=True),
+            encoding="utf-8",
+        )
+        raise typer.Exit(1)
+    print("docs/en/mkdocs.yml is up to date ✅")
 
 
 @app.command()
@@ -327,18 +338,21 @@ def live(
     )
 
 
-def get_updated_config_content() -> Dict[str, Any]:
+def get_updated_config_content() -> dict[str, Any]:
     config = get_en_config()
     languages = [{"en": "/"}]
-    new_alternate: List[Dict[str, str]] = []
+    new_alternate: list[dict[str, str]] = []
     # Language names sourced from https://quickref.me/iso-639-1
     # Contributors may wish to update or change these, e.g. to fix capitalization.
     language_names_path = Path(__file__).parent / "../docs/language_names.yml"
-    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+    local_language_names: dict[str, str] = mkdocs.utils.yaml_load(
         language_names_path.read_text(encoding="utf-8")
     )
     for lang_path in get_lang_paths():
         if lang_path.name in {"en", "em"} or not lang_path.is_dir():
+            continue
+        if lang_path.name not in SUPPORTED_LANGS:
+            # Skip languages that are not yet ready
             continue
         code = lang_path.name
         languages.append({code: f"/{code}/"})
@@ -353,44 +367,16 @@ def get_updated_config_content() -> Dict[str, Any]:
             raise typer.Abort()
         use_name = f"{code} - {local_language_names[code]}"
         new_alternate.append({"link": url, "name": use_name})
-    new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
     return config
 
 
-def update_config() -> None:
-    config = get_updated_config_content()
-    en_config_path.write_text(
-        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
-        encoding="utf-8",
-    )
-
-
 @app.command()
-def verify_config() -> None:
+def ensure_non_translated() -> None:
     """
-    Verify main mkdocs.yml content to make sure it uses the latest language names.
+    Ensure there are no files in the non translatable pages.
     """
-    typer.echo("Verifying mkdocs.yml")
-    config = get_en_config()
-    updated_config = get_updated_config_content()
-    if config != updated_config:
-        typer.secho(
-            "docs/en/mkdocs.yml outdated from docs/language_names.yml, "
-            "update language_names.yml and run "
-            "python ./scripts/docs.py update-languages",
-            color=typer.colors.RED,
-        )
-        raise typer.Abort()
-    typer.echo("Valid mkdocs.yml ✅")
-
-
-@app.command()
-def verify_non_translated() -> None:
-    """
-    Verify there are no files in the non translatable pages.
-    """
-    print("Verifying non translated pages")
+    print("Ensuring no non translated pages")
     lang_paths = get_lang_paths()
     error_paths = []
     for lang in lang_paths:
@@ -401,25 +387,22 @@ def verify_non_translated() -> None:
             if non_translatable_path.exists():
                 error_paths.append(non_translatable_path)
     if error_paths:
-        print("Non-translated pages found, remove them:")
+        print("Non-translated pages found, removing them:")
         for error_path in error_paths:
             print(error_path)
-        raise typer.Abort()
+            if error_path.is_file():
+                error_path.unlink()
+            else:
+                shutil.rmtree(error_path)
+        raise typer.Exit(1)
     print("No non-translated pages found ✅")
-
-
-@app.command()
-def verify_docs():
-    verify_readme()
-    verify_config()
-    verify_non_translated()
 
 
 @app.command()
 def langs_json():
     langs = []
     for lang_path in get_lang_paths():
-        if lang_path.is_dir():
+        if lang_path.is_dir() and lang_path.name in SUPPORTED_LANGS:
             langs.append(lang_path.name)
     print(json.dumps(langs))
 
@@ -521,7 +504,7 @@ def add_permalinks_page(path: Path, update_existing: bool = False):
 
 
 @app.command()
-def add_permalinks_pages(pages: List[Path], update_existing: bool = False) -> None:
+def add_permalinks_pages(pages: list[Path], update_existing: bool = False) -> None:
     """
     Add or update header permalinks in specific pages of En docs.
     """
