@@ -1,6 +1,7 @@
 import sys
 
 import pytest
+from fastapi.exceptions import FastAPIDeprecationWarning
 
 from tests.utils import skip_module_if_py_gte_314
 
@@ -19,7 +20,7 @@ def test_warns_pydantic_v1_model_in_endpoint_param() -> None:
     app = FastAPI()
 
     with pytest.warns(
-        DeprecationWarning,
+        FastAPIDeprecationWarning,
         match=r"pydantic\.v1 is deprecated.*Please update the param data:",
     ):
 
@@ -40,7 +41,7 @@ def test_warns_pydantic_v1_model_in_return_type() -> None:
     app = FastAPI()
 
     with pytest.warns(
-        DeprecationWarning,
+        FastAPIDeprecationWarning,
         match=r"pydantic\.v1 is deprecated.*Please update the response model",
     ):
 
@@ -61,7 +62,7 @@ def test_warns_pydantic_v1_model_in_response_model() -> None:
     app = FastAPI()
 
     with pytest.warns(
-        DeprecationWarning,
+        FastAPIDeprecationWarning,
         match=r"pydantic\.v1 is deprecated.*Please update the response model",
     ):
 
@@ -82,7 +83,7 @@ def test_warns_pydantic_v1_model_in_additional_responses_model() -> None:
     app = FastAPI()
 
     with pytest.warns(
-        DeprecationWarning,
+        FastAPIDeprecationWarning,
         match=r"pydantic\.v1 is deprecated.*In responses=\{\}, please update",
     ):
 

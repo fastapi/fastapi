@@ -23,6 +23,7 @@ from fastapi._compat import (
     may_v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
+from fastapi.exceptions import FastAPIDeprecationWarning
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
@@ -195,9 +196,9 @@ def generate_operation_id_for_path(
     *, name: str, path: str, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
-        "fastapi.utils.generate_operation_id_for_path() was deprecated, "
+        message="fastapi.utils.generate_operation_id_for_path() was deprecated, "
         "it is not used internally, and will be removed soon",
-        DeprecationWarning,
+        category=FastAPIDeprecationWarning,
         stacklevel=2,
     )
     operation_id = f"{name}{path}"

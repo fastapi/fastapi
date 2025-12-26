@@ -231,3 +231,10 @@ class ResponseValidationError(ValidationException):
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
+
+
+class FastAPIDeprecationWarning(UserWarning):
+    """
+    A custom deprecation warning as DeprecationWarning is ignored
+    Ref: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries
+    """

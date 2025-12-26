@@ -3,6 +3,7 @@ from typing import Union
 import pytest
 from dirty_equals import IsDict
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 
@@ -21,7 +22,7 @@ def create_app():
     def schema_extra(item: Item):
         return item
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.post("/example/")
         def example(item: Item = Body(example={"data": "Data in Body example"})):
@@ -38,7 +39,7 @@ def create_app():
     ):
         return item
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.post("/example_examples/")
         def example_examples(
@@ -83,7 +84,7 @@ def create_app():
     # ):
     #     return lastname
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/path_example/{item_id}")
         def path_example(
@@ -101,7 +102,7 @@ def create_app():
     ):
         return item_id
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/path_example_examples/{item_id}")
         def path_example_examples(
@@ -112,7 +113,7 @@ def create_app():
         ):
             return item_id
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/query_example/")
         def query_example(
@@ -132,7 +133,7 @@ def create_app():
     ):
         return data
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/query_example_examples/")
         def query_example_examples(
@@ -144,7 +145,7 @@ def create_app():
         ):
             return data
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/header_example/")
         def header_example(
@@ -167,7 +168,7 @@ def create_app():
     ):
         return data
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/header_example_examples/")
         def header_example_examples(
@@ -179,7 +180,7 @@ def create_app():
         ):
             return data
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/cookie_example/")
         def cookie_example(
@@ -199,7 +200,7 @@ def create_app():
     ):
         return data
 
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/cookie_example_examples/")
         def cookie_example_examples(

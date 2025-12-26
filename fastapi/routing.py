@@ -47,6 +47,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
+    FastAPIDeprecationWarning,
     FastAPIError,
     RequestValidationError,
     ResponseValidationError,
@@ -640,7 +641,7 @@ class APIRoute(routing.Route):
                 warnings.warn(
                     "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
                     f" Please update the response model {self.response_model!r}.",
-                    category=DeprecationWarning,
+                    category=FastAPIDeprecationWarning,
                     stacklevel=4,
                 )
             self.response_field = create_model_field(
@@ -680,7 +681,7 @@ class APIRoute(routing.Route):
                     warnings.warn(
                         "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
                         f" In responses={{}}, please update {model}.",
-                        category=DeprecationWarning,
+                        category=FastAPIDeprecationWarning,
                         stacklevel=4,
                     )
                 response_field = create_model_field(

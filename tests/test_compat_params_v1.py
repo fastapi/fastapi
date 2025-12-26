@@ -3,6 +3,7 @@ import warnings
 from typing import Optional
 
 import pytest
+from fastapi.exceptions import FastAPIDeprecationWarning
 
 from tests.utils import skip_module_if_py_gte_314
 
@@ -504,23 +505,23 @@ def test_body_repr():
 
 # Deprecation warning tests for regex parameter
 def test_query_regex_deprecation_warning():
-    with pytest.warns(DeprecationWarning, match="`regex` has been deprecated"):
+    with pytest.warns(FastAPIDeprecationWarning, match="`regex` has been deprecated"):
         Query(regex="^test$")
 
 
 def test_body_regex_deprecation_warning():
-    with pytest.warns(DeprecationWarning, match="`regex` has been deprecated"):
+    with pytest.warns(FastAPIDeprecationWarning, match="`regex` has been deprecated"):
         Body(regex="^test$")
 
 
 # Deprecation warning tests for example parameter
 def test_query_example_deprecation_warning():
-    with pytest.warns(DeprecationWarning, match="`example` has been deprecated"):
+    with pytest.warns(FastAPIDeprecationWarning, match="`example` has been deprecated"):
         Query(example="test example")
 
 
 def test_body_example_deprecation_warning():
-    with pytest.warns(DeprecationWarning, match="`example` has been deprecated"):
+    with pytest.warns(FastAPIDeprecationWarning, match="`example` has been deprecated"):
         Body(example={"test": "example"})
 
 

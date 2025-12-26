@@ -51,7 +51,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant
-from fastapi.exceptions import DependencyScopeError
+from fastapi.exceptions import DependencyScopeError, FastAPIDeprecationWarning
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
@@ -327,7 +327,7 @@ def get_dependant(
             warnings.warn(
                 "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
                 f" Please update the param {param_name}: {param_details.type_annotation!r}.",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=5,
             )
         if isinstance(
