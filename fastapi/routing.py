@@ -53,6 +53,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
+from fastapi.responses import JSONResponse, PydanticJSONResponse, Response
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
     create_cloned_field,
@@ -67,7 +68,6 @@ from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
 from starlette.routing import (
     BaseRoute,
     Match,
@@ -241,6 +241,7 @@ async def serialize_response(
     *,
     field: Optional[ModelField] = None,
     response_content: Any,
+    to_json: bool = False,
     include: Optional[IncEx] = None,
     exclude: Optional[IncEx] = None,
     by_alias: bool = True,
@@ -254,6 +255,7 @@ async def serialize_response(
         errors = []
         if not hasattr(field, "serialize"):
             # pydantic v1
+            assert not to_json, "PydanticJSONResponse requires a pydantic v2 model"
             response_content = _prepare_response_content(
                 response_content,
                 exclude_unset=exclude_unset,
@@ -279,6 +281,16 @@ async def serialize_response(
             )
 
         if hasattr(field, "serialize"):
+            if to_json:
+                return field.serialize_json(
+                    value,
+                    include=include,
+                    exclude=exclude,
+                    by_alias=by_alias,
+                    exclude_unset=exclude_unset,
+                    exclude_defaults=exclude_defaults,
+                    exclude_none=exclude_none,
+                )
             return field.serialize(
                 value,
                 include=include,
@@ -449,6 +461,7 @@ def get_request_handler(
                 content = await serialize_response(
                     field=response_field,
                     response_content=raw_response,
+                    to_json=issubclass(actual_response_class, PydanticJSONResponse),
                     include=response_model_include,
                     exclude=response_model_exclude,
                     by_alias=response_model_by_alias,
