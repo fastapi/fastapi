@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.127.1
+
 ### Refactors
 
 * 🔊 Add a custom `FastAPIDeprecationWarning`. PR [#14605](https://github.com/fastapi/fastapi/pull/14605) by [@tiangolo](https://github.com/tiangolo).
