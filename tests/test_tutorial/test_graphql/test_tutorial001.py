@@ -1,7 +1,15 @@
+import warnings
+
 import pytest
 from starlette.testclient import TestClient
 
-from docs_src.graphql_.tutorial001_py39 import app
+warnings.filterwarnings(
+    "ignore",
+    message=r"The 'lia' package has been renamed to 'cross_web'\..*",
+    category=DeprecationWarning,
+)
+
+from docs_src.graphql_.tutorial001_py39 import app  # noqa: E402
 
 
 @pytest.fixture(name="client")
