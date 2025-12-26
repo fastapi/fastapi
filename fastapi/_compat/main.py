@@ -1,11 +1,9 @@
-import sys
 from collections.abc import Sequence
 from functools import lru_cache
 from typing import (
     Any,
 )
 
-from fastapi._compat import may_v1
 from fastapi._compat.shared import lenient_issubclass
 from fastapi.types import ModelNameMap
 from pydantic import BaseModel
@@ -101,37 +99,6 @@ def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
     return model_name_map
 
 
-def get_definitions(
-    *,
-    fields: list[ModelField],
-    model_name_map: ModelNameMap,
-    separate_input_output_schemas: bool = True,
-) -> tuple[
-    dict[tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]],
-    dict[str, dict[str, Any]],
-]:
-    if sys.version_info < (3, 14):
-        v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
-        v2_field_maps, v2_definitions = v2.get_definitions(
-            fields=v2_fields,
-            model_name_map=model_name_map,
-            separate_input_output_schemas=separate_input_output_schemas,
-        )
-        all_definitions = {**v2_definitions}
-        all_field_maps = {**v2_field_maps}  # type: ignore[misc]
-        return all_field_maps, all_definitions
-
-    # Pydantic v1 is not supported since Python 3.14
-    else:
-        v2_fields = [field for field in fields if isinstance(field, v2.ModelField)]
-        v2_field_maps, v2_definitions = v2.get_definitions(
-            fields=v2_fields,
-            model_name_map=model_name_map,
-            separate_input_output_schemas=separate_input_output_schemas,
-        )
-        return v2_field_maps, v2_definitions
-
-
 def get_schema_from_model_field(
     *,
     field: ModelField,
@@ -151,14 +118,8 @@ def get_schema_from_model_field(
 
 
 def _is_model_field(value: Any) -> bool:
-    if isinstance(value, may_v1.ModelField):
-        return True
-
     return isinstance(value, v2.ModelField)
 
 
 def _is_model_class(value: Any) -> bool:
-    if lenient_issubclass(value, may_v1.BaseModel):
-        return True
-
     return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]

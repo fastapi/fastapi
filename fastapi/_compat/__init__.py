@@ -16,7 +16,6 @@ from .main import evaluate_forwardref as evaluate_forwardref
 from .main import get_annotation_from_field_info as get_annotation_from_field_info
 from .main import get_cached_model_fields as get_cached_model_fields
 from .main import get_compat_model_name_map as get_compat_model_name_map
-from .main import get_definitions as get_definitions
 from .main import get_missing_field_error as get_missing_field_error
 from .main import get_schema_from_model_field as get_schema_from_model_field
 from .main import is_bytes_field as is_bytes_field
@@ -28,7 +27,6 @@ from .main import serialize_sequence_value as serialize_sequence_value
 from .main import (
     with_info_plain_validator_function as with_info_plain_validator_function,
 )
-from .may_v1 import _normalize_errors as _normalize_errors
 from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
@@ -43,3 +41,4 @@ from .shared import lenient_issubclass as lenient_issubclass
 from .shared import sequence_types as sequence_types
 from .shared import value_is_sequence as value_is_sequence
 from .v2 import ModelField as ModelField
+from .v2 import get_definitions as get_definitions

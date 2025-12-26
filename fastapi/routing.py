@@ -25,7 +25,6 @@ from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _normalize_errors,
     annotation_is_pydantic_v1,
     lenient_issubclass,
 )
@@ -214,7 +213,7 @@ async def serialize_response(
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
-                errors=_normalize_errors(errors),
+                errors=errors,
                 body=response_content,
                 endpoint_ctx=ctx,
             )
@@ -393,7 +392,7 @@ def get_request_handler(
                 response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body, endpoint_ctx=endpoint_ctx
+                errors, body=body, endpoint_ctx=endpoint_ctx
             )
             raise validation_error
 
@@ -432,7 +431,7 @@ def get_websocket_app(
         )
         if solved_result.errors:
             raise WebSocketRequestValidationError(
-                _normalize_errors(solved_result.errors),
+                solved_result.errors,
                 endpoint_ctx=endpoint_ctx,
             )
         assert dependant.call is not None, "dependant.call must be a function"
