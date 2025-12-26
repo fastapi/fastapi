@@ -1,15 +1,15 @@
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from enum import Enum
 from typing import Annotated, Any, Callable, Optional, Union
 
-from fastapi._compat import (
-    CoreSchema,
-    GetJsonSchemaHandler,
-    JsonSchemaValue,
-    with_info_plain_validator_function,
-)
+from fastapi._compat import with_info_plain_validator_function
 from fastapi.logger import logger
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    Field,
+    GetJsonSchemaHandler,
+)
 from typing_extensions import Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
@@ -43,14 +43,14 @@ except ImportError:  # pragma: no cover
 
         @classmethod
         def __get_pydantic_json_schema__(
-            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-        ) -> JsonSchemaValue:
+            cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
+        ) -> dict[str, Any]:
             return {"type": "string", "format": "email"}
 
         @classmethod
         def __get_pydantic_core_schema__(
-            cls, source: type[Any], handler: Callable[[Any], CoreSchema]
-        ) -> CoreSchema:
+            cls, source: type[Any], handler: Callable[[Any], Mapping[str, Any]]
+        ) -> Mapping[str, Any]:
             return with_info_plain_validator_function(cls._validate)
 
 

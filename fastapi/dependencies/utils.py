@@ -21,7 +21,6 @@ from fastapi._compat import (
     ModelField,
     RequiredParam,
     Undefined,
-    _is_error_wrapper,
     _is_model_class,
     copy_field_info,
     create_body_model,
@@ -43,7 +42,6 @@ from fastapi._compat import (
     serialize_sequence_value,
     value_is_sequence,
 )
-from fastapi._compat.shared import annotation_is_pydantic_v1
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     asynccontextmanager,
@@ -70,8 +68,6 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Literal, get_args, get_origin
-
-from .. import temp_pydantic_v1_params
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -327,9 +323,7 @@ def get_dependant(
                 "pydantic.v1 models are no longer supported by FastAPI."
                 f" Please update the param {param_name}: {param_details.type_annotation!r}."
             )
-        if isinstance(
-            param_details.field.field_info, (params.Body, temp_pydantic_v1_params.Body)
-        ):
+        if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:
             add_param_to_fields(field=param_details.field, dependant=dependant)
@@ -388,7 +382,7 @@ def analyze_param(
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, may_v1.FieldInfo, params.Depends))
+            if isinstance(arg, (FieldInfo, params.Depends))
         ]
         fastapi_specific_annotations = [
             arg
@@ -397,30 +391,27 @@ def analyze_param(
                 arg,
                 (
                     params.Param,
-                    temp_pydantic_v1_params.Param,
                     params.Body,
-                    temp_pydantic_v1_params.Body,
                     params.Depends,
                 ),
             )
         ]
         if fastapi_specific_annotations:
-            fastapi_annotation: Union[
-                FieldInfo, may_v1.FieldInfo, params.Depends, None
-            ] = fastapi_specific_annotations[-1]
+            fastapi_annotation: Union[FieldInfo, params.Depends, None] = (
+                fastapi_specific_annotations[-1]
+            )
         else:
             fastapi_annotation = None
         # Set default for Annotated FieldInfo
-        if isinstance(fastapi_annotation, (FieldInfo, may_v1.FieldInfo)):
+        if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
                 field_info=fastapi_annotation,  # type: ignore[arg-type]
                 annotation=use_annotation,
             )
-            assert field_info.default in {
-                Undefined,
-                may_v1.Undefined,
-            } or field_info.default in {RequiredParam, may_v1.RequiredParam}, (
+            assert (
+                field_info.default == Undefined or field_info.default == RequiredParam
+            ), (
                 f"`{field_info.__class__.__name__}` default value cannot be set in"
                 f" `Annotated` for {param_name!r}. Set the default value with `=` instead."
             )
@@ -444,7 +435,7 @@ def analyze_param(
         )
         depends = value
     # Get FieldInfo from default value
-    elif isinstance(value, (FieldInfo, may_v1.FieldInfo)):
+    elif isinstance(value, FieldInfo):
         assert field_info is None, (
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
@@ -488,14 +479,7 @@ def analyze_param(
         ) or is_uploadfile_sequence_annotation(type_annotation):
             field_info = params.File(annotation=use_annotation, default=default_value)
         elif not field_annotation_is_scalar(annotation=type_annotation):
-            if annotation_is_pydantic_v1(use_annotation):
-                field_info = temp_pydantic_v1_params.Body(  # type: ignore[assignment]
-                    annotation=use_annotation, default=default_value
-                )
-            else:
-                field_info = params.Body(
-                    annotation=use_annotation, default=default_value
-                )
+            field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
 
@@ -504,14 +488,12 @@ def analyze_param(
     if field_info is not None:
         # Handle field_info.in_
         if is_path_param:
-            assert isinstance(
-                field_info, (params.Path, temp_pydantic_v1_params.Path)
-            ), (
+            assert isinstance(field_info, params.Path), (
                 f"Cannot use `{field_info.__class__.__name__}` for path param"
                 f" {param_name!r}"
             )
         elif (
-            isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param))
+            isinstance(field_info, params.Param)
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
@@ -520,7 +502,7 @@ def analyze_param(
             field_info,
             param_name,
         )
-        if isinstance(field_info, (params.Form, temp_pydantic_v1_params.Form)):
+        if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
@@ -532,15 +514,14 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default
-            in (RequiredParam, may_v1.RequiredParam, Undefined),
+            required=field_info.default in (RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
                 "Path params must be of one of the supported types"
             )
-        elif isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)):
+        elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
@@ -739,9 +720,7 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
-    if _is_error_wrapper(errors_):  # type: ignore[arg-type]
-        return None, [errors_]
-    elif isinstance(errors_, list):
+    if isinstance(errors_, list):
         new_errors = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
@@ -759,7 +738,7 @@ def _get_multidict_value(
     if (
         value is None
         or (
-            isinstance(field.field_info, (params.Form, temp_pydantic_v1_params.Form))
+            isinstance(field.field_info, params.Form)
             and isinstance(value, str)  # For type checks
             and value == ""
         )
@@ -829,7 +808,7 @@ def request_params_to_args(
 
     if single_not_embedded_field:
         field_info = first_field.field_info
-        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
+        assert isinstance(field_info, params.Param), (
             "Params must be subclasses of Param"
         )
         loc: tuple[str, ...] = (field_info.in_.value,)
@@ -841,7 +820,7 @@ def request_params_to_args(
     for field in fields:
         value = _get_multidict_value(field, received_params)
         field_info = field.field_info
-        assert isinstance(field_info, (params.Param, temp_pydantic_v1_params.Param)), (
+        assert isinstance(field_info, params.Param), (
             "Params must be subclasses of Param"
         )
         loc = (field_info.in_.value, get_validation_alias(field))
@@ -890,7 +869,7 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     # If it's a Form (or File) field, it has to be a BaseModel (or a union of BaseModels) to be top level
     # otherwise it has to be embedded, so that the key value pair can be extracted
     if (
-        isinstance(first_field.field_info, (params.Form, temp_pydantic_v1_params.Form))
+        isinstance(first_field.field_info, params.Form)
         and not _is_model_class(first_field.type_)
         and not is_union_of_base_models(first_field.type_)
     ):
@@ -908,14 +887,14 @@ async def _extract_form_body(
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
         if (
-            isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
+            isinstance(field_info, params.File)
             and is_bytes_field(field)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
             is_bytes_sequence_field(field)
-            and isinstance(field_info, (params.File, temp_pydantic_v1_params.File))
+            and isinstance(field_info, params.File)
             and value_is_sequence(value)
         ):
             # For types
@@ -1026,28 +1005,15 @@ def get_body_field(
         BodyFieldInfo_kwargs["default"] = None
     if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
         BodyFieldInfo: type[params.Body] = params.File
-    elif any(
-        isinstance(f.field_info, temp_pydantic_v1_params.File)
-        for f in flat_dependant.body_params
-    ):
-        BodyFieldInfo: type[temp_pydantic_v1_params.Body] = temp_pydantic_v1_params.File  # type: ignore[no-redef]
     elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
         BodyFieldInfo = params.Form
-    elif any(
-        isinstance(f.field_info, temp_pydantic_v1_params.Form)
-        for f in flat_dependant.body_params
-    ):
-        BodyFieldInfo = temp_pydantic_v1_params.Form  # type: ignore[assignment]
     else:
-        if annotation_is_pydantic_v1(BodyModel):
-            BodyFieldInfo = temp_pydantic_v1_params.Body  # type: ignore[assignment]
-        else:
-            BodyFieldInfo = params.Body
+        BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
             for f in flat_dependant.body_params
-            if isinstance(f.field_info, (params.Body, temp_pydantic_v1_params.Body))
+            if isinstance(f.field_info, params.Body)
         ]
         if len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]

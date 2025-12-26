@@ -6,7 +6,6 @@ from typing import Any, Optional, Union, cast
 
 from fastapi import routing
 from fastapi._compat import (
-    JsonSchemaValue,
     ModelField,
     Undefined,
     get_compat_model_name_map,
@@ -109,7 +108,7 @@ def _get_openapi_operation_parameters(
     dependant: Dependant,
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
@@ -182,7 +181,7 @@ def get_openapi_operation_request_body(
     body_field: Optional[ModelField],
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> Optional[dict[str, Any]]:
@@ -265,7 +264,7 @@ def get_openapi_path(
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
