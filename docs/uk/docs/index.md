@@ -117,6 +117,12 @@ FastAPI — це сучасний, швидкий (високопродукти�
 
 ---
 
+## Міні-документальний фільм про FastAPI { #fastapi-mini-documentary }
+
+Наприкінці 2025 року вийшов <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">міні-документальний фільм про FastAPI</a>, ви можете переглянути його онлайн:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+
 ## **Typer**, FastAPI для CLI { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
