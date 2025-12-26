@@ -12,7 +12,8 @@ from fastapi.testclient import TestClient
     name="module",
     params=[
         "tutorial008_py39",
-        # "tutorial008_an_py39"  # Fails with `NameError: name 'DepA' is not defined`
+        # Fails with `NameError: name 'DepA' is not defined`
+        pytest.param("tutorial008_an_py39", marks=pytest.mark.xfail),
     ],
 )
 def get_module(request: pytest.FixtureRequest):
