@@ -182,7 +182,7 @@ async def async_model_with_response_model(
 
 
 @pytest.fixture(scope="module")
-def client(app: FastAPI) -> Iterator[TestClient]:
+def client() -> Iterator[TestClient]:
     with TestClient(app) as client:
         yield client
 
