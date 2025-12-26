@@ -13,7 +13,15 @@ from ...utils import needs_py310
         pytest.param("tutorial004_py310", marks=needs_py310),
         pytest.param("tutorial004_an_py39"),
         pytest.param("tutorial004_an_py310", marks=needs_py310),
-        pytest.param("tutorial004_regex_an_py310", marks=needs_py310),
+        pytest.param(
+            "tutorial004_regex_an_py310",
+            marks=(
+                needs_py310,
+                pytest.mark.filterwarnings(
+                    "ignore:`regex` has been deprecated, please use `pattern` instead:DeprecationWarning"
+                ),
+            ),
+        ),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
