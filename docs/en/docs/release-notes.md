@@ -18,6 +18,7 @@ hide:
 
 ### Internal
 
+* ✅ Add missing tests for code examples. PR [#14569](https://github.com/fastapi/fastapi/pull/14569) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Remove `lint` job from `test` CI workflow. PR [#14593](https://github.com/fastapi/fastapi/pull/14593) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👷 Update secrets check. PR [#14592](https://github.com/fastapi/fastapi/pull/14592) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run CodSpeed tests in parallel to other tests to speed up CI. PR [#14586](https://github.com/fastapi/fastapi/pull/14586) by [@tiangolo](https://github.com/tiangolo).
