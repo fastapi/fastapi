@@ -209,7 +209,7 @@ Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentati
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combinez les réponses prédéfinies et les réponses personnalisées { #combine-predefined-responses-and-custom-ones }
+## Combinez les réponses prédéfinies et les réponses personnalisées { #combine-predefined-responses-and-custom-ones }
 
 Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de nombreuses *opérations de chemin*, mais vous souhaitez les combiner avec des réponses personnalisées nécessaires à chaque *opération de chemin*.
 

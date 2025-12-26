@@ -6,8 +6,7 @@ De nouvelles fonctionnalités sont ajoutées fréquemment, des bogues sont corri
 amélioré continuellement.
 
 C'est pourquoi les versions actuelles sont toujours `0.x.x`, cela reflète que chaque version peut potentiellement
-recevoir des changements non rétrocompatibles. Cela suit les conventions de <a href="https://semver.org/" class="external-link"
-target="_blank">versionnage sémantique</a>.
+recevoir des changements non rétrocompatibles. Cela suit les conventions de <a href="https://semver.org/" class="external-link" target="_blank">versionnage sémantique</a>.
 
 Vous pouvez créer des applications de production avec **FastAPI** dès maintenant (et vous le faites probablement depuis un certain temps), vous devez juste vous assurer que vous utilisez une version qui fonctionne correctement avec le reste de votre code.
 
