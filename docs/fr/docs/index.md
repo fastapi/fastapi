@@ -117,6 +117,12 @@ Les principales fonctionnalités sont :
 
 ---
 
+## Mini documentaire FastAPI { #fastapi-mini-documentary }
+
+Un <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">mini documentaire FastAPI</a> est sorti à la fin de 2025, vous pouvez le regarder en ligne :
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+
 ## **Typer**, le FastAPI des <abbr title="Command Line Interface – Interface en ligne de commande">CLI</abbr> { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
@@ -146,7 +152,7 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-**Remarque** : Assurez-vous de mettre «fastapi[standard]» entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
+**Remarque** : Assurez-vous de mettre `"fastapi[standard]"` entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
 
 ## Exemple { #example }
 
