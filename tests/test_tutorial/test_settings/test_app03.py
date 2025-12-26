@@ -5,7 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
-from ...utils import needs_pydanticv1, needs_pydanticv2
+from ...utils import needs_pydanticv1
 
 
 @pytest.fixture(
@@ -26,7 +26,6 @@ def get_main_mod(mod_path: str) -> ModuleType:
     return main_mod
 
 
-@needs_pydanticv2
 def test_settings(main_mod: ModuleType, monkeypatch: MonkeyPatch):
     monkeypatch.setenv("ADMIN_EMAIL", "admin@example.com")
     settings = main_mod.get_settings()
@@ -45,7 +44,6 @@ def test_settings_pv1(mod_path: str, monkeypatch: MonkeyPatch):
     assert settings.items_per_user == 50
 
 
-@needs_pydanticv2
 def test_endpoint(main_mod: ModuleType, monkeypatch: MonkeyPatch):
     monkeypatch.setenv("ADMIN_EMAIL", "admin@example.com")
     client = TestClient(main_mod.app)

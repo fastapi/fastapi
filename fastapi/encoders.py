@@ -228,11 +228,11 @@ def jsonable_encoder(
         # TODO: remove when deprecating Pydantic v1
         encoders: dict[Any, Any] = {}
         if isinstance(obj, may_v1.BaseModel):
-            encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
+            encoders = getattr(obj.__config__, "json_encoders", {})
             if custom_encoder:
                 encoders = {**encoders, **custom_encoder}
         obj_dict = _model_dump(
-            obj,
+            obj,  # type: ignore[arg-type]
             mode="json",
             include=include,
             exclude=exclude,

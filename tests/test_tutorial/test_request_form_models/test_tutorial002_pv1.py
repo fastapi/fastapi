@@ -1,4 +1,5 @@
 import importlib
+import warnings
 
 import pytest
 from fastapi.testclient import TestClient
@@ -14,7 +15,13 @@ from ...utils import needs_pydanticv1
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.request_form_models.{request.param}")
+    with warnings.catch_warnings(record=True):
+        warnings.filterwarnings(
+            "ignore",
+            message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
+            category=DeprecationWarning,
+        )
+        mod = importlib.import_module(f"docs_src.request_form_models.{request.param}")
 
     client = TestClient(mod.app)
     return client
@@ -117,88 +124,4 @@ def test_post_body_json(client: TestClient):
                 "msg": "field required",
             },
         ]
-    }
-
-
-# TODO: remove when deprecating Pydantic v1
-@needs_pydanticv1
-def test_openapi_schema(client: TestClient):
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/login/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
-                                    }
-                                }
-                            },
-                        },
-                    },
-                    "summary": "Login",
-                    "operationId": "login_login__post",
-                    "requestBody": {
-                        "content": {
-                            "application/x-www-form-urlencoded": {
-                                "schema": {"$ref": "#/components/schemas/FormData"}
-                            }
-                        },
-                        "required": True,
-                    },
-                }
-            }
-        },
-        "components": {
-            "schemas": {
-                "FormData": {
-                    "properties": {
-                        "username": {"type": "string", "title": "Username"},
-                        "password": {"type": "string", "title": "Password"},
-                    },
-                    "additionalProperties": False,
-                    "type": "object",
-                    "required": ["username", "password"],
-                    "title": "FormData",
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            }
-        },
     }

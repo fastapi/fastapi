@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -13,24 +12,14 @@ class Model(BaseModel):
 class ModelNoAlias(BaseModel):
     name: str
 
-    if PYDANTIC_V2:
-        model_config = ConfigDict(
-            json_schema_extra={
-                "description": (
-                    "response_model_by_alias=False is basically a quick hack, to support "
-                    "proper OpenAPI use another model with the correct field names"
-                )
-            }
-        )
-    else:
-
-        class Config:
-            schema_extra = {
-                "description": (
-                    "response_model_by_alias=False is basically a quick hack, to support "
-                    "proper OpenAPI use another model with the correct field names"
-                )
-            }
+    model_config = ConfigDict(
+        json_schema_extra={
+            "description": (
+                "response_model_by_alias=False is basically a quick hack, to support "
+                "proper OpenAPI use another model with the correct field names"
+            )
+        }
+    )
 
 
 @app.get("/dict", response_model=Model, response_model_by_alias=False)

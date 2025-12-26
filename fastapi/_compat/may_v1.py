@@ -102,7 +102,7 @@ def _normalize_errors(errors: Sequence[Any]) -> list[dict[str, Any]]:
     use_errors: list[Any] = []
     for error in errors:
         if isinstance(error, ErrorWrapper):
-            new_errors = ValidationError(  # type: ignore[call-arg]
+            new_errors = ValidationError(
                 errors=[error], model=RequestErrorModel
             ).errors()
             use_errors.extend(new_errors)

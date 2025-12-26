@@ -1,7 +1,6 @@
 import re
 import warnings
 from collections.abc import MutableMapping
-from dataclasses import is_dataclass
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -13,7 +12,6 @@ from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi._compat import (
-    PYDANTIC_V2,
     BaseConfig,
     ModelField,
     PydanticSchemaGenerationError,
@@ -28,6 +26,8 @@ from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
+
+from ._compat import v2
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
@@ -105,14 +105,12 @@ def create_model_field(
         from fastapi._compat import v1
 
         try:
-            return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+            return v1.ModelField(**v1_kwargs)  # type: ignore[return-value]
         except RuntimeError:
             raise fastapi.exceptions.FastAPIError(
                 _invalid_args_message.format(type_=type_)
             ) from None
-    elif PYDANTIC_V2:
-        from ._compat import v2
-
+    else:
         field_info = field_info or FieldInfo(
             annotation=type_, default=default, alias=alias
         )
@@ -128,7 +126,7 @@ def create_model_field(
     from fastapi._compat import v1
 
     try:
-        return v1.ModelField(**v1_kwargs)  # type: ignore[no-any-return]
+        return v1.ModelField(**v1_kwargs)
     except RuntimeError:
         raise fastapi.exceptions.FastAPIError(
             _invalid_args_message.format(type_=type_)
@@ -140,11 +138,8 @@ def create_cloned_field(
     *,
     cloned_types: Optional[MutableMapping[type[BaseModel], type[BaseModel]]] = None,
 ) -> ModelField:
-    if PYDANTIC_V2:
-        from ._compat import v2
-
-        if isinstance(field, v2.ModelField):
-            return field
+    if isinstance(field, v2.ModelField):
+        return field
 
     from fastapi._compat import v1
 
@@ -154,8 +149,6 @@ def create_cloned_field(
         cloned_types = _CLONED_TYPES_CACHE
 
     original_type = field.type_
-    if is_dataclass(original_type) and hasattr(original_type, "__pydantic_model__"):
-        original_type = original_type.__pydantic_model__
     use_type = original_type
     if lenient_issubclass(original_type, v1.BaseModel):
         original_type = cast(type[v1.BaseModel], original_type)

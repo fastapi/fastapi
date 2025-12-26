@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel
 
-from tests.utils import needs_py310, needs_pydanticv2
+from tests.utils import needs_py310
 
 
 @pytest.fixture(name="client")
@@ -32,14 +32,12 @@ def get_client():
 
 
 @needs_py310
-@needs_pydanticv2
 def test_get(client: TestClient):
     response = client.get("/users")
     assert response.json() == {"username": "alice", "role": "admin"}
 
 
 @needs_py310
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("openapi.json")
     assert response.json() == snapshot(

@@ -1,3 +1,4 @@
+import warnings
 from typing import Union
 
 import pytest
@@ -521,11 +522,14 @@ def test_invalid_response_model_field_pv1():
     class Model(v1.BaseModel):
         foo: str
 
-    with pytest.raises(FastAPIError) as e:
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
 
-        @app.get("/")
-        def read_root() -> Union[Response, Model, None]:
-            return Response(content="Foo")  # pragma: no cover
+        with pytest.raises(FastAPIError) as e:
+
+            @app.get("/")
+            def read_root() -> Union[Response, Model, None]:
+                return Response(content="Foo")  # pragma: no cover
 
     assert "valid Pydantic field type" in e.value.args[0]
     assert "parameter response_model=None" in e.value.args[0]
