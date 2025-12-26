@@ -207,6 +207,8 @@ omit = [
     "docs_src/header_param_models/tutorial002_pv1_an_py310.py",
     "docs_src/cookie_param_models/tutorial002_pv1_py310.py",
     "docs_src/cookie_param_models/tutorial002_pv1_an_py310.py",
+    # TODO: remove when removing this file, after updating translations
+    "docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py",
 ]
 
 [tool.coverage.report]
