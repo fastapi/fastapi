@@ -51,7 +51,11 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant
-from fastapi.exceptions import DependencyScopeError, FastAPIError, FastAPIDeprecationWarning
+from fastapi.exceptions import (
+    DependencyScopeError,
+    FastAPIDeprecationWarning,
+    FastAPIError,
+)
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
