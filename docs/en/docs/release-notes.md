@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ✅ Run performance tests only on Pydantic v2. PR [#14608](https://github.com/fastapi/fastapi/pull/14608) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.127.1
 
 ### Refactors
