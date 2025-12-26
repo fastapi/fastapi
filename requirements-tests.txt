@@ -6,7 +6,7 @@ mypy ==1.14.1
 dirty-equals ==0.9.0
 sqlmodel==0.0.27
 flask >=1.1.2,<4.0.0
-strawberry-graphql >=0.287.3,< 1.0.0
+strawberry-graphql >=0.200.0,< 1.0.0
 anyio[trio] >=3.2.1,<5.0.0
 PyJWT==2.9.0
 pyyaml >=5.3.1,<7.0.0
