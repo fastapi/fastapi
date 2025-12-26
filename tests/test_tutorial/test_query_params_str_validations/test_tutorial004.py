@@ -18,7 +18,7 @@ from ...utils import needs_py310
             marks=(
                 needs_py310,
                 pytest.mark.filterwarnings(
-                    "ignore:`regex` has been deprecated, please use `pattern` instead:DeprecationWarning"
+                    "ignore:`regex` has been deprecated, please use `pattern` instead:fastapi.exceptions.FastAPIDeprecationWarning"
                 ),
             ),
         ),

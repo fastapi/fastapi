@@ -2,6 +2,7 @@ import importlib
 import warnings
 
 import pytest
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -20,7 +21,7 @@ def get_client(request: pytest.FixtureRequest):
         warnings.filterwarnings(
             "ignore",
             message=r"pydantic\.v1 is deprecated and will soon stop being supported by FastAPI\..*",
-            category=DeprecationWarning,
+            category=FastAPIDeprecationWarning,
         )
         mod = importlib.import_module(f"docs_src.schema_extra_example.{request.param}")
 
