@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+* ➖ Drop support for `pydantic.v1`. PR [#14609](https://github.com/fastapi/fastapi/pull/14609) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ✅ Run performance tests only on Pydantic v2. PR [#14608](https://github.com/fastapi/fastapi/pull/14608) by [@tiangolo](https://github.com/tiangolo).
