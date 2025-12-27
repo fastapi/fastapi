@@ -212,6 +212,8 @@ omit = [
     "docs_src/schema_extra_example/tutorial001_pv1_py310.py",
     "docs_src/schema_extra_example/tutorial001_pv1_py39.py",
     "docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py",
+    "docs_src/settings/app03_py39/config_pv1.py",
+    "docs_src/settings/app03_an_py39/config_pv1.py",
 ]
 
 [tool.coverage.report]
