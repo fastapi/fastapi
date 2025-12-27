@@ -2,7 +2,6 @@ import dataclasses
 import inspect
 import sys
 import types
-import warnings
 from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -24,8 +23,6 @@ from fastapi._compat import (
     RequiredParam,
     Undefined,
     UndefinedType,
-    _is_error_wrapper,
-    _is_model_class,
     _regenerate_error_with_loc,
     copy_field_info,
     create_body_model,
