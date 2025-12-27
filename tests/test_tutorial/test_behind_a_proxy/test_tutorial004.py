@@ -15,31 +15,33 @@ def test_main():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == snapshot({
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "servers": [
-            {
-                "url": "https://stag.example.com",
-                "description": "Staging environment",
-            },
-            {
-                "url": "https://prod.example.com",
-                "description": "Production environment",
-            },
-        ],
-        "paths": {
-            "/app": {
-                "get": {
-                    "summary": "Read Main",
-                    "operationId": "read_main_app_get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "servers": [
+                {
+                    "url": "https://stag.example.com",
+                    "description": "Staging environment",
+                },
+                {
+                    "url": "https://prod.example.com",
+                    "description": "Production environment",
+                },
+            ],
+            "paths": {
+                "/app": {
+                    "get": {
+                        "summary": "Read Main",
+                        "operationId": "read_main_app_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                    }
                 }
-            }
-        },
-    })
+            },
+        }
+    )

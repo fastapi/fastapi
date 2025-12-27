@@ -59,124 +59,132 @@ def test_post_upload_file(tmp_path: Path, client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == snapshot({
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/files/": {
-                "post": {
-                    "summary": "Create File",
-                    "operationId": "create_file_files__post",
-                    "requestBody": {
-                        "content": {
-                            "multipart/form-data": {
-                                "schema": {"$ref": "#/components/schemas/Body_create_file_files__post"}
-                            }
-                        }
-                    },
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/files/": {
+                    "post": {
+                        "summary": "Create File",
+                        "operationId": "create_file_files__post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "multipart/form-data": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_create_file_files__post"
                                     }
                                 }
+                            }
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/uploadfile/": {
+                    "post": {
+                        "summary": "Create Upload File",
+                        "operationId": "create_upload_file_uploadfile__post",
+                        "requestBody": {
+                            "content": {
+                                "multipart/form-data": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"
+                                    }
+                                }
+                            }
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+            },
+            "components": {
+                "schemas": {
+                    "Body_create_file_files__post": {
+                        "title": "Body_create_file_files__post",
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "title": "File",
+                                "anyOf": [
+                                    {"type": "string", "format": "binary"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        },
+                    },
+                    "Body_create_upload_file_uploadfile__post": {
+                        "title": "Body_create_upload_file_uploadfile__post",
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "title": "File",
+                                "anyOf": [
+                                    {"type": "string", "format": "binary"},
+                                    {"type": "null"},
+                                ],
+                            }
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
                         },
                     },
                 }
             },
-            "/uploadfile/": {
-                "post": {
-                    "summary": "Create Upload File",
-                    "operationId": "create_upload_file_uploadfile__post",
-                    "requestBody": {
-                        "content": {
-                            "multipart/form-data": {
-                                "schema": {"$ref": "#/components/schemas/Body_create_upload_file_uploadfile__post"}
-                            }
-                        }
-                    },
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
-                                    }
-                                }
-                            },
-                        },
-                    },
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "Body_create_file_files__post": {
-                    "title": "Body_create_file_files__post",
-                    "type": "object",
-                    "properties": {
-                        "file": {
-                            "title": "File",
-                            "anyOf": [
-                                {"type": "string", "format": "binary"},
-                                {"type": "null"},
-                            ],
-                        }
-                    },
-                },
-                "Body_create_upload_file_uploadfile__post": {
-                    "title": "Body_create_upload_file_uploadfile__post",
-                    "type": "object",
-                    "properties": {
-                        "file": {
-                            "title": "File",
-                            "anyOf": [
-                                {"type": "string", "format": "binary"},
-                                {"type": "null"},
-                            ],
-                        }
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                    },
-                },
-            }
-        },
-    })
+        }
+    )
