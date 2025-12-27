@@ -2,7 +2,6 @@ import email.message
 import functools
 import inspect
 import json
-import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -22,16 +21,12 @@ from typing import (
 )
 
 from annotated_doc import Doc
-from fastapi import params, temp_pydantic_v1_params
+from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _get_model_config,
-    _model_dump,
-    _normalize_errors,
     annotation_is_pydantic_v1,
     lenient_issubclass,
-    may_v1,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -47,8 +42,8 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
-    FastAPIDeprecationWarning,
     FastAPIError,
+    PydanticV1NotSupportedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
@@ -148,51 +143,6 @@ def websocket_session(
     return app
 
 
-def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-) -> Any:
-    if isinstance(res, may_v1.BaseModel):
-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)  # type: ignore[arg-type]
-        if read_with_orm_mode:
-            # Let from_orm extract the data from this model instead of converting
-            # it now to a dict.
-            # Otherwise, there's no way to extract lazy data that requires attribute
-            # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return _model_dump(
-            res,  # type: ignore[arg-type]
-            by_alias=True,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    elif isinstance(res, list):
-        return [
-            _prepare_response_content(
-                item,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for item in res
-        ]
-    elif isinstance(res, dict):
-        return {
-            k: _prepare_response_content(
-                v,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for k, v in res.items()
-        }
-    return res
-
-
 def _merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
@@ -252,14 +202,6 @@ async def serialize_response(
 ) -> Any:
     if field:
         errors = []
-        if not hasattr(field, "serialize"):
-            # pydantic v1
-            response_content = _prepare_response_content(
-                response_content,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
@@ -268,28 +210,15 @@ async def serialize_response(
             )
         if isinstance(errors_, list):
             errors.extend(errors_)
-        elif errors_:
-            errors.append(errors_)
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
-                errors=_normalize_errors(errors),
+                errors=errors,
                 body=response_content,
                 endpoint_ctx=ctx,
             )
 
-        if hasattr(field, "serialize"):
-            return field.serialize(
-                value,
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-
-        return jsonable_encoder(
+        return field.serialize(
             value,
             include=include,
             exclude=exclude,
@@ -298,6 +227,7 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
+
     else:
         return jsonable_encoder(response_content)
 
@@ -332,9 +262,7 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
-    is_body_form = body_field and isinstance(
-        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
-    )
+    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
     else:
@@ -464,7 +392,7 @@ def get_request_handler(
                 response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body, endpoint_ctx=endpoint_ctx
+                errors, body=body, endpoint_ctx=endpoint_ctx
             )
             raise validation_error
 
@@ -503,7 +431,7 @@ def get_websocket_app(
         )
         if solved_result.errors:
             raise WebSocketRequestValidationError(
-                _normalize_errors(solved_result.errors),
+                solved_result.errors,
                 endpoint_ctx=endpoint_ctx,
             )
         assert dependant.call is not None, "dependant.call must be a function"
@@ -638,11 +566,9 @@ class APIRoute(routing.Route):
             )
             response_name = "Response_" + self.unique_id
             if annotation_is_pydantic_v1(self.response_model):
-                warnings.warn(
-                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                    f" Please update the response model {self.response_model!r}.",
-                    category=FastAPIDeprecationWarning,
-                    stacklevel=4,
+                raise PydanticV1NotSupportedError(
+                    "pydantic.v1 models are no longer supported by FastAPI."
+                    f" Please update the response model {self.response_model!r}."
                 )
             self.response_field = create_model_field(
                 name=response_name,
@@ -678,11 +604,9 @@ class APIRoute(routing.Route):
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 if annotation_is_pydantic_v1(model):
-                    warnings.warn(
-                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                        f" In responses={{}}, please update {model}.",
-                        category=FastAPIDeprecationWarning,
-                        stacklevel=4,
+                    raise PydanticV1NotSupportedError(
+                        "pydantic.v1 models are no longer supported by FastAPI."
+                        f" In responses={{}}, please update {model}."
                     )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
