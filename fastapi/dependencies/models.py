@@ -38,12 +38,12 @@ class Dependant:
     dependencies: list["Dependant"] = field(default_factory=list)
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
-    request_param_name: Optional[str] = None
-    websocket_param_name: Optional[str] = None
-    http_connection_param_name: Optional[str] = None
-    response_param_name: Optional[str] = None
-    background_tasks_param_name: Optional[str] = None
-    security_scopes_param_name: Optional[str] = None
+    request_param_names: set[str] = field(default_factory=set)
+    websocket_param_names: set[str] = field(default_factory=set)
+    http_connection_param_names: set[str] = field(default_factory=set)
+    response_param_names: set[str] = field(default_factory=set)
+    background_tasks_param_names: set[str] = field(default_factory=set)
+    security_scopes_param_names: set[str] = field(default_factory=set)
     own_oauth_scopes: Optional[list[str]] = None
     parent_oauth_scopes: Optional[list[str]] = None
     use_cache: bool = True
@@ -74,7 +74,7 @@ class Dependant:
     def _uses_scopes(self) -> bool:
         if self.own_oauth_scopes:
             return True
-        if self.security_scopes_param_name is not None:
+        if self.security_scopes_param_names:
             return True
         if self._is_security_scheme:
             return True
