@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 🔥 Remove test variants for Pydantic v1 in test_request_params. PR [#14612](https://github.com/fastapi/fastapi/pull/14612) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove Pydantic v1  specific test variants. PR [#14611](https://github.com/fastapi/fastapi/pull/14611) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.0
