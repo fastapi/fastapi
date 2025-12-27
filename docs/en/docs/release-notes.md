@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔥 Remove Pydantic v1  specific test variants. PR [#14611](https://github.com/fastapi/fastapi/pull/14611) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.128.0
 
 ### Breaking Changes
