@@ -1,8 +1,8 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -47,7 +47,7 @@ def test_extra_types(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.json() == snapshot({
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
@@ -87,22 +87,7 @@ def test_openapi_schema(client: TestClient):
                         "required": True,
                         "content": {
                             "application/json": {
-                                "schema": IsDict(
-                                    {
-                                        "allOf": [
-                                            {
-                                                "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
-                                            }
-                                        ],
-                                        "title": "Body",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
-                                    }
-                                )
+                                "schema": {"$ref": "#/components/schemas/Body_read_items_items__item_id__put"}
                             }
                         },
                     },
@@ -125,38 +110,18 @@ def test_openapi_schema(client: TestClient):
                             "type": "string",
                             "format": "date-time",
                         },
-                        "repeat_at": IsDict(
-                            {
-                                "title": "Repeat At",
-                                "anyOf": [
-                                    {"type": "string", "format": "time"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Repeat At",
-                                "type": "string",
-                                "format": "time",
-                            }
-                        ),
-                        "process_after": IsDict(
-                            {
-                                "title": "Process After",
-                                "type": "string",
-                                "format": "duration",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Process After",
-                                "type": "number",
-                                "format": "time-delta",
-                            }
-                        ),
+                        "repeat_at": {
+                            "title": "Repeat At",
+                            "anyOf": [
+                                {"type": "string", "format": "time"},
+                                {"type": "null"},
+                            ],
+                        },
+                        "process_after": {
+                            "title": "Process After",
+                            "type": "string",
+                            "format": "duration",
+                        },
                     },
                     "required": ["start_datetime", "end_datetime", "process_after"],
                 },
@@ -189,4 +154,4 @@ def test_openapi_schema(client: TestClient):
                 },
             }
         },
-    }
+    })

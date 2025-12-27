@@ -2,8 +2,8 @@ import importlib
 from types import ModuleType
 
 import pytest
-from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -215,7 +215,7 @@ def test_openapi_schema(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.json() == snapshot({
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
@@ -303,44 +303,22 @@ def test_openapi_schema(mod: ModuleType):
             "schemas": {
                 "User": {
                     "title": "User",
-                    "required": IsOneOf(
-                        ["username", "email", "full_name", "disabled"],
-                        # TODO: remove when deprecating Pydantic v1
-                        ["username"],
-                    ),
+                    "required": ["username"],
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},
-                        "email": IsDict(
-                            {
-                                "title": "Email",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Email", "type": "string"}
-                        ),
-                        "full_name": IsDict(
-                            {
-                                "title": "Full Name",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Full Name", "type": "string"}
-                        ),
-                        "disabled": IsDict(
-                            {
-                                "title": "Disabled",
-                                "anyOf": [{"type": "boolean"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Disabled", "type": "boolean"}
-                        ),
+                        "email": {
+                            "title": "Email",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "full_name": {
+                            "title": "Full Name",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "disabled": {
+                            "title": "Disabled",
+                            "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                        },
                     },
                 },
                 "Token": {
@@ -357,23 +335,13 @@ def test_openapi_schema(mod: ModuleType):
                     "required": ["username", "password"],
                     "type": "object",
                     "properties": {
-                        "grant_type": IsDict(
-                            {
-                                "title": "Grant Type",
-                                "anyOf": [
-                                    {"pattern": "^password$", "type": "string"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Grant Type",
-                                "pattern": "^password$",
-                                "type": "string",
-                            }
-                        ),
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "anyOf": [
+                                {"pattern": "^password$", "type": "string"},
+                                {"type": "null"},
+                            ],
+                        },
                         "username": {"title": "Username", "type": "string"},
                         "password": {
                             "title": "Password",
@@ -381,31 +349,15 @@ def test_openapi_schema(mod: ModuleType):
                             "format": "password",
                         },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
-                                "title": "Client Id",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
-                                "title": "Client Secret",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "format": "password",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Client Secret",
-                                "type": "string",
-                                "format": "password",
-                            }
-                        ),
+                        "client_id": {
+                            "title": "Client Id",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "client_secret": {
+                            "title": "Client Secret",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                            "format": "password",
+                        },
                     },
                 },
                 "ValidationError": {
@@ -451,4 +403,4 @@ def test_openapi_schema(mod: ModuleType):
                 }
             },
         },
-    }
+    })

@@ -153,15 +153,10 @@ def test_openapi_schema(client: TestClient):
                         "type": "object",
                         "properties": {
                             "name": {"title": "Name", "type": "string"},
-                            "description": IsDict(
-                                {
-                                    "title": "Description",
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                }
-                            )
-                            |
-                            # TODO remove when deprecating Pydantic v1
-                            IsDict({"title": "Description", "type": "string"}),
+                            "description": {
+                                "title": "Description",
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                            },
                             "foo": {"$ref": "#/components/schemas/ModelB"},
                             "tags": {
                                 "additionalProperties": {"type": "string"},

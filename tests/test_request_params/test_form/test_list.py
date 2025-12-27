@@ -146,29 +146,16 @@ def test_required_list_alias_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -182,29 +169,16 @@ def test_required_list_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, data={"p": ["hello", "world"]})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {"p": ["hello", "world"]}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": ["hello", "world"]}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(

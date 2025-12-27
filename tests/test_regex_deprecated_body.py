@@ -1,10 +1,10 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from .utils import needs_py310
 
@@ -47,31 +47,17 @@ def test_query_nonregexquery():
     client = get_client()
     response = client.post("/items/", data={"q": "nonregexquery"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "string_pattern_mismatch",
-                    "loc": ["body", "q"],
-                    "msg": "String should match pattern '^fixedquery$'",
-                    "input": "nonregexquery",
-                    "ctx": {"pattern": "^fixedquery$"},
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "ctx": {"pattern": "^fixedquery$"},
-                    "loc": ["body", "q"],
-                    "msg": 'string does not match regex "^fixedquery$"',
-                    "type": "value_error.str.regex",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_pattern_mismatch",
+                "loc": ["body", "q"],
+                "msg": "String should match pattern '^fixedquery$'",
+                "input": "nonregexquery",
+                "ctx": {"pattern": "^fixedquery$"},
+            }
+        ]
+    }
 
 
 @needs_py310
@@ -79,8 +65,7 @@ def test_openapi_schema():
     client = get_client()
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    # insert_assert(response.json())
-    assert response.json() == {
+    assert response.json() == snapshot({
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
@@ -91,22 +76,7 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/x-www-form-urlencoded": {
-                                "schema": IsDict(
-                                    {
-                                        "allOf": [
-                                            {
-                                                "$ref": "#/components/schemas/Body_read_items_items__post"
-                                            }
-                                        ],
-                                        "title": "Body",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "$ref": "#/components/schemas/Body_read_items_items__post"
-                                    }
-                                )
+                                "schema": {"$ref": "#/components/schemas/Body_read_items_items__post"}
                             }
                         }
                     },
@@ -133,19 +103,13 @@ def test_openapi_schema():
             "schemas": {
                 "Body_read_items_items__post": {
                     "properties": {
-                        "q": IsDict(
-                            {
-                                "anyOf": [
-                                    {"type": "string", "pattern": "^fixedquery$"},
-                                    {"type": "null"},
-                                ],
-                                "title": "Q",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"type": "string", "pattern": "^fixedquery$", "title": "Q"}
-                        )
+                        "q": {
+                            "anyOf": [
+                                {"type": "string", "pattern": "^fixedquery$"},
+                                {"type": "null"},
+                            ],
+                            "title": "Q",
+                        }
                     },
                     "type": "object",
                     "title": "Body_read_items_items__post",
@@ -179,4 +143,4 @@ def test_openapi_schema():
                 },
             }
         },
-    }
+    })

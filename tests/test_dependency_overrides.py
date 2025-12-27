@@ -54,29 +54,16 @@ async def overrider_dependency_with_sub(msg: dict = Depends(overrider_sub_depend
 def test_main_depends():
     response = client.get("/main-depends/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "q"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "q"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "q"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_main_depends_q_foo():
@@ -100,29 +87,16 @@ def test_main_depends_q_foo_skip_100_limit_200():
 def test_decorator_depends():
     response = client.get("/decorator-depends/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "q"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "q"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "q"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_decorator_depends_q_foo():
@@ -140,29 +114,16 @@ def test_decorator_depends_q_foo_skip_100_limit_200():
 def test_router_depends():
     response = client.get("/router-depends/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "q"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "q"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "q"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_router_depends_q_foo():
@@ -272,29 +233,17 @@ def test_override_with_sub_main_depends():
     app.dependency_overrides[common_parameters] = overrider_dependency_with_sub
     response = client.get("/main-depends/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "k"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "k"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "k"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
     app.dependency_overrides = {}
 
 
@@ -302,29 +251,17 @@ def test_override_with_sub__main_depends_q_foo():
     app.dependency_overrides[common_parameters] = overrider_dependency_with_sub
     response = client.get("/main-depends/?q=foo")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "k"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "k"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "k"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
     app.dependency_overrides = {}
 
 
@@ -340,29 +277,17 @@ def test_override_with_sub_decorator_depends():
     app.dependency_overrides[common_parameters] = overrider_dependency_with_sub
     response = client.get("/decorator-depends/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "k"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "k"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "k"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
     app.dependency_overrides = {}
 
 
@@ -370,29 +295,17 @@ def test_override_with_sub_decorator_depends_q_foo():
     app.dependency_overrides[common_parameters] = overrider_dependency_with_sub
     response = client.get("/decorator-depends/?q=foo")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "k"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "k"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "k"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
     app.dependency_overrides = {}
 
 

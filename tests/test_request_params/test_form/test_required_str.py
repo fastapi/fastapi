@@ -1,7 +1,7 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict, IsOneOf
+from dirty_equals import IsOneOf
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -54,29 +54,16 @@ def test_required_str_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -137,29 +124,16 @@ def test_required_alias_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -170,29 +144,16 @@ def test_required_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, data={"p": "hello"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {"p": "hello"}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": "hello"}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(

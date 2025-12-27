@@ -1,8 +1,8 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -42,7 +42,7 @@ def test_post_user(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.json() == snapshot({
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},
         "paths": {
@@ -85,11 +85,7 @@ def test_openapi_schema(client: TestClient):
             "schemas": {
                 "BaseUser": {
                     "title": "BaseUser",
-                    "required": IsOneOf(
-                        ["username", "email", "full_name"],
-                        # TODO: remove when deprecating Pydantic v1
-                        ["username", "email"],
-                    ),
+                    "required": ["username", "email"],
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},
@@ -98,16 +94,13 @@ def test_openapi_schema(client: TestClient):
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": IsDict(
+                        "full_name":
                             {
                                 "title": "Full Name",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
                             }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Full Name", "type": "string"}
-                        ),
+
+                        ,
                     },
                 },
                 "HTTPValidationError": {
@@ -132,16 +125,12 @@ def test_openapi_schema(client: TestClient):
                             "type": "string",
                             "format": "email",
                         },
-                        "full_name": IsDict(
+                        "full_name":
                             {
                                 "title": "Full Name",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
                             }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Full Name", "type": "string"}
-                        ),
+                        ,
                         "password": {"title": "Password", "type": "string"},
                     },
                 },
@@ -163,4 +152,4 @@ def test_openapi_schema(client: TestClient):
                 },
             }
         },
-    }
+    })
