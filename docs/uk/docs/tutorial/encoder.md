@@ -1,32 +1,32 @@
-# JSON Compatible Encoder
+# JSON-сумісний кодувальник { #json-compatible-encoder }
 
-Існують випадки, коли вам може знадобитися перетворити тип даних (наприклад, модель Pydantic) в щось сумісне з JSON (наприклад, `dict`, `list`, і т. д.).
+Існують випадки, коли вам може знадобитися перетворити тип даних (наприклад, модель Pydantic) на щось сумісне з JSON (наприклад, `dict`, `list` тощо).
 
 Наприклад, якщо вам потрібно зберегти це в базі даних.
 
-Для цього, **FastAPI** надає `jsonable_encoder()` функцію.
+Для цього **FastAPI** надає функцію `jsonable_encoder()`.
 
-## Використання `jsonable_encoder`
+## Використання `jsonable_encoder` { #using-the-jsonable-encoder }
 
 Давайте уявимо, що у вас є база даних `fake_db`, яка приймає лише дані, сумісні з JSON.
 
 Наприклад, вона не приймає об'єкти типу `datetime`, оскільки вони не сумісні з JSON.
 
-Отже, об'єкт типу `datetime` потрібно перетворити в рядок `str`, який містить дані в <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO форматі</a>.
+Отже, об'єкт типу `datetime` потрібно перетворити на `str`, який містить дані в <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">форматі ISO</a>.
 
-Тим самим способом ця база даних не прийматиме об'єкт типу Pydantic model (об'єкт з атрибутами), а лише `dict`.
+Так само ця база даних не прийматиме модель Pydantic (об'єкт з атрибутами), а лише `dict`.
 
 Ви можете використовувати `jsonable_encoder` для цього.
 
-Вона приймає об'єкт, такий як Pydantic model, і повертає його версію, сумісну з JSON:
+Вона приймає об'єкт, такий як модель Pydantic, і повертає його версію, сумісну з JSON:
 
 {* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
 
-У цьому прикладі вона конвертує Pydantic model у `dict`, а `datetime` у `str`.
+У цьому прикладі вона конвертує модель Pydantic у `dict`, а `datetime` у `str`.
 
-Результат виклику цієї функції - це щось, що можна кодувати з використанням стандарту Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
+Результат виклику цієї функції — це щось, що можна кодувати з використанням стандарту Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
 
-Вона не повертає велику строку `str`, яка містить дані у форматі JSON (як строка). Вона повертає стандартну структуру даних Python (наприклад `dict`) із значеннями та підзначеннями, які є сумісними з JSON.
+Вона не повертає великий `str`, який містить дані у форматі JSON (як рядок). Вона повертає стандартну структуру даних Python (наприклад, `dict`) зі значеннями та підзначеннями, які є сумісними з JSON.
 
 /// note | Примітка
 
