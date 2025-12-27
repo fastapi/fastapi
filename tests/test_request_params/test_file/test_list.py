@@ -1,7 +1,6 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
 
@@ -36,27 +35,11 @@ def test_list_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P",
-                    },
-                )
-            )
+            "p": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P",
+            },
         },
         "required": ["p"],
         "title": body_model_name,
@@ -130,27 +113,11 @@ def test_list_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Alias",
-                    },
-                )
-            )
+            "p_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Alias",
+            },
         },
         "required": ["p_alias"],
         "title": body_model_name,
@@ -252,27 +219,11 @@ def test_list_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Val Alias",
-                    },
-                )
-            )
+            "p_val_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Val Alias",
+            },
         },
         "required": ["p_val_alias"],
         "title": body_model_name,
@@ -385,27 +336,11 @@ def test_list_alias_and_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Val Alias",
-                    },
-                )
-            )
+            "p_val_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Val Alias",
+            },
         },
         "required": ["p_val_alias"],
         "title": body_model_name,

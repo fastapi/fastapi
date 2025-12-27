@@ -1,7 +1,7 @@
 from typing import Annotated, Union
 
 import pytest
-from dirty_equals import IsDict, IsOneOf, IsPartialDict
+from dirty_equals import IsOneOf, IsPartialDict
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -59,28 +59,16 @@ def test_required_list_str_missing(path: str, json: Union[dict, None]):
     client = TestClient(app)
     response = client.post(path, json=json)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": IsOneOf(["body", "p"], ["body"]),
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        {
-            "detail": [
-                {
-                    "loc": IsOneOf(["body", "p"], ["body"]),
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": IsOneOf(["body", "p"], ["body"]),
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
