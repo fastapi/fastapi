@@ -4,6 +4,7 @@ from collections.abc import Sequence
 from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
+from functools import lru_cache
 from typing import (
     Annotated,
     Any,
@@ -474,6 +475,11 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return model_fields
 
 
+@lru_cache
+def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
+    return get_model_fields(model)  # type: ignore[return-value]
+
+
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 
@@ -491,6 +497,17 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
         model_name = normalize_name(model.__name__)
         name_model_map[model_name] = model
     return {v: k for k, v in name_model_map.items()}
+
+
+def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
+    all_flat_models = set()
+
+    v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
+    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
+    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
+
+    model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
+    return model_name_map
 
 
 def get_flat_models_from_model(
