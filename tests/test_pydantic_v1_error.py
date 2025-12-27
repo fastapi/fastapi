@@ -1,5 +1,6 @@
 import sys
 import warnings
+from typing import Union
 
 import pytest
 
@@ -68,3 +69,29 @@ def test_raises_pydantic_v1_model_in_additional_responses_model() -> None:
         )
         def endpoint():  # pragma: no cover
             return {"ok": True}
+
+
+def test_raises_pydantic_v1_model_in_union() -> None:
+    class ModelV1A(BaseModel):
+        name: str
+
+    app = FastAPI()
+
+    with pytest.raises(PydanticV1NotSupportedError):
+
+        @app.post("/union")
+        def endpoint(data: Union[dict, ModelV1A]):  # pragma: no cover
+            return data
+
+
+def test_raises_pydantic_v1_model_in_sequence() -> None:
+    class ModelV1A(BaseModel):
+        name: str
+
+    app = FastAPI()
+
+    with pytest.raises(PydanticV1NotSupportedError):
+
+        @app.post("/sequence")
+        def endpoint(data: list[ModelV1A]):  # pragma: no cover
+            return data
