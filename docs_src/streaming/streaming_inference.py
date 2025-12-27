@@ -7,7 +7,7 @@ latency and user experience.
 """
 
 import time
-from typing import Generator
+from collections.abc import Generator
 
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
