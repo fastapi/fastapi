@@ -1,8 +1,8 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict, IsOneOf
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from tests.utils import needs_py310
 
@@ -37,77 +37,53 @@ def test_get_item(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/next": {
-                "get": {
-                    "summary": "Read Next Item",
-                    "operationId": "read_next_item_items_next_get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {
-                                "application/json": {
-                                    "schema": {"$ref": "#/components/schemas/Item"}
-                                }
-                            },
-                        }
-                    },
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/next": {
+                    "get": {
+                        "summary": "Read Next Item",
+                        "operationId": "read_next_item_items_next_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {"$ref": "#/components/schemas/Item"}
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "Item": {
-                    "title": "Item",
-                    "required": IsOneOf(
-                        ["name", "price", "tags", "description", "tax"],
-                        # TODO: remove when deprecating Pydantic v1
-                        ["name", "price"],
-                    ),
-                    "type": "object",
-                    "properties": {
-                        "name": {"title": "Name", "type": "string"},
-                        "price": {"title": "Price", "type": "number"},
-                        "tags": IsDict(
-                            {
+            },
+            "components": {
+                "schemas": {
+                    "Item": {
+                        "title": "Item",
+                        "required": ["name", "price"],
+                        "type": "object",
+                        "properties": {
+                            "name": {"title": "Name", "type": "string"},
+                            "price": {"title": "Price", "type": "number"},
+                            "tags": {
                                 "title": "Tags",
                                 "type": "array",
                                 "items": {"type": "string"},
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Tags",
-                                "type": "array",
-                                "items": {"type": "string"},
-                            }
-                        ),
-                        "description": IsDict(
-                            {
+                            },
+                            "description": {
                                 "title": "Description",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
-                        "tax": IsDict(
-                            {
+                            },
+                            "tax": {
                                 "title": "Tax",
                                 "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
-                    },
+                            },
+                        },
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )
