@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🔧 Add LLM prompt file for Simplified Chinese, generated from the existing translations. PR [#14549](https://github.com/fastapi/fastapi/pull/14549) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👷 Do not run translations on cron while finishing updating existing languages. PR [#14613](https://github.com/fastapi/fastapi/pull/14613) by [@tiangolo](https://github.com/tiangolo).
