@@ -599,7 +599,9 @@ async def solve_dependencies(
             and dependency_overrides_provider.dependency_overrides
         ):
             original_call = sub_dependant.call
-            call = dependency_overrides_provider.dependency_overrides.get(original_call, original_call)
+            call = dependency_overrides_provider.dependency_overrides.get(
+                original_call, original_call
+            )
             use_path: str = sub_dependant.path  # type: ignore
             use_sub_dependant = get_dependant(
                 path=use_path,

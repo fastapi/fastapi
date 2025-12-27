@@ -48,7 +48,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
-from fastapi.types import DecoratedCallable, IncEx, DependencyOverridesProvider
+from fastapi.types import DecoratedCallable, DependencyOverridesProvider, IncEx
 from fastapi.utils import (
     create_cloned_field,
     create_model_field,
