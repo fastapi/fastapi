@@ -716,11 +716,17 @@ def _validate_value_with_model_field(
         return v_, []
 
 
+def _is_pydantic_json_field(field: ModelField) -> bool:
+    return any(item.__class__.__name__ == 'Json' for item in field.field_info.metadata)
+
+
 def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
-    if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
+    if _is_pydantic_json_field(field):
+        value = values.get(alias, None)
+    elif is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
