@@ -223,11 +223,6 @@ def jsonable_encoder(
         include = set(include)
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
-    if is_pydantic_v1_model_instance(obj):
-        raise PydanticV1NotSupportedError(
-            "pydantic.v1 models are no longer supported by FastAPI."
-            f" Please update the model {obj!r}."
-        )
     if isinstance(obj, BaseModel):
         obj_dict = _model_dump(
             obj,  # type: ignore[arg-type]
@@ -325,7 +320,11 @@ def jsonable_encoder(
     for encoder, classes_tuple in encoders_by_class_tuples.items():
         if isinstance(obj, classes_tuple):
             return encoder(obj)
-
+    if is_pydantic_v1_model_instance(obj):
+        raise PydanticV1NotSupportedError(
+            "pydantic.v1 models are no longer supported by FastAPI."
+            f" Please update the model {obj!r}."
+        )
     try:
         data = dict(obj)
     except Exception as e:
