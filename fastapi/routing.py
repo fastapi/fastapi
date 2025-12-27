@@ -48,7 +48,7 @@ from fastapi.exceptions import (
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, IncEx, DependencyOverridesProvider
 from fastapi.utils import (
     create_cloned_field,
     create_model_field,
@@ -257,7 +257,7 @@ def get_request_handler(
     response_model_exclude_unset: bool = False,
     response_model_exclude_defaults: bool = False,
     response_model_exclude_none: bool = False,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Optional[DependencyOverridesProvider] = None,
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
@@ -405,7 +405,7 @@ def get_request_handler(
 
 def get_websocket_app(
     dependant: Dependant,
-    dependency_overrides_provider: Optional[Any] = None,
+    dependency_overrides_provider: Optional[DependencyOverridesProvider] = None,
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
@@ -448,7 +448,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         *,
         name: Optional[str] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
-        dependency_overrides_provider: Optional[Any] = None,
+        dependency_overrides_provider: Optional[DependencyOverridesProvider] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -510,7 +510,7 @@ class APIRoute(routing.Route):
         response_class: Union[type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
-        dependency_overrides_provider: Optional[Any] = None,
+        dependency_overrides_provider: Optional[DependencyOverridesProvider] = None,
         callbacks: Optional[list[BaseRoute]] = None,
         openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Union[
@@ -800,7 +800,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         dependency_overrides_provider: Annotated[
-            Optional[Any],
+            Optional[DependencyOverridesProvider],
             Doc(
                 """
                 Only used internally by FastAPI to handle dependency overrides.
