@@ -25,12 +25,17 @@ Language code: tr.
 
 ### Preferred translations / glossary
 
-Prefer Turkish translations used in the current docs:
+Do not translate technical terms like path, route, request, response, query, body, cookie, and header, keep them as is.
 
-- request (HTTP): istek
-- response (HTTP): yanıt
-- path operation: yol operasyonu
-- path operation function: yol operasyonu fonksiyonu
+- Suffixing is very important, when adding Turkish suffixes to the English words, do that based on the pronunciation of the word and with an apostrophe.
+
+- Suffixes also changes based on what word comes next in Turkish too, here is an example:
+
+"Server'a gelen request'leri intercept... " or this could have been "request'e", "request'i" etc.
+
+- Some words are tricky like "path'e" can't be used like "path'a" but it could have been "path'i" "path'leri" etc.
+
+- You can use a more instructional style, that is consistent with the document, you can add the Turkish version of the term in parenthesis if it is not something very obvious, or an advanced concept, but do not over do it, do it only the first time it is mentioned, but keep the English term as the primary word.
 
 ### `///` admonitions
 
