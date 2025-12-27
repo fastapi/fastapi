@@ -10,8 +10,6 @@ needs_py_lt_314 = pytest.mark.skipif(
     sys.version_info >= (3, 14), reason="requires python3.13-"
 )
 
-needs_pydanticv1 = needs_py_lt_314
-
 
 def skip_module_if_py_gte_314():
     """Skip entire module on Python 3.14+ at import time."""

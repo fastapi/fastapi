@@ -251,6 +251,7 @@ Below is a list of English terms and their preferred German translations, separa
 * «the button»: «der Button»
 * «the cloud provider»: «der Cloudanbieter»
 * «the CLI»: «Das CLI»
+* «the coverage»: «Die Testabdeckung»
 * «the command line interface»: «Das Kommandozeileninterface»
 * «the default value»: «der Defaultwert»
 * «the default value»: NOT «der Standardwert»

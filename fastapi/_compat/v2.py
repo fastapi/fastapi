@@ -4,6 +4,7 @@ from collections.abc import Sequence
 from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
+from functools import lru_cache
 from typing import (
     Annotated,
     Any,
@@ -11,7 +12,7 @@ from typing import (
     cast,
 )
 
-from fastapi._compat import may_v1, shared
+from fastapi._compat import shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
@@ -175,7 +176,7 @@ class ModelField:
                 None,
             )
         except ValidationError as exc:
-            return None, may_v1._regenerate_error_with_loc(
+            return None, _regenerate_error_with_loc(
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 
@@ -208,22 +209,6 @@ class ModelField:
         # Each ModelField is unique for our purposes, to allow making a dict from
         # ModelField to its JSON Schema.
         return id(self)
-
-
-def get_annotation_from_field_info(
-    annotation: Any, field_info: FieldInfo, field_name: str
-) -> Any:
-    return annotation
-
-
-def _model_dump(
-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
-) -> Any:
-    return model.model_dump(mode=mode, **kwargs)
-
-
-def _get_model_config(model: BaseModel) -> Any:
-    return model.model_config
 
 
 def _has_computed_fields(field: ModelField) -> bool:
@@ -490,6 +475,11 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return model_fields
 
 
+@lru_cache
+def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
+    return get_model_fields(model)  # type: ignore[return-value]
+
+
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 
@@ -503,20 +493,21 @@ def normalize_name(name: str) -> str:
 
 def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str]:
     name_model_map = {}
-    conflicting_names: set[str] = set()
     for model in unique_models:
         model_name = normalize_name(model.__name__)
-        if model_name in conflicting_names:
-            model_name = get_long_model_name(model)
-            name_model_map[model_name] = model
-        elif model_name in name_model_map:
-            conflicting_names.add(model_name)
-            conflicting_model = name_model_map.pop(model_name)
-            name_model_map[get_long_model_name(conflicting_model)] = conflicting_model
-            name_model_map[get_long_model_name(model)] = model
-        else:
-            name_model_map[model_name] = model
+        name_model_map[model_name] = model
     return {v: k for k, v in name_model_map.items()}
+
+
+def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
+    all_flat_models = set()
+
+    v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
+    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
+    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
+
+    model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
+    return model_name_map
 
 
 def get_flat_models_from_model(
@@ -567,5 +558,11 @@ def get_flat_models_from_fields(
     return known_models
 
 
-def get_long_model_name(model: TypeModelOrEnum) -> str:
-    return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
+def _regenerate_error_with_loc(
+    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+) -> list[dict[str, Any]]:
+    updated_loc_errors: list[Any] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
+    ]
+
+    return updated_loc_errors

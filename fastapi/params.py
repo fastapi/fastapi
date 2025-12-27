@@ -4,7 +4,9 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Annotated, Any, Callable, Optional, Union
 
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
+from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal, deprecated
 
@@ -33,9 +35,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -75,7 +75,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -105,7 +105,7 @@ class Param(FieldInfo):  # type: ignore[misc]
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
@@ -146,9 +146,7 @@ class Path(Param):  # type: ignore[misc]
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -232,9 +230,7 @@ class Query(Param):  # type: ignore[misc]
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -316,9 +312,7 @@ class Header(Param):  # type: ignore[misc]
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         convert_underscores: bool = True,
         title: Optional[str] = None,
@@ -402,9 +396,7 @@ class Cookie(Param):  # type: ignore[misc]
         annotation: Optional[Any] = None,
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -486,9 +478,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         media_type: str = "application/json",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -530,7 +520,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         if example is not _Unset:
             warnings.warn(
                 "`example` has been deprecated, please use `examples` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         self.example = example
@@ -560,7 +550,7 @@ class Body(FieldInfo):  # type: ignore[misc]
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
-                category=DeprecationWarning,
+                category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
         current_json_schema_extra = json_schema_extra or extra
@@ -599,9 +589,7 @@ class Form(Body):  # type: ignore[misc]
         media_type: str = "application/x-www-form-urlencoded",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,
@@ -683,9 +671,7 @@ class File(Form):  # type: ignore[misc]
         media_type: str = "multipart/form-data",
         alias: Optional[str] = None,
         alias_priority: Union[int, None] = _Unset,
-        # TODO: update when deprecating Pydantic v1, import these types
-        # validation_alias: str | AliasPath | AliasChoices | None
-        validation_alias: Union[str, None] = None,
+        validation_alias: Union[str, AliasPath, AliasChoices, None] = None,
         serialization_alias: Union[str, None] = None,
         title: Optional[str] = None,
         description: Optional[str] = None,

@@ -196,6 +196,25 @@ dynamic_context = "test_function"
 omit = [
     "docs_src/response_model/tutorial003_04_py39.py",
     "docs_src/response_model/tutorial003_04_py310.py",
+    "docs_src/dependencies/tutorial008_an_py39.py",  # difficult to mock
+    "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
+    "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
+    # Pydantic v1 migration, no longer tested
+    "docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial001_an_py39.py",
+    "docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial002_an_py39.py",
+    "docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial003_an_py39.py",
+    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial004_an_py39.py",
+    # TODO: remove when removing this file, after updating translations, Pydantic v1
+    "docs_src/schema_extra_example/tutorial001_pv1_py310.py",
+    "docs_src/schema_extra_example/tutorial001_pv1_py39.py",
+    "docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py",
+    "docs_src/settings/app03_py39/config_pv1.py",
+    "docs_src/settings/app03_an_py39/config_pv1.py",
+    "docs_src/settings/tutorial001_pv1_py39.py",
 ]
 
 [tool.coverage.report]

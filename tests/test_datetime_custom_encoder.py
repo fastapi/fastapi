@@ -1,11 +1,8 @@
-import warnings
 from datetime import datetime, timezone
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-
-from .utils import needs_pydanticv1
 
 
 def test_pydanticv2():
@@ -24,37 +21,6 @@ def test_pydanticv2():
     @app.get("/model", response_model=ModelWithDatetimeField)
     def get_model():
         return model
-
-    client = TestClient(app)
-    with client:
-        response = client.get("/model")
-    assert response.json() == {"dt_field": "2019-01-01T08:00:00+00:00"}
-
-
-# TODO: remove when deprecating Pydantic v1
-@needs_pydanticv1
-def test_pydanticv1():
-    from pydantic import v1
-
-    class ModelWithDatetimeField(v1.BaseModel):
-        dt_field: datetime
-
-        class Config:
-            json_encoders = {
-                datetime: lambda dt: dt.replace(
-                    microsecond=0, tzinfo=timezone.utc
-                ).isoformat()
-            }
-
-    app = FastAPI()
-    model = ModelWithDatetimeField(dt_field=datetime(2019, 1, 1, 8))
-
-    with warnings.catch_warnings(record=True):
-        warnings.simplefilter("always")
-
-        @app.get("/model", response_model=ModelWithDatetimeField)
-        def get_model():
-            return model
 
     client = TestClient(app)
     with client:
