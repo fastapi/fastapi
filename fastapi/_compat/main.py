@@ -1,10 +1,8 @@
-from collections.abc import Sequence
 from functools import lru_cache
 from typing import (
     Any,
 )
 
-from fastapi._compat.shared import lenient_issubclass
 from fastapi.types import ModelNameMap
 from pydantic import BaseModel
 from typing_extensions import Literal
@@ -30,62 +28,6 @@ from .v2 import (
 @lru_cache
 def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return get_model_fields(model)  # type: ignore[return-value]
-
-
-def _is_undefined(value: object) -> bool:
-    return isinstance(value, v2.UndefinedType)
-
-
-def _get_model_config(model: BaseModel) -> Any:
-    return v2._get_model_config(model)
-
-
-def _model_dump(
-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
-) -> Any:
-    return v2._model_dump(model, mode=mode, **kwargs)
-
-
-def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
-    return v2.copy_field_info(field_info=field_info, annotation=annotation)
-
-
-def create_body_model(
-    *, fields: Sequence[ModelField], model_name: str
-) -> type[BaseModel]:
-    return v2.create_body_model(fields=fields, model_name=model_name)  # type: ignore[arg-type]
-
-
-def get_annotation_from_field_info(
-    annotation: Any, field_info: FieldInfo, field_name: str
-) -> Any:
-    return v2.get_annotation_from_field_info(
-        annotation=annotation, field_info=field_info, field_name=field_name
-    )
-
-
-def is_bytes_field(field: ModelField) -> bool:
-    return v2.is_bytes_field(field)  # type: ignore[arg-type]
-
-
-def is_bytes_sequence_field(field: ModelField) -> bool:
-    return v2.is_bytes_sequence_field(field)  # type: ignore[arg-type]
-
-
-def is_scalar_field(field: ModelField) -> bool:
-    return v2.is_scalar_field(field)  # type: ignore[arg-type]
-
-
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    return v2.is_scalar_sequence_field(field)  # type: ignore[arg-type]
-
-
-def is_sequence_field(field: ModelField) -> bool:
-    return v2.is_sequence_field(field)  # type: ignore[arg-type]
-
-
-def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
-    return v2.serialize_sequence_value(field=field, value=value)  # type: ignore[arg-type]
 
 
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
@@ -115,11 +57,3 @@ def get_schema_from_model_field(
         field_mapping=field_mapping,  # type: ignore[arg-type]
         separate_input_output_schemas=separate_input_output_schemas,
     )
-
-
-def _is_model_field(value: Any) -> bool:
-    return isinstance(value, v2.ModelField)
-
-
-def _is_model_class(value: Any) -> bool:
-    return lenient_issubclass(value, v2.BaseModel)  # type: ignore[attr-defined]

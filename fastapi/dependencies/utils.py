@@ -21,12 +21,11 @@ from fastapi._compat import (
     ModelField,
     RequiredParam,
     Undefined,
-    _is_model_class,
+    _regenerate_error_with_loc,
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
-    get_annotation_from_field_info,
     get_cached_model_fields,
     get_missing_field_error,
     is_bytes_field,
@@ -37,7 +36,6 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
-    may_v1,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
@@ -184,7 +182,7 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
     if not fields:
         return fields
     first_field = fields[0]
-    if len(fields) == 1 and _is_model_class(first_field.type_):
+    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
         fields_to_extract = get_cached_model_fields(first_field.type_)
         return fields_to_extract
     return fields
@@ -492,11 +490,7 @@ def analyze_param(
             and getattr(field_info, "in_", None) is None
         ):
             field_info.in_ = params.ParamTypes.query
-        use_annotation_from_field_info = get_annotation_from_field_info(
-            use_annotation,
-            field_info,
-            param_name,
-        )
+        use_annotation_from_field_info = use_annotation
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
@@ -521,7 +515,7 @@ def analyze_param(
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
                 or (
-                    _is_model_class(field.type_)
+                    lenient_issubclass(field.type_, BaseModel)
                     # For Pydantic v1
                     and getattr(field, "shape", 1) == 1
                 )
@@ -716,7 +710,7 @@ def _validate_value_with_model_field(
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
     if isinstance(errors_, list):
-        new_errors = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
+        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
     else:
         return v_, []
@@ -842,7 +836,7 @@ def is_union_of_base_models(field_type: Any) -> bool:
     union_args = get_args(field_type)
 
     for arg in union_args:
-        if not _is_model_class(arg):
+        if not lenient_issubclass(arg, BaseModel):
             return False
 
     return True
@@ -865,7 +859,7 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     # otherwise it has to be embedded, so that the key value pair can be extracted
     if (
         isinstance(first_field.field_info, params.Form)
-        and not _is_model_class(first_field.type_)
+        and not lenient_issubclass(first_field.type_, BaseModel)
         and not is_union_of_base_models(first_field.type_)
     ):
         return True
@@ -935,7 +929,7 @@ async def request_body_to_args(
 
     if (
         single_not_embedded_field
-        and _is_model_class(first_field.type_)
+        and lenient_issubclass(first_field.type_, BaseModel)
         and isinstance(received_body, FormData)
     ):
         fields_to_extract = get_cached_model_fields(first_field.type_)

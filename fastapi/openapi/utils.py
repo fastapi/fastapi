@@ -38,8 +38,6 @@ from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from typing_extensions import Literal
 
-from .._compat import _is_model_field
-
 validation_error_definition = {
     "title": "ValidationError",
     "type": "object",
@@ -187,7 +185,7 @@ def get_openapi_operation_request_body(
 ) -> Optional[dict[str, Any]]:
     if not body_field:
         return None
-    assert _is_model_field(body_field)
+    assert isinstance(body_field, ModelField)
     body_schema = get_schema_from_model_field(
         field=body_field,
         model_name_map=model_name_map,
@@ -456,7 +454,7 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert _is_model_field(route.body_field), (
+                assert isinstance(route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
                 body_fields_from_routes.append(route.body_field)

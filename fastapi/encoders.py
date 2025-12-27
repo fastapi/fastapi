@@ -24,11 +24,10 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
+from pydantic_core import PydanticUndefinedType
 
 from ._compat import (
     Url,
-    _is_undefined,
-    _model_dump,
     is_pydantic_v1_model_instance,
 )
 
@@ -224,8 +223,7 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        obj_dict = _model_dump(
-            obj,  # type: ignore[arg-type]
+        obj_dict = obj.model_dump(
             mode="json",
             include=include,
             exclude=exclude,
@@ -260,7 +258,7 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
-    if _is_undefined(obj):
+    if isinstance(obj, PydanticUndefinedType):
         return None
     if isinstance(obj, dict):
         encoded_dict = {}

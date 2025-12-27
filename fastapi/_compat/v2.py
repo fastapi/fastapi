@@ -11,7 +11,7 @@ from typing import (
     cast,
 )
 
-from fastapi._compat import may_v1, shared
+from fastapi._compat import shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
@@ -175,7 +175,7 @@ class ModelField:
                 None,
             )
         except ValidationError as exc:
-            return None, may_v1._regenerate_error_with_loc(
+            return None, _regenerate_error_with_loc(
                 errors=exc.errors(include_url=False), loc_prefix=loc
             )
 
@@ -208,22 +208,6 @@ class ModelField:
         # Each ModelField is unique for our purposes, to allow making a dict from
         # ModelField to its JSON Schema.
         return id(self)
-
-
-def get_annotation_from_field_info(
-    annotation: Any, field_info: FieldInfo, field_name: str
-) -> Any:
-    return annotation
-
-
-def _model_dump(
-    model: BaseModel, mode: Literal["json", "python"] = "json", **kwargs: Any
-) -> Any:
-    return model.model_dump(mode=mode, **kwargs)
-
-
-def _get_model_config(model: BaseModel) -> Any:
-    return model.model_config
 
 
 def _has_computed_fields(field: ModelField) -> bool:
@@ -555,3 +539,13 @@ def get_flat_models_from_fields(
     for field in fields:
         get_flat_models_from_field(field, known_models=known_models)
     return known_models
+
+
+def _regenerate_error_with_loc(
+    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+) -> list[dict[str, Any]]:
+    updated_loc_errors: list[Any] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
+    ]
+
+    return updated_loc_errors

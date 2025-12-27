@@ -3,7 +3,6 @@ from typing import Union
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
-    _get_model_config,
     is_uploadfile_sequence_annotation,
 )
 from fastapi._compat.shared import is_bytes_sequence_annotation
@@ -21,23 +20,6 @@ def test_model_field_default_required():
     field_info = FieldInfo(annotation=str)
     field = v2.ModelField(name="foo", field_info=field_info)
     assert field.default is Undefined
-
-
-def test_is_model_field():
-    # For coverage
-    from fastapi._compat import _is_model_field
-
-    assert not _is_model_field(str)
-
-
-def test_get_model_config():
-    # For coverage in Pydantic v2
-    class Foo(BaseModel):
-        model_config = ConfigDict(from_attributes=True)
-
-    foo = Foo()
-    config = _get_model_config(foo)
-    assert config == {"from_attributes": True}
 
 
 def test_complex():
