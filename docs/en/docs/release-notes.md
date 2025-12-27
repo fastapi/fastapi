@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.0
+
 ### Breaking Changes
 
 * ➖ Drop support for `pydantic.v1`. PR [#14609](https://github.com/fastapi/fastapi/pull/14609) by [@tiangolo](https://github.com/tiangolo).
