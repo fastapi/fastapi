@@ -1,16 +1,12 @@
 from typing import Annotated, Any, Union
 
-from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
 from typing_extensions import Literal
 
-from .utils import needs_pydanticv2
 
-
-@needs_pydanticv2
 def test_discriminator_pydantic_v2() -> None:
     from pydantic import Tag
 
@@ -93,21 +89,11 @@ def test_discriminator_pydantic_v2() -> None:
                                 "description": "Successful Response",
                                 "content": {
                                     "application/json": {
-                                        "schema": IsDict(
-                                            {
-                                                # Pydantic 2.10, in Python 3.8
-                                                # TODO: remove when dropping support for Python 3.8
-                                                "type": "object",
-                                                "title": "Response Save Union Body Discriminator Items  Post",
-                                            }
-                                        )
-                                        | IsDict(
-                                            {
-                                                "type": "object",
-                                                "additionalProperties": True,
-                                                "title": "Response Save Union Body Discriminator Items  Post",
-                                            }
-                                        )
+                                        "schema": {
+                                            "type": "object",
+                                            "additionalProperties": True,
+                                            "title": "Response Save Union Body Discriminator Items  Post",
+                                        }
                                     }
                                 },
                             },

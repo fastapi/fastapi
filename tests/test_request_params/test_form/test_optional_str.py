@@ -1,12 +1,9 @@
 from typing import Annotated, Optional
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -38,27 +35,16 @@ def test_optional_str_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == IsDict(
-        {
-            "properties": {
-                "p": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P",
-                },
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P",
             },
-            "title": body_model_name,
-            "type": "object",
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "properties": {
-                "p": {"type": "string", "title": "P"},
-            },
-            "title": body_model_name,
-            "type": "object",
-        }
-    )
+        },
+        "title": body_model_name,
+        "type": "object",
+    }
 
 
 @pytest.mark.parametrize(
@@ -114,27 +100,16 @@ def test_optional_str_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == IsDict(
-        {
-            "properties": {
-                "p_alias": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Alias",
-                },
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_alias": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P Alias",
             },
-            "title": body_model_name,
-            "type": "object",
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "properties": {
-                "p_alias": {"type": "string", "title": "P Alias"},
-            },
-            "title": body_model_name,
-            "type": "object",
-        }
-    )
+        },
+        "title": body_model_name,
+        "type": "object",
+    }
 
 
 @pytest.mark.parametrize(
@@ -194,7 +169,6 @@ def read_model_optional_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-validation-alias", "/model-optional-validation-alias"],
@@ -203,30 +177,18 @@ def test_optional_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == IsDict(
-        {
-            "properties": {
-                "p_val_alias": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Val Alias",
-                },
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_val_alias": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P Val Alias",
             },
-            "title": body_model_name,
-            "type": "object",
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "properties": {
-                "p_val_alias": {"type": "string", "title": "P Val Alias"},
-            },
-            "title": body_model_name,
-            "type": "object",
-        }
-    )
+        },
+        "title": body_model_name,
+        "type": "object",
+    }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/optional-validation-alias", "/model-optional-validation-alias"],
@@ -238,7 +200,6 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -253,7 +214,6 @@ def test_optional_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -298,7 +258,6 @@ def read_model_optional_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -310,30 +269,18 @@ def test_optional_alias_and_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == IsDict(
-        {
-            "properties": {
-                "p_val_alias": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Val Alias",
-                },
+    assert app.openapi()["components"]["schemas"][body_model_name] == {
+        "properties": {
+            "p_val_alias": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P Val Alias",
             },
-            "title": body_model_name,
-            "type": "object",
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "properties": {
-                "p_val_alias": {"type": "string", "title": "P Val Alias"},
-            },
-            "title": body_model_name,
-            "type": "object",
-        }
-    )
+        },
+        "title": body_model_name,
+        "type": "object",
+    }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -348,7 +295,6 @@ def test_optional_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -363,7 +309,6 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -378,7 +323,6 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"p": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

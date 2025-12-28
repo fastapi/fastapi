@@ -3,8 +3,6 @@ import importlib
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_pydanticv2
-
 
 @pytest.fixture(
     name="client",
@@ -21,7 +19,6 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@needs_pydanticv2
 def test_post(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -38,7 +35,6 @@ def test_post(client: TestClient):
     }
 
 
-@needs_pydanticv2
 def test_post_broken_yaml(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -52,7 +48,6 @@ def test_post_broken_yaml(client: TestClient):
     assert response.json() == {"detail": "Invalid YAML"}
 
 
-@needs_pydanticv2
 def test_post_invalid(client: TestClient):
     yaml_data = """
         name: Deadpoolio
@@ -77,7 +72,6 @@ def test_post_invalid(client: TestClient):
     }
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text

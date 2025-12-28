@@ -5,14 +5,14 @@ from dirty_equals import IsStr
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from ...utils import needs_py310, needs_pydanticv2
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial015_an_py39", marks=needs_pydanticv2),
-        pytest.param("tutorial015_an_py310", marks=(needs_py310, needs_pydanticv2)),
+        pytest.param("tutorial015_an_py39"),
+        pytest.param("tutorial015_an_py310", marks=[needs_py310]),
     ],
 )
 def get_client(request: pytest.FixtureRequest):

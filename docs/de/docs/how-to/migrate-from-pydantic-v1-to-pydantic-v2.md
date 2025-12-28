@@ -2,21 +2,23 @@
 
 Wenn Sie eine ältere FastAPI-App haben, nutzen Sie möglicherweise Pydantic Version 1.
 
-FastAPI unterstützt seit Version 0.100.0 sowohl Pydantic v1 als auch v2.
+FastAPI Version 0.100.0 unterstützte sowohl Pydantic v1 als auch v2. Es verwendete, was auch immer Sie installiert hatten.
 
-Wenn Sie Pydantic v2 installiert hatten, wurde dieses verwendet. Wenn stattdessen Pydantic v1 installiert war, wurde jenes verwendet.
+FastAPI Version 0.119.0 führte eine teilweise Unterstützung für Pydantic v1 innerhalb von Pydantic v2 (als `pydantic.v1`) ein, um die Migration zu v2 zu erleichtern.
 
-Pydantic v1 ist jetzt deprecatet und die Unterstützung dafür wird in den nächsten Versionen von FastAPI entfernt, Sie sollten also zu **Pydantic v2 migrieren**. Auf diese Weise erhalten Sie die neuesten Features, Verbesserungen und Fixes.
+FastAPI 0.126.0 entfernte die Unterstützung für Pydantic v1, während `pydantic.v1` noch eine Weile unterstützt wurde.
 
 /// warning | Achtung
 
-Außerdem hat das Pydantic-Team die Unterstützung für Pydantic v1 in den neuesten Python-Versionen eingestellt, beginnend mit **Python 3.14**.
+Das Pydantic-Team hat die Unterstützung für Pydantic v1 in den neuesten Python-Versionen eingestellt, beginnend mit **Python 3.14**.
+
+Dies schließt `pydantic.v1` ein, das unter Python 3.14 und höher nicht mehr unterstützt wird.
 
 Wenn Sie die neuesten Features von Python nutzen möchten, müssen Sie sicherstellen, dass Sie Pydantic v2 verwenden.
 
 ///
 
-Wenn Sie eine ältere FastAPI-App mit Pydantic v1 haben, zeige ich Ihnen hier, wie Sie sie zu Pydantic v2 migrieren, und die **neuen Features in FastAPI 0.119.0**, die Ihnen bei einer schrittweisen Migration helfen.
+Wenn Sie eine ältere FastAPI-App mit Pydantic v1 haben, zeige ich Ihnen hier, wie Sie sie zu Pydantic v2 migrieren, und die **Features in FastAPI 0.119.0**, die Ihnen bei einer schrittweisen Migration helfen.
 
 ## Offizieller Leitfaden { #official-guide }
 
@@ -44,7 +46,7 @@ Danach können Sie die Tests ausführen und prüfen, ob alles funktioniert. Fall
 
 ## Pydantic v1 in v2 { #pydantic-v1-in-v2 }
 
-Pydantic v2 enthält alles aus Pydantic v1 als Untermodul `pydantic.v1`.
+Pydantic v2 enthält alles aus Pydantic v1 als Untermodul `pydantic.v1`. Dies wird aber in Versionen oberhalb von Python 3.13 nicht mehr unterstützt.
 
 Das bedeutet, Sie können die neueste Version von Pydantic v2 installieren und die alten Pydantic‑v1‑Komponenten aus diesem Untermodul importieren und verwenden, als hätten Sie das alte Pydantic v1 installiert.
 

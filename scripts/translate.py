@@ -727,7 +727,7 @@ def translate_page(
         print(f"Found existing translation: {out_path}")
         old_translation = out_path.read_text(encoding="utf-8")
     print(f"Translating {en_path} to {language} ({language_name})")
-    agent = Agent("openai:gpt-5")
+    agent = Agent("openai:gpt-5.2")
 
     prompt_segments = [
         general_prompt,
@@ -1036,9 +1036,13 @@ def make_pr(
     print("Creating PR")
     g = Github(github_token)
     gh_repo = g.get_repo(github_repository)
-    pr = gh_repo.create_pull(
-        title=message, body=message, base="master", head=branch_name
+    body = (
+        message
+        + "\n\nThis PR was created automatically using LLMs."
+        + f"\n\nIt uses the prompt file https://github.com/fastapi/fastapi/blob/master/docs/{language}/llm-prompt.md."
+        + "\n\nIn most cases, it's better to make PRs updating that file so that the LLM can do a better job generating the translations than suggesting changes in this PR."
     )
+    pr = gh_repo.create_pull(title=message, body=body, base="master", head=branch_name)
     print(f"Created PR: {pr.number}")
     print("Finished")
 

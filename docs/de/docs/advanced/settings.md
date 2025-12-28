@@ -60,23 +60,7 @@ Auf die gleiche Weise wie bei Pydantic-Modellen deklarieren Sie Klassenattribute
 
 Sie können dieselben Validierungs-Funktionen und -Tools verwenden, die Sie für Pydantic-Modelle verwenden, z. B. verschiedene Datentypen und zusätzliche Validierungen mit `Field()`.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Info
-
-In Pydantic v1 würden Sie `BaseSettings` direkt von `pydantic` statt von `pydantic_settings` importieren.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
 
 /// tip | Tipp
 
@@ -215,33 +199,11 @@ APP_NAME="ChimichangApp"
 
 Und dann aktualisieren Sie Ihre `config.py` mit:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Tipp
 
 Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip | Tipp
-
-Die Klasse `Config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 erfolgte die Konfiguration in einer internen Klasse `Config`, in Pydantic Version 2 erfolgt sie in einem Attribut `model_config`. Dieses Attribut akzeptiert ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr>. Um automatische Codevervollständigung und Inline-Fehlerberichte zu erhalten, können Sie `SettingsConfigDict` importieren und verwenden, um dieses `dict` zu definieren.
 
 ///
 

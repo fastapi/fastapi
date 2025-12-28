@@ -2,7 +2,7 @@ import importlib
 import warnings
 
 import pytest
-from dirty_equals import IsDict, IsInt
+from dirty_equals import IsInt
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from sqlalchemy import StaticPool
@@ -318,33 +318,15 @@ def test_openapi_schema(client: TestClient):
                     },
                     "Hero": {
                         "properties": {
-                            "id": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Id",
-                                }
-                            ),
+                            "id": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Id",
+                            },
                             "name": {"type": "string", "title": "Name"},
-                            "age": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Age",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "integer",
-                                    "title": "Age",
-                                }
-                            ),
+                            "age": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Age",
+                            },
                             "secret_name": {"type": "string", "title": "Secret Name"},
                         },
                         "type": "object",

@@ -60,8 +60,6 @@ jobs:
             pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
-      - name: Verify Docs
-        run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
         id: show-langs
         run: |

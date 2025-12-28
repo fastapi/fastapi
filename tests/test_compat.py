@@ -1,23 +1,18 @@
-from typing import Any, Union
+from typing import Union
 
 from fastapi import FastAPI, UploadFile
 from fastapi._compat import (
     Undefined,
-    _get_model_config,
-    get_cached_model_fields,
-    is_scalar_field,
     is_uploadfile_sequence_annotation,
-    may_v1,
 )
 from fastapi._compat.shared import is_bytes_sequence_annotation
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
 from pydantic.fields import FieldInfo
 
-from .utils import needs_py310, needs_py_lt_314, needs_pydanticv2
+from .utils import needs_py310
 
 
-@needs_pydanticv2
 def test_model_field_default_required():
     from fastapi._compat import v2
 
@@ -25,36 +20,6 @@ def test_model_field_default_required():
     field_info = FieldInfo(annotation=str)
     field = v2.ModelField(name="foo", field_info=field_info)
     assert field.default is Undefined
-
-
-@needs_py_lt_314
-def test_v1_plain_validator_function():
-    from fastapi._compat import v1
-
-    # For coverage
-    def func(v):  # pragma: no cover
-        return v
-
-    result = v1.with_info_plain_validator_function(func)
-    assert result == {}
-
-
-def test_is_model_field():
-    # For coverage
-    from fastapi._compat import _is_model_field
-
-    assert not _is_model_field(str)
-
-
-@needs_pydanticv2
-def test_get_model_config():
-    # For coverage in Pydantic v2
-    class Foo(BaseModel):
-        model_config = ConfigDict(from_attributes=True)
-
-    foo = Foo()
-    config = _get_model_config(foo)
-    assert config == {"from_attributes": True}
 
 
 def test_complex():
@@ -75,7 +40,6 @@ def test_complex():
     assert response2.json() == [1, 2]
 
 
-@needs_pydanticv2
 def test_propagates_pydantic2_model_config():
     app = FastAPI()
 
@@ -136,7 +100,6 @@ def test_is_uploadfile_sequence_annotation():
     assert is_uploadfile_sequence_annotation(Union[list[str], list[UploadFile]])
 
 
-@needs_pydanticv2
 def test_serialize_sequence_value_with_optional_list():
     """Test that serialize_sequence_value handles optional lists correctly."""
     from fastapi._compat import v2
@@ -148,7 +111,6 @@ def test_serialize_sequence_value_with_optional_list():
     assert isinstance(result, list)
 
 
-@needs_pydanticv2
 @needs_py310
 def test_serialize_sequence_value_with_optional_list_pipe_union():
     """Test that serialize_sequence_value handles optional lists correctly (with new syntax)."""
@@ -161,7 +123,6 @@ def test_serialize_sequence_value_with_optional_list_pipe_union():
     assert isinstance(result, list)
 
 
-@needs_pydanticv2
 def test_serialize_sequence_value_with_none_first_in_union():
     """Test that serialize_sequence_value handles Union[None, List[...]] correctly."""
     from fastapi._compat import v2
@@ -171,33 +132,3 @@ def test_serialize_sequence_value_with_none_first_in_union():
     result = v2.serialize_sequence_value(field=field, value=["x", "y"])
     assert result == ["x", "y"]
     assert isinstance(result, list)
-
-
-@needs_py_lt_314
-def test_is_pv1_scalar_field():
-    from fastapi._compat import v1
-
-    # For coverage
-    class Model(v1.BaseModel):
-        foo: Union[str, dict[str, Any]]
-
-    fields = v1.get_model_fields(Model)
-    assert not is_scalar_field(fields[0])
-
-
-@needs_py_lt_314
-def test_get_model_fields_cached():
-    from fastapi._compat import v1
-
-    class Model(may_v1.BaseModel):
-        foo: str
-
-    non_cached_fields = v1.get_model_fields(Model)
-    non_cached_fields2 = v1.get_model_fields(Model)
-    cached_fields = get_cached_model_fields(Model)
-    cached_fields2 = get_cached_model_fields(Model)
-    for f1, f2 in zip(cached_fields, cached_fields2):
-        assert f1 is f2
-
-    assert non_cached_fields is not non_cached_fields2
-    assert cached_fields is cached_fields2

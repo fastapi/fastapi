@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 
@@ -28,135 +27,73 @@ def test_post_body_form(client: TestClient):
 def test_post_body_form_no_password(client: TestClient):
     response = client.post("/login/", data={"username": "Foo"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "password"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "password"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "password"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_post_body_form_no_username(client: TestClient):
     response = client.post("/login/", data={"password": "secret"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "username"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "username"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "username"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_post_body_form_no_data(client: TestClient):
     response = client.post("/login/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "username"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "password"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "username"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "password"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "username"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "password"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_body_json(client: TestClient):
     response = client.post("/login/", json={"username": "Foo", "password": "secret"})
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "username"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "password"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "username"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "password"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "username"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "password"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):

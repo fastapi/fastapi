@@ -206,20 +206,6 @@ If you feel lost with all these **"regular expression"** ideas, don't worry. The
 
 Now you know that whenever you need them you can use them in **FastAPI**.
 
-### Pydantic v1 `regex` instead of `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
-
-You could still see some code using it:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
-
 ## Default values { #default-values }
 
 You can, of course, use default values other than `None`.

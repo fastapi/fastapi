@@ -1,5 +1,4 @@
 from fastapi import Cookie, FastAPI, Header, Query
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -9,12 +8,7 @@ app = FastAPI()
 class Model(BaseModel):
     param: str
 
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
-    else:
-
-        class Config:
-            extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 @app.get("/query")

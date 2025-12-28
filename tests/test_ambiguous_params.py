@@ -4,7 +4,6 @@ import pytest
 from fastapi import Depends, FastAPI, Path
 from fastapi.param_functions import Query
 from fastapi.testclient import TestClient
-from fastapi.utils import PYDANTIC_V2
 
 app = FastAPI()
 
@@ -71,6 +70,5 @@ def test_multiple_annotations():
     response = client.get("/multi-query", params={"foo": "123"})
     assert response.status_code == 422
 
-    if PYDANTIC_V2:
-        response = client.get("/multi-query", params={"foo": "1"})
-        assert response.status_code == 422
+    response = client.get("/multi-query", params={"foo": "1"})
+    assert response.status_code == 422

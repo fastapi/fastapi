@@ -2,8 +2,6 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from .utils import needs_pydanticv2
-
 
 @pytest.fixture(name="client")
 def get_client(request):
@@ -35,7 +33,6 @@ def get_client(request):
 
 @pytest.mark.parametrize("client", [True, False], indirect=True)
 @pytest.mark.parametrize("path", ["/", "/responses"])
-@needs_pydanticv2
 def test_get(client: TestClient, path: str):
     response = client.get(path)
     assert response.status_code == 200, response.text
@@ -43,7 +40,6 @@ def test_get(client: TestClient, path: str):
 
 
 @pytest.mark.parametrize("client", [True, False], indirect=True)
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
