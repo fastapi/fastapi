@@ -14,7 +14,7 @@ class JsonListModel(BaseModel):
 
 @app.post("/form-str")
 def form_str(json_list: Annotated[str, Form()]) -> list[str]:
-    model = JsonListModel(json_list=json_list) # type: ignore[arg-type]
+    model = JsonListModel(json_list=json_list)  # type: ignore[arg-type]
     return model.json_list
 
 
