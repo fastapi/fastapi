@@ -1,6 +1,5 @@
 from dirty_equals import IsPartialDict
 from fastapi import Cookie, FastAPI, Header, Query
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -53,8 +52,7 @@ def test_query_model_with_alias_by_name():
     response = client.get("/query", params={"param": "value"})
     assert response.status_code == 422, response.text
     details = response.json()
-    if PYDANTIC_V2:
-        assert details["detail"][0]["input"] == {"param": "value"}
+    assert details["detail"][0]["input"] == {"param": "value"}
 
 
 def test_header_model_with_alias_by_name():
@@ -62,8 +60,7 @@ def test_header_model_with_alias_by_name():
     response = client.get("/header", headers={"param": "value"})
     assert response.status_code == 422, response.text
     details = response.json()
-    if PYDANTIC_V2:
-        assert details["detail"][0]["input"] == IsPartialDict({"param": "value"})
+    assert details["detail"][0]["input"] == IsPartialDict({"param": "value"})
 
 
 def test_cookie_model_with_alias_by_name():
@@ -72,5 +69,4 @@ def test_cookie_model_with_alias_by_name():
     response = client.get("/cookie")
     assert response.status_code == 422, response.text
     details = response.json()
-    if PYDANTIC_V2:
-        assert details["detail"][0]["input"] == {"param": "value"}
+    assert details["detail"][0]["input"] == {"param": "value"}

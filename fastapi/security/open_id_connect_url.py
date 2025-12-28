@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 from annotated_doc import Doc
 from fastapi.openapi.models import OpenIdConnect as OpenIdConnectModel
@@ -6,7 +6,6 @@ from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
-from typing_extensions import Annotated
 
 
 class OpenIdConnect(SecurityBase):

@@ -46,7 +46,7 @@
 
 **FastAPI** поддерживает это так же, как и в случае с обычными строками:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Краткое и развёрнутое содержание { #summary-and-description }
 
@@ -92,7 +92,7 @@ OpenAPI указывает, что каждой *операции пути* не
 
 Если вам необходимо пометить *операцию пути* как <abbr title="устаревшее, не рекомендовано к использованию">устаревшую</abbr>, при этом не удаляя её, передайте параметр `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 Он будет четко помечен как устаревший в интерактивной документации:
 

@@ -62,7 +62,7 @@ Und es speichert den zurückgegebenen Wert in einem <abbr title="Mechanismus, de
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in demselben Request aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.8+ nicht annotiert
+//// tab | Python 3.9+ nicht annotiert
 
 /// tip | Tipp
 
