@@ -111,7 +111,6 @@ def test_no_data():
     }
 
 
-
 def test_extra_param_single():
     response = client.post(
         "/form-extra-allow/",
