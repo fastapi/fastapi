@@ -2,7 +2,7 @@
 
 Quando você declara outros parâmetros na função que não fazem parte dos parâmetros da rota, esses parâmetros são automaticamente interpretados como parâmetros de "consulta".
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 A consulta é o conjunto de pares chave-valor que vai depois de `?` na URL, separado pelo caractere `&`.
 
@@ -127,7 +127,7 @@ Caso você não queira adicionar um valor específico mas queira apenas torná-l
 
 Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão.
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 Aqui o parâmetro de consulta `needy` é um valor obrigatório, do tipo `str`.
 

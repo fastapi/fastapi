@@ -16,6 +16,8 @@ Há várias maneiras de fazer isso, dependendo do seu caso de uso específico e 
 
 Você pode **implantar um servidor** por conta própria usando uma combinação de ferramentas, pode usar um **serviço em nuvem** que faça parte do trabalho por você, entre outras opções.
 
+Por exemplo, nós, a equipe por trás do FastAPI, criamos <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>, para tornar a implantação de aplicações FastAPI na nuvem o mais simples possível, com a mesma experiência de desenvolvimento de trabalhar com o FastAPI.
+
 Vou mostrar alguns dos principais conceitos que você provavelmente deve ter em mente ao implantar uma aplicação **FastAPI** (embora a maior parte se aplique a qualquer outro tipo de aplicação web).
 
 Você verá mais detalhes para ter em mente e algumas das técnicas para fazer isso nas próximas seções. ✨

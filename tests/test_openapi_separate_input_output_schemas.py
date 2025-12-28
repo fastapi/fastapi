@@ -1,39 +1,32 @@
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel
-
-from .utils import PYDANTIC_V2, needs_pydanticv2
+from pydantic import BaseModel, computed_field
 
 
 class SubItem(BaseModel):
     subname: str
     sub_description: Optional[str] = None
-    tags: List[str] = []
-    if PYDANTIC_V2:
-        model_config = {"json_schema_serialization_defaults_required": True}
+    tags: list[str] = []
+    model_config = {"json_schema_serialization_defaults_required": True}
 
 
 class Item(BaseModel):
     name: str
     description: Optional[str] = None
     sub: Optional[SubItem] = None
-    if PYDANTIC_V2:
-        model_config = {"json_schema_serialization_defaults_required": True}
+    model_config = {"json_schema_serialization_defaults_required": True}
 
 
-if PYDANTIC_V2:
-    from pydantic import computed_field
+class WithComputedField(BaseModel):
+    name: str
 
-    class WithComputedField(BaseModel):
-        name: str
-
-        @computed_field
-        @property
-        def computed_field(self) -> str:
-            return f"computed {self.name}"
+    @computed_field
+    @property
+    def computed_field(self) -> str:
+        return f"computed {self.name}"
 
 
 def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
@@ -44,11 +37,11 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
         return item
 
     @app.post("/items-list/")
-    def create_item_list(item: List[Item]):
+    def create_item_list(item: list[Item]):
         return item
 
     @app.get("/items/")
-    def read_items() -> List[Item]:
+    def read_items() -> list[Item]:
         return [
             Item(
                 name="Portal Gun",
@@ -58,13 +51,11 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
             Item(name="Plumbus"),
         ]
 
-    if PYDANTIC_V2:
-
-        @app.post("/with-computed-field/")
-        def create_with_computed_field(
-            with_computed_field: WithComputedField,
-        ) -> WithComputedField:
-            return with_computed_field
+    @app.post("/with-computed-field/")
+    def create_with_computed_field(
+        with_computed_field: WithComputedField,
+    ) -> WithComputedField:
+        return with_computed_field
 
     client = TestClient(app)
     return client
@@ -151,7 +142,6 @@ def test_read_items():
     )
 
 
-@needs_pydanticv2
 def test_with_computed_field():
     client = get_app_client()
     client_no = get_app_client(separate_input_output_schemas=False)
@@ -168,7 +158,6 @@ def test_with_computed_field():
     )
 
 
-@needs_pydanticv2
 def test_openapi_schema():
     client = get_app_client()
     response = client.get("/openapi.json")
@@ -449,7 +438,6 @@ def test_openapi_schema():
     )
 
 
-@needs_pydanticv2
 def test_openapi_schema_no_separate():
     client = get_app_client(separate_input_output_schemas=False)
     response = client.get("/openapi.json")

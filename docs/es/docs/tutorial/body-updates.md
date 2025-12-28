@@ -1,6 +1,6 @@
-# Cuerpo - Actualizaciones
+# Cuerpo - Actualizaciones { #body-updates }
 
-## Actualización reemplazando con `PUT`
+## Actualización reemplazando con `PUT` { #update-replacing-with-put }
 
 Para actualizar un ítem puedes utilizar la operación de <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a>.
 
@@ -10,7 +10,7 @@ Puedes usar el `jsonable_encoder` para convertir los datos de entrada en datos q
 
 `PUT` se usa para recibir datos que deben reemplazar los datos existentes.
 
-### Advertencia sobre el reemplazo
+### Advertencia sobre el reemplazo { #warning-about-replacing }
 
 Esto significa que si quieres actualizar el ítem `bar` usando `PUT` con un body que contenga:
 
@@ -26,7 +26,7 @@ debido a que no incluye el atributo ya almacenado `"tax": 20.2`, el modelo de en
 
 Y los datos se guardarían con ese "nuevo" `tax` de `10.5`.
 
-## Actualizaciones parciales con `PATCH`
+## Actualizaciones parciales con `PATCH` { #partial-updates-with-patch }
 
 También puedes usar la operación de <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> para actualizar *parcialmente* datos.
 
@@ -44,7 +44,7 @@ Pero esta guía te muestra, más o menos, cómo se pretende que se usen.
 
 ///
 
-### Uso del parámetro `exclude_unset` de Pydantic
+### Uso del parámetro `exclude_unset` de Pydantic { #using-pydantics-exclude-unset-parameter }
 
 Si quieres recibir actualizaciones parciales, es muy útil usar el parámetro `exclude_unset` en el `.model_dump()` del modelo de Pydantic.
 
@@ -64,7 +64,7 @@ Luego puedes usar esto para generar un `dict` solo con los datos que se establec
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-### Uso del parámetro `update` de Pydantic
+### Uso del parámetro `update` de Pydantic { #using-pydantics-update-parameter }
 
 Ahora, puedes crear una copia del modelo existente usando `.model_copy()`, y pasar el parámetro `update` con un `dict` que contenga los datos a actualizar.
 
@@ -80,7 +80,7 @@ Como `stored_item_model.model_copy(update=update_data)`:
 
 {* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-### Resumen de actualizaciones parciales
+### Resumen de actualizaciones parciales { #partial-updates-recap }
 
 En resumen, para aplicar actualizaciones parciales deberías:
 
