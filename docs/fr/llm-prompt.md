@@ -8,6 +8,12 @@ Language code: fr.
 
 Use the formal grammar (use «vous» instead of «tu»).
 
+Additionally, in instructional sentences, prefer the present tense for obligations:
+
+1) Prefer «vous devez …» over «vous devrez …», unless the English source explicitly refers to a future requirement.
+
+2) When translating “make sure (that) … is …”, prefer the indicative after «vous assurer que» (e.g. «Vous devez vous assurer qu'il est …») instead of the subjunctive (e.g. «qu'il soit …»).
+
 ### Quotes
 
 1) Convert neutral double quotes («"») and English double typographic quotes («“» and «”») to French guillemets (««» and «»»).
@@ -91,6 +97,8 @@ Below is a list of English terms and their preferred French translations, separa
 
 * «the docs»: «les documents»
 * «the documentation»: «la documentation»
+
+* «Exclude from OpenAPI»: «Exclusion d'OpenAPI»
 
 * «framework»: «framework» (do not translate to «cadre»)
 * «performance»: «performance»
