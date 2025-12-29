@@ -107,10 +107,10 @@ Below is a list of English terms and their preferred French translations, separa
 * «the request body»: «le corps de la requête»
 * «the response body»: «le corps de la réponse»
 
-* «path operation»: «opération de chemin»
-* «path operations» (plural): «opérations de chemin»
-* «path operation function»: «fonction de chemin»
-* «path operation decorator»: «décorateur d'opération de chemin»
+* «path operation»: «chemin d'accès»
+* «path operations» (plural): «chemins d'accès»
+* «path operation function»: «fonction de chemin d'accès»
+* «path operation decorator»: «décorateur de chemin d'accès»
 
 * «path parameter»: «paramètre de chemin»
 * «query parameter»: «paramètre de requête»
