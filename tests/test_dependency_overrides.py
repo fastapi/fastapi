@@ -2,6 +2,7 @@ from typing import Optional
 
 import pytest
 from fastapi import APIRouter, Depends, FastAPI
+from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -389,3 +390,21 @@ def test_override_with_sub_router_decorator_depends_k_bar():
     assert response.status_code == 200
     assert response.json() == {"in": "router-decorator-depends"}
     app.dependency_overrides = {}
+
+
+def test_missing_type_annotation_dependency():
+    local_app = FastAPI()
+
+    def get_db():
+        return "db"
+
+    with pytest.raises(FastAPIError) as exc:
+        @local_app.get("/bad")
+        def bad(dep=Depends(get_db)):
+            return dep
+        TestClient(local_app)
+
+    msg = str(exc.value)
+    assert "Dependency parameter" in msg
+    assert "type annotation" in msg
+    assert "Depends" in msg
