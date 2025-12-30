@@ -20,9 +20,14 @@ MARKDOWN_LINK_RE = re.compile(
 )
 
 HTML_LINK_RE = re.compile(r"<a\s+[^>]*>.*?</a>")
-HTML_LINK_TEXT = re.compile(r"<a\b([^>]*)>(.*?)</a>")
+HTML_LINK_TEXT_RE = re.compile(r"<a\b([^>]*)>(.*?)</a>")
 HTML_LINK_OPEN_TAG_RE = re.compile(r"<a\b([^>]*)>")
 HTML_ATTR_RE = re.compile(r'(\w+)\s*=\s*([\'"])(.*?)\2')
+
+CODE_BLOCK_LANG_RE = re.compile(r"^```([\w-]*)", re.MULTILINE)
+
+SLASHES_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>\s*// .*)?$")
+HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>\s*# .*)?$")
 
 
 class CodeIncludeInfo(TypedDict):
@@ -57,6 +62,12 @@ class HtmlLinkInfo(TypedDict):
     text: str
 
 
+class MultilineCodeBlockInfo(TypedDict):
+    lang: str
+    start_line_no: int
+    content: list[str]
+
+
 # Code includes
 # -----------------------------------------------------------------------------------------
 
@@ -82,10 +93,11 @@ def replace_code_includes_with_placeholders(text: list[str]) -> list[str]:
     Replace code includes with placeholders.
     """
 
+    modified_text = text.copy()
     includes = extract_code_includes(text)
     for include in includes:
-        text[include["line_no"] - 1] = CODE_INCLUDE_PLACEHOLDER
-    return text
+        modified_text[include["line_no"] - 1] = CODE_INCLUDE_PLACEHOLDER
+    return modified_text
 
 
 def replace_placeholders_with_code_includes(
@@ -274,7 +286,7 @@ def _construct_markdown_link(
         link = f"[{text}]({url})"
 
     if attributes:
-        link += f" {{{attributes}}}"
+        link += f"{{{attributes}}}"
 
     return link
 
@@ -345,7 +357,7 @@ def extract_html_links(lines: list[str]) -> list[HtmlLinkInfo]:
         for html_link in HTML_LINK_RE.finditer(line):
             link_str = html_link.group(0)
 
-            link_text_match = HTML_LINK_TEXT.match(link_str)
+            link_text_match = HTML_LINK_TEXT_RE.match(link_str)
             assert link_text_match is not None
             link_text = link_text_match.group(2)
             assert isinstance(link_text, str)
@@ -440,5 +452,190 @@ def replace_html_links(
         modified_text[line_no] = modified_text[line_no].replace(
             link["full_tag"], replacement_link, 1
         )
+
+    return modified_text
+
+
+# Multiline code blocks
+# -----------------------------------------------------------------------------------------
+
+
+def get_code_block_lang(line: str) -> str:
+    match = CODE_BLOCK_LANG_RE.match(line)
+    if match:
+        return match.group(1)
+    return ""
+
+
+def extract_multiline_code_blocks(text: list[str]) -> list[MultilineCodeBlockInfo]:
+    blocks: list[MultilineCodeBlockInfo] = []
+
+    in_code_block3 = False
+    in_code_block4 = False
+    current_block_lang = ""
+    current_block_start_line = -1
+    current_block_lines = []
+
+    for line_no, line in enumerate(text, start=1):
+        stripped = line.lstrip()
+
+        # --- Detect opening fence ---
+        if not (in_code_block3 or in_code_block4):
+            if stripped.startswith("```"):
+                current_block_start_line = line_no
+                count = len(stripped) - len(stripped.lstrip("`"))
+                if count == 3:
+                    in_code_block3 = True
+                    current_block_lang = get_code_block_lang(stripped)
+                    current_block_lines = [line]
+                    continue
+                elif count >= 4:
+                    in_code_block4 = True
+                    current_block_lang = get_code_block_lang(stripped)
+                    current_block_lines = [line]
+                    continue
+
+        # --- Detect closing fence ---
+        elif in_code_block3:
+            if stripped.startswith("```"):
+                count = len(stripped) - len(stripped.lstrip("`"))
+                if count == 3:
+                    current_block_lines.append(line)
+                    blocks.append(
+                        MultilineCodeBlockInfo(
+                            lang=current_block_lang,
+                            start_line_no=current_block_start_line,
+                            content=current_block_lines,
+                        )
+                    )
+                    in_code_block3 = False
+                    current_block_lang = ""
+                    current_block_start_line = -1
+                    current_block_lines = []
+                    continue
+            current_block_lines.append(line)
+
+        elif in_code_block4:
+            if stripped.startswith("````"):
+                count = len(stripped) - len(stripped.lstrip("`"))
+                if count >= 4:
+                    current_block_lines.append(line)
+                    blocks.append(
+                        MultilineCodeBlockInfo(
+                            lang=current_block_lang,
+                            start_line_no=current_block_start_line,
+                            content=current_block_lines,
+                        )
+                    )
+                    in_code_block4 = False
+                    current_block_lang = ""
+                    current_block_start_line = -1
+                    current_block_lines = []
+                    continue
+            current_block_lines.append(line)
+
+    return blocks
+
+
+def _split_hash_comment(line: str) -> tuple[str, str | None]:
+    match = HASH_COMMENT_RE.match(line)
+    if match:
+        code = match.group("code").rstrip()
+        comment = match.group("comment")
+        return code, comment
+    return line.rstrip(), None
+
+
+def _split_slashes_comment(line: str) -> tuple[str, str | None]:
+    match = SLASHES_COMMENT_RE.match(line)
+    if match:
+        code = match.group("code").rstrip()
+        comment = match.group("comment")
+        return code, comment
+    return line, None
+
+
+def replace_multiline_code_block(
+    block_a: MultilineCodeBlockInfo, block_b: MultilineCodeBlockInfo
+) -> list[str]:
+    """
+    Replace multiline code block a with block b leaving comments intact.
+
+    Syntax of comments depends on the language of the code block.
+    Raises ValueError if the blocks are not compatible (different languages or different number of lines).
+    """
+
+    if block_a["lang"] != block_b["lang"]:
+        raise ValueError("Code blocks have different languages")
+    if len(block_a["content"]) != len(block_b["content"]):
+        raise ValueError("Code blocks have different number of lines")
+
+    block_language = block_a["lang"].lower()
+    if block_language in {"mermaid"}:
+        return block_a["content"].copy()  # We don't handle mermaid code blocks for now
+
+    code_block: list[str] = []
+    for line_a, line_b in zip(block_a["content"], block_b["content"]):
+        line_a_comment: str | None = None
+        line_b_comment: str | None = None
+
+        # Handle comments based on language
+        if block_language in {
+            "python",
+            "py",
+            "sh",
+            "bash",
+            "dockerfile",
+            "requirements",
+            "gitignore",
+            "toml",
+            "yaml",
+            "yml",
+        }:
+            _line_a_code, line_a_comment = _split_hash_comment(line_a)
+            line_b_code, line_b_comment = _split_hash_comment(line_b)
+            res_line = line_b
+            if line_b_comment:
+                res_line = res_line.replace(line_b_comment, line_a_comment, 1)
+            code_block.append(res_line)
+        elif block_language in {"console", "json"}:
+            _line_a_code, line_a_comment = _split_slashes_comment(line_a)
+            line_b_code, line_b_comment = _split_slashes_comment(line_b)
+            res_line = line_b
+            if line_b_comment:
+                print(f"Replacing comment: {line_b_comment} with {line_a_comment}")
+                res_line = res_line.replace(line_b_comment, line_a_comment, 1)
+                print(f"Resulting line: {res_line}")
+            code_block.append(res_line)
+        else:
+            code_block.append(line_b)
+
+    return code_block
+
+
+def replace_multiline_code_blocks_in_text(
+    text: list[str],
+    code_blocks: list[MultilineCodeBlockInfo],
+    original_code_blocks: list[MultilineCodeBlockInfo],
+) -> list[MultilineCodeBlockInfo]:
+    """
+    Update each code block in `text` with the corresponding code block from
+    `original_code_blocks` with comments taken from `code_blocks`.
+
+    Raises ValueError if the number, language, or shape of code blocks do not match.
+    """
+
+    if len(code_blocks) != len(original_code_blocks):
+        raise ValueError(
+            "Number of code blocks does not match the number of original code blocks"
+        )
+
+    modified_text = text.copy()
+    for block, original_block in zip(code_blocks, original_code_blocks):
+        updated_content = replace_multiline_code_block(block, original_block)
+
+        start_line_index = block["start_line_no"] - 1
+        for i, updated_line in enumerate(updated_content):
+            modified_text[start_line_index + i] = updated_line
 
     return modified_text
