@@ -109,9 +109,7 @@ def ensure_multipart_is_installed() -> None:
             raise RuntimeError(multipart_not_installed_error) from None
 
 
-def get_parameterless_sub_dependant(
-    *, depends: params.Depends, path: str
-) -> Dependant:
+def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
     assert callable(depends.dependency), (
         "A parameter-less dependency must have a callable dependency"
     )
@@ -299,7 +297,7 @@ def get_dependant(
             ):
                 raise FastAPIError(
                     f'Dependency parameter "{param_name}" must have a type annotation. '
-                    f'For example: `{param_name}: SomeType = Depends(...)`'
+                    f"For example: `{param_name}: SomeType = Depends(...)`"
                 )
             if (
                 (dependant.is_gen_callable or dependant.is_async_gen_callable)
@@ -339,7 +337,7 @@ def get_dependant(
         if enforce_annotation and param_details.field is None:
             raise FastAPIError(
                 f'Dependency parameter "{param_name}" must have a type annotation. '
-                f'For example: `{param_name}: SomeType = Depends(...)`'
+                f"For example: `{param_name}: SomeType = Depends(...)`"
             )
         if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)

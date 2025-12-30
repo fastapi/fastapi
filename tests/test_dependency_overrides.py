@@ -399,9 +399,11 @@ def test_missing_type_annotation_dependency():
         return "db"
 
     with pytest.raises(FastAPIError) as exc:
+
         @local_app.get("/bad")
         def bad(dep=Depends(get_db)):
             return dep
+
         TestClient(local_app)
 
     msg = str(exc.value)
