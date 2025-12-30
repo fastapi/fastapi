@@ -8,7 +8,7 @@ from pydantic import BaseModel
 def test_invalid_sequence():
     with pytest.raises(
         AssertionError,
-        match="Query param 'q' must be of one of the supported types",
+        match="Query parameter 'q' must be one of the supported types",
     ):
         app = FastAPI()
 
@@ -23,7 +23,7 @@ def test_invalid_sequence():
 def test_invalid_tuple():
     with pytest.raises(
         AssertionError,
-        match="Query param 'q' must be of one of the supported types",
+        match="Query parameter 'q' must be one of the supported types",
     ):
         app = FastAPI()
 
@@ -38,7 +38,7 @@ def test_invalid_tuple():
 def test_invalid_dict():
     with pytest.raises(
         AssertionError,
-        match="Query param 'q' must be of one of the supported types",
+        match="Query parameter 'q' must be one of the supported types",
     ):
         app = FastAPI()
 
@@ -53,7 +53,7 @@ def test_invalid_dict():
 def test_invalid_simple_dict():
     with pytest.raises(
         AssertionError,
-        match="Query param 'q' must be of one of the supported types",
+        match="Query parameter 'q' must be one of the supported types",
     ):
         app = FastAPI()
 
