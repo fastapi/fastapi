@@ -30,8 +30,7 @@ def clear_sqlmodel():
 )
 def get_client(request: pytest.FixtureRequest):
     clear_sqlmodel()
-    # TODO: remove when updating SQL tutorial to use new lifespan API
-    with warnings.catch_warnings(record=True):
+    with warnings.catch_warnings():
         warnings.simplefilter("always")
         mod = importlib.import_module(f"docs_src.sql_databases.{request.param}")
         clear_sqlmodel()
@@ -50,7 +49,7 @@ def get_client(request: pytest.FixtureRequest):
 def test_crud_app(client: TestClient):
     # TODO: this warns that SQLModel.from_orm is deprecated in Pydantic v1, refactor
     # this if using obj.model_validate becomes independent of Pydantic v2
-    with warnings.catch_warnings(record=True):
+    with warnings.catch_warnings():
         warnings.simplefilter("always")
         # No heroes before creating
         response = client.get("heroes/")

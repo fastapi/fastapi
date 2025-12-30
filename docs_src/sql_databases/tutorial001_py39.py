@@ -1,5 +1,5 @@
 from typing import Union
-
+from contextlib import asynccontextmanager
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
@@ -26,13 +26,15 @@ def get_session():
     with Session(engine) as session:
         yield session
 
-
-app = FastAPI()
-
-
-@app.on_event("startup")
-def on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     create_db_and_tables()
+    yield
+    # will leave this as is for now
+
+
+app = FastAPI(lifespan=lifespan)
+
 
 
 @app.post("/heroes/")
