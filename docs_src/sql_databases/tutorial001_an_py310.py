@@ -1,5 +1,6 @@
-from typing import Annotated
 from contextlib import asynccontextmanager
+from typing import Annotated
+
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
@@ -32,6 +33,7 @@ async def lifespan(app: FastAPI):
     create_db_and_tables()
     yield
     # will leave this as is for now
+
 
 SessionDep = Annotated[Session, Depends(get_session)]
 

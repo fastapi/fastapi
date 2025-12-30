@@ -1,5 +1,6 @@
-from typing import Annotated, Union
 from contextlib import asynccontextmanager
+from typing import Annotated, Union
+
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 

@@ -1,6 +1,7 @@
+from contextlib import asynccontextmanager
+
 from fastapi import Depends, FastAPI, HTTPException, Query
 from sqlmodel import Field, Session, SQLModel, create_engine, select
-from contextlib import asynccontextmanager
 
 
 class Hero(SQLModel, table=True):
