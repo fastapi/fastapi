@@ -417,9 +417,12 @@ def get_openapi_path(
                     openapi_response["description"] = description
             http422 = "422"
             all_route_params = get_flat_params(route.dependant)
-            if (all_route_params or route.body_field) and not any(
-                status in operation["responses"]
-                for status in [http422, "4XX", "default"]
+            if (
+                (all_route_params or route.body_field)  # May raise validation error
+                and not any(  # Doesn't have a defined validation error response already
+                    status in operation["responses"]
+                    for status in [http422, "4XX", "default"]
+                )
             ):
                 operation["responses"][http422] = {
                     "description": "Validation Error",
