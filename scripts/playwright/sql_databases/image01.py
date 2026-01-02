@@ -22,7 +22,7 @@ def run(playwright: Playwright) -> None:
 
 
 process = subprocess.Popen(
-    ["fastapi", "run", "docs_src/sql_databases/tutorial001.py"],
+    ["fastapi", "run", "docs_src/sql_databases/tutorial001.py"], shell=False
 )
 try:
     for _ in range(3):
