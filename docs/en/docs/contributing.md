@@ -110,7 +110,7 @@ $ python ./scripts/docs.py live
 
 </div>
 
-It will serve the documentation on `http://127.0.0.1:8008`.
+It will serve the documentation on [`http://127.0.0.1:8008`](http://127.0.0.1:8008).
 
 That way, you can edit the documentation/source files and see the changes live.
 
