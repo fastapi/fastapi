@@ -456,7 +456,10 @@ class APIWebSocketRoute(routing.WebSocketRoute):
         self.dependencies = list(dependencies or [])
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         self.dependant = get_dependant(
-            path=self.path_format, call=self.endpoint, scope="function"
+            path=self.path_format,
+            call=self.endpoint,
+            scope="function",
+            enforce_annotation=False,
         )
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
