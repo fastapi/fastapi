@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, List, Union
+from typing import Any, Union
 
 import material
 from mkdocs.config.defaults import MkDocsConfig
@@ -27,7 +27,7 @@ def get_missing_translation_content(docs_dir: str) -> str:
 
 
 @lru_cache
-def get_mkdocs_material_langs() -> List[str]:
+def get_mkdocs_material_langs() -> list[str]:
     material_path = Path(material.__file__).parent
     material_langs_path = material_path / "templates" / "partials" / "languages"
     langs = [file.stem for file in material_langs_path.glob("*.html")]
@@ -65,7 +65,7 @@ def resolve_file(*, item: str, files: Files, config: MkDocsConfig) -> None:
             )
 
 
-def resolve_files(*, items: List[Any], files: Files, config: MkDocsConfig) -> None:
+def resolve_files(*, items: list[Any], files: Files, config: MkDocsConfig) -> None:
     for item in items:
         if isinstance(item, str):
             resolve_file(item=item, files=files, config=config)
@@ -94,9 +94,9 @@ def on_files(files: Files, *, config: MkDocsConfig) -> Files:
 
 
 def generate_renamed_section_items(
-    items: List[Union[Page, Section, Link]], *, config: MkDocsConfig
-) -> List[Union[Page, Section, Link]]:
-    new_items: List[Union[Page, Section, Link]] = []
+    items: list[Union[Page, Section, Link]], *, config: MkDocsConfig
+) -> list[Union[Page, Section, Link]]:
+    new_items: list[Union[Page, Section, Link]] = []
     for item in items:
         if isinstance(item, Section):
             new_title = item.title

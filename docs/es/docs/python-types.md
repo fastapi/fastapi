@@ -22,7 +22,7 @@ Si eres un experto en Python, y ya sabes todo sobre las anotaciones de tipos, sa
 
 Comencemos con un ejemplo simple:
 
-{* ../../docs_src/python_types/tutorial001.py *}
+{* ../../docs_src/python_types/tutorial001_py39.py *}
 
 Llamar a este programa genera:
 
@@ -36,7 +36,7 @@ La función hace lo siguiente:
 * Convierte la primera letra de cada uno a mayúsculas con `title()`.
 * <abbr title="Los une, como uno. Con el contenido de uno después del otro.">Concatena</abbr> ambos con un espacio en el medio.
 
-{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
 
 ### Edítalo { #edit-it }
 
@@ -78,7 +78,7 @@ Eso es todo.
 
 Esas son las "anotaciones de tipos":
 
-{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
 
 Eso no es lo mismo que declarar valores predeterminados como sería con:
 
@@ -106,7 +106,7 @@ Con eso, puedes desplazarte, viendo las opciones, hasta que encuentres la que "t
 
 Revisa esta función, ya tiene anotaciones de tipos:
 
-{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
 
 Porque el editor conoce los tipos de las variables, no solo obtienes autocompletado, también obtienes chequeo de errores:
 
@@ -114,7 +114,7 @@ Porque el editor conoce los tipos de las variables, no solo obtienes autocomplet
 
 Ahora sabes que debes corregirlo, convertir `age` a un string con `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
 
 ## Declaración de tipos { #declaring-types }
 
@@ -133,7 +133,7 @@ Puedes usar, por ejemplo:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
 
 ### Tipos genéricos con parámetros de tipo { #generic-types-with-type-parameters }
 
@@ -161,55 +161,23 @@ Si puedes usar las **últimas versiones de Python**, utiliza los ejemplos para l
 
 Por ejemplo, vamos a definir una variable para ser una `list` de `str`.
 
-//// tab | Python 3.9+
-
 Declara la variable, con la misma sintaxis de dos puntos (`:`).
 
 Como tipo, pon `list`.
 
 Como la lista es un tipo que contiene algunos tipos internos, los pones entre corchetes:
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-De `typing`, importa `List` (con una `L` mayúscula):
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
-
-Declara la variable, con la misma sintaxis de dos puntos (`:`).
-
-Como tipo, pon el `List` que importaste de `typing`.
-
-Como la lista es un tipo que contiene algunos tipos internos, los pones entre corchetes:
-
-```Python hl_lines="4"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
 
 /// info | Información
 
 Esos tipos internos en los corchetes se denominan "parámetros de tipo".
 
-En este caso, `str` es el parámetro de tipo pasado a `List` (o `list` en Python 3.9 y superior).
+En este caso, `str` es el parámetro de tipo pasado a `list`.
 
 ///
 
 Eso significa: "la variable `items` es una `list`, y cada uno de los ítems en esta lista es un `str`".
-
-/// tip | Consejo
-
-Si usas Python 3.9 o superior, no tienes que importar `List` de `typing`, puedes usar el mismo tipo `list` regular en su lugar.
-
-///
 
 Al hacer eso, tu editor puede proporcionar soporte incluso mientras procesa elementos de la lista:
 
@@ -225,21 +193,7 @@ Y aún así, el editor sabe que es un `str` y proporciona soporte para eso.
 
 Harías lo mismo para declarar `tuple`s y `set`s:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial007_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
 
 Esto significa:
 
@@ -254,21 +208,7 @@ El primer parámetro de tipo es para las claves del `dict`.
 
 El segundo parámetro de tipo es para los valores del `dict`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
 
 Esto significa:
 
@@ -292,10 +232,10 @@ En Python 3.10 también hay una **nueva sintaxis** donde puedes poner los posibl
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b.py!}
+{!> ../../docs_src/python_types/tutorial008b_py39.py!}
 ```
 
 ////
@@ -309,7 +249,7 @@ Puedes declarar que un valor podría tener un tipo, como `str`, pero que tambié
 En Python 3.6 y posteriores (incluyendo Python 3.10) puedes declararlo importando y usando `Optional` del módulo `typing`.
 
 ```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009_py39.py!}
 ```
 
 Usar `Optional[str]` en lugar de solo `str` te permitirá al editor ayudarte a detectar errores donde podrías estar asumiendo que un valor siempre es un `str`, cuando en realidad también podría ser `None`.
@@ -326,18 +266,18 @@ Esto también significa que en Python 3.10, puedes usar `Something | None`:
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009.py!}
+{!> ../../docs_src/python_types/tutorial009_py39.py!}
 ```
 
 ////
 
-//// tab | Python 3.8+ alternativa
+//// tab | Python 3.9+ alternativa
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b.py!}
+{!> ../../docs_src/python_types/tutorial009b_py39.py!}
 ```
 
 ////
@@ -357,7 +297,7 @@ Se trata solo de las palabras y nombres. Pero esas palabras pueden afectar cómo
 
 Como ejemplo, tomemos esta función:
 
-{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
 
 El parámetro `name` está definido como `Optional[str]`, pero **no es opcional**, no puedes llamar a la función sin el parámetro:
 
@@ -390,10 +330,10 @@ Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos d
 * `set`
 * `dict`
 
-Y lo mismo que con Python 3.8, desde el módulo `typing`:
+Y, como con versiones anteriores de Python, desde el módulo `typing`:
 
 * `Union`
-* `Optional` (lo mismo que con Python 3.8)
+* `Optional`
 * ...y otros.
 
 En Python 3.10, como alternativa a usar los genéricos `Union` y `Optional`, puedes usar la <abbr title='también llamado "operador OR a nivel de bits", pero ese significado no es relevante aquí'>barra vertical (`|`)</abbr> para declarar uniones de tipos, eso es mucho mejor y más simple.
@@ -409,20 +349,8 @@ Puedes usar los mismos tipos integrados como genéricos (con corchetes y tipos d
 * `set`
 * `dict`
 
-Y lo mismo que con Python 3.8, desde el módulo `typing`:
+Y generics desde el módulo `typing`:
 
-* `Union`
-* `Optional`
-* ...y otros.
-
-////
-
-//// tab | Python 3.8+
-
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
 * `Union`
 * `Optional`
 * ...y otros.
@@ -435,11 +363,11 @@ También puedes declarar una clase como el tipo de una variable.
 
 Digamos que tienes una clase `Person`, con un nombre:
 
-{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
 
 Luego puedes declarar una variable para que sea de tipo `Person`:
 
-{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
 
 Y luego, nuevamente, obtienes todo el soporte del editor:
 
@@ -463,29 +391,7 @@ Y obtienes todo el soporte del editor con ese objeto resultante.
 
 Un ejemplo de la documentación oficial de Pydantic:
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// info | Información
 
@@ -507,27 +413,9 @@ Pydantic tiene un comportamiento especial cuando utilizas `Optional` o `Union[So
 
 Python también tiene una funcionalidad que permite poner **<abbr title="Datos sobre los datos, en este caso, información sobre el tipo, por ejemplo, una descripción.">metadatos</abbr> adicional** en estas anotaciones de tipos usando `Annotated`.
 
-//// tab | Python 3.9+
+Desde Python 3.9, `Annotated` es parte de la standard library, así que puedes importarlo desde `typing`.
 
-En Python 3.9, `Annotated` es parte de la standard library, así que puedes importarlo desde `typing`.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-En versiones por debajo de Python 3.9, importas `Annotated` de `typing_extensions`.
-
-Ya estará instalado con **FastAPI**.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
 
 Python en sí no hace nada con este `Annotated`. Y para los editores y otras herramientas, el tipo sigue siendo `str`.
 

@@ -183,7 +183,7 @@ Podría haber casos en los que devuelvas algo que no es un campo válido de Pyda
 
 El caso más común sería [devolver un Response directamente como se explica más adelante en la documentación avanzada](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
 
 Este caso simple es manejado automáticamente por FastAPI porque la anotación del tipo de retorno es la clase (o una subclase de) `Response`.
 
@@ -193,7 +193,7 @@ Y las herramientas también estarán felices porque tanto `RedirectResponse` com
 
 También puedes usar una subclase de `Response` en la anotación del tipo:
 
-{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
 
 Esto también funcionará porque `RedirectResponse` es una subclase de `Response`, y FastAPI manejará automáticamente este caso simple.
 

@@ -14,15 +14,15 @@ When translating documentation into Portuguese, use neutral and widely understan
 
 For the next terms, use the following translations:
 
-* «/// check»: «/// check | Verifique»
-* «/// danger»: «/// danger | Cuidado»
-* «/// info»: «/// info | Informação»
-* «/// note | Technical Details»: «/// note | Detalhes Técnicos»
-* «/// info | Very Technical Details»: «/// note | Detalhes Técnicos Avançados»
-* «/// note»: «/// note | Nota»
-* «/// tip»: «/// tip | Dica»
-* «/// warning»: «/// warning | Atenção»
-* «(you should)»: «(você deveria)»
+* /// check: /// check | Verifique
+* /// danger: /// danger | Cuidado
+* /// info: /// info | Informação
+* /// note | Technical Details: /// note | Detalhes Técnicos
+* /// info | Very Technical Details: /// note | Detalhes Técnicos Avançados
+* /// note: /// note | Nota
+* /// tip: /// tip | Dica
+* /// warning: /// warning | Atenção
+* (you should): (você deveria)
 * async context manager: gerenciador de contexto assíncrono
 * autocomplete: autocompletar
 * autocompletion: preenchimento automático
@@ -47,7 +47,7 @@ For the next terms, use the following translations:
 * list (as in Python list): list
 * Machine Learning: Aprendizado de Máquina
 * media type: media type (do not translate to "tipo de mídia")
-* non-Annotated: non-Annotated (do not translate non-Annotated when it comes after a Python version.e.g., “Python 3.8+ non-Annotated”)
+* non-Annotated: non-Annotated (do not translate non-Annotated when it comes after a Python version.e.g., “Python 3.10+ non-Annotated”)
 * operation IDs: IDs de operação
 * path (as in URL path): path
 * path operation: operação de rota

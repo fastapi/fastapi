@@ -12,7 +12,7 @@ Puedes establecer el `operationId` de OpenAPI para ser usado en tu *path operati
 
 Tienes que asegurarte de que sea único para cada operación.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Usar el nombre de la *path operation function* como el operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Si quieres usar los nombres de las funciones de tus APIs como `operationId`s, pu
 
 Deberías hacerlo después de agregar todas tus *path operations*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Consejo
 
@@ -40,7 +40,7 @@ Incluso si están en diferentes módulos (archivos de Python).
 
 Para excluir una *path operation* del esquema OpenAPI generado (y por lo tanto, de los sistemas de documentación automática), utiliza el parámetro `include_in_schema` y configúralo en `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Descripción avanzada desde el docstring { #advanced-description-from-docstring }
 
@@ -92,7 +92,7 @@ Puedes extender el esquema de OpenAPI para una *path operation* usando el parám
 
 Este `openapi_extra` puede ser útil, por ejemplo, para declarar [Extensiones de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Si abres la documentación automática de la API, tu extensión aparecerá en la parte inferior de la *path operation* específica.
 
@@ -139,7 +139,7 @@ Por ejemplo, podrías decidir leer y validar el request con tu propio código, s
 
 Podrías hacer eso con `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
 En este ejemplo, no declaramos ningún modelo Pydantic. De hecho, el cuerpo del request ni siquiera se <abbr title="convertido de algún formato plano, como bytes, a objetos de Python">parse</abbr> como JSON, se lee directamente como `bytes`, y la función `magic_data_reader()` sería la encargada de parsearlo de alguna manera.
 

@@ -8,7 +8,7 @@ De la misma manera que puedes especificar un modelo de response, también puedes
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 /// note | Nota
 
@@ -74,7 +74,7 @@ Para saber más sobre cada código de estado y qué código es para qué, revisa
 
 Veamos de nuevo el ejemplo anterior:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 `201` es el código de estado para "Created".
 
@@ -82,7 +82,7 @@ Pero no tienes que memorizar lo que significa cada uno de estos códigos.
 
 Puedes usar las variables de conveniencia de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
 
 Son solo una conveniencia, mantienen el mismo número, pero de esa manera puedes usar el autocompletado del editor para encontrarlos:
 

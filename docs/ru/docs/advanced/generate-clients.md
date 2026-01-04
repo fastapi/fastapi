@@ -167,7 +167,7 @@ FastAPI использует **уникальный ID** для каждой *о
 
 Мы можем скачать OpenAPI JSON в файл `openapi.json`, а затем **убрать этот префикс‑тег** таким скриптом:
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py39.py *}
 
 //// tab | Node.js
 

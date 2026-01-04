@@ -1,12 +1,11 @@
 import json
-from typing import Any, Tuple
+from typing import Annotated, Any
 
 import pytest
 from fastapi import APIRouter, Depends, FastAPI, HTTPException
 from fastapi.exceptions import FastAPIError
 from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 class Session:
@@ -43,7 +42,7 @@ def get_named_session(session: SessionRequestDep, session_b: SessionDefaultDep) 
     named_session.open = False
 
 
-NamedSessionsDep = Annotated[Tuple[NamedSession, Session], Depends(get_named_session)]
+NamedSessionsDep = Annotated[tuple[NamedSession, Session], Depends(get_named_session)]
 
 
 def get_named_func_session(session: SessionFuncDep) -> Any:
@@ -58,14 +57,14 @@ def get_named_regular_func_session(session: SessionFuncDep) -> Any:
 
 
 BrokenSessionsDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_func_session)
+    tuple[NamedSession, Session], Depends(get_named_func_session)
 ]
 NamedSessionsFuncDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_func_session, scope="function")
+    tuple[NamedSession, Session], Depends(get_named_func_session, scope="function")
 ]
 
 RegularSessionsDep = Annotated[
-    Tuple[NamedSession, Session], Depends(get_named_regular_func_session)
+    tuple[NamedSession, Session], Depends(get_named_regular_func_session)
 ]
 
 app = FastAPI()

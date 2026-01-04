@@ -1,6 +1,5 @@
 from typing import Union
 
-from dirty_equals import IsDict
 from fastapi import Body, Cookie, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -155,26 +154,12 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": IsDict(
-                                    {
-                                        "$ref": "#/components/schemas/Item",
-                                        "examples": [
-                                            {"data": "Data in Body examples, example1"}
-                                        ],
-                                    }
-                                )
-                                | IsDict(
-                                    {
-                                        # TODO: remove when deprecating Pydantic v1
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                        "examples": [
-                                            {"data": "Data in Body examples, example1"}
-                                        ],
-                                    }
-                                ),
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item",
+                                    "examples": [
+                                        {"data": "Data in Body examples, example1"}
+                                    ],
+                                },
                                 "examples": {
                                     "Example One": {
                                         "summary": "Example One Summary",
@@ -265,27 +250,14 @@ def test_openapi_schema():
                             "name": "data",
                             "in": "query",
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "examples": [
-                                        "json_schema_query1",
-                                        "json_schema_query2",
-                                    ],
-                                    "title": "Data",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "examples": [
-                                        "json_schema_query1",
-                                        "json_schema_query2",
-                                    ],
-                                    "type": "string",
-                                    "title": "Data",
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "examples": [
+                                    "json_schema_query1",
+                                    "json_schema_query2",
+                                ],
+                                "title": "Data",
+                            },
                             "examples": {
                                 "Query One": {
                                     "summary": "Query One Summary",
@@ -323,27 +295,14 @@ def test_openapi_schema():
                             "name": "data",
                             "in": "header",
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "examples": [
-                                        "json_schema_header1",
-                                        "json_schema_header2",
-                                    ],
-                                    "title": "Data",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "string",
-                                    "examples": [
-                                        "json_schema_header1",
-                                        "json_schema_header2",
-                                    ],
-                                    "title": "Data",
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "examples": [
+                                    "json_schema_header1",
+                                    "json_schema_header2",
+                                ],
+                                "title": "Data",
+                            },
                             "examples": {
                                 "Header One": {
                                     "summary": "Header One Summary",
@@ -381,27 +340,14 @@ def test_openapi_schema():
                             "name": "data",
                             "in": "cookie",
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "examples": [
-                                        "json_schema_cookie1",
-                                        "json_schema_cookie2",
-                                    ],
-                                    "title": "Data",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "string",
-                                    "examples": [
-                                        "json_schema_cookie1",
-                                        "json_schema_cookie2",
-                                    ],
-                                    "title": "Data",
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "examples": [
+                                    "json_schema_cookie1",
+                                    "json_schema_cookie2",
+                                ],
+                                "title": "Data",
+                            },
                             "examples": {
                                 "Cookie One": {
                                     "summary": "Cookie One Summary",

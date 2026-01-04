@@ -1,13 +1,10 @@
-from typing import List
+from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict, IsOneOf, IsPartialDict
+from dirty_equals import IsOneOf, IsPartialDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -18,12 +15,12 @@ app = FastAPI()
 
 
 @app.post("/required-list-str", operation_id="required_list_str")
-async def read_required_list_str(p: Annotated[List[str], Form()]):
+async def read_required_list_str(p: Annotated[list[str], Form()]):
     return {"p": p}
 
 
 class FormModelRequiredListStr(BaseModel):
-    p: List[str]
+    p: list[str]
 
 
 @app.post("/model-required-list-str", operation_id="model_required_list_str")
@@ -61,28 +58,16 @@ def test_required_list_str_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -101,12 +86,12 @@ def test_required_list_str(path: str):
 
 
 @app.post("/required-list-alias", operation_id="required_list_alias")
-async def read_required_list_alias(p: Annotated[List[str], Form(alias="p_alias")]):
+async def read_required_list_alias(p: Annotated[list[str], Form(alias="p_alias")]):
     return {"p": p}
 
 
 class FormModelRequiredListAlias(BaseModel):
-    p: List[str] = Field(alias="p_alias")
+    p: list[str] = Field(alias="p_alias")
 
 
 @app.post("/model-required-list-alias", operation_id="model_required_list_alias")
@@ -149,29 +134,16 @@ def test_required_list_alias_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -185,29 +157,16 @@ def test_required_list_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, data={"p": ["hello", "world"]})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {"p": ["hello", "world"]}),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, {"p": ["hello", "world"]}),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -229,13 +188,13 @@ def test_required_list_alias_by_alias(path: str):
     "/required-list-validation-alias", operation_id="required_list_validation_alias"
 )
 def read_required_list_validation_alias(
-    p: Annotated[List[str], Form(validation_alias="p_val_alias")],
+    p: Annotated[list[str], Form(validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class FormModelRequiredListValidationAlias(BaseModel):
-    p: List[str] = Field(validation_alias="p_val_alias")
+    p: list[str] = Field(validation_alias="p_val_alias")
 
 
 @app.post(
@@ -248,7 +207,6 @@ async def read_model_required_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -271,7 +229,6 @@ def test_required_list_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -298,7 +255,6 @@ def test_required_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -323,7 +279,6 @@ def test_required_list_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -345,13 +300,13 @@ def test_required_list_validation_alias_by_validation_alias(path: str):
     operation_id="required_list_alias_and_validation_alias",
 )
 def read_required_list_alias_and_validation_alias(
-    p: Annotated[List[str], Form(alias="p_alias", validation_alias="p_val_alias")],
+    p: Annotated[list[str], Form(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"p": p}
 
 
 class FormModelRequiredListAliasAndValidationAlias(BaseModel):
-    p: List[str] = Field(alias="p_alias", validation_alias="p_val_alias")
+    p: list[str] = Field(alias="p_alias", validation_alias="p_val_alias")
 
 
 @app.post(
@@ -364,7 +319,6 @@ def read_model_required_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -390,7 +344,6 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -417,7 +370,6 @@ def test_required_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -447,7 +399,6 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -471,7 +422,6 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
