@@ -48,6 +48,8 @@ Notice that `response_model` is a parameter of the "decorator" method (`get`, `p
 `response_model` receives the same type you would declare for a Pydantic model field, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
 FastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration.
+Note that this filtering applies only to the response sent to the client.
+The object returned inside the path operation function is not modified.
 
 /// tip
 
