@@ -1,8 +1,6 @@
 from typing import Annotated, Optional
 
-from dirty_equals import IsDict
 from fastapi import FastAPI, Form
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -20,12 +18,7 @@ class FormModel(BaseModel):
 class FormModelExtraAllow(BaseModel):
     param: str
 
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
-    else:
-
-        class Config:
-            extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 @app.post("/form/")
@@ -85,68 +78,37 @@ def test_invalid_data():
         },
     )
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "int_parsing",
-                    "loc": ["body", "age"],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "seventy",
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "age"],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "int_parsing",
+                "loc": ["body", "age"],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "seventy",
+            }
+        ]
+    }
 
 
 def test_no_data():
     response = client.post("/form/")
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "username"],
-                    "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "lastname"],
-                    "msg": "Field required",
-                    "input": {"tags": ["foo", "bar"], "with": "nothing"},
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "username"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "lastname"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "username"],
+                "msg": "Field required",
+                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "lastname"],
+                "msg": "Field required",
+                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+            },
+        ]
+    }
 
 
 def test_extra_param_single():

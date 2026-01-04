@@ -16,63 +16,31 @@ env:
   UV_SYSTEM_PYTHON: 1
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-      - name: Setup uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          cache-dependency-glob: |
-            requirements**.txt
-            pyproject.toml
-      - name: Install Dependencies
-        run: uv pip install -r requirements-tests.txt
-      - name: Lint
-        run: bash scripts/lint.sh
-
   test:
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
-        pydantic-version: [ "pydantic>=2.0.2,<3.0.0" ]
         include:
           - os: ubuntu-latest
             python-version: "3.9"
-            pydantic-version: "pydantic>=1.10.0,<2.0.0"
             coverage: coverage
           - os: macos-latest
             python-version: "3.10"
-            pydantic-version: "pydantic>=2.0.2,<3.0.0"
+            coverage: coverage
           - os: windows-latest
-            python-version: "3.11"
-            pydantic-version: "pydantic>=1.10.0,<2.0.0"
-          - os: ubuntu-latest
             python-version: "3.12"
-            pydantic-version: "pydantic>=2.0.2,<3.0.0"
-          - os: macos-latest
-            python-version: "3.13"
-            pydantic-version: "pydantic>=1.10.0,<2.0.0"
-          - os: windows-latest
-            python-version: "3.13"
-            pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
           - os: ubuntu-latest
             python-version: "3.13"
-            pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
+            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+          - os: ubuntu-latest
+            python-version: "3.13"
+            coverage: coverage
+            codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
-            pydantic-version: "pydantic>=2.0.2,<3.0.0"
             coverage: coverage
       fail-fast: false
     runs-on: ${{ matrix.os }}
@@ -96,16 +64,15 @@ jobs:
             pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements-tests.txt
-      - name: Install Pydantic
-        run: uv pip install "${{ matrix.pydantic-version }}"
       - run: mkdir coverage
       - name: Test
+        if: matrix.codspeed != 'codspeed'
         run: bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
       - name: CodSpeed benchmarks
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' && matrix.pydantic-version == 'pydantic>=2.0.2,<3.0.0'
+        if: matrix.codspeed == 'codspeed'
         uses: CodSpeedHQ/action@v4
         env:
             COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}

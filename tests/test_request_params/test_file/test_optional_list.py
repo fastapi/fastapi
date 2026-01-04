@@ -1,11 +1,8 @@
 from typing import Annotated, Optional
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -40,28 +37,16 @@ def test_optional_list_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p": (
-                IsDict(
+            "p": {
+                "anyOf": [
                     {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "title": "P",
                         "type": "array",
                         "items": {"type": "string", "format": "binary"},
                     },
-                )
-            ),
+                    {"type": "null"},
+                ],
+                "title": "P",
+            }
         },
         "title": body_model_name,
         "type": "object",
@@ -127,28 +112,16 @@ def test_optional_list_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_alias": (
-                IsDict(
+            "p_alias": {
+                "anyOf": [
                     {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "title": "P Alias",
                         "type": "array",
                         "items": {"type": "string", "format": "binary"},
-                    }
-                )
-            ),
+                    },
+                    {"type": "null"},
+                ],
+                "title": "P Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
@@ -217,7 +190,6 @@ def read_optional_list_uploadfile_validation_alias(
     return {"file_size": [file.size for file in p] if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -231,35 +203,22 @@ def test_optional_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
+            "p_val_alias": {
+                "anyOf": [
                     {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "title": "P Val Alias",
                         "type": "array",
                         "items": {"type": "string", "format": "binary"},
-                    }
-                )
-            ),
+                    },
+                    {"type": "null"},
+                ],
+                "title": "P Val Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -274,7 +233,6 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -289,7 +247,6 @@ def test_optional_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -329,7 +286,6 @@ def read_optional_list_uploadfile_alias_and_validation_alias(
     return {"file_size": [file.size for file in p] if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -343,35 +299,22 @@ def test_optional_list_alias_and_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
+            "p_val_alias": {
+                "anyOf": [
                     {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "title": "P Val Alias",
                         "type": "array",
                         "items": {"type": "string", "format": "binary"},
-                    }
-                )
-            ),
+                    },
+                    {"type": "null"},
+                ],
+                "title": "P Val Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -386,7 +329,6 @@ def test_optional_list_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -401,7 +343,6 @@ def test_optional_list_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -416,7 +357,6 @@ def test_optional_list_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
