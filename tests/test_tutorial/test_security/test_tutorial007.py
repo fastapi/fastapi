@@ -25,17 +25,21 @@ def test_security_http_basic(client: TestClient):
 
 def test_security_http_basic_no_credentials(client: TestClient):
     response = client.get("/users/me")
+    www_auth = response.headers["WWW-Authenticate"]
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.json() == {"detail": "Not authenticated"}
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
 
 
 def test_security_http_basic_invalid_credentials(client: TestClient):
     response = client.get(
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
+    www_auth = response.headers["WWW-Authenticate"]
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Not authenticated"}
 
 
@@ -43,23 +47,29 @@ def test_security_http_basic_non_basic_credentials(client: TestClient):
     payload = b64encode(b"johnsecret").decode("ascii")
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
+    www_auth = response.headers["WWW-Authenticate"]
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
     assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_security_http_basic_invalid_username(client: TestClient):
     response = client.get("/users/me", auth=("alice", "swordfish"))
+    www_auth = response.headers["WWW-Authenticate"]
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
-    assert response.headers["WWW-Authenticate"] == "Basic"
 
 
 def test_security_http_basic_invalid_password(client: TestClient):
     response = client.get("/users/me", auth=("stanleyjobson", "wrongpassword"))
+    www_auth = response.headers["WWW-Authenticate"]
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Incorrect username or password"}
-    assert response.headers["WWW-Authenticate"] == "Basic"
 
 
 def test_openapi_schema(client: TestClient):
