@@ -8,6 +8,7 @@ HEADER_WITH_PERMALINK_RE = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})?\s*$")
 HEADER_LINE_RE = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
 
 TIANGOLO_COM = "https://fastapi.tiangolo.com"
+ASSETS_URL_PREFIXES = ("/img/", "/css/", "/js/")
 
 MARKDOWN_LINK_RE = re.compile(
     r"(?<!\\)(?<!\!)"  # not an image ![...] and not escaped \[...]
@@ -271,15 +272,20 @@ def extract_markdown_links(lines: list[str]) -> list[tuple[str, int]]:
     return links
 
 
+def _add_lang_code_to_url(url: str, lang_code: str) -> str:
+    if url.startswith(TIANGOLO_COM):
+        rel_url = url[len(TIANGOLO_COM) :]
+        if not rel_url.startswith(ASSETS_URL_PREFIXES):
+            url = url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
+    return url
+
 def _construct_markdown_link(
     url: str, text: str, title: str | None, attributes: str | None, lang_code: str
 ) -> str:
     """
     Construct a markdown link, adjusting the URL for the given language code if needed.
     """
-
-    if url.startswith(TIANGOLO_COM):
-        url = url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
+    url = _add_lang_code_to_url(url, lang_code)
 
     if title:
         link = f'[{text}]({url} "{title}")'
@@ -404,10 +410,13 @@ def _construct_html_link(
     for attribute in attributes:
         if attribute["name"] == "href":
             original_url = attribute["value"]
-            if original_url.startswith(TIANGOLO_COM):
-                url = original_url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
-            else:
-                url = original_url
+
+            url = _add_lang_code_to_url(original_url, lang_code)
+
+            # if original_url.startswith(TIANGOLO_COM):
+            #     url = original_url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
+            # else:
+            #     url = original_url
             attributes_upd.append(
                 HTMLLinkAttribute(name="href", quote=attribute["quote"], value=url)
             )
