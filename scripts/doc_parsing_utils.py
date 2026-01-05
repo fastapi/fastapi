@@ -221,7 +221,9 @@ def replace_header_permalinks(
 
     if len(header_permalinks) != len(original_header_permalinks):
         raise ValueError(
-            "Number of headers with permalinks does not match the number in the original document"
+            "Number of headers with permalinks does not match the number in the "
+            "original document "
+            f"({len(header_permalinks)} vs {len(original_header_permalinks)})"
         )
 
     for header_info, original_header_info in zip(
