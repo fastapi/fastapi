@@ -38,6 +38,7 @@ class CodeIncludeInfo(TypedDict):
 class HeaderPermalinkInfo(TypedDict):
     line_no: int
     hashes: str
+    title: str
     permalink: str
 
 
@@ -160,10 +161,10 @@ def extract_header_permalinks(lines: list[str]) -> list[HeaderPermalinkInfo]:
 
             header_match = HEADER_WITH_PERMALINK_RE.match(line)
             if header_match:
-                hashes, _title, permalink = header_match.groups()
+                hashes, title, permalink = header_match.groups()
                 headers.append(
                     HeaderPermalinkInfo(
-                        hashes=hashes, line_no=line_no, permalink=permalink
+                        hashes=hashes, line_no=line_no, permalink=permalink, title=title
                     )
                 )
 
@@ -202,40 +203,37 @@ def remove_header_permalinks(lines: list[str]) -> list[str]:
 
 
 def replace_header_permalinks(
-    text: list[str], original_permalinks: list[HeaderPermalinkInfo]
+    text: list[str],
+    header_permalinks: list[HeaderPermalinkInfo],
+    original_header_permalinks: list[HeaderPermalinkInfo],
 ) -> list[str]:
     """
     Replace permalinks in the given text with the permalinks from the original document.
 
-    Fail if the number or order of headers does not match the original.
+    Fail if the number or level of headers does not match the original.
     """
 
-    modified_text: list[str] = []
-    permalink_index = 0
-    for line in text:
-        header_match = HEADER_LINE_RE.match(line)
-        if header_match:
-            if permalink_index >= len(original_permalinks):
-                raise ValueError(
-                    "Number of headers exceeds number of headers in the original document"
-                )
-            hashes, title, _permalink = header_match.groups()
-            original_permalink_info = original_permalinks[permalink_index]
-            if original_permalink_info["hashes"] != hashes:
-                raise ValueError(
-                    "Header levels do not match between document and original document"
-                )
+    modified_text: list[str] = text.copy()
 
-            modified_line = f"{hashes} {title}{original_permalink_info['permalink']}"
-            modified_text.append(modified_line)
-            permalink_index += 1
-        else:
-            modified_text.append(line)
-
-    if permalink_index < len(original_permalinks):
+    if len(header_permalinks) != len(original_header_permalinks):
         raise ValueError(
-            "Number of headers is less than number of headers in the original document"
+            "Number of headers with permalinks does not match the number in the original document"
         )
+
+    for header_info, original_header_info in zip(
+        header_permalinks, original_header_permalinks
+    ):
+        if header_info["hashes"] != original_header_info["hashes"]:
+            raise ValueError(
+                "Header levels do not match between document and original document"
+                f" (found {header_info['hashes']}, expected {original_header_info['hashes']})"
+                f" for header №{header_info['line_no']}"
+            )
+        line_no = header_info["line_no"] - 1
+        hashes = header_info["hashes"]
+        title = header_info["title"]
+        permalink = original_header_info["permalink"]
+        modified_text[line_no] = f"{hashes} {title}{permalink}"
 
     return modified_text
 
