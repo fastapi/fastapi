@@ -113,23 +113,22 @@ def replace_placeholders_with_code_includes(
     Fail if the number of placeholders does not match the number of original includes.
     """
 
-    modified_text: list[str] = []
-    include_index = 0
-    for line in text:
-        if line.strip() == CODE_INCLUDE_PLACEHOLDER:
-            if include_index >= len(original_includes):
-                raise ValueError(
-                    "Number of placeholders exceeds number of code includes in the original document"
-                )
-            modified_text.append(original_includes[include_index]["line"])
-            include_index += 1
-        else:
-            modified_text.append(line)
+    code_include_lines = [
+        line_no
+        for line_no, line in enumerate(text)
+        if line.strip() == CODE_INCLUDE_PLACEHOLDER
+    ]
 
-    if include_index < len(original_includes):
+    if len(code_include_lines) != len(original_includes):
         raise ValueError(
-            "Number of placeholders is less than number of code includes in the original document"
+            "Number of code include placeholders does not match the number of code includes "
+            "in the original document "
+            f"({len(code_include_lines)} vs {len(original_includes)})"
         )
+
+    modified_text = text.copy()
+    for i, line_no in enumerate(code_include_lines):
+        modified_text[line_no] = original_includes[i]["line"]
 
     return modified_text
 
