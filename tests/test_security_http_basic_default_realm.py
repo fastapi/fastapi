@@ -5,11 +5,14 @@ from fastapi.testclient import TestClient
 app = FastAPI()
 security = HTTPBasic()
 
+
 @app.get("/users/me")
 def read_current_user(credentials: HTTPBasicCredentials = Depends(security)):
     return {"username": credentials.username, "password": credentials.password}
 
+
 client = TestClient(app)
+
 
 def test_security_http_basic_default_realm():
     # 401 branch: should include default realm
