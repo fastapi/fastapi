@@ -605,9 +605,9 @@ def replace_multiline_code_block(
             line_b_code, line_b_comment = _split_slashes_comment(line_b)
             res_line = line_b
             if line_b_comment:
-                print(f"Replacing comment: {line_b_comment} with {line_a_comment}")
+                # print(f"Replacing comment: {line_b_comment} with {line_a_comment}")
                 res_line = res_line.replace(line_b_comment, line_a_comment, 1)
-                print(f"Resulting line: {res_line}")
+                # print(f"Resulting line: {res_line}")
             code_block.append(res_line)
         else:
             code_block.append(line_b)
