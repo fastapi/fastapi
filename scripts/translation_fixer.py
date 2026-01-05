@@ -75,30 +75,18 @@ def get_all_paths(lang: str):
     return res
 
 
-@cli.command()
-def fix_all(ctx: typer.Context, language: str):
-    docs = get_all_paths(language)
+def process_one_page(path: Path) -> bool:
+    """
+    Fix one translated document by comparing it to the English version.
 
-    for page in docs:
-        doc_path = Path("docs") / language / "docs" / page
-        try:
-            fix_pages(doc_paths=[doc_path])
-        except ValueError as e:
-            print(f"Error processing {doc_path}: {e}")
+    Returns True if processed successfully, False otherwise.
+    """
 
-
-@cli.command()
-def fix_pages(
-    doc_paths: Annotated[
-        list[Path],
-        typer.Argument(help="List of paths to documents."),
-    ],
-):
-    for path in doc_paths:
+    try:
         lang_code = path.parts[1]
         if lang_code == "en":
             print(f"Skipping English document: {path}")
-            continue
+            return True
 
         en_doc_path = Path("docs") / "en" / Path(*path.parts[2:])
 
@@ -158,6 +146,39 @@ def fix_pages(
         # Write back the fixed document
         doc_lines.append("")  # Ensure file ends with a newline
         path.write_text("\n".join(doc_lines), encoding="utf-8")
+
+    except ValueError as e:
+        print(f"Error processing {path}: {e}")
+        return False
+    return True
+
+
+@cli.command()
+def fix_all(ctx: typer.Context, language: str):
+    docs = get_all_paths(language)
+
+    all_good = True
+    for page in docs:
+        doc_path = Path("docs") / language / "docs" / page
+        all_good = all_good and process_one_page(doc_path)
+
+    if not all_good:
+        raise typer.Exit(code=1)
+
+
+@cli.command()
+def fix_pages(
+    doc_paths: Annotated[
+        list[Path],
+        typer.Argument(help="List of paths to documents."),
+    ],
+):
+    all_good = True
+    for path in doc_paths:
+        all_good = all_good and process_one_page(path)
+
+    if not all_good:
+        raise typer.Exit(code=1)
 
 
 if __name__ == "__main__":
