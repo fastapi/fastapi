@@ -34,7 +34,6 @@ def test_security_http_basic_no_credentials(client: TestClient):
     assert 'realm="' in www_auth.lower()
 
 
-
 def test_security_http_basic_invalid_credentials(client: TestClient):
     response = client.get(
         "/users/me", headers={"Authorization": "Basic notabase64token"}
