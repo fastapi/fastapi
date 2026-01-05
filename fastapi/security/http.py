@@ -197,9 +197,8 @@ class HTTPBasic(HTTPBase):
         self.auto_error = auto_error
 
     def make_authenticate_headers(self) -> dict[str, str]:
-        if self.realm:
-            return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
-        return {"WWW-Authenticate": "Basic"}
+        realm = self.realm or "FastAPI"
+        return {"WWW-Authenticate": f'Basic realm="{realm}"'}
 
     async def __call__(  # type: ignore
         self, request: Request

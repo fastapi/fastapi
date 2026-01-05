@@ -36,8 +36,10 @@ def test_security_http_basic_invalid_credentials():
     response = client.get(
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
+    www_auth = response.headers["WWW-Authenticate"]
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
     assert response.json() == {"detail": "Not authenticated"}
 
 
@@ -45,8 +47,11 @@ def test_security_http_basic_non_basic_credentials():
     payload = b64encode(b"johnsecret").decode("ascii")
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
+    www_auth = response.headers["WWW-Authenticate"]
     assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
+    assert www_auth.lower().startswith("basic")
+    assert 'realm="' in www_auth.lower()
+
     assert response.json() == {"detail": "Not authenticated"}
 
 
