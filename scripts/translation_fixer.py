@@ -112,7 +112,9 @@ def process_one_page(path: Path) -> bool:
         en_permalinks = extract_header_permalinks(en_doc_lines)
         doc_permalinks = extract_header_permalinks(doc_lines)
 
-        fixed_doc_lines = replace_header_permalinks(doc_lines, doc_permalinks, en_permalinks)
+        fixed_doc_lines = replace_header_permalinks(
+            doc_lines, doc_permalinks, en_permalinks
+        )
         if fixed_doc_lines != doc_lines:
             print(f"Fixing header permalinks in: {path}")
         doc_lines = fixed_doc_lines
