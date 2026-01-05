@@ -121,8 +121,9 @@ def process_one_page(path: Path) -> bool:
 
         # Fix markdown links
         en_markdown_links = extract_markdown_links(en_doc_lines)
+        doc_markdown_links = extract_markdown_links(doc_lines)
         fixed_doc_lines = replace_markdown_links(
-            doc_lines, en_markdown_links, lang_code
+            doc_lines, doc_markdown_links, en_markdown_links, lang_code
         )
         if fixed_doc_lines != doc_lines:
             print(f"Fixing markdown links in: {path}")

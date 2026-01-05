@@ -52,6 +52,7 @@ class MarkdownLinkInfo(TypedDict):
     text: str
     title: str | None
     attributes: str | None
+    full_match: str
 
 
 class HTMLLinkAttribute(TypedDict):
@@ -266,6 +267,7 @@ def extract_markdown_links(lines: list[str]) -> list[tuple[str, int]]:
                     text=m.group("text"),
                     title=m.group("title"),
                     attributes=m.group("attrs"),
+                    full_match=m.group(0)
                 )
             )
     return links
@@ -277,6 +279,7 @@ def _add_lang_code_to_url(url: str, lang_code: str) -> str:
         if not rel_url.startswith(ASSETS_URL_PREFIXES):
             url = url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
     return url
+
 
 def _construct_markdown_link(
     url: str, text: str, title: str | None, attributes: str | None, lang_code: str
@@ -298,7 +301,10 @@ def _construct_markdown_link(
 
 
 def replace_markdown_links(
-    text: list[str], original_links: list[MarkdownLinkInfo], lang_code: str
+    text: list[str],
+    links: list[MarkdownLinkInfo],
+    original_links: list[MarkdownLinkInfo],
+    lang_code: str,
 ) -> list[str]:
     """
     Replace markdown links in the given text with the original links.
@@ -306,39 +312,31 @@ def replace_markdown_links(
     Fail if the number of links does not match the original.
     """
 
-    modified_text: list[str] = []
-    link_index = 0
-    for line in text:
-        modified_line = line
-        for m in MARKDOWN_LINK_RE.finditer(line):
-            if link_index >= len(original_links):
-                raise ValueError(
-                    "Number of markdown links exceeds number of markdown links in the original document"
-                )
-            link_text = m.group("text")
-            assert isinstance(link_text, str)
-            link_title = m.group("title")
-            assert link_title is None or isinstance(link_title, str)
-
-            original_link_info = original_links[link_index]
-
-            # Replace
-            replacement_link = _construct_markdown_link(
-                url=original_link_info["url"],
-                text=link_text,
-                title=link_title,
-                attributes=original_link_info["attributes"],
-                lang_code=lang_code,
-            )
-            modified_line = modified_line.replace(m.group(0), replacement_link, 1)
-
-            link_index += 1
-        modified_text.append(modified_line)
-
-    if link_index < len(original_links):
+    if len(links) > len(original_links):
         raise ValueError(
-            "Number of markdown links is less than in the original document"
+            "Number of markdown links exceeds number of markdown links in the "
+            "original document "
+            f"({len(links)} vs {len(original_links)})"
         )
+
+    modified_text = text.copy()
+    for i, link_info in enumerate(links):
+        link_text = link_info["text"]
+        link_title = link_info["title"]
+        original_link_info = original_links[i]
+
+        # Replace
+        replacement_link = _construct_markdown_link(
+            url=original_link_info["url"],
+            text=link_text,
+            title=link_title,
+            attributes=original_link_info["attributes"],
+            lang_code=lang_code,
+        )
+        line_no = link_info["line_no"] - 1
+        modified_line = modified_text[line_no]
+        modified_line = modified_line.replace(link_info["full_match"], replacement_link, 1)
+        modified_text[line_no] = modified_line
 
     return modified_text
 
