@@ -1,20 +1,24 @@
 from fastapi import Depends, FastAPI
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
+app = FastAPI()
+security = HTTPBasic()
 
-def test_http_basic_includes_realm_by_default():
-    app = FastAPI()
-    security = HTTPBasic()  # no realm provided
+@app.get("/users/me")
+def read_current_user(credentials: HTTPBasicCredentials = Depends(security)):
+    return {"username": credentials.username, "password": credentials.password}
 
-    @app.get("/protected")
-    def protected(credentials: HTTPBasicCredentials = Depends(security)):
-        return {"username": credentials.username}
+client = TestClient(app)
 
-    client = TestClient(app)
-    resp = client.get("/protected")
+def test_security_http_basic_default_realm():
+    # 401 branch: should include default realm
+    response = client.get("/users/me")
+    assert response.status_code == 401, response.text
+    assert response.headers["WWW-Authenticate"] == 'Basic realm="FastAPI"'
+    assert response.json() == {"detail": "Not authenticated"}
 
-    assert resp.status_code == 401
-    www_auth = resp.headers.get("www-authenticate")
-    assert www_auth is not None
-    assert www_auth.startswith('Basic realm="')
+    # 200 branch: execute the return line to satisfy 100% coverage
+    ok = client.get("/users/me", auth=("john", "secret"))
+    assert ok.status_code == 200, ok.text
+    assert ok.json() == {"username": "john", "password": "secret"}
