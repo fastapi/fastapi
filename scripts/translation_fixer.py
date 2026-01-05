@@ -160,7 +160,8 @@ def fix_all(ctx: typer.Context, language: str):
     all_good = True
     for page in docs:
         doc_path = Path("docs") / language / "docs" / page
-        all_good = all_good and process_one_page(doc_path)
+        res = process_one_page(doc_path)
+        all_good = all_good and res
 
     if not all_good:
         raise typer.Exit(code=1)
@@ -175,7 +176,8 @@ def fix_pages(
 ):
     all_good = True
     for path in doc_paths:
-        all_good = all_good and process_one_page(path)
+        res = process_one_page(path)
+        all_good = all_good and res
 
     if not all_good:
         raise typer.Exit(code=1)
