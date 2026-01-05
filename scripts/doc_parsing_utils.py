@@ -26,8 +26,11 @@ HTML_ATTR_RE = re.compile(r'(\w+)\s*=\s*([\'"])(.*?)\2')
 
 CODE_BLOCK_LANG_RE = re.compile(r"^```([\w-]*)", re.MULTILINE)
 
-SLASHES_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>\s*// .*)?$")
-HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>\s*# .*)?$")
+SLASHES_COMMENT_RE = re.compile(
+    r"^(?P<code>.*?)(?P<comment>(?:(?<= )// .*)|(?:^// .*))?$"
+)
+
+HASH_COMMENT_RE = re.compile(r"^(?P<code>.*?)(?P<comment>(?:(?<= )# .*)|(?:^# .*))?$")
 
 
 class CodeIncludeInfo(TypedDict):
