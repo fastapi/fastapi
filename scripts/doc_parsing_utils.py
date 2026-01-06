@@ -315,9 +315,9 @@ def replace_markdown_links(
     Fail if the number of links does not match the original.
     """
 
-    if len(links) > len(original_links):
+    if len(links) != len(original_links):
         raise ValueError(
-            "Number of markdown links exceeds number of markdown links in the "
+            "Number of markdown links does not match the number in the "
             "original document "
             f"({len(links)} vs {len(original_links)})"
         )
