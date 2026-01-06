@@ -411,13 +411,7 @@ def _construct_html_link(
     for attribute in attributes:
         if attribute["name"] == "href":
             original_url = attribute["value"]
-
             url = _add_lang_code_to_url(original_url, lang_code)
-
-            # if original_url.startswith(TIANGOLO_COM):
-            #     url = original_url.replace(TIANGOLO_COM, f"{TIANGOLO_COM}/{lang_code}")
-            # else:
-            #     url = original_url
             attributes_upd.append(
                 HTMLLinkAttribute(name="href", quote=attribute["quote"], value=url)
             )
