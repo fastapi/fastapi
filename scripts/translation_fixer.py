@@ -131,7 +131,10 @@ def process_one_page(path: Path) -> bool:
 
         # Fix HTML links
         en_html_links = extract_html_links(en_doc_lines)
-        fixed_doc_lines = replace_html_links(doc_lines, en_html_links, lang_code)
+        doc_html_links = extract_html_links(doc_lines)
+        fixed_doc_lines = replace_html_links(
+            doc_lines, doc_html_links, en_html_links, lang_code
+        )
         if fixed_doc_lines != doc_lines:
             print(f"Fixing HTML links in: {path}")
         doc_lines = fixed_doc_lines

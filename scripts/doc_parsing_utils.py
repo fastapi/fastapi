@@ -269,7 +269,7 @@ def extract_markdown_links(lines: list[str]) -> list[tuple[str, int]]:
                     text=m.group("text"),
                     title=m.group("title"),
                     attributes=m.group("attrs"),
-                    full_match=m.group(0)
+                    full_match=m.group(0),
                 )
             )
     return links
@@ -337,7 +337,9 @@ def replace_markdown_links(
         )
         line_no = link_info["line_no"] - 1
         modified_line = modified_text[line_no]
-        modified_line = modified_line.replace(link_info["full_match"], replacement_link, 1)
+        modified_line = modified_line.replace(
+            link_info["full_match"], replacement_link, 1
+        )
         modified_text[line_no] = modified_line
 
     return modified_text
@@ -430,7 +432,10 @@ def _construct_html_link(
 
 
 def replace_html_links(
-    text: list[str], original_links: list[HtmlLinkInfo], lang_code: str
+    text: list[str],
+    links: list[HtmlLinkInfo],
+    original_links: list[HtmlLinkInfo],
+    lang_code: str,
 ) -> list[str]:
     """
     Replace HTML links in the given text with the links from the original document.
@@ -439,13 +444,12 @@ def replace_html_links(
     Fail if the number of links does not match the original.
     """
 
-    links = extract_html_links(text)
-    if len(links) > len(original_links):
+    if len(links) != len(original_links):
         raise ValueError(
-            "Number of HTML links exceeds number of HTML links in the original document"
+            "Number of HTML links does not match the number of HTML links in the "
+            "original document "
+            f"({len(links)} vs {len(original_links)})"
         )
-    elif len(links) < len(original_links):
-        raise ValueError("Number of HTML links is less than in the original document")
 
     modified_text = text.copy()
     for link_index, link in enumerate(links):
