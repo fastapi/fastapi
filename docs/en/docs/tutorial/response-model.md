@@ -47,6 +47,42 @@ Notice that `response_model` is a parameter of the "decorator" method (`get`, `p
 
 `response_model` receives the same type you would declare for a Pydantic model field, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.
 
+### Why use `response_model`
+
+The `response_model` parameter is used to **control and validate the data
+returned in responses**, independently from the request body model.
+
+This is useful for several reasons:
+
+- To **filter out sensitive fields** (e.g. passwords, internal IDs)
+- To **guarantee a stable response shape**
+- To avoid accidentally returning extra data
+
+For example:
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class UserInDB(BaseModel):
+    username: str
+    email: str
+    hashed_password: str
+
+class UserPublic(BaseModel):
+    username: str
+    email: str
+
+@app.get("/user/", response_model=UserPublic)
+async def get_user():
+    return UserInDB(
+        username="alice",
+        email="alice@example.com",
+        hashed_password="secret"
+    )
+
 FastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration.
 
 /// tip
