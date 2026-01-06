@@ -137,10 +137,17 @@ def hello_world():// Печать приветствия
 
 {* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
-# Включения кода с неизвестными атрибутами { #code-includes-with-unknown-attributes }
+## Включения кода с неизвестными атрибутами { #code-includes-with-unknown-attributes }
 
 {* ../../docs_src/python_types/tutorial001_py39.py unknown[123] *}
 
+## Ещё включения кода для тестирования исправления { #some-more-code-includes-to-test-fixing }
+
+{*    ../../docs_src/dependencies/tutorial013_an_py310.py     ln[19 : 21]    *}
+
+{* ../../docs_src/bigger_applications/app_an_py39/wrong.py hl[3] title["app/internal/admin.py"] *}
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[1:30] hl[1:10] *}
 
 # Ссылки { #links }
 

@@ -140,9 +140,18 @@ def hello_world():// Print greeting
 
 {* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
-# Code includes with unknown attributes { #code-includes-with-unknown-attributes }
+## Code includes with unknown attributes { #code-includes-with-unknown-attributes }
 
 {* ../../docs_src/python_types/tutorial001_py39.py unknown[123] *}
+
+## Some more code includes to test fixing { #some-more-code-includes-to-test-fixing }
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+
+{* ../../docs_src/bigger_applications/app_an_py39/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+
+{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+
 
 
 # Links { #links }
