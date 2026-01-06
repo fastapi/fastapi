@@ -3,21 +3,20 @@ from typing import Annotated
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 
+fake_secret_token = "coneofsilence"
+
+fake_db = {
+    "foo": {"id": "foo", "title": "Foo", "description": "There goes my hero"},
+    "bar": {"id": "bar", "title": "Bar", "description": "The bartenders"},
+}
+
+app = FastAPI()
+
 
 class Item(BaseModel):
     id: str
     title: str
     description: str | None = None
-
-
-fake_secret_token = "coneofsilence"
-
-fake_db: dict[str, Item] = {
-    "foo": Item(id="foo", title="Foo", description="There goes my hero"),
-    "bar": Item(id="bar", title="Bar", description="The bartenders"),
-}
-
-app = FastAPI()
 
 
 @app.get("/items/{item_id}", response_model=Item)
@@ -35,5 +34,5 @@ async def create_item(item: Item, x_token: Annotated[str, Header()]):
         raise HTTPException(status_code=400, detail="Invalid X-Token header")
     if item.id in fake_db:
         raise HTTPException(status_code=409, detail="Item already exists")
-    fake_db[item.id] = item
+    fake_db[item.id] = item.model_dump()
     return item
