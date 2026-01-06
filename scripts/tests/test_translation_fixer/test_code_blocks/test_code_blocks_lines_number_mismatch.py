@@ -28,7 +28,7 @@ def test_gt(runner: CliRunner, root_dir: Path, copy_test_files):
     assert fixed_content == expected_content  # Translated doc remains unchanged
     assert "Error processing docs/lang/docs/doc.md" in result.output
     assert (
-        "Code block has different number of lines than the original block (5 vs 4)"
+        "Code block (lines 14-18) has different number of lines than the original block (5 vs 4)"
     ) in result.output
 
 
@@ -50,5 +50,5 @@ def test_lt(runner: CliRunner, root_dir: Path, copy_test_files):
     assert fixed_content == expected_content  # Translated doc remains unchanged
     assert "Error processing docs/lang/docs/doc.md" in result.output
     assert (
-        "Code block has different number of lines than the original block (3 vs 4)"
+        "Code block (lines 16-18) has different number of lines than the original block (3 vs 4)"
     ) in result.output

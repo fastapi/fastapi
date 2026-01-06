@@ -567,27 +567,35 @@ def replace_multiline_code_block(
     block_a: MultilineCodeBlockInfo, block_b: MultilineCodeBlockInfo
 ) -> list[str]:
     """
-    Replace multiline code block a with block b leaving comments intact.
+    Replace multiline code block `a` with block `b` leaving comments intact.
 
     Syntax of comments depends on the language of the code block.
     Raises ValueError if the blocks are not compatible (different languages or different number of lines).
     """
 
+    start_line = block_a["start_line_no"]
+    end_line_no = start_line + len(block_a["content"]) - 1
+
     if block_a["lang"] != block_b["lang"]:
         raise ValueError(
-            "Code block has different language than the original block "
+            f"Code block (lines {start_line}-{end_line_no}) "
+            "has different language than the original block "
             f"('{block_a['lang']}' vs '{block_b['lang']}')"
         )
     if len(block_a["content"]) != len(block_b["content"]):
         raise ValueError(
-            "Code block has different number of lines than the original block "
+            f"Code block (lines {start_line}-{end_line_no}) "
+            "has different number of lines than the original block "
             f"({len(block_a['content'])} vs {len(block_b['content'])})"
         )
 
     block_language = block_a["lang"].lower()
     if block_language in {"mermaid"}:
         if block_a != block_b:
-            print("Skipping mermaid code block replacement. This should be checked manually.")
+            print(
+                f"Skipping mermaid code block replacement (lines {start_line}-{end_line_no}). "
+                "This should be checked manually."
+            )
         return block_a["content"].copy()  # We don't handle mermaid code blocks for now
 
     code_block: list[str] = []
