@@ -71,6 +71,7 @@ try:
     # This was added in 4.14.0 (June 2, 2025) We want to be able to support older versions
     from typing_extensions import Sentinel
 except ImportError:
+
     class Sentinel:
         pass
 
@@ -744,7 +745,11 @@ def _get_multidict_value(
         if field.required:
             return
         else:
-            return field.default if isinstance(field.default, Sentinel) else deepcopy(field.default)
+            return (
+                field.default
+                if isinstance(field.default, Sentinel)
+                else deepcopy(field.default)
+            )
     return value
 
 
