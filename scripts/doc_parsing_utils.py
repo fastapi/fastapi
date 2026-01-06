@@ -25,7 +25,7 @@ HTML_LINK_TEXT_RE = re.compile(r"<a\b([^>]*)>(.*?)</a>")
 HTML_LINK_OPEN_TAG_RE = re.compile(r"<a\b([^>]*)>")
 HTML_ATTR_RE = re.compile(r'(\w+)\s*=\s*([\'"])(.*?)\2')
 
-CODE_BLOCK_LANG_RE = re.compile(r"^```([\w-]*)", re.MULTILINE)
+CODE_BLOCK_LANG_RE = re.compile(r"^`{3,4}([\w-]*)", re.MULTILINE)
 
 SLASHES_COMMENT_RE = re.compile(
     r"^(?P<code>.*?)(?P<comment>(?:(?<= )// .*)|(?:^// .*))?$"
@@ -576,7 +576,7 @@ def replace_multiline_code_block(
     if block_a["lang"] != block_b["lang"]:
         raise ValueError(
             "Code block has different language than the original block "
-            f"({block_a['lang']} vs {block_b['lang']})"
+            f"('{block_a['lang']}' vs '{block_b['lang']}')"
         )
     if len(block_a["content"]) != len(block_b["content"]):
         raise ValueError(
@@ -641,7 +641,7 @@ def replace_multiline_code_blocks_in_text(
 
     if len(code_blocks) != len(original_code_blocks):
         raise ValueError(
-            "Number of code blocks does not match the number of original code blocks "
+            "Number of code blocks does not match the number in the original document "
             f"({len(code_blocks)} vs {len(original_code_blocks)})"
         )
 
