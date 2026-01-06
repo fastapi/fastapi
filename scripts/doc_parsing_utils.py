@@ -226,14 +226,15 @@ def replace_header_permalinks(
             f"({len(header_permalinks)} vs {len(original_header_permalinks)})"
         )
 
-    for header_info, original_header_info in zip(
-        header_permalinks, original_header_permalinks
-    ):
+    for header_no in range(len(header_permalinks)):
+        header_info = header_permalinks[header_no]
+        original_header_info = original_header_permalinks[header_no]
+
         if header_info["hashes"] != original_header_info["hashes"]:
             raise ValueError(
                 "Header levels do not match between document and original document"
                 f" (found {header_info['hashes']}, expected {original_header_info['hashes']})"
-                f" for header №{header_info['line_no']}"
+                f" for header №{header_no + 1} in line {header_info['line_no']}"
             )
         line_no = header_info["line_no"] - 1
         hashes = header_info["hashes"]
