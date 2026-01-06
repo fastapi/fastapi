@@ -586,7 +586,8 @@ def replace_multiline_code_block(
 
     block_language = block_a["lang"].lower()
     if block_language in {"mermaid"}:
-        print("Skipping mermaid code block replacement. This should be checked manually.")
+        if block_a != block_b:
+            print("Skipping mermaid code block replacement. This should be checked manually.")
         return block_a["content"].copy()  # We don't handle mermaid code blocks for now
 
     code_block: list[str] = []
