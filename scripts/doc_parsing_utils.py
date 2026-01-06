@@ -441,7 +441,7 @@ def replace_html_links(
 
     if len(links) != len(original_links):
         raise ValueError(
-            "Number of HTML links does not match the number of HTML links in the "
+            "Number of HTML links does not match the number in the "
             "original document "
             f"({len(links)} vs {len(original_links)})"
         )

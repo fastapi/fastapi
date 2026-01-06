@@ -183,6 +183,18 @@ def hello_world():// Print greeting
 
 Это <a href="https://fastapi.tiangolo.com/lang/how-to/">ссылка на одну из страниц на сайте FastAPI</a> — инструмент должен добавить код языка в URL.
 
+Ссылка для тестирования неправильного атрибута: <a href="project-generation.md" class="internal-link">**FastAPI** генераторы проектов</a> - инструмент должен исправить атрибут.
+
+### HTML ссылки на статические ресурсы { #html-links-to-static-assets }
+
+Это ссылки на статические ресурсы:
+
+* <a href="https://fastapi.tiangolo.com/img/fastapi-logo.png">FastAPI Logo</a>
+* <a href="https://fastapi.tiangolo.com/css/fastapi.css">FastAPI CSS</a>
+* <a href="https://fastapi.tiangolo.com/js/fastapi.js">FastAPI JS</a>
+
+Инструмент НЕ должен добавлять код языка в их URL.
+
 # Заголовок (с HTML ссылкой на <a href="https://tiangolo.com">tiangolo.com</a>) { #header-with-html-link-to-tiangolo-com }
 
 #Не заголовок

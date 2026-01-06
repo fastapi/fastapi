@@ -188,6 +188,18 @@ This is an <a href="https://fastapi.tiangolo.com">link to the main FastAPI site<
 
 This is an <a href="https://fastapi.tiangolo.com/how-to/">link to one of the pages on FastAPI site</a> - tool should add language code to the URL.
 
+Link to test wrong attribute: <a href="project-generation.md" class="internal-link">**FastAPI** Project Generators</a> - tool should fix the attribute.
+
+### HTML links to static assets { #html-links-to-static-assets }
+
+These are links to static assets:
+
+* <a href="https://fastapi.tiangolo.com/img/fastapi-logo.png">FastAPI Logo</a>
+* <a href="https://fastapi.tiangolo.com/css/fastapi.css">FastAPI CSS</a>
+* <a href="https://fastapi.tiangolo.com/js/fastapi.js">FastAPI JS</a>
+
+Tool should NOT add language code to their URLs.
+
 # Header (with HTML link to <a href="https://tiangolo.com">tiangolo.com</a>) { #header-with-html-link-to-tiangolo-com }
 
 #Not a header
