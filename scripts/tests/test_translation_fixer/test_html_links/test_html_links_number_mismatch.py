@@ -5,9 +5,7 @@ from typer.testing import CliRunner
 
 from scripts.translation_fixer import cli
 
-data_path = Path(
-    "scripts/tests/test_translation_fixer/test_html_links/data"
-).absolute()
+data_path = Path("scripts/tests/test_translation_fixer/test_html_links/data").absolute()
 
 
 @pytest.mark.parametrize(

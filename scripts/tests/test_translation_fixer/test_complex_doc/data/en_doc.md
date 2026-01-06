@@ -1,5 +1,5 @@
 # Test translation fixer tool { #test-translation-fixer }
- 
+
 ## Code blocks with and without comments { #code-blocks-with-and-without-comments }
 
 This is a test page for the translation fixer tool.
@@ -65,7 +65,7 @@ title = "TOML Example"  // Title of the document
 
 The following code blocks use unsupported languages for comment preservation.
 Fixer tool will not preserve comments in these blocks.
- 
+
 ```javascript
 // This is a sample JavaScript code block
 console.log("Hello, world!"); // Print greeting

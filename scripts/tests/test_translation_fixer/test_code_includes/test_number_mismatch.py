@@ -54,4 +54,3 @@ def test_lt(runner: CliRunner, root_dir: Path, copy_test_files):
         "Number of code include placeholders does not match the number of code includes "
         "in the original document (2 vs 3)"
     ) in result.output
-
