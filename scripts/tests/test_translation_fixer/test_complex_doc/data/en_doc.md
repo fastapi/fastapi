@@ -166,6 +166,20 @@ This is a link to the main FastAPI site: [FastAPI](https://fastapi.tiangolo.com)
 
 This is a link to one of the pages on FastAPI site: [How to](https://fastapi.tiangolo.com/how-to/) - tool should add language code to the URL.
 
+Link to test wrong attribute: [**FastAPI** Project Generators](project-generation.md){.internal-link} - tool should fix the attribute.
+
+Link with a title: [Example](https://example.com "Example site") - URL will be fixed, title preserved.
+
+### Markdown link to static assets { #markdown-link-to-static-assets }
+
+These are links to static assets:
+
+* [FastAPI Logo](https://fastapi.tiangolo.com/img/fastapi-logo.png)
+* [FastAPI CSS](https://fastapi.tiangolo.com/css/fastapi.css)
+* [FastAPI JS](https://fastapi.tiangolo.com/js/fastapi.js)
+
+Tool should NOT add language code to their URLs.
+
 ## HTML-style links { #html-style-links }
 
 This is an <a href="https://example.com" target="_blank" class="external-link">HTML link</a> to an external site.

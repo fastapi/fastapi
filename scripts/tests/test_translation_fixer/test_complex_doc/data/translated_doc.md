@@ -161,6 +161,20 @@ def hello_world():// Печать приветствия
 
 Это ссылка на одну из страниц на сайте FastAPI: [How to](https://fastapi.tiangolo.com/how-to) — инструмент должен добавить код языка в URL.
 
+Ссылка для тестирования неправильного атрибута: [**FastAPI** генераторы проектов](project-generation.md){.external-link} - инструмент должен исправить атрибут.
+
+Ссылка с заголовком: [Пример](http://example.com/ "Сайт для примера") - URL будет исправлен инструментом, заголовок сохранится.
+
+### Markdown ссылки на статические ресурсы { #markdown-link-to-static-assets }
+
+Это ссылки на статические ресурсы:
+
+* [FastAPI Logo](https://fastapi.tiangolo.com/img/fastapi-logo.png)
+* [FastAPI CSS](https://fastapi.tiangolo.com/css/fastapi.css)
+* [FastAPI JS](https://fastapi.tiangolo.com/js/fastapi.js)
+
+Инструмент НЕ должен добавлять код языка в их URL.
+
 ## Ссылки в стиле HTML { #html-style-links }
 
 Это <a href="https://example.com" target="_blank" class="external-link">HTML-ссылка</a> на внешний сайт.
