@@ -243,7 +243,12 @@ def test_openapi_schema():
                 "Item": {
                     "title": "Item",
                     "type": "object",
-                    "properties": {"data": {"title": "Data", "anyOf": [{"type": "string"}, {"type": "null"}]}},
+                    "properties": {
+                        "data": {
+                            "title": "Data",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        }
+                    },
                 },
                 "ValidationError": {
                     "title": "ValidationError",
