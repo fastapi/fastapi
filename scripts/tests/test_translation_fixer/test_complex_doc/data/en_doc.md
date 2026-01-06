@@ -173,3 +173,13 @@ This is an <a href="https://example.com" target="_blank" class="external-link">H
 This is an <a href="https://fastapi.tiangolo.com">link to the main FastAPI site</a> - tool should add language code to the URL.
 
 This is an <a href="https://fastapi.tiangolo.com/how-to/">link to one of the pages on FastAPI site</a> - tool should add language code to the URL.
+
+# Header (with HTML link to <a href="https://tiangolo.com">tiangolo.com</a>) { #header-with-html-link-to-tiangolo-com }
+
+#Not a header
+
+```Python
+# Also not a header
+```
+
+Some text

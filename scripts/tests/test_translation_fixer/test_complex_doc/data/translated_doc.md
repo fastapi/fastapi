@@ -168,3 +168,13 @@ def hello_world():// Печать приветствия
 Это <a href="https://fastapi.tiangolo.com">ссылка на основной сайт FastAPI</a> — инструмент должен добавить код языка в URL.
 
 Это <a href="https://fastapi.tiangolo.com/how-to/">ссылка на одну из страниц на сайте FastAPI</a> — инструмент должен добавить код языка в URL.
+
+# Заголовок (с HTML ссылкой на <a href="https://tiangolo.com">tiangolo.com</a>) { #header-5 }
+
+#Не заголовок
+
+```Python
+# Также не заголовок
+```
+
+Немного текста
