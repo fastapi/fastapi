@@ -101,6 +101,40 @@ def hello_world():// Print greeting
     print("Hello, world!")  //Print greeting without space after slashes
 ```
 
+## Блок кода с четырёхкратными обратными кавычками { #code-blocks-with-quadruple-backticks }
+
+Следующий блок кода содержит четырёхкратные обратные кавычки.
+
+````python
+# Функция приветствия
+def hello_world():
+    print("Hello, world!")  # Печать приветствия
+````
+
+### Несоответствие обратных кавычек фиксится { #backticks-number-mismatch-is-fixable }
+
+Следующий блок кода имеет тройные обратные кавычки в оригинальном документе, но четырёхкратные обратные кавычки в переведённом документе.
+Это будет исправлено инструментом исправления (будет преобразовано в тройные обратные кавычки).
+
+```Python
+# Немного кода на Python
+```
+
+### Блок кода в тройных обратных кавычка внутри блока кода в четырёхкратных обратных кавычках { #triple-backticks-inside-quadruple-backticks }
+
+Комментарии внутри вложенного блока кода в тройных обратных кавычках НЕ БУДУТ сохранены.
+
+````
+Here is a code block with quadruple backticks that contains triple backticks inside:
+
+```python
+# This is a sample Python code block
+def hello_world():
+    print("Hello, world!")  # Print greeting
+```
+
+````
+
 # Включения кода { #code-includes }
 
 ## Простые включения кода { #simple-code-includes }

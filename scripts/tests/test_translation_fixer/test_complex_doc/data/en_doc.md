@@ -103,6 +103,39 @@ def hello_world():// Print greeting
     print("Hello, world!")  //Print greeting without space after slashes
 ```
 
+## Code blocks with quadruple backticks { #code-blocks-with-quadruple-backticks }
+
+The following code block uses quadruple backticks.
+
+````python
+# Hello world function
+def hello_world():
+    print("Hello, world!")  # Print greeting
+````
+
+### Backticks number mismatch is fixable { #backticks-number-mismatch-is-fixable }
+
+The following code block has triple backticks in the original document, but quadruple backticks in the translated document.
+It will be fixed by the fixer tool (will convert to triple backticks).
+
+```Python
+# Some Python code
+```
+
+### Triple backticks inside quadruple backticks { #triple-backticks-inside-quadruple-backticks }
+
+Comments inside nested code block will NOT be preserved.
+
+````
+Here is a code block with quadruple backticks that contains triple backticks inside:
+
+```python
+# This is a sample Python code block
+def hello_world():
+    print("Hello, world!")  # Print greeting
+```
+
+````
 
 # Code includes { #code-includes }
 
