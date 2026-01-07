@@ -1,7 +1,6 @@
 import dataclasses
 import inspect
 import sys
-import typing
 from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
@@ -17,7 +16,6 @@ from typing import (
 )
 
 import anyio
-import typing_extensions
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -67,19 +65,8 @@ from starlette.datastructures import (
 from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
-from typing_extensions import (
-    Literal,
-    TypeAliasType,
-    TypeGuard,
-    get_args,
-    get_origin,
-)
-
-try:
-    from types import GenericAlias
-except ImportError:  # pragma: no cover
-    GenericAlias = None  # type: ignore[misc,assignment]
-
+from typing_extensions import Literal, get_args, get_origin
+from typing_inspection.typing_objects import is_typealiastype
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -379,7 +366,7 @@ def analyze_param(
     depends = None
     type_annotation: Any = Any
     use_annotation: Any = Any
-    if _is_typealiastype(annotation):
+    if is_typealiastype(annotation):
         # unpack in case PEP 695 type syntax is used
         annotation = annotation.__value__
     if annotation is not inspect.Signature.empty:
@@ -1031,48 +1018,6 @@ def get_body_field(
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
     return final_field
-
-
-def _is_typealiastype(tp: Any, /) -> TypeGuard[TypeAliasType]:
-    """
-    This implementation is in line with the implementation of `is_typealiastype` in `typing-inspection`:
-    See:
-    - https://github.com/pydantic/typing-inspection/blob/8db011350942f33ac4b5d7db60d4d9ea83ab480f/src/typing_inspection/typing_objects.py#L488-L499
-    - https://github.com/pydantic/typing-inspection/blob/8db011350942f33ac4b5d7db60d4d9ea83ab480f/src/typing_inspection/typing_objects.py#L105-L134
-    """
-
-    # Check if TypeAliasType exists in typing and/or typing_extensions.
-    in_typing = hasattr(typing, "TypeAliasType")
-    in_typing_extensions = hasattr(typing_extensions, "TypeAliasType")
-
-    is_typealiastype = False  # Default: assume not a TypeAliasType
-    if in_typing and in_typing_extensions:
-        if getattr(typing, "TypeAliasType", None) is getattr(
-            typing_extensions, "TypeAliasType", None
-        ):  # pragma: no cover
-            # Case 1: Both implementations are the same object.
-            # Checking against one of them.
-            is_typealiastype = isinstance(tp, typing.TypeAliasType)  # type: ignore [attr-defined]
-        else:
-            # Case 2: Implementations are different objects.
-            # Need to check against both versions.
-            is_typealiastype = isinstance(
-                tp,
-                (typing.TypeAliasType, typing_extensions.TypeAliasType),  # type: ignore [attr-defined]
-            )
-    elif in_typing and not in_typing_extensions:  # pragma: no cover
-        # Case 3: Only typing.TypeAliasType exists.
-        is_typealiastype = isinstance(tp, typing.TypeAliasType)  # type: ignore [attr-defined]
-    elif not in_typing and in_typing_extensions:
-        # Case 4: Only typing_extensions.TypeAliasType exists.
-        is_typealiastype = isinstance(tp, typing_extensions.TypeAliasType)
-
-    # Special case for Python 3.10:
-    # On Python 3.10, parameterized PEP 695 type aliases are represented as `GenericAlias`
-    # instead of proper TypeAliasType. We must exclude those.
-    if sys.version_info[:2] == (3, 10):
-        return type(tp) is not GenericAlias and is_typealiastype
-    return is_typealiastype
 
 
 def get_validation_alias(field: ModelField) -> str:
