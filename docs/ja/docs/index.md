@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/ja"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**ドキュメント**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**ドキュメント**: <a href="https://fastapi.tiangolo.com/ja" target="_blank">https://fastapi.tiangolo.com</a>
 
 **ソースコード**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ FastAPI は、Python の標準である型ヒントに基づいて Python で AP
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">その他のスポンサー</a>
+<a href="https://fastapi.tiangolo.com/ja/fastapi-people/#sponsors" class="external-link" target="_blank">その他のスポンサー</a>
 
 ## 評価 { #opinions }
 
@@ -140,7 +140,7 @@ FastAPI は巨人の肩の上に立っています。
 
 ## インストール { #installation }
 
-<a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtual environment</a> を作成して有効化し、それから FastAPI をインストールします。
+<a href="https://fastapi.tiangolo.com/ja/virtual-environments/" class="external-link" target="_blank">virtual environment</a> を作成して有効化し、それから FastAPI をインストールします。
 
 <div class="termy">
 
@@ -203,7 +203,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **注**:
 
-わからない場合は、<a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">ドキュメントの `async` と `await` の _"In a hurry?"_ セクション</a>を確認してください。
+わからない場合は、<a href="https://fastapi.tiangolo.com/ja/async/#in-a-hurry" target="_blank">ドキュメントの `async` と `await` の _"In a hurry?"_ セクション</a>を確認してください。
 
 </details>
 
@@ -245,7 +245,7 @@ INFO:     Application startup complete.
 
 デフォルトでは、`fastapi dev` はローカル開発向けに自動リロードを有効にして起動します。
 
-詳しくは <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a> を参照してください。
+詳しくは <a href="https://fastapi.tiangolo.com/ja/fastapi-cli/" target="_blank">FastAPI CLI docs</a> を参照してください。
 
 </details>
 
@@ -439,7 +439,7 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a> を参照してください。
+より多くの機能を含む、より完全な例については、<a href="https://fastapi.tiangolo.com/ja/tutorial/">Tutorial - User Guide</a> を参照してください。
 
 **ネタバレ注意**: tutorial - user guide には以下が含まれます。
 
@@ -512,7 +512,7 @@ FastAPI はオープンソースであり、標準に基づいています。選
 
 独立した TechEmpower のベンチマークでは、Uvicorn で動作する **FastAPI** アプリケーションが、<a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">利用可能な最も高速な Python フレームワークの一つ</a>であり、Starlette と Uvicorn（FastAPI で内部的に使用されています）にのみ下回っていると示されています。（*）
 
-詳細は <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a> セクションをご覧ください。
+詳細は <a href="https://fastapi.tiangolo.com/ja/benchmarks/" class="internal-link" target="_blank">Benchmarks</a> セクションをご覧ください。
 
 ## 依存関係 { #dependencies }
 
