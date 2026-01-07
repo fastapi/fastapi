@@ -1,8 +1,8 @@
-from __future__ import annotations
+from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated, TypeAliasType
+from typing_extensions import TypeAliasType
 
 
 async def some_value() -> int:
