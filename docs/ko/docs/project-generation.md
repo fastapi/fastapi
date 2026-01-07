@@ -8,7 +8,7 @@ GitHub 저장소: <a href="https://github.com/tiangolo/full-stack-fastapi-templa
 
 ## Full Stack FastAPI 템플릿 - 기술 스택과 기능들 { #full-stack-fastapi-template-technology-stack-and-features }
 
-- ⚡ Python 백엔드 API를 위한 [**FastAPI**](https://fastapi.tiangolo.com).
+- ⚡ Python 백엔드 API를 위한 [**FastAPI**](https://fastapi.tiangolo.com/ko).
     - 🧰 Python SQL 데이터베이스 상호작용을 위한 [SQLModel](https://sqlmodel.tiangolo.com) (ORM).
     - 🔍 FastAPI에 의해 사용되는, 데이터 검증과 설정 관리를 위한 [Pydantic](https://docs.pydantic.dev).
     - 💾 SQL 데이터베이스로서의 [PostgreSQL](https://www.postgresql.org).
