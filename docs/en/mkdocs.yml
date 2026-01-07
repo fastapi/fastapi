@@ -317,6 +317,8 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
+  - link: /ja/
+    name: ja - 日本語
   - link: /pt/
     name: pt - português
   - link: /ru/
