@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/uk"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>Фреймворк FastAPI: висока продуктивність, легко вивчати, швидко писати код, готовий до продакшину</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Документація**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Документація**: <a href="https://fastapi.tiangolo.com/uk" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Вихідний код**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ FastAPI — це сучасний, швидкий (високопродукти�
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Інші спонсори</a>
+<a href="https://fastapi.tiangolo.com/uk/fastapi-people/#sponsors" class="external-link" target="_blank">Інші спонсори</a>
 
 ## Враження { #opinions }
 
@@ -140,7 +140,7 @@ FastAPI стоїть на плечах гігантів:
 
 ## Встановлення { #installation }
 
-Створіть і активуйте <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">віртуальне середовище</a>, а потім встановіть FastAPI:
+Створіть і активуйте <a href="https://fastapi.tiangolo.com/uk/virtual-environments/" class="external-link" target="_blank">віртуальне середовище</a>, а потім встановіть FastAPI:
 
 <div class="termy">
 
@@ -203,7 +203,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Примітка**:
 
-Якщо ви не знаєте, перегляньте розділ _"In a hurry?"_ про <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` та `await` у документації</a>.
+Якщо ви не знаєте, перегляньте розділ _"In a hurry?"_ про <a href="https://fastapi.tiangolo.com/uk/async/#in-a-hurry" target="_blank">`async` та `await` у документації</a>.
 
 </details>
 
@@ -245,7 +245,7 @@ INFO:     Application startup complete.
 
 За замовчуванням `fastapi dev` запускається з авто-перезавантаженням для локальної розробки.
 
-Докладніше читайте в <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">документації FastAPI CLI</a>.
+Докладніше читайте в <a href="https://fastapi.tiangolo.com/uk/fastapi-cli/" target="_blank">документації FastAPI CLI</a>.
 
 </details>
 
@@ -439,7 +439,7 @@ item: Item
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Для більш повного прикладу, що включає більше можливостей, перегляньте <a href="https://fastapi.tiangolo.com/tutorial/">Туторіал — Посібник користувача</a>.
+Для більш повного прикладу, що включає більше можливостей, перегляньте <a href="https://fastapi.tiangolo.com/uk/tutorial/">Туторіал — Посібник користувача</a>.
 
 **Spoiler alert**: туторіал — посібник користувача містить:
 
@@ -512,7 +512,7 @@ FastAPI — open source і базується на стандартах. Ви м
 
 Незалежні тести TechEmpower показують застосунки **FastAPI**, які працюють під керуванням Uvicorn, як <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">одні з найшвидших доступних Python-фреймворків</a>, поступаючись лише Starlette та Uvicorn (які внутрішньо використовуються в FastAPI). (*)
 
-Щоб дізнатися більше, перегляньте розділ <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Щоб дізнатися більше, перегляньте розділ <a href="https://fastapi.tiangolo.com/uk/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
 ## Залежності { #dependencies }
 
