@@ -1,4 +1,3 @@
-import difflib
 import os
 from collections.abc import Iterable
 from pathlib import Path
@@ -6,19 +5,7 @@ from typing import Annotated
 
 import typer
 
-from scripts.doc_parsing_utils import (
-    extract_code_includes,
-    extract_header_permalinks,
-    extract_html_links,
-    extract_markdown_links,
-    extract_multiline_code_blocks,
-    replace_code_includes_with_placeholders,
-    replace_header_permalinks,
-    replace_html_links,
-    replace_markdown_links,
-    replace_multiline_code_blocks_in_text,
-    replace_placeholders_with_code_includes,
-)
+from scripts.doc_parsing_utils import check_translation
 
 non_translated_sections = (
     f"reference{os.sep}",
@@ -93,61 +80,13 @@ def process_one_page(path: Path) -> bool:
         doc_lines = path.read_text(encoding="utf-8").splitlines()
         en_doc_lines = en_doc_path.read_text(encoding="utf-8").splitlines()
 
-        # Fix code includes
-        en_code_includes = extract_code_includes(en_doc_lines)
-        doc_lines_with_placeholders = replace_code_includes_with_placeholders(doc_lines)
-        fixed_doc_lines = replace_placeholders_with_code_includes(
-            doc_lines_with_placeholders, en_code_includes
+        doc_lines = check_translation(
+            doc_lines=doc_lines,
+            en_doc_lines=en_doc_lines,
+            lang_code=lang_code,
+            auto_fix=True,
+            path=str(path),
         )
-        if fixed_doc_lines != doc_lines:
-            print(f"Fixing code includes in: {path}")
-            diff = difflib.unified_diff(
-                doc_lines, fixed_doc_lines, fromfile="translation", tofile="fixed"
-            )
-            print("\n".join(diff))
-
-        doc_lines = fixed_doc_lines
-
-        # Fix permalinks
-        en_permalinks = extract_header_permalinks(en_doc_lines)
-        doc_permalinks = extract_header_permalinks(doc_lines)
-
-        fixed_doc_lines = replace_header_permalinks(
-            doc_lines, doc_permalinks, en_permalinks
-        )
-        if fixed_doc_lines != doc_lines:
-            print(f"Fixing header permalinks in: {path}")
-        doc_lines = fixed_doc_lines
-
-        # Fix markdown links
-        en_markdown_links = extract_markdown_links(en_doc_lines)
-        doc_markdown_links = extract_markdown_links(doc_lines)
-        fixed_doc_lines = replace_markdown_links(
-            doc_lines, doc_markdown_links, en_markdown_links, lang_code
-        )
-        if fixed_doc_lines != doc_lines:
-            print(f"Fixing markdown links in: {path}")
-        doc_lines = fixed_doc_lines
-
-        # Fix HTML links
-        en_html_links = extract_html_links(en_doc_lines)
-        doc_html_links = extract_html_links(doc_lines)
-        fixed_doc_lines = replace_html_links(
-            doc_lines, doc_html_links, en_html_links, lang_code
-        )
-        if fixed_doc_lines != doc_lines:
-            print(f"Fixing HTML links in: {path}")
-        doc_lines = fixed_doc_lines
-
-        # Fix multiline code blocks
-        en_code_blocks = extract_multiline_code_blocks(en_doc_lines)
-        doc_code_blocks = extract_multiline_code_blocks(doc_lines)
-        fixed_doc_lines = replace_multiline_code_blocks_in_text(
-            doc_lines, doc_code_blocks, en_code_blocks
-        )
-        if fixed_doc_lines != doc_lines:
-            print(f"Fixing multiline code blocks in: {path}")
-        doc_lines = fixed_doc_lines
 
         # Write back the fixed document
         doc_lines.append("")  # Ensure file ends with a newline
