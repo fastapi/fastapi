@@ -7,6 +7,35 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🔧 Add LLM prompt file for Turkish, generated from the existing translations. PR [#14547](https://github.com/fastapi/fastapi/pull/14547) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add LLM prompt file for Traditional Chinese, generated from the existing translations. PR [#14550](https://github.com/fastapi/fastapi/pull/14550) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Add LLM prompt file for Simplified Chinese, generated from the existing translations. PR [#14549](https://github.com/fastapi/fastapi/pull/14549) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👥 Update FastAPI People - Sponsors. PR [#14626](https://github.com/fastapi/fastapi/pull/14626) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14630](https://github.com/fastapi/fastapi/pull/14630) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14625](https://github.com/fastapi/fastapi/pull/14625) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translation prompts. PR [#14619](https://github.com/fastapi/fastapi/pull/14619) by [@tiangolo](https://github.com/tiangolo).
+* 🔨 Update LLM translation script to guide reviewers to change the prompt. PR [#14614](https://github.com/fastapi/fastapi/pull/14614) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Do not run translations on cron while finishing updating existing languages. PR [#14613](https://github.com/fastapi/fastapi/pull/14613) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove test variants for Pydantic v1 in test_request_params. PR [#14612](https://github.com/fastapi/fastapi/pull/14612) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove Pydantic v1  specific test variants. PR [#14611](https://github.com/fastapi/fastapi/pull/14611) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.0
+
+### Breaking Changes
+
+* ➖ Drop support for `pydantic.v1`. PR [#14609](https://github.com/fastapi/fastapi/pull/14609) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ✅ Run performance tests only on Pydantic v2. PR [#14608](https://github.com/fastapi/fastapi/pull/14608) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.127.1
+
 ### Refactors
 
 * 🔊 Add a custom `FastAPIDeprecationWarning`. PR [#14605](https://github.com/fastapi/fastapi/pull/14605) by [@tiangolo](https://github.com/tiangolo).

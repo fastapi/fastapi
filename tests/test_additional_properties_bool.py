@@ -1,6 +1,5 @@
 from typing import Union
 
-from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict
@@ -52,19 +51,13 @@ def test_openapi_schema():
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [
-                                            {"$ref": "#/components/schemas/Foo"},
-                                            {"type": "null"},
-                                        ],
-                                        "title": "Foo",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {"$ref": "#/components/schemas/Foo"}
-                                )
+                                "schema": {
+                                    "anyOf": [
+                                        {"$ref": "#/components/schemas/Foo"},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Foo",
+                                }
                             }
                         }
                     },

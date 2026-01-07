@@ -2,7 +2,6 @@ import importlib
 from types import ModuleType
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from tests.utils import needs_py310
@@ -55,30 +54,18 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [
-                                        {
-                                            "type": "string",
-                                            "format": "uri",
-                                            "minLength": 1,
-                                            "maxLength": 2083,
-                                        },
-                                        {"type": "null"},
-                                    ],
-                                    "title": "Callback Url",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "title": "Callback Url",
-                                    "maxLength": 2083,
-                                    "minLength": 1,
-                                    "type": "string",
-                                    "format": "uri",
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [
+                                    {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "minLength": 1,
+                                        "maxLength": 2083,
+                                    },
+                                    {"type": "null"},
+                                ],
+                                "title": "Callback Url",
+                            },
                             "name": "callback_url",
                             "in": "query",
                         }
@@ -171,16 +158,10 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "id": {"title": "Id", "type": "string"},
-                        "title": IsDict(
-                            {
-                                "title": "Title",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Title", "type": "string"}
-                        ),
+                        "title": {
+                            "title": "Title",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "customer": {"title": "Customer", "type": "string"},
                         "total": {"title": "Total", "type": "number"},
                     },

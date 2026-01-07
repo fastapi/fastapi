@@ -1,7 +1,6 @@
 from typing import Annotated, Optional
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -36,29 +35,18 @@ async def read_model_optional_list_str(
 )
 def test_optional_list_str_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        IsDict(
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [
-                        {"items": {"type": "string"}, "type": "array"},
-                        {"type": "null"},
-                    ],
-                    "title": "P",
-                },
-                "name": "p",
-                "in": "query",
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "required": False,
-                "schema": {"items": {"type": "string"}, "type": "array", "title": "P"},
-                "name": "p",
-                "in": "query",
-            }
-        )
+        {
+            "required": False,
+            "schema": {
+                "anyOf": [
+                    {"items": {"type": "string"}, "type": "array"},
+                    {"type": "null"},
+                ],
+                "title": "P",
+            },
+            "name": "p",
+            "in": "query",
+        }
     ]
 
 
@@ -112,33 +100,18 @@ async def read_model_optional_list_alias(
 )
 def test_optional_list_str_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        IsDict(
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [
-                        {"items": {"type": "string"}, "type": "array"},
-                        {"type": "null"},
-                    ],
-                    "title": "P Alias",
-                },
-                "name": "p_alias",
-                "in": "query",
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "required": False,
-                "schema": {
-                    "items": {"type": "string"},
-                    "type": "array",
-                    "title": "P Alias",
-                },
-                "name": "p_alias",
-                "in": "query",
-            }
-        )
+        {
+            "required": False,
+            "schema": {
+                "anyOf": [
+                    {"items": {"type": "string"}, "type": "array"},
+                    {"type": "null"},
+                ],
+                "title": "P Alias",
+            },
+            "name": "p_alias",
+            "in": "query",
+        }
     ]
 
 

@@ -6,7 +6,6 @@ from typing import Any, Optional, Union, cast
 
 from fastapi import routing
 from fastapi._compat import (
-    JsonSchemaValue,
     ModelField,
     Undefined,
     get_compat_model_name_map,
@@ -38,8 +37,6 @@ from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 from typing_extensions import Literal
-
-from .._compat import _is_model_field
 
 validation_error_definition = {
     "title": "ValidationError",
@@ -109,7 +106,7 @@ def _get_openapi_operation_parameters(
     dependant: Dependant,
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
@@ -182,13 +179,13 @@ def get_openapi_operation_request_body(
     body_field: Optional[ModelField],
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> Optional[dict[str, Any]]:
     if not body_field:
         return None
-    assert _is_model_field(body_field)
+    assert isinstance(body_field, ModelField)
     body_schema = get_schema_from_model_field(
         field=body_field,
         model_name_map=model_name_map,
@@ -265,7 +262,7 @@ def get_openapi_path(
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
+        tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
@@ -457,7 +454,7 @@ def get_fields_from_routes(
             route, routing.APIRoute
         ):
             if route.body_field:
-                assert _is_model_field(route.body_field), (
+                assert isinstance(route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
                 body_fields_from_routes.append(route.body_field)

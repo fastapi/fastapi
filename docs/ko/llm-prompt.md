@@ -6,23 +6,23 @@ Language code: ko.
 
 ### Grammar and tone
 
-1) Use polite, instructional Korean (e.g. 합니다/하세요 style).
-2) Keep the tone consistent with the existing Korean FastAPI docs.
+- Use polite, instructional Korean (e.g. 합니다/하세요 style).
+- Keep the tone consistent with the existing Korean FastAPI docs.
 
 ### Headings
 
-1) Follow existing Korean heading style (short, action-oriented headings like “확인하기”).
-2) Do not add trailing punctuation to headings.
+- Follow existing Korean heading style (short, action-oriented headings like “확인하기”).
+- Do not add trailing punctuation to headings.
 
 ### Quotes
 
-1) Keep quote style consistent with the existing Korean docs.
-2) Never change quotes inside inline code, code blocks, URLs, or file paths.
+- Keep quote style consistent with the existing Korean docs.
+- Never change quotes inside inline code, code blocks, URLs, or file paths.
 
 ### Ellipsis
 
-1) Keep ellipsis style consistent with existing Korean docs (often `...`).
-2) Never change `...` in code, URLs, or CLI examples.
+- Keep ellipsis style consistent with existing Korean docs (often `...`).
+- Never change `...` in code, URLs, or CLI examples.
 
 ### Preferred translations / glossary
 
