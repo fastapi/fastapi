@@ -25,6 +25,7 @@ SUPPORTED_LANGS = {
     "es",
     "pt",
     "ru",
+    "uk",
 }
 
 

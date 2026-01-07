@@ -321,6 +321,8 @@ extra:
     name: pt - português
   - link: /ru/
     name: ru - русский язык
+  - link: /uk/
+    name: uk - українська мова
 extra_css:
 - css/termynal.css
 - css/custom.css
