@@ -1,7 +1,6 @@
 from typing import Annotated, Optional
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
@@ -32,26 +31,15 @@ async def read_model_optional_str(p: Annotated[HeaderModelOptionalStr, Header()]
 )
 def test_optional_str_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        IsDict(
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P",
-                },
-                "name": "p",
-                "in": "header",
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "required": False,
-                "schema": {"title": "P", "type": "string"},
-                "name": "p",
-                "in": "header",
-            }
-        )
+        {
+            "required": False,
+            "schema": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P",
+            },
+            "name": "p",
+            "in": "header",
+        }
     ]
 
 
@@ -103,26 +91,15 @@ async def read_model_optional_alias(p: Annotated[HeaderModelOptionalAlias, Heade
 )
 def test_optional_str_alias_schema(path: str):
     assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        IsDict(
-            {
-                "required": False,
-                "schema": {
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "title": "P Alias",
-                },
-                "name": "p_alias",
-                "in": "header",
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "required": False,
-                "schema": {"title": "P Alias", "type": "string"},
-                "name": "p_alias",
-                "in": "header",
-            }
-        )
+        {
+            "required": False,
+            "schema": {
+                "anyOf": [{"type": "string"}, {"type": "null"}],
+                "title": "P Alias",
+            },
+            "name": "p_alias",
+            "in": "header",
+        }
     ]
 
 

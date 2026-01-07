@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -72,30 +71,16 @@ def test_cookie_param_model_extra(client: TestClient):
         response = c.get("/items/")
     assert response.status_code == 422
     assert response.json() == snapshot(
-        IsDict(
-            {
-                "detail": [
-                    {
-                        "type": "extra_forbidden",
-                        "loc": ["cookie", "extra"],
-                        "msg": "Extra inputs are not permitted",
-                        "input": "track-me-here-too",
-                    }
-                ]
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "detail": [
-                    {
-                        "type": "value_error.extra",
-                        "loc": ["cookie", "extra"],
-                        "msg": "extra fields not permitted",
-                    }
-                ]
-            }
-        )
+        {
+            "detail": [
+                {
+                    "type": "extra_forbidden",
+                    "loc": ["cookie", "extra"],
+                    "msg": "Extra inputs are not permitted",
+                    "input": "track-me-here-too",
+                }
+            ]
+        }
     )
 
 
@@ -134,19 +119,10 @@ def test_openapi_schema(client: TestClient):
                                 "name": "googall_tracker",
                                 "in": "cookie",
                                 "required": False,
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "Googall Tracker",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "type": "string",
-                                        "title": "Googall Tracker",
-                                    }
-                                ),
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Googall Tracker",
+                                },
                             },
                         ],
                         "responses": {
