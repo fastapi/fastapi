@@ -1,6 +1,6 @@
 tiangolo:
   login: tiangolo
-  count: 808
+  count: 857
   avatarUrl: https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4
   url: https://github.com/tiangolo
 dependabot:
@@ -10,7 +10,7 @@ dependabot:
   url: https://github.com/apps/dependabot
 alejsdev:
   login: alejsdev
-  count: 52
+  count: 53
   avatarUrl: https://avatars.githubusercontent.com/u/90076947?u=85ceac49fb87138aebe8d663912e359447329090&v=4
   url: https://github.com/alejsdev
 pre-commit-ci:
@@ -18,6 +18,11 @@ pre-commit-ci:
   count: 50
   avatarUrl: https://avatars.githubusercontent.com/in/68672?v=4
   url: https://github.com/apps/pre-commit-ci
+YuriiMotov:
+  login: YuriiMotov
+  count: 36
+  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
+  url: https://github.com/YuriiMotov
 github-actions:
   login: github-actions
   count: 26
@@ -28,26 +33,21 @@ Kludex:
   count: 25
   avatarUrl: https://avatars.githubusercontent.com/u/7353520?u=df8a3f06ba8f55ae1967a3e2d5ed882903a4e330&v=4
   url: https://github.com/Kludex
-YuriiMotov:
-  login: YuriiMotov
-  count: 20
-  avatarUrl: https://avatars.githubusercontent.com/u/109919500?u=b9b13d598dddfab529a52d264df80a900bfe7060&v=4
-  url: https://github.com/YuriiMotov
 dmontagu:
   login: dmontagu
   count: 17
   avatarUrl: https://avatars.githubusercontent.com/u/35119617?u=540f30c937a6450812628b9592a1dfe91bbe148e&v=4
   url: https://github.com/dmontagu
+svlandeg:
+  login: svlandeg
+  count: 16
+  avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
+  url: https://github.com/svlandeg
 nilslindemann:
   login: nilslindemann
   count: 15
   avatarUrl: https://avatars.githubusercontent.com/u/6892179?u=1dca6a22195d6cd1ab20737c0e19a4c55d639472&v=4
   url: https://github.com/nilslindemann
-svlandeg:
-  login: svlandeg
-  count: 14
-  avatarUrl: https://avatars.githubusercontent.com/u/8796347?u=556c97650c27021911b0b9447ec55e75987b0e8a&v=4
-  url: https://github.com/svlandeg
 euri10:
   login: euri10
   count: 13
@@ -553,6 +553,11 @@ DanielKusyDev:
   count: 2
   avatarUrl: https://avatars.githubusercontent.com/u/36250676?u=2ea6114ff751fc48b55f231987a0e2582c6b1bd2&v=4
   url: https://github.com/DanielKusyDev
+Viicos:
+  login: Viicos
+  count: 2
+  avatarUrl: https://avatars.githubusercontent.com/u/65306057?u=fcd677dc1b9bef12aa103613e5ccb3f8ce305af9&v=4
+  url: https://github.com/Viicos
 DanielYang59:
   login: DanielYang59
   count: 2
