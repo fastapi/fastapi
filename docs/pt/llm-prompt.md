@@ -14,15 +14,15 @@ When translating documentation into Portuguese, use neutral and widely understan
 
 For the next terms, use the following translations:
 
-* «/// check»: «/// check | Verifique»
-* «/// danger»: «/// danger | Cuidado»
-* «/// info»: «/// info | Informação»
-* «/// note | Technical Details»: «/// note | Detalhes Técnicos»
-* «/// info | Very Technical Details»: «/// note | Detalhes Técnicos Avançados»
-* «/// note»: «/// note | Nota»
-* «/// tip»: «/// tip | Dica»
-* «/// warning»: «/// warning | Atenção»
-* «(you should)»: «(você deveria)»
+* /// check: /// check | Verifique
+* /// danger: /// danger | Cuidado
+* /// info: /// info | Informação
+* /// note | Technical Details: /// note | Detalhes Técnicos
+* /// info | Very Technical Details: /// note | Detalhes Técnicos Avançados
+* /// note: /// note | Nota
+* /// tip: /// tip | Dica
+* /// warning: /// warning | Atenção
+* (you should): (você deveria)
 * async context manager: gerenciador de contexto assíncrono
 * autocomplete: autocompletar
 * autocompletion: preenchimento automático
