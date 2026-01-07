@@ -13,36 +13,37 @@
 ```console
 $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  개발 서버 시작 중 🚀
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
-             <font color="#3465A4">__init__.py</font> 파일이 있는 디렉터리에서
-             패키지 파일 구조를 검색하는 중
-             <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>에서 임포트하는 중
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
 
    <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  다음 코드로 모듈에서 FastAPI 앱 오브젝트를 임포트하는 중:
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
 
              <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
 
-      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  임포트 문자열 사용: <font color="#3465A4">main:app</font>
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
 
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  서버가 <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>에서 시작됨
-   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  문서는 <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>에 있음
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
 
-      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  개발 모드로 실행 중이며, 프로덕션에서는 다음을 사용하세요:
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
              <b>fastapi run</b>
 
-             로그:
+             Logs:
 
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  다음 디렉터리의 변경 사항을 감시합니다:
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
              <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn이 <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>에서 실행 중 <b>(</b>Press CTRL+C
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
              to quit<b>)</b>
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  WatchFiles를 사용하여 리로더 프로세스 <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b>를 시작했습니다
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  서버 프로세스 <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>를 시작했습니다
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  애플리케이션 시작을 기다리는 중입니다.
-     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  애플리케이션 시작이 완료되었습니다.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
