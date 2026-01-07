@@ -12,7 +12,7 @@ Mit dem Parameter `operation_id` können Sie die OpenAPI `operationId` festlegen
 
 Sie müssten sicherstellen, dass sie für jede Operation eindeutig ist.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Verwendung des Namens der *Pfadoperation-Funktion* als operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ Wenn Sie die Funktionsnamen Ihrer API als `operationId`s verwenden möchten, kö
 
 Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Tipp
 
@@ -40,7 +40,7 @@ Auch wenn diese sich in unterschiedlichen Modulen (Python-Dateien) befinden.
 
 Um eine *Pfadoperation* aus dem generierten OpenAPI-Schema (und damit aus den automatischen Dokumentationssystemen) auszuschließen, verwenden Sie den Parameter `include_in_schema` und setzen Sie ihn auf `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Fortgeschrittene Beschreibung mittels Docstring { #advanced-description-from-docstring }
 
@@ -48,9 +48,9 @@ Sie können die verwendeten Zeilen aus dem Docstring einer *Pfadoperation-Funkti
 
 Das Hinzufügen eines `\f` (ein maskiertes „Form Feed“-Zeichen) führt dazu, dass **FastAPI** die für OpenAPI verwendete Ausgabe an dieser Stelle abschneidet.
 
-Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (z. B. Sphinx) können den Rest verwenden.
+Sie wird nicht in der Dokumentation angezeigt, aber andere Tools (wie z. B. Sphinx) können den Rest verwenden.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Zusätzliche Responses { #additional-responses }
 
@@ -92,7 +92,7 @@ Sie können das OpenAPI-Schema für eine *Pfadoperation* erweitern, indem Sie de
 
 Dieses `openapi_extra` kann beispielsweise hilfreich sein, um [OpenAPI-Erweiterungen](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) zu deklarieren:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Wenn Sie die automatische API-Dokumentation öffnen, wird Ihre Erweiterung am Ende der spezifischen *Pfadoperation* angezeigt.
 
@@ -139,7 +139,7 @@ Sie könnten sich beispielsweise dafür entscheiden, den <abbr title="Request �
 
 Das könnte man mit `openapi_extra` machen:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
 In diesem Beispiel haben wir kein Pydantic-Modell deklariert. Tatsächlich wird der Requestbody nicht einmal als JSON <abbr title="von einem einfachen Format, wie Bytes, in Python-Objekte konvertieren">geparst</abbr>, sondern direkt als `bytes` gelesen und die Funktion `magic_data_reader()` wäre dafür verantwortlich, ihn in irgendeiner Weise zu parsen.
 
@@ -153,47 +153,15 @@ Und Sie könnten dies auch tun, wenn der Datentyp im Request nicht JSON ist.
 
 In der folgenden Anwendung verwenden wir beispielsweise weder die integrierte Funktionalität von FastAPI zum Extrahieren des JSON-Schemas aus Pydantic-Modellen noch die automatische Validierung für JSON. Tatsächlich deklarieren wir den Request-Content-Type als YAML und nicht als JSON:
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 hieß die Methode zum Abrufen des JSON-Schemas für ein Modell `Item.schema()`, in Pydantic Version 2 heißt die Methode `Item.model_json_schema()`.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
 Obwohl wir nicht die standardmäßig integrierte Funktionalität verwenden, verwenden wir dennoch ein Pydantic-Modell, um das JSON-Schema für die Daten, die wir in YAML empfangen möchten, manuell zu generieren.
 
-Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das bedeutet, dass FastAPI nicht einmal versucht, den Request-Payload als JSON zu parsen.
+Dann verwenden wir den Request direkt und extrahieren den Body als `bytes`. Das bedeutet, dass FastAPI nicht einmal versucht, die Request-Payload als JSON zu parsen.
 
 Und dann parsen wir in unserem Code diesen YAML-Inhalt direkt und verwenden dann wieder dasselbe Pydantic-Modell, um den YAML-Inhalt zu validieren:
 
-//// tab | Pydantic v2
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
-
-////
-
-/// info | Info
-
-In Pydantic Version 1 war die Methode zum Parsen und Validieren eines Objekts `Item.parse_obj()`, in Pydantic Version 2 heißt die Methode `Item.model_validate()`.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 /// tip | Tipp
 

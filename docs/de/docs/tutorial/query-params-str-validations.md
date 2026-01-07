@@ -55,7 +55,7 @@ q: str | None = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Union[str, None] = None
@@ -73,7 +73,7 @@ q: Annotated[str | None] = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Annotated[Union[str, None]] = None
@@ -204,20 +204,6 @@ Dieses spezielle Suchmuster im regulären Ausdruck überprüft, dass der erhalte
 Wenn Sie sich mit all diesen **„regulärer Ausdruck“**-Ideen verloren fühlen, keine Sorge. Sie sind ein schwieriges Thema für viele Menschen. Sie können noch viele Dinge tun, ohne reguläre Ausdrücke direkt zu benötigen.
 
 Aber nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, wenn Sie sie brauchen.
-
-### Pydantic v1 `regex` statt `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Vor Pydantic Version 2 und FastAPI 0.100.0, hieß der Parameter `regex` statt `pattern`, aber das ist jetzt obsolet.
-
-Sie könnten immer noch Code sehen, der den alten Namen verwendet:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-Beachten Sie aber, dass das obsolet ist und auf den neuen Parameter `pattern` aktualisiert werden sollte. 🤓
 
 ## Defaultwerte { #default-values }
 

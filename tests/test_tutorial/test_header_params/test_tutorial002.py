@@ -1,19 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial002",
+        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        "tutorial002_an",
-        pytest.param("tutorial002_an_py39", marks=needs_py39),
+        pytest.param("tutorial002_an_py39"),
         pytest.param("tutorial002_an_py310", marks=needs_py310),
     ],
 )
@@ -79,16 +77,10 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Strange Header",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Strange Header", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Strange Header",
+                            },
                             "name": "strange_header",
                             "in": "header",
                         }
