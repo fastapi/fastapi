@@ -36,7 +36,8 @@ async def read_with_oauth2_scheme():
 
 
 @app.get(
-    "/with-get-token", dependencies=[Security(get_token, oauth_scopes=["read", "write"])]
+    "/with-get-token",
+    dependencies=[Security(get_token, oauth_scopes=["read", "write"])],
 )
 async def read_with_get_token():
     return {"message": "Admin Access"}
