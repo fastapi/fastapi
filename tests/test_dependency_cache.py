@@ -1,24 +1,14 @@
 from fastapi import Depends, FastAPI, Security
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 app = FastAPI()
 
 counter_holder = {"counter": 0, "parsing_counter": 0}
 
-if PYDANTIC_V2:
-    from pydantic import model_validator
-
-    decorator = model_validator(mode="before")
-else:
-    from pydantic import root_validator
-
-    decorator = root_validator
-
 
 class Model(BaseModel):
-    @decorator
+    @model_validator(mode="before")
     def __validate__(cls, _):
         counter_holder["parsing_counter"] += 1
         return {}
