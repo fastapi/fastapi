@@ -1,6 +1,6 @@
-# Execute um Servidor Manualmente
+# Execute um Servidor Manualmente { #run-a-server-manually }
 
-## Utilize o comando `fastapi run`
+## Utilize o comando `fastapi run` { #use-the-fastapi-run-command }
 
 Em resumo, utilize o comando `fastapi run` para inicializar sua aplicação FastAPI:
 
@@ -42,23 +42,23 @@ Isto deve funcionar para a maioria dos casos. 😎
 
 Você pode utilizar esse comando, por exemplo, para iniciar sua aplicação **FastAPI** em um contêiner, em um servidor, etc.
 
-## Servidores ASGI
+## Servidores ASGI { #asgi-servers }
 
 Vamos nos aprofundar um pouco mais em detalhes.
 
-FastAPI utiliza um padrão para construir frameworks e servidores web em Python chamado <abbr title="Asynchronous Server Gateway Interface">ASGI</abbr>. FastAPI é um framework web ASGI.
+FastAPI utiliza um padrão para construir frameworks e servidores web em Python chamado <abbr title="Asynchronous Server Gateway Interface – Interface de Gateway de Servidor Assíncrono">ASGI</abbr>. FastAPI é um framework web ASGI.
 
 A principal coisa que você precisa para executar uma aplicação **FastAPI** (ou qualquer outra aplicação ASGI) em uma máquina de servidor remoto é um programa de servidor ASGI como o **Uvicorn**, que é o que vem por padrão no comando `fastapi`.
 
 Existem diversas alternativas, incluindo:
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>: um servidor ASGI de alta performance.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: um servidor ASGI compátivel com HTTP/2, Trio e outros recursos.
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: um servidor ASGI de alta performance.
+* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: um servidor ASGI compatível com HTTP/2, Trio e outros recursos.
 * <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: servidor ASGI construído para Django Channels.
 * <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: um servidor HTTP Rust para aplicações Python.
 * <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit é um runtime de aplicação web leve e versátil.
 
-## Máquina Servidora e Programa Servidor
+## Máquina Servidora e Programa Servidor { #server-machine-and-server-program }
 
 Existe um pequeno detalhe sobre estes nomes para se manter em mente. 💡
 
@@ -68,7 +68,7 @@ Apenas tenha em mente que quando você ler "servidor" em geral, isso pode se ref
 
 Quando se refere à máquina remota, é comum chamá-la de **servidor**, mas também de **máquina**, **VM** (máquina virtual), **nó**. Todos esses termos se referem a algum tipo de máquina remota, normalmente executando Linux, onde você executa programas.
 
-## Instale o Programa Servidor
+## Instale o Programa Servidor { #install-the-server-program }
 
 Quando você instala o FastAPI, ele vem com um servidor de produção, o Uvicorn, e você pode iniciá-lo com o comando `fastapi run`.
 
@@ -100,7 +100,7 @@ Quando você instala o FastAPI com algo como `pip install "fastapi[standard]"`, 
 
 ///
 
-## Execute o Programa Servidor
+## Execute o Programa Servidor { #run-the-server-program }
 
 Se você instalou um servidor ASGI manualmente, normalmente precisará passar uma string de importação em um formato especial para que ele importe sua aplicação FastAPI:
 
@@ -131,7 +131,7 @@ from main import app
 
 Cada programa de servidor ASGI alternativo teria um comando semelhante, você pode ler mais na documentação respectiva.
 
-/// warning | Aviso
+/// warning | Atenção
 
 Uvicorn e outros servidores suportam a opção `--reload` que é útil durante o desenvolvimento.
 
@@ -141,7 +141,7 @@ Ela ajuda muito durante o **desenvolvimento**, mas você **não deve** usá-la e
 
 ///
 
-## Conceitos de Implantação
+## Conceitos de Implantação { #deployment-concepts }
 
 Esses exemplos executam o programa do servidor (por exemplo, Uvicorn), iniciando **um único processo**, ouvindo em todos os IPs (`0.0.0.0`) em uma porta predefinida (por exemplo, `80`).
 

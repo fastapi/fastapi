@@ -167,7 +167,7 @@ Aber für den generierten Client könnten wir die OpenAPI-Operation-IDs direkt v
 
 Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dann mit einem Skript wie dem folgenden **den präfixierten Tag entfernen**:
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py39.py *}
 
 //// tab | Node.js
 

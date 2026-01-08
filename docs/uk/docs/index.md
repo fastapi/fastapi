@@ -112,7 +112,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 FastAPI стоїть на плечах гігантів:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> для web частини.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> для web частини.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> для частини даних.
 
 ## Вставновлення
@@ -127,7 +127,7 @@ $ pip install fastapi
 
 </div>
 
-Вам також знадобиться сервер ASGI для продакшину, наприклад <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a> або <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
+Вам також знадобиться сервер ASGI для продакшину, наприклад <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a> або <a href="https://github.com/pgjones/hypercorn" class="external-link" target="_blank">Hypercorn</a>.
 
 <div class="termy">
 
@@ -452,7 +452,7 @@ Starlette використовує:
 
 FastAPI / Starlette використовують:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - для сервера, який завантажує та обслуговує вашу програму.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - для сервера, який завантажує та обслуговує вашу програму.
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Необхідно, якщо Ви хочете використовувати `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Необхідно, якщо Ви хочете використовувати `UJSONResponse`.
 

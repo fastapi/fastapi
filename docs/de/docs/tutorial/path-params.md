@@ -2,7 +2,7 @@
 
 Sie können Pfad-„Parameter“ oder -„Variablen“ mit der gleichen Syntax deklarieren, welche in Python-<abbr title="Formatstring – Formatierter String: Der String enthält Ausdrücke, die mit geschweiften Klammern umschlossen sind. Solche Stellen werden durch den Wert des Ausdrucks ersetzt">Formatstrings</abbr> verwendet wird:
 
-{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
 
 Der Wert des Pfad-Parameters `item_id` wird Ihrer Funktion als das Argument `item_id` übergeben.
 
@@ -16,7 +16,7 @@ Wenn Sie dieses Beispiel ausführen und auf <a href="http://127.0.0.1:8000/items
 
 Sie können den Typ eines Pfad-Parameters in der Argumentliste der Funktion deklarieren, mit Standard-Python-Typannotationen:
 
-{* ../../docs_src/path_params/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
 
 In diesem Fall wird `item_id` als `int` deklariert, also als Ganzzahl.
 
@@ -118,13 +118,13 @@ Und Sie haben auch einen Pfad `/users/{user_id}`, um Daten über einen spezifisc
 
 Weil *Pfadoperationen* in ihrer Reihenfolge ausgewertet werden, müssen Sie sicherstellen, dass der Pfad `/users/me` vor `/users/{user_id}` deklariert wurde:
 
-{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
 
 Ansonsten würde der Pfad für `/users/{user_id}` auch `/users/me` auswerten, und annehmen, dass ein Parameter `user_id` mit dem Wert `"me"` übergeben wurde.
 
 Sie können eine Pfadoperation auch nicht erneut definieren:
 
-{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
 
 Die erste Definition wird immer verwendet werden, da ihr Pfad zuerst übereinstimmt.
 
@@ -140,13 +140,8 @@ Indem Sie von `str` erben, weiß die API-Dokumentation, dass die Werte vom Typ `
 
 Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welches die erlaubten Werte sein werden:
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
 
-/// info | Info
-
-<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerationen (oder Enums)</a> gibt es in Python seit Version 3.4.
-
-///
 
 /// tip | Tipp
 
@@ -158,7 +153,7 @@ Falls Sie sich fragen, was „AlexNet“, „ResNet“ und „LeNet“ ist, das 
 
 Dann erstellen Sie einen *Pfad-Parameter*, der als Typ die gerade erstellte Enum-Klasse hat (`ModelName`):
 
-{* ../../docs_src/path_params/tutorial005.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
 
 ### Die API-Dokumentation testen { #check-the-docs }
 
@@ -174,13 +169,13 @@ Der *Pfad-Parameter* wird ein *<abbr title="Member – Mitglied: Einer der mögl
 
 Sie können ihn mit einem Member Ihrer Enumeration `ModelName` vergleichen:
 
-{* ../../docs_src/path_params/tutorial005.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
 
 #### *Enumerations-Wert* erhalten { #get-the-enumeration-value }
 
 Den tatsächlichen Wert (in diesem Fall ein `str`) erhalten Sie via `model_name.value`, oder generell, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
 
 /// tip | Tipp
 
@@ -194,7 +189,7 @@ Sie können *Enum-Member* in ihrer *Pfadoperation* zurückgeben, sogar verschach
 
 Diese werden zu ihren entsprechenden Werten konvertiert (in diesem Fall Strings), bevor sie zum Client übertragen werden:
 
-{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
 
 In Ihrem Client erhalten Sie eine JSON-Response, wie etwa:
 
@@ -233,7 +228,7 @@ In diesem Fall ist der Name des Parameters `file_path`. Der letzte Teil, `:path`
 
 Sie verwenden das also wie folgt:
 
-{* ../../docs_src/path_params/tutorial004.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
 
 /// tip | Tipp
 

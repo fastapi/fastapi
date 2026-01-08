@@ -417,7 +417,7 @@ Die gesamte Datenvalidierung, Datenserialisierung und automatische Modelldokumen
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> { #starlette }
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
 Starlette ist ein leichtgewichtiges <abbr title="Der neue Standard für die Erstellung asynchroner Python-Webanwendungen">ASGI</abbr>-Framework/Toolkit, welches sich ideal für die Erstellung hochperformanter asynchroner Dienste eignet.
 
@@ -462,7 +462,7 @@ Alles, was Sie also mit Starlette machen können, können Sie direkt mit **FastA
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
 
 Uvicorn ist ein blitzschneller ASGI-Server, der auf uvloop und httptools basiert.
 

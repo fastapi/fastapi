@@ -415,7 +415,7 @@ Bütün veri doğrulama, veri dönüştürme ve JSON Şemasına bağlı otomatik
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
 
 Starlette hafif bir <abbr title="ASGI (Asynchronous Server Gateway Interface): Asenkron Sunucu Ağ Geçidi Arabirimi, asenkron Python web uygulamaları geliştirmek için yeni standart.">ASGI</abbr> framework'ü ve yüksek performanslı asyncio servisleri oluşturmak için ideal.
 
@@ -460,7 +460,7 @@ Yani, Starlette ile yapabileceğiniz her şeyi, Starlette'in bir nevi güçlendi
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
 
 Uvicorn, uvlook ile httptools üzerine kurulu ışık hzında bir ASGI sunucusudur.
 

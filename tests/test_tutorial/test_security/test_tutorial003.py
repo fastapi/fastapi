@@ -1,19 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003",
+        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
-        "tutorial003_an",
-        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py39"),
         pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )
@@ -66,7 +64,7 @@ def test_token(client: TestClient):
 def test_incorrect_token(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": "Bearer nonexistent"})
     assert response.status_code == 401, response.text
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
@@ -145,23 +143,13 @@ def test_openapi_schema(client: TestClient):
                     "required": ["username", "password"],
                     "type": "object",
                     "properties": {
-                        "grant_type": IsDict(
-                            {
-                                "title": "Grant Type",
-                                "anyOf": [
-                                    {"pattern": "^password$", "type": "string"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Grant Type",
-                                "pattern": "^password$",
-                                "type": "string",
-                            }
-                        ),
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "anyOf": [
+                                {"pattern": "^password$", "type": "string"},
+                                {"type": "null"},
+                            ],
+                        },
                         "username": {"title": "Username", "type": "string"},
                         "password": {
                             "title": "Password",
@@ -169,31 +157,15 @@ def test_openapi_schema(client: TestClient):
                             "format": "password",
                         },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
-                                "title": "Client Id",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
-                                "title": "Client Secret",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "format": "password",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Client Secret",
-                                "type": "string",
-                                "format": "password",
-                            }
-                        ),
+                        "client_id": {
+                            "title": "Client Id",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "client_secret": {
+                            "title": "Client Secret",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                            "format": "password",
+                        },
                     },
                 },
                 "ValidationError": {

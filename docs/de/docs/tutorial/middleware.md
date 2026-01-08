@@ -31,13 +31,13 @@ Die Middleware-Funktion erhält:
     * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
 * Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
 
 /// tip | Tipp
 
 Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des `X-`-Präfixes</a>.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
 
 ///
 
@@ -57,7 +57,7 @@ Und auch nachdem die `response` generiert wurde, bevor sie zurückgegeben wird.
 
 Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hinzufügen, der die Zeit in Sekunden enthält, die benötigt wurde, um den Request zu verarbeiten und eine Response zu generieren:
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
 
 /// tip | Tipp
 

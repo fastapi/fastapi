@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -10,9 +9,9 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001",
+        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an",
+        pytest.param("tutorial001_an_py39"),
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -67,16 +66,10 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User-Agent",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "User-Agent", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "User-Agent",
+                            },
                             "name": "user-agent",
                             "in": "header",
                         }

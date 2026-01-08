@@ -1,6 +1,7 @@
 -e .[all]
 -r requirements-tests.txt
 -r requirements-docs.txt
-pre-commit >=2.17.0,<5.0.0
+-r requirements-translations.txt
+prek==0.2.22
 # For generating screenshots
 playwright

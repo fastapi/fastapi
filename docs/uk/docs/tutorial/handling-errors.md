@@ -81,7 +81,7 @@
 
 ## Встановлення власних обробників помилок
 
-Ви можете додати власні обробники помилок за допомогою <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">тих самих утиліт обробки помилок зі Starlette</a>.
+Ви можете додати власні обробники помилок за допомогою <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">тих самих утиліт обробки помилок зі Starlette</a>.
 
 Припустимо, у Вас є власний обʼєкт помилки `UnicornException`, яке Ви (або бібліотека, яку Ви використовуєте) може `згенерувати` (`raise`).
 

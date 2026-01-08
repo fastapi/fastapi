@@ -4,20 +4,29 @@ import os
 import re
 import shutil
 import subprocess
-from functools import lru_cache
+from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from importlib import metadata
 from multiprocessing import Pool
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
 from ruff.__main__ import find_ruff_bin
+from slugify import slugify as py_slugify
 
 logging.basicConfig(level=logging.INFO)
+
+SUPPORTED_LANGS = {
+    "en",
+    "de",
+    "es",
+    "pt",
+    "ru",
+}
+
 
 app = typer.Typer()
 
@@ -27,8 +36,8 @@ missing_translation_snippet = """
 {!../../docs/missing-translation.md!}
 """
 
-non_translated_sections = [
-    "reference/",
+non_translated_sections = (
+    f"reference{os.sep}",
     "release-notes.md",
     "fastapi-people.md",
     "external-links.md",
@@ -36,7 +45,7 @@ non_translated_sections = [
     "management-tasks.md",
     "management.md",
     "contributing.md",
-]
+)
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
@@ -44,20 +53,46 @@ en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
 build_site_path = Path("site_build").absolute()
 
+header_pattern = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
 header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
+code_block3_pattern = re.compile(r"^\s*```")
+code_block4_pattern = re.compile(r"^\s*````")
 
 
-@lru_cache
-def is_mkdocs_insiders() -> bool:
-    version = metadata.version("mkdocs-material")
-    return "insiders" in version
+class VisibleTextExtractor(HTMLParser):
+    """Extract visible text from a string with HTML tags."""
+
+    def __init__(self):
+        super().__init__()
+        self.text_parts = []
+
+    def handle_data(self, data):
+        self.text_parts.append(data)
+
+    def extract_visible_text(self, html: str) -> str:
+        self.reset()
+        self.text_parts = []
+        self.feed(html)
+        return "".join(self.text_parts).strip()
 
 
-def get_en_config() -> Dict[str, Any]:
+def slugify(text: str) -> str:
+    return py_slugify(
+        text,
+        replacements=[
+            ("`", ""),  # `dict`s -> dicts
+            ("'s", "s"),  # it's -> its
+            ("'t", "t"),  # don't -> dont
+            ("**", ""),  # **FastAPI**s -> FastAPIs
+        ],
+    )
+
+
+def get_en_config() -> dict[str, Any]:
     return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
 
 
-def get_lang_paths() -> List[Path]:
+def get_lang_paths() -> list[Path]:
     return sorted(docs_path.iterdir())
 
 
@@ -77,9 +112,7 @@ def complete_existing_lang(incomplete: str):
 
 @app.callback()
 def callback() -> None:
-    if is_mkdocs_insiders():
-        os.environ["INSIDERS_FILE"] = "../en/mkdocs.insiders.yml"
-    # For MacOS with insiders and Cairo
+    # For MacOS with Cairo
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = "/opt/homebrew/lib"
 
 
@@ -115,10 +148,6 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    insiders_env_file = os.environ.get("INSIDERS_FILE")
-    print(f"Insiders file {insiders_env_file}")
-    if is_mkdocs_insiders():
-        print("Using insiders")
     lang_path: Path = Path("docs") / lang
     if not lang_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
@@ -145,14 +174,20 @@ def build_lang(
 
 
 index_sponsors_template = """
-{% if sponsors %}
+### Keystone Sponsor
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+{% endfor %}
+### Gold and Silver Sponsors
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
 {% endfor %}
-{% endif %}
+
 """
 
 
@@ -203,27 +238,15 @@ def generate_readme() -> None:
     """
     Generate README.md content from main index.md
     """
-    typer.echo("Generating README")
     readme_path = Path("README.md")
+    old_content = readme_path.read_text()
     new_content = generate_readme_content()
-    readme_path.write_text(new_content, encoding="utf-8")
-
-
-@app.command()
-def verify_readme() -> None:
-    """
-    Verify README.md content from main index.md
-    """
-    typer.echo("Verifying README")
-    readme_path = Path("README.md")
-    generated_content = generate_readme_content()
-    readme_content = readme_path.read_text("utf-8")
-    if generated_content != readme_content:
-        typer.secho(
-            "README.md outdated from the latest index.md", color=typer.colors.RED
-        )
-        raise typer.Abort()
-    typer.echo("Valid README ✅")
+    if new_content != old_content:
+        print("README.md outdated from the latest index.md")
+        print("Updating README.md")
+        readme_path.write_text(new_content, encoding="utf-8")
+        raise typer.Exit(1)
+    print("README.md is up to date ✅")
 
 
 @app.command()
@@ -234,7 +257,11 @@ def build_all() -> None:
     """
     update_languages()
     shutil.rmtree(site_path, ignore_errors=True)
-    langs = [lang.name for lang in get_lang_paths() if lang.is_dir()]
+    langs = [
+        lang.name
+        for lang in get_lang_paths()
+        if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
+    ]
     cpu_count = os.cpu_count() or 1
     process_pool_size = cpu_count * 4
     typer.echo(f"Using process pool size: {process_pool_size}")
@@ -247,7 +274,17 @@ def update_languages() -> None:
     """
     Update the mkdocs.yml file Languages section including all the available languages.
     """
-    update_config()
+    old_config = get_en_config()
+    updated_config = get_updated_config_content()
+    if old_config != updated_config:
+        print("docs/en/mkdocs.yml outdated")
+        print("Updating docs/en/mkdocs.yml")
+        en_config_path.write_text(
+            yaml.dump(updated_config, sort_keys=False, width=200, allow_unicode=True),
+            encoding="utf-8",
+        )
+        raise typer.Exit(1)
+    print("docs/en/mkdocs.yml is up to date ✅")
 
 
 @app.command()
@@ -301,18 +338,21 @@ def live(
     )
 
 
-def get_updated_config_content() -> Dict[str, Any]:
+def get_updated_config_content() -> dict[str, Any]:
     config = get_en_config()
     languages = [{"en": "/"}]
-    new_alternate: List[Dict[str, str]] = []
+    new_alternate: list[dict[str, str]] = []
     # Language names sourced from https://quickref.me/iso-639-1
     # Contributors may wish to update or change these, e.g. to fix capitalization.
     language_names_path = Path(__file__).parent / "../docs/language_names.yml"
-    local_language_names: Dict[str, str] = mkdocs.utils.yaml_load(
+    local_language_names: dict[str, str] = mkdocs.utils.yaml_load(
         language_names_path.read_text(encoding="utf-8")
     )
     for lang_path in get_lang_paths():
         if lang_path.name in {"en", "em"} or not lang_path.is_dir():
+            continue
+        if lang_path.name not in SUPPORTED_LANGS:
+            # Skip languages that are not yet ready
             continue
         code = lang_path.name
         languages.append({code: f"/{code}/"})
@@ -327,44 +367,16 @@ def get_updated_config_content() -> Dict[str, Any]:
             raise typer.Abort()
         use_name = f"{code} - {local_language_names[code]}"
         new_alternate.append({"link": url, "name": use_name})
-    new_alternate.append({"link": "/em/", "name": "😉"})
     config["extra"]["alternate"] = new_alternate
     return config
 
 
-def update_config() -> None:
-    config = get_updated_config_content()
-    en_config_path.write_text(
-        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
-        encoding="utf-8",
-    )
-
-
 @app.command()
-def verify_config() -> None:
+def ensure_non_translated() -> None:
     """
-    Verify main mkdocs.yml content to make sure it uses the latest language names.
+    Ensure there are no files in the non translatable pages.
     """
-    typer.echo("Verifying mkdocs.yml")
-    config = get_en_config()
-    updated_config = get_updated_config_content()
-    if config != updated_config:
-        typer.secho(
-            "docs/en/mkdocs.yml outdated from docs/language_names.yml, "
-            "update language_names.yml and run "
-            "python ./scripts/docs.py update-languages",
-            color=typer.colors.RED,
-        )
-        raise typer.Abort()
-    typer.echo("Valid mkdocs.yml ✅")
-
-
-@app.command()
-def verify_non_translated() -> None:
-    """
-    Verify there are no files in the non translatable pages.
-    """
-    print("Verifying non translated pages")
+    print("Ensuring no non translated pages")
     lang_paths = get_lang_paths()
     error_paths = []
     for lang in lang_paths:
@@ -375,25 +387,22 @@ def verify_non_translated() -> None:
             if non_translatable_path.exists():
                 error_paths.append(non_translatable_path)
     if error_paths:
-        print("Non-translated pages found, remove them:")
+        print("Non-translated pages found, removing them:")
         for error_path in error_paths:
             print(error_path)
-        raise typer.Abort()
+            if error_path.is_file():
+                error_path.unlink()
+            else:
+                shutil.rmtree(error_path)
+        raise typer.Exit(1)
     print("No non-translated pages found ✅")
-
-
-@app.command()
-def verify_docs():
-    verify_readme()
-    verify_config()
-    verify_non_translated()
 
 
 @app.command()
 def langs_json():
     langs = []
     for lang_path in get_lang_paths():
-        if lang_path.is_dir():
+        if lang_path.is_dir() and lang_path.name in SUPPORTED_LANGS:
             langs.append(lang_path.name)
     print(json.dumps(langs))
 
@@ -432,6 +441,84 @@ def generate_docs_src_versions_for_file(file_path: Path) -> None:
         )
         logging.info(f"Writing to {version_file}")
         version_file.write_text(content_format, encoding="utf-8")
+
+
+@app.command()
+def add_permalinks_page(path: Path, update_existing: bool = False):
+    """
+    Add or update header permalinks in specific page of En docs.
+    """
+
+    if not path.is_relative_to(en_docs_path / "docs"):
+        raise RuntimeError(f"Path must be inside {en_docs_path}")
+    rel_path = path.relative_to(en_docs_path / "docs")
+
+    # Skip excluded sections
+    if str(rel_path).startswith(non_translated_sections):
+        return
+
+    visible_text_extractor = VisibleTextExtractor()
+    updated_lines = []
+    in_code_block3 = False
+    in_code_block4 = False
+    permalinks = set()
+
+    with path.open("r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        # Handle codeblocks start and end
+        if not (in_code_block3 or in_code_block4):
+            if code_block4_pattern.match(line):
+                in_code_block4 = True
+            elif code_block3_pattern.match(line):
+                in_code_block3 = True
+        else:
+            if in_code_block4 and code_block4_pattern.match(line):
+                in_code_block4 = False
+            elif in_code_block3 and code_block3_pattern.match(line):
+                in_code_block3 = False
+
+        # Process Headers only outside codeblocks
+        if not (in_code_block3 or in_code_block4):
+            match = header_pattern.match(line)
+            if match:
+                hashes, title, _permalink = match.groups()
+                if (not _permalink) or update_existing:
+                    slug = slugify(visible_text_extractor.extract_visible_text(title))
+                    if slug in permalinks:
+                        # If the slug is already used, append a number to make it unique
+                        count = 1
+                        original_slug = slug
+                        while slug in permalinks:
+                            slug = f"{original_slug}_{count}"
+                            count += 1
+                    permalinks.add(slug)
+
+                    line = f"{hashes} {title} {{ #{slug} }}\n"
+
+        updated_lines.append(line)
+
+    with path.open("w", encoding="utf-8") as f:
+        f.writelines(updated_lines)
+
+
+@app.command()
+def add_permalinks_pages(pages: list[Path], update_existing: bool = False) -> None:
+    """
+    Add or update header permalinks in specific pages of En docs.
+    """
+    for md_file in pages:
+        add_permalinks_page(md_file, update_existing=update_existing)
+
+
+@app.command()
+def add_permalinks(update_existing: bool = False) -> None:
+    """
+    Add or update header permalinks in all pages of En docs.
+    """
+    for md_file in en_docs_path.rglob("*.md"):
+        add_permalinks_page(md_file, update_existing=update_existing)
 
 
 if __name__ == "__main__":

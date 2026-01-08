@@ -1,11 +1,11 @@
-# FastAPI
+# FastAPI { #fastapi }
 
 <style>
 .md-content .md-typeset h1 { display: none; }
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/es"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI framework, alto rendimiento, fácil de aprender, rápido de programar, listo para producción</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Documentación**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentación**: <a href="https://fastapi.tiangolo.com/es" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Código Fuente**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -35,12 +35,12 @@
 
 FastAPI es un framework web moderno, rápido (de alto rendimiento), para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
 
-Las características clave son:
+Las funcionalidades clave son:
 
 * **Rápido**: Muy alto rendimiento, a la par con **NodeJS** y **Go** (gracias a Starlette y Pydantic). [Uno de los frameworks Python más rápidos disponibles](#performance).
 * **Rápido de programar**: Aumenta la velocidad para desarrollar funcionalidades en aproximadamente un 200% a 300%. *
 * **Menos bugs**: Reduce en aproximadamente un 40% los errores inducidos por humanos (desarrolladores). *
-* **Intuitivo**: Gran soporte para editores. <abbr title="también conocido como autocompletado, IntelliSense">Autocompletado</abbr> en todas partes. Menos tiempo depurando.
+* **Intuitivo**: Gran soporte para editores. <abbr title="también conocido como auto-complete, autocompletado, IntelliSense">Autocompletado</abbr> en todas partes. Menos tiempo depurando.
 * **Fácil**: Diseñado para ser fácil de usar y aprender. Menos tiempo leyendo documentación.
 * **Corto**: Minimiza la duplicación de código. Múltiples funcionalidades desde cada declaración de parámetro. Menos bugs.
 * **Robusto**: Obtén código listo para producción. Con documentación interactiva automática.
@@ -48,24 +48,30 @@ Las características clave son:
 
 <small>* estimación basada en pruebas con un equipo de desarrollo interno, construyendo aplicaciones de producción.</small>
 
-## Sponsors
+## Sponsors { #sponsors }
 
 <!-- sponsors -->
 
-{% if sponsors %}
+### Sponsor Keystone { #keystone-sponsor }
+
+{% for sponsor in sponsors.keystone -%}
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+{% endfor -%}
+
+### Sponsors Oro y Plata { #gold-and-silver-sponsors }
+
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 {%- for sponsor in sponsors.silver -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor %}
-{% endif %}
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Otros sponsors</a>
+<a href="https://fastapi.tiangolo.com/es/fastapi-people/#sponsors" class="external-link" target="_blank">Otros sponsors</a>
 
-## Opiniones
+## Opiniones { #opinions }
 
 "_[...] Estoy usando **FastAPI** un montón estos días. [...] De hecho, estoy planeando usarlo para todos los servicios de **ML de mi equipo en Microsoft**. Algunos de ellos se están integrando en el núcleo del producto **Windows** y algunos productos de **Office**._"
 
@@ -111,24 +117,24 @@ Las características clave son:
 
 ---
 
-## **Typer**, el FastAPI de las CLIs
+## **Typer**, el FastAPI de las CLIs { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Si estás construyendo una aplicación de <abbr title="Interfaz de Línea de Comandos">CLI</abbr> para ser usada en el terminal en lugar de una API web, revisa <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
+Si estás construyendo una aplicación de <abbr title="Command Line Interface – Interfaz de Línea de Comandos">CLI</abbr> para ser usada en la terminal en lugar de una API web, revisa <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>.
 
 **Typer** es el hermano pequeño de FastAPI. Y está destinado a ser el **FastAPI de las CLIs**. ⌨️ 🚀
 
-## Requisitos
+## Requisitos { #requirements }
 
 FastAPI se apoya en hombros de gigantes:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para las partes web.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> para las partes web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> para las partes de datos.
 
-## Instalación
+## Instalación { #installation }
 
-Crea y activa un <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">entorno virtual</a> y luego instala FastAPI:
+Crea y activa un <a href="https://fastapi.tiangolo.com/es/virtual-environments/" class="external-link" target="_blank">entorno virtual</a> y luego instala FastAPI:
 
 <div class="termy">
 
@@ -142,11 +148,11 @@ $ pip install "fastapi[standard]"
 
 **Nota**: Asegúrate de poner `"fastapi[standard]"` entre comillas para asegurar que funcione en todas las terminales.
 
-## Ejemplo
+## Ejemplo { #example }
 
-### Créalo
+### Créalo { #create-it }
 
-* Crea un archivo `main.py` con:
+Crea un archivo `main.py` con:
 
 ```Python
 from typing import Union
@@ -191,11 +197,11 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Nota**:
 
-Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` y `await` en la documentación</a>.
+Si no lo sabes, revisa la sección _"¿Con prisa?"_ sobre <a href="https://fastapi.tiangolo.com/es/async/#in-a-hurry" target="_blank">`async` y `await` en la documentación</a>.
 
 </details>
 
-### Córrelo
+### Córrelo { #run-it }
 
 Corre el servidor con:
 
@@ -229,15 +235,15 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Acerca del comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 Por defecto, `fastapi dev` comenzará con auto-recarga habilitada para el desarrollo local.
 
-Puedes leer más sobre esto en la <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">documentación del CLI de FastAPI</a>.
+Puedes leer más sobre esto en la <a href="https://fastapi.tiangolo.com/es/fastapi-cli/" target="_blank">documentación del CLI de FastAPI</a>.
 
 </details>
 
-### Revísalo
+### Revísalo { #check-it }
 
 Abre tu navegador en <a href="http://127.0.0.1:8000/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1:8000/items/5?q=somequery</a>.
 
@@ -254,7 +260,7 @@ Ya creaste una API que:
 * El _path_ `/items/{item_id}` tiene un _parámetro de path_ `item_id` que debe ser un `int`.
 * El _path_ `/items/{item_id}` tiene un _parámetro de query_ `q` opcional que es un `str`.
 
-### Documentación interactiva de la API
+### Documentación interactiva de la API { #interactive-api-docs }
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -262,7 +268,7 @@ Verás la documentación interactiva automática de la API (proporcionada por <a
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Documentación de API Alternativa
+### Documentación de API Alternativa { #alternative-api-docs }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -270,7 +276,7 @@ Verás la documentación alternativa automática (proporcionada por <a href="htt
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Actualización del Ejemplo
+## Actualización del Ejemplo { #example-upgrade }
 
 Ahora modifica el archivo `main.py` para recibir un body desde un request `PUT`.
 
@@ -308,7 +314,7 @@ def update_item(item_id: int, item: Item):
 
 El servidor `fastapi dev` debería recargarse automáticamente.
 
-### Actualización de la Documentación Interactiva de la API
+### Actualización de la Documentación Interactiva de la API { #interactive-api-docs-upgrade }
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -324,7 +330,7 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Actualización de la Documentación Alternativa de la API
+### Actualización de la Documentación Alternativa de la API { #alternative-api-docs-upgrade }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -332,7 +338,7 @@ Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Resumen
+### Resumen { #recap }
 
 En resumen, declaras **una vez** los tipos de parámetros, body, etc. como parámetros de función.
 
@@ -427,7 +433,7 @@ Intenta cambiar la línea con:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - Guía del Usuario</a>.
+Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="https://fastapi.tiangolo.com/es/tutorial/">Tutorial - Guía del Usuario</a>.
 
 **Alerta de spoilers**: el tutorial - guía del usuario incluye:
 
@@ -444,17 +450,69 @@ Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="ht
     * **Sesiones de Cookies**
     * ...y más.
 
-## Rendimiento
+### Despliega tu app (opcional) { #deploy-your-app-optional }
+
+Opcionalmente puedes desplegar tu app de FastAPI en <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, ve y únete a la lista de espera si no lo has hecho. 🚀
+
+Si ya tienes una cuenta de **FastAPI Cloud** (te invitamos desde la lista de espera 😉), puedes desplegar tu aplicación con un solo comando.
+
+Antes de desplegar, asegúrate de haber iniciado sesión:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Luego despliega tu app:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+¡Eso es todo! Ahora puedes acceder a tu app en esa URL. ✨
+
+#### Acerca de FastAPI Cloud { #about-fastapi-cloud }
+
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** está construido por el mismo autor y equipo detrás de **FastAPI**.
+
+Optimiza el proceso de **construir**, **desplegar** y **acceder** a una API con un esfuerzo mínimo.
+
+Trae la misma **experiencia de desarrollador** de construir apps con FastAPI a **desplegarlas** en la nube. 🎉
+
+FastAPI Cloud es el sponsor principal y proveedor de financiamiento para los proyectos open source *FastAPI and friends*. ✨
+
+#### Despliega en otros proveedores de cloud { #deploy-to-other-cloud-providers }
+
+FastAPI es open source y está basado en estándares. Puedes desplegar apps de FastAPI en cualquier proveedor de cloud que elijas.
+
+Sigue las guías de tu proveedor de cloud para desplegar apps de FastAPI con ellos. 🤓
+
+## Rendimiento { #performance }
 
 Benchmarks independientes de TechEmpower muestran aplicaciones **FastAPI** ejecutándose bajo Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">uno de los frameworks Python más rápidos disponibles</a>, solo por debajo de Starlette y Uvicorn (usados internamente por FastAPI). (*)
 
-Para entender más sobre esto, ve la sección <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Para entender más sobre esto, ve la sección <a href="https://fastapi.tiangolo.com/es/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
-## Dependencias
+## Dependencias { #dependencies }
 
 FastAPI depende de Pydantic y Starlette.
 
-### Dependencias `standard`
+### Dependencias `standard` { #standard-dependencies }
 
 Cuando instalas FastAPI con `pip install "fastapi[standard]"` viene con el grupo `standard` de dependencias opcionales:
 
@@ -465,19 +523,24 @@ Usadas por Pydantic:
 Usadas por Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Requerido si deseas usar el `TestClient`.
-* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si deseas usar la configuración de plantilla predeterminada.
+* <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Requerido si deseas usar la configuración de plantilla por defecto.
 * <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Requerido si deseas soportar <abbr title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</abbr> de forms, con `request.form()`.
 
-Usadas por FastAPI / Starlette:
+Usadas por FastAPI:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
-* `fastapi-cli` - para proporcionar el comando `fastapi`.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
+* `fastapi-cli[standard]` - para proporcionar el comando `fastapi`.
+    * Esto incluye `fastapi-cloud-cli`, que te permite desplegar tu aplicación de FastAPI en <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
-### Sin Dependencias `standard`
+### Sin Dependencias `standard` { #without-standard-dependencies }
 
 Si no deseas incluir las dependencias opcionales `standard`, puedes instalar con `pip install fastapi` en lugar de `pip install "fastapi[standard]"`.
 
-### Dependencias Opcionales Adicionales
+### Sin `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
+
+Si quieres instalar FastAPI con las dependencias standard pero sin `fastapi-cloud-cli`, puedes instalar con `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+
+### Dependencias Opcionales Adicionales { #additional-optional-dependencies }
 
 Existen algunas dependencias adicionales que podrías querer instalar.
 
@@ -491,6 +554,6 @@ Dependencias opcionales adicionales de FastAPI:
 * <a href="https://github.com/ijl/orjson" target="_blank"><code>orjson</code></a> - Requerido si deseas usar `ORJSONResponse`.
 * <a href="https://github.com/esnme/ultrajson" target="_blank"><code>ujson</code></a> - Requerido si deseas usar `UJSONResponse`.
 
-## Licencia
+## Licencia { #license }
 
 Este proyecto tiene licencia bajo los términos de la licencia MIT.

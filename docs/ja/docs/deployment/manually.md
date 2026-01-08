@@ -6,7 +6,7 @@
 
 //// tab | Uvicorn
 
-* <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>, uvloopとhttptoolsを基にした高速なASGIサーバ。
+* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>, uvloopとhttptoolsを基にした高速なASGIサーバ。
 
 <div class="termy">
 
@@ -78,7 +78,7 @@ Running on 0.0.0.0:8080 over http (CTRL + C to quit)
 
 停止した場合に自動的に再起動させるツールを設定したいかもしれません。
 
-さらに、<a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a>をインストールして<a href="https://www.uvicorn.org/#running-with-gunicorn" class="external-link" target="_blank">Uvicornのマネージャーとして使用したり</a>、複数のワーカーでHypercornを使用したいかもしれません。
+さらに、<a href="https://gunicorn.org/" class="external-link" target="_blank">Gunicorn</a>をインストールして<a href="https://www.uvicorn.dev/#running-with-gunicorn" class="external-link" target="_blank">Uvicornのマネージャーとして使用したり</a>、複数のワーカーでHypercornを使用したいかもしれません。
 
 ワーカー数などの微調整も行いたいかもしれません。
 
