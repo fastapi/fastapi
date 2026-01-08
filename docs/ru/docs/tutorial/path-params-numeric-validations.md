@@ -54,7 +54,7 @@ Path-параметр всегда является обязательным, п
 
 Поэтому вы можете определить функцию так:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_py39.py hl[7] *}
 
 Но имейте в виду, что если вы используете `Annotated`, вы не столкнётесь с этой проблемой, так как вы не используете значения по умолчанию параметров функции для `Query()` или `Path()`.
 
@@ -83,7 +83,7 @@ Path-параметр всегда является обязательным, п
 
 Python не будет ничего делать с `*`, но он будет знать, что все следующие параметры являются именованными аргументами (парами ключ-значение), также известными как <abbr title="От: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>, даже если у них нет значений по умолчанию.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_py39.py hl[7] *}
 
 ### Лучше с `Annotated` { #better-with-annotated }
 

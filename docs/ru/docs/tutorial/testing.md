@@ -30,7 +30,7 @@ $ pip install httpx
 
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
 
 /// tip | Подсказка
 
@@ -76,7 +76,7 @@ $ pip install httpx
 В файле `main.py` находится Ваше приложение **FastAPI**:
 
 
-{* ../../docs_src/app_testing/main.py *}
+{* ../../docs_src/app_testing/app_a_py39/main.py *}
 
 ### Файл тестов { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 Так как оба файла находятся в одной директории, для импорта объекта приложения из файла `main` в файл `test_main` Вы можете использовать относительный импорт:
 
-{* ../../docs_src/app_testing/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
 
 
 ...и писать дальше тесты, как и раньше.

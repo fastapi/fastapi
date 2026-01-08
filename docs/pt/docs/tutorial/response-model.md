@@ -183,7 +183,7 @@ Pode haver casos em que você retorna algo que não é um campo Pydantic válido
 
 O caso mais comum seria [retornar uma Response diretamente, conforme explicado posteriormente na documentação avançada](../advanced/response-directly.md){.internal-link target=_blank}.
 
-{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02_py39.py hl[8,10:11] *}
 
 Este caso simples é tratado automaticamente pelo FastAPI porque a anotação do tipo de retorno é a classe (ou uma subclasse de) `Response`.
 
@@ -193,7 +193,7 @@ E as ferramentas também ficarão felizes porque `RedirectResponse` e ​​`JSO
 
 Você também pode usar uma subclasse de `Response` na anotação de tipo:
 
-{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03_py39.py hl[8:9] *}
 
 Isso também funcionará porque `RedirectResponse` é uma subclasse de `Response`, e o FastAPI tratará automaticamente este caso simples.
 

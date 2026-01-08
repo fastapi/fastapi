@@ -1,19 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial003",
+        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
-        "tutorial003_an",
-        pytest.param("tutorial003_an_py39", marks=needs_py39),
+        pytest.param("tutorial003_an_py39"),
         pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )
@@ -57,23 +55,13 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "title": "X-Token",
-                                    "anyOf": [
-                                        {"type": "array", "items": {"type": "string"}},
-                                        {"type": "null"},
-                                    ],
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "title": "X-Token",
-                                    "type": "array",
-                                    "items": {"type": "string"},
-                                }
-                            ),
+                            "schema": {
+                                "title": "X-Token",
+                                "anyOf": [
+                                    {"type": "array", "items": {"type": "string"}},
+                                    {"type": "null"},
+                                ],
+                            },
                             "name": "x-token",
                             "in": "header",
                         }
