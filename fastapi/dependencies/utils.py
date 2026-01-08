@@ -590,7 +590,7 @@ async def solve_dependencies(
         response.status_code = None  # type: ignore
     if dependency_cache is None:
         dependency_cache = {}
-    dependency_overrides: Dict[Callable[..., Any], Callable[..., Any]] = getattr(
+    dependency_overrides: dict[Callable[..., Any], Callable[..., Any]] = getattr(
         dependency_overrides_provider, "dependency_overrides", {}
     )
     for sub_dependant in dependant.dependencies:
