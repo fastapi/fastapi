@@ -167,7 +167,7 @@ Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do Ope
 
 Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então poderíamos **remover essa tag prefixada** com um script como este:
 
-{* ../../docs_src/generate_clients/tutorial004.py *}
+{* ../../docs_src/generate_clients/tutorial004_py39.py *}
 
 //// tab | Node.js
 

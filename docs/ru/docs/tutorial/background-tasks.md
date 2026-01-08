@@ -15,7 +15,7 @@
 
 Сначала импортируйте `BackgroundTasks` и объявите параметр в вашей функции‑обработчике пути с типом `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
 
 **FastAPI** создаст объект типа `BackgroundTasks` для вас и передаст его через этот параметр.
 
@@ -31,13 +31,13 @@
 
 Так как операция записи не использует `async` и `await`, мы определим функцию как обычную `def`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
 
 ## Добавление фоновой задачи { #add-the-background-task }
 
 Внутри вашей функции‑обработчика пути передайте функцию задачи объекту фоновых задач методом `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
 
 `.add_task()` принимает следующие аргументы:
 

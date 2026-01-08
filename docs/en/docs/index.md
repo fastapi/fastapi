@@ -52,13 +52,13 @@ The key features are:
 
 <!-- sponsors -->
 
-### Keystone Sponsor
+### Keystone Sponsor { #keystone-sponsor }
 
 {% for sponsor in sponsors.keystone -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 
-### Gold and Silver Sponsors
+### Gold and Silver Sponsors { #gold-and-silver-sponsors }
 
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
@@ -116,6 +116,12 @@ The key features are:
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
+
+## FastAPI mini documentary { #fastapi-mini-documentary }
+
+There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI mini documentary</a> released at the end of 2025, you can watch it online:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, the FastAPI of CLIs { #typer-the-fastapi-of-clis }
 
