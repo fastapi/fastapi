@@ -1,17 +1,10 @@
 import io
 from pathlib import Path
-from typing import List
 
 import pytest
 from fastapi import FastAPI, UploadFile
 from fastapi.datastructures import Default
 from fastapi.testclient import TestClient
-
-
-# TODO: remove when deprecating Pydantic v1
-def test_upload_file_invalid():
-    with pytest.raises(ValueError):
-        UploadFile.validate("not a Starlette UploadFile")
 
 
 def test_upload_file_invalid_pydantic_v2():
@@ -38,7 +31,7 @@ def test_upload_file_is_closed(tmp_path: Path):
     path.write_bytes(b"<file content>")
     app = FastAPI()
 
-    testing_file_store: List[UploadFile] = []
+    testing_file_store: list[UploadFile] = []
 
     @app.post("/uploadfile/")
     def create_upload_file(file: UploadFile):

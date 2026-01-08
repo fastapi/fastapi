@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -10,7 +9,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial006",
+        pytest.param("tutorial006_py39"),
         pytest.param("tutorial006_py310", marks=needs_py310),
     ],
 )
@@ -35,51 +34,28 @@ def test_foo_needy_very(client: TestClient):
 def test_foo_no_needy(client: TestClient):
     response = client.get("/items/foo?skip=a&limit=b")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "needy"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "int_parsing",
-                    "loc": ["query", "skip"],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "a",
-                },
-                {
-                    "type": "int_parsing",
-                    "loc": ["query", "limit"],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "b",
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "needy"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["query", "skip"],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                },
-                {
-                    "loc": ["query", "limit"],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "needy"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "int_parsing",
+                "loc": ["query", "skip"],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "a",
+            },
+            {
+                "type": "int_parsing",
+                "loc": ["query", "limit"],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "b",
+            },
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):
@@ -134,16 +110,10 @@ def test_openapi_schema(client: TestClient):
                         },
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                                    "title": "Limit",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Limit", "type": "integer"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "integer"}, {"type": "null"}],
+                                "title": "Limit",
+                            },
                             "name": "limit",
                             "in": "query",
                         },

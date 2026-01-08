@@ -59,7 +59,7 @@
 
 そして、JSON Schemaに完全に準拠するようにしたり、制約宣言を定義するさまざまな方法をサポートしたり、いくつかのエディターでのテストに基づいてエディターのサポート (型チェック、自動補完) を改善するために貢献しました。
 
-開発中、もう1つの重要な鍵となる<a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>、にも貢献しました。
+開発中、もう1つの重要な鍵となる<a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>、にも貢献しました。
 
 ## 開発
 

@@ -33,13 +33,13 @@
     * Затем она возвращает ответ `response`, сгенерированный *операцией пути*.
 * Также имеется возможность видоизменить `response`, перед тем как его вернуть.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
 
 /// tip | Примечание
 
 Имейте в виду, что можно добавлять свои собственные заголовки <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">при помощи префикса 'X-'</a>.
 
-Если же вы хотите добавить собственные заголовки, которые клиент сможет увидеть в браузере, то вам потребуется добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, см. документацию <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
+Если же вы хотите добавить собственные заголовки, которые клиент сможет увидеть в браузере, то вам потребуется добавить их в настройки CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}), используя параметр `expose_headers`, см. документацию <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette's CORS docs</a>.
 
 ///
 
@@ -59,7 +59,7 @@
 
 Например, вы можете добавить собственный заголовок `X-Process-Time`, содержащий время в секундах, необходимое для обработки запроса и генерации ответа:
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
 
 /// tip | Примечание
 

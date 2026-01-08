@@ -38,13 +38,13 @@ $ pip install websockets
 
 Для примера нам нужен наиболее простой способ, который позволит сосредоточиться на серверной части веб‑сокетов и получить рабочий код:
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
 
 ## Создание `websocket` { #create-a-websocket }
 
 Создайте `websocket` в своем **FastAPI** приложении:
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
 
 /// note | Технические детали
 
@@ -58,7 +58,7 @@ $ pip install websockets
 
 Через эндпоинт веб-сокета вы можете получать и отправлять сообщения.
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
 
 Вы можете получать и отправлять двоичные, текстовые и JSON данные.
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 Для более глубокого изучения темы воспользуйтесь документацией Starlette:
 
-* <a href="https://www.starlette.io/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
-* <a href="https://www.starlette.io/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.
+* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">The `WebSocket` class</a>.
+* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">Class-based WebSocket handling</a>.

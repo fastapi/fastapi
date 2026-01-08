@@ -52,7 +52,7 @@ FastAPI CLI nimmt den Pfad zu Ihrem Python-Programm (z. B. `main.py`), erkennt a
 
 Für die Produktion würden Sie stattdessen `fastapi run` verwenden. 🚀
 
-Intern verwendet das **FastAPI CLI** <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
+Intern verwendet das **FastAPI CLI** <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -66,7 +66,7 @@ Das Ausführen von `fastapi run` startet FastAPI standardmäßig im Produktionsm
 
 Standardmäßig ist **Autoreload** deaktiviert. Es horcht auch auf der IP-Adresse `0.0.0.0`, was alle verfügbaren IP-Adressen bedeutet, so wird es öffentlich zugänglich für jeden, der mit der Maschine kommunizieren kann. So würden Sie es normalerweise in der Produktion ausführen, beispielsweise in einem Container.
 
-In den meisten Fällen würden (und sollten) Sie einen „Terminierungsproxy“ haben, der HTTPS für Sie verwaltet. Dies hängt davon ab, wie Sie Ihre Anwendung bereitstellen. Ihr Anbieter könnte dies für Sie erledigen, oder Sie müssen es selbst einrichten.
+In den meisten Fällen würden (und sollten) Sie einen „Terminierungsproxy“ haben, der HTTPS für Sie verwaltet. Dies hängt davon ab, wie Sie Ihre Anwendung deployen. Ihr Anbieter könnte dies für Sie erledigen, oder Sie müssen es selbst einrichten.
 
 /// tip | Tipp
 

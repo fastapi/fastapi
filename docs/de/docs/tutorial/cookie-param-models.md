@@ -50,7 +50,7 @@ Ihre API hat jetzt die Macht, ihre eigene <abbr title="Das ist ein Scherz, nur f
 
 Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu verbieten (`forbid`):
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 Wenn ein Client versucht, einige **zusätzliche Cookies** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 

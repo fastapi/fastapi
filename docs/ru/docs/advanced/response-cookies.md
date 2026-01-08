@@ -6,7 +6,7 @@
 
 Затем установить cookies в этом временном объекте ответа.
 
-{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002_py39.py hl[1, 8:9] *}
 
 После этого можно вернуть любой объект, как и раньше (например, `dict`, объект модели базы данных и так далее).
 
@@ -24,7 +24,7 @@
 
 Затем установите cookies и верните этот объект:
 
-{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001_py39.py hl[10:12] *}
 
 /// tip | Совет
 
@@ -48,4 +48,4 @@
 
 ///
 
-Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с <a href="https://www.starlette.io/responses/#set-cookie" class="external-link" target="_blank">документацией Starlette</a>.
+Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с <a href="https://www.starlette.dev/responses/#set-cookie" class="external-link" target="_blank">документацией Starlette</a>.

@@ -27,7 +27,7 @@ $ pip install jinja2
 - Объявите параметр `Request` в *операции пути*, которая будет возвращать шаблон.
 - Используйте созданный `templates`, чтобы отрендерить и вернуть `TemplateResponse`; передайте имя шаблона, объект `request` и словарь «context» с парами ключ-значение для использования внутри шаблона Jinja2.
 
-{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
 
 /// note | Примечание
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## Подробнее { #more-details }
 
-Больше подробностей, включая то, как тестировать шаблоны, смотрите в <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">документации Starlette по шаблонам</a>.
+Больше подробностей, включая то, как тестировать шаблоны, смотрите в <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">документации Starlette по шаблонам</a>.
