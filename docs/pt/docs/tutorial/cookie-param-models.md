@@ -48,11 +48,9 @@ Em alguns casos especiais (provavelmente não muito comuns), você pode querer *
 
 Agora a sua API possui o poder de controlar o seu próprio <abbr title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</abbr>. 🤪🍪
 
+Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer campo `extra`:
 
- Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer campo `extra`.
-
-
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 Se o cliente tentar enviar alguns **cookies extras**, eles receberão um retorno de **erro**.
 

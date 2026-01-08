@@ -1,8 +1,8 @@
 # Callbacks na OpenAPI { #openapi-callbacks }
 
-Você poderia criar uma API com uma *operação de rota* que poderia acionar uma solicitação a uma *API externa* criada por outra pessoa (provavelmente o mesmo desenvolvedor que estaria *usando* sua API).
+Você poderia criar uma API com uma *operação de rota* que poderia acionar um request a uma *API externa* criada por outra pessoa (provavelmente o mesmo desenvolvedor que estaria *usando* sua API).
 
-O processo que acontece quando sua aplicação de API chama a *API externa* é chamado de "callback". Porque o software que o desenvolvedor externo escreveu envia uma solicitação para sua API e então sua API *chama de volta*, enviando uma solicitação para uma *API externa* (que provavelmente foi criada pelo mesmo desenvolvedor).
+O processo que acontece quando sua aplicação de API chama a *API externa* é chamado de "callback". Porque o software que o desenvolvedor externo escreveu envia um request para sua API e então sua API *chama de volta*, enviando um request para uma *API externa* (que provavelmente foi criada pelo mesmo desenvolvedor).
 
 Nesse caso, você poderia querer documentar como essa API externa *deveria* ser. Que *operação de rota* ela deveria ter, que corpo ela deveria esperar, que resposta ela deveria retornar, etc.
 
@@ -14,14 +14,14 @@ Imagine que você desenvolve um aplicativo que permite criar faturas.
 
 Essas faturas terão um `id`, `title` (opcional), `customer` e `total`.
 
-O usuário da sua API (um desenvolvedor externo) criará uma fatura na sua API com uma solicitação POST.
+O usuário da sua API (um desenvolvedor externo) criará uma fatura na sua API com um request POST.
 
 Então sua API irá (vamos imaginar):
 
 * Enviar a fatura para algum cliente do desenvolvedor externo.
 * Coletar o dinheiro.
 * Enviar a notificação de volta para o usuário da API (o desenvolvedor externo).
-    * Isso será feito enviando uma solicitação POST (de *sua API*) para alguma *API externa* fornecida por esse desenvolvedor externo (este é o "callback").
+    * Isso será feito enviando um request POST (de *sua API*) para alguma *API externa* fornecida por esse desenvolvedor externo (este é o "callback").
 
 ## O aplicativo **FastAPI** normal { #the-normal-fastapi-app }
 
@@ -31,7 +31,7 @@ Ele terá uma *operação de rota* que receberá um corpo `Invoice`, e um parâm
 
 Essa parte é bastante normal, a maior parte do código provavelmente já é familiar para você:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[9:13,36:53] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
 
 /// tip | Dica
 
@@ -54,7 +54,7 @@ callback_url = "https://example.com/api/v1/invoices/events/"
 httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
-Mas possivelmente a parte mais importante do callback é garantir que o usuário da sua API (o desenvolvedor externo) implemente a *API externa* corretamente, de acordo com os dados que *sua API* vai enviar no corpo da solicitação do callback, etc.
+Mas possivelmente a parte mais importante do callback é garantir que o usuário da sua API (o desenvolvedor externo) implemente a *API externa* corretamente, de acordo com os dados que *sua API* vai enviar no corpo do request do callback, etc.
 
 Então, o que faremos a seguir é adicionar o código para documentar como essa *API externa* deve ser para receber o callback de *sua API*.
 
@@ -64,7 +64,7 @@ Esse exemplo não implementa o callback em si (que poderia ser apenas uma linha 
 
 /// tip | Dica
 
-O callback real é apenas uma solicitação HTTP.
+O callback real é apenas um request HTTP.
 
 Ao implementar o callback por conta própria, você pode usar algo como <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> ou <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a>.
 
@@ -90,7 +90,7 @@ Adotar temporariamente esse ponto de vista (do *desenvolvedor externo*) pode aju
 
 Primeiro crie um novo `APIRouter` que conterá um ou mais callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[3,25] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
 
 ### Crie a *operação de rota* do callback { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ Ela deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 * Ela provavelmente deveria ter uma declaração do corpo que deveria receber, por exemplo, `body: InvoiceEvent`.
 * E também poderia ter uma declaração da resposta que deveria retornar, por exemplo, `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[16:18,21:22,28:32] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
 
 Há 2 diferenças principais de uma *operação de rota* normal:
 
@@ -118,7 +118,7 @@ Nesse caso, é a `str`:
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-Então, se o usuário da sua API (o desenvolvedor externo) enviar uma solicitação para *sua API* para:
+Então, se o usuário da sua API (o desenvolvedor externo) enviar um request para *sua API* para:
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
@@ -134,7 +134,7 @@ com um corpo JSON de:
 }
 ```
 
-então *sua API* processará a fatura e, em algum momento posterior, enviará uma solicitação de callback para o `callback_url` (a *API externa*):
+então *sua API* processará a fatura e, em algum momento posterior, enviará um request de callback para o `callback_url` (a *API externa*):
 
 ```
 https://www.external.org/events/invoices/2expen51ve
@@ -169,7 +169,7 @@ Nesse ponto você tem a(s) *operação(ões) de rota de callback* necessária(s)
 
 Agora use o parâmetro `callbacks` no decorador da *operação de rota da sua API* para passar o atributo `.routes` (que é na verdade apenas uma `list` de rotas/*operações de path*) do roteador de callback:
 
-{* ../../docs_src/openapi_callbacks/tutorial001.py hl[35] *}
+{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | Dica
 

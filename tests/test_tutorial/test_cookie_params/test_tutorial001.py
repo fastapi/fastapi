@@ -2,19 +2,17 @@ import importlib
 from types import ModuleType
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="mod",
     params=[
-        "tutorial001",
+        "tutorial001_py39",
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        "tutorial001_an_py39",
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -76,16 +74,10 @@ def test_openapi_schema(mod: ModuleType):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Ads Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Ads Id", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Ads Id",
+                            },
                             "name": "ads_id",
                             "in": "cookie",
                         }

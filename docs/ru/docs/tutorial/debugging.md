@@ -6,7 +6,7 @@
 
 В вашем FastAPI приложении, импортируйте и вызовите `uvicorn` напрямую:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
 
 ### Описание `__name__ == "__main__"` { #about-name-main }
 

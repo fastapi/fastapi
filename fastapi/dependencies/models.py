@@ -2,7 +2,7 @@ import inspect
 import sys
 from dataclasses import dataclass, field
 from functools import cached_property, partial
-from typing import Any, Callable, List, Optional, Union
+from typing import Any, Callable, Optional, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
@@ -30,12 +30,12 @@ def _impartial(func: Callable[..., Any]) -> Callable[..., Any]:
 
 @dataclass
 class Dependant:
-    path_params: List[ModelField] = field(default_factory=list)
-    query_params: List[ModelField] = field(default_factory=list)
-    header_params: List[ModelField] = field(default_factory=list)
-    cookie_params: List[ModelField] = field(default_factory=list)
-    body_params: List[ModelField] = field(default_factory=list)
-    dependencies: List["Dependant"] = field(default_factory=list)
+    path_params: list[ModelField] = field(default_factory=list)
+    query_params: list[ModelField] = field(default_factory=list)
+    header_params: list[ModelField] = field(default_factory=list)
+    cookie_params: list[ModelField] = field(default_factory=list)
+    body_params: list[ModelField] = field(default_factory=list)
+    dependencies: list["Dependant"] = field(default_factory=list)
     name: Optional[str] = None
     call: Optional[Callable[..., Any]] = None
     request_param_name: Optional[str] = None
@@ -44,14 +44,14 @@ class Dependant:
     response_param_name: Optional[str] = None
     background_tasks_param_name: Optional[str] = None
     security_scopes_param_name: Optional[str] = None
-    own_oauth_scopes: Optional[List[str]] = None
-    parent_oauth_scopes: Optional[List[str]] = None
+    own_oauth_scopes: Optional[list[str]] = None
+    parent_oauth_scopes: Optional[list[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
     scope: Union[Literal["function", "request"], None] = None
 
     @cached_property
-    def oauth_scopes(self) -> List[str]:
+    def oauth_scopes(self) -> list[str]:
         scopes = self.parent_oauth_scopes.copy() if self.parent_oauth_scopes else []
         # This doesn't use a set to preserve order, just in case
         for scope in self.own_oauth_scopes or []:
@@ -98,7 +98,7 @@ class Dependant:
         return unwrapped
 
     @cached_property
-    def _security_dependencies(self) -> List["Dependant"]:
+    def _security_dependencies(self) -> list["Dependant"]:
         security_deps = [dep for dep in self.dependencies if dep._is_security_scheme]
         return security_deps
 
@@ -110,6 +110,8 @@ class Dependant:
             _impartial(self.call)
         ) or inspect.isgeneratorfunction(_unwrapped_call(self.call)):
             return True
+        if inspect.isclass(_unwrapped_call(self.call)):
+            return False
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
             return False  # pragma: no cover
@@ -134,6 +136,8 @@ class Dependant:
             _impartial(self.call)
         ) or inspect.isasyncgenfunction(_unwrapped_call(self.call)):
             return True
+        if inspect.isclass(_unwrapped_call(self.call)):
+            return False
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
             return False  # pragma: no cover
@@ -162,6 +166,8 @@ class Dependant:
             _unwrapped_call(self.call)
         ):
             return True
+        if inspect.isclass(_unwrapped_call(self.call)):
+            return False
         dunder_call = getattr(_impartial(self.call), "__call__", None)  # noqa: B004
         if dunder_call is None:
             return False  # pragma: no cover
@@ -176,7 +182,6 @@ class Dependant:
             _impartial(dunder_unwrapped_call)
         ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call)):
             return True
-        # if inspect.isclass(self.call): False, covered by default return
         return False
 
     @cached_property

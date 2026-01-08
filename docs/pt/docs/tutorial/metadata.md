@@ -18,7 +18,7 @@ Você pode definir os seguintes campos que são usados na especificação OpenAP
 
 Você pode defini-los da seguinte maneira:
 
-{* ../../docs_src/metadata/tutorial001.py hl[3:16,19:32] *}
+{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
 
 /// tip | Dica
 
@@ -36,7 +36,7 @@ Desde o OpenAPI 3.1.0 e FastAPI 0.99.0, você também pode definir o license_inf
 
 Por exemplo:
 
-{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
 
 ## Metadados para tags { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ Vamos tentar isso em um exemplo com tags para `users` e `items`.
 
 Crie metadados para suas tags e passe-os para o parâmetro `openapi_tags`:
 
-{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
 
 Observe que você pode usar Markdown dentro das descrições. Por exemplo, "login" será exibido em negrito (**login**) e "fancy" será exibido em itálico (_fancy_).
 
@@ -72,7 +72,7 @@ Você não precisa adicionar metadados para todas as tags que você usa.
 
 Use o parâmetro `tags` com suas *operações de rota* (e `APIRouter`s) para atribuí-los a diferentes tags:
 
-{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
 
 /// info | Informação
 
@@ -100,7 +100,7 @@ Mas você pode configurá-lo com o parâmetro `openapi_url`.
 
 Por exemplo, para defini-lo para ser servido em `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
 
 Se você quiser desativar completamente o esquema OpenAPI, pode definir `openapi_url=None`, o que também desativará as interfaces de documentação que o utilizam.
 
@@ -117,4 +117,4 @@ Você pode configurar as duas interfaces de documentação incluídas:
 
 Por exemplo, para definir o Swagger UI para ser servido em `/documentation` e desativar o ReDoc:
 
-{* ../../docs_src/metadata/tutorial003.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}

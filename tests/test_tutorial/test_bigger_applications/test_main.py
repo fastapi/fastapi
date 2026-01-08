@@ -1,18 +1,14 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
-
-from ...utils import needs_py39
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "app_an.main",
-        pytest.param("app_an_py39.main", marks=needs_py39),
-        "app.main",
+        "app_py39.main",
+        "app_an_py39.main",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -31,29 +27,16 @@ def test_users_token_jessica(client: TestClient):
 def test_users_with_no_token(client: TestClient):
     response = client.get("/users")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_users_foo_token_jessica(client: TestClient):
@@ -65,29 +48,16 @@ def test_users_foo_token_jessica(client: TestClient):
 def test_users_foo_with_no_token(client: TestClient):
     response = client.get("/users/foo")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_users_me_token_jessica(client: TestClient):
@@ -99,29 +69,16 @@ def test_users_me_token_jessica(client: TestClient):
 def test_users_me_with_no_token(client: TestClient):
     response = client.get("/users/me")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_users_token_monica_with_no_jessica(client: TestClient):
@@ -144,29 +101,16 @@ def test_items_token_jessica(client: TestClient):
 def test_items_with_no_token_jessica(client: TestClient):
     response = client.get("/items", headers={"X-Token": "fake-super-secret-token"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_items_plumbus_token_jessica(client: TestClient):
@@ -190,29 +134,16 @@ def test_items_plumbus_with_no_token(client: TestClient):
         "/items/plumbus", headers={"X-Token": "fake-super-secret-token"}
     )
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_items_with_invalid_token(client: TestClient):
@@ -230,57 +161,31 @@ def test_items_bar_with_invalid_token(client: TestClient):
 def test_items_with_missing_x_token_header(client: TestClient):
     response = client.get("/items?token=jessica")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "x-token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["header", "x-token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["header", "x-token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_items_plumbus_with_missing_x_token_header(client: TestClient):
     response = client.get("/items/plumbus?token=jessica")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "x-token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["header", "x-token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["header", "x-token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_root_token_jessica(client: TestClient):
@@ -292,68 +197,37 @@ def test_root_token_jessica(client: TestClient):
 def test_root_with_no_token(client: TestClient):
     response = client.get("/")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_put_no_header(client: TestClient):
     response = client.put("/items/foo")
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["header", "x-token"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["header", "x-token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "token"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["header", "x-token"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_put_invalid_header(client: TestClient):
