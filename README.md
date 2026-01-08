@@ -35,7 +35,7 @@ The key features are:
 * **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
 * **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <abbr title="also known as auto-complete, autocompletion, IntelliSense">Completion</abbr> everywhere. Less time debugging.
-* **Easy**: Designed to be easy to use and learn. Less time reading docs.
+* **Easy**: Designed to be easy to use and learn. Spend less time reading docs.
 * **Short**: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
 * **Robust**: Get production-ready code. With automatic interactive documentation.
 * **Standards-based**: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
