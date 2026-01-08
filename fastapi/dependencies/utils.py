@@ -876,18 +876,12 @@ async def _extract_form_body(
     for field in body_fields:
         value = _get_multidict_value(field, received_body)
         field_info = field.field_info
-        if (  # fmt: skip
-            isinstance(field_info, params.File)
-            and isinstance(value, UploadFile)
-        ):
+        if isinstance(field_info, params.File) and isinstance(value, UploadFile):
             if is_bytes_field(field):
                 value = await value.read()
             else:
                 value = FastAPIUploadFile.from_starlette(value)
-        elif (  # fmt: skip
-            isinstance(field_info, params.File)
-            and value_is_sequence(value)
-        ):
+        elif isinstance(field_info, params.File) and value_is_sequence(value):
             if is_bytes_sequence_field(field):
                 # For types
                 assert isinstance(value, sequence_types)
