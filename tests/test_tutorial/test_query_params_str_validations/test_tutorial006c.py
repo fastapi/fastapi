@@ -37,7 +37,9 @@ def test_query_params_str_validations_no_query(client: TestClient):
 
 
 @pytest.mark.parametrize("q_value", ["None", "null", ""])
-def test_query_params_str_validations_send_explicit_none(client: TestClient, q_value: str):
+def test_query_params_str_validations_send_explicit_none(
+    client: TestClient, q_value: str
+):
     response = client.get("/items/", params={"q": q_value})
     assert response.status_code == 200
     assert response.json() == {
