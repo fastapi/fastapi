@@ -12,7 +12,7 @@
 
 После этого смонтируйте его на путь.
 
-{* ../../docs_src/wsgi/tutorial001.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
 
 ## Проверьте { #check-it }
 

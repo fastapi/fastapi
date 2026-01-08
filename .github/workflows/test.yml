@@ -16,50 +16,34 @@ env:
   UV_SYSTEM_PYTHON: 1
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-      - name: Setup uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          version: "0.4.15"
-          enable-cache: true
-          cache-dependency-glob: |
-            requirements**.txt
-            pyproject.toml
-      - name: Install Dependencies
-        run: uv pip install -r requirements-tests.txt
-      - name: Install Pydantic v2
-        run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
-      - name: Lint
-        run: bash scripts/lint.sh
-
   test:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version:
-          - "3.14"
-          - "3.13"
-          - "3.12"
-          - "3.11"
-          - "3.10"
-          - "3.9"
-          - "3.8"
-        pydantic-version: ["pydantic-v1", "pydantic-v2"]
-        exclude:
-          - python-version: "3.14"
-            pydantic-version: "pydantic-v1"
+        os: [ windows-latest, macos-latest ]
+        python-version: [ "3.14" ]
+        include:
+          - os: ubuntu-latest
+            python-version: "3.9"
+            coverage: coverage
+          - os: macos-latest
+            python-version: "3.10"
+            coverage: coverage
+          - os: windows-latest
+            python-version: "3.12"
+            coverage: coverage
+          - os: ubuntu-latest
+            python-version: "3.13"
+            coverage: coverage
+            # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
+          - os: ubuntu-latest
+            python-version: "3.13"
+            coverage: coverage
+            codspeed: codspeed
+          - os: ubuntu-latest
+            python-version: "3.14"
+            coverage: coverage
       fail-fast: false
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Dump GitHub context
         env:
@@ -80,26 +64,28 @@ jobs:
             pyproject.toml
       - name: Install Dependencies
         run: uv pip install -r requirements-tests.txt
-      - name: Install Pydantic v1
-        if: matrix.pydantic-version == 'pydantic-v1'
-        run: uv pip install "pydantic>=1.10.0,<2.0.0"
-      - name: Install Pydantic v2
-        if: matrix.pydantic-version == 'pydantic-v2'
-        run: uv pip install --upgrade "pydantic>=2.0.2,<3.0.0"
-      # TODO: Remove this once Python 3.8 is no longer supported
-      - name: Install older AnyIO in Python 3.8
-        if: matrix.python-version == '3.8'
-        run: uv pip install "anyio[trio]<4.0.0"
       - run: mkdir coverage
       - name: Test
+        if: matrix.codspeed != 'codspeed'
         run: bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
+      - name: CodSpeed benchmarks
+        if: matrix.codspeed == 'codspeed'
+        uses: CodSpeedHQ/action@v4
+        env:
+            COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
+            CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
+        with:
+          mode: simulation
+          run: coverage run -m pytest tests/ --codspeed
+      # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
+        if: matrix.coverage == 'coverage'
         uses: actions/upload-artifact@v5
         with:
-          name: coverage-${{ matrix.python-version }}-${{ matrix.pydantic-version }}
+          name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
 
@@ -114,7 +100,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.8'
+          python-version: '3.11'
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
@@ -133,7 +119,6 @@ jobs:
           merge-multiple: true
       - run: ls -la coverage
       - run: coverage combine coverage
-      - run: coverage report
       - run: coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
         uses: actions/upload-artifact@v5
@@ -141,6 +126,7 @@ jobs:
           name: coverage-html
           path: htmlcov
           include-hidden-files: true
+      - run: coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
   check:  # This job does nothing and is only used for the branch protection

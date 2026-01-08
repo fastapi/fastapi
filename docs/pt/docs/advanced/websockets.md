@@ -38,13 +38,13 @@ Na produção, você teria uma das opções acima.
 
 Mas é a maneira mais simples de focar no lado do servidor de WebSockets e ter um exemplo funcional:
 
-{* ../../docs_src/websockets/tutorial001.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[2,6:38,41:43] *}
 
 ## Crie um `websocket` { #create-a-websocket }
 
 Em sua aplicação **FastAPI**, crie um `websocket`:
 
-{* ../../docs_src/websockets/tutorial001.py hl[1,46:47] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[1,46:47] *}
 
 /// note | Detalhes Técnicos
 
@@ -58,7 +58,7 @@ A **FastAPI** fornece o mesmo `WebSocket` diretamente apenas como uma conveniên
 
 Em sua rota WebSocket você pode esperar (`await`) por mensagens e enviar mensagens.
 
-{* ../../docs_src/websockets/tutorial001.py hl[48:52] *}
+{* ../../docs_src/websockets/tutorial001_py39.py hl[48:52] *}
 
 Você pode receber e enviar dados binários, de texto e JSON.
 

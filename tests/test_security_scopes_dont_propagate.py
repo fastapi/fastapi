@@ -1,11 +1,10 @@
 # Ref: https://github.com/tiangolo/fastapi/issues/5623
 
-from typing import Any, Dict, List
+from typing import Annotated, Any
 
 from fastapi import FastAPI, Security
 from fastapi.security import SecurityScopes
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
 
 
 async def security1(scopes: SecurityScopes):
@@ -17,8 +16,8 @@ async def security2(scopes: SecurityScopes):
 
 
 async def dep3(
-    dep1: Annotated[List[str], Security(security1, oauth_scopes=["scope1"])],
-    dep2: Annotated[List[str], Security(security2, oauth_scopes=["scope2"])],
+    dep1: Annotated[list[str], Security(security1, oauth_scopes=["scope1"])],
+    dep2: Annotated[list[str], Security(security2, oauth_scopes=["scope2"])],
 ):
     return {"dep1": dep1, "dep2": dep2}
 
@@ -28,7 +27,7 @@ app = FastAPI()
 
 @app.get("/scopes")
 def get_scopes(
-    dep3: Annotated[Dict[str, Any], Security(dep3, oauth_scopes=["scope3"])],
+    dep3: Annotated[dict[str, Any], Security(dep3, oauth_scopes=["scope3"])],
 ):
     return dep3
 

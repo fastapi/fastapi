@@ -2,7 +2,7 @@
 
 O arquivo FastAPI mais simples pode se parecer com:
 
-{* ../../docs_src/first_steps/tutorial001.py *}
+{* ../../docs_src/first_steps/tutorial001_py39.py *}
 
 Copie o conteúdo para um arquivo `main.py`.
 
@@ -143,11 +143,47 @@ E existem dezenas de alternativas, todas baseadas em OpenAPI. Você pode facilme
 
 Você também pode usá-lo para gerar código automaticamente para clientes que se comunicam com sua API. Por exemplo, aplicativos front-end, móveis ou IoT.
 
+### Faça o deploy da sua aplicação (opcional) { #deploy-your-app-optional }
+
+Você pode, opcionalmente, fazer o deploy da sua aplicação FastAPI na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>; acesse e entre na lista de espera, se ainda não entrou. 🚀
+
+Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode fazer o deploy da sua aplicação com um único comando.
+
+Antes do deploy, certifique-se de que está autenticado:
+
+<div class="termy">
+
+```console
+$ fastapi login
+
+You are logged in to FastAPI Cloud 🚀
+```
+
+</div>
+
+Em seguida, faça o deploy da sua aplicação:
+
+<div class="termy">
+
+```console
+$ fastapi deploy
+
+Deploying to FastAPI Cloud...
+
+✅ Deployment successful!
+
+🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev
+```
+
+</div>
+
+É isso! Agora você pode acessar sua aplicação nessa URL. ✨
+
 ## Recapitulando, passo a passo { #recap-step-by-step }
 
 ### Passo 1: importe `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
@@ -161,7 +197,7 @@ Você pode usar todas as funcionalidades do <a href="https://www.starlette.dev/"
 
 ### Passo 2: crie uma "instância" de `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
 
 Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
 
@@ -230,7 +266,7 @@ Vamos chamá-los de "**operações**" também.
 
 #### Defina um decorador de operação de rota { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
 
@@ -284,7 +320,7 @@ Esta é a nossa "**função de operação de rota**":
 * **operação**: é `get`.
 * **função**: é a função abaixo do "decorador" (abaixo do `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
 
 Esta é uma função Python.
 
@@ -296,7 +332,7 @@ Neste caso, é uma função `async`.
 
 Você também pode defini-la como uma função normal em vez de `async def`:
 
-{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
 
 /// note | Nota
 
@@ -306,13 +342,33 @@ Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.m
 
 ### Passo 5: retorne o conteúdo { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
 
 Você pode retornar um `dict`, `list` e valores singulares como `str`, `int`, etc.
 
-Você também pode devolver modelos Pydantic (você verá mais sobre isso mais tarde).
+Você também pode devolver modelos Pydantic ( você verá mais sobre isso mais tarde).
 
 Existem muitos outros objetos e modelos que serão convertidos automaticamente para JSON (incluindo ORMs, etc). Tente usar seus favoritos, é altamente provável que já sejam compatíveis.
+
+### Passo 6: Faça o deploy { #step-6-deploy-it }
+
+Faça o deploy da sua aplicação para a **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** com um comando: `fastapi deploy`. 🎉
+
+#### Sobre o FastAPI Cloud { #about-fastapi-cloud }
+
+A **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** é construída pelo mesmo autor e equipe por trás do **FastAPI**.
+
+Ela simplifica o processo de **construir**, **fazer deploy** e **acessar** uma API com o mínimo de esforço.
+
+Traz a mesma **experiência do desenvolvedor** de criar aplicações com FastAPI para **fazer o deploy** delas na nuvem. 🎉
+
+A FastAPI Cloud é a principal patrocinadora e financiadora dos projetos open source do ecossistema *FastAPI and friends*. ✨
+
+#### Faça o deploy em outros provedores de nuvem { #deploy-to-other-cloud-providers }
+
+FastAPI é open source e baseado em padrões. Você pode fazer deploy de aplicações FastAPI em qualquer provedor de nuvem que preferir.
+
+Siga os tutoriais do seu provedor de nuvem para fazer deploy de aplicações FastAPI com eles. 🤓
 
 ## Recapitulando { #recap }
 
@@ -321,3 +377,4 @@ Existem muitos outros objetos e modelos que serão convertidos automaticamente p
 * Escreva um **decorador de operação de rota** usando decoradores como `@app.get("/")`.
 * Defina uma **função de operação de rota**; por exemplo, `def root(): ...`.
 * Execute o servidor de desenvolvimento usando o comando `fastapi dev`.
+* Opcionalmente, faça o deploy da sua aplicação com `fastapi deploy`.

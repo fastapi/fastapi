@@ -1,19 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001",
+        "tutorial001_py39",
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        "tutorial001_an_py39",
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -60,31 +58,17 @@ def test_items_6(client: TestClient):
 def test_invalid_price(client: TestClient):
     response = client.put("/items/5", json={"item": {"name": "Foo", "price": -3.0}})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "greater_than",
-                    "loc": ["body", "item", "price"],
-                    "msg": "Input should be greater than 0",
-                    "input": -3.0,
-                    "ctx": {"gt": 0.0},
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "ctx": {"limit_value": 0},
-                    "loc": ["body", "item", "price"],
-                    "msg": "ensure this value is greater than 0",
-                    "type": "value_error.number.not_gt",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "greater_than",
+                "loc": ["body", "item", "price"],
+                "msg": "Input should be greater than 0",
+                "input": -3.0,
+                "ctx": {"gt": 0.0},
+            }
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):
@@ -143,39 +127,23 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": IsDict(
-                            {
-                                "title": "The description of the item",
-                                "anyOf": [
-                                    {"maxLength": 300, "type": "string"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "The description of the item",
-                                "maxLength": 300,
-                                "type": "string",
-                            }
-                        ),
+                        "description": {
+                            "title": "The description of the item",
+                            "anyOf": [
+                                {"maxLength": 300, "type": "string"},
+                                {"type": "null"},
+                            ],
+                        },
                         "price": {
                             "title": "Price",
                             "exclusiveMinimum": 0.0,
                             "type": "number",
                             "description": "The price must be greater than zero",
                         },
-                        "tax": IsDict(
-                            {
-                                "title": "Tax",
-                                "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
+                        "tax": {
+                            "title": "Tax",
+                            "anyOf": [{"type": "number"}, {"type": "null"}],
+                        },
                     },
                 },
                 "Body_update_item_items__item_id__put": {
