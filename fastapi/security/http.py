@@ -298,9 +298,16 @@ class HTTPBearer(HTTPBase):
             ),
         ] = True,
     ):
-        self.model = HTTPBearerModel(bearerFormat=bearerFormat, description=description)
+        if realm is None:
+            raise ValueError(
+                "HTTP Basic authentication requires a realm as per RFC 7617"
+            )
+
+        self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm
         self.auto_error = auto_error
+
 
     async def __call__(
         self, request: Request
