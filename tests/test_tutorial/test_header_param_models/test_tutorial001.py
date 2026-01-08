@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -63,29 +62,19 @@ def test_header_param_model_invalid(client: TestClient):
     assert response.json() == snapshot(
         {
             "detail": [
-                IsDict(
-                    {
-                        "type": "missing",
-                        "loc": ["header", "save_data"],
-                        "msg": "Field required",
-                        "input": {
-                            "x_tag": [],
-                            "host": "testserver",
-                            "accept": "*/*",
-                            "accept-encoding": "gzip, deflate",
-                            "connection": "keep-alive",
-                            "user-agent": "testclient",
-                        },
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {
-                        "type": "value_error.missing",
-                        "loc": ["header", "save_data"],
-                        "msg": "field required",
-                    }
-                )
+                {
+                    "type": "missing",
+                    "loc": ["header", "save_data"],
+                    "msg": "Field required",
+                    "input": {
+                        "x_tag": [],
+                        "host": "testserver",
+                        "accept": "*/*",
+                        "accept-encoding": "gzip, deflate",
+                        "connection": "keep-alive",
+                        "user-agent": "testclient",
+                    },
+                }
             ]
         }
     )
@@ -136,37 +125,19 @@ def test_openapi_schema(client: TestClient):
                                 "name": "if-modified-since",
                                 "in": "header",
                                 "required": False,
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "If Modified Since",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "type": "string",
-                                        "title": "If Modified Since",
-                                    }
-                                ),
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "If Modified Since",
+                                },
                             },
                             {
                                 "name": "traceparent",
                                 "in": "header",
                                 "required": False,
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [{"type": "string"}, {"type": "null"}],
-                                        "title": "Traceparent",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "type": "string",
-                                        "title": "Traceparent",
-                                    }
-                                ),
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Traceparent",
+                                },
                             },
                             {
                                 "name": "x-tag",

@@ -5,8 +5,6 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from .utils import needs_pydanticv2
-
 
 @pytest.fixture(name="client")
 def get_client():
@@ -42,13 +40,11 @@ def get_client():
     return client
 
 
-@needs_pydanticv2
 def test_get(client: TestClient):
     response = client.get("/")
     assert response.json() == {"custom_field": [1.0, 2.0, 3.0]}
 
 
-@needs_pydanticv2
 def test_typeadapter():
     # This test is only to confirm that Pydantic alone is working as expected
     from pydantic import (
@@ -93,7 +89,6 @@ def test_typeadapter():
     )
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient):
     response = client.get("openapi.json")
     assert response.json() == snapshot(

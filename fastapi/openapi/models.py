@@ -1,17 +1,15 @@
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from enum import Enum
 from typing import Annotated, Any, Callable, Optional, Union
 
-from fastapi._compat import (
-    PYDANTIC_V2,
-    CoreSchema,
-    GetJsonSchemaHandler,
-    JsonSchemaValue,
-    _model_rebuild,
-    with_info_plain_validator_function,
-)
+from fastapi._compat import with_info_plain_validator_function
 from fastapi.logger import logger
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    Field,
+    GetJsonSchemaHandler,
+)
 from typing_extensions import Literal, TypedDict
 from typing_extensions import deprecated as typing_deprecated
 
@@ -45,25 +43,19 @@ except ImportError:  # pragma: no cover
 
         @classmethod
         def __get_pydantic_json_schema__(
-            cls, core_schema: CoreSchema, handler: GetJsonSchemaHandler
-        ) -> JsonSchemaValue:
+            cls, core_schema: Mapping[str, Any], handler: GetJsonSchemaHandler
+        ) -> dict[str, Any]:
             return {"type": "string", "format": "email"}
 
         @classmethod
         def __get_pydantic_core_schema__(
-            cls, source: type[Any], handler: Callable[[Any], CoreSchema]
-        ) -> CoreSchema:
+            cls, source: type[Any], handler: Callable[[Any], Mapping[str, Any]]
+        ) -> Mapping[str, Any]:
             return with_info_plain_validator_function(cls._validate)
 
 
 class BaseModelWithConfig(BaseModel):
-    if PYDANTIC_V2:
-        model_config = {"extra": "allow"}
-
-    else:
-
-        class Config:
-            extra = "allow"
+    model_config = {"extra": "allow"}
 
 
 class Contact(BaseModelWithConfig):
@@ -226,13 +218,7 @@ class Example(TypedDict, total=False):
     value: Optional[Any]
     externalValue: Optional[AnyUrl]
 
-    if PYDANTIC_V2:  # type: ignore [misc]
-        __pydantic_config__ = {"extra": "allow"}
-
-    else:
-
-        class Config:
-            extra = "allow"
+    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]
 
 
 class ParameterInType(Enum):
@@ -447,6 +433,6 @@ class OpenAPI(BaseModelWithConfig):
     externalDocs: Optional[ExternalDocumentation] = None
 
 
-_model_rebuild(Schema)
-_model_rebuild(Operation)
-_model_rebuild(Encoding)
+Schema.model_rebuild()
+Operation.model_rebuild()
+Encoding.model_rebuild()

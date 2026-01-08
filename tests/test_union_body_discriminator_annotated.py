@@ -8,8 +8,6 @@ from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel
 
-from .utils import needs_pydanticv2
-
 
 @pytest.fixture(name="client")
 def client_fixture() -> TestClient:
@@ -47,21 +45,18 @@ def client_fixture() -> TestClient:
     return client
 
 
-@needs_pydanticv2
 def test_union_body_discriminator_assignment(client: TestClient) -> None:
     response = client.post("/pet/assignment", json={"pet_type": "cat", "meows": 5})
     assert response.status_code == 200, response.text
     assert response.json() == {"pet_type": "cat", "meows": 5}
 
 
-@needs_pydanticv2
 def test_union_body_discriminator_annotated(client: TestClient) -> None:
     response = client.post("/pet/annotated", json={"pet_type": "dog", "barks": 3.5})
     assert response.status_code == 200, response.text
     assert response.json() == {"pet_type": "dog", "barks": 3.5}
 
 
-@needs_pydanticv2
 def test_openapi_schema(client: TestClient) -> None:
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
