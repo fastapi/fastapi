@@ -1,5 +1,5 @@
 import io
-from typing import Any, Dict, List
+from typing import Any
 
 import pytest
 from fastapi import Depends, FastAPI, File, UploadFile
@@ -10,7 +10,7 @@ app = FastAPI()
 
 
 @app.post("/uploadfile")
-async def uploadfile(uploadfile: UploadFile = File(...)) -> Dict[str, Any]:
+async def uploadfile(uploadfile: UploadFile = File(...)) -> dict[str, Any]:
     return {
         "filename": uploadfile.filename,
         "is_fastapi_uploadfile": isinstance(uploadfile, UploadFile),
@@ -21,8 +21,8 @@ async def uploadfile(uploadfile: UploadFile = File(...)) -> Dict[str, Any]:
 
 @app.post("/uploadfiles")
 async def uploadfiles(
-    uploadfiles: List[UploadFile] = File(...),
-) -> List[Dict[str, Any]]:
+    uploadfiles: list[UploadFile] = File(...),
+) -> list[dict[str, Any]]:
     return [
         {
             "filename": uploadfile.filename,
@@ -34,7 +34,7 @@ async def uploadfiles(
     ]
 
 
-async def get_uploadfile_info(uploadfile: UploadFile = File(...)) -> Dict[str, Any]:
+async def get_uploadfile_info(uploadfile: UploadFile = File(...)) -> dict[str, Any]:
     return {
         "filename": uploadfile.filename,
         "is_fastapi_uploadfile": isinstance(uploadfile, UploadFile),
@@ -45,14 +45,14 @@ async def get_uploadfile_info(uploadfile: UploadFile = File(...)) -> Dict[str, A
 
 @app.post("/uploadfile-dep")
 async def uploadfile_dep(
-    uploadfile_info: Dict[str, Any] = Depends(get_uploadfile_info),
-) -> Dict[str, Any]:
+    uploadfile_info: dict[str, Any] = Depends(get_uploadfile_info),
+) -> dict[str, Any]:
     return uploadfile_info
 
 
 async def get_uploadfiles_info(
-    uploadfiles: List[UploadFile] = File(...),
-) -> List[Dict[str, Any]]:
+    uploadfiles: list[UploadFile] = File(...),
+) -> list[dict[str, Any]]:
     return [
         {
             "filename": uploadfile.filename,
@@ -66,8 +66,8 @@ async def get_uploadfiles_info(
 
 @app.post("/uploadfiles-dep")
 async def uploadfiles_dep(
-    uploadfiles_info: List[Dict[str, Any]] = Depends(get_uploadfiles_info),
-) -> List[Dict[str, Any]]:
+    uploadfiles_info: list[dict[str, Any]] = Depends(get_uploadfiles_info),
+) -> list[dict[str, Any]]:
     return uploadfiles_info
 
 
