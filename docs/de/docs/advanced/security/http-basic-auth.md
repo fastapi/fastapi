@@ -105,3 +105,7 @@ So ist Ihr Anwendungscode, dank der Verwendung von `secrets.compare_digest()`, v
 Nachdem Sie festgestellt haben, dass die Anmeldeinformationen falsch sind, geben Sie eine `HTTPException` mit dem Statuscode 401 zurück (derselbe, der auch zurückgegeben wird, wenn keine Anmeldeinformationen angegeben werden) und fügen den Header `WWW-Authenticate` hinzu, damit der Browser die Anmeldeaufforderung erneut anzeigt:
 
 {* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+!!! note
+    According to updated HTTP authentication specifications (RFC 7235),
+    the `realm` parameter in HTTP Basic authentication is optional.
+    FastAPI follows this behavior and does not require a `realm` to be set.
