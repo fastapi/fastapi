@@ -62,7 +62,7 @@ And it will save the returned value in a <abbr title="A utility/system to store 
 
 In an advanced scenario where you know you need the dependency to be called at every step (possibly multiple times) in the same request instead of using the "cached" value, you can set the parameter `use_cache=False` when using `Depends`:
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
@@ -71,7 +71,7 @@ async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_ca
 
 ////
 
-//// tab | Python 3.8+ non-Annotated
+//// tab | Python 3.9+ non-Annotated
 
 /// tip
 

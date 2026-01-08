@@ -57,13 +57,13 @@ Garante que todas as requisições devem ser `https` ou `wss`.
 
 Qualquer requisição para `http` ou `ws` será redirecionada para o esquema seguro.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Garante que todas as requisições recebidas tenham um cabeçalho `Host` corretamente configurado, a fim de proteger contra ataques de cabeçalho de host HTTP.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
 
 Os seguintes argumentos são suportados:
 
@@ -78,7 +78,7 @@ Gerencia respostas GZip para qualquer requisição que inclua `"gzip"` no cabeç
 
 O middleware lidará com respostas padrão e de streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
 
 Os seguintes argumentos são suportados:
 

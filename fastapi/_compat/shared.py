@@ -1,36 +1,24 @@
 import sys
 import types
 import typing
+import warnings
 from collections import deque
+from collections.abc import Mapping, Sequence
 from dataclasses import is_dataclass
 from typing import (
+    Annotated,
     Any,
-    Deque,
-    FrozenSet,
-    List,
-    Mapping,
-    Sequence,
-    Set,
-    Tuple,
-    Type,
     Union,
 )
 
-from fastapi._compat import may_v1
 from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
-from typing_extensions import Annotated, get_args, get_origin
+from typing_extensions import get_args, get_origin
 
 # Copy from Pydantic v2, compatible with v1
-if sys.version_info < (3, 9):
-    # Pydantic no longer supports Python 3.8, this might be incorrect, but the code
-    # this is used for is also never reached in this codebase, as it's a copy of
-    # Pydantic's lenient_issubclass, just for compatibility with v1
-    # TODO: remove when dropping support for Python 3.8
-    WithArgsTypes: Tuple[Any, ...] = ()
-elif sys.version_info < (3, 10):
+if sys.version_info < (3, 10):
     WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
 else:
     WithArgsTypes: tuple[Any, ...] = (
@@ -45,26 +33,21 @@ PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 sequence_annotation_to_type = {
     Sequence: list,
-    List: list,
     list: list,
-    Tuple: tuple,
     tuple: tuple,
-    Set: set,
     set: set,
-    FrozenSet: frozenset,
     frozenset: frozenset,
-    Deque: deque,
     deque: deque,
 }
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
-Url: Type[Any]
+Url: type[Any]
 
 
 # Copy of Pydantic v2, compatible with v1
 def lenient_issubclass(
-    cls: Any, class_or_tuple: Union[Type[Any], Tuple[Type[Any], ...], None]
+    cls: Any, class_or_tuple: Union[type[Any], tuple[type[Any], ...], None]
 ) -> bool:
     try:
         return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]
@@ -74,13 +57,13 @@ def lenient_issubclass(
         raise  # pragma: no cover
 
 
-def _annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+def _annotation_is_sequence(annotation: Union[type[Any], None]) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
-    return lenient_issubclass(annotation, sequence_types)  # type: ignore[arg-type]
+    return lenient_issubclass(annotation, sequence_types)
 
 
-def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
+def field_annotation_is_sequence(annotation: Union[type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
@@ -93,20 +76,18 @@ def field_annotation_is_sequence(annotation: Union[Type[Any], None]) -> bool:
 
 
 def value_is_sequence(value: Any) -> bool:
-    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))  # type: ignore[arg-type]
+    return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))
 
 
-def _annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
+def _annotation_is_complex(annotation: Union[type[Any], None]) -> bool:
     return (
-        lenient_issubclass(
-            annotation, (BaseModel, may_v1.BaseModel, Mapping, UploadFile)
-        )
+        lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
         or is_dataclass(annotation)
     )
 
 
-def field_annotation_is_complex(annotation: Union[Type[Any], None]) -> bool:
+def field_annotation_is_complex(annotation: Union[type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
@@ -127,7 +108,7 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
-def field_annotation_is_scalar_sequence(annotation: Union[Type[Any], None]) -> bool:
+def field_annotation_is_scalar_sequence(annotation: Union[type[Any], None]) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         at_least_one_scalar_sequence = False
@@ -196,13 +177,27 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
     )
 
 
+def is_pydantic_v1_model_instance(obj: Any) -> bool:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1
+    return isinstance(obj, v1.BaseModel)
+
+
+def is_pydantic_v1_model_class(cls: Any) -> bool:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        from pydantic import v1
+    return lenient_issubclass(cls, v1.BaseModel)
+
+
 def annotation_is_pydantic_v1(annotation: Any) -> bool:
-    if lenient_issubclass(annotation, may_v1.BaseModel):
+    if is_pydantic_v1_model_class(annotation):
         return True
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, may_v1.BaseModel):
+            if is_pydantic_v1_model_class(arg):
                 return True
     if field_annotation_is_sequence(annotation):
         for sub_annotation in get_args(annotation):

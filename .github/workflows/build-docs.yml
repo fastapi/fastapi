@@ -21,7 +21,7 @@ jobs:
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     # For pull requests it's not necessary to checkout the code but for the main branch it is
     - uses: dorny/paths-filter@v3
       id: filter
@@ -45,7 +45,7 @@ jobs:
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
@@ -60,8 +60,6 @@ jobs:
             pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
-      - name: Verify Docs
-        run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
         id: show-langs
         run: |
@@ -81,7 +79,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Set up Python
         uses: actions/setup-python@v6
         with:

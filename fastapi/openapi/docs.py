@@ -1,13 +1,12 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Annotated, Any, Optional
 
 from annotated_doc import Doc
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated
 
 swagger_ui_default_parameters: Annotated[
-    Dict[str, Any],
+    dict[str, Any],
     Doc(
         """
         Default configurations for Swagger UI.
@@ -82,7 +81,7 @@ def get_swagger_ui_html(
         ),
     ] = None,
     init_oauth: Annotated[
-        Optional[Dict[str, Any]],
+        Optional[dict[str, Any]],
         Doc(
             """
             A dictionary with Swagger UI OAuth2 initialization configurations.
@@ -90,7 +89,7 @@ def get_swagger_ui_html(
         ),
     ] = None,
     swagger_ui_parameters: Annotated[
-        Optional[Dict[str, Any]],
+        Optional[dict[str, Any]],
         Doc(
             """
             Configuration parameters for Swagger UI.
