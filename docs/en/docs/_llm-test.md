@@ -6,7 +6,7 @@ Tests added here will be seen by all designers of language specific prompts.
 
 Use as follows:
 
-* Have a language specific prompt – `docs/{language code}/llm-prompt.md`.
+* Have a language specific prompt - `docs/{language code}/llm-prompt.md`.
 * Do a fresh translation of this document into your desired target language (see e.g. the `translate-page` command of the `translate.py`). This will create the translation under `docs/{language code}/docs/_llm-test.md`.
 * Check if things are okay in the translation.
 * If necessary, improve your language specific prompt, the general prompt, or the English document.
