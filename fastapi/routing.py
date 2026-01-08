@@ -362,7 +362,7 @@ def get_request_handler(
                 raw_response.background = solved_result.background_tasks
             return raw_response
 
-        response_args: Dict[str, Any] = {"background": solved_result.background_tasks}
+        response_args: dict[str, Any] = {"background": solved_result.background_tasks}
         # If status_code was set, use it, otherwise use the default from the
         # response class, in the case of redirect it's 307
         if solved_result.response.status_code:
