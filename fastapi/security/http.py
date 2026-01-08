@@ -5,7 +5,6 @@ from typing import Annotated, Optional
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
 from fastapi.openapi.models import HTTPBase as HTTPBaseModel
-from fastapi.openapi.models import HTTPBearer as HTTPBearerModel
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
@@ -307,7 +306,6 @@ class HTTPBearer(HTTPBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.realm = realm
         self.auto_error = auto_error
-
 
     async def __call__(
         self, request: Request

@@ -75,5 +75,3 @@ def test_openapi_schema():
             "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
         },
     }
-
-
