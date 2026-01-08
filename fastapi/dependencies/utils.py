@@ -51,7 +51,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
+from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -717,16 +717,18 @@ def _validate_value_with_model_field(
 
 
 def _is_json_field(field: ModelField) -> bool:
-    return any(isinstance(item, Json) for item in field.field_info.metadata)
+    return any(type(item) is Json for item in field.field_info.metadata)
 
 
 def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
-    if _is_json_field(field):
-        value = values.get(alias, None)
-    elif is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
+    if (
+        (not _is_json_field(field))
+        and is_sequence_field(field)
+        and isinstance(values, (ImmutableMultiDict, Headers))
+    ):
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)
