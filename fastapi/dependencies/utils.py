@@ -717,12 +717,7 @@ def _validate_value_with_model_field(
 
 
 def _is_json_field(field: ModelField) -> bool:
-    # Pydantic v1 FieldInfo doesn't have metadata attribute
-    metadata = getattr(field.field_info, "metadata", [])
-    return any(
-        type(item).__name__ == "Json" and type(item).__module__ == "pydantic.types"
-        for item in metadata
-    )
+    return any(isinstance(item, Json) for item in field.field_info.metadata)
 
 
 def _get_multidict_value(
