@@ -34,7 +34,7 @@ You can reuse FastAPI's internal functions to create the HTML pages for the docs
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:20,23:25,28:35] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[2:6,11:20,23:25,28:35] *}
 
 /// tip
 
@@ -50,7 +50,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001.py hl[38:40] *}
+{* ../../docs_src/custom_docs_ui/tutorial001_py39.py hl[38:40] *}
 
 ### Test it { #test-it }
 
@@ -160,7 +160,7 @@ Again, you can reuse FastAPI's internal functions to create the HTML pages for t
 
 And similarly for ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:23,26:28,31:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[2:6,14:23,26:28,31:38] *}
 
 /// tip
 
@@ -176,7 +176,7 @@ Swagger UI will handle it behind the scenes for you, but it needs this "redirect
 
 Now, to be able to test that everything works, create a *path operation*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002.py hl[41:43] *}
+{* ../../docs_src/custom_docs_ui/tutorial002_py39.py hl[41:43] *}
 
 ### Test Static Files UI { #test-static-files-ui }
 
