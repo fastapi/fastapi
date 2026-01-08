@@ -1,4 +1,4 @@
-# Full Stack FastAPI Template
+# Full Stack FastAPI Template { #full-stack-fastapi-template }
 
 _Templates_, embora tipicamente venham com alguma configuração específica, são desenhados para serem flexíveis e customizáveis. Isso permite que você os modifique e adapte para as especificações do seu projeto, fazendo-os um excelente ponto de partida. 🏁
 
@@ -6,15 +6,15 @@ Você pode usar esse _template_ para começar, já que ele inclui várias config
 
 Repositório GitHub: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
 
-## Full Stack FastAPI Template - Pilha de Tecnologias e Recursos
+## Full Stack FastAPI Template - Pilha de Tecnologias e Recursos { #full-stack-fastapi-template-technology-stack-and-features }
 
-- ⚡ [**FastAPI**](https://fastapi.tiangolo.com) para a API do backend em Python.
+- ⚡ [**FastAPI**](https://fastapi.tiangolo.com/pt) para a API do backend em Python.
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para as interações do Python com bancos de dados SQL (ORM).
     - 🔍 [Pydantic](https://docs.pydantic.dev), usado pelo FastAPI, para validação de dados e gerenciamento de configurações.
     - 💾 [PostgreSQL](https://www.postgresql.org) como banco de dados SQL.
 - 🚀 [React](https://react.dev) para o frontend.
-    - 💃 Usando TypeScript, hooks, [Vite](https://vitejs.dev), e outras partes de uma _stack_ frontend moderna.
-    - 🎨 [Chakra UI](https://chakra-ui.com) para os componentes de frontend.
+    - 💃 Usando TypeScript, hooks, Vite, e outras partes de uma _stack_ frontend moderna.
+    - 🎨 [Tailwind CSS](https://tailwindcss.com) e [shadcn/ui](https://ui.shadcn.com) para os componentes de frontend.
     - 🤖 Um cliente frontend automaticamente gerado.
     - 🧪 [Playwright](https://playwright.dev) para testes Ponta-a-Ponta.
     - 🦇 Suporte para modo escuro.

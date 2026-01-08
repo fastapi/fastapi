@@ -29,15 +29,15 @@ Sie könnten damit beispielsweise eine Datenbanksession erstellen und diese nach
 
 Nur der Code vor und einschließlich der `yield`-Anweisung wird ausgeführt, bevor eine <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> erzeugt wird:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[2:4] *}
 
 Der ge`yield`ete Wert ist das, was in *Pfadoperationen* und andere Abhängigkeiten eingefügt wird:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[4] *}
 
 Der auf die `yield`-Anweisung folgende Code wird nach der Response ausgeführt:
 
-{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[5:6] *}
 
 /// tip | Tipp
 
@@ -57,7 +57,7 @@ Sie können also mit `except SomeException` diese bestimmte Exception innerhalb 
 
 Auf die gleiche Weise können Sie `finally` verwenden, um sicherzustellen, dass die Exit-Schritte ausgeführt werden, unabhängig davon, ob eine Exception geworfen wurde oder nicht.
 
-{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007_py39.py hl[3,5] *}
 
 ## Unterabhängigkeiten mit `yield` { #sub-dependencies-with-yield }
 
@@ -184,6 +184,51 @@ Wenn Sie in dem Code der *Pfadoperation-Funktion* irgendeine Exception auslösen
 
 ///
 
+## Frühes Beenden und `scope` { #early-exit-and-scope }
+
+Normalerweise wird der Exit-Code von Abhängigkeiten mit `yield` ausgeführt **nachdem die Response** an den Client gesendet wurde.
+
+Wenn Sie aber wissen, dass Sie die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* nicht mehr benötigen, können Sie `Depends(scope="function")` verwenden, um FastAPI mitzuteilen, dass es die Abhängigkeit nach der Rückkehr aus der *Pfadoperation-Funktion* schließen soll, jedoch **bevor** die **Response gesendet wird**.
+
+{* ../../docs_src/dependencies/tutorial008e_an_py39.py hl[12,16] *}
+
+`Depends()` erhält einen `scope`-Parameter, der sein kann:
+
+* `"function"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet, beendet die Abhängigkeit nach dem Ende der *Pfadoperation-Funktion*, aber **bevor** die Response an den Client zurückgesendet wird. Die Abhängigkeitsfunktion wird also **um** die *Pfadoperation-**Funktion*** **herum** ausgeführt.
+* `"request"`: startet die Abhängigkeit vor der *Pfadoperation-Funktion*, die den Request bearbeitet (ähnlich wie bei `"function"`), beendet sie jedoch **nachdem** die Response an den Client zurückgesendet wurde. Die Abhängigkeitsfunktion wird also **um** den **Request**- und Response-Zyklus **herum** ausgeführt.
+
+Wenn nicht angegeben und die Abhängigkeit `yield` hat, hat sie standardmäßig einen `scope` von `"request"`.
+
+### `scope` für Unterabhängigkeiten { #scope-for-sub-dependencies }
+
+Wenn Sie eine Abhängigkeit mit `scope="request"` (dem Default) deklarieren, muss jede Unterabhängigkeit ebenfalls einen `scope` von `"request"` haben.
+
+Eine Abhängigkeit mit `scope` von `"function"` kann jedoch Abhängigkeiten mit `scope` von `"function"` und `scope` von `"request"` haben.
+
+Das liegt daran, dass jede Abhängigkeit in der Lage sein muss, ihren Exit-Code vor den Unterabhängigkeiten auszuführen, da sie diese während ihres Exit-Codes möglicherweise noch verwenden muss.
+
+```mermaid
+sequenceDiagram
+
+participant client as Client
+participant dep_req as Abhängigkeit scope="request"
+participant dep_func as Abhängigkeit scope="function"
+participant operation as Pfadoperation
+
+    client ->> dep_req: Startet den Request
+    Note over dep_req: Führt den Code bis zum yield aus
+    dep_req ->> dep_func: Reicht Abhängigkeit weiter
+    Note over dep_func: Führt den Code bis zum yield aus
+    dep_func ->> operation: Führt Pfadoperation mit Abhängigkeit aus
+    operation ->> dep_func: Kehrt aus Pfadoperation zurück
+    Note over dep_func: Führt Code nach yield aus
+    Note over dep_func: ✅ Abhängigkeit geschlossen
+    dep_func ->> client: Sendet Response an Client
+    Note over client: Response gesendet
+    Note over dep_req: Führt Code nach yield aus
+    Note over dep_req: ✅ Abhängigkeit geschlossen
+```
+
 ## Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 Abhängigkeiten mit `yield` haben sich im Laufe der Zeit weiterentwickelt, um verschiedene Anwendungsfälle abzudecken und einige Probleme zu beheben.
@@ -223,7 +268,7 @@ In Python können Sie Kontextmanager erstellen, indem Sie <a href="https://docs.
 
 Sie können solche auch innerhalb von **FastAPI**-Abhängigkeiten mit `yield` verwenden, indem Sie `with`- oder `async with`-Anweisungen innerhalb der Abhängigkeits-Funktion verwenden:
 
-{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010_py39.py hl[1:9,13] *}
 
 /// tip | Tipp
 

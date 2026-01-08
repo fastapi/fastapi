@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 For example, let's say you define a *path operation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
 
 If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
 
@@ -64,7 +64,7 @@ If you want to learn more about HTTPS, check the guide [About HTTPS](../deployme
 
 ///
 
-### How Proxy Forwarded Headers Work
+### How Proxy Forwarded Headers Work { #how-proxy-forwarded-headers-work }
 
 Here's a visual representation of how the **proxy** adds forwarded headers between the client and the **application server**:
 
@@ -115,7 +115,7 @@ In this case, the original path `/app` would actually be served at `/api/v1/app`
 
 Even though all your code is written assuming there's just `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
 
 And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
@@ -193,7 +193,7 @@ You can get the current `root_path` used by your application for each request, i
 
 Here we are including it in the message just for demonstration purposes.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
 
 Then, if you start Uvicorn with:
 
@@ -220,7 +220,7 @@ The response would be something like:
 
 Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
 
 Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
 
@@ -228,7 +228,7 @@ Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--r
 
 Keep in mind that the server (Uvicorn) won't use that `root_path` for anything else than passing it to the app.
 
-But if you go with your browser to <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
+But if you go with your browser to <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> you will see the normal response:
 
 ```JSON
 {
@@ -400,7 +400,7 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
 
 Will generate an OpenAPI schema like:
 
@@ -443,11 +443,19 @@ The docs UI will interact with the server that you select.
 
 ///
 
+/// note | Technical Details
+
+The `servers` property in the OpenAPI specification is optional.
+
+If you don't specify the `servers` parameter and `root_path` is equal to `/`, the `servers` property in the generated OpenAPI schema will be omitted entirely by default, which is the equivalent of a single server with a `url` value of `/`.
+
+///
+
 ### Disable automatic server from `root_path` { #disable-automatic-server-from-root-path }
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
 
 and then it won't include it in the OpenAPI schema.
 

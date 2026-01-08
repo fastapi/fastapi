@@ -12,7 +12,7 @@
 
 Нужно убедиться, что он уникален для каждой операции.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py39.py hl[6] *}
 
 ### Использование имени функции-обработчика пути как operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@
 
 Делать это следует после добавления всех *операций пути*.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2, 12:21, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py39.py hl[2, 12:21, 24] *}
 
 /// tip | Совет
 
@@ -40,7 +40,7 @@
 
 Чтобы исключить *операцию пути* из генерируемой схемы OpenAPI (а значит, и из автоматической документации), используйте параметр `include_in_schema` и установите его в `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py39.py hl[6] *}
 
 ## Расширенное описание из docstring { #advanced-description-from-docstring }
 
@@ -50,7 +50,7 @@
 
 Эта часть не попадёт в документацию, но другие инструменты (например, Sphinx) смогут использовать остальное.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
 ## Дополнительные ответы { #additional-responses }
 
@@ -92,7 +92,7 @@
 
 `openapi_extra` может пригодиться, например, чтобы объявить [Расширения OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py39.py hl[6] *}
 
 Если вы откроете автоматическую документацию API, ваше расширение появится внизу страницы конкретной *операции пути*.
 
@@ -139,7 +139,7 @@
 
 Это можно сделать с помощью `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py39.py hl[19:36, 39:40] *}
 
 В этом примере мы не объявляли никакую Pydantic-модель. Фактически тело запроса даже не <abbr title="преобразовано из простого формата, например байтов, в объекты Python">распарсено</abbr> как JSON, оно читается напрямую как `bytes`, а функция `magic_data_reader()` будет отвечать за его парсинг каким-то способом.
 
@@ -155,13 +155,13 @@
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[15:20, 22] *}
 
 ////
 
@@ -179,13 +179,13 @@
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[24:31] *}
 
 ////
 

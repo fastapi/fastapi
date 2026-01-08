@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Любой входящий запрос по `http` или `ws` будет перенаправлен на безопасную схему.
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Гарантирует, что во всех входящих запросах корректно установлен `Host`‑заголовок, чтобы защититься от атак на HTTP‑заголовок Host.
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
 
 Поддерживаются следующие аргументы:
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Это middleware обрабатывает как обычные, так и потоковые ответы.
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
 
 Поддерживаются следующие аргументы:
 
