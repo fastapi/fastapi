@@ -1,44 +1,64 @@
 import json
 from typing import Annotated
 
-from fastapi import FastAPI, Form
+from fastapi import Cookie, FastAPI, Form, Header, Query
 from fastapi.testclient import TestClient
-from pydantic import BaseModel, Json
+from pydantic import Json
 
 app = FastAPI()
 
 
-class JsonListModel(BaseModel):
-    json_list: Json[list[str]]
-
-
-@app.post("/form-str")
-def form_str(json_list: Annotated[str, Form()]) -> list[str]:
-    model = JsonListModel(json_list=json_list)  # type: ignore[arg-type]
-    return model.json_list
-
-
 @app.post("/form-json-list")
-def form_json_list(json_list: Annotated[Json[list[str]], Form()]) -> list[str]:
-    return json_list
+def form_json_list(items: Annotated[Json[list[str]], Form()]) -> list[str]:
+    return items
+
+
+@app.get("/query-json-list")
+def query_json_list(items: Annotated[Json[list[str]], Query()]) -> list[str]:
+    return items
+
+
+@app.get("/header-json-list")
+def header_json_list(x_items: Annotated[Json[list[str]], Header()]) -> list[str]:
+    return x_items
+
+
+@app.get("/cookie-json-dict")
+def cookie_json_dict(
+    session: Annotated[Json[dict[str, str]], Cookie()],
+) -> dict[str, str]:
+    return session
 
 
 client = TestClient(app)
 
 
-def test_form_str():
-    response = client.post(
-        "/form-str",
-        data={"json_list": json.dumps(["abc", "def"])},
-    )
-    assert response.status_code == 200, response.text
-    assert response.json() == ["abc", "def"]
-
-
 def test_form_json_list():
     response = client.post(
-        "/form-json-list",
-        data={"json_list": json.dumps(["abc", "def"])},
+        "/form-json-list", data={"items": json.dumps(["abc", "def"])}
     )
     assert response.status_code == 200, response.text
     assert response.json() == ["abc", "def"]
+
+
+def test_query_json_list():
+    response = client.get(
+        "/query-json-list", params={"items": json.dumps(["abc", "def"])}
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == ["abc", "def"]
+
+
+def test_header_json_list():
+    response = client.get(
+        "/header-json-list", headers={"x-items": json.dumps(["abc", "def"])}
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == ["abc", "def"]
+
+
+def test_cookie_json_dict():
+    client.cookies.set("session", json.dumps({"user": "test1", "role": "admin"}))
+    response = client.get("/cookie-json-dict")
+    assert response.status_code == 200, response.text
+    assert response.json() == {"user": "test1", "role": "admin"}
