@@ -46,20 +46,21 @@ def get_invalidlist():
         {"name": "baz", "price": "baz"},
     ]
 
+
 # edge cases
 @app.get("/items/invalidDict", response_model=Item)
 def get_invalidDict():
-    return {"name":"invalid", "owner_ids":{"id":1}}
+    return {"name": "invalid", "owner_ids": {"id": 1}}
 
 
 @app.get("/items/invalidtype", response_model=Item)
 def get_invalidtype():
-    return {"name":3, "price": 2.7}
+    return {"name": 3, "price": 2.7}
 
 
 @app.get("/items/invalidtuple", response_model=Item)
 def get_invalid_tuple():
-    return {"name":"invalid", "price":(2.5,3.5)}
+    return {"name": "invalid", "price": (2.5, 3.5)}
 
 
 client = TestClient(app)
