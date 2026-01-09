@@ -6,6 +6,7 @@ repos:
     hooks:
       - id: check-added-large-files
         args: ['--maxkb=750']
+        exclude: ^uv.lock$
       - id: check-toml
       - id: check-yaml
         args:
