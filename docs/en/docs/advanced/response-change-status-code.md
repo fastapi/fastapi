@@ -29,3 +29,16 @@ And if you declared a `response_model`, it will still be used to filter and conv
 **FastAPI** will use that *temporal* response to extract the status code (also cookies and headers), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
 
 You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win.
+
+## Notes
+
+The `status_code` can be set dynamically depending on your application logic.
+
+For example, you might return:
+
+- `200 OK` when the data already exists
+- `201 Created` when new data is created
+- `204 No Content` when no response body is needed
+
+This allows reusing the same path operation while still returning accurate HTTP status codes.
+
