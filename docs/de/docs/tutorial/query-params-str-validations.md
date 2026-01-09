@@ -244,6 +244,24 @@ Wenn Sie einen Wert als erforderlich deklarieren müssen, während Sie `Query` v
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
 ### Erforderlich, kann `None` sein { #required-can-be-none }
+Even though a query parameter is required, it can still accept `None` if handled correctly in the code.  
+For example:
+
+```python
+from typing import Annotated
+from fastapi import FastAPI, Query
+
+app = FastAPI()
+
+@app.get("/items/")
+async def read_items(q: Annotated[str | None, Query()]):  # required
+    if q == "null":
+        q = None
+
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q is not None:
+        results.update({"q": q})
+    return results
 
 Sie können deklarieren, dass ein Parameter `None` akzeptieren kann, aber trotzdem erforderlich ist. Dadurch müssten Clients den Wert senden, selbst wenn der Wert `None` ist.
 
