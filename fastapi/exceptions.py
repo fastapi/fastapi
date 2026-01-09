@@ -41,6 +41,7 @@ class HTTPException(StarletteHTTPException):
         return {"item": items[item_id]}
     ```
     """
+    detail: Any
 
     def __init__(
         self,
