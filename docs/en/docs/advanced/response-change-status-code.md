@@ -30,7 +30,7 @@ And if you declared a `response_model`, it will still be used to filter and conv
 
 You can also declare the `Response` parameter in dependencies, and set the status code in them. But keep in mind that the last one to be set will win.
 
-## Notes
+## Notes { #notes }
 
 The `status_code` can be set dynamically depending on your application logic.
 
@@ -41,4 +41,3 @@ For example, you might return:
 - `204 No Content` when no response body is needed
 
 This allows reusing the same path operation while still returning accurate HTTP status codes.
-
