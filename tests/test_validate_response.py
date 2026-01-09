@@ -46,6 +46,21 @@ def get_invalidlist():
         {"name": "baz", "price": "baz"},
     ]
 
+# edge cases
+@app.get("/items/invalidDict", response_model=Item)
+def get_invalidDict():
+    return {"name":"invalid", "owner_ids":{"id":1}}
+
+
+@app.get("/items/invalidtype", response_model=Item)
+def get_invalidtype():
+    return {"name":3, "price": 2.7}
+
+
+@app.get("/items/invalidtuple", response_model=Item)
+def get_invalid_typle():
+    return {"name":"invalid", "price":(2.5,3.5)}
+
 
 client = TestClient(app)
 
@@ -82,3 +97,18 @@ def test_double_invalid():
 def test_invalid_list():
     with pytest.raises(ResponseValidationError):
         client.get("/items/invalidlist")
+
+
+def test_invalid_dict():
+    with pytest.raises(ResponseValidationError):
+        client.get("/items/invalidDict")
+
+
+def test_invalid_type():
+    with pytest.raises(ResponseValidationError):
+        client.get("/items/invalidtype")
+
+
+def test_invalid_tuple():
+    with pytest.raises(ResponseValidationError):
+        client.get("/items/invalidtuple")
