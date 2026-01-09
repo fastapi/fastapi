@@ -244,7 +244,7 @@ Wenn Sie einen Wert als erforderlich deklarieren müssen, während Sie `Query` v
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
 ### Erforderlich, kann `None` sein { #required-can-be-none }
-Even though a query parameter is required, it can still accept `None` if handled correctly in the code.  
+Even though a query parameter is required, it can still accept `None` if handled correctly in the code.
 For example:
 
 ```python
