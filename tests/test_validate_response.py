@@ -58,7 +58,7 @@ def get_invalidtype():
 
 
 @app.get("/items/invalidtuple", response_model=Item)
-def get_invalid_typle():
+def get_invalid_tuple():
     return {"name":"invalid", "price":(2.5,3.5)}
 
 
