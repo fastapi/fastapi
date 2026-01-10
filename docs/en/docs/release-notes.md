@@ -19,6 +19,7 @@ hide:
 
 ### Internal
 
+* 🐛 Fix translation script path. PR [#14685](https://github.com/fastapi/fastapi/pull/14685) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Enable tests in CI for scripts. PR [#14684](https://github.com/fastapi/fastapi/pull/14684) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add pre-commit local script to fix language translations. PR [#14683](https://github.com/fastapi/fastapi/pull/14683) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️  Migrate to uv. PR [#14676](https://github.com/fastapi/fastapi/pull/14676) by [@DoctorJohn](https://github.com/DoctorJohn).
