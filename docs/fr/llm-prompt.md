@@ -34,10 +34,10 @@ Source (English):
 Result (French):
 
 ```
-«Hello world»
-«Hello Universe»
-«He said: 'Hello'»
-«The module is `__main__`»
+"Hello world"
+“Hello Universe”
+"He said: 'Hello'"
+"The module is `__main__`"
 ```
 
 ### Ellipsis
@@ -87,8 +87,8 @@ Below is a list of English terms and their preferred French translations, separa
 - /// note | Technical Details»: /// note | Détails techniques
 - /// note: /// note | Remarque
 - /// tip: /// tip | Astuce
-- /// warning: /// warning | Attention
-- /// check: /// check | vérifier
+- /// warning: /// warning | Alertes
+- /// check: /// check | Vérifications
 - /// info: /// info
 
 - the docs: les documents
