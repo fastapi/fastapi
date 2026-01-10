@@ -12,9 +12,6 @@ permissions:
   pull-requests: write
   statuses: write
 
-env:
-  UV_SYSTEM_PYTHON: 1
-
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
@@ -27,19 +24,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install GitHub Actions dependencies
-        run: uv pip install -r requirements-github-actions.txt
+        run: uv sync --locked --no-dev --group github-actions
       - name: Deploy Docs Status Pending
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
@@ -70,14 +66,14 @@ jobs:
           command: pages deploy ./site --project-name=${{ env.PROJECT_NAME }} --branch=${{ env.BRANCH }}
       - name: Deploy Docs Status Error
         if: failure()
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
           RUN_ID: ${{ github.run_id }}
           STATE: "error"
       - name: Comment Deploy
-        run: python ./scripts/deploy_docs_status.py
+        run: uv run ./scripts/deploy_docs_status.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
