@@ -30,6 +30,11 @@ on:
         type: string
         required: false
         default: ""
+      commit_in_place:
+        description: Whether to commit changes directly instead of making a PR
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   langs:
@@ -109,3 +114,4 @@ jobs:
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
+          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
