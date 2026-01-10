@@ -19,6 +19,7 @@ hide:
 
 ### Internal
 
+* ⬆️  Migrate to uv. PR [#14676](https://github.com/fastapi/fastapi/pull/14676) by [@DoctorJohn](https://github.com/DoctorJohn).
 * 🔨 Add LLM translations tool fixer. PR [#14652](https://github.com/fastapi/fastapi/pull/14652) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 👥 Update FastAPI People - Sponsors. PR [#14626](https://github.com/fastapi/fastapi/pull/14626) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI GitHub topic repositories. PR [#14630](https://github.com/fastapi/fastapi/pull/14630) by [@tiangolo](https://github.com/tiangolo).
