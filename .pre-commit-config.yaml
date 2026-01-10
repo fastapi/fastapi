@@ -58,3 +58,9 @@ repos:
         entry: uv run ./scripts/docs.py ensure-non-translated
         files: ^docs/(?!en/).*|^scripts/docs\.py$
         pass_filenames: false
+
+      - id: fix-translations
+        language: unsupported
+        name: fix translations
+        entry: uv run ./scripts/translation_fixer.py fix-pages
+        files: ^docs/(?!en/).*/docs/.*\.md$
