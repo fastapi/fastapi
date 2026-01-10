@@ -75,14 +75,14 @@ class MultilineCodeBlockInfo(TypedDict):
 
 
 # Code includes
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 def extract_code_includes(lines: list[str]) -> list[CodeIncludeInfo]:
     """
-    Exctract lines that contain code includes.
+    Extract lines that contain code includes.
 
-    Return list of CodeIncludeInfo namedtuples, where each tuple contains:
+    Return list of CodeIncludeInfo, where each dict contains:
     - `line_no` - line number (1-based)
     - `line` - text of the line
     """
@@ -135,14 +135,14 @@ def replace_placeholders_with_code_includes(
 
 
 # Header permalinks
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 def extract_header_permalinks(lines: list[str]) -> list[HeaderPermalinkInfo]:
     """
     Extract list of header permalinks from the given lines.
 
-    Return list of HeaderPermalinkInfo namedtuples, where each tuple contains:
+    Return list of HeaderPermalinkInfo, where each dict contains:
     - `line_no` - line number (1-based)
     - `hashes` - string of hashes representing header level (e.g., "###")
     - `permalink` - permalink string (e.g., "{#permalink}")
@@ -246,14 +246,14 @@ def replace_header_permalinks(
 
 
 # Markdown links
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
-def extract_markdown_links(lines: list[str]) -> list[tuple[str, int]]:
+def extract_markdown_links(lines: list[str]) -> list[MarkdownLinkInfo]:
     """
     Extract all markdown links from the given lines.
 
-    Return list of MarkdownLinkInfo namedtuples, where each tuple contains:
+    Return list of MarkdownLinkInfo, where each dict contains:
     - `line_no` - line number (1-based)
     - `url` - link URL
     - `text` - link text
@@ -347,17 +347,17 @@ def replace_markdown_links(
 
 
 # HTML links
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 def extract_html_links(lines: list[str]) -> list[HtmlLinkInfo]:
     """
     Extract all HTML links from the given lines.
 
-    Return list of HtmlLinkInfo namedtuples, where each tuple contains:
+    Return list of HtmlLinkInfo, where each dict contains:
     - `line_no` - line number (1-based)
     - `full_tag` - full HTML link tag
-    - `attributes` - list of HTMLLinkAttribute namedtuples (name, quote, value)
+    - `attributes` - list of HTMLLinkAttribute (name, quote, value)
     - `text` - link text
     """
 
@@ -465,7 +465,7 @@ def replace_html_links(
 
 
 # Multiline code blocks
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 def get_code_block_lang(line: str) -> str:
@@ -640,7 +640,7 @@ def replace_multiline_code_blocks_in_text(
     text: list[str],
     code_blocks: list[MultilineCodeBlockInfo],
     original_code_blocks: list[MultilineCodeBlockInfo],
-) -> list[MultilineCodeBlockInfo]:
+) -> list[str]:
     """
     Update each code block in `text` with the corresponding code block from
     `original_code_blocks` with comments taken from `code_blocks`.
@@ -666,7 +666,7 @@ def replace_multiline_code_blocks_in_text(
 
 
 # All checks
-# -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 
 
 def check_translation(
