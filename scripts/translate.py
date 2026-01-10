@@ -25,7 +25,7 @@ non_translated_sections = (
     "contributing.md",
 )
 
-general_prompt_path = Path(__file__).absolute().parent / "llm-general-prompt.md"
+general_prompt_path = Path(__file__).absolute().parent / "general-llm-prompt.md"
 general_prompt = general_prompt_path.read_text(encoding="utf-8")
 
 app = typer.Typer()
