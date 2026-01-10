@@ -5,7 +5,14 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
-pytestmark = pytest.mark.skipif(sys.platform == "win32", reason="Skipping on Windows")
+skip_on_windows = pytest.mark.skipif(
+    sys.platform == "win32", reason="Skipping on Windows"
+)
+
+
+def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
+    for item in items:
+        item.add_marker(skip_on_windows)
 
 
 @pytest.fixture(name="runner")
