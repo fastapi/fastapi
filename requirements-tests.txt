@@ -16,3 +16,6 @@ pytest-codspeed==4.2.0
 # types
 types-ujson ==5.10.0.20240515
 types-orjson ==3.6.2
+
+# django
+django ==5.0.6
