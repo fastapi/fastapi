@@ -34,7 +34,7 @@ try:
             time.sleep(1)
     else:
         raise RuntimeError("Server did not start in time")
-            
+
     with sync_playwright() as playwright:
         run(playwright)
 finally:
