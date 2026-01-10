@@ -1,8 +1,11 @@
 import shutil
+import sys
 from pathlib import Path
 
 import pytest
 from typer.testing import CliRunner
+
+pytestmark = pytest.mark.skipif(sys.platform == "win32", reason="Skipping on Windows")
 
 
 @pytest.fixture(name="runner")
