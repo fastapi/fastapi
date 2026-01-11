@@ -152,14 +152,7 @@ class HTTPBasic(HTTPBase):
                 """
             ),
         ] = None,
-        realm: Annotated[
-            Optional[str],
-            Doc(
-                """
-                HTTP Basic authentication realm.
-                """
-            ),
-        ] = None,
+        realm: Annotated[str, Doc("HTTP Basic authentication realm.")] = "fastapi",
         description: Annotated[
             Optional[str],
             Doc(
@@ -197,9 +190,7 @@ class HTTPBasic(HTTPBase):
         self.auto_error = auto_error
 
     def make_authenticate_headers(self) -> dict[str, str]:
-        if self.realm:
-            return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
-        return {"WWW-Authenticate": "Basic"}
+        return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
 
     async def __call__(  # type: ignore
         self, request: Request
