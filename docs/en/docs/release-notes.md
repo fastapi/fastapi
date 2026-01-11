@@ -22,6 +22,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump actions/upload-artifact from 5 to 6. PR [#14525](https://github.com/fastapi/fastapi/pull/14525) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/download-artifact from 6 to 7. PR [#14526](https://github.com/fastapi/fastapi/pull/14526) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Tweak CI input names. PR [#14688](https://github.com/fastapi/fastapi/pull/14688) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Refactor translation script to allow committing in place. PR [#14687](https://github.com/fastapi/fastapi/pull/14687) by [@tiangolo](https://github.com/tiangolo).
