@@ -1,45 +1,45 @@
-# 子依赖项
+# 子依赖项 { #sub-dependencies }
 
-FastAPI 支持创建含**子依赖项**的依赖项。
+你可以创建包含**子依赖项**的依赖项。
 
-并且，可以按需声明任意**深度**的子依赖项嵌套层级。
+它们可以按需嵌套到任意**深度**。
 
-**FastAPI** 负责处理解析不同深度的子依赖项。
+**FastAPI** 会负责解析它们。
 
-### 第一层依赖项
+## 第一层依赖项「dependable」 { #first-dependency-dependable }
 
-下列代码创建了第一层依赖项：
+你可以像这样创建第一个依赖项（「dependable」）：
 
-{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
 
-这段代码声明了类型为 `str` 的可选查询参数 `q`，然后返回这个查询参数。
+它声明了一个可选查询参数 `q`，类型为 `str`，然后直接返回它。
 
-这个函数很简单（不过也没什么用），但却有助于让我们专注于了解子依赖项的工作方式。
+这很简单（不是很有用），但能帮助我们专注于子依赖项是如何工作的。
 
-### 第二层依赖项
+## 第二层依赖项：「dependable」与「dependant」 { #second-dependency-dependable-and-dependant }
 
-接下来，创建另一个依赖项函数，并同时用该依赖项自身再声明一个依赖项（所以这也是一个「依赖项」）：
+然后你可以创建另一个依赖项函数（一个「dependable」），它同时声明了它自己的依赖项（所以它也是一个「dependant」）：
 
-{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
 
-这里重点说明一下声明的参数：
+我们来重点看看声明的参数：
 
-* 尽管该函数自身是依赖项，但还声明了另一个依赖项（它「依赖」于其他对象）
-    * 该函数依赖 `query_extractor`, 并把 `query_extractor` 的返回值赋给参数 `q`
-* 同时，该函数还声明了类型是 `str` 的可选 cookie（`last_query`）
-    * 用户未提供查询参数 `q` 时，则使用上次使用后保存在 cookie 中的查询
+* 尽管这个函数本身是一个依赖项（「dependable」），它也声明了另一个依赖项（它会「依赖」于其他东西）。
+    * 它依赖 `query_extractor`，并将它返回的值赋给参数 `q`。
+* 它还声明了一个可选的 `last_query` cookie，类型为 `str`。
+    * 如果用户没有提供任何查询参数 `q`，我们就使用上一次使用过的查询，并且我们之前把它保存在 cookie 里了。
 
-### 使用依赖项
+## 使用依赖项 { #use-the-dependency }
 
-接下来，就可以使用依赖项：
+然后我们可以这样使用该依赖项：
 
-{* ../../docs_src/dependencies/tutorial005.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
 /// info | 信息
 
-注意，这里在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor` 。
+注意，我们在*路径操作函数*中只声明了一个依赖项，即 `query_or_cookie_extractor`。
 
-但 **FastAPI** 必须先处理 `query_extractor`，以便在调用 `query_or_cookie_extractor` 时使用 `query_extractor` 返回的结果。
+但 **FastAPI** 知道它必须先解析 `query_extractor`，并在调用 `query_or_cookie_extractor` 时把结果传给它。
 
 ///
 
@@ -54,33 +54,52 @@ read_query["/items/"]
 query_extractor --> query_or_cookie_extractor --> read_query
 ```
 
-## 多次使用同一个依赖项
+## 多次使用同一个依赖项 { #using-the-same-dependency-multiple-times }
 
-如果在同一个*路径操作* 多次声明了同一个依赖项，例如，多个依赖项共用一个子依赖项，**FastAPI** 在处理同一请求时，只调用一次该子依赖项。
+如果你的某个依赖项在同一个*路径操作*中被声明了多次，例如，多个依赖项有一个共同的子依赖项，**FastAPI** 会知道每个请求只调用一次该子依赖项。
 
-FastAPI 不会为同一个请求多次调用同一个依赖项，而是把依赖项的返回值进行<abbr title="一个实用程序/系统来存储计算/生成的值，以便重用它们，而不是再次计算它们。">「缓存」</abbr>，并把它传递给同一请求中所有需要使用该返回值的「依赖项」。
+并且它会将返回值保存在一个 <abbr title="一个实用程序/系统来存储计算/生成的值，以便重用它们，而不是再次计算它们。">"cache"</abbr> 中，并把它传递给该请求中所有需要它的「dependants」，而不是为同一个请求多次调用同一个依赖项。
 
-在高级使用场景中，如果不想使用「缓存」值，而是为需要在同一请求的每一步操作（多次）中都实际调用依赖项，可以把 `Depends` 的参数 `use_cache` 的值设置为 `False` :
+在更高级的场景中，如果你知道你需要在同一个请求中的每一步（可能多次）都调用该依赖项，而不是使用「cached」值，你可以在使用 `Depends` 时设置参数 `use_cache=False`：
+
+//// tab | Python 3.9+
+
+```Python hl_lines="1"
+async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+    return {"fresh_value": fresh_value}
+```
+
+////
+
+//// tab | Python 3.9+ 非 Annotated
+
+/// tip | 提示
+
+如果可能，优先使用 `Annotated` 版本。
+
+///
 
 ```Python hl_lines="1"
 async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False)):
     return {"fresh_value": fresh_value}
 ```
 
-## 小结
+////
 
-千万别被本章里这些花里胡哨的词藻吓倒了，其实**依赖注入**系统非常简单。
+## 小结 { #recap }
 
-依赖注入无非是与*路径操作函数*一样的函数罢了。
+除了这里使用的各种花哨说法外，**依赖注入**系统其实相当简单。
 
-但它依然非常强大，能够声明任意嵌套深度的「图」或树状的依赖结构。
+它就是一些看起来和*路径操作函数*一样的函数。
+
+但它仍然非常强大，并允许你声明任意深度嵌套的依赖「图」（树）。
 
 /// tip | 提示
 
-这些简单的例子现在看上去虽然没有什么实用价值，
+对于这些简单的例子来说，这一切看起来可能没那么有用。
 
-但在**安全**一章中，您会了解到这些例子的用途，
+但你会在关于**安全**的章节中看到它有多么有用。
 
-以及这些例子所能节省的代码量。
+你也会看到它能为你节省多少代码。
 
 ///

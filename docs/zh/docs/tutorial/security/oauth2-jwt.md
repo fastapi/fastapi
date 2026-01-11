@@ -1,34 +1,36 @@
-# OAuth2 实现密码哈希与 Bearer  JWT 令牌验证
+# 使用密码（及哈希）的 OAuth2，使用 JWT 令牌的 Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-至此，我们已经编写了所有安全流，本章学习如何使用 <abbr title="JSON Web Tokens">JWT</abbr> 令牌（Token）和安全密码哈希（Hash）实现真正的安全机制。
+现在我们已经完成了所有安全流，让我们使用 <abbr title="JSON Web Tokens">JWT</abbr> 令牌和安全的密码哈希，让应用真正变得安全。
 
-本章的示例代码真正实现了在应用的数据库中保存哈希密码等功能。
+这段代码是你可以在应用中实际使用的代码，把密码哈希保存到数据库中等。
 
-接下来，我们紧接上一章，继续完善安全机制。
+我们将从上一章结束的地方继续，并逐步完善。
 
-## JWT 简介
+## 关于 JWT { #about-jwt }
 
-JWT 即**JSON 网络令牌**（JSON Web Tokens）。
+JWT 的意思是 “JSON Web Tokens”。
 
-JWT 是一种将 JSON 对象编码为没有空格，且难以理解的长字符串的标准。JWT 的内容如下所示：
+它是一种标准，用于将 JSON 对象编码为一个没有空格的、很长且紧凑的字符串。看起来像这样：
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 
-JWT 字符串没有加密，任何人都能用它恢复原始信息。
+它不是加密的，所以任何人都可以从内容中恢复信息。
 
-但 JWT 使用了签名机制。接受令牌时，可以用签名校验令牌。
+但它是签名的。所以，当你收到一个你自己签发的令牌时，你可以验证它确实是由你签发的。
 
-使用 JWT 创建有效期为一周的令牌。第二天，用户持令牌再次访问时，仍为登录状态。
+这样，你可以创建一个过期时间为，比如 1 周的令牌。然后当用户第二天带着令牌回来时，你就知道该用户仍然处于登录状态。
 
-令牌于一周后过期，届时，用户身份验证就会失败。只有再次登录，才能获得新的令牌。如果用户（或第三方）篡改令牌的过期时间，因为签名不匹配会导致身份验证失败。
+一周后，令牌会过期，用户将不会被授权，并且必须再次登录以获得新令牌。而如果用户（或第三方）尝试修改令牌来改变过期时间，你也能发现，因为签名将不匹配。
 
-如需深入了解 JWT 令牌，了解它的工作方式，请参阅 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
+如果你想体验 JWT 令牌并看看它们如何工作，请查看 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>。
 
-## 安装 `PyJWT`
+## 安装 `PyJWT` { #install-pyjwt }
 
-安装 `PyJWT`，在 Python 中生成和校验 JWT 令牌：
+我们需要安装 `PyJWT`，以便在 Python 中生成并校验 JWT 令牌。
+
+确保你创建一个[虚拟环境](../../virtual-environments.md){.internal-link target=_blank}，激活它，然后安装 `pyjwt`：
 
 <div class="termy">
 
@@ -40,42 +42,42 @@ $ pip install pyjwt
 
 </div>
 
-/// info | 说明
+/// info | 信息
 
-如果您打算使用类似 RSA 或 ECDSA 的数字签名算法，您应该安装加密库依赖项 `pyjwt[crypto]`。
+如果你计划使用类似 RSA 或 ECDSA 的数字签名算法，你应该安装 cryptography 库依赖 `pyjwt[crypto]`。
 
-您可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 获得更多信息。
+你可以在 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> 中阅读更多内容。
 
 ///
 
-## 密码哈希
+## 密码哈希 { #password-hashing }
 
-**哈希**是指把特定内容（本例中为密码）转换为乱码形式的字节序列（其实就是字符串）。
+“哈希（Hashing）”指的是把某些内容（本例中是密码）转换为一串字节（也就是一个字符串），看起来像乱码。
 
-每次传入完全相同的内容时（比如，完全相同的密码），返回的都是完全相同的乱码。
+每次传入完全相同的内容（完全相同的密码），你都会得到完全相同的乱码。
 
-但这个乱码无法转换回传入的密码。
+但你无法从乱码反推回原始密码。
 
-### 为什么使用密码哈希
+### 为什么要使用密码哈希 { #why-use-password-hashing }
 
-原因很简单，假如数据库被盗，窃贼无法获取用户的明文密码，得到的只是哈希值。
+如果你的数据库被盗，盗贼拿不到用户的明文密码，只能拿到哈希。
 
-这样一来，窃贼就无法在其它应用中使用窃取的密码（要知道，很多用户在所有系统中都使用相同的密码，风险超大）。
+因此，盗贼就无法尝试在其他系统中使用该密码（很多用户在所有地方都用同一个密码，这会很危险）。
 
-## 安装 `passlib`
+## 安装 `pwdlib` { #install-pwdlib }
 
-Passlib 是处理密码哈希的 Python 包。
+pwdlib 是一个很棒的 Python 包，用于处理密码哈希。
 
-它支持很多安全哈希算法及配套工具。
+它支持很多安全的哈希算法以及相关的工具。
 
-本教程推荐的算法是 **Bcrypt**。
+推荐的算法是 “Argon2”。
 
-因此，请先安装附带 Bcrypt 的 PassLib：
+确保你创建一个[虚拟环境](../../virtual-environments.md){.internal-link target=_blank}，激活它，然后安装带 Argon2 的 pwdlib：
 
 <div class="termy">
 
 ```console
-$ pip install passlib[bcrypt]
+$ pip install "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -84,51 +86,51 @@ $ pip install passlib[bcrypt]
 
 /// tip | 提示
 
-`passlib` 甚至可以读取 Django、Flask 的安全插件等工具创建的密码。
+使用 `pwdlib`，你甚至可以配置它，使其能够读取由 **Django**、某个 **Flask** 安全插件或其他许多工具创建的密码。
 
-例如，把 Django 应用的数据共享给 FastAPI 应用的数据库。或利用同一个数据库，可以逐步把应用从 Django 迁移到 FastAPI。
+所以，例如，你可以让 FastAPI 应用和 Django 应用共享同一个数据库中的数据。或者使用同一个数据库，逐步迁移 Django 应用。
 
-并且，用户可以同时从 Django 应用或 FastAPI 应用登录。
+并且你的用户可以同时从 Django 应用或 **FastAPI** 应用登录。
 
 ///
 
-## 密码哈希与校验
+## 哈希并校验密码 { #hash-and-verify-the-passwords }
 
-从 `passlib` 导入所需工具。
+从 `pwdlib` 导入我们需要的工具。
 
-创建用于密码哈希和身份校验的 PassLib **上下文**。
+用推荐设置创建一个 PasswordHash 实例——它将用于对密码进行哈希与校验。
 
 /// tip | 提示
 
-PassLib 上下文还支持使用不同哈希算法的功能，包括只能校验的已弃用旧算法等。
+pwdlib 也支持 bcrypt 哈希算法，但不包含 legacy 算法——若需要处理过时的哈希，建议使用 passlib 库。
 
-例如，用它读取和校验其它系统（如 Django）生成的密码，但要使用其它算法，如 Bcrypt，生成新的哈希密码。
+例如，你可以用它读取并校验由其他系统（如 Django）生成的密码，但用 Argon2 或 Bcrypt 之类的不同算法来哈希任何新密码。
 
-同时，这些功能都是兼容的。
+并且同时与它们全部兼容。
 
 ///
 
-接下来，创建三个工具函数，其中一个函数用于哈希用户的密码。
+创建一个工具函数，用来对来自用户的密码进行哈希。
 
-第一个函数用于校验接收的密码是否匹配存储的哈希值。
+再创建一个工具函数，用来校验接收到的密码是否与存储的哈希匹配。
 
-第三个函数用于身份验证，并返回用户。
+再创建一个函数，用来验证并返回用户。
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
 
-/// note | 笔记
+/// note | 注意
 
-查看新的（伪）数据库 `fake_users_db`，就能看到哈希后的密码：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`。
+如果你查看新的（伪）数据库 `fake_users_db`，你会看到现在哈希后的密码长这样：`"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`。
 
 ///
 
-## 处理 JWT 令牌
+## 处理 JWT 令牌 { #handle-jwt-tokens }
 
 导入已安装的模块。
 
-创建用于 JWT 令牌签名的随机密钥。
+创建一个随机密钥，用来签名 JWT 令牌。
 
-使用以下命令，生成安全的随机密钥：
+要生成一个安全的随机密钥，使用命令：
 
 <div class="termy">
 
@@ -140,81 +142,82 @@ $ openssl rand -hex 32
 
 </div>
 
-然后，把生成的密钥复制到变量**SECRET_KEY**，注意，不要使用本例所示的密钥。
+然后把输出复制到变量 `SECRET_KEY`（不要使用示例中的这个）。
 
-创建指定 JWT 令牌签名算法的变量 **ALGORITHM**，本例中的值为 `"HS256"`。
+创建一个变量 `ALGORITHM`，用于指定 JWT 令牌签名算法，并将其设置为 `"HS256"`。
 
-创建设置令牌过期时间的变量。
+创建一个变量，用于令牌的过期时间。
 
-定义令牌端点响应的 Pydantic 模型。
+定义一个 Pydantic Model，用于 token 端点的响应。
 
-创建生成新的访问令牌的工具函数。
-
-{* ../../docs_src/security/tutorial004.py hl[6,12:14,28:30,78:86] *}
-
-## 更新依赖项
-
-更新 `get_current_user` 以接收与之前相同的令牌，但这里用的是 JWT 令牌。
-
-解码并校验接收到的令牌，然后，返回当前用户。
-
-如果令牌无效，则直接返回 HTTP 错误。
+创建一个工具函数，用于生成新的访问令牌。
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
 
-## 更新 `/token` *路径操作*
+## 更新依赖项 { #update-the-dependencies }
 
-用令牌过期时间创建 `timedelta` 对象。
+更新 `get_current_user`，让它接收和之前相同的令牌，但这次使用的是 JWT 令牌。
 
-创建并返回真正的 JWT 访问令牌。
+解码接收到的令牌，验证它，然后返回当前用户。
+
+如果令牌无效，立刻返回一个 HTTP 错误。
+
+{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+
+## 更新 `/token` *路径操作* { #update-the-token-path-operation }
+
+使用令牌的过期时间创建一个 `timedelta`。
+
+创建一个真正的 JWT 访问令牌并返回。
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
-### JWT `sub` 的技术细节
+### 关于 JWT “subject” `sub` 的技术细节 { #technical-details-about-the-jwt-subject-sub }
 
-JWT 规范还包括 `sub` 键，值是令牌的主题。
+JWT 规范说有一个键 `sub`，表示令牌的 subject。
 
-该键是可选的，但要把用户标识放在这个键里，所以本例使用了该键。
+它是可选的，但你会在这里放用户的标识，所以我们在这里使用它。
 
-除了识别用户与许可用户在 API 上直接执行操作之外，JWT 还可能用于其它事情。
+JWT 除了用于识别用户并允许他们直接对你的 API 执行操作外，还可能用于其他事情。
 
-例如，识别**汽车**或**博客**。
+例如，你可以识别一辆“车”或一篇“博客文章”。
 
-接着，为实体添加权限，比如**驾驶**（汽车）或**编辑**（博客）。
+然后你可以为该实体添加权限，比如“驾驶”（车）或“编辑”（博客）。
 
-然后，把 JWT 令牌交给用户（或机器人），他们就可以执行驾驶汽车，或编辑博客等操作。无需注册账户，只要有 API 生成的 JWT 令牌就可以。
+然后，你可以把 JWT 令牌交给某个用户（或 bot），他们就可以用它来执行那些动作（驾驶车，或编辑博客文章），甚至不需要有账号，只要有你的 API 为此生成的 JWT 令牌即可。
 
-同理，JWT 可以用于更复杂的场景。
+基于这些思路，JWT 可以用于更复杂得多的场景。
 
-在这些情况下，多个实体的 ID 可能是相同的，以 ID  `foo` 为例，用户的 ID 是 `foo`，车的 ID 是 `foo`，博客的 ID 也是  `foo`。
+在这些情况下，其中多个实体可能拥有相同的 ID，比如 `foo`（用户 `foo`、车 `foo`、博客文章 `foo`）。
 
-为了避免 ID 冲突，在给用户创建 JWT 令牌时，可以为 `sub` 键的值加上前缀，例如 `username:`。因此，在本例中，`sub` 的值可以是：`username:johndoe`。
+因此，为了避免 ID 冲突，在为用户创建 JWT 令牌时，你可以给 `sub` 键的值加上前缀，例如 `username:`。所以在这个例子中，`sub` 的值可以是：`username:johndoe`。
 
-注意，划重点，`sub` 键在整个应用中应该只有一个唯一的标识符，而且应该是字符串。
+需要记住的重要一点是：`sub` 键应该在整个应用中具有唯一标识符，并且它应该是一个字符串。
 
-## 检查
+## 检查 { #check-it }
 
-运行服务器并访问文档： <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+运行服务器并访问文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
-可以看到如下用户界面：
+你会看到这样的用户界面：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image07.png">
+<img src="/img/tutorial/security/image07.png">
 
-用与上一章同样的方式实现应用授权。
+用与之前相同的方式对应用进行授权。
 
 使用如下凭证：
 
-用户名: `johndoe` 密码: `secret`
+Username: `johndoe`
+Password: `secret`
 
-/// check | 检查
+/// check
 
-注意，代码中没有明文密码**`secret`**，只保存了它的哈希值。
+注意，代码中没有任何地方出现明文密码 "`secret`"，我们只有哈希后的版本。
 
 ///
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image08.png">
+<img src="/img/tutorial/security/image08.png">
 
-调用 `/users/me/` 端点，收到下面的响应：
+调用端点 `/users/me/`，你会得到如下响应：
 
 ```JSON
 {
@@ -225,46 +228,46 @@ JWT 规范还包括 `sub` 键，值是令牌的主题。
 }
 ```
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image09.png">
+<img src="/img/tutorial/security/image09.png">
 
-打开浏览器的开发者工具，查看数据是怎么发送的，而且数据里只包含了令牌，只有验证用户的第一个请求才发送密码，并获取访问令牌，但之后不会再发送密码：
+如果你打开开发者工具，你会看到发送的数据只包含令牌；密码只会在第一个请求中发送，用于验证用户并获取访问令牌，之后不会再发送：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image10.png">
+<img src="/img/tutorial/security/image10.png">
 
-/// note | 笔记
+/// note | 注意
 
-注意，请求中 `Authorization` 响应头的值以 `Bearer` 开头。
+注意请求头 `Authorization`，其值以 `Bearer ` 开头。
 
 ///
 
-## `scopes` 高级用法
+## `scopes` 的高级用法 { #advanced-usage-with-scopes }
 
-OAuth2 支持**`scopes`**（作用域）。
+OAuth2 有 “scopes” 的概念。
 
-**`scopes`**为 JWT 令牌添加指定权限。
+你可以用它们为 JWT 令牌添加一组特定的权限。
 
-让持有令牌的用户或第三方在指定限制条件下与 API 交互。
+然后你可以把这个令牌直接给用户或第三方，让他们在一组限制下与你的 API 交互。
 
-**高级用户指南**中将介绍如何使用 `scopes`，及如何把 `scopes` 集成至 **FastAPI**。
+你可以在之后的 **高级用户指南** 中学习如何使用它们，以及它们如何集成到 **FastAPI** 中。
 
-## 小结
+## 小结 { #recap }
 
-至此，您可以使用 OAuth2 和 JWT 等标准配置安全的 **FastAPI** 应用。
+通过目前看到的内容，你可以使用 OAuth2 和 JWT 等标准来搭建一个安全的 **FastAPI** 应用。
 
-几乎在所有框架中，处理安全问题很快都会变得非常复杂。
+在几乎任何框架中，处理安全都会很快变成一个相当复杂的话题。
 
-有些包为了简化安全流，不得不在数据模型、数据库和功能上做出妥协。而有些过于简化的软件包其实存在了安全隐患。
+许多大幅简化它的包，不得不在数据模型、数据库以及可用功能上做出大量妥协。而其中一些把事情简化过头的包，实际上底层存在安全缺陷。
 
 ---
 
-**FastAPI** 不向任何数据库、数据模型或工具做妥协。
+**FastAPI** 不会在任何数据库、数据模型或工具上做妥协。
 
-开发者可以灵活选择最适合项目的安全机制。
+它给了你充分的灵活性，让你选择最适合你项目的方案。
 
-还可以直接使用 `passlib` 和 `PyJWT` 等维护良好、使用广泛的包，这是因为 **FastAPI** 不需要任何复杂机制，就能集成外部的包。
+并且你可以直接使用很多维护良好且广泛使用的包，比如 `pwdlib` 和 `PyJWT`，因为 **FastAPI** 不需要任何复杂机制就能集成外部包。
 
-而且，**FastAPI** 还提供了一些工具，在不影响灵活、稳定和安全的前提下，尽可能地简化安全机制。
+但它也提供了工具，尽可能简化这一过程，同时不牺牲灵活性、健壮性或安全性。
 
-**FastAPI** 还支持以相对简单的方式，使用 OAuth2 等安全、标准的协议。
+并且你可以相对简单地使用并实现安全的标准协议，比如 OAuth2。
 
-**高级用户指南**中详细介绍了 OAuth2**`scopes`**的内容，遵循同样的标准，实现更精密的权限系统。OAuth2 的作用域是脸书、谷歌、GitHub、微软、推特等第三方身份验证应用使用的机制，让用户授权第三方应用与 API 交互。
+你可以在 **高级用户指南** 中了解更多关于如何使用 OAuth2 “scopes” 的内容，以便在遵循相同标准的前提下实现更细粒度的权限系统。带 scopes 的 OAuth2 是许多大型认证服务商使用的机制，例如 Facebook、Google、GitHub、Microsoft、X（Twitter）等，用来授权第三方应用代表用户与其 API 交互。

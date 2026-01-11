@@ -1,138 +1,138 @@
-# OAuth2 实现简单的 Password 和 Bearer 验证
+# OAuth2 实现简单的 Password 和 Bearer 验证 { #simple-oauth2-with-password-and-bearer }
 
-本章添加上一章示例中欠缺的部分，实现完整的安全流。
+现在，让我们在上一章的基础上，补全缺失的部分，以获得完整的安全流程。
 
-## 获取 `username` 和 `password`
+## 获取 `username` 和 `password` { #get-the-username-and-password }
 
-首先，使用 **FastAPI** 安全工具获取 `username` 和 `password`。
+我们将使用 **FastAPI** 的安全工具获取 `username` 和 `password`。
 
-OAuth2 规范要求使用**密码流**时，客户端或用户必须以表单数据形式发送 `username` 和 `password` 字段。
+OAuth2 规定，当使用（我们正在使用的）“password flow”时，客户端/用户必须以表单数据的形式发送 `username` 和 `password` 字段。
 
-并且，这两个字段必须命名为 `username` 和 `password` ，不能使用 `user-name` 或 `email` 等其它名称。
+并且规范要求字段必须这样命名。所以 `user-name` 或 `email` 都不能用。
 
-不过也不用担心，前端仍可以显示终端用户所需的名称。
+不过别担心，你仍然可以在前端按你希望的方式向最终用户展示。
 
-数据库模型也可以使用所需的名称。
+你的数据库模型也可以使用任何你想要的其它名称。
 
-但对于登录*路径操作*，则要使用兼容规范的 `username` 和 `password`，（例如，实现与 API 文档集成）。
+但对于登录*路径操作*，我们需要使用这些名称，才能兼容规范（并能够例如使用集成的 API 文档系统）。
 
-该规范要求必须以表单数据形式发送 `username` 和 `password`，因此，不能使用 JSON 对象。
+该规范还规定 `username` 和 `password` 必须以表单数据形式发送（因此，这里不能用 JSON）。
 
-### `Scope`（作用域）
+### `scope` { #scope }
 
-OAuth2 还支持客户端发送**`scope`**表单字段。
+规范还说，客户端可以发送另一个表单字段 “`scope`”。
 
-虽然表单字段的名称是 `scope`（单数），但实际上，它是以空格分隔的，由多个**scope**组成的长字符串。
+表单字段名是 `scope`（单数），但它实际上是一个长字符串，由用空格分隔的多个 “scopes” 组成。
 
-**作用域**只是不带空格的字符串。
+每个 “scope” 只是一个字符串（不包含空格）。
 
-常用于声明指定安全权限，例如：
+它们通常用于声明特定的安全权限，例如：
 
-* 常见用例为，`users:read` 或 `users:write`
-* 脸书和 Instagram 使用 `instagram_basic`
-* 谷歌使用 `https://www.googleapis.com/auth/drive`
+* `users:read` 或 `users:write` 是常见示例。
+* Facebook / Instagram 使用 `instagram_basic`。
+* Google 使用 `https://www.googleapis.com/auth/drive`。
 
-/// info | 说明
+/// info | 信息
 
-OAuth2 中，**作用域**只是声明指定权限的字符串。
+在 OAuth2 中，“scope” 只是一个声明所需特定权限的字符串。
 
-是否使用冒号 `:` 等符号，或是不是 URL 并不重要。
+它是否包含 `:` 等其它字符，或者它是不是 URL，都无关紧要。
 
-这些细节只是特定的实现方式。
+这些细节是具体实现相关的。
 
-对 OAuth2 来说，都只是字符串而已。
+对 OAuth2 来说，它们都只是字符串。
 
 ///
 
-## 获取 `username` 和 `password` 的代码
+## 获取 `username` 和 `password` 的代码 { #code-to-get-the-username-and-password }
 
-接下来，使用 **FastAPI** 工具获取用户名与密码。
+现在，让我们使用 **FastAPI** 提供的工具来处理这个问题。
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
-首先，导入 `OAuth2PasswordRequestForm`，然后，在 `/token` *路径操作* 中，用 `Depends` 把该类作为依赖项。
+首先，导入 `OAuth2PasswordRequestForm`，并在 `/token` 的*路径操作*中通过 `Depends` 将其作为依赖项使用：
 
-{* ../../docs_src/security/tutorial003.py hl[4,76] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
-`OAuth2PasswordRequestForm` 是用以下几项内容声明表单请求体的类依赖项：
+`OAuth2PasswordRequestForm` 是一个类依赖项，用来声明包含以下内容的表单请求体：
 
-* `username`
-* `password`
-* 可选的 `scope` 字段，由多个空格分隔的字符串组成的长字符串
-* 可选的 `grant_type`
+* `username`。
+* `password`。
+* 可选的 `scope` 字段，一个由用空格分隔的字符串组成的大字符串。
+* 可选的 `grant_type`。
 
 /// tip | 提示
 
-实际上，OAuth2 规范*要求* `grant_type` 字段使用固定值 `password`，但 `OAuth2PasswordRequestForm` 没有作强制约束。
+OAuth2 规范实际上*要求*字段 `grant_type` 必须是固定值 `password`，但 `OAuth2PasswordRequestForm` 并不会强制执行。
 
-如需强制使用固定值 `password`，则不要用 `OAuth2PasswordRequestForm`，而是用 `OAuth2PasswordRequestFormStrict`。
-
-///
-
-* 可选的 `client_id`（本例未使用）
-* 可选的 `client_secret`（本例未使用）
-
-/// info | 说明
-
-`OAuth2PasswordRequestForm` 与 `OAuth2PasswordBearer` 一样，都不是 FastAPI 的特殊类。
-
-**FastAPI** 把 `OAuth2PasswordBearer` 识别为安全方案。因此，可以通过这种方式把它添加至 OpenAPI。
-
-但 `OAuth2PasswordRequestForm` 只是可以自行编写的类依赖项，也可以直接声明 `Form` 参数。
-
-但由于这种用例很常见，FastAPI 为了简便，就直接提供了对它的支持。
+如果你需要强制执行，请使用 `OAuth2PasswordRequestFormStrict` 替代 `OAuth2PasswordRequestForm`。
 
 ///
 
-### 使用表单数据
+* 可选的 `client_id`（本例不需要）。
+* 可选的 `client_secret`（本例不需要）。
+
+/// info | 信息
+
+`OAuth2PasswordRequestForm` 并不是像 `OAuth2PasswordBearer` 那样的 **FastAPI** 特殊类。
+
+`OAuth2PasswordBearer` 会让 **FastAPI** 知道它是一个安全方案，所以会以这种方式被添加到 OpenAPI 中。
+
+但 `OAuth2PasswordRequestForm` 只是一个类依赖项，你本可以自己编写它，或者也可以直接声明 `Form` 参数。
+
+但由于这是一个常见用例，**FastAPI** 直接提供了它，让事情更简单。
+
+///
+
+### 使用表单数据 { #use-the-form-data }
 
 /// tip | 提示
 
-`OAuth2PasswordRequestForm` 类依赖项的实例没有以空格分隔的长字符串属性 `scope`，但它支持 `scopes` 属性，由已发送的 scope 字符串列表组成。
+依赖类 `OAuth2PasswordRequestForm` 的实例不会有包含空格分隔长字符串的 `scope` 属性，相反，它会有一个 `scopes` 属性，其中包含每个已发送 scope 的实际字符串列表。
 
-本例没有使用 `scopes`，但开发者也可以根据需要使用该属性。
+本例没有使用 `scopes`，但如果你需要，这个功能是存在的。
 
 ///
 
-现在，即可使用表单字段 `username`，从（伪）数据库中获取用户数据。
+现在，使用表单字段中的 `username`，从（伪）数据库中获取用户数据。
 
-如果不存在指定用户，则返回错误消息，提示**用户名或密码错误**。
+如果没有这个用户，我们就返回一个错误，提示 “Incorrect username or password”。
 
-本例使用 `HTTPException` 异常显示此错误：
+对于这个错误，我们使用异常 `HTTPException`：
 
-{* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-### 校验密码
+### 校验密码 { #check-the-password }
 
-至此，我们已经从数据库中获取了用户数据，但尚未校验密码。
+此时我们已经从数据库中获取到了用户数据，但还没有校验密码。
 
-接下来，首先将数据放入 Pydantic 的 `UserInDB` 模型。
+先把这些数据放到 Pydantic 的 `UserInDB` 模型中。
 
-注意：永远不要保存明文密码，本例暂时先使用（伪）哈希密码系统。
+你永远不应该保存明文密码，所以我们将使用（伪）密码哈希系统。
 
-如果密码不匹配，则返回与上面相同的错误。
+如果密码不匹配，我们返回同样的错误。
 
-#### 密码哈希
+#### 密码哈希 { #password-hashing }
 
-**哈希**是指，将指定内容（本例中为密码）转换为形似乱码的字节序列（其实就是字符串）。
+“Hashing”的意思是：把某些内容（本例中是密码）转换成一段看起来像乱码的字节序列（其实就是字符串）。
 
-每次传入完全相同的内容（比如，完全相同的密码）时，得到的都是完全相同的乱码。
+每次传入完全相同的内容（完全相同的密码）都会得到完全相同的乱码。
 
-但这个乱码无法转换回传入的密码。
+但你无法从乱码反推回原始密码。
 
-##### 为什么使用密码哈希
+##### 为什么使用密码哈希 { #why-use-password-hashing }
 
-原因很简单，假如数据库被盗，窃贼无法获取用户的明文密码，得到的只是哈希值。
+如果你的数据库被盗，窃贼拿不到用户的明文密码，只能拿到哈希值。
 
-这样一来，窃贼就无法在其它应用中使用窃取的密码，要知道，很多用户在所有系统中都使用相同的密码，风险超大。
+因此，窃贼就无法尝试在其它系统中使用相同的密码（因为很多用户在所有地方都用同一个密码，这会很危险）。
 
-{* ../../docs_src/security/tutorial003.py hl[80:83] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-#### 关于 `**user_dict`
+#### 关于 `**user_dict` { #about-user-dict }
 
-`UserInDB(**user_dict)` 是指：
+`UserInDB(**user_dict)` 的意思是：
 
-*直接把 `user_dict` 的键与值当作关键字参数传递，等效于：*
+*将 `user_dict` 的键和值直接作为键值参数传递，等价于：*
 
 ```Python
 UserInDB(
@@ -144,101 +144,101 @@ UserInDB(
 )
 ```
 
-/// info | 说明
+/// info | 信息
 
-`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#user_indict){.internal-link target=_blank}。
+关于 `**user_dict` 更完整的解释，请回看[**更多模型**的文档](../extra-models.md#about-user-in-dict){.internal-link target=_blank}。
 
 ///
 
-## 返回 Token
+## 返回 Token { #return-the-token }
 
 `token` 端点的响应必须是 JSON 对象。
 
-响应返回的内容应该包含 `token_type`。本例中用的是**Bearer**Token，因此， Token 类型应为**`bearer`**。
+它应该包含 `token_type`。在我们的例子中，因为使用的是 “Bearer” token，所以 token 类型应为 “`bearer`”。
 
-返回内容还应包含 `access_token` 字段，它是包含权限 Token 的字符串。
+并且它应该包含 `access_token`，其值是一个包含访问 token 的字符串。
 
-本例只是简单的演示，返回的 Token 就是 `username`，但这种方式极不安全。
-
-/// tip | 提示
-
-下一章介绍使用哈希密码和 <abbr title="JSON Web Tokens">JWT</abbr> Token 的真正安全机制。
-
-但现在，仅关注所需的特定细节。
-
-///
-
-{* ../../docs_src/security/tutorial003.py hl[85] *}
+对于这个简单示例，我们会完全不安全地直接把同一个 `username` 作为 token 返回。
 
 /// tip | 提示
 
-按规范的要求，应像本示例一样，返回带有 `access_token` 和 `token_type` 的 JSON 对象。
+在下一章中，你会看到真正安全的实现，包括密码哈希和 <abbr title="JSON Web Tokens">JWT</abbr> tokens。
 
-这是开发者必须在代码中自行完成的工作，并且要确保使用这些 JSON 的键。
-
-这几乎是唯一需要开发者牢记在心，并按规范要求正确执行的事。
-
-**FastAPI** 则负责处理其它的工作。
+但现在，让我们先专注于我们需要的特定细节。
 
 ///
 
-## 更新依赖项
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
-接下来，更新依赖项。
+/// tip | 提示
 
-使之仅在当前用户为激活状态时，才能获取 `current_user`。
+按规范要求，你应该像本例一样返回包含 `access_token` 和 `token_type` 的 JSON。
 
-为此，要再创建一个依赖项 `get_current_active_user`，此依赖项以 `get_current_user` 依赖项为基础。
+这是你必须在代码中自己完成的事情，并确保使用这些 JSON 键。
 
-如果用户不存在，或状态为未激活，这两个依赖项都会返回 HTTP 错误。
+这几乎是唯一一个你需要自己记住并正确完成、以符合规范的事情。
 
-因此，在端点中，只有当用户存在、通过身份验证、且状态为激活时，才能获得该用户：
-
-{* ../../docs_src/security/tutorial003.py hl[58:67,69:72,90] *}
-
-/// info | 说明
-
-此处返回值为 `Bearer` 的响应头 `WWW-Authenticate` 也是规范的一部分。
-
-任何 401**UNAUTHORIZED**HTTP（错误）状态码都应返回 `WWW-Authenticate` 响应头。
-
-本例中，因为使用的是 Bearer Token，该响应头的值应为 `Bearer`。
-
-实际上，忽略这个附加响应头，也不会有什么问题。
-
-之所以在此提供这个附加响应头，是为了符合规范的要求。
-
-说不定什么时候，就有工具用得上它，而且，开发者或用户也可能用得上。
-
-这就是遵循标准的好处……
+其余的部分，**FastAPI** 会为你处理。
 
 ///
 
-## 实际效果
+## 更新依赖项 { #update-the-dependencies }
 
-打开 API 文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+现在我们要更新依赖项。
 
-### 身份验证
+我们希望 *只有* 在该用户处于激活状态时，才能获取 `current_user`。
 
-点击**Authorize**按钮。
+所以，我们创建一个额外的依赖项 `get_current_active_user`，它又会使用 `get_current_user` 作为依赖项。
+
+如果用户不存在，或者处于未激活状态，这两个依赖项都会直接返回 HTTP 错误。
+
+因此，在端点中，只有当用户存在、成功通过身份验证并且处于激活状态时，我们才会获得该用户：
+
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+
+/// info | 信息
+
+我们在这里返回的、值为 `Bearer` 的额外响应头 `WWW-Authenticate` 也是规范的一部分。
+
+任何 HTTP（错误）状态码 401 “UNAUTHORIZED” 也应该返回 `WWW-Authenticate` 响应头。
+
+对于 bearer tokens（我们的情况），该响应头的值应为 `Bearer`。
+
+实际上，你可以跳过这个额外响应头，依然可以正常工作。
+
+但这里提供它是为了符合规范要求。
+
+另外，也可能有一些工具（现在或未来）会期望并使用它，这对你或你的用户（现在或未来）可能会有用。
+
+这就是标准的好处...
+
+///
+
+## 实际效果 { #see-it-in-action }
+
+打开交互式文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
+
+### 身份验证 { #authenticate }
+
+点击 “Authorize” 按钮。
 
 使用以下凭证：
 
-用户名：`johndoe`
+User: `johndoe`
 
-密码：`secret`
+Password: `secret`
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image04.png">
+<img src="/img/tutorial/security/image04.png">
 
-通过身份验证后，显示下图所示的内容：
+在系统中完成身份验证后，你将会看到如下内容：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image05.png">
+<img src="/img/tutorial/security/image05.png">
 
-### 获取当前用户数据
+### 获取你自己的用户数据 { #get-your-own-user-data }
 
-使用 `/users/me` 路径的 `GET` 操作。
+现在使用路径 `/users/me` 的 `GET` 操作。
 
-可以提取如下当前用户数据：
+你将获取到你的用户数据，例如：
 
 ```JSON
 {
@@ -250,9 +250,9 @@ UserInDB(
 }
 ```
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/security/image06.png">
+<img src="/img/tutorial/security/image06.png">
 
-点击小锁图标，注销后，再执行同样的操作，则会得到 HTTP 401 错误：
+如果你点击锁图标并退出登录，然后再次尝试相同的操作，你将得到一个 HTTP 401 错误：
 
 ```JSON
 {
@@ -260,17 +260,17 @@ UserInDB(
 }
 ```
 
-### 未激活用户
+### 未激活用户 { #inactive-user }
 
-测试未激活用户，输入以下信息，进行身份验证：
+现在试试一个未激活的用户，使用以下信息进行身份验证：
 
-用户名：`alice`
+User: `alice`
 
-密码：`secret2`
+Password: `secret2`
 
-然后，执行 `/users/me` 路径的 `GET` 操作。
+然后尝试使用路径 `/users/me` 的 `GET` 操作。
 
-显示下列**未激活用户**错误信息：
+你将得到一个 “Inactive user” 错误，例如：
 
 ```JSON
 {
@@ -278,12 +278,12 @@ UserInDB(
 }
 ```
 
-## 小结
+## 小结 { #recap }
 
-使用本章的工具实现基于 `username` 和 `password` 的完整 API 安全系统。
+现在你已经拥有了工具，可以为你的 API 实现一个基于 `username` 和 `password` 的完整安全系统。
 
-这些工具让安全系统兼容任何数据库、用户及数据模型。
+使用这些工具，你可以让安全系统与任何数据库以及任何用户或数据模型兼容。
 
-唯一欠缺的是，它仍然不是真的**安全**。
+唯一缺少的细节是：它实际上还不够“安全”。
 
-下一章，介绍使用密码哈希支持库与 <abbr title="JSON Web Tokens">JWT</abbr> 令牌实现真正的安全机制。
+在下一章中，你将看到如何使用安全的密码哈希库和 <abbr title="JSON Web Tokens">JWT</abbr> tokens。

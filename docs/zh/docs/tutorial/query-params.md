@@ -1,8 +1,8 @@
-# 查询参数
+# 查询参数 { #query-parameters }
 
 声明的参数不是路径参数时，路径操作函数会把该参数自动解释为**查询**参数。
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 查询字符串是键值对的集合，这些键值对位于 URL 的 `?` 之后，以 `&` 分隔。
 
@@ -12,7 +12,7 @@
 http://127.0.0.1:8000/items/?skip=0&limit=10
 ```
 
-……查询参数为：
+...查询参数为：
 
 * `skip`：值为 `0`
 * `limit`：值为 `10`
@@ -24,11 +24,11 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 所有应用于路径参数的流程也适用于查询参数：
 
 * （显而易见的）编辑器支持
-* 数据<abbr title="将来自 HTTP 请求的字符串转换为 Python 数据类型">**解析**</abbr>
+* 数据 <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
 * 数据校验
-* API 文档
+* 自动生成文档
 
-## 默认值
+## 默认值 { #defaults }
 
 查询参数不是路径的固定内容，它是可选的，还支持默认值。
 
@@ -52,18 +52,18 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 http://127.0.0.1:8000/items/?skip=20
 ```
 
-查询参数的值就是：
+函数接收的参数值就是：
 
 * `skip=20`：在 URL 中设定的值
 * `limit=10`：使用默认值
 
-## 可选参数
+## 可选参数 { #optional-parameters }
 
 同理，把默认值设为 `None` 即可声明**可选的**查询参数：
 
 {* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
-本例中，查询参数 `q` 是可选的，默认值为 `None`。
+本例中，函数参数 `q` 是可选的，默认值为 `None`。
 
 /// check | 检查
 
@@ -71,18 +71,9 @@ http://127.0.0.1:8000/items/?skip=20
 
 ///
 
-/// note | 笔记
-
-因为默认值为 `= None`，FastAPI 把 `q` 识别为可选参数。
-
-FastAPI 不使用 `Optional[str]` 中的 `Optional`（只使用 `str`），但 `Optional[str]` 可以帮助编辑器发现代码中的错误。
-
-///
-
-## 查询参数类型转换
+## 查询参数类型转换 { #query-parameter-type-conversion }
 
 参数还可以声明为 `bool` 类型，FastAPI 会自动转换参数类型：
-
 
 {* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
 
@@ -116,10 +107,10 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-或其它任意大小写形式（大写、首字母大写等），函数接收的 `short` 参数都是布尔值 `True`。值为 `False` 时也一样。
+或其它任意大小写形式（大写、首字母大写等），函数接收的 `short` 参数都是布尔值 `True`。否则为 `False`。
 
 
-## 多个路径和查询参数
+## 多个路径和查询参数 { #multiple-path-and-query-parameters }
 
 **FastAPI** 可以识别同时声明的多个路径参数和查询参数。
 
@@ -129,7 +120,7 @@ FastAPI 通过参数名进行检测：
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## 必选查询参数
+## 必选查询参数 { #required-query-parameters }
 
 为不是路径参数的参数声明默认值（至此，仅有查询参数），该参数就**不是必选**的了。
 
@@ -137,7 +128,7 @@ FastAPI 通过参数名进行检测：
 
 如果要把查询参数设置为**必选**，就不要声明默认值：
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 这里的查询参数 `needy` 是类型为 `str` 的必选查询参数。
 
@@ -147,20 +138,21 @@ FastAPI 通过参数名进行检测：
 http://127.0.0.1:8000/items/foo-item
 ```
 
-……因为路径中没有必选参数 `needy`，返回的响应中会显示如下错误信息：
+...因为路径中没有必选参数 `needy`，返回的响应中会显示如下错误信息：
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "query",
-                "needy"
-            ],
-            "msg": "field required",
-            "type": "value_error.missing"
-        }
-    ]
+  "detail": [
+    {
+      "type": "missing",
+      "loc": [
+        "query",
+        "needy"
+      ],
+      "msg": "Field required",
+      "input": null
+    }
+  ]
 }
 ```
 
@@ -170,7 +162,7 @@ http://127.0.0.1:8000/items/foo-item
 http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 ```
 
-……这样就正常了：
+...这样就正常了：
 
 ```JSON
 {
@@ -191,6 +183,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 提示
 
-还可以像在[路径参数](path-params.md#_8){.internal-link target=_blank} 中那样使用 `Enum`。
+还可以像在[路径参数](path-params.md#predefined-values){.internal-link target=_blank} 中那样使用 `Enum`。
 
 ///

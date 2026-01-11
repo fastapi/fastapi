@@ -1,13 +1,13 @@
-# 测试 WebSockets
+# 测试 WebSockets { #testing-websockets }
 
-测试 WebSockets 也使用 `TestClient`。
+你可以使用同一个 `TestClient` 来测试 WebSockets。
 
-为此，要在 `with` 语句中使用 `TestClient` 连接 WebSocket。
+为此，你需要在 `with` 语句中使用 `TestClient`，连接到 WebSocket：
 
-{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002_py39.py hl[27:31] *}
 
-/// note | 笔记
+/// note | 注意
 
-更多细节详见 <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">Starlette 官档 - 测试 WebSockets</a>。
+更多细节请查看 Starlette 关于 <a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">测试 WebSockets</a> 的文档。
 
 ///

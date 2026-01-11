@@ -1,195 +1,196 @@
-# 路径参数
+# 路径参数 { #path-parameters }
 
-FastAPI 支持使用 Python 字符串格式化语法声明**路径参数**（**变量**）：
+FastAPI 支持使用与 Python 格式化字符串相同的语法声明路径“参数”或“变量”：
 
-{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
 
-这段代码把路径参数 `item_id` 的值传递给路径函数的参数 `item_id`。
+路径参数 `item_id` 的值会作为参数 `item_id` 传递给你的函数。
 
-运行示例并访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，可获得如下响应：
+所以，如果你运行这个示例并访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，你将看到如下响应：
 
 ```JSON
 {"item_id":"foo"}
 ```
 
-## 声明路径参数的类型
+## 带类型的路径参数 { #path-parameters-with-types }
 
-使用 Python 标准类型注解，声明路径操作函数中路径参数的类型。
+你可以在函数中使用标准 Python 类型注解来声明路径参数的类型：
 
-{* ../../docs_src/path_params/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
 
-本例把 `item_id` 的类型声明为 `int`。
+在这个例子中，`item_id` 被声明为 `int`。
 
-/// check | 检查
+/// check
 
-类型声明将为函数提供错误检查、代码补全等编辑器支持。
+这会在你的函数内部提供编辑器支持，例如错误检查、代码补全等。
 
 ///
 
-## 数据<abbr title="也称为：序列化、解析">转换</abbr>
+## 数据<abbr title="also known as: serialization, parsing, marshalling - 也称为：序列化、解析、编组">转换</abbr> { #data-conversion }
 
-运行示例并访问 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，返回的响应如下：
+如果你运行这个示例并在浏览器中打开 <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>，你将看到如下响应：
 
 ```JSON
 {"item_id":3}
 ```
 
-/// check | 检查
+/// check
 
-注意，函数接收并返回的值是 `3`（ `int`），不是 `"3"`（`str`）。
+注意，你的函数接收（并返回）的值是 `3`，作为 Python 的 `int`，而不是字符串 `"3"`。
 
-**FastAPI** 通过类型声明自动<abbr title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">**解析**请求中的数据</abbr>。
+因此，有了这个类型声明，**FastAPI** 就会为你自动进行请求 <abbr title="converting the string that comes from an HTTP request into Python data - 将来自 HTTP 请求的字符串转换为 Python 数据">“parsing”</abbr>。
 
 ///
 
-## 数据校验
+## 数据校验 { #data-validation }
 
-通过浏览器访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，接收如下 HTTP 错误信息：
+但是，如果你在浏览器中访问 <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>，你将看到一个很友好的 HTTP 错误：
 
 ```JSON
 {
-    "detail": [
-        {
-            "loc": [
-                "path",
-                "item_id"
-            ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
-        }
-    ]
+  "detail": [
+    {
+      "type": "int_parsing",
+      "loc": [
+        "path",
+        "item_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "foo"
+    }
+  ]
 }
 ```
 
-这是因为路径参数 `item_id` 的值 （`"foo"`）的类型不是 `int`。
+这是因为路径参数 `item_id` 的值是 `"foo"`，它不是 `int`。
 
-值的类型不是 `int ` 而是浮点数（`float`）时也会显示同样的错误，比如： <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2。</a>
+如果你提供的是 `float` 而不是 `int`，也会出现同样的错误，例如：<a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
 
-/// check | 检查
+/// check
 
-**FastAPI** 使用 Python 类型声明实现了数据校验。
+所以，同样通过 Python 类型声明，**FastAPI** 会为你提供数据校验。
 
-注意，上面的错误清晰地指出了未通过校验的具体原因。
+注意，错误也清晰地指出了校验未通过的具体位置。
 
-这在开发调试与 API 交互的代码时非常有用。
+这在开发和调试与 API 交互的代码时非常有用。
 
 ///
 
-## 查看文档
+## 文档 { #documentation }
 
-访问 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>，查看自动生成的 API 文档：
+当你在浏览器中打开 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 时，你将看到自动生成的、可交互的 API 文档，例如：
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | 检查
+/// check
 
-还是使用 Python 类型声明，**FastAPI** 提供了（集成 Swagger UI 的）API 文档。
+同样，只通过这个 Python 类型声明，**FastAPI** 就会为你提供自动的、可交互的文档（集成 Swagger UI）。
 
-注意，路径参数的类型是整数。
+注意，路径参数被声明为整数。
 
 ///
 
-## 基于标准的好处，备选文档
+## 基于标准的好处，备选文档 { #standards-based-benefits-alternative-documentation }
 
-**FastAPI** 使用 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md" class="external-link" target="_blank">OpenAPI</a> 生成概图，所以能兼容很多工具。
+并且因为生成的 schema 来自 <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> 标准，所以有很多兼容工具。
 
-因此，**FastAPI** 还内置了 ReDoc 生成的备选 API 文档，可在此查看 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>：
+因此，**FastAPI** 本身也提供了一个备选的 API 文档（使用 ReDoc），你可以在 <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> 访问：
 
 <img src="/img/tutorial/path-params/image02.png">
 
-同样，还有很多兼容工具，包括多种语言的代码生成工具。
+同样，有很多兼容工具，包括适用于多种语言的代码生成工具。
 
-## Pydantic
+## Pydantic { #pydantic }
 
-FastAPI 充分地利用了 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 的优势，用它在后台校验数据。众所周知，Pydantic 擅长的就是数据校验。
+所有的数据校验都由 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 在底层完成，因此你能获得它的所有好处。你也可以放心交给它处理。
 
-同样，`str`、`float`、`bool` 以及很多复合数据类型都可以使用类型声明。
+你可以用同样的类型声明来声明 `str`、`float`、`bool` 以及许多其他复杂数据类型。
 
-下一章介绍详细内容。
+教程接下来的章节会介绍其中的若干内容。
 
-## 顺序很重要
+## 顺序很重要 { #order-matters }
 
-有时，*路径操作*中的路径是写死的。
+在创建*路径操作*时，你可能会遇到有固定路径的情况。
 
-比如要使用 `/users/me` 获取当前用户的数据。
+比如 `/users/me`，假设它用于获取当前用户的数据。
 
-然后还要使用 `/users/{user_id}`，通过用户 ID 获取指定用户的数据。
+然后你还可以有一个路径 `/users/{user_id}`，用于通过某个用户 ID 获取特定用户的数据。
 
-由于*路径操作*是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
+因为*路径操作*会按顺序依次进行匹配，你需要确保 `/users/me` 的路径声明在 `/users/{user_id}` 之前：
 
-{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
 
-否则，`/users/{user_id}` 将匹配 `/users/me`，FastAPI 会**认为**正在接收值为 `"me"` 的 `user_id` 参数。
+否则，`/users/{user_id}` 的路径也会匹配 `/users/me`，“认为”它接收到了一个值为 `"me"` 的 `user_id` 参数。
 
-## 预设值
+同样地，你不能重定义一个路径操作：
 
-路径操作使用 Python 的 <abbr title="Enumeration">`Enum`</abbr> 类型接收预设的*路径参数*。
+{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
 
-### 创建 `Enum` 类
+第一个将始终被使用，因为它会先匹配到该路径。
 
-导入 `Enum` 并创建继承自 `str` 和 `Enum` 的子类。
+## 预定义值 { #predefined-values }
 
-通过从 `str` 继承，API 文档就能把值的类型定义为**字符串**，并且能正确渲染。
+如果你有一个接收*路径参数*的*路径操作*，但你希望可用的有效*路径参数*值是预先定义好的，你可以使用标准 Python 的 <abbr title="Enumeration">`Enum`</abbr>。
 
-然后，创建包含固定值的类属性，这些固定值是可用的有效值：
+### 创建 `Enum` 类 { #create-an-enum-class }
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
+导入 `Enum` 并创建一个同时继承 `str` 和 `Enum` 的子类。
 
-/// info | 说明
+通过继承 `str`，API 文档就能知道这些值必须是 `string` 类型，并能正确渲染。
 
-Python 3.4 及之后版本支持<a href="https://docs.python.org/zh-cn/3/library/enum.html" class="external-link" target="_blank">枚举（即 enums）</a>。
+然后创建具有固定值的类属性，这些固定值就是可用的有效值：
+
+{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
+
+/// tip
+
+如果你在想，“AlexNet”、“ResNet” 和 “LeNet” 只是机器学习<abbr title="Technically, Deep Learning model architectures - 技术上来说是深度学习模型架构">models</abbr>的名字。
 
 ///
 
-/// tip | 提示
+### 声明*路径参数* { #declare-a-path-parameter }
 
-**AlexNet**、**ResNet**、**LeNet** 是机器学习<abbr title="技术上来说是深度学习模型架构">模型</abbr>。
+然后使用你创建的枚举类（`ModelName`）来创建一个带类型注解的*路径参数*：
 
-///
+{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
 
-### 声明*路径参数*
+### 查看文档 { #check-the-docs }
 
-使用 Enum 类（`ModelName`）创建使用类型注解的*路径参数*：
-
-{* ../../docs_src/path_params/tutorial005.py hl[16] *}
-
-### 查看文档
-
- API 文档会显示预定义*路径参数*的可用值：
+因为*路径参数*的可用值是预定义的，可交互文档可以很好地展示它们：
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### 使用 Python _枚举类型_
+### 使用 Python *枚举* { #working-with-python-enumerations }
 
-*路径参数*的值是枚举的元素。
+*路径参数*的值将是一个*枚举成员*。
 
-#### 比较*枚举元素*
+#### 比较*枚举成员* { #compare-enumeration-members }
 
-枚举类 `ModelName` 中的*枚举元素*支持比较操作：
+你可以将它与创建的枚举 `ModelName` 中的*枚举成员*进行比较：
 
-{* ../../docs_src/path_params/tutorial005.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
 
-#### 获取*枚举值*
+#### 获取*枚举值* { #get-the-enumeration-value }
 
-使用 `model_name.value` 或 `your_enum_member.value` 获取实际的值（本例中为**字符串**）：
+你可以使用 `model_name.value` 获取实际的值（本例中为 `str`），或者一般来说，使用 `your_enum_member.value`：
 
-{* ../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
 
-/// tip | 提示
+/// tip
 
-使用 `ModelName.lenet.value` 也能获取值 `"lenet"`。
+你也可以用 `ModelName.lenet.value` 访问值 `"lenet"`。
 
 ///
 
-#### 返回*枚举元素*
+#### 返回*枚举成员* { #return-enumeration-members }
 
-即使嵌套在 JSON 请求体里（例如， `dict`），也可以从*路径操作*返回*枚举元素*。
+你可以从你的*路径操作*返回*枚举成员*，即使它们嵌套在 JSON body（例如 `dict`）中。
 
-返回给客户端之前，要把枚举元素转换为对应的值（本例中为字符串）：
+在返回给客户端之前，它们会被转换成对应的值（本例中为字符串）：
 
-{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
 
-客户端中的 JSON 响应如下：
+客户端将得到类似如下的 JSON 响应：
 
 ```JSON
 {
@@ -198,53 +199,53 @@ Python 3.4 及之后版本支持<a href="https://docs.python.org/zh-cn/3/library
 }
 ```
 
-## 包含路径的路径参数
+## 包含路径的路径参数 { #path-parameters-containing-paths }
 
-假设*路径操作*的路径为 `/files/{file_path}`。
+假设你有一个*路径操作*，路径是 `/files/{file_path}`。
 
-但需要 `file_path` 中也包含*路径*，比如，`home/johndoe/myfile.txt`。
+但你需要 `file_path` 本身包含一个*路径*，例如 `home/johndoe/myfile.txt`。
 
-此时，该文件的 URL 是这样的：`/files/home/johndoe/myfile.txt`。
+那么这个文件的 URL 会是类似：`/files/home/johndoe/myfile.txt`。
 
-### OpenAPI 支持
+### OpenAPI 支持 { #openapi-support }
 
-OpenAPI 不支持声明包含路径的*路径参数*，因为这会导致测试和定义更加困难。
+OpenAPI 不支持声明一个*路径参数*来在内部包含*路径*，因为那可能会导致难以测试和定义的场景。
 
-不过，仍可使用 Starlette 内置工具在 **FastAPI** 中实现这一功能。
+尽管如此，你仍然可以在 **FastAPI** 中使用 Starlette 的内部工具来实现它。
 
-而且不影响文档正常运行，但是不会添加该参数包含路径的说明。
+并且文档仍然可用，尽管不会添加说明该参数应该包含路径的文档。
 
-### 路径转换器
+### 路径转换器 { #path-convertor }
 
-直接使用 Starlette 的选项声明包含*路径*的*路径参数*：
+使用 Starlette 的一个选项，你可以用如下 URL 声明一个包含*路径*的*路径参数*：
 
 ```
 /files/{file_path:path}
 ```
 
-本例中，参数名为 `file_path`，结尾部分的 `:path` 说明该参数应匹配*路径*。
+此时，参数名为 `file_path`，最后一部分 `:path` 表示该参数应匹配任意*路径*。
 
-用法如下：
+所以，你可以这样使用：
 
-{* ../../docs_src/path_params/tutorial004.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
 
-/// tip | 提示
+/// tip
 
-注意，包含 `/home/johndoe/myfile.txt` 的路径参数要以斜杠（`/`）开头。
+你可能需要参数包含 `/home/johndoe/myfile.txt`，并以斜杠（`/`）开头。
 
-本例中的 URL 是 `/files//home/johndoe/myfile.txt`。注意，`files` 和 `home` 之间要使用**双斜杠**（`//`）。
+这种情况下，URL 会是：`/files//home/johndoe/myfile.txt`，在 `files` 和 `home` 之间有一个双斜杠（`//`）。
 
 ///
 
-## 小结
+## 小结 { #recap }
 
-通过简短、直观的 Python 标准类型声明，**FastAPI** 可以获得：
+在 **FastAPI** 中，通过使用简短、直观、标准的 Python 类型声明，你将获得：
 
-- 编辑器支持：错误检查，代码自动补全等
-- 数据**<abbr title="把来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</abbr>**
-- 数据校验
-- API 注解和 API 文档
+* 编辑器支持：错误检查、自动补全等
+* 数据“<abbr title="converting the string that comes from an HTTP request into Python data - 将来自 HTTP 请求的字符串转换为 Python 数据">parsing</abbr>”
+* 数据校验
+* API 注解与自动文档
 
-只需要声明一次即可。
+并且你只需要声明一次。
 
-这可能是除了性能以外，**FastAPI** 与其它框架相比的主要优势。
+这大概是 **FastAPI** 相比其他框架最主要的可见优势（除了原始性能之外）。
