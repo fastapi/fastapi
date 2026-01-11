@@ -74,7 +74,7 @@ Make sure you use a supported label from the <a href="https://github.com/tiangol
 * `refactor`: Refactors
     * This is normally for changes to the internal code that don't change the behavior. Normally it improves maintainability, or enables future features, etc.
 * `upgrade`: Upgrades
-    * This is for upgrades to direct dependencies from the project, or extra optional dependencies, normally in `pyproject.toml`. So, things that would affect final users, they would end up receiving the upgrade in their code base once they update. But this is not for upgrades to internal dependencies used for development, testing, docs, etc. Those internal dependencies, normally in `requirements.txt` files or GitHub Action versions should be marked as `internal`, not `upgrade`.
+    * This is for upgrades to direct dependencies from the project, or extra optional dependencies, normally in `pyproject.toml`. So, things that would affect final users, they would end up receiving the upgrade in their code base once they update. But this is not for upgrades to internal dependencies used for development, testing, docs, etc. Those internal dependencies or GitHub Action versions should be marked as `internal`, not `upgrade`.
 * `docs`: Docs
     * Changes in docs. This includes updating the docs, fixing typos. But it doesn't include changes to translations.
     * You can normally quickly detect it by going to the "Files changed" tab in the PR and checking if the updated file(s) starts with `docs/en/docs`. The original version of the docs is always in English, so in `docs/en/docs`.
@@ -118,9 +118,11 @@ For these language translation PRs, confirm that:
 
 ## Review PRs
 
-If a PR doesn't explain what it does or why, ask for more information.
+* If a PR doesn't explain what it does or why, if it seems like it could be useful, ask for more information. Otherwise, feel free to close it.
 
-A PR should have a specific use case that it is solving.
+* If a PR seems to be spam, meaningless, only to change statistics (to appear as "contributor") or similar, you can simply mark it as `invalid`, and it will be automatically closed.
+
+* A PR should have a specific use case that it is solving.
 
 * If the PR is for a feature, it should have docs.
     * Unless it's a feature we want to discourage, like support for a corner case that we don't want users to use.
@@ -140,27 +142,12 @@ Every month, a GitHub Action updates the FastAPI People data. Those PRs look lik
 
 If the tests are passing, you can merge it right away.
 
-## External Links PRs
-
-When people add external links they edit this file <a href="https://github.com/fastapi/fastapi/blob/master/docs/en/data/external_links.yml" class="external-link" target="_blank">external_links.yml</a>.
-
-* Make sure the new link is in the correct category (e.g. "Podcasts") and language (e.g. "Japanese").
-* A new link should be at the top of its list.
-* The link URL should work (it should not return a 404).
-* The content of the link should be about FastAPI.
-* The new addition should have these fields:
-    * `author`: The name of the author.
-    * `link`: The URL with the content.
-    * `title`: The title of the link (the title of the article, podcast, etc).
-
-After checking all these things and ensuring the PR has the right labels, you can merge it.
-
 ## Dependabot PRs
 
 Dependabot will create PRs to update dependencies for several things, and those PRs all look similar, but some are way more delicate than others.
 
-* If the PR is for a direct dependency, so, Dependabot is modifying `pyproject.toml`, **don't merge it**. 😱 Let me check it first. There's a good chance that some additional tweaks or updates are needed.
-* If the PR updates one of the internal dependencies, for example it's modifying `requirements.txt` files, or GitHub Action versions, if the tests are passing, the release notes (shown in a summary in the PR) don't show any obvious potential breaking change, you can merge it. 😎
+* If the PR is for a direct dependency, so, Dependabot is modifying `pyproject.toml` in the main dependencies, **don't merge it**. 😱 Let me check it first. There's a good chance that some additional tweaks or updates are needed.
+* If the PR updates one of the internal dependencies, for example the group `dev` in `pyproject.toml`, or GitHub Action versions, if the tests are passing, the release notes (shown in a summary in the PR) don't show any obvious potential breaking change, you can merge it. 😎
 
 ## Mark GitHub Discussions Answers
 
