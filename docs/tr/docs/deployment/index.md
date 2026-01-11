@@ -1,21 +1,23 @@
-# Deployment (Yayınlama)
+# Deployment { #deployment }
 
-**FastAPI** uygulamasını deploy etmek oldukça kolaydır.
+**FastAPI** uygulamasını deploy etmek nispeten kolaydır.
 
-## Deployment Ne Anlama Gelir?
+## Deployment Ne Anlama Gelir { #what-does-deployment-mean }
 
-Bir uygulamayı **deploy** etmek (yayınlamak), uygulamayı **kullanıcılara erişilebilir hale getirmek** için gerekli adımları gerçekleştirmek anlamına gelir.
+Bir uygulamayı **deploy** etmek, uygulamayı **kullanıcıların erişimine sunmak** için gerekli adımları gerçekleştirmek anlamına gelir.
 
-Bir **Web API** için bu süreç normalde uygulamayı **uzak bir makineye** yerleştirmeyi, iyi performans, kararlılık vb. özellikler sağlayan bir **sunucu programı** ile **kullanıcılarınızın** uygulamaya etkili ve kesintisiz bir şekilde **erişebilmesini** kapsar.
+Bir **web API** için bu, normalde uygulamayı **uzak bir makineye** koymayı; iyi performans, kararlılık vb. sağlayan bir **sunucu programı** ile **kullanıcılarınızın** uygulamaya verimli bir şekilde ve kesinti ya da sorun yaşamadan **erişebilmesini** sağlamayı içerir.
 
-Bu, kodu sürekli olarak değiştirdiğiniz, hata alıp hata giderdiğiniz, geliştirme sunucusunu durdurup yeniden başlattığınız vb. **geliştirme** aşamalarının tam tersidir.
+Bu, kodu sürekli değiştirdiğiniz, bozup düzelttiğiniz, geliştirme sunucusunu durdurup yeniden başlattığınız vb. **geliştirme** aşamalarının tersidir.
 
-## Deployment Stratejileri
+## Deployment Stratejileri { #deployment-strategies }
 
-Kullanım durumunuza ve kullandığınız araçlara bağlı olarak bir kaç farklı yol izleyebilirsiniz.
+Kullanım senaryonuza ve kullandığınız araçlara bağlı olarak bunu yapmanın birkaç yolu vardır.
 
-Bir dizi araç kombinasyonunu kullanarak kendiniz **bir sunucu yayınlayabilirsiniz**, yayınlama sürecinin bir kısmını sizin için gerçekleştiren bir **bulut hizmeti** veya diğer olası seçenekleri kullanabilirsiniz.
+Bir dizi aracın kombinasyonunu kullanarak kendiniz **bir sunucu deploy edebilirsiniz**, işin bir kısmını sizin için yapan bir **bulut hizmeti** kullanabilirsiniz veya başka olası seçenekler de vardır.
 
-**FastAPI** uygulamasını yayınlarken aklınızda bulundurmanız gereken ana kavramlardan bazılarını size göstereceğim (ancak bunların çoğu diğer web uygulamaları için de geçerlidir).
+Örneğin, FastAPI'nin arkasındaki ekip olarak, FastAPI ile çalışmanın aynı geliştirici deneyimiyle, FastAPI uygulamalarını buluta deploy etmeyi mümkün olduğunca kolaylaştırmak için <a href="https://fastapicloud.com" class="external-link" target="_blank">**FastAPI Cloud**</a>'u geliştirdik.
 
-Sonraki bölümlerde akılda tutulması gereken diğer ayrıntıları ve yayınlama tekniklerinden bazılarını göreceksiniz. ✨
+**FastAPI** uygulamasını deploy ederken muhtemelen aklınızda tutmanız gereken ana kavramlardan bazılarını size göstereceğim (bunların çoğu diğer herhangi bir web uygulaması türü için de geçerlidir).
+
+Sonraki bölümlerde, akılda tutulması gereken daha fazla ayrıntı ve bunu yapmak için bazı teknikler göreceksiniz. ✨

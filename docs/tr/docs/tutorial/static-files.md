@@ -1,40 +1,40 @@
-# Statik Dosyalar
+# Statik Dosyalar { #static-files }
 
-`StaticFiles`'ı kullanarak statik dosyaları bir yol altında sunabilirsiniz.
+`StaticFiles`'ı kullanarak bir dizinden statik dosyaları otomatik olarak sunabilirsiniz.
 
-## `StaticFiles` Kullanımı
+## `StaticFiles`'ı Kullanma { #use-staticfiles }
 
-* `StaticFiles` sınıfını projenize dahil edin.
-* Bir `StaticFiles()` örneğini belirli bir yola bağlayın.
+* `StaticFiles`'ı içe aktarın.
+* Belirli bir path altında bir `StaticFiles()` örneğini "mount" edin.
 
-{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
 
 /// note | Teknik Detaylar
 
-Projenize dahil etmek için `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
+Ayrıca `from starlette.staticfiles import StaticFiles` kullanabilirsiniz.
 
-**FastAPI**, geliştiricilere kolaylık sağlamak amacıyla `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak `StaticFiles` sınıfı aslında doğrudan Starlette'den gelir.
+**FastAPI**, geliştirici olarak sizin için bir kolaylık olarak `starlette.staticfiles`'ı `fastapi.staticfiles` olarak sağlar. Ancak aslında doğrudan Starlette'den gelir.
 
 ///
 
-### Bağlama (Mounting) Nedir?
+### "Mounting" Nedir { #what-is-mounting }
 
-"Bağlamak", belirli bir yola tamamen "bağımsız" bir uygulama eklemek anlamına gelir ve ardından tüm alt yollara gelen istekler bu uygulama tarafından işlenir.
+"Mounting", belirli bir path'e tamamen "bağımsız" bir uygulama eklemek anlamına gelir; bu uygulama daha sonra tüm alt path'leri işlemekle ilgilenir.
 
-Bu, bir `APIRouter` kullanmaktan farklıdır çünkü bağlanmış bir uygulama tamamen bağımsızdır. Ana uygulamanızın OpenAPI ve dokümanlar, bağlanmış uygulamadan hiçbir şey içermez, vb.
+Bu, bir `APIRouter` kullanmaktan farklıdır çünkü mount edilmiş bir uygulama tamamen bağımsızdır. Ana uygulamanızın OpenAPI ve dokümanları, mount edilmiş uygulamadan hiçbir şey içermez, vb.
 
-[Advanced User Guide](../advanced/index.md){.internal-link target=_blank} bölümünde daha fazla bilgi edinebilirsiniz.
+Bununla ilgili daha fazlasını [Advanced User Guide](../advanced/index.md){.internal-link target=_blank} bölümünde okuyabilirsiniz.
 
-## Detaylar
+## Detaylar { #details }
 
-`"/static"` ifadesi, bu "alt uygulamanın" "bağlanacağı" alt yolu belirtir. Bu nedenle, `"/static"` ile başlayan her yol, bu uygulama tarafından işlenir.
+İlk `"/static"`, bu "alt uygulamanın" üzerine "mount" edileceği alt path'i ifade eder. Dolayısıyla, `"/static"` ile başlayan herhangi bir path bunun tarafından işlenir.
 
-`directory="static"` ifadesi, statik dosyalarınızı içeren dizinin adını belirtir.
+`directory="static"`, statik dosyalarınızı içeren dizinin adını ifade eder.
 
-`name="static"` ifadesi, alt uygulamanın **FastAPI** tarafından kullanılacak ismini belirtir.
+`name="static"`, **FastAPI** tarafından dahili olarak kullanılabilecek bir isim verir.
 
-Bu parametrelerin hepsi "`static`"den farklı olabilir, bunları kendi uygulamanızın ihtiyaçlarına göre belirleyebilirsiniz.
+Bu parametrelerin tümü "`static`"den farklı olabilir; bunları kendi uygulamanızın ihtiyaçlarına ve spesifik detaylarına göre ayarlayın.
 
-## Daha Fazla Bilgi
+## Daha Fazla Bilgi { #more-info }
 
-Daha fazla detay ve seçenek için <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Starlette'in Statik Dosyalar hakkındaki dokümantasyonunu</a> incelleyin.
+Daha fazla detay ve seçenek için <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">Statik Dosyalar hakkında Starlette dokümanlarını</a> inceleyin.
