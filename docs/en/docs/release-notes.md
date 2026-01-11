@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 📝 Add contribution instructions about LLM generated code and comments and automated tools for PRs. PR [#14706](https://github.com/fastapi/fastapi/pull/14706) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for management tasks. PR [#14705](https://github.com/fastapi/fastapi/pull/14705) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs about managing translations. PR [#14704](https://github.com/fastapi/fastapi/pull/14704) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update docs for contributing with translations. PR [#14701](https://github.com/fastapi/fastapi/pull/14701) by [@tiangolo](https://github.com/tiangolo).
