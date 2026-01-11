@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/zh-hant"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI 框架，高效能，易於學習，快速開發，適用於生產環境</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**文件**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**文件**： <a href="https://fastapi.tiangolo.com/zh-hant" target="_blank">https://fastapi.tiangolo.com</a>
 
 **原始碼**： <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
+<a href="https://fastapi.tiangolo.com/zh-hant/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
 
 ## 評價 { #opinions }
 
