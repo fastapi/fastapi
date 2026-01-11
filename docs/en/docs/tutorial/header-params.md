@@ -38,7 +38,7 @@ Most of the standard headers are separated by a "hyphen" character, also known a
 
 But a variable like `user-agent` is invalid in Python.
 
-So, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.
+So, by default, `Header` will convert the parameter names characters from hyphen (`-`) to underscore (`_`) to extract and document the headers.
 
 Also, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as "snake_case").
 
