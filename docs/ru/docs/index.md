@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/ru"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>Фреймворк FastAPI: высокая производительность, прост в изучении, быстро писать код, готов к продакшн</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Документация**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Документация**: <a href="https://fastapi.tiangolo.com/ru" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Исходный код**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
