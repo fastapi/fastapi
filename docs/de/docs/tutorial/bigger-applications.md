@@ -56,19 +56,19 @@ from app.routers import items
 
 Die gleiche Dateistruktur mit Kommentaren:
 
-```
+```bash
 .
-├── app                  # „app“ ist ein Python-Package
-│   ├── __init__.py      # diese Datei macht „app“ zu einem „Python-Package“
-│   ├── main.py          # „main“-Modul, z. B. import app.main
-│   ├── dependencies.py  # „dependencies“-Modul, z. B. import app.dependencies
-│   └── routers          # „routers“ ist ein „Python-Subpackage“
-│   │   ├── __init__.py  # macht „routers“ zu einem „Python-Subpackage“
-│   │   ├── items.py     # „items“-Submodul, z. B. import app.routers.items
-│   │   └── users.py     # „users“-Submodul, z. B. import app.routers.users
-│   └── internal         # „internal“ ist ein „Python-Subpackage“
-│       ├── __init__.py  # macht „internal“ zu einem „Python-Subpackage“
-│       └── admin.py     # „admin“-Submodul, z. B. import app.internal.admin
+├── app                  # "app" is a Python package
+│   ├── __init__.py      # this file makes "app" a "Python package"
+│   ├── main.py          # "main" module, e.g. import app.main
+│   ├── dependencies.py  # "dependencies" module, e.g. import app.dependencies
+│   └── routers          # "routers" is a "Python subpackage"
+│   │   ├── __init__.py  # makes "routers" a "Python subpackage"
+│   │   ├── items.py     # "items" submodule, e.g. import app.routers.items
+│   │   └── users.py     # "users" submodule, e.g. import app.routers.users
+│   └── internal         # "internal" is a "Python subpackage"
+│       ├── __init__.py  # makes "internal" a "Python subpackage"
+│       └── admin.py     # "admin" submodule, e.g. import app.internal.admin
 ```
 
 ## `APIRouter` { #apirouter }
@@ -165,7 +165,7 @@ Das Präfix lautet in diesem Fall also `/items`.
 
 Wir können auch eine Liste von `tags` und zusätzliche `responses` hinzufügen, die auf alle in diesem Router enthaltenen *Pfadoperationen* angewendet werden.
 
-Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperationen* im Router hinzugefügt und für jeden an sie gerichteten <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> ausgeführt/aufgelöst werden.
+Und wir können eine Liste von `dependencies` hinzufügen, die allen *Pfadoperationen* im Router hinzugefügt und für jeden an sie gerichteten Request ausgeführt/aufgelöst werden.
 
 /// tip | Tipp
 
@@ -285,7 +285,7 @@ Aber wir können immer noch _mehr_ `tags` hinzufügen, die auf eine bestimmte *P
 
 Diese letzte Pfadoperation wird eine Kombination von Tags haben: `["items", "custom"]`.
 
-Und sie wird auch beide <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> in der Dokumentation haben, eine für `404` und eine für `403`.
+Und sie wird auch beide Responses in der Dokumentation haben, eine für `404` und eine für `403`.
 
 ///
 
@@ -479,7 +479,7 @@ $ fastapi dev app/main.py
 
 </div>
 
-und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 Sie sehen die automatische API-Dokumentation, einschließlich der Pfade aller Submodule, mit den richtigen Pfaden (und Präfixen) und den richtigen Tags:
 
