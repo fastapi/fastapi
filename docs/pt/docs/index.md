@@ -40,8 +40,8 @@ Os recursos chave são:
 * **Rápido**: alta performance, equivalente a **NodeJS** e **Go** (graças ao Starlette e Pydantic). [Um dos frameworks mais rápidos disponíveis](#performance).
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
-* **Intuitivo**: Grande suporte a _IDEs_. <abbr title="também conhecido como autocompletar, preenchimento automático, IntelliSense">Preenchimento automático</abbr> em todos os lugares. Menos tempo debugando.
-* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
+* **Intuitivo**: Grande suporte a editores. <abbr title="também conhecido como autocompletar, preenchimento automático, IntelliSense">Completação</abbr> em todos os lugares. Menos tempo debugando.
+* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo docs.
 * **Enxuto**: Minimize duplicação de código. Múltiplas funcionalidades para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
 * **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (anteriormente conhecido como Swagger) e <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
@@ -93,7 +93,7 @@ Os recursos chave são:
 
 "*Estou extremamente entusiasmado com o **FastAPI**. É tão divertido!*"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> podcaster</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> apresentador do podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -116,6 +116,12 @@ Os recursos chave são:
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
+
+## Mini documentário do FastAPI { #fastapi-mini-documentary }
+
+Há um <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">mini documentário do FastAPI</a> lançado no final de 2025, você pode assisti-lo online:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, o FastAPI das interfaces de linhas de comando { #typer-the-fastapi-of-clis }
 
@@ -255,10 +261,10 @@ Você verá a resposta JSON como:
 
 Você acabou de criar uma API que:
 
-* Recebe requisições HTTP nas _rotas_ `/` e `/items/{item_id}`.
-* Ambas _rotas_ fazem <em>operações</em> `GET` (também conhecido como _métodos_ HTTP).
-* A _rota_ `/items/{item_id}` tem um _parâmetro de rota_ `item_id` que deve ser um `int`.
-* A _rota_ `/items/{item_id}` tem um _parâmetro query_ `q` `str` opcional.
+* Recebe requisições HTTP nos _paths_ `/` e `/items/{item_id}`.
+* Ambos _paths_ fazem <em>operações</em> `GET` (também conhecido como _métodos_ HTTP).
+* O _path_ `/items/{item_id}` tem um _parâmetro de path_ `item_id` que deve ser um `int`.
+* O _path_ `/items/{item_id}` tem um _parâmetro query_ `q` `str` opcional.
 
 ### Documentação Interativa da API { #interactive-api-docs }
 
@@ -370,7 +376,7 @@ item: Item
     * Validação até para objetos JSON profundamente aninhados.
 * <abbr title="também conhecido como: serialização, parsing, marshalling">Conversão</abbr> de dados de entrada: vindo da rede para dados e tipos Python. Consegue ler:
     * JSON.
-    * Parâmetros de rota.
+    * Parâmetros de path.
     * Parâmetros de _query_ .
     * _Cookies_.
     * Cabeçalhos.
@@ -390,7 +396,7 @@ item: Item
 
 Voltando ao código do exemplo anterior, **FastAPI** irá:
 
-* Validar que existe um `item_id` na rota para requisições `GET` e `PUT`.
+* Validar que existe um `item_id` no path para requisições `GET` e `PUT`.
 * Validar que `item_id` é do tipo `int` para requisições `GET` e `PUT`.
     * Se não é validado, o cliente verá um útil, claro erro.
 * Verificar se existe um parâmetro de _query_ opcional nomeado como `q` (como em `http://127.0.0.1:8000/items/foo?q=somequery`) para requisições `GET`.
@@ -399,7 +405,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
 * Para requisições `PUT` para `/items/{item_id}`, lerá o corpo como JSON:
     * Verifica que tem um atributo obrigatório `name` que deve ser `str`.
     * Verifica que tem um atributo obrigatório `price` que deve ser `float`.
-    * Verifica que tem an atributo opcional `is_offer`, que deve ser `bool`, se presente.
+    * Verifica que tem um atributo opcional `is_offer`, que deve ser `bool`, se presente.
     * Tudo isso também funciona para objetos JSON profundamente aninhados.
 * Converter de e para JSON automaticamente.
 * Documentar tudo com OpenAPI, que poderá ser usado por:
@@ -452,9 +458,9 @@ Para um exemplo mais completo incluindo mais recursos, veja <a href="https://fas
 
 ### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
 
-Você pode opcionalmente implantar sua aplicação FastAPI na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, inscreva-se na lista de espera se ainda não o fez. 🚀
+Você pode opcionalmente implantar sua aplicação FastAPI na <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, vá e participe da lista de espera caso ainda não o tenha feito. 🚀
 
-Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode implantar sua aplicação com um único comando.
+Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), você pode implantar sua aplicação com um único comando.
 
 Antes de implantar, certifique-se de que está autenticado:
 
@@ -506,7 +512,7 @@ Siga os tutoriais do seu provedor de nuvem para implantar aplicações FastAPI c
 
 Testes de performance da _Independent TechEmpower_ mostram aplicações **FastAPI** rodando sob Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">um dos _frameworks_ Python mais rápidos disponíveis</a>, somente atrás de Starlette e Uvicorn (utilizados internamente pelo FastAPI). (*)
 
-Para entender mais sobre performance, veja a seção <a href="https://fastapi.tiangolo.com/pt/benchmarks/" class="internal-link" target="_blank">Comparações</a>.
+Para entender mais sobre isso, veja a seção <a href="https://fastapi.tiangolo.com/pt/benchmarks/" class="internal-link" target="_blank">Comparações</a>.
 
 ## Dependências { #dependencies }
 

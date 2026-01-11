@@ -1,6 +1,6 @@
 # Parâmetros de consulta e validações de string { #query-parameters-and-string-validations }
 
-O **FastAPI** permite declarar informações adicionais e validações para os seus parâmetros.
+O **FastAPI** permite declarar informações adicionais e validação para os seus parâmetros.
 
 Vamos usar esta aplicação como exemplo:
 
@@ -33,7 +33,7 @@ Para isso, primeiro importe:
 
 O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 0.95.0.
 
-Se você tiver uma versão mais antiga, terá erros ao tentar usar `Annotated`.
+Se você tiver uma versão mais antiga, (você deveria) obteria erros ao tentar usar `Annotated`.
 
 Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
@@ -109,7 +109,7 @@ Agora o FastAPI vai:
 
 ## Alternativa (antiga): `Query` como valor padrão { #alternative-old-query-as-the-default-value }
 
-Versões anteriores do FastAPI (antes de <abbr title="antes de 2023-03">0.95.0</abbr>) exigiam que você usasse `Query` como valor padrão do seu parâmetro, em vez de colocá-lo em `Annotated`. É muito provável que você veja código assim por aí, então vou te explicar.
+Versões anteriores do FastAPI (antes de <abbr title="before 2023-03">0.95.0</abbr>) exigiam que você usasse `Query` como valor padrão do seu parâmetro, em vez de colocá-lo em `Annotated`, é muito provável que você veja código assim por aí, então vou te explicar.
 
 /// tip | Dica
 
@@ -206,20 +206,6 @@ Se você se sentir perdido com essas ideias de **"expressão regular"**, não se
 
 Agora você sabe que, sempre que precisar delas, pode usá-las no **FastAPI**.
 
-### Pydantic v1 `regex` em vez de `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Antes da versão 2 do Pydantic e antes do FastAPI 0.100.0, o parâmetro se chamava `regex` em vez de `pattern`, mas agora está descontinuado.
-
-Você ainda pode ver algum código usando isso:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-Mas saiba que isso está descontinuado e deve ser atualizado para usar o novo parâmetro `pattern`. 🤓
-
 ## Valores padrão { #default-values }
 
 Você pode, claro, usar valores padrão diferentes de `None`.
@@ -280,7 +266,7 @@ Então, com uma URL como:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-você receberá os múltiplos valores do *parâmetro de consulta* `q` (`foo` e `bar`) em uma `list` Python dentro da sua *função de operação de rota*, no *parâmetro da função* `q`.
+(você deveria) receber os múltiplos valores dos *parâmetros de consulta* `q` (`foo` e `bar`) em uma `list` Python dentro da sua *função de operação de rota*, no *parâmetro da função* `q`.
 
 Assim, a resposta para essa URL seria:
 
@@ -386,7 +372,7 @@ Então você pode declarar um `alias`, e esse alias será usado para encontrar o
 
 Agora digamos que você não gosta mais desse parâmetro.
 
-Você tem que deixá-lo por um tempo, pois há clientes usando-o, mas quer que a documentação mostre claramente que ele está <abbr title="obsoleto, recomenda-se não usá-lo">descontinuado</abbr>.
+Você tem que deixá-lo por um tempo, pois há clientes usando-o, mas quer que a documentação mostre claramente que ele está <abbr title="obsolete, recommended not to use it - obsoleto, recomendado não o usar">deprecated</abbr>.
 
 Então passe o parâmetro `deprecated=True` para `Query`:
 
@@ -416,7 +402,7 @@ O Pydantic também tem <a href="https://docs.pydantic.dev/latest/concepts/valida
 
 ///
 
-Por exemplo, este validador personalizado verifica se o ID do item começa com `isbn-` para um número de livro <abbr title="ISBN significa Número Padrão Internacional de Livro">ISBN</abbr> ou com `imdb-` para um ID de URL de filme <abbr title="IMDB (Internet Movie Database) é um site com informações sobre filmes">IMDB</abbr>:
+Por exemplo, este validador personalizado verifica se o ID do item começa com `isbn-` para um número de livro <abbr title="ISBN means International Standard Book Number - ISBN significa Número Padrão Internacional de Livro">ISBN</abbr> ou com `imdb-` para um ID de URL de filme <abbr title="IMDB (Internet Movie Database) is a website with information about movies - IMDB (Internet Movie Database) é um site com informações sobre filmes">IMDB</abbr>:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -440,7 +426,7 @@ O ponto importante é apenas usar **`AfterValidator` com uma função dentro de 
 
 ---
 
-Mas se você está curioso sobre este exemplo específico e ainda entretido, aqui vão alguns detalhes extras.
+Mas se você está curioso sobre este exemplo específico de código e ainda entretido, aqui vão alguns detalhes extras.
 
 #### String com `value.startswith()` { #string-with-value-startswith }
 

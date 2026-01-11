@@ -1,6 +1,6 @@
 # Configurações e Variáveis de Ambiente { #settings-and-environment-variables }
 
-Em muitos casos, sua aplicação pode precisar de configurações externas, por exemplo chaves secretas, credenciais de banco de dados, credenciais para serviços de e-mail, etc.
+Em muitos casos, sua aplicação pode precisar de algumas configurações externas, por exemplo chaves secretas, credenciais de banco de dados, credenciais para serviços de e-mail, etc.
 
 A maioria dessas configurações é variável (pode mudar), como URLs de banco de dados. E muitas podem ser sensíveis, como segredos.
 
@@ -12,7 +12,7 @@ Para entender variáveis de ambiente, você pode ler [Variáveis de Ambiente](..
 
 ///
 
-## Tipagem e validação { #types-and-validation }
+## Tipos e validação { #types-and-validation }
 
 Essas variáveis de ambiente só conseguem lidar com strings de texto, pois são externas ao Python e precisam ser compatíveis com outros programas e com o resto do sistema (e até com diferentes sistemas operacionais, como Linux, Windows, macOS).
 
@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Informação
-
-No Pydantic v1 ele vinha incluído no pacote principal. Agora é distribuído como um pacote independente para que você possa optar por instalá-lo ou não, caso não precise dessa funcionalidade.
-
-///
-
 ### Criar o objeto `Settings` { #create-the-settings-object }
 
 Importe `BaseSettings` do Pydantic e crie uma subclasse, muito parecido com um modelo do Pydantic.
@@ -60,23 +54,7 @@ Da mesma forma que com modelos do Pydantic, você declara atributos de classe co
 
 Você pode usar as mesmas funcionalidades e ferramentas de validação que usa em modelos do Pydantic, como diferentes tipos de dados e validações adicionais com `Field()`.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Informação
-
-No Pydantic v1 você importaria `BaseSettings` diretamente de `pydantic` em vez de `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
 
 /// tip | Dica
 
@@ -140,7 +118,7 @@ Você também precisaria de um arquivo `__init__.py` como visto em [Aplicações
 
 ## Configurações em uma dependência { #settings-in-a-dependency }
 
-Em algumas ocasiões, pode ser útil fornecer as configurações a partir de uma dependência, em vez de ter um objeto global `settings` usado em todos os lugares.
+Em algumas ocasiões, pode ser útil fornecer as configurações a partir de uma dependência, em vez de ter um objeto global com `settings` que é usado em todos os lugares.
 
 Isso pode ser especialmente útil durante os testes, pois é muito fácil sobrescrever uma dependência com suas próprias configurações personalizadas.
 
@@ -215,8 +193,6 @@ APP_NAME="ChimichangApp"
 
 E então atualizar seu `config.py` com:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Dica
@@ -225,31 +201,11 @@ O atributo `model_config` é usado apenas para configuração do Pydantic. Você
 
 ///
 
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip | Dica
-
-A classe `Config` é usada apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Informação
-
-Na versão 1 do Pydantic a configuração era feita em uma classe interna `Config`, na versão 2 do Pydantic é feita em um atributo `model_config`. Esse atributo recebe um `dict`, e para ter autocompletar e erros inline você pode importar e usar `SettingsConfigDict` para definir esse `dict`.
-
-///
-
-Aqui definimos a configuração `env_file` dentro da sua classe `Settings` do Pydantic e definimos o valor como o nome do arquivo dotenv que queremos usar.
+Aqui definimos a configuração `env_file` dentro da sua classe `Settings` do Pydantic e definimos o valor como o nome do arquivo com o arquivo dotenv que queremos usar.
 
 ### Criando o `Settings` apenas uma vez com `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
 
-Ler um arquivo do disco normalmente é uma operação custosa (lenta), então você provavelmente vai querer fazer isso apenas uma vez e depois reutilizar o mesmo objeto de configurações, em vez de lê-lo a cada requisição.
+Ler um arquivo do disco normalmente é uma operação custosa (lenta), então você provavelmente vai querer fazer isso apenas uma vez e depois reutilizar o mesmo objeto de configurações, em vez de lê-lo a cada request.
 
 Mas toda vez que fizermos:
 
@@ -266,13 +222,13 @@ def get_settings():
     return Settings()
 ```
 
-criaríamos esse objeto para cada requisição e leríamos o arquivo `.env` para cada requisição. ⚠️
+criaríamos esse objeto para cada request e leríamos o arquivo `.env` para cada request. ⚠️
 
 Mas como estamos usando o decorador `@lru_cache` por cima, o objeto `Settings` será criado apenas uma vez, na primeira vez em que for chamado. ✔️
 
 {* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
 
-Em qualquer chamada subsequente de `get_settings()` nas dependências das próximas requisições, em vez de executar o código interno de `get_settings()` e criar um novo objeto `Settings`, ele retornará o mesmo objeto que foi retornado na primeira chamada, repetidamente.
+Em qualquer chamada subsequente de `get_settings()` nas dependências para os próximos requests, em vez de executar o código interno de `get_settings()` e criar um novo objeto `Settings`, ele retornará o mesmo objeto que foi retornado na primeira chamada, repetidamente.
 
 #### Detalhes Técnicos do `lru_cache` { #lru-cache-technical-details }
 
@@ -343,4 +299,4 @@ Você pode usar Pydantic Settings para lidar com as configurações da sua aplic
 
 * Usando uma dependência você pode simplificar os testes.
 * Você pode usar arquivos `.env` com ele.
-* Usar `@lru_cache` permite evitar ler o arquivo dotenv repetidamente a cada requisição, enquanto permite sobrescrevê-lo durante os testes.
+* Usar `@lru_cache` permite evitar ler o arquivo dotenv repetidamente a cada request, enquanto permite sobrescrevê-lo durante os testes.

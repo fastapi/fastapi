@@ -10,7 +10,7 @@ Para declarar um corpo da **requisição**, você utiliza os modelos do <a href=
 
 /// info | Informação
 
-Para enviar dados, você deve usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
+Para enviar dados, (você deveria) usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
 
 Enviar um corpo em uma requisição `GET` não tem um comportamento definido nas especificações, porém é suportado pelo FastAPI, apenas para casos de uso bem complexos/extremos.
 
@@ -32,7 +32,8 @@ Utilize os tipos Python padrão para todos os atributos:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele se torna opcional. Caso contrário, se torna obrigatório. Use `None` para torná-lo opcional.
+
+Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele não é obrigatório. Caso contrário, é obrigatório. Use `None` para torná-lo apenas opcional.
 
 Por exemplo, o modelo acima declara um JSON "`object`" (ou `dict` no Python) como esse:
 
@@ -73,7 +74,7 @@ Apenas com essa declaração de tipos do Python, o **FastAPI** irá:
 * Entregar a você a informação recebida no parâmetro `item`.
     * Como você o declarou na função como do tipo `Item`, você também terá o suporte do editor (completação, etc) para todos os atributos e seus tipos.
 * Gerar definições de <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> para o seu modelo; você também pode usá-las em qualquer outro lugar se fizer sentido para o seu projeto.
-* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces – Interfaces de usuário">UIs</abbr> de documentação automática.
+* Esses schemas farão parte do esquema OpenAPI gerado, e serão usados pelas <abbr title="User Interfaces - Interfaces de usuário">UIs</abbr> de documentação automática.
 
 ## Documentação automática { #automatic-docs }
 
@@ -113,7 +114,7 @@ Se você utiliza o <a href="https://www.jetbrains.com/pycharm/" class="external-
 
 Melhora o suporte do editor para seus modelos Pydantic com:
 
-* preenchimento automático
+* auto-completion
 * verificação de tipos
 * refatoração
 * buscas
@@ -127,14 +128,6 @@ Dentro da função, você pode acessar todos os atributos do objeto do modelo di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info | Informação
-
-No Pydantic v1 o método se chamava `.dict()`, ele foi descontinuado (mas ainda é suportado) no Pydantic v2, e renomeado para `.model_dump()`.
-
-Os exemplos aqui usam `.dict()` para compatibilidade com o Pydantic v1, mas você deve usar `.model_dump()` se puder usar o Pydantic v2.
-
-///
-
 ## Corpo da requisição + parâmetros de rota { #request-body-path-parameters }
 
 Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
@@ -142,6 +135,7 @@ Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
 O **FastAPI** irá reconhecer que os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e que parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## Corpo da requisição + parâmetros de rota + parâmetros de consulta { #request-body-path-query-parameters }
 
