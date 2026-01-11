@@ -122,6 +122,8 @@ For these language translation PRs, confirm that:
 
 * If a PR seems to be spam, meaningless, only to change statistics (to appear as "contributor") or similar, you can simply mark it as `invalid`, and it will be automatically closed.
 
+* If a PR seems to be AI generated, and seems like reviewing it would take more time from you than the time it took to write the prompt, mark it as `maybe-ai`, and it will be automatically closed.
+
 * A PR should have a specific use case that it is solving.
 
 * If the PR is for a feature, it should have docs.
