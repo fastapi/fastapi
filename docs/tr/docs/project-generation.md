@@ -8,7 +8,7 @@ GitHub Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-templ
 
 ## Full Stack FastAPI Şablonu - Teknoloji Stack'i ve Özellikler { #full-stack-fastapi-template-technology-stack-and-features }
 
-- ⚡ Python backend API için [**FastAPI**](https://fastapi.tiangolo.com).
+- ⚡ Python backend API için [**FastAPI**](https://fastapi.tiangolo.com/tr).
   - 🧰 Python SQL veritabanı etkileşimleri (ORM) için [SQLModel](https://sqlmodel.tiangolo.com).
   - 🔍 FastAPI tarafından kullanılan, veri doğrulama ve ayar yönetimi için [Pydantic](https://docs.pydantic.dev).
   - 💾 SQL veritabanı olarak [PostgreSQL](https://www.postgresql.org).
