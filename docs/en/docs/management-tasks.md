@@ -106,129 +106,15 @@ This way, we can notice when there are new translations ready, because they have
 
 ## Merge Translation PRs
 
-For Spanish, as I'm a native speaker and it's a language close to me, I will give it a final review myself and in most cases tweak the PR a bit before merging it.
+Translations are generated automatically with LLMs and scripts.
 
-For the other languages, confirm that:
+There's one GitHub Action that can be manually run to add or update translations for a language: <a href="https://github.com/fastapi/fastapi/actions/workflows/translate.yml" class="external-link" target="_blank">`translate.yml`</a>.
 
-* The title is correct following the instructions above.
+For these language translation PRs, confirm that:
+
+* The PR was automated (authored by @tiangolo), not made by another user.
 * It has the labels `lang-all` and `lang-{lang code}`.
-* The PR changes only one Markdown file adding a translation.
-    * Or in some cases, at most two files, if they are small, for the same language, and people reviewed them.
-    * If it's the first translation for that language, it will have additional `mkdocs.yml` files, for those cases follow the instructions below.
-* The PR doesn't add any additional or extraneous files.
-* The translation seems to have a similar structure as the original English file.
-* The translation doesn't seem to change the original content, for example with obvious additional documentation sections.
-* The translation doesn't use different Markdown structures, for example adding HTML tags when the original didn't have them.
-* The "admonition" sections, like `tip`, `info`, etc. are not changed or translated. For example:
-
-```
-/// tip
-
-This is a tip.
-
-///
-
-```
-
-looks like this:
-
-/// tip
-
-This is a tip.
-
-///
-
-...it could be translated as:
-
-```
-/// tip
-
-Esto es un consejo.
-
-///
-
-```
-
-...but needs to keep the exact `tip` keyword. If it was translated to `consejo`, like:
-
-```
-/// consejo
-
-Esto es un consejo.
-
-///
-
-```
-
-it would change the style to the default one, it would look like:
-
-/// consejo
-
-Esto es un consejo.
-
-///
-
-Those don't have to be translated, but if they are, they need to be written as:
-
-```
-/// tip | consejo
-
-Esto es un consejo.
-
-///
-
-```
-
-Which looks like:
-
-/// tip | consejo
-
-Esto es un consejo.
-
-///
-
-## First Translation PR
-
-When there's a first translation for a language, it will have a `docs/{lang code}/docs/index.md` translated file and a `docs/{lang code}/mkdocs.yml`.
-
-For example, for Bosnian, it would be:
-
-* `docs/bs/docs/index.md`
-* `docs/bs/mkdocs.yml`
-
-The `mkdocs.yml` file will have only the following content:
-
-```YAML
-INHERIT: ../en/mkdocs.yml
-```
-
-The language code would normally be in the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes" class="external-link" target="_blank">ISO 639-1 list of language codes</a>.
-
-In any case, the language code should be in the file <a href="https://github.com/fastapi/fastapi/blob/master/docs/language_names.yml" class="external-link" target="_blank">docs/language_names.yml</a>.
-
-There won't be yet a label for the language code, for example, if it was Bosnian, there wouldn't be a `lang-bs`. Before creating the label and adding it to the PR, create the GitHub Discussion:
-
-* Go to the <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">Translations GitHub Discussions</a>
-* Create a new discussion with the title `Bosnian Translations` (or the language name in English)
-* A description of:
-
-```Markdown
-## Bosnian translations
-
-This is the issue to track translations of the docs to Bosnian. 🚀
-
-Here are the [PRs to review with the label `lang-bs`](https://github.com/fastapi/fastapi/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc+label%3Alang-bs+label%3A%22awaiting-review%22). 🤓
-```
-
-Update "Bosnian" with the new language.
-
-And update the search link to point to the new language label that will be created, like `lang-bs`.
-
-Create and add the label to that new Discussion just created, like `lang-bs`.
-
-Then go back to the PR, and add the label, like `lang-bs`, and `lang-all` and `awaiting-review`.
-
-Now the GitHub action will automatically detect the label `lang-bs` and will post in that Discussion that this PR is waiting to be reviewed.
+* If the PR is approved by at least one native speaker, you can merge it.
 
 ## Review PRs
 
