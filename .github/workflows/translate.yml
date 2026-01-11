@@ -31,7 +31,7 @@ on:
         required: false
         default: ""
       commit_in_place:
-        description: Whether to commit changes directly instead of making a PR
+        description: Commit changes directly instead of making a PR
         type: boolean
         required: false
         default: false
