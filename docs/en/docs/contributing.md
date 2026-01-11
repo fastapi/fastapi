@@ -226,15 +226,7 @@ You are encouraged to use all the tools you want to do your work and contribute 
 
 If the **human effort** put in a PR, e.g. writing LLM prompts, is **less** than the **effort we would need to put** to **review it**, please **don't** submit the PR.
 
-At most, share the LLM prompt or tool you would use to generate the PR, but don't submit it.
-
-Think of it this way: we can already write LLM prompts or run automated tools ourselves.
-
-If the problem can be solved by an LLM with a simple prompt, we can write the prompt.
-
-Doing it ourselves this way we only have to review the output of the LLM, knowing it's shortcomings and caveats. And knowing it's the pure output of the LLM, without any potential human tampering.
-
-So, it's more efficient for us to write LLM prompts ourselves than to review PRs generated with a simple LLM prompt or other forms of automated tools.
+Think of it this way: we can already write LLM prompts or run automated tools ourselves, and that would be faster than reviewing external PRs.
 
 ### Closing Automated and AI PRs
 
@@ -246,14 +238,18 @@ The same applies to comments and descriptions, please don't copy paste the conte
 
 Using automated tools and AI to submit PRs or comments that we have to carefully review and handle would be the equivalent of a <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" class="external-link" target="_blank">Denial-of-service attack</a> on our human effort.
 
-You, and potentially many others, would be doing very little effort (an LLM prompt) that generates a large amount of effort on our side (carefully reviewing code).
+It would be very little effort from the person submitting the PR (an LLM prompt) that generates a large amount of effort on our side (carefully reviewing code).
 
 Please don't do that.
 
 We'll need to block accounts that spam us with repeated automated PRs or comments.
 
-### With Great Tools Comes Great Responsibility
+### Use Tools Wisely
+
+As Uncle Ben said:
+
+> With great ~power~ tools comes great responsibility.
+
+Avoid inadvertently doing harm.
 
 You have amazing tools at hand, use them wisely to help effectively.
-
-Avoid inadvertently doing harm. <a href="https://en.wikipedia.org/wiki/Uncle_Ben" class="external-link" target="_blank">Uncle Ben</a> would be very sad.
