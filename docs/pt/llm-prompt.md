@@ -14,20 +14,20 @@ Only keep parentheses if they exist in the source text. Do not add parentheses t
 
 ### Avoiding Repetition in Translation
 
-When translating sentences, avoid unnecessary repetition of words or phrases that are implied in context.  
-- Merge repeated words naturally while keeping the meaning.  
-- Do **not** introduce extra words to replace repeated phrases unnecessarily.  
+When translating sentences, avoid unnecessary repetition of words or phrases that are implied in context.
+- Merge repeated words naturally while keeping the meaning.
+- Do **not** introduce extra words to replace repeated phrases unnecessarily.
 - Keep translations fluent and concise, but maintain the original meaning.
 
 **Example:**
 
-Source:  
+Source:
 Let's see how that works and how to change it if you need to do that.
 
-Avoid translating literally as:  
+Avoid translating literally as:
 Vamos ver como isso funciona e como alterar isso se você precisar fazer isso.
 
-Better translation:  
+Better translation:
 Vamos ver como isso funciona e como alterar se você precisar.
 
 ---
