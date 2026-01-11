@@ -6,43 +6,19 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 If you already cloned the <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
 
-### Virtual environment
-
-Follow the instructions to create and activate a [virtual environment](virtual-environments.md){.internal-link target=_blank} for the internal code of `fastapi`.
-
 ### Install requirements
 
-After activating the environment, install the required packages:
-
-//// tab | `pip`
+Create a virtual environment and install the required packages with <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv sync
 
 ---> 100%
 ```
 
 </div>
-
-////
-
-//// tab | `uv`
-
-If you have <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
-
-<div class="termy">
-
-```console
-$ uv pip install -r requirements.txt
-
----> 100%
-```
-
-</div>
-
-////
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
@@ -56,9 +32,9 @@ That way, you don't have to "install" your local version to be able to test ever
 
 /// note | Technical Details
 
-This only happens when you install using this included `requirements.txt` instead of running `pip install fastapi` directly.
+This only happens when you install using `uv sync` instead of running `pip install fastapi` directly.
 
-That is because inside the `requirements.txt` file, the local version of FastAPI is marked to be installed in "editable" mode, with the `-e` option.
+That is because `uv sync` will install the local version of FastAPI in "editable" mode by default.
 
 ///
 
