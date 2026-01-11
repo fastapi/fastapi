@@ -5,7 +5,6 @@ from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from typing import get_type_hints
 from typing import (
     Annotated,
     Any,
@@ -14,6 +13,7 @@ from typing import (
     Optional,
     Union,
     cast,
+    get_type_hints,
 )
 
 import anyio
