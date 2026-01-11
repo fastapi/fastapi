@@ -20,6 +20,7 @@ hide:
 
 ### Internal
 
+* 🔨 Refactor translation script to allow committing in place. PR [#14687](https://github.com/fastapi/fastapi/pull/14687) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix translation script path. PR [#14685](https://github.com/fastapi/fastapi/pull/14685) by [@tiangolo](https://github.com/tiangolo).
 * ✅ Enable tests in CI for scripts. PR [#14684](https://github.com/fastapi/fastapi/pull/14684) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Add pre-commit local script to fix language translations. PR [#14683](https://github.com/fastapi/fastapi/pull/14683) by [@tiangolo](https://github.com/tiangolo).
