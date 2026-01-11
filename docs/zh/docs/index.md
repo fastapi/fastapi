@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/zh"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI 框架，高性能，易于学习，高效编码，生产可用</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**文档**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**文档**： <a href="https://fastapi.tiangolo.com/zh" target="_blank">https://fastapi.tiangolo.com</a>
 
 **源码**： <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 web 框�
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">其他赞助商</a>
+<a href="https://fastapi.tiangolo.com/zh/fastapi-people/#sponsors" class="external-link" target="_blank">其他赞助商</a>
 
 ## 评价 { #opinions }
 
