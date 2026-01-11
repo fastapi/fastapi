@@ -23,6 +23,7 @@ SUPPORTED_LANGS = {
     "en",
     "de",
     "es",
+    "ko",
     "pt",
     "ru",
     "uk",
