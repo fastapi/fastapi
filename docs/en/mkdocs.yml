@@ -319,6 +319,8 @@ extra:
     name: es - español
   - link: /ko/
     name: ko - 한국어
+  - link: /nl/
+    name: nl - Nederlands
   - link: /pt/
     name: pt - português
   - link: /ru/
