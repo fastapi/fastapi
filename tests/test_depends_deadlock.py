@@ -1,7 +1,7 @@
 import asyncio
 import threading
 import time
-from typing import Generator
+from collections.abc import Generator
 
 from fastapi import Depends, FastAPI
 from httpx import ASGITransport, AsyncClient
