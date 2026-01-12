@@ -14,17 +14,22 @@ from ipaddress import (
 from pathlib import Path, PurePath
 from re import Pattern
 from types import GeneratorType
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from typing import Annotated, Any, Callable, Optional, Union
 from uuid import UUID
 
+from annotated_doc import Doc
+from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from typing_extensions import Annotated, Doc
+from pydantic_core import PydanticUndefinedType
 
-from ._compat import PYDANTIC_V2, UndefinedType, Url, _model_dump
+from ._compat import (
+    Url,
+    is_pydantic_v1_model_instance,
+)
 
 
 # Taken from Pydantic v1 as is
@@ -32,14 +37,14 @@ def isoformat(o: Union[datetime.date, datetime.time]) -> str:
     return o.isoformat()
 
 
-# Taken from Pydantic v1 as is
+# Adapted from Pydantic v1
 # TODO: pv2 should this return strings instead?
 def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
     """
-    Encodes a Decimal as int of there's no exponent, otherwise float
+    Encodes a Decimal as int if there's no exponent, otherwise float
 
     This is useful when we use ConstrainedDecimal to represent Numeric(x,0)
-    where a integer (but not int typed) is used. Encoding this as a float
+    where an integer (but not int typed) is used. Encoding this as a float
     results in failed round-tripping between encode and parse.
     Our Id type is a prime example of this.
 
@@ -48,14 +53,18 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 
     >>> decimal_encoder(Decimal("1"))
     1
+
+    >>> decimal_encoder(Decimal("NaN"))
+    nan
     """
-    if dec_value.as_tuple().exponent >= 0:  # type: ignore[operator]
+    exponent = dec_value.as_tuple().exponent
+    if isinstance(exponent, int) and exponent >= 0:
         return int(dec_value)
     else:
         return float(dec_value)
 
 
-ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
+ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
     datetime.date: isoformat,
@@ -86,9 +95,9 @@ ENCODERS_BY_TYPE: Dict[Type[Any], Callable[[Any], Any]] = {
 
 
 def generate_encoders_by_class_tuples(
-    type_encoder_map: Dict[Any, Callable[[Any], Any]],
-) -> Dict[Callable[[Any], Any], Tuple[Any, ...]]:
-    encoders_by_class_tuples: Dict[Callable[[Any], Any], Tuple[Any, ...]] = defaultdict(
+    type_encoder_map: dict[Any, Callable[[Any], Any]],
+) -> dict[Callable[[Any], Any], tuple[Any, ...]]:
+    encoders_by_class_tuples: dict[Callable[[Any], Any], tuple[Any, ...]] = defaultdict(
         tuple
     )
     for type_, encoder in type_encoder_map.items():
@@ -168,7 +177,7 @@ def jsonable_encoder(
         ),
     ] = False,
     custom_encoder: Annotated[
-        Optional[Dict[Any, Callable[[Any], Any]]],
+        Optional[dict[Any, Callable[[Any], Any]]],
         Doc(
             """
             Pydantic's `custom_encoder` parameter, passed to Pydantic models to define
@@ -214,14 +223,7 @@ def jsonable_encoder(
     if exclude is not None and not isinstance(exclude, (set, dict)):
         exclude = set(exclude)
     if isinstance(obj, BaseModel):
-        # TODO: remove when deprecating Pydantic v1
-        encoders: Dict[Any, Any] = {}
-        if not PYDANTIC_V2:
-            encoders = getattr(obj.__config__, "json_encoders", {})  # type: ignore[attr-defined]
-            if custom_encoder:
-                encoders.update(custom_encoder)
-        obj_dict = _model_dump(
-            obj,
+        obj_dict = obj.model_dump(
             mode="json",
             include=include,
             exclude=exclude,
@@ -230,17 +232,14 @@ def jsonable_encoder(
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
         )
-        if "__root__" in obj_dict:
-            obj_dict = obj_dict["__root__"]
         return jsonable_encoder(
             obj_dict,
             exclude_none=exclude_none,
             exclude_defaults=exclude_defaults,
-            # TODO: remove when deprecating Pydantic v1
-            custom_encoder=encoders,
             sqlalchemy_safe=sqlalchemy_safe,
         )
     if dataclasses.is_dataclass(obj):
+        assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
         return jsonable_encoder(
             obj_dict,
@@ -259,7 +258,7 @@ def jsonable_encoder(
         return str(obj)
     if isinstance(obj, (str, int, float, type(None))):
         return obj
-    if isinstance(obj, UndefinedType):
+    if isinstance(obj, PydanticUndefinedType):
         return None
     if isinstance(obj, dict):
         encoded_dict = {}
@@ -319,11 +318,15 @@ def jsonable_encoder(
     for encoder, classes_tuple in encoders_by_class_tuples.items():
         if isinstance(obj, classes_tuple):
             return encoder(obj)
-
+    if is_pydantic_v1_model_instance(obj):
+        raise PydanticV1NotSupportedError(
+            "pydantic.v1 models are no longer supported by FastAPI."
+            f" Please update the model {obj!r}."
+        )
     try:
         data = dict(obj)
     except Exception as e:
-        errors: List[Exception] = []
+        errors: list[Exception] = []
         errors.append(e)
         try:
             data = vars(obj)

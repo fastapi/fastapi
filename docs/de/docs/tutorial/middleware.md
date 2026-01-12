@@ -1,8 +1,8 @@
-# Middleware
+# Middleware { #middleware }
 
 Sie können Middleware zu **FastAPI**-Anwendungen hinzufügen.
 
-Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **Response**, bevor sie zurückgegeben wird.
+Eine „Middleware“ ist eine Funktion, die mit jedem **<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>** arbeitet, bevor er von einer bestimmten *Pfadoperation* verarbeitet wird. Und auch mit jeder **<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**, bevor sie zurückgegeben wird.
 
 * Sie nimmt jeden **Request** entgegen, der an Ihre Anwendung gesendet wird.
 * Sie kann dann etwas mit diesem **Request** tun oder beliebigen Code ausführen.
@@ -15,11 +15,11 @@ Eine „Middleware“ ist eine Funktion, die mit jedem **Request** arbeitet, bev
 
 Wenn Sie Abhängigkeiten mit `yield` haben, wird der Exit-Code *nach* der Middleware ausgeführt.
 
-Wenn es Hintergrundaufgaben gab (später dokumentiert), werden sie *nach* allen Middlewares ausgeführt.
+Wenn es Hintergrundtasks gab (dies wird später im [Hintergrundtasks](background-tasks.md){.internal-link target=_blank}-Abschnitt behandelt), werden sie *nach* allen Middlewares ausgeführt.
 
 ///
 
-## Erstellung einer Middleware
+## Eine Middleware erstellen { #create-a-middleware }
 
 Um eine Middleware zu erstellen, verwenden Sie den Dekorator `@app.middleware("http")` über einer Funktion.
 
@@ -31,13 +31,13 @@ Die Middleware-Funktion erhält:
     * Dann gibt es die von der entsprechenden *Pfadoperation* generierte `response` zurück.
 * Sie können die `response` dann weiter modifizieren, bevor Sie sie zurückgeben.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
 
 /// tip | Tipp
 
-Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">Verwenden Sie dafür das Präfix 'X-'</a>.
+Beachten Sie, dass benutzerdefinierte proprietäre Header hinzugefügt werden können <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">unter Verwendung des `X-`-Präfixes</a>.
 
-Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfigurationen ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette-CORS-Dokumentation</a> dokumentiert ist.
+Wenn Sie jedoch benutzerdefinierte Header haben, die ein Client in einem Browser sehen soll, müssen Sie sie zu Ihrer CORS-Konfiguration ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) hinzufügen, indem Sie den Parameter `expose_headers` verwenden, der in der <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlettes CORS-Dokumentation</a> dokumentiert ist.
 
 ///
 
@@ -49,7 +49,7 @@ Sie könnten auch `from starlette.requests import Request` verwenden.
 
 ///
 
-### Vor und nach der `response`
+### Vor und nach der `response` { #before-and-after-the-response }
 
 Sie können Code hinzufügen, der mit dem `request` ausgeführt wird, bevor dieser von einer beliebigen *Pfadoperation* empfangen wird.
 
@@ -57,10 +57,39 @@ Und auch nachdem die `response` generiert wurde, bevor sie zurückgegeben wird.
 
 Sie könnten beispielsweise einen benutzerdefinierten Header `X-Process-Time` hinzufügen, der die Zeit in Sekunden enthält, die benötigt wurde, um den Request zu verarbeiten und eine Response zu generieren:
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
 
-## Andere Middlewares
+/// tip | Tipp
 
-Sie können später mehr über andere Middlewares in [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
+Hier verwenden wir <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> anstelle von `time.time()`, da es für diese Anwendungsfälle präziser sein kann. 🤓
 
-In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing">CORS</abbr> mit einer Middleware behandeln können.
+///
+
+## Ausführungsreihenfolge bei mehreren Middlewares { #multiple-middleware-execution-order }
+
+Wenn Sie mehrere Middlewares hinzufügen, entweder mit dem `@app.middleware()` Dekorator oder der Methode `app.add_middleware()`, umschließt jede neue Middleware die Anwendung und bildet einen Stapel. Die zuletzt hinzugefügte Middleware ist die *äußerste*, und die erste ist die *innerste*.
+
+Auf dem Requestpfad läuft die *äußerste* Middleware zuerst.
+
+Auf dem Responsepfad läuft sie zuletzt.
+
+Zum Beispiel:
+
+```Python
+app.add_middleware(MiddlewareA)
+app.add_middleware(MiddlewareB)
+```
+
+Dies führt zu folgender Ausführungsreihenfolge:
+
+* **Request**: MiddlewareB → MiddlewareA → Route
+
+* **Response**: Route → MiddlewareA → MiddlewareB
+
+Dieses Stapelverhalten stellt sicher, dass Middlewares in einer vorhersehbaren und kontrollierbaren Reihenfolge ausgeführt werden.
+
+## Andere Middlewares { #other-middlewares }
+
+Sie können später mehr über andere Middlewares im [Handbuch für fortgeschrittene Benutzer: Fortgeschrittene Middleware](../advanced/middleware.md){.internal-link target=_blank} lesen.
+
+In der nächsten Sektion erfahren Sie, wie Sie <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> mit einer Middleware behandeln können.

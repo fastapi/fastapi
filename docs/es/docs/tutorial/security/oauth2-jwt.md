@@ -1,4 +1,4 @@
-# OAuth2 con Password (y hashing), Bearer con tokens JWT
+# OAuth2 con Password (y hashing), Bearer con tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
 Ahora que tenemos todo el flujo de seguridad, hagamos que la aplicación sea realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> y hashing de contraseñas seguras.
 
@@ -6,7 +6,7 @@ Este código es algo que puedes usar realmente en tu aplicación, guardar los ha
 
 Vamos a empezar desde donde lo dejamos en el capítulo anterior e incrementarlo.
 
-## Acerca de JWT
+## Acerca de JWT { #about-jwt }
 
 JWT significa "JSON Web Tokens".
 
@@ -26,7 +26,7 @@ Después de una semana, el token estará expirado y el usuario no estará autori
 
 Si quieres jugar con tokens JWT y ver cómo funcionan, revisa <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
 
-## Instalar `PyJWT`
+## Instalar `PyJWT` { #install-pyjwt }
 
 Necesitamos instalar `PyJWT` para generar y verificar los tokens JWT en Python.
 
@@ -50,7 +50,7 @@ Puedes leer más al respecto en la <a href="https://pyjwt.readthedocs.io/en/late
 
 ///
 
-## Hashing de contraseñas
+## Hashing de contraseñas { #password-hashing }
 
 "Hacer hashing" significa convertir algún contenido (una contraseña en este caso) en una secuencia de bytes (solo un string) que parece un galimatías.
 
@@ -58,26 +58,26 @@ Siempre que pases exactamente el mismo contenido (exactamente la misma contrase�
 
 Pero no puedes convertir del galimatías de nuevo a la contraseña.
 
-### Por qué usar hashing de contraseñas
+### Por qué usar hashing de contraseñas { #why-use-password-hashing }
 
 Si tu base de datos es robada, el ladrón no tendrá las contraseñas en texto claro de tus usuarios, solo los hashes.
 
 Por lo tanto, el ladrón no podrá intentar usar esa contraseña en otro sistema (como muchos usuarios usan la misma contraseña en todas partes, esto sería peligroso).
 
-## Instalar `passlib`
+## Instalar `pwdlib` { #install-pwdlib }
 
-PassLib es un gran paquete de Python para manejar hashes de contraseñas.
+pwdlib es un gran paquete de Python para manejar hashes de contraseñas.
 
 Soporta muchos algoritmos de hashing seguros y utilidades para trabajar con ellos.
 
-El algoritmo recomendado es "Bcrypt".
+El algoritmo recomendado es "Argon2".
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalar PassLib con Bcrypt:
+Asegúrate de crear un [entorno virtual](../../virtual-environments.md){.internal-link target=_blank}, activarlo y luego instalar pwdlib con Argon2:
 
 <div class="termy">
 
 ```console
-$ pip install "passlib[bcrypt]"
+$ pip install "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -86,7 +86,7 @@ $ pip install "passlib[bcrypt]"
 
 /// tip | Consejo
 
-Con `passlib`, incluso podrías configurarlo para poder leer contraseñas creadas por **Django**, un plug-in de seguridad de **Flask** u otros muchos.
+Con `pwdlib`, incluso podrías configurarlo para poder leer contraseñas creadas por **Django**, un plug-in de seguridad de **Flask** u otros muchos.
 
 Así, podrías, por ejemplo, compartir los mismos datos de una aplicación de Django en una base de datos con una aplicación de FastAPI. O migrar gradualmente una aplicación de Django usando la misma base de datos.
 
@@ -94,17 +94,17 @@ Y tus usuarios podrían iniciar sesión desde tu aplicación Django o desde tu a
 
 ///
 
-## Hash y verificación de contraseñas
+## Hash y verificación de contraseñas { #hash-and-verify-the-passwords }
 
-Importa las herramientas que necesitamos de `passlib`.
+Importa las herramientas que necesitamos de `pwdlib`.
 
-Crea un "contexto" de PassLib. Este es el que se usará para hacer el hash y verificar las contraseñas.
+Crea un instance PasswordHash con configuraciones recomendadas: se usará para hacer el hash y verificar las contraseñas.
 
 /// tip | Consejo
 
-El contexto de PassLib también tiene funcionalidad para usar diferentes algoritmos de hashing, incluidos los antiguos obsoletos solo para permitir verificarlos, etc.
+pwdlib también soporta el algoritmo de hashing bcrypt pero no incluye algoritmos legacy; para trabajar con hashes desactualizados, se recomienda usar el paquete passlib.
 
-Por ejemplo, podrías usarlo para leer y verificar contraseñas generadas por otro sistema (como Django) pero hacer hash de cualquier contraseña nueva con un algoritmo diferente como Bcrypt.
+Por ejemplo, podrías usarlo para leer y verificar contraseñas generadas por otro sistema (como Django) pero hacer hash de cualquier contraseña nueva con un algoritmo diferente como Argon2 o Bcrypt.
 
 Y ser compatible con todos ellos al mismo tiempo.
 
@@ -120,11 +120,11 @@ Y otra más para autenticar y devolver un usuario.
 
 /// note | Nota
 
-Si revisas la nueva (falsa) base de datos `fake_users_db`, verás cómo se ve ahora la contraseña con hash: `"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`.
+Si revisas la nueva (falsa) base de datos `fake_users_db`, verás cómo se ve ahora la contraseña con hash: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 
-## Manejo de tokens JWT
+## Manejo de tokens JWT { #handle-jwt-tokens }
 
 Importa los módulos instalados.
 
@@ -154,7 +154,7 @@ Crea una función de utilidad para generar un nuevo token de acceso.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
 
-## Actualizar las dependencias
+## Actualizar las dependencias { #update-the-dependencies }
 
 Actualiza `get_current_user` para recibir el mismo token que antes, pero esta vez, usando tokens JWT.
 
@@ -164,7 +164,7 @@ Si el token es inválido, devuelve un error HTTP de inmediato.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
 
-## Actualizar la *path operation* `/token`
+## Actualizar la *path operation* `/token` { #update-the-token-path-operation }
 
 Crea un `timedelta` con el tiempo de expiración del token.
 
@@ -172,7 +172,7 @@ Crea un verdadero token de acceso JWT y devuélvelo.
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
-### Detalles técnicos sobre el "sujeto" `sub` de JWT
+### Detalles técnicos sobre el "sujeto" `sub` de JWT { #technical-details-about-the-jwt-subject-sub }
 
 La especificación de JWT dice que hay una clave `sub`, con el sujeto del token.
 
@@ -194,7 +194,7 @@ Entonces, para evitar colisiones de ID, cuando crees el token JWT para el usuari
 
 Lo importante a tener en cuenta es que la clave `sub` debería tener un identificador único a lo largo de toda la aplicación, y debería ser un string.
 
-## Revisa
+## Revisa { #check-it }
 
 Ejecuta el servidor y ve a la documentación: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -230,7 +230,7 @@ Llama al endpoint `/users/me/`, obtendrás el response como:
 
 <img src="/img/tutorial/security/image09.png">
 
-Si abres las herramientas de desarrollador, podrías ver cómo los datos enviados solo incluyen el token, la contraseña solo se envía en la primera petición para autenticar al usuario y obtener ese token de acceso, pero no después:
+Si abres las herramientas de desarrollador, podrías ver cómo los datos enviados solo incluyen el token, la contraseña solo se envía en la primera request para autenticar al usuario y obtener ese token de acceso, pero no después:
 
 <img src="/img/tutorial/security/image10.png">
 
@@ -240,7 +240,7 @@ Observa el header `Authorization`, con un valor que comienza con `Bearer `.
 
 ///
 
-## Uso avanzado con `scopes`
+## Uso avanzado con `scopes` { #advanced-usage-with-scopes }
 
 OAuth2 tiene la noción de "scopes".
 
@@ -250,7 +250,7 @@ Luego, puedes darle este token directamente a un usuario o a un tercero, para in
 
 Puedes aprender cómo usarlos y cómo están integrados en **FastAPI** más adelante en la **Guía de Usuario Avanzada**.
 
-## Resumen
+## Resumen { #recap }
 
 Con lo que has visto hasta ahora, puedes configurar una aplicación **FastAPI** segura usando estándares como OAuth2 y JWT.
 
@@ -264,10 +264,10 @@ Muchos paquetes que lo simplifican tienen que hacer muchos compromisos con el mo
 
 Te da toda la flexibilidad para elegir aquellas que se ajusten mejor a tu proyecto.
 
-Y puedes usar directamente muchos paquetes bien mantenidos y ampliamente usados como `passlib` y `PyJWT`, porque **FastAPI** no requiere mecanismos complejos para integrar paquetes externos.
+Y puedes usar directamente muchos paquetes bien mantenidos y ampliamente usados como `pwdlib` y `PyJWT`, porque **FastAPI** no requiere mecanismos complejos para integrar paquetes externos.
 
 Pero te proporciona las herramientas para simplificar el proceso tanto como sea posible sin comprometer la flexibilidad, la robustez o la seguridad.
 
 Y puedes usar e implementar protocolos seguros y estándar, como OAuth2 de una manera relativamente simple.
 
-Puedes aprender más en la **Guía de Usuario Avanzada** sobre cómo usar "scopes" de OAuth2, para un sistema de permisos más detallado, siguiendo estos mismos estándares. OAuth2 con scopes es el mecanismo utilizado por muchos grandes proveedores de autenticación, como Facebook, Google, GitHub, Microsoft, Twitter, etc. para autorizar aplicaciones de terceros para interactuar con sus APIs en nombre de sus usuarios.
+Puedes aprender más en la **Guía de Usuario Avanzada** sobre cómo usar "scopes" de OAuth2, para un sistema de permisos más detallado, siguiendo estos mismos estándares. OAuth2 con scopes es el mecanismo utilizado por muchos grandes proveedores de autenticación, como Facebook, Google, GitHub, Microsoft, X (Twitter), etc. para autorizar aplicaciones de terceros para interactuar con sus APIs en nombre de sus usuarios.

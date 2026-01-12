@@ -1,8 +1,8 @@
-# Query Parameters
+# Query Parameters { #query-parameters }
 
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
@@ -28,7 +28,7 @@ All the same process that applied for path parameters also applies for query par
 * Data validation
 * Automatic documentation
 
-## Defaults
+## Defaults { #defaults }
 
 As query parameters are not a fixed part of a path, they can be optional and can have default values.
 
@@ -57,7 +57,7 @@ The parameter values in your function will be:
 * `skip=20`: because you set it in the URL
 * `limit=10`: because that was the default value
 
-## Optional parameters
+## Optional parameters { #optional-parameters }
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
@@ -71,7 +71,7 @@ Also notice that **FastAPI** is smart enough to notice that the path parameter `
 
 ///
 
-## Query parameter type conversion
+## Query parameter type conversion { #query-parameter-type-conversion }
 
 You can also declare `bool` types, and they will be converted:
 
@@ -110,7 +110,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
 
 
-## Multiple path and query parameters
+## Multiple path and query parameters { #multiple-path-and-query-parameters }
 
 You can declare multiple path parameters and query parameters at the same time, **FastAPI** knows which is which.
 
@@ -120,7 +120,7 @@ They will be detected by name:
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Required query parameters
+## Required query parameters { #required-query-parameters }
 
 When you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required.
 
@@ -128,7 +128,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 Here the query parameter `needy` is a required query parameter of type `str`.
 
@@ -150,8 +150,7 @@ http://127.0.0.1:8000/items/foo-item
         "needy"
       ],
       "msg": "Field required",
-      "input": null,
-      "url": "https://errors.pydantic.dev/2.1/v/missing"
+      "input": null
     }
   ]
 }

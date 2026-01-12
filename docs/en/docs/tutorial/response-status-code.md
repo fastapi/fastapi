@@ -1,4 +1,4 @@
-# Response Status Code
+# Response Status Code { #response-status-code }
 
 The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the *path operations*:
 
@@ -8,7 +8,7 @@ The same way you can specify a response model, you can also declare the HTTP sta
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 /// note
 
@@ -39,7 +39,7 @@ FastAPI knows this, and will produce OpenAPI docs that state there is no respons
 
 ///
 
-## About HTTP status codes
+## About HTTP status codes { #about-http-status-codes }
 
 /// note
 
@@ -70,11 +70,11 @@ To know more about each status code and which code is for what, check the <a hre
 
 ///
 
-## Shortcut to remember the names
+## Shortcut to remember the names { #shortcut-to-remember-the-names }
 
 Let's see the previous example again:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 `201` is the status code for "Created".
 
@@ -82,7 +82,7 @@ But you don't have to memorize what each of these codes mean.
 
 You can use the convenience variables from `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
 
 They are just a convenience, they hold the same number, but that way you can use the editor's autocomplete to find them:
 
@@ -96,6 +96,6 @@ You could also use `from starlette import status`.
 
 ///
 
-## Changing the default
+## Changing the default { #changing-the-default }
 
 Later, in the [Advanced User Guide](../advanced/response-change-status-code.md){.internal-link target=_blank}, you will see how to return a different status code than the default you are declaring here.

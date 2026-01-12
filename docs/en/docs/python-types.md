@@ -1,4 +1,4 @@
-# Python Types Intro
+# Python Types Intro { #python-types-intro }
 
 Python has support for optional "type hints" (also called "type annotations").
 
@@ -18,11 +18,11 @@ If you are a Python expert, and you already know everything about type hints, sk
 
 ///
 
-## Motivation
+## Motivation { #motivation }
 
 Let's start with a simple example:
 
-{* ../../docs_src/python_types/tutorial001.py *}
+{* ../../docs_src/python_types/tutorial001_py39.py *}
 
 Calling this program outputs:
 
@@ -36,9 +36,9 @@ The function does the following:
 * Converts the first letter of each one to upper case with `title()`.
 * <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
 
-{* ../../docs_src/python_types/tutorial001.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
 
-### Edit it
+### Edit it { #edit-it }
 
 It's a very simple program.
 
@@ -58,7 +58,7 @@ But, sadly, you get nothing useful:
 
 <img src="/img/python-types/image01.png">
 
-### Add types
+### Add types { #add-types }
 
 Let's modify a single line from the previous version.
 
@@ -78,7 +78,7 @@ That's it.
 
 Those are the "type hints":
 
-{* ../../docs_src/python_types/tutorial002.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
 
 That is not the same as declaring default values like would be with:
 
@@ -102,11 +102,11 @@ With that, you can scroll, seeing the options, until you find the one that "ring
 
 <img src="/img/python-types/image03.png">
 
-## More motivation
+## More motivation { #more-motivation }
 
 Check this function, it already has type hints:
 
-{* ../../docs_src/python_types/tutorial003.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
 
 Because the editor knows the types of the variables, you don't only get completion, you also get error checks:
 
@@ -114,15 +114,15 @@ Because the editor knows the types of the variables, you don't only get completi
 
 Now you know that you have to fix it, convert `age` to a string with `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
 
-## Declaring types
+## Declaring types { #declaring-types }
 
 You just saw the main place to declare type hints. As function parameters.
 
 This is also the main place you would use them with **FastAPI**.
 
-### Simple types
+### Simple types { #simple-types }
 
 You can declare all the standard Python types, not only `str`.
 
@@ -133,9 +133,9 @@ You can use, for example:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
 
-### Generic types with type parameters
+### Generic types with type parameters { #generic-types-with-type-parameters }
 
 There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
 
@@ -143,7 +143,7 @@ These types that have internal types are called "**generic**" types. And it's po
 
 To declare those types and the internal types, you can use the standard Python module `typing`. It exists specifically to support these type hints.
 
-#### Newer versions of Python
+#### Newer versions of Python { #newer-versions-of-python }
 
 The syntax using `typing` is **compatible** with all versions, from Python 3.6 to the latest ones, including Python 3.9, Python 3.10, etc.
 
@@ -157,11 +157,9 @@ For example "**Python 3.6+**" means it's compatible with Python 3.6 or above (in
 
 If you can use the **latest versions of Python**, use the examples for the latest version, those will have the **best and simplest syntax**, for example, "**Python 3.10+**".
 
-#### List
+#### List { #list }
 
 For example, let's define a variable to be a `list` of `str`.
-
-//// tab | Python 3.9+
 
 Declare the variable, with the same colon (`:`) syntax.
 
@@ -169,47 +167,17 @@ As the type, put `list`.
 
 As the list is a type that contains some internal types, you put them in square brackets:
 
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-From `typing`, import `List` (with a capital `L`):
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
-
-Declare the variable, with the same colon (`:`) syntax.
-
-As the type, put the `List` that you imported from `typing`.
-
-As the list is a type that contains some internal types, you put them in square brackets:
-
-```Python hl_lines="4"
-{!> ../../docs_src/python_types/tutorial006.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
 
 /// info
 
 Those internal types in the square brackets are called "type parameters".
 
-In this case, `str` is the type parameter passed to `List` (or `list` in Python 3.9 and above).
+In this case, `str` is the type parameter passed to `list`.
 
 ///
 
 That means: "the variable `items` is a `list`, and each of the items in this list is a `str`".
-
-/// tip
-
-If you use Python 3.9 or above, you don't have to import `List` from `typing`, you can use the same regular `list` type instead.
-
-///
 
 By doing that, your editor can provide support even while processing items from the list:
 
@@ -221,32 +189,18 @@ Notice that the variable `item` is one of the elements in the list `items`.
 
 And still, the editor knows it is a `str`, and provides support for that.
 
-#### Tuple and Set
+#### Tuple and Set { #tuple-and-set }
 
 You would do the same to declare `tuple`s and `set`s:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial007_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial007.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
 
 This means:
 
 * The variable `items_t` is a `tuple` with 3 items, an `int`, another `int`, and a `str`.
 * The variable `items_s` is a `set`, and each of its items is of type `bytes`.
 
-#### Dict
+#### Dict { #dict }
 
 To define a `dict`, you pass 2 type parameters, separated by commas.
 
@@ -254,21 +208,7 @@ The first type parameter is for the keys of the `dict`.
 
 The second type parameter is for the values of the `dict`:
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
 
 This means:
 
@@ -276,7 +216,7 @@ This means:
     * The keys of this `dict` are of type `str` (let's say, the name of each item).
     * The values of this `dict` are of type `float` (let's say, the price of each item).
 
-#### Union
+#### Union { #union }
 
 You can declare that a variable can be any of **several types**, for example, an `int` or a `str`.
 
@@ -292,24 +232,24 @@ In Python 3.10 there's also a **new syntax** where you can put the possible type
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b.py!}
+{!> ../../docs_src/python_types/tutorial008b_py39.py!}
 ```
 
 ////
 
 In both cases this means that `item` could be an `int` or a `str`.
 
-#### Possibly `None`
+#### Possibly `None` { #possibly-none }
 
 You can declare that a value could have a type, like `str`, but that it could also be `None`.
 
 In Python 3.6 and above (including Python 3.10) you can declare it by importing and using `Optional` from the `typing` module.
 
 ```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009.py!}
+{!../../docs_src/python_types/tutorial009_py39.py!}
 ```
 
 Using `Optional[str]` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
@@ -326,23 +266,23 @@ This also means that in Python 3.10, you can use `Something | None`:
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009.py!}
+{!> ../../docs_src/python_types/tutorial009_py39.py!}
 ```
 
 ////
 
-//// tab | Python 3.8+ alternative
+//// tab | Python 3.9+ alternative
 
 ```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b.py!}
+{!> ../../docs_src/python_types/tutorial009b_py39.py!}
 ```
 
 ////
 
-#### Using `Union` or `Optional`
+#### Using `Union` or `Optional` { #using-union-or-optional }
 
 If you are using a Python version below 3.10, here's a tip from my very **subjective** point of view:
 
@@ -357,7 +297,7 @@ It's just about the words and names. But those words can affect how you and your
 
 As an example, let's take this function:
 
-{* ../../docs_src/python_types/tutorial009c.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
 
 The parameter `name` is defined as `Optional[str]`, but it is **not optional**, you cannot call the function without the parameter:
 
@@ -377,7 +317,7 @@ The good news is, once you are on Python 3.10 you won't have to worry about that
 
 And then you won't have to worry about names like `Optional` and `Union`. 😎
 
-#### Generic types
+#### Generic types { #generic-types }
 
 These types that take type parameters in square brackets are called **Generic types** or **Generics**, for example:
 
@@ -390,10 +330,10 @@ You can use the same builtin types as generics (with square brackets and types i
 * `set`
 * `dict`
 
-And the same as with Python 3.8, from the `typing` module:
+And the same as with previous Python versions, from the `typing` module:
 
 * `Union`
-* `Optional` (the same as with Python 3.8)
+* `Optional`
 * ...and others.
 
 In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types, that's a lot better and simpler.
@@ -409,7 +349,7 @@ You can use the same builtin types as generics (with square brackets and types i
 * `set`
 * `dict`
 
-And the same as with Python 3.8, from the `typing` module:
+And generics from the `typing` module:
 
 * `Union`
 * `Optional`
@@ -417,29 +357,17 @@ And the same as with Python 3.8, from the `typing` module:
 
 ////
 
-//// tab | Python 3.8+
-
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
-* `Union`
-* `Optional`
-* ...and others.
-
-////
-
-### Classes as types
+### Classes as types { #classes-as-types }
 
 You can also declare a class as the type of a variable.
 
 Let's say you have a class `Person`, with a name:
 
-{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
 
 Then you can declare a variable to be of type `Person`:
 
-{* ../../docs_src/python_types/tutorial010.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
 
 And then, again, you get all the editor support:
 
@@ -449,7 +377,7 @@ Notice that this means "`one_person` is an **instance** of the class `Person`".
 
 It doesn't mean "`one_person` is the **class** called `Person`".
 
-## Pydantic models
+## Pydantic models { #pydantic-models }
 
 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
 
@@ -463,29 +391,7 @@ And you get all the editor support with that resulting object.
 
 An example from the official Pydantic docs:
 
-//// tab | Python 3.10+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py310.py!}
-```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-```Python
-{!> ../../docs_src/python_types/tutorial011.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// info
 
@@ -503,31 +409,13 @@ Pydantic has a special behavior when you use `Optional` or `Union[Something, Non
 
 ///
 
-## Type Hints with Metadata Annotations
+## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
 Python also has a feature that allows putting **additional <abbr title="Data about the data, in this case, information about the type, e.g. a description.">metadata</abbr>** in these type hints using `Annotated`.
 
-//// tab | Python 3.9+
+Since Python 3.9, `Annotated` is a part of the standard library, so you can import it from `typing`.
 
-In Python 3.9, `Annotated` is part of the standard library, so you can import it from `typing`.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013_py39.py!}
-```
-
-////
-
-//// tab | Python 3.8+
-
-In versions below Python 3.9, you import `Annotated` from `typing_extensions`.
-
-It will already be installed with **FastAPI**.
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial013.py!}
-```
-
-////
+{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
 
 Python itself doesn't do anything with this `Annotated`. And for editors and other tools, the type is still `str`.
 
@@ -547,7 +435,7 @@ And also that your code will be very compatible with many other Python tools and
 
 ///
 
-## Type hints in **FastAPI**
+## Type hints in **FastAPI** { #type-hints-in-fastapi }
 
 **FastAPI** takes advantage of these type hints to do several things.
 

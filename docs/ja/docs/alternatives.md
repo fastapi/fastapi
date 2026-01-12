@@ -419,7 +419,7 @@ Marshmallowに匹敵しますが、ベンチマークではMarshmallowよりも�
 
 ///
 
-### <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
 
 Starletteは、軽量な<abbr title="非同期Python webを構築するための新標準">ASGI</abbr>フレームワーク/ツールキットで、高性能な非同期サービスの構築に最適です。
 
@@ -465,7 +465,7 @@ webに関するコアな部分を全て扱います。その上に機能を追�
 
 ///
 
-### <a href="https://www.uvicorn.org/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
 
 Uvicornは非常に高速なASGIサーバーで、uvloopとhttptoolsにより構成されています。
 

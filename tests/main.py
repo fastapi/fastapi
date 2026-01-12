@@ -1,9 +1,14 @@
 import http
-from typing import FrozenSet, List, Optional
+from typing import Optional
 
 from fastapi import FastAPI, Path, Query
 
-app = FastAPI()
+external_docs = {
+    "description": "External API documentation.",
+    "url": "https://docs.example.com/api-general",
+}
+
+app = FastAPI(openapi_external_docs=external_docs)
 
 
 @app.api_route("/api_route")
@@ -190,15 +195,15 @@ def get_enum_status_code():
 
 
 @app.get("/query/frozenset")
-def get_query_type_frozenset(query: FrozenSet[int] = Query(...)):
+def get_query_type_frozenset(query: frozenset[int] = Query(...)):
     return ",".join(map(str, sorted(query)))
 
 
 @app.get("/query/list")
-def get_query_list(device_ids: List[int] = Query()) -> List[int]:
+def get_query_list(device_ids: list[int] = Query()) -> list[int]:
     return device_ids
 
 
 @app.get("/query/list-default")
-def get_query_list_default(device_ids: List[int] = Query(default=[])) -> List[int]:
+def get_query_list_default(device_ids: list[int] = Query(default=[])) -> list[int]:
     return device_ids

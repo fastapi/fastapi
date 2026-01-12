@@ -60,7 +60,7 @@ FastAPI CLI приймає шлях до Вашої Python програми (н�
 
 Натомість, для запуску у продакшн використовуйте `fastapi run`. 🚀
 
-Всередині **FastAPI CLI** використовує <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>, високопродуктивний, production-ready, ASGI cервер. 😎
+Всередині **FastAPI CLI** використовує <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>, високопродуктивний, production-ready, ASGI cервер. 😎
 
 ## `fastapi dev`
 

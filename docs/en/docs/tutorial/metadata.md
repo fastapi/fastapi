@@ -1,8 +1,8 @@
-# Metadata and Docs URLs
+# Metadata and Docs URLs { #metadata-and-docs-urls }
 
 You can customize several metadata configurations in your **FastAPI** application.
 
-## Metadata for API
+## Metadata for API { #metadata-for-api }
 
 You can set the following fields that are used in the OpenAPI specification and the automatic API docs UIs:
 
@@ -18,7 +18,7 @@ You can set the following fields that are used in the OpenAPI specification and 
 
 You can set them as follows:
 
-{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001_py39.py hl[3:16, 19:32] *}
 
 /// tip
 
@@ -30,15 +30,15 @@ With this configuration, the automatic API docs would look like:
 
 <img src="/img/tutorial/metadata/image01.png">
 
-## License identifier
+## License identifier { #license-identifier }
 
 Since OpenAPI 3.1.0 and FastAPI 0.99.0, you can also set the `license_info` with an `identifier` instead of a `url`.
 
 For example:
 
-{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1_py39.py hl[31] *}
 
-## Metadata for tags
+## Metadata for tags { #metadata-for-tags }
 
 You can also add additional metadata for the different tags used to group your path operations with the parameter `openapi_tags`.
 
@@ -52,13 +52,13 @@ Each dictionary can contain:
     * `description`: a `str` with a short description for the external docs.
     * `url` (**required**): a `str` with the URL for the external documentation.
 
-### Create metadata for tags
+### Create metadata for tags { #create-metadata-for-tags }
 
 Let's try that in an example with tags for `users` and `items`.
 
 Create metadata for your tags and pass it to the `openapi_tags` parameter:
 
-{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004_py39.py hl[3:16,18] *}
 
 Notice that you can use Markdown inside of the descriptions, for example "login" will be shown in bold (**login**) and "fancy" will be shown in italics (_fancy_).
 
@@ -68,11 +68,11 @@ You don't have to add metadata for all the tags that you use.
 
 ///
 
-### Use your tags
+### Use your tags { #use-your-tags }
 
 Use the `tags` parameter with your *path operations* (and `APIRouter`s) to assign them to different tags:
 
-{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
 
 /// info
 
@@ -80,19 +80,19 @@ Read more about tags in [Path Operation Configuration](path-operation-configurat
 
 ///
 
-### Check the docs
+### Check the docs { #check-the-docs }
 
 Now, if you check the docs, they will show all the additional metadata:
 
 <img src="/img/tutorial/metadata/image02.png">
 
-### Order of tags
+### Order of tags { #order-of-tags }
 
 The order of each tag metadata dictionary also defines the order shown in the docs UI.
 
 For example, even though `users` would go after `items` in alphabetical order, it is shown before them, because we added their metadata as the first dictionary in the list.
 
-## OpenAPI URL
+## OpenAPI URL { #openapi-url }
 
 By default, the OpenAPI schema is served at `/openapi.json`.
 
@@ -100,11 +100,11 @@ But you can configure it with the parameter `openapi_url`.
 
 For example, to set it to be served at `/api/v1/openapi.json`:
 
-{* ../../docs_src/metadata/tutorial002.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002_py39.py hl[3] *}
 
 If you want to disable the OpenAPI schema completely you can set `openapi_url=None`, that will also disable the documentation user interfaces that use it.
 
-## Docs URLs
+## Docs URLs { #docs-urls }
 
 You can configure the two documentation user interfaces included:
 
@@ -117,4 +117,4 @@ You can configure the two documentation user interfaces included:
 
 For example, to set Swagger UI to be served at `/documentation` and disable ReDoc:
 
-{* ../../docs_src/metadata/tutorial003.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003_py39.py hl[3] *}

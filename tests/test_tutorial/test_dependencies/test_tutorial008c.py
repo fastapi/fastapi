@@ -5,15 +5,12 @@ import pytest
 from fastapi.exceptions import FastAPIError
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="mod",
     params=[
-        "tutorial008c",
-        "tutorial008c_an",
-        pytest.param("tutorial008c_an_py39", marks=needs_py39),
+        pytest.param("tutorial008c_py39"),
+        pytest.param("tutorial008c_an_py39"),
     ],
 )
 def get_mod(request: pytest.FixtureRequest):
@@ -40,7 +37,7 @@ def test_fastapi_error(mod: ModuleType):
     client = TestClient(mod.app)
     with pytest.raises(FastAPIError) as exc_info:
         client.get("/items/portal-gun")
-    assert "No response object was returned" in exc_info.value.args[0]
+    assert "raising an exception and a dependency with yield" in exc_info.value.args[0]
 
 
 def test_internal_server_error(mod: ModuleType):

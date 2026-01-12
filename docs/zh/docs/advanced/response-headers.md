@@ -36,4 +36,4 @@
 
 请注意，可以使用'X-'前缀添加自定义专有头部。
 
-但是，如果你有自定义头部，你希望浏览器中的客户端能够看到它们，你需要将它们添加到你的CORS配置中（在[CORS（跨源资源共享）](../tutorial/cors.md){.internal-link target=_blank}中阅读更多），使用在<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette的CORS文档</a>中记录的`expose_headers`参数。
+但是，如果你有自定义头部，你希望浏览器中的客户端能够看到它们，你需要将它们添加到你的CORS配置中（在[CORS（跨源资源共享）](../tutorial/cors.md){.internal-link target=_blank}中阅读更多），使用在<a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Starlette的CORS文档</a>中记录的`expose_headers`参数。

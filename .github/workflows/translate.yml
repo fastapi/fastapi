@@ -1,0 +1,117 @@
+name: Translate
+
+on:
+  # schedule:
+  #   - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
+
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: Run with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)
+        required: false
+        default: "false"
+      command:
+        description: Command to run
+        type: choice
+        options:
+          - translate-page
+          - translate-lang
+          - update-outdated
+          - add-missing
+          - update-and-add
+          - remove-removable
+      language:
+        description: Language to translate to as a letter code (e.g. "es" for Spanish)
+        type: string
+        required: false
+        default: ""
+      en_path:
+        description: File path in English to translate (e.g. docs/en/docs/index.md)
+        type: string
+        required: false
+        default: ""
+      commit_in_place:
+        description: Commit changes directly instead of making a PR
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  langs:
+    runs-on: ubuntu-latest
+    outputs:
+      langs: ${{ steps.show-langs.outputs.langs }}
+      commands: ${{ steps.show-langs.outputs.commands }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Install Dependencies
+        run: uv sync --locked --no-dev --group github-actions --group translations
+      - name: Export Language Codes
+        id: show-langs
+        run: |
+          echo "langs=$(uv run ./scripts/translate.py llm-translatable-json)" >> $GITHUB_OUTPUT
+          echo "commands=$(uv run ./scripts/translate.py commands-json)" >> $GITHUB_OUTPUT
+        env:
+          LANGUAGE: ${{ github.event.inputs.language }}
+          COMMAND: ${{ github.event.inputs.command }}
+
+  translate:
+    if: github.repository_owner == 'fastapi'
+    needs: langs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        lang: ${{ fromJson(needs.langs.outputs.langs) }}
+        command: ${{ fromJson(needs.langs.outputs.commands) }}
+    permissions:
+      contents: write
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Install Dependencies
+        run: uv sync --locked --no-dev --group github-actions --group translations
+      # Allow debugging with tmate
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
+        with:
+          limit-access-to-actor: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: FastAPI Translate
+        run: |
+          uv run ./scripts/translate.py ${{ matrix.command }}
+          uv run ./scripts/translate.py make-pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LANGUAGE: ${{ matrix.lang }}
+          EN_PATH: ${{ github.event.inputs.en_path }}
+          COMMAND: ${{ matrix.command }}
+          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
