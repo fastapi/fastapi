@@ -34,7 +34,7 @@ Por exemplo, você não pode colocar um modelo do Pydantic em uma `JSONResponse`
 
 Para esses casos, você pode usar o `jsonable_encoder` para converter seus dados antes de repassá-los para a resposta:
 
-{* ../../docs_src/response_directly/tutorial001.py hl[6:7,21:22] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | Detalhes Técnicos
 
@@ -54,7 +54,7 @@ Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.o
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
 ## Notas { #notes }
 

@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 Например, вы объявили операцию пути `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
 
 Если клиент обратится к `/items`, по умолчанию произойдёт редирект на `/items/`.
 
@@ -64,7 +64,7 @@ https://mysuperapp.com/items/
 
 ///
 
-### Как работают пересылаемые заголовки прокси
+### Как работают пересылаемые заголовки прокси { #how-proxy-forwarded-headers-work }
 
 Ниже показано, как прокси добавляет пересылаемые заголовки между клиентом и сервером приложения:
 
@@ -115,7 +115,7 @@ sequenceDiagram
 
 Хотя весь ваш код написан с расчётом, что путь один — `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
 
 Прокси будет «обрезать» префикс пути на лету перед передачей запроса на сервер приложения (скорее всего Uvicorn, запущенный через FastAPI CLI), поддерживая у вашего приложения иллюзию, что его обслуживают по `/app`, чтобы вам не пришлось менять весь код и добавлять префикс `/api/v1`.
 
@@ -193,7 +193,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Здесь мы добавляем его в сообщение лишь для демонстрации.
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
 
 Затем, если вы запустите Uvicorn так:
 
@@ -220,7 +220,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Если нет возможности передать опцию командной строки `--root-path` (или аналог), вы можете указать параметр `root_path` при создании приложения FastAPI:
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
 
 Передача `root_path` в `FastAPI` эквивалентна опции командной строки `--root-path` для Uvicorn или Hypercorn.
 
@@ -400,7 +400,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Например:
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
 
 Будет сгенерирована схема OpenAPI примерно такая:
 
@@ -443,11 +443,19 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
+/// note | Технические детали
+
+Свойство `servers` в спецификации OpenAPI является необязательным.
+
+Если вы не укажете параметр `servers`, а `root_path` равен `/`, то свойство `servers` в сгенерированной схеме OpenAPI по умолчанию будет опущено. Это эквивалентно серверу со значением `url` равным `/`.
+
+///
+
 ### Отключить автоматическое добавление сервера из `root_path` { #disable-automatic-server-from-root-path }
 
 Если вы не хотите, чтобы FastAPI добавлял автоматический сервер, используя `root_path`, укажите параметр `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
 
 и тогда этот сервер не будет добавлен в схему OpenAPI.
 

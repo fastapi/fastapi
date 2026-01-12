@@ -1,19 +1,15 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
-from ...utils import needs_py39
 
 
 @pytest.fixture(
     name="app",
     params=[
-        "tutorial001",
-        "tutorial001_an",
-        pytest.param("tutorial001_an_py39", marks=needs_py39),
+        "tutorial001_py39",
+        "tutorial001_an_py39",
     ],
 )
 def get_app(request: pytest.FixtureRequest):
@@ -31,140 +27,76 @@ def get_client(app: FastAPI):
 def test_post_form_no_body(client: TestClient):
     response = client.post("/files/")
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "file"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "fileb"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "file"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "fileb"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "file"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "fileb"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "token"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_form_no_file(client: TestClient):
     response = client.post("/files/", data={"token": "foo"})
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "file"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "fileb"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "file"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "fileb"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "file"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "fileb"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_body_json(client: TestClient):
     response = client.post("/files/", json={"file": "Foo", "token": "Bar"})
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "file"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "fileb"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "file"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "fileb"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "file"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "fileb"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "token"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_file_no_token(tmp_path, app: FastAPI):
@@ -175,40 +107,22 @@ def test_post_file_no_token(tmp_path, app: FastAPI):
     with path.open("rb") as file:
         response = client.post("/files/", files={"file": file})
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "fileb"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "token"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "fileb"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "token"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "fileb"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "token"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_files_and_token(tmp_path, app: FastAPI):
