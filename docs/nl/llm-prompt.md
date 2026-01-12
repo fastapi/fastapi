@@ -4,6 +4,11 @@ Gebruik de informele grammatica (gebruik "je" en "jij" in plaats van "u").
 
 Voor instructies of titels in de gebiedende wijs, houd ze in de gebiedende wijs, bijvoorbeeld "Edit it" naar "Bewerk het".
 
+## Belangrijke spelling en woordkeuze beslissingen:
+
+* Gebruik "types" (niet "typen") voor het meervoud van "type"
+* Gebruik "syntax" (niet "syntaxis")
+
 ---
 
 Voor de volgende termen, gebruik de volgende vertalingen:
@@ -105,3 +110,6 @@ Voor de volgende termen, gebruik de volgende vertalingen:
 * validation: validatie
 * decorator: decorator (niet vertalen)
 * payload: payload (niet vertalen naar "lading")
+* deploy (werkwoord): deployen (NIET vertalen naar "implementeren")
+* deployment (zelfstandig naamwoord): deployment (NIET vertalen naar "implementatie")
+* implement (als in software implementatie/put into practice): implementeren

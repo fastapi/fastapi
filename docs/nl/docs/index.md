@@ -8,7 +8,7 @@
   <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI framework, hoge prestaties, makkelijk te leren, snel te coderen, klaar voor productie</em>
+    <em>Het FastAPI-framework, hoge prestaties, makkelijk te leren, snel te coderen, klaar voor productie</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -37,13 +37,13 @@ FastAPI is een modern, snel (high-performance) webframework voor het bouwen van 
 
 De belangrijkste kenmerken zijn:
 
-* **Snel**: Zeer hoge prestaties, vergelijkbaar met **NodeJS** en **Go** (dankzij Starlette en Pydantic). [Een van de snelste Python frameworks beschikbaar](#performance).
-* **Snel te coderen**: Verhoog de snelheid om functies te ontwikkelen met ongeveer 200% tot 300%. *
-* **Minder bugs**: Verminder ongeveer 40% van de door mensen (ontwikkelaars) veroorzaakte fouten. *
-* **Intuïtief**: Geweldige editor-ondersteuning. <abbr title="ook bekend als auto-complete, autocompletion, IntelliSense">Completion</abbr> overal. Minder tijd debuggen.
+* **Snel**: Zeer hoge prestaties, vergelijkbaar met **NodeJS** en **Go** (dankzij Starlette en Pydantic). [Een van de snelste Python-frameworks beschikbaar](#performance).
+* **Snel te coderen**: Verhoogt de ontwikkelsnelheid met ongeveer 200% tot 300%. *
+* **Minder bugs**: Vermindert ongeveer 40% van de door mensen (ontwikkelaars) veroorzaakte fouten. *
+* **Intuïtief**: Geweldige editorondersteuning. <abbr title="ook bekend als auto-complete, autocompletion, IntelliSense">Completion</abbr> overal. Minder tijd kwijt aan debuggen.
 * **Gemakkelijk**: Ontworpen om gemakkelijk te gebruiken en te leren. Minder tijd documentatie lezen.
-* **Kort**: Minimaliseer code duplicatie. Meerdere functies per parameter declaratie. Minder bugs.
-* **Robuust**: Krijg productie-klare code. Met automatische interactieve documentatie.
+* **Kort**: Minimaliseer codeduplicatie. Meerdere functies per parameter declaratie. Minder bugs.
+* **Robuust**: Krijg productieklare code. Met automatische interactieve documentatie.
 * **Gebaseerd op standaarden**: Gebaseerd op (en volledig compatibel met) de open standaarden voor API's: <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> (voorheen bekend als Swagger) en <a href="https://json-schema.org/" class="external-link" target="_blank">JSON Schema</a>.
 
 <small>* schatting gebaseerd op tests uitgevoerd door een intern ontwikkelteam, die productie applicaties bouwden.</small>
@@ -73,7 +73,7 @@ De belangrijkste kenmerken zijn:
 
 ## Meningen { #opinions }
 
-"_[...] Ik gebruik **FastAPI** tegenwoordig enorm veel. [...] Ik ben eigenlijk van plan om het te gebruiken voor alle **ML services van mijn team bij Microsoft**. Sommige daarvan worden geïntegreerd in het core **Windows** product en sommige **Office** producten._"
+"_[...] Ik gebruik **FastAPI** tegenwoordig enorm veel. [...] Ik ben eigenlijk van plan om het te gebruiken voor alle **ML-services van mijn team bij Microsoft**. Sommige daarvan worden geïntegreerd in het core **Windows-product** en sommige **Office-producten**._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26" target="_blank"><small>(ref)</small></a></div>
 
@@ -85,7 +85,7 @@ De belangrijkste kenmerken zijn:
 
 ---
 
-"_**Netflix** is verheugd om de open-source release aan te kondigen van ons **crisis management** orkestratie framework: **Dispatch**! [gebouwd met **FastAPI**]_"
+"_**Netflix** is verheugd om de open-sourcerelease aan te kondigen van ons **crisismanagement**-orkestratie framework: **Dispatch**! [gebouwd met **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072" target="_blank"><small>(ref)</small></a></div>
 
@@ -111,7 +111,7 @@ De belangrijkste kenmerken zijn:
 
 ---
 
-"_Als iemand op zoek is om een productie Python API te bouwen, zou ik **FastAPI** sterk aanbevelen. Het is **prachtig ontworpen**, **eenvoudig te gebruiken** en **zeer schaalbaar**, het is een **sleutelcomponent** geworden in onze API-first ontwikkelingsstrategie en drijft veel automatiseringen en services aan zoals onze Virtual TAC Engineer._"
+"_Als iemand een productie Python API wil bouwen, zou ik **FastAPI** sterk aanbevelen. Het is **prachtig ontworpen**, **eenvoudig te gebruiken** en **zeer schaalbaar**, het is een **sleutelcomponent** geworden in onze API-first ontwikkelingsstrategie en drijft veel automatiseringen en services aan zoals onze Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
@@ -119,7 +119,7 @@ De belangrijkste kenmerken zijn:
 
 ## FastAPI mini documentaire { #fastapi-mini-documentary }
 
-Er is een <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI mini documentaire</a> uitgebracht eind 2025, je kunt hem online bekijken:
+Er is een <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI mini documentaire</a> uitgebracht eind 2025; je kunt hem online bekijken:
 
 <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
@@ -135,8 +135,8 @@ Als je een <abbr title="Command Line Interface">CLI</abbr> app bouwt voor gebrui
 
 FastAPI staat op de schouders van reuzen:
 
-* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> voor de web onderdelen.
-* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> voor de data onderdelen.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> voor de webonderdelen.
+* <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> voor de data-onderdelen.
 
 ## Installatie { #installation }
 
@@ -261,22 +261,22 @@ Je zult de JSON response zien als:
 
 Je hebt al een API gemaakt die:
 
-* HTTP verzoeken ontvangt in de _paths_ `/` en `/items/{item_id}`.
-* Beide _paths_ nemen `GET` <em>operations</em> (ook bekend als HTTP _methods_).
-* De _path_ `/items/{item_id}` heeft een _path parameter_ `item_id` die een `int` moet zijn.
-* De _path_ `/items/{item_id}` heeft een optionele `str` _query parameter_ `q`.
+* HTTP-verzoeken ontvangt in de _paths_ `/` en `/items/{item_id}`.
+* Beide _paths_ hebben `GET`-<em>operaties</em> (ook bekend als HTTP-_methods_).
+* De _path_ `/items/{item_id}` heeft een _path-parameter_ `item_id` die een `int` moet zijn.
+* De _path_ `/items/{item_id}` heeft een optionele `str` _query-parameter_ `q`.
 
-### Interactieve API docs { #interactive-api-docs }
+### Interactieve API-docs { #interactive-api-docs }
 
 Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Je zult de automatische interactieve API documentatie zien (geleverd door <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Je zult de automatische interactieve API-documentatie zien (geleverd door <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Alternatieve API docs { #alternative-api-docs }
+### Alternatieve API-docs { #alternative-api-docs }
 
-En nu, ga naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Ga nu naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
 Je zult de alternatieve automatische documentatie zien (geleverd door <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
 
@@ -320,11 +320,11 @@ def update_item(item_id: int, item: Item):
 
 De `fastapi dev` server zou automatisch moeten herladen.
 
-### Interactieve API docs upgrade { #interactive-api-docs-upgrade }
+### Interactieve API-docs upgrade { #interactive-api-docs-upgrade }
 
 Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-* De interactieve API documentatie zal automatisch worden bijgewerkt, inclusief de nieuwe body:
+* De interactieve API-documentatie zal automatisch worden bijgewerkt, inclusief de nieuwe body:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
@@ -336,11 +336,11 @@ Ga nu naar <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Alternatieve API docs upgrade { #alternative-api-docs-upgrade }
+### Alternatieve API-docs upgrade { #alternative-api-docs-upgrade }
 
-En nu, ga naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+Ga nu naar <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
-* De alternatieve documentatie zal ook de nieuwe query parameter en body weerspiegelen:
+* De alternatieve documentatie zal ook de nieuwe query-parameter en body weerspiegelen:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -368,16 +368,16 @@ item: Item
 
 ...en met die enkele declaratie krijg je:
 
-* Editor ondersteuning, inclusief:
+* Editorondersteuning, inclusief:
     * Completion.
     * Type checks.
 * Validatie van data:
     * Automatische en duidelijke fouten wanneer de data ongeldig is.
-    * Validatie zelfs voor diep geneste JSON objecten.
+    * Validatie zelfs voor diep geneste JSON-objecten.
 * <abbr title="ook bekend als: serialization, parsing, marshalling">Conversie</abbr> van input data: afkomstig van het netwerk naar Python data en types. Lezen van:
     * JSON.
-    * Path parameters.
-    * Query parameters.
+    * Path-parameters.
+    * Query-parameters.
     * Cookies.
     * Headers.
     * Forms.
@@ -388,25 +388,25 @@ item: Item
     * `UUID` objecten.
     * Database modellen.
     * ...en nog veel meer.
-* Automatische interactieve API documentatie, inclusief 2 alternatieve gebruikersinterfaces:
+* Automatische interactieve API-documentatie, inclusief 2 alternatieve gebruikersinterfaces:
     * Swagger UI.
     * ReDoc.
 
 ---
 
-Terug komend op het vorige code voorbeeld, **FastAPI** zal:
+Terugkomend naar het vorige codevoorbeeld, **FastAPI** zal:
 
-* Valideren dat er een `item_id` in het path is voor `GET` en `PUT` verzoeken.
-* Valideren dat de `item_id` van het type `int` is voor `GET` en `PUT` verzoeken.
+* Valideren dat er een `item_id` in het path is voor `GET`- en `PUT`-verzoeken.
+* Valideren dat de `item_id` van het type `int` is voor `GET`- en `PUT`-verzoeken.
     * Als dat niet zo is, zal de client een nuttige, duidelijke fout zien.
-* Controleren of er een optionele query parameter genaamd `q` is (zoals in `http://127.0.0.1:8000/items/foo?q=somequery`) voor `GET` verzoeken.
+* Controleren of er een optionele query-parameter genaamd `q` is (zoals in `http://127.0.0.1:8000/items/foo?q=somequery`) voor `GET`-verzoeken.
     * Omdat de `q` parameter is gedeclareerd met `= None`, is het optioneel.
     * Zonder de `None` zou het verplicht zijn (zoals de body in het geval met `PUT`).
-* Voor `PUT` verzoeken naar `/items/{item_id}`, lees de body als JSON:
+* Voor `PUT`-verzoeken naar `/items/{item_id}`, lees de body als JSON:
     * Controleer dat het een verplicht attribuut `name` heeft dat een `str` moet zijn.
     * Controleer dat het een verplicht attribuut `price` heeft dat een `float` moet zijn.
     * Controleer dat het een optioneel attribuut `is_offer` heeft, dat een `bool` moet zijn, indien aanwezig.
-    * Dit zou ook werken voor diep geneste JSON objecten.
+    * Dit zou ook werken voor diep geneste JSON-objecten.
 * Automatisch converteren van en naar JSON.
 * Documenteer alles met OpenAPI, dat kan worden gebruikt door:
     * Interactieve documentatie systemen.
@@ -443,11 +443,11 @@ Voor een completer voorbeeld inclusief meer functies, zie de <a href="https://fa
 
 **Spoiler alert**: de tutorial - user guide bevat:
 
-* Declaratie van **parameters** van andere verschillende plaatsen als: **headers**, **cookies**, **form fields** en **files**.
+* Declaratie van **parameters** van verschillende andere plaatsen zoals: **headers**, **cookies**, **form fields** en **files**.
 * Hoe **validatie beperkingen** in te stellen als `maximum_length` of `regex`.
 * Een zeer krachtig en gemakkelijk te gebruiken **<abbr title="ook bekend als components, resources, providers, services, injectables">Dependency Injection</abbr>** systeem.
 * Beveiliging en authenticatie, inclusief ondersteuning voor **OAuth2** met **JWT tokens** en **HTTP Basic** auth.
-* Meer geavanceerde (maar even gemakkelijke) technieken voor het declareren van **diep geneste JSON modellen** (dankzij Pydantic).
+* Meer geavanceerde (maar even gemakkelijke) technieken voor het declareren van **diep geneste JSON-modellen** (dankzij Pydantic).
 * **GraphQL** integratie met <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> en andere bibliotheken.
 * Veel extra functies (dankzij Starlette) zoals:
     * **WebSockets**
@@ -456,13 +456,13 @@ Voor een completer voorbeeld inclusief meer functies, zie de <a href="https://fa
     * **Cookie Sessions**
     * ...en meer.
 
-### Implementeer je app (optioneel) { #deploy-your-app-optional }
+### Deploy je app (optioneel) { #deploy-your-app-optional }
 
-Je kunt optioneel je FastAPI app implementeren naar <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, ga en meld je aan voor de wachtlijst als je dat nog niet hebt gedaan. 🚀
+Je kunt optioneel je FastAPI-app deployen naar <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, meld je aan voor de wachtlijst als je dat nog niet hebt gedaan. 🚀
 
-Als je al een **FastAPI Cloud** account hebt (we hebben je uitgenodigd vanaf de wachtlijst 😉), kun je je applicatie implementeren met één commando.
+Als je al een **FastAPI Cloud**-account hebt (we hebben je uitgenodigd vanaf de wachtlijst 😉), kun je je applicatie deployen met één commando.
 
-Voordat je implementeert, zorg ervoor dat je bent ingelogd:
+Voordat je deployed, zorg ervoor dat je bent ingelogd:
 
 <div class="termy">
 
@@ -474,7 +474,7 @@ You are logged in to FastAPI Cloud 🚀
 
 </div>
 
-Implementeer vervolgens je app:
+Deploy vervolgens je app:
 
 <div class="termy">
 
@@ -496,23 +496,23 @@ Dat is het! Nu kun je je app op die URL bereiken. ✨
 
 **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** is gebouwd door dezelfde auteur en team achter **FastAPI**.
 
-Het stroomlijnt het proces van het **bouwen**, **implementeren** en **toegang krijgen tot** een API met minimale inspanning.
+Het stroomlijnt het proces van het **bouwen**, **deployen** en **toegang krijgen tot** een API met minimale inspanning.
 
-Het brengt dezelfde **ontwikkelaarservaring** van het bouwen van apps met FastAPI naar het **implementeren** ervan naar de cloud. 🎉
+Het brengt dezelfde **ontwikkelaarservaring** van het bouwen van apps met FastAPI naar het **deployen** ervan naar de cloud. 🎉
 
 FastAPI Cloud is de primaire sponsor en financieringsverstrekker voor de *FastAPI en friends* open source projecten. ✨
 
-#### Implementeer naar andere cloud providers { #deploy-to-other-cloud-providers }
+#### Deployen naar andere cloudproviders { #deploy-to-other-cloud-providers }
 
-FastAPI is open source en gebaseerd op standaarden. Je kunt FastAPI apps implementeren naar elke cloud provider die je kiest.
+FastAPI is open source en gebaseerd op standaarden. Je kunt FastAPI-apps deployen naar elke cloudprovider die je kiest.
 
-Volg de gidsen van je cloud provider om FastAPI apps met hen te implementeren. 🤓
+Volg de gidsen van je cloudprovider om FastAPI-apps met hen te deployen. 🤓
 
 ## Prestaties { #performance }
 
-Onafhankelijke TechEmpower benchmarks tonen **FastAPI** applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
+Onafhankelijke TechEmpower benchmarks tonen **FastAPI**-applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python-frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
 
-Om meer te begrijpen hierover, zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Voor meer informatie hierover, zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
 ## Afhankelijkheden { #dependencies }
 
@@ -536,7 +536,7 @@ Gebruikt door FastAPI:
 
 * <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - voor de server die je applicatie laadt en serveert. Dit bevat `uvicorn[standard]`, wat enkele afhankelijkheden bevat (bijv. `uvloop`) die nodig zijn voor high performance serving.
 * `fastapi-cli[standard]` - om het `fastapi` commando te bieden.
-    * Dit bevat `fastapi-cloud-cli`, waarmee je je FastAPI applicatie kunt implementeren naar <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
+    * Dit bevat `fastapi-cloud-cli`, waarmee je je FastAPI-applicatie kunt deployen naar <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
 ### Zonder `standard` Afhankelijkheden { #without-standard-dependencies }
 
