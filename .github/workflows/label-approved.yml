@@ -8,9 +8,6 @@ on:
 permissions:
   pull-requests: write
 
-env:
-  UV_SYSTEM_PYTHON: 1
-
 jobs:
   label-approved:
     if: github.repository_owner == 'fastapi'
@@ -20,23 +17,22 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
-        python-version: "3.11"
+        python-version-file: ".python-version"
     - name: Setup uv
       uses: astral-sh/setup-uv@v7
       with:
-        version: "0.4.15"
         enable-cache: true
         cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
     - name: Install GitHub Actions dependencies
-      run: uv pip install -r requirements-github-actions.txt
+      run: uv sync --locked --no-dev --group github-actions
     - name: Label Approved
-      run: python ./scripts/label_approved.py
+      run: uv run ./scripts/label_approved.py
       env:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
         CONFIG: >

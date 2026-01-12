@@ -17,6 +17,7 @@ lang-all:
         - docs/*/docs/**
       - all-globs-to-all-files:
         - '!docs/en/docs/**'
+        - '!docs/*/**/_*.md'
         - '!fastapi/**'
         - '!pyproject.toml'
 

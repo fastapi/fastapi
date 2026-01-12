@@ -1,39 +1,33 @@
-import dataclasses
 import email.message
 import functools
 import inspect
 import json
-import sys
+from collections.abc import (
+    AsyncIterator,
+    Awaitable,
+    Collection,
+    Coroutine,
+    Mapping,
+    Sequence,
+)
 from contextlib import AsyncExitStack, asynccontextmanager
 from enum import Enum, IntEnum
 from typing import (
+    Annotated,
     Any,
-    AsyncIterator,
-    Awaitable,
     Callable,
-    Collection,
-    Coroutine,
-    Dict,
-    List,
-    Mapping,
     Optional,
-    Sequence,
-    Set,
-    Tuple,
-    Type,
     Union,
 )
 
 import anyio
 from annotated_doc import Doc
 from anyio import CapacityLimiter
-from fastapi import params, temp_pydantic_v1_params
+from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _get_model_config,
-    _model_dump,
-    _normalize_errors,
+    annotation_is_pydantic_v1,
     lenient_issubclass,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
@@ -49,7 +43,9 @@ from fastapi.dependencies.utils import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
+    EndpointContext,
     FastAPIError,
+    PydanticV1NotSupportedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
@@ -62,7 +58,6 @@ from fastapi.utils import (
     get_value_or_default,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
 from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
@@ -79,12 +74,7 @@ from starlette.routing import (
 from starlette.routing import Mount as Mount  # noqa
 from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
-from typing_extensions import Annotated, deprecated
-
-if sys.version_info >= (3, 13):  # pragma: no cover
-    from inspect import iscoroutinefunction
-else:  # pragma: no cover
-    from asyncio import iscoroutinefunction
+from typing_extensions import deprecated
 
 
 # Copy of starlette.routing.request_response modified to include the
@@ -155,54 +145,6 @@ def websocket_session(
     return app
 
 
-def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-) -> Any:
-    if isinstance(res, BaseModel):
-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)
-        if read_with_orm_mode:
-            # Let from_orm extract the data from this model instead of converting
-            # it now to a dict.
-            # Otherwise, there's no way to extract lazy data that requires attribute
-            # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return _model_dump(
-            res,
-            by_alias=True,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    elif isinstance(res, list):
-        return [
-            _prepare_response_content(
-                item,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for item in res
-        ]
-    elif isinstance(res, dict):
-        return {
-            k: _prepare_response_content(
-                v,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for k, v in res.items()
-        }
-    elif dataclasses.is_dataclass(res):
-        assert not isinstance(res, type)
-        return dataclasses.asdict(res)
-    return res
-
-
 def _merge_lifespan_context(
     original_context: Lifespan[Any], nested_context: Lifespan[Any]
 ) -> Lifespan[Any]:
@@ -220,6 +162,33 @@ def _merge_lifespan_context(
     return merged_lifespan  # type: ignore[return-value]
 
 
+# Cache for endpoint context to avoid re-extracting on every request
+_endpoint_context_cache: dict[int, EndpointContext] = {}
+
+
+def _extract_endpoint_context(func: Any) -> EndpointContext:
+    """Extract endpoint context with caching to avoid repeated file I/O."""
+    func_id = id(func)
+
+    if func_id in _endpoint_context_cache:
+        return _endpoint_context_cache[func_id]
+
+    try:
+        ctx: EndpointContext = {}
+
+        if (source_file := inspect.getsourcefile(func)) is not None:
+            ctx["file"] = source_file
+        if (line_number := inspect.getsourcelines(func)[1]) is not None:
+            ctx["line"] = line_number
+        if (func_name := getattr(func, "__name__", None)) is not None:
+            ctx["function"] = func_name
+    except Exception:
+        ctx = EndpointContext()
+
+    _endpoint_context_cache[func_id] = ctx
+    return ctx
+
+
 async def serialize_response(
     *,
     field: Optional[ModelField] = None,
@@ -231,17 +200,10 @@ async def serialize_response(
     exclude_defaults: bool = False,
     exclude_none: bool = False,
     is_coroutine: bool = True,
+    endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
     if field:
         errors = []
-        if not hasattr(field, "serialize"):
-            # pydantic v1
-            response_content = _prepare_response_content(
-                response_content,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
         if is_coroutine:
             value, errors_ = field.validate(response_content, {}, loc=("response",))
         else:
@@ -253,25 +215,15 @@ async def serialize_response(
             )
         if isinstance(errors_, list):
             errors.extend(errors_)
-        elif errors_:
-            errors.append(errors_)
         if errors:
+            ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
-                errors=_normalize_errors(errors), body=response_content
+                errors=errors,
+                body=response_content,
+                endpoint_ctx=ctx,
             )
 
-        if hasattr(field, "serialize"):
-            return field.serialize(
-                value,
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-
-        return jsonable_encoder(
+        return field.serialize(
             value,
             include=include,
             exclude=exclude,
@@ -280,12 +232,13 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
+
     else:
         return jsonable_encoder(response_content)
 
 
 async def run_endpoint_function(
-    *, dependant: Dependant, values: Dict[str, Any], is_coroutine: bool
+    *, dependant: Dependant, values: dict[str, Any], is_coroutine: bool
 ) -> Any:
     # Only called by get_request_handler. Has been split into its own function to
     # facilitate profiling endpoints, since inner functions are harder to profile.
@@ -301,7 +254,7 @@ def get_request_handler(
     dependant: Dependant,
     body_field: Optional[ModelField] = None,
     status_code: Optional[int] = None,
-    response_class: Union[Type[Response], DefaultPlaceholder] = Default(JSONResponse),
+    response_class: Union[type[Response], DefaultPlaceholder] = Default(JSONResponse),
     response_field: Optional[ModelField] = None,
     response_model_include: Optional[IncEx] = None,
     response_model_exclude: Optional[IncEx] = None,
@@ -313,12 +266,10 @@ def get_request_handler(
     embed_body_fields: bool = False,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
-    is_coroutine = iscoroutinefunction(dependant.call)
-    is_body_form = body_field and isinstance(
-        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
-    )
+    is_coroutine = dependant.is_coroutine_callable
+    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
-        actual_response_class: Type[Response] = response_class.value
+        actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
 
@@ -328,6 +279,18 @@ def get_request_handler(
         assert isinstance(file_stack, AsyncExitStack), (
             "fastapi_middleware_astack not found in request scope"
         )
+
+        # Extract endpoint context for error messages
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
+
+        if dependant.path:
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = request.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"{request.method} {mount_path}{dependant.path}"
 
         # Read body and auto-close files
         try:
@@ -366,6 +329,7 @@ def get_request_handler(
                     }
                 ],
                 body=e.doc,
+                endpoint_ctx=endpoint_ctx,
             )
             raise validation_error from e
         except HTTPException:
@@ -378,7 +342,7 @@ def get_request_handler(
             raise http_error from e
 
         # Solve dependencies and run path operation function, auto-closing dependencies
-        errors: List[Any] = []
+        errors: list[Any] = []
         async_exit_stack = request.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
@@ -403,7 +367,7 @@ def get_request_handler(
                     raw_response.background = solved_result.background_tasks
                 response = raw_response
             else:
-                response_args: Dict[str, Any] = {
+                response_args: dict[str, Any] = {
                     "background": solved_result.background_tasks
                 }
                 # If status_code was set, use it, otherwise use the default from the
@@ -425,6 +389,7 @@ def get_request_handler(
                     exclude_defaults=response_model_exclude_defaults,
                     exclude_none=response_model_exclude_none,
                     is_coroutine=is_coroutine,
+                    endpoint_ctx=endpoint_ctx,
                 )
                 response = actual_response_class(content, **response_args)
                 if not is_body_allowed_for_status_code(response.status_code):
@@ -432,7 +397,7 @@ def get_request_handler(
                 response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body
+                errors, body=body, endpoint_ctx=endpoint_ctx
             )
             raise validation_error
 
@@ -449,6 +414,15 @@ def get_websocket_app(
     embed_body_fields: bool = False,
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:
     async def app(websocket: WebSocket) -> None:
+        endpoint_ctx = (
+            _extract_endpoint_context(dependant.call)
+            if dependant.call
+            else EndpointContext()
+        )
+        if dependant.path:
+            # For mounted sub-apps, include the mount path prefix
+            mount_path = websocket.scope.get("root_path", "").rstrip("/")
+            endpoint_ctx["path"] = f"WS {mount_path}{dependant.path}"
         async_exit_stack = websocket.scope.get("fastapi_inner_astack")
         assert isinstance(async_exit_stack, AsyncExitStack), (
             "fastapi_inner_astack not found in request scope"
@@ -462,7 +436,8 @@ def get_websocket_app(
         )
         if solved_result.errors:
             raise WebSocketRequestValidationError(
-                _normalize_errors(solved_result.errors)
+                solved_result.errors,
+                endpoint_ctx=endpoint_ctx,
             )
         assert dependant.call is not None, "dependant.call must be a function"
         await dependant.call(**solved_result.values)
@@ -505,7 +480,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
             )
         )
 
-    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
+    def matches(self, scope: Scope) -> tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
         if match != Match.NONE:
             child_scope["route"] = self
@@ -520,15 +495,15 @@ class APIRoute(routing.Route):
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
-        tags: Optional[List[Union[str, Enum]]] = None,
+        tags: Optional[list[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
         name: Optional[str] = None,
-        methods: Optional[Union[Set[str], List[str]]] = None,
+        methods: Optional[Union[set[str], list[str]]] = None,
         operation_id: Optional[str] = None,
         response_model_include: Optional[IncEx] = None,
         response_model_exclude: Optional[IncEx] = None,
@@ -537,12 +512,12 @@ class APIRoute(routing.Route):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+        response_class: Union[type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
         dependency_overrides_provider: Optional[Any] = None,
-        callbacks: Optional[List[BaseRoute]] = None,
-        openapi_extra: Optional[Dict[str, Any]] = None,
+        callbacks: Optional[list[BaseRoute]] = None,
+        openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
@@ -578,7 +553,7 @@ class APIRoute(routing.Route):
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
         if methods is None:
             methods = ["GET"]
-        self.methods: Set[str] = {method.upper() for method in methods}
+        self.methods: set[str] = {method.upper() for method in methods}
         if isinstance(generate_unique_id_function, DefaultPlaceholder):
             current_generate_unique_id: Callable[[APIRoute], str] = (
                 generate_unique_id_function.value
@@ -595,6 +570,11 @@ class APIRoute(routing.Route):
                 f"Status code {status_code} must not have a response body"
             )
             response_name = "Response_" + self.unique_id
+            if annotation_is_pydantic_v1(self.response_model):
+                raise PydanticV1NotSupportedError(
+                    "pydantic.v1 models are no longer supported by FastAPI."
+                    f" Please update the response model {self.response_model!r}."
+                )
             self.response_field = create_model_field(
                 name=response_name,
                 type_=self.response_model,
@@ -628,12 +608,17 @@ class APIRoute(routing.Route):
                     f"Status code {additional_status_code} must not have a response body"
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
+                if annotation_is_pydantic_v1(model):
+                    raise PydanticV1NotSupportedError(
+                        "pydantic.v1 models are no longer supported by FastAPI."
+                        f" In responses={{}}, please update {model}."
+                    )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
                 )
                 response_fields[additional_status_code] = response_field
         if response_fields:
-            self.response_fields: Dict[Union[int, str], ModelField] = response_fields
+            self.response_fields: dict[Union[int, str], ModelField] = response_fields
         else:
             self.response_fields = {}
 
@@ -674,7 +659,7 @@ class APIRoute(routing.Route):
             embed_body_fields=self._embed_body_fields,
         )
 
-    def matches(self, scope: Scope) -> Tuple[Match, Scope]:
+    def matches(self, scope: Scope) -> tuple[Match, Scope]:
         match, child_scope = super().matches(scope)
         if match != Match.NONE:
             child_scope["route"] = self
@@ -713,7 +698,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -739,7 +724,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         default_response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 The default response class to be used.
@@ -750,7 +735,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -766,7 +751,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -780,7 +765,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         routes: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 **Note**: you probably shouldn't use this parameter, it is inherited
@@ -831,7 +816,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         route_class: Annotated[
-            Type[APIRoute],
+            type[APIRoute],
             Doc(
                 """
                 Custom route (*path operation*) class to be used by this router.
@@ -937,7 +922,7 @@ class APIRouter(routing.Router):
                 "A path prefix must not end with '/', as the routes will start with '/'"
             )
         self.prefix = prefix
-        self.tags: List[Union[str, Enum]] = tags or []
+        self.tags: list[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
         self.deprecated = deprecated
         self.include_in_schema = include_in_schema
@@ -974,14 +959,14 @@ class APIRouter(routing.Router):
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
-        tags: Optional[List[Union[str, Enum]]] = None,
+        tags: Optional[list[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
-        methods: Optional[Union[Set[str], List[str]]] = None,
+        methods: Optional[Union[set[str], list[str]]] = None,
         operation_id: Optional[str] = None,
         response_model_include: Optional[IncEx] = None,
         response_model_exclude: Optional[IncEx] = None,
@@ -990,13 +975,13 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Union[Type[Response], DefaultPlaceholder] = Default(
+        response_class: Union[type[Response], DefaultPlaceholder] = Default(
             JSONResponse
         ),
         name: Optional[str] = None,
-        route_class_override: Optional[Type[APIRoute]] = None,
-        callbacks: Optional[List[BaseRoute]] = None,
-        openapi_extra: Optional[Dict[str, Any]] = None,
+        route_class_override: Optional[type[APIRoute]] = None,
+        callbacks: Optional[list[BaseRoute]] = None,
+        openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
@@ -1055,14 +1040,14 @@ class APIRouter(routing.Router):
         *,
         response_model: Any = Default(None),
         status_code: Optional[int] = None,
-        tags: Optional[List[Union[str, Enum]]] = None,
+        tags: Optional[list[Union[str, Enum]]] = None,
         dependencies: Optional[Sequence[params.Depends]] = None,
         summary: Optional[str] = None,
         description: Optional[str] = None,
         response_description: str = "Successful Response",
-        responses: Optional[Dict[Union[int, str], Dict[str, Any]]] = None,
+        responses: Optional[dict[Union[int, str], dict[str, Any]]] = None,
         deprecated: Optional[bool] = None,
-        methods: Optional[List[str]] = None,
+        methods: Optional[list[str]] = None,
         operation_id: Optional[str] = None,
         response_model_include: Optional[IncEx] = None,
         response_model_exclude: Optional[IncEx] = None,
@@ -1071,10 +1056,10 @@ class APIRouter(routing.Router):
         response_model_exclude_defaults: bool = False,
         response_model_exclude_none: bool = False,
         include_in_schema: bool = True,
-        response_class: Type[Response] = Default(JSONResponse),
+        response_class: type[Response] = Default(JSONResponse),
         name: Optional[str] = None,
-        callbacks: Optional[List[BaseRoute]] = None,
-        openapi_extra: Optional[Dict[str, Any]] = None,
+        callbacks: Optional[list[BaseRoute]] = None,
+        openapi_extra: Optional[dict[str, Any]] = None,
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
@@ -1214,7 +1199,7 @@ class APIRouter(routing.Router):
         *,
         prefix: Annotated[str, Doc("An optional path prefix for the router.")] = "",
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to all the *path operations* in this
@@ -1240,7 +1225,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         default_response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 The default response class to be used.
@@ -1251,7 +1236,7 @@ class APIRouter(routing.Router):
             ),
         ] = Default(JSONResponse),
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses to be shown in OpenAPI.
@@ -1267,7 +1252,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 OpenAPI callbacks that should apply to all *path operations* in this
@@ -1372,7 +1357,7 @@ class APIRouter(routing.Router):
                     current_tags.extend(tags)
                 if route.tags:
                     current_tags.extend(route.tags)
-                current_dependencies: List[params.Depends] = []
+                current_dependencies: list[params.Depends] = []
                 if dependencies:
                     current_dependencies.extend(dependencies)
                 if route.dependencies:
@@ -1513,7 +1498,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1579,7 +1564,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -1720,7 +1705,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -1741,7 +1726,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -1757,7 +1742,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -1890,7 +1875,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -1956,7 +1941,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2097,7 +2082,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2118,7 +2103,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2134,7 +2119,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2272,7 +2257,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2338,7 +2323,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2479,7 +2464,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2500,7 +2485,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2516,7 +2501,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -2654,7 +2639,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -2720,7 +2705,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -2861,7 +2846,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -2882,7 +2867,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -2898,7 +2883,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3031,7 +3016,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3097,7 +3082,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3238,7 +3223,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -3259,7 +3244,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3275,7 +3260,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3408,7 +3393,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3474,7 +3459,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3615,7 +3600,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -3636,7 +3621,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -3652,7 +3637,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -3790,7 +3775,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -3856,7 +3841,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -3997,7 +3982,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -4018,7 +4003,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4034,7 +4019,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
@@ -4172,7 +4157,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         tags: Annotated[
-            Optional[List[Union[str, Enum]]],
+            Optional[list[Union[str, Enum]]],
             Doc(
                 """
                 A list of tags to be applied to the *path operation*.
@@ -4238,7 +4223,7 @@ class APIRouter(routing.Router):
             ),
         ] = "Successful Response",
         responses: Annotated[
-            Optional[Dict[Union[int, str], Dict[str, Any]]],
+            Optional[dict[Union[int, str], dict[str, Any]]],
             Doc(
                 """
                 Additional responses that could be returned by this *path operation*.
@@ -4379,7 +4364,7 @@ class APIRouter(routing.Router):
             ),
         ] = True,
         response_class: Annotated[
-            Type[Response],
+            type[Response],
             Doc(
                 """
                 Response class to be used for this *path operation*.
@@ -4400,7 +4385,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         callbacks: Annotated[
-            Optional[List[BaseRoute]],
+            Optional[list[BaseRoute]],
             Doc(
                 """
                 List of *path operations* that will be used as OpenAPI callbacks.
@@ -4416,7 +4401,7 @@ class APIRouter(routing.Router):
             ),
         ] = None,
         openapi_extra: Annotated[
-            Optional[Dict[str, Any]],
+            Optional[dict[str, Any]],
             Doc(
                 """
                 Extra metadata to be included in the OpenAPI schema for this *path
