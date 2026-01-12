@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/nl"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>Het FastAPI-framework, hoge prestaties, makkelijk te leren, snel te coderen, klaar voor productie</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Documentatie**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentatie**: <a href="https://fastapi.tiangolo.com/nl" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Broncode**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ De belangrijkste kenmerken zijn:
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Andere sponsors</a>
+<a href="https://fastapi.tiangolo.com/nl/fastapi-people/#sponsors" class="external-link" target="_blank">Andere sponsors</a>
 
 ## Meningen { #opinions }
 
@@ -140,7 +140,7 @@ FastAPI staat op de schouders van reuzen:
 
 ## Installatie { #installation }
 
-Maak en activeer een <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">virtuele omgeving</a> en installeer vervolgens FastAPI:
+Maak en activeer een <a href="https://fastapi.tiangolo.com/nl/virtual-environments/" class="external-link" target="_blank">virtuele omgeving</a> en installeer vervolgens FastAPI:
 
 <div class="termy">
 
@@ -203,7 +203,7 @@ async def read_item(item_id: int, q: Union[str, None] = None):
 
 **Opmerking**:
 
-Als je het niet weet, bekijk de _"Haast?"_ sectie over <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` en `await` in de docs</a>.
+Als je het niet weet, bekijk de _"Haast?"_ sectie over <a href="https://fastapi.tiangolo.com/nl/async/#in-a-hurry" target="_blank">`async` en `await` in de docs</a>.
 
 </details>
 
@@ -245,7 +245,7 @@ Het commando `fastapi dev` leest je `main.py` bestand, detecteert de **FastAPI**
 
 Standaard zal `fastapi dev` starten met auto-reload ingeschakeld voor lokale ontwikkeling.
 
-Je kunt er meer over lezen in de <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
+Je kunt er meer over lezen in de <a href="https://fastapi.tiangolo.com/nl/fastapi-cli/" target="_blank">FastAPI CLI docs</a>.
 
 </details>
 
@@ -439,7 +439,7 @@ Probeer de regel te veranderen met:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
-Voor een completer voorbeeld inclusief meer functies, zie de <a href="https://fastapi.tiangolo.com/tutorial/">Tutorial - User Guide</a>.
+Voor een completer voorbeeld inclusief meer functies, zie de <a href="https://fastapi.tiangolo.com/nl/tutorial/">Tutorial - User Guide</a>.
 
 **Spoiler alert**: de tutorial - user guide bevat:
 
@@ -512,7 +512,7 @@ Volg de gidsen van je cloudprovider om FastAPI-apps met hen te deployen. 🤓
 
 Onafhankelijke TechEmpower benchmarks tonen **FastAPI**-applicaties draaiend onder Uvicorn als <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">een van de snelste Python-frameworks beschikbaar</a>, alleen onder Starlette en Uvicorn zelf (intern gebruikt door FastAPI). (*)
 
-Voor meer informatie hierover, zie de sectie <a href="https://fastapi.tiangolo.com/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
+Voor meer informatie hierover, zie de sectie <a href="https://fastapi.tiangolo.com/nl/benchmarks/" class="internal-link" target="_blank">Benchmarks</a>.
 
 ## Afhankelijkheden { #dependencies }
 
