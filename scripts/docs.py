@@ -24,6 +24,7 @@ SUPPORTED_LANGS = {
     "de",
     "es",
     "ko",
+    "nl",
     "pt",
     "ru",
     "uk",
