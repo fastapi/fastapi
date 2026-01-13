@@ -115,8 +115,32 @@ class HTTPBasic(HTTPBase):
     ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
-        self.realm = realm  # keep for OpenAPI compatibility
+        self.realm = realm
         self.auto_error = auto_error
+
+    def make_authenticate_headers(self) -> dict[str, str]:
+        if self.realm:
+            return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
+        return {"WWW-Authenticate": "Basic"}
+
+    async def __call__(  # type: ignore
+        self, request: Request
+    ) -> Optional[HTTPBasicCredentials]:
+        authorization = request.headers.get("Authorization")
+        scheme, param = get_authorization_scheme_param(authorization)
+        if not authorization or scheme.lower() != "basic":
+            if self.auto_error:
+                raise self.make_not_authenticated_error()
+            else:
+                return None
+        try:
+            data = b64decode(param).decode("ascii")
+        except (ValueError, UnicodeDecodeError, binascii.Error) as e:
+            raise self.make_not_authenticated_error() from e
+        username, separator, password = data.partition(":")
+        if not separator:
+            raise self.make_not_authenticated_error()
+        return HTTPBasicCredentials(username=username, password=password)
 
     def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": "Basic"}
