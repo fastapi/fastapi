@@ -279,11 +279,22 @@ def get_dependant(
         type_hints = {}
 
     signature_params = endpoint_signature.parameters
+    unwrapped = inspect.unwrap(call)
+    globalns = getattr(unwrapped, "__globals__", {})
 
     for param_name, param in signature_params.items():
-        # Inject fully resolved Annotated types (including forward refs)
-        if param_name in type_hints:
-            param = param.replace(annotation=type_hints[param_name])
+        annotation = param.annotation
+    
+        # Resolve ForwardRef inside Annotated without destroying metadata
+        if get_origin(annotation) is Annotated:
+            args = list(get_args(annotation))
+            inner = args[0]
+            if isinstance(inner, ForwardRef):
+                inner = evaluate_forwardref(inner, globalns, globalns)
+                args[0] = inner
+                annotation = Annotated[inner, *args[1:]]  # ✅ correct reconstruction
+                param = param.replace(annotation=annotation)
+    
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
             param_name=param_name,
