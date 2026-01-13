@@ -105,50 +105,22 @@ class HTTPBase(SecurityBase):
 
 
 class HTTPBasic(HTTPBase):
-    """
-    HTTP Basic authentication.
-
-    Ref: https://datatracker.ietf.org/doc/html/rfc7617
-
-    ## Usage
-
-    Create an instance object and use that object as the dependency in `Depends()`.
-
-    The dependency result will be an `HTTPBasicCredentials` object containing the
-    `username` and the `password`.
-
-    Read more about it in the
-    [FastAPI docs for HTTP Basic Auth](https://fastapi.tiangolo.com/advanced/security/http-basic-auth/).
-
-    ## Example
-
-    ```python
-    from typing import Annotated
-
-    from fastapi import Depends, FastAPI
-    from fastapi.security import HTTPBasic, HTTPBasicCredentials
-
-    app = FastAPI()
-
-    security = HTTPBasic()
-
-
-    @app.get("/users/me")
-    def read_current_user(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
-        return {"username": credentials.username, "password": credentials.password}
-    ```
-    """
-
     def __init__(
         self,
         *,
         scheme_name: Optional[str] = None,
+        realm: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-):  
+    ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
+        self.realm = realm  # keep for OpenAPI compatibility
         self.auto_error = auto_error
+
+    def make_authenticate_headers(self) -> dict[str, str]:
+        # FastAPI behavior: do NOT include realm in header
+        return {"WWW-Authenticate": "Basic"}
 
 
     def make_authenticate_headers(self) -> dict[str, str]:
