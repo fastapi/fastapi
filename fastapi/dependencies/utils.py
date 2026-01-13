@@ -292,7 +292,7 @@ def get_dependant(
             if isinstance(inner, ForwardRef):
                 inner = evaluate_forwardref(inner, globalns, globalns)
                 args[0] = inner
-                annotation = Annotated[inner, *args[1:]]  # ✅ correct reconstruction
+                annotation = Annotated[inner, *args[1:]]
                 param = param.replace(annotation=annotation)
     
         is_path_param = param_name in path_param_names
