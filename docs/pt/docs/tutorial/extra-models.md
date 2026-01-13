@@ -30,9 +30,9 @@ Os exemplos aqui usam `.dict()` por compatibilidade com o Pydantic v1, mas você
 
 ///
 
-### Sobre `**user_in.dict()` { #about-user-in-dict }
+### Sobre `**user_in.dict()` { #about-user-in-model-dump }
 
-#### O `.dict()` do Pydantic { #pydantics-dict }
+#### O `.dict()` do Pydantic { #pydantics-model-dump }
 
 `user_in` é um modelo Pydantic da classe `UserIn`.
 
@@ -47,7 +47,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 e depois chamarmos:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 agora temos um `dict` com os dados na variável `user_dict` (é um `dict` em vez de um objeto de modelo Pydantic).
@@ -106,14 +106,14 @@ UserInDB(
 Como no exemplo acima, obtivemos o `user_dict` a partir do `user_in.dict()`, este código:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 seria equivalente a:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
 ...porque `user_in.dict()` é um `dict`, e depois fazemos o Python "desembrulhá-lo" passando-o para `UserInDB` precedido por `**`.
@@ -125,7 +125,7 @@ Então, obtemos um modelo Pydantic a partir dos dados em outro modelo Pydantic.
 E, então, adicionando o argumento de palavra-chave extra `hashed_password=hashed_password`, como em:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ...acaba sendo como:

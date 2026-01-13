@@ -1,14 +1,14 @@
-# Cookie 参数
+# Cookie 参数 { #cookie-parameters }
 
  定义 `Cookie` 参数与定义 `Query` 和 `Path` 参数一样。
 
-## 导入 `Cookie`
+## 导入 `Cookie` { #import-cookie }
 
 首先，导入 `Cookie`：
 
 {* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
 
-## 声明 `Cookie` 参数
+## 声明 `Cookie` 参数 { #declare-cookie-parameters }
 
 声明 `Cookie` 参数的方式与声明 `Query` 和 `Path` 参数相同。
 
@@ -31,6 +31,6 @@
 
 ///
 
-## 小结
+## 小结 { #recap }
 
 使用 `Cookie` 声明 cookie 参数的方式与 `Query` 和 `Path` 相同。

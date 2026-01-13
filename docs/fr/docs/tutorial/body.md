@@ -1,4 +1,4 @@
-# Corps de la requête
+# Corps de la requête { #request-body }
 
 Quand vous avez besoin d'envoyer de la donnée depuis un client (comme un navigateur) vers votre API, vous l'envoyez en tant que **corps de requête**.
 
@@ -18,19 +18,19 @@ Ceci étant découragé, la documentation interactive générée par Swagger UI 
 
 ///
 
-## Importez le `BaseModel` de Pydantic
+## Importez le `BaseModel` de Pydantic { #import-pydantics-basemodel }
 
 Commencez par importer la classe `BaseModel` du module `pydantic` :
 
-{* ../../docs_src/body/tutorial001.py hl[4] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## Créez votre modèle de données
+## Créez votre modèle de données { #create-your-data-model }
 
 Déclarez ensuite votre modèle de données en tant que classe qui hérite de `BaseModel`.
 
 Utilisez les types Python standard pour tous les attributs :
 
-{* ../../docs_src/body/tutorial001.py hl[7:11] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 Tout comme pour la déclaration de paramètres de requête, quand un attribut de modèle a une valeur par défaut, il n'est pas nécessaire. Sinon, cet attribut doit être renseigné dans le corps de la requête. Pour rendre ce champ optionnel simplement, utilisez `None` comme valeur par défaut.
 
@@ -54,15 +54,15 @@ Par exemple, le modèle ci-dessus déclare un "objet" JSON (ou `dict` Python) te
 }
 ```
 
-## Déclarez-le comme paramètre
+## Déclarez-le comme paramètre { #declare-it-as-a-parameter }
 
 Pour l'ajouter à votre *opération de chemin*, déclarez-le comme vous déclareriez des paramètres de chemin ou de requête :
 
-{* ../../docs_src/body/tutorial001.py hl[18] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...et déclarez que son type est le modèle que vous avez créé : `Item`.
 
-## Résultats
+## Résultats { #results }
 
 En utilisant uniquement les déclarations de type Python, **FastAPI** réussit à :
 
@@ -75,7 +75,7 @@ En utilisant uniquement les déclarations de type Python, **FastAPI** réussit �
 * Générer des définitions <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> pour votre modèle, qui peuvent être utilisées où vous en avez besoin dans votre projet ensuite.
 * Ces schémas participeront à la constitution du schéma généré OpenAPI, et seront donc utilisés par les documentations automatiquement générées.
 
-## Documentation automatique
+## Documentation automatique { #automatic-docs }
 
 Les schémas JSON de vos modèles seront intégrés au schéma OpenAPI global de votre application, et seront donc affichés dans la documentation interactive de l'API :
 
@@ -85,7 +85,7 @@ Et seront aussi utilisés dans chaque *opération de chemin* de la documentation
 
 <img src="/img/tutorial/body/image02.png">
 
-## Support de l'éditeur
+## Support de l'éditeur { #editor-support }
 
 Dans votre éditeur, vous aurez des annotations de types et de l'auto-complétion partout dans votre fonction (ce qui n'aurait pas été le cas si vous aviez utilisé un classique `dict` plutôt qu'un modèle Pydantic) :
 
@@ -121,27 +121,27 @@ Ce qui améliore le support pour les modèles Pydantic avec :
 
 ///
 
-## Utilisez le modèle
+## Utilisez le modèle { #use-the-model }
 
 Dans la fonction, vous pouvez accéder à tous les attributs de l'objet du modèle directement :
 
-{* ../../docs_src/body/tutorial002.py hl[21] *}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-## Corps de la requête + paramètres de chemin
+## Corps de la requête + paramètres de chemin { #request-body-path-parameters }
 
 Vous pouvez déclarer des paramètres de chemin et un corps de requête pour la même *opération de chemin*.
 
 **FastAPI** est capable de reconnaître que les paramètres de la fonction qui correspondent aux paramètres de chemin doivent être **récupérés depuis le chemin**, et que les paramètres de fonctions déclarés comme modèles Pydantic devraient être **récupérés depuis le corps de la requête**.
 
-{* ../../docs_src/body/tutorial003.py hl[17:18] *}
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## Corps de la requête + paramètres de chemin et de requête
+## Corps de la requête + paramètres de chemin et de requête { #request-body-path-query-parameters }
 
 Vous pouvez aussi déclarer un **corps**, et des paramètres de **chemin** et de **requête** dans la même *opération de chemin*.
 
 **FastAPI** saura reconnaître chacun d'entre eux et récupérer la bonne donnée au bon endroit.
 
-{* ../../docs_src/body/tutorial004.py hl[18] *}
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 Les paramètres de la fonction seront reconnus comme tel :
 
@@ -157,6 +157,6 @@ Le type `Optional` dans `Optional[str]` n'est pas utilisé par **FastAPI**, mais
 
 ///
 
-## Sans Pydantic
+## Sans Pydantic { #without-pydantic }
 
-Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres de **Corps**. Pour cela, allez voir la partie de la documentation sur  [Corps de la requête - Paramètres multiples](body-multiple-params.md){.internal-link target=_blank}.
+Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres de **Corps**. Pour cela, allez voir la partie de la documentation sur  [Corps de la requête - Paramètres multiples](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.

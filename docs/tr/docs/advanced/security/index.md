@@ -1,6 +1,6 @@
-# Gelişmiş Güvenlik
+# Gelişmiş Güvenlik { #advanced-security }
 
-## Ek Özellikler
+## Ek Özellikler { #additional-features }
 
 [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank} sayfasında ele alınanların dışında güvenlikle ilgili bazı ek özellikler vardır.
 
@@ -12,7 +12,7 @@ Kullanım şeklinize bağlı olarak, çözümünüz bu bölümlerden birinde ola
 
 ///
 
-## Önce Öğreticiyi Okuyun
+## Önce Öğreticiyi Okuyun { #read-the-tutorial-first }
 
 Sonraki bölümler [Tutorial - User Guide: Security](../../tutorial/security/index.md){.internal-link target=_blank} sayfasını okuduğunuzu varsayarak hazırlanmıştır.
 

@@ -1,10 +1,10 @@
-# 追加のステータスコード
+# 追加のステータスコード { #additional-status-codes }
 
 デフォルトでは、 **FastAPI** は `JSONResponse` を使ってレスポンスを返します。その `JSONResponse` の中には、 *path operation* が返した内容が入ります。
 
 それは、デフォルトのステータスコードか、 *path operation* でセットしたものを利用します。
 
-## 追加のステータスコード
+## 追加のステータスコード { #additional-status-codes_1 }
 
 メインのステータスコードとは別に、他のステータスコードを返したい場合は、`Response` (`JSONResponse` など) に追加のステータスコードを設定して直接返します。
 
@@ -14,7 +14,7 @@
 
 これを達成するには、 `JSONResponse` をインポートし、 `status_code` を設定して直接内容を返します。
 
-{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
 /// warning | 注意
 
@@ -34,7 +34,7 @@
 
 ///
 
-## OpenAPIとAPIドキュメント
+## OpenAPIとAPIドキュメント { #openapi-and-api-docs }
 
 ステータスコードとレスポンスを直接返す場合、それらはOpenAPIスキーマ (APIドキュメント) には含まれません。なぜなら、FastAPIは何が返されるのか事前に知ることができないからです。
 

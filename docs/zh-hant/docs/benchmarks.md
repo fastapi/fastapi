@@ -1,10 +1,10 @@
-# 基準測試
+# 基準測試 { #benchmarks }
 
 由第三方機構 TechEmpower 的基準測試表明在 Uvicorn 下運行的 **FastAPI** 應用程式是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python 可用框架之一</a>，僅次於 Starlette 和 Uvicorn 本身（於 FastAPI 內部使用）。
 
 但是在查看基準得分和對比時，請注意以下幾點。
 
-## 基準測試和速度
+## 基準測試和速度 { #benchmarks-and-speed }
 
 當你查看基準測試時，時常會見到幾個不同類型的工具被同時進行測試。
 

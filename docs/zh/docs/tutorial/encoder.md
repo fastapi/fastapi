@@ -1,4 +1,4 @@
-# JSON 兼容编码器
+# JSON 兼容编码器 { #json-compatible-encoder }
 
 在某些情况下，您可能需要将数据类型（如Pydantic模型）转换为与JSON兼容的数据类型（如`dict`、`list`等）。
 
@@ -6,7 +6,7 @@
 
 对于这种要求， **FastAPI**提供了`jsonable_encoder()`函数。
 
-## 使用`jsonable_encoder`
+## 使用`jsonable_encoder` { #using-the-jsonable-encoder }
 
 让我们假设你有一个数据库名为`fake_db`，它只能接收与JSON兼容的数据。
 

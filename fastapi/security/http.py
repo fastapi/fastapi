@@ -118,10 +118,8 @@ class HTTPBasic(HTTPBase):
         self.realm = realm  # keep for OpenAPI compatibility
         self.auto_error = auto_error
 
-
     def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": "Basic"}
-    
 
     async def __call__(  # type: ignore
         self, request: Request

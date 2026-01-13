@@ -1,4 +1,4 @@
-# レスポンスステータスコード
+# レスポンスステータスコード { #response-status-code }
 
 レスポンスモデルを指定するのと同じ方法で、レスポンスに使用されるHTTPステータスコードを以下の*path operations*のいずれかの`status_code`パラメータで宣言することもできます。
 
@@ -8,7 +8,7 @@
 * `@app.delete()`
 * など。
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 /// note | 備考
 
@@ -39,7 +39,7 @@ FastAPIはこれを知っていて、レスポンスボディがないというO
 
 ///
 
-## HTTPステータスコードについて
+## HTTPステータスコードについて { #about-http-status-codes }
 
 /// note | 備考
 
@@ -70,11 +70,11 @@ HTTPでは、レスポンスの一部として３桁の数字のステータス�
 
 ///
 
-## 名前を覚えるための近道
+## 名前を覚えるための近道 { #shortcut-to-remember-the-names }
 
 先ほどの例をもう一度見てみましょう:
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 `201`は「作成完了」のためのステータスコードです。
 
@@ -82,7 +82,7 @@ HTTPでは、レスポンスの一部として３桁の数字のステータス�
 
 `fastapi.status`の便利な変数を利用することができます。
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
 
 それらは便利です。それらは同じ番号を保持しており、その方法ではエディタの自動補完を使用してそれらを見つけることができます。
 
@@ -96,6 +96,6 @@ HTTPでは、レスポンスの一部として３桁の数字のステータス�
 
 ///
 
-## デフォルトの変更
+## デフォルトの変更 { #changing-the-default }
 
 後に、[高度なユーザーガイド](../advanced/response-change-status-code.md){.internal-link target=_blank}で、ここで宣言しているデフォルトとは異なるステータスコードを返す方法を見ていきます。

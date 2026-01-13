@@ -835,7 +835,7 @@ $ source .venv/bin/activate
 // Agora, quando você executar o python, ele encontrará o pacote sirius instalado neste ambiente virtual ✨
 $ python main.py
 
-Eu juro solenemente 🐺
+I solemnly swear 🐺
 ```
 
 </div>

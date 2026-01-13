@@ -1,4 +1,4 @@
-# 直接使用请求
+# 直接使用请求 { #using-the-request-directly }
 
 至此，我们已经使用多种类型声明了请求的各种组件。
 
@@ -13,7 +13,7 @@
 
 但有时，我们也需要直接访问 `Request` 对象。
 
-## `Request` 对象的细节
+## `Request` 对象的细节 { #details-about-the-request-object }
 
 实际上，**FastAPI** 的底层是 **Starlette**，**FastAPI** 只不过是在  **Starlette** 顶层提供了一些工具，所以能直接使用 Starlette 的  <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">`Request`</a> 对象。
 
@@ -23,13 +23,13 @@
 
 但在某些特定情况下，还是需要提取 `Request` 对象。
 
-## 直接使用 `Request` 对象
+## 直接使用 `Request` 对象 { #use-the-request-object-directly }
 
 假设要在*路径操作函数*中获取客户端 IP 地址和主机。
 
 此时，需要直接访问请求。
 
-{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001_py39.py hl[1,7:8] *}
 
 把*路径操作函数*的参数类型声明为 `Request`，**FastAPI** 就能把 `Request` 传递到参数里。
 
@@ -43,7 +43,7 @@
 
 ///
 
-## `Request` 文档
+## `Request` 文档 { #request-documentation }
 
 更多细节详见 <a href="https://www.starlette.dev/requests/" class="external-link" target="_blank">Starlette 官档 - `Request` 对象</a>。
 

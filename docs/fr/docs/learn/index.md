@@ -1,4 +1,4 @@
-# Apprendre
+# Apprendre { #learn }
 
 Voici les sections introductives et les tutoriels pour apprendre **FastAPI**.
 

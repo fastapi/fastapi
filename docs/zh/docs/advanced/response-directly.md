@@ -1,4 +1,4 @@
-# 直接返回响应
+# 直接返回响应 { #return-a-response-directly }
 
 当你创建一个 **FastAPI** *路径操作* 时，你可以正常返回以下任意一种数据：`dict`，`list`，Pydantic 模型，数据库模型等等。
 
@@ -10,7 +10,7 @@
 
 直接返回响应可能会有用处，比如返回自定义的响应头和 cookies。
 
-## 返回 `Response`
+## 返回 `Response` { #return-a-response }
 
 事实上，你可以返回任意 `Response` 或者任意 `Response` 的子类。
 
@@ -26,7 +26,7 @@
 
 这种特性给你极大的可扩展性。你可以返回任何数据类型，重写任何数据声明或者校验，等等。
 
-## 在 `Response` 中使用 `jsonable_encoder`
+## 在 `Response` 中使用 `jsonable_encoder` { #using-the-jsonable-encoder-in-a-response }
 
 由于 **FastAPI** 并未对你返回的 `Response` 做任何改变，你必须确保你已经准备好响应内容。
 
@@ -35,7 +35,7 @@
 对于这些情况，在将数据传递给响应之前，你可以使用 `jsonable_encoder` 来转换你的数据。
 
 
-{* ../../docs_src/response_directly/tutorial001.py hl[4,6,20,21] *}
+{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
 
 /// note | 技术细节
 
@@ -45,7 +45,7 @@
 
 ///
 
-## 返回自定义 `Response`
+## 返回自定义 `Response` { #returning-a-custom-response }
 
 上面的例子展示了需要的所有部分，但还不够实用，因为你本可以只是直接返回 `item`，而**FastAPI** 默认帮你把这个 `item` 放到 `JSONResponse` 中，又默认将其转换成了 `dict`等等。
 
@@ -55,9 +55,9 @@
 
 你可以把你的 XML 内容放到一个字符串中，放到一个 `Response` 中，然后返回。
 
-{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002_py39.py hl[1,18] *}
 
-## 说明
+## 说明 { #notes }
 
 当你直接返回 `Response` 时，它的数据既没有校验，又不会进行转换（序列化），也不会自动生成文档。
 

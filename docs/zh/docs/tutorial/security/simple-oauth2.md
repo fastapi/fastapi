@@ -1,8 +1,8 @@
-# OAuth2 实现简单的 Password 和 Bearer 验证
+# OAuth2 实现简单的 Password 和 Bearer 验证 { #simple-oauth2-with-password-and-bearer }
 
 本章添加上一章示例中欠缺的部分，实现完整的安全流。
 
-## 获取 `username` 和 `password`
+## 获取 `username` 和 `password` { #get-the-username-and-password }
 
 首先，使用 **FastAPI** 安全工具获取 `username` 和 `password`。
 
@@ -18,7 +18,7 @@ OAuth2 规范要求使用**密码流**时，客户端或用户必须以表单数
 
 该规范要求必须以表单数据形式发送 `username` 和 `password`，因此，不能使用 JSON 对象。
 
-### `Scope`（作用域）
+### `Scope`（作用域） { #scope }
 
 OAuth2 还支持客户端发送**`scope`**表单字段。
 
@@ -44,15 +44,15 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 ///
 
-## 获取 `username` 和 `password` 的代码
+## 获取 `username` 和 `password` 的代码 { #code-to-get-the-username-and-password }
 
 接下来，使用 **FastAPI** 工具获取用户名与密码。
 
-### `OAuth2PasswordRequestForm`
+### `OAuth2PasswordRequestForm` { #oauth2passwordrequestform }
 
 首先，导入 `OAuth2PasswordRequestForm`，然后，在 `/token` *路径操作* 中，用 `Depends` 把该类作为依赖项。
 
-{* ../../docs_src/security/tutorial003.py hl[4,76] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` 是用以下几项内容声明表单请求体的类依赖项：
 
@@ -84,7 +84,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 ///
 
-### 使用表单数据
+### 使用表单数据 { #use-the-form-data }
 
 /// tip | 提示
 
@@ -100,9 +100,9 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 本例使用 `HTTPException` 异常显示此错误：
 
-{* ../../docs_src/security/tutorial003.py hl[3,77:79] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
 
-### 校验密码
+### 校验密码 { #check-the-password }
 
 至此，我们已经从数据库中获取了用户数据，但尚未校验密码。
 
@@ -112,7 +112,7 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 如果密码不匹配，则返回与上面相同的错误。
 
-#### 密码哈希
+#### 密码哈希 { #password-hashing }
 
 **哈希**是指，将指定内容（本例中为密码）转换为形似乱码的字节序列（其实就是字符串）。
 
@@ -120,15 +120,15 @@ OAuth2 中，**作用域**只是声明指定权限的字符串。
 
 但这个乱码无法转换回传入的密码。
 
-##### 为什么使用密码哈希
+##### 为什么使用密码哈希 { #why-use-password-hashing }
 
 原因很简单，假如数据库被盗，窃贼无法获取用户的明文密码，得到的只是哈希值。
 
 这样一来，窃贼就无法在其它应用中使用窃取的密码，要知道，很多用户在所有系统中都使用相同的密码，风险超大。
 
-{* ../../docs_src/security/tutorial003.py hl[80:83] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-#### 关于 `**user_dict`
+#### 关于 `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` 是指：
 
@@ -146,11 +146,11 @@ UserInDB(
 
 /// info | 说明
 
-`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#user_indict){.internal-link target=_blank}。
+`user_dict` 的说明，详见[**更多模型**一章](../extra-models.md#about-user-in-dict){.internal-link target=_blank}。
 
 ///
 
-## 返回 Token
+## 返回 Token { #return-the-token }
 
 `token` 端点的响应必须是 JSON 对象。
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003.py hl[85] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
 
 /// tip | 提示
 
@@ -182,7 +182,7 @@ UserInDB(
 
 ///
 
-## 更新依赖项
+## 更新依赖项 { #update-the-dependencies }
 
 接下来，更新依赖项。
 
@@ -194,7 +194,7 @@ UserInDB(
 
 因此，在端点中，只有当用户存在、通过身份验证、且状态为激活时，才能获得该用户：
 
-{* ../../docs_src/security/tutorial003.py hl[58:67,69:72,90] *}
+{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
 /// info | 说明
 
@@ -214,11 +214,11 @@ UserInDB(
 
 ///
 
-## 实际效果
+## 实际效果 { #see-it-in-action }
 
 打开 API 文档：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
-### 身份验证
+### 身份验证 { #authenticate }
 
 点击**Authorize**按钮。
 
@@ -234,7 +234,7 @@ UserInDB(
 
 <img src="https://fastapi.tiangolo.com/img/tutorial/security/image05.png">
 
-### 获取当前用户数据
+### 获取当前用户数据 { #get-your-own-user-data }
 
 使用 `/users/me` 路径的 `GET` 操作。
 
@@ -260,7 +260,7 @@ UserInDB(
 }
 ```
 
-### 未激活用户
+### 未激活用户 { #inactive-user }
 
 测试未激活用户，输入以下信息，进行身份验证：
 
@@ -278,7 +278,7 @@ UserInDB(
 }
 ```
 
-## 小结
+## 小结 { #recap }
 
 使用本章的工具实现基于 `username` 和 `password` 的完整 API 安全系统。
 

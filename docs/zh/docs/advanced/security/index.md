@@ -1,6 +1,6 @@
-# 高级安全
+# 高级安全 { #advanced-security }
 
-## 附加特性
+## 附加特性 { #additional-features }
 
 除 [教程 - 用户指南: 安全性](../../tutorial/security/index.md){.internal-link target=_blank} 中涵盖的功能之外，还有一些额外的功能来处理安全性.
 
@@ -12,7 +12,7 @@
 
 ///
 
-## 先阅读教程
+## 先阅读教程 { #read-the-tutorial-first }
 
 接下来的部分假设你已经阅读了主要的 [教程 - 用户指南: 安全性](../../tutorial/security/index.md){.internal-link target=_blank}.
 

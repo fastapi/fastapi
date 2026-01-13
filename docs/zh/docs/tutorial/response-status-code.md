@@ -1,4 +1,4 @@
-# 响应状态码
+# 响应状态码 { #response-status-code }
 
 与指定响应模型的方式相同，在以下任意*路径操作*中，可以使用 `status_code` 参数声明用于响应的 HTTP 状态码：
 
@@ -8,7 +8,7 @@
 * `@app.delete()`
 * 等……
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 /// note | 笔记
 
@@ -39,7 +39,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ///
 
-## 关于 HTTP 状态码
+## 关于 HTTP 状态码 { #about-http-status-codes }
 
 /// note | 笔记
 
@@ -70,11 +70,11 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ///
 
-## 状态码名称快捷方式
+## 状态码名称快捷方式 { #shortcut-to-remember-the-names }
 
 再看下之前的例子：
 
-{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001_py39.py hl[6] *}
 
 `201` 表示**已创建**的状态码。
 
@@ -82,7 +82,7 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 可以使用 `fastapi.status` 中的快捷变量。
 
-{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002_py39.py hl[1,6] *}
 
 这只是一种快捷方式，具有相同的数字代码，但它可以使用编辑器的自动补全功能：
 
@@ -96,6 +96,6 @@ FastAPI 可以进行识别，并生成表明无响应体的 OpenAPI 文档。
 
 ///
 
-## 更改默认状态码
+## 更改默认状态码 { #changing-the-default }
 
 [高级用户指南](../advanced/response-change-status-code.md){.internal-link target=_blank}中，将介绍如何返回与在此声明的默认状态码不同的状态码。

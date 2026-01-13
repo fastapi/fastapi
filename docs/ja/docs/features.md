@@ -1,17 +1,17 @@
-# 機能
+# 機能 { #features }
 
-## FastAPIの機能
+## FastAPIの機能 { #fastapi-features }
 
 **FastAPI** は以下の機能をもちます:
 
-### オープンスタンダード準拠
+### オープンスタンダード準拠 { #based-on-open-standards }
 
 * API作成のための<a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>。これは、<abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>の宣言、パラメータ、ボディリクエスト、セキュリティなどを含んでいます。
-* <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSONスキーマ</strong></a>を使用したデータモデルのドキュメント自動生成（OpenAPIはJSONスキーマに基づいている）。
+* <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSONスキーマ</strong></a>を使用したデータモデルのドキュメント自動生成（OpenAPIはJSONスキーマに基づいている）。
 * 綿密な調査の結果、上層に後付けするのではなく、これらの基準に基づいて設計されました。
 * これにより、多くの言語で自動 **クライアントコード生成** が可能です。
 
-### 自動ドキュメント生成
+### 自動ドキュメント生成 { #automatic-docs }
 対話的なAPIドキュメントと探索的なwebユーザーインターフェースを提供します。フレームワークはOpenAPIを基にしているため、いくつかのオプションがあり、デフォルトで2つ含まれています。
 
 * <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank"><strong>Swagger UI</strong></a>で、インタラクティブな探索をしながら、ブラウザから直接APIを呼び出してテストが行えます。
@@ -22,7 +22,7 @@
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 現代的なPython
+### 現代的なPython { #just-modern-python }
 
 FastAPIの機能はすべて、標準のPython 3.8型宣言に基づいています（Pydanticの功績）。新しい構文はありません。ただの現代的な標準のPythonです。
 
@@ -70,7 +70,7 @@ my_second_user: User = User(**second_user_data)
 
 ///
 
-### エディタのサポート
+### エディタのサポート { #editor-support }
 
 すべてのフレームワークは使いやすく直感的に使用できるように設計されており、すべての決定は開発を開始する前でも複数のエディターでテストされ、最高の開発体験が保証されます。
 
@@ -94,13 +94,13 @@ my_second_user: User = User(**second_user_data)
 
 間違ったキー名を入力したり、ドキュメント間を行き来したり、上下にスクロールして`username`と`user_name`のどちらを使用したか調べたりする必要はもうありません。
 
-### 簡潔
+### 簡潔 { #short }
 
 すべてに適切な**デフォルト**があり、オプションの構成ができます。必要なことを実行し、必要なAPIを定義するためにすべてのパラメーターを調整できます。
 
 ただし、デフォルトでもすべて **うまくいきます**。
 
-### 検証
+### 検証 { #validation }
 
 * 以下の様な、ほとんどの（すべての？）Python **データ型**の検証:
      * JSONオブジェクト（`dict`）
@@ -116,7 +116,7 @@ my_second_user: User = User(**second_user_data)
 
 すべての検証は、確立された堅牢な **Pydantic** によって処理されます。
 
-### セキュリティと認証
+### セキュリティと認証 { #security-and-authentication }
 
 セキュリティと認証が統合されています。 データベースまたはデータモデルについても妥協していません。
 
@@ -133,7 +133,7 @@ my_second_user: User = User(**second_user_data)
 
 これらは、システム、データストア、リレーショナルデータベース、NoSQLデータベースなどと簡単に統合できる再利用可能なツールとコンポーネントとして構築されています。
 
-### 依存性の注入（Dependency Injection）
+### 依存性の注入（Dependency Injection） { #dependency-injection }
 
 FastAPIには非常に使いやすく、非常に強力な<abbr title='also known as "components", "resources", "services", "providers"'><strong>依存性の注入</strong></abbr>システムを備えています。
 
@@ -145,20 +145,20 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 * 複雑なユーザー認証システム、**データベース接続**などのサポート
 * **データベース、フロントエンドなどに対する妥協はありません**。それらすべてと簡単に統合できます。
 
-### 無制限の「プラグイン」
+### 無制限の「プラグイン」 { #unlimited-plug-ins }
 
 他の方法では、それらを必要とせず、必要なコードをインポートして使用します。
 
 統合は非常に簡単に使用できるように設計されており（依存関係を用いて）、*path operations* で使用されているのと同じ構造と構文を使用して、2行のコードでアプリケーションの「プラグイン」を作成できます。
 
 
-### テスト
+### テスト { #tested }
 
 * <abbr title = "自動的にテストされるコードの量">テストカバレッジ</abbr> 100%
 * <abbr title = "Python型アノテーション。これにより、ユーザーはより良いエディターと外部ツールのサポート受けられる。">型アノテーション</abbr>100%のコードベース
 * 本番アプリケーションで使用されます
 
-## Starletteの機能
+## Starletteの機能 { #starlette-features }
 
 **FastAPI**は、<a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のStarletteコードがあれば、それも機能します。
 
@@ -178,7 +178,7 @@ FastAPIには非常に使いやすく、非常に強力な<abbr title='also know
 * テストカバレッジ100%
 * 型アノテーション100%のコードベース
 
-## Pydanticの特徴
+## Pydanticの特徴 { #pydantic-features }
 
 **FastAPI**は<a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic </strong></a>と完全に互換性があります（そしてベースになっています）。したがって、追加のPydanticコードがあれば、それも機能します。
 

@@ -1,10 +1,10 @@
-# 特性
+# 特性 { #features }
 
-## FastAPI 特性
+## FastAPI 特性 { #fastapi-features }
 
 **FastAPI** 提供了以下内容：
 
-### 基于开放标准
+### 基于开放标准 { #based-on-open-standards }
 
 
 * 用于创建 API 的 <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> 包含了<abbr title="也被叫做: endpoints, routes">路径</abbr><abbr title="也叫做HTTP方法, 例如 POST, GET, PUT, DELETE">操作</abbr>，请求参数，请求体，安全性等的声明。
@@ -12,7 +12,7 @@
 * 经过了缜密的研究后围绕这些标准而设计。并非狗尾续貂。
 * 这也允许了在很多语言中自动**生成客户端代码**。
 
-### 自动生成文档
+### 自动生成文档 { #automatic-docs }
 
 交互式 API 文档以及具探索性 web 界面。因为该框架是基于 OpenAPI，所以有很多可选项，FastAPI 默认自带两个交互式 API 文档。
 
@@ -24,7 +24,7 @@
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### 更主流的 Python
+### 更主流的 Python { #just-modern-python }
 
 全部都基于标准的 **Python 3.6 类型**声明（感谢 Pydantic ）。没有新的语法需要学习。只需要标准的 Python 。
 
@@ -73,7 +73,7 @@ my_second_user: User = User(**second_user_data)
 
 ///
 
-### 编辑器支持
+### 编辑器支持 { #editor-support }
 
 整个框架都被设计得易于使用且直观，所有的决定都在开发之前就在多个编辑器上进行了测试，来确保最佳的开发体验。
 
@@ -99,13 +99,13 @@ my_second_user: User = User(**second_user_data)
 
 
 
-### 简洁
+### 简洁 { #short }
 
 任何类型都有合理的**默认值**，任何和地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的 API。
 
 但是默认情况下，一切都能**“顺利工作”**。
 
-### 验证
+### 验证 { #validation }
 
 * 校验大部分（甚至所有？）的 Python **数据类型**，包括：
     * JSON 对象 (`dict`).
@@ -121,7 +121,7 @@ my_second_user: User = User(**second_user_data)
 
 所有的校验都由完善且强大的 **Pydantic** 处理。
 
-### 安全性及身份验证
+### 安全性及身份验证 { #security-and-authentication }
 
 集成了安全性和身份认证。杜绝数据库或者数据模型的渗透风险。
 
@@ -140,7 +140,7 @@ OpenAPI 中定义的安全模式，包括：
 
 
 
-### 依赖注入
+### 依赖注入 { #dependency-injection }
 
 FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫做 "components", "resources", "services", "providers"'><strong>依赖注入</strong></abbr>系统。
 
@@ -151,19 +151,19 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 * 支持复杂的用户身份认证系统，**数据库连接**等等。
 * **不依赖**数据库，前端等。 但是和它们集成很简单。
 
-### 无限制"插件"
+### 无限制"插件" { #unlimited-plug-ins }
 
 或者说，导入并使用你需要的代码，而不需要它们。
 
 任何集成都被设计得被易于使用（用依赖关系），你可以用和*路径操作*相同的结构和语法，在两行代码中为你的应用创建一个“插件”。
 
-### 测试
+### 测试 { #tested }
 
 * 100% <abbr title="自动测试的代码量">测试覆盖</abbr>。
 * 代码库100% <abbr title="Python类型注解，有了这个你的编辑器和外部工具可以给你更好的支持">类型注释</abbr>。
 * 用于生产应用。
 
-## Starlette 特性
+## Starlette 特性 { #starlette-features }
 
 **FastAPI** 和 <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a> 完全兼容(并基于)。所以，你有的其他的 Starlette 代码也能正常工作。`FastAPI` 实际上是 `Starlette`的一个子类。所以，如果你已经知道或者使用 Starlette，大部分的功能会以相同的方式工作。
 
@@ -180,7 +180,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<abbr title='也叫�
 * 100% 测试覆盖率。
 * 代码库 100% 类型注释。
 
-## Pydantic 特性
+## Pydantic 特性 { #pydantic-features }
 
 **FastAPI** 和 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a> 完全兼容(并基于)。所以，你有的其他的 Pydantic 代码也能正常工作。
 

@@ -1,4 +1,4 @@
-# HTTP 基础授权
+# HTTP 基础授权 { #http-basic-auth }
 
 最简单的用例是使用 HTTP 基础授权（HTTP Basic Auth）。
 
@@ -12,7 +12,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 输入用户名与密码后，浏览器会把它们自动发送至请求头。
 
-## 简单的 HTTP 基础授权
+## 简单的 HTTP 基础授权 { #simple-http-basic-auth }
 
 * 导入 `HTTPBasic` 与 `HTTPBasicCredentials`
 * 使用 `HTTPBasic` 创建**安全概图**
@@ -26,7 +26,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 
 <img src="/img/tutorial/security/image12.png">
 
-## 检查用户名
+## 检查用户名 { #check-the-username }
 
 以下是更完整的示例。
 
@@ -52,7 +52,7 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
 
 但使用 `secrets.compare_digest()`，可以防御**时差攻击**，更加安全。
 
-### 时差攻击
+### 时差攻击 { #timing-attacks }
 
 什么是**时差攻击**？
 
@@ -80,19 +80,19 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 此时，Python 要对比 `stanleyjobsox` 与 `stanleyjobson` 中的 `stanleyjobso`，才能知道这两个字符串不一样。因此会多花费几微秒来返回**错误的用户或密码**。
 
-#### 反应时间对攻击者的帮助
+#### 反应时间对攻击者的帮助 { #the-time-to-answer-helps-the-attackers }
 
 通过服务器花费了更多微秒才发送**错误的用户或密码**响应，攻击者会知道猜对了一些内容，起码开头字母是正确的。
 
 然后，他们就可以放弃 `johndoe`，再用类似 `stanleyjobsox` 的内容进行尝试。
 
-#### **专业**攻击
+#### **专业**攻击 { #a-professional-attack }
 
 当然，攻击者不用手动操作，而是编写每秒能执行成千上万次测试的攻击程序，每次都会找到更多正确字符。
 
 但是，在您的应用的**帮助**下，攻击者利用时间差，就能在几分钟或几小时内，以这种方式猜出正确的用户名和密码。
 
-#### 使用 `secrets.compare_digest()` 修补
+#### 使用 `secrets.compare_digest()` 修补 { #fix-it-with-secrets-compare-digest }
 
 在此，代码中使用了 `secrets.compare_digest()`。
 
@@ -100,7 +100,7 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 在代码中使用 `secrets.compare_digest()` ，就可以安全地防御全面攻击了。
 
-### 返回错误
+### 返回错误 { #return-the-error }
 
 检测到凭证不正确后，返回 `HTTPException` 及状态码 401（与无凭证时返回的内容一样），并添加请求头 `WWW-Authenticate`，让浏览器再次显示登录提示：
 

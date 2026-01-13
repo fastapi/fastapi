@@ -1,8 +1,8 @@
-# Альтернативи, натхнення та порівняння
+# Альтернативи, натхнення та порівняння { #alternatives-inspiration-and-comparisons }
 
 Що надихнуло на створення **FastAPI**, який він у порінянні з іншими альтернативами та чого він у них навчився.
 
-## Вступ
+## Вступ { #intro }
 
 **FastAPI** не існувало б, якби не попередні роботи інших.
 
@@ -12,9 +12,9 @@
 
 Але в якийсь момент не було іншого виходу, окрім створення чогось, що надавало б усі ці функції, взявши найкращі ідеї з попередніх інструментів і поєднавши їх найкращим чином, використовуючи мовні функції, які навіть не були доступні раніше (Python 3.6+ підказки типів).
 
-## Попередні інструменти
+## Попередні інструменти { #previous-tools }
 
-### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a>
+### <a href="https://www.djangoproject.com/" class="external-link" target="_blank">Django</a> { #django }
 
 Це найпопулярніший фреймворк Python, який користується широкою довірою. Він використовується для створення таких систем, як Instagram.
 
@@ -22,7 +22,7 @@
 
 Він був створений для створення HTML у серверній частині, а не для створення API, які використовуються сучасним інтерфейсом (як-от React, Vue.js і Angular) або іншими системами (як-от <abbr title="Internet of Things">IoT</abbr > пристрої), які спілкуються з ним.
 
-### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a>
+### <a href="https://www.django-rest-framework.org/" class="external-link" target="_blank">Django REST Framework</a> { #django-rest-framework }
 
 Фреймворк Django REST був створений як гнучкий інструментарій для створення веб-інтерфейсів API використовуючи Django в основі, щоб покращити його можливості API.
 
@@ -42,7 +42,7 @@ Django REST Framework створив Том Крісті. Той самий тв
 
 ///
 
-### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a>
+### <a href="https://flask.palletsprojects.com" class="external-link" target="_blank">Flask</a> { #flask }
 
 Flask — це «мікрофреймворк», він не включає інтеграцію бази даних, а також багато речей, які за замовчуванням є в Django.
 
@@ -64,7 +64,7 @@ Flask — це «мікрофреймворк», він не включає ін
 
 ///
 
-### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a>
+### <a href="https://requests.readthedocs.io" class="external-link" target="_blank">Requests</a> { #requests }
 
 **FastAPI** насправді не є альтернативою **Requests**. Сфера їх застосування дуже різна.
 
@@ -93,7 +93,7 @@ response = requests.get("http://example.com/some/url")
 ```Python hl_lines="1"
 @app.get("/some/url")
 def read_url():
-     return {"message": "Hello World"}
+    return {"message": "Hello World"}
 ```
 
 Зверніть увагу на схожість у `requests.get(...)` і `@app.get(...)`.
@@ -106,7 +106,7 @@ def read_url():
 
 ///
 
-### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI /OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a>
+### <a href="https://swagger.io/" class="external-link" target="_blank">Swagger</a> / <a href="https://github.com/OAI/OpenAPI-Specification/" class="external-link" target="_blank">OpenAPI</a> { #swagger-openapi }
 
 Головною функцією, яку я хотів від Django REST Framework, була автоматична API документація.
 
@@ -131,11 +131,11 @@ def read_url():
 
 ///
 
-### Фреймворки REST для Flask
+### Фреймворки REST для Flask { #flask-rest-frameworks }
 
 Існує кілька фреймворків Flask REST, але, витративши час і роботу на їх дослідження, я виявив, що багато з них припинено або залишено, з кількома постійними проблемами, які зробили їх непридатними.
 
-### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a>
+### <a href="https://marshmallow.readthedocs.io/en/stable/" class="external-link" target="_blank">Marshmallow</a> { #marshmallow }
 
 Однією з головних функцій, необхідних для систем API, є "<abbr title="також звана marshalling, conversion">серіалізація</abbr>", яка бере дані з коду (Python) і перетворює їх на щось, що можна надіслати через мережу. Наприклад, перетворення об’єкта, що містить дані з бази даних, на об’єкт JSON. Перетворення об’єктів `datetime` на строки тощо.
 
@@ -153,7 +153,7 @@ Marshmallow створено для забезпечення цих функці
 
 ///
 
-### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a>
+### <a href="https://webargs.readthedocs.io/en/latest/" class="external-link" target="_blank">Webargs</a> { #webargs }
 
 Іншою важливою функцією, необхідною для API, є <abbr title="читання та перетворення даних Python">аналіз</abbr> даних із вхідних запитів.
 
@@ -175,7 +175,7 @@ Webargs був створений тими ж розробниками Marshmall
 
 ///
 
-### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a>
+### <a href="https://apispec.readthedocs.io/en/stable/" class="external-link" target="_blank">APISpec</a> { #apispec }
 
 Marshmallow і Webargs забезпечують перевірку, аналіз і серіалізацію як плагіни.
 
@@ -205,7 +205,7 @@ APISpec був створений тими ж розробниками Marshmall
 
 ///
 
-### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a>
+### <a href="https://flask-apispec.readthedocs.io/en/latest/" class="external-link" target="_blank">Flask-apispec</a> { #flask-apispec }
 
 Це плагін Flask, який об’єднує Webargs, Marshmallow і APISpec.
 
@@ -237,7 +237,7 @@ Flask-apispec був створений тими ж розробниками Mar
 
 ///
 
-### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (та <a href="https://angular.io/ " class="external-link" target="_blank">Angular</a>)
+### <a href="https://nestjs.com/" class="external-link" target="_blank">NestJS</a> (та <a href="https://angular.io/" class="external-link" target="_blank">Angular</a>) { #nestjs-and-angular }
 
 Це навіть не Python, NestJS — це фреймворк NodeJS JavaScript (TypeScript), натхненний Angular.
 
@@ -259,7 +259,7 @@ Flask-apispec був створений тими ж розробниками Mar
 
 ///
 
-### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a>
+### <a href="https://sanic.readthedocs.io/en/latest/" class="external-link" target="_blank">Sanic</a> { #sanic }
 
 Це був один із перших надзвичайно швидких фреймворків Python на основі `asyncio`. Він був дуже схожий на Flask.
 
@@ -279,7 +279,7 @@ Flask-apispec був створений тими ж розробниками Mar
 
 ///
 
-### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a>
+### <a href="https://falconframework.org/" class="external-link" target="_blank">Falcon</a> { #falcon }
 
 Falcon — ще один високопродуктивний фреймворк Python, він розроблений як мінімальний і працює як основа інших фреймворків, таких як Hug.
 
@@ -297,7 +297,7 @@ Falcon — ще один високопродуктивний фреймворк
 
 ///
 
-### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a>
+### <a href="https://moltenframework.com/" class="external-link" target="_blank">Molten</a> { #molten }
 
 Я відкрив для себе Molten на перших етапах створення **FastAPI**. І він має досить схожі ідеї:
 
@@ -321,7 +321,7 @@ Falcon — ще один високопродуктивний фреймворк
 
 ///
 
-### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a>
+### <a href="https://github.com/hugapi/hug" class="external-link" target="_blank">Hug</a> { #hug }
 
 Hug був одним із перших фреймворків, який реалізував оголошення типів параметрів API за допомогою підказок типу Python. Це була чудова ідея, яка надихнула інші інструменти зробити те саме.
 
@@ -351,7 +351,7 @@ Hug надихнув частину APIStar і був одним із найбі
 
 ///
 
-### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0,5)
+### <a href="https://github.com/encode/apistar" class="external-link" target="_blank">APIStar</a> (<= 0,5) { #apistar-0-5 }
 
 Безпосередньо перед тим, як вирішити створити **FastAPI**, я знайшов сервер **APIStar**. Він мав майже все, що я шукав, і мав чудовий дизайн.
 
@@ -397,9 +397,9 @@ APIStar створив Том Крісті. Той самий хлопець, я
 
 ///
 
-## Використовується **FastAPI**
+## Використовується **FastAPI** { #used-by-fastapi }
 
-### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>
+### <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> { #pydantic }
 
 Pydantic — це бібліотека для визначення перевірки даних, серіалізації та документації (за допомогою схеми JSON) на основі підказок типу Python.
 
@@ -415,7 +415,7 @@ Pydantic — це бібліотека для визначення переві�
 
 ///
 
-### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>
+### <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> { #starlette }
 
 Starlette — це легкий фреймворк/набір інструментів <abbr title="The new standard for build asynchronous Python web">ASGI</abbr>, який ідеально підходить для створення високопродуктивних asyncio сервісів.
 
@@ -460,7 +460,7 @@ ASGI — це новий «стандарт», який розробляєтьс
 
 ///
 
-### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>
+### <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a> { #uvicorn }
 
 Uvicorn — це блискавичний сервер ASGI, побудований на uvloop і httptools.
 
@@ -478,6 +478,6 @@ Uvicorn — це блискавичний сервер ASGI, побудован�
 
 ///
 
-## Орієнтири та швидкість
+## Орієнтири та швидкість { #benchmarks-and-speed }
 
 Щоб зрозуміти, порівняти та побачити різницю між Uvicorn, Starlette і FastAPI, перегляньте розділ про [Бенчмарки](benchmarks.md){.internal-link target=_blank}.

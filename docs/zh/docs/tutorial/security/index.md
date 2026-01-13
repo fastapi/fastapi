@@ -1,4 +1,4 @@
-# 安全性
+# 安全性 { #security }
 
 有许多方法可以处理安全性、身份认证和授权等问题。
 
@@ -10,11 +10,11 @@
 
 但首先，让我们来看一些小的概念。
 
-## 没有时间？
+## 没有时间？ { #in-a-hurry }
 
 如果你不关心这些术语，而只需要*立即*通过基于用户名和密码的身份认证来增加安全性，请跳转到下一章。
 
-## OAuth2
+## OAuth2 { #oauth2 }
 
 OAuth2是一个规范，它定义了几种处理身份认证和授权的方法。
 
@@ -24,7 +24,7 @@ OAuth2是一个规范，它定义了几种处理身份认证和授权的方法�
 
 这就是所有带有「使用 Facebook，Google，X (Twitter)，GitHub 登录」的系统背后所使用的机制。
 
-### OAuth 1
+### OAuth 1 { #oauth-1 }
 
 有一个 OAuth 1，它与 OAuth2 完全不同，并且更为复杂，因为它直接包含了有关如何加密通信的规范。
 
@@ -38,7 +38,7 @@ OAuth2 没有指定如何加密通信，它期望你为应用程序使用 HTTPS 
 
 ///
 
-## OpenID Connect
+## OpenID Connect { #openid-connect }
 
 OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
@@ -48,7 +48,7 @@ OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
 但是 Facebook 登录不支持 OpenID Connect。它具有自己的 OAuth2 风格。
 
-### OpenID（非「OpenID Connect」）
+### OpenID（非「OpenID Connect」） { #openid-not-openid-connect }
 
 还有一个「OpenID」规范。它试图解决与 **OpenID Connect** 相同的问题，但它不是基于 OAuth2。
 
@@ -56,7 +56,7 @@ OpenID Connect 是另一个基于 **OAuth2** 的规范。
 
 如今它已经不是很流行，没有被广泛使用了。
 
-## OpenAPI
+## OpenAPI { #openapi }
 
 OpenAPI（以前称为 Swagger）是用于构建 API 的开放规范（现已成为 Linux Foundation 的一部分）。
 
@@ -97,7 +97,7 @@ OpenAPI 定义了以下安全方案：
 
 ///
 
-## **FastAPI** 实用工具
+## **FastAPI** 实用工具 { #fastapi-utilities }
 
 FastAPI 在 `fastapi.security` 模块中为每个安全方案提供了几种工具，这些工具简化了这些安全机制的使用方法。
 

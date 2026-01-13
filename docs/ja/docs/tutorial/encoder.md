@@ -1,4 +1,4 @@
-# JSON互換エンコーダ
+# JSON互換エンコーダ { #json-compatible-encoder }
 
 データ型（Pydanticモデルのような）をJSONと互換性のあるもの（`dict`や`list`など）に変更する必要がある場合があります。
 
@@ -6,7 +6,7 @@
 
 そのために、**FastAPI** は`jsonable_encoder()`関数を提供しています。
 
-## `jsonable_encoder`の使用
+## `jsonable_encoder`の使用 { #using-the-jsonable-encoder }
 
 JSON互換のデータのみを受信するデータベース`fake_db`があるとしましょう。
 
@@ -20,7 +20,7 @@ JSON互換のデータのみを受信するデータベース`fake_db`がある�
 
 Pydanticモデルのようなオブジェクトを受け取り、JSON互換版を返します:
 
-{* ../../docs_src/encoder/tutorial001.py hl[5,22] *}
+{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
 
 この例では、Pydanticモデルを`dict`に、`datetime`を`str`に変換します。
 

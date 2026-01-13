@@ -1,4 +1,4 @@
-# Öğren
+# Öğren { #learn }
 
 **FastAPI** öğrenmek için giriş bölümleri ve öğreticiler burada yer alıyor.
 

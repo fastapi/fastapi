@@ -1,16 +1,16 @@
-# ボディ - 更新
+# ボディ - 更新 { #body-updates }
 
-## `PUT`による置換での更新
+## `PUT`による置換での更新 { #update-replacing-with-put }
 
 項目を更新するには<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTPの`PUT`</a>操作を使用することができます。
 
 `jsonable_encoder`を用いて、入力データをJSON形式で保存できるデータに変換することができます（例：NoSQLデータベース）。例えば、`datetime`を`str`に変換します。
 
-{* ../../docs_src/body_updates/tutorial001.py hl[30,31,32,33,34,35] *}
+{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
 
 既存のデータを置き換えるべきデータを受け取るために`PUT`は使用されます。
 
-### 置換についての注意
+### 置換についての注意 { #warning-about-replacing }
 
 つまり、`PUT`を使用して以下のボディで項目`bar`を更新したい場合は:
 
@@ -26,7 +26,7 @@
 
 そして、データはその「新しい」`10.5`の`tax`と共に保存されます。
 
-## `PATCH`による部分的な更新
+## `PATCH`による部分的な更新 { #partial-updates-with-patch }
 
 また、<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTPの`PATCH`</a>操作でデータを*部分的に*更新することもできます。
 
@@ -44,7 +44,7 @@
 
 ///
 
-### Pydanticの`exclude_unset`パラメータの使用
+### Pydanticの`exclude_unset`パラメータの使用 { #using-pydantics-exclude-unset-parameter }
 
 部分的な更新を受け取りたい場合は、Pydanticモデルの`.dict()`の`exclude_unset`パラメータを使用すると非常に便利です。
 
@@ -54,17 +54,17 @@
 
 これを使うことで、デフォルト値を省略して、設定された（リクエストで送られた）データのみを含む`dict`を生成することができます:
 
-{* ../../docs_src/body_updates/tutorial002.py hl[34] *}
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
 
-### Pydanticの`update`パラメータ
+### Pydanticの`update`パラメータ { #using-pydantics-update-parameter }
 
 ここで、`.copy()`を用いて既存のモデルのコピーを作成し、`update`パラメータに更新するデータを含む`dict`を渡すことができます。
 
 `stored_item_model.copy(update=update_data)`のように:
 
-{* ../../docs_src/body_updates/tutorial002.py hl[35] *}
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
 
-### 部分的更新のまとめ
+### 部分的更新のまとめ { #partial-updates-recap }
 
 まとめると、部分的な更新を適用するには、次のようにします:
 
@@ -79,7 +79,7 @@
 * データをDBに保存します。
 * 更新されたモデルを返します。
 
-{* ../../docs_src/body_updates/tutorial002.py hl[30,31,32,33,34,35,36,37] *}
+{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
 
 /// tip | 豆知識
 

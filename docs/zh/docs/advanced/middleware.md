@@ -1,4 +1,4 @@
-# 高级中间件
+# 高级中间件 { #advanced-middleware }
 
 用户指南介绍了如何为应用添加[自定义中间件](../tutorial/middleware.md){.internal-link target=_blank} 。
 
@@ -6,7 +6,7 @@
 
 本章学习如何使用其它中间件。
 
-## 添加 ASGI 中间件
+## 添加 ASGI 中间件 { #adding-asgi-middlewares }
 
 因为 **FastAPI** 基于 Starlette，且执行 <abbr title="Asynchronous Server Gateway Interface，异步服务器网关界面">ASGI</abbr> 规范，所以可以使用任意 ASGI 中间件。
 
@@ -39,7 +39,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `app.add_middleware()` 的第一个参数是中间件的类，其它参数则是要传递给中间件的参数。
 
-## 集成中间件
+## 集成中间件 { #integrated-middlewares }
 
 **FastAPI** 为常见用例提供了一些中间件，下面介绍怎么使用这些中间件。
 
@@ -51,19 +51,19 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ///
 
-## `HTTPSRedirectMiddleware`
+## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
 强制所有传入请求必须是 `https` 或 `wss`。
 
 任何传向 `http` 或 `ws` 的请求都会被重定向至安全方案。
 
-{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001_py39.py hl[2,6] *}
 
-## `TrustedHostMiddleware`
+## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 强制所有传入请求都必须正确设置 `Host` 请求头，以防 HTTP 主机头攻击。
 
-{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002_py39.py hl[2,6:8] *}
 
 支持以下参数：
 
@@ -71,19 +71,19 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 如果传入的请求没有通过验证，则发送 `400` 响应。
 
-## `GZipMiddleware`
+## `GZipMiddleware` { #gzipmiddleware }
 
 处理 `Accept-Encoding` 请求头中包含 `gzip` 请求的 GZip 响应。
 
 中间件会处理标准响应与流响应。
 
-{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003_py39.py hl[2,6] *}
 
 支持以下参数：
 
 * `minimum_size` - 小于最小字节的响应不使用 GZip。 默认值是 `500`。
 
-## 其它中间件
+## 其它中间件 { #other-middlewares }
 
 除了上述中间件外，FastAPI 还支持其它ASGI 中间件。
 

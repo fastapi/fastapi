@@ -1,8 +1,8 @@
-# Sorgu Parametreleri
+# Sorgu Parametreleri { #query-parameters }
 
 Fonksiyonda yol parametrelerinin parçası olmayan diğer tanımlamalar otomatik olarak "sorgu" parametresi olarak yorumlanır.
 
-{* ../../docs_src/query_params/tutorial001.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001_py39.py hl[9] *}
 
 Sorgu, bağlantıdaki `?` kısmından sonra gelen ve `&` işareti ile ayrılan anahtar-değer çiftlerinin oluşturduğu bir kümedir.
 
@@ -28,7 +28,7 @@ Yol parametreleri için geçerli olan her türlü işlem aynı şekilde sorgu pa
 * Veri doğrulama
 * Otomatik dokümantasyon
 
-## Varsayılanlar
+## Varsayılanlar { #defaults }
 
 Sorgu parametreleri, adres yolunun sabit bir parçası olmadıklarından dolayı isteğe bağlı ve varsayılan değere sahip olabilirler.
 
@@ -57,7 +57,7 @@ Fonksiyonunuzdaki parametre değerleri aşağıdaki gibi olacaktır:
 * `skip=20`: çünkü bağlantıda böyle tanımlandı.
 * `limit=10`: çünkü varsayılan değer buydu.
 
-## İsteğe Bağlı Parametreler
+## İsteğe Bağlı Parametreler { #optional-parameters }
 
 Aynı şekilde, varsayılan değerlerini `None` olarak atayarak isteğe bağlı parametreler tanımlayabilirsiniz:
 
@@ -71,7 +71,7 @@ Ayrıca, dikkatinizi çekerim ki; **FastAPI**, `item_id` parametresinin bir yol 
 
 ///
 
-## Sorgu Parametresi Tip Dönüşümü
+## Sorgu Parametresi Tip Dönüşümü { #query-parameter-type-conversion }
 
 Aşağıda görüldüğü gibi dönüştürülmek üzere `bool` tipleri de tanımlayabilirsiniz:
 
@@ -110,7 +110,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 veya adres, herhangi farklı bir harf varyasyonu içermesi durumuna rağmen (büyük harf, sadece baş harfi büyük kelime, vb.) fonksiyonunuz, `bool` tipli `short` parametresini `True` olarak algılayacaktır. Aksi halde `False` olarak algılanacaktır.
 
 
-## Çoklu Yol ve Sorgu Parametreleri
+## Çoklu Yol ve Sorgu Parametreleri { #multiple-path-and-query-parameters }
 
 **FastAPI** neyin ne olduğunu ayırt edebileceğinden dolayı aynı anda birden fazla yol ve sorgu parametresi tanımlayabilirsiniz.
 
@@ -120,7 +120,7 @@ Ve parametreleri, herhangi bir sıraya koymanıza da gerek yoktur.
 
 {* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
 
-## Zorunlu Sorgu Parametreleri
+## Zorunlu Sorgu Parametreleri { #required-query-parameters }
 
 Türü yol olmayan bir parametre (şu ana kadar sadece sorgu parametrelerini gördük) için varsayılan değer tanımlarsanız o parametre zorunlu olmayacaktır.
 
@@ -128,7 +128,7 @@ Parametre için belirli bir değer atamak istemeyip parametrenin sadece isteğe 
 
 Fakat, bir sorgu parametresini zorunlu yapmak istiyorsanız varsayılan bir değer atamamanız yeterli olacaktır:
 
-{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005_py39.py hl[6:7] *}
 
 Burada `needy` parametresi `str` tipinden oluşan zorunlu bir sorgu parametresidir.
 
@@ -183,6 +183,6 @@ Bu durumda, 3 tane sorgu parametresi var olacaktır:
 
 /// tip | İpucu
 
-Ayrıca, [Yol Parametrelerinde](path-params.md#on-tanml-degerler){.internal-link target=_blank} de kullanıldığı şekilde `Enum` sınıfından faydalanabilirsiniz.
+Ayrıca, [Yol Parametrelerinde](path-params.md#predefined-values){.internal-link target=_blank} de kullanıldığı şekilde `Enum` sınıfından faydalanabilirsiniz.
 
 ///

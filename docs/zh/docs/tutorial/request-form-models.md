@@ -1,4 +1,4 @@
-# 表单模型
+# 表单模型 { #form-models }
 
 您可以使用 **Pydantic 模型**在 FastAPI 中声明**表单字段**。
 
@@ -20,7 +20,7 @@ $ pip install python-multipart
 
 ///
 
-## 表单的 Pydantic 模型
+## 表单的 Pydantic 模型 { #pydantic-models-for-forms }
 
 您只需声明一个 **Pydantic 模型**，其中包含您希望接收的**表单字段**，然后将参数声明为 `Form` :
 
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 **FastAPI** 将从请求中的**表单数据**中**提取**出**每个字段**的数据，并提供您定义的 Pydantic 模型。
 
-## 检查文档
+## 检查文档 { #check-the-docs }
 
 您可以在文档 UI 中验证它，地址为 `/docs` ：
 
@@ -36,7 +36,7 @@ $ pip install python-multipart
 <img src="/img/tutorial/request-form-models/image01.png">
 </div>
 
-## 禁止额外的表单字段
+## 禁止额外的表单字段 { #forbid-extra-form-fields }
 
 在某些特殊使用情况下（可能并不常见），您可能希望将表单字段**限制**为仅在 Pydantic 模型中声明过的字段，并**禁止**任何**额外**的字段。
 
@@ -73,6 +73,6 @@ $ pip install python-multipart
 }
 ```
 
-## 总结
+## 总结 { #summary }
 
 您可以使用 Pydantic 模型在 FastAPI 中声明表单字段。😎

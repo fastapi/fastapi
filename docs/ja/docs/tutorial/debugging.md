@@ -1,14 +1,14 @@
-# デバッグ
+# デバッグ { #debugging }
 
 Visual Studio CodeやPyCharmなどを使用して、エディター上でデバッガーと連携できます。
 
-## `uvicorn` の実行
+## `uvicorn` の実行 { #call-uvicorn }
 
 FastAPIアプリケーション上で、`uvicorn` を直接インポートして実行します:
 
-{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001_py39.py hl[1,15] *}
 
-### `__name__ == "__main__"` について
+### `__name__ == "__main__"` について { #about-name-main }
 
 `__name__ == "__main__"` の主な目的は、ファイルが次のコマンドで呼び出されたときに実行されるコードを用意することです:
 
@@ -26,7 +26,7 @@ $ python myapp.py
 from myapp import app
 ```
 
-#### より詳しい説明
+#### より詳しい説明 { #more-details }
 
 ファイルの名前が `myapp.py` だとします。
 
@@ -78,7 +78,7 @@ from myapp import app
 
 ///
 
-## デバッガーでコードを実行
+## デバッガーでコードを実行 { #run-your-code-with-your-debugger }
 
 コードから直接Uvicornサーバーを実行しているため、デバッガーから直接Pythonプログラム (FastAPIアプリケーション) を呼び出せます。
 

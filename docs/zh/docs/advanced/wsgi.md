@@ -1,10 +1,10 @@
-# 包含 WSGI - Flask，Django，其它
+# 包含 WSGI - Flask，Django，其它 { #including-wsgi-flask-django-others }
 
 您可以挂载多个 WSGI 应用，正如您在 [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}, [Behind a Proxy](behind-a-proxy.md){.internal-link target=_blank} 中所看到的那样。
 
 为此, 您可以使用 `WSGIMiddleware` 来包装你的 WSGI 应用，如：Flask，Django，等等。
 
-## 使用 `WSGIMiddleware`
+## 使用 `WSGIMiddleware` { #using-wsgimiddleware }
 
 您需要导入 `WSGIMiddleware`。
 
@@ -12,9 +12,9 @@
 
 之后将其挂载到某一个路径下。
 
-{* ../../docs_src/wsgi/tutorial001.py hl[2:3,22] *}
+{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
 
-## 检查
+## 检查 { #check-it }
 
 现在，所有定义在 `/v1/` 路径下的请求将会被 Flask 应用处理。
 

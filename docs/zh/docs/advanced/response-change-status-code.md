@@ -1,10 +1,10 @@
-# 响应 - 更改状态码
+# 响应 - 更改状态码 { #response-change-status-code }
 
 你可能之前已经了解到，你可以设置默认的[响应状态码](../tutorial/response-status-code.md){.internal-link target=_blank}。
 
 但在某些情况下，你需要返回一个不同于默认值的状态码。
 
-## 使用场景
+## 使用场景 { #use-case }
 
 例如，假设你想默认返回一个HTTP状态码为“OK”`200`。
 
@@ -14,13 +14,13 @@
 
 对于这些情况，你可以使用一个`Response`参数。
 
-## 使用 `Response` 参数
+## 使用 `Response` 参数 { #use-a-response-parameter }
 
 你可以在你的*路径操作函数*中声明一个`Response`类型的参数（就像你可以为cookies和头部做的那样）。
 
 然后你可以在这个*临时*响应对象中设置`status_code`。
 
-{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001_py39.py hl[1,9,12] *}
 
 然后你可以像平常一样返回任何你需要的对象（例如一个`dict`或者一个数据库模型）。如果你声明了一个`response_model`，它仍然会被用来过滤和转换你返回的对象。
 

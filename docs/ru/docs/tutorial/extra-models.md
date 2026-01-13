@@ -30,9 +30,9 @@
 
 ///
 
-### Про `**user_in.dict()` { #about-user-in-dict }
+### Про `**user_in.dict()` { #about-user-in-model-dump }
 
-#### `.dict()` из Pydantic { #pydantics-dict }
+#### `.dict()` из Pydantic { #pydantics-model-dump }
 
 `user_in` - это Pydantic-модель класса `UserIn`.
 
@@ -47,7 +47,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 и затем вызовем:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 то теперь у нас есть `dict` с данными модели в переменной `user_dict` (это `dict` вместо объекта Pydantic-модели).
@@ -106,14 +106,14 @@ UserInDB(
 Как в примере выше мы получили `user_dict` из `user_in.dict()`, этот код:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 будет равнозначен такому:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
 ...потому что `user_in.dict()` - это `dict`, и затем мы указываем, чтобы Python его "распаковал", когда передаём его в `UserInDB` и ставим перед ним `**`.
@@ -125,7 +125,7 @@ UserInDB(**user_in.dict())
 И затем, если мы добавим дополнительный именованный аргумент `hashed_password=hashed_password` как здесь:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ... то мы получим что-то подобное:

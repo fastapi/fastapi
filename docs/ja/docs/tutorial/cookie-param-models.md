@@ -1,4 +1,4 @@
-# クッキーパラメータモデル
+# クッキーパラメータモデル { #cookie-parameter-models }
 
 もし関連する**複数のクッキー**から成るグループがあるなら、それらを宣言するために、**Pydanticモデル**を作成できます。🍪
 
@@ -16,7 +16,7 @@
 
 ///
 
-## クッキーにPydanticモデルを使用する
+## クッキーにPydanticモデルを使用する { #cookies-with-a-pydantic-model }
 
 必要な複数の**クッキー**パラメータを**Pydanticモデル**で宣言し、さらに、それを `Cookie` として宣言しましょう:
 
@@ -24,7 +24,7 @@
 
 **FastAPI**は、リクエストの**クッキー**から**それぞれのフィールド**のデータを**抽出**し、定義された**Pydanticモデル**を提供します。
 
-## ドキュメントの確認
+## ドキュメントの確認 { #check-the-docs }
 
 対話的APIドキュメントUI `/docs` で、定義されているクッキーを確認できます:
 
@@ -43,7 +43,7 @@
 
 ///
 
-## 余分なクッキーを禁止する
+## 余分なクッキーを禁止する { #forbid-extra-cookies }
 
 特定の（あまり一般的ではないかもしれない）ケースで、受け付けるクッキーを**制限**する必要があるかもしれません。
 
@@ -51,7 +51,7 @@
 
 Pydanticのモデルの Configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 もしクライアントが**余分なクッキー**を送ろうとすると、**エラー**レスポンスが返されます。
 
@@ -72,6 +72,6 @@ Pydanticのモデルの Configuration を利用して、 `extra` フィールド
 }
 ```
 
-## まとめ
+## まとめ { #summary }
 
 **FastAPI**では、<abbr title="帰ってしまう前に最後のクッキーをどうぞ。🍪 （原文: Have a last cookie before you go. 🍪）">**クッキー**</abbr>を宣言するために、**Pydanticモデル**を使用できます。😎

@@ -1,4 +1,4 @@
-# リクエストボディ
+# リクエストボディ { #request-body }
 
 クライアント (ブラウザなど) からAPIにデータを送信する必要があるとき、データを **リクエストボディ (request body)** として送ります。
 
@@ -18,19 +18,19 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 ///
 
-## Pydanticの `BaseModel` をインポート
+## Pydanticの `BaseModel` をインポート { #import-pydantics-basemodel }
 
 ます初めに、 `pydantic` から `BaseModel` をインポートする必要があります:
 
-{* ../../docs_src/body/tutorial001.py hl[4] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-## データモデルの作成
+## データモデルの作成 { #create-your-data-model }
 
 そして、`BaseModel` を継承したクラスとしてデータモデルを宣言します。
 
 すべての属性にpython標準の型を使用します:
 
-{* ../../docs_src/body/tutorial001.py hl[7:11] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
 クエリパラメータの宣言と同様に、モデル属性がデフォルト値をもつとき、必須な属性ではなくなります。それ以外は必須になります。オプショナルな属性にしたい場合は `None` を使用してください。
 
@@ -54,15 +54,15 @@ GET リクエストでボディを送信することは、仕様では未定義�
 }
 ```
 
-## パラメータとして宣言
+## パラメータとして宣言 { #declare-it-as-a-parameter }
 
 *パスオペレーション* に加えるために、パスパラメータやクエリパラメータと同じ様に宣言します:
 
-{* ../../docs_src/body/tutorial001.py hl[18] *}
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
 ...そして、作成したモデル `Item` で型を宣言します。
 
-## 結果
+## 結果 { #results }
 
 そのPythonの型宣言だけで **FastAPI** は以下のことを行います:
 
@@ -72,10 +72,10 @@ GET リクエストでボディを送信することは、仕様では未定義�
     * データが無効な場合は、明確なエラーが返され、どこが不正なデータであったかを示します。
 * 受け取ったデータをパラメータ `item` に変換します。
     * 関数内で `Item` 型であると宣言したので、すべての属性とその型に対するエディタサポート（補完など）をすべて使用できます。
-* モデルの<a href="http://json-schema.org" class="external-link" target="_blank">JSONスキーマ</a>定義を生成し、好きな場所で使用することができます。
+* モデルの<a href="https://json-schema.org" class="external-link" target="_blank">JSONスキーマ</a>定義を生成し、好きな場所で使用することができます。
 * これらのスキーマは、生成されたOpenAPIスキーマの一部となり、自動ドキュメントの<abbr title = "User Interfaces">UI</abbr>に使用されます。
 
-## 自動ドキュメント生成
+## 自動ドキュメント生成 { #automatic-docs }
 
 モデルのJSONスキーマはOpenAPIで生成されたスキーマの一部になり、対話的なAPIドキュメントに表示されます:
 
@@ -85,7 +85,7 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 <img src="/img/tutorial/body/image02.png">
 
-## エディターサポート
+## エディターサポート { #editor-support }
 
 エディターによる型ヒントと補完が関数内で利用できます (Pydanticモデルではなく `dict` を受け取ると、同じサポートは受けられません):
 
@@ -121,27 +121,27 @@ GET リクエストでボディを送信することは、仕様では未定義�
 
 ///
 
-## モデルの使用
+## モデルの使用 { #use-the-model }
 
 関数内部で、モデルの全ての属性に直接アクセスできます:
 
-{* ../../docs_src/body/tutorial002.py hl[21] *}
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-## リクエストボディ + パスパラメータ
+## リクエストボディ + パスパラメータ { #request-body-path-parameters }
 
 パスパラメータとリクエストボディを同時に宣言できます。
 
 **FastAPI** はパスパラメータである関数パラメータは**パスから受け取り**、Pydanticモデルによって宣言された関数パラメータは**リクエストボディから受け取る**ということを認識します。
 
-{* ../../docs_src/body/tutorial003.py hl[17:18] *}
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-## リクエストボディ + パスパラメータ + クエリパラメータ
+## リクエストボディ + パスパラメータ + クエリパラメータ { #request-body-path-query-parameters }
 
 また、**ボディ**と**パス**と**クエリ**のパラメータも同時に宣言できます。
 
 **FastAPI** はそれぞれを認識し、適切な場所からデータを取得します。
 
-{* ../../docs_src/body/tutorial004.py hl[18] *}
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
 
 関数パラメータは以下の様に認識されます:
 
@@ -157,6 +157,6 @@ FastAPIは、`= None`があるおかげで、`q`がオプショナルだとわ�
 
 ///
 
-## Pydanticを使わない方法
+## Pydanticを使わない方法 { #without-pydantic }
 
-もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#_2){.internal-link target=_blank}を確認してください。
+もしPydanticモデルを使用したくない場合は、**Body**パラメータが利用できます。[Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}を確認してください。

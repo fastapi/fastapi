@@ -1,10 +1,10 @@
-# Kıyaslamalar
+# Kıyaslamalar { #benchmarks }
 
 Bağımsız TechEmpower kıyaslamaları gösteriyor ki <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">en hızlı Python frameworklerinden birisi</a> olan Uvicorn ile çalıştırılan **FastAPI** uygulamaları, sadece Starlette ve Uvicorn'dan daha düşük sıralamada (FastAPI bu frameworklerin üzerine kurulu) yer alıyor. (*)
 
 Fakat kıyaslamaları ve karşılaştırmaları incelerken şunları aklınızda bulundurmalısınız.
 
-## Kıyaslamalar ve Hız
+## Kıyaslamalar ve Hız { #benchmarks-and-speed }
 
 Kıyaslamaları incelediğinizde, farklı özelliklere sahip araçların eşdeğer olarak karşılaştırıldığını yaygın bir şekilde görebilirsiniz.
 

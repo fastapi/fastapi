@@ -1,20 +1,20 @@
-# ヘッダーのパラメータ
+# ヘッダーのパラメータ { #header-parameters }
 
 ヘッダーのパラメータは、`Query`や`Path`、`Cookie`のパラメータを定義するのと同じように定義できます。
 
-## `Header`をインポート
+## `Header`をインポート { #import-header }
 
 まず、`Header`をインポートします:
 
-{* ../../docs_src/header_params/tutorial001.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-## `Header`のパラメータの宣言
+## `Header`のパラメータの宣言 { #declare-header-parameters }
 
 次に、`Path`や`Query`、`Cookie`と同じ構造を用いてヘッダーのパラメータを宣言します。
 
 最初の値がデフォルト値で、追加の検証パラメータや注釈パラメータをすべて渡すことができます。
 
-{* ../../docs_src/header_params/tutorial001.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
 /// note | 技術詳細
 
@@ -30,7 +30,7 @@
 
 ///
 
-## 自動変換
+## 自動変換 { #automatic-conversion }
 
 `Header`は`Path`や`Query`、`Cookie`が提供する機能に加え、少しだけ追加の機能を持っています。
 
@@ -46,7 +46,7 @@
 
 もしなんらかの理由でアンダースコアからハイフンへの自動変換を無効にする必要がある場合は、`Header`の`convert_underscores`に`False`を設定してください:
 
-{* ../../docs_src/header_params/tutorial002.py hl[9] *}
+{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
 /// warning | 注意
 
@@ -54,7 +54,7 @@
 
 ///
 
-## ヘッダーの重複
+## ヘッダーの重複 { #duplicate-headers }
 
 受信したヘッダーが重複することがあります。つまり、同じヘッダーで複数の値を持つということです。
 
@@ -64,7 +64,7 @@
 
 例えば、複数回出現する可能性のある`X-Token`のヘッダを定義するには、以下のように書くことができます:
 
-{* ../../docs_src/header_params/tutorial003.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
 もし、その*path operation*で通信する場合は、次のように２つのHTTPヘッダーを送信します:
 
@@ -84,7 +84,7 @@ X-Token: bar
 }
 ```
 
-## まとめ
+## まとめ { #recap }
 
 ヘッダーは`Header`で宣言し、`Query`や`Path`、`Cookie`と同じパターンを使用する。
 

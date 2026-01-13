@@ -1,4 +1,4 @@
-# 查询参数模型
+# 查询参数模型 { #query-parameter-models }
 
 如果你有一组具有相关性的**查询参数**，你可以创建一个 **Pydantic 模型**来声明它们。
 
@@ -10,7 +10,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 
 ///
 
-## 使用 Pydantic 模型的查询参数
+## 使用 Pydantic 模型的查询参数 { #query-parameters-with-a-pydantic-model }
 
 在一个 **Pydantic 模型**中声明你需要的**查询参数**，然后将参数声明为 `Query`：
 
@@ -18,7 +18,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 
 **FastAPI** 将会从请求的**查询参数**中**提取**出**每个字段**的数据，并将其提供给你定义的 Pydantic 模型。
 
-## 查看文档
+## 查看文档 { #check-the-docs }
 
 你可以在 `/docs` 页面的 UI 中查看查询参数：
 
@@ -26,7 +26,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## 禁止额外的查询参数
+## 禁止额外的查询参数 { #forbid-extra-query-parameters }
 
 在一些特殊的使用场景中（可能不是很常见），你可能希望**限制**你要接收的查询参数。
 
@@ -57,7 +57,7 @@ https://example.com/items/?limit=10&tool=plumbus
 }
 ```
 
-## 总结
+## 总结 { #summary }
 
 你可以使用 **Pydantic 模型**在 **FastAPI** 中声明**查询参数**。😎
 

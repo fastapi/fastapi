@@ -1,4 +1,4 @@
-# 追加データ型
+# 追加データ型 { #extra-data-types }
 
 今までは、以下のような一般的なデータ型を使用してきました:
 
@@ -17,7 +17,7 @@
 * データの検証
 * 自動注釈と文書化
 
-## 他のデータ型
+## 他のデータ型 { #other-data-types }
 
 ここでは、使用できる追加のデータ型のいくつかを紹介します:
 
@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Pythonの`datetime.timedelta`です。
     * リクエストとレスポンスでは合計秒数の`float`で表現されます。
-    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。<a href="https://docs.pydantic.dev/latest/concepts/serialization/" class="external-link" target="_blank">詳細はドキュメントを参照してください</a>。
+    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。<a href="https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers" class="external-link" target="_blank">詳細はドキュメントを参照してください</a>。
 * `frozenset`:
     * リクエストとレスポンスでは`set`と同じように扱われます:
         * リクエストでは、リストが読み込まれ、重複を排除して`set`に変換されます。
@@ -50,13 +50,13 @@
     * Pythonの標準的な`Decimal`です。
     * リクエストやレスポンスでは`float`と同じように扱います。
 
-* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://docs.pydantic.dev/latest/concepts/types/" class="external-link" target="_blank">Pydantic data types</a>。
-## 例
+* Pydanticの全ての有効な型はこちらで確認できます: <a href="https://docs.pydantic.dev/latest/usage/types/types/" class="external-link" target="_blank">Pydantic data types</a>。
+## 例 { #example }
 
 ここでは、上記の型のいくつかを使用したパラメータを持つ*path operation*の例を示します。
 
-{* ../../docs_src/extra_data_types/tutorial001.py hl[1,2,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
 
 関数内のパラメータは自然なデータ型を持っていることに注意してください。そして、以下のように通常の日付操作を行うことができます:
 
-{* ../../docs_src/extra_data_types/tutorial001.py hl[18,19] *}
+{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
