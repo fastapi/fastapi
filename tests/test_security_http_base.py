@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Security, Depends
+from fastapi import Depends, FastAPI, Security
+from fastapi.security import HTTPBasic
 from fastapi.security.http import HTTPAuthorizationCredentials, HTTPBase
 from fastapi.testclient import TestClient
-from fastapi.security import HTTPBasic
 
 app = FastAPI()
 
@@ -55,6 +55,7 @@ def test_openapi_schema():
         },
     }
 
+
 def test_http_basic_includes_realm():
     app = FastAPI()
     security = HTTPBasic(realm="MyRealm")
@@ -68,4 +69,3 @@ def test_http_basic_includes_realm():
 
     assert response.status_code == 401
     assert response.headers["WWW-Authenticate"] == 'Basic realm="MyRealm"'
-    

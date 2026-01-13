@@ -5,7 +5,6 @@ from collections.abc import Coroutine, Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
-from typing import get_type_hints
 from typing import (
     Annotated,
     Any,
@@ -14,6 +13,7 @@ from typing import (
     Optional,
     Union,
     cast,
+    get_type_hints,
 )
 
 import anyio
@@ -284,7 +284,7 @@ def get_dependant(
 
     for param_name, param in signature_params.items():
         annotation = param.annotation
-    
+
         # Resolve ForwardRef inside Annotated without destroying metadata
         if get_origin(annotation) is Annotated:
             args = list(get_args(annotation))
@@ -294,7 +294,7 @@ def get_dependant(
                 args[0] = inner
                 annotation = Annotated[inner, *args[1:]]
                 param = param.replace(annotation=annotation)
-    
+
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
             param_name=param_name,

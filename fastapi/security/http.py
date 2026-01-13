@@ -125,7 +125,6 @@ class HTTPBasic(HTTPBase):
 
     def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": "Basic"}
-    
 
     async def __call__(  # type: ignore
         self, request: Request
