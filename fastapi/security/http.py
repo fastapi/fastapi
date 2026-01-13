@@ -145,15 +145,13 @@ class HTTPBasic(HTTPBase):
         scheme_name: Optional[str] = None,
         description: Optional[str] = None,
         auto_error: bool = True,
-):  
+    ):
         self.model = HTTPBaseModel(scheme="basic", description=description)
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-
     def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": "Basic"}
-    
 
     async def __call__(  # type: ignore
         self, request: Request
