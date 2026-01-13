@@ -9,6 +9,10 @@ hide:
 
 ### Docs
 
+* 📝 Add contribution instructions about LLM generated code and comments and automated tools for PRs. PR [#14706](https://github.com/fastapi/fastapi/pull/14706) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for management tasks. PR [#14705](https://github.com/fastapi/fastapi/pull/14705) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs about managing translations. PR [#14704](https://github.com/fastapi/fastapi/pull/14704) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update docs for contributing with translations. PR [#14701](https://github.com/fastapi/fastapi/pull/14701) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Specify language code for code block. PR [#14656](https://github.com/fastapi/fastapi/pull/14656) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ### Translations
@@ -22,6 +26,9 @@ hide:
 
 ### Internal
 
+* ⬆ Bump actions/cache from 4 to 5. PR [#14511](https://github.com/fastapi/fastapi/pull/14511) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/upload-artifact from 5 to 6. PR [#14525](https://github.com/fastapi/fastapi/pull/14525) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump actions/download-artifact from 6 to 7. PR [#14526](https://github.com/fastapi/fastapi/pull/14526) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Tweak CI input names. PR [#14688](https://github.com/fastapi/fastapi/pull/14688) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Refactor translation script to allow committing in place. PR [#14687](https://github.com/fastapi/fastapi/pull/14687) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix translation script path. PR [#14685](https://github.com/fastapi/fastapi/pull/14685) by [@tiangolo](https://github.com/tiangolo).
