@@ -122,7 +122,6 @@ class HTTPBasic(HTTPBase):
         # FastAPI behavior: do NOT include realm in header
         return {"WWW-Authenticate": "Basic"}
 
-
     def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": "Basic"}
 
