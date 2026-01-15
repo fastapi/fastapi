@@ -82,7 +82,8 @@ function setupTermynal() {
                 }
                 saveBuffer();
                 const div = document.createElement("div");
-                node.replaceWith(div);
+                node.style.display = "none";
+                node.after(div);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,
