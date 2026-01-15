@@ -349,6 +349,10 @@ async def read_burgers():
     return burgers
 ```
 
+**Clarification on `async def` usage**
+
+Using `async def` is beneficial only when the function performs asynchronous I/O operations, such as awaiting database calls, HTTP requests, or other non-blocking tasks. If a path operation function contains only blocking or CPU-bound code, defining it with `async def` does not provide performance benefits and may add unnecessary complexity. In those cases, using a regular `def` function is recommended.
+
 ### More technical details { #more-technical-details }
 
 You might have noticed that `await` can only be used inside of functions defined with `async def`.
