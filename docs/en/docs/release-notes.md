@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update LLM prompt instructions file for French. PR [#14618](https://github.com/fastapi/fastapi/pull/14618) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ko (add-missing). PR [#14699](https://github.com/fastapi/fastapi/pull/14699) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ko (update-outdated). PR [#14589](https://github.com/fastapi/fastapi/pull/14589) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (update-outdated). PR [#14587](https://github.com/fastapi/fastapi/pull/14587) by [@tiangolo](https://github.com/tiangolo).
