@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/fr"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>Framework FastAPI, haute performance, facile à apprendre, rapide à coder, prêt pour la production</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**Documentation** : <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentation** : <a href="https://fastapi.tiangolo.com/fr" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Code Source** : <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ Les principales fonctionnalités sont :
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">Autres sponsors</a>
+<a href="https://fastapi.tiangolo.com/fr/fastapi-people/#sponsors" class="external-link" target="_blank">Autres sponsors</a>
 
 ## Opinions { #opinions }
 
