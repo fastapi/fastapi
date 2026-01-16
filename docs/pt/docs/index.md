@@ -27,7 +27,7 @@
 
 ---
 
-**Documentação**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentação**: <a href="https://fastapi.tiangolo.com/pt" target="_blank">https://fastapi.tiangolo.com</a>
 
 **Código fonte**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
