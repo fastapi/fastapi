@@ -81,6 +81,8 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+                const inputCommands = useLines.filter(line => line.type === "input").map(line => line.value).join("\n");
+                node.textContent = inputCommands;
                 const div = document.createElement("div");
                 node.style.display = "none";
                 node.after(div);
