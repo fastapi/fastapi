@@ -139,8 +139,8 @@ def test_extra_param_list():
         "param": "123",
         "extra_params": ["456", "789"],
     }
-   
-    
+
+
     def test_list_field_single_value():
     response = client.post(
         "/form/",
