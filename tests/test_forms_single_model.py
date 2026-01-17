@@ -139,3 +139,40 @@ def test_extra_param_list():
         "param": "123",
         "extra_params": ["456", "789"],
     }
+   
+    
+    def test_list_field_single_value():
+    response = client.post(
+        "/form/",
+        data={
+            "username": "Rick",
+            "lastname": "Sanchez",
+            "tags": "single",
+        },
+    )
+    assert response.status_code == 200
+    assert response.json()["tags"] == ["single"]
+
+
+    def test_alias_field_name_not_accepted():
+    response = client.post(
+        "/form/",
+        data={
+            "username": "Rick",
+            "lastname": "Sanchez",
+            "alias_with": "something",
+        },
+    )
+    assert response.status_code == 422
+
+  def test_optional_int_empty_string():
+    response = client.post(
+        "/form/",
+        data={
+            "username": "Rick",
+            "lastname": "Sanchez",
+            "age": "",
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json()["age"] is None
