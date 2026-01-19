@@ -1,0 +1,53 @@
+name: Documentation Drift Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-docs-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Run documentation drift detection
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node .github/scripts/detect_docs_drift.js
+
+      - name: Read drift count
+        id: drift_count
+        run: |
+          COUNT=$(cat docs_drift_count.txt)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Publish summary
+        if: always()
+        run: |
+          cat docs_drift_report.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Fail if documentation drift detected
+        if: steps.drift_count.outputs.count != '0'
+        run: |
+          echo "❌ Documentation drift detected: ${{ steps.drift_count.outputs.count }} suggestion(s)"
+          exit 1
+
+      - name: Success message
+        if: steps.drift_count.outputs.count == '0'
+        run: |
+          echo "✅ No documentation drift detected"
