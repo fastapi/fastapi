@@ -47,10 +47,10 @@ from app.routers import items
 * Он содержит файл `app/main.py`. Данный файл является частью Python-пакета (т.е. находится внутри каталога, содержащего файл `__init__.py`), и, соответственно, он является модулем этого пакета: `app.main`.
 * Он также содержит файл `app/dependencies.py`, который также, как и `app/main.py`, является модулем: `app.dependencies`.
 * Здесь также находится подкаталог `app/routers/`, содержащий `__init__.py`. Он является Python-подпакетом: `app.routers`.
-* Файл `app/routers/items.py` находится внутри пакета `app/routers/`. Таким образом, он является субмодулем: `app.routers.items`.
-* Точно так же `app/routers/users.py` является ещё одним субмодулем: `app.routers.users`.
-* Подкаталог `app/internal/`, содержащий файл `__init__.py`, является ещё одним Python-субпакетом: `app.internal`.
-* А файл `app/internal/admin.py` является ещё одним субмодулем: `app.internal.admin`.
+* Файл `app/routers/items.py` находится внутри пакета `app/routers/`. Таким образом, он является подмодулем: `app.routers.items`.
+* Точно так же `app/routers/users.py` является ещё одним подмодулем: `app.routers.users`.
+* Подкаталог `app/internal/`, содержащий файл `__init__.py`, является ещё одним Python-подпакетом: `app.internal`.
+* А файл `app/internal/admin.py` является ещё одним подмодулем: `app.internal.admin`.
 
 <img src="/img/tutorial/bigger-applications/package.drawio.svg">
 
