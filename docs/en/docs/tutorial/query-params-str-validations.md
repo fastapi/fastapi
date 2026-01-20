@@ -402,7 +402,7 @@ Pydantic also has <a href="https://docs.pydantic.dev/latest/concepts/validators/
 
 ///
 
-For example, this custom validator checks that the item ID starts with `isbn-` for an <abbr title="ISBN means International Standard Book Number">ISBN</abbr> book number or with `imdb-` for an <abbr title="IMDB (Internet Movie Database) is a website with information about movies">IMDB</abbr> movie URL ID:
+For example, this custom validator checks that the item ID starts with `isbn-` for an <abbr title="International Standard Book Number">ISBN</abbr> book number or with `imdb-` for an <abbr title="Internet Movie Database: a website with information about movies">IMDB</abbr> movie URL ID:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
