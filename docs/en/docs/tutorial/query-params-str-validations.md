@@ -109,7 +109,7 @@ FastAPI will now:
 
 ## Alternative (old): `Query` as the default value { #alternative-old-query-as-the-default-value }
 
-Previous versions of FastAPI (before <abbr title="before 2023-03">0.95.0</abbr>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
+Previous versions of FastAPI (before <dfn title="before 2023-03">0.95.0</dfn>) required you to use `Query` as the default value of your parameter, instead of putting it in `Annotated`, there's a high chance that you will see code using it around, so I'll explain it to you.
 
 /// tip
 
@@ -192,7 +192,7 @@ You can also add a parameter `min_length`:
 
 ## Add regular expressions { #add-regular-expressions }
 
-You can define a <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</abbr> `pattern` that the parameter should match:
+You can define a <dfn title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">regular expression</dfn> `pattern` that the parameter should match:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -372,7 +372,7 @@ Then you can declare an `alias`, and that alias is what will be used to find the
 
 Now let's say you don't like this parameter anymore.
 
-You have to leave it there a while because there are clients using it, but you want the docs to clearly show it as <abbr title="obsolete, recommended not to use it">deprecated</abbr>.
+You have to leave it there a while because there are clients using it, but you want the docs to clearly show it as <dfn title="obsolete, recommended not to use it">deprecated</dfn>.
 
 Then pass the parameter `deprecated=True` to `Query`:
 
@@ -436,7 +436,7 @@ Did you notice? a string using `value.startswith()` can take a tuple, and it wil
 
 #### A Random Item { #a-random-item }
 
-With `data.items()` we get an <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">iterable object</abbr> with tuples containing the key and value for each dictionary item.
+With `data.items()` we get an <dfn title="Something we can iterate on with a for loop, like a list, set, etc.">iterable object</dfn> with tuples containing the key and value for each dictionary item.
 
 We convert this iterable object into a proper `list` with `list(data.items())`.
 

@@ -56,7 +56,7 @@ You can add a `summary` and `description`:
 
 ## Description from docstring { #description-from-docstring }
 
-As descriptions tend to be long and cover multiple lines, you can declare the *path operation* description in the function <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</abbr> and **FastAPI** will read it from there.
+As descriptions tend to be long and cover multiple lines, you can declare the *path operation* description in the function <dfn title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation">docstring</dfn> and **FastAPI** will read it from there.
 
 You can write <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> in the docstring, it will be interpreted and displayed correctly (taking into account docstring indentation).
 
@@ -90,7 +90,7 @@ So, if you don't provide one, **FastAPI** will automatically generate one of "Su
 
 ## Deprecate a *path operation* { #deprecate-a-path-operation }
 
-If you need to mark a *path operation* as <abbr title="obsolete, recommended not to use it">deprecated</abbr>, but without removing it, pass the parameter `deprecated`:
+If you need to mark a *path operation* as <dfn title="obsolete, recommended not to use it">deprecated</dfn>, but without removing it, pass the parameter `deprecated`:
 
 {* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
