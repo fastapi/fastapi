@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Korean LLM prompt. PR [#14740](https://github.com/fastapi/fastapi/pull/14740) by [@hard-coders](https://github.com/hard-coders).
 * 🌐 Improve LLM prompt for Turkish translations. PR [#14728](https://github.com/fastapi/fastapi/pull/14728) by [@Kadermiyanyedi](https://github.com/Kadermiyanyedi).
 * 🌐 Update portuguese llm-prompt.md. PR [#14702](https://github.com/fastapi/fastapi/pull/14702) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Update LLM prompt instructions file for French. PR [#14618](https://github.com/fastapi/fastapi/pull/14618) by [@tiangolo](https://github.com/tiangolo).
