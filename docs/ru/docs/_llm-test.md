@@ -35,7 +35,7 @@
 
 //// tab | Тест
 
-Вчера мой друг написал: "If you spell incorrectly correctly, you have spelled it incorrectly". To which I answered: "Correct, but 'incorrectly' is incorrectly not '"incorrectly"'".
+Вчера мой друг написал: "Если вы написали incorrectly правильно, значит вы написали это неправильно". На что я ответил: "Верно, но 'incorrectly' — это неправильно, а не '"incorrectly"'".
 
 /// note | Примечание
 

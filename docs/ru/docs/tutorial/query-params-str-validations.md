@@ -109,7 +109,7 @@ q: Annotated[Union[str, None]] = None
 
 ## Альтернатива (устаревшее): `Query` как значение по умолчанию { #alternative-old-query-as-the-default-value }
 
-В предыдущих версиях FastAPI (до <abbr title="before 2023-03">0.95.0</abbr>) требовалось использовать `Query` как значение по умолчанию для параметра вместо помещения его в `Annotated`. Скорее всего вы ещё встретите такой код, поэтому поясню.
+В предыдущих версиях FastAPI (до <abbr title="до 2023-03">0.95.0</abbr>) требовалось использовать `Query` как значение по умолчанию для параметра вместо помещения его в `Annotated`. Скорее всего вы ещё встретите такой код, поэтому поясню.
 
 /// tip | Подсказка
 
@@ -191,7 +191,7 @@ q: str = Query(default="rick")
 
 ## Регулярные выражения { #add-regular-expressions }
 
-Вы можете определить <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings.">регулярное выражение</abbr> `pattern`, которому должен соответствовать параметр:
+Вы можете определить <abbr title="Регулярное выражение (regex, regexp) - это последовательность символов, задающая шаблон поиска для строк.">регулярное выражение</abbr> `pattern`, которому должен соответствовать параметр:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -371,7 +371,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Предположим, этот параметр вам больше не нравится.
 
-Его нужно оставить на какое‑то время, так как клиенты его используют, но вы хотите, чтобы в документации он явно отображался как <abbr title="obsolete, recommended not to use it">устаревший</abbr>.
+Его нужно оставить на какое‑то время, так как клиенты его используют, но вы хотите, чтобы в документации он явно отображался как <abbr title="устаревший, не рекомендуется использовать">устаревший</abbr>.
 
 Тогда передайте параметр `deprecated=True` в `Query`:
 
@@ -401,7 +401,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 ///
 
-Например, эта кастомная проверка убеждается, что ID элемента начинается с `isbn-` для номера книги <abbr title="ISBN means International Standard Book Number">ISBN</abbr> или с `imdb-` для ID URL фильма на <abbr title="IMDB (Internet Movie Database) is a website with information about movies">IMDB</abbr>:
+Например, эта кастомная проверка убеждается, что ID элемента начинается с `isbn-` для номера книги <abbr title="ISBN означает International Standard Book Number - Международный стандартный книжный номер">ISBN</abbr> или с `imdb-` для ID URL фильма на <abbr title="IMDB (Internet Movie Database) - веб‑сайт с информацией о фильмах">IMDB</abbr>:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -435,7 +435,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 #### Случайный элемент { #a-random-item }
 
-С помощью `data.items()` мы получаем <abbr title="Something we can iterate on with a for loop, like a list, set, etc.">итерируемый объект</abbr> с кортежами, содержащими ключ и значение для каждого элемента словаря.
+С помощью `data.items()` мы получаем <abbr title="Объект, по которому можно итерироваться циклом for, например список, множество и т. п.">итерируемый объект</abbr> с кортежами, содержащими ключ и значение для каждого элемента словаря.
 
 Мы превращаем этот итерируемый объект в обычный `list` через `list(data.items())`.
 

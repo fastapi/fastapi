@@ -163,4 +163,4 @@ FastAPI понимает, что значение `q` не является об
 
 ## Без Pydantic { #without-pydantic }
 
-Если вы не хотите использовать модели Pydantic, вы также можете использовать параметры **Body**. См. раздел документации [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+Если вы не хотите использовать модели Pydantic, вы также можете использовать параметры **Body**. См. раздел документации [Тело запроса - Несколько параметров: Единичные значения в теле](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
