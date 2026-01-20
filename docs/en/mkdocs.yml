@@ -317,10 +317,14 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
+  - link: /ko/
+    name: ko - 한국어
   - link: /pt/
     name: pt - português
   - link: /ru/
     name: ru - русский язык
+  - link: /uk/
+    name: uk - українська мова
 extra_css:
 - css/termynal.css
 - css/custom.css
