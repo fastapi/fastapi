@@ -198,14 +198,9 @@ Aqui estão algumas coisas envolvidas em elementos HTML "abbr" (algumas são inv
 ### O abbr fornece uma frase completa { #the-abbr-gives-a-full-phrase }
 
 * <abbr title="Getting Things Done – Fazer as Coisas">GTD</abbr>
-* <abbr title="menos que"><code>lt</code></abbr>
+* <abbr title="less than – menos que"><code>lt</code></abbr>
 * <abbr title="XML Web Token – Token Web XML">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface – Interface de Gateway de Servidor Paralelo">PSGI</abbr>
-
-### O abbr fornece uma explicação { #the-abbr-gives-an-explanation }
-
-* <abbr title="Um grupo de máquinas configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</abbr>
-* <abbr title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Deep Learning</abbr>
 
 ### O abbr fornece uma frase completa e uma explicação { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
@@ -223,6 +218,11 @@ As traduções podem adicionar seus próprios elementos "abbr" que o LLM não de
 Veja a seção `### HTML abbr elements` no prompt geral em `scripts/translate.py`.
 
 ////
+
+## Elementos HTML "dfn" { #html-dfn-elements }
+
+* <dfn title="Um grupo de máquinas configuradas para estarem conectadas e trabalharem juntas de alguma forma.">cluster</dfn>
+* <dfn title="Um método de aprendizado de máquina que usa redes neurais artificiais com numerosas camadas ocultas entre as camadas de entrada e saída, desenvolvendo assim uma estrutura interna abrangente">Deep Learning</dfn>
 
 ## Títulos { #headings }
 
