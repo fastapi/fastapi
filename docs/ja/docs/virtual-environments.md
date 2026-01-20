@@ -197,7 +197,7 @@ $ which python
 
 <div class="termy">
 
-``` console
+```console
 $ Get-Command python
 
 C:\Users\user\code\awesome-project\.venv\Scripts\python
@@ -808,7 +808,7 @@ Traceback (most recent call last):
 
 </div>
 
-しかし、その仮想環境を無効化し、 `prisoner-of-azkaban` （アズカバンの囚人）のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
+しかし、その仮想環境を無効化し、 `prisoner-of-askaban` のための新しい仮想環境を有効にすれば、 `python` を実行したときに `prisoner-of-azkaban` （アズカバンの囚人）の仮想環境の Python が使用されるようになります。
 
 <div class="termy">
 

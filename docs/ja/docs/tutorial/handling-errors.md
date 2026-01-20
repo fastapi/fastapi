@@ -129,7 +129,24 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 {* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
 
-これで、`/items/foo`にアクセスすると、デフォルトのJSONエラーの代わりに以下のテキスト版を取得します:
+これで、`/items/foo`にアクセスすると、以下のデフォルトのJSONエラーの代わりに:
+
+```JSON
+{
+    "detail": [
+        {
+            "loc": [
+                "path",
+                "item_id"
+            ],
+            "msg": "value is not a valid integer",
+            "type": "type_error.integer"
+        }
+    ]
+}
+```
+
+以下のテキスト版を取得します:
 
 ```
 Validation errors:
