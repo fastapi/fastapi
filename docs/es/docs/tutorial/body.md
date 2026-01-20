@@ -32,7 +32,8 @@ Usa tipos estándar de Python para todos los atributos:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo opcional.
+
+Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo solo opcional.
 
 Por ejemplo, el modelo anterior declara un “`object`” JSON (o `dict` en Python) como:
 
@@ -127,14 +128,6 @@ Dentro de la función, puedes acceder a todos los atributos del objeto modelo di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info | Información
-
-En Pydantic v1 el método se llamaba `.dict()`, se marcó como obsoleto (pero sigue soportado) en Pydantic v2, y se renombró a `.model_dump()`.
-
-Los ejemplos aquí usan `.dict()` por compatibilidad con Pydantic v1, pero deberías usar `.model_dump()` si puedes usar Pydantic v2.
-
-///
-
 ## Request body + parámetros de path { #request-body-path-parameters }
 
 Puedes declarar parámetros de path y request body al mismo tiempo.
@@ -142,6 +135,7 @@ Puedes declarar parámetros de path y request body al mismo tiempo.
 **FastAPI** reconocerá que los parámetros de función que coinciden con los parámetros de path deben ser **tomados del path**, y que los parámetros de función que se declaran como modelos de Pydantic deben ser **tomados del request body**.
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## Request body + path + parámetros de query { #request-body-path-query-parameters }
 
@@ -155,7 +149,7 @@ Los parámetros de la función se reconocerán de la siguiente manera:
 
 * Si el parámetro también se declara en el **path**, se utilizará como un parámetro de path.
 * Si el parámetro es de un **tipo singular** (como `int`, `float`, `str`, `bool`, etc.), se interpretará como un parámetro de **query**.
-* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **request body**.
+* Si el parámetro se declara como del tipo de un **modelo de Pydantic**, se interpretará como un **body** de request.
 
 /// note | Nota
 
