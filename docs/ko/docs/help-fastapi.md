@@ -45,7 +45,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 "watch" �
 여러분은 할 수 있습니다:
 
 * <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub**에서 팔로우하기</a>.
-    * 당신에게 도움이 될 저의 다른 오픈소스 프로젝트를 확인하십시오.
+    * 여러분에게 도움이 될 저의 다른 오픈소스 프로젝트를 확인하십시오.
     * 새로운 오픈소스 프로젝트를 만들었을 때 확인하려면 팔로우 하십시오.
 * <a href="https://x.com/tiangolo" class="external-link" target="_blank">**X (Twitter)**</a> 또는 <a href="https://fosstodon.org/@tiangolo" class="external-link" target="_blank">Mastodon</a>에서 팔로우하기.
     * FastAPI의 사용 용도를 알려주세요 (그것을 듣는 것을 좋아합니다).
@@ -116,7 +116,7 @@ GitHub에서 FastAPI를 "watch"할 수 있습니다 (오른쪽 상단 "watch" �
 
 ### 종료 요청하기 { #ask-to-close }
 
-질문자가 답변을 하면, 당신이 문제를 해결했을 가능성이 높습니다. 축하합니다, **당신은 영웅입니다**! 🦸
+질문자가 답변을 하면, 여러분이 문제를 해결했을 가능성이 높습니다. 축하합니다, **여러분은 영웅입니다**! 🦸
 
 * 이제 문제를 해결했다면, 질문자에게 다음을 요청할 수 있습니다.
 
@@ -201,7 +201,7 @@ Pull Requests를 이용하여 소스 코드에 [기여](contributing.md){.intern
 * 문서에서 발견한 오타를 수정할 때.
 * FastAPI에 대한 글, 비디오, 팟캐스트를 작성했거나 발견했다면 <a href="https://github.com/fastapi/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">이 파일을 편집</a>하여 공유할 때.
     * 해당 섹션의 시작 부분에 링크를 추가해야 합니다.
-* 당신의 언어로 [문서 번역에](contributing.md#translations){.internal-link target=_blank} 도움을 줄 때.
+* 여러분의 언어로 [문서 번역에](contributing.md#translations){.internal-link target=_blank} 도움을 줄 때.
     * 다른 사람이 작성한 번역을 검토하는 것도 도울 수 있습니다.
 * 새로운 문서 섹션을 제안할 때.
 * 기존 이슈/버그를 수정할 때.
