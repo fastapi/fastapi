@@ -10,11 +10,11 @@ Para declarar um corpo da **requisição**, você utiliza os modelos do <a href=
 
 /// info | Informação
 
-Para enviar dados, você deve usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
+Para enviar dados, você deveria usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
 
 Enviar um corpo em uma requisição `GET` não tem um comportamento definido nas especificações, porém é suportado pelo FastAPI, apenas para casos de uso bem complexos/extremos.
 
-Como é desencorajado, a documentação interativa com Swagger UI não irá mostrar a documentação para o corpo da requisição para um `GET`, e proxies que intermediarem podem não suportar o corpo da requisição.
+Como é desencorajado, a documentação interativa com Swagger UI não irá mostrar a documentação para o corpo da requisição ao usar `GET`, e proxies intermediários podem não suportá-lo.
 
 ///
 
@@ -32,7 +32,8 @@ Utilize os tipos Python padrão para todos os atributos:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
 
-Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele se torna opcional. Caso contrário, se torna obrigatório. Use `None` para torná-lo opcional.
+
+Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele não é obrigatório. Caso contrário, é obrigatório. Use `None` para torná-lo apenas opcional.
 
 Por exemplo, o modelo acima declara um JSON "`object`" (ou `dict` no Python) como esse:
 
@@ -66,7 +67,7 @@ Para adicioná-lo à sua *operação de rota*, declare-o da mesma maneira que vo
 
 Apenas com essa declaração de tipos do Python, o **FastAPI** irá:
 
-* Ler o corpo da requisição como um JSON.
+* Ler o corpo da requisição como JSON.
 * Converter os tipos correspondentes (se necessário).
 * Validar os dados.
     * Se algum dado for inválido, irá retornar um erro bem claro, indicando exatamente onde e o que estava incorreto.
@@ -127,14 +128,6 @@ Dentro da função, você pode acessar todos os atributos do objeto do modelo di
 
 {* ../../docs_src/body/tutorial002_py310.py *}
 
-/// info | Informação
-
-No Pydantic v1 o método se chamava `.dict()`, ele foi descontinuado (mas ainda é suportado) no Pydantic v2, e renomeado para `.model_dump()`.
-
-Os exemplos aqui usam `.dict()` para compatibilidade com o Pydantic v1, mas você deve usar `.model_dump()` se puder usar o Pydantic v2.
-
-///
-
 ## Corpo da requisição + parâmetros de rota { #request-body-path-parameters }
 
 Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
@@ -142,6 +135,7 @@ Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
 O **FastAPI** irá reconhecer que os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e que parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
 
 {* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+
 
 ## Corpo da requisição + parâmetros de rota + parâmetros de consulta { #request-body-path-query-parameters }
 

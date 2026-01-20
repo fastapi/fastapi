@@ -91,13 +91,13 @@ jobs:
         run: uv sync --locked --no-dev --group docs
       - name: Update Languages
         run: uv run ./scripts/docs.py update-languages
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
           path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: uv run ./scripts/docs.py build-lang ${{ matrix.lang }}
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: docs-site-${{ matrix.lang }}
           path: ./site/**
