@@ -222,10 +222,26 @@ class Termynal {
      */
     lineDataToElements(lineData) {
         return lineData.map(line => {
-            let div = document.createElement('div');
-            div.innerHTML = `<span ${this._attributes(line)}>${line.value || ''}</span>`;
+            let span = document.createElement('span');
+            
+            // Safely set text content instead of using innerHTML
+            span.textContent = line.value || '';
+            
+            // Safely set attributes
+            for (let prop in line) {
+                // Custom add class
+                if (prop === 'class') {
+                    span.className = line[prop];
+                    continue;
+                }
+                if (prop === 'type') {
+                    span.setAttribute(this.pfx, line[prop]);
+                } else if (prop !== 'value') {
+                    span.setAttribute(`${this.pfx}-${prop}`, line[prop]);
+                }
+            }
 
-            return div.firstElementChild;
+            return span;
         });
     }
 
