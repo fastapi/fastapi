@@ -55,6 +55,36 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
+### Required fields that can be `None`
+
+In Python type hints, a parameter can be **required** and still allow the value `None`.
+
+This means that the field must be present in the request body, but its value can be `null`
+(`None` in Python).
+
+This typically happens when you use `Optional[T]` **without** providing a default value.
+
+For example:
+
+{* ../../docs_src/body/tutorial005_py39.py hl[6] *}
+
+And for Python 3.10+:
+
+{* ../../docs_src/body/tutorial005_py310.py hl[6] *}
+
+In this example:
+
+* The `description` field is **required** (the client must include it in the JSON body).
+* Its value can still be `null` (`None` in Python).
+* This is different from a truly optional field, which would have a default value:
+
+```python
+class Item(BaseModel):
+    description: Optional[str] = None
+```
+
+Here, `description` can be omitted entirely in the request body.
+
 ## Declare it as a parameter { #declare-it-as-a-parameter }
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
