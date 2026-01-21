@@ -200,16 +200,16 @@ Hier einige Dinge, die in HTML-„abbr“-Elemente gepackt sind (einige sind erf
 * <abbr title="Getting Things Done – Dinge erledigt bekommen">GTD</abbr>
 * <abbr title="less than – kleiner als"><code>lt</code></abbr>
 * <abbr title="XML Web Token">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
+* <abbr title="Paralleles Server-Gateway-Interface">PSGI</abbr>
 
 ### Das abbr gibt eine Erklärung { #the-abbr-gives-an-explanation }
 
-* <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">cluster</abbr>
+* <abbr title="Eine Gruppe von Maschinen, die so konfiguriert sind, dass sie verbunden sind und in irgendeiner Weise zusammenarbeiten.">Cluster</abbr>
 * <abbr title="Eine Methode des Machine Learning, die künstliche neuronale Netze mit zahlreichen versteckten Schichten zwischen Eingabe- und Ausgabeschicht verwendet und so eine umfassende interne Struktur entwickelt">Deep Learning</abbr>
 
 ### Das abbr gibt eine vollständige Phrase und eine Erklärung { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
+* <abbr title="Mozilla Developer Network – Mozilla-Entwicklernetzwerk: Dokumentation für Entwickler, geschrieben von den Firefox-Leuten">MDN</abbr>
 * <abbr title="Input/Output – Eingabe/Ausgabe: Lesen oder Schreiben auf der Festplatte, Netzwerkkommunikation.">I/O</abbr>.
 
 ////
