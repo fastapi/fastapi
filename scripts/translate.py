@@ -136,7 +136,9 @@ def translate_page(
             )
             break  # Exit loop if no errors
         except ValueError as e:
-            print(f"Translation check failed on attempt {attempt_no}/{MAX_ATTEMPTS}: {e}")
+            print(
+                f"Translation check failed on attempt {attempt_no}/{MAX_ATTEMPTS}: {e}"
+            )
             continue  # Retry if not reached max attempts
     else:  # Max retry attempts reached
         print(f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts")
