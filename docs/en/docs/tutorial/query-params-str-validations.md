@@ -251,9 +251,7 @@ This forces clients to send a value, even if the value represents `None`.
 
 To do that, you can declare that `None` is a valid type but simply do not declare a default value.
 
-Query parameters are always received as strings, so clients cannot send an actual
-`None` value directly. If needed, you must explicitly handle a string representation
-(for example, `"null"`) and convert it to `None` inside your application logic.
+Query parameters are always received as strings, so clients cannot send an actual `None` value directly. If needed, you must explicitly handle a string representation (for example, `"null"`) and convert it to `None` inside your application logic.
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
 
