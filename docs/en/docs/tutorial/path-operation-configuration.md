@@ -70,7 +70,7 @@ It will be used in the interactive docs:
 
 You can specify the response description with the parameter `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info
 
