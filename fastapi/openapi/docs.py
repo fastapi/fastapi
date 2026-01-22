@@ -106,6 +106,14 @@ def get_swagger_ui_html(
             """
         ),
     ] = None,
+    swagger_extra_presets: Annotated[
+        Optional[list[str]],
+        Doc(
+            """
+            Extra presets to add to Swagger UI.
+            """
+        ),
+    ] = None,
 ) -> HTMLResponse:
     """
     Generate and return the HTML  that loads Swagger UI for the interactive
@@ -151,11 +159,18 @@ def get_swagger_ui_html(
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
 
-    html += """
+    presets = ["SwaggerUIBundle.presets.apis"]
+    if swagger_extra_presets:
+        presets.extend(swagger_extra_presets)
+    presets_str = ",\n        ".join(presets)
+
+    html += f"""
     presets: [
-        SwaggerUIBundle.presets.apis,
+        {presets_str},
         ],
-    })"""
+    """
+
+    html += "    })"
 
     if init_oauth:
         html += f"""
