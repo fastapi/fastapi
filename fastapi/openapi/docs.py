@@ -54,6 +54,14 @@ def get_swagger_ui_html(
             """
         ),
     ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js",
+    swagger_extra_js_urls: Annotated[
+        Optional[list[str]],
+        Doc(
+            """
+            The URLs of additional JavaScript files to include.
+            """
+        ),
+    ] = None,
     swagger_css_url: Annotated[
         str,
         Doc(
@@ -114,6 +122,11 @@ def get_swagger_ui_html(
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
+    js_urls = [swagger_js_url]
+    if swagger_extra_js_urls:
+        js_urls.extend(swagger_extra_js_urls)
+    scripts_str = "\n    ".join(f'<script src="{js_url}"></script>' for js_url in js_urls)
+
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -125,7 +138,7 @@ def get_swagger_ui_html(
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="{swagger_js_url}"></script>
+    {scripts_str}
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
