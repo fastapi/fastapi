@@ -55,7 +55,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
-### Required fields that can be `None`
+### Required fields that can be `None` { #required-fields-that-can-be-none }
 
 In Python type hints, a parameter can be **required** and still allow the value `None`.
 
