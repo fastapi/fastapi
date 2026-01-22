@@ -8,6 +8,18 @@ resolution-markers = [
 ]
 
 [[package]]
+name = "a2wsgi"
+version = "1.10.10"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9a/cb/822c56fbea97e9eee201a2e434a80437f6750ebcb1ed307ee3a0a7505b14/a2wsgi-1.10.10.tar.gz", hash = "sha256:a5bcffb52081ba39df0d5e9a884fc6f819d92e3a42389343ba77cbf809fe1f45", size = 18799, upload-time = "2025-06-18T09:00:10.843Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/d5/349aba3dc421e73cbd4958c0ce0a4f1aa3a738bc0d7de75d2f40ed43a535/a2wsgi-1.10.10-py3-none-any.whl", hash = "sha256:d2b21379479718539dc15fce53b876251a0efe7615352dfe49f6ad1bc507848d", size = 17389, upload-time = "2025-06-18T09:00:09.676Z" },
+]
+
+[[package]]
 name = "ag-ui-protocol"
 version = "0.1.10"
 source = { registry = "https://pypi.org/simple" }
@@ -1058,6 +1070,7 @@ standard-no-fastapi-cloud-cli = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "a2wsgi" },
     { name = "anyio", extra = ["trio"] },
     { name = "black" },
     { name = "cairosvg" },
@@ -1131,6 +1144,7 @@ github-actions = [
     { name = "smokeshow" },
 ]
 tests = [
+    { name = "a2wsgi" },
     { name = "anyio", extra = ["trio"] },
     { name = "coverage", version = "7.10.7", source = { registry = "https://pypi.org/simple" }, extra = ["toml"], marker = "python_full_version < '3.10'" },
     { name = "coverage", version = "7.13.1", source = { registry = "https://pypi.org/simple" }, extra = ["toml"], marker = "python_full_version >= '3.10'" },
@@ -1197,6 +1211,7 @@ provides-extras = ["standard", "standard-no-fastapi-cloud-cli", "all"]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
     { name = "black", specifier = "==25.1.0" },
     { name = "cairosvg", specifier = "==2.8.2" },
@@ -1266,6 +1281,7 @@ github-actions = [
     { name = "smokeshow", specifier = ">=0.5.0" },
 ]
 tests = [
+    { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
     { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
     { name = "coverage", extras = ["toml"], specifier = ">=6.5.0,<8.0" },
     { name = "dirty-equals", specifier = "==0.9.0" },
