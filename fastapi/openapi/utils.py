@@ -61,7 +61,7 @@ validation_error_response_definition = {
             "title": "Detail",
             "type": "array",
             "items": {"$ref": REF_PREFIX + "ValidationError"},
-        }
+        },
     },
 }
 
@@ -242,8 +242,8 @@ def get_openapi_operation_metadata(
     operation_id = route.operation_id or route.unique_id
     if operation_id in operation_ids:
         message = (
-            f"Duplicate Operation ID {operation_id} for function "
-            + f"{route.endpoint.__name__}"
+            f"Duplicate Operation ID {operation_id} "
+            f"for function {route.endpoint.__name__}"
         )
         file_name = getattr(route.endpoint, "__globals__", {}).get("__file__")
         if file_name:
