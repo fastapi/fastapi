@@ -133,7 +133,9 @@ def get_swagger_ui_html(
     js_urls = [swagger_js_url]
     if swagger_extra_js_urls:
         js_urls.extend(swagger_extra_js_urls)
-    scripts_str = "\n    ".join(f'<script src="{js_url}"></script>' for js_url in js_urls)
+    scripts_str = "\n    ".join(
+        f'<script src="{js_url}"></script>' for js_url in js_urls
+    )
 
     html = f"""
     <!DOCTYPE html>
