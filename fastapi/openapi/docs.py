@@ -141,7 +141,6 @@ def get_swagger_ui_html(
     html += """
     presets: [
         SwaggerUIBundle.presets.apis,
-        SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
     })"""
 
