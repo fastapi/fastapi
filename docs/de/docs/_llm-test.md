@@ -189,7 +189,7 @@ Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
 
-## HTML „abbr“-Elemente { #html-abbr-elements }
+## HTML-„abbr“-Elemente { #html-abbr-elements }
 
 //// tab | Test
 
