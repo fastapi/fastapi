@@ -27,7 +27,7 @@
 
 ( Pydantic 덕분에) 모든 것이 표준 **Python 타입** 선언을 기반으로 합니다. 새로 배울 문법이 없습니다. 그저 표준적인 현대 파이썬입니다.
 
-Python 타입을 어떻게 사용하는지 2분 정도 복습이 필요하다면(FastAPI를 사용하지 않더라도), 다음의 짧은 자습서를 확인하세요: [Python Types](python-types.md){.internal-link target=_blank}.
+Python 타입을 어떻게 사용하는지 2분 정도 복습이 필요하다면(FastAPI를 사용하지 않더라도), 다음의 짧은 자습서를 확인하세요: [Python 타입](python-types.md){.internal-link target=_blank}.
 
 여러분은 타입이 있는 표준 Python을 다음과 같이 작성합니다:
 
@@ -124,7 +124,7 @@ Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/
 다음을 포함해 OpenAPI에 정의된 모든 보안 스키마:
 
 * HTTP Basic.
-* **OAuth2**(**JWT tokens** 또한 포함). [OAuth2 with JWT](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 자습서를 확인해 보세요.
+* **OAuth2**(**JWT tokens** 또한 포함). [JWT를 사용한 OAuth2](tutorial/security/oauth2-jwt.md){.internal-link target=_blank} 자습서를 확인해 보세요.
 * 다음에 들어 있는 API 키:
     * 헤더.
     * 쿼리 매개변수.

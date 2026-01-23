@@ -1,10 +1,10 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI**는 FastAPI 앱을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 커맨드 라인 프로그램입니다.
+**FastAPI CLI**는 FastAPI 애플리케이션을 서빙하고, FastAPI 프로젝트를 관리하는 등 다양한 작업에 사용할 수 있는 커맨드 라인 프로그램입니다.
 
-FastAPI를 설치할 때(예: `pip install "fastapi[standard]"`), `fastapi-cli`라는 패키지가 포함되며, 이 패키지는 터미널에서 `fastapi` 명령을 제공합니다.
+FastAPI를 설치할 때(예: `pip install "fastapi[standard]"`), `fastapi-cli`라는 패키지가 포함되며, 이 패키지는 터미널에서 `fastapi` 명령어를 제공합니다.
 
-개발용으로 FastAPI 앱을 실행하려면 `fastapi dev` 명령을 사용할 수 있습니다:
+개발용으로 FastAPI 애플리케이션을 실행하려면 `fastapi dev` 명령어를 사용할 수 있습니다:
 
 <div class="termy">
 
