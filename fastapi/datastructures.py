@@ -1,3 +1,4 @@
+import dataclasses
 from collections.abc import Mapping
 from typing import (
     Annotated,
@@ -152,6 +153,7 @@ class UploadFile(StarletteUploadFile):
         return with_info_plain_validator_function(cls._validate)
 
 
+@dataclasses.dataclass(frozen=True)
 class DefaultPlaceholder:
     """
     You shouldn't use this class directly.
@@ -160,8 +162,7 @@ class DefaultPlaceholder:
     if the overridden default value was truthy.
     """
 
-    def __init__(self, value: Any):
-        self.value = value
+    value: Any
 
     def __bool__(self) -> bool:
         return bool(self.value)
