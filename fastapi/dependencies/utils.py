@@ -347,6 +347,21 @@ def add_non_field_param_to_dependency(
     return None
 
 
+def _is_optional_type(annotation: Any) -> bool:
+    """
+    Check if a type annotation is Optional (Union with None).
+    
+    Optional[X] is equivalent to Union[X, None], so we check if:
+    1. The origin is Union
+    2. NoneType is one of the union args
+    """
+    origin = get_origin(annotation)
+    if origin is Union:
+        args = get_args(annotation)
+        return type(None) in args
+    return False
+
+
 @dataclass
 class ParamDetails:
     type_annotation: Any
@@ -412,7 +427,12 @@ def analyze_param(
                 assert not is_path_param, "Path parameters cannot have default values"
                 field_info.default = value
             else:
-                field_info.default = RequiredParam
+                # Check if the type annotation is Optional (Union with None)
+                # If so, use None as default instead of RequiredParam
+                if _is_optional_type(type_annotation):
+                    field_info.default = None
+                else:
+                    field_info.default = RequiredParam
         # Get Annotated Depends
         elif isinstance(fastapi_annotation, params.Depends):
             depends = fastapi_annotation
