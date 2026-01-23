@@ -6,7 +6,7 @@
 
 ### 개방형 표준을 기반으로 { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>: <abbr title="also known as: endpoints, routes - 엔드포인트, 라우트로도 알려져 있습니다">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE - POST, GET, PUT, DELETE와 같은 HTTP 메소드로 알려져 있습니다">operations</abbr>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a>: <abbr title="또한 다음으로도 불립니다: 엔드포인트, 라우트">path</abbr> <abbr title="HTTP 메소드(POST, GET, PUT, DELETE 등)로도 알려져 있습니다">operations</abbr>, 매개변수, 요청 본문, 보안 등의 선언을 포함하여 API를 생성합니다.
 * <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a>를 사용한 자동 데이터 모델 문서화(OpenAPI 자체가 JSON Schema를 기반으로 하기 때문입니다).
 * 단순히 떠올려서 덧붙인 레이어가 아니라, 세심한 검토를 거친 뒤 이러한 표준을 중심으로 설계되었습니다.
 * 이는 또한 다양한 언어로 자동 **클라이언트 코드 생성**을 사용할 수 있게 해줍니다.
@@ -36,13 +36,13 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# 변수를 str로 선언합니다
+# 그리고 함수 내부에서 편집기 지원을 받습니다
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Pydantic 모델
 class User(BaseModel):
     id: int
     name: str
@@ -136,7 +136,7 @@ Python 개발자 설문조사에서 <a href="https://www.jetbrains.com/research/
 
 ### 의존성 주입 { #dependency-injection }
 
-FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='also known as "components", "resources", "services", "providers" - "컴포넌트", "자원", "서비스", "제공자"로도 알려진'><strong>Dependency Injection</strong></abbr> 시스템을 포함하고 있습니다.
+FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='또한 다음으로도 불립니다: "컴포넌트", "자원", "서비스", "제공자"'><strong>Dependency Injection</strong></abbr> 시스템을 포함하고 있습니다.
 
 * 의존성도 의존성을 가질 수 있어, 의존성의 계층 또는 **의존성의 "그래프"**를 생성합니다.
 * 모든 것이 프레임워크에 의해 **자동으로 처리됩니다**.
@@ -153,8 +153,8 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='also kno
 
 ### 테스트됨 { #tested }
 
-* 100% <abbr title="The amount of code that is automatically tested - 자동으로 테스트되는 코드의 양">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support - Python 타입 어노테이션으로, 이를 통해 편집기와 외부 도구가 더 나은 지원을 제공할 수 있습니다">type annotated</abbr> 코드 베이스.
+* 100% <abbr title="자동으로 테스트되는 코드의 양">test coverage</abbr>.
+* 100% <abbr title="Python 타입 어노테이션으로, 이를 통해 편집기와 외부 도구가 더 나은 지원을 제공할 수 있습니다">type annotated</abbr> 코드 베이스.
 * 프로덕션 애플리케이션에서 사용됩니다.
 
 ## Starlette 기능 { #starlette-features }
@@ -179,7 +179,7 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='also kno
 
 **FastAPI**는 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>과 완벽하게 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Pydantic 코드도 모두 동작합니다.
 
-데이터베이스를 위한 <abbr title="Object-Relational Mapper">ORM</abbr>, <abbr title="Object-Document Mapper">ODM</abbr>과 같은, Pydantic을 기반으로 하는 외부 라이브러리도 포함합니다.
+데이터베이스를 위한 <abbr title="Object-Relational Mapper - 객체-관계 매퍼">ORM</abbr>, <abbr title="Object-Document Mapper - 객체-문서 매퍼">ODM</abbr>과 같은, Pydantic을 기반으로 하는 외부 라이브러리도 포함합니다.
 
 이는 모든 것이 자동으로 검증되기 때문에, 많은 경우 요청에서 얻은 동일한 객체를 **직접 데이터베이스로** 넘겨줄 수 있다는 의미이기도 합니다.
 
@@ -190,7 +190,7 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <abbr title='also kno
 * **No brainfuck**:
     * 새로운 스키마 정의 마이크로 언어를 배울 필요가 없습니다.
     * Python 타입을 알고 있다면 Pydantic 사용법도 알고 있는 것입니다.
-* 여러분의 **<abbr title="Integrated Development Environment - 통합 개발 환경: 코드 편집기와 비슷합니다">IDE</abbr>/<abbr title="A program that checks for code errors - 코드 오류를 확인하는 프로그램">linter</abbr>/뇌**와 잘 어울립니다:
+* 여러분의 **<abbr title="Integrated Development Environment - 통합 개발 환경: 코드 편집기와 비슷합니다">IDE</abbr>/<abbr title="코드 오류를 확인하는 프로그램">linter</abbr>/뇌**와 잘 어울립니다:
     * pydantic 데이터 구조는 여러분이 정의한 클래스 인스턴스일 뿐이므로, 자동 완성, 린팅, mypy, 그리고 직관까지도 검증된 데이터와 함께 제대로 작동합니다.
 * **복잡한 구조**를 검증합니다:
     * 계층적인 Pydantic 모델, Python `typing`의 `List`와 `Dict` 등을 사용합니다.

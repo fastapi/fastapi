@@ -70,6 +70,6 @@ FastAPI CLI는 Python 프로그램의 경로(예: `main.py`)를 받아 `FastAPI`
 
 /// tip | 팁
 
-자세한 내용은 [deployment documentation](deployment/index.md){.internal-link target=_blank}에서 확인할 수 있습니다.
+자세한 내용은 [배포 문서](deployment/index.md){.internal-link target=_blank}에서 확인할 수 있습니다.
 
 ///

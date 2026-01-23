@@ -74,7 +74,7 @@ def results():
 
 다음으로, 완료된 첫 번째 작업(우리의 "slow-file" 📝 이라고 해보겠습니다)을 가져와서, 그에 대해 해야 했던 작업을 계속합니다.
 
-이 "다른 무언가를 기다리는 것"은 일반적으로 프로세서와 RAM 메모리 속도에 비해 상대적으로 "느린" <abbr title="Input and Output">I/O</abbr> 작업을 의미합니다. 예를 들어 다음을 기다리는 것입니다:
+이 "다른 무언가를 기다리는 것"은 일반적으로 프로세서와 RAM 메모리 속도에 비해 상대적으로 "느린" <abbr title="Input and Output - 입력/출력">I/O</abbr> 작업을 의미합니다. 예를 들어 다음을 기다리는 것입니다:
 
 * 네트워크를 통해 클라이언트가 데이터를 보내는 것
 * 네트워크를 통해 클라이언트가 여러분의 프로그램이 보낸 데이터를 받는 것
@@ -85,7 +85,7 @@ def results():
 * 데이터베이스 쿼리가 결과를 반환하는 것
 * 기타 등등
 
-실행 시간의 대부분이 <abbr title="Input and Output">I/O</abbr> 작업을 기다리는 데 소비되기 때문에, 이를 "I/O bound" 작업이라고 부릅니다.
+실행 시간의 대부분이 <abbr title="Input and Output - 입력/출력">I/O</abbr> 작업을 기다리는 데 소비되기 때문에, 이를 "I/O bound" 작업이라고 부릅니다.
 
 이것은 컴퓨터/프로그램이 느린 작업과 "동기화"되어, 아무것도 하지 않은 채 그 작업이 끝나는 정확한 시점만 기다렸다가 결과를 가져와 일을 계속할 필요가 없기 때문에 "비동기"라고 불립니다.
 
@@ -277,7 +277,7 @@ def results():
 
 이 시나리오에서 (여러분을 포함한) 각 청소부는 프로세서가 되어, 맡은 일을 수행합니다.
 
-그리고 실행 시간의 대부분이 기다림이 아니라 실제 작업에 쓰이고, 컴퓨터에서 작업은 <abbr title="Central Processing Unit">CPU</abbr>가 수행하므로, 이런 문제를 "CPU bound"라고 부릅니다.
+그리고 실행 시간의 대부분이 기다림이 아니라 실제 작업에 쓰이고, 컴퓨터에서 작업은 <abbr title="Central Processing Unit - 중앙 처리 장치">CPU</abbr>가 수행하므로, 이런 문제를 "CPU bound"라고 부릅니다.
 
 ---
 
@@ -316,16 +316,16 @@ burgers = await get_burgers(2)
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Do some asynchronous stuff to create the burgers
+    # 버거를 만들기 위한 비동기 처리를 수행
     return burgers
 ```
 
 ...`def` 대신:
 
 ```Python hl_lines="2"
-# This is not asynchronous
+# 비동기가 아닙니다
 def get_sequential_burgers(number: int):
-    # Do some sequential stuff to create the burgers
+    # 버거를 만들기 위한 순차 처리를 수행
     return burgers
 ```
 
@@ -334,7 +334,7 @@ def get_sequential_burgers(number: int):
 `async def` 함수를 호출하고자 할 때는, 그 함수를 "await" 해야 합니다. 따라서 아래는 동작하지 않습니다:
 
 ```Python
-# This won't work, because get_burgers was defined with: async def
+# 동작하지 않습니다. get_burgers는 async def로 정의되었습니다
 burgers = get_burgers(2)
 ```
 
@@ -417,7 +417,7 @@ Starlette(그리고 **FastAPI**)는 <a href="https://anyio.readthedocs.io/en/sta
 
 *경로 처리 함수*를 `async def` 대신 일반적인 `def`로 선언하면, (서버를 블로킹할 수 있으므로 직접 호출하는 대신) 외부 스레드풀에서 실행되고 그 결과를 await 합니다.
 
-위에서 설명한 방식으로 동작하지 않는 다른 async 프레임워크를 사용해본 적이 있고, 아주 작은 성능 향상(약 100 나노초)을 위해 계산만 하는 사소한 *경로 처리 함수*를 일반 `def`로 정의하곤 했다면, **FastAPI**에서는 그 효과가 정반대가 될 수 있다는 점에 유의하세요. 이런 경우에는 *경로 처리 함수*에서 블로킹 <abbr title="Input/Output: disk reading or writing, network communications. - 디스크 읽기 또는 쓰기, 네트워크 통신.">I/O</abbr> 를 수행하는 코드를 사용하지 않는 한 `async def`를 사용하는 편이 더 낫습니다.
+위에서 설명한 방식으로 동작하지 않는 다른 async 프레임워크를 사용해본 적이 있고, 아주 작은 성능 향상(약 100 나노초)을 위해 계산만 하는 사소한 *경로 처리 함수*를 일반 `def`로 정의하곤 했다면, **FastAPI**에서는 그 효과가 정반대가 될 수 있다는 점에 유의하세요. 이런 경우에는 *경로 처리 함수*에서 블로킹 <abbr title="Input/Output - 입력/출력: 디스크 읽기 또는 쓰기, 네트워크 통신.">I/O</abbr> 를 수행하는 코드를 사용하지 않는 한 `async def`를 사용하는 편이 더 낫습니다.
 
 그럼에도 두 경우 모두, **FastAPI**는 이전에 사용하던 프레임워크보다 [여전히 더 빠를](index.md#performance){.internal-link target=_blank} 가능성이 높습니다(또는 최소한 비슷합니다).
 
