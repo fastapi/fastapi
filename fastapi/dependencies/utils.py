@@ -350,7 +350,7 @@ def add_non_field_param_to_dependency(
 def _is_optional_type(annotation: Any) -> bool:
     """
     Check if a type annotation is Optional (Union with None).
-    
+
     Optional[X] is equivalent to Union[X, None], so we check if:
     1. The origin is Union
     2. NoneType is one of the union args

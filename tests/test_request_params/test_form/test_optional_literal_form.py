@@ -1,4 +1,5 @@
 from typing import Annotated, Literal, Optional
+
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 
@@ -8,9 +9,7 @@ def test_optional_literal_form_none():
     app = FastAPI()
 
     @app.post("/")
-    async def read_main(
-        attribute: Annotated[Optional[Literal["abc", "def"]], Form()]
-    ):
+    async def read_main(attribute: Annotated[Optional[Literal["abc", "def"]], Form()]):
         return {"attribute": attribute}
 
     client = TestClient(app)
@@ -26,9 +25,7 @@ def test_optional_literal_form_valid_values():
     app = FastAPI()
 
     @app.post("/")
-    async def read_main(
-        attribute: Annotated[Optional[Literal["abc", "def"]], Form()]
-    ):
+    async def read_main(attribute: Annotated[Optional[Literal["abc", "def"]], Form()]):
         return {"attribute": attribute}
 
     client = TestClient(app)
@@ -49,9 +46,7 @@ def test_optional_literal_form_invalid_value():
     app = FastAPI()
 
     @app.post("/")
-    async def read_main(
-        attribute: Annotated[Optional[Literal["abc", "def"]], Form()]
-    ):
+    async def read_main(attribute: Annotated[Optional[Literal["abc", "def"]], Form()]):
         return {"attribute": attribute}
 
     client = TestClient(app)
@@ -70,9 +65,7 @@ def test_optional_literal_form_empty_string():
     app = FastAPI()
 
     @app.post("/")
-    async def read_main(
-        attribute: Annotated[Optional[Literal["abc", "def"]], Form()]
-    ):
+    async def read_main(attribute: Annotated[Optional[Literal["abc", "def"]], Form()]):
         return {"attribute": attribute}
 
     client = TestClient(app)
