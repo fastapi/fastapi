@@ -18,6 +18,12 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for de (update-outdated). PR [#14690](https://github.com/fastapi/fastapi/pull/14690) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update LLM prompt for Russian translations. PR [#14733](https://github.com/fastapi/fastapi/pull/14733) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for ru (update-outdated). PR [#14693](https://github.com/fastapi/fastapi/pull/14693) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update translations for pt (update-outdated). PR [#14724](https://github.com/fastapi/fastapi/pull/14724) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Korean LLM prompt. PR [#14740](https://github.com/fastapi/fastapi/pull/14740) by [@hard-coders](https://github.com/hard-coders).
+* 🌐 Improve LLM prompt for Turkish translations. PR [#14728](https://github.com/fastapi/fastapi/pull/14728) by [@Kadermiyanyedi](https://github.com/Kadermiyanyedi).
 * 🌐 Update portuguese llm-prompt.md. PR [#14702](https://github.com/fastapi/fastapi/pull/14702) by [@ceb10n](https://github.com/ceb10n).
 * 🌐 Update LLM prompt instructions file for French. PR [#14618](https://github.com/fastapi/fastapi/pull/14618) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for ko (add-missing). PR [#14699](https://github.com/fastapi/fastapi/pull/14699) by [@tiangolo](https://github.com/tiangolo).
@@ -30,6 +36,9 @@ hide:
 
 ### Internal
 
+* 🔧 Ensure that an edit to `uv.lock` gets the `internal` label. PR [#14759](https://github.com/fastapi/fastapi/pull/14759) by [@svlandeg](https://github.com/svlandeg).
+* 🔧 Update sponsors: remove Requestly. PR [#14735](https://github.com/fastapi/fastapi/pull/14735) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors, LambdaTest changes to TestMu AI. PR [#14734](https://github.com/fastapi/fastapi/pull/14734) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump actions/cache from 4 to 5. PR [#14511](https://github.com/fastapi/fastapi/pull/14511) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/upload-artifact from 5 to 6. PR [#14525](https://github.com/fastapi/fastapi/pull/14525) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump actions/download-artifact from 6 to 7. PR [#14526](https://github.com/fastapi/fastapi/pull/14526) by [@dependabot[bot]](https://github.com/apps/dependabot).
