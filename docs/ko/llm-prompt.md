@@ -33,6 +33,7 @@ Use the following preferred translations when they apply in documentation prose:
 - response (HTTP): 응답
 - path operation: 경로 처리
 - path operation function: 경로 처리 함수
+- burger: 햄버거
 
 ### `///` admonitions
 
