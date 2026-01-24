@@ -18,6 +18,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ko (update outdated, found by fixer tool). PR [#14738](https://github.com/fastapi/fastapi/pull/14738) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for de (update-outdated). PR [#14690](https://github.com/fastapi/fastapi/pull/14690) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update LLM prompt for Russian translations. PR [#14733](https://github.com/fastapi/fastapi/pull/14733) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for ru (update-outdated). PR [#14693](https://github.com/fastapi/fastapi/pull/14693) by [@tiangolo](https://github.com/tiangolo).
