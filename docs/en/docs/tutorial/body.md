@@ -57,7 +57,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 /// note
 
-By default, if the client sends extra fields in the request body that are not defined in the Pydantic model, they are ignored (not included in the model instance or in the response). This behavior comes from Pydantic's default `extra = "ignore"` configuration.
+By default, if the client sends extra fields in the request body that are not defined in the Pydantic model, they are ignored (not included in the model instance or in the response). This behavior comes from Pydantic's default handling of extra fields.
 
 ///
 
