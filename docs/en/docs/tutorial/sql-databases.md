@@ -129,7 +129,7 @@ Here we use the `SessionDep` dependency (a `Session`) to add the new `Hero` to t
 
 ### Read Heroes { #read-heroes }
 
-We can **read** `Hero`s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
+We can **read** `Hero`'s from the database using a `select()`. We can include a `limit` and `offset` to paginate the results.
 
 {* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
 

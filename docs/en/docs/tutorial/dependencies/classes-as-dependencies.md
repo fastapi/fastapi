@@ -10,7 +10,7 @@ In the previous example, we were returning a `dict` from our dependency ("depend
 
 But then we get a `dict` in the parameter `commons` of the *path operation function*.
 
-And we know that editors can't provide a lot of support (like completion) for `dict`s, because they can't know their keys and value types.
+And we know that editors can't provide a lot of support (like completion) for `dict`'s, because they can't know their keys and value types.
 
 We can do better...
 
