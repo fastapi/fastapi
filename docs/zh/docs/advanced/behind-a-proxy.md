@@ -1,30 +1,131 @@
-# 使用代理
+# 在代理之后 { #behind-a-proxy }
 
-有些情况下，您可能要使用 Traefik 或 Nginx 等**代理**服务器，并添加应用不能识别的附加路径前缀配置。
+在很多情况下，你会在 FastAPI 应用前面使用 **proxy**（代理），例如 Traefik 或 Nginx。
 
-此时，要使用 `root_path` 配置应用。
+这些代理可以处理 HTTPS 证书以及其他事情。
 
-`root_path` 是 ASGI 规范提供的机制，FastAPI 就是基于此规范开发的（通过 Starlette）。
+## Proxy 转发头 { #proxy-forwarded-headers }
+
+在你的应用前面的 **proxy** 通常会在将请求发送到你的 **server**（服务器）之前，动态设置一些 headers，让服务器知道该请求是由代理 **forwarded**（转发）的，从而让它知道原始（公网）URL（包含域名）、它在使用 HTTPS 等信息。
+
+**server** 程序（例如通过 **FastAPI CLI** 使用 **Uvicorn**）能够解释这些 headers，然后将该信息传递给你的应用。
+
+但出于安全原因，由于 server 不知道自己在一个受信任的代理之后，它不会解释这些 headers。
+
+/// note | 技术细节
+
+proxy headers 包括：
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+### 启用 Proxy 转发头 { #enable-proxy-forwarded-headers }
+
+你可以使用 *CLI Option* `--forwarded-allow-ips` 启动 FastAPI CLI，并传入应被信任来读取这些转发 headers 的 IP 地址。
+
+如果你设置为 `--forwarded-allow-ips="*"`，它会信任所有传入的 IP。
+
+如果你的 **server** 在一个受信任的 **proxy** 后面，并且只有代理会与它通信，这会让它接受该 **proxy** 的 IP。
+
+<div class="termy">
+
+```console
+$ fastapi run --forwarded-allow-ips="*"
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+### HTTPS 的重定向 { #redirects-with-https }
+
+例如，假设你定义了一个 *路径操作* `/items/`：
+
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+
+如果客户端尝试访问 `/items`，默认情况下会被重定向到 `/items/`。
+
+但在设置 *CLI Option* `--forwarded-allow-ips` 之前，它可能会重定向到 `http://localhost:8000/items/`。
+
+但也许你的应用托管在 `https://mysuperapp.com`，重定向应该是 `https://mysuperapp.com/items/`。
+
+现在通过设置 `--proxy-headers`，FastAPI 就能够重定向到正确的位置。 😎
+
+```
+https://mysuperapp.com/items/
+```
+
+/// tip | 提示
+
+如果你想了解更多关于 HTTPS 的内容，请查看指南 [关于 HTTPS](../deployment/https.md){.internal-link target=_blank}。
+
+///
+
+### Proxy 转发头如何工作 { #how-proxy-forwarded-headers-work }
+
+下面是一个可视化示例，展示 **proxy** 如何在客户端和 **application server**（应用服务器）之间添加转发头：
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Proxy as Proxy/Load Balancer
+    participant Server as FastAPI Server
+
+    Client->>Proxy: HTTPS Request<br/>Host: mysuperapp.com<br/>Path: /items
+
+    Note over Proxy: Proxy adds forwarded headers
+
+    Proxy->>Server: HTTP Request<br/>X-Forwarded-For: [client IP]<br/>X-Forwarded-Proto: https<br/>X-Forwarded-Host: mysuperapp.com<br/>Path: /items
+
+    Note over Server: Server interprets headers<br/>(if --forwarded-allow-ips is set)
+
+    Server->>Proxy: HTTP Response<br/>with correct HTTPS URLs
+
+    Proxy->>Client: HTTPS Response
+```
+
+**proxy** 会拦截客户端的原始请求，并在将请求传递给 **application server** 之前添加特殊的 *forwarded* headers（`X-Forwarded-*`）。
+
+这些 headers 保留了原始请求的信息，否则这些信息会丢失：
+
+* **X-Forwarded-For**：原始客户端的 IP 地址
+* **X-Forwarded-Proto**：原始协议（`https`）
+* **X-Forwarded-Host**：原始主机（`mysuperapp.com`）
+
+当 **FastAPI CLI** 配置了 `--forwarded-allow-ips` 时，它会信任并使用这些 headers，例如用于在重定向中生成正确的 URL。
+
+## 带有剥离路径前缀的代理 { #proxy-with-a-stripped-path-prefix }
+
+你可能有一个 proxy，会为你的应用添加一个路径前缀。
+
+在这些情况下，你可以使用 `root_path` 来配置你的应用。
+
+`root_path` 是 ASGI 规范提供的机制（FastAPI 通过 Starlette 构建在该规范之上）。
 
 `root_path` 用于处理这些特定情况。
 
-在挂载子应用时，也可以在内部使用。
+并且它也会在挂载子应用时在内部使用。
 
-## 移除路径前缀的代理
+在这种情况下，使用带有剥离路径前缀的代理意味着：你可以在代码里声明路径 `/app`，但你在上层（代理）添加了一层，把你的 **FastAPI** 应用放在类似 `/api/v1` 这样的路径之下。
 
-本例中，移除路径前缀的代理是指在代码中声明路径 `/app`，然后在应用顶层添加代理，把 **FastAPI** 应用放在 `/api/v1` 路径下。
+此时，原始路径 `/app` 实际上会在 `/api/v1/app` 提供服务。
 
-本例的原始路径 `/app` 实际上是在 `/api/v1/app` 提供服务。
+即便你的所有代码都假设只有 `/app`。
 
-哪怕所有代码都假设只有 `/app`。
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
 
-代理只在把请求传送给 Uvicorn 之前才会**移除路径前缀**，让应用以为它是在 `/app` 提供服务，因此不必在代码中加入前缀 `/api/v1`。
+并且代理会在将请求传递给应用服务器（可能是通过 FastAPI CLI 的 Uvicorn）之前，动态 **“剥离”** 这个 **路径前缀**，让你的应用一直以为它是在 `/app` 下提供服务，因此你不需要更新所有代码来包含前缀 `/api/v1`。
 
-但之后，在（前端）打开 API 文档时，代理会要求在 `/openapi.json`，而不是 `/api/v1/openapi.json` 中提取 OpenAPI 概图。
+到这里为止，一切都会像平常一样工作。
 
-因此， （运行在浏览器中的）前端会尝试访问 `/openapi.json`，但没有办法获取 OpenAPI 概图。
+但是，当你打开集成的 docs UI（前端）时，它会期望从 `/openapi.json` 获取 OpenAPI schema，而不是从 `/api/v1/openapi.json` 获取。
 
-这是因为应用使用了以 `/api/v1` 为路径前缀的代理，前端要从 `/api/v1/openapi.json`  中提取 OpenAPI 概图。
+所以，（运行在浏览器中的）前端会尝试访问 `/openapi.json`，但它无法获取 OpenAPI schema。
+
+因为我们的应用是通过一个带有 `/api/v1` 路径前缀的代理提供服务的，前端需要从 `/api/v1/openapi.json` 获取 OpenAPI schema。
 
 ```mermaid
 graph LR
@@ -39,15 +140,15 @@ proxy --> server
 
 /// tip | 提示
 
-IP `0.0.0.0` 常用于指程序监听本机或服务器上的所有有效 IP。
+IP `0.0.0.0` 通常用于表示程序监听该机器/服务器上的所有可用 IP。
 
 ///
 
-API 文档还需要 OpenAPI 概图声明 API `server` 位于 `/api/v1`（使用代理时的 URL）。例如：
+docs UI 还需要 OpenAPI schema 来声明这个 API 的 `server` 位于 `/api/v1`（在代理之后）。例如：
 
 ```JSON hl_lines="4-8"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
@@ -60,53 +161,53 @@ API 文档还需要 OpenAPI 概图声明 API `server` 位于 `/api/v1`（使用�
 }
 ```
 
-本例中的 `Proxy` 是 **Traefik**，`server` 是运行 FastAPI 应用的 **Uvicorn**。
+在这个示例中，“Proxy” 可能是 **Traefik** 之类的东西。而 server 则可能是带 **Uvicorn** 的 FastAPI CLI，用来运行你的 FastAPI 应用。
 
-### 提供 `root_path`
+### 提供 `root_path` { #providing-the-root-path }
 
-为此，要以如下方式使用命令行选项 `--root-path`：
+为实现这一点，你可以使用命令行选项 `--root-path`，例如：
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-Hypercorn 也支持 `--root-path `选项。
+如果你使用 Hypercorn，它也有 `--root-path` 选项。
 
 /// note | 技术细节
 
-ASGI 规范定义的 `root_path` 就是为了这种用例。
+ASGI 规范为这个用例定义了 `root_path`。
 
-并且 `--root-path` 命令行选项支持 `root_path`。
+而命令行选项 `--root-path` 会提供这个 `root_path`。
 
 ///
 
-### 查看当前的 `root_path`
+### 检查当前的 `root_path` { #checking-the-current-root-path }
 
-获取应用为每个请求使用的当前 `root_path`，这是 `scope` 字典的内容（也是 ASGI 规范的内容）。
+你可以获取你的应用在每个请求中使用的当前 `root_path`，它是 `scope` 字典的一部分（这也是 ASGI 规范的一部分）。
 
-我们在这里的信息里包含 `roo_path` 只是为了演示。
+这里我们把它包含在消息中只是为了演示。
 
-{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
 
-然后，用以下命令启动 Uvicorn：
+然后，如果你用下面的方式启动 Uvicorn：
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-返回的响应如下：
+响应会类似于：
 
 ```JSON
 {
@@ -115,19 +216,19 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-### 在 FastAPI 应用里设置 `root_path`
+### 在 FastAPI 应用中设置 `root_path` { #setting-the-root-path-in-the-fastapi-app }
 
-还有一种方案，如果不能提供 `--root-path` 或等效的命令行选项，则在创建 FastAPI 应用时要设置 `root_path` 参数。
+另一种方式是，如果你没有办法提供像 `--root-path` 这样的命令行选项或等效方式，你可以在创建 FastAPI 应用时设置 `root_path` 参数：
 
-{* ../../docs_src/behind_a_proxy/tutorial002.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
 
-传递 `root_path` 给 `FastAPI` 与传递 `--root-path` 命令行选项给 Uvicorn 或 Hypercorn 一样。
+将 `root_path` 传给 `FastAPI` 等同于将命令行选项 `--root-path` 传给 Uvicorn 或 Hypercorn。
 
-### 关于 `root_path`
+### 关于 `root_path` { #about-root-path }
 
-注意，服务器（Uvicorn）只是把 `root_path` 传递给应用。
+请记住，server（Uvicorn）除了把 `root_path` 传递给应用之外，不会把它用于其他任何事情。
 
-在浏览器中输入 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000/app 时能看到标准响应：</a>
+但如果你在浏览器中打开 <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>，你会看到正常响应：
 
 ```JSON
 {
@@ -136,25 +237,25 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-它不要求访问 `http://127.0.0.1:800/api/v1/app`。
+因此，它不会期望通过 `http://127.0.0.1:8000/api/v1/app` 被访问。
 
-Uvicorn 预期代理在 `http://127.0.0.1:8000/app` 访问 Uvicorn，而在顶部添加 `/api/v1` 前缀是代理要做的事情。
+Uvicorn 会期望代理在 `http://127.0.0.1:8000/app` 访问 Uvicorn，然后由代理负责在其上额外添加 `/api/v1` 前缀。
 
-## 关于移除路径前缀的代理
+## 关于带有剥离路径前缀的代理 { #about-proxies-with-a-stripped-path-prefix }
 
-注意，移除路径前缀的代理只是配置代理的方式之一。
+请记住，带有剥离路径前缀的代理只是其中一种配置方式。
 
-大部分情况下，代理默认都不会移除路径前缀。
+在很多情况下，默认可能是代理不会剥离路径前缀。
 
-（未移除路径前缀时）代理监听 `https://myawesomeapp.com` 等对象，如果浏览器跳转到 `https://myawesomeapp.com/api/v1/app`，且服务器（例如 Uvicorn）监听 `http://127.0.0.1:8000` 代理（未移除路径前缀） 会在同样的路径：`http://127.0.0.1:8000/api/v1/app` 访问 Uvicorn。
+在这种情况下（没有剥离路径前缀），代理会监听类似 `https://myawesomeapp.com` 的地址；然后如果浏览器访问 `https://myawesomeapp.com/api/v1/app`，并且你的 server（例如 Uvicorn）监听在 `http://127.0.0.1:8000`，那么代理（没有剥离路径前缀）会在相同路径访问 Uvicorn：`http://127.0.0.1:8000/api/v1/app`。
 
-## 本地测试 Traefik
+## 使用 Traefik 本地测试 { #testing-locally-with-traefik }
 
-您可以轻易地在本地使用 <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a> 运行移除路径前缀的试验。
+你可以使用 <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>，在本地很容易地运行带有剥离路径前缀的实验。
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">下载 Traefik</a>，这是一个二进制文件，需要解压文件，并在 Terminal 中直接运行。
+<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">下载 Traefik</a>，它是一个单独的二进制文件，你可以解压压缩包并直接在终端中运行。
 
-然后创建包含如下内容的 `traefik.toml` 文件：
+然后创建一个文件 `traefik.toml`，内容如下：
 
 ```TOML hl_lines="3"
 [entryPoints]
@@ -166,15 +267,15 @@ Uvicorn 预期代理在 `http://127.0.0.1:8000/app` 访问 Uvicorn，而在顶�
     filename = "routes.toml"
 ```
 
-这个文件把 Traefik 监听端口设置为 `9999`，并设置要使用另一个文件 `routes.toml`。
+这会告诉 Traefik 监听 9999 端口，并使用另一个文件 `routes.toml`。
 
 /// tip | 提示
 
-使用端口 9999 代替标准的 HTTP 端口 80，这样就不必使用管理员权限运行（`sudo`）。
+我们使用 9999 端口而不是标准的 HTTP 端口 80，这样你就不需要使用管理员（`sudo`）权限运行它。
 
 ///
 
-接下来，创建 `routes.toml`：
+现在创建另一个文件 `routes.toml`：
 
 ```TOML hl_lines="5  12  20"
 [http]
@@ -199,11 +300,11 @@ Uvicorn 预期代理在 `http://127.0.0.1:8000/app` 访问 Uvicorn，而在顶�
           url = "http://127.0.0.1:8000"
 ```
 
-这个文件配置 Traefik 使用路径前缀 `/api/v1`。
+这个文件将 Traefik 配置为使用路径前缀 `/api/v1`。
 
-然后，它把请求重定位到运行在 `http://127.0.0.1:8000` 上的 Uvicorn。
+然后 Traefik 会将它的请求重定向到运行在 `http://127.0.0.1:8000` 的 Uvicorn。
 
-现在，启动 Traefik：
+现在启动 Traefik：
 
 <div class="termy">
 
@@ -215,21 +316,21 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 </div>
 
-接下来，使用 Uvicorn 启动应用，并使用 `--root-path` 选项：
+然后启动你的应用，使用 `--root-path` 选项：
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --root-path /api/v1
+$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-### 查看响应
+### 检查响应 { #check-the-responses }
 
-访问含 Uvicorn 端口的 URL：<a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app，就能看到标准响应：</a>
+现在，如果你打开带 Uvicorn 端口的 URL：<a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>，你会看到正常响应：
 
 ```JSON
 {
@@ -240,13 +341,13 @@ $ uvicorn main:app --root-path /api/v1
 
 /// tip | 提示
 
-注意，就算访问 `http://127.0.0.1:8000/app`，也显示从选项 `--root-path` 中提取的 `/api/v1`，这是 `root_path` 的值。
+注意，即便你访问的是 `http://127.0.0.1:8000/app`，它仍然会显示来自选项 `--root-path` 的 `root_path` `/api/v1`。
 
 ///
 
-打开含 Traefik 端口的 URL，包含路径前缀：<a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app。</a>
+然后打开带 Traefik 端口的 URL，并包含路径前缀：<a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>。
 
-得到同样的响应：
+你会得到相同的响应：
 
 ```JSON
 {
@@ -255,57 +356,57 @@ $ uvicorn main:app --root-path /api/v1
 }
 ```
 
-但这一次 URL 包含了代理提供的路径前缀：`/api/v1`。
+但这一次是在包含代理提供的前缀路径 `/api/v1` 的 URL 上。
 
-当然，这是通过代理访问应用的方式，因此，路径前缀 `/app/v1` 版本才是**正确**的。
+当然，这里的想法是每个人都应该通过代理访问应用，所以带路径前缀 `/api/v1` 的版本是“正确”的。
 
-而不带路径前缀的版本（`http://127.0.0.1:8000/app`），则由 Uvicorn 直接提供，专供*代理*（Traefik）访问。
+而不带路径前缀的版本（`http://127.0.0.1:8000/app`）由 Uvicorn 直接提供，只会专门用于让 _proxy_（Traefik）访问。
 
-这演示了代理（Traefik）如何使用路径前缀，以及服务器（Uvicorn）如何使用选项 `--root-path` 中的 `root_path`。
+这演示了 Proxy（Traefik）如何使用路径前缀，以及 server（Uvicorn）如何使用来自选项 `--root-path` 的 `root_path`。
 
-### 查看文档
+### 检查 docs UI { #check-the-docs-ui }
 
-但这才是有趣的地方 ✨
+但有趣的部分来了。 ✨
 
-访问应用的**官方**方式是通过含路径前缀的代理。因此，不出所料，如果没有在 URL 中添加路径前缀，直接访问通过 Uvicorn 运行的 API 文档，不能正常访问，因为需要通过代理才能访问。
+访问应用的“官方”方式，是通过我们定义了路径前缀的代理来访问。因此，正如你所预期的那样，如果你尝试直接访问由 Uvicorn 提供的 docs UI，而 URL 中没有路径前缀，它将无法工作，因为它期望通过代理访问。
 
-输入 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs 查看 API 文档：</a>
+你可以在 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 查看：
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
-但输入**官方**链接 `/api/v1/docs`，并使用端口 `9999` 访问 API 文档，就能正常运行了！🎉
+但如果我们通过端口为 `9999` 的代理，以“官方”URL `/api/v1/docs` 访问 docs UI，它就能正常工作！ 🎉
 
-输入 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs 查看文档：</a>
+你可以在 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> 查看：
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
-一切正常。 ✔️
+正如我们所希望的那样。 ✔️
 
-这是因为 FastAPI 在 OpenAPI 里使用 `root_path` 提供的 URL 创建默认 `server`。
+这是因为 FastAPI 会使用这个 `root_path`，用 `root_path` 提供的 URL 在 OpenAPI 中创建默认的 `server`。
 
-## 附加的服务器
+## 附加的服务器 { #additional-servers }
 
 /// warning | 警告
 
-此用例较难，可以跳过。
+这是一个更高级的用例，可以跳过。
 
 ///
 
-默认情况下，**FastAPI** 使用 `root_path` 的链接在 OpenAPI 概图中创建 `server`。
+默认情况下，**FastAPI** 会在 OpenAPI schema 中使用 `root_path` 的 URL 创建一个 `server`。
 
-但也可以使用其它备选 `servers`，例如，需要同一个 API 文档与 staging 和生产环境交互。
+但你也可以提供其他备选 `servers`，例如，你希望 *同一个* docs UI 同时与 staging 环境和生产环境交互。
 
-如果传递自定义 `servers` 列表，并有 `root_path`（ 因为 API 使用了代理），**FastAPI** 会在列表开头使用这个 `root_path` 插入**服务器**。
+如果你传入了自定义的 `servers` 列表，并且存在 `root_path`（因为你的 API 在代理之后），**FastAPI** 会在列表开头插入一个使用该 `root_path` 的“server”。
 
 例如：
 
-{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
 
-这段代码生产如下 OpenAPI 概图：
+会生成类似下面的 OpenAPI schema：
 
 ```JSON hl_lines="5-7"
 {
-    "openapi": "3.0.2",
+    "openapi": "3.1.0",
     // More stuff here
     "servers": [
         {
@@ -328,30 +429,38 @@ $ uvicorn main:app --root-path /api/v1
 
 /// tip | 提示
 
-注意，自动生成服务器时，`url` 的值 `/api/v1` 提取自 `roog_path`。
+注意自动生成的 server，其 `url` 值为 `/api/v1`，来自 `root_path`。
 
 ///
 
-<a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs 的 API 文档所示如下：</a>
+在 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> 的 docs UI 中会是这样的：
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
 /// tip | 提示
 
-API 文档与所选的服务器进行交互。
+docs UI 会与你选择的 server 进行交互。
 
 ///
 
-### 从 `root_path` 禁用自动服务器
+/// note | 技术细节
 
-如果不想让 **FastAPI** 包含使用 `root_path` 的自动服务器，则要使用参数 `root_path_in_servers=False`：
+OpenAPI 规范中的 `servers` 属性是可选的。
 
-{* ../../docs_src/behind_a_proxy/tutorial004.py hl[9] *}
+如果你不指定 `servers` 参数，并且 `root_path` 等于 `/`，则生成的 OpenAPI schema 会默认完全省略 `servers` 属性，这等同于只有一个 `url` 值为 `/` 的 server。
 
-这样，就不会在 OpenAPI 概图中包含服务器了。
+///
 
-## 挂载子应用
+### 从 `root_path` 禁用自动 server { #disable-automatic-server-from-root-path }
 
-如需挂载子应用（详见 [子应用 - 挂载](sub-applications.md){.internal-link target=_blank}），也要通过 `root_path` 使用代理，这与正常应用一样，别无二致。
+如果你不想让 **FastAPI** 包含使用 `root_path` 的自动 server，可以使用参数 `root_path_in_servers=False`：
 
-FastAPI 在内部使用 `root_path`，因此子应用也可以正常运行。✨
+{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+
+然后它就不会在 OpenAPI schema 中包含它。
+
+## 挂载子应用 { #mounting-a-sub-application }
+
+如果你需要挂载子应用（如 [子应用 - 挂载](sub-applications.md){.internal-link target=_blank} 所述），同时也使用带 `root_path` 的代理，你可以像预期一样正常操作。
+
+FastAPI 会在内部智能地使用 `root_path`，所以它会直接工作。 ✨

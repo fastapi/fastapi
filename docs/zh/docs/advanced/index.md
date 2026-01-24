@@ -1,12 +1,12 @@
-# 高级用户指南
+# 高级用户指南 { #advanced-user-guide }
 
-## 额外特性
+## 额外特性 { #additional-features }
 
 主要的教程 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank} 应该足以让你了解 **FastAPI** 的所有主要特性。
 
-你会在接下来的章节中了解到其他的选项、配置以及额外的特性。
+你会在接下来的章节中看到其他的选项、配置以及额外的特性。
 
-/// tip
+/// tip | 提示
 
 接下来的章节**并不一定是**「高级的」。
 
@@ -14,8 +14,8 @@
 
 ///
 
-## 先阅读教程
+## 先阅读教程 { #read-the-tutorial-first }
 
-你可能仍会用到 **FastAPI** 主教程 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank} 中的大多数特性。
+你仍然可以用主 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank} 中的知识来使用 **FastAPI** 的大多数特性。
 
-接下来的章节我们认为你已经读过 [教程 - 用户指南](../tutorial/index.md){.internal-link target=_blank}，并且假设你已经知晓其中主要思想。
+并且接下来的章节假设你已经读过它，并且假设你已经知晓其中主要思想。

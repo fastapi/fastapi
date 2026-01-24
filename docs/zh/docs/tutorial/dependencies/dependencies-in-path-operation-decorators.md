@@ -1,69 +1,69 @@
-# 路径操作装饰器依赖项
+# 路径操作装饰器中的依赖项 { #dependencies-in-path-operation-decorators }
 
-有时，我们并不需要在*路径操作函数*中使用依赖项的返回值。
+在某些情况下，你其实并不需要在*路径操作函数*中使用依赖项的返回值。
 
-或者说，有些依赖项不返回值。
+或者依赖项不返回值。
 
-但仍要执行或解析该依赖项。
+但你仍然需要它被执行/解析。
 
-对于这种情况，不必在声明*路径操作函数*的参数时使用 `Depends`，而是可以在*路径操作装饰器*中添加一个由 `dependencies` 组成的 `list`。
+对于这些情况，与其用 `Depends` 声明一个*路径操作函数*参数，不如在*路径操作装饰器*中添加一个由 `dependencies` 组成的 `list`。
 
-## 在*路径操作装饰器*中添加 `dependencies` 参数
+## 在*路径操作装饰器*中添加 `dependencies` { #add-dependencies-to-the-path-operation-decorator }
 
-*路径操作装饰器*支持可选参数 ~ `dependencies`。
+*路径操作装饰器*接收一个可选参数 `dependencies`。
 
-该参数的值是由 `Depends()` 组成的 `list`：
+它应该是一个由 `Depends()` 组成的 `list`：
 
-{* ../../docs_src/dependencies/tutorial006.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[19] *}
 
-路径操作装饰器依赖项（以下简称为**“路径装饰器依赖项”**）的执行或解析方式和普通依赖项一样，但就算这些依赖项会返回值，它们的值也不会传递给*路径操作函数*。
+这些依赖项会像普通依赖项一样被执行/解析。但是它们的值（如果有返回值）不会被传递给你的*路径操作函数*。
 
 /// tip | 提示
 
-有些编辑器会检查代码中没使用过的函数参数，并显示错误提示。
+有些编辑器会检查未使用的函数参数，并将其显示为错误。
 
-在*路径操作装饰器*中使用 `dependencies` 参数，可以确保在执行依赖项的同时，避免编辑器显示错误提示。
+在*路径操作装饰器*中使用这些 `dependencies`，你可以确保它们会被执行，同时避免编辑器/工具链报错。
 
-使用路径装饰器依赖项还可以避免开发新人误会代码中包含无用的未使用参数。
-
-///
-
-/// info | 说明
-
-本例中，使用的是自定义响应头 `X-Key` 和 `X-Token`。
-
-但实际开发中，尤其是在实现安全措施时，最好使用 FastAPI 内置的[安全工具](../security/index.md){.internal-link target=_blank}（详见下一章）。
+它也可能帮助避免新开发者看到你代码里一个未使用的参数而产生困惑，并认为它是不必要的。
 
 ///
 
-## 依赖项错误和返回值
+/// info | 信息
 
-路径装饰器依赖项也可以使用普通的依赖项*函数*。
+在这个例子中，我们使用了虚构的自定义 headers `X-Key` 和 `X-Token`。
 
-### 依赖项的需求项
+但在真实场景中，实现安全措施时，使用集成的[安全工具（下一章）](../security/index.md){.internal-link target=_blank}会获得更多收益。
 
-路径装饰器依赖项可以声明请求的需求项（比如响应头）或其他子依赖项：
+///
 
-{* ../../docs_src/dependencies/tutorial006.py hl[6,11] *}
+## 依赖项错误和返回值 { #dependencies-errors-and-return-values }
 
-### 触发异常
+你可以使用平时正常使用的同一个依赖项*函数*。
 
-路径装饰器依赖项与正常的依赖项一样，可以 `raise` 异常：
+### 依赖项的需求项 { #dependency-requirements }
 
-{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
+它们可以声明请求的需求项（比如 headers）或其他子依赖项：
 
-### 返回值
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[8,13] *}
 
-无论路径装饰器依赖项是否返回值，路径操作都不会使用这些值。
+### 触发异常 { #raise-exceptions }
 
-因此，可以复用在其他位置使用过的、（能返回值的）普通依赖项，即使没有使用这个值，也会执行该依赖项：
+这些依赖项可以像普通依赖项一样 `raise` 异常：
 
-{* ../../docs_src/dependencies/tutorial006.py hl[9,14] *}
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[10,15] *}
 
-## 为一组路径操作定义依赖项
+### 返回值 { #return-values }
 
-稍后，[大型应用 - 多文件](../../tutorial/bigger-applications.md){.internal-link target=\_blank}一章中会介绍如何使用多个文件创建大型应用程序，在这一章中，您将了解到如何为一组*路径操作*声明单个 `dependencies` 参数。
+并且它们可以返回值或不返回值，这些值都不会被使用。
 
-## 全局依赖项
+因此，你可以复用你已经在别处用过的、（会返回值的）普通依赖项，即使这个值不会被使用，该依赖项也会被执行：
 
-接下来，我们将学习如何为 `FastAPI` 应用程序添加全局依赖项，创建应用于每个*路径操作*的依赖项。
+{* ../../docs_src/dependencies/tutorial006_an_py39.py hl[11,16] *}
+
+## 为一组*路径操作*定义依赖项 { #dependencies-for-a-group-of-path-operations }
+
+稍后，当你阅读如何组织更大的应用（[大型应用 - 多文件](../../tutorial/bigger-applications.md){.internal-link target=_blank}）时，可能会涉及多个文件，你将学习如何为一组*路径操作*声明单个 `dependencies` 参数。
+
+## 全局依赖项 { #global-dependencies }
+
+接下来我们将学习如何为整个 `FastAPI` 应用程序添加依赖项，使它们应用于每个*路径操作*。
