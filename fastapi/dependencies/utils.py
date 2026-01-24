@@ -519,7 +519,7 @@ def analyze_param(
                     # For Pydantic v1
                     and getattr(field, "shape", 1) == 1
                 )
-            )
+            ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
