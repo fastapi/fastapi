@@ -61,6 +61,7 @@ from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import is_async_callable
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException
+from starlette.middleware import Middleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 from starlette.routing import (
@@ -516,6 +517,7 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -635,7 +637,12 @@ class APIRoute(routing.Route):
             name=self.unique_id,
             embed_body_fields=self._embed_body_fields,
         )
+        self.middleware = middleware
         self.app = request_response(self.get_route_handler())
+
+        if middleware is not None:
+            for cls, args, kwargs in reversed(middleware):
+                self.app = cls(self.app, *args, **kwargs)
 
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         return get_request_handler(
@@ -902,6 +909,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this router.
+
+                Router-level middleware is executed after application-level middleware.
+                When multiple routers declare middleware, the outermost (furthest) router's middleware runs first.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> None:
         super().__init__(
             routes=routes,
@@ -910,6 +932,7 @@ class APIRouter(routing.Router):
             on_startup=on_startup,
             on_shutdown=on_shutdown,
             lifespan=lifespan,
+            middleware=middleware,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -927,6 +950,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.middleware = middleware
 
     def route(
         self,
@@ -980,6 +1004,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -999,6 +1024,9 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+        if middleware and self.middleware:
+            middleware = list(self.middleware) + list(middleware)
+
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -1026,6 +1054,7 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            middleware=middleware or self.middleware,
         )
         self.routes.append(route)
 
@@ -1058,6 +1087,7 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        middleware: Optional[Sequence[Middleware]] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -1086,6 +1116,7 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                middleware=middleware,
             )
             return func
 
@@ -1397,6 +1428,7 @@ class APIRouter(routing.Router):
                     callbacks=current_callbacks,
                     openapi_extra=route.openapi_extra,
                     generate_unique_id_function=current_generate_unique_id,
+                    middleware=route.middleware,
                 )
             elif isinstance(route, routing.Route):
                 methods = list(route.methods or [])
@@ -1763,6 +1795,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -1807,6 +1854,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def put(
@@ -2140,6 +2188,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2189,6 +2252,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def post(
@@ -2522,6 +2586,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2571,6 +2650,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def delete(
@@ -2904,6 +2984,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -2948,6 +3043,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def options(
@@ -3281,6 +3377,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3325,6 +3436,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def head(
@@ -3658,6 +3770,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -3707,6 +3834,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def patch(
@@ -4040,6 +4168,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4089,6 +4232,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     def trace(
@@ -4422,6 +4566,21 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        middleware: Annotated[
+            Optional[Sequence[Middleware]],
+            Doc(
+                """
+                List of middleware to apply to all requests handled by this route.
+
+                Route-level middleware is executed after application-level and router-level middleware.
+                Any middleware declared on the router will be called before this route's middleware.
+                Middleware are applied in reverse order: the last middleware in this list is the first to be called.
+
+                Read more about it in the
+                [FastAPI docs for Middleware](https://fastapi.tiangolo.com/advanced/middleware/)
+                """
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4471,6 +4630,7 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            middleware=middleware,
         )
 
     @deprecated(
