@@ -217,7 +217,7 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 Takes an async generator or a normal generator/iterator and streams the response body.
 
-{* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
+{* ../../docs_src/custom_response/tutorial007_py39.py hl[4,17] *}
 
 #### Using `StreamingResponse` with file-like objects { #using-streamingresponse-with-file-like-objects }
 
