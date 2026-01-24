@@ -24,7 +24,7 @@ But when you declare them with Python types (in the example above, as `int`), th
 All the same process that applied for path parameters also applies for query parameters:
 
 * Editor support (obviously)
-* Data <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>
+* Data <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>
 * Data validation
 * Automatic documentation
 
