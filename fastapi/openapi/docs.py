@@ -121,8 +121,81 @@ def get_swagger_ui_html(
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
     <link rel="shortcut icon" href="{swagger_favicon_url}">
     <title>{title}</title>
+    <style>
+        #theme-toggle {{
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            background: #ffffff;
+            color: #333333;
+        }}
+
+        .dark-mode #theme-toggle {{
+            background: #2d2d2d;
+            color: #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }}
+
+        #theme-toggle:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }}
+
+        .dark-mode #theme-toggle:hover {{
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }}
+
+        #theme-toggle:active {{
+            transform: translateY(0);
+        }}
+
+        #theme-toggle svg {{
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }}
+
+        #theme-toggle:hover svg {{
+            transform: rotate(15deg);
+        }}
+
+        .theme-icon-sun {{
+            display: none;
+        }}
+
+        .dark-mode .theme-icon-sun {{
+            display: inline-block;
+        }}
+
+        .dark-mode .theme-icon-moon {{
+            display: none;
+        }}
+    </style>
     </head>
     <body>
+    <button id="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+        <svg class="theme-icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <span id="theme-toggle-text">Toggle theme</span>
+    </button>
     <div id="swagger-ui">
     </div>
     <script src="{swagger_js_url}"></script>
@@ -151,6 +224,35 @@ def get_swagger_ui_html(
         """
 
     html += """
+    </script>
+    <script>
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('theme-toggle');
+        const toggleText = document.getElementById('theme-toggle-text');
+
+        const getPreferredTheme = () => {
+            const saved = localStorage.getItem('theme');
+            if (saved) return saved;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+        };
+
+        const setTheme = (theme) => {
+            html.classList.remove('dark-mode', 'light-mode');
+            html.classList.add(`${theme}-mode`);
+            localStorage.setItem('theme', theme);
+            toggleText.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+        };
+
+        // Initial theme
+        setTheme(getPreferredTheme());
+
+        // Toggle on click
+        toggleBtn.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark-mode');
+            setTheme(isDark ? 'light' : 'dark');
+        });
     </script>
     </body>
     </html>
