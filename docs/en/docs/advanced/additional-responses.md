@@ -22,6 +22,16 @@ It receives a `dict`: the keys are status codes for each response (like `200`), 
 
 Each of those response `dict`s can have a key `model`, containing a Pydantic model, just like `response_model`.
 
+/// note
+The `model` key inside `responses` is used **only for OpenAPI
+documentation generation**.
+
+It does **not** perform runtime response validation or filtering.
+
+If you want FastAPI to validate and filter the returned data at
+runtime, use `response_model` instead.
+///
+
 **FastAPI** will take that model, generate its JSON Schema and include it in the correct place in OpenAPI.
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
