@@ -259,6 +259,9 @@ def get_request_handler(
     response_model_exclude_none: bool = False,
     dependency_overrides_provider: Optional[Any] = None,
     embed_body_fields: bool = False,
+    form_max_fields: int = 1000,
+    form_max_files: int = 1000,
+    max_part_size: int = 1024 * 1024,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
@@ -292,7 +295,11 @@ def get_request_handler(
             body: Any = None
             if body_field:
                 if is_body_form:
-                    body = await request.form()
+                    body = await request.form(
+                        max_fields=form_max_fields,
+                        max_files=form_max_files,
+                        max_part_size=max_part_size,
+                    )
                     file_stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
@@ -516,6 +523,9 @@ class APIRoute(routing.Route):
         generate_unique_id_function: Union[
             Callable[["APIRoute"], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        form_max_fields: int = 1000,
+        form_max_files: int = 1000,
+        max_part_size: int = 1024 * 1024,
     ) -> None:
         self.path = path
         self.endpoint = endpoint
@@ -546,6 +556,9 @@ class APIRoute(routing.Route):
         self.responses = responses or {}
         self.name = get_name(endpoint) if name is None else name
         self.path_regex, self.path_format, self.param_convertors = compile_path(path)
+        self.form_max_fields = form_max_fields
+        self.form_max_files = form_max_files
+        self.max_part_size = max_part_size
         if methods is None:
             methods = ["GET"]
         self.methods: set[str] = {method.upper() for method in methods}
@@ -652,6 +665,9 @@ class APIRoute(routing.Route):
             response_model_exclude_none=self.response_model_exclude_none,
             dependency_overrides_provider=self.dependency_overrides_provider,
             embed_body_fields=self._embed_body_fields,
+            form_max_fields=self.form_max_fields,
+            form_max_files=self.form_max_files,
+            max_part_size=self.max_part_size,
         )
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
@@ -980,6 +996,9 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Union[
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
+        form_max_fields: int = 1000,
+        form_max_files: int = 1000,
+        form_max_part_size: int = 1024 * 1024,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -1026,6 +1045,9 @@ class APIRouter(routing.Router):
             callbacks=current_callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=current_generate_unique_id,
+            form_max_fields=form_max_fields,
+            form_max_files=form_max_files,
+            max_part_size=form_max_part_size,
         )
         self.routes.append(route)
 
@@ -1058,6 +1080,9 @@ class APIRouter(routing.Router):
         generate_unique_id_function: Callable[[APIRoute], str] = Default(
             generate_unique_id
         ),
+        form_max_fields: int = 1000,
+        form_max_files: int = 1000,
+        form_max_part_size: int = 1024 * 1024,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -1086,6 +1111,9 @@ class APIRouter(routing.Router):
                 callbacks=callbacks,
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
+                form_max_fields=form_max_fields,
+                form_max_files=form_max_files,
+                form_max_part_size=form_max_part_size,
             )
             return func
 
@@ -2522,6 +2550,36 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = Default(generate_unique_id),
+        form_max_fields: Annotated[
+            int,
+            Doc(
+                """
+                Maximum number of form fields to accept.
+
+                This limits the number of fields in a form submission to prevent
+                potential denial-of-service attacks.
+                """
+            ),
+        ] = 1000,
+        form_max_files: Annotated[
+            int,
+            Doc(
+                """
+                Maximum number of files to accept in a form submission.
+
+                This limits the number of files in a form submission to prevent
+                potential denial-of-service attacks.
+                """
+            ),
+        ] = 1000,
+        max_part_size: Annotated[
+            int,
+            Doc(
+                """
+                Maximum size (in bytes) for each part in a multipart form submission.
+                """
+            ),
+        ] = 1024 * 1024,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2571,6 +2629,9 @@ class APIRouter(routing.Router):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            form_max_fields=form_max_fields,
+            form_max_files=form_max_files,
+            form_max_part_size=max_part_size,
         )
 
     def delete(
