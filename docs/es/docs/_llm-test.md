@@ -202,15 +202,10 @@ Aquí algunas cosas envueltas en elementos HTML "abbr" (algunas son inventadas):
 * <abbr title="XML Web Token - Token web XML">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface - Interfaz de pasarela de servidor paralela">PSGI</abbr>
 
-### El abbr da una explicación { #the-abbr-gives-an-explanation }
-
-* <abbr title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</abbr>
-* <abbr title="Un método de machine learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</abbr>
-
 ### El abbr da una frase completa y una explicación { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla: documentación para desarrolladores, escrita por la gente de Firefox">MDN</abbr>
-* <abbr title="Input/Output: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
+* <abbr title="Input/Output - Entrada/Salida: lectura o escritura de disco, comunicaciones de red.">I/O</abbr>.
 
 ////
 
@@ -223,6 +218,11 @@ Las traducciones pueden añadir sus propios elementos "abbr" que el LLM no debe 
 Consulta la sección `### HTML abbr elements` en el prompt general en `scripts/translate.py`.
 
 ////
+
+## Elementos HTML "dfn" { #html-dfn-elements }
+
+* <dfn title="Un grupo de máquinas configuradas para estar conectadas y trabajar juntas de alguna manera.">clúster</dfn>
+* <dfn title="Un método de Machine Learning que usa redes neuronales artificiales con numerosas capas ocultas entre las capas de entrada y salida, desarrollando así una estructura interna completa">Deep Learning</dfn>
 
 ## Encabezados { #headings }
 
@@ -433,7 +433,7 @@ Para instrucciones específicas del idioma, mira p. ej. la sección `### Heading
 * el motor de plantillas
 
 * la anotación de tipos
-* las anotaciones de tipos
+* la anotación de tipos
 
 * el worker del servidor
 * el worker de Uvicorn
