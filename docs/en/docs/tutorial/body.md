@@ -55,6 +55,12 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 }
 ```
 
+/// note
+
+By default, if the client sends extra fields in the request body that are not defined in the Pydantic model, they are ignored (not included in the model instance or in the response). This behavior comes from Pydantic's default `extra = "ignore"` configuration.
+
+///
+
 ## Declare it as a parameter { #declare-it-as-a-parameter }
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
