@@ -35,11 +35,3 @@ It can be imported from `fastapi`:
 ```python
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 ```
-
-::: fastapi.middleware.wsgi.WSGIMiddleware
-
-It can be imported from `fastapi`:
-
-```python
-from fastapi.middleware.wsgi import WSGIMiddleware
-```
