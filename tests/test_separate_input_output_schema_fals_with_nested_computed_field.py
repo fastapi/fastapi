@@ -1,11 +1,7 @@
-from typing import List
-
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-
-from .utils import needs_pydanticv2
 
 
 @pytest.fixture(name="client", params=[True, False])
@@ -25,7 +21,7 @@ def get_client(request: pytest.FixtureRequest):
     app = FastAPI(separate_input_output_schemas=request.param)
 
     @app.get("/list")
-    def get_items() -> List[MyModel]:
+    def get_items() -> list[MyModel]:
         return [MyModel(id=1, name="Alice", age=30), MyModel(id=2, name="Bob", age=17)]
 
     @app.post("/item")
@@ -35,7 +31,6 @@ def get_client(request: pytest.FixtureRequest):
     yield TestClient(app)
 
 
-@needs_pydanticv2
 def test_create_item(client: TestClient):
     response = client.post(
         "/item",
@@ -45,7 +40,6 @@ def test_create_item(client: TestClient):
     assert response.json() == {"id": 1, "name": "Alice", "age": 30, "is_adult": True}
 
 
-@needs_pydanticv2
 def test_get_items(client: TestClient):
     response = client.get("/list")
     assert response.status_code == 200, response.text
@@ -55,7 +49,6 @@ def test_get_items(client: TestClient):
     ]
 
 
-@needs_pydanticv2
 def test_openapi(client: TestClient):
     response = client.get("/openapi.json")
     openapi_schema = response.json()
