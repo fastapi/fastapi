@@ -5,8 +5,8 @@ from fastapi.testclient import TestClient
 
 @pytest.fixture(name="app", scope="module")
 def get_app():
-    with pytest.warns(DeprecationWarning):
-        from docs_src.events.tutorial002_py39 import app
+    from docs_src.events.tutorial002_py39 import app
+
     yield app
 
 
