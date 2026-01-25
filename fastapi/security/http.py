@@ -1,6 +1,6 @@
 import binascii
 from base64 import b64decode
-from typing import Dict, Optional
+from typing import Annotated, Optional
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -11,7 +11,6 @@ from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import BaseModel
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
-from typing_extensions import Annotated
 
 
 class HTTPBasicCredentials(BaseModel):
@@ -82,7 +81,7 @@ class HTTPBase(SecurityBase):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> Dict[str, str]:
+    def make_authenticate_headers(self) -> dict[str, str]:
         return {"WWW-Authenticate": f"{self.model.scheme.title()}"}
 
     def make_not_authenticated_error(self) -> HTTPException:
@@ -197,7 +196,7 @@ class HTTPBasic(HTTPBase):
         self.realm = realm
         self.auto_error = auto_error
 
-    def make_authenticate_headers(self) -> Dict[str, str]:
+    def make_authenticate_headers(self) -> dict[str, str]:
         if self.realm:
             return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         return {"WWW-Authenticate": "Basic"}

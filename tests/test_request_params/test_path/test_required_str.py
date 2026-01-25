@@ -1,9 +1,8 @@
+from typing import Annotated
+
 import pytest
 from fastapi import FastAPI, Path
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 app = FastAPI()
 
@@ -44,14 +43,12 @@ def read_required_alias_and_validation_alias(
             "p_val_alias",
             "P Val Alias",
             id="required-validation-alias",
-            marks=needs_pydanticv2,
         ),
         pytest.param(
             "/required-alias-and-validation-alias/{p_val_alias}",
             "p_val_alias",
             "P Val Alias",
             id="required-alias-and-validation-alias",
-            marks=needs_pydanticv2,
         ),
     ],
 )
@@ -74,12 +71,10 @@ def test_schema(path: str, expected_name: str, expected_title: str):
         pytest.param(
             "/required-validation-alias",
             id="required-validation-alias",
-            marks=needs_pydanticv2,
         ),
         pytest.param(
             "/required-alias-and-validation-alias",
             id="required-alias-and-validation-alias",
-            marks=needs_pydanticv2,
         ),
     ],
 )

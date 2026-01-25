@@ -1,7 +1,4 @@
-from typing import List
-
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -15,24 +12,14 @@ class Model(BaseModel):
 class ModelNoAlias(BaseModel):
     name: str
 
-    if PYDANTIC_V2:
-        model_config = ConfigDict(
-            json_schema_extra={
-                "description": (
-                    "response_model_by_alias=False is basically a quick hack, to support "
-                    "proper OpenAPI use another model with the correct field names"
-                )
-            }
-        )
-    else:
-
-        class Config:
-            schema_extra = {
-                "description": (
-                    "response_model_by_alias=False is basically a quick hack, to support "
-                    "proper OpenAPI use another model with the correct field names"
-                )
-            }
+    model_config = ConfigDict(
+        json_schema_extra={
+            "description": (
+                "response_model_by_alias=False is basically a quick hack, to support "
+                "proper OpenAPI use another model with the correct field names"
+            )
+        }
+    )
 
 
 @app.get("/dict", response_model=Model, response_model_by_alias=False)
@@ -45,7 +32,7 @@ def read_model():
     return Model(alias="Foo")
 
 
-@app.get("/list", response_model=List[Model], response_model_by_alias=False)
+@app.get("/list", response_model=list[Model], response_model_by_alias=False)
 def read_list():
     return [{"alias": "Foo"}, {"alias": "Bar"}]
 
@@ -60,7 +47,7 @@ def by_alias_model():
     return Model(alias="Foo")
 
 
-@app.get("/by-alias/list", response_model=List[Model])
+@app.get("/by-alias/list", response_model=list[Model])
 def by_alias_list():
     return [{"alias": "Foo"}, {"alias": "Bar"}]
 
@@ -75,7 +62,7 @@ def no_alias_model():
     return ModelNoAlias(name="Foo")
 
 
-@app.get("/no-alias/list", response_model=List[ModelNoAlias])
+@app.get("/no-alias/list", response_model=list[ModelNoAlias])
 def no_alias_list():
     return [{"name": "Foo"}, {"name": "Bar"}]
 
