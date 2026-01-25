@@ -1,3 +1,5 @@
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 from typing import Union
 
 from fastapi import FastAPI
@@ -11,7 +13,12 @@ class Item(BaseModel):
     tax: Union[float, None] = None
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/items/")

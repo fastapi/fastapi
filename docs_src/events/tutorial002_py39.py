@@ -1,12 +1,16 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
-app = FastAPI()
 
-
-@app.on_event("shutdown")
-def shutdown_event():
+@asynccontextmanager
+async def lifespan(app):
+    yield
     with open("log.txt", mode="a") as log:
         log.write("Application shutdown")
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/items/")

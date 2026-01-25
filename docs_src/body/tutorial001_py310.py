@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -9,7 +11,12 @@ class Item(BaseModel):
     tax: float | None = None
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app):
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/items/")

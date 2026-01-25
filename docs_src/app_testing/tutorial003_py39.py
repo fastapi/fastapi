@@ -1,15 +1,19 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
-app = FastAPI()
 
 items = {}
 
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app):
     items["foo"] = {"name": "Fighters"}
     items["bar"] = {"name": "Tenders"}
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.get("/items/{item_id}")

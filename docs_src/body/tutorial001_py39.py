@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import Union
 
 from fastapi import FastAPI
@@ -11,7 +12,12 @@ class Item(BaseModel):
     tax: Union[float, None] = None
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app):
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 
 @app.post("/items/")
