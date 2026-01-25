@@ -7,6 +7,8 @@ updates:
       interval: "daily"
     commit-message:
       prefix: ⬆
+    cooldown:
+      default-days: 7
   # Python
   - package-ecosystem: "uv"
     directory: "/"
@@ -14,3 +16,5 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: ⬆
+    cooldown:
+      default-days: 7
