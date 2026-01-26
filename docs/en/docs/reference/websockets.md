@@ -2,6 +2,8 @@
 
 When defining WebSockets, you normally declare a parameter of type `WebSocket` and with it you can read data from the client and send data to it.
 
+Read more about it in the [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/)
+
 It is provided directly by Starlette, but you can import it from `fastapi`:
 
 ```python
