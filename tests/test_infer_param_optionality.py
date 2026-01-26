@@ -1,6 +1,5 @@
 from typing import Optional
 
-from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 
@@ -163,16 +162,10 @@ def test_openapi_schema():
                             "required": False,
                             "name": "user_id",
                             "in": "query",
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "User Id", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "User Id",
+                            },
                         }
                     ],
                     "responses": {
@@ -208,16 +201,10 @@ def test_openapi_schema():
                             "required": False,
                             "name": "user_id",
                             "in": "query",
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "User Id", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "User Id",
+                            },
                         },
                     ],
                     "responses": {
@@ -247,16 +234,10 @@ def test_openapi_schema():
                             "required": True,
                             "name": "user_id",
                             "in": "path",
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "User Id", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "User Id",
+                            },
                         }
                     ],
                     "responses": {
@@ -292,16 +273,10 @@ def test_openapi_schema():
                             "required": True,
                             "name": "user_id",
                             "in": "path",
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "User Id",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "User Id", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "User Id",
+                            },
                         },
                     ],
                     "responses": {

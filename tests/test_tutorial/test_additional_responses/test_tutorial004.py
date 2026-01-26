@@ -1,21 +1,35 @@
+import importlib
 import os
 import shutil
 
-from dirty_equals import IsDict
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.additional_responses.tutorial004 import app
-
-client = TestClient(app)
+from tests.utils import needs_py310
 
 
-def test_path_operation():
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial004_py39"),
+        pytest.param("tutorial004_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.additional_responses.{request.param}")
+
+    client = TestClient(mod.app)
+    client.headers.clear()
+    return client
+
+
+def test_path_operation(client: TestClient):
     response = client.get("/items/foo")
     assert response.status_code == 200, response.text
     assert response.json() == {"id": "foo", "value": "there goes my hero"}
 
 
-def test_path_operation_img():
+def test_path_operation_img(client: TestClient):
     shutil.copy("./docs/en/docs/img/favicon.png", "./image.png")
     response = client.get("/items/foo?img=1")
     assert response.status_code == 200, response.text
@@ -24,7 +38,7 @@ def test_path_operation_img():
     os.remove("./image.png")
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == {
@@ -68,16 +82,10 @@ def test_openapi_schema():
                         },
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "boolean"}, {"type": "null"}],
-                                    "title": "Img",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Img", "type": "boolean"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                                "title": "Img",
+                            },
                             "name": "img",
                             "in": "query",
                         },

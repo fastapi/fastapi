@@ -1,6 +1,6 @@
-# Probando Dependencias con Overrides
+# Probando Dependencias con Overrides { #testing-dependencies-with-overrides }
 
-## Sobrescribir dependencias durante las pruebas
+## Sobrescribir dependencias durante las pruebas { #overriding-dependencies-during-testing }
 
 Hay algunos escenarios donde podrías querer sobrescribir una dependencia durante las pruebas.
 
@@ -8,7 +8,7 @@ No quieres que la dependencia original se ejecute (ni ninguna de las sub-depende
 
 En cambio, quieres proporcionar una dependencia diferente que se usará solo durante las pruebas (posiblemente solo algunas pruebas específicas), y que proporcionará un valor que pueda ser usado donde se usó el valor de la dependencia original.
 
-### Casos de uso: servicio externo
+### Casos de uso: servicio externo { #use-cases-external-service }
 
 Un ejemplo podría ser que tienes un proveedor de autenticación externo al que necesitas llamar.
 
@@ -20,7 +20,7 @@ Probablemente quieras probar el proveedor externo una vez, pero no necesariament
 
 En este caso, puedes sobrescribir la dependencia que llama a ese proveedor y usar una dependencia personalizada que devuelva un usuario de prueba, solo para tus tests.
 
-### Usa el atributo `app.dependency_overrides`
+### Usa el atributo `app.dependency_overrides` { #use-the-app-dependency-overrides-attribute }
 
 Para estos casos, tu aplicación **FastAPI** tiene un atributo `app.dependency_overrides`, es un simple `dict`.
 

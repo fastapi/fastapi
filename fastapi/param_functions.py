@@ -1,10 +1,12 @@
-from typing import Any, Callable, Dict, List, Optional, Sequence, Union
+from collections.abc import Sequence
+from typing import Annotated, Any, Callable, Optional, Union
 
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
-from typing_extensions import Annotated, Literal, deprecated
+from pydantic import AliasChoices, AliasPath
+from typing_extensions import Literal, deprecated
 
 _Unset: Any = Undefined
 
@@ -53,10 +55,8 @@ def Path(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -209,7 +209,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -224,7 +224,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -262,7 +262,7 @@ def Path(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -378,10 +378,8 @@ def Query(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -534,7 +532,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -549,7 +547,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -587,7 +585,7 @@ def Query(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -682,10 +680,8 @@ def Header(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -849,7 +845,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -864,7 +860,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -902,7 +898,7 @@ def Header(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -998,10 +994,8 @@ def Cookie(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1154,7 +1148,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -1169,7 +1163,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -1207,7 +1201,7 @@ def Cookie(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -1325,10 +1319,8 @@ def Body(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1481,7 +1473,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -1496,7 +1488,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -1534,7 +1526,7 @@ def Body(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -1640,10 +1632,8 @@ def Form(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1796,7 +1786,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -1811,7 +1801,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -1849,7 +1839,7 @@ def Form(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.
@@ -1954,10 +1944,8 @@ def File(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -2110,7 +2098,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[List[Any]],
+        Optional[list[Any]],
         Doc(
             """
             Example values for this field.
@@ -2125,7 +2113,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[Dict[str, Example]],
+        Optional[dict[str, Example]],
         Doc(
             """
             OpenAPI-specific examples.
@@ -2163,7 +2151,7 @@ def File(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[Dict[str, Any], None],
+        Union[dict[str, Any], None],
         Doc(
             """
             Any additional JSON schema data.

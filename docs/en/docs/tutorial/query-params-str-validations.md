@@ -55,7 +55,7 @@ q: str | None = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Union[str, None] = None
@@ -73,7 +73,7 @@ q: Annotated[str | None] = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Annotated[Union[str, None]] = None
@@ -205,20 +205,6 @@ This specific regular expression pattern checks that the received parameter valu
 If you feel lost with all these **"regular expression"** ideas, don't worry. They are a hard topic for many people. You can still do a lot of stuff without needing regular expressions yet.
 
 Now you know that whenever you need them you can use them in **FastAPI**.
-
-### Pydantic v1 `regex` instead of `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Before Pydantic version 2 and before FastAPI 0.100.0, the parameter was called `regex` instead of `pattern`, but it's now deprecated.
-
-You could still see some code using it:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-But know that this is deprecated and it should be updated to use the new parameter `pattern`. 🤓
 
 ## Default values { #default-values }
 
