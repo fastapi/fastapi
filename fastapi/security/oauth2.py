@@ -68,6 +68,9 @@ class OAuth2PasswordRequestForm:
                 "password". Nevertheless, this dependency class is permissive and
                 allows not passing it. If you want to enforce it, use instead the
                 `OAuth2PasswordRequestFormStrict` dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,
@@ -78,6 +81,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -88,6 +94,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -112,6 +121,9 @@ class OAuth2PasswordRequestForm:
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
@@ -222,6 +234,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 "password". This dependency is strict about it. If you want to be
                 permissive, use instead the `OAuth2PasswordRequestForm` dependency
                 class.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -232,6 +247,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -242,6 +260,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -266,6 +287,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
@@ -423,6 +447,9 @@ class OAuth2PasswordBearer(OAuth2):
                 """
                 The URL to obtain the OAuth2 token. This would be the *path operation*
                 that has `OAuth2PasswordRequestForm` as a dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -442,6 +469,9 @@ class OAuth2PasswordBearer(OAuth2):
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
                 use this dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,

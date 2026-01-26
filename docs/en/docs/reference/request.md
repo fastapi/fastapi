@@ -2,6 +2,8 @@
 
 You can declare a parameter in a *path operation function* or dependency to be of type `Request` and then you can access the raw request object directly, without any validation, etc.
 
+Read more about it in the [FastAPI docs about using Request directly](https://fastapi.tiangolo.com/advanced/using-request-directly/)
+
 You can import it directly from `fastapi`:
 
 ```python
