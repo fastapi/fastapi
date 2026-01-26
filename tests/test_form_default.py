@@ -1,8 +1,7 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 from fastapi import FastAPI, File, Form
 from starlette.testclient import TestClient
-from typing_extensions import Annotated
 
 app = FastAPI()
 

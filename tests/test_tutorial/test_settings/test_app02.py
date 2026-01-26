@@ -4,15 +4,12 @@ from types import ModuleType
 import pytest
 from pytest import MonkeyPatch
 
-from ...utils import needs_py39, needs_pydanticv2
-
 
 @pytest.fixture(
     name="mod_path",
     params=[
-        pytest.param("app02"),
-        pytest.param("app02_an"),
-        pytest.param("app02_an_py39", marks=needs_py39),
+        pytest.param("app02_py39"),
+        pytest.param("app02_an_py39"),
     ],
 )
 def get_mod_path(request: pytest.FixtureRequest):
@@ -32,7 +29,6 @@ def get_test_main_mod(mod_path: str) -> ModuleType:
     return test_main_mod
 
 
-@needs_pydanticv2
 def test_settings(main_mod: ModuleType, monkeypatch: MonkeyPatch):
     monkeypatch.setenv("ADMIN_EMAIL", "admin@example.com")
     settings = main_mod.get_settings()
@@ -40,6 +36,5 @@ def test_settings(main_mod: ModuleType, monkeypatch: MonkeyPatch):
     assert settings.items_per_user == 50
 
 
-@needs_pydanticv2
 def test_override_settings(test_main_mod: ModuleType):
     test_main_mod.test_app()

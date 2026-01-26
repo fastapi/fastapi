@@ -31,7 +31,7 @@ A função middleware recebe:
     * Então ela retorna a `response` gerada pela *operação de rota* correspondente.
 * Você pode então modificar ainda mais o `response` antes de retorná-lo.
 
-{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[8:9,11,14] *}
 
 /// tip | Dica
 
@@ -57,7 +57,7 @@ E também depois que a `response` é gerada, antes de retorná-la.
 
 Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a solicitação e gerar uma resposta:
 
-{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001_py39.py hl[10,12:13] *}
 
 /// tip | Dica
 

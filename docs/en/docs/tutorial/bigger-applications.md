@@ -56,7 +56,7 @@ from app.routers import items
 
 The same file structure with comments:
 
-```
+```bash
 .
 ├── app                  # "app" is a Python package
 │   ├── __init__.py      # this file makes "app" a "Python package"
