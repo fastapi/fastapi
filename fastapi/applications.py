@@ -812,6 +812,9 @@ class FastAPI(Starlette):
 
                 In this case, there would be two different schemas, one for input and
                 another one for output.
+
+                Read more about it in the
+                [FastAPI docs about how to separate schemas for input and output](https://fastapi.tiangolo.com/how-to/separate-openapi-schemas)
                 """
             ),
         ] = True,
