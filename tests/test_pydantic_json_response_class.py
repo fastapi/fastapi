@@ -1,15 +1,12 @@
 import math
-from typing import List, Optional
+from typing import Optional
 
 import pytest
 from dirty_equals import IsFloatNan
 from fastapi import FastAPI
-from fastapi._compat import PYDANTIC_V2
 from fastapi.responses import PydanticJSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-
-from .utils import needs_py_lt_314, needs_pydanticv2
 
 app = FastAPI(default_response_class=PydanticJSONResponse)
 
@@ -63,7 +60,7 @@ def get_response_model_params():
 
 class FloatsNone(BaseModel):
     # pydantic converts inf/nan to None by default
-    numbers: List[float]
+    numbers: list[float]
 
 
 class FloatsNum(FloatsNone):
@@ -85,7 +82,6 @@ def get_floats():
 client = TestClient(app)
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path,expected_response",
     [
@@ -138,7 +134,6 @@ def test_response_model_params(path: str, expected_response: dict):
     assert response.json() == expected_response
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path,expected_numbers",
     [
@@ -153,30 +148,8 @@ def test_floats(path: str, expected_numbers: list):
     assert response.json() == {"numbers": expected_numbers}
 
 
-@needs_pydanticv2
 def test_custom_response_class():
     response = client.get("/custom-class")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/x-custom"
     assert response.json() == {"numbers": [3.14, "Infinity", "NaN", 2.72]}
-
-
-@needs_py_lt_314
-def test_requires_pydantic_v2_model():
-    if PYDANTIC_V2:
-        from pydantic.v1 import BaseModel as BaseModelV1
-    else:
-        from pydantic import BaseModel as BaseModelV1
-
-    app = FastAPI(default_response_class=PydanticJSONResponse)
-
-    class ModelV1(BaseModelV1):
-        data: str
-
-    @app.get("/model-v1")
-    def get_model_v1() -> ModelV1:
-        return ModelV1(data="hello")
-
-    client = TestClient(app)
-    with pytest.raises(AssertionError, match="requires a pydantic v2 model"):
-        client.get("/model-v1")
