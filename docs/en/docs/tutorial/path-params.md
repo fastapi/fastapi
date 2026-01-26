@@ -178,7 +178,7 @@ GET /models/vgg16
 
 FastAPI returns a clear validation error:
 
-```
+```json
 {
   "detail": [
     {
