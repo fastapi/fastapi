@@ -5,12 +5,7 @@ from copy import copy, deepcopy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from functools import lru_cache
-from typing import (
-    Annotated,
-    Any,
-    Union,
-    cast,
-)
+from typing import Annotated, Any, Callable, Union, cast
 
 from fastapi._compat import shared
 from fastapi.openapi.constants import REF_TEMPLATE

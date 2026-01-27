@@ -26,6 +26,8 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
+    field_annotation_is_scalar_mapping,
+    field_annotation_is_scalar_sequence_mapping,
     get_cached_model_fields,
     get_missing_field_error,
     is_bytes_field,
@@ -38,11 +40,10 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    omit_by_default,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
-    field_annotation_is_scalar_mapping,
-    field_annotation_is_scalar_sequence_mapping,
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
@@ -505,8 +506,8 @@ def analyze_param(
         field_info.alias = alias
 
         # Omit by default for scalar mapping and scalar sequence mapping query fields
-        class_validators: Dict[str, Callable[..., Any]] = {}
-        if isinstance(field_info, (params.Query, temp_pydantic_v1_params.Query)) and (
+        class_validators: dict[str, Callable[..., Any]] = {}
+        if isinstance(field_info, params.Query) and (
             field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
             or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
         ):
@@ -727,10 +728,6 @@ def _validate_value_with_model_field(
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
 
-    if _is_error_wrapper(errors_):  # type: ignore[arg-type]
-        return None, [errors_]
-    elif isinstance(errors_, list):
-        new_errors = may_v1._regenerate_error_with_loc(errors=errors_, loc_prefix=())
     if isinstance(errors_, list):
         new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors

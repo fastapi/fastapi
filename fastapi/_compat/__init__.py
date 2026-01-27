@@ -2,14 +2,14 @@ from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
-from .shared import is_pydantic_v1_model_class as is_pydantic_v1_model_class
-from .shared import is_pydantic_v1_model_instance as is_pydantic_v1_model_instance
 from .shared import (
     field_annotation_is_scalar_mapping as field_annotation_is_scalar_mapping,
 )
 from .shared import (
     field_annotation_is_scalar_sequence_mapping as field_annotation_is_scalar_sequence_mapping,
 )
+from .shared import is_pydantic_v1_model_class as is_pydantic_v1_model_class
+from .shared import is_pydantic_v1_model_instance as is_pydantic_v1_model_instance
 from .shared import (
     is_uploadfile_or_nonable_uploadfile_annotation as is_uploadfile_or_nonable_uploadfile_annotation,
 )
@@ -39,11 +39,12 @@ from .v2 import get_schema_from_model_field as get_schema_from_model_field
 from .v2 import is_bytes_field as is_bytes_field
 from .v2 import is_bytes_sequence_field as is_bytes_sequence_field
 from .v2 import is_scalar_field as is_scalar_field
+from .v2 import is_scalar_mapping_field as is_scalar_mapping_field
 from .v2 import is_scalar_sequence_field as is_scalar_sequence_field
+from .v2 import is_scalar_sequence_mapping_field as is_scalar_sequence_mapping_field
 from .v2 import is_sequence_field as is_sequence_field
+from .v2 import omit_by_default as omit_by_default
 from .v2 import serialize_sequence_value as serialize_sequence_value
 from .v2 import (
     with_info_plain_validator_function as with_info_plain_validator_function,
 )
-from .v2 import is_scalar_mapping_field as is_scalar_mapping_field
-from .v2 import is_scalar_sequence_mapping_field as is_scalar_sequence_mapping_field
