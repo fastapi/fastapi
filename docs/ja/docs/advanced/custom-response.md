@@ -6,11 +6,11 @@
 
 しかし、`Response` を直接返すと（または `JSONResponse` のような任意のサブクラスを返すと）、データは自動的に変換されず（`response_model` を宣言していても）、ドキュメントも自動生成されません（例えば、生成されるOpenAPIの一部としてHTTPヘッダー `Content-Type` に特定の「メディアタイプ」を含めるなど）。
 
-しかし、`response_class` パラメータを使用して、*パスオペレーションデコレータ* で使用したい `Response`（例: 任意の `Response` サブクラス）を宣言することもできます。
+`response_class` パラメータを使用して、*path operation デコレータ* で使用したい `Response`（任意の `Response` サブクラス）を宣言することもできます。
 
-*パスオペレーション関数* から返されるコンテンツは、その `Response` に含まれます。
+*path operation 関数* から返されるコンテンツは、その `Response` に含まれます。
 
-そしてその `Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ（`application/json`）なら、返すデータは *パスオペレーションデコレータ* に宣言した任意のPydantic `response_model` により自動的に変換（およびフィルタ）されます。
+そしてその `Response` が、`JSONResponse` や `UJSONResponse` の場合のようにJSONメディアタイプ（`application/json`）なら、関数の返り値は *path operationデコレータ* に宣言した任意のPydantic `response_model` により自動的に変換（およびフィルタ）されます。
 
 /// note | 備考
 
@@ -22,7 +22,7 @@
 
 例えば、パフォーマンスを絞り出したい場合は、<a href="https://github.com/ijl/orjson" class="external-link" target="_blank">`orjson`</a>をインストールし、レスポンスとして `ORJSONResponse` をセットできます。
 
-使いたい `Response` クラス（サブクラス）をインポートし、*パスオペレーションデコレータ* に宣言します。
+使いたい `Response` クラス（サブクラス）をインポートし、*path operationデコレータ* に宣言します。
 
 大きなレスポンスの場合、`Response` を直接返すほうが、辞書を返すよりもはるかに高速です。
 
@@ -69,7 +69,7 @@
 
 ### `Response` を返す { #return-a-response }
 
-[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、レスポンスを返すことで、*パスオペレーション* の中でレスポンスを直接オーバーライドすることもできます。
+[レスポンスを直接返す](response-directly.md){.internal-link target=_blank}で見たように、レスポンスを返すことで、*path operation* の中でレスポンスを直接オーバーライドすることもできます。
 
 上記と同じ例において、 `HTMLResponse` を返すと、このようになります:
 
@@ -77,7 +77,7 @@
 
 /// warning | 注意
 
-*パスオペレーション関数* から直接返される `Response` は、OpenAPIにドキュメントされず（例えば、`Content-Type` がドキュメントされない）、自動的な対話的ドキュメントでも表示されません。
+*path operation関数* から直接返される `Response` は、OpenAPIにドキュメントされず（例えば、`Content-Type` がドキュメントされない）、自動的な対話的ドキュメントでも表示されません。
 
 ///
 
@@ -89,9 +89,9 @@
 
 ### OpenAPIドキュメントと `Response` のオーバーライド { #document-in-openapi-and-override-response }
 
-関数の中でレスポンスをオーバーライドしつつも、OpenAPI に「メディアタイプ」をドキュメント化したいなら、`response_class` パラメータを使用し、かつ `Response` オブジェクトを返せます。
+関数の中でレスポンスをオーバーライドしつつも、OpenAPI に「メディアタイプ」をドキュメント化したいなら、`response_class` パラメータを使用し、かつ `Response` オブジェクトを返します。
 
-`response_class` はOpenAPIの*パスオペレーション*のドキュメント化のためにのみ使用され、`Response` はそのまま使用されます。
+`response_class` はOpenAPIの*path operation*のドキュメント化のためにのみ使用され、`Response` はそのまま使用されます。
 
 #### `HTMLResponse` を直接返す { #return-an-htmlresponse-directly }
 
@@ -202,7 +202,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 {* ../../docs_src/custom_response/tutorial006b_py39.py hl[2,7,9] *}
 
-その場合、*パスオペレーション*関数からURLを直接返せます。
+その場合、*path operation*関数からURLを直接返せます。
 
 この場合に使用される `status_code` は `RedirectResponse` のデフォルトである `307` になります。
 
@@ -238,7 +238,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 /// tip | 豆知識
 
-ここでは `async` と `await` をサポートしていない標準の `open()` を使っているため、通常の `def` でパスオペレーションを宣言している点に注意してください。
+ここでは `async` と `await` をサポートしていない標準の `open()` を使っているため、通常の `def` でpath operationを宣言している点に注意してください。
 
 ///
 
@@ -261,7 +261,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 {* ../../docs_src/custom_response/tutorial009b_py39.py hl[2,8,10] *}
 
-この場合、*パスオペレーション*関数からファイルパスを直接返せます。
+この場合、*path operation*関数からファイルパスを直接返せます。
 
 ## カスタムレスポンスクラス { #custom-response-class }
 
@@ -303,7 +303,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 /// tip | 豆知識
 
-これまでと同様に、*パスオペレーション*で `response_class` をオーバーライドできます。
+これまでと同様に、*path operation*で `response_class` をオーバーライドできます。
 
 ///
 
