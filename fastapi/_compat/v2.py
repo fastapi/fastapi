@@ -650,6 +650,7 @@ else:
         ]
         return field_info, {}
 
+
 def _regenerate_error_with_loc(
     *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
 ) -> list[dict[str, Any]]:
