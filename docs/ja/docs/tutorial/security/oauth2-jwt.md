@@ -164,7 +164,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
 
-## `/token` *パスオペレーション* の更新 { #update-the-token-path-operation }
+## `/token` *path operation* の更新 { #update-the-token-path-operation }
 
 トークンの有効期限を表す`timedelta`を作成します。
 

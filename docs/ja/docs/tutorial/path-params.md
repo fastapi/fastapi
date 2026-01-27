@@ -122,7 +122,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 それ以外の場合、 `/users/{user_id}` は `/users/me` としてもマッチします。値が `"me"` であるパラメータ `user_id` を受け取ると「考え」ます。
 
-同様に、パスオペレーションを再定義することはできません:
+同様に、path operation を再定義することはできません:
 
 {* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
 
@@ -130,7 +130,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## 定義済みの値 { #predefined-values }
 
-*パスパラメータ*を受け取る *path operation* をもち、有効な*パスパラメータ*の値を事前に定義したい場合は、標準のPython <abbr title="Enumeration">`Enum`</abbr> を利用できます。
+*パスパラメータ*を受け取る *path operation* をもち、有効な*パスパラメータ*の値を事前に定義したい場合は、標準のPython <abbr title="Enumeration - 列挙型">`Enum`</abbr> を利用できます。
 
 ### `Enum` クラスの作成 { #create-an-enum-class }
 

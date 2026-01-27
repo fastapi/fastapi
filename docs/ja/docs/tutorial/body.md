@@ -57,7 +57,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 ## パラメータとして宣言 { #declare-it-as-a-parameter }
 
-*パスオペレーション* に追加するには、パスパラメータやクエリパラメータを宣言したのと同じ方法で宣言します:
+*path operation* に追加するには、パスパラメータやクエリパラメータを宣言したのと同じ方法で宣言します:
 
 {* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
@@ -82,7 +82,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 <img src="/img/tutorial/body/image01.png">
 
-また、それらが必要な各 *パスオペレーション* 内のAPIドキュメントでも使用されます:
+また、それらが必要な各 *path operation* 内のAPIドキュメントでも使用されます:
 
 <img src="/img/tutorial/body/image02.png">
 

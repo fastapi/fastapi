@@ -263,7 +263,7 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 
 「**オペレーションズ**」とも呼ぶことにします。
 
-#### *パスオペレーションデコレータ*を定義 { #define-a-path-operation-decorator }
+#### *path operation デコレータ*を定義 { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
 
@@ -282,7 +282,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 私たちの場合、このデコレーターは直下の関数が**オペレーション** `get`を使用した**パス** `/`に対応することを**FastAPI** に通知します。
 
-これが「*パスオペレーションデコレータ*」です。
+これが「*path operation デコレータ*」です。
 
 ///
 
@@ -311,9 +311,9 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 ///
 
-### Step 4: **パスオペレーション関数**を定義 { #step-4-define-the-path-operation-function }
+### Step 4: **path operation 関数**を定義 { #step-4-define-the-path-operation-function }
 
-以下は「**パスオペレーション関数**」です:
+以下は「**path operation 関数**」です:
 
 * **パス**: は`/`です。
 * **オペレーション**: は`get`です。
@@ -373,7 +373,7 @@ FastAPIはオープンソースで、標準に基づいています。選択し�
 
 * `FastAPI`をインポートします。
 * `app`インスタンスを生成します。
-* `@app.get("/")`のようなデコレータを使用して、**パスオペレーションデコレータ**を記述します。
-* **パスオペレーション関数**を定義します。例: `def root(): ...`。
+* `@app.get("/")`のようなデコレータを使用して、**path operation デコレータ**を記述します。
+* **path operation 関数**を定義します。例: `def root(): ...`。
 * `fastapi dev`コマンドで開発サーバーを起動します。
 * 任意で`fastapi deploy`を使ってアプリをデプロイします。

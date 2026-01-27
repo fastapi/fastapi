@@ -80,13 +80,13 @@ Pydanticモデルで`Field()`を使う場合、追加の`examples`も宣言で�
 
 **JSON Schema**が`examples`をサポートする前から、OpenAPIは同じく`examples`という別のフィールドをサポートしていました。
 
-この**OpenAPI固有**の`examples`は、OpenAPI仕様の別のセクションに入ります。各JSON Schemaの中ではなく、**各*パスオペレーション*の詳細**に入ります。
+この**OpenAPI固有**の`examples`は、OpenAPI仕様の別のセクションに入ります。各JSON Schemaの中ではなく、**各*path operation*の詳細**に入ります。
 
 そしてSwagger UIは、この特定の`examples`フィールドを以前からサポートしています。そのため、これを使って**ドキュメントUIに異なる例を表示**できます。
 
 このOpenAPI固有フィールド`examples`の形は**複数の例**（`list`ではなく）を持つ`dict`であり、それぞれに追加情報が含まれ、その追加情報は**OpenAPI**にも追加されます。
 
-これはOpenAPIに含まれる各JSON Schemaの中には入らず、外側の、*パスオペレーション*に直接入ります。
+これはOpenAPIに含まれる各JSON Schemaの中には入らず、外側の、*path operation*に直接入ります。
 
 ### `openapi_examples`パラメータの使用 { #using-the-openapi-examples-parameter }
 
@@ -185,7 +185,7 @@ Pydanticモデル内で、`schema_extra`または`Field(examples=["something"])`
 
 そしてそのPydanticモデルの**JSON Schema**はAPIの**OpenAPI**に含まれ、ドキュメントUIで使用されます。
 
-FastAPI 0.99.0より前のバージョン（0.99.0以上は新しいOpenAPI 3.1.0を使用）では、他のユーティリティ（`Query()`、`Body()`など）で`example`または`examples`を使っても、それらの例はそのデータを説明するJSON Schema（OpenAPI独自版のJSON Schemaでさえ）には追加されず、OpenAPI内の*パスオペレーション*宣言に直接追加されていました（JSON Schemaを使用するOpenAPIの部分の外側）。
+FastAPI 0.99.0より前のバージョン（0.99.0以上は新しいOpenAPI 3.1.0を使用）では、他のユーティリティ（`Query()`、`Body()`など）で`example`または`examples`を使っても、それらの例はそのデータを説明するJSON Schema（OpenAPI独自版のJSON Schemaでさえ）には追加されず、OpenAPI内の*path operation*宣言に直接追加されていました（JSON Schemaを使用するOpenAPIの部分の外側）。
 
 しかし、FastAPI 0.99.0以上ではOpenAPI 3.1.0を使用し、それはJSON Schema 2020-12とSwagger UI 5.0.0以上を使うため、すべてがより一貫し、例はJSON Schemaに含まれます。
 

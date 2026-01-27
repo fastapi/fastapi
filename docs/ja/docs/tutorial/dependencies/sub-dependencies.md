@@ -37,7 +37,7 @@
 
 /// info | 情報
 
-*パスオペレーション関数*の中で宣言している依存関係は`query_or_cookie_extractor`の1つだけであることに注意してください。
+*path operation 関数*の中で宣言している依存関係は`query_or_cookie_extractor`の1つだけであることに注意してください。
 
 しかし、**FastAPI** は`query_extractor`を最初に解決し、その結果を`query_or_cookie_extractor`を呼び出す時に渡す必要があることを知っています。
 
@@ -56,7 +56,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 ## 同じ依存関係の複数回の使用 { #using-the-same-dependency-multiple-times }
 
-依存関係の1つが同じ*パスオペレーション*に対して複数回宣言されている場合、例えば、複数の依存関係が共通のサブ依存関係を持っている場合、**FastAPI** はリクエストごとに1回だけそのサブ依存関係を呼び出します。
+依存関係の1つが同じ*path operation*に対して複数回宣言されている場合、例えば、複数の依存関係が共通のサブ依存関係を持っている場合、**FastAPI** はリクエストごとに1回だけそのサブ依存関係を呼び出します。
 
 そして、返された値を<abbr title="A utility/system to store computed/generated values, to reuse them instead of computing them again. – 計算/生成された値を保存し、再計算する代わりに再利用するためのユーティリティ/システム。">「キャッシュ」</abbr>に保存し、同じリクエストに対して依存関係を何度も呼び出す代わりに、その特定のリクエストでそれを必要とする全ての「依存」に渡すことになります。
 
@@ -90,7 +90,7 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 ここで使われている派手な言葉は別にして、**Dependency Injection** システムは非常にシンプルです。
 
-*パスオペレーション関数*と同じように見えるただの関数です。
+*path operation 関数*と同じように見えるただの関数です。
 
 しかし、それでも非常に強力で、任意の深くネストされた依存関係「グラフ」（ツリー）を宣言することができます。
 

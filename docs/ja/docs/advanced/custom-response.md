@@ -53,7 +53,7 @@
 **FastAPI** からHTMLを直接返す場合は、`HTMLResponse` を使います。
 
 * `HTMLResponse` をインポートする。
-* *パスオペレーションデコレータ* のパラメータ `response_class` に `HTMLResponse` を渡す。
+* *path operation デコレータ* のパラメータ `response_class` に `HTMLResponse` を渡す。
 
 {* ../../docs_src/custom_response/tutorial002_py39.py hl[2,7] *}
 
@@ -297,7 +297,7 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 これを定義するパラメータは `default_response_class` です。
 
-以下の例では、**FastAPI** はすべての*パスオペレーション*で、`JSONResponse` の代わりに `ORJSONResponse` をデフォルトとして使います。
+以下の例では、**FastAPI** はすべての*path operation*で、`JSONResponse` の代わりに `ORJSONResponse` をデフォルトとして使います。
 
 {* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
 

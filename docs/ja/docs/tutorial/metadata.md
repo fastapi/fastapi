@@ -40,13 +40,13 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 ## タグのメタデータ { #metadata-for-tags }
 
-パラメータ `openapi_tags` を使うと、パスオペレーションをグループ分けするために使用する各タグに追加のメタデータを追加できます。
+パラメータ `openapi_tags` を使うと、path operation をグループ分けするために使用する各タグに追加のメタデータを追加できます。
 
 それぞれのタグごとに1つの辞書を含むリストを取ります。
 
 それぞれの辞書は以下を含められます:
 
-* `name` (**必須**): *パスオペレーション* および `APIRouter` の `tags` パラメータで使用するのと同じタグ名の `str`。
+* `name` (**必須**): *path operation* および `APIRouter` の `tags` パラメータで使用するのと同じタグ名の `str`。
 * `description`: タグの短い説明の `str`。Markdownを含められ、ドキュメントUIに表示されます。
 * `externalDocs`: 外部ドキュメントを説明する `dict`。以下を含みます:
     * `description`: 外部ドキュメントの短い説明の `str`。
@@ -70,7 +70,7 @@ OpenAPI 3.1.0 および FastAPI 0.99.0 以降では、`license_info` を `url` �
 
 ### タグの使用 { #use-your-tags }
 
-*パスオペレーション*（および `APIRouter`）の `tags` パラメータを使用して、それらを異なるタグに割り当てます:
+*path operation*（および `APIRouter`）の `tags` パラメータを使用して、それらを異なるタグに割り当てます:
 
 {* ../../docs_src/metadata/tutorial004_py39.py hl[21,26] *}
 
