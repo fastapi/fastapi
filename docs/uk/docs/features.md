@@ -6,7 +6,7 @@
 
 ### На основі відкритих стандартів { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для створення API, включаючи оголошення <abbr title="також відомі як: endpoints, routes">шляхів</abbr>, <abbr title="також відомі як HTTP-методи, наприклад, POST, GET, PUT, DELETE">операцій</abbr>, параметрів, тіл запитів, безпеки тощо.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> для створення API, включаючи оголошення <abbr title="також відомі як: endpoints, маршрути">шляхів</abbr>, <abbr title="також відомі як HTTP-методи, наприклад, POST, GET, PUT, DELETE">операцій</abbr>, параметрів, тіл запитів, безпеки тощо.
 * Автоматична документація моделей даних за допомогою <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (оскільки OpenAPI базується саме на JSON Schema).
 * Розроблено на основі цих стандартів після ретельного аналізу, а не як додатковий рівень поверх основної архітектури.
 * Це також дає змогу використовувати автоматичну **генерацію клієнтського коду** багатьма мовами.
@@ -170,8 +170,8 @@ FastAPI містить надзвичайно просту у використа
 * Фонові задачі у процесі.
 * Події запуску та завершення роботи.
 * Клієнт для тестування, побудований на HTTPX.
-* **CORS**, GZip, Static Files, Streaming responses.
-* Підтримка **Session and Cookie**.
+* Підтримка **CORS**, **GZip**, статичних файлів, потокових відповідей.
+* Підтримка **сесій** і **cookie**.
 * 100% покриття тестами.
 * 100% анотована типами кодова база.
 
