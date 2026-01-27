@@ -571,9 +571,6 @@ def get_flat_models_from_fields(
     return known_models
 
 
-def get_long_model_name(model: TypeModelOrEnum) -> str:
-    return f"{model.__module__}__{model.__qualname__}".replace(".", "__")
-
 
 if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
     # Omit by default for scalar mapping and scalar sequence mapping annotations
@@ -601,7 +598,7 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
         )
         return new_field_info, {}
 
-else:
+else: # pragma: no cover
 
     def ignore_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
         try:

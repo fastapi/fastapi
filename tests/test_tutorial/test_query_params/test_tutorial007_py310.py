@@ -26,7 +26,7 @@ def test_foo_needy_very(client: TestClient):
 
 @needs_py310
 def test_just_string_not_scalar_mapping(client: TestClient):
-    response = client.get("/query/mixed-type-params?&query=2&foo=1&bar=3&foo=2&foo=baz")
+    response = client.get("/query/mixed-type-params?query=2&foo=1&bar=3&foo=2&foo=baz")
     assert response.status_code == 200
     assert response.json() == {
         "query": 2,

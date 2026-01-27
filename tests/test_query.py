@@ -289,6 +289,19 @@ def test_sequence_mapping_query():
     assert response.json() == {"queries": {"foo": [1, 2]}}
 
 
+def test_mixed_sequence_mapping_query():
+    response = client.get("/query/mixed-type-params?query=2&foo=1&bar=3&foo=2&foo=baz")
+    assert response.status_code == 200
+    assert response.json() == {
+        "queries": {
+            "mapping_query_int": {"bar": 3},
+            "mapping_query_str": {"bar": "3", "foo": "baz"},
+            "query": 2,
+            "sequence_mapping_queries": {"bar": [3], "foo": [1, 2]},
+        }
+    }
+
+
 def test_mapping_with_non_mapping_query():
     response = client.get("/query/mixed-params/?foo=1&foo=2&bar=3&query=fizz")
     assert response.status_code == 200
