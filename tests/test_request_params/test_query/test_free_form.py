@@ -75,11 +75,15 @@ def test_required_dict_str(path: str):
     assert response.status_code == 200
     assert response.json() == {"p": {"foo": "bar", "baz": "qux"}}
 
+
 # =====================================================================================
 # With union types
 
+
 @app.get("/required-dict-union")
-async def read_required_dict_union(p: Annotated[dict[str, str] | dict[str, int], Query()]):
+async def read_required_dict_union(
+    p: Annotated[dict[str, str] | dict[str, int], Query()],
+):
     return {"p": p}
 
 
@@ -90,6 +94,7 @@ class QueryModelRequiredDictUnion(BaseModel):
 @app.get("/model-required-dict-union")
 def read_model_required_dict_union(p: Annotated[QueryModelRequiredDictUnion, Query()]):
     return {"p": p.p}
+
 
 @pytest.mark.parametrize(
     "path",
@@ -117,6 +122,7 @@ def test_required_dict_union_schema(path: str):
         }
     ]
 
+
 @pytest.mark.parametrize(
     "path",
     ["/required-dict-union", "/model-required-dict-union"],
@@ -136,6 +142,7 @@ def test_required_dict_union_missing(path: str):
         ]
     }
 
+
 @pytest.mark.parametrize(
     "path",
     ["/required-dict-union", "/model-required-dict-union"],
@@ -145,6 +152,7 @@ def test_required_dict_union(path: str):
     response = client.get(f"{path}?foo=bar&baz=42")
     assert response.status_code == 200
     assert response.json() == {"p": {"foo": "bar", "baz": "42"}}
+
 
 @app.get("/required-dict-of-union")
 async def read_required_dict_of_union(p: Annotated[dict[str, int | bool], Query()]):
@@ -160,6 +168,7 @@ def read_model_required_dict_of_union(
     p: Annotated[QueryModelRequiredDictOfUnion, Query()],
 ):
     return {"p": p.p}
+
 
 @pytest.mark.parametrize(
     "path",
@@ -183,6 +192,7 @@ def test_required_dict_of_union_schema(path: str):
             "in": "query",
         }
     ]
+
 
 @pytest.mark.parametrize(
     "path",
@@ -215,18 +225,22 @@ def test_required_dict_of_union(path: str):
     assert response.status_code == 200
     assert response.json() == {"p": {"foo": True, "baz": 42}}
 
+
 @app.get("/required-dict-of-list")
 async def read_required_dict_of_list(p: Annotated[dict[str, list[int]], Query()]):
     return {"p": p}
 
+
 class QueryModelRequiredDictOfList(BaseModel):
     p: dict[str, list[int]]
+
 
 @app.get("/model-required-dict-of-list")
 def read_model_required_dict_of_list(
     p: Annotated[QueryModelRequiredDictOfList, Query()],
 ):
     return {"p": p.p}
+
 
 @pytest.mark.parametrize(
     "path",
@@ -249,6 +263,7 @@ def test_required_dict_of_list_schema(path: str):
         }
     ]
 
+
 @pytest.mark.parametrize(
     "path",
     ["/required-dict-of-list", "/model-required-dict-of-list"],
@@ -267,6 +282,7 @@ def test_required_dict_of_list_missing(path: str):
             }
         ]
     }
+
 
 @pytest.mark.parametrize(
     "path",
