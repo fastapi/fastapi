@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -65,61 +64,31 @@ def test_query_param_model_invalid(client: TestClient):
     )
     assert response.status_code == 422
     assert response.json() == snapshot(
-        IsDict(
-            {
-                "detail": [
-                    {
-                        "type": "less_than_equal",
-                        "loc": ["query", "limit"],
-                        "msg": "Input should be less than or equal to 100",
-                        "input": "150",
-                        "ctx": {"le": 100},
-                    },
-                    {
-                        "type": "greater_than_equal",
-                        "loc": ["query", "offset"],
-                        "msg": "Input should be greater than or equal to 0",
-                        "input": "-1",
-                        "ctx": {"ge": 0},
-                    },
-                    {
-                        "type": "literal_error",
-                        "loc": ["query", "order_by"],
-                        "msg": "Input should be 'created_at' or 'updated_at'",
-                        "input": "invalid",
-                        "ctx": {"expected": "'created_at' or 'updated_at'"},
-                    },
-                ]
-            }
-        )
-        | IsDict(
-            # TODO: remove when deprecating Pydantic v1
-            {
-                "detail": [
-                    {
-                        "type": "value_error.number.not_le",
-                        "loc": ["query", "limit"],
-                        "msg": "ensure this value is less than or equal to 100",
-                        "ctx": {"limit_value": 100},
-                    },
-                    {
-                        "type": "value_error.number.not_ge",
-                        "loc": ["query", "offset"],
-                        "msg": "ensure this value is greater than or equal to 0",
-                        "ctx": {"limit_value": 0},
-                    },
-                    {
-                        "type": "value_error.const",
-                        "loc": ["query", "order_by"],
-                        "msg": "unexpected value; permitted: 'created_at', 'updated_at'",
-                        "ctx": {
-                            "given": "invalid",
-                            "permitted": ["created_at", "updated_at"],
-                        },
-                    },
-                ]
-            }
-        )
+        {
+            "detail": [
+                {
+                    "type": "less_than_equal",
+                    "loc": ["query", "limit"],
+                    "msg": "Input should be less than or equal to 100",
+                    "input": "150",
+                    "ctx": {"le": 100},
+                },
+                {
+                    "type": "greater_than_equal",
+                    "loc": ["query", "offset"],
+                    "msg": "Input should be greater than or equal to 0",
+                    "input": "-1",
+                    "ctx": {"ge": 0},
+                },
+                {
+                    "type": "literal_error",
+                    "loc": ["query", "order_by"],
+                    "msg": "Input should be 'created_at' or 'updated_at'",
+                    "input": "invalid",
+                    "ctx": {"expected": "'created_at' or 'updated_at'"},
+                },
+            ]
+        }
     )
 
 
