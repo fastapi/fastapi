@@ -36,13 +36,13 @@ from datetime import date
 
 from pydantic import BaseModel
 
-# Declare a variable as a str
-# and get editor support inside the function
+# Оголосіть змінну як str
+# та отримайте підтримку редактора всередині функції
 def main(user_id: str):
     return user_id
 
 
-# A Pydantic model
+# Модель Pydantic
 class User(BaseModel):
     id: int
     name: str
@@ -136,7 +136,7 @@ FastAPI має розумні **налаштування за замовчува
 
 ### Впровадження залежностей { #dependency-injection }
 
-FastAPI містить надзвичайно просту у використанні, але надзвичайно потужну систему <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr>.
+FastAPI містить надзвичайно просту у використанні, але надзвичайно потужну систему <abbr title='також відоме як: "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr>.
 
 * Навіть залежності можуть мати власні залежності, утворюючи ієрархію або **«граф» залежностей**.
 * Усе **автоматично обробляється** фреймворком.
@@ -179,7 +179,7 @@ FastAPI містить надзвичайно просту у використа
 
 **FastAPI** повністю сумісний із (та побудований на основі) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Тому будь-який додатковий код Pydantic, який ви маєте, також працюватиме.
 
-Включно із зовнішніми бібліотеками, які також базуються на Pydantic, як-от <abbr title="Object-Relational Mapper">ORM</abbr>-и, <abbr title="Object-Document Mapper">ODM</abbr>-и для баз даних.
+Включно із зовнішніми бібліотеками, які також базуються на Pydantic, як-от <abbr title="Object-Relational Mapper - Об'єктно-реляційний відображувач">ORM</abbr>-и, <abbr title="Object-Document Mapper - Об'єктно-документний відображувач">ODM</abbr>-и для баз даних.
 
 Це також означає, що в багатьох випадках ви можете передати той самий об'єкт, який отримуєте із запиту, **безпосередньо в базу даних**, оскільки все автоматично перевіряється.
 
@@ -190,7 +190,7 @@ FastAPI містить надзвичайно просту у використа
 * **Ніякої плутанини**:
     * Не потрібно вчити нову мікромову для визначення схем.
     * Якщо ви знаєте типи Python, ви знаєте, як використовувати Pydantic.
-* Легко працює з вашим **<abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/мозком**:
+* Легко працює з вашим **<abbr title="Integrated Development Environment - Інтегроване середовище розробки: схоже на код-редактор">IDE</abbr>/<abbr title="Програма, що перевіряє код на помилки">linter</abbr>/мозком**:
     * Оскільки структури даних pydantic є просто екземплярами класів, які ви визначаєте; автодоповнення, лінтинг, mypy і ваша інтуїція повинні добре працювати з вашими перевіреними даними.
 * Валідує **складні структури**:
     * Використання ієрархічних моделей Pydantic, Python `typing`’s `List` і `Dict` тощо.
