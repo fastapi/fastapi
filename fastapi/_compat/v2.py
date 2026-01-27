@@ -570,6 +570,14 @@ def get_flat_models_from_fields(
         get_flat_models_from_field(field, known_models=known_models)
     return known_models
 
+def _regenerate_error_with_loc(
+    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+) -> list[dict[str, Any]]:
+    updated_loc_errors: list[Any] = [
+        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
+    ]
+
+    return updated_loc_errors
 
 if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
     # Omit by default for scalar mapping and scalar sequence mapping annotations
@@ -645,13 +653,3 @@ else:  # pragma: no cover
             WrapValidator(ignore_invalid)
         ]
         return field_info, {}
-
-
-def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
-) -> list[dict[str, Any]]:
-    updated_loc_errors: list[Any] = [
-        {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors
-    ]
-
-    return updated_loc_errors
