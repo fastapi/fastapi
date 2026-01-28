@@ -155,12 +155,12 @@ def test_required_dict_union(path: str):
 
 
 @app.get("/required-dict-of-union")
-async def read_required_dict_of_union(p: Annotated[dict[str, int | bool], Query()]):
+async def read_required_dict_of_union(p: Annotated[dict[str, Union[int, bool]], Query()]):
     return {"p": p}
 
 
 class QueryModelRequiredDictOfUnion(BaseModel):
-    p: dict[str, int | bool]
+    p: dict[str, Union[int, bool]]
 
 
 @app.get("/model-required-dict-of-union")
