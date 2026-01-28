@@ -26,16 +26,21 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
+    field_annotation_is_scalar_mapping,
+    field_annotation_is_scalar_sequence_mapping,
     get_cached_model_fields,
     get_missing_field_error,
     is_bytes_field,
     is_bytes_sequence_field,
     is_scalar_field,
+    is_scalar_mapping_field,
     is_scalar_sequence_field,
+    is_scalar_sequence_mapping_field,
     is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    omit_by_default,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
@@ -497,7 +502,17 @@ def analyze_param(
             alias = param_name.replace("_", "-")
         else:
             alias = field_info.alias or param_name
+
         field_info.alias = alias
+
+        # Omit by default for scalar mapping and scalar sequence mapping query fields
+        class_validators: dict[str, Callable[..., Any]] = {}
+        if isinstance(field_info, params.Query) and (
+            field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
+            or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
+        ):
+            field_info, class_validators = omit_by_default(field_info)
+
         field = create_model_field(
             name=param_name,
             type_=use_annotation_from_field_info,
@@ -505,6 +520,7 @@ def analyze_param(
             alias=alias,
             required=field_info.default in (RequiredParam, Undefined),
             field_info=field_info,
+            class_validators=class_validators,
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
@@ -514,6 +530,8 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
+                or is_scalar_mapping_field(field)
+                or is_scalar_sequence_mapping_field(field)
                 or (
                     lenient_issubclass(field.type_, BaseModel)
                     # For Pydantic v1
@@ -709,6 +727,7 @@ def _validate_value_with_model_field(
         else:
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
+
     if isinstance(errors_, list):
         new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
         return None, new_errors
@@ -720,10 +739,19 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
+    value: Any = None
     if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
         value = values.getlist(alias)
-    else:
-        value = values.get(alias, None)
+    elif alias in values:
+        value = values[alias]
+    elif values and is_scalar_mapping_field(field) and isinstance(values, QueryParams):
+        value = dict(values)
+    elif (
+        values
+        and is_scalar_sequence_mapping_field(field)
+        and isinstance(values, QueryParams)
+    ):
+        value = {key: values.getlist(key) for key in values.keys()}
     if (
         value is None
         or (
@@ -820,6 +848,14 @@ def request_params_to_args(
             errors.extend(errors_)
         else:
             values[field.name] = v_
+    # remove keys which were captured by a mapping query field but were
+    # specified as individual fields
+    for field in fields:
+        if isinstance(values.get(field.name), dict) and (
+            is_scalar_mapping_field(field) or is_scalar_sequence_mapping_field(field)
+        ):
+            for f_ in fields:
+                values[field.name].pop(f_.alias, None)
     return values, errors
 
 
