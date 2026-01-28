@@ -584,7 +584,7 @@ def _regenerate_error_with_loc(
 if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
     # Omit by default for scalar mapping and scalar sequence mapping annotations
     # added in Pydantic v2.6 https://github.com/pydantic/pydantic/releases/tag/v2.6.0
-    def _omit_by_default(annotation: Any, depth: int=0) -> Any:
+    def _omit_by_default(annotation: Any, depth: int = 0) -> Any:
         origin = get_origin(annotation)
         args = get_args(annotation)
 
