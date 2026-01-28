@@ -589,6 +589,11 @@ if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
         args = get_args(annotation)
 
         if (origin is Union or origin is UnionType) and depth == 0:
+            # making the depth check since the values of dicts being Union types
+            # is not working as expected as of Pydantic v2.12.3 so we just omit at
+            # the top level Union here for now
+            # https://github.com/pydantic/pydantic-core/issues/1900
+            # https://github.com/pydantic/pydantic/issues/12750
             return Union[tuple(_omit_by_default(arg) for arg in args)]
         elif origin is list:
             return list[_omit_by_default(args[0], depth=depth + 1)]  # type: ignore[misc]
