@@ -88,7 +88,7 @@ async def read_required_dict_union(
 
 
 class QueryModelRequiredDictUnion(BaseModel):
-    p: dict[str, str] | dict[str, int]
+    p: Union[dict[str, str], dict[str, int]]
 
 
 @app.get("/model-required-dict-union")
