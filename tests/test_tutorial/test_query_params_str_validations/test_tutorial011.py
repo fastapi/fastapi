@@ -1,20 +1,17 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39, needs_py310
+from ...utils import needs_py310
 
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial011",
-        pytest.param("tutorial011_py39", marks=needs_py310),
+        pytest.param("tutorial011_py39"),
         pytest.param("tutorial011_py310", marks=needs_py310),
-        "tutorial011_an",
-        pytest.param("tutorial011_an_py39", marks=needs_py39),
+        pytest.param("tutorial011_an_py39"),
         pytest.param("tutorial011_an_py310", marks=needs_py310),
     ],
 )
@@ -71,23 +68,13 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [
-                                        {"type": "array", "items": {"type": "string"}},
-                                        {"type": "null"},
-                                    ],
-                                    "title": "Q",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "title": "Q",
-                                    "type": "array",
-                                    "items": {"type": "string"},
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [
+                                    {"type": "array", "items": {"type": "string"}},
+                                    {"type": "null"},
+                                ],
+                                "title": "Q",
+                            },
                             "name": "q",
                             "in": "query",
                         }

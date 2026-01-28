@@ -139,7 +139,7 @@ OpenAPIスキーマは、FastAPIに含まれている2つのインタラクテ�
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
-`FastAPI`でも<a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
+`FastAPI`でも<a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a>のすべての機能を利用可能です。
 
 ///
 

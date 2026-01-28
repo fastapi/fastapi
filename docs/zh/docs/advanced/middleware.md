@@ -92,4 +92,4 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 * <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn 的 `ProxyHeadersMiddleware`</a>
 * <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
 
-其它可用中间件详见 <a href="https://www.starlette.io/middleware/" class="external-link" target="_blank">Starlette 官档 -  中间件</a> 及 <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome 列表</a>。
+其它可用中间件详见 <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette 官档 -  中间件</a> 及 <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome 列表</a>。

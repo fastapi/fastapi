@@ -4,15 +4,12 @@ from base64 import b64encode
 import pytest
 from fastapi.testclient import TestClient
 
-from ...utils import needs_py39
-
 
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial006",
-        "tutorial006_an",
-        pytest.param("tutorial006_an_py39", marks=needs_py39),
+        pytest.param("tutorial006_py39"),
+        pytest.param("tutorial006_an_py39"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -41,7 +38,7 @@ def test_security_http_basic_invalid_credentials(client: TestClient):
     )
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_security_http_basic_non_basic_credentials(client: TestClient):
@@ -50,7 +47,7 @@ def test_security_http_basic_non_basic_credentials(client: TestClient):
     response = client.get("/users/me", headers={"Authorization": auth_header})
     assert response.status_code == 401, response.text
     assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Invalid authentication credentials"}
+    assert response.json() == {"detail": "Not authenticated"}
 
 
 def test_openapi_schema(client: TestClient):

@@ -27,7 +27,7 @@ $ pip install jinja2
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
-{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
 
 /// note
 
@@ -123,4 +123,4 @@ And because you are using `StaticFiles`, that CSS file would be served automatic
 
 ## More details { #more-details }
 
-For more details, including how to test templates, check <a href="https://www.starlette.io/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.
+For more details, including how to test templates, check <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.

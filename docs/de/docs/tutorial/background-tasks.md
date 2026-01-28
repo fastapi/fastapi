@@ -15,7 +15,7 @@ Hierzu zählen beispielsweise:
 
 Importieren Sie zunächst `BackgroundTasks` und definieren Sie einen Parameter in Ihrer *Pfadoperation-Funktion* mit der Typdeklaration `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[1,13] *}
 
 **FastAPI** erstellt für Sie das Objekt vom Typ `BackgroundTasks` und übergibt es als diesen Parameter.
 
@@ -31,13 +31,13 @@ In diesem Fall schreibt die Taskfunktion in eine Datei (den Versand einer E-Mail
 
 Und da der Schreibvorgang nicht `async` und `await` verwendet, definieren wir die Funktion mit normalem `def`:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[6:9] *}
 
 ## Den Hintergrundtask hinzufügen { #add-the-background-task }
 
 Übergeben Sie innerhalb Ihrer *Pfadoperation-Funktion* Ihre Taskfunktion mit der Methode `.add_task()` an das *Hintergrundtasks*-Objekt:
 
-{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001_py39.py hl[14] *}
 
 `.add_task()` erhält als Argumente:
 
@@ -63,7 +63,7 @@ Und dann schreibt ein weiterer Hintergrundtask, der in der *Pfadoperation-Funkti
 
 ## Technische Details { #technical-details }
 
-Die Klasse `BackgroundTasks` stammt direkt von <a href="https://www.starlette.io/background/" class="external-link" target="_blank">`starlette.background`</a>.
+Die Klasse `BackgroundTasks` stammt direkt von <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">`starlette.background`</a>.
 
 Sie wird direkt in FastAPI importiert/inkludiert, sodass Sie sie von `fastapi` importieren können und vermeiden, versehentlich das alternative `BackgroundTask` (ohne das `s` am Ende) von `starlette.background` zu importieren.
 
@@ -71,7 +71,7 @@ Indem Sie nur `BackgroundTasks` (und nicht `BackgroundTask`) verwenden, ist es d
 
 Es ist immer noch möglich, `BackgroundTask` allein in FastAPI zu verwenden, aber Sie müssen das Objekt in Ihrem Code erstellen und eine Starlette-`Response` zurückgeben, die es enthält.
 
-Weitere Details finden Sie in <a href="https://www.starlette.io/background/" class="external-link" target="_blank">Starlettes offizieller Dokumentation für Hintergrundtasks</a>.
+Weitere Details finden Sie in <a href="https://www.starlette.dev/background/" class="external-link" target="_blank">Starlettes offizieller Dokumentation für Hintergrundtasks</a>.
 
 ## Vorbehalt { #caveat }
 

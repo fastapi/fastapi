@@ -15,7 +15,7 @@ So verwenden:
 
 Die Tests:
 
-## Codeschnipsel { #code-snippets}
+## Codeschnipsel { #code-snippets }
 
 //// tab | Test
 
@@ -47,13 +47,13 @@ Das LLM wird dies wahrscheinlich falsch übersetzen. Interessant ist nur, ob es 
 
 //// tab | Info
 
-Der Prompt-Designer kann entscheiden, ob neutrale Anführungszeichen in typografische Anführungszeichen umgewandelt werden sollen. Es ist in Ordnung, sie unverändert zu lassen.
+Der Promptdesigner kann entscheiden, ob neutrale Anführungszeichen in typografische Anführungszeichen umgewandelt werden sollen. Es ist in Ordnung, sie unverändert zu lassen.
 
 Siehe zum Beispiel den Abschnitt `### Quotes` in `docs/de/llm-prompt.md`.
 
 ////
 
-## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
+## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets }
 
 //// tab | Test
 
@@ -189,7 +189,7 @@ Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
 
-## HTML „abbr“-Elemente { #html-abbr-elements }
+## HTML-„abbr“-Elemente { #html-abbr-elements }
 
 //// tab | Test
 
@@ -443,7 +443,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 * die Workload
 
 * das Deployment
-* bereitstellen
+* deployen
 
 * das SDK
 * das Software Development Kit
@@ -459,7 +459,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 * der Commit
 * der Contextmanager
 * die Coroutine
-* die Datenbank-Session
+* die Datenbanksession
 * die Festplatte
 * die Domain
 * die Engine
@@ -496,7 +496,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 
 //// tab | Info
 
-Dies ist eine nicht vollständige und nicht normative Liste von (meist) technischen Begriffen, die in der Dokumentation vorkommen. Sie kann dem Prompt-Designer helfen herauszufinden, bei welchen Begriffen das LLM Unterstützung braucht. Zum Beispiel, wenn es eine gute Übersetzung immer wieder auf eine suboptimale Übersetzung zurücksetzt. Oder wenn es Probleme hat, einen Begriff in Ihrer Sprache zu konjugieren/deklinieren.
+Dies ist eine nicht vollständige und nicht normative Liste von (meist) technischen Begriffen, die in der Dokumentation vorkommen. Sie kann dem Promptdesigner helfen herauszufinden, bei welchen Begriffen das LLM Unterstützung braucht. Zum Beispiel, wenn es eine gute Übersetzung immer wieder auf eine suboptimale Übersetzung zurücksetzt. Oder wenn es Probleme hat, einen Begriff in Ihrer Sprache zu konjugieren/deklinieren.
 
 Siehe z. B. den Abschnitt `### List of English terms and their preferred German translations` in `docs/de/llm-prompt.md`.
 
