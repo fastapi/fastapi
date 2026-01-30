@@ -7,4 +7,4 @@ def get_authorization_scheme_param(
     if not authorization_header_value:
         return "", ""
     scheme, _, param = authorization_header_value.partition(" ")
-    return scheme, param
+    return scheme, param.strip()
