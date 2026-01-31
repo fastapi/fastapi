@@ -1,16 +1,16 @@
-# 查詢參數模型
+# 查詢參數模型 { #query-parameter-models }
 
 如果你有一組具有相關性的**查詢參數**，你可以建立一個 **Pydantic 模型**來聲明它們。
 
 這將允許你在**多個地方**去**重複使用模型**，並且一次性為所有參數聲明驗證和元資料 (metadata)。😎
 
-/// note
+/// note | 注意
 
 FastAPI 從 `0.115.0` 版本開始支援這個特性。🤓
 
 ///
 
-## 使用 Pydantic 模型的查詢參數
+## 使用 Pydantic 模型的查詢參數 { #query-parameters-with-a-pydantic-model }
 
 在一個 **Pydantic 模型**中聲明你需要的**查詢參數**，然後將參數聲明為 `Query`：
 
@@ -18,7 +18,7 @@ FastAPI 從 `0.115.0` 版本開始支援這個特性。🤓
 
 **FastAPI** 將會從請求的**查詢參數**中**提取**出**每個欄位**的資料，並將其提供給你定義的 Pydantic 模型。
 
-## 查看文件
+## 查看文件 { #check-the-docs }
 
 你可以在 `/docs` 頁面的 UI 中查看查詢參數：
 
@@ -26,7 +26,7 @@ FastAPI 從 `0.115.0` 版本開始支援這個特性。🤓
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## 禁止額外的查詢參數
+## 禁止額外的查詢參數 { #forbid-extra-query-parameters }
 
 在一些特殊的使用場景中（可能不是很常見），你可能希望**限制**你要收到的查詢參數。
 
@@ -57,7 +57,7 @@ https://example.com/items/?limit=10&tool=plumbus
 }
 ```
 
-## 總結
+## 總結 { #summary }
 
 你可以使用 **Pydantic 模型**在 **FastAPI** 中聲明**查詢參數**。😎
 

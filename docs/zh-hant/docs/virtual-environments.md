@@ -1,4 +1,4 @@
-# 虛擬環境
+# 虛擬環境 { #virtual-environments }
 
 當你在 Python 專案中工作時，你可能會需要使用一個**虛擬環境**（或類似的機制）來隔離你為每個專案安裝的套件。
 
@@ -26,7 +26,7 @@
 
 ///
 
-## 建立一個專案
+## 建立一個專案 { #create-a-project }
 
 首先，為你的專案建立一個目錄。
 
@@ -37,23 +37,23 @@
 <div class="termy">
 
 ```console
-// 進入主目錄
+// Go to the home directory
 $ cd
-// 建立一個用於存放所有程式碼專案的目錄
+// Create a directory for all your code projects
 $ mkdir code
-// 進入 code 目錄
+// Enter into that code directory
 $ cd code
-// 建立一個用於存放這個專案的目錄
+// Create a directory for this project
 $ mkdir awesome-project
-// 進入這個專案的目錄
+// Enter into that project directory
 $ cd awesome-project
 ```
 
 </div>
 
-## 建立一個虛擬環境
+## 建立一個虛擬環境 { #create-a-virtual-environment }
 
-在開始一個 Python 專案的**第一時間**，**<abbr title="還有其他做法，此處僅作為一個簡單的指引">在你的專案內部</abbr>**建立一個虛擬環境。
+在開始一個 Python 專案的**第一時間**，**<abbr title="there are other options, this is a simple guideline - 還有其他做法，此處僅作為一個簡單的指引">在你的專案內部</abbr>**建立一個虛擬環境。
 
 /// tip
 
@@ -73,7 +73,7 @@ $ python -m venv .venv
 
 </div>
 
-/// details | 上述命令的含義
+/// details | 這個命令的含義
 
 * `python`: 使用名為 `python` 的程式
 * `-m`: 以腳本的方式呼叫一個模組，我們將告訴它接下來使用哪個模組
@@ -114,7 +114,7 @@ $ uv venv
 
 ///
 
-## 啟動虛擬環境
+## 啟動虛擬環境 { #activate-the-virtual-environment }
 
 啟動新的虛擬環境來確保你運行的任何 Python 指令或安裝的套件都能使用到它。
 
@@ -164,13 +164,13 @@ $ source .venv/Scripts/activate
 
 /// tip
 
-每次你在這個環境中安裝一個**新的套件**時，都需要**重新啟動**這個環境。
+每次你在這個環境中安裝一個**新的套件**時，都需要**再次啟動**這個環境。
 
-這麼做確保了當你使用一個由這個套件安裝的**終端（<abbr title="命令列介面">CLI</abbr>）程式**時，你使用的是你的虛擬環境中的程式，而不是全域安裝、可能版本不同的程式。
+這麼做確保了當你使用一個由這個套件安裝的**終端（<abbr title="command line interface - 命令列介面">CLI</abbr>）程式**時，你使用的是你的虛擬環境中的程式，而不是全域安裝、可能版本不同的程式。
 
 ///
 
-## 檢查虛擬環境是否啟動
+## 檢查虛擬環境是否啟動 { #check-the-virtual-environment-is-active }
 
 檢查虛擬環境是否啟動（前面的指令是否生效）。
 
@@ -212,7 +212,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ////
 
-## 升級 `pip`
+## 升級 `pip` { #upgrade-pip }
 
 /// tip
 
@@ -242,7 +242,27 @@ $ python -m pip install --upgrade pip
 
 </div>
 
-## 加入 `.gitignore`
+/// tip
+
+有時候，你在嘗試升級 pip 時，可能會遇到 **`No module named pip`** 錯誤。
+
+如果發生這種情況，使用下面的命令來安裝並升級 pip：
+
+<div class="termy">
+
+```console
+$ python -m ensurepip --upgrade
+
+---> 100%
+```
+
+</div>
+
+如果尚未安裝 pip，這個命令會安裝 pip，並且也會確保安裝的 pip 版本至少與 `ensurepip` 中可用的版本一樣新。
+
+///
+
+## 加入 `.gitignore` { #add-gitignore }
 
 如果你使用 **Git**（這是你應該使用的），加入一個 `.gitignore` 檔案來排除你的 `.venv` 中的所有內容。
 
@@ -266,11 +286,11 @@ $ echo "*" > .venv/.gitignore
 
 </div>
 
-/// details | 上述指令的含義
+/// details | 這個指令的含義
 
--   `echo "*"`: 將在終端中「顯示」文本 `*`（接下來的部分會對這個操作進行一些修改）
--   `>`: 使左邊的指令顯示到終端的任何內容實際上都不會被顯示，而是會被寫入到右邊的檔案中
--   `.gitignore`: 被寫入文本的檔案的名稱
+* `echo "*"`: 將在終端中「顯示」文本 `*`（接下來的部分會對這個操作進行一些修改）
+* `>`: 使左邊的指令顯示到終端的任何內容實際上都不會被顯示，而是會被寫入到右邊的檔案中
+* `.gitignore`: 被寫入文本的檔案的名稱
 
 而 `*` 對於 Git 來說意味著「所有內容」。所以，它會忽略 `.venv` 目錄中的所有內容。
 
@@ -282,19 +302,19 @@ $ echo "*" > .venv/.gitignore
 
 ///
 
-## 安裝套件
+## 安裝套件 { #install-packages }
 
 在啟用虛擬環境後，你可以在其中安裝套件。
 
 /// tip
 
-當你需要安裝或升級套件時，執行本操作**一次**；
+當你需要安裝或升級專案所需的套件時，執行本操作**一次**。
 
-如果你需要再升級版本或新增套件，你可以**再次執行此操作**。
+如果你需要升級某個版本或新增套件，你可以**再次執行此操作**。
 
 ///
 
-### 直接安裝套件
+### 直接安裝套件 { #install-packages-directly }
 
 如果你急於安裝，不想使用檔案來聲明專案的套件依賴，你可以直接安裝它們。
 
@@ -333,9 +353,9 @@ $ uv pip install "fastapi[standard]"
 
 ////
 
-### 從 `requirements.txt` 安裝
+### 從 `requirements.txt` 安裝 { #install-from-requirements-txt }
 
-如果你有一個 `requirements.txt` 檔案，你可以使用它來安裝其中的套件。
+如果你有一個 `requirements.txt`，你現在可以使用它來安裝其中的套件。
 
 //// tab | `pip`
 
@@ -365,7 +385,7 @@ $ uv pip install -r requirements.txt
 
 ////
 
-/// details | 關於 `requirements.txt`
+/// details | `requirements.txt`
 
 一個包含一些套件的 `requirements.txt` 檔案看起來應該是這樣的：
 
@@ -376,7 +396,7 @@ pydantic==2.8.0
 
 ///
 
-## 執行程式
+## 執行你的程式 { #run-your-program }
 
 在啟用虛擬環境後，你可以執行你的程式，它將使用虛擬環境中的 Python 和你在其中安裝的套件。
 
@@ -390,7 +410,7 @@ Hello World
 
 </div>
 
-## 設定編輯器
+## 設定編輯器 { #configure-your-editor }
 
 你可能會用到編輯器，請確保設定它使用你建立的相同虛擬環境（它可能會自動偵測到），以便你可以獲得自動完成和内嵌錯誤提示。
 
@@ -405,9 +425,9 @@ Hello World
 
 ///
 
-## 退出虛擬環境
+## 停用虛擬環境 { #deactivate-the-virtual-environment }
 
-當你完成工作後，你可以**退出**虛擬環境。
+當你完成工作後，你可以**停用**虛擬環境。
 
 <div class="termy">
 
@@ -419,7 +439,7 @@ $ deactivate
 
 這樣，當你執行 `python` 時它不會嘗試從已安裝套件的虛擬環境中執行。
 
-## 開始工作
+## 準備開始工作 { #ready-to-work }
 
 現在你已經準備好開始你的工作了。
 
@@ -433,7 +453,7 @@ $ deactivate
 
 ///
 
-## 為什麼要使用虛擬環境
+## 為什麼要使用虛擬環境 { #why-virtual-environments }
 
 你需要安裝 <a href="https://www.python.org/" class="external-link" target="_blank">Python</a> 才能使用 FastAPI。
 
@@ -443,7 +463,7 @@ $ deactivate
 
 然而，如果你直接使用 `pip`，套件將會安裝在你的**全域 Python 環境**中（即 Python 的全域安裝）。
 
-### 存在的問題
+### 存在的問題 { #the-problem }
 
 那麼，在全域 Python 環境中安裝套件有什麼問題呢？
 
@@ -526,7 +546,7 @@ Python 套件在推出**新版本**時通常會儘量**避免破壞性更改**�
 
 此外，取決於你的操作系統（例如 Linux、Windows、macOS），它可能已經預先安裝了 Python。在這種情況下，它可能已經有一些系統所需的套件和特定版本。如果你在全域 Python 環境中安裝套件，可能會**破壞**某些隨作業系統一起安裝的程式。
 
-## 套件安裝在哪裡
+## 套件安裝在哪裡 { #where-are-packages-installed }
 
 當你安裝 Python 時，它會在你的電腦中建立一些目錄並放置一些檔案。
 
@@ -537,7 +557,7 @@ Python 套件在推出**新版本**時通常會儘量**避免破壞性更改**�
 <div class="termy">
 
 ```console
-// 先別去運行這個指令，這只是個示例 🤓
+// Don't run this now, it's just an example 🤓
 $ pip install "fastapi[standard]"
 ---> 100%
 ```
@@ -552,7 +572,7 @@ $ pip install "fastapi[standard]"
 
 預設情況下，這些下載和解壓的檔案會放置於隨 Python 安裝的目錄中，即**全域環境**。
 
-## 什麼是虛擬環境
+## 什麼是虛擬環境 { #what-are-virtual-environments }
 
 解決套件都安裝在全域環境中的問題方法是為你所做的每個專案使用一個**虛擬環境**。
 
@@ -577,7 +597,7 @@ flowchart TB
     stone-project ~~~ azkaban-project
 ```
 
-## 啟用虛擬環境意味著什麼
+## 啟用虛擬環境意味著什麼 { #what-does-activating-a-virtual-environment-mean }
 
 當你啟用了虛擬環境，例如：
 
@@ -714,7 +734,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 啟用虛擬環境還會改變其他一些內容，但這是它所做的最重要的事情之一。
 
-## 檢查虛擬環境
+## 檢查虛擬環境 { #checking-a-virtual-environment }
 
 當你檢查虛擬環境是否啟動時，例如：
 
@@ -766,7 +786,7 @@ C:\Users\user\code\awesome-project\.venv\Scripts\python
 
 ///
 
-## 為什麼要停用虛擬環境
+## 為什麼要停用虛擬環境 { #why-deactivate-a-virtual-environment }
 
 例如，你可能正在一個專案 `philosophers-stone` 上工作，**啟動了該虛擬環境**，安裝了套件並使用了該環境，
 
@@ -791,7 +811,7 @@ $ cd ~/code/prisoner-of-azkaban
 
 $ python main.py
 
-// 匯入 sirius 錯誤，未安裝 😱
+// Error importing sirius, it's not installed 😱
 Traceback (most recent call last):
     File "main.py", line 1, in <module>
         import sirius
@@ -799,20 +819,20 @@ Traceback (most recent call last):
 
 </div>
 
-但如果你停用虛擬環境並啟用 `prisoner-of-askaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-askaban` 中虛擬環境的 Python。
+但如果你停用虛擬環境並啟用 `prisoner-of-askaban` 的新虛擬環境，那麼當你執行 `python` 時，它會使用 `prisoner-of-azkaban` 中虛擬環境的 Python。
 
 <div class="termy">
 
 ```console
 $ cd ~/code/prisoner-of-azkaban
 
-// 你不需要在舊目錄中操作停用，你可以在任何地方操作停用，甚至在切換到另一個專案之後 😎
+// You don't need to be in the old directory to deactivate, you can do it wherever you are, even after going to the other project 😎
 $ deactivate
 
-// 啟用 prisoner-of-azkaban/.venv 中的虛擬環境 🚀
+// Activate the virtual environment in prisoner-of-azkaban/.venv 🚀
 $ source .venv/bin/activate
 
-// 現在當你執行 python 時，它會在這個虛擬環境中找到已安裝的 sirius 套件 ✨
+// Now when you run python, it will find the package sirius installed in this virtual environment ✨
 $ python main.py
 
 I solemnly swear 🐺
@@ -820,7 +840,7 @@ I solemnly swear 🐺
 
 </div>
 
-## 替代方案
+## 替代方案 { #alternatives }
 
 這是一個簡單的指南，幫助你入門並教會你如何理解一切**底層**的原理。
 
@@ -837,7 +857,7 @@ I solemnly swear 🐺
 * 確保你有一個**精確**的套件和版本集合來安裝，包括它們的依賴項，這樣你可以確保專案在生產環境中運行的狀態與開發時在你的電腦上運行的狀態完全相同，這被稱為**鎖定**
 * 還有很多其他功能
 
-## 結論
+## 結論 { #conclusion }
 
 如果你讀過並理解了所有這些，現在**你對虛擬環境的了解已超過許多開發者**。🤓
 

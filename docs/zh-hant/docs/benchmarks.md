@@ -1,10 +1,10 @@
-# 基準測試
+# 基準測試 { #benchmarks }
 
 由第三方機構 TechEmpower 的基準測試表明在 Uvicorn 下運行的 **FastAPI** 應用程式是 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">最快的 Python 可用框架之一</a>，僅次於 Starlette 和 Uvicorn 本身（於 FastAPI 內部使用）。
 
 但是在查看基準得分和對比時，請注意以下幾點。
 
-## 基準測試和速度
+## 基準測試與速度 { #benchmarks-and-speed }
 
 當你查看基準測試時，時常會見到幾個不同類型的工具被同時進行測試。
 
@@ -28,7 +28,7 @@
     * 如果你要比較 Starlette，請將其與 Sanic、Flask、Django 等網頁框架（或微框架）進行比較。
 * **FastAPI**：
     * 就像 Starlette 使用 Uvicorn 並不能比它更快一樣， **FastAPI** 使用 Starlette，所以它不能比它更快。
-    * FastAPI 在 Starlette 基礎之上提供了更多功能。包含建構 API 時所需要的功能，例如資料驗證和序列化。FastAPI 可以幫助你自動產生 API 文件，（應用程式啟動時將會自動生成文件，所以不會增加應用程式運行時的開銷）。
+    * FastAPI 在 Starlette 基礎之上提供了更多功能。包含建構 API 時所需要的功能，例如資料驗證和序列化。並且使用它時，你可以免費獲得自動文件（自動文件甚至不會增加運行中應用程式的開銷，它是在啟動時產生的）。
     * 如果你沒有使用 FastAPI 而是直接使用 Starlette（或其他工具，如 Sanic、Flask、Responder 等），你將必須自行實現所有資料驗證和序列化。因此，你的最終應用程式仍然具有與使用 FastAPI 建置相同的開銷。在許多情況下，這種資料驗證和序列化是應用程式中編寫最大量的程式碼。
-    * 因此透過使用 FastAPI，你可以節省開發時間、錯誤與程式碼數量，並且相比不使用 FastAPI 你很大可能會獲得相同或更好的效能（因為那樣你必須在程式碼中實現所有相同的功能）。
-    * 如果你要與 FastAPI 比較，請將其與能夠提供資料驗證、序列化和文件的網頁應用程式框架（或工具集）進行比較，例如 Flask-apispec、NestJS、Molten 等框架。
+    * 因此透過使用 FastAPI，你可以節省開發時間、錯誤與程式碼數量，並且你很可能會獲得與不使用它時相同的效能（或更好）（因為那樣你必須在程式碼中實現所有功能）。
+    * 如果你要與 FastAPI 比較，請將其與能夠提供資料驗證、序列化和文件的網頁應用程式框架（或工具集）進行比較，例如 Flask-apispec、NestJS、Molten 等。具備整合式自動資料驗證、序列化和文件的框架。
