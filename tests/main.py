@@ -199,6 +199,11 @@ def get_query_type_frozenset(query: frozenset[int] = Query(...)):
     return ",".join(map(str, sorted(query)))
 
 
+@app.api_route("/multiple-methods", methods=["GET", "POST"])
+def multiple_methods():
+    return {"message": "Hello World"}
+
+
 @app.get("/query/list")
 def get_query_list(device_ids: list[int] = Query()) -> list[int]:
     return device_ids
