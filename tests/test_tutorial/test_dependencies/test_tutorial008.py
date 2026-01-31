@@ -1,4 +1,5 @@
 import importlib
+import sys
 from types import ModuleType
 from typing import Annotated, Any
 from unittest.mock import Mock, patch
@@ -12,8 +13,13 @@ from fastapi.testclient import TestClient
     name="module",
     params=[
         "tutorial008_py39",
-        # Fails with `NameError: name 'DepA' is not defined`
-        pytest.param("tutorial008_an_py39", marks=pytest.mark.xfail),
+        pytest.param(
+            "tutorial008_an_py39",
+            marks=pytest.mark.xfail(
+                sys.version_info < (3, 14),
+                reason="Fails with `NameError: name 'DepA' is not defined`",
+            ),
+        ),
     ],
 )
 def get_module(request: pytest.FixtureRequest):
