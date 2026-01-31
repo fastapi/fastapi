@@ -12,8 +12,8 @@ class Item(BaseModel):
     tags: set[str] = set()
 
 
-@app.post("/items/", response_model=Item, tags=["items"])
-async def create_item(item: Item):
+@app.post("/items/", tags=["items"])
+async def create_item(item: Item) -> Item:
     return item
 
 
