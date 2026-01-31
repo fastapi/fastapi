@@ -54,6 +54,29 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
     "price": 45.2
 }
 ```
+### Required fields that can be `None`
+
+In Python type hints, a parameter can be **required** and still allow the value
+`None`.
+
+This typically happens when you use `Optional[T]` **without** providing a default
+value.
+
+For example:
+
+```python
+from typing import Optional
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    description: Optional[str]
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
 
 ## Declare it as a parameter { #declare-it-as-a-parameter }
 
@@ -164,3 +187,4 @@ But adding the type annotations will allow your editor to give you better suppor
 ## Without Pydantic { #without-pydantic }
 
 If you don't want to use Pydantic models, you can also use **Body** parameters. See the docs for [Body - Multiple Parameters: Singular values in body](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}.
+
