@@ -1,13 +1,24 @@
-# 在云上部署 FastAPI
+# 在云服务商上部署 FastAPI { #deploy-fastapi-on-cloud-providers }
 
-您几乎可以使用**任何云服务商**来部署 FastAPI 应用程序。
+你几乎可以使用**任何云服务商**来部署你的 FastAPI 应用。
 
-在大多数情况下，主要的云服务商都有部署 FastAPI 的指南。
+在大多数情况下，主要的云服务商都提供了在其平台上部署 FastAPI 的指南。
 
-## 云服务商 - 赞助商
+## FastAPI Cloud { #fastapi-cloud }
 
-一些云服务商 ✨ [**赞助 FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨，这确保了FastAPI 及其**生态系统**持续健康地**发展**。
+**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** 由 **FastAPI** 背后的同一位作者和团队构建。
 
-这表明了他们对 FastAPI 及其**社区**（您）的真正承诺，因为他们不仅想为您提供**良好的服务**，而且还想确保您拥有一个**良好且健康的框架**：FastAPI。 🙇
+它以最少的工作量简化了 **构建**、**部署** 和 **访问** API 的流程。
 
-您可能想尝试他们的服务并阅读他们的指南.
+它将使用 FastAPI 构建应用的同样 **开发者体验** 带到了将它们 **部署** 到云端的过程。 🎉
+
+FastAPI Cloud 是 *FastAPI and friends* 开源项目的主要赞助商和资金提供方。 ✨
+
+## 云服务商 - 赞助商 { #cloud-providers-sponsors }
+
+还有一些其他云服务商也 ✨ [**赞助 FastAPI**](../help-fastapi.md#sponsor-the-author){.internal-link target=_blank} ✨。🙇
+
+你也可以考虑它们，跟随它们的指南并试用它们的服务：
+
+* <a href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" class="external-link" target="_blank">Render</a>
+* <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" class="external-link" target="_blank">Railway</a>

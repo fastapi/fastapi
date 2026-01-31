@@ -1,97 +1,107 @@
-# 路径操作配置
+# 路径操作配置 { #path-operation-configuration }
 
-*路径操作装饰器*支持多种配置参数。
+你可以向你的*路径操作装饰器*传递多个参数来进行配置。
 
 /// warning | 警告
 
-注意：以下参数应直接传递给**路径操作装饰器**，不能传递给*路径操作函数*。
+注意，这些参数是直接传给*路径操作装饰器*的，而不是传给你的*路径操作函数*。
 
 ///
 
-## `status_code` 状态码
+## 响应状态码 { #response-status-code }
 
-`status_code` 用于定义*路径操作*响应中的 HTTP 状态码。
+你可以定义（HTTP）`status_code`，用于你的*路径操作*响应中。
 
-可以直接传递 `int` 代码， 比如 `404`。
+你可以直接传入 `int` 代码，比如 `404`。
 
-如果记不住数字码的涵义，也可以用 `status` 的快捷常量：
+但如果你记不住每个数字代码的用途，你可以使用 `status` 中的快捷常量：
 
-{* ../../docs_src/path_operation_configuration/tutorial001.py hl[3,17] *}
+{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
 
-状态码在响应中使用，并会被添加到 OpenAPI 概图。
+该状态码会用于响应，并会被添加到 OpenAPI schema 中。
 
 /// note | 技术细节
 
-也可以使用 `from starlette import status` 导入状态码。
+你也可以使用 `from starlette import status`。
 
-**FastAPI** 的`fastapi.status` 和 `starlette.status` 一样，只是快捷方式。实际上，`fastapi.status` 直接继承自 Starlette。
+**FastAPI** 提供了与 `starlette.status` 相同的 `fastapi.status`，只是为了方便你（开发者）。但它直接来自 Starlette。
 
 ///
 
-## `tags` 参数
+## 标签 { #tags }
 
-`tags` 参数的值是由 `str` 组成的 `list` （一般只有一个 `str` ），`tags` 用于为*路径操作*添加标签：
+你可以为你的*路径操作*添加标签：传入参数 `tags`，其值为由 `str` 组成的 `list`（通常只有一个 `str`）：
 
-{* ../../docs_src/path_operation_configuration/tutorial002.py hl[17,22,27] *}
+{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
 
-OpenAPI 概图会自动添加标签，供 API 文档接口使用：
+它们会被添加到 OpenAPI schema，并被自动文档界面使用：
 
 <img src="/img/tutorial/path-operation-configuration/image01.png">
 
-## `summary` 和 `description` 参数
+### 使用 Enum 的标签 { #tags-with-enums }
 
-路径装饰器还支持 `summary` 和 `description` 这两个参数：
+如果你有一个大型应用，你可能最终会累积**多个标签**，并且你会希望确保对相关的*路径操作*始终使用**相同的标签**。
 
-{* ../../docs_src/path_operation_configuration/tutorial003.py hl[20:21] *}
+在这些情况下，把标签存到 `Enum` 中可能是有意义的。
 
-## 文档字符串（`docstring`）
+**FastAPI** 对此的支持方式和普通字符串一样：
 
-描述内容比较长且占用多行时，可以在函数的 <abbr title="函数中作为第一个表达式，用于文档目的的一个多行字符串（并没有被分配个任何变量）">docstring</abbr> 中声明*路径操作*的描述，**FastAPI** 支持从文档字符串中读取描述内容。
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
-文档字符串支持 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
+## 摘要和描述 { #summary-and-description }
 
-{* ../../docs_src/path_operation_configuration/tutorial004.py hl[19:27] *}
+你可以添加 `summary` 和 `description`：
 
-下图为 Markdown 文本在 API 文档中的显示效果：
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+
+## 从 docstring 获取描述 { #description-from-docstring }
+
+由于描述通常很长并且会跨越多行，你可以在函数的 <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation - 在函数内部作为第一个表达式的多行字符串（不赋值给任何变量），用于文档说明">docstring</abbr> 中声明*路径操作*的描述，**FastAPI** 会从那里读取。
+
+你可以在 docstring 中编写 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，它会被正确解释并显示（会考虑 docstring 的缩进）。
+
+{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+
+它会用于交互式文档：
 
 <img src="/img/tutorial/path-operation-configuration/image02.png">
 
-## 响应描述
+## 响应描述 { #response-description }
 
-`response_description` 参数用于定义响应的描述说明：
+你可以使用参数 `response_description` 来指定响应描述：
 
-{* ../../docs_src/path_operation_configuration/tutorial005.py hl[21] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
 
-/// info | 说明
+/// info | 信息
 
-注意，`response_description` 只用于描述响应，`description` 一般则用于描述*路径操作*。
+注意，`response_description` 专门指响应，而 `description` 通常指*路径操作*本身。
 
 ///
 
 /// check | 检查
 
-OpenAPI 规定每个*路径操作*都要有响应描述。
+OpenAPI 规定每个*路径操作*都需要一个响应描述。
 
-如果没有定义响应描述，**FastAPI** 则自动生成内容为 "Successful response" 的响应描述。
+因此，如果你没有提供，**FastAPI** 会自动生成一个 "Successful response"。
 
 ///
 
 <img src="/img/tutorial/path-operation-configuration/image03.png">
 
-## 弃用*路径操作*
+## 弃用*路径操作* { #deprecate-a-path-operation }
 
-`deprecated` 参数可以把*路径操作*标记为<abbr title="过时，建议不要使用">弃用</abbr>，无需直接删除：
+如果你需要将某个*路径操作*标记为 <abbr title="obsolete, recommended not to use it - 过时的，建议不要使用">deprecated</abbr>，但又不移除它，可以传入参数 `deprecated`：
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
-API 文档会把该路径操作标记为弃用：
+它会在交互式文档中被清晰地标记为已弃用：
 
 <img src="/img/tutorial/path-operation-configuration/image04.png">
 
-下图显示了正常*路径操作*与弃用*路径操作* 的区别：
+看看已弃用和未弃用的*路径操作*分别是什么样的：
 
 <img src="/img/tutorial/path-operation-configuration/image05.png">
 
-## 小结
+## 小结 { #recap }
 
-通过传递参数给*路径操作装饰器* ，即可轻松地配置*路径操作*、添加元数据。
+你可以通过向*路径操作装饰器*传递参数，轻松地为你的*路径操作*进行配置并添加元数据。

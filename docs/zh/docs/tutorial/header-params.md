@@ -1,14 +1,14 @@
-# Header 参数
+# Header 参数 { #header-parameters }
 
 定义 `Header` 参数的方式与定义 `Query`、`Path`、`Cookie` 参数相同。
 
-## 导入 `Header`
+## 导入 `Header` { #import-header }
 
 首先，导入 `Header`：
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-## 声明 `Header` 参数
+## 声明 `Header` 参数 { #declare-header-parameters }
 
 然后，使用和 `Path`、`Query`、`Cookie` 一样的结构定义 header 参数。
 
@@ -24,13 +24,13 @@
 
 ///
 
-/// info | 说明
+/// info | 信息
 
-必须使用 `Header` 声明 header 参数，否则该参数会被解释为查询参数。
+要声明 header，你需要使用 `Header`，否则这些参数会被解释为查询参数。
 
 ///
 
-## 自动转换
+## 自动转换 { #automatic-conversion }
 
 `Header` 比 `Path`、`Query` 和 `Cookie` 提供了更多功能。
 
@@ -50,23 +50,23 @@
 
 /// warning | 警告
 
-注意，使用 `convert_underscores = False` 要慎重，有些 HTTP 代理和服务器不支持使用带有下划线的请求头。
+在把 `convert_underscores` 设置为 `False` 之前，请记住，有些 HTTP 代理和服务器不允许使用带有下划线的请求头。
 
 ///
 
-## 重复的请求头
+## 重复的请求头 { #duplicate-headers }
 
-有时，可能需要接收重复的请求头。即同一个请求头有多个值。
+可以接收重复的请求头。也就是说，同一个请求头有多个值。
 
-类型声明中可以使用 `list` 定义多个请求头。
+可以在类型声明中使用 list 来定义这些情况。
 
-使用 Python `list` 可以接收重复请求头所有的值。
+你将以 Python `list` 的形式接收重复请求头的所有值。
 
-例如，声明 `X-Token` 多次出现的请求头，可以写成这样：
+例如，要声明一个可能出现多次的 `X-Token` 请求头，可以这样写：
 
 {* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
 
-与*路径操作*通信时，以下面的方式发送两个 HTTP 请求头：
+与*路径操作*通信时，发送两个 HTTP 请求头如下：
 
 ```
 X-Token: foo
@@ -84,8 +84,8 @@ X-Token: bar
 }
 ```
 
-## 小结
+## 小结 { #recap }
 
-使用 `Header` 声明请求头的方式与 `Query`、`Path` 、`Cookie` 相同。
+使用 `Header` 声明请求头，模式与 `Query`、`Path`、`Cookie` 相同。
 
-不用担心变量中的下划线，**FastAPI** 可以自动转换。
+不用担心变量中的下划线，**FastAPI** 会负责转换它们。
