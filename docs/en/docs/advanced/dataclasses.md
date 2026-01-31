@@ -64,7 +64,7 @@ In that case, you can simply swap the standard `dataclasses` with `pydantic.data
 
 6. Here we are returning a dictionary that contains `items` which is a list of dataclasses.
 
-    FastAPI is still capable of <abbr title="converting the data to a format that can be transmitted">serializing</abbr> the data to JSON.
+    FastAPI is still capable of <dfn title="converting the data to a format that can be transmitted">serializing</dfn> the data to JSON.
 
 7. Here the `response_model` is using a type annotation of a list of `Author` dataclasses.
 
