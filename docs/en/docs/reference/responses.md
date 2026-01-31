@@ -56,6 +56,8 @@ There are a couple of custom FastAPI response classes, you can use them to optim
 
 ## Starlette Responses
 
+You can read more about all of them in the [FastAPI docs for Custom Response](https://fastapi.tiangolo.com/advanced/custom-response/) and in the [Starlette docs about Responses](https://starlette.dev/responses/).
+
 ::: fastapi.responses.FileResponse
     options:
         members:

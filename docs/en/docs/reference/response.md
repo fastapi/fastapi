@@ -4,6 +4,8 @@ You can declare a parameter in a *path operation function* or dependency to be o
 
 You can also use it directly to create an instance of it and return it from your *path operations*.
 
+Read more about it in the [FastAPI docs about returning a custom Response](https://fastapi.tiangolo.com/advanced/response-directly/#returning-a-custom-response)
+
 You can import it directly from `fastapi`:
 
 ```python
