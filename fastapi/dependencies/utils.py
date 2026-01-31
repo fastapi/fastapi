@@ -46,7 +46,7 @@ from fastapi.concurrency import (
     contextmanager_in_threadpool,
 )
 from fastapi.dependencies.models import Dependant
-from fastapi.exceptions import DependencyScopeError
+from fastapi.exceptions import DependencyScopeError, FastAPIError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
@@ -121,6 +121,7 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         call=depends.dependency,
         scope=depends.scope,
         own_oauth_scopes=own_oauth_scopes,
+        enforce_annotation=False,
     )
 
 
@@ -248,6 +249,13 @@ def get_typed_return_annotation(call: Callable[..., Any]) -> Any:
     return get_typed_annotation(annotation, globalns)
 
 
+def _dependency_defines_type(depends: params.Depends) -> bool:
+    dependency = depends.dependency
+    if inspect.isclass(dependency):
+        return True
+    return get_typed_return_annotation(dependency) is not None
+
+
 def get_dependant(
     *,
     path: str,
@@ -257,6 +265,7 @@ def get_dependant(
     parent_oauth_scopes: Optional[list[str]] = None,
     use_cache: bool = True,
     scope: Union[Literal["function", "request"], None] = None,
+    enforce_annotation: bool = True,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -282,6 +291,15 @@ def get_dependant(
         if param_details.depends is not None:
             assert param_details.depends.dependency
             if (
+                enforce_annotation
+                and param.annotation is inspect.Signature.empty
+                and not _dependency_defines_type(param_details.depends)
+            ):
+                raise FastAPIError(
+                    f'Dependency parameter "{param_name}" must have a type annotation. '
+                    f"For example: `{param_name}: SomeType = Depends(...)`"
+                )
+            if (
                 (dependant.is_gen_callable or dependant.is_async_gen_callable)
                 and dependant.computed_scope == "request"
                 and param_details.depends.scope == "function"
@@ -303,6 +321,7 @@ def get_dependant(
                 parent_oauth_scopes=current_scopes,
                 use_cache=param_details.depends.use_cache,
                 scope=param_details.depends.scope,
+                enforce_annotation=False,
             )
             dependant.dependencies.append(sub_dependant)
             continue
@@ -315,7 +334,11 @@ def get_dependant(
                 f"Cannot specify multiple FastAPI annotations for {param_name!r}"
             )
             continue
-        assert param_details.field is not None
+        if enforce_annotation and param_details.field is None:
+            raise FastAPIError(
+                f'Dependency parameter "{param_name}" must have a type annotation. '
+                f"For example: `{param_name}: SomeType = Depends(...)`"
+            )
         if isinstance(param_details.field.field_info, params.Body):
             dependant.body_params.append(param_details.field)
         else:
@@ -609,6 +632,7 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 parent_oauth_scopes=sub_dependant.oauth_scopes,
                 scope=sub_dependant.scope,
+                enforce_annotation=False,
             )
 
         solved_result = await solve_dependencies(
