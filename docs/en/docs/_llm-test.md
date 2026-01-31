@@ -202,11 +202,6 @@ Here some things wrapped in HTML "abbr" elements (Some are invented):
 * <abbr title="XML Web Token">XWT</abbr>
 * <abbr title="Parallel Server Gateway Interface">PSGI</abbr>
 
-### The abbr gives an explanation { #the-abbr-gives-an-explanation }
-
-* <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>
-* <abbr title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</abbr>
-
 ### The abbr gives a full phrase and an explanation { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
 * <abbr title="Mozilla Developer Network: documentation for developers, written by the Firefox people">MDN</abbr>
@@ -223,6 +218,11 @@ Translations can add their own "abbr" elements which the LLM should not remove. 
 See section `### HTML abbr elements` in the general prompt in `scripts/translate.py`.
 
 ////
+
+## HTML "dfn" elements { #html-dfn-elements }
+
+* <dfn title="A group of machines that are configured to be connected and work together in some way.">cluster</dfn>
+* <dfn title="A method of machine learning that uses artificial neural networks with numerous hidden layers between input and output layers, thereby developing a comprehensive internal structure">Deep Learning</dfn>
 
 ## Headings { #headings }
 
