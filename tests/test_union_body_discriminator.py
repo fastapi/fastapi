@@ -154,6 +154,8 @@ def test_discriminator_pydantic_v2() -> None:
                     },
                     "ValidationError": {
                         "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

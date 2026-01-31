@@ -151,6 +151,8 @@ openapi_schema = {
                     },
                     "msg": {"title": "Message", "type": "string"},
                     "type": {"title": "Error Type", "type": "string"},
+                "input": {"title": "Input"},
+                "ctx": {"title": "Context", "type": "object"},
                 },
             },
         }
