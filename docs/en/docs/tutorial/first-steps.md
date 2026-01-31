@@ -83,8 +83,7 @@ You will see the alternative automatic documentation (provided by <a href="https
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI { #openapi }
-
-**FastAPI** generates a "schema" with all your API using the **OpenAPI** standard for defining APIs.
+FastAPI generates a "schema" with all your API using the OpenAPI standard for defining APIs. In simple terms, this is a structured description of your API that tools can read to show documentation and understand how your endpoints work.
 
 #### "Schema" { #schema }
 
