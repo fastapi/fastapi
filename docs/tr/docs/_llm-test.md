@@ -177,7 +177,7 @@ Link metni çevrilmelidir, link adresi değişmeden kalmalıdır:
 
 Link metni çevrilmelidir, link adresi çeviriye işaret etmelidir:
 
-* <a href="https://fastapi.tiangolo.com/" class="external-link" target="_blank">FastAPI link</a>
+* <a href="https://fastapi.tiangolo.com/tr/" class="external-link" target="_blank">FastAPI link</a>
 
 ////
 
