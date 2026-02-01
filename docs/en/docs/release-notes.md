@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for uk (update outdated, found by fixer tool). PR [#14739](https://github.com/fastapi/fastapi/pull/14739) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for tr (update-outdated). PR [#14745](https://github.com/fastapi/fastapi/pull/14745) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update `llm-prompt.md` for Korean language. PR [#14763](https://github.com/fastapi/fastapi/pull/14763) by [@seuthootDev](https://github.com/seuthootDev).
 * 🌐 Update translations for ko (update outdated, found by fixer tool). PR [#14738](https://github.com/fastapi/fastapi/pull/14738) by [@YuriiMotov](https://github.com/YuriiMotov).
