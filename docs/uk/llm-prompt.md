@@ -8,6 +8,7 @@ Language code: uk.
 
 - Use polite/formal address consistent with existing Ukrainian docs (use “ви/ваш”).
 - Keep the tone concise and technical.
+- Use one style of dashes. For example, if text contains "-" then use only this symbol to represent a dash.
 
 ### Headings
 
@@ -34,7 +35,7 @@ Use the following preferred translations when they apply in documentation prose:
 - path operation function: функція операції шляху
 - prompt: підсказка
 - check: перевірка
-- Parallel Server Gateway Interface: Паралельний Серверний Вхідний Інтерфейс
+- Parallel Server Gateway Interface: Інтерфейс Шлюзу Паралельного Сервера
 - Mozilla Developer Network: Мережа Розробників Mozilla
 - tutorial: навчальний посібник
 - advanced user guide: просунутий посібник користувача
@@ -42,8 +43,8 @@ Use the following preferred translations when they apply in documentation prose:
 - deep learning: глибоке навчання
 - machine learning: машинне навчання
 - dependency injection: впровадження залежностей
-- HTTP Digest: HTTP Дайджест
-- HTTP Basic authentication: Базова автентифікація HTTP
+- digest (HTTP): дайджест
+- basic authentication (HTTP): базова автентифікація
 - JSON schema: Схема JSON
 - password flow: потік паролю
 - mobile: мобільний
@@ -65,23 +66,19 @@ Use the following preferred translations when they apply in documentation prose:
 - parallelism: паралелізм
 - multiprocessing: багатопроцесорність
 - env var: змінна оточення
-- CLI: ІКР
 - dict: словник
 - enum: перелічення
-- front-end: інтерфейс
-- back-end: сервер
 - issue: проблема
 - server worker: серверний працівник
 - worker: працівник
-- SDK: НдРП
-- software development kit: набір для розробки програми
-- Bearer token: Носій токена
+- software development kit: набір для розробки програмного забезпечення
+- bearer token: токен носія
 - breaking change: несумісна зміна
 - bug: помилка
 - button: кнопка
 - callable: викликаємий
 - code: код
-- commit: дія
+- commit: фіксація
 - context manager: менеджер контексту
 - coroutine: співпрограма
 - engine: рушій
@@ -97,7 +94,6 @@ Use the following preferred translations when they apply in documentation prose:
 - property: властивість
 - proxy: представник
 - pull request: запит на витяг
-- RAM: ПДД
 - random-access memory: пам'ять з довільним доступом
 - status code: код статусу
 - string: строка
@@ -115,3 +111,4 @@ Use the following preferred translations when they apply in documentation prose:
 - `/// warning | Попередження`
 - `/// info | Інформація`
 - `/// danger | Обережно`
+- `/// check | Перевірте`
