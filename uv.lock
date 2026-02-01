@@ -1203,7 +1203,7 @@ dev = [
     { name = "coverage", extras = ["toml"], specifier = ">=6.5.0,<8.0" },
     { name = "dirty-equals", specifier = "==0.9.0" },
     { name = "flask", specifier = ">=1.1.2,<4.0.0" },
-    { name = "gitpython", specifier = "==3.1.45" },
+    { name = "gitpython", specifier = "==3.1.46" },
     { name = "griffe-typingdoc", specifier = "==0.3.0" },
     { name = "griffe-warnings-deprecated", specifier = "==1.1.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
@@ -1285,7 +1285,7 @@ tests = [
     { name = "types-ujson", specifier = "==5.10.0.20240515" },
 ]
 translations = [
-    { name = "gitpython", specifier = "==3.1.45" },
+    { name = "gitpython", specifier = "==3.1.46" },
     { name = "pydantic-ai", specifier = "==0.4.10" },
     { name = "pygithub", specifier = "==2.8.1" },
 ]
@@ -1632,15 +1632,15 @@ wheels = [
 
 [[package]]
 name = "gitpython"
-version = "3.1.45"
+version = "3.1.46"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gitdb" },
     { name = "typing-extensions", marker = "python_full_version < '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9a/c8/dd58967d119baab745caec2f9d853297cec1989ec1d63f677d3880632b88/gitpython-3.1.45.tar.gz", hash = "sha256:85b0ee964ceddf211c41b9f27a49086010a190fd8132a24e21f362a4b36a791c", size = 215076, upload-time = "2025-07-24T03:45:54.871Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/df/b5/59d16470a1f0dfe8c793f9ef56fd3826093fc52b3bd96d6b9d6c26c7e27b/gitpython-3.1.46.tar.gz", hash = "sha256:400124c7d0ef4ea03f7310ac2fbf7151e09ff97f2a3288d64a440c584a29c37f", size = 215371, upload-time = "2026-01-01T15:37:32.073Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/01/61/d4b89fec821f72385526e1b9d9a3a0385dda4a72b206d28049e2c7cd39b8/gitpython-3.1.45-py3-none-any.whl", hash = "sha256:8908cb2e02fb3b93b7eb0f2827125cb699869470432cc885f019b8fd0fccff77", size = 208168, upload-time = "2025-07-24T03:45:52.517Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/09/e21df6aef1e1ffc0c816f0522ddc3f6dcded766c3261813131c78a704470/gitpython-3.1.46-py3-none-any.whl", hash = "sha256:79812ed143d9d25b6d176a10bb511de0f9c67b1fa641d82097b0ab90398a2058", size = 208620, upload-time = "2026-01-01T15:37:30.574Z" },
 ]
 
 [[package]]
