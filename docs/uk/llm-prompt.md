@@ -39,7 +39,6 @@ Use the following preferred translations when they apply in documentation prose:
 - Mozilla Developer Network: Мережа Розробників Mozilla
 - tutorial: навчальний посібник
 - advanced user guide: просунутий посібник користувача
-- data science: наука про дані
 - deep learning: глибоке навчання
 - machine learning: машинне навчання
 - dependency injection: впровадження залежностей
@@ -67,7 +66,7 @@ Use the following preferred translations when they apply in documentation prose:
 - multiprocessing: багатопроцесорність
 - env var: змінна оточення
 - dict: словник
-- enum: перелічення
+- enum: перелік
 - issue: проблема
 - server worker: серверний працівник
 - worker: працівник
