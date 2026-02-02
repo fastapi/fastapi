@@ -1203,7 +1203,7 @@ dev = [
     { name = "coverage", extras = ["toml"], specifier = ">=6.5.0,<8.0" },
     { name = "dirty-equals", specifier = "==0.9.0" },
     { name = "flask", specifier = ">=1.1.2,<4.0.0" },
-    { name = "gitpython", specifier = "==3.1.45" },
+    { name = "gitpython", specifier = "==3.1.46" },
     { name = "griffe-typingdoc", specifier = "==0.3.0" },
     { name = "griffe-warnings-deprecated", specifier = "==1.1.0" },
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
@@ -1211,7 +1211,7 @@ dev = [
     { name = "jieba", specifier = "==0.42.1" },
     { name = "markdown-include-variants", specifier = "==0.0.8" },
     { name = "mdx-include", specifier = ">=1.4.1,<2.0.0" },
-    { name = "mkdocs-macros-plugin", specifier = "==1.4.1" },
+    { name = "mkdocs-macros-plugin", specifier = "==1.5.0" },
     { name = "mkdocs-material", specifier = "==9.7.0" },
     { name = "mkdocs-redirects", specifier = ">=1.2.1,<1.3.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = "==0.30.1" },
@@ -1228,9 +1228,9 @@ dev = [
     { name = "python-slugify", specifier = "==8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = "==0.14.3" },
-    { name = "sqlmodel", specifier = "==0.0.27" },
+    { name = "sqlmodel", specifier = "==0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
-    { name = "typer", specifier = "==0.16.0" },
+    { name = "typer", specifier = "==0.21.1" },
     { name = "types-orjson", specifier = "==3.6.2" },
     { name = "types-ujson", specifier = "==5.10.0.20240515" },
 ]
@@ -1243,7 +1243,7 @@ docs = [
     { name = "jieba", specifier = "==0.42.1" },
     { name = "markdown-include-variants", specifier = "==0.0.8" },
     { name = "mdx-include", specifier = ">=1.4.1,<2.0.0" },
-    { name = "mkdocs-macros-plugin", specifier = "==1.4.1" },
+    { name = "mkdocs-macros-plugin", specifier = "==1.5.0" },
     { name = "mkdocs-material", specifier = "==9.7.0" },
     { name = "mkdocs-redirects", specifier = ">=1.2.1,<1.3.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = "==0.30.1" },
@@ -1251,7 +1251,7 @@ docs = [
     { name = "python-slugify", specifier = "==8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = "==0.14.3" },
-    { name = "typer", specifier = "==0.16.0" },
+    { name = "typer", specifier = "==0.21.1" },
 ]
 docs-tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
@@ -1279,13 +1279,13 @@ tests = [
     { name = "pytest-codspeed", specifier = "==4.2.0" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = "==0.14.3" },
-    { name = "sqlmodel", specifier = "==0.0.27" },
+    { name = "sqlmodel", specifier = "==0.0.31" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
     { name = "types-orjson", specifier = "==3.6.2" },
     { name = "types-ujson", specifier = "==5.10.0.20240515" },
 ]
 translations = [
-    { name = "gitpython", specifier = "==3.1.45" },
+    { name = "gitpython", specifier = "==3.1.46" },
     { name = "pydantic-ai", specifier = "==0.4.10" },
     { name = "pygithub", specifier = "==2.8.1" },
 ]
@@ -1632,15 +1632,15 @@ wheels = [
 
 [[package]]
 name = "gitpython"
-version = "3.1.45"
+version = "3.1.46"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gitdb" },
     { name = "typing-extensions", marker = "python_full_version < '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9a/c8/dd58967d119baab745caec2f9d853297cec1989ec1d63f677d3880632b88/gitpython-3.1.45.tar.gz", hash = "sha256:85b0ee964ceddf211c41b9f27a49086010a190fd8132a24e21f362a4b36a791c", size = 215076, upload-time = "2025-07-24T03:45:54.871Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/df/b5/59d16470a1f0dfe8c793f9ef56fd3826093fc52b3bd96d6b9d6c26c7e27b/gitpython-3.1.46.tar.gz", hash = "sha256:400124c7d0ef4ea03f7310ac2fbf7151e09ff97f2a3288d64a440c584a29c37f", size = 215371, upload-time = "2026-01-01T15:37:32.073Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/01/61/d4b89fec821f72385526e1b9d9a3a0385dda4a72b206d28049e2c7cd39b8/gitpython-3.1.45-py3-none-any.whl", hash = "sha256:8908cb2e02fb3b93b7eb0f2827125cb699869470432cc885f019b8fd0fccff77", size = 208168, upload-time = "2025-07-24T03:45:52.517Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/09/e21df6aef1e1ffc0c816f0522ddc3f6dcded766c3261813131c78a704470/gitpython-3.1.46-py3-none-any.whl", hash = "sha256:79812ed143d9d25b6d176a10bb511de0f9c67b1fa641d82097b0ab90398a2058", size = 208620, upload-time = "2026-01-01T15:37:30.574Z" },
 ]
 
 [[package]]
@@ -2652,7 +2652,7 @@ wheels = [
 
 [[package]]
 name = "mkdocs-macros-plugin"
-version = "1.4.1"
+version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "hjson" },
@@ -2667,9 +2667,9 @@ dependencies = [
     { name = "termcolor", version = "3.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "termcolor", version = "3.3.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1b/42/bb2ceed148c77f82b57c6d3b7f584f0f34ababf7a9a8ff85809380d1f400/mkdocs_macros_plugin-1.4.1.tar.gz", hash = "sha256:55a9c93871e3744cdeb0736316783d60830a6d5d97b1132364e6b491607f2332", size = 35094, upload-time = "2025-10-25T12:37:20.689Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/92/15/e6a44839841ebc9c5872fa0e6fad1c3757424e4fe026093b68e9f386d136/mkdocs_macros_plugin-1.5.0.tar.gz", hash = "sha256:12aa45ce7ecb7a445c66b9f649f3dd05e9b92e8af6bc65e4acd91d26f878c01f", size = 37730, upload-time = "2025-11-13T08:08:55.545Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/ec/e6e96a7ae8df414f03f43681821234b0d3b86666f7b91f70ab26775a8809/mkdocs_macros_plugin-1.4.1-py3-none-any.whl", hash = "sha256:5a9e483f6056fe7ad0923802affe699233ca468672e20a9640dba237165b3240", size = 40155, upload-time = "2025-10-25T12:37:19.417Z" },
+    { url = "https://files.pythonhosted.org/packages/51/62/9fffba5bb9ed3d31a932ad35038ba9483d59850256ee0fea7f1187173983/mkdocs_macros_plugin-1.5.0-py3-none-any.whl", hash = "sha256:c10fabd812bf50f9170609d0ed518e54f1f0e12c334ac29141723a83c881dd6f", size = 44626, upload-time = "2025-11-13T08:08:53.878Z" },
 ]
 
 [[package]]
@@ -4415,15 +4415,15 @@ wheels = [
 
 [[package]]
 name = "sqlmodel"
-version = "0.0.27"
+version = "0.0.31"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "sqlalchemy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/90/5a/693d90866233e837d182da76082a6d4c2303f54d3aaaa5c78e1238c5d863/sqlmodel-0.0.27.tar.gz", hash = "sha256:ad1227f2014a03905aef32e21428640848ac09ff793047744a73dfdd077ff620", size = 118053, upload-time = "2025-10-08T16:39:11.938Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/56/b8/e7cd6def4a773f25d6e29ffce63ccbfd6cf9488b804ab6fb9b80d334b39d/sqlmodel-0.0.31.tar.gz", hash = "sha256:2d41a8a9ee05e40736e2f9db8ea28cbfe9b5d4e5a18dd139e80605025e0c516c", size = 94952, upload-time = "2025-12-28T12:35:01.436Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8c/92/c35e036151fe53822893979f8a13e6f235ae8191f4164a79ae60a95d66aa/sqlmodel-0.0.27-py3-none-any.whl", hash = "sha256:667fe10aa8ff5438134668228dc7d7a08306f4c5c4c7e6ad3ad68defa0e7aa49", size = 29131, upload-time = "2025-10-08T16:39:10.917Z" },
+    { url = "https://files.pythonhosted.org/packages/6c/72/5aa5be921800f6418a949a73c9bb7054890881143e6bc604a93d228a95a3/sqlmodel-0.0.31-py3-none-any.whl", hash = "sha256:6d946d56cac4c2db296ba1541357cee2e795d68174e2043cd138b916794b1513", size = 27093, upload-time = "2025-12-28T12:35:00.108Z" },
 ]
 
 [[package]]
@@ -4737,7 +4737,7 @@ wheels = [
 
 [[package]]
 name = "typer"
-version = "0.16.0"
+version = "0.21.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click", version = "8.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -4746,9 +4746,9 @@ dependencies = [
     { name = "shellingham" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/8c/7d682431efca5fd290017663ea4588bf6f2c6aad085c7f108c5dbc316e70/typer-0.16.0.tar.gz", hash = "sha256:af377ffaee1dbe37ae9440cb4e8f11686ea5ce4e9bae01b84ae7c63b87f1dd3b", size = 102625, upload-time = "2025-05-26T14:30:31.824Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/36/bf/8825b5929afd84d0dabd606c67cd57b8388cb3ec385f7ef19c5cc2202069/typer-0.21.1.tar.gz", hash = "sha256:ea835607cd752343b6b2b7ce676893e5a0324082268b48f27aa058bdb7d2145d", size = 110371, upload-time = "2026-01-06T11:21:10.989Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/76/42/3efaf858001d2c2913de7f354563e3a3a2f0decae3efe98427125a8f441e/typer-0.16.0-py3-none-any.whl", hash = "sha256:1f79bed11d4d02d4310e3c1b7ba594183bcedb0ac73b27a9e5f28f6fb5b98855", size = 46317, upload-time = "2025-05-26T14:30:30.523Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/1d/d9257dd49ff2ca23ea5f132edf1281a0c4f9de8a762b9ae399b670a59235/typer-0.21.1-py3-none-any.whl", hash = "sha256:7985e89081c636b88d172c2ee0cfe33c253160994d47bdfdc302defd7d1f1d01", size = 47381, upload-time = "2026-01-06T11:21:09.824Z" },
 ]
 
 [[package]]
