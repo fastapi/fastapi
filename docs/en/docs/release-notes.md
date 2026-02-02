@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump mkdocs-macros-plugin from 1.4.1 to 1.5.0. PR [#14801](https://github.com/fastapi/fastapi/pull/14801) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump gitpython from 3.1.45 to 3.1.46. PR [#14800](https://github.com/fastapi/fastapi/pull/14800) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typer from 0.16.0 to 0.21.1. PR [#14799](https://github.com/fastapi/fastapi/pull/14799) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#14803](https://github.com/fastapi/fastapi/pull/14803) by [@tiangolo](https://github.com/tiangolo).
