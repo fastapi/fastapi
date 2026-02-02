@@ -96,7 +96,7 @@ def test_response_dependency_chain():
 
 def test_response_dependency_returns_different_response_instance():
     """Dependency that returns a different Response instance should work.
-    
+
     When a dependency returns a new Response object (e.g., JSONResponse) instead
     of modifying the injected one, the returned response should be used and any
     modifications to it in the endpoint should be preserved.
