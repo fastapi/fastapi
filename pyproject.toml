@@ -147,7 +147,7 @@ docs = [
     "pillow==11.3.0",
     "python-slugify==8.0.4",
     "pyyaml>=5.3.1,<7.0.0",
-    "typer==0.16.0",
+    "typer==0.21.1",
 ]
 docs-tests = [
     "httpx>=0.23.0,<1.0.0",

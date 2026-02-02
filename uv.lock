@@ -1230,7 +1230,7 @@ dev = [
     { name = "ruff", specifier = "==0.14.3" },
     { name = "sqlmodel", specifier = "==0.0.27" },
     { name = "strawberry-graphql", specifier = ">=0.200.0,<1.0.0" },
-    { name = "typer", specifier = "==0.16.0" },
+    { name = "typer", specifier = "==0.21.1" },
     { name = "types-orjson", specifier = "==3.6.2" },
     { name = "types-ujson", specifier = "==5.10.0.20240515" },
 ]
@@ -1251,7 +1251,7 @@ docs = [
     { name = "python-slugify", specifier = "==8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = "==0.14.3" },
-    { name = "typer", specifier = "==0.16.0" },
+    { name = "typer", specifier = "==0.21.1" },
 ]
 docs-tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
@@ -4737,7 +4737,7 @@ wheels = [
 
 [[package]]
 name = "typer"
-version = "0.16.0"
+version = "0.21.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click", version = "8.1.8", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
@@ -4746,9 +4746,9 @@ dependencies = [
     { name = "shellingham" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/8c/7d682431efca5fd290017663ea4588bf6f2c6aad085c7f108c5dbc316e70/typer-0.16.0.tar.gz", hash = "sha256:af377ffaee1dbe37ae9440cb4e8f11686ea5ce4e9bae01b84ae7c63b87f1dd3b", size = 102625, upload-time = "2025-05-26T14:30:31.824Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/36/bf/8825b5929afd84d0dabd606c67cd57b8388cb3ec385f7ef19c5cc2202069/typer-0.21.1.tar.gz", hash = "sha256:ea835607cd752343b6b2b7ce676893e5a0324082268b48f27aa058bdb7d2145d", size = 110371, upload-time = "2026-01-06T11:21:10.989Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/76/42/3efaf858001d2c2913de7f354563e3a3a2f0decae3efe98427125a8f441e/typer-0.16.0-py3-none-any.whl", hash = "sha256:1f79bed11d4d02d4310e3c1b7ba594183bcedb0ac73b27a9e5f28f6fb5b98855", size = 46317, upload-time = "2025-05-26T14:30:30.523Z" },
+    { url = "https://files.pythonhosted.org/packages/a0/1d/d9257dd49ff2ca23ea5f132edf1281a0c4f9de8a762b9ae399b670a59235/typer-0.21.1-py3-none-any.whl", hash = "sha256:7985e89081c636b88d172c2ee0cfe33c253160994d47bdfdc302defd7d1f1d01", size = 47381, upload-time = "2026-01-06T11:21:09.824Z" },
 ]
 
 [[package]]
