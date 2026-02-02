@@ -32,10 +32,13 @@ repos:
 
       - id: local-mypy
         name: mypy check
-        entry: uv run mypy fastapi
+        entry: uv run mypy
+        args:
+          - --scripts-are-modules
         require_serial: true
         language: unsupported
-        pass_filenames: false
+        types: [python]
+        files: ^fastapi/.*\.py$
 
       - id: add-permalinks-pages
         language: unsupported
