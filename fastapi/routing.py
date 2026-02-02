@@ -2,6 +2,7 @@ import email.message
 import functools
 import inspect
 import json
+import warnings
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -42,6 +43,7 @@ from fastapi.dependencies.utils import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
+    FastAPIDeprecationWarning,
     FastAPIError,
     PydanticV1NotSupportedError,
     RequestValidationError,
@@ -4500,6 +4502,13 @@ class APIRouter(routing.Router):
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/#alternative-events-deprecated).
         """
+        warnings.warn(
+            f"on_event('{event_type}') is deprecated and will be removed in a future version. "
+            f"Use the `lifespan` context manager instead. "
+            f"See https://fastapi.tiangolo.com/advanced/events/ for migration guide.",
+            FastAPIDeprecationWarning,
+            stacklevel=2,
+        )
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_event_handler(event_type, func)

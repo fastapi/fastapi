@@ -25,6 +25,13 @@ from fastapi.openapi.docs import (
     get_swagger_ui_html,
     get_swagger_ui_oauth2_redirect_html,
 )
+from fastapi.openapi.plugins import (
+    OpenAPIPlugin,
+    OpenAPIPluginBase,
+    OpenAPIPluginSettings,
+    PluginExecutor,
+    PluginRegistry,
+)
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
 from fastapi.types import DecoratedCallable, IncEx
@@ -841,6 +848,35 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        openapi_plugins: Annotated[
+            Optional[Sequence[Union[OpenAPIPlugin, OpenAPIPluginBase]]],
+            Doc(
+                """
+                A list of OpenAPI plugins to customize schema generation.
+
+                Plugins can modify operations, add custom extensions, and
+                transform the final schema without monkey-patching FastAPI.
+
+                **Example**:
+
+                ```python
+                from fastapi import FastAPI
+                from fastapi.openapi.plugins import OpenAPIPluginBase
+
+                class MyPlugin(OpenAPIPluginBase):
+                    @property
+                    def name(self) -> str:
+                        return "my-plugin"
+
+                    def modify_operation(self, route, method, operation):
+                        operation["x-custom"] = True
+                        return operation
+
+                app = FastAPI(openapi_plugins=[MyPlugin()])
+                ```
+                """
+            ),
+        ] = None,
         **extra: Annotated[
             Any,
             Doc(
@@ -871,6 +907,13 @@ class FastAPI(Starlette):
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
         self.extra = extra
+        # Initialize plugin system
+        self._openapi_plugin_registry: PluginRegistry = PluginRegistry(
+            on_cache_invalidation=self._invalidate_openapi_cache
+        )
+        if openapi_plugins:
+            for plugin in openapi_plugins:
+                self._openapi_plugin_registry.register(plugin)
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -1043,6 +1086,28 @@ class FastAPI(Starlette):
             app = cls(app, *args, **kwargs)
         return app
 
+    def _invalidate_openapi_cache(self) -> None:
+        """Invalidate the cached OpenAPI schema when plugins change."""
+        self.openapi_schema = None
+        self._openapi_plugin_generation: int = getattr(
+            self, "_openapi_plugin_generation", 0
+        )
+
+    @property
+    def openapi_plugins(self) -> PluginRegistry:
+        """
+        Access the OpenAPI plugin registry.
+
+        Use this to register, enable, or disable plugins at runtime.
+
+        **Example**:
+        ```python
+        app.openapi_plugins.register(MyPlugin())
+        app.openapi_plugins.disable("my-plugin")
+        ```
+        """
+        return self._openapi_plugin_registry
+
     def openapi(self) -> dict[str, Any]:
         """
         Generate the OpenAPI schema of the application. This is called by FastAPI
@@ -1054,10 +1119,35 @@ class FastAPI(Starlette):
 
         If you need to modify the generated OpenAPI schema, you could modify it.
 
+        Plugins registered via `openapi_plugins` will be invoked during generation.
+        When plugins change, the cache is automatically invalidated.
+
         Read more in the
         [FastAPI docs for OpenAPI](https://fastapi.tiangolo.com/how-to/extending-openapi/).
         """
+        # Check if plugins have changed since last generation
+        current_gen = self._openapi_plugin_registry.generation_count
+        cached_gen = getattr(self, "_openapi_plugin_generation", -1)
+        if current_gen != cached_gen:
+            self.openapi_schema = None
+            self._openapi_plugin_generation = current_gen
+
         if not self.openapi_schema:
+            # Create plugin executor if we have plugins
+            plugin_executor = None
+            if len(self._openapi_plugin_registry) > 0:
+                plugin_executor = PluginExecutor(self._openapi_plugin_registry)
+                # Call pre_schema_generation hook
+                settings = OpenAPIPluginSettings(
+                    title=self.title,
+                    version=self.version,
+                    openapi_version=self.openapi_version,
+                    description=self.description,
+                    routes_count=len(self.routes),
+                    separate_input_output_schemas=self.separate_input_output_schemas,
+                )
+                plugin_executor.execute_pre_schema_generation(self, settings)
+
             self.openapi_schema = get_openapi(
                 title=self.title,
                 version=self.version,
@@ -1073,6 +1163,7 @@ class FastAPI(Starlette):
                 servers=self.servers,
                 separate_input_output_schemas=self.separate_input_output_schemas,
                 external_docs=self.openapi_external_docs,
+                plugin_executor=plugin_executor,
             )
         return self.openapi_schema
 

@@ -1,4 +1,5 @@
 import re
+import threading
 import warnings
 from collections.abc import Sequence
 from copy import copy, deepcopy
@@ -11,6 +12,36 @@ from typing import (
     Union,
     cast,
 )
+
+from fastapi.openapi._profiling import openapi_profiler, profiled
+
+
+# =============================================================================
+# Model traversal cache for OpenAPI performance optimization
+# =============================================================================
+
+# Thread-safe cache for flat models extracted from types
+# Key: frozenset of model types, Value: set of all referenced models
+_flat_models_cache: dict[frozenset[type], set[type]] = {}
+_flat_models_cache_lock = threading.Lock()
+
+
+def _get_cached_flat_models(types: frozenset[type]) -> set[type] | None:
+    """Get cached flat models for a set of types."""
+    with _flat_models_cache_lock:
+        return _flat_models_cache.get(types)
+
+
+def _set_cached_flat_models(types: frozenset[type], models: set[type]) -> None:
+    """Cache flat models for a set of types."""
+    with _flat_models_cache_lock:
+        _flat_models_cache[types] = models
+
+
+def clear_flat_models_cache() -> None:
+    """Clear the flat models cache. Called when schema needs regeneration."""
+    with _flat_models_cache_lock:
+        _flat_models_cache.clear()
 
 from fastapi._compat import shared
 from fastapi.openapi.constants import REF_TEMPLATE
@@ -249,6 +280,7 @@ def get_schema_from_model_field(
     return json_schema
 
 
+@profiled("get_definitions")
 def get_definitions(
     *,
     fields: Sequence[ModelField],
@@ -261,12 +293,9 @@ def get_definitions(
     schema_generator = GenerateJsonSchema(ref_template=REF_TEMPLATE)
     validation_fields = [field for field in fields if field.mode == "validation"]
     serialization_fields = [field for field in fields if field.mode == "serialization"]
-    flat_validation_models = get_flat_models_from_fields(
-        validation_fields, known_models=set()
-    )
-    flat_serialization_models = get_flat_models_from_fields(
-        serialization_fields, known_models=set()
-    )
+    # Use cached version for performance
+    flat_validation_models = get_flat_models_from_fields_cached(validation_fields)
+    flat_serialization_models = get_flat_models_from_fields_cached(serialization_fields)
     flat_validation_model_fields = [
         ModelField(
             field_info=FieldInfo(annotation=model),
@@ -318,37 +347,66 @@ def _replace_refs(
     schema: dict[str, Any],
     old_name_to_new_name_map: dict[str, str],
 ) -> dict[str, Any]:
-    new_schema = deepcopy(schema)
-    for key, value in new_schema.items():
-        if key == "$ref":
-            value = schema["$ref"]
-            if isinstance(value, str):
-                ref_name = schema["$ref"].split("/")[-1]
-                if ref_name in old_name_to_new_name_map:
-                    new_name = old_name_to_new_name_map[ref_name]
-                    new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
-            continue
-        if isinstance(value, dict):
-            new_schema[key] = _replace_refs(
-                schema=value,
-                old_name_to_new_name_map=old_name_to_new_name_map,
-            )
+    """
+    Replace $ref values in a schema dict according to the name map.
+
+    Optimized to avoid unnecessary deep copies when no changes are needed.
+    """
+    # Fast path: if no mappings, return original
+    if not old_name_to_new_name_map:
+        return schema
+
+    # Check if any replacements are needed before copying
+    needs_replacement = _schema_needs_ref_replacement(schema, old_name_to_new_name_map)
+    if not needs_replacement:
+        return schema
+
+    # Only deepcopy when we know we need to make changes
+    return _replace_refs_in_place(deepcopy(schema), old_name_to_new_name_map)
+
+
+def _schema_needs_ref_replacement(
+    schema: dict[str, Any],
+    old_name_to_new_name_map: dict[str, str],
+) -> bool:
+    """Check if schema contains any refs that need replacement."""
+    for key, value in schema.items():
+        if key == "$ref" and isinstance(value, str):
+            ref_name = value.split("/")[-1]
+            if ref_name in old_name_to_new_name_map:
+                return True
+        elif isinstance(value, dict):
+            if _schema_needs_ref_replacement(value, old_name_to_new_name_map):
+                return True
         elif isinstance(value, list):
-            new_value = []
             for item in value:
                 if isinstance(item, dict):
-                    new_item = _replace_refs(
-                        schema=item,
-                        old_name_to_new_name_map=old_name_to_new_name_map,
-                    )
-                    new_value.append(new_item)
-
-                else:
-                    new_value.append(item)
-            new_schema[key] = new_value
-    return new_schema
+                    if _schema_needs_ref_replacement(item, old_name_to_new_name_map):
+                        return True
+    return False
 
 
+def _replace_refs_in_place(
+    schema: dict[str, Any],
+    old_name_to_new_name_map: dict[str, str],
+) -> dict[str, Any]:
+    """Replace refs in-place in an already-copied schema."""
+    for key, value in list(schema.items()):
+        if key == "$ref" and isinstance(value, str):
+            ref_name = value.split("/")[-1]
+            if ref_name in old_name_to_new_name_map:
+                new_name = old_name_to_new_name_map[ref_name]
+                schema["$ref"] = REF_TEMPLATE.format(model=new_name)
+        elif isinstance(value, dict):
+            _replace_refs_in_place(value, old_name_to_new_name_map)
+        elif isinstance(value, list):
+            for item in value:
+                if isinstance(item, dict):
+                    _replace_refs_in_place(item, old_name_to_new_name_map)
+    return schema
+
+
+@profiled("_remap_definitions_and_field_mappings")
 def _remap_definitions_and_field_mappings(
     *,
     model_name_map: ModelNameMap,
@@ -499,13 +557,11 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
     return {v: k for k, v in name_model_map.items()}
 
 
+@profiled("get_compat_model_name_map")
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
-    all_flat_models = set()
-
     v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
-    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
-    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
-
+    # Use cached version for performance
+    all_flat_models = get_flat_models_from_fields_cached(v2_model_fields)
     model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
     return model_name_map
 
@@ -550,11 +606,38 @@ def get_flat_models_from_field(
     return known_models
 
 
+@profiled("get_flat_models_from_fields")
 def get_flat_models_from_fields(
     fields: Sequence[ModelField], known_models: TypeModelSet
 ) -> TypeModelSet:
     for field in fields:
         get_flat_models_from_field(field, known_models=known_models)
+    return known_models
+
+
+def get_flat_models_from_fields_cached(
+    fields: Sequence[ModelField],
+) -> TypeModelSet:
+    """
+    Cached version of get_flat_models_from_fields.
+
+    Caches results by the set of field types to avoid redundant traversal.
+    """
+    # Extract unique types from fields
+    field_types = frozenset(f.type_ for f in fields if f.type_ is not None)
+
+    # Check cache first
+    cached = _get_cached_flat_models(field_types)
+    if cached is not None:
+        return cached.copy()  # Return a copy to avoid mutation
+
+    # Compute flat models
+    known_models: TypeModelSet = set()
+    for field in fields:
+        get_flat_models_from_field(field, known_models=known_models)
+
+    # Cache the result
+    _set_cached_flat_models(field_types, known_models.copy())
     return known_models
 
 

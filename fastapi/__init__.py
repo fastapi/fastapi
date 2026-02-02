@@ -5,6 +5,7 @@ __version__ = "0.128.0"
 from starlette import status as status
 
 from .applications import FastAPI as FastAPI
+from .background import BackgroundTaskError as BackgroundTaskError
 from .background import BackgroundTasks as BackgroundTasks
 from .datastructures import UploadFile as UploadFile
 from .exceptions import HTTPException as HTTPException

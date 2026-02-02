@@ -5,6 +5,8 @@ from collections.abc import Sequence
 from typing import Any, Optional, Union, cast
 
 from fastapi import routing
+from fastapi.openapi._profiling import openapi_profiler, profiled
+from fastapi.openapi.plugins import PluginExecutor
 from fastapi._compat import (
     ModelField,
     Undefined,
@@ -75,6 +77,7 @@ status_code_ranges: dict[str, str] = {
 }
 
 
+@profiled("get_openapi_security_definitions")
 def get_openapi_security_definitions(
     flat_dependant: Dependant,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -101,6 +104,7 @@ def get_openapi_security_definitions(
     return security_definitions, operation_security
 
 
+@profiled("_get_openapi_operation_parameters")
 def _get_openapi_operation_parameters(
     *,
     dependant: Dependant,
@@ -174,6 +178,7 @@ def _get_openapi_operation_parameters(
     return parameters
 
 
+@profiled("get_openapi_operation_request_body")
 def get_openapi_operation_request_body(
     *,
     body_field: Optional[ModelField],
@@ -230,6 +235,7 @@ def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
     return route.name.replace("_", " ").title()
 
 
+@profiled("get_openapi_operation_metadata")
 def get_openapi_operation_metadata(
     *, route: routing.APIRoute, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
@@ -256,6 +262,7 @@ def get_openapi_operation_metadata(
     return operation
 
 
+@profiled("get_openapi_path")
 def get_openapi_path(
     *,
     route: routing.APIRoute,
@@ -265,6 +272,7 @@ def get_openapi_path(
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
     ],
     separate_input_output_schemas: bool = True,
+    plugin_executor: Optional[PluginExecutor] = None,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     path = {}
     security_schemes: dict[str, Any] = {}
@@ -438,10 +446,16 @@ def get_openapi_path(
                     )
             if route.openapi_extra:
                 deep_dict_update(operation, route.openapi_extra)
+            # Allow plugins to modify the operation
+            if plugin_executor:
+                operation = plugin_executor.execute_modify_operation(
+                    route, method, operation
+                )
             path[method.lower()] = operation
     return path, security_schemes, definitions
 
 
+@profiled("get_fields_from_routes")
 def get_fields_from_routes(
     routes: Sequence[BaseRoute],
 ) -> list[ModelField]:
@@ -473,6 +487,7 @@ def get_fields_from_routes(
     return flat_models
 
 
+@profiled("get_openapi")
 def get_openapi(
     *,
     title: str,
@@ -489,6 +504,7 @@ def get_openapi(
     license_info: Optional[dict[str, Union[str, Any]]] = None,
     separate_input_output_schemas: bool = True,
     external_docs: Optional[dict[str, Any]] = None,
+    plugin_executor: Optional[PluginExecutor] = None,
 ) -> dict[str, Any]:
     info: dict[str, Any] = {"title": title, "version": version}
     if summary:
@@ -523,6 +539,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                plugin_executor=plugin_executor,
             )
             if result:
                 path, security_schemes, path_definitions = result
@@ -542,6 +559,7 @@ def get_openapi(
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                plugin_executor=plugin_executor,
             )
             if result:
                 path, security_schemes, path_definitions = result
@@ -564,4 +582,16 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore
+
+    # Allow plugins to modify the complete schema before validation
+    if plugin_executor:
+        output = plugin_executor.execute_modify_schema(output)
+
+    # Validate and encode the schema
+    result = jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)
+
+    # Allow plugins to make final modifications after encoding
+    if plugin_executor:
+        result = plugin_executor.execute_post_schema_generation(result)
+
+    return result  # type: ignore
