@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump gitpython from 3.1.45 to 3.1.46. PR [#14800](https://github.com/fastapi/fastapi/pull/14800) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump typer from 0.16.0 to 0.21.1. PR [#14799](https://github.com/fastapi/fastapi/pull/14799) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👥 Update FastAPI GitHub topic repositories. PR [#14803](https://github.com/fastapi/fastapi/pull/14803) by [@tiangolo](https://github.com/tiangolo).
 * 👥 Update FastAPI People - Contributors and Translators. PR [#14796](https://github.com/fastapi/fastapi/pull/14796) by [@tiangolo](https://github.com/tiangolo).
