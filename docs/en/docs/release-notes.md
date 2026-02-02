@@ -19,6 +19,8 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for uk (update outdated, found by fixer tool). PR [#14739](https://github.com/fastapi/fastapi/pull/14739) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for tr (update-outdated). PR [#14745](https://github.com/fastapi/fastapi/pull/14745) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update `llm-prompt.md` for Korean language. PR [#14763](https://github.com/fastapi/fastapi/pull/14763) by [@seuthootDev](https://github.com/seuthootDev).
 * 🌐 Update translations for ko (update outdated, found by fixer tool). PR [#14738](https://github.com/fastapi/fastapi/pull/14738) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for de (update-outdated). PR [#14690](https://github.com/fastapi/fastapi/pull/14690) by [@tiangolo](https://github.com/tiangolo).
@@ -39,6 +41,14 @@ hide:
 
 ### Internal
 
+* ⬆ Bump ruff from 0.14.3 to 0.14.14. PR [#14798](https://github.com/fastapi/fastapi/pull/14798) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pyasn1 from 0.6.1 to 0.6.2. PR [#14804](https://github.com/fastapi/fastapi/pull/14804) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump sqlmodel from 0.0.27 to 0.0.31. PR [#14802](https://github.com/fastapi/fastapi/pull/14802) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocs-macros-plugin from 1.4.1 to 1.5.0. PR [#14801](https://github.com/fastapi/fastapi/pull/14801) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.45 to 3.1.46. PR [#14800](https://github.com/fastapi/fastapi/pull/14800) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump typer from 0.16.0 to 0.21.1. PR [#14799](https://github.com/fastapi/fastapi/pull/14799) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 👥 Update FastAPI GitHub topic repositories. PR [#14803](https://github.com/fastapi/fastapi/pull/14803) by [@tiangolo](https://github.com/tiangolo).
+* 👥 Update FastAPI People - Contributors and Translators. PR [#14796](https://github.com/fastapi/fastapi/pull/14796) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Ensure that an edit to `uv.lock` gets the `internal` label. PR [#14759](https://github.com/fastapi/fastapi/pull/14759) by [@svlandeg](https://github.com/svlandeg).
 * 🔧 Update sponsors: remove Requestly. PR [#14735](https://github.com/fastapi/fastapi/pull/14735) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors, LambdaTest changes to TestMu AI. PR [#14734](https://github.com/fastapi/fastapi/pull/14734) by [@tiangolo](https://github.com/tiangolo).
