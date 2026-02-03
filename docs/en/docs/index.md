@@ -458,7 +458,7 @@ For a more complete example including more features, see the <a href="https://fa
 
 ### Deploy your app (optional) { #deploy-your-app-optional }
 
-You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't. 🚀
+You can optionally deploy your FastAPI app to <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, go and join the waiting list if you haven't already. 🚀
 
 If you already have a **FastAPI Cloud** account (we invited you from the waiting list 😉), you can deploy your application with one command.
 
