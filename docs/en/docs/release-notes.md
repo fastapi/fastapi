@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* 👷 Run mypy by pre-commit. PR [#14806](https://github.com/fastapi/fastapi/pull/14806) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump ruff from 0.14.3 to 0.14.14. PR [#14798](https://github.com/fastapi/fastapi/pull/14798) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyasn1 from 0.6.1 to 0.6.2. PR [#14804](https://github.com/fastapi/fastapi/pull/14804) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump sqlmodel from 0.0.27 to 0.0.31. PR [#14802](https://github.com/fastapi/fastapi/pull/14802) by [@dependabot[bot]](https://github.com/apps/dependabot).
