@@ -36,7 +36,6 @@ repos:
         require_serial: true
         language: unsupported
         pass_filenames: false
-        types: [python]
 
       - id: add-permalinks-pages
         language: unsupported
