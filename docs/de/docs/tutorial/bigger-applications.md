@@ -56,19 +56,19 @@ from app.routers import items
 
 Die gleiche Dateistruktur mit Kommentaren:
 
-```
+```bash
 .
-├── app                  # „app“ ist ein Python-Package
-│   ├── __init__.py      # diese Datei macht „app“ zu einem „Python-Package“
-│   ├── main.py          # „main“-Modul, z. B. import app.main
-│   ├── dependencies.py  # „dependencies“-Modul, z. B. import app.dependencies
-│   └── routers          # „routers“ ist ein „Python-Subpackage“
-│   │   ├── __init__.py  # macht „routers“ zu einem „Python-Subpackage“
-│   │   ├── items.py     # „items“-Submodul, z. B. import app.routers.items
-│   │   └── users.py     # „users“-Submodul, z. B. import app.routers.users
-│   └── internal         # „internal“ ist ein „Python-Subpackage“
-│       ├── __init__.py  # macht „internal“ zu einem „Python-Subpackage“
-│       └── admin.py     # „admin“-Submodul, z. B. import app.internal.admin
+├── app                  # "app" ist ein Python-Package
+│   ├── __init__.py      # diese Datei macht "app" zu einem "Python-Package"
+│   ├── main.py          # "main"-Modul, z. B. import app.main
+│   ├── dependencies.py  # "dependencies"-Modul, z. B. import app.dependencies
+│   └── routers          # "routers" ist ein "Python-Subpackage"
+│   │   ├── __init__.py  # macht "routers" zu einem "Python-Subpackage"
+│   │   ├── items.py     # "items"-Submodul, z. B. import app.routers.items
+│   │   └── users.py     # "users"-Submodul, z. B. import app.routers.users
+│   └── internal         # "internal" ist ein "Python-Subpackage"
+│       ├── __init__.py  # macht "internal" zu einem "Python-Subpackage"
+│       └── admin.py     # "admin"-Submodul, z. B. import app.internal.admin
 ```
 
 ## `APIRouter` { #apirouter }
@@ -479,7 +479,7 @@ $ fastapi dev app/main.py
 
 </div>
 
-und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Und öffnen Sie die Dokumentation unter <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
 Sie sehen die automatische API-Dokumentation, einschließlich der Pfade aller Submodule, mit den richtigen Pfaden (und Präfixen) und den richtigen Tags:
 
