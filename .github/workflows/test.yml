@@ -16,7 +16,35 @@ env:
   UV_NO_SYNC: true
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    # Set job outputs to values from filter step
+    outputs:
+      src: ${{ steps.filter.outputs.src }}
+    steps:
+    - uses: actions/checkout@v6
+    # For pull requests it's not necessary to checkout the code but for the main branch it is
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          src:
+            - .github/workflows/test.yml
+            - docs_src/**
+            - fastapi/**
+            - scripts/**
+            - tests/**
+            - .python-version
+            - pyproject.toml
+            - uv.lock
+
   test:
+    needs:
+      - changes
+    if: needs.changes.outputs.src == 'true'
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
@@ -84,14 +112,15 @@ jobs:
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
           include-hidden-files: true
 
   coverage-combine:
-    needs: [test]
+    needs:
+      - test
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
@@ -112,7 +141,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --locked --no-dev --group tests --extra all
       - name: Get coverage files
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           pattern: coverage-*
           path: coverage
@@ -121,7 +150,7 @@ jobs:
       - run: uv run coverage combine coverage
       - run: uv run coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-html
           path: htmlcov
@@ -143,3 +172,4 @@ jobs:
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
+          allowed-skips: coverage-combine,test
