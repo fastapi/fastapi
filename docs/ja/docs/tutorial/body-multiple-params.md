@@ -103,13 +103,13 @@
 デフォルトでは、単数値はクエリパラメータとして解釈されるので、明示的に `Query` を追加する必要はなく、次のようにできます:
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
 またはPython 3.10以上では:
 
 ```Python
-q: str | None = None
+q: Union[str, None] = None
 ```
 
 例えば:

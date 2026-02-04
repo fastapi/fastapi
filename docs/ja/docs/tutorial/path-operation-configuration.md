@@ -52,7 +52,7 @@
 
 `summary`と`description`を追加できます:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## docstringを用いた説明 { #description-from-docstring }
 
@@ -70,7 +70,7 @@ docstringに<a href="https://en.wikipedia.org/wiki/Markdown" class="external-lin
 
 `response_description`パラメータでレスポンスの説明をすることができます。
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | 情報
 
