@@ -204,7 +204,12 @@ def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
         except NameError:
             # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
             # e.g. dependency return types
-            signature = inspect.signature(call)
+            if sys.version_info >= (3, 14):
+                from annotationlib import Format
+
+                signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
+            else:
+                signature = inspect.signature(call)
     else:
         signature = inspect.signature(call)
     return signature
@@ -399,7 +404,7 @@ def analyze_param(
         if isinstance(fastapi_annotation, FieldInfo):
             # Copy `field_info` because we mutate `field_info.default` below.
             field_info = copy_field_info(
-                field_info=fastapi_annotation,  # type: ignore[arg-type]
+                field_info=fastapi_annotation,
                 annotation=use_annotation,
             )
             assert (
@@ -433,7 +438,7 @@ def analyze_param(
             "Cannot specify FastAPI annotations in `Annotated` and default value"
             f" together for {param_name!r}"
         )
-        field_info = value  # type: ignore[assignment]
+        field_info = value
         if isinstance(field_info, FieldInfo):
             field_info.annotation = type_annotation
 
@@ -519,7 +524,7 @@ def analyze_param(
                     # For Pydantic v1
                     and getattr(field, "shape", 1) == 1
                 )
-            )
+            ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
 
