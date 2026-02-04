@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.1
+
 ### Features
 
 * ✨ Add `viewport` meta tag to improve Swagger UI on mobile devices. PR [#14777](https://github.com/fastapi/fastapi/pull/14777) by [@Joab0](https://github.com/Joab0).
