@@ -243,6 +243,10 @@ def get_openapi_operation_metadata(
     if route.description:
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
+    # When a route has multiple methods and uses auto-generated unique_id,
+    # append the method to make the operation_id unique for each method
+    if not route.operation_id and len(route.methods) > 1:
+        operation_id = f"{operation_id}_{method.lower()}"
     if operation_id in operation_ids:
         message = (
             f"Duplicate Operation ID {operation_id} for function "
