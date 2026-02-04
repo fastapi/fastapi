@@ -41,11 +41,15 @@ jobs:
                 "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR.",
                 "reminder": {
                     "before": "P3D",
-                    "message": "Heads-up: this will be closed in 3 days unless there’s new activity."
+                    "message": "Heads-up: this will be closed in 3 days unless there's new activity."
                 }
               },
               "invalid": {
                 "delay": 0,
                 "message": "This was marked as invalid and will be closed now. If this is an error, please provide additional details."
+              },
+              "maybe-ai": {
+                "delay": 0,
+                "message": "This was marked as potentially AI generated and will be closed now. If this is an error, please provide additional details, make sure to read the docs about contributing and AI."
               }
             }
