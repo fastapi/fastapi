@@ -1,12 +1,10 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import AnyThing, IsDict, IsOneOf, IsPartialDict
+from dirty_equals import AnyThing, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
-
-from tests.utils import needs_pydanticv2
 
 app = FastAPI()
 
@@ -55,28 +53,16 @@ def test_required_list_str_missing(path: str):
     client = TestClient(app)
     response = client.get(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "p"],
-                    "msg": "Field required",
-                    "input": AnyThing,
-                }
-            ]
-        }
-    ) | IsDict(
-        {
-            "detail": [
-                {
-                    "loc": ["header", "p"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["header", "p"],
+                "msg": "Field required",
+                "input": AnyThing,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -137,29 +123,16 @@ def test_required_list_alias_missing(path: str):
     client = TestClient(app)
     response = client.get(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "p_alias"],
-                    "msg": "Field required",
-                    "input": AnyThing,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["header", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["header", "p_alias"],
+                "msg": "Field required",
+                "input": AnyThing,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -173,29 +146,16 @@ def test_required_list_alias_by_name(path: str):
     client = TestClient(app)
     response = client.get(path, headers=[("p", "hello"), ("p", "world")])
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["header", "p_alias"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, IsPartialDict({"p": ["hello", "world"]})),
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["header", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["header", "p_alias"],
+                "msg": "Field required",
+                "input": IsOneOf(None, IsPartialDict({"p": ["hello", "world"]})),
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -234,7 +194,6 @@ async def read_model_required_list_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -254,7 +213,6 @@ def test_required_list_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -281,7 +239,6 @@ def test_required_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -306,7 +263,6 @@ def test_required_list_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
@@ -343,7 +299,6 @@ def read_model_required_list_alias_and_validation_alias(
     return {"p": p.p}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -366,7 +321,6 @@ def test_required_list_alias_and_validation_alias_schema(path: str):
     ]
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -393,7 +347,6 @@ def test_required_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -423,7 +376,6 @@ def test_required_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -450,7 +402,6 @@ def test_required_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [

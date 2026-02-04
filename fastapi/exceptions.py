@@ -49,6 +49,9 @@ class HTTPException(StarletteHTTPException):
             Doc(
                 """
                 HTTP status code to send to the client.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ],
@@ -58,6 +61,9 @@ class HTTPException(StarletteHTTPException):
                 """
                 Any data to be sent to the client in the `detail` key of the JSON
                 response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ] = None,
@@ -66,6 +72,10 @@ class HTTPException(StarletteHTTPException):
             Doc(
                 """
                 Any headers to send to the client in the response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#add-custom-headers)
+
                 """
             ),
         ] = None,
@@ -231,3 +241,16 @@ class ResponseValidationError(ValidationException):
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
+
+
+class PydanticV1NotSupportedError(FastAPIError):
+    """
+    A pydantic.v1 model is used, which is no longer supported.
+    """
+
+
+class FastAPIDeprecationWarning(UserWarning):
+    """
+    A custom deprecation warning as DeprecationWarning is ignored
+    Ref: https://sethmlarson.dev/deprecations-via-warnings-dont-work-for-python-libraries
+    """
