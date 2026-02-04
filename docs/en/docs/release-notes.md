@@ -13,6 +13,7 @@ hide:
 
 ### Docs
 
+* 📝 Add links to related sections of docs to docstrings. PR [#14776](https://github.com/fastapi/fastapi/pull/14776) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update embedded code examples to Python 3.10 syntax. PR [#14758](https://github.com/fastapi/fastapi/pull/14758) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Fix dependency installation command in `docs/en/docs/contributing.md`. PR [#14757](https://github.com/fastapi/fastapi/pull/14757) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Use return type annotation instead of `response_model` when possible. PR [#14753](https://github.com/fastapi/fastapi/pull/14753) by [@YuriiMotov](https://github.com/YuriiMotov).
