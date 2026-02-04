@@ -181,7 +181,7 @@ Help with translations is VERY MUCH appreciated! And it can't be done without th
 
 Here are the steps to help with translations.
 
-#### Review Translation PRs
+#### Translation PRs
 
 Translation pull requests are made by LLMs guided with prompts designed by the FastAPI team together with the community of native speakers for each supported language.
 
