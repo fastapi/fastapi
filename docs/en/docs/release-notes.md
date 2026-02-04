@@ -14,10 +14,13 @@ hide:
 
 ### Fixes
 
+* 🐛 Fix TYPE_CHECKING annotations for Python 3.14 (PEP 649). PR [#14789](https://github.com/fastapi/fastapi/pull/14789) by [@mgu](https://github.com/mgu).
+* 🐛 Strip whitespaces from `Authorization` header credentials. PR [#14786](https://github.com/fastapi/fastapi/pull/14786) by [@WaveTheory1](https://github.com/WaveTheory1).
 * 🐛 Fix OpenAPI duplication of `anyOf` refs for app-level responses with specified `content` and `model` as `Union`. PR [#14463](https://github.com/fastapi/fastapi/pull/14463) by [@DJMcoder](https://github.com/DJMcoder).
 
 ### Refactors
 
+* 🎨 Tweak types for mypy. PR [#14816](https://github.com/fastapi/fastapi/pull/14816) by [@tiangolo](https://github.com/tiangolo).
 * 🏷️ Re-export `IncEx` type from Pydantic instead of duplicating it. PR [#14641](https://github.com/fastapi/fastapi/pull/14641) by [@mvanderlee](https://github.com/mvanderlee).
 * 💡 Update comment for Pydantic internals. PR [#14814](https://github.com/fastapi/fastapi/pull/14814) by [@tiangolo](https://github.com/tiangolo).
 
