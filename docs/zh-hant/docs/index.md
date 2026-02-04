@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/zh-hant"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI 框架，高效能，易於學習，快速撰寫程式碼，適用於生產環境</em>
@@ -27,7 +27,7 @@
 
 ---
 
-**文件**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**文件**： <a href="https://fastapi.tiangolo.com/zh-hant" target="_blank">https://fastapi.tiangolo.com</a>
 
 **原始碼**： <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -69,7 +69,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
+<a href="https://fastapi.tiangolo.com/zh-hant/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
 
 ## 評價 { #opinions }
 
@@ -140,7 +140,7 @@ FastAPI 是站在以下巨人的肩膀上：
 
 ## 安裝 { #installation }
 
-建立並啟用一個 <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">虛擬環境</a>，然後安裝 FastAPI：
+建立並啟用一個 <a href="https://fastapi.tiangolo.com/zh-hant/virtual-environments/" class="external-link" target="_blank">虛擬環境</a>，然後安裝 FastAPI：
 
 <div class="termy">
 
@@ -199,7 +199,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **注意**：
 
-如果你不確定，請查看文件中 _"In a hurry?"_ 章節關於 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` 和 `await`</a> 的說明。
+如果你不確定，請查看文件中 _"In a hurry?"_ 章節關於 <a href="https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry" target="_blank">`async` 和 `await`</a> 的說明。
 
 </details>
 
@@ -241,7 +241,7 @@ INFO:     Application startup complete.
 
 預設情況下，`fastapi dev` 會啟用自動重新載入，方便本機開發。
 
-你可以在 <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI 文件</a> 了解更多。
+你可以在 <a href="https://fastapi.tiangolo.com/zh-hant/fastapi-cli/" target="_blank">FastAPI CLI 文件</a> 了解更多。
 
 </details>
 
