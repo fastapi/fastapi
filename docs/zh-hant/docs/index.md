@@ -5,10 +5,10 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com/zh-hant"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>FastAPI 框架，高效能，易於學習，快速開發，適用於生產環境</em>
+    <em>FastAPI 框架，高效能，易於學習，快速撰寫程式碼，適用於生產環境</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
@@ -27,7 +27,7 @@
 
 ---
 
-**文件**： <a href="https://fastapi.tiangolo.com/zh-hant" target="_blank">https://fastapi.tiangolo.com</a>
+**文件**： <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
 
 **原始碼**： <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
@@ -40,7 +40,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 * **快速**： 非常高的效能，可與 **NodeJS** 和 **Go** 效能相當（歸功於 Starlette 和 Pydantic）。[可用的最快 Python 框架之一](#performance)。
 * **快速撰寫程式碼**： 提高開發功能的速度約 200% 至 300%。 *
 * **更少的 Bug**： 減少約 40% 的人為（開發者）導致的錯誤。 *
-* **直覺**： 具有出色的編輯器支援。處處都有<abbr title="也被稱為自動完成、自動補全、IntelliSense">Completion</abbr>。更少的除錯時間。
+* **直覺**： 具有出色的編輯器支援。處處都有<abbr title="also known as auto-complete, autocompletion, IntelliSense - 也被稱為自動完成、自動補全、IntelliSense">Completion</abbr>。更少的除錯時間。
 * **簡單**： 設計上易於使用和學習。更少的閱讀文件時間。
 * **簡潔**： 最小化程式碼重複性。每個參數宣告即可獲得多項功能。更少的 Bug。
 * **穩健**： 立即獲得可用於生產環境的程式碼，並有自動生成的互動式文件。
@@ -69,7 +69,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 <!-- /sponsors -->
 
-<a href="https://fastapi.tiangolo.com/zh-hant/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
+<a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors" class="external-link" target="_blank">其他贊助商</a>
 
 ## 評價 { #opinions }
 
@@ -127,7 +127,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-如果你不是在開發 Web API，而是在開發一個要在終端機中使用的 <abbr title="Command Line Interface">CLI</abbr> 應用程式，不妨試試 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
+如果你不是在開發 Web API，而是在開發一個要在終端機中使用的 <abbr title="Command Line Interface">CLI</abbr> app，不妨試試 <a href="https://typer.tiangolo.com/" class="external-link" target="_blank">**Typer**</a>。
 
 **Typer** 是 FastAPI 的小兄弟，並且旨在成為 **CLI 的 FastAPI**。 ⌨️ 🚀
 
@@ -140,7 +140,7 @@ FastAPI 是站在以下巨人的肩膀上：
 
 ## 安裝 { #installation }
 
-建立並啟用一個 <a href="https://fastapi.tiangolo.com/zh-hant/virtual-environments/" class="external-link" target="_blank">虛擬環境</a>，然後安裝 FastAPI：
+建立並啟用一個 <a href="https://fastapi.tiangolo.com/virtual-environments/" class="external-link" target="_blank">虛擬環境</a>，然後安裝 FastAPI：
 
 <div class="termy">
 
@@ -161,8 +161,6 @@ $ pip install "fastapi[standard]"
 建立一個檔案 `main.py`，內容如下：
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -174,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -183,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 如果你的程式使用 `async` / `await`，請使用 `async def`：
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -197,13 +193,13 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
 **注意**：
 
-如果你不確定，請查看文件中 _"In a hurry?"_ 章節關於 <a href="https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry" target="_blank">`async` 和 `await`</a> 的說明。
+如果你不確定，請查看文件中 _"In a hurry?"_ 章節關於 <a href="https://fastapi.tiangolo.com/async/#in-a-hurry" target="_blank">`async` 和 `await`</a> 的說明。
 
 </details>
 
@@ -245,7 +241,7 @@ INFO:     Application startup complete.
 
 預設情況下，`fastapi dev` 會啟用自動重新載入，方便本機開發。
 
-你可以在 <a href="https://fastapi.tiangolo.com/zh-hant/fastapi-cli/" target="_blank">FastAPI CLI 文件</a> 了解更多。
+你可以在 <a href="https://fastapi.tiangolo.com/fastapi-cli/" target="_blank">FastAPI CLI 文件</a> 了解更多。
 
 </details>
 
@@ -288,9 +284,7 @@ INFO:     Application startup complete.
 
 藉由 Pydantic，你可以使用標準 Python 型別來宣告 body。
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -300,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -309,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -369,12 +363,12 @@ item: Item
 ...透過這一次宣告，你將獲得：
 
 * 編輯器支援，包含：
-    * 自動補全。
+    * Completion。
     * 型別檢查。
 * 資料驗證：
     * 當資料無效時，自動且清楚地回報錯誤。
     * 即使是深層巢狀的 JSON 物件也能驗證。
-* <abbr title="也被稱為： 序列化、解析、封送處理">Conversion</abbr>輸入資料：將來自網路的資料轉換為 Python 資料與型別。可從以下讀取：
+* <abbr title="also known as: serialization, parsing, marshalling - 也被稱為：序列化、解析、封送處理">Conversion</abbr>輸入資料：將來自網路的資料轉換為 Python 資料與型別。可從以下讀取：
     * JSON。
     * 路徑參數。
     * 查詢參數。
@@ -382,7 +376,7 @@ item: Item
     * Headers。
     * Forms。
     * Files。
-* <abbr title="也被稱為： 序列化、解析、封送處理">Conversion</abbr>輸出資料：將 Python 資料與型別轉換為網路資料（JSON）：
+* <abbr title="also known as: serialization, parsing, marshalling - 也被稱為：序列化、解析、封送處理">Conversion</abbr>輸出資料：將 Python 資料與型別轉換為網路資料（JSON）：
     * 轉換 Python 型別（`str`、`int`、`float`、`bool`、`list` 等）。
     * `datetime` 物件。
     * `UUID` 物件。
@@ -445,7 +439,7 @@ item: Item
 
 * 從不同位置宣告**參數**，例如：**headers**、**cookies**、**form 欄位**和**檔案**。
 * 如何設定 **驗證限制**，例如 `maximum_length` 或 `regex`。
-* 強大且易用的 **<abbr title="也被稱為元件、資源、提供者、服務或是可注入物">Dependency Injection</abbr>** 系統。
+* 強大且易用的 **<abbr title="also known as components, resources, providers, services, injectables - 也被稱為元件、資源、提供者、服務或是可注入物">Dependency Injection</abbr>** 系統。
 * 安全性與身份驗證，包含支援 **OAuth2**、**JWT tokens** 與 **HTTP Basic** 驗證。
 * 更進階（但同樣簡單）的技巧，用於宣告**深層巢狀的 JSON models**（歸功於 Pydantic）。
 * 與 <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> 及其他函式庫的 **GraphQL** 整合。
@@ -458,7 +452,7 @@ item: Item
 
 ### 部署你的 app（可選） { #deploy-your-app-optional }
 
-你也可以選擇將 FastAPI app 部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>；如果你還沒加入候補名單，可以前往加入。 🚀
+你也可以選擇將 FastAPI app 部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>，如果你還沒加入候補名單，請前往加入。 🚀
 
 如果你已經有 **FastAPI Cloud** 帳號（我們已從候補名單邀請你 😉），你可以用一個指令部署你的應用程式。
 
@@ -530,7 +524,7 @@ FastAPI 依賴 Pydantic 與 Starlette。
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - 若你想使用 `TestClient`，則必須安裝。
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - 若你想使用預設的 template 設定，則必須安裝。
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 若你想透過 `request.form()` 支援表單 <abbr title="將來自 HTTP 請求的字串轉換為 Python 資料">"parsing"</abbr>，則必須安裝。
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - 若你想透過 `request.form()` 支援表單 <abbr title="converting the string that comes from an HTTP request into Python data - 將來自 HTTP 請求的字串轉換為 Python 資料">"parsing"</abbr>，則必須安裝。
 
 由 FastAPI 使用：
 
