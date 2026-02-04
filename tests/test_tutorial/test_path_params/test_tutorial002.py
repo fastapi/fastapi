@@ -88,6 +88,8 @@ def test_openapi_schema():
                 },
                 "ValidationError": {
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "items": {
                                 "anyOf": [

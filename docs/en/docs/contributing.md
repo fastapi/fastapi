@@ -13,7 +13,7 @@ Create a virtual environment and install the required packages with <a href="htt
 <div class="termy">
 
 ```console
-$ uv sync
+$ uv sync --extra all
 
 ---> 100%
 ```
@@ -32,9 +32,9 @@ That way, you don't have to "install" your local version to be able to test ever
 
 /// note | Technical Details
 
-This only happens when you install using `uv sync` instead of running `pip install fastapi` directly.
+This only happens when you install using `uv sync --extra all` instead of running `pip install fastapi` directly.
 
-That is because `uv sync` will install the local version of FastAPI in "editable" mode by default.
+That is because `uv sync --extra all` will install the local version of FastAPI in "editable" mode by default.
 
 ///
 
@@ -181,7 +181,7 @@ Help with translations is VERY MUCH appreciated! And it can't be done without th
 
 Here are the steps to help with translations.
 
-#### Review Translation PRs
+#### Translation PRs
 
 Translation pull requests are made by LLMs guided with prompts designed by the FastAPI team together with the community of native speakers for each supported language.
 

@@ -22,21 +22,13 @@ Aqui está uma ideia geral de como os modelos poderiam parecer com seus campos d
 
 {* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
-/// info | Informação
+### Sobre `**user_in.model_dump()` { #about-user-in-model-dump }
 
-No Pydantic v1 o método se chamava `.dict()`, ele foi descontinuado (mas ainda é suportado) no Pydantic v2 e renomeado para `.model_dump()`.
-
-Os exemplos aqui usam `.dict()` por compatibilidade com o Pydantic v1, mas você deve usar `.model_dump()` se puder usar o Pydantic v2.
-
-///
-
-### Sobre `**user_in.dict()` { #about-user-in-dict }
-
-#### O `.dict()` do Pydantic { #pydantics-dict }
+#### O `.model_dump()` do Pydantic { #pydantics-model-dump }
 
 `user_in` é um modelo Pydantic da classe `UserIn`.
 
-Os modelos Pydantic possuem um método `.dict()` que retorna um `dict` com os dados do modelo.
+Os modelos Pydantic possuem um método `.model_dump()` que retorna um `dict` com os dados do modelo.
 
 Então, se criarmos um objeto Pydantic `user_in` como:
 
@@ -47,7 +39,7 @@ user_in = UserIn(username="john", password="secret", email="john.doe@example.com
 e depois chamarmos:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 ```
 
 agora temos um `dict` com os dados na variável `user_dict` (é um `dict` em vez de um objeto de modelo Pydantic).
@@ -103,20 +95,20 @@ UserInDB(
 
 #### Um modelo Pydantic a partir do conteúdo de outro { #a-pydantic-model-from-the-contents-of-another }
 
-Como no exemplo acima, obtivemos o `user_dict` a partir do `user_in.dict()`, este código:
+Como no exemplo acima, obtivemos o `user_dict` a partir do `user_in.model_dump()`, este código:
 
 ```Python
-user_dict = user_in.dict()
+user_dict = user_in.model_dump()
 UserInDB(**user_dict)
 ```
 
 seria equivalente a:
 
 ```Python
-UserInDB(**user_in.dict())
+UserInDB(**user_in.model_dump())
 ```
 
-...porque `user_in.dict()` é um `dict`, e depois fazemos o Python "desembrulhá-lo" passando-o para `UserInDB` precedido por `**`.
+...porque `user_in.model_dump()` é um `dict`, e depois fazemos o Python "desembrulhá-lo" passando-o para `UserInDB` precedido por `**`.
 
 Então, obtemos um modelo Pydantic a partir dos dados em outro modelo Pydantic.
 
@@ -125,7 +117,7 @@ Então, obtemos um modelo Pydantic a partir dos dados em outro modelo Pydantic.
 E, então, adicionando o argumento de palavra-chave extra `hashed_password=hashed_password`, como em:
 
 ```Python
-UserInDB(**user_in.dict(), hashed_password=hashed_password)
+UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 ```
 
 ...acaba sendo como:

@@ -213,6 +213,8 @@ def test_top_level_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -414,6 +416,8 @@ def test_router_overrides_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -615,6 +619,8 @@ def test_router_include_overrides_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -889,6 +895,8 @@ def test_subrouter_top_level_include_overrides_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -1093,6 +1101,8 @@ def test_router_path_operation_overrides_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -1301,6 +1311,8 @@ def test_app_path_operation_overrides_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
@@ -1587,6 +1599,8 @@ def test_callback_override_generate_unique_id():
                     "required": ["loc", "msg", "type"],
                     "type": "object",
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "title": "Location",
                             "type": "array",
