@@ -1645,3 +1645,180 @@ def test_warn_duplicate_operation_id():
         ]
         assert len(duplicate_warnings) > 0
         assert "Duplicate Operation ID" in str(duplicate_warnings[0].message)
+
+
+def test_multiple_methods_unique_operation_id():
+    """
+    Test that routes with multiple methods get unique operationIds.
+
+    This was a bug where all methods on the same route would get the same
+    operationId (based only on the first method), causing duplicate
+    operation ID warnings. See https://github.com/fastapi/fastapi/issues/13175
+    """
+    app = FastAPI()
+    router = APIRouter()
+
+    @router.post("/clear")
+    @router.delete("/clear")
+    def clear_endpoint():
+        return {"message": "cleared"}
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    # Call the endpoints to ensure coverage
+    post_response = client.post("/clear")
+    assert post_response.status_code == 200
+    delete_response = client.delete("/clear")
+    assert delete_response.status_code == 200
+
+    # Check no warnings are raised when generating OpenAPI
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+
+        # Should not have any duplicate operation ID warnings
+        duplicate_warnings = [
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert len(duplicate_warnings) == 0, (
+            f"Unexpected duplicate warnings: {duplicate_warnings}"
+        )
+
+    data = response.json()
+    paths = data["paths"]
+
+    # Verify both methods have unique operationIds
+    post_op_id = paths["/clear"]["post"]["operationId"]
+    delete_op_id = paths["/clear"]["delete"]["operationId"]
+
+    assert post_op_id != delete_op_id, (
+        f"POST and DELETE should have different operationIds, got: {post_op_id}"
+    )
+
+    # Verify the operationIds contain the method suffix
+    assert post_op_id.endswith("_post"), (
+        f"POST operationId should end with '_post', got: {post_op_id}"
+    )
+    assert delete_op_id.endswith("_delete"), (
+        f"DELETE operationId should end with '_delete', got: {delete_op_id}"
+    )
+
+
+def test_three_methods_unique_operation_id():
+    """Test with three methods on the same route."""
+    app = FastAPI()
+    router = APIRouter()
+
+    @router.get("/items")
+    @router.put("/items")
+    @router.patch("/items")
+    def item_handler():
+        return {"message": "items"}
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    # Call the endpoints to ensure coverage
+    get_response = client.get("/items")
+    assert get_response.status_code == 200
+    put_response = client.put("/items")
+    assert put_response.status_code == 200
+    patch_response = client.patch("/items")
+    assert patch_response.status_code == 200
+
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+
+        duplicate_warnings = [
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
+        ]
+        assert len(duplicate_warnings) == 0
+
+    data = response.json()
+    paths = data["paths"]
+
+    get_op_id = paths["/items"]["get"]["operationId"]
+    put_op_id = paths["/items"]["put"]["operationId"]
+    patch_op_id = paths["/items"]["patch"]["operationId"]
+
+    # All should be different
+    assert len({get_op_id, put_op_id, patch_op_id}) == 3, (
+        f"All three operationIds should be unique: {get_op_id}, {put_op_id}, {patch_op_id}"
+    )
+
+
+def test_explicit_operation_id_multiple_methods():
+    """
+    When an explicit operation_id is provided with multiple methods,
+    it should be used as-is, which will trigger the duplicate warning
+    (this is expected behavior - user chose to have duplicates).
+    """
+    app = FastAPI()
+    router = APIRouter()
+
+    @router.post("/clear", operation_id="clear_items")
+    @router.delete("/clear", operation_id="clear_items")
+    def clear_endpoint():
+        return {"message": "cleared"}
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    # Call the endpoints to ensure coverage
+    post_response = client.post("/clear")
+    assert post_response.status_code == 200
+    delete_response = client.delete("/clear")
+    assert delete_response.status_code == 200
+
+    # This WILL generate a warning because the same explicit operation_id
+    # is used for both methods
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        response = client.get("/openapi.json")
+
+        # Should have duplicate warning because explicit operation_id is used
+        duplicate_warnings = [
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
+        ]
+        # With explicit operation_id, both methods share the same ID
+        assert len(duplicate_warnings) == 1
+
+    data = response.json()
+    paths = data["paths"]
+
+    # Both should use the explicit operation_id (and cause the warning)
+    post_op_id = paths["/clear"]["post"]["operationId"]
+    delete_op_id = paths["/clear"]["delete"]["operationId"]
+
+    assert post_op_id == "clear_items"
+    assert delete_op_id == "clear_items"
+
+
+def test_single_method_no_extra_suffix():
+    """
+    Single method routes should not get the extra method suffix added.
+    """
+    app = FastAPI()
+    router = APIRouter()
+
+    @router.get("/items")
+    def get_items():
+        return {"items": []}
+
+    app.include_router(router)
+    client = TestClient(app)
+
+    # Call the endpoint to ensure coverage
+    get_response = client.get("/items")
+    assert get_response.status_code == 200
+    assert get_response.json() == {"items": []}
+
+    response = client.get("/openapi.json")
+    data = response.json()
+
+    op_id = data["paths"]["/items"]["get"]["operationId"]
+
+    # Should be the standard format without extra suffix
+    assert op_id == "get_items_items_get"
