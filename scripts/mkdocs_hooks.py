@@ -172,7 +172,9 @@ def on_page_markdown(
     # For translated pages add translation banner
     translation_banner_content = get_translation_banner_content(config.docs_dir)
     en_url = "https://fastapi.tiangolo.com/" + page.url.lstrip("/")
-    translation_banner_content = translation_banner_content.replace("ENGLISH_VERSION_URL", en_url)
+    translation_banner_content = translation_banner_content.replace(
+        "ENGLISH_VERSION_URL", en_url
+    )
     header = ""
     body = markdown
     if markdown.startswith("#"):
