@@ -20,6 +20,7 @@ hide:
 
 ### Refactors
 
+* 🎨 Tweak types for mypy. PR [#14816](https://github.com/fastapi/fastapi/pull/14816) by [@tiangolo](https://github.com/tiangolo).
 * 🏷️ Re-export `IncEx` type from Pydantic instead of duplicating it. PR [#14641](https://github.com/fastapi/fastapi/pull/14641) by [@mvanderlee](https://github.com/mvanderlee).
 * 💡 Update comment for Pydantic internals. PR [#14814](https://github.com/fastapi/fastapi/pull/14814) by [@tiangolo](https://github.com/tiangolo).
 
