@@ -12,7 +12,7 @@
 
 І після цього змонтувати його за певним шляхом.
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py39.py hl[1,3,23] *}
 
 ## Перевірка { #check-it }
 

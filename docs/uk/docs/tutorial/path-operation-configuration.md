@@ -52,7 +52,7 @@
 
 Ви можете додати `summary` і `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Опис із docstring { #description-from-docstring }
 
@@ -70,7 +70,7 @@
 
 Ви можете вказати опис відповіді за допомогою параметра `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Інформація
 
