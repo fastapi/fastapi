@@ -9,6 +9,7 @@ hide:
 
 ### Features
 
+* ✨ Add `viewport` meta tag to improve Swagger UI on mobile devices. PR [#14777](https://github.com/fastapi/fastapi/pull/14777) by [@Joab0](https://github.com/Joab0).
 * 🚸 Improve error message for invalid query parameter type annotations. PR [#14479](https://github.com/fastapi/fastapi/pull/14479) by [@retwish](https://github.com/retwish).
 
 ### Fixes
