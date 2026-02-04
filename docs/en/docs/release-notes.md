@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🔨 Update docs and translations scripts, enable Turkish. PR [#14824](https://github.com/fastapi/fastapi/pull/14824) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.128.1
 
 ### Features
