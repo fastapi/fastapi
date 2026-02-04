@@ -14,6 +14,7 @@ hide:
 
 ### Fixes
 
+* 🐛 Update `ValidationError` schema to include `input` and `ctx`. PR [#14791](https://github.com/fastapi/fastapi/pull/14791) by [@jonathan-fulton](https://github.com/jonathan-fulton).
 * 🐛 Fix TYPE_CHECKING annotations for Python 3.14 (PEP 649). PR [#14789](https://github.com/fastapi/fastapi/pull/14789) by [@mgu](https://github.com/mgu).
 * 🐛 Strip whitespaces from `Authorization` header credentials. PR [#14786](https://github.com/fastapi/fastapi/pull/14786) by [@WaveTheory1](https://github.com/WaveTheory1).
 * 🐛 Fix OpenAPI duplication of `anyOf` refs for app-level responses with specified `content` and `model` as `Union`. PR [#14463](https://github.com/fastapi/fastapi/pull/14463) by [@DJMcoder](https://github.com/DJMcoder).
