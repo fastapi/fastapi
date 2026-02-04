@@ -12,7 +12,7 @@
 
 然后将其挂载到某一个路径下。
 
-{* ../../docs_src/wsgi/tutorial001_py39.py hl[2:3,3] *}
+{* ../../docs_src/wsgi/tutorial001_py39.py hl[1,3,23] *}
 
 ## 检查 { #check-it }
 

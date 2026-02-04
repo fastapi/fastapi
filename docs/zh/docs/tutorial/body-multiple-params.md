@@ -103,13 +103,13 @@
 由于默认情况下单一值会被解释为查询参数，你不必显式添加 `Query`，你可以直接这样写：
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
 或者在 Python 3.10 及以上版本：
 
 ```Python
-q: str | None = None
+q: Union[str, None] = None
 ```
 
 例如：

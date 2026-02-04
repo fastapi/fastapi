@@ -52,7 +52,7 @@
 
 你可以添加 `summary` 和 `description`：
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## 从 docstring 获取描述 { #description-from-docstring }
 
@@ -70,7 +70,7 @@
 
 你可以使用参数 `response_description` 来指定响应描述：
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | 信息
 
