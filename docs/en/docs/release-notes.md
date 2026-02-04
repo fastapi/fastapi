@@ -14,6 +14,7 @@ hide:
 
 ### Fixes
 
+* 🐛 Strip whitespaces from `Authorization` header credentials. PR [#14786](https://github.com/fastapi/fastapi/pull/14786) by [@WaveTheory1](https://github.com/WaveTheory1).
 * 🐛 Fix OpenAPI duplication of `anyOf` refs for app-level responses with specified `content` and `model` as `Union`. PR [#14463](https://github.com/fastapi/fastapi/pull/14463) by [@DJMcoder](https://github.com/DJMcoder).
 
 ### Refactors
