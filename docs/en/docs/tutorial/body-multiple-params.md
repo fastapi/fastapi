@@ -103,14 +103,15 @@ Of course, you can also declare additional query parameters whenever you need, a
 As, by default, singular values are interpreted as query parameters, you don't have to explicitly add a `Query`, you can just do:
 
 ```Python
+q: str | None = None
+```
+
+Or in Python 3.9:
+
+```Python
 q: Union[str, None] = None
 ```
 
-Or in Python 3.10 and above:
-
-```Python
-q: str | None = None
-```
 
 For example:
 
