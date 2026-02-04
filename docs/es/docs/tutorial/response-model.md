@@ -2,7 +2,7 @@
 
 Puedes declarar el tipo utilizado para el response anotando el **tipo de retorno** de la *path operation function*.
 
-Puedes utilizar **anotaciones de tipos** de la misma manera que lo harías para datos de entrada en **parámetros** de función, puedes utilizar modelos de Pydantic, list, diccionarios, valores escalares como enteros, booleanos, etc.
+Puedes utilizar **anotaciones de tipos** de la misma manera que lo harías para datos de entrada en **parámetros** de función, puedes utilizar modelos de Pydantic, lists, diccionarios, valores escalares como enteros, booleanos, etc.
 
 {* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
 
@@ -27,7 +27,7 @@ Por ejemplo, podrías querer **devolver un diccionario** u objeto de base de dat
 
 Si añadiste la anotación del tipo de retorno, las herramientas y editores se quejarían con un error (correcto) diciéndote que tu función está devolviendo un tipo (por ejemplo, un dict) que es diferente de lo que declaraste (por ejemplo, un modelo de Pydantic).
 
-En esos casos, puedes usar el parámetro del decorador de path operation `response_model` en lugar del tipo de retorno.
+En esos casos, puedes usar el parámetro del *decorador de path operation* `response_model` en lugar del tipo de retorno.
 
 Puedes usar el parámetro `response_model` en cualquiera de las *path operations*:
 
@@ -153,7 +153,7 @@ Primero vamos a ver cómo los editores, mypy y otras herramientas verían esto.
 
 `BaseUser` tiene los campos base. Luego `UserIn` hereda de `BaseUser` y añade el campo `password`, por lo que incluirá todos los campos de ambos modelos.
 
-Anotamos el tipo de retorno de la función como `BaseUser`, pero en realidad estamos devolviendo un instance de `UserIn`.
+Anotamos el tipo de retorno de la función como `BaseUser`, pero en realidad estamos devolviendo un `UserIn` instance.
 
 El editor, mypy y otras herramientas no se quejarán de esto porque, en términos de tipificación, `UserIn` es una subclase de `BaseUser`, lo que significa que es un tipo *válido* cuando se espera algo que es un `BaseUser`.
 
@@ -249,20 +249,6 @@ Entonces, si envías un request a esa *path operation* para el ítem con ID `foo
     "price": 50.2
 }
 ```
-
-/// info | Información
-
-En Pydantic v1 el método se llamaba `.dict()`, fue deprecado (pero aún soportado) en Pydantic v2, y renombrado a `.model_dump()`.
-
-Los ejemplos aquí usan `.dict()` para compatibilidad con Pydantic v1, pero deberías usar `.model_dump()` en su lugar si puedes usar Pydantic v2.
-
-///
-
-/// info | Información
-
-FastAPI usa el método `.dict()` del modelo de Pydantic con <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">su parámetro `exclude_unset`</a> para lograr esto.
-
-///
 
 /// info | Información
 
