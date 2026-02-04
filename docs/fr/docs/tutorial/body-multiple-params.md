@@ -103,13 +103,13 @@ Bien entendu, vous pouvez aussi déclarer des paramètres de requête supplémen
 Comme, par défaut, les valeurs scalaires sont interprétées comme des paramètres de requête, vous n'avez pas besoin d'ajouter explicitement un `Query`, vous pouvez simplement faire :
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
 Ou en Python 3.10 et supérieur :
 
 ```Python
-q: str | None = None
+q: Union[str, None] = None
 ```
 
 Par exemple :
