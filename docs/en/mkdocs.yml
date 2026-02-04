@@ -325,6 +325,8 @@ extra:
     name: pt - português
   - link: /ru/
     name: ru - русский язык
+  - link: /tr/
+    name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
 extra_css:
