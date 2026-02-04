@@ -1,4 +1,4 @@
-# 환경 변수
+# 환경 변수 { #environment-variables }
 
 /// tip | 팁
 
@@ -6,11 +6,11 @@
 
 ///
 
-환경 변수는 파이썬 코드의 **바깥**인, **운영 체제**에 존재하는 변수입니다. 파이썬 코드나 다른 프로그램에서 읽을 수 있습니다.
+환경 변수(또는 "**env var**"라고도 합니다)는 파이썬 코드의 **바깥**인, **운영 체제**에 존재하는 변수이며, 파이썬 코드(또는 다른 프로그램에서도)에서 읽을 수 있습니다.
 
-환경 변수는 애플리케이션 **설정**을 처리하거나, 파이썬의 **설치** 과정의 일부로 유용합니다.
+환경 변수는 애플리케이션 **설정**을 처리하거나, 파이썬의 **설치** 과정의 일부로 유용할 수 있습니다.
 
-## 환경 변수를 만들고 사용하기
+## 환경 변수를 만들고 사용하기 { #create-and-use-env-vars }
 
 파이썬 없이도, **셸 (터미널)** 에서 환경 변수를 **생성** 하고 사용할 수 있습니다.
 
@@ -50,9 +50,9 @@ Hello Wade Wilson
 
 ////
 
-## 파이썬에서 환경 변수 읽기
+## 파이썬에서 env var 읽기 { #read-env-vars-in-python }
 
-파이썬 **바깥**인 터미널에서(다른 도구로도 가능) 환경 변수를 생성도 할 수도 있고, 이를 **파이썬에서 읽을 수 있습니다.**
+파이썬 **바깥**인 터미널에서(또는 다른 어떤 방법으로든) 환경 변수를 만들고, 그런 다음 **파이썬에서 읽을 수 있습니다**.
 
 예를 들어 다음과 같은 `main.py` 파일이 있다고 합시다:
 
@@ -67,7 +67,7 @@ print(f"Hello {name} from Python")
 
 <a href="https://docs.python.org/3.8/library/os.html#os.getenv" class="external-link" target="_blank">`os.getenv()`</a> 의 두 번째 인자는 반환할 기본값입니다.
 
-여기서는 `"World"`를 넣었기에 기본값으로써 사용됩니다. 넣지 않으면 `None` 이 기본값으로 사용됩니다.
+제공하지 않으면 기본값은 `None`이며, 여기서는 사용할 기본값으로 `"World"`를 제공합니다.
 
 ///
 
@@ -129,7 +129,7 @@ Hello Wade Wilson from Python
 
 환경변수는 코드 바깥에서 설정될 수 있지만, 코드에서 읽을 수 있고, 나머지 파일과 함께 저장(`git`에 커밋)할 필요가 없으므로, 구성이나 **설정** 에 사용하는 것이 일반적입니다.
 
-**특정 프로그램 호출**에 대해서만 사용할 수 있는 환경 변수를 만들 수도 있습니다. 해당 프로그램에서만 사용할 수 있고, 해당 프로그램이 실행되는 동안만 사용할 수 있습니다.
+또한 **특정 프로그램 호출**에 대해서만 사용할 수 있는 환경 변수를 만들 수도 있는데, 해당 프로그램에서만 사용할 수 있고, 해당 프로그램이 실행되는 동안만 사용할 수 있습니다.
 
 그렇게 하려면 프로그램 바로 앞, 같은 줄에 환경 변수를 만들어야 합니다:
 
@@ -157,17 +157,17 @@ Hello World from Python
 
 ///
 
-## 타입과 검증
+## 타입과 검증 { #types-and-validation }
 
-이 환경변수들은 오직 **텍스트 문자열**로만 처리할 수 있습니다. 텍스트 문자열은 파이썬 외부에 있으며 다른 프로그램 및 나머지 시스템(Linux, Windows, macOS 등 다른 운영 체제)과 호환되어야 합니다.
+이 환경변수들은 오직 **텍스트 문자열**로만 처리할 수 있습니다. 텍스트 문자열은 파이썬 외부에 있으며 다른 프로그램 및 나머지 시스템(그리고 Linux, Windows, macOS 같은 서로 다른 운영 체제에서도)과 호환되어야 합니다.
 
 즉, 파이썬에서 환경 변수로부터 읽은 **모든 값**은 **`str`**이 되고, 다른 타입으로의 변환이나 검증은 코드에서 수행해야 합니다.
 
-**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md){.internal-link target=\_blank} 에서 확인할 수 있습니다.
+**애플리케이션 설정**을 처리하기 위한 환경 변수 사용에 대한 자세한 내용은 [고급 사용자 가이드 - 설정 및 환경 변수](./advanced/settings.md){.internal-link target=_blank} 에서 확인할 수 있습니다.
 
-## `PATH` 환경 변수
+## `PATH` 환경 변수 { #path-environment-variable }
 
-**`PATH`**라고 불리는, **특별한** 환경변수가 있습니다. 운영체제(Linux, Windows, macOS 등)에서 실행할 프로그램을 찾기위해 사용됩니다.
+**`PATH`**라고 불리는, **특별한** 환경변수가 있습니다. 운영체제(Linux, macOS, Windows)에서 실행할 프로그램을 찾기위해 사용됩니다.
 
 변수 `PATH`의 값은 Linux와 macOS에서는 콜론 `:`, Windows에서는 세미콜론 `;`으로 구분된 디렉토리로 구성된 긴 문자열입니다.
 
@@ -181,11 +181,11 @@ Hello World from Python
 
 이는 시스템이 다음 디렉토리에서 프로그램을 찾아야 함을 의미합니다:
 
--   `/usr/local/bin`
--   `/usr/bin`
--   `/bin`
--   `/usr/sbin`
--   `/sbin`
+* `/usr/local/bin`
+* `/usr/bin`
+* `/bin`
+* `/usr/sbin`
+* `/sbin`
 
 ////
 
@@ -197,9 +197,9 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 이는 시스템이 다음 디렉토리에서 프로그램을 찾아야 함을 의미합니다:
 
--   `C:\Program Files\Python312\Scripts`
--   `C:\Program Files\Python312`
--   `C:\Windows\System32`
+* `C:\Program Files\Python312\Scripts`
+* `C:\Program Files\Python312`
+* `C:\Windows\System32`
 
 ////
 
@@ -209,7 +209,7 @@ C:\Program Files\Python312\Scripts;C:\Program Files\Python312;C:\Windows\System3
 
 찾으면 **사용합니다**. 그렇지 않으면 **다른 디렉토리**에서 계속 찾습니다.
 
-### 파이썬 설치와 `PATH` 업데이트
+### 파이썬 설치와 `PATH` 업데이트 { #installing-python-and-updating-the-path }
 
 파이썬을 설치할 때, 아마 `PATH` 환경 변수를 업데이트 할 것이냐고 물어봤을 겁니다.
 
@@ -285,13 +285,13 @@ $ C:\opt\custompython\bin\python
 
 ////
 
-이 정보는 [가상 환경](virtual-environments.md){.internal-link target=\_blank} 에 대해 알아볼 때 유용할 것입니다.
+이 정보는 [가상 환경](virtual-environments.md){.internal-link target=_blank} 에 대해 알아볼 때 유용할 것입니다.
 
-## 결론
+## 결론 { #conclusion }
 
-이 문서를 읽고 **환경 변수**가 무엇이고 파이썬에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
+이 문서를 통해 **환경 변수**가 무엇이고 파이썬에서 어떻게 사용하는지 기본적으로 이해하셨을 겁니다.
 
-또한 <a href="https://ko.wikipedia.org/wiki/환경_변수" class="external-link" target="_blank">환경 변수에 대한 위키피디아(한국어)</a>에서 이에 대해 자세히 알아볼 수 있습니다.
+또한 <a href="https://en.wikipedia.org/wiki/Environment_variable" class="external-link" target="_blank">환경 변수에 대한 위키피디아</a>에서 이에 대해 자세히 알아볼 수 있습니다.
 
 많은 경우에서, 환경 변수가 어떻게 유용하고 적용 가능한지 바로 명확하게 알 수는 없습니다. 하지만 개발할 때 다양한 시나리오에서 계속 나타나므로 이에 대해 아는 것이 좋습니다.
 
