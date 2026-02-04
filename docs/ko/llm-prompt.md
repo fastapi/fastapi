@@ -6,23 +6,24 @@ Language code: ko.
 
 ### Grammar and tone
 
-1) Use polite, instructional Korean (e.g. 합니다/하세요 style).
-2) Keep the tone consistent with the existing Korean FastAPI docs.
+- Use polite, instructional Korean (e.g. 합니다/하세요 style).
+- Keep the tone consistent with the existing Korean FastAPI docs.
+- Do not translate “You” literally as “당신”. Use “여러분” where appropriate, or omit the subject if it sounds more natural in Korean.
 
 ### Headings
 
-1) Follow existing Korean heading style (short, action-oriented headings like “확인하기”).
-2) Do not add trailing punctuation to headings.
+- Follow existing Korean heading style (short, action-oriented headings like “확인하기”).
+- Do not add trailing punctuation to headings.
 
 ### Quotes
 
-1) Keep quote style consistent with the existing Korean docs.
-2) Never change quotes inside inline code, code blocks, URLs, or file paths.
+- Keep quote style consistent with the existing Korean docs.
+- Never change quotes inside inline code, code blocks, URLs, or file paths.
 
 ### Ellipsis
 
-1) Keep ellipsis style consistent with existing Korean docs (often `...`).
-2) Never change `...` in code, URLs, or CLI examples.
+- Keep ellipsis style consistent with existing Korean docs (often `...`).
+- Never change `...` in code, URLs, or CLI examples.
 
 ### Preferred translations / glossary
 
@@ -32,6 +33,9 @@ Use the following preferred translations when they apply in documentation prose:
 - response (HTTP): 응답
 - path operation: 경로 처리
 - path operation function: 경로 처리 함수
+- app: 애플리케이션
+- command: 명령어
+- burger: 햄버거 (NOT 버거)
 
 ### `///` admonitions
 

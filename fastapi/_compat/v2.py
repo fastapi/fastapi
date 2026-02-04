@@ -477,7 +477,7 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
 
 @lru_cache
 def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
-    return get_model_fields(model)  # type: ignore[return-value]
+    return get_model_fields(model)
 
 
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
@@ -500,13 +500,13 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
 
 
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
-    all_flat_models = set()
+    all_flat_models: TypeModelSet = set()
 
     v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
     v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
-    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
+    all_flat_models = all_flat_models.union(v2_flat_models)
 
-    model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
+    model_name_map = get_model_name_map(all_flat_models)
     return model_name_map
 
 
