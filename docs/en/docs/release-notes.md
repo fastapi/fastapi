@@ -41,6 +41,7 @@ hide:
 
 ### Internal
 
+* 👷 Run tests only on relevant code changes (not on docs). PR [#14813](https://github.com/fastapi/fastapi/pull/14813) by [@tiangolo](https://github.com/tiangolo).
 * 👷 Run mypy by pre-commit. PR [#14806](https://github.com/fastapi/fastapi/pull/14806) by [@YuriiMotov](https://github.com/YuriiMotov).
 * ⬆ Bump ruff from 0.14.3 to 0.14.14. PR [#14798](https://github.com/fastapi/fastapi/pull/14798) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pyasn1 from 0.6.1 to 0.6.2. PR [#14804](https://github.com/fastapi/fastapi/pull/14804) by [@dependabot[bot]](https://github.com/apps/dependabot).
