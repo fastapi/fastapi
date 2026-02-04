@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* 💡 Update comment for Pydantic internals. PR [#14814](https://github.com/fastapi/fastapi/pull/14814) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Fix minor typos in release notes. PR [#14780](https://github.com/fastapi/fastapi/pull/14780) by [@whyvineet](https://github.com/whyvineet).
