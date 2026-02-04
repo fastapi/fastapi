@@ -90,7 +90,7 @@ def create_model_field(
     field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
     kwargs = {"mode": mode, "name": name, "field_info": field_info}
     try:
-        return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
+        return v2.ModelField(**kwargs)  # type: ignore[arg-type]
     except PydanticSchemaGenerationError:
         raise fastapi.exceptions.FastAPIError(
             _invalid_args_message.format(type_=type_)

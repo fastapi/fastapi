@@ -63,6 +63,8 @@ def test_openapi_schema(app: FastAPI):
                         "required": ["loc", "msg", "type"],
                         "type": "object",
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "title": "Location",
                                 "type": "array",

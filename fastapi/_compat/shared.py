@@ -17,7 +17,7 @@ from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
 from typing_extensions import get_args, get_origin
 
-# Copy from Pydantic v2, compatible with v1
+# Copy from Pydantic: pydantic/_internal/_typing_extra.py
 if sys.version_info < (3, 10):
     WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
 else:
@@ -45,7 +45,7 @@ sequence_types = tuple(sequence_annotation_to_type.keys())
 Url: type[Any]
 
 
-# Copy of Pydantic v2, compatible with v1
+# Copy of Pydantic: pydantic/_internal/_utils.py
 def lenient_issubclass(
     cls: Any, class_or_tuple: Union[type[Any], tuple[type[Any], ...], None]
 ) -> bool:
