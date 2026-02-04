@@ -294,7 +294,6 @@ markdown_extensions:
     - info
     - check
   pymdownx.blocks.details: null
-  pymdownx.details: null
   pymdownx.blocks.tab:
     alternate_style: true
   mdx_include: null
