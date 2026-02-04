@@ -140,13 +140,11 @@ Successfully installed fastapi pydantic
 
 ### **FastAPI**コードを作成する { #create-the-fastapi-code }
 
-* `app` ディレクトリを作成し、その中に入ります
-* 空のファイル `__init__.py` を作成します
-* `main.py` ファイルを作成します：
+* `app` ディレクトリを作成し、その中に入ります。
+* 空のファイル `__init__.py` を作成します。
+* 次の内容で `main.py` ファイルを作成します：
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -321,7 +319,7 @@ COPY ./app /code/app
 
 すべてのファイルが揃ったので、コンテナ・イメージをビルドしましょう。
 
-* プロジェクトディレクトリに移動します（`Dockerfile`がある場所で、`app`ディレクトリがあります）
+* プロジェクトディレクトリに移動します（`Dockerfile`がある場所で、`app`ディレクトリがあります）。
 * FastAPI イメージをビルドします：
 
 <div class="termy">
@@ -458,7 +456,7 @@ TraefikはDockerやKubernetesなどと統合されているので、コンテナ
 
 ## レプリケーション - プロセス数 { #replication-number-of-processes }
 
-**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>を構成している場合、 各コンテナで（Workerを持つUvicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
+**Kubernetes** や Docker Swarm モード、Nomad、あるいは複数のマシン上で分散コンテナを管理するための同様の複雑なシステムを使ってマシンの<abbr title="A group of machines that are configured to be connected and work together in some way. - ある方法で接続され、連携して動作するように構成されたマシンの集まり">cluster</abbr>を構成している場合、 各コンテナで（Workerを持つUvicornのような）**プロセスマネージャ**を使用する代わりに、**クラスター・レベル**で**レプリケーション**を処理したいと思うでしょう。
 
 Kubernetesのような分散コンテナ管理システムの1つは通常、入ってくるリクエストの**ロードバランシング**をサポートしながら、**コンテナのレプリケーション**を処理する統合された方法を持っています。このことはすべて**クラスタレベル**にてです。
 
