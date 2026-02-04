@@ -12,8 +12,8 @@ class Item(BaseModel):
     tags: set[str] = set()
 
 
-@app.post("/items/", response_model=Item, summary="Create an item")
-async def create_item(item: Item):
+@app.post("/items/", summary="Create an item")
+async def create_item(item: Item) -> Item:
     """
     Create an item with all the information:
 
