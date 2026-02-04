@@ -56,7 +56,7 @@ from app.routers import items
 
 La misma estructura de archivos con comentarios:
 
-```
+```bash
 .
 ├── app                  # "app" es un paquete de Python
 │   ├── __init__.py      # este archivo hace que "app" sea un "paquete de Python"
@@ -185,7 +185,7 @@ El resultado final es que los paths de item son ahora:
 * Todos incluirán las `responses` predefinidas.
 * Todas estas *path operations* tendrán la lista de `dependencies` evaluadas/ejecutadas antes de ellas.
   * Si también declaras dependencias en una *path operation* específica, **también se ejecutarán**.
-  * Las dependencias del router se ejecutan primero, luego las [dependencias en el decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, y luego las dependencias de parámetros normales.
+  * Las dependencias del router se ejecutan primero, luego las [`dependencies` en el decorador](dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}, y luego las dependencias de parámetros normales.
   * También puedes agregar [dependencias de `Security` con `scopes`](../advanced/security/oauth2-scopes.md){.internal-link target=_blank}.
 
 /// tip | Consejo
@@ -214,7 +214,7 @@ Así que usamos un import relativo con `..` para las dependencias:
 
 /// tip | Consejo
 
-Si sabes perfectamente cómo funcionan los imports, continúa a la siguiente sección.
+Si sabes perfectamente cómo funcionan los imports, continúa a la siguiente sección abajo.
 
 ///
 
@@ -271,7 +271,7 @@ eso significaría:
 
 Eso se referiría a algún paquete arriba de `app/`, con su propio archivo `__init__.py`, etc. Pero no tenemos eso. Así que, eso lanzaría un error en nuestro ejemplo. 🚨
 
-Pero ahora sabes cómo funciona, para que puedas usar imports relativos en tus propias aplicaciones sin importar cuán complejas sean. 🤓
+Pero ahora sabes cómo funciona, para que puedas usar imports relativos en tus propias apps sin importar cuán complejas sean. 🤓
 
 ### Agregar algunos `tags`, `responses`, y `dependencies` personalizados { #add-some-custom-tags-responses-and-dependencies }
 
@@ -283,7 +283,7 @@ Pero aún podemos agregar _más_ `tags` que se aplicarán a una *path operation*
 
 /// tip | Consejo
 
-Esta última *path operation* tendrá la combinación de tags: `["items", "custom"]`.
+Esta última path operation tendrá la combinación de tags: `["items", "custom"]`.
 
 Y también tendrá ambas responses en la documentación, una para `404` y otra para `403`.
 
@@ -301,7 +301,7 @@ Y como la mayor parte de tu lógica ahora vivirá en su propio módulo específi
 
 ### Importar `FastAPI` { #import-fastapi }
 
-Importas y creas una clase `FastAPI` como de costumbre.
+Importas y creas una clase `FastAPI` como normalmente.
 
 Y podemos incluso declarar [dependencias globales](dependencies/global-dependencies.md){.internal-link target=_blank} que se combinarán con las dependencias para cada `APIRouter`:
 
@@ -398,7 +398,7 @@ Incluirá todas las rutas de ese router como parte de ella.
 
 En realidad creará internamente una *path operation* para cada *path operation* que fue declarada en el `APIRouter`.
 
-Así, detrás de escena, funcionará como si todo fuera la misma única aplicación.
+Así, detrás de escena, funcionará como si todo fuera la misma única app.
 
 ///
 
@@ -430,20 +430,20 @@ Podemos declarar todo eso sin tener que modificar el `APIRouter` original pasand
 
 De esa manera, el `APIRouter` original permanecerá sin modificar, por lo que aún podemos compartir ese mismo archivo `app/internal/admin.py` con otros proyectos en la organización.
 
-El resultado es que, en nuestra aplicación, cada una de las *path operations* del módulo `admin` tendrá:
+El resultado es que, en nuestra app, cada una de las *path operations* del módulo `admin` tendrá:
 
 * El prefix `/admin`.
 * El tag `admin`.
 * La dependencia `get_token_header`.
 * La response `418`. 🍵
 
-Pero eso solo afectará a ese `APIRouter` en nuestra aplicación, no en ningún otro código que lo utilice.
+Pero eso solo afectará a ese `APIRouter` en nuestra app, no en ningún otro código que lo utilice.
 
 Así, por ejemplo, otros proyectos podrían usar el mismo `APIRouter` con un método de autenticación diferente.
 
 ### Incluir una *path operation* { #include-a-path-operation }
 
-También podemos agregar *path operations* directamente a la aplicación de `FastAPI`.
+También podemos agregar *path operations* directamente a la app de `FastAPI`.
 
 Aquí lo hacemos... solo para mostrar que podemos 🤷:
 
@@ -461,13 +461,13 @@ Los `APIRouter`s no están "montados", no están aislados del resto de la aplica
 
 Esto se debe a que queremos incluir sus *path operations* en el esquema de OpenAPI y las interfaces de usuario.
 
-Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, se "clonan" las *path operations* (se vuelven a crear), no se incluyen directamente.
+Como no podemos simplemente aislarlos y "montarlos" independientemente del resto, las *path operations* se "clonan" (se vuelven a crear), no se incluyen directamente.
 
 ///
 
 ## Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
-Ahora, ejecuta tu aplicación:
+Ahora, ejecuta tu app:
 
 <div class="termy">
 
@@ -481,7 +481,7 @@ $ fastapi dev app/main.py
 
 Y abre la documentación en <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
-Verás la documentación automática de la API, incluyendo los paths de todos los submódulos, usando los paths correctos (y prefijos) y las tags correctas:
+Verás la documentación automática de la API, incluyendo los paths de todos los submódulos, usando los paths correctos (y prefijos) y los tags correctos:
 
 <img src="/img/tutorial/bigger-applications/image01.png">
 
@@ -501,4 +501,4 @@ De la misma manera que puedes incluir un `APIRouter` en una aplicación `FastAPI
 router.include_router(other_router)
 ```
 
-Asegúrate de hacerlo antes de incluir `router` en la aplicación de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.
+Asegúrate de hacerlo antes de incluir `router` en la app de `FastAPI`, para que las *path operations* de `other_router` también se incluyan.

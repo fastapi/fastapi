@@ -109,7 +109,7 @@ FastAPI ahora:
 
 ## Alternativa (antigua): `Query` como valor por defecto { #alternative-old-query-as-the-default-value }
 
-Versiones anteriores de FastAPI (antes de <abbr title="antes de 2023-03">0.95.0</abbr>) requerían que usaras `Query` como el valor por defecto de tu parámetro, en lugar de ponerlo en `Annotated`, hay una alta probabilidad de que veas código usándolo alrededor, así que te lo explicaré.
+Versiones anteriores de FastAPI (antes de <abbr title="before 2023-03 - antes de 2023-03">0.95.0</abbr>) requerían que usaras `Query` como el valor por defecto de tu parámetro, en lugar de ponerlo en `Annotated`, hay una alta probabilidad de que veas código usándolo alrededor, así que te lo explicaré.
 
 /// tip | Consejo
 
@@ -192,7 +192,7 @@ También puedes agregar un parámetro `min_length`:
 
 ## Agregar expresiones regulares { #add-regular-expressions }
 
-Puedes definir un <abbr title="Una expresión regular, regex o regexp es una secuencia de caracteres que define un patrón de búsqueda para strings.">expresión regular</abbr> `pattern` que el parámetro debe coincidir:
+Puedes definir una <abbr title="Una expresión regular, regex o regexp es una secuencia de caracteres que define un patrón de búsqueda para strings.">expresión regular</abbr> `pattern` que el parámetro debe coincidir:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -205,20 +205,6 @@ Este patrón específico de expresión regular comprueba que el valor recibido d
 Si te sientes perdido con todas estas ideas de **"expresión regular"**, no te preocupes. Son un tema difícil para muchas personas. Aún puedes hacer muchas cosas sin necesitar expresiones regulares todavía.
 
 Ahora sabes que cuando las necesites puedes usarlas en **FastAPI**.
-
-### Pydantic v1 `regex` en lugar de `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Antes de la versión 2 de Pydantic y antes de FastAPI 0.100.0, el parámetro se llamaba `regex` en lugar de `pattern`, pero ahora está en desuso.
-
-Todavía podrías ver algo de código que lo usa:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-Pero que sepas que esto está deprecado y debería actualizarse para usar el nuevo parámetro `pattern`. 🤓
 
 ## Valores por defecto { #default-values }
 
@@ -280,7 +266,7 @@ Entonces, con una URL como:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-recibirías los múltiples valores del *query parameter* `q` (`foo` y `bar`) en una `list` de Python dentro de tu *path operation function*, en el *parámetro de función* `q`.
+recibirías los múltiples valores de los *query parameters* `q` (`foo` y `bar`) en una `list` de Python dentro de tu *path operation function*, en el *parámetro de función* `q`.
 
 Entonces, el response a esa URL sería:
 
@@ -386,7 +372,7 @@ Entonces puedes declarar un `alias`, y ese alias será usado para encontrar el v
 
 Ahora digamos que ya no te gusta este parámetro.
 
-Tienes que dejarlo allí por un tiempo porque hay clientes usándolo, pero quieres que la documentación lo muestre claramente como <abbr title="obsoleto, se recomienda no usarlo">deprecated</abbr>.
+Tienes que dejarlo allí por un tiempo porque hay clientes usándolo, pero quieres que la documentación lo muestre claramente como <abbr title="obsolete, recommended not to use it - obsoleto, se recomienda no usarlo">deprecated</abbr>.
 
 Luego pasa el parámetro `deprecated=True` a `Query`:
 
@@ -416,7 +402,7 @@ Pydantic también tiene <a href="https://docs.pydantic.dev/latest/concepts/valid
 
 ///
 
-Por ejemplo, este validador personalizado comprueba que el ID del ítem empiece con `isbn-` para un número de libro <abbr title="International Standard Book Number – Número Estándar Internacional de Libro">ISBN</abbr> o con `imdb-` para un ID de URL de película de <abbr title="IMDB (Internet Movie Database) es un sitio web con información sobre películas">IMDB</abbr>:
+Por ejemplo, este validador personalizado comprueba que el ID del ítem empiece con `isbn-` para un número de libro <abbr title="ISBN means International Standard Book Number - ISBN significa International Standard Book Number">ISBN</abbr> o con `imdb-` para un ID de URL de película de <abbr title="IMDB (Internet Movie Database) is a website with information about movies - IMDB (Internet Movie Database) es un sitio web con información sobre películas">IMDB</abbr>:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -450,7 +436,7 @@ Pero si te da curiosidad este ejemplo de código específico y sigues entretenid
 
 #### Un ítem aleatorio { #a-random-item }
 
-Con `data.items()` obtenemos un <abbr title="Algo que podemos iterar con un for, como una list, set, etc.">objeto iterable</abbr> con tuplas que contienen la clave y el valor para cada elemento del diccionario.
+Con `data.items()` obtenemos un <abbr title="Algo que podemos iterar con un for loop, como una list, set, etc.">objeto iterable</abbr> con tuplas que contienen la clave y el valor para cada elemento del diccionario.
 
 Convertimos este objeto iterable en una `list` propiamente dicha con `list(data.items())`.
 

@@ -93,13 +93,13 @@ Las funcionalidades clave son:
 
 "_Estoy súper emocionado con **FastAPI**. ¡Es tan divertido!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">host del podcast Python Bytes</a></strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">Python Bytes</a> host del podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
 "_Honestamente, lo que has construido parece súper sólido y pulido. En muchos aspectos, es lo que quería que **Hug** fuera; es realmente inspirador ver a alguien construir eso._"
 
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">creador de Hug</a></strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong><a href="https://github.com/hugapi/hug" target="_blank">Hug</a> creador</strong> <a href="https://news.ycombinator.com/item?id=19455465" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -116,6 +116,12 @@ Las funcionalidades clave son:
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/" target="_blank"><small>(ref)</small></a></div>
 
 ---
+
+## Mini documental de FastAPI { #fastapi-mini-documentary }
+
+Hay un <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">mini documental de FastAPI</a> lanzado a finales de 2025, puedes verlo online:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, el FastAPI de las CLIs { #typer-the-fastapi-of-clis }
 
@@ -268,7 +274,7 @@ Verás la documentación interactiva automática de la API (proporcionada por <a
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
-### Documentación de API Alternativa { #alternative-api-docs }
+### Documentación alternativa de la API { #alternative-api-docs }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -276,7 +282,7 @@ Verás la documentación alternativa automática (proporcionada por <a href="htt
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Actualización del Ejemplo { #example-upgrade }
+## Actualización del ejemplo { #example-upgrade }
 
 Ahora modifica el archivo `main.py` para recibir un body desde un request `PUT`.
 
@@ -314,7 +320,7 @@ def update_item(item_id: int, item: Item):
 
 El servidor `fastapi dev` debería recargarse automáticamente.
 
-### Actualización de la Documentación Interactiva de la API { #interactive-api-docs-upgrade }
+### Actualización de la documentación interactiva de la API { #interactive-api-docs-upgrade }
 
 Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
 
@@ -330,7 +336,7 @@ Ahora ve a <a href="http://127.0.0.1:8000/docs" class="external-link" target="_b
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
-### Actualización de la Documentación Alternativa de la API { #alternative-api-docs-upgrade }
+### Actualización de la documentación alternativa de la API { #alternative-api-docs-upgrade }
 
 Y ahora, ve a <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
 
@@ -393,13 +399,13 @@ Volviendo al ejemplo de código anterior, **FastAPI**:
 * Validará que haya un `item_id` en el path para requests `GET` y `PUT`.
 * Validará que el `item_id` sea del tipo `int` para requests `GET` y `PUT`.
     * Si no lo es, el cliente verá un error útil y claro.
-* Comprobará si hay un parámetro de query opcional llamado `q` (como en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests `GET`.
+* Revisa si hay un parámetro de query opcional llamado `q` (como en `http://127.0.0.1:8000/items/foo?q=somequery`) para requests `GET`.
     * Como el parámetro `q` está declarado con `= None`, es opcional.
     * Sin el `None` sería requerido (como lo es el body en el caso con `PUT`).
 * Para requests `PUT` a `/items/{item_id}`, leerá el body como JSON:
-    * Comprobará que tiene un atributo requerido `name` que debe ser un `str`.
-    * Comprobará que tiene un atributo requerido `price` que debe ser un `float`.
-    * Comprobará que tiene un atributo opcional `is_offer`, que debe ser un `bool`, si está presente.
+    * Revisa que tiene un atributo requerido `name` que debe ser un `str`.
+    * Revisa que tiene un atributo requerido `price` que debe ser un `float`.
+    * Revisa que tiene un atributo opcional `is_offer`, que debe ser un `bool`, si está presente.
     * Todo esto también funcionaría para objetos JSON profundamente anidados.
 * Convertirá de y a JSON automáticamente.
 * Documentará todo con OpenAPI, que puede ser usado por:
