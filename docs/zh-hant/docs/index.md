@@ -5,7 +5,7 @@
 </style>
 
 <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+  <a href="https://fastapi.tiangolo.com/zh-hant"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
     <em>FastAPI 框架，高效能，易於學習，快速開發，適用於生產環境</em>
