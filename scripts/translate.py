@@ -411,7 +411,8 @@ def make_pr(
         print(f"Creating a new branch {branch_name}")
         subprocess.run(["git", "checkout", "-b", branch_name], check=True)
     else:
-        print(f"Committing in place on branch {current_branch}")
+        branch_name = current_branch
+        print(f"Committing in place on branch {branch_name}")
     print("Adding updated files")
     git_path = Path("docs")
     subprocess.run(["git", "add", str(git_path)], check=True)
