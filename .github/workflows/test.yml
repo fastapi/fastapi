@@ -13,7 +13,7 @@ on:
     - cron: "0 0 * * 1"
 
 env:
-  UV_SYSTEM_PYTHON: 1
+  UV_NO_SYNC: true
 
 jobs:
   test:
@@ -44,6 +44,8 @@ jobs:
             coverage: coverage
       fail-fast: false
     runs-on: ${{ matrix.os }}
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
     steps:
       - name: Dump GitHub context
         env:
@@ -57,17 +59,16 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install Dependencies
-        run: uv pip install -r requirements-tests.txt
+        run: uv sync --locked --no-dev --group tests --extra all
       - run: mkdir coverage
       - name: Test
         if: matrix.codspeed != 'codspeed'
-        run: bash scripts/test.sh
+        run: uv run bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
@@ -79,11 +80,11 @@ jobs:
             CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
         with:
           mode: simulation
-          run: coverage run -m pytest tests/ --codspeed
+          run: uv run coverage run -m pytest tests/ --codspeed
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
@@ -100,33 +101,32 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.11'
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install Dependencies
-        run: uv pip install -r requirements-tests.txt
+        run: uv sync --locked --no-dev --group tests --extra all
       - name: Get coverage files
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           pattern: coverage-*
           path: coverage
           merge-multiple: true
       - run: ls -la coverage
-      - run: coverage combine coverage
-      - run: coverage html --title "Coverage for ${{ github.sha }}"
+      - run: uv run coverage combine coverage
+      - run: uv run coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-html
           path: htmlcov
           include-hidden-files: true
-      - run: coverage report --fail-under=100
+      - run: uv run coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
   check:  # This job does nothing and is only used for the branch protection

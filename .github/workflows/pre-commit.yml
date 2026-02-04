@@ -40,18 +40,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
             uv.lock
       - name: Install Dependencies
-        run: |
-          uv venv
-          uv pip install -r requirements.txt
+        run: uv sync --locked --extra all
       - name: Run prek - pre-commit
         id: precommit
         run: uvx prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
