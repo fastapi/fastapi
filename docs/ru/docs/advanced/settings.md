@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Информация
-
-В Pydantic v1 он входил в основной пакет. Теперь он распространяется как отдельный пакет, чтобы вы могли установить его только при необходимости.
-
-///
-
 ### Создание объекта `Settings` { #create-the-settings-object }
 
 Импортируйте `BaseSettings` из Pydantic и создайте подкласс, очень похожий на Pydantic‑модель.
@@ -60,23 +54,7 @@ $ pip install "fastapi[all]"
 
 Вы можете использовать все те же возможности валидации и инструменты, что и для Pydantic‑моделей, например разные типы данных и дополнительную валидацию через `Field()`.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Информация
-
-В Pydantic v1 вы бы импортировали `BaseSettings` напрямую из `pydantic`, а не из `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
 
 /// tip | Совет
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 Затем обновите ваш `config.py` так:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Совет
 
 Атрибут `model_config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip | Совет
-
-Класс `Config` используется только для конфигурации Pydantic. Подробнее см. <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Информация
-
-В Pydantic версии 1 конфигурация задавалась во внутреннем классе `Config`, в Pydantic версии 2 — в атрибуте `model_config`. Этот атрибут принимает `dict`, и чтобы получить автозавершение и ошибки «на лету», вы можете импортировать и использовать `SettingsConfigDict` для описания этого `dict`.
 
 ///
 

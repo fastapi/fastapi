@@ -28,7 +28,7 @@ def test_openapi_schema():
             },
             "license": {
                 "name": "Apache 2.0",
-                "identifier": "MIT",
+                "identifier": "Apache-2.0",
             },
             "version": "0.0.1",
         },
