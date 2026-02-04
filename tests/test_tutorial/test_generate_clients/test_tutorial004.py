@@ -82,6 +82,8 @@ def test_remove_tags(tmp_path: pathlib.Path):
                 },
                 "ValidationError": {
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "items": {
                                 "anyOf": [

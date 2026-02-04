@@ -46,12 +46,6 @@ $ pip install "fastapi[all]"
 
 </div>
 
-/// info | Informação
-
-No Pydantic v1 ele vinha incluído no pacote principal. Agora é distribuído como um pacote independente para que você possa optar por instalá-lo ou não, caso não precise dessa funcionalidade.
-
-///
-
 ### Criar o objeto `Settings` { #create-the-settings-object }
 
 Importe `BaseSettings` do Pydantic e crie uma subclasse, muito parecido com um modelo do Pydantic.
@@ -60,23 +54,7 @@ Da mesma forma que com modelos do Pydantic, você declara atributos de classe co
 
 Você pode usar as mesmas funcionalidades e ferramentas de validação que usa em modelos do Pydantic, como diferentes tipos de dados e validações adicionais com `Field()`.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
-
-////
-
-//// tab | Pydantic v1
-
-/// info | Informação
-
-No Pydantic v1 você importaria `BaseSettings` diretamente de `pydantic` em vez de `pydantic_settings`.
-
-///
-
-{* ../../docs_src/settings/tutorial001_pv1_py39.py hl[2,5:8,11] *}
-
-////
 
 /// tip | Dica
 
@@ -215,33 +193,11 @@ APP_NAME="ChimichangApp"
 
 E então atualizar seu `config.py` com:
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
 
 /// tip | Dica
 
 O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
-
-///
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/settings/app03_an_py39/config_pv1.py hl[9:10] *}
-
-/// tip | Dica
-
-A classe `Config` é usada apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/1.10/usage/model_config/" class="external-link" target="_blank">Pydantic Model Config</a>.
-
-///
-
-////
-
-/// info | Informação
-
-Na versão 1 do Pydantic a configuração era feita em uma classe interna `Config`, na versão 2 do Pydantic é feita em um atributo `model_config`. Esse atributo recebe um `dict`, e para ter autocompletar e erros inline você pode importar e usar `SettingsConfigDict` para definir esse `dict`.
 
 ///
 

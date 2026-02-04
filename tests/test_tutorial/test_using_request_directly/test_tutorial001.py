@@ -76,6 +76,8 @@ def test_openapi():
                 },
                 "ValidationError": {
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "items": {
                                 "anyOf": [
