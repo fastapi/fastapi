@@ -8,7 +8,7 @@ Based on GitHub issues:
 """
 
 import asyncio
-import warnings
+import logging
 from typing import Generator
 
 import pytest
@@ -44,9 +44,9 @@ class TestBackgroundTasksAfterYield:
         assert response.status_code == 200
         assert "before_yield" in executed
 
-    def test_bg_task_added_after_yield_warns_and_not_executed(self):
+    def test_bg_task_added_after_yield_warns_and_not_executed(self, caplog):
         """
-        FIXED: Tasks added after yield now emit a warning instead of being silently dropped.
+        FIXED: Tasks added after yield now log a warning instead of being silently dropped.
 
         Previously, this was a silent failure. Now users get a clear warning
         explaining why the task won't run.
@@ -60,7 +60,7 @@ class TestBackgroundTasksAfterYield:
             yield "value"
             # This code runs during cleanup
             executed.append("after_yield_code_runs")
-            # Now this emits a warning instead of silently failing
+            # Now this logs a warning instead of silently failing
             background_tasks.add_task(lambda: executed.append("after_yield_task"))
 
         @app.get("/test")
@@ -70,9 +70,7 @@ class TestBackgroundTasksAfterYield:
         client = TestClient(app)
         executed.clear()
 
-        # Capture warnings during the request
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
+        with caplog.at_level(logging.WARNING, logger="fastapi.background"):
             response = client.get("/test")
 
         assert response.status_code == 200
@@ -81,9 +79,11 @@ class TestBackgroundTasksAfterYield:
         assert "after_yield_code_runs" in executed
         # ...the background task does NOT execute (as before)
         assert "after_yield_task" not in executed
-        # BUT now we get a warning about it (FIX!)
-        assert len(w) == 1
-        assert "Background task added after tasks have already been executed" in str(w[0].message)
+        # BUT now we get a log warning about it (FIX!)
+        assert any(
+            "Background task added after tasks have already been executed" in r.message
+            for r in caplog.records
+        )
 
 
 class TestBackgroundTaskFailureCascade:

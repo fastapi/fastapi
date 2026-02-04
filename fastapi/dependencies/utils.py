@@ -540,15 +540,60 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
         dependant.cookie_params.append(field)
 
 
+def _record_cleanup_entry(
+    scope: dict[str, Any], dependant: Dependant, resolved_scope: str
+) -> None:
+    """Append a push-order entry to the per-request cleanup-order metadata list.
+
+    The list (``scope["fastapi_dependency_cleanup_order"]``) is created lazily
+    on first use.  The function returns immediately when the debug endpoint is
+    not configured on the application, so there is zero allocation cost in the
+    default (disabled) case.
+
+    This must be called *after* ``enter_async_context`` succeeds so that only
+    generators that were actually pushed onto a stack are recorded.
+    """
+    # scope["app"] is stamped by Starlette.__call__ before routing begins.
+    # When dependency_debug_url is None (the default) nothing below executes.
+    if not getattr(scope.get("app"), "dependency_debug_url", None):
+        return
+
+    from fastapi.dependencies.models import _unwrapped_call
+
+    cleanup_order: list[dict[str, Any]] = scope.setdefault(
+        "fastapi_dependency_cleanup_order", []
+    )
+    call = dependant.call
+    unwrapped = _unwrapped_call(call) if call else call
+    name = getattr(unwrapped, "__name__", type(unwrapped).__name__) if unwrapped else "<unknown>"
+    cleanup_order.append(
+        {
+            "callable_name": name,
+            "scope": resolved_scope,
+            "order": len(cleanup_order),
+        }
+    )
+
+
 async def _solve_generator(
-    *, dependant: Dependant, stack: AsyncExitStack, sub_values: dict[str, Any]
+    *,
+    dependant: Dependant,
+    stack: AsyncExitStack,
+    sub_values: dict[str, Any],
+    scope: dict[str, Any],
+    resolved_scope: str,
 ) -> Any:
     assert dependant.call
     if dependant.is_async_gen_callable:
         cm = asynccontextmanager(dependant.call)(**sub_values)
     elif dependant.is_gen_callable:
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
-    return await stack.enter_async_context(cm)
+    # enter_async_context runs the generator up to its first yield and registers
+    # its finaliser on the stack.  Record the entry *after* this succeeds so that
+    # generators that raise before yielding are never logged.
+    result = await stack.enter_async_context(cm)
+    _record_cleanup_entry(scope, dependant, resolved_scope)
+    return result
 
 
 @dataclass
@@ -631,13 +676,22 @@ async def solve_dependencies(
         elif (
             use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable
         ):
+            # Stack selection determines the cleanup phase:
+            #   scope="function"  → function_astack  → finaliser runs BEFORE response
+            #   anything else     → request_astack   → finaliser runs AFTER response
+            # Sub-dependencies of a dep are recursed (and pushed) *before* the
+            # dep itself, so in LIFO exit order the parent's finaliser runs first.
             use_astack = request_astack
+            resolved_scope = "request"
             if sub_dependant.scope == "function":
                 use_astack = function_astack
+                resolved_scope = "function"
             solved = await _solve_generator(
                 dependant=use_sub_dependant,
                 stack=use_astack,
                 sub_values=solved_result.values,
+                scope=request.scope,
+                resolved_scope=resolved_scope,
             )
         elif use_sub_dependant.is_coroutine_callable:
             solved = await call(**solved_result.values)

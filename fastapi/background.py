@@ -1,5 +1,4 @@
 import logging
-import warnings
 from typing import Annotated, Any, Callable
 
 from annotated_doc import Doc
@@ -81,13 +80,11 @@ class BackgroundTasks(StarletteBackgroundTasks):
         [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
         """
         if self._executed:
-            warnings.warn(
+            logger.warning(
                 "Background task added after tasks have already been executed. "
                 "This task will not run. This commonly happens when adding tasks "
                 "after a 'yield' in a dependency. Consider adding tasks before "
-                "the yield, or use a different approach for cleanup tasks.",
-                UserWarning,
-                stacklevel=2,
+                "the yield, or use a different approach for cleanup tasks."
             )
             return
         return super().add_task(func, *args, **kwargs)
@@ -114,11 +111,11 @@ class BackgroundTasks(StarletteBackgroundTasks):
         - If only one task fails, the original exception is re-raised
         - If multiple tasks fail, a BackgroundTaskError is raised with all errors
         """
-        # Fix #8: Snapshot tasks to prevent mutation during iteration
-        tasks_snapshot = list(self.tasks)
-
-        # Fix #7: Set _executed after snapshot, so it reflects actual execution attempt
+        # Set _executed before the snapshot so that any concurrent add_task
+        # call hits the guard and logs a warning rather than silently
+        # appending to a list that will never be iterated.
         self._executed = True
+        tasks_snapshot = list(self.tasks)
 
         errors: list[tuple[BackgroundTask, BaseException]] = []
 
@@ -153,10 +150,7 @@ class BackgroundTasks(StarletteBackgroundTasks):
 
         # Handle errors with backward compatibility
         if len(errors) == 1:
-            # Fix #5: Single error - re-raise with proper context
-            # Using 'from' preserves the chain and adds context
-            original_exc = errors[0][1]
-            raise original_exc from original_exc
+            raise errors[0][1]
         elif len(errors) > 1:
             # Multiple errors: raise aggregate exception
             raise BackgroundTaskError(errors)

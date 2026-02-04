@@ -3,6 +3,7 @@ import functools
 import inspect
 import json
 import warnings
+import weakref
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -96,6 +97,22 @@ def request_response(
         async def app(scope: Scope, receive: Receive, send: Send) -> None:
             # Starts customization
             response_awaited = False
+            # ── Cleanup-order invariant (two nested AsyncExitStacks) ──────────
+            # request_stack (inner_astack) opens FIRST → closes LAST.
+            # function_stack opens SECOND (inside request_stack) → closes FIRST.
+            #
+            # Deterministic exit sequence per request:
+            #   1. function_stack.__aexit__  – all scope="function" yield-dep
+            #      finalisers run here, in LIFO push order.
+            #   2. await response(...)       – HTTP bytes are sent to the client;
+            #      BackgroundTasks execute *inside* this call (see
+            #      starlette/responses.py Response.__call__ / StreamingResponse.__call__).
+            #   3. request_stack.__aexit__   – all scope="request" (and default-
+            #      scope generator) yield-dep finalisers run here, in LIFO push order.
+            #
+            # Consequence: function-scoped finalisers see the response body *before*
+            # it is streamed; request-scoped finalisers run *after* BackgroundTasks.
+            # ─────────────────────────────────────────────────────────────────────
             async with AsyncExitStack() as request_stack:
                 scope["fastapi_inner_astack"] = request_stack
                 async with AsyncExitStack() as function_stack:
@@ -162,16 +179,31 @@ def _merge_lifespan_context(
     return merged_lifespan  # type: ignore[return-value]
 
 
-# Cache for endpoint context to avoid re-extracting on every request
-_endpoint_context_cache: dict[int, EndpointContext] = {}
+# Cache: id(func) → (weakref to func, EndpointContext).
+# The weakref callback evicts the entry when func is GC'd; the identity
+# check on hit guards against id() reuse before the callback fires.
+_endpoint_context_cache: dict[int, tuple[weakref.ref[Any], EndpointContext]] = {}
+
+
+def _endpoint_context_finaliser(func_id: int) -> Callable[[weakref.ref[Any]], None]:
+    """Return a weakref callback that evicts the cache entry for *func_id*."""
+
+    def _evict(_ref: weakref.ref[Any]) -> None:
+        _endpoint_context_cache.pop(func_id, None)
+
+    return _evict
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
     """Extract endpoint context with caching to avoid repeated file I/O."""
     func_id = id(func)
 
-    if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+    cached = _endpoint_context_cache.get(func_id)
+    if cached is not None:
+        ref, ctx = cached
+        if ref() is func:  # same object — cache hit
+            return ctx
+        # id was reused after GC — fall through to recompute
 
     try:
         ctx: EndpointContext = {}
@@ -185,7 +217,15 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     except Exception:
         ctx = EndpointContext()
 
-    _endpoint_context_cache[func_id] = ctx
+    # Cache only if func supports weak references.  functools.partial and
+    # some other callables do not; for those we simply skip caching.
+    try:
+        _endpoint_context_cache[func_id] = (
+            weakref.ref(func, _endpoint_context_finaliser(func_id)),
+            ctx,
+        )
+    except TypeError:
+        pass
     return ctx
 
 
@@ -360,7 +400,18 @@ def get_request_handler(
                 is_coroutine=is_coroutine,
             )
             if isinstance(raw_response, Response):
-                if raw_response.background is None:
+                if solved_result.background_tasks is not None:
+                    if (
+                        raw_response.background is not None
+                        and raw_response.background is not solved_result.background_tasks
+                    ):
+                        # Endpoint set an explicit background task on the
+                        # Response.  Fold it into the injected BackgroundTasks
+                        # so dep-added tasks and the endpoint's explicit task
+                        # both execute under a single __call__.
+                        solved_result.background_tasks.tasks.append(
+                            raw_response.background
+                        )
                     raw_response.background = solved_result.background_tasks
                 response = raw_response
             else:
@@ -623,6 +674,18 @@ class APIRoute(routing.Route):
         self.dependant = get_dependant(
             path=self.path_format, call=self.endpoint, scope="function"
         )
+        # ── Route-level dependency prepend order ─────────────────────────────
+        # Route-level deps (from ``dependencies=[...]``) must appear BEFORE
+        # signature deps in dependant.dependencies so that solve_dependencies()
+        # pushes them onto the exit stack FIRST.  Because AsyncExitStack is
+        # LIFO, "pushed first" means "cleaned up last" — which is the correct
+        # semantic: route-level (e.g. auth) finalisers should outlive the
+        # per-endpoint business-logic finalisers.
+        #
+        # The [::-1] reversal + insert(0, …) pattern achieves this:
+        #   dependencies = [A, B]  →  iterate [B, A]  →  insert B at 0, then A
+        #   at 0  →  final order: [A, B, …signature deps…]
+        # ──────────────────────────────────────────────────────────────────────
         for depends in self.dependencies[::-1]:
             self.dependant.dependencies.insert(
                 0,

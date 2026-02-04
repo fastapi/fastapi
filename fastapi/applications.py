@@ -456,6 +456,30 @@ class FastAPI(Starlette):
                 """
             ),
         ] = "/redoc",
+        dependency_debug_url: Annotated[
+            Optional[str],
+            Doc(
+                """
+                The path for the internal dependency-graph debug endpoint.
+
+                When set to a URL path string (e.g. ``"/_debug/dependencies"``),
+                FastAPI registers a GET endpoint at that path that returns the
+                full static dependency DAG for every route as JSON.  The endpoint
+                performs **no** dependency execution — it is purely informational.
+
+                Disabled by default (``None``).  It should only be enabled in
+                development or internal-tooling environments.
+
+                **Example**
+
+                ```python
+                from fastapi import FastAPI
+
+                app = FastAPI(dependency_debug_url="/_debug/dependencies")
+                ```
+                """
+            ),
+        ] = None,
         swagger_ui_oauth2_redirect_url: Annotated[
             Optional[str],
             Doc(
@@ -900,6 +924,7 @@ class FastAPI(Starlette):
         self.root_path_in_servers = root_path_in_servers
         self.docs_url = docs_url
         self.redoc_url = redoc_url
+        self.dependency_debug_url = dependency_debug_url
         self.swagger_ui_oauth2_redirect_url = swagger_ui_oauth2_redirect_url
         self.swagger_ui_init_oauth = swagger_ui_init_oauth
         self.swagger_ui_parameters = swagger_ui_parameters
@@ -1219,6 +1244,16 @@ class FastAPI(Starlette):
                 )
 
             self.add_route(self.redoc_url, redoc_html, include_in_schema=False)
+        if self.dependency_debug_url:
+            # Lazy import to avoid circular imports at module load time.
+            from fastapi.debug import get_all_route_graphs
+
+            async def dependency_debug(req: Request) -> JSONResponse:
+                return JSONResponse({"routes": get_all_route_graphs(self.routes)})
+
+            self.add_route(
+                self.dependency_debug_url, dependency_debug, include_in_schema=False
+            )
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:

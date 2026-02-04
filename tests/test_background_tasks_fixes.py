@@ -6,7 +6,7 @@ Fixed bugs:
 2. Tasks added after execution now emit a warning
 """
 
-import warnings
+import logging
 from typing import Generator
 
 import pytest
@@ -145,24 +145,18 @@ class TestBackgroundTaskAfterYieldWarning:
     Test that adding tasks after execution emits a warning.
     """
 
-    def test_warning_when_task_added_after_execution(self):
+    def test_warning_when_task_added_after_execution(self, caplog):
         """
-        FIX: Warning should be emitted when task is added after execution.
+        FIX: A log warning should be emitted when task is added after execution.
         """
         executed = []
-        warnings_captured = []
 
         app = FastAPI()
 
         async def dependency_with_yield(background_tasks: BackgroundTasks):
             background_tasks.add_task(lambda: executed.append("before_yield"))
             yield "value"
-            # Capture the warning
-            with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter("always")
-                background_tasks.add_task(lambda: executed.append("after_yield"))
-                if w:
-                    warnings_captured.extend(w)
+            background_tasks.add_task(lambda: executed.append("after_yield"))
 
         @app.get("/test")
         async def endpoint(dep: str = Depends(dependency_with_yield)):
@@ -170,9 +164,10 @@ class TestBackgroundTaskAfterYieldWarning:
 
         client = TestClient(app)
         executed.clear()
-        warnings_captured.clear()
 
-        response = client.get("/test")
+        with caplog.at_level(logging.WARNING, logger="fastapi.background"):
+            response = client.get("/test")
+
         assert response.status_code == 200
 
         # Task added before yield should have executed
@@ -181,31 +176,31 @@ class TestBackgroundTaskAfterYieldWarning:
         # Task added after yield should NOT have executed
         assert "after_yield" not in executed
 
-        # Warning should have been captured
-        assert len(warnings_captured) == 1
-        assert "Background task added after tasks have already been executed" in str(
-            warnings_captured[0].message
+        # Warning should have been logged
+        assert any(
+            "Background task added after tasks have already been executed" in r.message
+            for r in caplog.records
         )
 
-    def test_no_warning_for_normal_task_addition(self):
+    def test_no_warning_for_normal_task_addition(self, caplog):
         """
-        No warning should be emitted for normal task addition.
+        No warning should be logged for normal task addition.
         """
         app = FastAPI()
 
         @app.get("/test")
         async def endpoint(background_tasks: BackgroundTasks):
-            with warnings.catch_warnings(record=True) as w:
-                warnings.simplefilter("always")
-                background_tasks.add_task(lambda: None)
-                background_tasks.add_task(lambda: None)
-                assert len(w) == 0  # No warnings
-
+            background_tasks.add_task(lambda: None)
+            background_tasks.add_task(lambda: None)
             return {"status": "ok"}
 
         client = TestClient(app)
-        response = client.get("/test")
+        with caplog.at_level(logging.WARNING, logger="fastapi.background"):
+            response = client.get("/test")
         assert response.status_code == 200
+        assert not any(
+            "already been executed" in r.message for r in caplog.records
+        )
 
 
 class TestDependencyCleanupStillWorks:
