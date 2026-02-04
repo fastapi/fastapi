@@ -27,7 +27,7 @@
 
 ---
 
-**ドキュメント**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**ドキュメント**: <a href="https://fastapi.tiangolo.com/ja" target="_blank">https://fastapi.tiangolo.com</a>
 
 **ソースコード**: <a href="https://github.com/fastapi/fastapi" target="_blank">https://github.com/fastapi/fastapi</a>
 
