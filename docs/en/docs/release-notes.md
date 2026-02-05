@@ -14,6 +14,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for es (update-outdated). PR [#14832](https://github.com/fastapi/fastapi/pull/14832) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for tr (update-outdated). PR [#14831](https://github.com/fastapi/fastapi/pull/14831) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for tr (add-missing). PR [#14790](https://github.com/fastapi/fastapi/pull/14790) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (update-outdated). PR [#14826](https://github.com/fastapi/fastapi/pull/14826) by [@tiangolo](https://github.com/tiangolo).
