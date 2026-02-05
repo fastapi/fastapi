@@ -12,6 +12,10 @@ hide:
 * ✨ Add support for PEP695 `TypeAliasType`. PR [#13920](https://github.com/fastapi/fastapi/pull/13920) by [@cstruct](https://github.com/cstruct).
 * ✨ Allow `Response` type hint as dependency annotation. PR [#14794](https://github.com/fastapi/fastapi/pull/14794) by [@jonathan-fulton](https://github.com/jonathan-fulton).
 
+### Fixes
+
+* 🐛 Fix using `Json[list[str]]` type (issue #10997). PR [#14616](https://github.com/fastapi/fastapi/pull/14616) by [@mkanetsuna](https://github.com/mkanetsuna).
+
 ### Docs
 
 * 📝 Update docs for translations. PR [#14830](https://github.com/fastapi/fastapi/pull/14830) by [@tiangolo](https://github.com/tiangolo).
