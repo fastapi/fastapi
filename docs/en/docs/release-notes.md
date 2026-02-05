@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for tr (add-missing). PR [#14790](https://github.com/fastapi/fastapi/pull/14790) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (update-outdated). PR [#14826](https://github.com/fastapi/fastapi/pull/14826) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for zh-hant (update-outdated). PR [#14825](https://github.com/fastapi/fastapi/pull/14825) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (update-outdated). PR [#14822](https://github.com/fastapi/fastapi/pull/14822) by [@tiangolo](https://github.com/tiangolo).
