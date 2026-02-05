@@ -426,6 +426,7 @@ def test_nullable_with_non_null_default_schema(path: str):
         # default_factory is not reflected in OpenAPI schema
         assert parameters[2]["schema"]["default"] == [0]
 
+
 @pytest.mark.parametrize(
     "path",
     [
@@ -445,13 +446,14 @@ def test_nullable_with_non_null_default_missing(path: str):
     assert mock_convert.call_count == 0, (
         "Validator should not be called if the value is missing"
     )
-    assert response.status_code == 200
-    assert response.json() == {
+    assert response.status_code == 200  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": -1,
         "str_val": "default",
         "list_val": [0],
         "fields_set": IsOneOf(None, []),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(

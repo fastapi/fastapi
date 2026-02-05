@@ -417,11 +417,12 @@ def test_nullable_with_non_null_default_missing(path: str):
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
         response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
+    assert mock_convert.call_count == 0, (  # pragma: no cover
         "Validator should not be called if the value is missing"
     )
-    assert response.status_code == 200
-    assert response.json() == {"file": None, "files": None}
+    assert response.status_code == 200  # pragma: no cover
+    assert response.json() == {"file": None, "files": None}  # pragma: no cover
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(

@@ -332,8 +332,9 @@ def test_nullable_required_no_embed_pass_null(path: str):
         response = client.post(path, content="null")
 
     assert mock_convert.call_count == 1, "Validator should be called once for the field"
-    assert response.status_code == 200, response.text
-    assert response.json() == {"val": None}
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {"val": None}  # pragma: no cover
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -672,8 +673,9 @@ def test_nullable_non_required_no_embed_pass_null(path: str):
         response = client.post(path, content="null")
 
     assert mock_convert.call_count == 1, "Validator should be called once for the field"
-    assert response.status_code == 200, response.text
-    assert response.json() == {"val": None}
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {"val": None}  # pragma: no cover
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -1019,8 +1021,9 @@ def test_nullable_with_non_null_default_no_embed_pass_null(path: str):
         response = client.post(path, content="null")
 
     assert mock_convert.call_count == 1, "Validator should be called once for the field"
-    assert response.status_code == 200, response.text
-    assert response.json() == {"val": None}
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {"val": None}  # pragma: no cover
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(

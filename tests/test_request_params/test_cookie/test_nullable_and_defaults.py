@@ -369,12 +369,13 @@ def test_nullable_with_non_null_default_missing(path: str):
     assert mock_convert.call_count == 0, (
         "Validator should not be called if the value is missing"
     )
-    assert response.status_code == 200
-    assert response.json() == {
+    assert response.status_code == 200  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": -1,
         "str_val": "default",
         "fields_set": IsOneOf(None, []),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(

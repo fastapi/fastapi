@@ -180,8 +180,8 @@ def test_nullable_required_pass_empty_str(path: str):
         (""),  # str_val
         (["0"]),  # list_val
     ]
-    assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": None,
         "str_val": None,
         "list_val": [0],
@@ -189,6 +189,7 @@ def test_nullable_required_pass_empty_str(path: str):
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -368,8 +369,8 @@ def test_nullable_non_required_pass_empty_str(path: str):
         (""),  # str_val
         (["0"]),  # list_val
     ]
-    assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": None,
         "str_val": None,
         "list_val": [0],
@@ -377,6 +378,7 @@ def test_nullable_non_required_pass_empty_str(path: str):
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -522,13 +524,14 @@ def test_nullable_with_non_null_default_missing(path: str):
     assert mock_convert.call_count == 0, (
         "Validator should not be called if the value is missing"
     )
-    assert response.status_code == 200
-    assert response.json() == {
+    assert response.status_code == 200  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": -1,
         "str_val": "default",
         "list_val": [0],
         "fields_set": IsOneOf(None, []),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -567,8 +570,8 @@ def test_nullable_with_non_null_default_pass_empty_str(path: str):
         (""),  # str_val
         (["0"]),  # list_val
     ]
-    assert response.status_code == 200, response.text
-    assert response.json() == {
+    assert response.status_code == 200, response.text  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
         "int_val": None,
         "str_val": None,
         "list_val": [0],
@@ -576,6 +579,7 @@ def test_nullable_with_non_null_default_pass_empty_str(path: str):
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
     }
+    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
