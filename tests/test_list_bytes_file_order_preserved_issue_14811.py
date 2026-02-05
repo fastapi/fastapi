@@ -13,7 +13,7 @@ from fastapi.testclient import TestClient
 from starlette.datastructures import UploadFile as StarletteUploadFile
 
 
-def test_list_bytes_file_preserves_order_issue_14811(
+def test_list_bytes_file_preserves_order(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     app = FastAPI()
