@@ -893,17 +893,21 @@ async def _extract_form_body(
         ):
             # For types
             assert isinstance(value, sequence_types)
-            results: list[Union[bytes, str]] = []
+            results: list[Union[bytes, str, None]] = [None] * len(value)
 
             async def process_fn(
+                idx: int,
                 fn: Callable[[], Coroutine[Any, Any, Any]],
             ) -> None:
                 result = await fn()
-                results.append(result)  # noqa: B023
+                # Using index to preserve order
+                results[idx] = result  # noqa: B023
 
             async with anyio.create_task_group() as tg:
-                for sub_value in value:
-                    tg.start_soon(process_fn, sub_value.read)
+                for idx, sub_value in enumerate(value):
+                    tg.start_soon(process_fn, idx, sub_value.read)
+
+            assert all(item is not None for item in results)
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[get_validation_alias(field)] = value
