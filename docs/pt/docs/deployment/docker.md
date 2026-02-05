@@ -145,8 +145,6 @@ Há outros formatos e ferramentas para definir e instalar dependências de pacot
 * Crie um arquivo `main.py` com:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -572,7 +570,7 @@ Se você tiver uma configuração simples, com um **único contêiner** que ent�
 
 ### Imagem Docker base { #base-docker-image }
 
-Antes havia uma imagem oficial do FastAPI para Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Mas agora ela está descontinuada. ⛔️
+Antes havia uma imagem oficial do FastAPI para Docker: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi-docker</a>. Mas agora ela está descontinuada. ⛔️
 
 Você provavelmente **não** deve usar essa imagem base do Docker (ou qualquer outra semelhante).
 
