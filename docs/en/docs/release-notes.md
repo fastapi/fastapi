@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Allow `Response` type hint as dependency annotation. PR [#14794](https://github.com/fastapi/fastapi/pull/14794) by [@jonathan-fulton](https://github.com/jonathan-fulton).
+
 ### Docs
 
 * 📝 Update docs for translations. PR [#14830](https://github.com/fastapi/fastapi/pull/14830) by [@tiangolo](https://github.com/tiangolo).
