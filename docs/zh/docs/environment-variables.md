@@ -295,4 +295,4 @@ $ C:\opt\custompython\bin\python
 
 在许多情况下，环境变量的用途和适用性并不是很明显。但是在开发过程中，它们会在许多不同的场景中出现，因此了解它们是很有必要的。
 
-例如，你将在下一节关于[虚拟环境](virtual-environments.md){.internal-link target=_blank}中需要这些信息。
+例如，你将在下一节关于[虚拟环境](virtual-environments.md)中需要这些信息。
