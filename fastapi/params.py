@@ -6,9 +6,10 @@ from typing import Annotated, Any, Callable, Optional, Union
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
+from fastapi.types import DependencyScope
 from pydantic import AliasChoices, AliasPath
 from pydantic.fields import FieldInfo
-from typing_extensions import Literal, deprecated
+from typing_extensions import deprecated
 
 from ._compat import (
     Undefined,
@@ -747,7 +748,7 @@ class File(Form):  # type: ignore[misc]
 class Depends:
     dependency: Optional[Callable[..., Any]] = None
     use_cache: bool = True
-    scope: Union[Literal["function", "request"], None] = None
+    scope: DependencyScope = None
 
 
 @dataclass(frozen=True)

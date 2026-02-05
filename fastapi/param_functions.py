@@ -5,8 +5,9 @@ from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
+from fastapi.types import DependencyScope
 from pydantic import AliasChoices, AliasPath
-from typing_extensions import Literal, deprecated
+from typing_extensions import deprecated
 
 _Unset: Any = Undefined
 
@@ -2315,7 +2316,7 @@ def Depends(  # noqa: N802
         ),
     ] = True,
     scope: Annotated[
-        Union[Literal["function", "request"], None],
+        DependencyScope,
         Doc(
             """
             Mainly for dependencies with `yield`, define when the dependency function

@@ -6,8 +6,7 @@ from typing import Any, Callable, Optional, Union
 
 from fastapi._compat import ModelField
 from fastapi.security.base import SecurityBase
-from fastapi.types import DependencyCacheKey
-from typing_extensions import Literal
+from fastapi.types import DependencyCacheKey, DependencyScope
 
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
@@ -48,7 +47,7 @@ class Dependant:
     parent_oauth_scopes: Optional[list[str]] = None
     use_cache: bool = True
     path: Optional[str] = None
-    scope: Union[Literal["function", "request"], None] = None
+    scope: DependencyScope = None
 
     @cached_property
     def oauth_scopes(self) -> list[str]:
