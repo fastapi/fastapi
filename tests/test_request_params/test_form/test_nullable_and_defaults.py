@@ -175,8 +175,11 @@ def test_nullable_required_pass_empty_str(path: str):
         )
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
-    # TODO: Check call args ?
-
+    assert mock_convert.call_args_list == [
+        (""),  # int_val
+        (""),  # str_val
+        (["0"]),  # list_val
+    ]
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -360,8 +363,11 @@ def test_nullable_non_required_pass_empty_str(path: str):
         )
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
-    # TODO: Check call args ?
-
+    assert mock_convert.call_args_list == [
+        (""),  # int_val
+        (""),  # str_val
+        (["0"]),  # list_val
+    ]
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -554,8 +560,11 @@ def test_nullable_with_non_null_default_pass_empty_str(path: str):
         )
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
-    # TODO: Check call args ?
-
+    assert mock_convert.call_args_list == [
+        (""),  # int_val
+        (""),  # str_val
+        (["0"]),  # list_val
+    ]
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
