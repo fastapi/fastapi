@@ -449,7 +449,9 @@ def analyze_param(
         depends = dataclasses.replace(depends, dependency=type_annotation)
 
     # Handle non-param type annotations like Request
-    if lenient_issubclass(
+    # Only apply special handling when there's no explicit Depends - if there's a Depends,
+    # the dependency will be called and its return value used instead of the special injection
+    if depends is None and lenient_issubclass(
         type_annotation,
         (
             Request,
@@ -460,7 +462,6 @@ def analyze_param(
             SecurityScopes,
         ),
     ):
-        assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
         assert field_info is None, (
             f"Cannot specify FastAPI annotation for type {type_annotation!r}"
         )
