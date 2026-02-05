@@ -3,21 +3,10 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from .utils import needs_pydanticv1
 
-
-@pytest.fixture(
-    name="client",
-    params=[
-        pytest.param("pydantic-v1", marks=needs_pydanticv1),
-        "pydantic-v2",
-    ],
-)
-def client_fixture(request: pytest.FixtureRequest) -> TestClient:
-    if request.param == "pydantic-v1":
-        from pydantic.v1 import BaseModel
-    else:
-        from pydantic import BaseModel
+@pytest.fixture(name="client")
+def client_fixture() -> TestClient:
+    from pydantic import BaseModel
 
     class Address(BaseModel):
         """
@@ -109,6 +98,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

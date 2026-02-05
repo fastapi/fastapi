@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from tests.utils import needs_py310
@@ -15,7 +14,7 @@ from tests.utils import needs_py310
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.dataclasses.{request.param}")
+    mod = importlib.import_module(f"docs_src.dataclasses_.{request.param}")
 
     client = TestClient(mod.app)
     client.headers.clear()
@@ -36,29 +35,16 @@ def test_post_item(client: TestClient):
 def test_post_invalid_item(client: TestClient):
     response = client.post("/items/", json={"name": "Foo", "price": "invalid price"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "float_parsing",
-                    "loc": ["body", "price"],
-                    "msg": "Input should be a valid number, unable to parse string as a number",
-                    "input": "invalid price",
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "price"],
-                    "msg": "value is not a valid float",
-                    "type": "type_error.float",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "float_parsing",
+                "loc": ["body", "price"],
+                "msg": "Input should be a valid number, unable to parse string as a number",
+                "input": "invalid price",
+            }
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):
@@ -119,26 +105,14 @@ def test_openapi_schema(client: TestClient):
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
                         "price": {"title": "Price", "type": "number"},
-                        "description": IsDict(
-                            {
-                                "title": "Description",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
-                        "tax": IsDict(
-                            {
-                                "title": "Tax",
-                                "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
+                        "description": {
+                            "title": "Description",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "tax": {
+                            "title": "Tax",
+                            "anyOf": [{"type": "number"}, {"type": "null"}],
+                        },
                     },
                 },
                 "ValidationError": {
@@ -155,6 +129,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
             }

@@ -1,4 +1,3 @@
-from dirty_equals import IsDict
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 
@@ -22,40 +21,22 @@ def test_multi_query():
 def test_multi_query_incorrect():
     response = client.get("/items/?q=five&q=six")
     assert response.status_code == 422, response.text
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "int_parsing",
-                    "loc": ["query", "q", 0],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "five",
-                },
-                {
-                    "type": "int_parsing",
-                    "loc": ["query", "q", 1],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "six",
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "q", 0],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                },
-                {
-                    "loc": ["query", "q", 1],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "int_parsing",
+                "loc": ["query", "q", 0],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "five",
+            },
+            {
+                "type": "int_parsing",
+                "loc": ["query", "q", 1],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "six",
+            },
+        ]
+    }
 
 
 def test_openapi_schema():
@@ -116,6 +97,8 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

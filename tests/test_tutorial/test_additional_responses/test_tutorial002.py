@@ -3,7 +3,6 @@ import os
 import shutil
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from tests.utils import needs_py310
@@ -80,16 +79,10 @@ def test_openapi_schema(client: TestClient):
                         },
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "boolean"}, {"type": "null"}],
-                                    "title": "Img",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Img", "type": "boolean"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "boolean"}, {"type": "null"}],
+                                "title": "Img",
+                            },
                             "name": "img",
                             "in": "query",
                         },
@@ -122,6 +115,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

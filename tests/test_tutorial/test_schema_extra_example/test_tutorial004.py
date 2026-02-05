@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -58,46 +57,22 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": IsDict(
-                                    {
-                                        "$ref": "#/components/schemas/Item",
-                                        "examples": [
-                                            {
-                                                "name": "Foo",
-                                                "description": "A very nice Item",
-                                                "price": 35.4,
-                                                "tax": 3.2,
-                                            },
-                                            {"name": "Bar", "price": "35.4"},
-                                            {
-                                                "name": "Baz",
-                                                "price": "thirty five point four",
-                                            },
-                                        ],
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {
-                                        "allOf": [
-                                            {"$ref": "#/components/schemas/Item"}
-                                        ],
-                                        "title": "Item",
-                                        "examples": [
-                                            {
-                                                "name": "Foo",
-                                                "description": "A very nice Item",
-                                                "price": 35.4,
-                                                "tax": 3.2,
-                                            },
-                                            {"name": "Bar", "price": "35.4"},
-                                            {
-                                                "name": "Baz",
-                                                "price": "thirty five point four",
-                                            },
-                                        ],
-                                    }
-                                )
+                                "schema": {
+                                    "$ref": "#/components/schemas/Item",
+                                    "examples": [
+                                        {
+                                            "name": "Foo",
+                                            "description": "A very nice Item",
+                                            "price": 35.4,
+                                            "tax": 3.2,
+                                        },
+                                        {"name": "Bar", "price": "35.4"},
+                                        {
+                                            "name": "Baz",
+                                            "price": "thirty five point four",
+                                        },
+                                    ],
+                                }
                             }
                         },
                         "required": True,
@@ -140,27 +115,15 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": IsDict(
-                            {
-                                "title": "Description",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
+                        "description": {
+                            "title": "Description",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "price": {"title": "Price", "type": "number"},
-                        "tax": IsDict(
-                            {
-                                "title": "Tax",
-                                "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
+                        "tax": {
+                            "title": "Tax",
+                            "anyOf": [{"type": "number"}, {"type": "null"}],
+                        },
                     },
                 },
                 "ValidationError": {
@@ -177,6 +140,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
             }

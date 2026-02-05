@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -56,23 +55,13 @@ def test_openapi_schema(client: TestClient):
                     "parameters": [
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "title": "X-Token",
-                                    "anyOf": [
-                                        {"type": "array", "items": {"type": "string"}},
-                                        {"type": "null"},
-                                    ],
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "title": "X-Token",
-                                    "type": "array",
-                                    "items": {"type": "string"},
-                                }
-                            ),
+                            "schema": {
+                                "title": "X-Token",
+                                "anyOf": [
+                                    {"type": "array", "items": {"type": "string"}},
+                                    {"type": "null"},
+                                ],
+                            },
                             "name": "x-token",
                             "in": "header",
                         }
@@ -123,6 +112,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
             }

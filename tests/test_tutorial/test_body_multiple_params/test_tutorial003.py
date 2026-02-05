@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -49,101 +48,55 @@ def test_post_body_valid(client: TestClient):
 def test_post_body_no_data(client: TestClient):
     response = client.put("/items/5", json=None)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "item"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "user"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "importance"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "item"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "user"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "importance"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "item"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "user"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "importance"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_post_body_empty_list(client: TestClient):
     response = client.put("/items/5", json=[])
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "item"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "user"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "importance"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "item"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "user"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "importance"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "item"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "user"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "importance"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):
@@ -202,27 +155,15 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": IsDict(
-                            {
-                                "title": "Description",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
+                        "description": {
+                            "title": "Description",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "price": {"title": "Price", "type": "number"},
-                        "tax": IsDict(
-                            {
-                                "title": "Tax",
-                                "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
+                        "tax": {
+                            "title": "Tax",
+                            "anyOf": [{"type": "number"}, {"type": "null"}],
+                        },
                     },
                 },
                 "User": {
@@ -231,16 +172,10 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "username": {"title": "Username", "type": "string"},
-                        "full_name": IsDict(
-                            {
-                                "title": "Full Name",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Full Name", "type": "string"}
-                        ),
+                        "full_name": {
+                            "title": "Full Name",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                     },
                 },
                 "Body_update_item_items__item_id__put": {
@@ -267,6 +202,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

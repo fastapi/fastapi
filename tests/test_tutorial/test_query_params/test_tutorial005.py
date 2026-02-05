@@ -1,4 +1,3 @@
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from docs_src.query_params.tutorial005_py39 import app
@@ -15,29 +14,16 @@ def test_foo_needy_very():
 def test_foo_no_needy():
     response = client.get("/items/foo")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["query", "needy"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["query", "needy"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "needy"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 def test_openapi_schema():
@@ -100,6 +86,8 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

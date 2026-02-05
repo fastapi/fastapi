@@ -1,8 +1,8 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, Query
+from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.testclient import TestClient
 
 from .utils import needs_py310
@@ -10,7 +10,7 @@ from .utils import needs_py310
 
 def get_client():
     app = FastAPI()
-    with pytest.warns(DeprecationWarning):
+    with pytest.warns(FastAPIDeprecationWarning):
 
         @app.get("/items/")
         async def read_items(
@@ -46,31 +46,17 @@ def test_query_params_str_validations_item_query_nonregexquery():
     client = get_client()
     response = client.get("/items/", params={"q": "nonregexquery"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "string_pattern_mismatch",
-                    "loc": ["query", "q"],
-                    "msg": "String should match pattern '^fixedquery$'",
-                    "input": "nonregexquery",
-                    "ctx": {"pattern": "^fixedquery$"},
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "ctx": {"pattern": "^fixedquery$"},
-                    "loc": ["query", "q"],
-                    "msg": 'string does not match regex "^fixedquery$"',
-                    "type": "value_error.str.regex",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_pattern_mismatch",
+                "loc": ["query", "q"],
+                "msg": "String should match pattern '^fixedquery$'",
+                "input": "nonregexquery",
+                "ctx": {"pattern": "^fixedquery$"},
+            }
+        ]
+    }
 
 
 @needs_py310
@@ -92,23 +78,13 @@ def test_openapi_schema():
                             "name": "q",
                             "in": "query",
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [
-                                        {"type": "string", "pattern": "^fixedquery$"},
-                                        {"type": "null"},
-                                    ],
-                                    "title": "Q",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {
-                                    "type": "string",
-                                    "pattern": "^fixedquery$",
-                                    "title": "Q",
-                                }
-                            ),
+                            "schema": {
+                                "anyOf": [
+                                    {"type": "string", "pattern": "^fixedquery$"},
+                                    {"type": "null"},
+                                ],
+                                "title": "Q",
+                            },
                         }
                     ],
                     "responses": {
@@ -145,6 +121,8 @@ def test_openapi_schema():
                 },
                 "ValidationError": {
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
