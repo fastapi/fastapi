@@ -194,7 +194,7 @@ def _get_flat_fields_from_params(fields: List[ModelField]) -> List[ModelField]:
     if not fields:
         return fields
 
-      fields_to_extract = []
+    fields_to_extract = []
     for f in fields:
         if _is_model_class(f.type_):
             fields_to_extract.extend(get_cached_model_fields(f.type_))
