@@ -13,6 +13,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for uk (update-outdated). PR [#14822](https://github.com/fastapi/fastapi/pull/14822) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update docs and translations scripts, enable Turkish. PR [#14824](https://github.com/fastapi/fastapi/pull/14824) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.1
