@@ -393,7 +393,6 @@ def test_nullable_with_non_null_default_schema(path: str):
                     {"type": "array", "items": {"type": "string", "format": "binary"}},
                     {"type": "null"},
                 ],
-                # "default": None,  # default_factory is not reflected in OpenAPI schema
             },
         },
         "title": body_model_name,

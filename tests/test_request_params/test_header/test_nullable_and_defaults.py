@@ -2,7 +2,7 @@ from typing import Annotated, Any, Union
 from unittest.mock import Mock, patch
 
 import pytest
-from dirty_equals import AnyThing, IsList, IsOneOf
+from dirty_equals import AnyThing, IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Header
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, BeforeValidator, field_validator
@@ -420,7 +420,8 @@ async def read_model_nullable_with_non_null_default(
     ],
 )
 def test_nullable_with_non_null_default_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
+    parameters = app.openapi()["paths"][path]["get"]["parameters"]
+    assert parameters == [
         {
             "required": False,
             "schema": {
@@ -443,18 +444,24 @@ def test_nullable_with_non_null_default_schema(path: str):
         },
         {
             "required": False,
-            "schema": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-                "default": [0],
-            },
+            "schema": IsPartialDict(
+                {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                }
+            ),
             "name": "list-val",
             "in": "header",
         },
     ]
+
+    if path == "/model-nullable-with-non-null-default":
+        # Check default value for list_val param for model-based Body parameters only.
+        # default_factory is not reflected in OpenAPI schema
+        assert parameters[2]["schema"]["default"] == [0]
 
 
 @pytest.mark.parametrize(

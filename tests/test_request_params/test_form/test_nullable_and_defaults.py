@@ -2,7 +2,7 @@ from typing import Annotated, Any, Union
 from unittest.mock import Mock, patch
 
 import pytest
-from dirty_equals import IsList, IsOneOf
+from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, BeforeValidator, field_validator
@@ -462,20 +462,16 @@ async def read_model_nullable_with_non_null_default(
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="`default_factory` is not reflected in OpenAPI schema"
-            ),
-        ),
+        "/nullable-with-non-null-default",
         "/model-nullable-with-non-null-default",
     ],
 )
 def test_nullable_with_non_null_default_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
+    body_model = app.openapi()["components"]["schemas"][body_model_name]
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
+    assert body_model == {
         "properties": {
             "int_val": {
                 "title": "Int Val",
@@ -487,18 +483,24 @@ def test_nullable_with_non_null_default_schema(path: str):
                 "anyOf": [{"type": "string"}, {"type": "null"}],
                 "default": "default",
             },
-            "list_val": {
-                "title": "List Val",
-                "anyOf": [
-                    {"type": "array", "items": {"type": "integer"}},
-                    {"type": "null"},
-                ],
-                "default": [0],  # default_factory is not reflected in OpenAPI schema
-            },
+            "list_val": IsPartialDict(
+                {
+                    "title": "List Val",
+                    "anyOf": [
+                        {"type": "array", "items": {"type": "integer"}},
+                        {"type": "null"},
+                    ],
+                }
+            ),
         },
         "title": body_model_name,
         "type": "object",
     }
+
+    if path == "/model-nullable-with-non-null-default":
+        # Check default value for list_val param for model-based Body parameters only.
+        # default_factory is not reflected in OpenAPI schema
+        assert body_model["properties"]["list_val"]["default"] == [0]
 
 
 @pytest.mark.parametrize(

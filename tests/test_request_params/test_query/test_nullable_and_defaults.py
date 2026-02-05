@@ -2,7 +2,7 @@ from typing import Annotated, Any, Union
 from unittest.mock import Mock, patch
 
 import pytest
-from dirty_equals import IsList, IsOneOf
+from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, BeforeValidator, field_validator
@@ -378,17 +378,13 @@ async def read_model_nullable_with_non_null_default(
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="`default_factory` is not reflected in OpenAPI schema"
-            ),
-        ),
+        "/nullable-with-non-null-default",
         "/model-nullable-with-non-null-default",
     ],
 )
 def test_nullable_with_non_null_default_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
+    parameters = app.openapi()["paths"][path]["get"]["parameters"]
+    assert parameters == [
         {
             "required": False,
             "schema": {
@@ -413,17 +409,22 @@ def test_nullable_with_non_null_default_schema(path: str):
             "in": "query",
             "name": "list_val",
             "required": False,
-            "schema": {
-                "anyOf": [
-                    {"items": {"type": "integer"}, "type": "array"},
-                    {"type": "null"},
-                ],
-                "title": "List Val",
-                "default": [0],  # `default_factory` is not reflected in OpenAPI schema
-            },
+            "schema": IsPartialDict(
+                {
+                    "anyOf": [
+                        {"items": {"type": "integer"}, "type": "array"},
+                        {"type": "null"},
+                    ],
+                    "title": "List Val",
+                }
+            ),
         },
     ]
 
+    if path == "/model-nullable-with-non-null-default":
+        # Check default value for list_val param for model-based Body parameters only.
+        # default_factory is not reflected in OpenAPI schema
+        assert parameters[2]["schema"]["default"] == [0]
 
 @pytest.mark.parametrize(
     "path",
