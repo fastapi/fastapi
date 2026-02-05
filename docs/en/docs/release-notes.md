@@ -38,6 +38,7 @@ hide:
 
 ### Internal
 
+* 🌐 Enable Traditional Chinese translations. PR [#14842](https://github.com/fastapi/fastapi/pull/14842) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Add max pages to translate to configs. PR [#14840](https://github.com/fastapi/fastapi/pull/14840) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.1
