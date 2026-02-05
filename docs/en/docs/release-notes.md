@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix duplicate word in `advanced-dependencies.md`. PR [#14815](https://github.com/fastapi/fastapi/pull/14815) by [@Rayyan-Oumlil](https://github.com/Rayyan-Oumlil).
+
 ### Translations
 
 * 🔨 Update docs and translations scripts, enable Turkish. PR [#14824](https://github.com/fastapi/fastapi/pull/14824) by [@tiangolo](https://github.com/tiangolo).
