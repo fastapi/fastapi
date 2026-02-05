@@ -1,6 +1,6 @@
 # Body – Mehrere Parameter { #body-multiple-parameters }
 
-Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von <abbr title="Anfragekörper">Requestbody</abbr>-Deklarationen an.
+Nun, da wir gesehen haben, wie `Path` und `Query` verwendet werden, schauen wir uns fortgeschrittenere Verwendungsmöglichkeiten von <abbr title="Requestbody">Requestbody</abbr>-Deklarationen an.
 
 ## `Path`-, `Query`- und Body-Parameter vermischen { #mix-path-query-and-body-parameters }
 
@@ -101,13 +101,13 @@ Natürlich können Sie auch, wann immer Sie das brauchen, weitere Query-Paramete
 Da einfache Werte standardmäßig als Query-Parameter interpretiert werden, müssen Sie `Query` nicht explizit hinzufügen, Sie können einfach schreiben:
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
-Oder in Python 3.10 und darüber:
+Oder in Python 3.9:
 
 ```Python
-q: str | None = None
+q: Union[str, None] = None
 ```
 
 Zum Beispiel:

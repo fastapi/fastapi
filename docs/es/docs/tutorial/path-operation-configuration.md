@@ -52,7 +52,7 @@ En estos casos, podría tener sentido almacenar las tags en un `Enum`.
 
 Puedes añadir un `summary` y `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Descripción desde docstring { #description-from-docstring }
 
@@ -70,7 +70,7 @@ Será usado en la documentación interactiva:
 
 Puedes especificar la descripción del response con el parámetro `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Información
 
