@@ -8,7 +8,7 @@ explicitly provided vs. which fields use defaults.
 
 from typing import Annotated
 
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Header, Query
 from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -46,6 +46,21 @@ async def body_fields_set_endpoint(model: FormModelFieldsSet):
     else:
         fields_set = list(model.__fields_set__)
     return {"fields_set": fields_set}
+
+
+@app.get("/query/default")
+def query_model(
+    name: Annotated[str, Query()] = "query_default",
+    age: Annotated[int, Query()] = 10,
+):
+    return {"name": name, "age": age}
+
+
+@app.get("/header/default")
+def header_model(
+    x_token: Annotated[str, Header()] = "header_default",
+):
+    return {"x_token": x_token}
 
 
 client = TestClient(app)
@@ -137,3 +152,31 @@ class TestFormFieldsSetMetadata:
         )
         assert set(body_resp.json()["fields_set"]) == {"field_1", "field_3"}
         assert set(form_resp.json()["fields_set"]) == {"field_1", "field_3"}
+
+
+class TestNonFormCoverage:
+    """
+    Test that non-Form parameters (Query, Header) continue to use defaults.
+    This ensures line 762 of utils.py is covered and legacy behavior is preserved.
+    """
+
+    def test_query_params_missing_uses_defaults(self):
+        """Test Query input where fields are missing -> returns default."""
+        response = client.get("/query/default")
+        assert response.status_code == 200
+        data = response.json()
+        assert data == {"name": "query_default", "age": 10}
+
+    def test_header_params_missing_uses_defaults(self):
+        """Test Header input where fields are missing -> returns default."""
+        response = client.get("/header/default")
+        assert response.status_code == 200
+        data = response.json()
+        assert data == {"x_token": "header_default"}
+
+    def test_query_params_provided(self):
+        """Test Query input where fields are provided -> returns value."""
+        response = client.get("/query/default?name=overridden&age=99")
+        assert response.status_code == 200
+        data = response.json()
+        assert data == {"name": "overridden", "age": 99}
