@@ -558,6 +558,7 @@ async def solve_dependencies(
     assert isinstance(request_astack, AsyncExitStack), "fastapi_inner_astack not found in request scope"
     function_astack = request.scope.get("fastapi_function_astack")
     assert isinstance(function_astack, AsyncExitStack), "fastapi_function_astack not found in request scope"
+    default_dependency_scope = request.scope.get("fastapi_default_dependency_scope")
     values: dict[str, Any] = {}
     errors: list[Any] = []
     if response is None:
@@ -601,7 +602,8 @@ async def solve_dependencies(
             solved = dependency_cache[sub_dependant.cache_key]
         elif use_sub_dependant.is_gen_callable or use_sub_dependant.is_async_gen_callable:
             use_astack = request_astack
-            if sub_dependant.scope == "function":
+            sub_dependant_scope = sub_dependant.scope or default_dependency_scope
+            if sub_dependant_scope == "function":
                 use_astack = function_astack
             solved = await _solve_generator(
                 dependant=use_sub_dependant,
