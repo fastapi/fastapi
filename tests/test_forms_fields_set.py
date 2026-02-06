@@ -8,10 +8,12 @@ explicitly provided vs. which fields use defaults.
 
 from typing import Annotated
 
+import pydantic
 from fastapi import FastAPI, Form, Header, Query
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+
+PYDANTIC_V2 = int(pydantic.VERSION.split(".")[0]) >= 2
 
 
 class FormModelFieldsSet(BaseModel):
