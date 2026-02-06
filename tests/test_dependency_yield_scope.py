@@ -243,3 +243,32 @@ def test_app_level_dep_scope_request() -> None:
         response = client.get("/app-scope-request")
         assert response.status_code == 200
         assert response.json() == {"status": "ok"}
+
+
+@pytest.mark.parametrize(
+    "default_scope,expected_is_open",
+    (
+        (
+            None,
+            True,
+        ),  # When default_dependency_scope is unset, scope defaults to "request"
+        ("function", False),
+        ("request", True),
+    ),
+)
+def test_default_dependency_scope(default_scope, expected_is_open) -> None:
+    app = FastAPI(default_dependency_scope=default_scope)
+    # app.include_router(router=app_router)
+
+    @app.get("/default-scope")
+    def default_scope_endpoint(session: SessionDefaultDep) -> Any:
+        def iter_data():
+            yield json.dumps({"is_open": session.open})
+
+        return StreamingResponse(iter_data())
+
+    with TestClient(app, raise_server_exceptions=False) as client:
+        response = client.get("/default-scope")
+        assert response.status_code == 200
+        data = response.json()
+        assert data["is_open"] is expected_is_open

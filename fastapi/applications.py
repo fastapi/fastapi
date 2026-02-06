@@ -27,7 +27,7 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, IncEx
+from fastapi.types import DecoratedCallable, DependencyScope, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
@@ -844,6 +844,12 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        default_dependency_scope: Annotated[
+            DependencyScope,
+            Doc("""
+                Default scope for dependencies that don't specify a scope.
+                """),
+        ] = None,
         **extra: Annotated[
             Any,
             Doc(
@@ -873,6 +879,7 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
+        self.default_dependency_scope = default_dependency_scope
         self.extra = extra
         self.openapi_version: Annotated[
             str,
@@ -1135,6 +1142,8 @@ class FastAPI(Starlette):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
             scope["root_path"] = self.root_path
+        if self.default_dependency_scope:
+            scope["fastapi_default_dependency_scope"] = self.default_dependency_scope
         await super().__call__(scope, receive, send)
 
     def add_api_route(
