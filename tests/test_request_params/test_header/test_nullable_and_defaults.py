@@ -121,7 +121,10 @@ def test_nullable_required_schema(path: str):
         pytest.param(
             "/model-nullable-required",
             marks=pytest.mark.xfail(
-                reason="With Header model fields use underscores in error locs for headers"
+                reason=(
+                    "For parameters declared as model, underscores are not replaced "
+                    "with hyphens in error loc"
+                )
             ),
         ),
     ],
