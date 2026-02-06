@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for fr (outdated pages). PR [#14839](https://github.com/fastapi/fastapi/pull/14839) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update translations for tr (outdated and missing). PR [#14838](https://github.com/fastapi/fastapi/pull/14838) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ### Internal
