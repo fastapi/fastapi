@@ -316,7 +316,7 @@ def main() -> None:
         raise RuntimeError(
             f"No github event file available at: {settings.github_event_path}"
         )
-    contents = settings.github_event_path.read_text()
+    contents = settings.github_event_path.read_text("utf-8")
     github_event = PartialGitHubEvent.model_validate_json(contents)
     logging.info(f"Using GitHub event: {github_event}")
     number = (

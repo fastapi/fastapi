@@ -1,8 +1,8 @@
 name: Translate
 
 on:
-  schedule:
-    - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
+  # schedule:
+  #   - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
 
   workflow_dispatch:
     inputs:
@@ -30,9 +30,16 @@ on:
         type: string
         required: false
         default: ""
-
-env:
-  UV_SYSTEM_PYTHON: 1
+      commit_in_place:
+        description: Commit changes directly instead of making a PR
+        type: boolean
+        required: false
+        default: false
+      max:
+        description: Maximum number of items to translate (e.g. 10)
+        type: number
+        required: false
+        default: 10
 
 jobs:
   langs:
@@ -45,20 +52,20 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install Dependencies
-        run: uv pip install -r requirements-github-actions.txt -r requirements-translations.txt
+        run: uv sync --locked --no-dev --group github-actions --group translations
       - name: Export Language Codes
         id: show-langs
         run: |
-          echo "langs=$(python ./scripts/translate.py llm-translatable-json)" >> $GITHUB_OUTPUT
-          echo "commands=$(python ./scripts/translate.py commands-json)" >> $GITHUB_OUTPUT
+          echo "langs=$(uv run ./scripts/translate.py llm-translatable-json)" >> $GITHUB_OUTPUT
+          echo "commands=$(uv run ./scripts/translate.py commands-json)" >> $GITHUB_OUTPUT
         env:
           LANGUAGE: ${{ github.event.inputs.language }}
           COMMAND: ${{ github.event.inputs.command }}
@@ -84,15 +91,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install Dependencies
-        run: uv pip install -r requirements-github-actions.txt -r requirements-translations.txt
+        run: uv sync --locked --no-dev --group github-actions --group translations
       # Allow debugging with tmate
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
@@ -104,11 +111,13 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       - name: FastAPI Translate
         run: |
-          python ./scripts/translate.py ${{ matrix.command }}
-          python ./scripts/translate.py make-pr
+          uv run ./scripts/translate.py ${{ matrix.command }}
+          uv run ./scripts/translate.py make-pr
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
+          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
+          MAX: ${{ github.event.inputs.max }}

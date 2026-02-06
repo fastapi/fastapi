@@ -5,6 +5,7 @@ from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
+from pydantic import AliasChoices, AliasPath
 from typing_extensions import Literal, deprecated
 
 _Unset: Any = Undefined
@@ -54,10 +55,8 @@ def Path(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -80,6 +79,9 @@ def Path(  # noqa: N802
         Doc(
             """
             Human-readable title.
+
+            Read more about it in the
+            [FastAPI docs for Path Parameters and Numeric Validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#declare-metadata)
             """
         ),
     ] = None,
@@ -97,6 +99,9 @@ def Path(  # noqa: N802
             """
             Greater than. If set, value must be greater than this. Only applicable to
             numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -106,6 +111,9 @@ def Path(  # noqa: N802
             """
             Greater than or equal. If set, value must be greater than or equal to
             this. Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -114,6 +122,9 @@ def Path(  # noqa: N802
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -123,6 +134,9 @@ def Path(  # noqa: N802
             """
             Less than or equal. If set, value must be less than or equal to this.
             Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -214,6 +228,9 @@ def Path(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -344,6 +361,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Default value if the parameter field is not set.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#alternative-old-query-as-the-default-value)
             """
         ),
     ] = Undefined,
@@ -368,6 +388,9 @@ def Query(  # noqa: N802
             This will be used to extract the data and for the generated OpenAPI.
             It is particularly useful when you can't use the name you want because it
             is a Python reserved keyword or similar.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#alias-parameters)
             """
         ),
     ] = None,
@@ -379,10 +402,8 @@ def Query(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -405,6 +426,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Human-readable title.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
     ] = None,
@@ -413,6 +437,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Human-readable description.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
     ] = None,
@@ -422,6 +449,9 @@ def Query(  # noqa: N802
             """
             Greater than. If set, value must be greater than this. Only applicable to
             numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -431,6 +461,9 @@ def Query(  # noqa: N802
             """
             Greater than or equal. If set, value must be greater than or equal to
             this. Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -439,6 +472,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -448,6 +484,9 @@ def Query(  # noqa: N802
             """
             Less than or equal. If set, value must be less than or equal to this.
             Only applicable to numbers.
+
+            Read more about it in the
+            [FastAPI docs about Path parameters numeric validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#number-validations-greater-than-and-less-than-or-equal)
             """
         ),
     ] = None,
@@ -456,6 +495,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Minimum length for strings.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/)
             """
         ),
     ] = None,
@@ -464,6 +506,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Maximum length for strings.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/)
             """
         ),
     ] = None,
@@ -472,6 +517,9 @@ def Query(  # noqa: N802
         Doc(
             """
             RegEx pattern for strings.
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions
             """
         ),
     ] = None,
@@ -539,6 +587,9 @@ def Query(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -573,6 +624,9 @@ def Query(  # noqa: N802
             Mark this parameter field as deprecated.
 
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#deprecating-parameters)
             """
         ),
     ] = None,
@@ -584,6 +638,9 @@ def Query(  # noqa: N802
             You probably don't need it, but it's available.
 
             This affects the generated OpenAPI (e.g. visible at `/docs`).
+
+            Read more about it in the
+            [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#exclude-parameters-from-openapi
             """
         ),
     ] = True,
@@ -683,10 +740,8 @@ def Header(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -854,6 +909,9 @@ def Header(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -999,10 +1057,8 @@ def Cookie(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1159,6 +1215,9 @@ def Cookie(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -1326,10 +1385,8 @@ def Body(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1486,6 +1543,9 @@ def Body(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -1641,10 +1701,8 @@ def Form(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1801,6 +1859,9 @@ def Form(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -1955,10 +2016,8 @@ def File(  # noqa: N802
             """
         ),
     ] = _Unset,
-    # TODO: update when deprecating Pydantic v1, import these types
-    # validation_alias: str | AliasPath | AliasChoices | None
     validation_alias: Annotated[
-        Union[str, None],
+        Union[str, AliasPath, AliasChoices, None],
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -2115,6 +2174,9 @@ def File(  # noqa: N802
         Doc(
             """
             Example values for this field.
+
+            Read more about it in the
+            [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
     ] = None,
@@ -2228,6 +2290,9 @@ def Depends(  # noqa: N802
 
             Don't call it directly, FastAPI will call it for you, just pass the object
             directly.
+
+            Read more about it in the
+            [FastAPI docs for Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/)
             """
         ),
     ] = None,
@@ -2243,6 +2308,9 @@ def Depends(  # noqa: N802
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.
+
+            Read more about it in the
+            [FastAPI docs about sub-dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies/#using-the-same-dependency-multiple-times)
             """
         ),
     ] = True,
@@ -2263,6 +2331,9 @@ def Depends(  # noqa: N802
                 that handles the request (similar to when using `"function"`), but end
                 **after** the response is sent back to the client. So, the dependency
                 function will be executed **around** the **request** and response cycle.
+
+            Read more about it in the
+            [FastAPI docs for FastAPI Dependencies with yield](https://fastapi.tiangolo.com/tutorial/dependencies/dependencies-with-yield/#early-exit-and-scope)
             """
         ),
     ] = None,
@@ -2308,6 +2379,9 @@ def Security(  # noqa: N802
 
             Don't call it directly, FastAPI will call it for you, just pass the object
             directly.
+
+            Read more about it in the
+            [FastAPI docs for Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/)
             """
         ),
     ] = None,
@@ -2325,7 +2399,9 @@ def Security(  # noqa: N802
 
             These scopes are integrated with OpenAPI (and the API docs at `/docs`).
             So they are visible in the OpenAPI specification.
-            )
+
+            Read more about it in the
+            [FastAPI docs about OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/)
             """
         ),
     ] = None,
@@ -2340,6 +2416,9 @@ def Security(  # noqa: N802
 
             Set `use_cache` to `False` to disable this behavior and ensure the
             dependency is called again (if declared more than once) in the same request.
+
+            Read more about it in the
+            [FastAPI docs about sub-dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/sub-dependencies/#using-the-same-dependency-multiple-times)
             """
         ),
     ] = True,

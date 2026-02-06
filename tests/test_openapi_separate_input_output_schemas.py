@@ -418,6 +418,8 @@ def test_openapi_schema():
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]
@@ -649,6 +651,8 @@ def test_openapi_schema_no_separate():
                 },
                 "ValidationError": {
                     "properties": {
+                        "ctx": {"title": "Context", "type": "object"},
+                        "input": {"title": "Input"},
                         "loc": {
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]

@@ -1,7 +1,6 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import APIRouter, FastAPI, Query
 from fastapi.testclient import TestClient
 
@@ -32,44 +31,23 @@ client = TestClient(app)
 
 foo_is_missing = {
     "detail": [
-        IsDict(
-            {
-                "loc": ["query", "foo"],
-                "msg": "Field required",
-                "type": "missing",
-                "input": None,
-            }
-        )
-        # TODO: remove when deprecating Pydantic v1
-        | IsDict(
-            {
-                "loc": ["query", "foo"],
-                "msg": "field required",
-                "type": "value_error.missing",
-            }
-        )
+        {
+            "loc": ["query", "foo"],
+            "msg": "Field required",
+            "type": "missing",
+            "input": None,
+        }
     ]
 }
 foo_is_short = {
     "detail": [
-        IsDict(
-            {
-                "ctx": {"min_length": 1},
-                "loc": ["query", "foo"],
-                "msg": "String should have at least 1 character",
-                "type": "string_too_short",
-                "input": "",
-            }
-        )
-        # TODO: remove when deprecating Pydantic v1
-        | IsDict(
-            {
-                "ctx": {"limit_value": 1},
-                "loc": ["query", "foo"],
-                "msg": "ensure this value has at least 1 characters",
-                "type": "value_error.any_str.min_length",
-            }
-        )
+        {
+            "ctx": {"min_length": 1},
+            "loc": ["query", "foo"],
+            "msg": "String should have at least 1 character",
+            "type": "string_too_short",
+            "input": "",
+        }
     ]
 }
 
@@ -306,6 +284,8 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
             }

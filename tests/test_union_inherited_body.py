@@ -1,6 +1,5 @@
 from typing import Optional, Union
 
-from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -86,16 +85,10 @@ def test_openapi_schema():
                     "title": "Item",
                     "type": "object",
                     "properties": {
-                        "name": IsDict(
-                            {
-                                "title": "Name",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Name", "type": "string"}
-                        )
+                        "name": {
+                            "title": "Name",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        }
                     },
                 },
                 "ExtendedItem": {
@@ -103,16 +96,10 @@ def test_openapi_schema():
                     "required": ["age"],
                     "type": "object",
                     "properties": {
-                        "name": IsDict(
-                            {
-                                "title": "Name",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Name", "type": "string"}
-                        ),
+                        "name": {
+                            "title": "Name",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "age": {"title": "Age", "type": "integer"},
                     },
                 },
@@ -130,6 +117,8 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

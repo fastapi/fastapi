@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -53,29 +52,16 @@ def test_post_no_body(client: TestClient):
 def test_post_id_foo(client: TestClient):
     response = client.put("/items/foo", json=None)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "int_parsing",
-                    "loc": ["path", "item_id"],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "input": "foo",
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["path", "item_id"],
-                    "msg": "value is not a valid integer",
-                    "type": "type_error.integer",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "int_parsing",
+                "loc": ["path", "item_id"],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "foo",
+            }
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):
@@ -119,16 +105,10 @@ def test_openapi_schema(client: TestClient):
                         },
                         {
                             "required": False,
-                            "schema": IsDict(
-                                {
-                                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                                    "title": "Q",
-                                }
-                            )
-                            | IsDict(
-                                # TODO: remove when deprecating Pydantic v1
-                                {"title": "Q", "type": "string"}
-                            ),
+                            "schema": {
+                                "anyOf": [{"type": "string"}, {"type": "null"}],
+                                "title": "Q",
+                            },
                             "name": "q",
                             "in": "query",
                         },
@@ -136,19 +116,13 @@ def test_openapi_schema(client: TestClient):
                     "requestBody": {
                         "content": {
                             "application/json": {
-                                "schema": IsDict(
-                                    {
-                                        "anyOf": [
-                                            {"$ref": "#/components/schemas/Item"},
-                                            {"type": "null"},
-                                        ],
-                                        "title": "Item",
-                                    }
-                                )
-                                | IsDict(
-                                    # TODO: remove when deprecating Pydantic v1
-                                    {"$ref": "#/components/schemas/Item"}
-                                )
+                                "schema": {
+                                    "anyOf": [
+                                        {"$ref": "#/components/schemas/Item"},
+                                        {"type": "null"},
+                                    ],
+                                    "title": "Item",
+                                }
                             }
                         }
                     },
@@ -163,27 +137,15 @@ def test_openapi_schema(client: TestClient):
                     "type": "object",
                     "properties": {
                         "name": {"title": "Name", "type": "string"},
-                        "description": IsDict(
-                            {
-                                "title": "Description",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Description", "type": "string"}
-                        ),
+                        "description": {
+                            "title": "Description",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
                         "price": {"title": "Price", "type": "number"},
-                        "tax": IsDict(
-                            {
-                                "title": "Tax",
-                                "anyOf": [{"type": "number"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Tax", "type": "number"}
-                        ),
+                        "tax": {
+                            "title": "Tax",
+                            "anyOf": [{"type": "number"}, {"type": "null"}],
+                        },
                     },
                 },
                 "ValidationError": {
@@ -200,6 +162,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

@@ -1,25 +1,12 @@
-import warnings
-
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from .utils import needs_pydanticv1
 
-
-@pytest.fixture(
-    name="client",
-    params=[
-        pytest.param("pydantic-v1", marks=needs_pydanticv1),
-        "pydantic-v2",
-    ],
-)
-def client_fixture(request: pytest.FixtureRequest) -> TestClient:
-    if request.param == "pydantic-v1":
-        from pydantic.v1 import BaseModel
-    else:
-        from pydantic import BaseModel
+@pytest.fixture(name="client")
+def client_fixture() -> TestClient:
+    from pydantic import BaseModel
 
     class Address(BaseModel):
         """
@@ -38,28 +25,12 @@ def client_fixture(request: pytest.FixtureRequest) -> TestClient:
 
     app = FastAPI()
 
-    if request.param == "pydantic-v1":
-        with warnings.catch_warnings(record=True):
-            warnings.simplefilter("always")
-
-            @app.get("/facilities/{facility_id}")
-            def get_facility(facility_id: str) -> Facility:
-                return Facility(
-                    id=facility_id,
-                    address=Address(
-                        line_1="123 Main St", city="Anytown", state_province="CA"
-                    ),
-                )
-    else:
-
-        @app.get("/facilities/{facility_id}")
-        def get_facility(facility_id: str) -> Facility:
-            return Facility(
-                id=facility_id,
-                address=Address(
-                    line_1="123 Main St", city="Anytown", state_province="CA"
-                ),
-            )
+    @app.get("/facilities/{facility_id}")
+    def get_facility(facility_id: str) -> Facility:
+        return Facility(
+            id=facility_id,
+            address=Address(line_1="123 Main St", city="Anytown", state_province="CA"),
+        )
 
     client = TestClient(app)
     return client
@@ -127,6 +98,8 @@ def test_openapi_schema(client: TestClient):
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

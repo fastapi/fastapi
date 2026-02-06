@@ -14,7 +14,7 @@ from ...utils import needs_py310
     ],
 )
 def get_client(request: pytest.FixtureRequest):
-    mod = importlib.import_module(f"docs_src.dataclasses.{request.param}")
+    mod = importlib.import_module(f"docs_src.dataclasses_.{request.param}")
 
     client = TestClient(mod.app)
     client.headers.clear()
@@ -195,6 +195,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
             }

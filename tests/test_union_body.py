@@ -1,6 +1,5 @@
 from typing import Optional, Union
 
-from dirty_equals import IsDict
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
@@ -91,18 +90,12 @@ def test_openapi_schema():
                 "Item": {
                     "title": "Item",
                     "type": "object",
-                    "properties": IsDict(
-                        {
-                            "name": {
-                                "title": "Name",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
                         }
-                    )
-                    | IsDict(
-                        # TODO: remove when deprecating Pydantic v1
-                        {"name": {"title": "Name", "type": "string"}}
-                    ),
+                    },
                 },
                 "ValidationError": {
                     "title": "ValidationError",
@@ -118,6 +111,8 @@ def test_openapi_schema():
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {

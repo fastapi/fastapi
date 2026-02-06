@@ -1,17 +1,24 @@
+import contextlib
 import email.message
 import functools
 import inspect
 import json
-import warnings
+import types
 from collections.abc import (
     AsyncIterator,
     Awaitable,
     Collection,
     Coroutine,
+    Generator,
     Mapping,
     Sequence,
 )
-from contextlib import AsyncExitStack, asynccontextmanager
+from contextlib import (
+    AbstractAsyncContextManager,
+    AbstractContextManager,
+    AsyncExitStack,
+    asynccontextmanager,
+)
 from enum import Enum, IntEnum
 from functools import cached_property
 from typing import (
@@ -19,20 +26,17 @@ from typing import (
     Any,
     Callable,
     Optional,
+    TypeVar,
     Union,
 )
 
 from annotated_doc import Doc
-from fastapi import params, temp_pydantic_v1_params
+from fastapi import params
 from fastapi._compat import (
     ModelField,
     Undefined,
-    _get_model_config,
-    _model_dump,
-    _normalize_errors,
     annotation_is_pydantic_v1,
     lenient_issubclass,
-    may_v1,
 )
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -49,13 +53,13 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
     FastAPIError,
+    PydanticV1NotSupportedError,
     RequestValidationError,
     ResponseValidationError,
     WebSocketRequestValidationError,
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
-    create_cloned_field,
     create_model_field,
     generate_unique_id,
     get_value_or_default,
@@ -148,49 +152,48 @@ def websocket_session(
     return app
 
 
-def _prepare_response_content(
-    res: Any,
-    *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
-    exclude_none: bool = False,
-) -> Any:
-    if isinstance(res, may_v1.BaseModel):
-        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)  # type: ignore[arg-type]
-        if read_with_orm_mode:
-            # Let from_orm extract the data from this model instead of converting
-            # it now to a dict.
-            # Otherwise, there's no way to extract lazy data that requires attribute
-            # access instead of dict iteration, e.g. lazy relationships.
-            return res
-        return _model_dump(
-            res,  # type: ignore[arg-type]
-            by_alias=True,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-        )
-    elif isinstance(res, list):
-        return [
-            _prepare_response_content(
-                item,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for item in res
-        ]
-    elif isinstance(res, dict):
-        return {
-            k: _prepare_response_content(
-                v,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-            for k, v in res.items()
-        }
-    return res
+_T = TypeVar("_T")
+
+
+# Vendored from starlette.routing to avoid importing private symbols
+class _AsyncLiftContextManager(AbstractAsyncContextManager[_T]):
+    """
+    Wraps a synchronous context manager to make it async.
+
+    This is vendored from Starlette to avoid importing private symbols.
+    """
+
+    def __init__(self, cm: AbstractContextManager[_T]) -> None:
+        self._cm = cm
+
+    async def __aenter__(self) -> _T:
+        return self._cm.__enter__()
+
+    async def __aexit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc_value: Optional[BaseException],
+        traceback: Optional[types.TracebackType],
+    ) -> Optional[bool]:
+        return self._cm.__exit__(exc_type, exc_value, traceback)
+
+
+# Vendored from starlette.routing to avoid importing private symbols
+def _wrap_gen_lifespan_context(
+    lifespan_context: Callable[[Any], Generator[Any, Any, Any]],
+) -> Callable[[Any], AbstractAsyncContextManager[Any]]:
+    """
+    Wrap a generator-based lifespan context into an async context manager.
+
+    This is vendored from Starlette to avoid importing private symbols.
+    """
+    cmgr = contextlib.contextmanager(lifespan_context)
+
+    @functools.wraps(cmgr)
+    def wrapper(app: Any) -> _AsyncLiftContextManager[Any]:
+        return _AsyncLiftContextManager(cmgr(app))
+
+    return wrapper
 
 
 def _merge_lifespan_context(
@@ -208,6 +211,30 @@ def _merge_lifespan_context(
                     yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
 
     return merged_lifespan  # type: ignore[return-value]
+
+
+class _DefaultLifespan:
+    """
+    Default lifespan context manager that runs on_startup and on_shutdown handlers.
+
+    This is a copy of the Starlette _DefaultLifespan class that was removed
+    in Starlette. FastAPI keeps it to maintain backward compatibility with
+    on_startup and on_shutdown event handlers.
+
+    Ref: https://github.com/Kludex/starlette/pull/3117
+    """
+
+    def __init__(self, router: "APIRouter") -> None:
+        self._router = router
+
+    async def __aenter__(self) -> None:
+        await self._router._startup()
+
+    async def __aexit__(self, *exc_info: object) -> None:
+        await self._router._shutdown()
+
+    def __call__(self: _T, app: object) -> _T:
+        return self
 
 
 # Cache for endpoint context to avoid re-extracting on every request
@@ -251,45 +278,21 @@ async def serialize_response(
     endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
     if field:
-        errors = []
-        if not hasattr(field, "serialize"):
-            # pydantic v1
-            response_content = _prepare_response_content(
-                response_content,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
         if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, list):
-            errors.extend(errors_)
-        elif errors_:
-            errors.append(errors_)
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
-                errors=_normalize_errors(errors),
+                errors=errors,
                 body=response_content,
                 endpoint_ctx=ctx,
             )
 
-        if hasattr(field, "serialize"):
-            return field.serialize(
-                value,
-                include=include,
-                exclude=exclude,
-                by_alias=by_alias,
-                exclude_unset=exclude_unset,
-                exclude_defaults=exclude_defaults,
-                exclude_none=exclude_none,
-            )
-
-        return jsonable_encoder(
+        return field.serialize(
             value,
             include=include,
             exclude=exclude,
@@ -298,6 +301,7 @@ async def serialize_response(
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
         )
+
     else:
         return jsonable_encoder(response_content)
 
@@ -332,9 +336,7 @@ def get_request_handler(
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = dependant.is_coroutine_callable
-    is_body_form = body_field and isinstance(
-        body_field.field_info, (params.Form, temp_pydantic_v1_params.Form)
-    )
+    is_body_form = body_field and isinstance(body_field.field_info, params.Form)
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
     else:
@@ -464,7 +466,7 @@ def get_request_handler(
                 response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                _normalize_errors(errors), body=body, endpoint_ctx=endpoint_ctx
+                errors, body=body, endpoint_ctx=endpoint_ctx
             )
             raise validation_error
 
@@ -503,7 +505,7 @@ def get_websocket_app(
         )
         if solved_result.errors:
             raise WebSocketRequestValidationError(
-                _normalize_errors(solved_result.errors),
+                solved_result.errors,
                 endpoint_ctx=endpoint_ctx,
             )
         assert dependant.call is not None, "dependant.call must be a function"
@@ -638,13 +640,10 @@ class APIRoute(routing.Route):
                 f"Status code {status_code} must not have a response body"
             )
             if annotation_is_pydantic_v1(self.response_model):
-                warnings.warn(
-                    "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                    f" Please update the response model {self.response_model!r}.",
-                    category=DeprecationWarning,
-                    stacklevel=4,
+                raise PydanticV1NotSupportedError(
+                    "pydantic.v1 models are no longer supported by FastAPI."
+                    f" Please update the response model {self.response_model!r}."
                 )
-
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -668,18 +667,6 @@ class APIRoute(routing.Route):
         )
 
     @cached_property
-    def secure_cloned_response_field(self) -> Optional[ModelField]:
-        # Create a clone of the field, so that a Pydantic submodel is not returned
-        # as is just because it's an instance of a subclass of a more limited class
-        # e.g. UserInDB (containing hashed_password) could be a subclass of User
-        # that doesn't have the hashed_password. But because it's a subclass, it
-        # would pass the validation and be returned as is.
-        # By being a new field, no inheritance will be passed as is. A new model
-        # will always be created.
-        # TODO: remove when deprecating Pydantic v1
-        return create_cloned_field(self.response_field) if self.response_field else None
-
-    @cached_property
     def response_fields(self) -> dict[Union[int, str], ModelField]:
         response_fields: dict[Union[int, str], ModelField] = {}
         for additional_status_code, response in self.responses.items():
@@ -691,11 +678,9 @@ class APIRoute(routing.Route):
                 )
                 response_name = f"Response_{additional_status_code}_{self.unique_id}"
                 if annotation_is_pydantic_v1(model):
-                    warnings.warn(
-                        "pydantic.v1 is deprecated and will soon stop being supported by FastAPI."
-                        f" In responses={{}}, please update {model}.",
-                        category=DeprecationWarning,
-                        stacklevel=4,
+                    raise PydanticV1NotSupportedError(
+                        "pydantic.v1 models are no longer supported by FastAPI."
+                        f" In responses={{}}, please update {model}."
                     )
                 response_field = create_model_field(
                     name=response_name, type_=model, mode="serialization"
@@ -741,7 +726,6 @@ class APIRoute(routing.Route):
         _ = self.dependant
         _ = self.response_field
         _ = self.response_fields
-        _ = self.secure_cloned_response_field
         _ = self.body_field
         _ = self._flat_dependant
         _ = self._embed_body_fields
@@ -752,7 +736,7 @@ class APIRoute(routing.Route):
             body_field=self.body_field,
             status_code=self.status_code,
             response_class=self.response_class,
-            response_field=self.secure_cloned_response_field,
+            response_field=self.response_field,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
             response_model_by_alias=self.response_model_by_alias,
@@ -1022,13 +1006,33 @@ class APIRouter(routing.Router):
             ),
         ] = True,
     ) -> None:
+        # Handle on_startup/on_shutdown locally since Starlette removed support
+        # Ref: https://github.com/Kludex/starlette/pull/3117
+        # TODO: deprecate this once the lifespan (or alternative) interface is improved
+        self.on_startup: list[Callable[[], Any]] = (
+            [] if on_startup is None else list(on_startup)
+        )
+        self.on_shutdown: list[Callable[[], Any]] = (
+            [] if on_shutdown is None else list(on_shutdown)
+        )
+
+        # Determine the lifespan context to use
+        if lifespan is None:
+            # Use the default lifespan that runs on_startup/on_shutdown handlers
+            lifespan_context: Lifespan[Any] = _DefaultLifespan(self)
+        elif inspect.isasyncgenfunction(lifespan):
+            lifespan_context = asynccontextmanager(lifespan)
+        elif inspect.isgeneratorfunction(lifespan):
+            lifespan_context = _wrap_gen_lifespan_context(lifespan)
+        else:
+            lifespan_context = lifespan
+        self.lifespan_context = lifespan_context
+
         super().__init__(
             routes=routes,
             redirect_slashes=redirect_slashes,
             default=default,
-            on_startup=on_startup,
-            on_shutdown=on_shutdown,
-            lifespan=lifespan,
+            lifespan=lifespan_context,
         )
         if prefix:
             assert prefix.startswith("/"), "A path prefix must start with '/'"
@@ -4600,6 +4604,58 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
         )
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    async def _startup(self) -> None:
+        """
+        Run any `.on_startup` event handlers.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        for handler in self.on_startup:
+            if is_async_callable(handler):
+                await handler()
+            else:
+                handler()
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    async def _shutdown(self) -> None:
+        """
+        Run any `.on_shutdown` event handlers.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        for handler in self.on_shutdown:
+            if is_async_callable(handler):
+                await handler()
+            else:
+                handler()
+
+    # TODO: remove this once the lifespan (or alternative) interface is improved
+    def add_event_handler(
+        self,
+        event_type: str,
+        func: Callable[[], Any],
+    ) -> None:
+        """
+        Add an event handler function for startup or shutdown.
+
+        This method is kept for backward compatibility after Starlette removed
+        support for on_startup/on_shutdown handlers.
+
+        Ref: https://github.com/Kludex/starlette/pull/3117
+        """
+        assert event_type in ("startup", "shutdown")
+        if event_type == "startup":
+            self.on_startup.append(func)
+        else:
+            self.on_shutdown.append(func)
 
     @deprecated(
         """

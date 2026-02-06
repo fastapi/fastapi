@@ -4,16 +4,8 @@ import pytest
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
-from ...utils import needs_pydanticv1
 
-
-@pytest.fixture(
-    name="app",
-    params=[
-        pytest.param("tutorial001_py39"),
-        pytest.param("tutorial001_pv1_py39", marks=needs_pydanticv1),
-    ],
-)
+@pytest.fixture(name="app", params=[pytest.param("tutorial001_py39")])
 def get_app(request: pytest.FixtureRequest, monkeypatch: MonkeyPatch):
     monkeypatch.setenv("ADMIN_EMAIL", "admin@example.com")
     mod = importlib.import_module(f"docs_src.settings.{request.param}")

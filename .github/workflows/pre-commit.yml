@@ -7,7 +7,8 @@ on:
       - synchronize
 
 env:
-  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+  # Forks and Dependabot don't have access to secrets
+  HAS_SECRETS: ${{ secrets.PRE_COMMIT != '' }}
 
 jobs:
   pre-commit:
@@ -19,7 +20,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v5
         name: Checkout PR for own repo
-        if: env.IS_FORK == 'false'
+        if: env.HAS_SECRETS == 'true'
         with:
           # To be able to commit it needs to fetch the head of the branch, not the
           # merge commit
@@ -31,7 +32,7 @@ jobs:
       # pre-commit lite ci needs the default checkout configs to work
       - uses: actions/checkout@v5
         name: Checkout PR for fork
-        if: env.IS_FORK == 'true'
+        if: env.HAS_SECRETS == 'false'
         with:
         # To be able to commit it needs the head branch of the PR, the remote one
           ref: ${{ github.event.pull_request.head.sha }}
@@ -39,24 +40,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
             uv.lock
       - name: Install Dependencies
-        run: |
-          uv venv
-          uv pip install -r requirements.txt
+        run: uv sync --locked --extra all
       - name: Run prek - pre-commit
         id: precommit
         run: uvx prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
         continue-on-error: true
       - name: Commit and push changes
-        if: env.IS_FORK == 'false'
+        if: env.HAS_SECRETS == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -68,7 +66,7 @@ jobs:
             git push
           fi
       - uses: pre-commit-ci/lite-action@v1.1.0
-        if: env.IS_FORK == 'true'
+        if: env.HAS_SECRETS == 'false'
         with:
           msg: 🎨 Auto format
       - name: Error out on pre-commit errors

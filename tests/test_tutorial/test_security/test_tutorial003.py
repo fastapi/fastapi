@@ -1,7 +1,6 @@
 import importlib
 
 import pytest
-from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
 from ...utils import needs_py310
@@ -144,23 +143,13 @@ def test_openapi_schema(client: TestClient):
                     "required": ["username", "password"],
                     "type": "object",
                     "properties": {
-                        "grant_type": IsDict(
-                            {
-                                "title": "Grant Type",
-                                "anyOf": [
-                                    {"pattern": "^password$", "type": "string"},
-                                    {"type": "null"},
-                                ],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Grant Type",
-                                "pattern": "^password$",
-                                "type": "string",
-                            }
-                        ),
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "anyOf": [
+                                {"pattern": "^password$", "type": "string"},
+                                {"type": "null"},
+                            ],
+                        },
                         "username": {"title": "Username", "type": "string"},
                         "password": {
                             "title": "Password",
@@ -168,31 +157,15 @@ def test_openapi_schema(client: TestClient):
                             "format": "password",
                         },
                         "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
-                                "title": "Client Id",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
-                                "title": "Client Secret",
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "format": "password",
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {
-                                "title": "Client Secret",
-                                "type": "string",
-                                "format": "password",
-                            }
-                        ),
+                        "client_id": {
+                            "title": "Client Id",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                        },
+                        "client_secret": {
+                            "title": "Client Secret",
+                            "anyOf": [{"type": "string"}, {"type": "null"}],
+                            "format": "password",
+                        },
                     },
                 },
                 "ValidationError": {
@@ -209,6 +182,8 @@ def test_openapi_schema(client: TestClient):
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
+                        "input": {"title": "Input"},
+                        "ctx": {"title": "Context", "type": "object"},
                     },
                 },
                 "HTTPValidationError": {
