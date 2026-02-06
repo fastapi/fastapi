@@ -6,12 +6,11 @@ This test validates that Form models correctly track which fields were
 explicitly provided vs. which fields use defaults.
 """
 
-from typing import Annotated
-
 import pydantic
 from fastapi import FastAPI, Form, Header, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from typing_extensions import Annotated  # noqa: UP035
 
 PYDANTIC_V2 = int(pydantic.VERSION.split(".")[0]) >= 2
 
