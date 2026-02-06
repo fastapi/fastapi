@@ -261,7 +261,7 @@ def test_nullable_required_no_embed_missing(path: str):
         ),
     ],
 )
-def test_nullable_required_pass_empty_dict(path: str, msg: str, error_type: str):
+def test_nullable_required_no_embed_pass_empty_dict(path: str, msg: str, error_type: str):
     client = TestClient(app)
     response = client.post(path, json={})
     assert response.status_code == 422
