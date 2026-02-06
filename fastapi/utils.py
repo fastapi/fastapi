@@ -1,13 +1,11 @@
 import re
 import warnings
-from collections.abc import MutableMapping
 from typing import (
     TYPE_CHECKING,
     Any,
     Optional,
     Union,
 )
-from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi._compat import (
@@ -21,7 +19,6 @@ from fastapi._compat import (
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.exceptions import FastAPIDeprecationWarning, PydanticV1NotSupportedError
-from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
 
@@ -29,11 +26,6 @@ from ._compat import v2
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
-
-# Cache for `create_cloned_field`
-_CLONED_TYPES_CACHE: MutableMapping[type[BaseModel], type[BaseModel]] = (
-    WeakKeyDictionary()
-)
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
@@ -95,14 +87,6 @@ def create_model_field(
         raise fastapi.exceptions.FastAPIError(
             _invalid_args_message.format(type_=type_)
         ) from None
-
-
-def create_cloned_field(
-    field: ModelField,
-    *,
-    cloned_types: Optional[MutableMapping[type[BaseModel], type[BaseModel]]] = None,
-) -> ModelField:
-    return field
 
 
 def generate_operation_id_for_path(

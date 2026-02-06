@@ -500,14 +500,8 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
 
 
 def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
-    all_flat_models: TypeModelSet = set()
-
-    v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
-    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
-    all_flat_models = all_flat_models.union(v2_flat_models)
-
-    model_name_map = get_model_name_map(all_flat_models)
-    return model_name_map
+    flat_models = get_flat_models_from_fields(fields, known_models=set())
+    return get_model_name_map(flat_models)
 
 
 def get_flat_models_from_model(
