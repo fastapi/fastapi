@@ -167,7 +167,7 @@ tests = [
     "anyio[trio]>=3.2.1,<5.0.0",
     "coverage[toml]>=6.5.0,<8.0",
     "dirty-equals==0.9.0",
-    "flask>=1.1.2,<4.0.0",
+    "flask>=3.0.0,<4.0.0",
     "inline-snapshot>=0.21.1",
     "mypy==1.14.1",
     "pwdlib[argon2]>=0.2.1",
