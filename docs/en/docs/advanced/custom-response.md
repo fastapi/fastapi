@@ -1,3 +1,4 @@
+markdown
 # Custom Response - HTML, Stream, File, others { #custom-response-html-stream-file-others }
 
 By default, **FastAPI** will return the responses using `JSONResponse`.
@@ -215,7 +216,7 @@ You can also use the `status_code` parameter combined with the `response_class` 
 
 ### `StreamingResponse` { #streamingresponse }
 
-Takes an async generator or a normal generator/iterator and streams the response body.
+Takes an async generator or a normal generator/iterator and streams the response body. When using an async generator, ensure that it includes an `await` statement to function properly.
 
 {* ../../docs_src/custom_response/tutorial007_py39.py hl[2,14] *}
 
@@ -277,37 +278,3 @@ You could create a `CustomORJSONResponse`. The main thing you have to do is crea
 {* ../../docs_src/custom_response/tutorial009c_py39.py hl[9:14,17] *}
 
 Now instead of returning:
-
-```json
-{"message": "Hello World"}
-```
-
-...this response will return:
-
-```json
-{
-  "message": "Hello World"
-}
-```
-
-Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
-
-## Default response class { #default-response-class }
-
-When creating a **FastAPI** class instance or an `APIRouter` you can specify which response class to use by default.
-
-The parameter that defines this is `default_response_class`.
-
-In the example below, **FastAPI** will use `ORJSONResponse` by default, in all *path operations*, instead of `JSONResponse`.
-
-{* ../../docs_src/custom_response/tutorial010_py39.py hl[2,4] *}
-
-/// tip
-
-You can still override `response_class` in *path operations* as before.
-
-///
-
-## Additional documentation { #additional-documentation }
-
-You can also declare the media type and many other details in OpenAPI using `responses`: [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
