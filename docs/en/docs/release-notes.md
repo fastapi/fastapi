@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆️ Upgrade development dependencies. PR [#14854](https://github.com/fastapi/fastapi/pull/14854) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.128.3
 
 ### Refactors
