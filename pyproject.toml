@@ -108,9 +108,9 @@ all = [
     # For Starlette's schema generation, would not be used with FastAPI
     "pyyaml >=5.3.1",
     # For UJSONResponse
-    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    "ujson >=5.8.0",
     # For ORJSONResponse
-    "orjson >=3.2.1",
+    "orjson >=3.9.3",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -167,7 +167,7 @@ tests = [
     "anyio[trio]>=3.2.1,<5.0.0",
     "coverage[toml]>=6.5.0,<8.0",
     "dirty-equals==0.9.0",
-    "flask>=1.1.2,<4.0.0",
+    "flask>=3.0.0,<4.0.0",
     "inline-snapshot>=0.21.1",
     "mypy==1.14.1",
     "pwdlib[argon2]>=0.2.1",
