@@ -30,24 +30,22 @@ app = FastAPI()
 async def form_fields_set_endpoint(
     model: Annotated[FormModelFieldsSet, Form()],
 ) -> None:
-    # Use correct attribute name for each Pydantic version
-    if PYDANTIC_V2:
-        fields_set = list(model.model_fields_set)
-    else:
-        fields_set = list(model.__fields_set__)
+    # Works for both Pydantic v1 (__fields_set__) and v2 (model_fields_set)
+    fields_set = list(
+        model.model_fields_set if hasattr(model, "model_fields_set") else model.__fields_set__  # type: ignore[attr-defined]
+    )
     return {
         "fields_set": fields_set,
-        "data": model.dict() if not PYDANTIC_V2 else model.model_dump(),
+        "data": model.model_dump() if PYDANTIC_V2 else model.dict(),
     }
 
 
 @app.post("/body-fields-set")
 async def body_fields_set_endpoint(model: FormModelFieldsSet) -> None:
-    # Use correct attribute name for each Pydantic version
-    if PYDANTIC_V2:
-        fields_set = list(model.model_fields_set)
-    else:
-        fields_set = list(model.__fields_set__)
+    # Works for both Pydantic v1 (__fields_set__) and v2 (model_fields_set)
+    fields_set = list(
+        model.model_fields_set if hasattr(model, "model_fields_set") else model.__fields_set__  # type: ignore[attr-defined]
+    )
     return {"fields_set": fields_set}
 
 
