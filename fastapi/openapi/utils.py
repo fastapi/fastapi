@@ -9,10 +9,13 @@ from fastapi import routing
 from fastapi._compat import (
     ModelField,
     Undefined,
-    get_compat_model_name_map,
     get_definitions,
     get_schema_from_model_field,
     lenient_issubclass,
+)
+from fastapi._compat.v2 import (
+    get_flat_models_from_fields,
+    get_model_name_map,
 )
 from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant
@@ -512,7 +515,8 @@ def get_openapi(
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
     all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
-    model_name_map = get_compat_model_name_map(all_fields)
+    flat_models = get_flat_models_from_fields(all_fields, known_models=set())
+    model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
         fields=all_fields,
         model_name_map=model_name_map,

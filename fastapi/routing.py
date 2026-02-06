@@ -277,15 +277,12 @@ async def serialize_response(
     endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
     if field:
-        errors = []
         if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, list):
-            errors.extend(errors_)
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
