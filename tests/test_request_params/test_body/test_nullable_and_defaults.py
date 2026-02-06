@@ -849,7 +849,7 @@ def test_nullable_with_non_null_default_schema(path: str):
     }
 
     if path == "/model-nullable-with-non-null-default":
-        # Check default value for list_val param for model-based Body parameters only.
+        # Check default value for list_val param for model-based parameters only.
         # default_factory is not reflected in OpenAPI schema
         assert body_model["properties"]["list_val"]["default"] == [0]
 
