@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Re-implement `on_event` in FastAPI for compatibility with the next Starlette, while keeping backwards compatibility. PR [#14851](https://github.com/fastapi/fastapi/pull/14851) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 👷 Run tests with lower bound uv sync, upgrade `fastapi[all]` minimum dependencies: `ujson >=5.8.0`, `orjson >=3.9.3`. PR [#14846](https://github.com/fastapi/fastapi/pull/14846) by [@tiangolo](https://github.com/tiangolo).
