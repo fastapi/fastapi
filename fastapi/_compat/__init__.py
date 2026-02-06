@@ -25,7 +25,6 @@ from .v2 import copy_field_info as copy_field_info
 from .v2 import create_body_model as create_body_model
 from .v2 import evaluate_forwardref as evaluate_forwardref
 from .v2 import get_cached_model_fields as get_cached_model_fields
-from .v2 import get_compat_model_name_map as get_compat_model_name_map
 from .v2 import get_definitions as get_definitions
 from .v2 import get_missing_field_error as get_missing_field_error
 from .v2 import get_schema_from_model_field as get_schema_from_model_field
