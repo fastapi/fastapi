@@ -274,6 +274,7 @@ def test_default_dependency_scope(default_scope, expected_is_open) -> None:
         data = response.json()
         assert data["is_open"] is expected_is_open
 
+
 def test_override_default_dependency_scope() -> None:
     app = FastAPI(default_dependency_scope="function")
 
