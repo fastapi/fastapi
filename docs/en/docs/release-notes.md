@@ -11,6 +11,10 @@ hide:
 
 * ♻️ Re-implement `on_event` in FastAPI for compatibility with the next Starlette, while keeping backwards compatibility. PR [#14851](https://github.com/fastapi/fastapi/pull/14851) by [@tiangolo](https://github.com/tiangolo).
 
+### Upgrades
+
+* ⬆️ Upgrade Starlette supported version range to `starlette>=0.40.0,<1.0.0`. PR [#14853](https://github.com/fastapi/fastapi/pull/14853) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Update translations for ru (update-outdated). PR [#14834](https://github.com/fastapi/fastapi/pull/14834) by [@tiangolo](https://github.com/tiangolo).
