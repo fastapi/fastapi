@@ -12,9 +12,11 @@ class Hero(SQLModel, table=True):
 
 
 sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}" 
+sqlite_url = f"sqlite:///{sqlite_file_name}"
 
-connect_args = {"check_same_thread": False}  # needed for SQLite when using the session across threads
+connect_args = {
+    "check_same_thread": False
+}  # needed for SQLite when using the session across threads
 engine = create_engine(sqlite_url, connect_args=connect_args)
 
 
@@ -49,7 +51,9 @@ def create_hero(hero: Hero, session: SessionDep) -> Hero:
 def read_heroes(
     session: SessionDep,
     offset: int = 0,
-    limit: Annotated[int, Query(le=100)] = 100,  # safety cap to avoid returning too many rows
+    limit: Annotated[
+        int, Query(le=100)
+    ] = 100,  # safety cap to avoid returning too many rows
 ) -> list[Hero]:
     heroes = session.exec(select(Hero).offset(offset).limit(limit)).all()
     return heroes
