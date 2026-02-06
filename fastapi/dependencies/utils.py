@@ -717,11 +717,7 @@ def _validate_value_with_model_field(
             return None, [get_missing_field_error(loc=loc)]
         else:
             return deepcopy(field.default), []
-    v_, errors_ = field.validate(value, values, loc=loc)
-    if isinstance(errors_, list):
-        return None, errors_
-    else:
-        return v_, []
+    return field.validate(value, values, loc=loc)
 
 
 def _is_json_field(field: ModelField) -> bool:

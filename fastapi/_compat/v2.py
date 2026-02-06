@@ -169,11 +169,11 @@ class ModelField:
         values: dict[str, Any] = {},  # noqa: B006
         *,
         loc: tuple[Union[int, str], ...] = (),
-    ) -> tuple[Any, Union[list[dict[str, Any]], None]]:
+    ) -> tuple[Any, list[dict[str, Any]]]:
         try:
             return (
                 self._type_adapter.validate_python(value, from_attributes=True),
-                None,
+                [],
             )
         except ValidationError as exc:
             return None, _regenerate_error_with_loc(
@@ -359,7 +359,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
 
 
-def get_missing_field_error(loc: tuple[str, ...]) -> dict[str, Any]:
+def get_missing_field_error(loc: tuple[Union[int, str], ...]) -> dict[str, Any]:
     error = ValidationError.from_exception_data(
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
