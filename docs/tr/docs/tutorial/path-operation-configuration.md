@@ -52,11 +52,11 @@ Bu durumlarda tag’leri bir `Enum` içinde tutmak mantıklı olabilir.
 
 Bir `summary` ve `description` ekleyebilirsiniz:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Docstring’den Description { #description-from-docstring }
 
-Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *path operation* açıklamasını, fonksiyonun içinde <abbr title="a multi-line string as the first expression inside a function (not assigned to any variable) used for documentation - dokümantasyon için, fonksiyon içinde ilk ifade olarak yazılan (herhangi bir değişkene atanmayan) çok satırlı string">docstring</abbr> olarak tanımlayabilirsiniz; **FastAPI** de onu buradan okur.
+Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *path operation* açıklamasını, fonksiyonun içinde <abbr title="dokümantasyon için, fonksiyon içinde ilk ifade olarak yazılan (herhangi bir değişkene atanmayan) çok satırlı string">docstring</abbr> olarak tanımlayabilirsiniz; **FastAPI** de onu buradan okur.
 
 Docstring içinde <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a> yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
 
@@ -70,7 +70,7 @@ Interactive docs’ta şöyle kullanılacaktır:
 
 `response_description` parametresi ile response açıklamasını belirtebilirsiniz:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Bilgi
 
@@ -90,7 +90,7 @@ Bu yüzden siz sağlamazsanız, **FastAPI** otomatik olarak "Successful response
 
 ## Bir *path operation*’ı Deprecate Etmek { #deprecate-a-path-operation }
 
-Bir *path operation*’ı kaldırmadan, <abbr title="obsolete, recommended not to use it - kullanım dışı, kullanılması önerilmez">deprecated</abbr> olarak işaretlemeniz gerekiyorsa `deprecated` parametresini verin:
+Bir *path operation*’ı kaldırmadan, <abbr title="kullanım dışı, kullanılması önerilmez">deprecated</abbr> olarak işaretlemeniz gerekiyorsa `deprecated` parametresini verin:
 
 {* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 

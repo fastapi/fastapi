@@ -103,13 +103,13 @@ Elbette ihtiyaç duyduğunuzda, body parametrelerine ek olarak query parametrele
 Varsayılan olarak tekil değerler query parametresi olarak yorumlandığı için, ayrıca `Query` eklemeniz gerekmez; şöyle yazmanız yeterlidir:
 
 ```Python
-q: Union[str, None] = None
+q: str | None = None
 ```
 
-Ya da Python 3.10 ve üzeri için:
+Ya da Python 3.9'da:
 
 ```Python
-q: str | None = None
+q: Union[str, None] = None
 ```
 
 Örneğin:
