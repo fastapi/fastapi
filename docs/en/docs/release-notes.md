@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.3
+
 ### Refactors
 
 * ♻️ Re-implement `on_event` in FastAPI for compatibility with the next Starlette, while keeping backwards compatibility. PR [#14851](https://github.com/fastapi/fastapi/pull/14851) by [@tiangolo](https://github.com/tiangolo).
