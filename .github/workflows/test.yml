@@ -51,7 +51,9 @@ jobs:
         python-version: [ "3.14" ]
         uv-resolution:
           - highest
-        starlette-src: [ true, false ]
+        starlette-src:
+          - starlette-pypi
+          - starlette-git
         include:
           - os: ubuntu-latest
             python-version: "3.9"
@@ -79,7 +81,7 @@ jobs:
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
-            starlette-src: true
+            starlette-src: starlette-git
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
@@ -106,7 +108,7 @@ jobs:
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
       - name: Install Starlette from source
-        if: matrix.starlette-src == 'true'
+        if: matrix.starlette-src == 'starlette-git'
         run: uv pip install --force-reinstall --no-deps --no-cache-dir --find-links https://test.pypi.org/simple/ starlette
       - run: mkdir coverage
       - name: Test
