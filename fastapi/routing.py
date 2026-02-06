@@ -1,3 +1,5 @@
+import abc
+import dataclasses
 import email.message
 import functools
 import inspect
@@ -661,7 +663,93 @@ class APIRoute(routing.Route):
         return match, child_scope
 
 
-class APIRouter(routing.Router):
+@dataclasses.dataclass(frozen=True)
+class APIRouteSpec:
+    """Parameters of an APIRoute, excluding the endpoint"""
+
+    path: str
+    route_class: Union[type[APIRoute], DefaultPlaceholder] = Default(APIRoute)
+    response_model: Any = Default(None)
+    status_code: Optional[int] = None
+    tags: Optional[list[Union[str, Enum]]] = None
+    dependencies: Optional[Sequence[params.Depends]] = None
+    summary: Optional[str] = None
+    description: Optional[str] = None
+    response_description: str = "Successful Response"
+    responses: Optional[dict[Union[int, str], dict[str, Any]]] = None
+    deprecated: Optional[bool] = None
+    name: Optional[str] = None
+    methods: Optional[Union[set[str], list[str]]] = None
+    operation_id: Optional[str] = None
+    response_model_include: Optional[IncEx] = None
+    response_model_exclude: Optional[IncEx] = None
+    response_model_by_alias: bool = True
+    response_model_exclude_unset: bool = False
+    response_model_exclude_defaults: bool = False
+    response_model_exclude_none: bool = False
+    include_in_schema: bool = True
+    response_class: Union[type[Response], DefaultPlaceholder] = Default(JSONResponse)
+    dependency_overrides_provider: Optional[Any] = None
+    callbacks: Optional[list[BaseRoute]] = None
+    openapi_extra: Optional[dict[str, Any]] = None
+    generate_unique_id_function: Union[
+        Callable[["APIRoute"], str], DefaultPlaceholder
+    ] = Default(generate_unique_id)
+
+    def build(self, endpoint: Callable[..., Any]) -> APIRoute:
+        route_class_actual = (
+            self.route_class.value
+            if isinstance(self.route_class, DefaultPlaceholder)
+            else self.route_class
+        )
+        return route_class_actual(
+            path=self.path,
+            endpoint=endpoint,
+            response_model=self.response_model,
+            status_code=self.status_code,
+            tags=self.tags,
+            dependencies=self.dependencies,
+            summary=self.summary,
+            description=self.description,
+            response_description=self.response_description,
+            responses=self.responses,
+            deprecated=self.deprecated,
+            name=self.name,
+            methods=self.methods,
+            operation_id=self.operation_id,
+            response_model_include=self.response_model_include,
+            response_model_exclude=self.response_model_exclude,
+            response_model_by_alias=self.response_model_by_alias,
+            response_model_exclude_unset=self.response_model_exclude_unset,
+            response_model_exclude_defaults=self.response_model_exclude_defaults,
+            response_model_exclude_none=self.response_model_exclude_none,
+            include_in_schema=self.include_in_schema,
+            response_class=self.response_class,
+            dependency_overrides_provider=self.dependency_overrides_provider,
+            callbacks=self.callbacks,
+            openapi_extra=self.openapi_extra,
+            generate_unique_id_function=self.generate_unique_id_function,
+        )
+
+
+class RoutesHolder(abc.ABC):
+    @abc.abstractmethod
+    def add_route_object(self, route: APIRoute) -> None:
+        raise NotImplementedError()  # pragma: no cover
+
+
+@dataclasses.dataclass()
+class APIRouteDecorator:
+    route_spec: APIRouteSpec
+    routes_holder: RoutesHolder
+
+    def __call__(self, func: DecoratedCallable) -> DecoratedCallable:
+        route = self.route_spec.build(func)
+        self.routes_holder.add_route_object(route)
+        return func
+
+
+class APIRouter(routing.Router, RoutesHolder):
     """
     `APIRouter` class, used to group *path operations*, for example to structure
     an app in multiple files. It would then be included in the `FastAPI` app, or
@@ -947,6 +1035,59 @@ class APIRouter(routing.Router):
 
         return decorator
 
+    def enrich_api_route_spec(self, route_spec: APIRouteSpec) -> APIRouteSpec:
+        """Build modified APIRouteSpec with the current APIRouter's defaults. Not idempotent."""
+        route_class_param = get_value_or_default(
+            route_spec.route_class, self.route_class
+        )
+        route_class = (
+            route_class_param.value
+            if isinstance(route_class_param, DefaultPlaceholder)
+            else route_class_param
+        )
+        responses = route_spec.responses or {}
+        combined_responses = {**self.responses, **responses}
+        current_response_class = get_value_or_default(
+            route_spec.response_class, self.default_response_class
+        )
+        current_tags = self.tags.copy()
+        if route_spec.tags:
+            current_tags.extend(route_spec.tags)
+        current_dependencies = self.dependencies.copy()
+        if route_spec.dependencies:
+            current_dependencies.extend(route_spec.dependencies)
+        current_callbacks = self.callbacks.copy()
+        if route_spec.callbacks:
+            current_callbacks.extend(route_spec.callbacks)
+        current_generate_unique_id = get_value_or_default(
+            route_spec.generate_unique_id_function, self.generate_unique_id_function
+        )
+        return dataclasses.replace(
+            route_spec,
+            path=self.prefix + route_spec.path,
+            route_class=route_class,
+            tags=current_tags,
+            dependencies=current_dependencies,
+            responses=combined_responses,
+            deprecated=route_spec.deprecated or self.deprecated,
+            include_in_schema=route_spec.include_in_schema and self.include_in_schema,
+            response_class=current_response_class,
+            dependency_overrides_provider=route_spec.dependency_overrides_provider
+            or self.dependency_overrides_provider,
+            callbacks=current_callbacks,
+            generate_unique_id_function=current_generate_unique_id,
+        )
+
+    def add_route_object(self, route: Union[APIRoute, APIWebSocketRoute]) -> None:
+        self.routes.append(route)
+
+    def _make_route_decorator(
+        self, route_spec: APIRouteSpec
+    ) -> Callable[[DecoratedCallable], DecoratedCallable]:
+        return APIRouteDecorator(
+            route_spec=self.enrich_api_route_spec(route_spec), routes_holder=self
+        )
+
     def add_api_route(
         self,
         path: str,
@@ -981,36 +1122,17 @@ class APIRouter(routing.Router):
             Callable[[APIRoute], str], DefaultPlaceholder
         ] = Default(generate_unique_id),
     ) -> None:
-        route_class = route_class_override or self.route_class
-        responses = responses or {}
-        combined_responses = {**self.responses, **responses}
-        current_response_class = get_value_or_default(
-            response_class, self.default_response_class
-        )
-        current_tags = self.tags.copy()
-        if tags:
-            current_tags.extend(tags)
-        current_dependencies = self.dependencies.copy()
-        if dependencies:
-            current_dependencies.extend(dependencies)
-        current_callbacks = self.callbacks.copy()
-        if callbacks:
-            current_callbacks.extend(callbacks)
-        current_generate_unique_id = get_value_or_default(
-            generate_unique_id_function, self.generate_unique_id_function
-        )
-        route = route_class(
-            self.prefix + path,
-            endpoint=endpoint,
+        route_spec_pre = APIRouteSpec(
+            path=path,
             response_model=response_model,
             status_code=status_code,
-            tags=current_tags,
-            dependencies=current_dependencies,
+            tags=tags,
+            dependencies=dependencies,
             summary=summary,
             description=description,
             response_description=response_description,
-            responses=combined_responses,
-            deprecated=deprecated or self.deprecated,
+            responses=responses,
+            deprecated=deprecated,
             methods=methods,
             operation_id=operation_id,
             response_model_include=response_model_include,
@@ -1019,15 +1141,17 @@ class APIRouter(routing.Router):
             response_model_exclude_unset=response_model_exclude_unset,
             response_model_exclude_defaults=response_model_exclude_defaults,
             response_model_exclude_none=response_model_exclude_none,
-            include_in_schema=include_in_schema and self.include_in_schema,
-            response_class=current_response_class,
+            include_in_schema=include_in_schema,
+            response_class=response_class,
             name=name,
-            dependency_overrides_provider=self.dependency_overrides_provider,
-            callbacks=current_callbacks,
+            route_class=route_class_override or self.route_class,
+            callbacks=callbacks,
             openapi_extra=openapi_extra,
-            generate_unique_id_function=current_generate_unique_id,
+            generate_unique_id_function=generate_unique_id_function,
         )
-        self.routes.append(route)
+        route_spec = self.enrich_api_route_spec(route_spec_pre)
+        route = route_spec.build(endpoint)
+        self.add_route_object(route)
 
     def api_route(
         self,
@@ -1059,37 +1183,33 @@ class APIRouter(routing.Router):
             generate_unique_id
         ),
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
-        def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_api_route(
-                path,
-                func,
-                response_model=response_model,
-                status_code=status_code,
-                tags=tags,
-                dependencies=dependencies,
-                summary=summary,
-                description=description,
-                response_description=response_description,
-                responses=responses,
-                deprecated=deprecated,
-                methods=methods,
-                operation_id=operation_id,
-                response_model_include=response_model_include,
-                response_model_exclude=response_model_exclude,
-                response_model_by_alias=response_model_by_alias,
-                response_model_exclude_unset=response_model_exclude_unset,
-                response_model_exclude_defaults=response_model_exclude_defaults,
-                response_model_exclude_none=response_model_exclude_none,
-                include_in_schema=include_in_schema,
-                response_class=response_class,
-                name=name,
-                callbacks=callbacks,
-                openapi_extra=openapi_extra,
-                generate_unique_id_function=generate_unique_id_function,
-            )
-            return func
-
-        return decorator
+        route_spec = APIRouteSpec(
+            path=path,
+            response_model=response_model,
+            status_code=status_code,
+            tags=tags,
+            dependencies=dependencies,
+            summary=summary,
+            description=description,
+            response_description=response_description,
+            responses=responses,
+            deprecated=deprecated,
+            methods=methods,
+            operation_id=operation_id,
+            response_model_include=response_model_include,
+            response_model_exclude=response_model_exclude,
+            response_model_by_alias=response_model_by_alias,
+            response_model_exclude_unset=response_model_exclude_unset,
+            response_model_exclude_defaults=response_model_exclude_defaults,
+            response_model_exclude_none=response_model_exclude_none,
+            include_in_schema=include_in_schema,
+            response_class=response_class,
+            name=name,
+            callbacks=callbacks,
+            openapi_extra=openapi_extra,
+            generate_unique_id_function=generate_unique_id_function,
+        )
+        return self._make_route_decorator(route_spec)
 
     def add_api_websocket_route(
         self,
@@ -1110,7 +1230,7 @@ class APIRouter(routing.Router):
             dependencies=current_dependencies,
             dependency_overrides_provider=self.dependency_overrides_provider,
         )
-        self.routes.append(route)
+        self.add_route_object(route)
 
     def websocket(
         self,
