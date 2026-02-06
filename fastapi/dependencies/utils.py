@@ -21,7 +21,6 @@ from fastapi._compat import (
     ModelField,
     RequiredParam,
     Undefined,
-    _regenerate_error_with_loc,
     copy_field_info,
     create_body_model,
     evaluate_forwardref,
@@ -720,8 +719,7 @@ def _validate_value_with_model_field(
             return deepcopy(field.default), []
     v_, errors_ = field.validate(value, values, loc=loc)
     if isinstance(errors_, list):
-        new_errors = _regenerate_error_with_loc(errors=errors_, loc_prefix=())
-        return None, new_errors
+        return None, errors_
     else:
         return v_, []
 
