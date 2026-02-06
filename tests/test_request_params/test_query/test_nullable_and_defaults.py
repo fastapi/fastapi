@@ -155,20 +155,25 @@ def test_nullable_required_missing(path: str):
         "/model-nullable-required",
     ],
 )
-def test_nullable_required_pass_value(path: str):
+@pytest.mark.parametrize(
+    "values",
+    [
+        {"int_val": "1", "str_val": "test", "list_val": ["1", "2"]},
+        {"int_val": "0", "str_val": "", "list_val": ["0"]},
+    ],
+)
+def test_nullable_required_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(
-            path, params={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+        response = client.get(path, params=values)
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
+        "int_val": int(values["int_val"]),
+        "str_val": values["str_val"],
+        "list_val": [int(v) for v in values["list_val"]],
         "fields_set": IsOneOf(
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
@@ -303,20 +308,25 @@ def test_nullable_non_required_missing(path: str):
         "/model-nullable-non-required",
     ],
 )
-def test_nullable_non_required_pass_value(path: str):
+@pytest.mark.parametrize(
+    "values",
+    [
+        {"int_val": "1", "str_val": "test", "list_val": ["1", "2"]},
+        {"int_val": "0", "str_val": "", "list_val": ["0"]},
+    ],
+)
+def test_nullable_non_required_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(
-            path, params={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+        response = client.get(path, params=values)
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
+        "int_val": int(values["int_val"]),
+        "str_val": values["str_val"],
+        "list_val": [int(v) for v in values["list_val"]],
         "fields_set": IsOneOf(
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
@@ -463,20 +473,25 @@ def test_nullable_with_non_null_default_missing(path: str):
         "/model-nullable-with-non-null-default",
     ],
 )
-def test_nullable_with_non_null_default_pass_value(path: str):
+@pytest.mark.parametrize(
+    "values",
+    [
+        {"int_val": "1", "str_val": "test", "list_val": ["1", "2"]},
+        {"int_val": "0", "str_val": "", "list_val": ["0"]},
+    ],
+)
+def test_nullable_with_non_null_default_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(
-            path, params={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+        response = client.get(path, params=values)
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
+        "int_val": int(values["int_val"]),
+        "str_val": values["str_val"],
+        "list_val": [int(v) for v in values["list_val"]],
         "fields_set": IsOneOf(
             None, IsList("int_val", "str_val", "list_val", check_order=False)
         ),
