@@ -109,7 +109,7 @@ jobs:
         run: uv sync --no-dev --group tests --extra all
       - name: Install Starlette from source
         if: matrix.starlette-src == 'starlette-git'
-        run: uv pip install --force-reinstall --no-deps --no-cache-dir --find-links https://test.pypi.org/simple/ starlette
+        run: uv pip install "git+https://github.com/Kludex/starlette@main"
       - run: mkdir coverage
       - name: Test
         if: matrix.codspeed != 'codspeed'
