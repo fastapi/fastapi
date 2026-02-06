@@ -9,6 +9,7 @@ hide:
 
 ### Refactors
 
+* ♻️ Simplify internals, remove Pydantic v1 only logic, no longer needed. PR [#14857](https://github.com/fastapi/fastapi/pull/14857) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor internals, cleanup unneeded Pydantic v1 specific logic. PR [#14856](https://github.com/fastapi/fastapi/pull/14856) by [@tiangolo](https://github.com/tiangolo).
 
 ### Translations
