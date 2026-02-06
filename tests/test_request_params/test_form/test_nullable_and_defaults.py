@@ -1,5 +1,5 @@
 from typing import Annotated, Any, Union
-from unittest.mock import Mock, patch
+from unittest.mock import Mock, call, patch
 
 import pytest
 from dirty_equals import IsList, IsOneOf, IsPartialDict
@@ -150,18 +150,55 @@ def test_nullable_required_missing(path: str):
         pytest.param(
             "/nullable-required",
             marks=pytest.mark.xfail(
-                reason="Empty str is replaced with None, but then None gets dropped"
+                reason="Empty str is replaced with None even for required parameters"
             ),
         ),
-        pytest.param(
-            "/model-nullable-required",
-            marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for models"
-            ),
-        ),
+        "/model-nullable-required",
     ],
 )
-def test_nullable_required_pass_empty_str(path: str):
+def test_nullable_required_pass_empty_str_to_str_val(path: str):
+    client = TestClient(app)
+
+    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
+        response = client.post(
+            path,
+            data={
+                "int_val": "0",  # Empty string would cause validation error (see below)
+                "str_val": "",
+                "list_val": "0",  # Empty string would cause validation error (see below)
+            },
+        )
+
+    assert mock_convert.call_count == 3, "Validator should be called for each field"
+    assert mock_convert.call_args_list == [
+        call("0"),  # int_val
+        call(""),  # str_val
+        call(["0"]),  # list_val
+    ]
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "int_val": 0,
+        "str_val": "",
+        "list_val": [0],
+        "fields_set": IsOneOf(
+            None, IsList("int_val", "str_val", "list_val", check_order=False)
+        ),
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/nullable-required",
+            marks=pytest.mark.xfail(
+                reason="Empty str is replaced with None even for required parameters"
+            ),
+        ),
+        "/model-nullable-required",
+    ],
+)
+def test_nullable_required_pass_empty_str_to_int_val_and_list_val(path: str):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
@@ -170,26 +207,33 @@ def test_nullable_required_pass_empty_str(path: str):
             data={
                 "int_val": "",
                 "str_val": "",
-                "list_val": "0",  # Empty strings are not treated as null for lists. It's Ok
+                "list_val": "",
             },
         )
 
     assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert mock_convert.call_args_list == [
-        (""),  # int_val
-        (""),  # str_val
-        (["0"]),  # list_val
+        call(""),  # int_val
+        call(""),  # str_val
+        call([""]),  # list_val
     ]
-    assert response.status_code == 200, response.text  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
-        "int_val": None,
-        "str_val": None,
-        "list_val": [0],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "input": "",
+                "loc": ["body", "int_val"],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "type": "int_parsing",
+            },
+            {
+                "input": "",
+                "loc": ["body", "list_val", 0],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "type": "int_parsing",
+            },
+        ]
     }
-    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -336,21 +380,16 @@ def test_nullable_non_required_missing(path: str):
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/nullable-non-required",
-            marks=pytest.mark.xfail(
-                reason="Empty str is replaced with None, but then None gets dropped"
-            ),
-        ),
+        "/nullable-non-required",
         pytest.param(
             "/model-nullable-non-required",
             marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for models"
+                reason="Empty strings are not replaced with None for parameters declared as model"
             ),
         ),
     ],
 )
-def test_nullable_non_required_pass_empty_str(path: str):
+def test_nullable_non_required_pass_empty_str_to_str_val_and_int_val(path: str):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
@@ -359,26 +398,63 @@ def test_nullable_non_required_pass_empty_str(path: str):
             data={
                 "int_val": "",
                 "str_val": "",
-                "list_val": "0",  # Empty strings are not treated as null for lists. It's Ok
+                "list_val": "0",  # Empty string would cause validation error (see below)
             },
         )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
+    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
     assert mock_convert.call_args_list == [
-        (""),  # int_val
-        (""),  # str_val
-        (["0"]),  # list_val
+        call(["0"]),  # list_val
     ]
-    assert response.status_code == 200, response.text  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {
         "int_val": None,
         "str_val": None,
         "list_val": [0],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
+        "fields_set": IsOneOf(None, IsList("list_val", check_order=False)),
     }
-    # TODO: Remove 'no cover' when the issue is fixed
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/nullable-non-required",
+        pytest.param(
+            "/model-nullable-non-required",
+            marks=pytest.mark.xfail(
+                reason="Empty strings are not replaced with None for parameters declared as model"
+            ),
+        ),
+    ],
+)
+def test_nullable_non_required_pass_empty_str_to_all(path: str):
+    client = TestClient(app)
+
+    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
+        response = client.post(
+            path,
+            data={
+                "int_val": "",
+                "str_val": "",
+                "list_val": "",
+            },
+        )
+
+    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
+    assert mock_convert.call_args_list == [
+        call([""]),  # list_val
+    ]
+    assert response.status_code == 422, response.text
+    assert response.json() == {
+        "detail": [
+            {
+                "input": "",
+                "loc": ["body", "list_val", 0],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "type": "int_parsing",
+            },
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -540,18 +616,20 @@ def test_nullable_with_non_null_default_missing(path: str):
         pytest.param(
             "/nullable-with-non-null-default",
             marks=pytest.mark.xfail(
-                reason="Empty str is replaced with default value, not with None"  # Is this correct ???
+                reason="Empty strings are replaced with default values before validation"
             ),
         ),
         pytest.param(
             "/model-nullable-with-non-null-default",
             marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for models"
+                reason="Empty strings are not replaced with None for parameters declared as model"
             ),
         ),
     ],
 )
-def test_nullable_with_non_null_default_pass_empty_str(path: str):
+def test_nullable_with_non_null_default_pass_empty_str_to_str_val_and_int_val(
+    path: str,
+):
     client = TestClient(app)
 
     with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
@@ -560,24 +638,68 @@ def test_nullable_with_non_null_default_pass_empty_str(path: str):
             data={
                 "int_val": "",
                 "str_val": "",
-                "list_val": "0",  # Empty strings are not treated as null for lists. It's Ok
+                "list_val": "0",  # Empty string would cause validation error (see below)
             },
         )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
-    assert mock_convert.call_args_list == [
-        (""),  # int_val
-        (""),  # str_val
-        (["0"]),  # list_val
+    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
+    assert mock_convert.call_args_list == [  # pragma: no cover
+        call(["0"]),  # list_val
     ]
     assert response.status_code == 200, response.text  # pragma: no cover
     assert response.json() == {  # pragma: no cover
-        "int_val": None,
-        "str_val": None,
+        "int_val": -1,
+        "str_val": "default",
         "list_val": [0],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
+        "fields_set": IsOneOf(None, IsList("list_val", check_order=False)),
+    }
+    # TODO: Remove 'no cover' when the issue is fixed
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        pytest.param(
+            "/nullable-with-non-null-default",
+            marks=pytest.mark.xfail(
+                reason="Empty strings are replaced with default values before validation"
+            ),
         ),
+        pytest.param(
+            "/model-nullable-with-non-null-default",
+            marks=pytest.mark.xfail(
+                reason="Empty strings are not replaced with None for parameters declared as model"
+            ),
+        ),
+    ],
+)
+def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
+    client = TestClient(app)
+
+    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
+        response = client.post(
+            path,
+            data={
+                "int_val": "",
+                "str_val": "",
+                "list_val": "",
+            },
+        )
+
+    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
+    assert mock_convert.call_args_list == [  # pragma: no cover
+        call([""]),  # list_val
+    ]
+    assert response.status_code == 422, response.text  # pragma: no cover
+    assert response.json() == {  # pragma: no cover
+        "detail": [
+            {
+                "input": "",
+                "loc": ["body", "list_val", 0],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "type": "int_parsing",
+            },
+        ]
     }
     # TODO: Remove 'no cover' when the issue is fixed
 
