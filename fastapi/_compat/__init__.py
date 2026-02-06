@@ -1,4 +1,3 @@
-from .shared import PYDANTIC_V2 as PYDANTIC_V2
 from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
@@ -26,7 +25,6 @@ from .v2 import copy_field_info as copy_field_info
 from .v2 import create_body_model as create_body_model
 from .v2 import evaluate_forwardref as evaluate_forwardref
 from .v2 import get_cached_model_fields as get_cached_model_fields
-from .v2 import get_compat_model_name_map as get_compat_model_name_map
 from .v2 import get_definitions as get_definitions
 from .v2 import get_missing_field_error as get_missing_field_error
 from .v2 import get_schema_from_model_field as get_schema_from_model_field

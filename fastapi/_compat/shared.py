@@ -28,7 +28,6 @@ else:
     )  # pyright: ignore[reportAttributeAccessIssue]
 
 PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
-PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 
 sequence_annotation_to_type = {

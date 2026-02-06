@@ -59,7 +59,6 @@ from fastapi.exceptions import (
 )
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import (
-    create_cloned_field,
     create_model_field,
     generate_unique_id,
     get_value_or_default,
@@ -278,15 +277,12 @@ async def serialize_response(
     endpoint_ctx: Optional[EndpointContext] = None,
 ) -> Any:
     if field:
-        errors = []
         if is_coroutine:
-            value, errors_ = field.validate(response_content, {}, loc=("response",))
+            value, errors = field.validate(response_content, {}, loc=("response",))
         else:
-            value, errors_ = await run_in_threadpool(
+            value, errors = await run_in_threadpool(
                 field.validate, response_content, {}, loc=("response",)
             )
-        if isinstance(errors_, list):
-            errors.extend(errors_)
         if errors:
             ctx = endpoint_ctx or EndpointContext()
             raise ResponseValidationError(
@@ -652,20 +648,8 @@ class APIRoute(routing.Route):
                 type_=self.response_model,
                 mode="serialization",
             )
-            # Create a clone of the field, so that a Pydantic submodel is not returned
-            # as is just because it's an instance of a subclass of a more limited class
-            # e.g. UserInDB (containing hashed_password) could be a subclass of User
-            # that doesn't have the hashed_password. But because it's a subclass, it
-            # would pass the validation and be returned as is.
-            # By being a new field, no inheritance will be passed as is. A new model
-            # will always be created.
-            # TODO: remove when deprecating Pydantic v1
-            self.secure_cloned_response_field: Optional[ModelField] = (
-                create_cloned_field(self.response_field)
-            )
         else:
             self.response_field = None  # type: ignore
-            self.secure_cloned_response_field = None
         self.dependencies = list(dependencies or [])
         self.description = description or inspect.cleandoc(self.endpoint.__doc__ or "")
         # if a "form feed" character (page break) is found in the description text,
@@ -720,7 +704,7 @@ class APIRoute(routing.Route):
             body_field=self.body_field,
             status_code=self.status_code,
             response_class=self.response_class,
-            response_field=self.secure_cloned_response_field,
+            response_field=self.response_field,
             response_model_include=self.response_model_include,
             response_model_exclude=self.response_model_exclude,
             response_model_by_alias=self.response_model_by_alias,
