@@ -331,6 +331,8 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
+  - link: /zh-hant/
+    name: zh-hant - 繁體中文
 extra_css:
 - css/termynal.css
 - css/custom.css
