@@ -12,7 +12,6 @@ deferred_keys = [
     "response_fields",
     "body_field",
     "response_field",
-    "secure_cloned_response_field",
     "dependant",
     "_flat_dependant",
     "_embed_body_fields",
