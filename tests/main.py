@@ -189,6 +189,48 @@ def get_query_param_required_type(query: int = Query()):
     return f"foo bar {query}"
 
 
+@app.get("/query/mapping-params")
+def get_mapping_query_params(queries: dict[str, str] = Query({})):
+    return {"queries": queries}
+
+
+@app.get("/query/mixed-params")
+def get_mixed_mapping_query_params(
+    sequence_mapping_queries: dict[str, list[int]] = Query({}),
+    mapping_query: dict[str, str] = Query(),
+    query: str = Query(),
+):
+    return {
+        "queries": {
+            "query": query,
+            "mapping_query": mapping_query,
+            "sequence_mapping_queries": sequence_mapping_queries,
+        }
+    }
+
+
+@app.get("/query/mapping-sequence-params")
+def get_sequence_mapping_query_params(queries: dict[str, list[int]] = Query({})):
+    return {"queries": queries}
+
+
+@app.get("/query/mixed-type-params")
+def get_mixed_mapping_mixed_type_query_params(
+    sequence_mapping_queries: dict[str, list[int]] = Query({}),
+    mapping_query_str: dict[str, str] = Query({}),
+    mapping_query_int: dict[str, int] = Query({}),
+    query: int = Query(),
+):
+    return {
+        "queries": {
+            "query": query,
+            "mapping_query_str": mapping_query_str,
+            "mapping_query_int": mapping_query_int,
+            "sequence_mapping_queries": sequence_mapping_queries,
+        }
+    }
+
+
 @app.get("/enum-status-code", status_code=http.HTTPStatus.CREATED)
 def get_enum_status_code():
     return "foo bar"
