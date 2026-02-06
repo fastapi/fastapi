@@ -32,7 +32,9 @@ async def form_fields_set_endpoint(
 ) -> None:
     # Works for both Pydantic v1 (__fields_set__) and v2 (model_fields_set)
     fields_set = list(
-        model.model_fields_set if hasattr(model, "model_fields_set") else model.__fields_set__  # type: ignore[attr-defined]
+        model.model_fields_set
+        if hasattr(model, "model_fields_set")
+        else model.__fields_set__  # type: ignore[attr-defined]
     )
     return {
         "fields_set": fields_set,
@@ -44,7 +46,9 @@ async def form_fields_set_endpoint(
 async def body_fields_set_endpoint(model: FormModelFieldsSet) -> None:
     # Works for both Pydantic v1 (__fields_set__) and v2 (model_fields_set)
     fields_set = list(
-        model.model_fields_set if hasattr(model, "model_fields_set") else model.__fields_set__  # type: ignore[attr-defined]
+        model.model_fields_set
+        if hasattr(model, "model_fields_set")
+        else model.__fields_set__  # type: ignore[attr-defined]
     )
     return {"fields_set": fields_set}
 
