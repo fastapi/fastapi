@@ -51,7 +51,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel
+from pydantic import BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -66,6 +66,7 @@ from starlette.requests import HTTPConnection, Request
 from starlette.responses import Response
 from starlette.websockets import WebSocket
 from typing_extensions import Literal, get_args, get_origin
+from typing_inspection.typing_objects import is_typealiastype
 
 multipart_not_installed_error = (
     'Form data requires "python-multipart" to be installed. \n'
@@ -370,6 +371,9 @@ def analyze_param(
     depends = None
     type_annotation: Any = Any
     use_annotation: Any = Any
+    if is_typealiastype(annotation):
+        # unpack in case PEP 695 type syntax is used
+        annotation = annotation.__value__
     if annotation is not inspect.Signature.empty:
         use_annotation = annotation
         type_annotation = annotation
@@ -449,7 +453,9 @@ def analyze_param(
         depends = dataclasses.replace(depends, dependency=type_annotation)
 
     # Handle non-param type annotations like Request
-    if lenient_issubclass(
+    # Only apply special handling when there's no explicit Depends - if there's a Depends,
+    # the dependency will be called and its return value used instead of the special injection
+    if depends is None and lenient_issubclass(
         type_annotation,
         (
             Request,
@@ -460,7 +466,6 @@ def analyze_param(
             SecurityScopes,
         ),
     ):
-        assert depends is None, f"Cannot specify `Depends` for type {type_annotation!r}"
         assert field_info is None, (
             f"Cannot specify FastAPI annotation for type {type_annotation!r}"
         )
@@ -721,11 +726,19 @@ def _validate_value_with_model_field(
         return v_, []
 
 
+def _is_json_field(field: ModelField) -> bool:
+    return any(type(item) is Json for item in field.field_info.metadata)
+
+
 def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: Union[str, None] = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
-    if is_sequence_field(field) and isinstance(values, (ImmutableMultiDict, Headers)):
+    if (
+        (not _is_json_field(field))
+        and is_sequence_field(field)
+        and isinstance(values, (ImmutableMultiDict, Headers))
+    ):
         value = values.getlist(alias)
     else:
         value = values.get(alias, None)

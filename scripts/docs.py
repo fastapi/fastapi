@@ -23,7 +23,7 @@ SUPPORTED_LANGS = {
     "de",
     "en",
     "es",
-    # "fr",
+    "fr",
     "ja",
     "ko",
     "pt",
@@ -31,7 +31,7 @@ SUPPORTED_LANGS = {
     "tr",
     "uk",
     # "zh",
-    # "zh-hant",
+    "zh-hant",
 }
 
 

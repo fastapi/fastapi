@@ -7,6 +7,17 @@ hide:
 
 ## Latest Changes
 
+## 0.128.2
+
+### Features
+
+* ✨ Add support for PEP695 `TypeAliasType`. PR [#13920](https://github.com/fastapi/fastapi/pull/13920) by [@cstruct](https://github.com/cstruct).
+* ✨ Allow `Response` type hint as dependency annotation. PR [#14794](https://github.com/fastapi/fastapi/pull/14794) by [@jonathan-fulton](https://github.com/jonathan-fulton).
+
+### Fixes
+
+* 🐛 Fix using `Json[list[str]]` type (issue #10997). PR [#14616](https://github.com/fastapi/fastapi/pull/14616) by [@mkanetsuna](https://github.com/mkanetsuna).
+
 ### Docs
 
 * 📝 Update docs for translations. PR [#14830](https://github.com/fastapi/fastapi/pull/14830) by [@tiangolo](https://github.com/tiangolo).
@@ -14,6 +25,8 @@ hide:
 
 ### Translations
 
+* 🌐 Enable Traditional Chinese translations. PR [#14842](https://github.com/fastapi/fastapi/pull/14842) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Enable French docs translations. PR [#14841](https://github.com/fastapi/fastapi/pull/14841) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for fr (translate-page). PR [#14837](https://github.com/fastapi/fastapi/pull/14837) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for de (update-outdated). PR [#14836](https://github.com/fastapi/fastapi/pull/14836) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for pt (update-outdated). PR [#14833](https://github.com/fastapi/fastapi/pull/14833) by [@tiangolo](https://github.com/tiangolo).
@@ -25,6 +38,10 @@ hide:
 * 🌐 Update translations for zh-hant (update-outdated). PR [#14825](https://github.com/fastapi/fastapi/pull/14825) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update translations for uk (update-outdated). PR [#14822](https://github.com/fastapi/fastapi/pull/14822) by [@tiangolo](https://github.com/tiangolo).
 * 🔨 Update docs and translations scripts, enable Turkish. PR [#14824](https://github.com/fastapi/fastapi/pull/14824) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔨 Add max pages to translate to configs. PR [#14840](https://github.com/fastapi/fastapi/pull/14840) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.1
 
