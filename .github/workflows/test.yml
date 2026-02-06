@@ -51,6 +51,9 @@ jobs:
         python-version: [ "3.14" ]
         uv-resolution:
           - highest
+        starlette-src:
+          - starlette-pypi
+          - starlette-git
         include:
           - os: ubuntu-latest
             python-version: "3.9"
@@ -78,11 +81,13 @@ jobs:
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
+            starlette-src: starlette-git
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
       UV_PYTHON: ${{ matrix.python-version }}
       UV_RESOLUTION: ${{ matrix.uv-resolution }}
+      STARLETTE_SRC: ${{ matrix.starlette-src }}
     steps:
       - name: Dump GitHub context
         env:
@@ -102,10 +107,13 @@ jobs:
             uv.lock
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
+      - name: Install Starlette from source
+        if: matrix.starlette-src == 'starlette-git'
+        run: uv pip install "git+https://github.com/Kludex/starlette@main"
       - run: mkdir coverage
       - name: Test
         if: matrix.codspeed != 'codspeed'
-        run: uv run bash scripts/test.sh
+        run: uv run --no-sync bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
@@ -117,7 +125,7 @@ jobs:
             CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
         with:
           mode: simulation
-          run: uv run coverage run -m pytest tests/ --codspeed
+          run: uv run --no-sync coverage run -m pytest tests/ --codspeed
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
