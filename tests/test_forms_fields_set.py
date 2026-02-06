@@ -6,7 +6,7 @@ This test validates that Form models correctly track which fields were
 explicitly provided vs. which fields use defaults.
 """
 
-from typing_extensions import Annotated
+from typing import Annotated
 
 from fastapi import FastAPI, Form, Header, Query
 from fastapi._compat import PYDANTIC_V2
@@ -14,7 +14,7 @@ from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
 
-class FormModelFieldsSet(BaseModel) -> None:
+class FormModelFieldsSet(BaseModel):
     """Model for testing fields_set metadata preservation."""
 
     field_1: bool = True
@@ -26,7 +26,9 @@ app = FastAPI()
 
 
 @app.post("/form-fields-set")
-async def form_fields_set_endpoint(model: Annotated[FormModelFieldsSet, Form()]) -> None:
+async def form_fields_set_endpoint(
+    model: Annotated[FormModelFieldsSet, Form()],
+) -> None:
     # Use correct attribute name for each Pydantic version
     if PYDANTIC_V2:
         fields_set = list(model.model_fields_set)
