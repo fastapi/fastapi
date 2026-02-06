@@ -55,21 +55,21 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 3. `Author` 数据类包含一个由 `Item` 数据类组成的列表。
 4. `Author` 数据类被用作 `response_model` 参数。
 5. 你可以将其它标准类型注解与数据类一起用作请求体。
-   
+
    在本例中，它是一个 `Item` 数据类列表。
 6. 这里我们返回一个字典，里面的 `items` 是一个数据类列表。
-   
+
    FastAPI 仍然能够将数据<abbr title="把数据转换为可以传输的格式">序列化</abbr>为 JSON。
 7. 这里的 `response_model` 使用了 “`Author` 数据类列表” 的类型注解。
-   
+
    同样，你可以将 `dataclasses` 与标准类型注解组合使用。
 8. 注意，这个 *路径操作函数* 使用的是常规的 `def` 而不是 `async def`。
-   
+
    一如既往，在 FastAPI 中你可以按需组合 `def` 和 `async def`。
-   
+
    如果需要回顾何时用哪一个，请查看关于 [`async` 和 `await`](../async.md#in-a-hurry){.internal-link target=_blank} 的文档中的 _“急不可待？”_ 一节。
 9. 这个 *路径操作函数* 返回的不是数据类（当然也可以返回数据类），而是包含内部数据的字典列表。
-   
+
    FastAPI 会使用（包含数据类的）`response_model` 参数来转换响应。
 
 你可以将 `dataclasses` 与其它类型注解以多种不同方式组合，来构建复杂的数据结构。
