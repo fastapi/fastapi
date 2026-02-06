@@ -85,6 +85,20 @@ The following arguments are supported:
 * `minimum_size` - Do not GZip responses that are smaller than this minimum size in bytes. Defaults to `500`.
 * `compresslevel` - Used during GZip compression. It is an integer ranging from 1 to 9. Defaults to `9`. Lower value results in faster compression but larger file sizes, while higher value results in slower compression but smaller file sizes.
 
+## Router and Route-Level Middleware Example
+
+**FastAPI supports adding scoped middleware per route and router. Middleware execution order:**
+
+- **App‑level middleware** runs on *every* request as soon as it enters your application, before any router or route is matched.
+- **Router‑level middleware** runs next, wrapping all requests to routes included on that router.
+- **Route‑level middleware** runs last, just around the specific path operation.
+
+This gives better control over where and when logic executes.
+
+The example below shows middleware applied at each scope. Notice how the inner route’s middleware is able to match path params ;)
+
+{* ../../docs_src/advanced_middleware/tutorial004.py *}
+
 ## Other middlewares { #other-middlewares }
 
 There are many other ASGI middlewares.
