@@ -41,8 +41,6 @@ sequence_annotation_to_type = {
 
 sequence_types = tuple(sequence_annotation_to_type.keys())
 
-Url: type[Any]
-
 
 # Copy of Pydantic: pydantic/_internal/_utils.py
 def lenient_issubclass(
@@ -177,16 +175,26 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def is_pydantic_v1_model_instance(obj: Any) -> bool:
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        from pydantic import v1
+    # TODO: remove this function once the required version of Pydantic fully
+    # removes pydantic.v1
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            from pydantic import v1
+    except ImportError:
+        return False
     return isinstance(obj, v1.BaseModel)
 
 
 def is_pydantic_v1_model_class(cls: Any) -> bool:
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        from pydantic import v1
+    # TODO: remove this function once the required version of Pydantic fully
+    # removes pydantic.v1
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            from pydantic import v1
+    except ImportError:
+        return False
     return lenient_issubclass(cls, v1.BaseModel)
 
 

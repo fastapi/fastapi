@@ -10,12 +10,10 @@ from fastapi._compat import (
     ModelField,
     Undefined,
     get_definitions,
-    get_schema_from_model_field,
-    lenient_issubclass,
-)
-from fastapi._compat.v2 import (
     get_flat_models_from_fields,
     get_model_name_map,
+    get_schema_from_model_field,
+    lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder
 from fastapi.dependencies.models import Dependant

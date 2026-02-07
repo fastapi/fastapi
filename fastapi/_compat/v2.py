@@ -28,10 +28,11 @@ from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined, PydanticUndefinedType
+from pydantic_core import PydanticUndefined
 from pydantic_core import Url as Url
 from typing_extensions import Literal, get_args, get_origin
 
+# TODO: can this be imported directly? which version of Pydantic is needed?
 try:
     from pydantic_core.core_schema import (
         with_info_plain_validator_function as with_info_plain_validator_function,
@@ -43,9 +44,7 @@ except ImportError:  # pragma: no cover
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
-Validator = Any
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -85,14 +84,6 @@ def asdict(field_info: FieldInfo) -> dict[str, Any]:
         "metadata": field_info.metadata,
         "attributes": attributes,
     }
-
-
-class BaseConfig:
-    pass
-
-
-class ErrorWrapper(Exception):
-    pass
 
 
 @dataclass
@@ -143,8 +134,8 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
-            # TODO: remove after dropping support for Python 3.8 and
-            # setting the min Pydantic to v2.12.3 that adds asdict()
+            # TODO: remove after setting the min Pydantic to v2.12.3
+            # that adds asdict(), and use self.field_info.asdict() instead
             field_dict = asdict(self.field_info)
             annotated_args = (
                 field_dict["annotation"],
