@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.4
+
 ### Refactors
 
 * ♻️ Refactor internals, simplify Pydantic v2/v1 utils, `create_model_field`, better types for `lenient_issubclass`. PR [#14860](https://github.com/fastapi/fastapi/pull/14860) by [@tiangolo](https://github.com/tiangolo).
