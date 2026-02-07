@@ -594,7 +594,7 @@ def replace_multiline_code_block(
         )
 
     block_language = block_a["lang"].lower()
-    if block_language in {"mermaid"}:
+    if block_language == "mermaid":
         if block_a != block_b:
             print(
                 f"Skipping mermaid code block replacement (lines {start_line}-{end_line_no}). "
