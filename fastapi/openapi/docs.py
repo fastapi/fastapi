@@ -1,3 +1,4 @@
+import html as html_escape
 import json
 from typing import Annotated, Any, Optional
 
@@ -142,7 +143,7 @@ def get_swagger_ui_html(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
     <link rel="shortcut icon" href="{swagger_favicon_url}">
-    <title>{title}</title>
+    <title>{html_escape.escape(title)}</title>
     </head>
     <body>
     <div id="swagger-ui">
@@ -151,7 +152,7 @@ def get_swagger_ui_html(
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
+        url: '{html_escape.escape(openapi_url)}',
     """
 
     for key, value in current_swagger_ui_parameters.items():
@@ -251,7 +252,7 @@ def get_redoc_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <title>{title}</title>
+    <title>{html_escape.escape(title)}</title>
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -276,7 +277,7 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc spec-url="{html_escape.escape(openapi_url)}"></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>
