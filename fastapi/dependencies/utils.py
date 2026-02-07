@@ -182,8 +182,10 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
     if not fields:
         return fields
     first_field = fields[0]
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
+    if len(fields) == 1 and lenient_issubclass(
+        first_field.field_info.annotation, BaseModel
+    ):
+        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
         return fields_to_extract
     return fields
 
@@ -522,7 +524,7 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
-                or lenient_issubclass(field.type_, BaseModel)
+                or lenient_issubclass(field.field_info.annotation, BaseModel)
             ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
@@ -761,8 +763,10 @@ def request_params_to_args(
     fields_to_extract = fields
     single_not_embedded_field = False
     default_convert_underscores = True
-    if len(fields) == 1 and lenient_issubclass(first_field.type_, BaseModel):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
+    if len(fields) == 1 and lenient_issubclass(
+        first_field.field_info.annotation, BaseModel
+    ):
+        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
         single_not_embedded_field = True
         # If headers are in a Pydantic model, the way to disable convert_underscores
         # would be with Header(convert_underscores=False) at the Pydantic model level
@@ -866,8 +870,8 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     # otherwise it has to be embedded, so that the key value pair can be extracted
     if (
         isinstance(first_field.field_info, params.Form)
-        and not lenient_issubclass(first_field.type_, BaseModel)
-        and not is_union_of_base_models(first_field.type_)
+        and not lenient_issubclass(first_field.field_info.annotation, BaseModel)
+        and not is_union_of_base_models(first_field.field_info.annotation)
     ):
         return True
     return False
@@ -936,10 +940,10 @@ async def request_body_to_args(
 
     if (
         single_not_embedded_field
-        and lenient_issubclass(first_field.type_, BaseModel)
+        and lenient_issubclass(first_field.field_info.annotation, BaseModel)
         and isinstance(received_body, FormData)
     ):
-        fields_to_extract = get_cached_model_fields(first_field.type_)
+        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
 
     if isinstance(received_body, FormData):
         body_to_process = await _extract_form_body(fields_to_extract, received_body)

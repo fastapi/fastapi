@@ -129,7 +129,7 @@ def _get_openapi_operation_parameters(
     default_convert_underscores = True
     if len(flat_dependant.header_params) == 1:
         first_field = flat_dependant.header_params[0]
-        if lenient_issubclass(first_field.type_, BaseModel):
+        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
             default_convert_underscores = getattr(
                 first_field.field_info, "convert_underscores", True
             )

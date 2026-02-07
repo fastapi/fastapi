@@ -110,10 +110,6 @@ class ModelField:
     def default(self) -> Any:
         return self.get_default()
 
-    @property
-    def type_(self) -> Any:
-        return self.field_info.annotation
-
     def __post_init__(self) -> None:
         with warnings.catch_warnings():
             # Pydantic >= 2.12.0 warns about field specific metadata that is unused
@@ -267,9 +263,9 @@ def get_definitions(
         for model in flat_serialization_models
     ]
     flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
-    input_types = {f.type_ for f in fields}
+    input_types = {f.field_info.annotation for f in fields}
     unique_flat_model_fields = {
-        f for f in flat_model_fields if f.type_ not in input_types
+        f for f in flat_model_fields if f.field_info.annotation not in input_types
     }
     inputs = [
         (
@@ -313,11 +309,11 @@ def is_scalar_sequence_field(field: ModelField) -> bool:
 
 
 def is_bytes_field(field: ModelField) -> bool:
-    return shared.is_bytes_or_nonable_bytes_annotation(field.type_)
+    return shared.is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
 
 
 def is_bytes_sequence_field(field: ModelField) -> bool:
-    return shared.is_bytes_sequence_annotation(field.type_)
+    return shared.is_bytes_sequence_annotation(field.field_info.annotation)
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
@@ -428,7 +424,7 @@ def get_flat_models_from_annotation(
 def get_flat_models_from_field(
     field: ModelField, known_models: TypeModelSet
 ) -> TypeModelSet:
-    field_type = field.type_
+    field_type = field.field_info.annotation
     if lenient_issubclass(field_type, BaseModel):
         if field_type in known_models:
             return known_models
