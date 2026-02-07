@@ -56,6 +56,7 @@ def test_openapi_schema(client: TestClient):
                                 "content": {
                                     "application/json": {
                                         "schema": {
+                                            "title": "Response Read Item Items  Item Id  Get",
                                             "anyOf": [
                                                 {
                                                     "$ref": "#/components/schemas/PlaneItem"
@@ -63,7 +64,7 @@ def test_openapi_schema(client: TestClient):
                                                 {
                                                     "$ref": "#/components/schemas/CarItem"
                                                 },
-                                            ]
+                                            ],
                                         }
                                     }
                                 },
@@ -84,7 +85,7 @@ def test_openapi_schema(client: TestClient):
                         "parameters": [
                             {
                                 "required": True,
-                                "schema": {"type": "string"},
+                                "schema": {"title": "Item Id", "type": "string"},
                                 "name": "item_id",
                                 "in": "path",
                             }
