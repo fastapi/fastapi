@@ -129,7 +129,7 @@ def _get_openapi_operation_parameters(
     default_convert_underscores = True
     if len(flat_dependant.header_params) == 1:
         first_field = flat_dependant.header_params[0]
-        if lenient_issubclass(first_field.type_, BaseModel):
+        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
             default_convert_underscores = getattr(
                 first_field.field_info, "convert_underscores", True
             )
@@ -161,7 +161,7 @@ def _get_openapi_operation_parameters(
             parameter = {
                 "name": name,
                 "in": param_type.value,
-                "required": param.required,
+                "required": param.field_info.is_required(),
                 "schema": param_schema,
             }
             if field_info.description:
@@ -198,7 +198,7 @@ def get_openapi_operation_request_body(
     )
     field_info = cast(Body, body_field.field_info)
     request_media_type = field_info.media_type
-    required = body_field.required
+    required = body_field.field_info.is_required()
     request_body_oai: dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
