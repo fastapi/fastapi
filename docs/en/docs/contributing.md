@@ -92,7 +92,7 @@ That way, you can edit the documentation/source files and see the changes live.
 
 /// tip
 
-Alternatively, you can perform the same steps that scripts does manually.
+Alternatively, you can perform the same steps that the script does manually.
 
 Go into the language directory, for the main docs in English it's at `docs/en/`:
 
