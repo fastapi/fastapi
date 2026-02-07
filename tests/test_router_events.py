@@ -1,6 +1,6 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import Self, TypedDict, Union
+from typing import TypedDict, Union
 
 import pytest
 from fastapi import APIRouter, FastAPI, Request
@@ -174,7 +174,7 @@ def test_router_nested_lifespan_state(state: State) -> None:
 
 def test_router_generic_request_typed_dict_lifespan_state() -> None:
     class MyClass:
-        async def __aenter__(self) -> Self:
+        async def __aenter__(self) -> "MyClass":
             return self
 
         async def __aexit__(self, exc_type, exc_value, traceback) -> None:
