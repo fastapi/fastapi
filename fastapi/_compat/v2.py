@@ -30,17 +30,10 @@ from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
 from pydantic_core import PydanticUndefined
 from pydantic_core import Url as Url
+from pydantic_core.core_schema import (
+    with_info_plain_validator_function as with_info_plain_validator_function,
+)
 from typing_extensions import Literal, get_args, get_origin
-
-# TODO: can this be imported directly? which version of Pydantic is needed?
-try:
-    from pydantic_core.core_schema import (
-        with_info_plain_validator_function as with_info_plain_validator_function,
-    )
-except ImportError:  # pragma: no cover
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
-    )
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
