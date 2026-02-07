@@ -9,6 +9,13 @@ hide:
 
 ### Refactors
 
+* ♻️ Refactor and simplify Pydantic v2 (and v1) compatibility internal utils. PR [#14862](https://github.com/fastapi/fastapi/pull/14862) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.4
+
+### Refactors
+
+* ♻️ Refactor internals, simplify Pydantic v2/v1 utils, `create_model_field`, better types for `lenient_issubclass`. PR [#14860](https://github.com/fastapi/fastapi/pull/14860) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Simplify internals, remove Pydantic v1 only logic, no longer needed. PR [#14857](https://github.com/fastapi/fastapi/pull/14857) by [@tiangolo](https://github.com/tiangolo).
 * ♻️ Refactor internals, cleanup unneeded Pydantic v1 specific logic. PR [#14856](https://github.com/fastapi/fastapi/pull/14856) by [@tiangolo](https://github.com/tiangolo).
 
