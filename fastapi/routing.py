@@ -51,7 +51,6 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import (
     EndpointContext,
     FastAPIError,
-    PydanticV1NotSupportedError,
     RequestMalformedError,
     RequestValidationError,
     ResponseValidationError,
