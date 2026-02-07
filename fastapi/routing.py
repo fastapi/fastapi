@@ -84,7 +84,7 @@ from typing_extensions import deprecated
 # Copy of starlette.routing.request_response modified to include the
 # dependencies' AsyncExitStack
 def request_response(
-    func: Callable[[Request], Union[Awaitable[Response], Response]],
+    func: Callable[[Request], Awaitable[Response]],
 ) -> ASGIApp:
     """
     Takes a function or coroutine `func(request) -> response`,
