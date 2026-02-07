@@ -1,6 +1,6 @@
 # Separación de Esquemas OpenAPI para Entrada y Salida o No { #separate-openapi-schemas-for-input-and-output-or-not }
 
-Al usar **Pydantic v2**, el OpenAPI generado es un poco más exacto y **correcto** que antes. 😎
+Desde que se lanzó **Pydantic v2**, el OpenAPI generado es un poco más exacto y **correcto** que antes. 😎
 
 De hecho, en algunos casos, incluso tendrá **dos JSON Schemas** en OpenAPI para el mismo modelo Pydantic, para entrada y salida, dependiendo de si tienen **valores por defecto**.
 
@@ -85,7 +85,7 @@ Probablemente el caso principal para esto es si ya tienes algún código cliente
 
 En ese caso, puedes desactivar esta funcionalidad en **FastAPI**, con el parámetro `separate_input_output_schemas=False`.
 
-/// info | Información
+/// info
 
 El soporte para `separate_input_output_schemas` fue agregado en FastAPI `0.102.0`. 🤓
 
@@ -100,5 +100,3 @@ Y ahora habrá un único esquema para entrada y salida para el modelo, solo `Ite
 <div class="screenshot">
 <img src="/img/tutorial/separate-openapi-schemas/image05.png">
 </div>
-
-Este es el mismo comportamiento que en Pydantic v1. 🤓
