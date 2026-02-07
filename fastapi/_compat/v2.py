@@ -12,7 +12,7 @@ from typing import (
     cast,
 )
 
-from fastapi._compat import shared
+from fastapi._compat import lenient_issubclass, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
@@ -23,29 +23,20 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
 from pydantic._internal._typing_extra import eval_type_lenient
-from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
 from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined, PydanticUndefinedType
+from pydantic_core import PydanticUndefined
 from pydantic_core import Url as Url
+from pydantic_core.core_schema import (
+    with_info_plain_validator_function as with_info_plain_validator_function,
+)
 from typing_extensions import Literal, get_args, get_origin
-
-try:
-    from pydantic_core.core_schema import (
-        with_info_plain_validator_function as with_info_plain_validator_function,
-    )
-except ImportError:  # pragma: no cover
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
-    )
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
-Validator = Any
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -85,14 +76,6 @@ def asdict(field_info: FieldInfo) -> dict[str, Any]:
         "metadata": field_info.metadata,
         "attributes": attributes,
     }
-
-
-class BaseConfig:
-    pass
-
-
-class ErrorWrapper(Exception):
-    pass
 
 
 @dataclass
@@ -143,8 +126,8 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
-            # TODO: remove after dropping support for Python 3.8 and
-            # setting the min Pydantic to v2.12.3 that adds asdict()
+            # TODO: remove after setting the min Pydantic to v2.12.3
+            # that adds asdict(), and use self.field_info.asdict() instead
             field_dict = asdict(self.field_info)
             annotated_args = (
                 field_dict["annotation"],
@@ -432,10 +415,11 @@ def get_flat_models_from_annotation(
     origin = get_origin(annotation)
     if origin is not None:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, (BaseModel, Enum)) and arg not in known_models:
-                known_models.add(arg)
-                if lenient_issubclass(arg, BaseModel):
-                    get_flat_models_from_model(arg, known_models=known_models)
+            if lenient_issubclass(arg, (BaseModel, Enum)):
+                if arg not in known_models:
+                    known_models.add(arg)  # type: ignore[arg-type]
+                    if lenient_issubclass(arg, BaseModel):
+                        get_flat_models_from_model(arg, known_models=known_models)
             else:
                 get_flat_models_from_annotation(arg, known_models=known_models)
     return known_models

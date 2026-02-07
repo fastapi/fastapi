@@ -512,7 +512,6 @@ def analyze_param(
             type_=use_annotation_from_field_info,
             default=field_info.default,
             alias=alias,
-            required=field_info.default in (RequiredParam, Undefined),
             field_info=field_info,
         )
         if is_path_param:
@@ -523,11 +522,7 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or is_scalar_sequence_field(field)
-                or (
-                    lenient_issubclass(field.type_, BaseModel)
-                    # For Pydantic v1
-                    and getattr(field, "shape", 1) == 1
-                )
+                or lenient_issubclass(field.type_, BaseModel)
             ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
@@ -1021,7 +1016,6 @@ def get_body_field(
     final_field = create_model_field(
         name="body",
         type_=BodyModel,
-        required=required,
         alias="body",
         field_info=BodyFieldInfo(**BodyFieldInfo_kwargs),
     )
