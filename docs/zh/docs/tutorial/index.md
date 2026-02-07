@@ -1,12 +1,12 @@
-# 教程 - 用户指南
+# 教程 - 用户指南 { #tutorial-user-guide }
 
 本教程将一步步向您展示如何使用 **FastAPI** 的绝大部分特性。
 
-各个章节的内容循序渐进，但是又围绕着单独的主题，所以您可以直接跳转到某个章节以解决您的特定需求。
+各个章节的内容循序渐进，但是又围绕着单独的主题，所以您可以直接跳转到某个章节以解决您的特定 API 需求。
 
 本教程同样可以作为将来的参考手册，所以您可以随时回到本教程并查阅您需要的内容。
 
-## 运行代码
+## 运行代码 { #run-the-code }
 
 所有代码片段都可以复制后直接使用（它们实际上是经过测试的 Python 文件）。
 
@@ -58,7 +58,7 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 ---
 
-## 安装 FastAPI
+## 安装 FastAPI { #install-fastapi }
 
 第一个步骤是安装 FastAPI.
 
@@ -74,15 +74,17 @@ $ pip install "fastapi[standard]"
 
 </div>
 
-/// note
+/// note | 注意
 
-当您使用 `pip install "fastapi[standard]"` 进行安装时，它会附带一些默认的可选标准依赖项。
+当您使用 `pip install "fastapi[standard]"` 安装时，它会附带一些默认的可选标准依赖项，其中包括 `fastapi-cloud-cli`，它可以让您部署到 <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>。
 
 如果您不想安装这些可选依赖，可以选择安装 `pip install fastapi`。
 
+如果您想安装标准依赖但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"` 安装。
+
 ///
 
-## 进阶用户指南
+## 进阶用户指南 { #advanced-user-guide }
 
 在本**教程-用户指南**之后，您可以阅读**进阶用户指南**。
 
