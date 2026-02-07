@@ -103,10 +103,6 @@ class ModelField:
         return sa or None
 
     @property
-    def required(self) -> bool:
-        return self.field_info.is_required()
-
-    @property
     def default(self) -> Any:
         return self.get_default()
 

@@ -710,7 +710,7 @@ def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
     if value is None:
-        if field.required:
+        if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
         else:
             return deepcopy(field.default), []
@@ -742,7 +742,7 @@ def _get_multidict_value(
         )
         or (is_sequence_field(field) and len(value) == 0)
     ):
-        if field.required:
+        if field.field_info.is_required():
             return
         else:
             return deepcopy(field.default)
@@ -996,7 +996,9 @@ def get_body_field(
     BodyModel = create_body_model(
         fields=flat_dependant.body_params, model_name=model_name
     )
-    required = any(True for f in flat_dependant.body_params if f.required)
+    required = any(
+        True for f in flat_dependant.body_params if f.field_info.is_required()
+    )
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
         "alias": "body",
