@@ -296,22 +296,6 @@ def is_scalar_field(field: ModelField) -> bool:
     ) and not isinstance(field.field_info, params.Body)
 
 
-def is_sequence_field(field: ModelField) -> bool:
-    return shared.field_annotation_is_sequence(field.field_info.annotation)
-
-
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    return shared.field_annotation_is_scalar_sequence(field.field_info.annotation)
-
-
-def is_bytes_field(field: ModelField) -> bool:
-    return shared.is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
-
-
-def is_bytes_sequence_field(field: ModelField) -> bool:
-    return shared.is_bytes_sequence_annotation(field.field_info.annotation)
-
-
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
     cls = type(field_info)
     merged_field_info = cls.from_annotation(annotation)

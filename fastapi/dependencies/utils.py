@@ -25,13 +25,13 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
+    field_annotation_is_scalar_sequence,
+    field_annotation_is_sequence,
     get_cached_model_fields,
     get_missing_field_error,
-    is_bytes_field,
-    is_bytes_sequence_field,
+    is_bytes_or_nonable_bytes_annotation,
+    is_bytes_sequence_annotation,
     is_scalar_field,
-    is_scalar_sequence_field,
-    is_sequence_field,
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
@@ -523,7 +523,7 @@ def analyze_param(
         elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
-                or is_scalar_sequence_field(field)
+                or field_annotation_is_scalar_sequence(field.field_info.annotation)
                 or lenient_issubclass(field.field_info.annotation, BaseModel)
             ), f"Query parameter {param_name!r} must be one of the supported types"
 
@@ -727,7 +727,7 @@ def _get_multidict_value(
     alias = alias or get_validation_alias(field)
     if (
         (not _is_json_field(field))
-        and is_sequence_field(field)
+        and field_annotation_is_sequence(field.field_info.annotation)
         and isinstance(values, (ImmutableMultiDict, Headers))
     ):
         value = values.getlist(alias)
@@ -740,7 +740,10 @@ def _get_multidict_value(
             and isinstance(value, str)  # For type checks
             and value == ""
         )
-        or (is_sequence_field(field) and len(value) == 0)
+        or (
+            field_annotation_is_sequence(field.field_info.annotation)
+            and len(value) == 0
+        )
     ):
         if field.field_info.is_required():
             return
@@ -888,12 +891,12 @@ async def _extract_form_body(
         field_info = field.field_info
         if (
             isinstance(field_info, params.File)
-            and is_bytes_field(field)
+            and is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
             and isinstance(value, UploadFile)
         ):
             value = await value.read()
         elif (
-            is_bytes_sequence_field(field)
+            is_bytes_sequence_annotation(field.field_info.annotation)
             and isinstance(field_info, params.File)
             and value_is_sequence(value)
         ):
