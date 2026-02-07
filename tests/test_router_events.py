@@ -1,6 +1,6 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import Union
+from typing import TypedDict, Union
 
 import pytest
 from fastapi import APIRouter, FastAPI, Request
@@ -170,6 +170,35 @@ def test_router_nested_lifespan_state(state: State) -> None:
     assert state.app_shutdown is True
     assert state.router_shutdown is True
     assert state.sub_router_shutdown is True
+
+
+def test_router_generic_request_typed_dict_lifespan_state() -> None:
+    class MyClass:
+        async def __aenter__(self) -> "MyClass":
+            return self
+
+        async def __aexit__(self, exc_type, exc_value, traceback) -> None:
+            pass
+
+    class MyState(TypedDict):
+        my_class: MyClass
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI) -> AsyncGenerator[MyState]:
+        async with MyClass() as my_class:
+            yield {"my_class": my_class}
+
+    app = FastAPI(lifespan=lifespan)
+
+    @app.get("/")
+    def main(request: Request[MyState]) -> dict[str, str]:
+        assert isinstance(request.state["my_class"], MyClass)
+        return {"message": "Hello World"}
+
+    with TestClient(app) as client:
+        response = client.get("/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"message": "Hello World"}
 
 
 def test_router_nested_lifespan_state_overriding_by_parent() -> None:
