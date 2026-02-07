@@ -204,18 +204,20 @@ async def read_model_required_list_validation_alias(
     ["/required-list-validation-alias", "/model-required-list-validation-alias"],
 )
 def test_required_list_validation_alias_schema(path: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": True,
-            "schema": {
-                "title": "P Val Alias",
-                "type": "array",
-                "items": {"type": "string"},
-            },
-            "name": "p_val_alias",
-            "in": "query",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": True,
+                "schema": {
+                    "title": "P Val Alias",
+                    "type": "array",
+                    "items": {"type": "string"},
+                },
+                "name": "p_val_alias",
+                "in": "query",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
