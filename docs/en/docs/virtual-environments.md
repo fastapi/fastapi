@@ -53,7 +53,7 @@ $ cd awesome-project
 
 ## Create a Virtual Environment { #create-a-virtual-environment }
 
-When you start working on a Python project **for the first time**, create a virtual environment **<abbr title="there are other options, this is a simple guideline">inside your project</abbr>**.
+When you start working on a Python project **for the first time**, create a virtual environment **<dfn title="there are other options, this is a simple guideline">inside your project</dfn>**.
 
 /// tip
 
