@@ -181,7 +181,7 @@ def is_pydantic_v1_model_instance(obj: Any) -> bool:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
             from pydantic import v1
-    except ImportError:
+    except ImportError:  # pragma: no cover
         return False
     return isinstance(obj, v1.BaseModel)
 
@@ -193,7 +193,7 @@ def is_pydantic_v1_model_class(cls: Any) -> bool:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
             from pydantic import v1
-    except ImportError:
+    except ImportError:  # pragma: no cover
         return False
     return lenient_issubclass(cls, v1.BaseModel)
 
