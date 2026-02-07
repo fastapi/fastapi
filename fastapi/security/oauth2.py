@@ -7,7 +7,7 @@ from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
 from fastapi.param_functions import Form
 from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
-from starlette.requests import Request
+from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 
@@ -420,7 +420,7 @@ class OAuth2(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
@@ -533,7 +533,7 @@ class OAuth2PasswordBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
@@ -639,7 +639,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
