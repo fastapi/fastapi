@@ -2623,6 +2623,36 @@ class FastAPI(Starlette):
                 """
             ),
         ] = Default(generate_unique_id),
+        form_max_fields: Annotated[
+            int,
+            Doc(
+                """
+                Maximum number of form fields to accept.
+
+                This limits the number of fields in a form submission to prevent
+                potential denial-of-service attacks.
+                """
+            ),
+        ] = 1000,
+        form_max_files: Annotated[
+            int,
+            Doc(
+                """
+                Maximum number of files to accept in a form submission.
+
+                This limits the number of files in a form submission to prevent
+                potential denial-of-service attacks.
+                """
+            ),
+        ] = 1000,
+        max_part_size: Annotated[
+            int,
+            Doc(
+                """
+                Maximum size (in bytes) for each part in a multipart form submission.
+                """
+            ),
+        ] = 1024 * 1024,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2668,6 +2698,9 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+            form_max_fields=form_max_fields,
+            form_max_files=form_max_files,
+            max_part_size=max_part_size,
         )
 
     def delete(
