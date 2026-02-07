@@ -1,4 +1,4 @@
-# フォームデータ
+# フォームデータ { #form-data }
 
 JSONの代わりにフィールドを受け取る場合は、`Form`を使用します。
 
@@ -6,27 +6,31 @@ JSONの代わりにフィールドを受け取る場合は、`Form`を使用し�
 
 フォームを使うためには、まず<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
 
-たとえば、`pip install python-multipart`のように。
+必ず[仮想環境](../virtual-environments.md){.internal-link target=_blank}を作成して有効化してから、例えば次のようにインストールしてください:
+
+```console
+$ pip install python-multipart
+```
 
 ///
 
-## `Form`のインポート
+## `Form`のインポート { #import-form }
 
 `fastapi`から`Form`をインポートします:
 
-{* ../../docs_src/request_forms/tutorial001.py hl[1] *}
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[3] *}
 
-## `Form`のパラメータの定義
+## `Form`のパラメータの定義 { #define-form-parameters }
 
 `Body`や`Query`の場合と同じようにフォームパラメータを作成します:
 
-{* ../../docs_src/request_forms/tutorial001.py hl[7] *}
+{* ../../docs_src/request_forms/tutorial001_an_py39.py hl[9] *}
 
 例えば、OAuth2仕様が使用できる方法の１つ（「パスワードフロー」と呼ばれる）では、フォームフィールドとして`username`と`password`を送信する必要があります。
 
-<abbr title="仕様">仕様</abbr>では、フィールドの名前が`username`と`password`であることと、JSONではなくフォームフィールドとして送信されることを要求しています。
+<abbr title="specification – 仕様">spec</abbr>では、フィールドの名前が`username`と`password`であることと、JSONではなくフォームフィールドとして送信されることを要求しています。
 
-`Form`では`Body`（および`Query`や`Path`、`Cookie`）と同じメタデータとバリデーションを宣言することができます。
+`Form`では`Body`（および`Query`や`Path`、`Cookie`）と同じ設定を宣言することができます。これには、バリデーション、例、エイリアス（例えば`username`の代わりに`user-name`）などが含まれます。
 
 /// info | 情報
 
@@ -40,7 +44,7 @@ JSONの代わりにフィールドを受け取る場合は、`Form`を使用し�
 
 ///
 
-## 「フォームフィールド」について
+## 「フォームフィールド」について { #about-form-fields }
 
 HTMLフォーム（`<form></form>`）がサーバにデータを送信する方法は、通常、そのデータに「特別な」エンコーディングを使用していますが、これはJSONとは異なります。
 
@@ -64,6 +68,6 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 ///
 
-## まとめ
+## まとめ { #recap }
 
 フォームデータの入力パラメータを宣言するには、`Form`を使用する。
