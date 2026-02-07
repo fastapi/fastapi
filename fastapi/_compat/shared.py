@@ -8,6 +8,7 @@ from dataclasses import is_dataclass
 from typing import (
     Annotated,
     Any,
+    TypeVar,
     Union,
 )
 
@@ -15,7 +16,9 @@ from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
-from typing_extensions import get_args, get_origin
+from typing_extensions import TypeGuard, get_args, get_origin
+
+_T = TypeVar("_T")
 
 # Copy from Pydantic: pydantic/_internal/_typing_extra.py
 if sys.version_info < (3, 10):
@@ -39,13 +42,13 @@ sequence_annotation_to_type = {
     deque: deque,
 }
 
-sequence_types = tuple(sequence_annotation_to_type.keys())
+sequence_types: tuple[type[Any], ...] = tuple(sequence_annotation_to_type.keys())
 
 
-# Copy of Pydantic: pydantic/_internal/_utils.py
+# Copy of Pydantic: pydantic/_internal/_utils.py with added TypeGuard
 def lenient_issubclass(
-    cls: Any, class_or_tuple: Union[type[Any], tuple[type[Any], ...], None]
-) -> bool:
+    cls: Any, class_or_tuple: Union[type[_T], tuple[type[_T], ...], None]
+) -> TypeGuard[type[_T]]:
     try:
         return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]
     except TypeError:  # pragma: no cover
