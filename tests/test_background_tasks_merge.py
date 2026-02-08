@@ -2,6 +2,7 @@
 Test that background tasks from injected BackgroundTasks and Response.background are both executed.
 Related to issue #11215
 """
+
 from fastapi import BackgroundTasks, FastAPI
 from fastapi.responses import Response
 from fastapi.testclient import TestClient

@@ -434,22 +434,31 @@ def get_request_handler(
                 elif solved_result.background_tasks is not None:
                     # Merge background tasks from dependency injection with tasks from Response
                     # The Response's background can be either a BackgroundTask or BackgroundTasks
-                    from starlette.background import BackgroundTask, BackgroundTasks as StarletteBackgroundTasks
+                    from starlette.background import BackgroundTask
+                    from starlette.background import (
+                        BackgroundTasks as StarletteBackgroundTasks,
+                    )
 
                     if isinstance(raw_response.background, StarletteBackgroundTasks):
                         # If Response has BackgroundTasks, prepend the injected tasks
-                        if isinstance(solved_result.background_tasks, StarletteBackgroundTasks):
+                        if isinstance(
+                            solved_result.background_tasks, StarletteBackgroundTasks
+                        ):
                             # Prepend all injected tasks before the response tasks
                             raw_response.background.tasks = (
-                                solved_result.background_tasks.tasks + raw_response.background.tasks
+                                solved_result.background_tasks.tasks
+                                + raw_response.background.tasks
                             )
                     elif isinstance(raw_response.background, BackgroundTask):
                         # If Response has a single BackgroundTask, convert to BackgroundTasks
                         response_task = raw_response.background
-                        if isinstance(solved_result.background_tasks, StarletteBackgroundTasks):
+                        if isinstance(
+                            solved_result.background_tasks, StarletteBackgroundTasks
+                        ):
                             # Create new BackgroundTasks with injected tasks + response task
                             raw_response.background = StarletteBackgroundTasks(
-                                tasks=solved_result.background_tasks.tasks + [response_task]
+                                tasks=solved_result.background_tasks.tasks
+                                + [response_task]
                             )
                         else:
                             # Both are single tasks
