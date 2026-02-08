@@ -6,6 +6,7 @@ Related to issue #13175
 import warnings
 
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 
 
 def test_multiple_methods_unique_operation_ids():
@@ -15,6 +16,17 @@ def test_multiple_methods_unique_operation_ids():
     @app.api_route("/clear", methods=["POST", "DELETE"])
     def clear():
         return {"message": "cleared"}
+
+    client = TestClient(app)
+
+    # Test that the endpoints work
+    response = client.post("/clear")
+    assert response.status_code == 200
+    assert response.json() == {"message": "cleared"}
+
+    response = client.delete("/clear")
+    assert response.status_code == 200
+    assert response.json() == {"message": "cleared"}
 
     # Capture warnings
     with warnings.catch_warnings(record=True) as w:
@@ -61,6 +73,14 @@ def test_multiple_routes_with_multiple_methods():
     def reset():
         return {"message": "reset"}
 
+    client = TestClient(app)
+
+    # Test that all endpoints work
+    assert client.post("/clear").status_code == 200
+    assert client.delete("/clear").status_code == 200
+    assert client.post("/reset").status_code == 200
+    assert client.put("/reset").status_code == 200
+
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         openapi_schema = app.openapi()
@@ -88,6 +108,13 @@ def test_single_method_route_unchanged():
     def get_items():
         return {"items": []}
 
+    client = TestClient(app)
+
+    # Test that the endpoint works
+    response = client.get("/items")
+    assert response.status_code == 200
+    assert response.json() == {"items": []}
+
     openapi_schema = app.openapi()
 
     # Should have the expected structure
@@ -104,6 +131,12 @@ def test_add_api_route_with_multiple_methods():
         return {"message": "cleared"}
 
     app.add_api_route("/clear", clear_handler, methods=["POST", "DELETE"])
+
+    client = TestClient(app)
+
+    # Test that both methods work
+    assert client.post("/clear").status_code == 200
+    assert client.delete("/clear").status_code == 200
 
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
@@ -125,6 +158,12 @@ def test_explicit_operation_id_with_multiple_methods():
     @app.api_route("/clear", methods=["POST", "DELETE"], operation_id="custom_clear")
     def clear():
         return {"message": "cleared"}
+
+    client = TestClient(app)
+
+    # Test that both methods work
+    assert client.post("/clear").status_code == 200
+    assert client.delete("/clear").status_code == 200
 
     # When explicit operation_id is provided, it's used as-is which may cause
     # duplicate operation ID warnings - this is expected behavior
