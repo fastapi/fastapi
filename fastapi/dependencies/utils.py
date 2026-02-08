@@ -278,6 +278,8 @@ def get_dependant(
     path_param_names = get_path_param_names(path)
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
+    unwrapped = inspect.unwrap(call)
+    globalns = getattr(unwrapped, "__globals__", {})
     for param_name, param in signature_params.items():
         is_path_param = param_name in path_param_names
         param_details = analyze_param(
@@ -285,6 +287,7 @@ def get_dependant(
             annotation=param.annotation,
             value=param.default,
             is_path_param=is_path_param,
+            globalns=globalns,
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
@@ -367,6 +370,7 @@ def analyze_param(
     annotation: Any,
     value: Any,
     is_path_param: bool,
+    globalns: Optional[dict[str, Any]] = None,
 ) -> ParamDetails:
     field_info = None
     depends = None
@@ -382,6 +386,17 @@ def analyze_param(
     if get_origin(use_annotation) is Annotated:
         annotated_args = get_args(annotation)
         type_annotation = annotated_args[0]
+        # Resolve ForwardRef if present in the extracted type annotation
+        if isinstance(type_annotation, ForwardRef) and globalns is not None:
+            try:
+                resolved_type = evaluate_forwardref(type_annotation, globalns, globalns)
+                type_annotation = resolved_type
+                # Reconstruct Annotated with resolved type for use_annotation
+                use_annotation = Annotated[resolved_type, *annotated_args[1:]]
+            except (NameError, AttributeError):
+                # If resolution fails, keep the ForwardRef as-is
+                # Pydantic will attempt to resolve it with its own logic
+                pass
         fastapi_annotations = [
             arg
             for arg in annotated_args[1:]
