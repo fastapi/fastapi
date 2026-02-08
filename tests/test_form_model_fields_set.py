@@ -8,7 +8,6 @@ to distinguish between explicitly set fields and fields using defaults.
 
 from typing import Annotated
 
-import pytest
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
