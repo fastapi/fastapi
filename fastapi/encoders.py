@@ -219,9 +219,9 @@ def jsonable_encoder(
                 if isinstance(obj, encoder_type):
                     return encoder_instance(obj)
     if include is not None and not isinstance(include, (set, dict)):
-        include = set(include)
+        include = set(include)  # type: ignore[assignment]
     if exclude is not None and not isinstance(exclude, (set, dict)):
-        exclude = set(exclude)
+        exclude = set(exclude)  # type: ignore[assignment]
     if isinstance(obj, BaseModel):
         obj_dict = obj.model_dump(
             mode="json",
