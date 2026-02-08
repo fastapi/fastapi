@@ -246,11 +246,7 @@ def get_openapi_operation_metadata(
     operation_id = route.operation_id or route.unique_id
     # If the route has multiple methods and operation_id was not explicitly set,
     # append the method to make each operation ID unique
-    if (
-        not route.operation_id
-        and route.methods
-        and len(route.methods) > 1
-    ):
+    if not route.operation_id and route.methods and len(route.methods) > 1:
         # unique_id already includes a method suffix, so we need to replace it
         # with the actual method being processed
         # unique_id format: "{name}_{path}_{first_method}"

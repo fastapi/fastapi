@@ -2,10 +2,10 @@
 Test that routes with multiple methods get unique operation IDs.
 Related to issue #13175
 """
+
 import warnings
 
 from fastapi import FastAPI
-from fastapi.testclient import TestClient
 
 
 def test_multiple_methods_unique_operation_ids():
@@ -25,8 +25,7 @@ def test_multiple_methods_unique_operation_ids():
 
         # Check that no duplicate operation ID warning was raised
         duplicate_warnings = [
-            warning for warning in w
-            if "Duplicate Operation ID" in str(warning.message)
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
         ]
         assert len(duplicate_warnings) == 0, (
             f"Found {len(duplicate_warnings)} duplicate operation ID warnings: "
@@ -46,8 +45,7 @@ def test_multiple_methods_unique_operation_ids():
     delete_op_id = clear_path["delete"]["operationId"]
 
     assert post_op_id != delete_op_id, (
-        f"Operation IDs should be different: "
-        f"POST={post_op_id}, DELETE={delete_op_id}"
+        f"Operation IDs should be different: POST={post_op_id}, DELETE={delete_op_id}"
     )
 
 
@@ -68,8 +66,7 @@ def test_multiple_routes_with_multiple_methods():
         openapi_schema = app.openapi()
 
         duplicate_warnings = [
-            warning for warning in w
-            if "Duplicate Operation ID" in str(warning.message)
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
         ]
         assert len(duplicate_warnings) == 0
 
@@ -113,8 +110,7 @@ def test_add_api_route_with_multiple_methods():
         openapi_schema = app.openapi()
 
         duplicate_warnings = [
-            warning for warning in w
-            if "Duplicate Operation ID" in str(warning.message)
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
         ]
         assert len(duplicate_warnings) == 0
 
