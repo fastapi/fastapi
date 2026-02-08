@@ -135,8 +135,7 @@ def test_explicit_operation_id_with_multiple_methods():
         # If user provides explicit operation_id with multiple methods,
         # they'll get a duplicate warning - this is intentional
         duplicate_warnings = [
-            warning for warning in w
-            if "Duplicate Operation ID" in str(warning.message)
+            warning for warning in w if "Duplicate Operation ID" in str(warning.message)
         ]
         # We expect a duplicate warning because the user explicitly set the same
         # operation_id for multiple methods
