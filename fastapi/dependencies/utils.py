@@ -745,10 +745,9 @@ def _get_multidict_value(
             and len(value) == 0
         )
     ):
-        if field.field_info.is_required():
-            return
-        else:
-            return deepcopy(field.default)
+        # Don't pre-fill defaults here - let Pydantic handle them during validation
+        # This preserves model_fields_set correctly for Form fields
+        return None
     return value
 
 
