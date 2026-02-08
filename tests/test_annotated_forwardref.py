@@ -6,7 +6,7 @@ Tests for issue #13056: Annotated types with ForwardRef cause errors.
 from typing import Annotated, Optional
 
 import pytest
-from fastapi import FastAPI, Query, Header, Path, Body
+from fastapi import Body, FastAPI, Header, Path, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -106,9 +106,13 @@ def test_annotated_forwardref_body():
         return {"item": item}
 
     client = TestClient(app)
-    response = client.post("/items", json={"title": "Test Item", "description": "A test item"})
+    response = client.post(
+        "/items", json={"title": "Test Item", "description": "A test item"}
+    )
     assert response.status_code == 200
-    assert response.json() == {"item": {"title": "Test Item", "description": "A test item"}}
+    assert response.json() == {
+        "item": {"title": "Test Item", "description": "A test item"}
+    }
 
 
 def test_annotated_forwardref_multiple_annotations():
@@ -117,7 +121,7 @@ def test_annotated_forwardref_multiple_annotations():
 
     @app.get("/multi")
     async def get_multi(
-        param: Annotated["UserModel", "some metadata", Query(), "more metadata"]
+        param: Annotated["UserModel", "some metadata", Query(), "more metadata"],
     ):
         return {"param": param}
 
@@ -170,9 +174,7 @@ def test_annotated_forwardref_with_dependencies():
     """Test Annotated with ForwardRef in dependency chain."""
     app = FastAPI()
 
-    def get_current_user(
-        user: Annotated["UserModel", Query()]
-    ) -> "UserModel":
+    def get_current_user(user: Annotated["UserModel", Query()]) -> "UserModel":
         return user
 
     @app.get("/protected")
@@ -190,15 +192,16 @@ def test_annotated_forwardref_complex_types():
     app = FastAPI()
 
     @app.get("/search")
-    async def search(
-        items: Annotated[list["Item"], Query()] = None
-    ):
+    async def search(items: Annotated[list["Item"], Query()] = None):
         return {"items": items or []}
 
     client = TestClient(app)
     # This tests that complex types with ForwardRef don't break the system
     response = client.get("/search")
-    assert response.status_code in [200, 422]  # May be 422 if the type check is too strict
+    assert response.status_code in [
+        200,
+        422,
+    ]  # May be 422 if the type check is too strict
 
 
 if __name__ == "__main__":
