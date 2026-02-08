@@ -1,13 +1,8 @@
-from typing import Optional
+from typing import Annotated, Optional
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -40,21 +35,13 @@ def test_optional_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {"type": "string", "format": "binary"},
-                            {"type": "null"},
-                        ],
-                        "title": "P",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {"title": "P", "type": "string", "format": "binary"}
-                )
-            ),
+            "p": {
+                "anyOf": [
+                    {"type": "string", "format": "binary"},
+                    {"type": "null"},
+                ],
+                "title": "P",
+            }
         },
         "title": body_model_name,
         "type": "object",
@@ -107,12 +94,6 @@ async def read_optional_uploadfile_alias(
     return {"file_size": p.size if p else None}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -126,21 +107,13 @@ def test_optional_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {"type": "string", "format": "binary"},
-                            {"type": "null"},
-                        ],
-                        "title": "P Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {"title": "P Alias", "type": "string", "format": "binary"}
-                )
-            ),
+            "p_alias": {
+                "anyOf": [
+                    {"type": "string", "format": "binary"},
+                    {"type": "null"},
+                ],
+                "title": "P Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
@@ -212,7 +185,6 @@ def read_optional_uploadfile_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -226,28 +198,19 @@ def test_optional_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {"type": "string", "format": "binary"},
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {"title": "P Val Alias", "type": "string", "format": "binary"}
-                )
-            ),
+            "p_val_alias": {
+                "anyOf": [
+                    {"type": "string", "format": "binary"},
+                    {"type": "null"},
+                ],
+                "title": "P Val Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -262,48 +225,32 @@ def test_optional_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-validation-alias",
+        "/optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {  # /optional-*-validation-alias fail here
-        "file_size": None
-    }
+    assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-validation-alias",
+        "/optional-uploadfile-validation-alias",
     ],
 )
 def test_optional_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {"file_size": 5}  # /optional-*-validation-alias fail here
+    assert response.json() == {"file_size": 5}
 
 
 # =====================================================================================
@@ -334,7 +281,6 @@ def read_optional_uploadfile_alias_and_validation_alias(
     return {"file_size": p.size if p else None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -348,28 +294,19 @@ def test_optional_alias_and_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {"type": "string", "format": "binary"},
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    }
-                )
-                | IsDict(
-                    # TODO: remove when deprecating Pydantic v1
-                    {"title": "P Val Alias", "type": "string", "format": "binary"}
-                )
-            ),
+            "p_val_alias": {
+                "anyOf": [
+                    {"type": "string", "format": "binary"},
+                    {"type": "null"},
+                ],
+                "title": "P Val Alias",
+            }
         },
         "title": body_model_name,
         "type": "object",
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -384,7 +321,6 @@ def test_optional_alias_and_validation_alias_missing(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -399,18 +335,11 @@ def test_optional_alias_and_validation_alias_by_name(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-alias-and-validation-alias",
+        "/optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_alias(path: str):
@@ -420,24 +349,15 @@ def test_optional_alias_and_validation_alias_by_alias(path: str):
     assert response.json() == {"file_size": None}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/optional-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/optional-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/optional-bytes-alias-and-validation-alias",
+        "/optional-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_optional_alias_and_validation_alias_by_validation_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_val_alias", b"hello")])
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "file_size": 5
-    }  # /optional-*-alias-and-validation-alias fail here
+    assert response.json() == {"file_size": 5}

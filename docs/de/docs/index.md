@@ -52,13 +52,13 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- sponsors -->
 
-### Keystone-Sponsor
+### Keystone-Sponsor { #keystone-sponsor }
 
 {% for sponsor in sponsors.keystone -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
 {% endfor -%}
 
-### Gold- und Silber-Sponsoren
+### Gold- und Silber-Sponsoren { #gold-and-silver-sponsors }
 
 {% for sponsor in sponsors.gold -%}
 <a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
@@ -117,6 +117,12 @@ Seine Schlüssel-Merkmale sind:
 
 ---
 
+## FastAPI Mini-Dokumentarfilm { #fastapi-mini-documentary }
+
+Es gibt einen <a href="https://www.youtube.com/watch?v=mpR8ngthqiE" class="external-link" target="_blank">FastAPI-Mini-Dokumentarfilm</a>, veröffentlicht Ende 2025, Sie können ihn online ansehen:
+
+<a href="https://www.youtube.com/watch?v=mpR8ngthqiE" target="_blank"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini-Dokumentarfilm"></a>
+
 ## **Typer**, das FastAPI der CLIs { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com" target="_blank"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
@@ -155,8 +161,6 @@ $ pip install "fastapi[standard]"
 Erstellen Sie eine Datei `main.py` mit:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -168,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -177,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Wenn Ihr Code `async` / `await` verwendet, benutzen Sie `async def`:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -191,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -233,7 +235,7 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>Was der Befehl <code>fastapi dev main.py</code> macht ...</summary>
+<summary>Über den Befehl <code>fastapi dev main.py</code> ...</summary>
 
 Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
@@ -276,15 +278,13 @@ Sie sehen die alternative automatische Dokumentation (bereitgestellt von <a href
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
-## Beispiel Aktualisierung { #example-upgrade }
+## Beispielaktualisierung { #example-upgrade }
 
 Ändern Sie jetzt die Datei `main.py`, um den <abbr title="Body – Körper, Inhalt: Der eigentliche Inhalt einer Nachricht, nicht die Metadaten">Body</abbr> eines `PUT`-Requests zu empfangen.
 
 Deklarieren Sie den Body mit Standard-Python-Typen, dank Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -294,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -303,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -326,7 +326,7 @@ Gehen Sie jetzt auf <a href="http://127.0.0.1:8000/docs" class="external-link" t
 
 ![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Klicken Sie dann auf den Button „Execute“, die Benutzeroberfläche wird mit Ihrer API kommunizieren, sendet die Parameter, holt die Ergebnisse und zeigt sie auf dem Bildschirm an:
+* Klicken Sie dann auf den Button „Execute“, die Benutzeroberfläche wird mit Ihrer API kommunizieren, die Parameter senden, die Ergebnisse erhalten und sie auf dem Bildschirm anzeigen:
 
 ![Swagger UI Interaktion](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -439,7 +439,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 
 * Deklaration von **Parametern** von anderen verschiedenen Stellen wie: **Header**, **Cookies**, **Formularfelder** und **Dateien**.
 * Wie man **Validierungs-Constraints** wie `maximum_length` oder `regex` setzt.
-* Ein sehr leistungsfähiges und einfach zu bedienendes System für **<abbr title="Dependency Injection – Einbringen von Abhängigkeiten: Auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>**.
+* Ein sehr leistungsfähiges und einfach zu bedienendes System für **<abbr title="auch bekannt als Komponenten, Ressourcen, Provider, Services, Injectables">Dependency Injection</abbr>**.
 * Sicherheit und Authentifizierung, einschließlich Unterstützung für **OAuth2** mit **JWT-Tokens** und **HTTP Basic** Authentifizierung.
 * Fortgeschrittenere (aber ebenso einfache) Techniken zur Deklaration **tief verschachtelter JSON-Modelle** (dank Pydantic).
 * **GraphQL**-Integration mit <a href="https://strawberry.rocks" class="external-link" target="_blank">Strawberry</a> und anderen Bibliotheken.
@@ -452,7 +452,7 @@ Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="
 
 ### Ihre App deployen (optional) { #deploy-your-app-optional }
 
-Optional können Sie Ihre FastAPI-App in die <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> deployen, treten Sie der Warteliste bei, falls noch nicht geschehen. 🚀
+Optional können Sie Ihre FastAPI-App in die <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a> deployen, gehen Sie und treten Sie der Warteliste bei, falls noch nicht geschehen. 🚀
 
 Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem einzigen Befehl deployen.
 
@@ -494,7 +494,7 @@ Es vereinfacht den Prozess des **Erstellens**, **Deployens** und **Zugreifens** 
 
 Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
 
-FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der *FastAPI and friends* Open-Source-Projekte. ✨
 
 #### Bei anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
 

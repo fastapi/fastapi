@@ -33,7 +33,7 @@ Para isso, primeiro importe:
 
 O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 0.95.0.
 
-Se você tiver uma versão mais antiga, terá erros ao tentar usar `Annotated`.
+Se você tiver uma versão mais antiga, teria erros ao tentar usar `Annotated`.
 
 Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
 
@@ -55,7 +55,7 @@ q: str | None = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Union[str, None] = None
@@ -73,7 +73,7 @@ q: Annotated[str | None] = None
 
 ////
 
-//// tab | Python 3.8+
+//// tab | Python 3.9+
 
 ```Python
 q: Annotated[Union[str, None]] = None
@@ -109,7 +109,7 @@ Agora o FastAPI vai:
 
 ## Alternativa (antiga): `Query` como valor padrão { #alternative-old-query-as-the-default-value }
 
-Versões anteriores do FastAPI (antes de <abbr title="antes de 2023-03">0.95.0</abbr>) exigiam que você usasse `Query` como valor padrão do seu parâmetro, em vez de colocá-lo em `Annotated`. É muito provável que você veja código assim por aí, então vou te explicar.
+Versões anteriores do FastAPI (antes de <abbr title="before 2023-03 - antes de 2023-03">0.95.0</abbr>) exigiam que você usasse `Query` como valor padrão do seu parâmetro, em vez de colocá-lo em `Annotated`, há uma grande chance de você ver código usando isso por aí, então vou explicar.
 
 /// tip | Dica
 
@@ -192,7 +192,7 @@ Você também pode adicionar um parâmetro `min_length`:
 
 ## Adicione expressões regulares { #add-regular-expressions }
 
-Você pode definir um `pattern` de <abbr title="Uma expressão regular, regex ou regexp é uma sequência de caracteres que define um padrão de busca para strings.">expressão regular</abbr> que o parâmetro deve corresponder:
+Você pode definir um `pattern` de <abbr title="A regular expression, regex or regexp is a sequence of characters that define a search pattern for strings. - Uma expressão regular, regex ou regexp é uma sequência de caracteres que define um padrão de busca para strings.">expressão regular</abbr> que o parâmetro deve corresponder:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
@@ -205,20 +205,6 @@ Esse padrão específico de expressão regular verifica se o valor recebido no p
 Se você se sentir perdido com essas ideias de **"expressão regular"**, não se preocupe. Esse é um assunto difícil para muitas pessoas. Você ainda pode fazer muitas coisas sem precisar de expressões regulares por enquanto.
 
 Agora você sabe que, sempre que precisar delas, pode usá-las no **FastAPI**.
-
-### Pydantic v1 `regex` em vez de `pattern` { #pydantic-v1-regex-instead-of-pattern }
-
-Antes da versão 2 do Pydantic e antes do FastAPI 0.100.0, o parâmetro se chamava `regex` em vez de `pattern`, mas agora está descontinuado.
-
-Você ainda pode ver algum código usando isso:
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/query_params_str_validations/tutorial004_regex_an_py310.py hl[11] *}
-
-////
-
-Mas saiba que isso está descontinuado e deve ser atualizado para usar o novo parâmetro `pattern`. 🤓
 
 ## Valores padrão { #default-values }
 
@@ -280,7 +266,7 @@ Então, com uma URL como:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-você receberá os múltiplos valores do *parâmetro de consulta* `q` (`foo` e `bar`) em uma `list` Python dentro da sua *função de operação de rota*, no *parâmetro da função* `q`.
+você receberia os múltiplos valores dos *parâmetros de consulta* `q` (`foo` e `bar`) em uma `list` Python dentro da sua *função de operação de rota*, no *parâmetro da função* `q`.
 
 Assim, a resposta para essa URL seria:
 
@@ -350,7 +336,7 @@ Essas informações serão incluídas no OpenAPI gerado e usadas pelas interface
 
 Tenha em mente que ferramentas diferentes podem ter níveis diferentes de suporte ao OpenAPI.
 
-Algumas delas podem ainda não mostrar todas as informações extras declaradas, embora na maioria dos casos o recurso ausente já esteja planejado para desenvolvimento.
+Algumas delas podem ainda não mostrar todas as informações extras declaradas, embora na maioria dos casos a funcionalidade ausente já esteja planejada para desenvolvimento.
 
 ///
 
@@ -386,7 +372,7 @@ Então você pode declarar um `alias`, e esse alias será usado para encontrar o
 
 Agora digamos que você não gosta mais desse parâmetro.
 
-Você tem que deixá-lo por um tempo, pois há clientes usando-o, mas quer que a documentação mostre claramente que ele está <abbr title="obsoleto, recomenda-se não usá-lo">descontinuado</abbr>.
+Você tem que deixá-lo por um tempo, pois há clientes usando-o, mas quer que a documentação mostre claramente que ele está <abbr title="obsolete, recommended not to use it - obsoleto, recomenda-se não usá-lo">deprecated</abbr>.
 
 Então passe o parâmetro `deprecated=True` para `Query`:
 
@@ -416,7 +402,7 @@ O Pydantic também tem <a href="https://docs.pydantic.dev/latest/concepts/valida
 
 ///
 
-Por exemplo, este validador personalizado verifica se o ID do item começa com `isbn-` para um número de livro <abbr title="ISBN significa Número Padrão Internacional de Livro">ISBN</abbr> ou com `imdb-` para um ID de URL de filme <abbr title="IMDB (Internet Movie Database) é um site com informações sobre filmes">IMDB</abbr>:
+Por exemplo, este validador personalizado verifica se o ID do item começa com `isbn-` para um número de livro <abbr title="ISBN means International Standard Book Number - ISBN significa Número Padrão Internacional de Livro">ISBN</abbr> ou com `imdb-` para um ID de URL de filme <abbr title="IMDB (Internet Movie Database) is a website with information about movies - IMDB (Internet Movie Database) é um site com informações sobre filmes">IMDB</abbr>:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -428,7 +414,7 @@ Isso está disponível com a versão 2 do Pydantic ou superior. 😎
 
 /// tip | Dica
 
-Se você precisar fazer qualquer tipo de validação que exija comunicação com algum **componente externo**, como um banco de dados ou outra API, você deve usar **Dependências do FastAPI** em vez disso; você aprenderá sobre elas mais adiante.
+Se você precisar fazer qualquer tipo de validação que exija comunicação com algum **componente externo**, como um banco de dados ou outra API, você deveria usar **Dependências do FastAPI** em vez disso; você aprenderá sobre elas mais adiante.
 
 Esses validadores personalizados são para coisas que podem ser verificadas **apenas** com os **mesmos dados** fornecidos na requisição.
 
@@ -440,7 +426,7 @@ O ponto importante é apenas usar **`AfterValidator` com uma função dentro de 
 
 ---
 
-Mas se você está curioso sobre este exemplo específico e ainda entretido, aqui vão alguns detalhes extras.
+Mas se você estiver curioso sobre este exemplo de código específico e ainda entretido, aqui vão alguns detalhes extras.
 
 #### String com `value.startswith()` { #string-with-value-startswith }
 
@@ -450,7 +436,7 @@ Percebeu? Uma string usando `value.startswith()` pode receber uma tupla, e verif
 
 #### Um item aleatório { #a-random-item }
 
-Com `data.items()` obtemos um <abbr title="Algo que podemos iterar com um laço for, como uma list, set, etc.">objeto iterável</abbr> com tuplas contendo a chave e o valor de cada item do dicionário.
+Com `data.items()` obtemos um <abbr title="Something we can iterate on with a for loop, like a list, set, etc. - Algo que podemos iterar com um laço for, como uma list, set, etc.">objeto iterável</abbr> com tuplas contendo a chave e o valor de cada item do dicionário.
 
 Convertimos esse objeto iterável em uma `list` adequada com `list(data.items())`.
 

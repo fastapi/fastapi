@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union, cast
+from typing import Annotated, Any, Optional, Union, cast
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -9,9 +9,6 @@ from fastapi.security.base import SecurityBase
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
-
-# TODO: import from typing when deprecating Python 3.9
-from typing_extensions import Annotated
 
 
 class OAuth2PasswordRequestForm:
@@ -71,6 +68,9 @@ class OAuth2PasswordRequestForm:
                 "password". Nevertheless, this dependency class is permissive and
                 allows not passing it. If you want to enforce it, use instead the
                 `OAuth2PasswordRequestFormStrict` dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,
@@ -81,6 +81,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -91,6 +94,9 @@ class OAuth2PasswordRequestForm:
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -115,6 +121,9 @@ class OAuth2PasswordRequestForm:
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
@@ -225,6 +234,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 "password". This dependency is strict about it. If you want to be
                 permissive, use instead the `OAuth2PasswordRequestForm` dependency
                 class.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -235,6 +247,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `username` string. The OAuth2 spec requires the exact field name
                 `username`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -245,6 +260,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 """
                 `password` string. The OAuth2 spec requires the exact field name
                 `password`.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -269,6 +287,9 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
                 * `users:read`
                 * `profile`
                 * `openid`
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = "",
@@ -323,7 +344,7 @@ class OAuth2(SecurityBase):
         self,
         *,
         flows: Annotated[
-            Union[OAuthFlowsModel, Dict[str, Dict[str, Any]]],
+            Union[OAuthFlowsModel, dict[str, dict[str, Any]]],
             Doc(
                 """
                 The dictionary of OAuth2 flows.
@@ -426,6 +447,9 @@ class OAuth2PasswordBearer(OAuth2):
                 """
                 The URL to obtain the OAuth2 token. This would be the *path operation*
                 that has `OAuth2PasswordRequestForm` as a dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ],
@@ -440,11 +464,14 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            Optional[dict[str, str]],
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
                 use this dependency.
+
+                Read more about it in the
+                [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
                 """
             ),
         ] = None,
@@ -553,7 +580,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[Dict[str, str]],
+            Optional[dict[str, str]],
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -639,7 +666,7 @@ class SecurityScopes:
     def __init__(
         self,
         scopes: Annotated[
-            Optional[List[str]],
+            Optional[list[str]],
             Doc(
                 """
                 This will be filled by FastAPI.
@@ -648,7 +675,7 @@ class SecurityScopes:
         ] = None,
     ):
         self.scopes: Annotated[
-            List[str],
+            list[str],
             Doc(
                 """
                 The list of all the scopes required by dependencies.

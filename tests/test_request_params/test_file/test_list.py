@@ -1,13 +1,8 @@
-from typing import List
+from typing import Annotated
 
 import pytest
-from dirty_equals import IsDict
 from fastapi import FastAPI, File, UploadFile
-from fastapi._compat import PYDANTIC_V2
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
 
 from .utils import get_body_model_name
 
@@ -18,12 +13,12 @@ app = FastAPI()
 
 
 @app.post("/list-bytes", operation_id="list_bytes")
-async def read_list_bytes(p: Annotated[List[bytes], File()]):
+async def read_list_bytes(p: Annotated[list[bytes], File()]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile", operation_id="list_uploadfile")
-async def read_list_uploadfile(p: Annotated[List[UploadFile], File()]):
+async def read_list_uploadfile(p: Annotated[list[UploadFile], File()]):
     return {"file_size": [file.size for file in p]}
 
 
@@ -40,27 +35,11 @@ def test_list_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P",
-                    },
-                )
-            )
+            "p": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P",
+            },
         },
         "required": ["p"],
         "title": body_model_name,
@@ -79,29 +58,16 @@ def test_list_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -123,23 +89,17 @@ def test_list(path: str):
 
 
 @app.post("/list-bytes-alias", operation_id="list_bytes_alias")
-async def read_list_bytes_alias(p: Annotated[List[bytes], File(alias="p_alias")]):
+async def read_list_bytes_alias(p: Annotated[list[bytes], File(alias="p_alias")]):
     return {"file_size": [len(file) for file in p]}
 
 
 @app.post("/list-uploadfile-alias", operation_id="list_uploadfile_alias")
 async def read_list_uploadfile_alias(
-    p: Annotated[List[UploadFile], File(alias="p_alias")],
+    p: Annotated[list[UploadFile], File(alias="p_alias")],
 ):
     return {"file_size": [file.size for file in p]}
 
 
-@pytest.mark.xfail(
-    raises=AssertionError,
-    condition=PYDANTIC_V2,
-    reason="Fails only with PDv2",
-    strict=False,
-)
 @pytest.mark.parametrize(
     "path",
     [
@@ -153,27 +113,11 @@ def test_list_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Alias",
-                    },
-                )
-            )
+            "p_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Alias",
+            },
         },
         "required": ["p_alias"],
         "title": body_model_name,
@@ -192,29 +136,16 @@ def test_list_alias_missing(path: str):
     client = TestClient(app)
     response = client.post(path)
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -228,29 +159,16 @@ def test_list_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello"), ("p", b"world")])
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "p_alias"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "p_alias"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "p_alias"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -273,7 +191,7 @@ def test_list_alias_by_alias(path: str):
 
 @app.post("/list-bytes-validation-alias", operation_id="list_bytes_validation_alias")
 def read_list_bytes_validation_alias(
-    p: Annotated[List[bytes], File(validation_alias="p_val_alias")],
+    p: Annotated[list[bytes], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -283,12 +201,11 @@ def read_list_bytes_validation_alias(
     operation_id="list_uploadfile_validation_alias",
 )
 def read_list_uploadfile_validation_alias(
-    p: Annotated[List[UploadFile], File(validation_alias="p_val_alias")],
+    p: Annotated[list[UploadFile], File(validation_alias="p_val_alias")],
 ):
     return {"file_size": [file.size for file in p]}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -302,27 +219,11 @@ def test_list_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Val Alias",
-                    },
-                )
-            )
+            "p_val_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Val Alias",
+            },
         },
         "required": ["p_val_alias"],
         "title": body_model_name,
@@ -330,18 +231,11 @@ def test_list_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-validation-alias",
+        "/list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_missing(path: str):
@@ -352,7 +246,7 @@ def test_list_validation_alias_missing(path: str):
         "detail": [
             {
                 "type": "missing",
-                "loc": [  # /list-*-validation-alias fail here
+                "loc": [
                     "body",
                     "p_val_alias",
                 ],
@@ -363,28 +257,19 @@ def test_list_validation_alias_missing(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-validation-alias",
+        "/list-uploadfile-validation-alias",
     ],
 )
 def test_list_validation_alias_by_name(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p", b"hello"), ("p", b"world")])
-    assert response.status_code == 422, (  # /list-*-validation-alias fail here
-        response.text
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -396,8 +281,6 @@ def test_list_validation_alias_by_name(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -410,8 +293,8 @@ def test_list_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, response.text  # all 2 fail here
-    assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": [5, 5]}
 
 
 # =====================================================================================
@@ -423,7 +306,7 @@ def test_list_validation_alias_by_validation_alias(path: str):
     operation_id="list_bytes_alias_and_validation_alias",
 )
 def read_list_bytes_alias_and_validation_alias(
-    p: Annotated[List[bytes], File(alias="p_alias", validation_alias="p_val_alias")],
+    p: Annotated[list[bytes], File(alias="p_alias", validation_alias="p_val_alias")],
 ):
     return {"file_size": [len(file) for file in p]}
 
@@ -434,13 +317,12 @@ def read_list_bytes_alias_and_validation_alias(
 )
 def read_list_uploadfile_alias_and_validation_alias(
     p: Annotated[
-        List[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
+        list[UploadFile], File(alias="p_alias", validation_alias="p_val_alias")
     ],
 ):
     return {"file_size": [file.size for file in p]}
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -454,27 +336,11 @@ def test_list_alias_and_validation_alias_schema(path: str):
 
     assert app.openapi()["components"]["schemas"][body_model_name] == {
         "properties": {
-            "p_val_alias": (
-                IsDict(
-                    {
-                        "anyOf": [
-                            {
-                                "type": "array",
-                                "items": {"type": "string", "format": "binary"},
-                            },
-                            {"type": "null"},
-                        ],
-                        "title": "P Val Alias",
-                    },
-                )
-                | IsDict(
-                    {
-                        "type": "array",
-                        "items": {"type": "string", "format": "binary"},
-                        "title": "P Val Alias",
-                    },
-                )
-            )
+            "p_val_alias": {
+                "type": "array",
+                "items": {"type": "string", "format": "binary"},
+                "title": "P Val Alias",
+            },
         },
         "required": ["p_val_alias"],
         "title": body_model_name,
@@ -482,18 +348,11 @@ def test_list_alias_and_validation_alias_schema(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-alias-and-validation-alias",
+        "/list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_missing(path: str):
@@ -506,7 +365,7 @@ def test_list_alias_and_validation_alias_missing(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /list-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -515,8 +374,6 @@ def test_list_alias_and_validation_alias_missing(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -535,7 +392,7 @@ def test_list_alias_and_validation_alias_by_name(path: str):
                 "type": "missing",
                 "loc": [
                     "body",
-                    "p_val_alias",  # /list-*-alias-and-validation-alias fail here
+                    "p_val_alias",
                 ],
                 "msg": "Field required",
                 "input": None,
@@ -544,28 +401,19 @@ def test_list_alias_and_validation_alias_by_name(path: str):
     }
 
 
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/list-bytes-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
-        pytest.param(
-            "/list-uploadfile-alias-and-validation-alias",
-            marks=pytest.mark.xfail(raises=AssertionError, strict=False),
-        ),
+        "/list-bytes-alias-and-validation-alias",
+        "/list-uploadfile-alias-and-validation-alias",
     ],
 )
 def test_list_alias_and_validation_alias_by_alias(path: str):
     client = TestClient(app)
     response = client.post(path, files=[("p_alias", b"hello"), ("p_alias", b"world")])
-    assert response.status_code == 422, (
-        response.text  # /list-*-alias-and-validation-alias fails here
-    )
+    assert response.status_code == 422, response.text
 
-    assert response.json() == {  # pragma: no cover
+    assert response.json() == {
         "detail": [
             {
                 "type": "missing",
@@ -577,8 +425,6 @@ def test_list_alias_and_validation_alias_by_alias(path: str):
     }
 
 
-@pytest.mark.xfail(raises=AssertionError, strict=False)
-@needs_pydanticv2
 @pytest.mark.parametrize(
     "path",
     [
@@ -591,7 +437,5 @@ def test_list_alias_and_validation_alias_by_validation_alias(path: str):
     response = client.post(
         path, files=[("p_val_alias", b"hello"), ("p_val_alias", b"world")]
     )
-    assert response.status_code == 200, (  # all 2 fail here
-        response.text
-    )
-    assert response.json() == {"file_size": [5, 5]}  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {"file_size": [5, 5]}
