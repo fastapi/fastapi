@@ -116,3 +116,33 @@ def test_add_api_route_with_multiple_methods():
 
     clear_path = openapi_schema["paths"]["/clear"]
     assert clear_path["post"]["operationId"] != clear_path["delete"]["operationId"]
+
+
+def test_explicit_operation_id_with_multiple_methods():
+    """Test that explicit operation_id is respected and not modified"""
+    app = FastAPI()
+
+    @app.api_route("/clear", methods=["POST", "DELETE"], operation_id="custom_clear")
+    def clear():
+        return {"message": "cleared"}
+
+    # When explicit operation_id is provided, it's used as-is which may cause
+    # duplicate operation ID warnings - this is expected behavior
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        openapi_schema = app.openapi()
+
+        # If user provides explicit operation_id with multiple methods,
+        # they'll get a duplicate warning - this is intentional
+        duplicate_warnings = [
+            warning for warning in w
+            if "Duplicate Operation ID" in str(warning.message)
+        ]
+        # We expect a duplicate warning because the user explicitly set the same
+        # operation_id for multiple methods
+        assert len(duplicate_warnings) > 0
+
+    clear_path = openapi_schema["paths"]["/clear"]
+    # Both methods use the same explicit operation_id
+    assert clear_path["post"]["operationId"] == "custom_clear"
+    assert clear_path["delete"]["operationId"] == "custom_clear"
