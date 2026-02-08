@@ -244,6 +244,19 @@ def get_openapi_operation_metadata(
     if route.description:
         operation["description"] = route.description
     operation_id = route.operation_id or route.unique_id
+    # If the route has multiple methods and operation_id was not explicitly set,
+    # append the method to make each operation ID unique
+    if (
+        not route.operation_id
+        and route.methods
+        and len(route.methods) > 1
+    ):
+        # unique_id already includes a method suffix, so we need to replace it
+        # with the actual method being processed
+        # unique_id format: "{name}_{path}_{first_method}"
+        # We need to replace the last method suffix with the current method
+        base_id = operation_id.rsplit("_", 1)[0]
+        operation_id = f"{base_id}_{method.lower()}"
     if operation_id in operation_ids:
         message = (
             f"Duplicate Operation ID {operation_id} for function "
