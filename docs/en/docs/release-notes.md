@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.5
+
 ### Refactors
 
 * ♻️ Refactor and simplify Pydantic v2 (and v1) compatibility internal utils. PR [#14862](https://github.com/fastapi/fastapi/pull/14862) by [@tiangolo](https://github.com/tiangolo).
