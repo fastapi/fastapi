@@ -149,9 +149,9 @@ def test_single_background_task_with_injected_tasks():
     assert "injected" in executed_tasks, "Injected task was not executed"
     assert "response" in executed_tasks, "Response task was not executed"
     # Injected tasks should run before response tasks
-    assert executed_tasks.index("injected") < executed_tasks.index(
-        "response"
-    ), "Task execution order is wrong"
+    assert executed_tasks.index("injected") < executed_tasks.index("response"), (
+        "Task execution order is wrong"
+    )
 
 
 def test_single_background_task_with_single_injected_task():
@@ -167,9 +167,9 @@ def test_single_background_task_with_single_injected_task():
     assert "injected" in executed_tasks, "Injected task was not executed"
     assert "response" in executed_tasks, "Response task was not executed"
     # Injected tasks should run before response tasks
-    assert executed_tasks.index("injected") < executed_tasks.index(
-        "response"
-    ), "Task execution order is wrong"
+    assert executed_tasks.index("injected") < executed_tasks.index("response"), (
+        "Task execution order is wrong"
+    )
 
 
 @app.get("/response-background-tasks-with-single-injected")
@@ -177,11 +177,11 @@ async def endpoint_with_response_background_tasks_and_single_injected_task(
     tasks: BackgroundTasks,
 ):
     """Endpoint where Response has BackgroundTasks but injected has single task
-    
+
     This tests the code path where the nested if checks:
     - raw_response.background is StarletteBackgroundTasks: True
     - solved_result.background_tasks is StarletteBackgroundTasks: False (it's a single task)
-    
+
     This is an uncovered path that needs testing.
     """
     # Add just one task to injected BackgroundTasks
