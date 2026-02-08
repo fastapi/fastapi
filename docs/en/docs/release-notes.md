@@ -11,6 +11,10 @@ hide:
 
 * ♻️ Refactor and simplify Pydantic v2 (and v1) compatibility internal utils. PR [#14862](https://github.com/fastapi/fastapi/pull/14862) by [@tiangolo](https://github.com/tiangolo).
 
+### Internal
+
+* ✅ Add inline snapshot tests for OpenAPI before changes from Pydantic v2. PR [#14864](https://github.com/fastapi/fastapi/pull/14864) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.128.4
 
 ### Refactors
