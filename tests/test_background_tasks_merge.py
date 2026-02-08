@@ -6,6 +6,7 @@ Related to issue #11215
 from fastapi import BackgroundTasks, FastAPI
 from fastapi.responses import Response
 from fastapi.testclient import TestClient
+from starlette.background import BackgroundTask
 
 app = FastAPI()
 
@@ -110,3 +111,62 @@ def test_only_response_tasks_work():
 
     assert response.status_code == 200
     assert "response" in executed_tasks
+
+
+@app.get("/single-background-task-with-injected")
+async def endpoint_with_single_background_task_and_injected(tasks: BackgroundTasks):
+    """Endpoint with a single BackgroundTask in Response and injected BackgroundTasks"""
+    tasks.add_task(task_from_injected)
+    return Response(
+        content="Custom response",
+        background=BackgroundTask(task_from_response),
+    )
+
+
+@app.get("/single-background-task-with-single-injected")
+async def endpoint_with_single_background_task_and_single_injected(
+    tasks: BackgroundTasks,
+):
+    """Endpoint with a single BackgroundTask in Response and single injected task"""
+    # Add just one task to injected BackgroundTasks to test the single+single case
+    tasks.add_task(task_from_injected)
+    return Response(
+        content="Custom response",
+        background=BackgroundTask(task_from_response),
+    )
+
+
+def test_single_background_task_with_injected_tasks():
+    """Test that injected BackgroundTasks are merged with a single BackgroundTask from Response"""
+    global executed_tasks
+    executed_tasks = []
+
+    client = TestClient(app)
+    response = client.get("/single-background-task-with-injected")
+
+    assert response.status_code == 200
+    # Both tasks should be executed
+    assert "injected" in executed_tasks, "Injected task was not executed"
+    assert "response" in executed_tasks, "Response task was not executed"
+    # Injected tasks should run before response tasks
+    assert executed_tasks.index("injected") < executed_tasks.index(
+        "response"
+    ), "Task execution order is wrong"
+
+
+def test_single_background_task_with_single_injected_task():
+    """Test that two single BackgroundTasks are merged correctly"""
+    global executed_tasks
+    executed_tasks = []
+
+    client = TestClient(app)
+    response = client.get("/single-background-task-with-single-injected")
+
+    assert response.status_code == 200
+    # Both tasks should be executed
+    assert "injected" in executed_tasks, "Injected task was not executed"
+    assert "response" in executed_tasks, "Response task was not executed"
+    # Injected tasks should run before response tasks
+    assert executed_tasks.index("injected") < executed_tasks.index(
+        "response"
+    ), "Task execution order is wrong"
