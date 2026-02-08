@@ -244,7 +244,7 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Required with `None` type { #required-can-be-none }
+### Required with `None` type { #required-with-none-type }
 
 You can declare that a parameter has a type that includes `None` (like `str | None`) but without a default value, which makes it required:
 
