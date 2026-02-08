@@ -67,7 +67,6 @@ def test_header_param_model_invalid(client: TestClient):
                     "loc": ["header", "save_data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
                         "accept-encoding": "gzip, deflate",

@@ -99,13 +99,13 @@ def test_no_data():
                 "type": "missing",
                 "loc": ["body", "username"],
                 "msg": "Field required",
-                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                "input": {},
             },
             {
                 "type": "missing",
                 "loc": ["body", "lastname"],
                 "msg": "Field required",
-                "input": {"tags": ["foo", "bar"], "with": "nothing"},
+                "input": {},
             },
         ]
     }

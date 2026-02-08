@@ -66,7 +66,6 @@ def test_header_param_model_no_underscore(client: TestClient):
                     "input": {
                         "host": "testserver",
                         "traceparent": "123",
-                        "x_tag": [],
                         "accept": "*/*",
                         "accept-encoding": "gzip, deflate",
                         "connection": "keep-alive",
@@ -104,7 +103,6 @@ def test_header_param_model_invalid(client: TestClient):
                     "loc": ["header", "save_data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
                         "accept-encoding": "gzip, deflate",
