@@ -1,10 +1,9 @@
-from typing import Any, Callable
+from typing import Annotated, Any, Callable
 
 import pytest
 from fastapi import APIRouter, Cookie, FastAPI, Header, Query, status
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from typing_extensions import Annotated
 
 app = FastAPI()
 client = TestClient(app)

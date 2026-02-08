@@ -780,7 +780,9 @@ def request_params_to_args(
             # Handle fields extracted from a Pydantic Model for a header, each field
             # doesn't have a FieldInfo of type Header with the default convert_underscores=True
             convert_underscores = getattr(
-                parent_field.field_info, "convert_underscores", default_convert_underscores
+                parent_field.field_info,
+                "convert_underscores",
+                default_convert_underscores,
             )
             if convert_underscores:
                 alias = get_validation_alias(field)
