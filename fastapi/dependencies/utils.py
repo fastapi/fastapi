@@ -805,16 +805,19 @@ def request_params_to_args(
                 params_to_process[key] = received_params.get(key)
 
     for field in fields:
-        in_ = getattr(field.field_info, "in_", params.ParamTypes.query)
+        field_info = field.field_info
+        assert isinstance(field_info, params.Param), (
+            "Params must be subclasses of Param"
+        )
 
         if lenient_issubclass(field.field_info.annotation, BaseModel):
-            loc: tuple[str, ...] = (in_.value,)
+            loc: tuple[str, ...] = (field_info.in_.value,)
             v_, errors_ = _validate_value_with_model_field(
                 field=field, value=params_to_process, values=values, loc=loc
             )
         else:
             value = _get_multidict_value(field, received_params)
-            loc = (in_.value, field.alias)
+            loc = (field_info.in_.value, get_validation_alias(field))
             v_, errors_ = _validate_value_with_model_field(
                 field=field, value=value, values=values, loc=loc
             )
