@@ -244,13 +244,25 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
 
-### Required, can be `None` { #required-can-be-none }
+### Required with `None` type { #required-can-be-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
-
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+You can declare that a parameter has a type that includes `None` (like `str | None`) but without a default value, which makes it required:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+/// note
+
+**Important**: Even though the type includes `None`, the parameter is still **required** because there's no default value. This means clients **must** provide the parameter.
+
+In practice, HTTP query parameters are sent as strings. While the type annotation `str | None` indicates the parameter could theoretically be `None`, there's no standard way to send a literal `None` value in HTTP query parameters - you can only send string values or omit the parameter entirely.
+
+**Omitting the parameter will result in a validation error** since it's required.
+
+This pattern is more commonly useful for **dependencies** (where you might pass `None` programmatically) rather than direct HTTP endpoints.
+
+For an optional query parameter that can be omitted, use: `q: Annotated[str | None, Query(min_length=3)] = None`
+
+///
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
