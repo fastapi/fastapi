@@ -2,7 +2,7 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 
 
 @pytest.fixture(
@@ -59,7 +59,7 @@ def test_openapi_schema(client: TestClient, mod_name: str):
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
-                                "content": response_content,
+                                "content": Is(response_content),
                             }
                         },
                         "summary": "Read Items",
