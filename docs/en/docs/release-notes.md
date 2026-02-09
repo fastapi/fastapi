@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `on_startup` and `on_shutdown` parameters of `APIRouter`. PR [#14873](https://github.com/fastapi/fastapi/pull/14873) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.128.6
 
 ### Translations
