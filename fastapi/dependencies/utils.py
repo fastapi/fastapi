@@ -197,7 +197,9 @@ def _get_flat_fields_from_params_with_origin(
             result.extend(
                 [
                     (model_field, field)
-                    for model_field in get_cached_model_fields(field.field_info.annotation)
+                    for model_field in get_cached_model_fields(
+                        field.field_info.annotation
+                    )
                 ]
             )
         else:
