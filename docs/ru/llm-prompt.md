@@ -90,5 +90,12 @@ For the following technical terms, use these specific translations to ensure con
 * serve (meaning providing access to something): «отдавать» (or `предоставлять доступ к`)
 * recap (noun): резюме
 * utility function: вспомогательная функция
+* fast to code: позволяет быстро писать код
+* Tutorial - User Guide: Учебник - Руководство пользователя
+* submodule: подмодуль
+* subpackage: подпакет
+* router: роутер
+* building, deploying, accessing (when describing features of FastAPI Cloud): созданиe образа, развертывание и доступ
+* type checker tool: инструмент проверки типов
 
 Do not add whitespace in `т.д.`, `т.п.`.
