@@ -952,16 +952,6 @@ class APIRouter(routing.Router):
             ),
         ] = Default(generate_unique_id),
     ) -> None:
-        # Handle on_startup/on_shutdown locally since Starlette removed support
-        # Ref: https://github.com/Kludex/starlette/pull/3117
-        # TODO: deprecate this once the lifespan (or alternative) interface is improved
-        self.on_startup: list[Callable[[], Any]] = (
-            [] if on_startup is None else list(on_startup)
-        )
-        self.on_shutdown: list[Callable[[], Any]] = (
-            [] if on_shutdown is None else list(on_shutdown)
-        )
-
         # Determine the lifespan context to use
         if lifespan is None:
             # Use the default lifespan that runs on_startup/on_shutdown handlers
@@ -985,6 +975,17 @@ class APIRouter(routing.Router):
             assert not prefix.endswith("/"), (
                 "A path prefix must not end with '/', as the routes will start with '/'"
             )
+
+        # Handle on_startup/on_shutdown locally since Starlette removed support
+        # Ref: https://github.com/Kludex/starlette/pull/3117
+        # TODO: deprecate this once the lifespan (or alternative) interface is improved
+        self.on_startup: list[Callable[[], Any]] = (
+            [] if on_startup is None else list(on_startup)
+        )
+        self.on_shutdown: list[Callable[[], Any]] = (
+            [] if on_shutdown is None else list(on_shutdown)
+        )
+
         self.prefix = prefix
         self.tags: list[Union[str, Enum]] = tags or []
         self.dependencies = list(dependencies or [])
