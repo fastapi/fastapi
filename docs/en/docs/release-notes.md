@@ -7,6 +7,56 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for zh (update-outdated). PR [#14843](https://github.com/fastapi/fastapi/pull/14843) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.5
+
+### Refactors
+
+* ♻️ Refactor and simplify Pydantic v2 (and v1) compatibility internal utils. PR [#14862](https://github.com/fastapi/fastapi/pull/14862) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ✅ Add inline snapshot tests for OpenAPI before changes from Pydantic v2. PR [#14864](https://github.com/fastapi/fastapi/pull/14864) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.4
+
+### Refactors
+
+* ♻️ Refactor internals, simplify Pydantic v2/v1 utils, `create_model_field`, better types for `lenient_issubclass`. PR [#14860](https://github.com/fastapi/fastapi/pull/14860) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Simplify internals, remove Pydantic v1 only logic, no longer needed. PR [#14857](https://github.com/fastapi/fastapi/pull/14857) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor internals, cleanup unneeded Pydantic v1 specific logic. PR [#14856](https://github.com/fastapi/fastapi/pull/14856) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for fr (outdated pages). PR [#14839](https://github.com/fastapi/fastapi/pull/14839) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 🌐 Update translations for tr (outdated and missing). PR [#14838](https://github.com/fastapi/fastapi/pull/14838) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ⬆️ Upgrade development dependencies. PR [#14854](https://github.com/fastapi/fastapi/pull/14854) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.3
+
+### Refactors
+
+* ♻️ Re-implement `on_event` in FastAPI for compatibility with the next Starlette, while keeping backwards compatibility. PR [#14851](https://github.com/fastapi/fastapi/pull/14851) by [@tiangolo](https://github.com/tiangolo).
+
+### Upgrades
+
+* ⬆️ Upgrade Starlette supported version range to `starlette>=0.40.0,<1.0.0`. PR [#14853](https://github.com/fastapi/fastapi/pull/14853) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#14834](https://github.com/fastapi/fastapi/pull/14834) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👷 Run tests with Starlette from git. PR [#14849](https://github.com/fastapi/fastapi/pull/14849) by [@tiangolo](https://github.com/tiangolo).
+* 👷 Run tests with lower bound uv sync, upgrade `fastapi[all]` minimum dependencies: `ujson >=5.8.0`, `orjson >=3.9.3`. PR [#14846](https://github.com/fastapi/fastapi/pull/14846) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.128.2
 
 ### Features
