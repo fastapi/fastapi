@@ -1,13 +1,11 @@
 from functools import wraps
-from typing import Callable
-
-from fastapi import Request
+from typing import Any, Callable
 
 
-def route_middleware(*middlewares: Callable):
-    def decorator(route_func: Callable):
+def route_middleware(*middlewares: Callable[..., Any]) -> Callable[..., Any]:
+    def decorator(route_func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(route_func)
-        async def wrapper(*args, **kwargs):
+        async def wrapper(*args: Any, **kwargs: Any) -> Any:
             req = kwargs.get("req")
             if req is None:
                 raise ValueError("Route must have 'request: Request' parameter")
@@ -22,17 +20,3 @@ def route_middleware(*middlewares: Callable):
         return wrapper
 
     return decorator
-
-
-# Example middlewares
-async def verify_jwt(req: Request):
-    # just a mock
-    if not (req.query_params.get("is_true") == "true"):
-        req.user = {"name": "xyz", "admin": True}
-        from fastapi import HTTPException, status
-
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid JWT")
-
-
-def log_route(req: Request):
-    print(f"[LOG] Path: {req.url.path}")
