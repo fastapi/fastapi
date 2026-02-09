@@ -1,27 +1,21 @@
 import re
 import warnings
-from collections.abc import MutableMapping
 from typing import (
     TYPE_CHECKING,
     Any,
     Optional,
     Union,
 )
-from weakref import WeakKeyDictionary
 
 import fastapi
 from fastapi._compat import (
-    BaseConfig,
     ModelField,
     PydanticSchemaGenerationError,
     Undefined,
-    UndefinedType,
-    Validator,
     annotation_is_pydantic_v1,
 )
 from fastapi.datastructures import DefaultPlaceholder, DefaultType
 from fastapi.exceptions import FastAPIDeprecationWarning, PydanticV1NotSupportedError
-from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 from typing_extensions import Literal
 
@@ -29,11 +23,6 @@ from ._compat import v2
 
 if TYPE_CHECKING:  # pragma: nocover
     from .routing import APIRoute
-
-# Cache for `create_cloned_field`
-_CLONED_TYPES_CACHE: MutableMapping[type[BaseModel], type[BaseModel]] = (
-    WeakKeyDictionary()
-)
 
 
 def is_body_allowed_for_status_code(status_code: Union[int, str, None]) -> bool:
@@ -71,38 +60,23 @@ _invalid_args_message = (
 def create_model_field(
     name: str,
     type_: Any,
-    class_validators: Optional[dict[str, Validator]] = None,
     default: Optional[Any] = Undefined,
-    required: Union[bool, UndefinedType] = Undefined,
-    model_config: Union[type[BaseConfig], None] = None,
     field_info: Optional[FieldInfo] = None,
     alias: Optional[str] = None,
     mode: Literal["validation", "serialization"] = "validation",
-    version: Literal["1", "auto"] = "auto",
 ) -> ModelField:
     if annotation_is_pydantic_v1(type_):
         raise PydanticV1NotSupportedError(
             "pydantic.v1 models are no longer supported by FastAPI."
             f" Please update the response model {type_!r}."
         )
-    class_validators = class_validators or {}
-
     field_info = field_info or FieldInfo(annotation=type_, default=default, alias=alias)
-    kwargs = {"mode": mode, "name": name, "field_info": field_info}
     try:
-        return v2.ModelField(**kwargs)  # type: ignore[return-value,arg-type]
+        return v2.ModelField(mode=mode, name=name, field_info=field_info)
     except PydanticSchemaGenerationError:
         raise fastapi.exceptions.FastAPIError(
             _invalid_args_message.format(type_=type_)
         ) from None
-
-
-def create_cloned_field(
-    field: ModelField,
-    *,
-    cloned_types: Optional[MutableMapping[type[BaseModel], type[BaseModel]]] = None,
-) -> ModelField:
-    return field
 
 
 def generate_operation_id_for_path(
