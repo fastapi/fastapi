@@ -8,6 +8,7 @@ from dataclasses import is_dataclass
 from typing import (
     Annotated,
     Any,
+    TypeVar,
     Union,
 )
 
@@ -15,9 +16,11 @@ from fastapi.types import UnionType
 from pydantic import BaseModel
 from pydantic.version import VERSION as PYDANTIC_VERSION
 from starlette.datastructures import UploadFile
-from typing_extensions import get_args, get_origin
+from typing_extensions import TypeGuard, get_args, get_origin
 
-# Copy from Pydantic v2, compatible with v1
+_T = TypeVar("_T")
+
+# Copy from Pydantic: pydantic/_internal/_typing_extra.py
 if sys.version_info < (3, 10):
     WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
 else:
@@ -28,7 +31,6 @@ else:
     )  # pyright: ignore[reportAttributeAccessIssue]
 
 PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
-PYDANTIC_V2 = PYDANTIC_VERSION_MINOR_TUPLE[0] == 2
 
 
 sequence_annotation_to_type = {
@@ -40,15 +42,13 @@ sequence_annotation_to_type = {
     deque: deque,
 }
 
-sequence_types = tuple(sequence_annotation_to_type.keys())
-
-Url: type[Any]
+sequence_types: tuple[type[Any], ...] = tuple(sequence_annotation_to_type.keys())
 
 
-# Copy of Pydantic v2, compatible with v1
+# Copy of Pydantic: pydantic/_internal/_utils.py with added TypeGuard
 def lenient_issubclass(
-    cls: Any, class_or_tuple: Union[type[Any], tuple[type[Any], ...], None]
-) -> bool:
+    cls: Any, class_or_tuple: Union[type[_T], tuple[type[_T], ...], None]
+) -> TypeGuard[type[_T]]:
     try:
         return isinstance(cls, type) and issubclass(cls, class_or_tuple)  # type: ignore[arg-type]
     except TypeError:  # pragma: no cover
@@ -178,16 +178,26 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
 
 
 def is_pydantic_v1_model_instance(obj: Any) -> bool:
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        from pydantic import v1
+    # TODO: remove this function once the required version of Pydantic fully
+    # removes pydantic.v1
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            from pydantic import v1
+    except ImportError:  # pragma: no cover
+        return False
     return isinstance(obj, v1.BaseModel)
 
 
 def is_pydantic_v1_model_class(cls: Any) -> bool:
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", UserWarning)
-        from pydantic import v1
+    # TODO: remove this function once the required version of Pydantic fully
+    # removes pydantic.v1
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            from pydantic import v1
+    except ImportError:  # pragma: no cover
+        return False
     return lenient_issubclass(cls, v1.BaseModel)
 
 

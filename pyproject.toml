@@ -43,9 +43,10 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
-    "starlette>=0.40.0,<0.51.0",
+    "starlette>=0.40.0,<1.0.0",
     "pydantic>=2.7.0",
     "typing-extensions>=4.8.0",
+    "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
 ]
 
@@ -107,9 +108,9 @@ all = [
     # For Starlette's schema generation, would not be used with FastAPI
     "pyyaml >=5.3.1",
     # For UJSONResponse
-    "ujson >=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0",
+    "ujson >=5.8.0",
     # For ORJSONResponse
-    "orjson >=3.2.1",
+    "orjson >=3.9.3",
     # To validate email fields
     "email-validator >=2.0.0",
     # Uvicorn with uvloop
@@ -128,61 +129,62 @@ dev = [
     { include-group = "tests" },
     { include-group = "docs" },
     { include-group = "translations" },
-    "playwright>=1.57.0",
-    "prek==0.2.22",
+    "playwright >=1.57.0",
+    "prek >=0.2.22",
 ]
 docs = [
     { include-group = "docs-tests" },
-    "black==25.1.0",
-    "cairosvg==2.8.2",
-    "griffe-typingdoc==0.3.0",
-    "griffe-warnings-deprecated==1.1.0",
-    "jieba==0.42.1",
-    "markdown-include-variants==0.0.8",
-    "mdx-include>=1.4.1,<2.0.0",
-    "mkdocs-macros-plugin==1.5.0",
-    "mkdocs-material==9.7.0",
-    "mkdocs-redirects>=1.2.1,<1.3.0",
-    "mkdocstrings[python]==0.30.1",
-    "pillow==11.3.0",
-    "python-slugify==8.0.4",
-    "pyyaml>=5.3.1,<7.0.0",
-    "typer==0.21.1",
+    "black >=25.1.0",
+    "cairosvg >=2.8.2",
+    "griffe-typingdoc >=0.3.0",
+    "griffe-warnings-deprecated >=1.1.0",
+    "jieba >=0.42.1",
+    "markdown-include-variants >=0.0.8",
+    "mdx-include >=1.4.1,<2.0.0",
+    "mkdocs-macros-plugin >=1.5.0",
+    "mkdocs-material >=9.7.0",
+    "mkdocs-redirects >=1.2.1,<1.3.0",
+    "mkdocstrings[python] >=0.30.1",
+    "pillow >=11.3.0",
+    "python-slugify >=8.0.4",
+    "pyyaml >=5.3.1,<7.0.0",
+    "typer >=0.21.1",
 ]
 docs-tests = [
-    "httpx>=0.23.0,<1.0.0",
-    "ruff==0.14.14",
+    "httpx >=0.23.0,<1.0.0",
+    "ruff >=0.14.14",
 ]
 github-actions = [
-    "httpx>=0.27.0,<1.0.0",
-    "pydantic>=2.5.3,<3.0.0",
-    "pydantic-settings>=2.1.0,<3.0.0",
-    "pygithub>=2.3.0,<3.0.0",
-    "pyyaml>=5.3.1,<7.0.0",
-    "smokeshow>=0.5.0",
+    "httpx >=0.27.0,<1.0.0",
+    "pydantic >=2.5.3,<3.0.0",
+    "pydantic-settings >=2.1.0,<3.0.0",
+    "pygithub >=2.3.0,<3.0.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "smokeshow >=0.5.0",
 ]
 tests = [
     { include-group = "docs-tests" },
-    "anyio[trio]>=3.2.1,<5.0.0",
-    "coverage[toml]>=6.5.0,<8.0",
-    "dirty-equals==0.9.0",
-    "flask>=1.1.2,<4.0.0",
-    "inline-snapshot>=0.21.1",
-    "mypy==1.14.1",
-    "pwdlib[argon2]>=0.2.1",
-    "pyjwt==2.9.0",
-    "pytest>=7.1.3,<9.0.0",
-    "pytest-codspeed==4.2.0",
-    "pyyaml>=5.3.1,<7.0.0",
-    "sqlmodel==0.0.31",
-    "strawberry-graphql>=0.200.0,<1.0.0",
-    "types-orjson==3.6.2",
-    "types-ujson==5.10.0.20240515",
+    "anyio[trio] >=3.2.1,<5.0.0",
+    "coverage[toml] >=6.5.0,<8.0",
+    "dirty-equals >=0.9.0",
+    "flask >=3.0.0,<4.0.0",
+    "inline-snapshot >=0.21.1",
+    "mypy >=1.14.1",
+    "pwdlib[argon2] >=0.2.1",
+    "pyjwt >=2.9.0",
+    "pytest >=7.1.3,<9.0.0",
+    "pytest-codspeed >=4.2.0",
+    "pyyaml >=5.3.1,<7.0.0",
+    "sqlmodel >=0.0.31",
+    "strawberry-graphql >=0.200.0,<1.0.0",
+    "types-orjson >=3.6.2",
+    "types-ujson >=5.10.0.20240515",
+    "a2wsgi >=1.9.0,<=2.0.0",
 ]
 translations = [
-    "gitpython==3.1.46",
-    "pydantic-ai==0.4.10",
-    "pygithub==2.8.1",
+    "gitpython >=3.1.46",
+    "pydantic-ai >=0.4.10",
+    "pygithub >=2.8.1",
 ]
 
 [tool.pdm]
@@ -231,7 +233,6 @@ xfail_strict = true
 junit_family = "xunit2"
 filterwarnings = [
     "error",
-    'ignore:starlette.middleware.wsgi is deprecated and will be removed in a future release\..*:DeprecationWarning:starlette',
     # see https://trio.readthedocs.io/en/stable/history.html#trio-0-22-0-2022-09-28
     "ignore:You seem to already have a custom.*:RuntimeWarning:trio",
     # TODO: remove after upgrading SQLAlchemy to a version that includes the following changes

@@ -148,7 +148,7 @@ Antes do FastAPI 0.106.0, lançar exceções após o `yield` não era possível,
 
 Isso foi projetado assim principalmente para permitir o uso dos mesmos objetos "yielded" por dependências dentro de tarefas em segundo plano, porque o código de saída seria executado depois que as tarefas em segundo plano fossem concluídas.
 
-Isso foi alterado no FastAPI 0.106.0 com a intenção de não manter recursos enquanto se espera a resposta percorrer a rede.
+Isso foi alterado no FastAPI 0.106.0 com a intenção de não manter recursos enquanto se espera a response percorrer a rede.
 
 /// tip | Dica
 

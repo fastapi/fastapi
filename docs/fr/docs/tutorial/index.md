@@ -1,29 +1,53 @@
-# Tutoriel - Guide utilisateur - Introduction
+# Tutoriel - Guide utilisateur { #tutorial-user-guide }
 
 Ce tutoriel vous montre comment utiliser **FastAPI** avec la plupart de ses fonctionnalités, étape par étape.
 
-Chaque section s'appuie progressivement sur les précédentes, mais elle est structurée de manière à séparer les sujets, afin que vous puissiez aller directement à l'un d'entre eux pour résoudre vos besoins spécifiques en matière d'API.
+Chaque section s'appuie progressivement sur les précédentes, mais elle est structurée de manière à séparer les sujets, afin que vous puissiez aller directement à l'un d'entre eux pour répondre à vos besoins spécifiques d'API.
 
-Il est également conçu pour fonctionner comme une référence future.
+Il est également conçu pour servir de référence ultérieure, afin que vous puissiez revenir voir exactement ce dont vous avez besoin.
 
-Vous pouvez donc revenir et voir exactement ce dont vous avez besoin.
-
-## Exécuter le code
+## Exécuter le code { #run-the-code }
 
 Tous les blocs de code peuvent être copiés et utilisés directement (il s'agit en fait de fichiers Python testés).
 
-Pour exécuter l'un de ces exemples, copiez le code dans un fichier `main.py`, et commencez `uvicorn` avec :
+Pour exécuter l'un de ces exemples, copiez le code dans un fichier `main.py`, et démarrez `fastapi dev` avec :
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
 
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-<span style="color: green;">INFO</span>:     Started reloader process [28720]
-<span style="color: green;">INFO</span>:     Started server process [28722]
-<span style="color: green;">INFO</span>:     Waiting for application startup.
-<span style="color: green;">INFO</span>:     Application startup complete.
+  <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
+
+             Searching for package file structure from directories
+             with <font color="#3465A4">__init__.py</font> files
+             Importing from <font color="#75507B">/home/user/code/</font><font color="#AD7FA8">awesomeapp</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> module </font></span>  🐍 main.py
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> code </font></span>  Importing the FastAPI app object from the module with
+             the following code:
+
+             <u style="text-decoration-style:solid">from </u><u style="text-decoration-style:solid"><b>main</b></u><u style="text-decoration-style:solid"> import </u><u style="text-decoration-style:solid"><b>app</b></u>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> app </font></span>  Using import string: <font color="#3465A4">main:app</font>
+
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Server started at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font>
+   <span style="background-color:#007166"><font color="#D3D7CF"> server </font></span>  Documentation at <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000/docs</u></font>
+
+      <span style="background-color:#007166"><font color="#D3D7CF"> tip </font></span>  Running in development mode, for production use:
+             <b>fastapi run</b>
+
+             Logs:
+
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Will watch for changes in these directories:
+             <b>[</b><font color="#4E9A06">&apos;/home/user/code/awesomeapp&apos;</font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Uvicorn running on <font color="#729FCF"><u style="text-decoration-style:solid">http://127.0.0.1:8000</u></font> <b>(</b>Press CTRL+C
+             to quit<b>)</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started reloader process <b>[</b><font color="#34E2E2"><b>383138</b></font><b>]</b> using WatchFiles
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Started server process <b>[</b><font color="#34E2E2"><b>383153</b></font><b>]</b>
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Waiting for application startup.
+     <span style="background-color:#007166"><font color="#D3D7CF"> INFO </font></span>  Application startup complete.
 ```
 
 </div>
@@ -34,45 +58,33 @@ L'utiliser dans votre éditeur est ce qui vous montre vraiment les avantages de 
 
 ---
 
-## Installer FastAPI
+## Installer FastAPI { #install-fastapi }
 
 La première étape consiste à installer FastAPI.
 
-Pour le tutoriel, vous voudrez peut-être l'installer avec toutes les dépendances et fonctionnalités optionnelles :
+Assurez-vous de créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis **d'installer FastAPI** :
 
 <div class="termy">
 
 ```console
-$ pip install fastapi[all]
+$ pip install "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-... qui comprend également `uvicorn`, que vous pouvez utiliser comme serveur pour exécuter votre code.
+/// note | Remarque
 
-/// note
+Lorsque vous installez avec `pip install "fastapi[standard]"` cela inclut des dépendances standard optionnelles par défaut, y compris `fastapi-cloud-cli`, qui vous permet de déployer sur <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>.
 
-Vous pouvez également l'installer pièce par pièce.
+Si vous ne souhaitez pas avoir ces dépendances optionnelles, vous pouvez à la place installer `pip install fastapi`.
 
-C'est ce que vous feriez probablement une fois que vous voudrez déployer votre application en production :
-
-```
-pip install fastapi
-```
-
-Installez également `uvicorn` pour qu'il fonctionne comme serveur :
-
-```
-pip install uvicorn
-```
-
-Et la même chose pour chacune des dépendances facultatives que vous voulez utiliser.
+Si vous souhaitez installer les dépendances standard mais sans `fastapi-cloud-cli`, vous pouvez installer avec `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ///
 
-## Guide utilisateur avancé
+## Guide d'utilisation avancé { #advanced-user-guide }
 
 Il existe également un **Guide d'utilisation avancé** que vous pouvez lire plus tard après ce **Tutoriel - Guide d'utilisation**.
 
