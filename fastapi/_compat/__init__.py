@@ -2,7 +2,13 @@ from .shared import PYDANTIC_VERSION_MINOR_TUPLE as PYDANTIC_VERSION_MINOR_TUPLE
 from .shared import annotation_is_pydantic_v1 as annotation_is_pydantic_v1
 from .shared import field_annotation_is_scalar as field_annotation_is_scalar
 from .shared import (
+    field_annotation_is_scalar_mapping as field_annotation_is_scalar_mapping,
+)
+from .shared import (
     field_annotation_is_scalar_sequence as field_annotation_is_scalar_sequence,
+)
+from .shared import (
+    field_annotation_is_scalar_sequence_mapping as field_annotation_is_scalar_sequence_mapping,
 )
 from .shared import field_annotation_is_sequence as field_annotation_is_sequence
 from .shared import (
