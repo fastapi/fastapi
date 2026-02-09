@@ -823,7 +823,7 @@ def request_params_to_args(
             "Params must be subclasses of Param"
         )
 
-        if lenient_issubclass(field.type_, BaseModel):
+        if lenient_issubclass(field.field_info.annotation, BaseModel):
             value = params_to_process
             loc: tuple[str, ...] = (field_info.in_.value,)
         else:
