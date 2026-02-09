@@ -317,3 +317,65 @@ def test_router_async_generator_lifespan(state: State) -> None:
         assert response.json() == {"message": "Hello World"}
     assert state.app_startup is True
     assert state.app_shutdown is True
+
+
+def test_startup_shutdown_handlers_as_parameters(state: State) -> None:
+    """Test that startup/shutdown handlers passed as parameters to FastAPI are called correctly."""
+
+
+    def app_startup() -> None:
+        state.app_startup = True
+
+    def app_shutdown() -> None:
+        state.app_shutdown = True
+
+    app = FastAPI(on_startup=[app_startup], on_shutdown=[app_shutdown])
+
+    @app.get("/")
+    def main() -> dict[str, str]:
+        return {"message": "Hello World"}
+
+    def router_startup() -> None:
+        state.router_startup = True
+
+    def router_shutdown() -> None:
+        state.router_shutdown = True
+
+    router = APIRouter(on_startup=[router_startup], on_shutdown=[router_shutdown])
+
+
+    def sub_router_startup() -> None:
+        state.sub_router_startup = True
+
+    def sub_router_shutdown() -> None:
+        state.sub_router_shutdown = True
+
+
+    sub_router = APIRouter(on_startup=[sub_router_startup], on_shutdown=[sub_router_shutdown])
+
+
+    router.include_router(sub_router)
+    app.include_router(router)
+
+    assert state.app_startup is False
+    assert state.router_startup is False
+    assert state.sub_router_startup is False
+    assert state.app_shutdown is False
+    assert state.router_shutdown is False
+    assert state.sub_router_shutdown is False
+    with TestClient(app) as client:
+        assert state.app_startup is True
+        assert state.router_startup is True
+        assert state.sub_router_startup is True
+        assert state.app_shutdown is False
+        assert state.router_shutdown is False
+        assert state.sub_router_shutdown is False
+        response = client.get("/")
+        assert response.status_code == 200, response.text
+        assert response.json() == {"message": "Hello World"}
+    assert state.app_startup is True
+    assert state.router_startup is True
+    assert state.sub_router_startup is True
+    assert state.app_shutdown is True
+    assert state.router_shutdown is True
+    assert state.sub_router_shutdown is True
