@@ -1,7 +1,7 @@
 import json
 from typing import Annotated, Any
 
-from fastapi import FastAPI, Form, Query
+from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from pydantic import Json
 
@@ -104,9 +104,7 @@ def test_form_json_nested_annotated():
 
 
 def test_form_json_invalid_json_equals():
-    response = client.post(
-        "/form-json-equals-syntax", data={"data": "not valid json{"}
-    )
+    response = client.post("/form-json-equals-syntax", data={"data": "not valid json{"})
     assert response.status_code == 422
 
 
