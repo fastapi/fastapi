@@ -26,10 +26,8 @@ from fastapi._compat import (
     evaluate_forwardref,
     field_annotation_is_scalar,
     field_annotation_is_scalar_mapping,
-    field_annotation_is_scalar_mapping_field,
     field_annotation_is_scalar_sequence,
     field_annotation_is_scalar_sequence_mapping,
-    field_annotation_is_scalar_sequence_mapping_field,
     field_annotation_is_sequence,
     get_cached_model_fields,
     get_missing_field_error,
@@ -517,12 +515,11 @@ def analyze_param(
         field_info.alias = alias
 
         # Omit by default for scalar mapping and scalar sequence mapping query fields
-        class_validators: dict[str, Callable[..., Any]] = {}
         if isinstance(field_info, params.Query) and (
             field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
             or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
         ):
-            field_info, class_validators = omit_by_default(field_info)
+            field_info = omit_by_default(field_info)
 
         field = create_model_field(
             name=param_name,
@@ -530,7 +527,6 @@ def analyze_param(
             default=field_info.default,
             alias=alias,
             field_info=field_info,
-            class_validators=class_validators,
         )
         if is_path_param:
             assert is_scalar_field(field=field), (
@@ -539,8 +535,8 @@ def analyze_param(
         elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
-                or field_annotation_is_scalar_mapping_field(field.field_info.annotation)
-                or field_annotation_is_scalar_sequence_mapping_field(
+                or field_annotation_is_scalar_mapping(field.field_info.annotation)
+                or field_annotation_is_scalar_sequence_mapping(
                     field.field_info.annotation
                 )
                 or field_annotation_is_scalar_sequence(field.field_info.annotation)
@@ -757,15 +753,13 @@ def _get_multidict_value(
         value = values[alias]
     elif (
         values
-        and field_annotation_is_scalar_mapping_field(field.field_info.annotation)
+        and field_annotation_is_scalar_mapping(field.field_info.annotation)
         and isinstance(values, QueryParams)
     ):
         value = dict(values)
     elif (
         values
-        and field_annotation_is_scalar_sequence_mapping_field(
-            field.field_info.annotation
-        )
+        and field_annotation_is_scalar_sequence_mapping(field.field_info.annotation)
         and isinstance(values, QueryParams)
     ):
         value = {key: values.getlist(key) for key in values.keys()}
@@ -874,10 +868,8 @@ def request_params_to_args(
     # specified as individual fields
     for field in fields:
         if isinstance(values.get(field.name), dict) and (
-            field_annotation_is_scalar_mapping_field(field.field_info.annotation)
-            or field_annotation_is_scalar_sequence_mapping_field(
-                field.field_info.annotation
-            )
+            field_annotation_is_scalar_mapping(field.field_info.annotation)
+            or field_annotation_is_scalar_sequence_mapping(field.field_info.annotation)
         ):
             for f_ in fields:
                 values[field.name].pop(f_.alias, None)

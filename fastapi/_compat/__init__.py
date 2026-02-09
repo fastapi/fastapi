@@ -40,6 +40,7 @@ from .v2 import get_missing_field_error as get_missing_field_error
 from .v2 import get_model_name_map as get_model_name_map
 from .v2 import get_schema_from_model_field as get_schema_from_model_field
 from .v2 import is_scalar_field as is_scalar_field
+from .v2 import omit_by_default as omit_by_default
 from .v2 import serialize_sequence_value as serialize_sequence_value
 from .v2 import (
     with_info_plain_validator_function as with_info_plain_validator_function,
