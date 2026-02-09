@@ -3,7 +3,7 @@ import importlib
 import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 
 from ...utils import needs_py310
 
@@ -212,7 +212,7 @@ def test_openapi_schema(client: TestClient, mod_name: str):
                                 "title": "Tax",
                                 "anyOf": [{"type": "number"}, {"type": "null"}],
                             },
-                            "tags": tags_schema,
+                            "tags": Is(tags_schema),
                         },
                         "required": [
                             "name",
