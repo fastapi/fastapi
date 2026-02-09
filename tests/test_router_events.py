@@ -322,7 +322,6 @@ def test_router_async_generator_lifespan(state: State) -> None:
 def test_startup_shutdown_handlers_as_parameters(state: State) -> None:
     """Test that startup/shutdown handlers passed as parameters to FastAPI are called correctly."""
 
-
     def app_startup() -> None:
         state.app_startup = True
 
@@ -343,16 +342,15 @@ def test_startup_shutdown_handlers_as_parameters(state: State) -> None:
 
     router = APIRouter(on_startup=[router_startup], on_shutdown=[router_shutdown])
 
-
     def sub_router_startup() -> None:
         state.sub_router_startup = True
 
     def sub_router_shutdown() -> None:
         state.sub_router_shutdown = True
 
-
-    sub_router = APIRouter(on_startup=[sub_router_startup], on_shutdown=[sub_router_shutdown])
-
+    sub_router = APIRouter(
+        on_startup=[sub_router_startup], on_shutdown=[sub_router_shutdown]
+    )
 
     router.include_router(sub_router)
     app.include_router(router)
