@@ -33,7 +33,7 @@
 
 ---
 
-FastAPI é um moderno e rápido (alta performance) _framework web_ para construção de APIs com Python, baseado nos _type hints_ padrões do Python.
+FastAPI é um moderno e rápido (alta performance) framework web para construção de APIs com Python, baseado nos type hints padrões do Python.
 
 Os recursos chave são:
 
@@ -161,8 +161,6 @@ $ pip install "fastapi[standard]"
 Crie um arquivo `main.py` com:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -174,7 +172,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -183,9 +181,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 Se seu código utiliza `async` / `await`, use `async def`:
 
-```Python hl_lines="9  14"
-from typing import Union
-
+```Python hl_lines="7  12"
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -197,7 +193,7 @@ async def read_root():
 
 
 @app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
+async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -288,9 +284,7 @@ Agora modifique o arquivo `main.py` para receber um corpo de uma requisição `P
 
 Declare o corpo utilizando tipos padrão Python, graças ao Pydantic.
 
-```Python hl_lines="4  9-12  25-27"
-from typing import Union
-
+```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -300,7 +294,7 @@ app = FastAPI()
 class Item(BaseModel):
     name: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @app.get("/")
@@ -309,7 +303,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 
 
@@ -411,7 +405,7 @@ Voltando ao código do exemplo anterior, **FastAPI** irá:
 * Documentar tudo com OpenAPI, que poderá ser usado por:
     * Sistemas de documentação interativos.
     * Sistemas de clientes de geração de código automáticos, para muitas linguagens.
-* Fornecer diretamente 2 interfaces _web_ de documentação interativa.
+* Fornecer diretamente 2 interfaces web de documentação interativa.
 
 ---
 
@@ -510,7 +504,7 @@ Siga os tutoriais do seu provedor de nuvem para implantar aplicações FastAPI c
 
 ## Performance { #performance }
 
-Testes de performance da _Independent TechEmpower_ mostram aplicações **FastAPI** rodando sob Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">um dos _frameworks_ Python mais rápidos disponíveis</a>, somente atrás de Starlette e Uvicorn (utilizados internamente pelo FastAPI). (*)
+Testes de performance da Independent TechEmpower mostram aplicações **FastAPI** rodando sob Uvicorn como <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">um dos frameworks Python mais rápidos disponíveis</a>, somente atrás de Starlette e Uvicorn (utilizados internamente pelo FastAPI). (*)
 
 Para entender mais sobre isso, veja a seção <a href="https://fastapi.tiangolo.com/pt/benchmarks/" class="internal-link" target="_blank">Comparações</a>.
 
@@ -530,7 +524,7 @@ Utilizado pelo Starlette:
 
 * <a href="https://www.python-httpx.org" target="_blank"><code>httpx</code></a> - Obrigatório caso você queira utilizar o `TestClient`.
 * <a href="https://jinja.palletsprojects.com" target="_blank"><code>jinja2</code></a> - Obrigatório se você quer utilizar a configuração padrão de templates.
-* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obrigatório se você deseja suporte a <abbr title="converting the string that comes from an HTTP request into Python data - convertendo a string que vem de uma requisição HTTP em dados Python">"parsing"</abbr> de formulário, com `request.form()`.
+* <a href="https://github.com/Kludex/python-multipart" target="_blank"><code>python-multipart</code></a> - Obrigatório se você deseja suporte a <abbr title="convertendo a string que vem de uma requisição HTTP em dados Python">"parsing"</abbr> de formulário, com `request.form()`.
 
 Utilizado pelo FastAPI:
 
