@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.6
+
 ### Translations
 
 * 🌐 Update translations for zh (update-outdated). PR [#14843](https://github.com/fastapi/fastapi/pull/14843) by [@tiangolo](https://github.com/tiangolo).
