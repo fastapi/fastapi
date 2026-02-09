@@ -14,6 +14,7 @@ on:
 
 env:
   UV_NO_SYNC: true
+  INLINE_SNAPSHOT_DEFAULT_FLAGS: review
 
 jobs:
   changes:
