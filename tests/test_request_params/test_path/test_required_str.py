@@ -59,7 +59,7 @@ def test_schema(path: str, expected_name: str, expected_title: str):
             {
                 "required": True,
                 "schema": {"title": Is(expected_title), "type": "string"},
-                "name": expected_name,
+                "name": Is(expected_name),
                 "in": "path",
             }
         ]
