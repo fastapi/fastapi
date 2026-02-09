@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.128.6
 
 ### Fixes
