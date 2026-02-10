@@ -201,7 +201,7 @@ This will also work because `RedirectResponse` is a subclass of `Response`, and 
 
 But when you return some other arbitrary object that is not a valid Pydantic type (e.g. a database object) and you annotate it like that in the function, FastAPI will try to create a Pydantic response model from that type annotation, and will fail.
 
-The same would happen if you had something like a <abbr title='A union between multiple types means "any of these types".'>union</abbr> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
+The same would happen if you had something like a <dfn title='A union between multiple types means "any of these types".'>union</dfn> between different types where one or more of them are not valid Pydantic types, for example this would fail 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 

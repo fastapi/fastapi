@@ -2,7 +2,7 @@
 
 Python has support for optional "type hints" (also called "type annotations").
 
-These **"type hints"** or annotations are a special syntax that allow declaring the <abbr title="for example: str, int, float, bool">type</abbr> of a variable.
+These **"type hints"** or annotations are a special syntax that allow declaring the <dfn title="for example: str, int, float, bool">type</dfn> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -34,7 +34,7 @@ The function does the following:
 
 * Takes a `first_name` and `last_name`.
 * Converts the first letter of each one to upper case with `title()`.
-* <abbr title="Puts them together, as one. With the contents of one after the other.">Concatenates</abbr> them with a space in the middle.
+* <dfn title="Puts them together, as one. With the contents of one after the other.">Concatenates</dfn> them with a space in the middle.
 
 {* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
 
@@ -222,7 +222,7 @@ You can declare that a variable can be any of **several types**, for example, an
 
 In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
 
-In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr>.
+In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <dfn title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</dfn>.
 
 //// tab | Python 3.10+
 
@@ -336,7 +336,7 @@ And the same as with previous Python versions, from the `typing` module:
 * `Optional`
 * ...and others.
 
-In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <abbr title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</abbr> to declare unions of types, that's a lot better and simpler.
+In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <dfn title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</dfn> to declare unions of types, that's a lot better and simpler.
 
 ////
 
@@ -411,7 +411,7 @@ Pydantic has a special behavior when you use `Optional` or `Union[Something, Non
 
 ## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
-Python also has a feature that allows putting **additional <abbr title="Data about the data, in this case, information about the type, e.g. a description.">metadata</abbr>** in these type hints using `Annotated`.
+Python also has a feature that allows putting **additional <dfn title="Data about the data, in this case, information about the type, e.g. a description.">metadata</dfn>** in these type hints using `Annotated`.
 
 Since Python 3.9, `Annotated` is a part of the standard library, so you can import it from `typing`.
 

@@ -54,7 +54,7 @@ In the output, there's a line with something like:
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-That line shows the URL where your app is being served, in your local machine.
+That line shows the URL where your app is being served on your local machine.
 
 ### Check it { #check-it }
 
@@ -271,7 +271,7 @@ We are going to call them "**operations**" too.
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
 * the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
 /// info | `@decorator` Info
 
