@@ -423,7 +423,7 @@ Result (German):
 <abbr title="Asynchrones Server-Gateway-Interface">ASGI</abbr>
 ```
 
-- If the title of abbr element contains full phrase for that abbreviation, and other information, separated by a colon (`:`), then append a dash (`-`) and the translation of the full phrase to the original full phrase and translate the other information.
+- If the title of abbr element contains a full phrase for that abbreviation, and other information, separated by a colon (`:`), then append a dash (`-`) and the translation of the full phrase to the original full phrase and translate the other information.
 
 Conversion scheme:
 
