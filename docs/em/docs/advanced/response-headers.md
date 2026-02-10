@@ -38,4 +38,4 @@
 
 ✔️ 🤯 👈 🛃 © 🎚 💪 🚮 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">⚙️ '✖-' 🔡</a>.
 
-✋️ 🚥 👆 ✔️ 🛃 🎚 👈 👆 💚 👩‍💻 🖥 💪 👀, 👆 💪 🚮 👫 👆 ⚜ 📳 (✍ 🌅 [⚜ (✖️-🇨🇳 ℹ 🤝)](../tutorial/cors.md){.internal-link target=_blank}), ⚙️ 🔢 `expose_headers` 📄 <a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">💃 ⚜ 🩺</a>.
+✋️ 🚥 👆 ✔️ 🛃 🎚 👈 👆 💚 👩‍💻 🖥 💪 👀, 👆 💪 🚮 👫 👆 ⚜ 📳 (✍ 🌅 [⚜ (✖️-🇨🇳 ℹ 🤝)](../tutorial/cors.md){.internal-link target=_blank}), ⚙️ 🔢 `expose_headers` 📄 <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">💃 ⚜ 🩺</a>.

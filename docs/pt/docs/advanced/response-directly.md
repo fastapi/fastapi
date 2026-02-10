@@ -1,4 +1,4 @@
-# Retornando uma Resposta Diretamente
+# Retornando uma Resposta Diretamente { #return-a-response-directly }
 
 Quando você cria uma *operação de rota* no **FastAPI** você pode retornar qualquer dado nela: um dicionário (`dict`), uma lista (`list`), um modelo do Pydantic ou do seu banco de dados, etc.
 
@@ -10,7 +10,7 @@ Mas você pode retornar a `JSONResponse` diretamente nas suas *operações de ro
 
 Pode ser útil para retornar cabeçalhos e cookies personalizados, por exemplo.
 
-## Retornando uma `Response`
+## Retornando uma `Response` { #return-a-response }
 
 Na verdade, você pode retornar qualquer `Response` ou subclasse dela.
 
@@ -26,7 +26,7 @@ Ele não vai fazer conversões de dados com modelos do Pydantic, não irá conve
 
 Isso te dá bastante flexibilidade. Você pode retornar qualquer tipo de dado, sobrescrever qualquer declaração e validação nos dados, etc.
 
-## Utilizando o `jsonable_encoder` em uma `Response`
+## Utilizando o `jsonable_encoder` em uma `Response` { #using-the-jsonable-encoder-in-a-response }
 
 Como o **FastAPI** não realiza nenhuma mudança na `Response` que você retorna, você precisa garantir que o conteúdo dela está pronto para uso.
 
@@ -44,23 +44,22 @@ Você também pode utilizar `from starlette.responses import JSONResponse`.
 
 ///
 
-## Retornando uma `Response`
+## Retornando uma `Response` personalizada { #returning-a-custom-response }
 
 O exemplo acima mostra todas as partes que você precisa, mas ainda não é muito útil, já que você poderia ter retornado o `item` diretamente, e o **FastAPI** colocaria em uma `JSONResponse` para você, convertendo em um `dict`, etc. Tudo isso por padrão.
 
 Agora, vamos ver como você pode usar isso para retornar uma resposta personalizada.
 
-Vamos dizer quer retornar uma resposta <a href="https://pt.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
+Vamos dizer que você quer retornar uma resposta <a href="https://en.wikipedia.org/wiki/XML" class="external-link" target="_blank">XML</a>.
 
 Você pode colocar o seu conteúdo XML em uma string, colocar em uma `Response`, e retorná-lo:
 
 {* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
-## Notas
+## Notas { #notes }
 
 Quando você retorna uma `Response` diretamente os dados não são validados, convertidos (serializados) ou documentados automaticamente.
 
-Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI
-](additional-responses.md){.internal-link target=_blank}.
+Mas você ainda pode documentar como descrito em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
 Você pode ver nas próximas seções como usar/declarar essas `Responses` customizadas enquanto mantém a conversão e documentação automática dos dados.

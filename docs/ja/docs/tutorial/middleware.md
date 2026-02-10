@@ -37,7 +37,7 @@
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">'X-'プレフィックスを使用</a>してカスタムの独自ヘッダーを追加できます。
 
-ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.io/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank})
+ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、<a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">StarletteのCORSドキュメント</a>に記載されているパラメータ `expose_headers` を使用して、それらをCORS設定に追加する必要があります ([CORS (オリジン間リソース共有)](cors.md){.internal-link target=_blank})
 
 ///
 

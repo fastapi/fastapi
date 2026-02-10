@@ -81,7 +81,7 @@
 
 ## ❎ 🛃 ⚠ 🐕‍🦺
 
-👆 💪 🚮 🛃 ⚠ 🐕‍🦺 ⏮️ <a href="https://www.starlette.io/exceptions/" class="external-link" target="_blank">🎏 ⚠ 🚙 ⚪️➡️ 💃</a>.
+👆 💪 🚮 🛃 ⚠ 🐕‍🦺 ⏮️ <a href="https://www.starlette.dev/exceptions/" class="external-link" target="_blank">🎏 ⚠ 🚙 ⚪️➡️ 💃</a>.
 
 ➡️ 💬 👆 ✔️ 🛃 ⚠ `UnicornException` 👈 👆 (⚖️ 🗃 👆 ⚙️) 💪 `raise`.
 

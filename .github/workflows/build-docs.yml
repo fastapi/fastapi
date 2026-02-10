@@ -21,7 +21,7 @@ jobs:
     outputs:
       docs: ${{ steps.filter.outputs.docs }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     # For pull requests it's not necessary to checkout the code but for the main branch it is
     - uses: dorny/paths-filter@v3
       id: filter
@@ -32,14 +32,12 @@ jobs:
             - docs/**
             - docs_src/**
             - requirements-docs.txt
-            - requirements-docs-insiders.txt
             - pyproject.toml
             - mkdocs.yml
-            - mkdocs.insiders.yml
-            - mkdocs.maybe-insiders.yml
-            - mkdocs.no-insiders.yml
+            - mkdocs.env.yml
             - .github/workflows/build-docs.yml
             - .github/workflows/deploy-docs.yml
+            - scripts/mkdocs_hooks.py
   langs:
     needs:
       - changes
@@ -47,13 +45,13 @@ jobs:
     outputs:
       langs: ${{ steps.show-langs.outputs.langs }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true
@@ -62,12 +60,6 @@ jobs:
             pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
-      # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Verify Docs
         run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
@@ -89,13 +81,13 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true
@@ -104,11 +96,6 @@ jobs:
             pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
       - uses: actions/cache@v4
@@ -117,7 +104,7 @@ jobs:
           path: docs/${{ matrix.lang }}/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: docs-site-${{ matrix.lang }}
           path: ./site/**

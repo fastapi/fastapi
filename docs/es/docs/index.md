@@ -87,7 +87,7 @@ Las características clave son:
 
 "_Estoy súper emocionado con **FastAPI**. ¡Es tan divertido!_"
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">host del podcast Python Bytes</a></strong> <a href="https://twitter.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong><a href="https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855" target="_blank">host del podcast Python Bytes</a></strong> <a href="https://x.com/brianokken/status/1112220079972728832" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -101,7 +101,7 @@ Las características clave son:
 
 "_Nos hemos cambiado a **FastAPI** para nuestras **APIs** [...] Creo que te gustará [...]_"
 
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">fundadores de Explosion AI</a> - <a href="https://spacy.io" target="_blank">creadores de spaCy</a></strong> <a href="https://twitter.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://twitter.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong><a href="https://explosion.ai" target="_blank">fundadores de Explosion AI</a> - <a href="https://spacy.io" target="_blank">creadores de spaCy</a></strong> <a href="https://x.com/_inesmontani/status/1144173225322143744" target="_blank"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680" target="_blank"><small>(ref)</small></a></div>
 
 ---
 
@@ -123,7 +123,7 @@ Si estás construyendo una aplicación de <abbr title="Interfaz de Línea de Com
 
 FastAPI se apoya en hombros de gigantes:
 
-* <a href="https://www.starlette.io/" class="external-link" target="_blank">Starlette</a> para las partes web.
+* <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> para las partes web.
 * <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> para las partes de datos.
 
 ## Instalación
@@ -229,7 +229,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Acerca del comando <code>fastapi dev main.py</code>...</summary>
 
-El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.org" class="external-link" target="_blank">Uvicorn</a>.
+El comando `fastapi dev` lee tu archivo `main.py`, detecta la app **FastAPI** en él y arranca un servidor usando <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>.
 
 Por defecto, `fastapi dev` comenzará con auto-recarga habilitada para el desarrollo local.
 
@@ -470,7 +470,7 @@ Usadas por Starlette:
 
 Usadas por FastAPI / Starlette:
 
-* <a href="https://www.uvicorn.org" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
+* <a href="https://www.uvicorn.dev" target="_blank"><code>uvicorn</code></a> - para el servidor que carga y sirve tu aplicación. Esto incluye `uvicorn[standard]`, que incluye algunas dependencias (por ejemplo, `uvloop`) necesarias para servir con alto rendimiento.
 * `fastapi-cli` - para proporcionar el comando `fastapi`.
 
 ### Sin Dependencias `standard`

@@ -1,6 +1,6 @@
-# Path Operation Advanced Configuration
+# Path Operation Advanced Configuration { #path-operation-advanced-configuration }
 
-## OpenAPI operationId
+## OpenAPI operationId { #openapi-operationid }
 
 /// warning
 
@@ -14,7 +14,7 @@ You would have to make sure that it is unique for each operation.
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
-### Using the *path operation function* name as the operationId
+### Using the *path operation function* name as the operationId { #using-the-path-operation-function-name-as-the-operationid }
 
 If you want to use your APIs' function names as `operationId`s, you can iterate over all of them and override each *path operation's* `operation_id` using their `APIRoute.name`.
 
@@ -36,13 +36,13 @@ Even if they are in different modules (Python files).
 
 ///
 
-## Exclude from OpenAPI
+## Exclude from OpenAPI { #exclude-from-openapi }
 
 To exclude a *path operation* from the generated OpenAPI schema (and thus, from the automatic documentation systems), use the parameter `include_in_schema` and set it to `False`:
 
 {* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
-## Advanced description from docstring
+## Advanced description from docstring { #advanced-description-from-docstring }
 
 You can limit the lines used from the docstring of a *path operation function* for OpenAPI.
 
@@ -50,9 +50,9 @@ Adding an `\f` (an escaped "form feed" character) causes **FastAPI** to truncate
 
 It won't show up in the documentation, but other tools (such as Sphinx) will be able to use the rest.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[19:29] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
 
-## Additional Responses
+## Additional Responses { #additional-responses }
 
 You probably have seen how to declare the `response_model` and `status_code` for a *path operation*.
 
@@ -62,7 +62,7 @@ You can also declare additional responses with their models, status codes, etc.
 
 There's a whole chapter here in the documentation about it, you can read it at [Additional Responses in OpenAPI](additional-responses.md){.internal-link target=_blank}.
 
-## OpenAPI Extra
+## OpenAPI Extra { #openapi-extra }
 
 When you declare a *path operation* in your application, **FastAPI** automatically generates the relevant metadata about that *path operation* to be included in the OpenAPI schema.
 
@@ -88,7 +88,7 @@ If you only need to declare additional responses, a more convenient way to do it
 
 You can extend the OpenAPI schema for a *path operation* using the parameter `openapi_extra`.
 
-### OpenAPI Extensions
+### OpenAPI Extensions { #openapi-extensions }
 
 This `openapi_extra` can be helpful, for example, to declare [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
@@ -129,7 +129,7 @@ And if you see the resulting OpenAPI (at `/openapi.json` in your API), you will 
 }
 ```
 
-### Custom OpenAPI *path operation* schema
+### Custom OpenAPI *path operation* schema { #custom-openapi-path-operation-schema }
 
 The dictionary in `openapi_extra` will be deeply merged with the automatically generated OpenAPI schema for the *path operation*.
 
@@ -145,7 +145,7 @@ In this example, we didn't declare any Pydantic model. In fact, the request body
 
 Nevertheless, we can declare the expected schema for the request body.
 
-### Custom OpenAPI content type
+### Custom OpenAPI content type { #custom-openapi-content-type }
 
 Using this same trick, you could use a Pydantic model to define the JSON Schema that is then included in the custom OpenAPI schema section for the *path operation*.
 
@@ -155,13 +155,13 @@ For example, in this application we don't use FastAPI's integrated functionality
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[15:20, 22] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[17:22, 24] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[15:20, 22] *}
 
 ////
 
@@ -179,13 +179,13 @@ And then in our code, we parse that YAML content directly, and then we are again
 
 //// tab | Pydantic v2
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py39.py hl[24:31] *}
 
 ////
 
 //// tab | Pydantic v1
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1.py hl[26:33] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007_pv1_py39.py hl[24:31] *}
 
 ////
 

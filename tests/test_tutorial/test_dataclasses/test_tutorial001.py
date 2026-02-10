@@ -1,12 +1,28 @@
+import importlib
+
+import pytest
 from dirty_equals import IsDict
 from fastapi.testclient import TestClient
 
-from docs_src.dataclasses.tutorial001 import app
-
-client = TestClient(app)
+from tests.utils import needs_py310
 
 
-def test_post_item():
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial001"),
+        pytest.param("tutorial001_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.dataclasses.{request.param}")
+
+    client = TestClient(mod.app)
+    client.headers.clear()
+    return client
+
+
+def test_post_item(client: TestClient):
     response = client.post("/items/", json={"name": "Foo", "price": 3})
     assert response.status_code == 200
     assert response.json() == {
@@ -17,7 +33,7 @@ def test_post_item():
     }
 
 
-def test_post_invalid_item():
+def test_post_invalid_item(client: TestClient):
     response = client.post("/items/", json={"name": "Foo", "price": "invalid price"})
     assert response.status_code == 422
     assert response.json() == IsDict(
@@ -45,7 +61,7 @@ def test_post_invalid_item():
     )
 
 
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {

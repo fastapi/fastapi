@@ -1,4 +1,4 @@
-# Cookie Parameter Models
+# Cookie Parameter Models { #cookie-parameter-models }
 
 If you have a group of **cookies** that are related, you can create a **Pydantic model** to declare them. 🍪
 
@@ -16,7 +16,7 @@ This same technique applies to `Query`, `Cookie`, and `Header`. 😎
 
 ///
 
-## Cookies with a Pydantic Model
+## Cookies with a Pydantic Model { #cookies-with-a-pydantic-model }
 
 Declare the **cookie** parameters that you need in a **Pydantic model**, and then declare the parameter as `Cookie`:
 
@@ -24,7 +24,7 @@ Declare the **cookie** parameters that you need in a **Pydantic model**, and the
 
 **FastAPI** will **extract** the data for **each field** from the **cookies** received in the request and give you the Pydantic model you defined.
 
-## Check the Docs
+## Check the Docs { #check-the-docs }
 
 You can see the defined cookies in the docs UI at `/docs`:
 
@@ -42,7 +42,7 @@ But even if you **fill the data** and click "Execute", because the docs UI works
 
 ///
 
-## Forbid Extra Cookies
+## Forbid Extra Cookies { #forbid-extra-cookies }
 
 In some special use cases (probably not very common), you might want to **restrict** the cookies that you want to receive.
 
@@ -50,7 +50,7 @@ Your API now has the power to control its own <abbr title="This is a joke, just 
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 If a client tries to send some **extra cookies**, they will receive an **error** response.
 
@@ -71,6 +71,6 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
 }
 ```
 
-## Summary
+## Summary { #summary }
 
 You can use **Pydantic models** to declare <abbr title="Have a last cookie before you go. 🍪">**cookies**</abbr> in **FastAPI**. 😎

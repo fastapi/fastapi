@@ -1,25 +1,29 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-default_language_version:
-    python: python3.10
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-    -   id: check-added-large-files
-    -   id: check-toml
-    -   id: check-yaml
+      - id: check-added-large-files
+      - id: check-toml
+      - id: check-yaml
         args:
-        -   --unsafe
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+        - --unsafe
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.3
     hooks:
-    -   id: ruff
+      - id: ruff
         args:
         - --fix
-    -   id: ruff-format
-ci:
-    autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
-    autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: local-script
+        language: unsupported
+        name: local script
+        entry: uv run ./scripts/docs.py add-permalinks-pages
+        args:
+          - --update-existing
+        files: ^docs/en/docs/.*\.md$

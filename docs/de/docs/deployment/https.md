@@ -1,4 +1,4 @@
-# Über HTTPS
+# Über HTTPS { #about-https }
 
 Es ist leicht anzunehmen, dass HTTPS etwas ist, was einfach nur „aktiviert“ wird oder nicht.
 
@@ -22,19 +22,19 @@ Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes 
 * Die Verschlüsselung der Verbindung erfolgt auf **TCP-Ebene**.
     * Das ist eine Schicht **unter HTTP**.
     * Die Handhabung von **Zertifikaten und Verschlüsselung** erfolgt also **vor HTTP**.
-* **TCP weiß nichts über „<abbr title="Domäne, Bereich, Wirkungsraum">Domains</abbr>“**. Nur über IP-Adressen.
+* **TCP weiß nichts über „Domains“**. Nur über IP-Adressen.
     * Die Informationen über die angeforderte **spezifische Domain** befinden sich in den **HTTP-Daten**.
 * Die **HTTPS-Zertifikate** „zertifizieren“ eine **bestimmte Domain**, aber das Protokoll und die Verschlüsselung erfolgen auf TCP-Ebene, **ohne zu wissen**, um welche Domain es sich handelt.
 * **Standardmäßig** bedeutet das, dass Sie nur **ein HTTPS-Zertifikat pro IP-Adresse** haben können.
     * Ganz gleich, wie groß Ihr Server ist oder wie klein die einzelnen Anwendungen darauf sind.
     * Hierfür gibt es jedoch eine **Lösung**.
-* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Angabe des Servernamens">SNI</abbr></a>**.
-    * Mit dieser SNI-Erweiterung kann ein einzelner Server (mit einer **einzelnen IP-Adresse**) über **mehrere HTTPS-Zertifikate** verfügen und **mehrere HTTPS-Domains/Anwendungen** bedienen.
+* Es gibt eine **Erweiterung** zum **TLS**-Protokoll (dasjenige, das die Verschlüsselung auf TCP-Ebene, vor HTTP, verwaltet) namens **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication – Servernamensanzeige">SNI</abbr></a>**.
+    * Mit dieser SNI-Erweiterung kann ein einzelner Server (mit einer **einzelnen IP-Adresse**) über **mehrere HTTPS-Zertifikate** verfügen und **mehrere HTTPS-Domains/Anwendungen bereitstellen**.
     * Damit das funktioniert, muss eine **einzelne** Komponente (Programm), die auf dem Server ausgeführt wird und welche die **öffentliche IP-Adresse** überwacht, **alle HTTPS-Zertifikate** des Servers haben.
 * **Nachdem** eine sichere Verbindung hergestellt wurde, ist das Kommunikationsprotokoll **immer noch HTTP**.
     * Die Inhalte sind **verschlüsselt**, auch wenn sie mit dem **HTTP-Protokoll** gesendet werden.
 
-Es ist eine gängige Praxis, **ein Programm/HTTP-Server** auf dem Server (der Maschine, dem Host usw.) laufen zu lassen, welches **alle HTTPS-Aspekte verwaltet**: Empfangen der **verschlüsselten HTTPS-Requests**, Senden der **entschlüsselten HTTP-Requests** an die eigentliche HTTP-Anwendung die auf demselben Server läuft (in diesem Fall die **FastAPI**-Anwendung), entgegennehmen der **HTTP-Response** von der Anwendung, **verschlüsseln derselben** mithilfe des entsprechenden **HTTPS-Zertifikats** und Zurücksenden zum Client über **HTTPS**. Dieser Server wird oft als **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS-Terminierungsproxy</a>** bezeichnet.
+Es ist eine gängige Praxis, **ein Programm/HTTP-Server** auf dem Server (der Maschine, dem Host usw.) laufen zu lassen, welches **alle HTTPS-Aspekte verwaltet**: Empfangen der **verschlüsselten HTTPS-<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr>**, Senden der **entschlüsselten HTTP-Requests** an die eigentliche HTTP-Anwendung die auf demselben Server läuft (in diesem Fall die **FastAPI**-Anwendung), entgegennehmen der **HTTP-Response** von der Anwendung, **verschlüsseln derselben** mithilfe des entsprechenden **HTTPS-Zertifikats** und Zurücksenden zum Client über **HTTPS**. Dieser Server wird oft als **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS-Terminierungsproxy</a>** bezeichnet.
 
 Einige der Optionen, die Sie als TLS-Terminierungsproxy verwenden können, sind:
 
@@ -43,7 +43,7 @@ Einige der Optionen, die Sie als TLS-Terminierungsproxy verwenden können, sind:
 * Nginx
 * HAProxy
 
-## Let's Encrypt
+## Let's Encrypt { #lets-encrypt }
 
 Vor Let's Encrypt wurden diese **HTTPS-Zertifikate** von vertrauenswürdigen Dritten verkauft.
 
@@ -57,13 +57,13 @@ Die Domains werden sicher verifiziert und die Zertifikate werden automatisch gen
 
 Die Idee besteht darin, den Erwerb und die Erneuerung der Zertifikate zu automatisieren, sodass Sie **sicheres HTTPS, kostenlos und für immer** haben können.
 
-## HTTPS für Entwickler
+## HTTPS für Entwickler { #https-for-developers }
 
 Hier ist ein Beispiel, wie eine HTTPS-API aussehen könnte, Schritt für Schritt, wobei vor allem die für Entwickler wichtigen Ideen berücksichtigt werden.
 
-### Domainname
+### Domainname { #domain-name }
 
-Alles beginnt wahrscheinlich damit, dass Sie einen **Domainnamen erwerben**. Anschließend konfigurieren Sie ihn in einem DNS-Server (wahrscheinlich beim selben Cloud-Anbieter).
+Alles beginnt wahrscheinlich damit, dass Sie einen **Domainnamen erwerben**. Anschließend konfigurieren Sie ihn in einem DNS-Server (wahrscheinlich beim selben Cloudanbieter).
 
 Sie würden wahrscheinlich einen Cloud-Server (eine virtuelle Maschine) oder etwas Ähnliches bekommen, und dieser hätte eine <abbr title="Sie ändert sich nicht">feste</abbr> **öffentliche IP-Adresse**.
 
@@ -77,17 +77,17 @@ Dieser Domainnamen-Aspekt liegt weit vor HTTPS, aber da alles von der Domain und
 
 ///
 
-### DNS
+### DNS { #dns }
 
 Konzentrieren wir uns nun auf alle tatsächlichen HTTPS-Aspekte.
 
-Zuerst würde der Browser mithilfe der **DNS-Server** herausfinden, welches die **IP für die Domain** ist, in diesem Fall für `someapp.example.com`.
+Zuerst würde der Browser mithilfe der **DNS-Server** herausfinden, welches die **IP für die Domain** ist, in diesem Fall `someapp.example.com`.
 
 Die DNS-Server geben dem Browser eine bestimmte **IP-Adresse** zurück. Das wäre die von Ihrem Server verwendete öffentliche IP-Adresse, die Sie in den DNS-Servern konfiguriert haben.
 
 <img src="/img/deployment/https/https01.drawio.svg">
 
-### TLS-Handshake-Start
+### TLS-Handshake-Start { #tls-handshake-start }
 
 Der Browser kommuniziert dann mit dieser IP-Adresse über **Port 443** (den HTTPS-Port).
 
@@ -97,7 +97,7 @@ Der erste Teil der Kommunikation besteht lediglich darin, die Verbindung zwische
 
 Diese Interaktion zwischen dem Client und dem Server zum Aufbau der TLS-Verbindung wird als **<abbr title="TLS-Handschlag">TLS-Handshake</abbr>** bezeichnet.
 
-### TLS mit SNI-Erweiterung
+### TLS mit SNI-Erweiterung { #tls-with-sni-extension }
 
 **Nur ein Prozess** im Server kann an einem bestimmten **Port** einer bestimmten **IP-Adresse** lauschen. Möglicherweise gibt es andere Prozesse, die an anderen Ports dieselbe IP-Adresse abhören, jedoch nur einen für jede Kombination aus IP-Adresse und Port.
 
@@ -127,7 +127,7 @@ Beachten Sie, dass die Verschlüsselung der Kommunikation auf der **TCP-Ebene** 
 
 ///
 
-### HTTPS-Request
+### HTTPS-Request { #https-request }
 
 Da Client und Server (sprich, der Browser und der TLS-Terminierungsproxy) nun über eine **verschlüsselte TCP-Verbindung** verfügen, können sie die **HTTP-Kommunikation** starten.
 
@@ -135,19 +135,19 @@ Der Client sendet also einen **HTTPS-Request**. Das ist einfach ein HTTP-Request
 
 <img src="/img/deployment/https/https04.drawio.svg">
 
-### Den Request entschlüsseln
+### Den Request entschlüsseln { #decrypt-the-request }
 
 Der TLS-Terminierungsproxy würde die vereinbarte Verschlüsselung zum **Entschlüsseln des Requests** verwenden und den **einfachen (entschlüsselten) HTTP-Request** an den Prozess weiterleiten, der die Anwendung ausführt (z. B. einen Prozess, bei dem Uvicorn die FastAPI-Anwendung ausführt).
 
 <img src="/img/deployment/https/https05.drawio.svg">
 
-### HTTP-Response
+### HTTP-Response { #http-response }
 
 Die Anwendung würde den Request verarbeiten und eine **einfache (unverschlüsselte) HTTP-Response** an den TLS-Terminierungsproxy senden.
 
 <img src="/img/deployment/https/https06.drawio.svg">
 
-### HTTPS-Response
+### HTTPS-Response { #https-response }
 
 Der TLS-Terminierungsproxy würde dann die Response mithilfe der zuvor vereinbarten Kryptografie (als das Zertifikat für `someapp.example.com` verhandelt wurde) **verschlüsseln** und sie an den Browser zurücksenden.
 
@@ -157,7 +157,7 @@ Als Nächstes überprüft der Browser, ob die Response gültig und mit dem richt
 
 Der Client (Browser) weiß, dass die Response vom richtigen Server kommt, da dieser die Kryptografie verwendet, die zuvor mit dem **HTTPS-Zertifikat** vereinbart wurde.
 
-### Mehrere Anwendungen
+### Mehrere Anwendungen { #multiple-applications }
 
 Auf demselben Server (oder denselben Servern) könnten sich **mehrere Anwendungen** befinden, beispielsweise andere API-Programme oder eine Datenbank.
 
@@ -167,7 +167,7 @@ Nur ein Prozess kann diese spezifische IP und den Port verarbeiten (in unserem B
 
 Auf diese Weise könnte der TLS-Terminierungsproxy HTTPS und Zertifikate für **mehrere Domains**, für mehrere Anwendungen, verarbeiten und die Requests dann jeweils an die richtige Anwendung weiterleiten.
 
-### Verlängerung des Zertifikats
+### Verlängerung des Zertifikats { #certificate-renewal }
 
 Irgendwann in der Zukunft würde jedes Zertifikat **ablaufen** (etwa 3 Monate nach dem Erwerb).
 
@@ -190,7 +190,39 @@ Um dies zu erreichen und den unterschiedlichen Anwendungsanforderungen gerecht z
 
 Dieser ganze Erneuerungsprozess, während die Anwendung weiterhin bereitgestellt wird, ist einer der Hauptgründe, warum Sie ein **separates System zur Verarbeitung von HTTPS** mit einem TLS-Terminierungsproxy haben möchten, anstatt einfach die TLS-Zertifikate direkt mit dem Anwendungsserver zu verwenden (z. B. Uvicorn).
 
-## Zusammenfassung
+## Proxy-<abbr title="weitergeleitete Header">Forwarded-Header</abbr> { #proxy-forwarded-headers }
+
+Wenn Sie einen Proxy zur Verarbeitung von HTTPS verwenden, weiß Ihr **Anwendungsserver** (z. B. Uvicorn über das FastAPI CLI) nichts über den HTTPS-Prozess, er kommuniziert per einfachem HTTP mit dem **TLS-Terminierungsproxy**.
+
+Dieser **Proxy** würde normalerweise unmittelbar vor dem Übermitteln der Anfrage an den **Anwendungsserver** einige HTTP-Header dynamisch setzen, um dem Anwendungsserver mitzuteilen, dass der Request vom Proxy **weitergeleitet** wird.
+
+/// note | Technische Details
+
+Die Proxy-Header sind:
+
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+
+///
+
+Trotzdem, da der **Anwendungsserver** nicht weiß, dass er sich hinter einem vertrauenswürdigen **Proxy** befindet, würde er diesen Headern standardmäßig nicht vertrauen.
+
+Sie können den **Anwendungsserver** jedoch so konfigurieren, dass er den vom **Proxy** gesendeten *Forwarded*-Headern vertraut. Wenn Sie das FastAPI CLI verwenden, können Sie die *CLI-Option* `--forwarded-allow-ips` nutzen, um anzugeben, von welchen IPs er diesen *Forwarded*-Headern vertrauen soll.
+
+Wenn der **Anwendungsserver** beispielsweise nur Kommunikation vom vertrauenswürdigen **Proxy** empfängt, können Sie `--forwarded-allow-ips="*"` setzen, um allen eingehenden IPs zu vertrauen, da er nur Requests von der vom **Proxy** verwendeten IP erhalten wird.
+
+Auf diese Weise kann die Anwendung ihre eigene öffentliche URL, ob sie HTTPS verwendet, die Domain, usw. erkennen.
+
+Das ist z. B. nützlich, um <abbr title="Redirect – Umleitung">Redirects</abbr> korrekt zu handhaben.
+
+/// tip | Tipp
+
+Mehr dazu finden Sie in der Dokumentation zu [Hinter einem Proxy – Proxy-Forwarded-Header aktivieren](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank}
+
+///
+
+## Zusammenfassung { #recap }
 
 **HTTPS** zu haben ist sehr wichtig und in den meisten Fällen eine **kritische Anforderung**. Die meiste Arbeit, die Sie als Entwickler in Bezug auf HTTPS aufwenden müssen, besteht lediglich darin, **diese Konzepte zu verstehen** und wie sie funktionieren.
 

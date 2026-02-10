@@ -58,7 +58,7 @@ Hepsi, tüm geliştiriciler için en iyi geliştirme deneyimini sağlayacak şek
 
 Sonra, JSON Schema ile tamamen uyumlu olmasını sağlamak, kısıtlama bildirimlerini tanımlamanın farklı yollarını desteklemek ve birkaç editördeki testlere dayanarak editör desteğini (tip kontrolleri, otomatik tamamlama) geliştirmek için katkıda bulundum.
 
-Geliştirme sırasında, diğer ana gereksinim olan <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>'e de katkıda bulundum.
+Geliştirme sırasında, diğer ana gereksinim olan <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>'e de katkıda bulundum.
 
 ## Geliştirme
 

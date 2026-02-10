@@ -1,4 +1,4 @@
-# Async Tests
+# Async Tests { #async-tests }
 
 You have already seen how to test your **FastAPI** applications using the provided `TestClient`. Up to now, you have only seen how to write synchronous tests, without using `async` functions.
 
@@ -6,11 +6,11 @@ Being able to use asynchronous functions in your tests could be useful, for exam
 
 Let's look at how we can make that work.
 
-## pytest.mark.anyio
+## pytest.mark.anyio { #pytest-mark-anyio }
 
 If we want to call asynchronous functions in our tests, our test functions have to be asynchronous. AnyIO provides a neat plugin for this, that allows us to specify that some test functions are to be called asynchronously.
 
-## HTTPX
+## HTTPX { #httpx }
 
 Even if your **FastAPI** application uses normal `def` functions instead of `async def`, it is still an `async` application underneath.
 
@@ -18,7 +18,7 @@ The `TestClient` does some magic inside to call the asynchronous FastAPI applica
 
 The `TestClient` is based on <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a>, and luckily, we can use it directly to test the API.
 
-## Example
+## Example { #example }
 
 For a simple example, let's consider a file structure similar to the one described in [Bigger Applications](../tutorial/bigger-applications.md){.internal-link target=_blank} and [Testing](../tutorial/testing.md){.internal-link target=_blank}:
 
@@ -38,7 +38,7 @@ The file `test_main.py` would have the tests for `main.py`, it could look like t
 
 {* ../../docs_src/async_tests/test_main.py *}
 
-## Run it
+## Run it { #run-it }
 
 You can run your tests as usual via:
 
@@ -52,7 +52,7 @@ $ pytest
 
 </div>
 
-## In Detail
+## In Detail { #in-detail }
 
 The marker `@pytest.mark.anyio` tells pytest that this test function should be called asynchronously:
 
@@ -88,12 +88,12 @@ If your application relies on lifespan events, the `AsyncClient` won't trigger t
 
 ///
 
-## Other Asynchronous Function Calls
+## Other Asynchronous Function Calls { #other-asynchronous-function-calls }
 
 As the testing function is now asynchronous, you can now also call (and `await`) other `async` functions apart from sending requests to your FastAPI application in your tests, exactly as you would call them anywhere else in your code.
 
 /// tip
 
-If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `'@app.on_event("startup")` callback.
+If you encounter a `RuntimeError: Task attached to a different loop` when integrating asynchronous function calls in your tests (e.g. when using <a href="https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop" class="external-link" target="_blank">MongoDB's MotorClient</a>), remember to instantiate objects that need an event loop only within async functions, e.g. an `@app.on_event("startup")` callback.
 
 ///

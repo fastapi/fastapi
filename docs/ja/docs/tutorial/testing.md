@@ -1,6 +1,6 @@
 # テスト
 
-<a href="https://www.starlette.io/testclient/" class="external-link" target="_blank">Starlette</a> のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
+<a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
 <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> がベースなので、非常に使いやすく直感的です。
 

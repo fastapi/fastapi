@@ -24,13 +24,13 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "0.4.15"
           enable-cache: true
@@ -51,3 +51,4 @@ jobs:
         run: python ./scripts/people.py
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PEOPLE }}
+          SLEEP_INTERVAL: ${{ vars.PEOPLE_SLEEP_INTERVAL }}

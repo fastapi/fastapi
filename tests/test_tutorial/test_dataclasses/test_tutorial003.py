@@ -1,13 +1,28 @@
+import importlib
+
+import pytest
 from fastapi.testclient import TestClient
 
-from docs_src.dataclasses.tutorial003 import app
-
-from ...utils import needs_pydanticv1, needs_pydanticv2
-
-client = TestClient(app)
+from ...utils import needs_py39, needs_py310, needs_pydanticv1, needs_pydanticv2
 
 
-def test_post_authors_item():
+@pytest.fixture(
+    name="client",
+    params=[
+        pytest.param("tutorial003"),
+        pytest.param("tutorial003_py39", marks=needs_py39),
+        pytest.param("tutorial003_py310", marks=needs_py310),
+    ],
+)
+def get_client(request: pytest.FixtureRequest):
+    mod = importlib.import_module(f"docs_src.dataclasses.{request.param}")
+
+    client = TestClient(mod.app)
+    client.headers.clear()
+    return client
+
+
+def test_post_authors_item(client: TestClient):
     response = client.post(
         "/authors/foo/items/",
         json=[{"name": "Bar"}, {"name": "Baz", "description": "Drop the Baz"}],
@@ -22,7 +37,7 @@ def test_post_authors_item():
     }
 
 
-def test_get_authors():
+def test_get_authors(client: TestClient):
     response = client.get("/authors/")
     assert response.status_code == 200
     assert response.json() == [
@@ -54,7 +69,7 @@ def test_get_authors():
 
 
 @needs_pydanticv2
-def test_openapi_schema():
+def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {
@@ -191,7 +206,7 @@ def test_openapi_schema():
 
 # TODO: remove when deprecating Pydantic v1
 @needs_pydanticv1
-def test_openapi_schema_pv1():
+def test_openapi_schema_pv1(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == {

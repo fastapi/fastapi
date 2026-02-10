@@ -1,6 +1,6 @@
-# Testando Dependências com Sobreposição (Overrides)
+# Testando Dependências com Sobreposições { #testing-dependencies-with-overrides }
 
-## Sobrepondo dependências durante os testes
+## Sobrepondo dependências durante os testes { #overriding-dependencies-during-testing }
 
 Existem alguns cenários onde você deseje sobrepor uma dependência durante os testes.
 
@@ -8,7 +8,7 @@ Você não quer que a dependência original execute (e nenhuma das subdependênc
 
 Em vez disso, você deseja fornecer uma dependência diferente que será usada somente durante os testes (possivelmente apenas para alguns testes específicos) e fornecerá um valor que pode ser usado onde o valor da dependência original foi usado.
 
-### Casos de uso: serviço externo
+### Casos de uso: serviço externo { #use-cases-external-service }
 
 Um exemplo pode ser que você possua um provedor de autenticação externo que você precisa chamar.
 
@@ -20,7 +20,7 @@ Você provavelmente quer testar o provedor externo uma vez, mas não necessariam
 
 Neste caso, você pode sobrepor (*override*) a dependência que chama o provedor, e utilizar uma dependência customizada que retorna um *mock* do usuário, apenas para os seus testes.
 
-### Utilize o atributo `app.dependency_overrides`
+### Utilize o atributo `app.dependency_overrides` { #use-the-app-dependency-overrides-attribute }
 
 Para estes casos, a sua aplicação **FastAPI** possui o atributo `app.dependency_overrides`. Ele é um simples `dict`.
 
@@ -34,7 +34,7 @@ E então o **FastAPI** chamará a sobreposição no lugar da dependência origin
 
 Você pode definir uma sobreposição de dependência para uma dependência que é utilizada em qualquer lugar da sua aplicação **FastAPI**.
 
-A dependência original pode estar sendo utilizada em uma *função de operação de rota*, um *docorador de operação de rota* (quando você não utiliza o valor retornado), uma chamada ao `.include_router()`, etc.
+A dependência original pode estar sendo utilizada em uma *função de operação de rota*, um *decorador de operação de rota* (quando você não utiliza o valor retornado), uma chamada ao `.include_router()`, etc.
 
 O FastAPI ainda poderá sobrescrevê-lo.
 
@@ -48,6 +48,6 @@ app.dependency_overrides = {}
 
 /// tip | Dica
 
-Se você quer sobrepor uma dependência apenas para alguns testes, você pode definir a sobreposição no início do testes (dentro da função de teste) e reiniciá-la ao final (no final da função de teste).
+Se você quer sobrepor uma dependência apenas para alguns testes, você pode definir a sobreposição no início do teste (dentro da função de teste) e reiniciá-la ao final (no final da função de teste).
 
 ///
