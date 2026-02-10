@@ -123,10 +123,7 @@ def generate_encoders_by_class_tuples(
     return encoders_by_class_tuples
 
 
-encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
-encoders_by_class_tuples.update(
-    generate_encoders_by_class_tuples(encoders_by_extra_type)
-)
+encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE | encoders_by_extra_type)
 
 
 def jsonable_encoder(
