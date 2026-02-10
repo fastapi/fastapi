@@ -1,8 +1,8 @@
-# 请求体 - 字段
+# 请求体 - 字段 { #body-fields }
 
 与在*路径操作函数*中使用 `Query`、`Path` 、`Body` 声明校验与元数据的方式一样，可以使用 Pydantic 的 `Field` 在 Pydantic 模型内部声明校验和元数据。
 
-## 导入 `Field`
+## 导入 `Field` { #import-field }
 
 首先，从 Pydantic 中导入 `Field`：
 
@@ -14,7 +14,7 @@
 
 ///
 
-## 声明模型属性
+## 声明模型属性 { #declare-model-attributes }
 
 然后，使用 `Field` 定义模型的属性：
 
@@ -24,7 +24,7 @@
 
 /// note | 技术细节
 
-实际上，`Query`、`Path` 都是 `Params` 的子类，而 `Params` 类又是 Pydantic 中 `FieldInfo` 的子类。
+实际上，`Query`、`Path` 以及你接下来会看到的其它对象，会创建公共 `Param` 类的子类的对象，而 `Param` 本身是 Pydantic 中 `FieldInfo` 的子类。
 
 Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
@@ -40,13 +40,20 @@ Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
 ///
 
-## 添加更多信息
+## 添加更多信息 { #add-extra-information }
 
 `Field`、`Query`、`Body` 等对象里可以声明更多信息，并且 JSON Schema 中也会集成这些信息。
 
 *声明示例*一章中将详细介绍添加更多信息的知识。
 
-## 小结
+/// warning | 警告
+
+传递给 `Field` 的额外键也会出现在你的应用生成的 OpenAPI 架构中。
+由于这些键不一定属于 OpenAPI 规范的一部分，某些 OpenAPI 工具（例如 [OpenAPI 验证器](https://validator.swagger.io/)）可能无法处理你生成的架构。
+
+///
+
+## 小结 { #recap }
 
 Pydantic 的 `Field` 可以为模型属性声明更多校验和元数据。
 

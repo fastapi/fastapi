@@ -1,3 +1,4 @@
+import copy
 import http.client
 import inspect
 import warnings
@@ -8,8 +9,9 @@ from fastapi import routing
 from fastapi._compat import (
     ModelField,
     Undefined,
-    get_compat_model_name_map,
     get_definitions,
+    get_flat_models_from_fields,
+    get_model_name_map,
     get_schema_from_model_field,
     lenient_issubclass,
 )
@@ -49,6 +51,8 @@ validation_error_definition = {
         },
         "msg": {"title": "Message", "type": "string"},
         "type": {"title": "Error Type", "type": "string"},
+        "input": {"title": "Input"},
+        "ctx": {"title": "Context", "type": "object"},
     },
     "required": ["loc", "msg", "type"],
 }
@@ -125,7 +129,7 @@ def _get_openapi_operation_parameters(
     default_convert_underscores = True
     if len(flat_dependant.header_params) == 1:
         first_field = flat_dependant.header_params[0]
-        if lenient_issubclass(first_field.type_, BaseModel):
+        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
             default_convert_underscores = getattr(
                 first_field.field_info, "convert_underscores", True
             )
@@ -157,7 +161,7 @@ def _get_openapi_operation_parameters(
             parameter = {
                 "name": name,
                 "in": param_type.value,
-                "required": param.required,
+                "required": param.field_info.is_required(),
                 "schema": param_schema,
             }
             if field_info.description:
@@ -194,7 +198,7 @@ def get_openapi_operation_request_body(
     )
     field_info = cast(Body, body_field.field_info)
     request_media_type = field_info.media_type
-    required = body_field.required
+    required = body_field.field_info.is_required()
     request_body_oai: dict[str, Any] = {}
     if required:
         request_body_oai["required"] = required
@@ -377,7 +381,7 @@ def get_openapi_path(
                     additional_status_code,
                     additional_response,
                 ) in route.responses.items():
-                    process_response = additional_response.copy()
+                    process_response = copy.deepcopy(additional_response)
                     process_response.pop("model", None)
                     status_code_key = str(additional_status_code).upper()
                     if status_code_key == "DEFAULT":
@@ -509,7 +513,8 @@ def get_openapi(
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
     all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
-    model_name_map = get_compat_model_name_map(all_fields)
+    flat_models = get_flat_models_from_fields(all_fields, known_models=set())
+    model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
         fields=all_fields,
         model_name_map=model_name_map,

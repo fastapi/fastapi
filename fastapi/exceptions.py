@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from typing import Annotated, Any, Optional, TypedDict, Union
 
 from annotated_doc import Doc
@@ -49,6 +49,9 @@ class HTTPException(StarletteHTTPException):
             Doc(
                 """
                 HTTP status code to send to the client.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ],
@@ -58,14 +61,21 @@ class HTTPException(StarletteHTTPException):
                 """
                 Any data to be sent to the client in the `detail` key of the JSON
                 response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#use-httpexception)
                 """
             ),
         ] = None,
         headers: Annotated[
-            Optional[dict[str, str]],
+            Optional[Mapping[str, str]],
             Doc(
                 """
                 Any headers to send to the client in the response.
+
+                Read more about it in the
+                [FastAPI docs for Handling Errors](https://fastapi.tiangolo.com/tutorial/handling-errors/#add-custom-headers)
+
                 """
             ),
         ] = None,
