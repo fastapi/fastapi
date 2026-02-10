@@ -7,9 +7,45 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Fix grammar in `docs/en/docs/tutorial/first-steps.md`. PR [#14708](https://github.com/fastapi/fastapi/pull/14708) by [@SanjanaS10](https://github.com/SanjanaS10).
+
+## 0.128.7
+
+### Features
+
+* ✨ Show a clear error on attempt to include router into itself. PR [#14258](https://github.com/fastapi/fastapi/pull/14258) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
+* ✨ Replace `dict` by `Mapping` on `HTTPException.headers`. PR [#12997](https://github.com/fastapi/fastapi/pull/12997) by [@rijenkii](https://github.com/rijenkii).
+
+### Refactors
+
+* ♻️ Simplify reading files in memory, do it sequentially instead of (fake) parallel. PR [#14884](https://github.com/fastapi/fastapi/pull/14884) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Use `dfn` tag for definitions instead of `abbr` in docs. PR [#14744](https://github.com/fastapi/fastapi/pull/14744) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* ✅ Tweak comment in test to reference PR. PR [#14885](https://github.com/fastapi/fastapi/pull/14885) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update LLM-prompt for `abbr` and `dfn` tags. PR [#14747](https://github.com/fastapi/fastapi/pull/14747) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Test order for the submitted byte Files. PR [#14828](https://github.com/fastapi/fastapi/pull/14828) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
+* 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.128.6
+
+### Fixes
+
+* 🐛 Fix `on_startup` and `on_shutdown` parameters of `APIRouter`. PR [#14873](https://github.com/fastapi/fastapi/pull/14873) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Translations
 
 * 🌐 Update translations for zh (update-outdated). PR [#14843](https://github.com/fastapi/fastapi/pull/14843) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ✅ Fix parameterized tests with snapshots. PR [#14875](https://github.com/fastapi/fastapi/pull/14875) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.128.5
 

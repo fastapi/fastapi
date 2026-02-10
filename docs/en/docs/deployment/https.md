@@ -65,7 +65,7 @@ Here's an example of how an HTTPS API could look like, step by step, paying atte
 
 It would probably all start by you **acquiring** some **domain name**. Then, you would configure it in a DNS server (possibly your same cloud provider).
 
-You would probably get a cloud server (a virtual machine) or something similar, and it would have a <abbr title="That doesn't change">fixed</abbr> **public IP address**.
+You would probably get a cloud server (a virtual machine) or something similar, and it would have a <dfn title="Doesn't change over time. Not dynamic.">fixed</dfn> **public IP address**.
 
 In the DNS server(s) you would configure a record (an "`A record`") to point **your domain** to the public **IP address of your server**.
 

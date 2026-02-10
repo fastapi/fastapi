@@ -1,7 +1,7 @@
 import dataclasses
 import inspect
 import sys
-from collections.abc import Coroutine, Mapping, Sequence
+from collections.abc import Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
@@ -15,7 +15,6 @@ from typing import (
     cast,
 )
 
-import anyio
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -942,16 +941,8 @@ async def _extract_form_body(
             # For types
             assert isinstance(value, sequence_types)
             results: list[Union[bytes, str]] = []
-
-            async def process_fn(
-                fn: Callable[[], Coroutine[Any, Any, Any]],
-            ) -> None:
-                result = await fn()
-                results.append(result)  # noqa: B023
-
-            async with anyio.create_task_group() as tg:
-                for sub_value in value:
-                    tg.start_soon(process_fn, sub_value.read)
+            for sub_value in value:
+                results.append(await sub_value.read())
             value = serialize_sequence_value(field=field, value=results)
         if value is not None:
             values[get_validation_alias(field)] = value
