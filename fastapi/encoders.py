@@ -38,7 +38,7 @@ try:
     from pydantic_extra_types import coordinate
 
     encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {
-        coordinate.Coordinate: str,
+        coordinate.Coordinate: lambda o: {"latitude": o.latitude, "longitude": o.longitude},
         et_color.Color: str,
     }
 except ImportError:
@@ -328,6 +328,24 @@ def jsonable_encoder(
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
 
+    # Check if it's a named tuple, and if so, encode it as a dict (instead of a list) if `named_tuple_as_dict` is `True`.
+    if (
+        named_tuple_as_dict
+        and getattr(obj, "_asdict", None) is not None
+        and callable(obj._asdict)
+    ):
+        return jsonable_encoder(
+            obj._asdict(),
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
+
     # Note that we check for `Sequence` and not `list` because we want to support any kind of sequence, like `list`, `tuple`, `set`, etc.
     # Also, we check that it's not a `bytes` object, because `bytes` is also a `Sequence`, but we want to rely on the TYPE_ENCODERS for `bytes` and avoid code duplication.
     if isinstance(obj, (Sequence, GeneratorType)) and not isinstance(obj, bytes):
@@ -347,23 +365,6 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
-
-    if (
-        named_tuple_as_dict
-        and getattr(obj, "_asdict", None) is not None
-        and callable(obj._asdict)
-    ):
-        return jsonable_encoder(
-            obj._asdict(),
-            include=include,
-            exclude=exclude,
-            by_alias=by_alias,
-            exclude_unset=exclude_unset,
-            exclude_defaults=exclude_defaults,
-            exclude_none=exclude_none,
-            custom_encoder=custom_encoder,
-            sqlalchemy_safe=sqlalchemy_safe,
-        )
 
     if type(obj) in encoders_by_extra_type:
         return encoders_by_extra_type[type(obj)](obj)
