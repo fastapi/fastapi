@@ -55,7 +55,7 @@ plugins:
   social:
     cards_layout_options:
       logo: ../en/docs/img/icon-white.svg
-  typeset:
+  typeset: null
   search: null
   macros:
     include_yaml:
@@ -260,7 +260,7 @@ markdown_extensions:
   material.extensions.preview:
     targets:
       include:
-        - "*"
+      - '*'
   abbr: null
   attr_list: null
   footnotes: null
@@ -317,8 +317,6 @@ extra:
     name: de - Deutsch
   - link: /es/
     name: es - español
-  - link: /fa/
-    name: fa - فارسی
   - link: /fr/
     name: fr - français
   - link: /ja/
@@ -333,14 +331,10 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /vi/
-    name: vi - Tiếng Việt
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
-  - link: /em/
-    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css

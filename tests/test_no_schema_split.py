@@ -3,14 +3,11 @@
 # Made an issue in:
 # https://github.com/fastapi/fastapi/issues/14247
 from enum import Enum
-from typing import List
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
-
-from tests.utils import pydantic_snapshot
 
 
 class MessageEventType(str, Enum):
@@ -25,7 +22,7 @@ class MessageEvent(BaseModel):
 
 class MessageOutput(BaseModel):
     body: str = ""
-    events: List[MessageEvent] = []
+    events: list[MessageEvent] = []
 
 
 class Message(BaseModel):
@@ -127,47 +124,21 @@ def test_openapi_schema():
                     },
                     "MessageEvent": {
                         "properties": {
-                            "event_type": pydantic_snapshot(
-                                v2=snapshot(
-                                    {
-                                        "$ref": "#/components/schemas/MessageEventType",
-                                        "default": "alpha",
-                                    }
-                                ),
-                                v1=snapshot(
-                                    {
-                                        "allOf": [
-                                            {
-                                                "$ref": "#/components/schemas/MessageEventType"
-                                            }
-                                        ],
-                                        "default": "alpha",
-                                    }
-                                ),
-                            ),
+                            "event_type": {
+                                "$ref": "#/components/schemas/MessageEventType",
+                                "default": "alpha",
+                            },
                             "output": {"type": "string", "title": "Output"},
                         },
                         "type": "object",
                         "required": ["output"],
                         "title": "MessageEvent",
                     },
-                    "MessageEventType": pydantic_snapshot(
-                        v2=snapshot(
-                            {
-                                "type": "string",
-                                "enum": ["alpha", "beta"],
-                                "title": "MessageEventType",
-                            }
-                        ),
-                        v1=snapshot(
-                            {
-                                "type": "string",
-                                "enum": ["alpha", "beta"],
-                                "title": "MessageEventType",
-                                "description": "An enumeration.",
-                            }
-                        ),
-                    ),
+                    "MessageEventType": {
+                        "type": "string",
+                        "enum": ["alpha", "beta"],
+                        "title": "MessageEventType",
+                    },
                     "MessageOutput": {
                         "properties": {
                             "body": {"type": "string", "title": "Body", "default": ""},
@@ -183,6 +154,8 @@ def test_openapi_schema():
                     },
                     "ValidationError": {
                         "properties": {
+                            "ctx": {"title": "Context", "type": "object"},
+                            "input": {"title": "Input"},
                             "loc": {
                                 "items": {
                                     "anyOf": [{"type": "string"}, {"type": "integer"}]

@@ -1,4 +1,4 @@
-# Historia, Diseño y Futuro
+# Historia, Diseño y Futuro { #history-design-and-future }
 
 Hace algún tiempo, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">un usuario de **FastAPI** preguntó</a>:
 
@@ -6,7 +6,7 @@ Hace algún tiempo, <a href="https://github.com/fastapi/fastapi/issues/3#issueco
 
 Aquí hay un poquito de esa historia.
 
-## Alternativas
+## Alternativas { #alternatives }
 
 He estado creando APIs con requisitos complejos durante varios años (Machine Learning, sistemas distribuidos, trabajos asíncronos, bases de datos NoSQL, etc.), liderando varios equipos de desarrolladores.
 
@@ -22,13 +22,13 @@ Como se dice en la sección [Alternativas](alternatives.md){.internal-link targe
 
 Ha habido muchas herramientas creadas antes que han ayudado a inspirar su creación.
 
-He estado evitando la creación de un nuevo framework durante varios años. Primero traté de resolver todas las funcionalidades cubiertas por **FastAPI** usando varios frameworks, complementos y herramientas diferentes.
+He estado evitando la creación de un nuevo framework durante varios años. Primero traté de resolver todas las funcionalidades cubiertas por **FastAPI** usando varios frameworks, plug-ins y herramientas diferentes.
 
 Pero en algún momento, no había otra opción que crear algo que proporcionara todas estas funcionalidades, tomando las mejores ideas de herramientas anteriores y combinándolas de la mejor manera posible, usando funcionalidades del lenguaje que ni siquiera estaban disponibles antes (anotaciones de tipos de Python 3.6+).
 
 </blockquote>
 
-## Investigación
+## Investigación { #investigation }
 
 Al usar todas las alternativas anteriores, tuve la oportunidad de aprender de todas ellas, tomar ideas y combinarlas de la mejor manera que pude encontrar para mí y los equipos de desarrolladores con los que he trabajado.
 
@@ -38,7 +38,7 @@ También, el mejor enfoque era usar estándares ya existentes.
 
 Entonces, antes de siquiera empezar a programar **FastAPI**, pasé varios meses estudiando las especificaciones de OpenAPI, JSON Schema, OAuth2, etc. Entendiendo su relación, superposición y diferencias.
 
-## Diseño
+## Diseño { #design }
 
 Luego pasé algún tiempo diseñando la "API" de desarrollador que quería tener como usuario (como desarrollador usando FastAPI).
 
@@ -52,7 +52,7 @@ De esa manera, pude encontrar las mejores maneras de reducir la duplicación de 
 
 Todo de una manera que proporcionara la mejor experiencia de desarrollo para todos los desarrolladores.
 
-## Requisitos
+## Requisitos { #requirements }
 
 Después de probar varias alternativas, decidí que iba a usar <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> por sus ventajas.
 
@@ -60,11 +60,11 @@ Luego contribuí a este, para hacerlo totalmente compatible con JSON Schema, par
 
 Durante el desarrollo, también contribuí a <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, el otro requisito clave.
 
-## Desarrollo
+## Desarrollo { #development }
 
 Para cuando comencé a crear el propio **FastAPI**, la mayoría de las piezas ya estaban en su lugar, el diseño estaba definido, los requisitos y herramientas estaban listos, y el conocimiento sobre los estándares y especificaciones estaba claro y fresco.
 
-## Futuro
+## Futuro { #future }
 
 A este punto, ya está claro que **FastAPI** con sus ideas está siendo útil para muchas personas.
 

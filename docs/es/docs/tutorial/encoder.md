@@ -1,4 +1,4 @@
-# JSON Compatible Encoder
+# Codificador compatible con JSON { #json-compatible-encoder }
 
 Hay algunos casos en los que podrías necesitar convertir un tipo de dato (como un modelo de Pydantic) a algo compatible con JSON (como un `dict`, `list`, etc).
 
@@ -6,13 +6,13 @@ Por ejemplo, si necesitas almacenarlo en una base de datos.
 
 Para eso, **FastAPI** proporciona una función `jsonable_encoder()`.
 
-## Usando el `jsonable_encoder`
+## Usando el `jsonable_encoder` { #using-the-jsonable-encoder }
 
 Imaginemos que tienes una base de datos `fake_db` que solo recibe datos compatibles con JSON.
 
 Por ejemplo, no recibe objetos `datetime`, ya que no son compatibles con JSON.
 
-Entonces, un objeto `datetime` tendría que ser convertido a un `str` que contenga los datos en formato <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">ISO</a>.
+Entonces, un objeto `datetime` tendría que ser convertido a un `str` que contenga los datos en <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">formato ISO</a>.
 
 De la misma manera, esta base de datos no recibiría un modelo de Pydantic (un objeto con atributos), solo un `dict`.
 

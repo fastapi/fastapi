@@ -1,9 +1,9 @@
+from typing import Annotated
+
 import pytest
 from fastapi import FastAPI, Path
 from fastapi.testclient import TestClient
-from typing_extensions import Annotated
-
-from tests.utils import needs_pydanticv2
+from inline_snapshot import Is, snapshot
 
 app = FastAPI()
 
@@ -22,14 +22,14 @@ async def read_required_alias(p: Annotated[str, Path(alias="p_alias")]):
 def read_required_validation_alias(
     p: Annotated[str, Path(validation_alias="p_val_alias")],
 ):
-    return {"p": p}  # pragma: no cover
+    return {"p": p}
 
 
 @app.get("/required-alias-and-validation-alias/{p_val_alias}")
 def read_required_alias_and_validation_alias(
     p: Annotated[str, Path(alias="p_alias", validation_alias="p_val_alias")],
 ):
-    return {"p": p}  # pragma: no cover
+    return {"p": p}
 
 
 @pytest.mark.parametrize(
@@ -44,32 +44,26 @@ def read_required_alias_and_validation_alias(
             "p_val_alias",
             "P Val Alias",
             id="required-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
         ),
         pytest.param(
             "/required-alias-and-validation-alias/{p_val_alias}",
             "p_val_alias",
             "P Val Alias",
             id="required-alias-and-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
         ),
     ],
 )
 def test_schema(path: str, expected_name: str, expected_title: str):
-    assert app.openapi()["paths"][path]["get"]["parameters"] == [
-        {
-            "required": True,
-            "schema": {"title": expected_title, "type": "string"},
-            "name": expected_name,
-            "in": "path",
-        }
-    ]
+    assert app.openapi()["paths"][path]["get"]["parameters"] == snapshot(
+        [
+            {
+                "required": True,
+                "schema": {"title": Is(expected_title), "type": "string"},
+                "name": Is(expected_name),
+                "in": "path",
+            }
+        ]
+    )
 
 
 @pytest.mark.parametrize(
@@ -80,18 +74,10 @@ def test_schema(path: str, expected_name: str, expected_title: str):
         pytest.param(
             "/required-validation-alias",
             id="required-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
         ),
         pytest.param(
             "/required-alias-and-validation-alias",
             id="required-alias-and-validation-alias",
-            marks=(
-                needs_pydanticv2,
-                pytest.mark.xfail(raises=AssertionError, strict=False),
-            ),
         ),
     ],
 )

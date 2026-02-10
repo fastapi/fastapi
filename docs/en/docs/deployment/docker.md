@@ -145,8 +145,6 @@ There are other formats and tools to define and install package dependencies.
 * Create a `main.py` file with:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -456,7 +454,7 @@ Without using containers, making applications run on startup and with restarts c
 
 ## Replication - Number of Processes { #replication-number-of-processes }
 
-If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Uvicorn with workers) in each container.
+If you have a <dfn title="A group of machines that are configured to be connected and work together in some way.">cluster</dfn> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Uvicorn with workers) in each container.
 
 One of those distributed container management systems like Kubernetes normally has some integrated way of handling **replication of containers** while still supporting **load balancing** for the incoming requests. All at the **cluster level**.
 
