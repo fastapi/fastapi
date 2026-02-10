@@ -2,7 +2,6 @@ import dataclasses
 import inspect
 import sys
 import types
-from collections.abc import Coroutine, Mapping, Sequence
 from collections.abc import Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
