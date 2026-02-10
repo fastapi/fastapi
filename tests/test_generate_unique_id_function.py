@@ -29,6 +29,14 @@ class Message(BaseModel):
     description: str
 
 
+def test_generate_unique_id_is_deterministic_with_multiple_methods():
+    def read_items():  # pragma: nocover - used for name only
+        return None
+
+    route = APIRoute("/items", read_items, methods=["POST", "GET"])
+    assert route.unique_id == "read_items_items_get"
+
+
 def test_top_level_generate_unique_id():
     app = FastAPI(generate_unique_id_function=custom_generate_unique_id)
     router = APIRouter()
