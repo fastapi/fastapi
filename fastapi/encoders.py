@@ -321,7 +321,9 @@ def jsonable_encoder(
                 encoded_dict[encoded_key] = encoded_value
         return encoded_dict
 
-    if isinstance(obj, (Sequence, GeneratorType)):
+    # Note that we check for `Sequence` and not `list` because we want to support any kind of sequence, like `list`, `tuple`, `set`, etc.
+    # Also, we check that it's not a `bytes` object, because `bytes` is also a `Sequence`, but we want to rely on the TYPE_ENCODERS for `bytes` and avoid code duplication.
+    if isinstance(obj, (Sequence, GeneratorType)) and not isinstance(obj, bytes):
         encoded_list = []
         for item in obj:
             encoded_list.append(
