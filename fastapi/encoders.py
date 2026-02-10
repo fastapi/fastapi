@@ -38,10 +38,7 @@ try:
     from pydantic_extra_types import coordinate
 
     encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {
-        coordinate.Coordinate: lambda o: {
-            "latitude": o.latitude,
-            "longitude": o.longitude,
-        },
+        coordinate.Coordinate: str,
         et_color.Color: str,
     }
 except ImportError:
@@ -273,6 +270,10 @@ def jsonable_encoder(
             exclude_defaults=exclude_defaults,
             sqlalchemy_safe=sqlalchemy_safe,
         )
+    # The extra types have their own encoders, so we check for them before checking for dataclasses,
+    # because some of them are also dataclasses, and we want to use their custom encoders instead of encoding them as dataclasses.
+    if type(obj) in encoders_by_extra_type:
+        return encoders_by_extra_type[type(obj)](obj)
     if dataclasses.is_dataclass(obj):
         assert not isinstance(obj, type)
         obj_dict = dataclasses.asdict(obj)
@@ -369,8 +370,6 @@ def jsonable_encoder(
             )
         return encoded_list
 
-    if type(obj) in encoders_by_extra_type:
-        return encoders_by_extra_type[type(obj)](obj)
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():

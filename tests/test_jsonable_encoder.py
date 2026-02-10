@@ -1,3 +1,4 @@
+import sys
 import warnings
 from collections import deque, namedtuple
 from collections.abc import Sequence
@@ -423,5 +424,27 @@ def test_encode_sqlalchemy_row_as_dict():
 def test_encode_pydantic_extra_types_coordinate():
     coordinate = pytest.importorskip("pydantic_extra_types.coordinate")
     coord = coordinate.Coordinate(latitude=1.0, longitude=2.0)
-    assert jsonable_encoder(coord) != str(coord)
-    assert jsonable_encoder(coord) == {"latitude": 1.0, "longitude": 2.0}
+    # Dataclass output shouldn't be the result
+    assert jsonable_encoder(coord) != {"latitude": 1.0, "longitude": 2.0}
+    # The custom encoder should be the result
+    assert jsonable_encoder(coord) == str(coord)
+
+
+@pytest.mark.skipif(
+    sys.version_info > (3, 9),
+    reason="Tested via pydantic_extra_types on Python > 3.9",
+)
+def test_encode_pydantic_color():
+    pydantic_color = pytest.importorskip("pydantic.color")
+    color = pydantic_color.Color("red")
+    assert jsonable_encoder(color) == str(color)
+
+
+@pytest.mark.skipif(
+    sys.version_info <= (3, 9),
+    reason="pydantic_extra_types.color not available on Python <= 3.9",
+)
+def test_encode_pydantic_extra_types_color():
+    et_color = pytest.importorskip("pydantic_extra_types.color")
+    color = et_color.Color("red")
+    assert jsonable_encoder(color) == str(color)
