@@ -341,7 +341,11 @@ def jsonable_encoder(
             )
         return encoded_list
 
-    if named_tuple_as_dict and getattr(obj, "_asdict", None) is not None and callable(obj._asdict):
+    if (
+        named_tuple_as_dict
+        and getattr(obj, "_asdict", None) is not None
+        and callable(obj._asdict)
+    ):
         return jsonable_encoder(
             obj._asdict(),
             include=include,
