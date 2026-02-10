@@ -324,7 +324,7 @@ def jsonable_encoder(
         return encoded_dict
 
     if isinstance(obj, (Sequence, GeneratorType)):
-        encoded_list: List[Any] = []
+        encoded_list = []
         for item in obj:
             encoded_list.append(
                 jsonable_encoder(
