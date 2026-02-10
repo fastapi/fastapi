@@ -32,7 +32,11 @@ from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
-from pydantic_extra_types.coordinate import Coordinate
+
+try:
+    from pydantic_extra_types.coordinate import Coordinate
+except ImportError:
+    Coordinate = dict
 
 from ._compat import (
     Url,
