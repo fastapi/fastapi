@@ -46,13 +46,13 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 
 **FastAPI** unterstützt das auf die gleiche Weise wie einfache Strings:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Zusammenfassung und Beschreibung { #summary-and-description }
 
 Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr title="Beschreibung">`description`</abbr> hinzufügen:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Beschreibung mittels Docstring { #description-from-docstring }
 
@@ -70,7 +70,7 @@ Es wird in der interaktiven Dokumentation verwendet:
 
 Sie können die Response mit dem Parameter `response_description` beschreiben:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Info
 
@@ -92,7 +92,7 @@ Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolg
 
 Wenn Sie eine *Pfadoperation* als <abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 Sie wird in der interaktiven Dokumentation gut sichtbar als deprecatet markiert werden:
 

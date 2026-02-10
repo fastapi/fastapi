@@ -46,13 +46,13 @@ In these cases, it could make sense to store the tags in an `Enum`.
 
 **FastAPI** supports that the same way as with plain strings:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Summary and description { #summary-and-description }
 
 You can add a `summary` and `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Description from docstring { #description-from-docstring }
 
@@ -70,7 +70,7 @@ It will be used in the interactive docs:
 
 You can specify the response description with the parameter `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info
 
@@ -92,7 +92,7 @@ So, if you don't provide one, **FastAPI** will automatically generate one of "Su
 
 If you need to mark a *path operation* as <abbr title="obsolete, recommended not to use it">deprecated</abbr>, but without removing it, pass the parameter `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 It will be clearly marked as deprecated in the interactive docs:
 

@@ -46,13 +46,13 @@
 
 **FastAPI** поддерживает это так же, как и в случае с обычными строками:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b_py39.py hl[1,8:10,13,18] *}
 
 ## Краткое и развёрнутое содержание { #summary-and-description }
 
 Вы можете добавить параметры `summary` и `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Описание из строк документации { #description-from-docstring }
 
@@ -70,7 +70,7 @@
 
 Вы можете указать описание ответа с помощью параметра `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Дополнительная информация
 
@@ -78,7 +78,7 @@
 
 ///
 
-/// check
+/// check | Проверка
 
 OpenAPI указывает, что каждой *операции пути* необходимо описание ответа.
 
@@ -92,7 +92,7 @@ OpenAPI указывает, что каждой *операции пути* не
 
 Если вам необходимо пометить *операцию пути* как <abbr title="устаревшее, не рекомендовано к использованию">устаревшую</abbr>, при этом не удаляя её, передайте параметр `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006_py39.py hl[16] *}
 
 Он будет четко помечен как устаревший в интерактивной документации:
 

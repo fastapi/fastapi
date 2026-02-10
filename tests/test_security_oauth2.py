@@ -1,8 +1,8 @@
 import pytest
-from dirty_equals import IsDict
 from fastapi import Depends, FastAPI, Security
 from fastapi.security import OAuth2, OAuth2PasswordRequestFormStrict
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -56,86 +56,51 @@ def test_security_oauth2_password_other_header():
 
 def test_security_oauth2_password_bearer_no_header():
     response = client.get("/users/me")
-    assert response.status_code == 403, response.text
+    assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
+    assert response.headers["WWW-Authenticate"] == "Bearer"
 
 
 def test_strict_login_no_data():
     response = client.post("/login")
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "grant_type"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "username"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "password"],
-                    "msg": "Field required",
-                    "input": None,
-                },
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "grant_type"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "username"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-                {
-                    "loc": ["body", "password"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                },
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "grant_type"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "username"],
+                "msg": "Field required",
+                "input": None,
+            },
+            {
+                "type": "missing",
+                "loc": ["body", "password"],
+                "msg": "Field required",
+                "input": None,
+            },
+        ]
+    }
 
 
 def test_strict_login_no_grant_type():
     response = client.post("/login", data={"username": "johndoe", "password": "secret"})
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "grant_type"],
-                    "msg": "Field required",
-                    "input": None,
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "grant_type"],
-                    "msg": "field required",
-                    "type": "value_error.missing",
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "grant_type"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
 
 
 @pytest.mark.parametrize(
@@ -152,31 +117,17 @@ def test_strict_login_incorrect_grant_type(grant_type: str):
         data={"username": "johndoe", "password": "secret", "grant_type": grant_type},
     )
     assert response.status_code == 422
-    assert response.json() == IsDict(
-        {
-            "detail": [
-                {
-                    "type": "string_pattern_mismatch",
-                    "loc": ["body", "grant_type"],
-                    "msg": "String should match pattern '^password$'",
-                    "input": grant_type,
-                    "ctx": {"pattern": "^password$"},
-                }
-            ]
-        }
-    ) | IsDict(
-        # TODO: remove when deprecating Pydantic v1
-        {
-            "detail": [
-                {
-                    "loc": ["body", "grant_type"],
-                    "msg": 'string does not match regex "^password$"',
-                    "type": "value_error.str.regex",
-                    "ctx": {"pattern": "^password$"},
-                }
-            ]
-        }
-    )
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_pattern_mismatch",
+                "loc": ["body", "grant_type"],
+                "msg": "String should match pattern '^password$'",
+                "input": grant_type,
+                "ctx": {"pattern": "^password$"},
+            }
+        ]
+    }
 
 
 def test_strict_login_correct_grant_type():
@@ -198,134 +149,132 @@ def test_strict_login_correct_grant_type():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/login": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/login": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Login",
+                        "operationId": "login_login_post",
+                        "requestBody": {
                             "content": {
-                                "application/json": {
+                                "application/x-www-form-urlencoded": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_login_login_post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Login",
-                    "operationId": "login_login_post",
-                    "requestBody": {
-                        "content": {
-                            "application/x-www-form-urlencoded": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_login_login_post"
-                                }
+                    }
+                },
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             }
                         },
-                        "required": True,
-                    },
-                }
+                        "summary": "Read Current User",
+                        "operationId": "read_current_user_users_me_get",
+                        "security": [{"OAuth2": []}],
+                    }
+                },
             },
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Current User",
-                    "operationId": "read_current_user_users_me_get",
-                    "security": [{"OAuth2": []}],
-                }
-            },
-        },
-        "components": {
-            "schemas": {
-                "Body_login_login_post": {
-                    "title": "Body_login_login_post",
-                    "required": ["grant_type", "username", "password"],
-                    "type": "object",
-                    "properties": {
-                        "grant_type": {
-                            "title": "Grant Type",
-                            "pattern": "^password$",
-                            "type": "string",
-                        },
-                        "username": {"title": "Username", "type": "string"},
-                        "password": {"title": "Password", "type": "string"},
-                        "scope": {"title": "Scope", "type": "string", "default": ""},
-                        "client_id": IsDict(
-                            {
+            "components": {
+                "schemas": {
+                    "Body_login_login_post": {
+                        "title": "Body_login_login_post",
+                        "required": ["grant_type", "username", "password"],
+                        "type": "object",
+                        "properties": {
+                            "grant_type": {
+                                "title": "Grant Type",
+                                "pattern": "^password$",
+                                "type": "string",
+                            },
+                            "username": {"title": "Username", "type": "string"},
+                            "password": {"title": "Password", "type": "string"},
+                            "scope": {
+                                "title": "Scope",
+                                "type": "string",
+                                "default": "",
+                            },
+                            "client_id": {
                                 "title": "Client Id",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Id", "type": "string"}
-                        ),
-                        "client_secret": IsDict(
-                            {
+                            },
+                            "client_secret": {
                                 "title": "Client Secret",
                                 "anyOf": [{"type": "string"}, {"type": "null"}],
-                            }
-                        )
-                        | IsDict(
-                            # TODO: remove when deprecating Pydantic v1
-                            {"title": "Client Secret", "type": "string"}
-                        ),
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            },
-            "securitySchemes": {
-                "OAuth2": {
-                    "type": "oauth2",
-                    "flows": {
-                        "password": {
-                            "scopes": {
-                                "read:users": "Read the users",
-                                "write:users": "Create users",
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
                             },
-                            "tokenUrl": "token",
-                        }
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
                     },
-                }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                },
+                "securitySchemes": {
+                    "OAuth2": {
+                        "type": "oauth2",
+                        "flows": {
+                            "password": {
+                                "scopes": {
+                                    "read:users": "Read the users",
+                                    "write:users": "Create users",
+                                },
+                                "tokenUrl": "token",
+                            }
+                        },
+                    }
+                },
             },
-        },
-    }
+        }
+    )

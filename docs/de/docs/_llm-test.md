@@ -15,7 +15,7 @@ So verwenden:
 
 Die Tests:
 
-## Codeschnipsel { #code-snippets}
+## Codeschnipsel { #code-snippets }
 
 //// tab | Test
 
@@ -53,7 +53,7 @@ Siehe zum Beispiel den Abschnitt `### Quotes` in `docs/de/llm-prompt.md`.
 
 ////
 
-## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets}
+## Anführungszeichen in Codeschnipseln { #quotes-in-code-snippets }
 
 //// tab | Test
 
@@ -189,7 +189,7 @@ Siehe Abschnitt `### Links` im allgemeinen Prompt in `scripts/translate.py`.
 
 ////
 
-## HTML „abbr“-Elemente { #html-abbr-elements }
+## HTML-„abbr“-Elemente { #html-abbr-elements }
 
 //// tab | Test
 
@@ -443,7 +443,7 @@ Für einige sprachspezifische Anweisungen, siehe z. B. den Abschnitt `### Headin
 * die Workload
 
 * das Deployment
-* bereitstellen
+* deployen
 
 * das SDK
 * das Software Development Kit
