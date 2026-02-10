@@ -431,8 +431,8 @@ def test_encode_pydantic_extra_types_coordinate():
 
 
 @pytest.mark.skipif(
-    sys.version_info > (3, 9),
-    reason="Tested via pydantic_extra_types on Python > 3.9",
+    sys.version_info >= (3, 10),
+    reason="Tested via pydantic_extra_types on Python >= 3.10",
 )
 def test_encode_pydantic_color():
     pydantic_color = pytest.importorskip("pydantic.color")
@@ -441,8 +441,8 @@ def test_encode_pydantic_color():
 
 
 @pytest.mark.skipif(
-    sys.version_info <= (3, 9),
-    reason="pydantic_extra_types.color not available on Python <= 3.9",
+    sys.version_info < (3, 10),
+    reason="pydantic_extra_types.color not available on Python < 3.10",
 )
 def test_encode_pydantic_extra_types_color():
     et_color = pytest.importorskip("pydantic_extra_types.color")
