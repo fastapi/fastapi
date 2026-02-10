@@ -33,18 +33,16 @@ from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
 
+# Dropped support for Pydantic v1 so we can remove the try-except import and the related code
+from pydantic_extra_types import color as et_color
+
 from ._compat import (
     Url,
     is_pydantic_v1_model_instance,
 )
 
-encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {}
-try:
-    from pydantic_extra_types import color as et_color
+encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {et_color.Color: str}
 
-    encoders_by_extra_type[et_color.Color] = str
-except ImportError:
-    pass
 try:
     from pydantic_extra_types import coordinate
 
