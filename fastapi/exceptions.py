@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from typing import Annotated, Any, Optional, TypedDict, Union
 
 from annotated_doc import Doc
@@ -68,7 +68,7 @@ class HTTPException(StarletteHTTPException):
             ),
         ] = None,
         headers: Annotated[
-            Optional[dict[str, str]],
+            Optional[Mapping[str, str]],
             Doc(
                 """
                 Any headers to send to the client in the response.
