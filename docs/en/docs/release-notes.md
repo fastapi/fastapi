@@ -18,6 +18,7 @@ hide:
 
 ### Internal
 
+* ✅ Test order for the submitted byte Files. PR [#14828](https://github.com/fastapi/fastapi/pull/14828) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.128.6
