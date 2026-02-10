@@ -1,4 +1,3 @@
-import sys
 import warnings
 from collections import deque, namedtuple
 from collections.abc import Sequence
@@ -430,20 +429,12 @@ def test_encode_pydantic_extra_types_coordinate():
     assert jsonable_encoder(coord) == str(coord)
 
 
-@pytest.mark.skipif(
-    sys.version_info >= (3, 10),
-    reason="Tested via pydantic_extra_types on Python >= 3.10",
-)
 def test_encode_pydantic_color():
     pydantic_color = pytest.importorskip("pydantic.color")
     color = pydantic_color.Color("red")
     assert jsonable_encoder(color) == str(color)
 
 
-@pytest.mark.skipif(
-    sys.version_info < (3, 10),
-    reason="pydantic_extra_types.color not available on Python < 3.10",
-)
 def test_encode_pydantic_extra_types_color():
     et_color = pytest.importorskip("pydantic_extra_types.color")
     color = et_color.Color("red")
