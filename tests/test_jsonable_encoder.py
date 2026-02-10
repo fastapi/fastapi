@@ -425,5 +425,3 @@ def test_encode_pydantic_extra_types_coordinate():
     coord = coordinate.Coordinate(latitude=1.0, longitude=2.0)
     assert jsonable_encoder(coord) != str(coord)
     assert jsonable_encoder(coord) == {"latitude": 1.0, "longitude": 2.0}
-
-
