@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.7
+
 ### Features
 
 * ✨ Show a clear error on attempt to include router into itself. PR [#14258](https://github.com/fastapi/fastapi/pull/14258) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
