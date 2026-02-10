@@ -34,9 +34,15 @@ from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
 
 try:
-    from pydantic_extra_types.coordinate import Coordinate
+    from pydantic_extra_types import color as et_color
+    from pydantic_extra_types import coordinate
+
+    encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {
+        coordinate.Coordinate: str,
+        et_color.Color: str
+    }
 except ImportError:
-    Coordinate = dict
+    encoders_by_extra_type = {}
 
 from ._compat import (
     Url,
@@ -79,7 +85,6 @@ def decimal_encoder(dec_value: Decimal) -> Union[int, float]:
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
     bytes: lambda o: o.decode(),
     Color: str,
-    Coordinate: str,
     datetime.date: isoformat,
     datetime.datetime: isoformat,
     datetime.time: isoformat,
@@ -119,6 +124,7 @@ def generate_encoders_by_class_tuples(
 
 
 encoders_by_class_tuples = generate_encoders_by_class_tuples(ENCODERS_BY_TYPE)
+encoders_by_class_tuples.update(generate_encoders_by_class_tuples(encoders_by_extra_type))
 
 
 def jsonable_encoder(
@@ -358,6 +364,8 @@ def jsonable_encoder(
             sqlalchemy_safe=sqlalchemy_safe,
         )
 
+    if type(obj) in encoders_by_extra_type:
+        return encoders_by_extra_type[type(obj)](obj)
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
     for encoder, classes_tuple in encoders_by_class_tuples.items():
