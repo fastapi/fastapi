@@ -1,6 +1,7 @@
 import dataclasses
 import datetime
 from collections import defaultdict, deque
+from collections.abc import Mapping, Sequence
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -18,13 +19,7 @@ from typing import (
     Annotated,
     Any,
     Callable,
-    Dict,
-    List,
-    Mapping,
     Optional,
-    Sequence,
-    Tuple,
-    Type,
     Union,
 )
 from uuid import UUID
@@ -36,8 +31,8 @@ from pydantic import BaseModel
 from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
-from pydantic_extra_types.coordinate import Coordinate
 from pydantic_core import PydanticUndefinedType
+from pydantic_extra_types.coordinate import Coordinate
 
 from ._compat import (
     Url,

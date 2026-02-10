@@ -1,12 +1,13 @@
 import warnings
 from collections import deque
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
 from pathlib import PurePath, PurePosixPath, PureWindowsPath
-from typing import Optional, Sequence, Union, TypedDict
+from typing import Optional, TypedDict, Union
 
 import pytest
 from fastapi._compat import Undefined
