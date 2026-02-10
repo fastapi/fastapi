@@ -206,6 +206,18 @@ def jsonable_encoder(
             """
         ),
     ] = True,
+    named_tuple_as_dict: Annotated[
+        bool,
+        Doc(
+            """
+            Whether to encode named tuples as dicts instead of lists.
+
+            This is useful when you want to preserve the field names of named tuples
+            in the JSON output, which can make it easier to understand and work with
+            the data on the client side.
+            """
+        ),
+    ] = False,
 ) -> Any:
     """
     Convert any object to something that can be encoded in JSON.
@@ -322,6 +334,19 @@ def jsonable_encoder(
                 )
             )
         return encoded_list
+
+    if named_tuple_as_dict and getattr(obj, "_asdict", None) is not None and callable(obj._asdict):
+        return jsonable_encoder(
+            obj._asdict(),
+            include=include,
+            exclude=exclude,
+            by_alias=by_alias,
+            exclude_unset=exclude_unset,
+            exclude_defaults=exclude_defaults,
+            exclude_none=exclude_none,
+            custom_encoder=custom_encoder,
+            sqlalchemy_safe=sqlalchemy_safe,
+        )
 
     if type(obj) in ENCODERS_BY_TYPE:
         return ENCODERS_BY_TYPE[type(obj)](obj)
