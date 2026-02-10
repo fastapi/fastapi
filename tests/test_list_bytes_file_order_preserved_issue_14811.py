@@ -1,7 +1,7 @@
 """
 Regression test: preserve order when using list[bytes] + File()
 See https://github.com/fastapi/fastapi/discussions/14811
-Related: PR #3372
+Fixed in PR: https://github.com/fastapi/fastapi/pull/14884
 """
 
 from typing import Annotated
