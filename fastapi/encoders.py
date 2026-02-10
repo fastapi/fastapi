@@ -38,7 +38,10 @@ try:
     from pydantic_extra_types import coordinate
 
     encoders_by_extra_type: dict[type[Any], Callable[[Any], Any]] = {
-        coordinate.Coordinate: lambda o: {"latitude": o.latitude, "longitude": o.longitude},
+        coordinate.Coordinate: lambda o: {
+            "latitude": o.latitude,
+            "longitude": o.longitude,
+        },
         et_color.Color: str,
     }
 except ImportError:
