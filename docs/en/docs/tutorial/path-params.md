@@ -26,7 +26,7 @@ This will give you editor support inside of your function, with error checks, co
 
 ///
 
-## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr> { #data-conversion }
+## Data <dfn title="also known as: serialization, parsing, marshalling">conversion</dfn> { #data-conversion }
 
 If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
 
@@ -38,7 +38,7 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
 
 Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
 
-So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+So, with that type declaration, **FastAPI** gives you automatic request <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>.
 
 ///
 
@@ -144,7 +144,7 @@ Then create class attributes with fixed values, which will be the available vali
 
 /// tip
 
-If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <dfn title="Technically, Deep Learning model architectures">models</dfn>.
 
 ///
 
@@ -242,7 +242,7 @@ In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double
 With **FastAPI**, by using short, intuitive and standard Python type declarations, you get:
 
 * Editor support: error checks, autocompletion, etc.
-* Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
+* Data "<dfn title="converting the string that comes from an HTTP request into Python data">parsing</dfn>"
 * Data validation
 * API annotation and automatic documentation
 

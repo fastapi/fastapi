@@ -271,7 +271,7 @@ We are going to call them "**operations**" too.
 The `@app.get("/")` tells **FastAPI** that the function right below is in charge of handling requests that go to:
 
 * the path `/`
-* using a <abbr title="an HTTP GET method"><code>get</code> operation</abbr>
+* using a <dfn title="an HTTP GET method"><code>get</code> operation</dfn>
 
 /// info | `@decorator` Info
 
