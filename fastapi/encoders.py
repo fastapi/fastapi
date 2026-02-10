@@ -28,11 +28,7 @@ from annotated_doc import Doc
 from fastapi.exceptions import PydanticV1NotSupportedError
 from fastapi.types import IncEx
 from pydantic import BaseModel
-
-try:
-    from pydantic_extra_types.color import Color
-except ImportError:
-    from pydantic.color import Color
+from pydantic.color import Color
 from pydantic.networks import AnyUrl, NameEmail
 from pydantic.types import SecretBytes, SecretStr
 from pydantic_core import PydanticUndefinedType
