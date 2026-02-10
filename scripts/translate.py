@@ -347,9 +347,12 @@ def list_outdated(language: str) -> list[Path]:
 
 
 @app.command()
-def update_outdated(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def update_outdated(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     outdated_paths = list_outdated(language)
-    for path in outdated_paths:
+    for path in outdated_paths[:max]:
         print(f"Updating lang: {language} path: {path}")
         translate_page(language=language, en_path=path)
         print(f"Done updating: {path}")
@@ -357,9 +360,12 @@ def update_outdated(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -
 
 
 @app.command()
-def add_missing(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def add_missing(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     missing_paths = list_missing(language)
-    for path in missing_paths:
+    for path in missing_paths[:max]:
         print(f"Adding lang: {language} path: {path}")
         translate_page(language=language, en_path=path)
         print(f"Done adding: {path}")
@@ -367,11 +373,14 @@ def add_missing(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> No
 
 
 @app.command()
-def update_and_add(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) -> None:
+def update_and_add(
+    language: Annotated[str, typer.Option(envvar="LANGUAGE")],
+    max: Annotated[int, typer.Option(envvar="MAX")] = 10,
+) -> None:
     print(f"Updating outdated translations for {language}")
-    update_outdated(language=language)
+    update_outdated(language=language, max=max)
     print(f"Adding missing translations for {language}")
-    add_missing(language=language)
+    add_missing(language=language, max=max)
     print(f"Done updating and adding for {language}")
 
 

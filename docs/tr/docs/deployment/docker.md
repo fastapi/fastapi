@@ -145,8 +145,6 @@ Paket bağımlılıklarını tanımlamak ve yüklemek için başka formatlar ve 
 * Aşağıdakilerle bir `main.py` dosyası oluşturun:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -260,7 +258,7 @@ FastAPI'nin düzgün şekilde kapanabilmesi ve [lifespan event](../advanced/even
 
 Detaylar için <a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell ve exec form için Docker dokümanlarına</a> bakabilirsiniz.
 
-Bu durum `docker compose` kullanırken oldukça belirgin olabilir. Daha teknik detaylar için şu Docker Compose FAQ bölümüne bakın: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>.
+Bu durum `docker compose` kullanırken oldukça belirgin olabilir. Daha teknik detaylar için şu Docker Compose FAQ bölümüne bakın: <a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Hizmetlerimin yeniden oluşturulması veya durması neden 10 saniye sürüyor?</a>.
 
 #### Dizin Yapısı { #directory-structure }
 
@@ -456,7 +454,7 @@ Container kullanmadan, uygulamaları startup'ta çalıştırmak ve restart mekan
 
 ## Replication - Process Sayısı { #replication-number-of-processes }
 
-Kubernetes, Docker Swarm Mode, Nomad veya benzeri, birden fazla makinede dağıtık container'ları yöneten karmaşık bir sistemle kurulmuş bir <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr>'ınız varsa, replication'ı her container içinde bir **process manager** (ör. worker'lı Uvicorn) kullanarak yönetmek yerine, muhtemelen **cluster seviyesinde** ele almak istersiniz.
+Kubernetes, Docker Swarm Mode, Nomad veya benzeri, birden fazla makinede dağıtık container'ları yöneten karmaşık bir sistemle kurulmuş bir <abbr title="Bir şekilde birbirine bağlanacak ve birlikte çalışacak şekilde yapılandırılmış makineler grubu.">cluster</abbr>'ınız varsa, replication'ı her container içinde bir **process manager** (ör. worker'lı Uvicorn) kullanarak yönetmek yerine, muhtemelen **cluster seviyesinde** ele almak istersiniz.
 
 Kubernetes gibi dağıtık container yönetim sistemleri, gelen request'ler için **load balancing** desteği sunarken aynı zamanda **container replication**'ını yönetmek için entegre mekanizmalara sahiptir. Hepsi **cluster seviyesinde**.
 

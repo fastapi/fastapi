@@ -14,6 +14,7 @@ on:
 
 env:
   UV_NO_SYNC: true
+  INLINE_SNAPSHOT_DEFAULT_FLAGS: review
 
 jobs:
   changes:
@@ -49,31 +50,45 @@ jobs:
       matrix:
         os: [ windows-latest, macos-latest ]
         python-version: [ "3.14" ]
+        uv-resolution:
+          - highest
+        starlette-src:
+          - starlette-pypi
+          - starlette-git
         include:
           - os: ubuntu-latest
             python-version: "3.9"
             coverage: coverage
+            uv-resolution: lowest-direct
           - os: macos-latest
             python-version: "3.10"
             coverage: coverage
+            uv-resolution: highest
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage
+            uv-resolution: lowest-direct
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
+            uv-resolution: highest
             # Ubuntu with 3.13 needs coverage for CodSpeed benchmarks
           - os: ubuntu-latest
             python-version: "3.13"
             coverage: coverage
+            uv-resolution: highest
             codspeed: codspeed
           - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
+            uv-resolution: highest
+            starlette-src: starlette-git
       fail-fast: false
     runs-on: ${{ matrix.os }}
     env:
       UV_PYTHON: ${{ matrix.python-version }}
+      UV_RESOLUTION: ${{ matrix.uv-resolution }}
+      STARLETTE_SRC: ${{ matrix.starlette-src }}
     steps:
       - name: Dump GitHub context
         env:
@@ -92,11 +107,14 @@ jobs:
             pyproject.toml
             uv.lock
       - name: Install Dependencies
-        run: uv sync --locked --no-dev --group tests --extra all
+        run: uv sync --no-dev --group tests --extra all
+      - name: Install Starlette from source
+        if: matrix.starlette-src == 'starlette-git'
+        run: uv pip install "git+https://github.com/Kludex/starlette@main"
       - run: mkdir coverage
       - name: Test
         if: matrix.codspeed != 'codspeed'
-        run: uv run bash scripts/test.sh
+        run: uv run --no-sync bash scripts/test.sh
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
@@ -108,7 +126,7 @@ jobs:
             CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}
         with:
           mode: simulation
-          run: uv run coverage run -m pytest tests/ --codspeed
+          run: uv run --no-sync coverage run -m pytest tests/ --codspeed
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'

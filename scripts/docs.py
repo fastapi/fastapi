@@ -23,15 +23,15 @@ SUPPORTED_LANGS = {
     "de",
     "en",
     "es",
-    # "fr",
+    "fr",
     "ja",
     "ko",
     "pt",
     "ru",
     "tr",
     "uk",
-    # "zh",
-    # "zh-hant",
+    "zh",
+    "zh-hant",
 }
 
 

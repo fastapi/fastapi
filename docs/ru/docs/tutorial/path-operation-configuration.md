@@ -52,7 +52,7 @@
 
 Вы можете добавить параметры `summary` и `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Описание из строк документации { #description-from-docstring }
 
@@ -70,7 +70,7 @@
 
 Вы можете указать описание ответа с помощью параметра `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Дополнительная информация
 
@@ -78,7 +78,7 @@
 
 ///
 
-/// check
+/// check | Проверка
 
 OpenAPI указывает, что каждой *операции пути* необходимо описание ответа.
 
