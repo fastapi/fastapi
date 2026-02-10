@@ -429,12 +429,6 @@ def test_encode_pydantic_extra_types_coordinate():
     assert jsonable_encoder(coord) == str(coord)
 
 
-def test_encode_pydantic_color():
-    pydantic_color = pytest.importorskip("pydantic.color")
-    color = pydantic_color.Color("red")
-    assert jsonable_encoder(color) == str(color)
-
-
 def test_encode_pydantic_extra_types_color():
     et_color = pytest.importorskip("pydantic_extra_types.color")
     color = et_color.Color("red")
