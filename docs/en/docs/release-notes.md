@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.128.8
+
 ### Docs
 
 * 📝 Fix grammar in `docs/en/docs/tutorial/first-steps.md`. PR [#14708](https://github.com/fastapi/fastapi/pull/14708) by [@SanjanaS10](https://github.com/SanjanaS10).
