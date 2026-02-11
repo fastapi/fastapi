@@ -1,5 +1,13 @@
-from collections.abc import Sequence
-from typing import Annotated, Any, Callable, Optional, Union
+from collections.abc import AsyncIterator, Awaitable, Iterator, Sequence
+from typing import (
+    Annotated,
+    Any,
+    Callable,
+    Optional,
+    TypeVar,
+    Union,
+    overload,
+)
 
 from annotated_doc import Doc
 from fastapi import params
@@ -2281,6 +2289,54 @@ def File(  # noqa: N802
     )
 
 
+T = TypeVar("T")
+
+
+@overload
+def Depends(  # noqa: N802
+    dependency: None = None,
+    *,
+    use_cache: bool = True,
+) -> Any:  # pragma: nocover
+    pass
+
+
+@overload
+def Depends(  # noqa: N802
+    dependency: Callable[..., Awaitable[T]],
+    *,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Depends(  # noqa: N802
+    dependency: Callable[..., Iterator[T]],
+    *,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Depends(  # noqa: N802
+    dependency: Callable[..., AsyncIterator[T]],
+    *,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Depends(  # noqa: N802
+    dependency: Callable[..., T],
+    *,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
 def Depends(  # noqa: N802
     dependency: Annotated[
         Optional[Callable[..., Any]],
@@ -2368,6 +2424,56 @@ def Depends(  # noqa: N802
     ```
     """
     return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
+
+
+@overload
+def Security(  # noqa: N802
+    dependency: None = None,
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
+) -> Any:  # pragma: nocover
+    pass
+
+
+@overload
+def Security(  # noqa: N802
+    dependency: Callable[..., Awaitable[T]],
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Security(  # noqa: N802
+    dependency: Callable[..., Iterator[T]],
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Security(  # noqa: N802
+    dependency: Callable[..., AsyncIterator[T]],
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
+
+
+@overload
+def Security(  # noqa: N802
+    dependency: Callable[..., T],
+    *,
+    scopes: Optional[Sequence[str]] = None,
+    use_cache: bool = True,
+) -> T:  # pragma: nocover
+    pass
 
 
 def Security(  # noqa: N802
