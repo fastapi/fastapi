@@ -9,10 +9,9 @@ We need to ensure new changes preserve validator functionality.
 
 from typing import Annotated
 
-from fastapi import FastAPI, Query, Body
+from fastapi import Body, FastAPI, Query
 from fastapi.testclient import TestClient
-from pydantic import AfterValidator, BeforeValidator, ValidationError
-import pytest
+from pydantic import AfterValidator, BeforeValidator
 
 
 def validate_positive(v: int) -> int:
