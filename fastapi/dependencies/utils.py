@@ -1,5 +1,7 @@
+import collections
 import dataclasses
 import inspect
+import re
 import sys
 from collections.abc import Mapping, Sequence
 from contextlib import AsyncExitStack, contextmanager
@@ -751,6 +753,62 @@ def _get_multidict_value(
     return value
 
 
+class ParameterCodec:
+    @staticmethod
+    def _default() -> dict[str, Any]:
+        return collections.defaultdict(lambda: ParameterCodec._default())
+
+    @staticmethod
+    def decode(
+        field_info: params.Param,
+        received_params: Union[Mapping[str, Any], QueryParams, Headers],
+        field: ModelField,
+    ) -> dict[str, Any]:
+        fn: Callable[
+            [params.Param, Union[Mapping[str, Any], QueryParams, Headers], ModelField],
+            dict[str, Any],
+        ]
+        fn = getattr(ParameterCodec, f"decode_{field_info.style}")
+        return fn(field_info, received_params, field)
+
+    @staticmethod
+    def decode_deepObject(
+        field_info: params.Param,
+        received_params: Union[Mapping[str, Any], QueryParams, Headers],
+        field: ModelField,
+    ) -> dict[str, Any]:
+        data: list[tuple[str, str]] = []
+        for k, v in received_params.items():
+            if k.startswith(f"{field.alias}["):
+                data.append((k, v))
+
+        r = ParameterCodec._default()
+
+        for k, v in data:
+            """
+            k: name[attr0][attr1]
+            v: "5"
+            -> {"name":{"attr0":{"attr1":"5"}}}
+            """
+            # p = tuple(map(lambda x: x[:-1] if x[-1] == ']' else x, k.split("[")))
+            # would do as well, but add basic validation …
+            p0 = re.split(r"(\[|\]\[|\]$)", k)
+            s = p0[1::2]
+            assert (
+                p0[-1] == ""
+                and s[0] == "["
+                and s[-1] == "]"
+                and all(x == "][" for x in s[1:-1])
+            )
+            p1 = tuple(p0[::2][:-1])
+
+            o = r
+            for i in p1[:-1]:
+                o = o[i]
+            o[p1[-1]] = v
+        return r
+
+
 def request_params_to_args(
     fields: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
@@ -814,17 +872,30 @@ def request_params_to_args(
             "Params must be subclasses of Param"
         )
         loc: tuple[str, ...] = (field_info.in_.value,)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
-        )
+
+        if field_info.style == "deepObject":
+            value = ParameterCodec.decode(field_info, received_params, first_field)
+            value = value[first_field.alias]
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=value, values=value, loc=loc
+            )
+        else:
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=params_to_process, values=values, loc=loc
+            )
         return {first_field.name: v_}, errors_
 
     for field in fields:
-        value = _get_multidict_value(field, received_params)
         field_info = field.field_info
         assert isinstance(field_info, params.Param), (
             "Params must be subclasses of Param"
         )
+
+        if field_info.style == "deepObject":
+            value = ParameterCodec.decode(field_info, received_params, field)
+            value = value[field.alias]
+        else:
+            value = _get_multidict_value(field, received_params)
         loc = (field_info.in_.value, get_validation_alias(field))
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc

@@ -119,6 +119,7 @@ all = [
     "pydantic-settings >=2.0.0",
     # Extra Pydantic data types
     "pydantic-extra-types >=2.0.0",
+    "more-itertools"
 ]
 
 [project.scripts]
