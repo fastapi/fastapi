@@ -20,13 +20,18 @@ from slugify import slugify as py_slugify
 logging.basicConfig(level=logging.INFO)
 
 SUPPORTED_LANGS = {
-    "en",
     "de",
+    "en",
     "es",
+    "fr",
+    "ja",
     "ko",
     "pt",
     "ru",
+    "tr",
     "uk",
+    "zh",
+    "zh-hant",
 }
 
 

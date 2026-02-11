@@ -1,22 +1,22 @@
-# Cookie 参数模型
+# Cookie 参数模型 { #cookie-parameter-models }
 
 如果您有一组相关的 **cookie**，您可以创建一个 **Pydantic 模型**来声明它们。🍪
 
 这将允许您在**多个地方**能够**重用模型**，并且可以一次性声明所有参数的验证方式和元数据。😎
 
-/// note
+/// note | 注意
 
 自 FastAPI 版本 `0.115.0` 起支持此功能。🤓
 
 ///
 
-/// tip
+/// tip | 提示
 
 此技术同样适用于 `Query` 、 `Cookie` 和 `Header` 。😎
 
 ///
 
-## 带有 Pydantic 模型的 Cookie
+## 带有 Pydantic 模型的 Cookie { #cookies-with-a-pydantic-model }
 
 在 **Pydantic** 模型中声明所需的 **cookie** 参数，然后将参数声明为 `Cookie` ：
 
@@ -24,7 +24,7 @@
 
 **FastAPI** 将从请求中接收到的 **cookie** 中**提取**出**每个字段**的数据，并提供您定义的 Pydantic 模型。
 
-## 查看文档
+## 查看文档 { #check-the-docs }
 
 您可以在文档 UI 的 `/docs` 中查看定义的 cookie：
 
@@ -32,7 +32,7 @@
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info
+/// info | 信息
 
 请记住，由于**浏览器**以特殊方式**处理 cookie**，并在后台进行操作，因此它们**不会**轻易允许 **JavaScript** 访问这些 cookie。
 
@@ -42,7 +42,7 @@
 
 ///
 
-## 禁止额外的 Cookie
+## 禁止额外的 Cookie { #forbid-extra-cookies }
 
 在某些特殊使用情况下（可能并不常见），您可能希望**限制**您想要接收的 cookie。
 
@@ -50,7 +50,7 @@
 
 您可以使用 Pydantic 的模型配置来禁止（ `forbid` ）任何额外（ `extra` ）字段：
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py39.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
 如果客户尝试发送一些**额外的 cookie**，他们将收到**错误**响应。
 
@@ -71,6 +71,6 @@
 }
 ```
 
-## 总结
+## 总结 { #summary }
 
 您可以使用 **Pydantic 模型**在 **FastAPI** 中声明 <abbr title="走之前再来块小饼干吧。 🍪">**cookie**</abbr>。😎
