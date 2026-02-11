@@ -4,7 +4,7 @@ from annotated_doc import Doc
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 from starlette.exceptions import HTTPException
-from starlette.requests import Request
+from starlette.requests import HTTPConnection
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 
@@ -137,7 +137,7 @@ class APIKeyQuery(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         api_key = request.query_params.get(self.model.name)
         return self.check_api_key(api_key)
 
@@ -225,7 +225,7 @@ class APIKeyHeader(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         api_key = request.headers.get(self.model.name)
         return self.check_api_key(api_key)
 
@@ -313,6 +313,6 @@ class APIKeyCookie(APIKeyBase):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: HTTPConnection) -> Optional[str]:
         api_key = request.cookies.get(self.model.name)
         return self.check_api_key(api_key)
