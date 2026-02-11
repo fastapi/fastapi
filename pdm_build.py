@@ -3,7 +3,7 @@ from typing import Any
 
 from pdm.backend.hooks import Context
 
-TIANGOLO_BUILD_PACKAGE = os.getenv("TIANGOLO_BUILD_PACKAGE", "typer")
+TIANGOLO_BUILD_PACKAGE = os.getenv("TIANGOLO_BUILD_PACKAGE")
 
 
 def pdm_build_initialize(context: Context) -> None:
