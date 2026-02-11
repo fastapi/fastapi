@@ -47,39 +47,15 @@ Now it's the time to use it with FastAPI. 🚀
 
 We had this type annotation:
 
-//// tab | Python 3.10+
-
 ```Python
 q: str | None = None
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Union[str, None] = None
-```
-
-////
-
 What we will do is wrap that with `Annotated`, so it becomes:
-
-//// tab | Python 3.10+
 
 ```Python
 q: Annotated[str | None] = None
 ```
-
-////
-
-//// tab | Python 3.9+
-
-```Python
-q: Annotated[Union[str, None]] = None
-```
-
-////
 
 Both of those versions mean the same thing, `q` is a parameter that can be a `str` or `None`, and by default, it is `None`.
 

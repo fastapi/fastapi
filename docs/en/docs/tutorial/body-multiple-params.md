@@ -106,13 +106,6 @@ As, by default, singular values are interpreted as query parameters, you don't h
 q: str | None = None
 ```
 
-Or in Python 3.9:
-
-```Python
-q: Union[str, None] = None
-```
-
-
 For example:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}

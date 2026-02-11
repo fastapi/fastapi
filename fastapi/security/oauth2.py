@@ -1,4 +1,4 @@
-from typing import Annotated, Any, Optional, Union, cast
+from typing import Annotated, Any, cast
 
 from annotated_doc import Doc
 from fastapi.exceptions import HTTPException
@@ -60,7 +60,7 @@ class OAuth2PasswordRequestForm:
         self,
         *,
         grant_type: Annotated[
-            Union[str, None],
+            str | None,
             Form(pattern="^password$"),
             Doc(
                 """
@@ -128,7 +128,7 @@ class OAuth2PasswordRequestForm:
             ),
         ] = "",
         client_id: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -139,7 +139,7 @@ class OAuth2PasswordRequestForm:
             ),
         ] = None,
         client_secret: Annotated[
-            Union[str, None],
+            str | None,
             Form(json_schema_extra={"format": "password"}),
             Doc(
                 """
@@ -294,7 +294,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             ),
         ] = "",
         client_id: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -305,7 +305,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
             ),
         ] = None,
         client_secret: Annotated[
-            Union[str, None],
+            str | None,
             Form(),
             Doc(
                 """
@@ -344,7 +344,7 @@ class OAuth2(SecurityBase):
         self,
         *,
         flows: Annotated[
-            Union[OAuthFlowsModel, dict[str, dict[str, Any]]],
+            OAuthFlowsModel | dict[str, dict[str, Any]],
             Doc(
                 """
                 The dictionary of OAuth2 flows.
@@ -352,7 +352,7 @@ class OAuth2(SecurityBase):
             ),
         ] = OAuthFlowsModel(),
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -362,7 +362,7 @@ class OAuth2(SecurityBase):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -420,7 +420,7 @@ class OAuth2(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
@@ -454,7 +454,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ],
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -464,7 +464,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[dict[str, str]],
+            dict[str, str] | None,
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -476,7 +476,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -506,7 +506,7 @@ class OAuth2PasswordBearer(OAuth2):
             ),
         ] = True,
         refreshUrl: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 The URL to refresh the token and obtain a new one.
@@ -533,7 +533,7 @@ class OAuth2PasswordBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
@@ -562,7 +562,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ],
         refreshUrl: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 The URL to refresh the token and obtain a new one.
@@ -570,7 +570,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scheme_name: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme name.
@@ -580,7 +580,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         scopes: Annotated[
-            Optional[dict[str, str]],
+            dict[str, str] | None,
             Doc(
                 """
                 The OAuth2 scopes that would be required by the *path operations* that
@@ -589,7 +589,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             ),
         ] = None,
         description: Annotated[
-            Optional[str],
+            str | None,
             Doc(
                 """
                 Security scheme description.
@@ -639,7 +639,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> str | None:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
@@ -666,7 +666,7 @@ class SecurityScopes:
     def __init__(
         self,
         scopes: Annotated[
-            Optional[list[str]],
+            list[str] | None,
             Doc(
                 """
                 This will be filled by FastAPI.

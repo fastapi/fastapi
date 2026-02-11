@@ -1,4 +1,5 @@
-from typing import Annotated, Any, Callable
+from collections.abc import Callable
+from typing import Annotated, Any
 
 from annotated_doc import Doc
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks

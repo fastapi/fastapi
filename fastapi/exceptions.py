@@ -1,5 +1,5 @@
 from collections.abc import Mapping, Sequence
-from typing import Annotated, Any, Optional, TypedDict, Union
+from typing import Annotated, Any, TypedDict
 
 from annotated_doc import Doc
 from pydantic import BaseModel, create_model
@@ -68,7 +68,7 @@ class HTTPException(StarletteHTTPException):
             ),
         ] = None,
         headers: Annotated[
-            Optional[Mapping[str, str]],
+            Mapping[str, str] | None,
             Doc(
                 """
                 Any headers to send to the client in the response.
@@ -137,7 +137,7 @@ class WebSocketException(StarletteWebSocketException):
             ),
         ],
         reason: Annotated[
-            Union[str, None],
+            str | None,
             Doc(
                 """
                 The reason to close the WebSocket connection.
@@ -176,7 +176,7 @@ class ValidationException(Exception):
         self,
         errors: Sequence[Any],
         *,
-        endpoint_ctx: Optional[EndpointContext] = None,
+        endpoint_ctx: EndpointContext | None = None,
     ) -> None:
         self._errors = errors
         self.endpoint_ctx = endpoint_ctx
@@ -215,7 +215,7 @@ class RequestValidationError(ValidationException):
         errors: Sequence[Any],
         *,
         body: Any = None,
-        endpoint_ctx: Optional[EndpointContext] = None,
+        endpoint_ctx: EndpointContext | None = None,
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body
@@ -226,7 +226,7 @@ class WebSocketRequestValidationError(ValidationException):
         self,
         errors: Sequence[Any],
         *,
-        endpoint_ctx: Optional[EndpointContext] = None,
+        endpoint_ctx: EndpointContext | None = None,
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
 
@@ -237,7 +237,7 @@ class ResponseValidationError(ValidationException):
         errors: Sequence[Any],
         *,
         body: Any = None,
-        endpoint_ctx: Optional[EndpointContext] = None,
+        endpoint_ctx: EndpointContext | None = None,
     ) -> None:
         super().__init__(errors, endpoint_ctx=endpoint_ctx)
         self.body = body

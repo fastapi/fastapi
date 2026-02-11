@@ -1,5 +1,5 @@
 import json
-from typing import Annotated, Any, Optional
+from typing import Annotated, Any
 
 from annotated_doc import Doc
 from fastapi.encoders import jsonable_encoder
@@ -85,7 +85,7 @@ def get_swagger_ui_html(
         ),
     ] = "https://fastapi.tiangolo.com/img/favicon.png",
     oauth2_redirect_url: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             The OAuth2 redirect URL, it is normally automatically handled by FastAPI.
@@ -96,7 +96,7 @@ def get_swagger_ui_html(
         ),
     ] = None,
     init_oauth: Annotated[
-        Optional[dict[str, Any]],
+        dict[str, Any] | None,
         Doc(
             """
             A dictionary with Swagger UI OAuth2 initialization configurations.
@@ -107,7 +107,7 @@ def get_swagger_ui_html(
         ),
     ] = None,
     swagger_ui_parameters: Annotated[
-        Optional[dict[str, Any]],
+        dict[str, Any] | None,
         Doc(
             """
             Configuration parameters for Swagger UI.
