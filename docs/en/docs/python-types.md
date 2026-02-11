@@ -135,27 +135,30 @@ You can use, for example:
 
 {* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
 
-### Generic types with type parameters { #generic-types-with-type-parameters }
+### `typing` module { #typing-module }
 
-There are some data structures that can contain other values, like `dict`, `list`, `set` and `tuple`. And the internal values can have their own type too.
+For some additional use cases, you might need to import some things from the standard library `typing` module, for example when you want to declare that something has "any type", you can use `Any` from `typing`:
 
-These types that have internal types are called "**generic**" types. And it's possible to declare them, even with their internal types.
+```python
+from typing import Any
 
-To declare those types and the internal types, you can use the standard Python module `typing`. It exists specifically to support these type hints.
 
-#### Newer versions of Python { #newer-versions-of-python }
+def some_function(data: Any):
+    print(data)
+```
 
-The syntax using `typing` is **compatible** with all versions, from Python 3.6 to the latest ones, including Python 3.9, Python 3.10, etc.
+### Generic types { #generic-types }
 
-As Python advances, **newer versions** come with improved support for these type annotations and in many cases you won't even need to import and use the `typing` module to declare the type annotations.
+Some types can take "type parameters" in square brackets, to define their internal types, for example a "list of strings" would be declared `list[str]`.
 
-If you can choose a more recent version of Python for your project, you will be able to take advantage of that extra simplicity.
+These types that can take type parameters are called **Generic types** or **Generics**.
 
-In all the docs there are examples compatible with each version of Python (when there's a difference).
+You can use the same builtin types as generics (with square brackets and types inside):
 
-For example "**Python 3.6+**" means it's compatible with Python 3.6 or above (including 3.7, 3.8, 3.9, 3.10, etc). And "**Python 3.9+**" means it's compatible with Python 3.9 or above (including 3.10, etc).
-
-If you can use the **latest versions of Python**, use the examples for the latest version, those will have the **best and simplest syntax**, for example, "**Python 3.10+**".
+* `list`
+* `tuple`
+* `set`
+* `dict`
 
 #### List { #list }
 
@@ -220,43 +223,19 @@ This means:
 
 You can declare that a variable can be any of **several types**, for example, an `int` or a `str`.
 
-In Python 3.6 and above (including Python 3.10) you can use the `Union` type from `typing` and put inside the square brackets the possible types to accept.
+To define it you use the <dfn title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</dfn> to separate both types.
 
-In Python 3.10 there's also a **new syntax** where you can put the possible types separated by a <dfn title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</dfn>.
-
-//// tab | Python 3.10+
+This is called a "union", because the variable can be anything in the union of those two sets of types.
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial008b_py310.py!}
 ```
 
-////
-
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial008b_py39.py!}
-```
-
-////
-
-In both cases this means that `item` could be an `int` or a `str`.
+This means that `item` could be an `int` or a `str`.
 
 #### Possibly `None` { #possibly-none }
 
 You can declare that a value could have a type, like `str`, but that it could also be `None`.
-
-In Python 3.6 and above (including Python 3.10) you can declare it by importing and using `Optional` from the `typing` module.
-
-```Python hl_lines="1  4"
-{!../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-Using `Optional[str]` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
-
-`Optional[Something]` is actually a shortcut for `Union[Something, None]`, they are equivalent.
-
-This also means that in Python 3.10, you can use `Something | None`:
 
 //// tab | Python 3.10+
 
@@ -266,96 +245,7 @@ This also means that in Python 3.10, you can use `Something | None`:
 
 ////
 
-//// tab | Python 3.9+
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009_py39.py!}
-```
-
-////
-
-//// tab | Python 3.9+ alternative
-
-```Python hl_lines="1  4"
-{!> ../../docs_src/python_types/tutorial009b_py39.py!}
-```
-
-////
-
-#### Using `Union` or `Optional` { #using-union-or-optional }
-
-If you are using a Python version below 3.10, here's a tip from my very **subjective** point of view:
-
-* 🚨 Avoid using `Optional[SomeType]`
-* Instead ✨ **use `Union[SomeType, None]`** ✨.
-
-Both are equivalent and underneath they are the same, but I would recommend `Union` instead of `Optional` because the word "**optional**" would seem to imply that the value is optional, and it actually means "it can be `None`", even if it's not optional and is still required.
-
-I think `Union[SomeType, None]` is more explicit about what it means.
-
-It's just about the words and names. But those words can affect how you and your teammates think about the code.
-
-As an example, let's take this function:
-
-{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
-
-The parameter `name` is defined as `Optional[str]`, but it is **not optional**, you cannot call the function without the parameter:
-
-```Python
-say_hi()  # Oh, no, this throws an error! 😱
-```
-
-The `name` parameter is **still required** (not *optional*) because it doesn't have a default value. Still, `name` accepts `None` as the value:
-
-```Python
-say_hi(name=None)  # This works, None is valid 🎉
-```
-
-The good news is, once you are on Python 3.10 you won't have to worry about that, as you will be able to simply use `|` to define unions of types:
-
-{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
-
-And then you won't have to worry about names like `Optional` and `Union`. 😎
-
-#### Generic types { #generic-types }
-
-These types that take type parameters in square brackets are called **Generic types** or **Generics**, for example:
-
-//// tab | Python 3.10+
-
-You can use the same builtin types as generics (with square brackets and types inside):
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-And the same as with previous Python versions, from the `typing` module:
-
-* `Union`
-* `Optional`
-* ...and others.
-
-In Python 3.10, as an alternative to using the generics `Union` and `Optional`, you can use the <dfn title='also called "bitwise or operator", but that meaning is not relevant here'>vertical bar (`|`)</dfn> to declare unions of types, that's a lot better and simpler.
-
-////
-
-//// tab | Python 3.9+
-
-You can use the same builtin types as generics (with square brackets and types inside):
-
-* `list`
-* `tuple`
-* `set`
-* `dict`
-
-And generics from the `typing` module:
-
-* `Union`
-* `Optional`
-* ...and others.
-
-////
+Using `str | None` instead of just `str` will let the editor help you detect errors where you could be assuming that a value is always a `str`, when it could actually be `None` too.
 
 ### Classes as types { #classes-as-types }
 
@@ -403,17 +293,11 @@ To learn more about <a href="https://docs.pydantic.dev/" class="external-link" t
 
 You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
 
-/// tip
-
-Pydantic has a special behavior when you use `Optional` or `Union[Something, None]` without a default value, you can read more about it in the Pydantic docs about <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">Required Optional fields</a>.
-
-///
-
 ## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
 Python also has a feature that allows putting **additional <dfn title="Data about the data, in this case, information about the type, e.g. a description.">metadata</dfn>** in these type hints using `Annotated`.
 
-Since Python 3.9, `Annotated` is a part of the standard library, so you can import it from `typing`.
+You can import `Annotated` from `typing`.
 
 {* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
 
