@@ -202,6 +202,29 @@ source-includes = [
 
 [tool.tiangolo._internal-slim-build.packages.fastapi-slim.project]
 name = "fastapi-slim"
+readme = "fastapi-slim/README.md"
+dependencies = [
+    "fastapi",
+]
+optional-dependencies = {}
+scripts = {}
+
+[tool.tiangolo._internal-slim-build.packages.fastapi-slim.tool.pdm.build]
+# excludes needs to explicitly exclude the top level python packages,
+# otherwise PDM includes them by default
+# A "*" glob pattern can't be used here because in PDM internals, the patterns are put
+# in a set (unordered, order varies) and each excluded file is assigned one of the
+# glob patterns that matches, as the set is unordered, the matched pattern could be "*"
+# independent of the order here. And then the internal code would give it a lower score
+# than the one for a default included file.
+# By not using "*" and explicitly excluding the top level packages, they get a higher
+# score than the default inclusion
+excludes = ["fastapi", "tests", "pdm_build.py"]
+# source-includes needs to explicitly define some value because PDM will check the
+# truthy value of the list, and if empty, will include some defaults, including "tests",
+# an empty string doesn't match anything, but makes the list truthy, so that PDM
+# doesn't override it during the build.
+source-includes = [""]
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
