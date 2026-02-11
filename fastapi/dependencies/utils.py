@@ -199,20 +199,17 @@ def get_flat_params(dependant: Dependant) -> list[ModelField]:
 
 
 def _get_signature(call: Callable[..., Any]) -> inspect.Signature:
-    if sys.version_info >= (3, 10):
-        try:
-            signature = inspect.signature(call, eval_str=True)
-        except NameError:
-            # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
-            # e.g. dependency return types
-            if sys.version_info >= (3, 14):
-                from annotationlib import Format
+    try:
+        signature = inspect.signature(call, eval_str=True)
+    except NameError:
+        # Handle type annotations with if TYPE_CHECKING, not used by FastAPI
+        # e.g. dependency return types
+        if sys.version_info >= (3, 14):
+            from annotationlib import Format
 
-                signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
-            else:
-                signature = inspect.signature(call)
-    else:
-        signature = inspect.signature(call)
+            signature = inspect.signature(call, annotation_format=Format.FORWARDREF)
+        else:
+            signature = inspect.signature(call)
     return signature
 
 

@@ -21,14 +21,11 @@ from typing_extensions import TypeGuard, get_args, get_origin
 _T = TypeVar("_T")
 
 # Copy from Pydantic: pydantic/_internal/_typing_extra.py
-if sys.version_info < (3, 10):
-    WithArgsTypes: tuple[Any, ...] = (typing._GenericAlias, types.GenericAlias)  # type: ignore[attr-defined]
-else:
-    WithArgsTypes: tuple[Any, ...] = (
-        typing._GenericAlias,  # type: ignore[attr-defined]
-        types.GenericAlias,
-        types.UnionType,
-    )  # pyright: ignore[reportAttributeAccessIssue]
+WithArgsTypes: tuple[Any, ...] = (
+    typing._GenericAlias,  # type: ignore[attr-defined]
+    types.GenericAlias,
+    types.UnionType,
+)  # pyright: ignore[reportAttributeAccessIssue]
 
 PYDANTIC_VERSION_MINOR_TUPLE = tuple(int(x) for x in PYDANTIC_VERSION.split(".")[:2])
 
