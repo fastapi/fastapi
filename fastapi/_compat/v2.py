@@ -5,17 +5,20 @@ from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from functools import lru_cache
-from typing import (
-    Annotated,
-    Any,
-    Union,
-    cast,
-)
+from typing import Annotated, Any, Callable, Union, cast
 
 from fastapi._compat import lenient_issubclass, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
-from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    OnErrorOmit,
+    TypeAdapter,
+    WrapValidator,
+    create_model,
+)
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
@@ -433,3 +436,79 @@ def _regenerate_error_with_loc(
     ]
 
     return updated_loc_errors
+
+
+if shared.PYDANTIC_VERSION_MINOR_TUPLE >= (2, 6):
+    # Omit by default for scalar mapping and scalar sequence mapping annotations
+    # added in Pydantic v2.6 https://github.com/pydantic/pydantic/releases/tag/v2.6.0
+    def _omit_by_default(annotation: Any, depth: int = 0) -> Any:
+        origin = get_origin(annotation)
+        args = get_args(annotation)
+
+        if (origin is Union or origin is UnionType) and depth == 0:
+            # making the depth check since the values of dicts being Union types
+            # is not working as expected as of Pydantic v2.12.3 so we just omit at
+            # the top level Union here for now
+            # https://github.com/pydantic/pydantic-core/issues/1900
+            # https://github.com/pydantic/pydantic/issues/12750
+            return Union[tuple(_omit_by_default(arg) for arg in args)]
+        elif origin is list:
+            return list[_omit_by_default(args[0], depth=depth + 1)]  # type: ignore[misc]
+        elif origin is dict:
+            return dict[args[0], _omit_by_default(args[1], depth=depth + 1)]  # type: ignore[misc,valid-type]
+        else:
+            return OnErrorOmit[annotation]  # type: ignore[misc]
+
+    def omit_by_default(field_info: FieldInfo) -> FieldInfo:
+        new_annotation = _omit_by_default(field_info.annotation)
+        new_field_info = copy_field_info(
+            field_info=field_info, annotation=new_annotation
+        )
+        return new_field_info
+
+else:  # pragma: no cover
+
+    def ignore_invalid(v: Any, handler: Callable[[Any], Any]) -> Any:
+        try:
+            return handler(v)
+        except ValidationError as exc:
+            # pop the keys or elements that caused the validation errors and revalidate
+            for error in exc.errors():
+                loc = error["loc"]
+                if len(loc) == 0:
+                    continue
+                if isinstance(loc[0], int) and isinstance(v, list):
+                    index = loc[0]
+                    if 0 <= index < len(v):
+                        v[index] = None
+
+                # Handle nested list validation errors (e.g., dict[str, list[str]])
+                elif isinstance(loc[0], str) and isinstance(v, dict):
+                    key = loc[0]
+                    if (
+                        len(loc) > 1
+                        and isinstance(loc[1], int)
+                        and key in v
+                        and isinstance(v[key], list)
+                    ):
+                        list_index = loc[1]
+                        v[key][list_index] = None
+                    elif key in v:
+                        v.pop(key)
+
+            if isinstance(v, list):
+                v = [el for el in v if el is not None]
+
+            if isinstance(v, dict):
+                for key in v.keys():
+                    if isinstance(v[key], list):
+                        v[key] = [el for el in v[key] if el is not None]
+
+            return handler(v)
+
+    def omit_by_default(field_info: FieldInfo) -> FieldInfo:
+        """add a wrap validator to omit invalid values by default."""
+        field_info.metadata = field_info.metadata or [] + [
+            WrapValidator(ignore_invalid)
+        ]
+        return field_info

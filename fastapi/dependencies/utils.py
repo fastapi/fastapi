@@ -25,7 +25,9 @@ from fastapi._compat import (
     create_body_model,
     evaluate_forwardref,
     field_annotation_is_scalar,
+    field_annotation_is_scalar_mapping,
     field_annotation_is_scalar_sequence,
+    field_annotation_is_scalar_sequence_mapping,
     field_annotation_is_sequence,
     get_cached_model_fields,
     get_missing_field_error,
@@ -35,6 +37,7 @@ from fastapi._compat import (
     is_uploadfile_or_nonable_uploadfile_annotation,
     is_uploadfile_sequence_annotation,
     lenient_issubclass,
+    omit_by_default,
     sequence_types,
     serialize_sequence_value,
     value_is_sequence,
@@ -504,7 +507,16 @@ def analyze_param(
             alias = param_name.replace("_", "-")
         else:
             alias = field_info.alias or param_name
+
         field_info.alias = alias
+
+        # Omit by default for scalar mapping and scalar sequence mapping query fields
+        if isinstance(field_info, params.Query) and (
+            field_annotation_is_scalar_sequence_mapping(use_annotation_from_field_info)
+            or field_annotation_is_scalar_mapping(use_annotation_from_field_info)
+        ):
+            field_info = omit_by_default(field_info)
+
         field = create_model_field(
             name=param_name,
             type_=use_annotation_from_field_info,
@@ -519,6 +531,10 @@ def analyze_param(
         elif isinstance(field_info, params.Query):
             assert (
                 is_scalar_field(field)
+                or field_annotation_is_scalar_mapping(field.field_info.annotation)
+                or field_annotation_is_scalar_sequence_mapping(
+                    field.field_info.annotation
+                )
                 or field_annotation_is_scalar_sequence(field.field_info.annotation)
                 or lenient_issubclass(field.field_info.annotation, BaseModel)
             ), f"Query parameter {param_name!r} must be one of the supported types"
@@ -721,14 +737,28 @@ def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: str | None = None
 ) -> Any:
     alias = alias or get_validation_alias(field)
+    value: Any = None
+
     if (
         (not _is_json_field(field))
         and field_annotation_is_sequence(field.field_info.annotation)
         and isinstance(values, (ImmutableMultiDict, Headers))
     ):
         value = values.getlist(alias)
-    else:
-        value = values.get(alias, None)
+    elif alias in values:
+        value = values[alias]
+    elif (
+        values
+        and field_annotation_is_scalar_mapping(field.field_info.annotation)
+        and isinstance(values, QueryParams)
+    ):
+        value = dict(values)
+    elif (
+        values
+        and field_annotation_is_scalar_sequence_mapping(field.field_info.annotation)
+        and isinstance(values, QueryParams)
+    ):
+        value = {key: values.getlist(key) for key in values.keys()}
     if (
         value is None
         or (
@@ -830,6 +860,15 @@ def request_params_to_args(
             errors.extend(errors_)
         else:
             values[field.name] = v_
+    # remove keys which were captured by a mapping query field but were
+    # specified as individual fields
+    for field in fields:
+        if isinstance(values.get(field.name), dict) and (
+            field_annotation_is_scalar_mapping(field.field_info.annotation)
+            or field_annotation_is_scalar_sequence_mapping(field.field_info.annotation)
+        ):
+            for f_ in fields:
+                values[field.name].pop(f_.alias, None)
     return values, errors
 
 

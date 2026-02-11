@@ -186,3 +186,17 @@ In this case, there are 3 query parameters:
 You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
 
 ///
+
+## Free Form Query Parameters { #free-form-query-parameters }
+
+Sometimes you want to receive some query parameters, but you don't know in advance what they are called. **FastAPI** provides support for this use case as well.
+
+=== "Python 3.10+"
+
+    ```Python hl_lines="8"
+    {!> ../../../docs_src/query_params/tutorial007_py310.py!}
+    ```
+
+And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will that OpenAPI supports this format of query parameter:
+
+<img src="/img/tutorial/path-params/image01.png">

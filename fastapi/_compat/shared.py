@@ -123,6 +123,52 @@ def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
     )
 
 
+def field_annotation_is_scalar_mapping(
+    annotation: Union[type[Any], None],
+) -> bool:
+    origin = get_origin(annotation)
+    if origin is Annotated:
+        return field_annotation_is_scalar_mapping(get_args(annotation)[0])
+    if origin is Union or origin is UnionType:
+        at_least_one_scalar_mapping = False
+        for arg in get_args(annotation):
+            if field_annotation_is_scalar_mapping(arg):
+                at_least_one_scalar_mapping = True
+                continue
+            elif not field_annotation_is_scalar(arg):
+                return False
+        return at_least_one_scalar_mapping
+    return lenient_issubclass(origin, Mapping) and all(
+        field_annotation_is_scalar(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
+def field_annotation_is_scalar_sequence_mapping(
+    annotation: Union[type[Any], None],
+) -> bool:
+    origin = get_origin(annotation)
+    if origin is Annotated:
+        return field_annotation_is_scalar_sequence_mapping(get_args(annotation)[0])
+    if origin is Union or origin is UnionType:
+        at_least_one_scalar_mapping = False
+        for arg in get_args(annotation):
+            if field_annotation_is_scalar_sequence_mapping(arg):
+                at_least_one_scalar_mapping = True
+                continue
+            elif not (
+                field_annotation_is_scalar_sequence_mapping(arg)
+                or field_annotation_is_scalar_mapping(arg)
+            ):
+                return False
+        return at_least_one_scalar_mapping
+    return lenient_issubclass(origin, Mapping) and all(
+        field_annotation_is_scalar_sequence(sub_annotation)
+        or field_annotation_is_scalar(sub_annotation)
+        for sub_annotation in get_args(annotation)
+    )
+
+
 def is_bytes_or_nonable_bytes_annotation(annotation: Any) -> bool:
     if lenient_issubclass(annotation, bytes):
         return True
