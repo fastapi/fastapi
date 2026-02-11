@@ -211,6 +211,13 @@ def test_openapi(client: TestClient):
                             "title": "Error Type",
                             "type": "string",
                         },
+                        "ctx": {
+                            "title": "Context",
+                            "type": "object",
+                        },
+                        "input": {
+                            "title": "Input",
+                        },
                     },
                     "required": [
                         "loc",
