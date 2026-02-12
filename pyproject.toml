@@ -151,7 +151,7 @@ docs = [
 ]
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
-    "ruff >=0.15.0",
+    "ruff >=0.14.14",
 ]
 github-actions = [
     "httpx >=0.27.0,<1.0.0",
@@ -495,13 +495,13 @@ show_contexts = true
 
 [tool.ruff.lint]
 select = [
-    "E",    # pycodestyle errors
-    "W",    # pycodestyle warnings
-    "F",    # pyflakes
-    "I",    # isort
-    "B",    # flake8-bugbear
-    "C4",   # flake8-comprehensions
-    "UP",   # pyupgrade
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
     "FURB"  # refurb
 ]
 ignore = [
