@@ -25,7 +25,7 @@ To return HTTP responses with errors to the client you use `HTTPException`.
 
 ### Import `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
 
 ### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ The benefit of raising an exception over returning a value will be more evident 
 
 In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:
 
-{* ../../docs_src/handling_errors/tutorial001_py39.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
 
 ### The resulting response { #the-resulting-response }
 
@@ -77,7 +77,7 @@ You probably won't need to use it directly in your code.
 
 But in case you needed it for an advanced scenario, you can add custom headers:
 
-{* ../../docs_src/handling_errors/tutorial002_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
 
 ## Install custom exception handlers { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@ And you want to handle this exception globally with FastAPI.
 
 You could add a custom exception handler with `@app.exception_handler()`:
 
-{* ../../docs_src/handling_errors/tutorial003_py39.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
 Here, if you request `/unicorns/yolo`, the *path operation* will `raise` a `UnicornException`.
 
@@ -127,7 +127,7 @@ To override it, import the `RequestValidationError` and use it with `@app.except
 
 The exception handler will receive a `Request` and the exception.
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
 
 Now, if you go to `/items/foo`, instead of getting the default JSON error with:
 
@@ -159,7 +159,7 @@ The same way, you can override the `HTTPException` handler.
 
 For example, you could want to return a plain text response instead of JSON for these errors:
 
-{* ../../docs_src/handling_errors/tutorial004_py39.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
 
 /// note | Technical Details
 
@@ -183,7 +183,7 @@ The `RequestValidationError` contains the `body` it received with invalid data.
 
 You could use it while developing your app to log the body and debug it, return it to the user, etc.
 
-{* ../../docs_src/handling_errors/tutorial005_py39.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
 
 Now try sending an invalid item like:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 If you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:
 
-{* ../../docs_src/handling_errors/tutorial006_py39.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
 
 In this example you are just printing the error with a very expressive message, but you get the idea. You can use the exception and then just reuse the default exception handlers.
