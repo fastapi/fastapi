@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.exceptions import FastAPIError
@@ -5,18 +7,19 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.testclient import TestClient
 
 
-def test_mount_static_files_to_apirouter(tmp_path):
+@pytest.mark.parametrize("root_path", ["", "/v1"])
+def test_mount_static_files_to_apirouter(tmp_path: Path, root_path: str):
     static_asset = tmp_path / "index.html"
     static_asset.write_text("Hello, World!")
 
     router = APIRouter()
     router.mount("/static", StaticFiles(directory=tmp_path), name="static")
 
-    app = FastAPI()
+    app = FastAPI(root_path=root_path or None)
     app.include_router(router)
 
     client = TestClient(app)
-    response = client.get("/static/index.html")
+    response = client.get(f"{root_path}/static/index.html")
     assert response.status_code == 200
     assert response.text == "Hello, World!"
 
