@@ -10,7 +10,7 @@
 
 Сначала создайте основное, верхнего уровня, приложение **FastAPI** и его *операции пути*:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
 
 ### Подприложение { #sub-application }
 
@@ -18,7 +18,7 @@
 
 Это подприложение — обычное стандартное приложение FastAPI, но именно оно будет «смонтировано»:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
 
 ### Смонтируйте подприложение { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 В этом случае оно будет смонтировано по пути `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py39.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
 
 ### Проверьте автоматическую документацию API { #check-the-automatic-api-docs }
 

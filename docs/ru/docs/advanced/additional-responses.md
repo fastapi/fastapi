@@ -26,7 +26,7 @@
 
 Например, чтобы объявить ещё один ответ со статус-кодом `404` и Pydantic-моделью `Message`, можно написать:
 
-{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
 
 /// note | Примечание
 
@@ -203,7 +203,7 @@
 
 А также ответ со статус-кодом `200`, который использует ваш `response_model`, но включает пользовательский `example`:
 
-{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
 
 Всё это будет объединено и включено в ваш OpenAPI и отображено в документации API:
 

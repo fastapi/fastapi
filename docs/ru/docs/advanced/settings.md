@@ -54,7 +54,7 @@ $ pip install "fastapi[all]"
 
 Вы можете использовать все те же возможности валидации и инструменты, что и для Pydantic‑моделей, например разные типы данных и дополнительную валидацию через `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | Совет
 
@@ -70,7 +70,7 @@ $ pip install "fastapi[all]"
 
 Затем вы можете использовать новый объект `settings` в вашем приложении:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Запуск сервера { #run-the-server }
 
@@ -104,11 +104,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Например, у вас может быть файл `config.py` со следующим содержимым:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 А затем использовать его в файле `main.py`:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | Совет
 
@@ -126,7 +126,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Продолжая предыдущий пример, ваш файл `config.py` может выглядеть так:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Обратите внимание, что теперь мы не создаем экземпляр по умолчанию `settings = Settings()`.
 
@@ -134,7 +134,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Теперь мы создаем зависимость, которая возвращает новый `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | Совет
 
@@ -146,13 +146,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Затем мы можем запросить ее в *функции-обработчике пути* как зависимость и использовать там, где нужно.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Настройки и тестирование { #settings-and-testing }
 
 Далее будет очень просто предоставить другой объект настроек во время тестирования, создав переопределение зависимости для `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 В переопределении зависимости мы задаем новое значение `admin_email` при создании нового объекта `Settings`, а затем возвращаем этот новый объект.
 
@@ -193,7 +193,7 @@ APP_NAME="ChimichangApp"
 
 Затем обновите ваш `config.py` так:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | Совет
 
@@ -226,7 +226,7 @@ def get_settings():
 
 Но так как мы используем декоратор `@lru_cache` сверху, объект `Settings` будет создан только один раз — при первом вызове. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Затем при любых последующих вызовах `get_settings()` в зависимостях для следующих запросов, вместо выполнения внутреннего кода `get_settings()` и создания нового объекта `Settings`, будет возвращаться тот же объект, что был возвращен при первом вызове, снова и снова.
 

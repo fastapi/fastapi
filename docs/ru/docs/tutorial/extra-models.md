@@ -190,9 +190,9 @@ some_variable: PlaneItem | CarItem
 
 Таким же образом вы можете объявлять HTTP-ответы, возвращающие списки объектов.
 
-Для этого используйте стандартный `typing.List` в Python (или просто `list` в Python 3.9 и выше):
+Для этого используйте стандартный `list` в Python:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Ответ с произвольным `dict` { #response-with-arbitrary-dict }
 
@@ -200,9 +200,9 @@ some_variable: PlaneItem | CarItem
 
 Это полезно, если вы заранее не знаете корректных названий полей/атрибутов (которые будут нужны при использовании Pydantic-модели).
 
-В этом случае вы можете использовать `typing.Dict` (или просто `dict` в Python 3.9 и выше):
+В этом случае вы можете использовать `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Резюме { #recap }
 
