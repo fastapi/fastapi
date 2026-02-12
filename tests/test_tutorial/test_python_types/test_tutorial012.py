@@ -1,4 +1,4 @@
-from docs_src.python_types.tutorial012_py39 import User
+from docs_src.python_types.tutorial012_py310 import User
 
 
 def test_user():
