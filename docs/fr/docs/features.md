@@ -2,7 +2,7 @@
 
 ## Fonctionnalités de FastAPI
 
-**FastAPI** vous offre ceci:
+**FastAPI** vous offre ceci :
 
 ### Basé sur des standards ouverts
 
@@ -23,7 +23,7 @@ Documentation d'API interactive et interface web d'exploration. Comme le framewo
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Faite en python moderne
+### Écrit en python moderne
 
 Tout est basé sur la déclaration de type standard de **Python 3.8** (grâce à Pydantic). Pas de nouvelles syntaxes à apprendre. Juste du Python standard et moderne.
 
@@ -48,7 +48,7 @@ class User(BaseModel):
     name: str
     joined: date
 ```
-Qui peuvent ensuite être utilisés comme cela:
+Cela peut ensuite être utilisés comme suit :
 
 ```Python
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
@@ -139,7 +139,7 @@ FastAPI contient un système simple mais extrêmement puissant d'<abbr title='au
 
 * Même les dépendances peuvent avoir des dépendances, créant une hiérarchie ou un **"graph" de dépendances**
 * Tout est **automatiquement géré** par le framework
-* Toutes les dépendances peuvent exiger des données d'une requêtes et **Augmenter les contraintes d'un path operation** et de la documentation automatique.
+* Toutes les dépendances peuvent exiger des données d'une requêtes et **augmenter les contraintes d'un path operation** et de la documentation automatique.
 * **Validation automatique** même pour les paramètres de *path operation* définis dans les dépendances.
 * Supporte les systèmes d'authentification d'utilisateurs complexes, les **connexions de base de données**, etc.
 * **Aucun compromis** avec les bases de données, les frontends, etc. Mais une intégration facile avec n'importe lequel d'entre eux.
@@ -164,7 +164,7 @@ En fait, `FastAPI` est un sous composant de `Starlette`. Donc, si vous savez dé
 
 Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAPI est juste Starlette sous stéroïdes):
 
-* Des performances vraiment impressionnantes. C'est l'<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">un des framework Python les plus rapide, à égalité avec **NodeJS** et **GO**</a>.
+* Des performances vraiment impressionnantes. C'est l'<a href="https://github.com/encode/starlette#performance" class="external-link" target="_blank">un des frameworks Python les plus rapides, à égalité avec **NodeJS** et **GO**</a>.
 * Le support des **WebSockets**.
 * Le support de **GraphQL**.
 * Les <abbr title="En anglais: In-process background tasks">tâches d'arrière-plan.</abbr>
