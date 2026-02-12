@@ -6,7 +6,7 @@
 
 А затем вы можете устанавливать HTTP-заголовки в этом *временном* объекте ответа.
 
-{* ../../docs_src/response_headers/tutorial002_py39.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
 После этого вы можете вернуть любой нужный объект, как обычно (например, `dict`, модель из базы данных и т.д.).
 
@@ -22,7 +22,7 @@
 
 Создайте ответ, как описано в [Вернуть Response напрямую](response-directly.md){.internal-link target=_blank}, и передайте заголовки как дополнительный параметр:
 
-{* ../../docs_src/response_headers/tutorial001_py39.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
 
 /// note | Технические детали
 
