@@ -7,6 +7,27 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+* ➖ Drop support for Python 3.9. PR [#14897](https://github.com/fastapi/fastapi/pull/14897) by [@tiangolo](https://github.com/tiangolo).
+
+### Refactors
+
+* 🎨 Update internal types for Python 3.10. PR [#14898](https://github.com/fastapi/fastapi/pull/14898) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.8
+
+### Docs
+
+* 📝 Fix grammar in `docs/en/docs/tutorial/first-steps.md`. PR [#14708](https://github.com/fastapi/fastapi/pull/14708) by [@SanjanaS10](https://github.com/SanjanaS10).
+
+### Internal
+
+* 🔨 Tweak PDM hook script. PR [#14895](https://github.com/fastapi/fastapi/pull/14895) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Update build setup for `fastapi-slim`, deprecate it, and make it only depend on `fastapi`. PR [#14894](https://github.com/fastapi/fastapi/pull/14894) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.128.7
+
 ### Features
 
 * ✨ Show a clear error on attempt to include router into itself. PR [#14258](https://github.com/fastapi/fastapi/pull/14258) by [@JavierSanchezCastro](https://github.com/JavierSanchezCastro).
@@ -16,8 +37,15 @@ hide:
 
 * ♻️ Simplify reading files in memory, do it sequentially instead of (fake) parallel. PR [#14884](https://github.com/fastapi/fastapi/pull/14884) by [@tiangolo](https://github.com/tiangolo).
 
+### Docs
+
+* 📝 Use `dfn` tag for definitions instead of `abbr` in docs. PR [#14744](https://github.com/fastapi/fastapi/pull/14744) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ### Internal
 
+* ✅ Tweak comment in test to reference PR. PR [#14885](https://github.com/fastapi/fastapi/pull/14885) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update LLM-prompt for `abbr` and `dfn` tags. PR [#14747](https://github.com/fastapi/fastapi/pull/14747) by [@YuriiMotov](https://github.com/YuriiMotov).
+* ✅ Test order for the submitted byte Files. PR [#14828](https://github.com/fastapi/fastapi/pull/14828) by [@valentinDruzhinin](https://github.com/valentinDruzhinin).
 * 🔧 Configure `test` workflow to run tests with `inline-snapshot=review`. PR [#14876](https://github.com/fastapi/fastapi/pull/14876) by [@YuriiMotov](https://github.com/YuriiMotov).
 
 ## 0.128.6
