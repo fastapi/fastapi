@@ -1,10 +1,10 @@
-# 벤치마크
+# 벤치마크 { #benchmarks }
 
-독립적인 TechEmpower 벤치마크에 따르면 **FastAPI** 애플리케이션이 Uvicorn을 사용하여 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">가장 빠른 Python 프레임워크 중 하나</a>로 실행되며, Starlette와 Uvicorn 자체(내부적으로 FastAPI가 사용하는 도구)보다 조금 아래에 위치합니다.
+독립적인 TechEmpower 벤치마크에 따르면 **FastAPI** 애플리케이션이 Uvicorn을 사용하여 <a href="https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7" class="external-link" target="_blank">사용 가능한 가장 빠른 Python 프레임워크 중 하나</a>로 실행되며, Starlette와 Uvicorn 자체(내부적으로 FastAPI가 사용하는 도구)보다 조금 아래에 위치합니다.
 
 그러나 벤치마크와 비교를 확인할 때 다음 사항을 염두에 두어야 합니다.
 
-## 벤치마크와 속도
+## 벤치마크와 속도 { #benchmarks-and-speed }
 
 벤치마크를 확인할 때, 일반적으로 여러 가지 유형의 도구가 동등한 것으로 비교되는 것을 볼 수 있습니다.
 
@@ -16,7 +16,7 @@
 
 * **Uvicorn**: ASGI 서버
     * **Starlette**: (Uvicorn 사용) 웹 마이크로 프레임워크
-        * **FastAPI**: (Starlette 사용) API 구축을 위한 데이터 검증 등 여러 추가 기능이 포함된 API 마이크로 프레임워크
+        * **FastAPI**: (Starlette 사용) 데이터 검증 등 API를 구축하기 위한 여러 추가 기능이 포함된 API 마이크로 프레임워크
 
 * **Uvicorn**:
     * 서버 자체 외에는 많은 추가 코드가 없기 때문에 최고의 성능을 발휘합니다.
@@ -29,6 +29,6 @@
 * **FastAPI**:
     * Starlette가 Uvicorn을 사용하므로 Uvicorn보다 빨라질 수 없는 것과 마찬가지로, **FastAPI**는 Starlette를 사용하므로 더 빠를 수 없습니다.
     * FastAPI는 Starlette에 추가적으로 더 많은 기능을 제공합니다. API를 구축할 때 거의 항상 필요한 데이터 검증 및 직렬화와 같은 기능들이 포함되어 있습니다. 그리고 이를 사용하면 문서 자동화 기능도 제공됩니다(문서 자동화는 응용 프로그램 실행 시 오버헤드를 추가하지 않고 시작 시 생성됩니다).
-    * FastAPI를 사용하지 않고 직접 Starlette(또는 Sanic, Flask, Responder 등)를 사용했다면 데이터 검증 및 직렬화를 직접 구현해야 합니다. 따라서 최종 응용 프로그램은 FastAPI를 사용한 것과 동일한 오버헤드를 가지게 될 것입니다. 많은 경우 데이터 검증 및 직렬화가 응용 프로그램에서 작성된 코드 중 가장 많은 부분을 차지합니다.
-    * 따라서 FastAPI를 사용함으로써 개발 시간, 버그, 코드 라인을 줄일 수 있으며, FastAPI를 사용하지 않았을 때와 동일하거나 더 나은 성능을 얻을 수 있습니다(코드에서 모두 구현해야 하기 때문에).
-    * FastAPI를 비교할 때는 Flask-apispec, NestJS, Molten 등 데이터 검증, 직렬화 및 문서화가 통합된 자동 데이터 검증, 직렬화 및 문서화를 제공하는 웹 응용 프로그램 프레임워크(또는 도구 집합)와 비교하세요.
+    * FastAPI를 사용하지 않고 직접 Starlette(또는 다른 도구, 예: Sanic, Flask, Responder 등)를 사용했다면 데이터 검증 및 직렬화를 직접 구현해야 합니다. 따라서 최종 응용 프로그램은 FastAPI를 사용한 것과 동일한 오버헤드를 가지게 될 것입니다. 많은 경우 데이터 검증 및 직렬화가 응용 프로그램에서 작성된 코드 중 가장 많은 부분을 차지합니다.
+    * 따라서 FastAPI를 사용함으로써 개발 시간, 버그, 코드 라인을 줄일 수 있으며, FastAPI를 사용하지 않았을 때와 동일한 성능(또는 더 나은 성능)을 얻을 수 있을 것입니다(코드에서 모두 구현해야 하기 때문에).
+    * FastAPI를 비교할 때는 Flask-apispec, NestJS, Molten 등 데이터 검증, 직렬화 및 문서화를 제공하는 웹 애플리케이션 프레임워크(또는 도구 집합)와 비교하세요. 통합된 자동 데이터 검증, 직렬화 및 문서화를 제공하는 프레임워크입니다.

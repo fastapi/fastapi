@@ -5,9 +5,6 @@ on:
     - cron: "0 12 1 * *"
   workflow_dispatch:
 
-env:
-  UV_SYSTEM_PYTHON: 1
-
 jobs:
   topic-repos:
     if: github.repository_owner == 'fastapi'
@@ -23,18 +20,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version-file: ".python-version"
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "0.4.15"
           enable-cache: true
           cache-dependency-glob: |
-            requirements**.txt
             pyproject.toml
+            uv.lock
       - name: Install GitHub Actions dependencies
-        run: uv pip install -r requirements-github-actions.txt
+        run: uv sync --locked --no-dev --group github-actions
       - name: Update Topic Repos
-        run: python ./scripts/topic_repos.py
+        run: uv run ./scripts/topic_repos.py
         env:
           GITHUB_TOKEN: ${{ secrets.FASTAPI_PR_TOKEN }}

@@ -1,18 +1,21 @@
 import re
 import warnings
 from collections.abc import Sequence
-from copy import copy, deepcopy
+from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
 from functools import lru_cache
 from typing import (
     Annotated,
     Any,
+    Literal,
     Union,
     cast,
+    get_args,
+    get_origin,
 )
 
-from fastapi._compat import shared
+from fastapi._compat import lenient_issubclass, shared
 from fastapi.openapi.constants import REF_TEMPLATE
 from fastapi.types import IncEx, ModelNameMap, UnionType
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
@@ -23,29 +26,19 @@ from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
 from pydantic._internal._typing_extra import eval_type_lenient
-from pydantic._internal._utils import lenient_issubclass as lenient_issubclass
 from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
 from pydantic_core import CoreSchema as CoreSchema
-from pydantic_core import PydanticUndefined, PydanticUndefinedType
+from pydantic_core import PydanticUndefined
 from pydantic_core import Url as Url
-from typing_extensions import Literal, get_args, get_origin
-
-try:
-    from pydantic_core.core_schema import (
-        with_info_plain_validator_function as with_info_plain_validator_function,
-    )
-except ImportError:  # pragma: no cover
-    from pydantic_core.core_schema import (
-        general_plain_validator_function as with_info_plain_validator_function,  # noqa: F401
-    )
+from pydantic_core.core_schema import (
+    with_info_plain_validator_function as with_info_plain_validator_function,
+)
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-UndefinedType = PydanticUndefinedType
 evaluate_forwardref = eval_type_lenient
-Validator = Any
 
 # TODO: remove when dropping support for Pydantic < v2.12.3
 _Attrs = {
@@ -87,20 +80,12 @@ def asdict(field_info: FieldInfo) -> dict[str, Any]:
     }
 
 
-class BaseConfig:
-    pass
-
-
-class ErrorWrapper(Exception):
-    pass
-
-
 @dataclass
 class ModelField:
     field_info: FieldInfo
     name: str
     mode: Literal["validation", "serialization"] = "validation"
-    config: Union[ConfigDict, None] = None
+    config: ConfigDict | None = None
 
     @property
     def alias(self) -> str:
@@ -108,28 +93,20 @@ class ModelField:
         return a if a is not None else self.name
 
     @property
-    def validation_alias(self) -> Union[str, None]:
+    def validation_alias(self) -> str | None:
         va = self.field_info.validation_alias
         if isinstance(va, str) and va:
             return va
         return None
 
     @property
-    def serialization_alias(self) -> Union[str, None]:
+    def serialization_alias(self) -> str | None:
         sa = self.field_info.serialization_alias
         return sa or None
 
     @property
-    def required(self) -> bool:
-        return self.field_info.is_required()
-
-    @property
     def default(self) -> Any:
         return self.get_default()
-
-    @property
-    def type_(self) -> Any:
-        return self.field_info.annotation
 
     def __post_init__(self) -> None:
         with warnings.catch_warnings():
@@ -143,8 +120,8 @@ class ModelField:
                 warnings.simplefilter(
                     "ignore", category=UnsupportedFieldAttributeWarning
                 )
-            # TODO: remove after dropping support for Python 3.8 and
-            # setting the min Pydantic to v2.12.3 that adds asdict()
+            # TODO: remove after setting the min Pydantic to v2.12.3
+            # that adds asdict(), and use self.field_info.asdict() instead
             field_dict = asdict(self.field_info)
             annotated_args = (
                 field_dict["annotation"],
@@ -168,12 +145,12 @@ class ModelField:
         value: Any,
         values: dict[str, Any] = {},  # noqa: B006
         *,
-        loc: tuple[Union[int, str], ...] = (),
-    ) -> tuple[Any, Union[list[dict[str, Any]], None]]:
+        loc: tuple[int | str, ...] = (),
+    ) -> tuple[Any, list[dict[str, Any]]]:
         try:
             return (
                 self._type_adapter.validate_python(value, from_attributes=True),
-                None,
+                [],
             )
         except ValidationError as exc:
             return None, _regenerate_error_with_loc(
@@ -185,8 +162,8 @@ class ModelField:
         value: Any,
         *,
         mode: Literal["json", "python"] = "json",
-        include: Union[IncEx, None] = None,
-        exclude: Union[IncEx, None] = None,
+        include: IncEx | None = None,
+        exclude: IncEx | None = None,
         by_alias: bool = True,
         exclude_unset: bool = False,
         exclude_defaults: bool = False,
@@ -227,7 +204,7 @@ def get_schema_from_model_field(
     ],
     separate_input_output_schemas: bool = True,
 ) -> dict[str, Any]:
-    override_mode: Union[Literal["validation"], None] = (
+    override_mode: Literal["validation"] | None = (
         None
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
@@ -284,9 +261,9 @@ def get_definitions(
         for model in flat_serialization_models
     ]
     flat_model_fields = flat_validation_model_fields + flat_serialization_model_fields
-    input_types = {f.type_ for f in fields}
+    input_types = {f.field_info.annotation for f in fields}
     unique_flat_model_fields = {
-        f for f in flat_model_fields if f.type_ not in input_types
+        f for f in flat_model_fields if f.field_info.annotation not in input_types
     }
     inputs = [
         (
@@ -305,94 +282,12 @@ def get_definitions(
         if "description" in item_def:
             item_description = cast(str, item_def["description"]).split("\f")[0]
             item_def["description"] = item_description
-    new_mapping, new_definitions = _remap_definitions_and_field_mappings(
-        model_name_map=model_name_map,
-        definitions=definitions,  # type: ignore[arg-type]
-        field_mapping=field_mapping,
-    )
-    return new_mapping, new_definitions
-
-
-def _replace_refs(
-    *,
-    schema: dict[str, Any],
-    old_name_to_new_name_map: dict[str, str],
-) -> dict[str, Any]:
-    new_schema = deepcopy(schema)
-    for key, value in new_schema.items():
-        if key == "$ref":
-            value = schema["$ref"]
-            if isinstance(value, str):
-                ref_name = schema["$ref"].split("/")[-1]
-                if ref_name in old_name_to_new_name_map:
-                    new_name = old_name_to_new_name_map[ref_name]
-                    new_schema["$ref"] = REF_TEMPLATE.format(model=new_name)
-            continue
-        if isinstance(value, dict):
-            new_schema[key] = _replace_refs(
-                schema=value,
-                old_name_to_new_name_map=old_name_to_new_name_map,
-            )
-        elif isinstance(value, list):
-            new_value = []
-            for item in value:
-                if isinstance(item, dict):
-                    new_item = _replace_refs(
-                        schema=item,
-                        old_name_to_new_name_map=old_name_to_new_name_map,
-                    )
-                    new_value.append(new_item)
-
-                else:
-                    new_value.append(item)
-            new_schema[key] = new_value
-    return new_schema
-
-
-def _remap_definitions_and_field_mappings(
-    *,
-    model_name_map: ModelNameMap,
-    definitions: dict[str, Any],
-    field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
-    ],
-) -> tuple[
-    dict[tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue],
-    dict[str, Any],
-]:
-    old_name_to_new_name_map = {}
-    for field_key, schema in field_mapping.items():
-        model = field_key[0].type_
-        if model not in model_name_map or "$ref" not in schema:
-            continue
-        new_name = model_name_map[model]
-        old_name = schema["$ref"].split("/")[-1]
-        if old_name in {f"{new_name}-Input", f"{new_name}-Output"}:
-            continue
-        old_name_to_new_name_map[old_name] = new_name
-
-    new_field_mapping: dict[
-        tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
-    ] = {}
-    for field_key, schema in field_mapping.items():
-        new_schema = _replace_refs(
-            schema=schema,
-            old_name_to_new_name_map=old_name_to_new_name_map,
-        )
-        new_field_mapping[field_key] = new_schema
-
-    new_definitions = {}
-    for key, value in definitions.items():
-        if key in old_name_to_new_name_map:
-            new_key = old_name_to_new_name_map[key]
-        else:
-            new_key = key
-        new_value = _replace_refs(
-            schema=value,
-            old_name_to_new_name_map=old_name_to_new_name_map,
-        )
-        new_definitions[new_key] = new_value
-    return new_field_mapping, new_definitions
+    # definitions: dict[DefsRef, dict[str, Any]]
+    # but mypy complains about general str in other places that are not declared as
+    # DefsRef, although DefsRef is just str:
+    # DefsRef = NewType('DefsRef', str)
+    # So, a cast to simplify the types here
+    return field_mapping, cast(dict[str, dict[str, Any]], definitions)
 
 
 def is_scalar_field(field: ModelField) -> bool:
@@ -401,22 +296,6 @@ def is_scalar_field(field: ModelField) -> bool:
     return shared.field_annotation_is_scalar(
         field.field_info.annotation
     ) and not isinstance(field.field_info, params.Body)
-
-
-def is_sequence_field(field: ModelField) -> bool:
-    return shared.field_annotation_is_sequence(field.field_info.annotation)
-
-
-def is_scalar_sequence_field(field: ModelField) -> bool:
-    return shared.field_annotation_is_scalar_sequence(field.field_info.annotation)
-
-
-def is_bytes_field(field: ModelField) -> bool:
-    return shared.is_bytes_or_nonable_bytes_annotation(field.type_)
-
-
-def is_bytes_sequence_field(field: ModelField) -> bool:
-    return shared.is_bytes_sequence_annotation(field.type_)
 
 
 def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
@@ -441,7 +320,7 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
     return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
 
 
-def get_missing_field_error(loc: tuple[str, ...]) -> dict[str, Any]:
+def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
     error = ValidationError.from_exception_data(
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
@@ -477,13 +356,13 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
 
 @lru_cache
 def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
-    return get_model_fields(model)  # type: ignore[return-value]
+    return get_model_fields(model)
 
 
 # Duplicate of several schema functions from Pydantic v1 to make them compatible with
 # Pydantic v2 and allow mixing the models
 
-TypeModelOrEnum = Union[type["BaseModel"], type[Enum]]
+TypeModelOrEnum = type["BaseModel"] | type[Enum]
 TypeModelSet = set[TypeModelOrEnum]
 
 
@@ -499,19 +378,8 @@ def get_model_name_map(unique_models: TypeModelSet) -> dict[TypeModelOrEnum, str
     return {v: k for k, v in name_model_map.items()}
 
 
-def get_compat_model_name_map(fields: list[ModelField]) -> ModelNameMap:
-    all_flat_models = set()
-
-    v2_model_fields = [field for field in fields if isinstance(field, ModelField)]
-    v2_flat_models = get_flat_models_from_fields(v2_model_fields, known_models=set())
-    all_flat_models = all_flat_models.union(v2_flat_models)  # type: ignore[arg-type]
-
-    model_name_map = get_model_name_map(all_flat_models)  # type: ignore[arg-type]
-    return model_name_map
-
-
 def get_flat_models_from_model(
-    model: type["BaseModel"], known_models: Union[TypeModelSet, None] = None
+    model: type["BaseModel"], known_models: TypeModelSet | None = None
 ) -> TypeModelSet:
     known_models = known_models or set()
     fields = get_model_fields(model)
@@ -525,10 +393,11 @@ def get_flat_models_from_annotation(
     origin = get_origin(annotation)
     if origin is not None:
         for arg in get_args(annotation):
-            if lenient_issubclass(arg, (BaseModel, Enum)) and arg not in known_models:
-                known_models.add(arg)
-                if lenient_issubclass(arg, BaseModel):
-                    get_flat_models_from_model(arg, known_models=known_models)
+            if lenient_issubclass(arg, (BaseModel, Enum)):
+                if arg not in known_models:
+                    known_models.add(arg)  # type: ignore[arg-type]
+                    if lenient_issubclass(arg, BaseModel):
+                        get_flat_models_from_model(arg, known_models=known_models)
             else:
                 get_flat_models_from_annotation(arg, known_models=known_models)
     return known_models
@@ -537,7 +406,7 @@ def get_flat_models_from_annotation(
 def get_flat_models_from_field(
     field: ModelField, known_models: TypeModelSet
 ) -> TypeModelSet:
-    field_type = field.type_
+    field_type = field.field_info.annotation
     if lenient_issubclass(field_type, BaseModel):
         if field_type in known_models:
             return known_models
@@ -559,7 +428,7 @@ def get_flat_models_from_fields(
 
 
 def _regenerate_error_with_loc(
-    *, errors: Sequence[Any], loc_prefix: tuple[Union[str, int], ...]
+    *, errors: Sequence[Any], loc_prefix: tuple[str | int, ...]
 ) -> list[dict[str, Any]]:
     updated_loc_errors: list[Any] = [
         {**err, "loc": loc_prefix + err.get("loc", ())} for err in errors

@@ -11,9 +11,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="mod",
     params=[
-        pytest.param("tutorial005_py39"),
         pytest.param("tutorial005_py310", marks=needs_py310),
-        pytest.param("tutorial005_an_py39"),
         pytest.param("tutorial005_an_py310", marks=needs_py310),
     ],
 )
@@ -379,6 +377,8 @@ def test_openapi_schema(mod: ModuleType):
                             },
                             "msg": {"title": "Message", "type": "string"},
                             "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
                         },
                     },
                     "HTTPValidationError": {

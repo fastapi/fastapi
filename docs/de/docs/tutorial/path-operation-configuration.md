@@ -52,7 +52,7 @@ In diesem Fall macht es Sinn, die Tags in einem `Enum` zu speichern.
 
 Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr title="Beschreibung">`description`</abbr> hinzufügen:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[18:19] *}
+{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
 
 ## Beschreibung mittels Docstring { #description-from-docstring }
 
@@ -70,7 +70,7 @@ Es wird in der interaktiven Dokumentation verwendet:
 
 Sie können die Response mit dem Parameter `response_description` beschreiben:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[19] *}
+{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
 /// info | Info
 

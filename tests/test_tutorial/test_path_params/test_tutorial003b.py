@@ -1,8 +1,9 @@
 import asyncio
 
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from docs_src.path_params.tutorial003b_py39 import app, read_users2
+from docs_src.path_params.tutorial003b_py310 import app, read_users2
 
 client = TestClient(app)
 
@@ -20,25 +21,27 @@ def test_read_users2():  # Just for coverage
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users": {
-                "get": {
-                    "operationId": "read_users2_users_get",
-                    "responses": {
-                        "200": {
-                            "content": {
-                                "application/json": {
-                                    "schema": {},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users": {
+                    "get": {
+                        "operationId": "read_users2_users_get",
+                        "responses": {
+                            "200": {
+                                "content": {
+                                    "application/json": {
+                                        "schema": {},
+                                    },
                                 },
+                                "description": "Successful Response",
                             },
-                            "description": "Successful Response",
                         },
+                        "summary": "Read Users2",
                     },
-                    "summary": "Read Users2",
                 },
             },
-        },
-    }
+        }
+    )

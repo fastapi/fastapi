@@ -18,7 +18,7 @@ def client(path_prefix: str):
     static_dir: Path = Path(os.getcwd()) / "static"
     print(static_dir)
     static_dir.mkdir(exist_ok=True)
-    from docs_src.custom_docs_ui.tutorial002_py39 import app
+    from docs_src.custom_docs_ui.tutorial002_py310 import app
 
     with TestClient(app, root_path=path_prefix, base_url="http://server") as client:
         yield client
