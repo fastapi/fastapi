@@ -2,6 +2,7 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
@@ -33,21 +34,23 @@ def test_get_path(client: TestClient, path, expected_status, expected_response):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Root",
-                    "operationId": "root__get",
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Root",
+                        "operationId": "root__get",
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )

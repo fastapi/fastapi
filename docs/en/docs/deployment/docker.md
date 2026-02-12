@@ -14,7 +14,7 @@ In a hurry and already know this stuff? Jump to the [`Dockerfile` below 👇](#b
 <summary>Dockerfile Preview 👀</summary>
 
 ```Dockerfile
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -166,7 +166,7 @@ Now in the same project directory create a file `Dockerfile` with:
 
 ```{ .dockerfile .annotate }
 # (1)!
-FROM python:3.9
+FROM python:3.14
 
 # (2)!
 WORKDIR /code
@@ -390,7 +390,7 @@ If your FastAPI is a single file, for example, `main.py` without an `./app` dire
 Then you would just have to change the corresponding paths to copy the file inside the `Dockerfile`:
 
 ```{ .dockerfile .annotate hl_lines="10  13" }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
@@ -454,7 +454,7 @@ Without using containers, making applications run on startup and with restarts c
 
 ## Replication - Number of Processes { #replication-number-of-processes }
 
-If you have a <abbr title="A group of machines that are configured to be connected and work together in some way.">cluster</abbr> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Uvicorn with workers) in each container.
+If you have a <dfn title="A group of machines that are configured to be connected and work together in some way.">cluster</dfn> of machines with **Kubernetes**, Docker Swarm Mode, Nomad, or another similar complex system to manage distributed containers on multiple machines, then you will probably want to **handle replication** at the **cluster level** instead of using a **process manager** (like Uvicorn with workers) in each container.
 
 One of those distributed container management systems like Kubernetes normally has some integrated way of handling **replication of containers** while still supporting **load balancing** for the incoming requests. All at the **cluster level**.
 
@@ -499,7 +499,7 @@ Of course, there are **special cases** where you could want to have **a containe
 In those cases, you can use the `--workers` command line option to set the number of workers that you want to run:
 
 ```{ .dockerfile .annotate }
-FROM python:3.9
+FROM python:3.14
 
 WORKDIR /code
 
