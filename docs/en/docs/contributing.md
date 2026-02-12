@@ -4,111 +4,16 @@ First, you might want to see the basic ways to [help FastAPI and get help](help-
 
 ## Developing
 
-If you already cloned the repository and you know that you need to deep dive in the code, here are some guidelines to set up your environment.
+If you already cloned the <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">fastapi repository</a> and you want to deep dive in the code, here are some guidelines to set up your environment.
 
-### Virtual environment with `venv`
+### Install requirements
 
-You can create a virtual environment in a directory using Python's `venv` module:
-
-<div class="termy">
-
-```console
-$ python -m venv env
-```
-
-</div>
-
-That will create a directory `./env/` with the Python binaries and then you will be able to install packages for that isolated environment.
-
-### Activate the environment
-
-Activate the new environment with:
-
-=== "Linux, macOS"
-
-    <div class="termy">
-
-    ```console
-    $ source ./env/bin/activate
-    ```
-
-    </div>
-
-=== "Windows PowerShell"
-
-    <div class="termy">
-
-    ```console
-    $ .\env\Scripts\Activate.ps1
-    ```
-
-    </div>
-
-=== "Windows Bash"
-
-    Or if you use Bash for Windows (e.g. <a href="https://gitforwindows.org/" class="external-link" target="_blank">Git Bash</a>):
-
-    <div class="termy">
-
-    ```console
-    $ source ./env/Scripts/activate
-    ```
-
-    </div>
-
-To check it worked, use:
-
-=== "Linux, macOS, Windows Bash"
-
-    <div class="termy">
-
-    ```console
-    $ which pip
-
-    some/directory/fastapi/env/bin/pip
-    ```
-
-    </div>
-
-=== "Windows PowerShell"
-
-    <div class="termy">
-
-    ```console
-    $ Get-Command pip
-
-    some/directory/fastapi/env/bin/pip
-    ```
-
-    </div>
-
-If it shows the `pip` binary at `env/bin/pip` then it worked. 🎉
-
-Make sure you have the latest pip version on your virtual environment to avoid errors on the next steps:
+Create a virtual environment and install the required packages with <a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">`uv`</a>:
 
 <div class="termy">
 
 ```console
-$ python -m pip install --upgrade pip
-
----> 100%
-```
-
-</div>
-
-!!! tip
-    Every time you install a new package with `pip` under that environment, activate the environment again.
-
-    This makes sure that if you use a terminal program installed by that package, you use the one from your local environment and not any other that could be installed globally.
-
-### pip
-
-After activating the environment as described above:
-
-<div class="termy">
-
-```console
-$ pip install -e ."[dev,doc,test]"
+$ uv sync --extra all
 
 ---> 100%
 ```
@@ -117,15 +22,23 @@ $ pip install -e ."[dev,doc,test]"
 
 It will install all the dependencies and your local FastAPI in your local environment.
 
-#### Using your local FastAPI
+### Using your local FastAPI
 
-If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your local FastAPI source code.
+If you create a Python file that imports and uses FastAPI, and run it with the Python from your local environment, it will use your cloned local FastAPI source code.
 
-And if you update that local FastAPI source code, as it is installed with `-e`, when you run that Python file again, it will use the fresh version of FastAPI you just edited.
+And if you update that local FastAPI source code when you run that Python file again, it will use the fresh version of FastAPI you just edited.
 
 That way, you don't have to "install" your local version to be able to test every change.
 
-### Format
+/// note | Technical Details
+
+This only happens when you install using `uv sync --extra all` instead of running `pip install fastapi` directly.
+
+That is because `uv sync --extra all` will install the local version of FastAPI in "editable" mode by default.
+
+///
+
+### Format the code
 
 There is a script that you can run that will format and clean all your code:
 
@@ -139,38 +52,25 @@ $ bash scripts/format.sh
 
 It will also auto-sort all your imports.
 
-For it to sort them correctly, you need to have FastAPI installed locally in your environment, with the command in the section above using `-e`.
+## Tests
+
+There is a script that you can run locally to test all the code and generate coverage reports in HTML:
+
+<div class="termy">
+
+```console
+$ bash scripts/test-cov-html.sh
+```
+
+</div>
+
+This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
 
 ## Docs
 
 First, make sure you set up your environment as described above, that will install all the requirements.
 
-The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
-
-And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
-
-!!! tip
-    You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
-
-All the documentation is in Markdown format in the directory `./docs/en/`.
-
-Many of the tutorials have blocks of code.
-
-In most of the cases, these blocks of code are actual complete applications that can be run as is.
-
-In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
-
-And those Python files are included/injected in the documentation when generating the site.
-
-### Docs for tests
-
-Most of the tests actually run against the example source files in the documentation.
-
-This helps making sure that:
-
-* The documentation is up to date.
-* The documentation examples can be run as is.
-* Most of the features are covered by the documentation, ensured by test coverage.
+### Docs live
 
 During local development, there is a script that builds the site and checks for any changes, live-reloading:
 
@@ -189,6 +89,24 @@ $ python ./scripts/docs.py live
 It will serve the documentation on `http://127.0.0.1:8008`.
 
 That way, you can edit the documentation/source files and see the changes live.
+
+/// tip
+
+Alternatively, you can perform the same steps that scripts does manually.
+
+Go into the language directory, for the main docs in English it's at `docs/en/`:
+
+```console
+$ cd docs/en/
+```
+
+Then run `mkdocs` in that directory:
+
+```console
+$ mkdocs serve --dev-addr 127.0.0.1:8008
+```
+
+///
 
 #### Typer CLI (optional)
 
@@ -209,14 +127,46 @@ Completion will take effect once you restart the terminal.
 
 </div>
 
-### Apps and docs at the same time
+### Docs Structure
+
+The documentation uses <a href="https://www.mkdocs.org/" class="external-link" target="_blank">MkDocs</a>.
+
+And there are extra tools/scripts in place to handle translations in `./scripts/docs.py`.
+
+/// tip
+
+You don't need to see the code in `./scripts/docs.py`, you just use it in the command line.
+
+///
+
+All the documentation is in Markdown format in the directory `./docs/en/`.
+
+Many of the tutorials have blocks of code.
+
+In most of the cases, these blocks of code are actual complete applications that can be run as is.
+
+In fact, those blocks of code are not written inside the Markdown, they are Python files in the `./docs_src/` directory.
+
+And those Python files are included/injected in the documentation when generating the site.
+
+### Docs for tests
+
+Most of the tests actually run against the example source files in the documentation.
+
+This helps to make sure that:
+
+* The documentation is up-to-date.
+* The documentation examples can be run as is.
+* Most of the features are covered by the documentation, ensured by test coverage.
+
+#### Apps and docs at the same time
 
 If you run the examples with, e.g.:
 
 <div class="termy">
 
 ```console
-$ uvicorn tutorial001:app --reload
+$ fastapi dev tutorial001.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -229,237 +179,83 @@ as Uvicorn by default will use the port `8000`, the documentation on port `8008`
 
 Help with translations is VERY MUCH appreciated! And it can't be done without the help from the community. 🌎 🚀
 
-Here are the steps to help with translations.
+Translation pull requests are made by LLMs guided with prompts designed by the FastAPI team together with the community of native speakers for each supported language.
 
-#### Tips and guidelines
+#### LLM Prompt per Language
 
-* Check the currently <a href="https://github.com/tiangolo/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language and add reviews requesting changes or approving them.
+Each language has a directory: <a href="https://github.com/fastapi/fastapi/tree/master/docs" class="external-link" target="_blank">https://github.com/fastapi/fastapi/tree/master/docs</a>, in it you can see a file `llm-prompt.md` with the prompt specific for that language.
 
-!!! tip
-    You can <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request" class="external-link" target="_blank">add comments with change suggestions</a> to existing pull requests.
+For example, for Spanish, the prompt is at: <a href="https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md" class="external-link" target="_blank">`docs/es/llm-prompt.md`</a>.
 
-    Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
+If you see mistakes in your language, you can make suggestions to the prompt in that file for your language, and request the specific pages you would like to re-generate after the changes.
 
-* Check in the <a href="https://github.com/tiangolo/fastapi/issues" class="external-link" target="_blank">issues</a> to see if there's one coordinating translations for your language.
+#### Reviewing Translation PRs
 
-* Add a single pull request per page translated. That will make it much easier for others to review it.
+You can also check the currently <a href="https://github.com/fastapi/fastapi/pulls" class="external-link" target="_blank">existing pull requests</a> for your language. You can filter the pull requests by the ones with the label for your language. For example, for Spanish, the label is <a href="https://github.com/fastapi/fastapi/pulls?q=is%3Aopen+sort%3Aupdated-desc+label%3Alang-es+label%3Aawaiting-review" class="external-link" target="_blank">`lang-es`</a>.
 
-For the languages I don't speak, I'll wait for several others to review the translation before merging.
+When reviewing a pull request, it's better not to suggest changes in the same pull request, because it is LLM generated, and it won't be possible to make sure that small individual changes are replicated in other similar sections, or that they are preserved when translating the same content again.
 
-* You can also check if there are translations for your language and add a review to them, that will help me know that the translation is correct and I can merge it.
+Instead of adding suggestions to the translation PR, make the suggestions to the LLM prompt file for that language, in a new PR. For example, for Spanish, the LLM prompt file is at: <a href="https://github.com/fastapi/fastapi/blob/master/docs/es/llm-prompt.md" class="external-link" target="_blank">`docs/es/llm-prompt.md`</a>.
 
-* Use the same Python examples and only translate the text in the docs. You don't have to change anything for this to work.
+/// tip
 
-* Use the same images, file names, and links. You don't have to change anything for it to work.
+Check the docs about <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-request-reviews" class="external-link" target="_blank">adding a pull request review</a> to approve it or request changes.
 
-* To check the 2-letter code for the language you want to translate you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
+///
 
-#### Existing language
+#### Subscribe to Notifications for Your Language
 
-Let's say you want to translate a page for a language that already has translations for some pages, like Spanish.
+Check if there's a <a href="https://github.com/fastapi/fastapi/discussions/categories/translations" class="external-link" target="_blank">GitHub Discussion</a> to coordinate translations for your language. You can subscribe to it, and when there's a new pull request to review, an automatic comment will be added to the discussion.
 
-In the case of Spanish, the 2-letter code is `es`. So, the directory for Spanish translations is located at `docs/es/`.
+To check the 2-letter code for the language you want to translate, you can use the table <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link" target="_blank">List of ISO 639-1 codes</a>.
 
-!!! tip
-    The main ("official") language is English, located at `docs/en/`.
+#### Request a New Language
 
-Now run the live server for the docs in Spanish:
+Let's say that you want to request translations for a language that is not yet translated, not even some pages. For example, Latin.
 
-<div class="termy">
+* The first step would be for you to find other 2 people that would be willing to be reviewing translation PRs for that language with you.
+* Once there are at least 3 people that would be willing to commit to help maintain that language, you can continue the next steps.
+* Create a new discussion following the template.
+* Tag the other 2 people that will help with the language, and ask them to confirm there they will help.
 
-```console
-// Use the command "live" and pass the language code as a CLI argument
-$ python ./scripts/docs.py live es
+Once there are several people in the discussion, the FastAPI team can evaluate it and can make it an official translation.
 
-<span style="color: green;">[INFO]</span> Serving on http://127.0.0.1:8008
-<span style="color: green;">[INFO]</span> Start watching changes
-<span style="color: green;">[INFO]</span> Start detecting changes
-```
+Then the docs will be automatically translated using LLMs, and the team of native speakers can review the translation, and help tweak the LLM prompts.
 
-</div>
+Once there's a new translation, for example if docs are updated or there's a new section, there will be a comment in the same discussion with the link to the new translation to review.
 
-Now you can go to <a href="http://127.0.0.1:8008" class="external-link" target="_blank">http://127.0.0.1:8008</a> and see your changes live.
+## Automated Code and AI
 
-If you look at the FastAPI docs website, you will see that every language has all the pages. But some pages are not translated and have a notification about the missing translation.
+You are encouraged to use all the tools you want to do your work and contribute as efficiently as possible, this includes AI (LLM) tools, etc. Nevertheless, contributions should have meaningful human intervention, judgement, context, etc.
 
-But when you run it locally like this, you will only see the pages that are already translated.
+If the **human effort** put in a PR, e.g. writing LLM prompts, is **less** than the **effort we would need to put** to **review it**, please **don't** submit the PR.
 
-Now let's say that you want to add a translation for the section [Features](features.md){.internal-link target=_blank}.
+Think of it this way: we can already write LLM prompts or run automated tools ourselves, and that would be faster than reviewing external PRs.
 
-* Copy the file at:
+### Closing Automated and AI PRs
 
-```
-docs/en/docs/features.md
-```
+If we see PRs that seem AI generated or automated in similar ways, we'll flag them and close them.
 
-* Paste it in exactly the same location but for the language you want to translate, e.g.:
+The same applies to comments and descriptions, please don't copy paste the content generated by an LLM.
 
-```
-docs/es/docs/features.md
-```
+### Human Effort Denial of Service
 
-!!! tip
-    Notice that the only change in the path and file name is the language code, from `en` to `es`.
+Using automated tools and AI to submit PRs or comments that we have to carefully review and handle would be the equivalent of a <a href="https://en.wikipedia.org/wiki/Denial-of-service_attack" class="external-link" target="_blank">Denial-of-service attack</a> on our human effort.
 
-* Now open the MkDocs config file for English at:
+It would be very little effort from the person submitting the PR (an LLM prompt) that generates a large amount of effort on our side (carefully reviewing code).
 
-```
-docs/en/mkdocs.yml
-```
+Please don't do that.
 
-* Find the place where that `docs/features.md` is located in the config file. Somewhere like:
+We'll need to block accounts that spam us with repeated automated PRs or comments.
 
-```YAML hl_lines="8"
-site_name: FastAPI
-# More stuff
-nav:
-- FastAPI: index.md
-- Languages:
-  - en: /
-  - es: /es/
-- features.md
-```
+### Use Tools Wisely
 
-* Open the MkDocs config file for the language you are editing, e.g.:
+As Uncle Ben said:
 
-```
-docs/es/mkdocs.yml
-```
+<blockquote>
+With great <strike>power</strike> <strong>tools</strong> comes great responsibility.
+</blockquote>
 
-* Add it there at the exact same location it was for English, e.g.:
+Avoid inadvertently doing harm.
 
-```YAML hl_lines="8"
-site_name: FastAPI
-# More stuff
-nav:
-- FastAPI: index.md
-- Languages:
-  - en: /
-  - es: /es/
-- features.md
-```
-
-Make sure that if there are other entries, the new entry with your translation is exactly in the same order as in the English version.
-
-If you go to your browser you will see that now the docs show your new section. 🎉
-
-Now you can translate it all and see how it looks as you save the file.
-
-#### New Language
-
-Let's say that you want to add translations for a language that is not yet translated, not even some pages.
-
-Let's say you want to add translations for Creole, and it's not yet there in the docs.
-
-Checking the link from above, the code for "Creole" is `ht`.
-
-The next step is to run the script to generate a new translation directory:
-
-<div class="termy">
-
-```console
-// Use the command new-lang, pass the language code as a CLI argument
-$ python ./scripts/docs.py new-lang ht
-
-Successfully initialized: docs/ht
-Updating ht
-Updating en
-```
-
-</div>
-
-Now you can check in your code editor the newly created directory `docs/ht/`.
-
-!!! tip
-    Create a first pull request with just this, to set up the configuration for the new language, before adding translations.
-
-    That way others can help with other pages while you work on the first one. 🚀
-
-Start by translating the main page, `docs/ht/index.md`.
-
-Then you can continue with the previous instructions, for an "Existing Language".
-
-##### New Language not supported
-
-If when running the live server script you get an error about the language not being supported, something like:
-
-```
- raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: partials/language/xx.html
-```
-
-That means that the theme doesn't support that language (in this case, with a fake 2-letter code of `xx`).
-
-But don't worry, you can set the theme language to English and then translate the content of the docs.
-
-If you need to do that, edit the `mkdocs.yml` for your new language, it will have something like:
-
-```YAML hl_lines="5"
-site_name: FastAPI
-# More stuff
-theme:
-  # More stuff
-  language: xx
-```
-
-Change that language from `xx` (from your language code) to `en`.
-
-Then you can start the live server again.
-
-#### Preview the result
-
-When you use the script at `./scripts/docs.py` with the `live` command it only shows the files and translations available for the current language.
-
-But once you are done, you can test it all as it would look online.
-
-To do that, first build all the docs:
-
-<div class="termy">
-
-```console
-// Use the command "build-all", this will take a bit
-$ python ./scripts/docs.py build-all
-
-Updating es
-Updating en
-Building docs for: en
-Building docs for: es
-Successfully built docs for: es
-Copying en index.md to README.md
-```
-
-</div>
-
-That generates all the docs at `./docs_build/` for each language. This includes adding any files with missing translations, with a note saying that "this file doesn't have a translation yet". But you don't have to do anything with that directory.
-
-Then it builds all those independent MkDocs sites for each language, combines them, and generates the final output at `./site/`.
-
-Then you can serve that with the command `serve`:
-
-<div class="termy">
-
-```console
-// Use the command "serve" after running "build-all"
-$ python ./scripts/docs.py serve
-
-Warning: this is a very simple server. For development, use mkdocs serve instead.
-This is here only to preview a site with translations already built.
-Make sure you run the build-all command first.
-Serving at: http://127.0.0.1:8008
-```
-
-</div>
-
-## Tests
-
-There is a script that you can run locally to test all the code and generate coverage reports in HTML:
-
-<div class="termy">
-
-```console
-$ bash scripts/test-cov-html.sh
-```
-
-</div>
-
-This command generates a directory `./htmlcov/`, if you open the file `./htmlcov/index.html` in your browser, you can explore interactively the regions of code that are covered by the tests, and notice if there is any region missing.
+You have amazing tools at hand, use them wisely to help effectively.

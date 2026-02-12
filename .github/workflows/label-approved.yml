@@ -3,11 +3,43 @@ name: Label Approved
 on:
   schedule:
     - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
 
 jobs:
   label-approved:
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
-    - uses: docker://tiangolo/label-approved:0.0.2
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - uses: actions/checkout@v6
+    - name: Set up Python
+      uses: actions/setup-python@v6
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        python-version-file: ".python-version"
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v7
+      with:
+        enable-cache: true
+        cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+    - name: Install GitHub Actions dependencies
+      run: uv sync --locked --no-dev --group github-actions
+    - name: Label Approved
+      run: uv run ./scripts/label_approved.py
+      env:
+        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CONFIG: >
+          {
+            "approved-1":
+              {
+                "number": 1,
+                "await_label": "awaiting-review"
+              }
+          }

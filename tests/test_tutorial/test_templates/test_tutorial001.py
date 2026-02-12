@@ -11,12 +11,15 @@ def test_main():
         shutil.rmtree("./templates")
     shutil.copytree("./docs_src/templates/templates/", "./templates")
     shutil.copytree("./docs_src/templates/static/", "./static")
-    from docs_src.templates.tutorial001 import app
+    from docs_src.templates.tutorial001_py39 import app
 
     client = TestClient(app)
     response = client.get("/items/foo")
     assert response.status_code == 200, response.text
-    assert b"<h1>Item ID: foo</h1>" in response.content
+    assert (
+        b'<h1><a href="http://testserver/items/foo">Item ID: foo</a></h1>'
+        in response.content
+    )
     response = client.get("/static/styles.css")
     assert response.status_code == 200, response.text
     assert b"color: green;" in response.content

@@ -1,7 +1,8 @@
-from typing import Dict
+import json
 
 import pytest
 from fastapi import BackgroundTasks, Depends, FastAPI
+from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
 
 app = FastAPI()
@@ -35,34 +36,36 @@ class OtherDependencyError(Exception):
     pass
 
 
-async def asyncgen_state(state: Dict[str, str] = Depends(get_state)):
+async def asyncgen_state(state: dict[str, str] = Depends(get_state)):
     state["/async"] = "asyncgen started"
     yield state["/async"]
     state["/async"] = "asyncgen completed"
 
 
-def generator_state(state: Dict[str, str] = Depends(get_state)):
+def generator_state(state: dict[str, str] = Depends(get_state)):
     state["/sync"] = "generator started"
     yield state["/sync"]
     state["/sync"] = "generator completed"
 
 
-async def asyncgen_state_try(state: Dict[str, str] = Depends(get_state)):
+async def asyncgen_state_try(state: dict[str, str] = Depends(get_state)):
     state["/async_raise"] = "asyncgen raise started"
     try:
         yield state["/async_raise"]
     except AsyncDependencyError:
         errors.append("/async_raise")
+        raise
     finally:
         state["/async_raise"] = "asyncgen raise finalized"
 
 
-def generator_state_try(state: Dict[str, str] = Depends(get_state)):
+def generator_state_try(state: dict[str, str] = Depends(get_state)):
     state["/sync_raise"] = "generator raise started"
     try:
         yield state["/sync_raise"]
     except SyncDependencyError:
         errors.append("/sync_raise")
+        raise
     finally:
         state["/sync_raise"] = "generator raise finalized"
 
@@ -192,12 +195,19 @@ async def get_sync_context_b_bg(
     tasks: BackgroundTasks, state: dict = Depends(context_b)
 ):
     async def bg(state: dict):
-        state[
-            "sync_bg"
-        ] = f"sync_bg set - b: {state['context_b']} - a: {state['context_a']}"
+        state["sync_bg"] = (
+            f"sync_bg set - b: {state['context_b']} - a: {state['context_a']}"
+        )
 
     tasks.add_task(bg, state)
     return state
+
+
+@app.middleware("http")
+async def middleware(request, call_next):
+    response: StreamingResponse = await call_next(request)
+    response.headers["x-state"] = json.dumps(state.copy())
+    return response
 
 
 client = TestClient(app)
@@ -274,6 +284,10 @@ def test_background_tasks():
     assert data["context_b"] == "started b"
     assert data["context_a"] == "started a"
     assert data["bg"] == "not set"
+    middleware_state = json.loads(response.headers["x-state"])
+    assert middleware_state["context_b"] == "started b"
+    assert middleware_state["context_a"] == "started a"
+    assert middleware_state["bg"] == "not set"
     assert state["context_b"] == "finished b with a: started a"
     assert state["context_a"] == "finished a"
     assert state["bg"] == "bg set - b: started b - a: started a"

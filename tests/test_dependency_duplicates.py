@@ -1,7 +1,6 @@
-from typing import List
-
 from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -39,159 +38,9 @@ async def no_duplicates(item: Item, item2: Item = Depends(dependency)):
 
 @app.post("/with-duplicates-sub")
 async def no_duplicates_sub(
-    item: Item, sub_items: List[Item] = Depends(sub_duplicate_dependency)
+    item: Item, sub_items: list[Item] = Depends(sub_duplicate_dependency)
 ):
     return [item, sub_items]
-
-
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/with-duplicates": {
-            "post": {
-                "summary": "With Duplicates",
-                "operationId": "with_duplicates_with_duplicates_post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
-                        }
-                    },
-                    "required": True,
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-        "/no-duplicates": {
-            "post": {
-                "summary": "No Duplicates",
-                "operationId": "no_duplicates_no_duplicates_post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Body_no_duplicates_no_duplicates_post"
-                            }
-                        }
-                    },
-                    "required": True,
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-        "/with-duplicates-sub": {
-            "post": {
-                "summary": "No Duplicates Sub",
-                "operationId": "no_duplicates_sub_with_duplicates_sub_post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {"$ref": "#/components/schemas/Item"}
-                        }
-                    },
-                    "required": True,
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        },
-                    },
-                },
-            }
-        },
-    },
-    "components": {
-        "schemas": {
-            "Body_no_duplicates_no_duplicates_post": {
-                "title": "Body_no_duplicates_no_duplicates_post",
-                "required": ["item", "item2"],
-                "type": "object",
-                "properties": {
-                    "item": {"$ref": "#/components/schemas/Item"},
-                    "item2": {"$ref": "#/components/schemas/Item"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
-            },
-            "Item": {
-                "title": "Item",
-                "required": ["data"],
-                "type": "object",
-                "properties": {"data": {"title": "Data", "type": "string"}},
-            },
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-        }
-    },
-}
-
-
-def test_openapi_schema():
-    response = client.get("/openapi.json")
-    assert response.status_code == 200, response.text
-    assert response.json() == openapi_schema
 
 
 def test_no_duplicates_invalid():
@@ -200,9 +49,10 @@ def test_no_duplicates_invalid():
     assert response.json() == {
         "detail": [
             {
+                "type": "missing",
                 "loc": ["body", "item2"],
-                "msg": "field required",
-                "type": "value_error.missing",
+                "msg": "Field required",
+                "input": None,
             }
         ]
     }
@@ -230,3 +80,158 @@ def test_sub_duplicates():
         {"data": "myitem"},
         [{"data": "myitem"}, {"data": "myitem"}],
     ]
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200, response.text
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/with-duplicates": {
+                    "post": {
+                        "summary": "With Duplicates",
+                        "operationId": "with_duplicates_with_duplicates_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/no-duplicates": {
+                    "post": {
+                        "summary": "No Duplicates",
+                        "operationId": "no_duplicates_no_duplicates_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Body_no_duplicates_no_duplicates_post"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/with-duplicates-sub": {
+                    "post": {
+                        "summary": "No Duplicates Sub",
+                        "operationId": "no_duplicates_sub_with_duplicates_sub_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/Item"}
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+            },
+            "components": {
+                "schemas": {
+                    "Body_no_duplicates_no_duplicates_post": {
+                        "title": "Body_no_duplicates_no_duplicates_post",
+                        "required": ["item", "item2"],
+                        "type": "object",
+                        "properties": {
+                            "item": {"$ref": "#/components/schemas/Item"},
+                            "item2": {"$ref": "#/components/schemas/Item"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                    "Item": {
+                        "title": "Item",
+                        "required": ["data"],
+                        "type": "object",
+                        "properties": {"data": {"title": "Data", "type": "string"}},
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                }
+            },
+        }
+    )

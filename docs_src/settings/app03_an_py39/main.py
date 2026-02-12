@@ -1,14 +1,14 @@
 from functools import lru_cache
+from typing import Annotated
 
 from fastapi import Depends, FastAPI
-from typing_extensions import Annotated
 
 from . import config
 
 app = FastAPI()
 
 
-@lru_cache()
+@lru_cache
 def get_settings():
     return config.Settings()
 

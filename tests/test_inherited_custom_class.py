@@ -5,8 +5,6 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-app = FastAPI()
-
 
 class MyUuid:
     def __init__(self, uuid_string: str):
@@ -26,40 +24,36 @@ class MyUuid:
         raise TypeError("vars() argument must have __dict__ attribute")
 
 
-@app.get("/fast_uuid")
-def return_fast_uuid():
-    # I don't want to import asyncpg for this test so I made my own UUID
-    # Import asyncpg and uncomment the two lines below for the actual bug
+def test_pydanticv2():
+    from pydantic import field_serializer
 
-    # from asyncpg.pgproto import pgproto
-    # asyncpg_uuid = pgproto.UUID("a10ff360-3b1e-4984-a26f-d3ab460bdb51")
+    app = FastAPI()
 
-    asyncpg_uuid = MyUuid("a10ff360-3b1e-4984-a26f-d3ab460bdb51")
-    assert isinstance(asyncpg_uuid, uuid.UUID)
-    assert type(asyncpg_uuid) != uuid.UUID
-    with pytest.raises(TypeError):
-        vars(asyncpg_uuid)
-    return {"fast_uuid": asyncpg_uuid}
+    @app.get("/fast_uuid")
+    def return_fast_uuid():
+        asyncpg_uuid = MyUuid("a10ff360-3b1e-4984-a26f-d3ab460bdb51")
+        assert isinstance(asyncpg_uuid, uuid.UUID)
+        assert type(asyncpg_uuid) is not uuid.UUID
+        with pytest.raises(TypeError):
+            vars(asyncpg_uuid)
+        return {"fast_uuid": asyncpg_uuid}
 
+    class SomeCustomClass(BaseModel):
+        model_config = {"arbitrary_types_allowed": True}
 
-class SomeCustomClass(BaseModel):
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {uuid.UUID: str}
+        a_uuid: MyUuid
 
-    a_uuid: MyUuid
+        @field_serializer("a_uuid")
+        def serialize_a_uuid(self, v):
+            return str(v)
 
+    @app.get("/get_custom_class")
+    def return_some_user():
+        # Test that the fix also works for custom pydantic classes
+        return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
 
-@app.get("/get_custom_class")
-def return_some_user():
-    # Test that the fix also works for custom pydantic classes
-    return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
+    client = TestClient(app)
 
-
-client = TestClient(app)
-
-
-def test_dt():
     with client:
         response_simple = client.get("/fast_uuid")
         response_pydantic = client.get("/get_custom_class")

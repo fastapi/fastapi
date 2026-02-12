@@ -1,91 +1,25 @@
-# External Links and Articles
+# External Links
 
 **FastAPI** has a great community constantly growing.
 
 There are many posts, articles, tools, and projects, related to **FastAPI**.
 
-Here's an incomplete list of some of them.
+You could easily use a search engine or video platform to find many resources related to FastAPI.
 
-!!! tip
-    If you have an article, project, tool, or anything related to **FastAPI** that is not yet listed here, create a <a href="https://github.com/tiangolo/fastapi/edit/master/docs/en/data/external_links.yml" class="external-link" target="_blank">Pull Request adding it</a>.
+/// info
 
-## Articles
+Before, this page used to list links to external articles.
 
-### English
+But now that FastAPI is the backend framework with the most GitHub stars across languages, and the most starred and used framework in Python, it no longer makes sense to attempt to list all articles written about it.
 
-{% if external_links %}
-{% for article in external_links.articles.english %}
+///
 
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
+## GitHub Repositories
+
+Most starred <a href="https://github.com/topics/fastapi" class="external-link" target="_blank">GitHub repositories with the topic `fastapi`</a>:
+
+{% for repo in topic_repos %}
+
+<a href={{repo.html_url}} target="_blank">★ {{repo.stars}} - {{repo.name}}</a> by <a href={{repo.owner_html_url}} target="_blank">@{{repo.owner_login}}</a>.
+
 {% endfor %}
-{% endif %}
-
-### Japanese
-
-{% if external_links %}
-{% for article in external_links.articles.japanese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### Vietnamese
-
-{% if external_links %}
-{% for article in external_links.articles.vietnamese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### Russian
-
-{% if external_links %}
-{% for article in external_links.articles.russian %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### German
-
-{% if external_links %}
-{% for article in external_links.articles.german %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-### Taiwanese
-
-{% if external_links %}
-{% for article in external_links.articles.taiwanese %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Podcasts
-
-{% if external_links %}
-{% for article in external_links.podcasts.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Talks
-
-{% if external_links %}
-{% for article in external_links.talks.english %}
-
-* <a href="{{ article.link }}" class="external-link" target="_blank">{{ article.title }}</a> by <a href="{{ article.author_link }}" class="external-link" target="_blank">{{ article.author }}</a>.
-{% endfor %}
-{% endif %}
-
-## Projects
-
-Latest GitHub projects with the topic `fastapi`:
-
-<div class="github-topic-projects">
-</div>

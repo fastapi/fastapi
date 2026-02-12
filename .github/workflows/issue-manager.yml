@@ -2,7 +2,7 @@ name: Issue Manager
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "13 22 * * *"
   issue_comment:
     types:
       - created
@@ -14,11 +14,20 @@ on:
       - labeled
   workflow_dispatch:
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   issue-manager:
+    if: github.repository_owner == 'fastapi'
     runs-on: ubuntu-latest
     steps:
-      - uses: tiangolo/issue-manager@0.4.0
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: tiangolo/issue-manager@0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           config: >
@@ -26,5 +35,21 @@ jobs:
               "answered": {
                 "delay": 864000,
                 "message": "Assuming the original need was handled, this will be automatically closed now. But feel free to add more comments or create new issues or PRs."
+              },
+              "waiting": {
+                "delay": 2628000,
+                "message": "As this PR has been waiting for the original user for a while but seems to be inactive, it's now going to be closed. But if there's anyone interested, feel free to create a new PR.",
+                "reminder": {
+                    "before": "P3D",
+                    "message": "Heads-up: this will be closed in 3 days unless there's new activity."
+                }
+              },
+              "invalid": {
+                "delay": 0,
+                "message": "This was marked as invalid and will be closed now. If this is an error, please provide additional details."
+              },
+              "maybe-ai": {
+                "delay": 0,
+                "message": "This was marked as potentially AI generated and will be closed now. If this is an error, please provide additional details, make sure to read the docs about contributing and AI."
               }
             }

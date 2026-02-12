@@ -8,9 +8,9 @@ updates:
     commit-message:
       prefix: ⬆
   # Python
-  - package-ecosystem: "pip"
+  - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "monthly"
     commit-message:
       prefix: ⬆

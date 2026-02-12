@@ -1,37 +1,41 @@
-# 请求表单与文件
+# 请求表单与文件 { #request-forms-and-files }
 
 FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
-!!! info "说明"
+/// info | 信息
 
-    接收上传文件或表单数据，要预先安装 <a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>。
+接收上传的文件和/或表单数据，首先安装 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>。
 
-    例如，`pip install python-multipart`。
+请先创建并激活一个[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后再安装，例如：
 
-## 导入 `File` 与 `Form`
-
-```Python hl_lines="1"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
+```console
+$ pip install python-multipart
 ```
 
-## 定义 `File` 与 `Form` 参数
+///
+
+## 导入 `File` 与 `Form` { #import-file-and-form }
+
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+
+## 定义 `File` 与 `Form` 参数 { #define-file-and-form-parameters }
 
 创建文件和表单参数的方式与 `Body` 和 `Query` 一样：
 
-```Python hl_lines="8"
-{!../../../docs_src/request_forms_and_files/tutorial001.py!}
-```
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
 
 文件和表单字段作为表单数据上传与接收。
 
 声明文件可以使用 `bytes` 或 `UploadFile` 。
 
-!!! warning "警告"
+/// warning | 警告
 
-    可在一个*路径操作*中声明多个 `File` 与 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码为 `multipart/form-data`，不是 `application/json`。
+可在一个*路径操作*中声明多个 `File` 与 `Form` 参数，但不能同时声明要接收 JSON 的 `Body` 字段。因为此时请求体的编码为 `multipart/form-data`，不是 `application/json`。
 
-    这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
+这不是 **FastAPI** 的问题，而是 HTTP 协议的规定。
 
-## 小结
+///
+
+## 小结 { #recap }
 
 在同一个请求中接收数据和文件时，应同时使用 `File` 和 `Form`。

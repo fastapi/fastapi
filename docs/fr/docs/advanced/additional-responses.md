@@ -1,9 +1,12 @@
-# Réponses supplémentaires dans OpenAPI
+# Réponses supplémentaires dans OpenAPI { #additional-responses-in-openapi }
 
-!!! Attention
-    Ceci concerne un sujet plutôt avancé.
+/// warning | Alertes
 
-    Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+Ceci concerne un sujet plutôt avancé.
+
+Si vous débutez avec **FastAPI**, vous n'en aurez peut-être pas besoin.
+
+///
 
 Vous pouvez déclarer des réponses supplémentaires, avec des codes HTTP, des types de médias, des descriptions, etc.
 
@@ -11,9 +14,9 @@ Ces réponses supplémentaires seront incluses dans le schéma OpenAPI, elles ap
 
 Mais pour ces réponses supplémentaires, vous devez vous assurer de renvoyer directement une `Response` comme `JSONResponse`, avec votre code HTTP et votre contenu.
 
-## Réponse supplémentaire avec `model`
+## Réponse supplémentaire avec `model` { #additional-response-with-model }
 
-Vous pouvez ajouter à votre décorateur de *paramètre de chemin* un paramètre `responses`.
+Vous pouvez passer à vos décorateurs de *chemin d'accès* un paramètre `responses`.
 
 Il prend comme valeur un `dict` dont les clés sont des codes HTTP pour chaque réponse, comme `200`, et la valeur de ces clés sont d'autres `dict` avec des informations pour chacun d'eux.
 
@@ -23,26 +26,30 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
-```Python hl_lines="18 22"
-{!../../../docs_src/additional_responses/tutorial001.py!}
-```
+{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
 
-!!! Remarque
-    Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
+/// note | Remarque
 
-!!! Info
-    La clé `model` ne fait pas partie d'OpenAPI.
+Gardez à l'esprit que vous devez renvoyer directement `JSONResponse`.
 
-    **FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+///
 
-    Le bon endroit est :
+/// info
 
-    * Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
-        * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
-            * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
-                * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+La clé `model` ne fait pas partie d'OpenAPI.
 
-Les réponses générées au format OpenAPI pour cette *opération de chemin* seront :
+**FastAPI** prendra le modèle Pydantic à partir de là, générera le `JSON Schema` et le placera au bon endroit.
+
+Le bon endroit est :
+
+* Dans la clé `content`, qui a pour valeur un autre objet JSON (`dict`) qui contient :
+    * Une clé avec le type de support, par ex. `application/json`, qui contient comme valeur un autre objet JSON, qui contient :
+        * Une clé `schema`, qui a pour valeur le schéma JSON du modèle, voici le bon endroit.
+            * **FastAPI** ajoute ici une référence aux schémas JSON globaux à un autre endroit de votre OpenAPI au lieu de l'inclure directement. De cette façon, d'autres applications et clients peuvent utiliser ces schémas JSON directement, fournir de meilleurs outils de génération de code, etc.
+
+///
+
+Les réponses générées au format OpenAPI pour ce *chemin d'accès* seront :
 
 ```JSON hl_lines="3-12"
 {
@@ -162,25 +169,29 @@ Les schémas sont référencés à un autre endroit du modèle OpenAPI :
 }
 ```
 
-## Types de médias supplémentaires pour la réponse principale
+## Types de médias supplémentaires pour la réponse principale { #additional-media-types-for-the-main-response }
 
 Vous pouvez utiliser ce même paramètre `responses` pour ajouter différents types de médias pour la même réponse principale.
 
-Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *opération de chemin* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
+Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *chemin d'accès* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
 
-```Python hl_lines="19-24 28"
-{!../../../docs_src/additional_responses/tutorial002.py!}
-```
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
-!!! Remarque
-    Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
+/// note | Remarque
 
-!!! Info
-    À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+Notez que vous devez retourner l'image en utilisant directement un `FileResponse`.
 
-    Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+///
 
-## Combinaison d'informations
+/// info
+
+À moins que vous ne spécifiiez explicitement un type de média différent dans votre paramètre `responses`, FastAPI supposera que la réponse a le même type de média que la classe de réponse principale (par défaut `application/json`).
+
+Mais si vous avez spécifié une classe de réponse personnalisée avec `None` comme type de média, FastAPI utilisera `application/json` pour toute réponse supplémentaire associée à un modèle.
+
+///
+
+## Combiner les informations { #combining-information }
 
 Vous pouvez également combiner des informations de réponse provenant de plusieurs endroits, y compris les paramètres `response_model`, `status_code` et `responses`.
 
@@ -192,21 +203,19 @@ Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui util
 
 Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
-```Python hl_lines="20-31"
-{!../../../docs_src/additional_responses/tutorial003.py!}
-```
+{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
 
 Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combinez les réponses prédéfinies et les réponses personnalisées
+## Combinez les réponses prédéfinies et les réponses personnalisées { #combine-predefined-responses-and-custom-ones }
 
-Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de nombreux *paramètre de chemin*, mais vous souhaitez les combiner avec des réponses personnalisées nécessaires à chaque *opération de chemin*.
+Vous voulez peut-être avoir des réponses prédéfinies qui s'appliquent à de nombreux *chemins d'accès*, mais vous souhaitez les combiner avec des réponses personnalisées nécessaires à chaque *chemin d'accès*.
 
-Dans ces cas, vous pouvez utiliser la technique Python "d'affection par décomposition" (appelé _unpacking_ en anglais) d'un `dict` avec `**dict_to_unpack` :
+Dans ces cas, vous pouvez utiliser la technique Python « unpacking » d'un `dict` avec `**dict_to_unpack` :
 
-``` Python
+```Python
 old_dict = {
     "old key": "old value",
     "second old key": "second old value",
@@ -216,7 +225,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la nouvelle paire clé-valeur :
 
-``` Python
+```Python
 {
     "old key": "old value",
     "second old key": "second old value",
@@ -224,17 +233,15 @@ Ici, `new_dict` contiendra toutes les paires clé-valeur de `old_dict` plus la n
 }
 ```
 
-Vous pouvez utiliser cette technique pour réutiliser certaines réponses prédéfinies dans vos *paramètres de chemin* et les combiner avec des réponses personnalisées supplémentaires.
+Vous pouvez utiliser cette technique pour réutiliser certaines réponses prédéfinies dans vos *chemins d'accès* et les combiner avec des réponses personnalisées supplémentaires.
 
 Par exemple:
 
-```Python hl_lines="13-17 26"
-{!../../../docs_src/additional_responses/tutorial004.py!}
-```
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
-## Plus d'informations sur les réponses OpenAPI
+## Plus d'informations sur les réponses OpenAPI { #more-information-about-openapi-responses }
 
 Pour voir exactement ce que vous pouvez inclure dans les réponses, vous pouvez consulter ces sections dans la spécification OpenAPI :
 
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responsesObject" class="external-link" target="_blank">Objet Responses de OpenAPI </a>, il inclut le `Response Object`.
-* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#responseObject" class="external-link" target="_blank">Objet Response de OpenAPI </a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object" class="external-link" target="_blank">Objet Responses de OpenAPI</a>, il inclut le `Response Object`.
+* <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object" class="external-link" target="_blank">Objet Response de OpenAPI</a>, vous pouvez inclure n'importe quoi directement dans chaque réponse à l'intérieur de votre paramètre `responses`. Y compris `description`, `headers`, `content` (à l'intérieur de cela, vous déclarez différents types de médias et schémas JSON) et `links`.

@@ -1,4 +1,4 @@
-# パスワード（およびハッシュ化）によるOAuth2、JWTトークンによるBearer
+# パスワード（およびハッシュ化）によるOAuth2、JWTトークンによるBearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
 これでセキュリティの流れが全てわかったので、<abbr title="JSON Web Tokens">JWT</abbr>トークンと安全なパスワードのハッシュ化を使用して、実際にアプリケーションを安全にしてみましょう。
 
@@ -6,7 +6,7 @@
 
 本章では、前章の続きから始めて、コードをアップデートしていきます。
 
-## JWT について
+## JWT について { #about-jwt }
 
 JWTとは「JSON Web Tokens」の略称です。
 
@@ -26,30 +26,31 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 JWT トークンを使って遊んでみたいという方は、<a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> をチェックしてください。
 
-## `python-jose` のインストール
+## `PyJWT` のインストール { #install-pyjwt }
 
-PythonでJWTトークンの生成と検証を行うために、`python-jose`をインストールする必要があります：
+PythonでJWTトークンの生成と検証を行うために、`PyJWT`をインストールする必要があります。
+
+[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
 
 <div class="termy">
 
 ```console
-$ pip install python-jose[cryptography]
+$ pip install pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-また、<a href="https://github.com/mpdavis/python-jose" class="external-link" target="_blank">Python-jose</a>だけではなく、暗号を扱うためのパッケージを追加で必要とします。
+/// info | 情報
 
-ここでは、推奨されているものを使用します：<a href="https://cryptography.io/" class="external-link" target="_blank">pyca/cryptography</a>。
+RSAやECDSAのようなデジタル署名アルゴリズムを使用する予定がある場合は、cryptographyライブラリの依存関係`pyjwt[crypto]`をインストールしてください。
 
-!!! tip "豆知識"
-    このチュートリアルでは以前、<a href="https://pyjwt.readthedocs.io/" class="external-link" target="_blank">PyJWT</a>を使用していました。
+詳細は<a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>で確認できます。
 
-    しかし、Python-joseは、PyJWTのすべての機能に加えて、後に他のツールと統合して構築する際におそらく必要となる可能性のあるいくつかの追加機能を提供しています。そのため、代わりにPython-joseを使用するように更新されました。
+///
 
-## パスワードのハッシュ化
+## パスワードのハッシュ化 { #password-hashing }
 
 「ハッシュ化」とは、あるコンテンツ（ここではパスワード）を、規則性のないバイト列（単なる文字列）に変換することです。
 
@@ -57,52 +58,57 @@ $ pip install python-jose[cryptography]
 
 しかし、規則性のないバイト列から元のパスワードに戻すことはできません。
 
-### パスワードのハッシュ化を使う理由
+### パスワードのハッシュ化を使う理由 { #why-use-password-hashing }
 
 データベースが盗まれても、ユーザーの平文のパスワードは盗まれず、ハッシュ値だけが盗まれます。
 
 したがって、泥棒はそのパスワードを別のシステムで使えません（多くのユーザーはどこでも同じパスワードを使用しているため、危険性があります）。
 
-## `passlib` のインストール
+## `pwdlib` のインストール { #install-pwdlib }
 
-PassLib は、パスワードのハッシュを処理するための優れたPythonパッケージです。
+pwdlib は、パスワードのハッシュを処理するための優れたPythonパッケージです。
 
 このパッケージは、多くの安全なハッシュアルゴリズムとユーティリティをサポートします。
 
-推奨されるアルゴリズムは「Bcrypt」です。
+推奨されるアルゴリズムは「Argon2」です。
 
-そのため、Bcryptを指定してPassLibをインストールします：
+[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
 
 <div class="termy">
 
 ```console
-$ pip install passlib[bcrypt]
+$ pip install "pwdlib[argon2]"
 
 ---> 100%
 ```
 
 </div>
 
-!!! tip "豆知識"
-    `passlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
+/// tip | 豆知識
 
-    例えば、Djangoアプリケーションからデータベース内の同じデータをFastAPIアプリケーションと共有できるだけではなく、同じデータベースを使用してDjangoアプリケーションを徐々に移行することもできます。
+`pwdlib`を使用すると、**Django**や**Flask**のセキュリティプラグインなどで作成されたパスワードを読み取れるように設定できます。
 
-    また、ユーザーはDjangoアプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
+例えば、Djangoアプリケーションからデータベース内の同じデータをFastAPIアプリケーションと共有できるだけではなく、同じデータベースを使用してDjangoアプリケーションを徐々に移行することもできます。
 
+また、ユーザーはDjangoアプリまたは**FastAPI**アプリからも、同時にログインできるようになります。
 
-## パスワードのハッシュ化と検証
+///
 
-必要なツールを `passlib`からインポートします。
+## パスワードのハッシュ化と検証 { #hash-and-verify-the-passwords }
 
-PassLib の「context」を作成します。これは、パスワードのハッシュ化と検証に使用されるものです。
+必要なツールを `pwdlib`からインポートします。
 
-!!! tip "豆知識"
-    PassLibのcontextには、検証だけが許された非推奨の古いハッシュアルゴリズムを含む、様々なハッシュアルゴリズムを使用した検証機能もあります。
+推奨設定でPasswordHashインスタンスを作成します。これは、パスワードのハッシュ化と検証に使用されます。
 
-    例えば、この機能を使用して、別のシステム（Djangoなど）によって生成されたパスワードを読み取って検証し、Bcryptなどの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
+/// tip | 豆知識
 
-    そして、同時にそれらはすべてに互換性があります。
+pwdlibはbcryptハッシュアルゴリズムもサポートしていますが、レガシーアルゴリズムは含みません。古いハッシュを扱うには、passlibライブラリを使用することが推奨されます。
+
+例えば、この機能を使用して、別のシステム（Djangoなど）によって生成されたパスワードを読み取って検証し、Argon2やBcryptなどの別のアルゴリズムを使用して新しいパスワードをハッシュするといったことができます。
+
+そして、同時にそれらはすべてに互換性があります。
+
+///
 
 ユーザーから送られてきたパスワードをハッシュ化するユーティリティー関数を作成します。
 
@@ -110,14 +116,15 @@ PassLib の「context」を作成します。これは、パスワードのハ�
 
 さらに、ユーザーを認証して返す関数も作成します。
 
-```Python hl_lines="7  48  55-56  59-60  69-75"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
 
-!!! note "備考"
-    新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$2b$12$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW"`
+/// note | 備考
 
-## JWTトークンの取り扱い
+新しい（偽の）データベース`fake_users_db`を確認すると、ハッシュ化されたパスワードが次のようになっていることがわかります：`"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`。
+
+///
+
+## JWTトークンの取り扱い { #handle-jwt-tokens }
 
 インストールした複数のモジュールをインポートします。
 
@@ -139,39 +146,33 @@ $ openssl rand -hex 32
 
 JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定した変数`ALGORITHM`を作成します。
 
-トークンの有効期限を指定した変数`ACCESS_TOKEN_EXPIRE_MINUTES`を作成します。
+トークンの有効期限を指定した変数を作成します。
 
 レスポンスのトークンエンドポイントで使用するPydanticモデルを定義します。
 
 新しいアクセストークンを生成するユーティリティ関数を作成します。
 
-```Python hl_lines="6  12-14  28-30  78-86"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
 
-## 依存関係の更新
+## 依存関係の更新 { #update-the-dependencies }
 
 `get_current_user`を更新して、先ほどと同じトークンを受け取るようにしますが、今回はJWTトークンを使用します。
 
-受け取ったトークンを復号して検証し、現在のユーザーを返します。
+受け取ったトークンをデコードして検証し、現在のユーザーを返します。
 
 トークンが無効な場合は、すぐにHTTPエラーを返します。
 
-```Python hl_lines="89-106"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
 
-## `/token` パスオペレーションの更新
+## `/token` *path operation* の更新 { #update-the-token-path-operation }
 
 トークンの有効期限を表す`timedelta`を作成します。
 
-JWTアクセストークンを作成し、それを返します。
+実際のJWTアクセストークンを作成し、それを返します。
 
-```Python hl_lines="115-128"
-{!../../../docs_src/security/tutorial004.py!}
-```
+{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
 
-### JWTの"subject" `sub` についての技術的な詳細
+### JWTの「subject」`sub` についての技術的な詳細 { #technical-details-about-the-jwt-subject-sub }
 
 JWTの仕様では、トークンのsubjectを表すキー`sub`があるとされています。
 
@@ -189,13 +190,13 @@ JWTは、ユーザーを識別して、そのユーザーがAPI上で直接操�
 
 しかしながら、それらのエンティティのいくつかが同じIDを持つ可能性があります。例えば、`foo`（ユーザー`foo`、車 `foo`、ブログ投稿`foo`）などです。
 
-IDの衝突を回避するために、ユーザーのJWTトークンを作成するとき、subキーの値にプレフィックスを付けることができます（例えば、`username:`）。したがって、この例では、`sub`の値は次のようになっている可能性があります：`username:johndoe`
+IDの衝突を回避するために、ユーザーのJWTトークンを作成するとき、subキーの値にプレフィックスを付けることができます（例えば、`username:`）。したがって、この例では、`sub`の値は次のようになっている可能性があります：`username:johndoe`。
 
 覚えておくべき重要なことは、`sub`キーはアプリケーション全体で一意の識別子を持ち、文字列である必要があるということです。
 
-## 確認
+## 確認 { #check-it }
 
-サーバーを実行し、ドキュメントに移動します：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>
+サーバーを実行し、ドキュメントに移動します：<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
 次のようなユーザーインターフェイスが表示されます：
 
@@ -208,8 +209,11 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-!!! check "確認"
-    コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+/// check | 確認
+
+コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+
+///
 
 <img src="/img/tutorial/security/image08.png">
 
@@ -226,14 +230,17 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image09.png">
 
-開発者ツールを開くと、送信されるデータにはトークンだけが含まれており、パスワードはユーザーを認証してアクセストークンを取得する最初のリクエストでのみ送信され、その後は送信されないことがわかります。
+開発者ツールを開くと、送信されるデータにはトークンだけが含まれており、パスワードはユーザーを認証してアクセストークンを取得する最初のリクエストでのみ送信され、その後は送信されないことがわかります：
 
 <img src="/img/tutorial/security/image10.png">
 
-!!! note "備考"
-    ヘッダーの`Authorization`には、`Bearer`で始まる値があります。
+/// note | 備考
 
-## `scopes` を使った高度なユースケース
+ヘッダーの`Authorization`には、`Bearer `で始まる値があります。
+
+///
+
+## `scopes` を使った高度なユースケース { #advanced-usage-with-scopes }
 
 OAuth2には、「スコープ」という概念があります。
 
@@ -243,7 +250,7 @@ OAuth2には、「スコープ」という概念があります。
 
 これらの使用方法や**FastAPI**への統合方法については、**高度なユーザーガイド**で後ほど説明します。
 
-## まとめ
+## まとめ { #recap }
 
 ここまでの説明で、OAuth2やJWTなどの規格を使った安全な**FastAPI**アプリケーションを設定することができます。
 
@@ -257,10 +264,10 @@ OAuth2には、「スコープ」という概念があります。
 
 そのため、プロジェクトに合わせて自由に選択することができます。
 
-また、**FastAPI**は外部パッケージを統合するために複雑な仕組みを必要としないため、`passlib`や`python-jose`のようなよく整備され広く使われている多くのパッケージを直接使用することができます。
+また、**FastAPI**は外部パッケージを統合するために複雑な仕組みを必要としないため、`pwdlib`や`PyJWT`のようなよく整備され広く使われている多くのパッケージを直接使用することができます。
 
 しかし、柔軟性、堅牢性、セキュリティを損なうことなく、可能な限りプロセスを簡素化するためのツールを提供します。
 
 また、OAuth2のような安全で標準的なプロトコルを比較的簡単な方法で使用できるだけではなく、実装することもできます。
 
-OAuth2の「スコープ」を使って、同じ基準でより細かい権限システムを実現する方法については、**高度なユーザーガイド**で詳しく説明しています。スコープ付きのOAuth2は、Facebook、Google、GitHub、Microsoft、Twitterなど、多くの大手認証プロバイダが、サードパーティのアプリケーションと自社のAPIとのやり取りをユーザーに代わって認可するために使用している仕組みです。
+OAuth2の「スコープ」を使って、同じ基準でより細かい権限システムを実現する方法については、**高度なユーザーガイド**で詳しく説明しています。スコープ付きのOAuth2は、Facebook、Google、GitHub、Microsoft、X (Twitter)など、多くの大手認証プロバイダが、サードパーティのアプリケーションと自社のAPIとのやり取りをユーザーに代わって認可するために使用している仕組みです。

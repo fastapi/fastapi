@@ -1,49 +1,114 @@
-from typing import Any, List
+from typing import Any
 
-import pytest
-from fastapi.params import Body, Cookie, Depends, Header, Param, Path, Query
+from fastapi.params import Body, Cookie, Header, Param, Path, Query
 
-test_data: List[Any] = ["teststr", None, ..., 1, []]
+test_data: list[Any] = ["teststr", None, ..., 1, []]
 
 
 def get_user():
     return {}  # pragma: no cover
 
 
-@pytest.fixture(scope="function", params=test_data)
-def params(request):
-    return request.param
+def test_param_repr_str():
+    assert repr(Param("teststr")) == "Param(teststr)"
 
 
-def test_param_repr(params):
-    assert repr(Param(params)) == "Param(" + str(params) + ")"
+def test_param_repr_none():
+    assert repr(Param(None)) == "Param(None)"
+
+
+def test_param_repr_ellipsis():
+    assert repr(Param(...)) == "Param(PydanticUndefined)"
+
+
+def test_param_repr_number():
+    assert repr(Param(1)) == "Param(1)"
+
+
+def test_param_repr_list():
+    assert repr(Param([])) == "Param([])"
 
 
 def test_path_repr():
-    assert repr(Path()) == "Path(Ellipsis)"
-    assert repr(Path(...)) == "Path(Ellipsis)"
+    assert repr(Path()) == "Path(PydanticUndefined)"
+    assert repr(Path(...)) == "Path(PydanticUndefined)"
 
 
-def test_query_repr(params):
-    assert repr(Query(params)) == "Query(" + str(params) + ")"
+def test_query_repr_str():
+    assert repr(Query("teststr")) == "Query(teststr)"
 
 
-def test_header_repr(params):
-    assert repr(Header(params)) == "Header(" + str(params) + ")"
+def test_query_repr_none():
+    assert repr(Query(None)) == "Query(None)"
 
 
-def test_cookie_repr(params):
-    assert repr(Cookie(params)) == "Cookie(" + str(params) + ")"
+def test_query_repr_ellipsis():
+    assert repr(Query(...)) == "Query(PydanticUndefined)"
 
 
-def test_body_repr(params):
-    assert repr(Body(params)) == "Body(" + str(params) + ")"
+def test_query_repr_number():
+    assert repr(Query(1)) == "Query(1)"
 
 
-def test_depends_repr():
-    assert repr(Depends()) == "Depends(NoneType)"
-    assert repr(Depends(get_user)) == "Depends(get_user)"
-    assert repr(Depends(use_cache=False)) == "Depends(NoneType, use_cache=False)"
-    assert (
-        repr(Depends(get_user, use_cache=False)) == "Depends(get_user, use_cache=False)"
-    )
+def test_query_repr_list():
+    assert repr(Query([])) == "Query([])"
+
+
+def test_header_repr_str():
+    assert repr(Header("teststr")) == "Header(teststr)"
+
+
+def test_header_repr_none():
+    assert repr(Header(None)) == "Header(None)"
+
+
+def test_header_repr_ellipsis():
+    assert repr(Header(...)) == "Header(PydanticUndefined)"
+
+
+def test_header_repr_number():
+    assert repr(Header(1)) == "Header(1)"
+
+
+def test_header_repr_list():
+    assert repr(Header([])) == "Header([])"
+
+
+def test_cookie_repr_str():
+    assert repr(Cookie("teststr")) == "Cookie(teststr)"
+
+
+def test_cookie_repr_none():
+    assert repr(Cookie(None)) == "Cookie(None)"
+
+
+def test_cookie_repr_ellipsis():
+    assert repr(Cookie(...)) == "Cookie(PydanticUndefined)"
+
+
+def test_cookie_repr_number():
+    assert repr(Cookie(1)) == "Cookie(1)"
+
+
+def test_cookie_repr_list():
+    assert repr(Cookie([])) == "Cookie([])"
+
+
+def test_body_repr_str():
+    assert repr(Body("teststr")) == "Body(teststr)"
+
+
+def test_body_repr_none():
+    assert repr(Body(None)) == "Body(None)"
+
+
+def test_body_repr_ellipsis():
+    assert repr(Body(...)) == "Body(PydanticUndefined)"
+
+
+def test_body_repr_number():
+    assert repr(Body(1)) == "Body(1)"
+
+
+def test_body_repr_list():
+    assert repr(Body([])) == "Body([])"

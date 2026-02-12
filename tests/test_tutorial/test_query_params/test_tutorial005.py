@@ -1,104 +1,111 @@
-import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from docs_src.query_params.tutorial005 import app
+from docs_src.query_params.tutorial005_py39 import app
 
 client = TestClient(app)
 
-openapi_schema = {
-    "openapi": "3.0.2",
-    "info": {"title": "FastAPI", "version": "0.1.0"},
-    "paths": {
-        "/items/{item_id}": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {"application/json": {"schema": {}}},
+
+def test_foo_needy_very():
+    response = client.get("/items/foo?needy=very")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": "foo", "needy": "very"}
+
+
+def test_foo_no_needy():
+    response = client.get("/items/foo")
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "needy"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
+
+def test_openapi_schema():
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/{item_id}": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                        "summary": "Read User Item",
+                        "operationId": "read_user_item_items__item_id__get",
+                        "parameters": [
+                            {
+                                "required": True,
+                                "schema": {"title": "Item Id", "type": "string"},
+                                "name": "item_id",
+                                "in": "path",
+                            },
+                            {
+                                "required": True,
+                                "schema": {"title": "Needy", "type": "string"},
+                                "name": "needy",
+                                "in": "query",
+                            },
+                        ],
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
                     },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
                             }
                         },
                     },
-                },
-                "summary": "Read User Item",
-                "operationId": "read_user_item_items__item_id__get",
-                "parameters": [
-                    {
-                        "required": True,
-                        "schema": {"title": "Item Id", "type": "string"},
-                        "name": "item_id",
-                        "in": "path",
-                    },
-                    {
-                        "required": True,
-                        "schema": {"title": "Needy", "type": "string"},
-                        "name": "needy",
-                        "in": "query",
-                    },
-                ],
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "ValidationError": {
-                "title": "ValidationError",
-                "required": ["loc", "msg", "type"],
-                "type": "object",
-                "properties": {
-                    "loc": {
-                        "title": "Location",
-                        "type": "array",
-                        "items": {"anyOf": [{"type": "string"}, {"type": "integer"}]},
-                    },
-                    "msg": {"title": "Message", "type": "string"},
-                    "type": {"title": "Error Type", "type": "string"},
-                },
-            },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
-                "type": "object",
-                "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {"$ref": "#/components/schemas/ValidationError"},
-                    }
-                },
+                }
             },
         }
-    },
-}
-
-
-query_required = {
-    "detail": [
-        {
-            "loc": ["query", "needy"],
-            "msg": "field required",
-            "type": "value_error.missing",
-        }
-    ]
-}
-
-
-@pytest.mark.parametrize(
-    "path,expected_status,expected_response",
-    [
-        ("/openapi.json", 200, openapi_schema),
-        ("/items/foo?needy=very", 200, {"item_id": "foo", "needy": "very"}),
-        ("/items/foo", 422, query_required),
-        ("/items/foo", 422, query_required),
-    ],
-)
-def test(path, expected_status, expected_response):
-    response = client.get(path)
-    assert response.status_code == expected_status
-    assert response.json() == expected_response
+    )

@@ -1,18 +1,21 @@
-# Guía de Usuario Avanzada - Introducción
+# Guía avanzada del usuario { #advanced-user-guide }
 
-## Características Adicionales
+## Funcionalidades adicionales { #additional-features }
 
-El [Tutorial - Guía de Usuario](../tutorial/){.internal-link target=_blank} principal debe ser suficiente para darte un paseo por todas las características principales de **FastAPI**
+El [Tutorial - Guía del usuario](../tutorial/index.md){.internal-link target=_blank} principal debería ser suficiente para darte un recorrido por todas las funcionalidades principales de **FastAPI**.
 
-En las secciones siguientes verás otras opciones, configuraciones, y características adicionales.
+En las siguientes secciones verás otras opciones, configuraciones y funcionalidades adicionales.
 
-!!! tip
-    Las próximas secciones **no son necesariamente "avanzadas"**.
+/// tip | Consejo
 
-    Y es posible que para tu caso, la solución se encuentre en una de estas.
+Las siguientes secciones **no son necesariamente "avanzadas"**.
 
-## Lee primero el Tutorial
+Y es posible que para tu caso de uso, la solución esté en una de ellas.
 
-Puedes continuar usando la mayoría de las características de **FastAPI** con el conocimiento del [Tutorial - Guía de Usuario](../tutorial/){.internal-link target=_blank} principal.
+///
 
-En las siguientes secciones se asume que lo has leído y conoces esas ideas principales.
+## Lee primero el Tutorial { #read-the-tutorial-first }
+
+Aún podrías usar la mayoría de las funcionalidades en **FastAPI** con el conocimiento del [Tutorial - Guía del usuario](../tutorial/index.md){.internal-link target=_blank} principal.
+
+Y las siguientes secciones asumen que ya lo leíste y que conoces esas ideas principales.

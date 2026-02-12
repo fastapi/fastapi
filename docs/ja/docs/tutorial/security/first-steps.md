@@ -1,4 +1,4 @@
-# セキュリティ - 最初の一歩
+# セキュリティ - 最初の一歩 { #security-first-steps }
 
 あるドメインに、**バックエンド** APIを持っているとしましょう。
 
@@ -12,40 +12,47 @@
 
 **FastAPI**が提供するツールを使って、セキュリティを制御してみましょう。
 
-## どう見えるか
+## どう見えるか { #how-it-looks }
 
 まずはこのコードを使って、どう動くか観察します。その後で、何が起こっているのか理解しましょう。
 
-## `main.py`を作成
+## `main.py`を作成 { #create-main-py }
 
 `main.py`に、下記の例をコピーします:
 
-```Python
-{!../../../docs_src/security/tutorial001.py!}
+{* ../../docs_src/security/tutorial001_an_py39.py *}
+
+## 実行 { #run-it }
+
+/// info | 情報
+
+<a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> パッケージは、`pip install "fastapi[standard]"` コマンドを実行すると **FastAPI** と一緒に自動的にインストールされます。
+
+しかし、`pip install fastapi` コマンドを使用する場合、`python-multipart` パッケージはデフォルトでは含まれません。
+
+手動でインストールするには、[仮想環境](../../virtual-environments.md){.internal-link target=_blank}を作成して有効化し、次のコマンドでインストールしてください:
+
+```console
+$ pip install python-multipart
 ```
 
-## 実行
+これは、**OAuth2**が `username` と `password` を送信するために、「フォームデータ」を使うからです。
 
-!!! info "情報"
-    まず<a href="https://andrew-d.github.io/python-multipart/" class="external-link" target="_blank">`python-multipart`</a>をインストールします。
-
-    例えば、`pip install python-multipart`。
-
-    これは、**OAuth2**が `ユーザー名` や `パスワード` を送信するために、「フォームデータ」を使うからです。
+///
 
 例を実行します:
 
 <div class="termy">
 
 ```console
-$ uvicorn main:app --reload
+$ fastapi dev main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-## 確認
+## 確認 { #check-it }
 
 次のインタラクティブなドキュメントにアクセスしてください: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>。
 
@@ -53,17 +60,23 @@ $ uvicorn main:app --reload
 
 <img src="/img/tutorial/security/image01.png">
 
-!!! check "Authorizeボタン!"
-    すでにピカピカの新しい「Authorize」ボタンがあります。
+/// check | Authorizeボタン!
 
-    そして、あなたの*path operation*には、右上にクリックできる小さな鍵アイコンがあります。
+すでにピカピカの新しい「Authorize」ボタンがあります。
 
-それをクリックすると、`ユーザー名`と`パスワード` (およびその他のオプションフィールド) を入力する小さな認証フォームが表示されます:
+そして、あなたの*path operation*には、右上にクリックできる小さな鍵アイコンがあります。
+
+///
+
+それをクリックすると、`username` と `password`（およびその他のオプションフィールド）を入力する小さな認可フォームが表示されます:
 
 <img src="/img/tutorial/security/image02.png">
 
-!!! note "備考"
-    フォームに何を入力しても、まだうまくいきません。ですが、これから動くようになります。
+/// note | 備考
+
+フォームに何を入力しても、まだうまくいきません。ですが、これから動くようになります。
+
+///
 
 もちろんエンドユーザーのためのフロントエンドではありません。しかし、すべてのAPIをインタラクティブにドキュメント化するための素晴らしい自動ツールです。
 
@@ -73,11 +86,11 @@ $ uvicorn main:app --reload
 
 また、同じアプリケーションのデバッグ、チェック、テストのためにも利用できます。
 
-## `パスワード` フロー
+## `password` フロー { #the-password-flow }
 
 では、少し話を戻して、どうなっているか理解しましょう。
 
-`パスワード`の「フロー」は、OAuth2で定義されているセキュリティと認証を扱う方法 (「フロー」) の1つです。
+`password`の「フロー」は、OAuth2で定義されているセキュリティと認証を扱う方法 (「フロー」) の1つです。
 
 OAuth2は、バックエンドやAPIがユーザーを認証するサーバーから独立したものとして設計されていました。
 
@@ -85,9 +98,9 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
 
 そこで、簡略化した箇所から見直してみましょう:
 
-* ユーザーはフロントエンドで`ユーザー名`と`パスワード`を入力し、`Enter`を押します。
-* フロントエンド (ユーザーのブラウザで実行中) は、`ユーザー名`と`パスワード`をAPIの特定のURL (`tokenUrl="token"`で宣言された) に送信します。
-* APIは`ユーザー名`と`パスワード`をチェックし、「トークン」を返却します (まだ実装していません)。
+* ユーザーはフロントエンドで`username`と`password`を入力し、`Enter`を押します。
+* フロントエンド (ユーザーのブラウザで実行中) は、`username`と`password`をAPIの特定のURL (`tokenUrl="token"`で宣言された) に送信します。
+* APIは`username`と`password`をチェックし、「トークン」を返却します (まだ実装していません)。
     * 「トークン」はただの文字列であり、あとでこのユーザーを検証するために使用します。
     * 通常、トークンは時間が経つと期限切れになるように設定されています。
         * トークンが期限切れの場合は、再度ログインする必要があります。
@@ -99,42 +112,49 @@ OAuth2は、バックエンドやAPIがユーザーを認証するサーバー�
     * したがって、APIで認証するため、HTTPヘッダー`Authorization`に`Bearer`の文字列とトークンを加えた値を送信します。
     * トークンに`foobar`が含まれている場合、`Authorization`ヘッダーの内容は次のようになります: `Bearer foobar`。
 
-## **FastAPI**の`OAuth2PasswordBearer`
+## **FastAPI**の`OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }
 
 **FastAPI**は、これらのセキュリティ機能を実装するために、抽象度の異なる複数のツールを提供しています。
 
-この例では、**Bearer**トークンを使用して**OAuth2**を**パスワード**フローで使用します。これには`OAuth2PasswordBearer`クラスを使用します。
+この例では、**Bearer**トークンを使用して**OAuth2**を**Password**フローで使用します。これには`OAuth2PasswordBearer`クラスを使用します。
 
-!!! info "情報"
-    「bearer」トークンが、唯一の選択肢ではありません。
+/// info | 情報
 
-    しかし、私たちのユースケースには最適です。
+「bearer」トークンが、唯一の選択肢ではありません。
 
-    あなたがOAuth2の専門家で、あなたのニーズに適した別のオプションがある理由を正確に知っている場合を除き、ほとんどのユースケースに最適かもしれません。
+しかし、私たちのユースケースには最適です。
 
-    その場合、**FastAPI**はそれを構築するためのツールも提供します。
+あなたがOAuth2の専門家で、あなたのニーズに適した別のオプションがある理由を正確に知っている場合を除き、ほとんどのユースケースに最適かもしれません。
 
-`OAuth2PasswordBearer` クラスのインスタンスを作成する時に、パラメーター`tokenUrl`を渡します。このパラメーターには、クライアント (ユーザーのブラウザで動作するフロントエンド) がトークンを取得するために`ユーザー名`と`パスワード`を送信するURLを指定します。
+その場合、**FastAPI**はそれを構築するためのツールも提供します。
 
-```Python hl_lines="6"
-{!../../../docs_src/security/tutorial001.py!}
-```
+///
 
-!!! tip "豆知識"
-    ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
+`OAuth2PasswordBearer` クラスのインスタンスを作成する時に、パラメーター`tokenUrl`を渡します。このパラメーターには、クライアント (ユーザーのブラウザで動作するフロントエンド) がトークンを取得するために`username`と`password`を送信するURLを指定します。
 
-    相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
+{* ../../docs_src/security/tutorial001_an_py39.py hl[8] *}
 
-    相対 URL を使うことは、[プロキシと接続](./.../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+/// tip | 豆知識
+
+ここで、`tokenUrl="token"`は、まだ作成していない相対URL`token`を指します。相対URLなので、`./token`と同じです。
+
+相対URLを使っているので、APIが`https://example.com/`にある場合、`https://example.com/token`を参照します。しかし、APIが`https://example.com/api/v1/`にある場合は`https://example.com/api/v1/token`を参照することになります。
+
+相対 URL を使うことは、[プロキシの背後](../../advanced/behind-a-proxy.md){.internal-link target=_blank}のような高度なユースケースでもアプリケーションを動作させ続けるために重要です。
+
+///
 
 このパラメーターはエンドポイント/ *path operation*を作成しません。しかし、URL`/token`はクライアントがトークンを取得するために使用するものであると宣言します。この情報は OpenAPI やインタラクティブな API ドキュメントシステムで使われます。
 
-実際のpath operationもすぐに作ります。
+実際の path operation もすぐに作ります。
 
-!!! info "情報"
-    非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
+/// info | 情報
 
-    それはOpenAPI仕様と同じ名前を使用しているからです。そのため、これらのセキュリティスキームについてもっと調べる必要がある場合は、それをコピーして貼り付ければ、それについての詳細な情報を見つけることができます。
+非常に厳格な「Pythonista」であれば、パラメーター名のスタイルが`token_url`ではなく`tokenUrl`であることを気に入らないかもしれません。
+
+それはOpenAPI仕様と同じ名前を使用しているからです。そのため、これらのセキュリティスキームについてもっと調べる必要がある場合は、それをコピーして貼り付ければ、それについての詳細な情報を見つけることができます。
+
+///
 
 変数`oauth2_scheme`は`OAuth2PasswordBearer`のインスタンスですが、「呼び出し可能」です。
 
@@ -146,30 +166,31 @@ oauth2_scheme(some, parameters)
 
 そのため、`Depends`と一緒に使うことができます。
 
-### 使い方
+### 使い方 { #use-it }
 
 これで`oauth2_scheme`を`Depends`で依存関係に渡すことができます。
 
-```Python hl_lines="10"
-{!../../../docs_src/security/tutorial001.py!}
-```
+{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
 
-この依存関係は、*path operation function*のパラメーター`token`に代入される`str`を提供します。
+この依存関係は、*path operation 関数*のパラメーター`token`に代入される`str`を提供します。
 
 **FastAPI**は、この依存関係を使用してOpenAPIスキーマ (および自動APIドキュメント) で「セキュリティスキーム」を定義できることを知っています。
 
-!!! info "技術詳細"
-    **FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
+/// info | 技術詳細
 
-    OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
+**FastAPI**は、`OAuth2PasswordBearer` クラス (依存関係で宣言されている) を使用してOpenAPIのセキュリティスキームを定義できることを知っています。これは`fastapi.security.oauth2.OAuth2`、`fastapi.security.base.SecurityBase`を継承しているからです。
 
-## どのように動作するか
+OpenAPIと統合するセキュリティユーティリティ (および自動APIドキュメント) はすべて`SecurityBase`を継承しています。それにより、**FastAPI**はそれらをOpenAPIに統合する方法を知ることができます。
 
-リクエストの中に`Authorization`ヘッダーを探しに行き、その値が`Bearer`と何らかのトークンを含んでいるかどうかをチェックし、そのトークンを`str`として返します。
+///
 
-もし`Authorization`ヘッダーが見つからなかったり、値が`Bearer`トークンを持っていなかったりすると、401 ステータスコードエラー (`UNAUTHORIZED`) で直接応答します。
+## 何をするか { #what-it-does }
 
-トークンが存在するかどうかをチェックしてエラーを返す必要はありません。関数が実行された場合、そのトークンに`str`が含まれているか確認できます。
+リクエストの中に`Authorization`ヘッダーを探しに行き、その値が`Bearer `と何らかのトークンを含んでいるかどうかをチェックし、そのトークンを`str`として返します。
+
+もし`Authorization`ヘッダーが見つからなかったり、値が`Bearer `トークンを持っていなかったりすると、401 ステータスコードエラー (`UNAUTHORIZED`) で直接応答します。
+
+トークンが存在するかどうかをチェックしてエラーを返す必要はありません。関数が実行された場合、そのトークンに`str`が含まれていることを確信できます。
 
 インタラクティブなドキュメントですでに試すことができます:
 
@@ -177,6 +198,6 @@ oauth2_scheme(some, parameters)
 
 まだトークンの有効性を検証しているわけではありませんが、これはもう始まっています。
 
-## まとめ
+## まとめ { #recap }
 
 つまり、たった3~4行の追加で、すでに何らかの基礎的なセキュリティの形になっています。

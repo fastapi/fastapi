@@ -60,14 +60,14 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
+            detail="Not authenticated",
             headers={"WWW-Authenticate": "Bearer"},
         )
     return user
 
 
 async def get_current_active_user(
-    current_user: Annotated[User, Depends(get_current_user)]
+    current_user: Annotated[User, Depends(get_current_user)],
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
@@ -89,6 +89,6 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
 
 @app.get("/users/me")
 async def read_users_me(
-    current_user: Annotated[User, Depends(get_current_active_user)]
+    current_user: Annotated[User, Depends(get_current_active_user)],
 ):
     return current_user

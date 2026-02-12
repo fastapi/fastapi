@@ -10,22 +10,41 @@ permissions:
 
 jobs:
   smokeshow:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-python@v4
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.9'
-
-      - run: pip install smokeshow
-
-      - uses: dawidd6/action-download-artifact@v2.26.0
+          python-version-file: ".python-version"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
         with:
-          workflow: test.yml
-          commit: ${{ github.event.workflow_run.head_sha }}
-
-      - run: smokeshow upload coverage-html
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - run: uv sync --locked --no-dev --group github-actions
+      - uses: actions/download-artifact@v7
+        with:
+          name: coverage-html
+          path: htmlcov
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      # Try 5 times to upload coverage to smokeshow
+      - name: Upload coverage to Smokeshow
+        run: |
+          for i in 1 2 3 4 5; do
+            if uv run smokeshow upload htmlcov; then
+                echo "Smokeshow upload success!"
+                break
+            fi
+            echo "Smokeshow upload error, sleep 1 sec and try again."
+            sleep 1
+          done
         env:
           SMOKESHOW_GITHUB_STATUS_DESCRIPTION: Coverage {coverage-percentage}
           SMOKESHOW_GITHUB_COVERAGE_THRESHOLD: 100

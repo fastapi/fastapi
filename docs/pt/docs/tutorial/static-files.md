@@ -1,39 +1,40 @@
-# Arquivos Estáticos
+# Arquivos Estáticos { #static-files }
 
-Você pode servir arquivos estáticos automaticamente de um diretório usando `StaticFiles`.
+Você pode servir arquivos estáticos automaticamente a partir de um diretório usando `StaticFiles`.
 
-## Use `StaticFiles`
+## Use `StaticFiles` { #use-staticfiles }
 
 * Importe `StaticFiles`.
-* "Monte" uma instância de `StaticFiles()` em um caminho específico.
+* "Monte" uma instância de `StaticFiles()` em um path específico.
 
-```Python hl_lines="2  6"
-{!../../../docs_src/static_files/tutorial001.py!}
-```
+{* ../../docs_src/static_files/tutorial001_py39.py hl[2,6] *}
 
-!!! note "Detalhes técnicos"
-    Você também pode usar `from starlette.staticfiles import StaticFiles`.
+/// note | Detalhes Técnicos
 
-    O **FastAPI** fornece o mesmo que `starlette.staticfiles` como `fastapi.staticfiles` apenas como uma conveniência para você, o desenvolvedor. Mas na verdade vem diretamente da Starlette.
+Você também pode usar `from starlette.staticfiles import StaticFiles`.
 
-### O que é "Montagem"
+O **FastAPI** fornece o mesmo que `starlette.staticfiles` como `fastapi.staticfiles` apenas como uma conveniência para você, o desenvolvedor. Mas na verdade vem diretamente da Starlette.
 
-"Montagem" significa adicionar um aplicativo completamente "independente" em uma rota específica, que então cuida de todas as subrotas.
+///
 
-Isso é diferente de usar um `APIRouter`, pois um aplicativo montado é completamente independente. A OpenAPI e a documentação do seu aplicativo principal não incluirão nada do aplicativo montado, etc.
+### O que é "Montagem" { #what-is-mounting }
 
-Você pode ler mais sobre isso no **Guia Avançado do Usuário**.
+"Montagem" significa adicionar uma aplicação completamente "independente" em um path específico, que então cuida de lidar com todos os sub-paths.
 
-## Detalhes
+Isso é diferente de usar um `APIRouter`, pois uma aplicação montada é completamente independente. A OpenAPI e a documentação da sua aplicação principal não incluirão nada da aplicação montada, etc.
 
-O primeiro `"/static"` refere-se à subrota em que este "subaplicativo" será "montado". Portanto, qualquer caminho que comece com `"/static"` será tratado por ele.
+Você pode ler mais sobre isso no [Guia Avançado do Usuário](../advanced/index.md){.internal-link target=_blank}.
+
+## Detalhes { #details }
+
+O primeiro `"/static"` refere-se ao sub-path no qual este "subaplicativo" será "montado". Assim, qualquer path que comece com `"/static"` será tratado por ele.
 
 O `directory="static"` refere-se ao nome do diretório que contém seus arquivos estáticos.
 
-O `name="static"` dá a ela um nome que pode ser usado internamente pelo FastAPI.
+O `name="static"` dá a ele um nome que pode ser usado internamente pelo **FastAPI**.
 
-Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo com as necessidades e detalhes específicos de sua própria aplicação.
+Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo com as necessidades e detalhes específicos da sua própria aplicação.
 
-## Mais informações
+## Mais informações { #more-info }
 
-Para mais detalhes e opções, verifique <a href="https://www.starlette.io/staticfiles/" class="external-link" target="_blank">Starlette's docs about Static Files</a>.
+Para mais detalhes e opções, consulte <a href="https://www.starlette.dev/staticfiles/" class="external-link" target="_blank">a documentação da Starlette sobre Arquivos Estáticos</a>.

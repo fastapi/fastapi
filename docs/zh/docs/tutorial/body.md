@@ -1,39 +1,40 @@
-# 请求体
+# 请求体 { #request-body }
 
-当你需要将数据从客户端（例如浏览器）发送给 API 时，你将其作为「请求体」发送。
+当你需要从客户端（比如浏览器）向你的 API 发送数据时，会把它作为**请求体**发送。
 
-**请求**体是客户端发送给 API 的数据。**响应**体是 API 发送给客户端的数据。
+**请求体**是客户端发送给你的 API 的数据。**响应体**是你的 API 发送给客户端的数据。
 
-你的 API 几乎总是要发送**响应**体。但是客户端并不总是需要发送**请求**体。
+你的 API 几乎总是需要发送**响应体**。但客户端不一定总是要发送**请求体**，有时它们只请求某个路径，可能带一些查询参数，但不会发送请求体。
 
-我们使用 <a href="https://pydantic-docs.helpmanual.io/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求**体，并能够获得它们所具有的所有能力和优点。
+使用 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> 模型来声明**请求体**，能充分利用它的功能和优点。
 
-!!! info
-    你不能使用 `GET` 操作（HTTP 方法）发送请求体。
+/// info | 信息
 
-    要发送数据，你必须使用下列方法之一：`POST`（较常见）、`PUT`、`DELETE` 或 `PATCH`。
+发送数据应使用以下之一：`POST`（最常见）、`PUT`、`DELETE` 或 `PATCH`。
 
-## 导入 Pydantic 的 `BaseModel`
+规范中没有定义用 `GET` 请求发送请求体的行为，但 FastAPI 仍支持这种方式，只用于非常复杂/极端的用例。
 
-首先，你需要从 `pydantic` 中导入 `BaseModel`：
+由于不推荐，在使用 `GET` 时，Swagger UI 的交互式文档不会显示请求体的文档，而且中间的代理可能也不支持它。
 
-```Python hl_lines="2"
-{!../../../docs_src/body/tutorial001.py!}
-```
+///
 
-## 创建数据模型
+## 导入 Pydantic 的 `BaseModel` { #import-pydantics-basemodel }
 
-然后，将你的数据模型声明为继承自 `BaseModel` 的类。
+从 `pydantic` 中导入 `BaseModel`：
 
-使用标准的 Python 类型来声明所有属性：
+{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
 
-```Python hl_lines="5-9"
-{!../../../docs_src/body/tutorial001.py!}
-```
+## 创建数据模型 { #create-your-data-model }
 
-和声明查询参数时一样，当一个模型属性具有默认值时，它不是必需的。否则它是一个必需属性。将默认值设为 `None` 可使其成为可选属性。
+把数据模型声明为继承 `BaseModel` 的类。
 
-例如，上面的模型声明了一个这样的 JSON「`object`」（或 Python `dict`）：
+使用 Python 标准类型声明所有属性：
+
+{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+
+与声明查询参数一样，包含默认值的模型属性是可选的，否则就是必选的。把默认值设为 `None` 可使其变为可选。
+
+例如，上述模型声明如下 JSON "object"（即 Python `dict`）：
 
 ```JSON
 {
@@ -44,7 +45,7 @@
 }
 ```
 
-...由于 `description` 和 `tax` 是可选的（它们的默认值为 `None`），下面的 JSON「`object`」也将是有效的：
+...由于 `description` 和 `tax` 是可选的（默认值为 `None`），下面的 JSON "object" 也有效：
 
 ```JSON
 {
@@ -53,95 +54,111 @@
 }
 ```
 
-## 声明为参数
+## 声明为参数 { #declare-it-as-a-parameter }
 
-使用与声明路径和查询参数的相同方式声明请求体，即可将其添加到「路径操作」中：
+使用与声明路径和查询参数相同的方式，把它添加至*路径操作*：
 
-```Python hl_lines="16"
-{!../../../docs_src/body/tutorial001.py!}
-```
+{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
 
-...并且将它的类型声明为你创建的 `Item` 模型。
+...并把其类型声明为你创建的模型 `Item`。
 
-## 结果
+## 结果 { #results }
 
-仅仅使用了 Python 类型声明，**FastAPI** 将会：
+仅使用这些 Python 类型声明，**FastAPI** 就可以：
 
-* 将请求体作为 JSON 读取。
-* 转换为相应的类型（在需要时）。
+* 以 JSON 形式读取请求体。
+* （在必要时）把请求体转换为对应的类型。
 * 校验数据。
-    * 如果数据无效，将返回一条清晰易读的错误信息，指出不正确数据的确切位置和内容。
-* 将接收的数据赋值到参数 `item` 中。
-    * 由于你已经在函数中将它声明为 `Item` 类型，你还将获得对于所有属性及其类型的一切编辑器支持（代码补全等）。
-* 为你的模型生成 <a href="https://json-schema.org" class="external-link" target="_blank">JSON 模式</a> 定义，你还可以在其他任何对你的项目有意义的地方使用它们。
-* 这些模式将成为生成的 OpenAPI 模式的一部分，并且被自动化文档 <abbr title="用户界面">UI</abbr> 所使用。
+    * 数据无效时返回清晰的错误信息，并指出错误数据的确切位置和内容。
+* 把接收的数据赋值给参数 `item`。
+    * 因为你把函数中的参数类型声明为 `Item`，所以还能获得所有属性及其类型的编辑器支持（补全等）。
+* 为你的模型生成 <a href="https://json-schema.org" class="external-link" target="_blank">JSON Schema</a> 定义，如果对你的项目有意义，还可以在其他地方使用它们。
+* 这些 schema 会成为生成的 OpenAPI Schema 的一部分，并被自动文档的 <abbr title="User Interfaces - 用户界面">UIs</abbr> 使用。
 
-## 自动化文档
+## 自动文档 { #automatic-docs }
 
-你所定义模型的 JSON 模式将成为生成的 OpenAPI 模式的一部分，并且在交互式 API 文档中展示：
+你的模型的 JSON Schema 会成为生成的 OpenAPI Schema 的一部分，并显示在交互式 API 文档中：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body/image01.png">
+<img src="/img/tutorial/body/image01.png">
 
-而且还将在每一个需要它们的*路径操作*的 API 文档中使用：
+并且，还会用于需要它们的每个*路径操作*的 API 文档中：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body/image02.png">
+<img src="/img/tutorial/body/image02.png">
 
-## 编辑器支持
+## 编辑器支持 { #editor-support }
 
-在你的编辑器中，你会在函数内部的任意地方得到类型提示和代码补全（如果你接收的是一个 `dict` 而不是 Pydantic 模型，则不会发生这种情况）：
+在编辑器中，函数内部你会在各处得到类型提示与补全（如果接收的不是 Pydantic 模型，而是 `dict`，就不会有这样的支持）：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body/image03.png">
+<img src="/img/tutorial/body/image03.png">
 
-你还会获得对不正确的类型操作的错误检查：
+还支持检查错误的类型操作：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body/image04.png">
+<img src="/img/tutorial/body/image04.png">
 
-这并非偶然，整个框架都是围绕该设计而构建。
+这并非偶然，整个框架都是围绕这种设计构建的。
 
-并且在进行任何实现之前，已经在设计阶段经过了全面测试，以确保它可以在所有的编辑器中生效。
+并且在设计阶段、实现之前就进行了全面测试，以确保它能在所有编辑器中正常工作。
 
-Pydantic 本身甚至也进行了一些更改以支持此功能。
+我们甚至对 Pydantic 本身做了一些改动以支持这些功能。
 
-上面的截图取自 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>。
+上面的截图来自 <a href="https://code.visualstudio.com" class="external-link" target="_blank">Visual Studio Code</a>。
 
-但是在 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 和绝大多数其他 Python 编辑器中你也会获得同样的编辑器支持：
+但使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 和大多数其他 Python 编辑器，你也会获得相同的编辑器支持：
 
-<img src="https://fastapi.tiangolo.com/img/tutorial/body/image05.png">
+<img src="/img/tutorial/body/image05.png">
 
-## 使用模型
+/// tip | 提示
 
-在函数内部，你可以直接访问模型对象的所有属性：
+如果你使用 <a href="https://www.jetbrains.com/pycharm/" class="external-link" target="_blank">PyCharm</a> 作为编辑器，可以使用 <a href="https://github.com/koxudaxi/pydantic-pycharm-plugin/" class="external-link" target="_blank">Pydantic PyCharm 插件</a>。
 
-```Python hl_lines="19"
-{!../../../docs_src/body/tutorial002.py!}
-```
+它能改进对 Pydantic 模型的编辑器支持，包括：
 
-## 请求体 + 路径参数
+* 自动补全
+* 类型检查
+* 代码重构
+* 查找
+* 代码审查
 
-你可以同时声明路径参数和请求体。
+///
 
-**FastAPI** 将识别出与路径参数匹配的函数参数应**从路径中获取**，而声明为 Pydantic 模型的函数参数应**从请求体中获取**。
+## 使用模型 { #use-the-model }
 
-```Python hl_lines="15-16"
-{!../../../docs_src/body/tutorial003.py!}
-```
+在*路径操作*函数内部直接访问模型对象的所有属性：
 
-## 请求体 + 路径参数 + 查询参数
+{* ../../docs_src/body/tutorial002_py310.py *}
 
-你还可以同时声明**请求体**、**路径参数**和**查询参数**。
+## 请求体 + 路径参数 { #request-body-path-parameters }
 
-**FastAPI** 会识别它们中的每一个，并从正确的位置获取数据。
+可以同时声明路径参数和请求体。
 
-```Python hl_lines="16"
-{!../../../docs_src/body/tutorial004.py!}
-```
+**FastAPI** 能识别与**路径参数**匹配的函数参数应该**从路径中获取**，而声明为 Pydantic 模型的函数参数应该**从请求体中获取**。
 
-函数参数将依次按如下规则进行识别：
+{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
 
-* 如果在**路径**中也声明了该参数，它将被用作路径参数。
-* 如果参数属于**单一类型**（比如 `int`、`float`、`str`、`bool` 等）它将被解释为**查询**参数。
-* 如果参数的类型被声明为一个 **Pydantic 模型**，它将被解释为**请求体**。
+## 请求体 + 路径 + 查询参数 { #request-body-path-query-parameters }
 
-## 不使用 Pydantic
+也可以同时声明**请求体**、**路径**和**查询**参数。
 
-如果你不想使用 Pydantic 模型，你还可以使用 **Body** 参数。请参阅文档 [请求体 - 多个参数：请求体中的单一值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
+**FastAPI** 会分别识别它们，并从正确的位置获取数据。
+
+{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+
+函数参数按如下规则进行识别：
+
+* 如果该参数也在**路径**中声明了，它就是路径参数。
+* 如果该参数是（`int`、`float`、`str`、`bool` 等）**单一类型**，它会被当作**查询**参数。
+* 如果该参数的类型声明为 **Pydantic 模型**，它会被当作请求**体**。
+
+/// note | 注意
+
+FastAPI 会根据默认值 `= None` 知道 `q` 的值不是必填的。
+
+`str | None`（Python 3.10+）或 `Union[str, None]`（Python 3.9+ 中的 `Union`）并不是 FastAPI 用来判断是否必填的依据；是否必填由是否有默认值 `= None` 决定。
+
+但添加这些类型注解可以让你的编辑器提供更好的支持并检测错误。
+
+///
+
+## 不使用 Pydantic { #without-pydantic }
+
+即便不使用 Pydantic 模型也能使用 **Body** 参数。详见[请求体 - 多参数：请求体中的单值](body-multiple-params.md#singular-values-in-body){.internal-link target=_blank}。
