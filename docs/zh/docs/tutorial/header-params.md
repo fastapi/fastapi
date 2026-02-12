@@ -1,14 +1,14 @@
-# Header 参数
+# Header 参数 { #header-parameters }
 
 定义 `Header` 参数的方式与定义 `Query`、`Path`、`Cookie` 参数相同。
 
-## 导入 `Header`
+## 导入 `Header` { #import-header }
 
 首先，导入 `Header`：
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
 
-## 声明 `Header` 参数
+## 声明 `Header` 参数 { #declare-header-parameters }
 
 然后，使用和 `Path`、`Query`、`Cookie` 一样的结构定义 header 参数。
 
@@ -24,13 +24,13 @@
 
 ///
 
-/// info | 说明
+/// info | 信息
 
 必须使用 `Header` 声明 header 参数，否则该参数会被解释为查询参数。
 
 ///
 
-## 自动转换
+## 自动转换 { #automatic-conversion }
 
 `Header` 比 `Path`、`Query` 和 `Cookie` 提供了更多功能。
 
@@ -54,7 +54,7 @@
 
 ///
 
-## 重复的请求头
+## 重复的请求头 { #duplicate-headers }
 
 有时，可能需要接收重复的请求头。即同一个请求头有多个值。
 
@@ -84,7 +84,7 @@ X-Token: bar
 }
 ```
 
-## 小结
+## 小结 { #recap }
 
 使用 `Header` 声明请求头的方式与 `Query`、`Path` 、`Cookie` 相同。
 

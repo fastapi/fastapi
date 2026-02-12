@@ -145,8 +145,6 @@ Existen otros formatos y herramientas para definir e instalar dependencias de pa
 * Crea un archivo `main.py` con:
 
 ```Python
-from typing import Union
-
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -158,7 +156,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
@@ -572,7 +570,7 @@ Si tienes una configuración simple, con un **contenedor único** que luego inic
 
 ### Imagen Base de Docker { #base-docker-image }
 
-Solía haber una imagen official de Docker de FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi-docker</a>. Pero ahora está obsoleta. ⛔️
+Solía haber una imagen official de Docker de FastAPI: <a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>. Pero ahora está obsoleta. ⛔️
 
 Probablemente **no** deberías usar esta imagen base de Docker (o cualquier otra similar).
 
