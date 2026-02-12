@@ -1,6 +1,6 @@
 from inline_snapshot import snapshot
 
-from docs_src.app_testing.app_a_py39.test_main import client, test_read_main
+from docs_src.app_testing.app_a_py310.test_main import client, test_read_main
 
 
 def test_main():

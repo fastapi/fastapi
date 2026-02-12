@@ -17,11 +17,8 @@ SET_OF_STR_SCHEMA = {"type": "array", "items": {"type": "string"}, "uniqueItems"
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial001_py39"),
         pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
     ],
 )
