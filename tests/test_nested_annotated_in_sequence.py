@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 from dirty_equals import IsList
 from fastapi import FastAPI, Query
@@ -11,7 +11,7 @@ app = FastAPI()
 
 
 @app.get("/")
-def read_root(foo: Annotated[Union[MaxSizedSet, None], Query()] = None):
+def read_root(foo: Annotated[MaxSizedSet | None, Query()] = None):
     return {"foo": foo}
 
 
