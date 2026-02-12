@@ -3,6 +3,7 @@ from types import ModuleType
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -10,9 +11,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="mod",
     params=[
-        "tutorial001_py39",
         pytest.param("tutorial001_py310", marks=needs_py310),
-        "tutorial001_an_py39",
         pytest.param("tutorial001_an_py310", marks=needs_py310),
     ],
 )
@@ -47,75 +46,79 @@ def test_openapi_schema(mod: ModuleType):
     client = TestClient(mod.app)
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
                                     }
-                                }
+                                },
                             },
                         },
-                    },
-                    "summary": "Read Items",
-                    "operationId": "read_items_items__get",
-                    "parameters": [
-                        {
-                            "required": False,
-                            "schema": {
-                                "anyOf": [{"type": "string"}, {"type": "null"}],
-                                "title": "Ads Id",
-                            },
-                            "name": "ads_id",
-                            "in": "cookie",
-                        }
-                    ],
+                        "summary": "Read Items",
+                        "operationId": "read_items_items__get",
+                        "parameters": [
+                            {
+                                "required": False,
+                                "schema": {
+                                    "anyOf": [{"type": "string"}, {"type": "null"}],
+                                    "title": "Ads Id",
+                                },
+                                "name": "ads_id",
+                                "in": "cookie",
+                            }
+                        ],
+                    }
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+            },
+            "components": {
+                "schemas": {
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
                             },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
                         },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
                     },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
                     },
-                },
-            }
-        },
-    }
+                }
+            },
+        }
+    )

@@ -1,12 +1,12 @@
-from collections.abc import Sequence
-from typing import Annotated, Any, Callable, Optional, Union
+from collections.abc import Callable, Sequence
+from typing import Annotated, Any, Literal
 
 from annotated_doc import Doc
 from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath
-from typing_extensions import Literal, deprecated
+from typing_extensions import deprecated
 
 _Unset: Any = Undefined
 
@@ -25,7 +25,7 @@ def Path(  # noqa: N802
     ] = ...,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -36,7 +36,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -48,7 +48,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -56,7 +56,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -65,7 +65,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -75,7 +75,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -86,7 +86,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -94,7 +94,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -106,7 +106,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -118,7 +118,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -129,7 +129,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -141,7 +141,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -149,7 +149,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -157,7 +157,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -165,7 +165,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -176,7 +176,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -184,7 +184,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -192,7 +192,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -200,7 +200,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -208,7 +208,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -216,7 +216,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -224,7 +224,7 @@ def Path(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -235,14 +235,14 @@ def Path(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -259,7 +259,7 @@ def Path(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -280,7 +280,7 @@ def Path(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -369,7 +369,7 @@ def Query(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -380,7 +380,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -395,7 +395,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -403,7 +403,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -412,7 +412,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -422,7 +422,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -433,7 +433,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -444,7 +444,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -456,7 +456,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -468,7 +468,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -479,7 +479,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -491,7 +491,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -502,7 +502,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -513,7 +513,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -524,7 +524,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -535,7 +535,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -543,7 +543,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -551,7 +551,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -559,7 +559,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -567,7 +567,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -575,7 +575,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -583,7 +583,7 @@ def Query(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -594,14 +594,14 @@ def Query(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -618,7 +618,7 @@ def Query(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -645,7 +645,7 @@ def Query(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -710,7 +710,7 @@ def Header(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -721,7 +721,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -733,7 +733,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -741,7 +741,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -750,7 +750,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -771,7 +771,7 @@ def Header(  # noqa: N802
         ),
     ] = True,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -779,7 +779,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -787,7 +787,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -796,7 +796,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -805,7 +805,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -813,7 +813,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -822,7 +822,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -830,7 +830,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -838,7 +838,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -846,7 +846,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -857,7 +857,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -865,7 +865,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -873,7 +873,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -881,7 +881,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -889,7 +889,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -897,7 +897,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -905,7 +905,7 @@ def Header(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -916,14 +916,14 @@ def Header(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -940,7 +940,7 @@ def Header(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -961,7 +961,7 @@ def Header(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -1027,7 +1027,7 @@ def Cookie(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -1038,7 +1038,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -1050,7 +1050,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -1058,7 +1058,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1067,7 +1067,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -1077,7 +1077,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -1085,7 +1085,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -1093,7 +1093,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1102,7 +1102,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1111,7 +1111,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1119,7 +1119,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1128,7 +1128,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -1136,7 +1136,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -1144,7 +1144,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1152,7 +1152,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1163,7 +1163,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -1171,7 +1171,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -1179,7 +1179,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -1187,7 +1187,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -1195,7 +1195,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -1203,7 +1203,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -1211,7 +1211,7 @@ def Cookie(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -1222,14 +1222,14 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -1246,7 +1246,7 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1267,7 +1267,7 @@ def Cookie(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -1332,7 +1332,7 @@ def Body(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -1343,7 +1343,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     embed: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             When `embed` is `True`, the parameter will be expected in a JSON body as a
@@ -1366,7 +1366,7 @@ def Body(  # noqa: N802
         ),
     ] = "application/json",
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -1378,7 +1378,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -1386,7 +1386,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1395,7 +1395,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -1405,7 +1405,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -1413,7 +1413,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -1421,7 +1421,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1430,7 +1430,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1439,7 +1439,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1447,7 +1447,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1456,7 +1456,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -1464,7 +1464,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -1472,7 +1472,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1480,7 +1480,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1491,7 +1491,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -1499,7 +1499,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -1507,7 +1507,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -1515,7 +1515,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -1523,7 +1523,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -1531,7 +1531,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -1539,7 +1539,7 @@ def Body(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -1550,14 +1550,14 @@ def Body(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -1574,7 +1574,7 @@ def Body(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1595,7 +1595,7 @@ def Body(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -1662,7 +1662,7 @@ def Form(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -1682,7 +1682,7 @@ def Form(  # noqa: N802
         ),
     ] = "application/x-www-form-urlencoded",
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -1694,7 +1694,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -1702,7 +1702,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -1711,7 +1711,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -1721,7 +1721,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -1729,7 +1729,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -1737,7 +1737,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -1746,7 +1746,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -1755,7 +1755,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -1763,7 +1763,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -1772,7 +1772,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -1780,7 +1780,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -1788,7 +1788,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1796,7 +1796,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -1807,7 +1807,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -1815,7 +1815,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -1823,7 +1823,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -1831,7 +1831,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -1839,7 +1839,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -1847,7 +1847,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -1855,7 +1855,7 @@ def Form(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -1866,14 +1866,14 @@ def Form(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -1890,7 +1890,7 @@ def Form(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -1911,7 +1911,7 @@ def Form(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -1977,7 +1977,7 @@ def File(  # noqa: N802
     ] = Undefined,
     *,
     default_factory: Annotated[
-        Union[Callable[[], Any], None],
+        Callable[[], Any] | None,
         Doc(
             """
             A callable to generate the default value.
@@ -1997,7 +1997,7 @@ def File(  # noqa: N802
         ),
     ] = "multipart/form-data",
     alias: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             An alternative name for the parameter field.
@@ -2009,7 +2009,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     alias_priority: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Priority of the alias. This affects whether an alias generator is used.
@@ -2017,7 +2017,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     validation_alias: Annotated[
-        Union[str, AliasPath, AliasChoices, None],
+        str | AliasPath | AliasChoices | None,
         Doc(
             """
             'Whitelist' validation step. The parameter field will be the single one
@@ -2026,7 +2026,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     serialization_alias: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             'Blacklist' validation step. The vanilla parameter field will be the
@@ -2036,7 +2036,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     title: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable title.
@@ -2044,7 +2044,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     description: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             Human-readable description.
@@ -2052,7 +2052,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     gt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than. If set, value must be greater than this. Only applicable to
@@ -2061,7 +2061,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     ge: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Greater than or equal. If set, value must be greater than or equal to
@@ -2070,7 +2070,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     lt: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than. If set, value must be less than this. Only applicable to numbers.
@@ -2078,7 +2078,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     le: Annotated[
-        Optional[float],
+        float | None,
         Doc(
             """
             Less than or equal. If set, value must be less than or equal to this.
@@ -2087,7 +2087,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     min_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Minimum length for strings.
@@ -2095,7 +2095,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     max_length: Annotated[
-        Optional[int],
+        int | None,
         Doc(
             """
             Maximum length for strings.
@@ -2103,7 +2103,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -2111,7 +2111,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     regex: Annotated[
-        Optional[str],
+        str | None,
         Doc(
             """
             RegEx pattern for strings.
@@ -2122,7 +2122,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        Union[str, None],
+        str | None,
         Doc(
             """
             Parameter field name for discriminating the type in a tagged union.
@@ -2130,7 +2130,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     strict: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
@@ -2138,7 +2138,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     multiple_of: Annotated[
-        Union[float, None],
+        float | None,
         Doc(
             """
             Value must be a multiple of this. Only applicable to numbers.
@@ -2146,7 +2146,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     allow_inf_nan: Annotated[
-        Union[bool, None],
+        bool | None,
         Doc(
             """
             Allow `inf`, `-inf`, `nan`. Only applicable to numbers.
@@ -2154,7 +2154,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     max_digits: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of allow digits for strings.
@@ -2162,7 +2162,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     decimal_places: Annotated[
-        Union[int, None],
+        int | None,
         Doc(
             """
             Maximum number of decimal places allowed for numbers.
@@ -2170,7 +2170,7 @@ def File(  # noqa: N802
         ),
     ] = _Unset,
     examples: Annotated[
-        Optional[list[Any]],
+        list[Any] | None,
         Doc(
             """
             Example values for this field.
@@ -2181,14 +2181,14 @@ def File(  # noqa: N802
         ),
     ] = None,
     example: Annotated[
-        Optional[Any],
+        Any | None,
         deprecated(
             "Deprecated in OpenAPI 3.1.0 that now uses JSON Schema 2020-12, "
             "although still supported. Use examples instead."
         ),
     ] = _Unset,
     openapi_examples: Annotated[
-        Optional[dict[str, Example]],
+        dict[str, Example] | None,
         Doc(
             """
             OpenAPI-specific examples.
@@ -2205,7 +2205,7 @@ def File(  # noqa: N802
         ),
     ] = None,
     deprecated: Annotated[
-        Union[deprecated, str, bool, None],
+        deprecated | str | bool | None,
         Doc(
             """
             Mark this parameter field as deprecated.
@@ -2226,7 +2226,7 @@ def File(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        Union[dict[str, Any], None],
+        dict[str, Any] | None,
         Doc(
             """
             Any additional JSON schema data.
@@ -2283,7 +2283,7 @@ def File(  # noqa: N802
 
 def Depends(  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Callable[..., Any] | None,
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2315,7 +2315,7 @@ def Depends(  # noqa: N802
         ),
     ] = True,
     scope: Annotated[
-        Union[Literal["function", "request"], None],
+        Literal["function", "request"] | None,
         Doc(
             """
             Mainly for dependencies with `yield`, define when the dependency function
@@ -2372,7 +2372,7 @@ def Depends(  # noqa: N802
 
 def Security(  # noqa: N802
     dependency: Annotated[
-        Optional[Callable[..., Any]],
+        Callable[..., Any] | None,
         Doc(
             """
             A "dependable" callable (like a function).
@@ -2387,7 +2387,7 @@ def Security(  # noqa: N802
     ] = None,
     *,
     scopes: Annotated[
-        Optional[Sequence[str]],
+        Sequence[str] | None,
         Doc(
             """
             OAuth2 scopes required for the *path operation* that uses this Security

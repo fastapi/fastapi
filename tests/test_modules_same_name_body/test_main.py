@@ -1,5 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from .app.main import app
 
@@ -28,124 +29,128 @@ def test_post_invalid(path):
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/a/compute": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/a/compute": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Compute",
+                        "operationId": "compute_a_compute_post",
+                        "requestBody": {
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_compute_a_compute_post"
                                     }
                                 }
                             },
+                            "required": True,
                         },
-                    },
-                    "summary": "Compute",
-                    "operationId": "compute_a_compute_post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_compute_a_compute_post"
-                                }
-                            }
+                    }
+                },
+                "/b/compute/": {
+                    "post": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
                         },
-                        "required": True,
-                    },
-                }
-            },
-            "/b/compute/": {
-                "post": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
+                        "summary": "Compute",
+                        "operationId": "compute_b_compute__post",
+                        "requestBody": {
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                        "$ref": "#/components/schemas/Body_compute_b_compute__post"
                                     }
                                 }
                             },
+                            "required": True,
+                        },
+                    }
+                },
+            },
+            "components": {
+                "schemas": {
+                    "Body_compute_b_compute__post": {
+                        "title": "Body_compute_b_compute__post",
+                        "required": ["a", "b"],
+                        "type": "object",
+                        "properties": {
+                            "a": {"title": "A", "type": "integer"},
+                            "b": {"title": "B", "type": "string"},
                         },
                     },
-                    "summary": "Compute",
-                    "operationId": "compute_b_compute__post",
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Body_compute_b_compute__post"
-                                }
+                    "Body_compute_a_compute_post": {
+                        "title": "Body_compute_a_compute_post",
+                        "required": ["a", "b"],
+                        "type": "object",
+                        "properties": {
+                            "a": {"title": "A", "type": "integer"},
+                            "b": {"title": "B", "type": "string"},
+                        },
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
+                        },
+                    },
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
                             }
                         },
-                        "required": True,
                     },
                 }
             },
-        },
-        "components": {
-            "schemas": {
-                "Body_compute_b_compute__post": {
-                    "title": "Body_compute_b_compute__post",
-                    "required": ["a", "b"],
-                    "type": "object",
-                    "properties": {
-                        "a": {"title": "A", "type": "integer"},
-                        "b": {"title": "B", "type": "string"},
-                    },
-                },
-                "Body_compute_a_compute_post": {
-                    "title": "Body_compute_a_compute_post",
-                    "required": ["a", "b"],
-                    "type": "object",
-                    "properties": {
-                        "a": {"title": "A", "type": "integer"},
-                        "b": {"title": "B", "type": "string"},
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
-                    },
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-            }
-        },
-    }
+        }
+    )

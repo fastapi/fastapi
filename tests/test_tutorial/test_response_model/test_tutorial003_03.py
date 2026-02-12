@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-from docs_src.response_model.tutorial003_03_py39 import app
+from docs_src.response_model.tutorial003_03_py310 import app
 
 client = TestClient(app)
 
@@ -14,21 +15,23 @@ def test_get_portal():
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/teleport": {
-                "get": {
-                    "summary": "Get Teleport",
-                    "operationId": "get_teleport_teleport_get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/teleport": {
+                    "get": {
+                        "summary": "Get Teleport",
+                        "operationId": "get_teleport_teleport_get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )

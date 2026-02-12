@@ -2,6 +2,7 @@ import importlib
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 from ...utils import needs_py310
 
@@ -9,9 +10,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial003_py39"),
         pytest.param("tutorial003_py310", marks=needs_py310),
-        pytest.param("tutorial003_an_py39"),
         pytest.param("tutorial003_an_py310", marks=needs_py310),
     ],
 )
@@ -44,78 +43,82 @@ def test(path, headers, expected_status, expected_response, client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/items/": {
-                "get": {
-                    "summary": "Read Items",
-                    "operationId": "read_items_items__get",
-                    "parameters": [
-                        {
-                            "required": False,
-                            "schema": {
-                                "title": "X-Token",
-                                "anyOf": [
-                                    {"type": "array", "items": {"type": "string"}},
-                                    {"type": "null"},
-                                ],
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/items/": {
+                    "get": {
+                        "summary": "Read Items",
+                        "operationId": "read_items_items__get",
+                        "parameters": [
+                            {
+                                "required": False,
+                                "schema": {
+                                    "title": "X-Token",
+                                    "anyOf": [
+                                        {"type": "array", "items": {"type": "string"}},
+                                        {"type": "null"},
+                                    ],
+                                },
+                                "name": "x-token",
+                                "in": "header",
+                            }
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
                             },
-                            "name": "x-token",
-                            "in": "header",
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        },
-                        "422": {
-                            "description": "Validation Error",
-                            "content": {
-                                "application/json": {
-                                    "schema": {
-                                        "$ref": "#/components/schemas/HTTPValidationError"
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
                                     }
-                                }
+                                },
                             },
+                        },
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "HTTPValidationError": {
+                        "title": "HTTPValidationError",
+                        "type": "object",
+                        "properties": {
+                            "detail": {
+                                "title": "Detail",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                            }
+                        },
+                    },
+                    "ValidationError": {
+                        "title": "ValidationError",
+                        "required": ["loc", "msg", "type"],
+                        "type": "object",
+                        "properties": {
+                            "loc": {
+                                "title": "Location",
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [{"type": "string"}, {"type": "integer"}]
+                                },
+                            },
+                            "msg": {"title": "Message", "type": "string"},
+                            "type": {"title": "Error Type", "type": "string"},
+                            "input": {"title": "Input"},
+                            "ctx": {"title": "Context", "type": "object"},
                         },
                     },
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
-                        "detail": {
-                            "title": "Detail",
-                            "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
-                        }
-                    },
-                },
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
-                            "type": "array",
-                            "items": {
-                                "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
-                        },
-                        "msg": {"title": "Message", "type": "string"},
-                        "type": {"title": "Error Type", "type": "string"},
-                        "input": {"title": "Input"},
-                        "ctx": {"title": "Context", "type": "object"},
-                    },
-                },
-            }
-        },
-    }
+            },
+        }
+    )

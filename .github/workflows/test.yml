@@ -14,6 +14,7 @@ on:
 
 env:
   UV_NO_SYNC: true
+  INLINE_SNAPSHOT_DEFAULT_FLAGS: review
 
 jobs:
   changes:
@@ -55,14 +56,10 @@ jobs:
           - starlette-pypi
           - starlette-git
         include:
-          - os: ubuntu-latest
-            python-version: "3.9"
-            coverage: coverage
-            uv-resolution: lowest-direct
           - os: macos-latest
             python-version: "3.10"
             coverage: coverage
-            uv-resolution: highest
+            uv-resolution: lowest-direct
           - os: windows-latest
             python-version: "3.12"
             coverage: coverage

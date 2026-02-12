@@ -5,8 +5,9 @@ import unittest
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
-MOD_NAME = "docs_src.debugging.tutorial001_py39"
+MOD_NAME = "docs_src.debugging.tutorial001_py310"
 
 
 @pytest.fixture(name="client")
@@ -44,21 +45,23 @@ def test_uvicorn_run_called_when_run_as_main():  # Just for coverage
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/": {
-                "get": {
-                    "summary": "Root",
-                    "operationId": "root__get",
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/": {
+                    "get": {
+                        "summary": "Root",
+                        "operationId": "root__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
                         },
-                    },
+                    }
                 }
-            }
-        },
-    }
+            },
+        }
+    )
