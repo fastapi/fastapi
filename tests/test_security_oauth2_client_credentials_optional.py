@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Annotated
 
 from fastapi import FastAPI, Security
 from fastapi.security import OAuth2ClientCredentials
@@ -10,7 +10,7 @@ oauth2_scheme = OAuth2ClientCredentials(tokenUrl="token", auto_error=False)
 
 
 @app.get("/items/")
-async def read_items(token: Optional[str] = Security(oauth2_scheme)):
+async def read_items(token: Annotated[str | None, Security(oauth2_scheme)]):
     return {"token": token}
 
 
