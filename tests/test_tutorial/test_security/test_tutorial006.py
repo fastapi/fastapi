@@ -3,6 +3,7 @@ from base64 import b64encode
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(
@@ -53,25 +54,27 @@ def test_security_http_basic_non_basic_credentials(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {
-            "/users/me": {
-                "get": {
-                    "responses": {
-                        "200": {
-                            "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
-                        }
-                    },
-                    "summary": "Read Current User",
-                    "operationId": "read_current_user_users_me_get",
-                    "security": [{"HTTPBasic": []}],
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {
+                "/users/me": {
+                    "get": {
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            }
+                        },
+                        "summary": "Read Current User",
+                        "operationId": "read_current_user_users_me_get",
+                        "security": [{"HTTPBasic": []}],
+                    }
                 }
-            }
-        },
-        "components": {
-            "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
-        },
-    }
+            },
+            "components": {
+                "securitySchemes": {"HTTPBasic": {"type": "http", "scheme": "basic"}}
+            },
+        }
+    )

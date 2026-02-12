@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
+from inline_snapshot import snapshot
 
 
 @pytest.fixture(scope="module")
@@ -33,8 +34,10 @@ def test_static_files_not_found(client: TestClient):
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
-    assert response.json() == {
-        "openapi": "3.1.0",
-        "info": {"title": "FastAPI", "version": "0.1.0"},
-        "paths": {},
-    }
+    assert response.json() == snapshot(
+        {
+            "openapi": "3.1.0",
+            "info": {"title": "FastAPI", "version": "0.1.0"},
+            "paths": {},
+        }
+    )
