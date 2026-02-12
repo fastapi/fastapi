@@ -81,8 +81,14 @@ function setupTermynal() {
                     }
                 }
                 saveBuffer();
+                const inputCommands = useLines
+                    .filter(line => line.type === "input")
+                    .map(line => line.value)
+                    .join("\n");
+                node.textContent = inputCommands;
                 const div = document.createElement("div");
-                node.replaceWith(div);
+                node.style.display = "none";
+                node.after(div);
                 const termynal = new Termynal(div, {
                     lineData: useLines,
                     noInit: true,
@@ -135,10 +141,43 @@ async function showRandomAnnouncement(groupId, timeInterval) {
     }
 }
 
+function handleSponsorImages() {
+    const announceRight = document.getElementById('announce-right');
+    if(!announceRight) return;
+
+    const sponsorImages = document.querySelectorAll('.sponsor-image');
+
+    const imagePromises = Array.from(sponsorImages).map(img => {
+        return new Promise((resolve, reject) => {
+            if (img.complete && img.naturalHeight !== 0) {
+                resolve();
+            } else {
+                img.addEventListener('load', () => {
+                    if (img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+                img.addEventListener('error', reject);
+            }
+        });
+    });
+
+    Promise.all(imagePromises)
+        .then(() => {
+            announceRight.style.display = 'block';
+            showRandomAnnouncement('announce-right', 10000);
+        })
+        .catch(() => {
+            // do nothing
+        });
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
-    showRandomAnnouncement('announce-right', 10000)
+    handleSponsorImages();
 }
 document$.subscribe(() => {
     main()

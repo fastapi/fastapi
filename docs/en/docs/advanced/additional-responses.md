@@ -1,4 +1,4 @@
-# Additional Responses in OpenAPI
+# Additional Responses in OpenAPI { #additional-responses-in-openapi }
 
 /// warning
 
@@ -14,7 +14,7 @@ Those additional responses will be included in the OpenAPI schema, so they will 
 
 But for those additional responses you have to make sure you return a `Response` like `JSONResponse` directly, with your status code and content.
 
-## Additional Response with `model`
+## Additional Response with `model` { #additional-response-with-model }
 
 You can pass to your *path operation decorators* a parameter `responses`.
 
@@ -26,7 +26,7 @@ Each of those response `dict`s can have a key `model`, containing a Pydantic mod
 
 For example, to declare another response with a status code `404` and a Pydantic model `Message`, you can write:
 
-{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001_py39.py hl[18,22] *}
 
 /// note
 
@@ -169,13 +169,13 @@ The schemas are referenced to another place inside the OpenAPI schema:
 }
 ```
 
-## Additional media types for the main response
+## Additional media types for the main response { #additional-media-types-for-the-main-response }
 
 You can use this same `responses` parameter to add different media types for the same main response.
 
 For example, you can add an additional media type of `image/png`, declaring that your *path operation* can return a JSON object (with media type `application/json`) or a PNG image:
 
-{* ../../docs_src/additional_responses/tutorial002.py hl[19:24,28] *}
+{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
 
 /// note
 
@@ -191,7 +191,7 @@ But if you have specified a custom response class with `None` as its media type,
 
 ///
 
-## Combining information
+## Combining information { #combining-information }
 
 You can also combine response information from multiple places, including the `response_model`, `status_code`, and `responses` parameters.
 
@@ -203,13 +203,13 @@ For example, you can declare a response with a status code `404` that uses a Pyd
 
 And a response with a status code `200` that uses your `response_model`, but includes a custom `example`:
 
-{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003_py39.py hl[20:31] *}
 
 It will all be combined and included in your OpenAPI, and shown in the API docs:
 
 <img src="/img/tutorial/additional-responses/image01.png">
 
-## Combine predefined responses and custom ones
+## Combine predefined responses and custom ones { #combine-predefined-responses-and-custom-ones }
 
 You might want to have some predefined responses that apply to many *path operations*, but you want to combine them with custom responses needed by each *path operation*.
 
@@ -237,9 +237,9 @@ You can use that technique to reuse some predefined responses in your *path oper
 
 For example:
 
-{* ../../docs_src/additional_responses/tutorial004.py hl[13:17,26] *}
+{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
 
-## More information about OpenAPI responses
+## More information about OpenAPI responses { #more-information-about-openapi-responses }
 
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 

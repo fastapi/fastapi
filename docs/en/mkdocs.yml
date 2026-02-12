@@ -1,4 +1,4 @@
-INHERIT: ../en/mkdocs.maybe-insiders.yml
+INHERIT: ../en/mkdocs.env.yml
 site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
@@ -52,10 +52,13 @@ theme:
 repo_name: fastapi/fastapi
 repo_url: https://github.com/fastapi/fastapi
 plugins:
+  social:
+    cards_layout_options:
+      logo: ../en/docs/img/icon-white.svg
+  typeset: null
   search: null
   macros:
     include_yaml:
-    - external_links: ../en/data/external_links.yml
     - github_sponsors: ../en/data/github_sponsors.yml
     - people: ../en/data/people.yml
     - contributors: ../en/data/contributors.yml
@@ -188,10 +191,12 @@ nav:
     - advanced/openapi-webhooks.md
     - advanced/wsgi.md
     - advanced/generate-clients.md
+    - advanced/advanced-python-types.md
   - fastapi-cli.md
   - Deployment:
     - deployment/index.md
     - deployment/versions.md
+    - deployment/fastapicloud.md
     - deployment/https.md
     - deployment/manually.md
     - deployment/concepts.md
@@ -201,6 +206,7 @@ nav:
   - How To - Recipes:
     - how-to/index.md
     - how-to/general.md
+    - how-to/migrate-from-pydantic-v1-to-pydantic-v2.md
     - how-to/graphql.md
     - how-to/custom-request-and-route.md
     - how-to/conditional-openapi.md
@@ -209,6 +215,7 @@ nav:
     - how-to/custom-docs-ui-assets.md
     - how-to/configure-swagger-ui.md
     - how-to/testing-database.md
+    - how-to/authentication-error-status-code.md
 - Reference (Code API):
   - reference/index.md
   - reference/fastapi.md
@@ -251,6 +258,10 @@ nav:
   - management.md
 - release-notes.md
 markdown_extensions:
+  material.extensions.preview:
+    targets:
+      include:
+      - '*'
   abbr: null
   attr_list: null
   footnotes: null
@@ -295,7 +306,7 @@ extra:
   - icon: fontawesome/brands/discord
     link: https://discord.gg/VQjSZaeJmf
   - icon: fontawesome/brands/twitter
-    link: https://twitter.com/fastapi
+    link: https://x.com/fastapi
   - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/company/fastapi
   - icon: fontawesome/solid/globe
@@ -303,34 +314,16 @@ extra:
   alternate:
   - link: /
     name: en - English
-  - link: /az/
-    name: az - azərbaycan dili
-  - link: /bn/
-    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/
     name: es - español
-  - link: /fa/
-    name: fa - فارسی
   - link: /fr/
     name: fr - français
-  - link: /he/
-    name: he - עברית
-  - link: /hu/
-    name: hu - magyar
-  - link: /id/
-    name: id - Bahasa Indonesia
-  - link: /it/
-    name: it - italiano
   - link: /ja/
     name: ja - 日本語
   - link: /ko/
     name: ko - 한국어
-  - link: /nl/
-    name: nl - Nederlands
-  - link: /pl/
-    name: pl - Polski
   - link: /pt/
     name: pt - português
   - link: /ru/
@@ -339,18 +332,10 @@ extra:
     name: tr - Türkçe
   - link: /uk/
     name: uk - українська мова
-  - link: /ur/
-    name: ur - اردو
-  - link: /vi/
-    name: vi - Tiếng Việt
-  - link: /yo/
-    name: yo - Yorùbá
   - link: /zh/
     name: zh - 简体中文
   - link: /zh-hant/
     name: zh-hant - 繁體中文
-  - link: /em/
-    name: 😉
 extra_css:
 - css/termynal.css
 - css/custom.css

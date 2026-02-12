@@ -1,42 +1,20 @@
-# Declare Request Example Data
+# Declare Request Example Data { #declare-request-example-data }
 
 You can declare examples of the data your app can receive.
 
 Here are several ways to do it.
 
-## Extra JSON Schema data in Pydantic models
+## Extra JSON Schema data in Pydantic models { #extra-json-schema-data-in-pydantic-models }
 
 You can declare `examples` for a Pydantic model that will be added to the generated JSON Schema.
 
-//// tab | Pydantic v2
-
 {* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
-
-////
-
-//// tab | Pydantic v1
-
-{* ../../docs_src/schema_extra_example/tutorial001_pv1_py310.py hl[13:23] *}
-
-////
 
 That extra info will be added as-is to the output **JSON Schema** for that model, and it will be used in the API docs.
 
-//// tab | Pydantic v2
-
-In Pydantic version 2, you would use the attribute `model_config`, that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
+You can use the attribute `model_config` that takes a `dict` as described in <a href="https://docs.pydantic.dev/latest/api/config/" class="external-link" target="_blank">Pydantic's docs: Configuration</a>.
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
-
-//// tab | Pydantic v1
-
-In Pydantic version 1, you would use an internal class `Config` and `schema_extra`, as described in <a href="https://docs.pydantic.dev/1.10/usage/schema/#schema-customization" class="external-link" target="_blank">Pydantic's docs: Schema customization</a>.
-
-You can set `schema_extra` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
-
-////
 
 /// tip
 
@@ -56,13 +34,13 @@ You can read more at the end of this page.
 
 ///
 
-## `Field` additional arguments
+## `Field` additional arguments { #field-additional-arguments }
 
 When using `Field()` with Pydantic models, you can also declare additional `examples`:
 
 {* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
 
-## `examples` in JSON Schema - OpenAPI
+## `examples` in JSON Schema - OpenAPI { #examples-in-json-schema-openapi }
 
 When using any of:
 
@@ -76,19 +54,19 @@ When using any of:
 
 you can also declare a group of `examples` with additional information that will be added to their **JSON Schemas** inside of **OpenAPI**.
 
-### `Body` with `examples`
+### `Body` with `examples` { #body-with-examples }
 
 Here we pass `examples` containing one example of the data expected in `Body()`:
 
 {* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
 
-### Example in the docs UI
+### Example in the docs UI { #example-in-the-docs-ui }
 
 With any of the methods above it would look like this in the `/docs`:
 
 <img src="/img/tutorial/body-fields/image01.png">
 
-### `Body` with multiple `examples`
+### `Body` with multiple `examples` { #body-with-multiple-examples }
 
 You can of course also pass multiple `examples`:
 
@@ -96,9 +74,9 @@ You can of course also pass multiple `examples`:
 
 When you do this, the examples will be part of the internal **JSON Schema** for that body data.
 
-Nevertheless, at the <abbr title="2023-08-26">time of writing this</abbr>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
+Nevertheless, at the <dfn title="2023-08-26">time of writing this</dfn>, Swagger UI, the tool in charge of showing the docs UI, doesn't support showing multiple examples for the data in **JSON Schema**. But read below for a workaround.
 
-### OpenAPI-specific `examples`
+### OpenAPI-specific `examples` { #openapi-specific-examples }
 
 Since before **JSON Schema** supported `examples` OpenAPI had support for a different field also called `examples`.
 
@@ -110,7 +88,7 @@ The shape of this OpenAPI-specific field `examples` is a `dict` with **multiple 
 
 This doesn't go inside of each JSON Schema contained in OpenAPI, this goes outside, in the *path operation* directly.
 
-### Using the `openapi_examples` Parameter
+### Using the `openapi_examples` Parameter { #using-the-openapi-examples-parameter }
 
 You can declare the OpenAPI-specific `examples` in FastAPI with the parameter `openapi_examples` for:
 
@@ -135,13 +113,13 @@ You can use it like this:
 
 {* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
 
-### OpenAPI Examples in the Docs UI
+### OpenAPI Examples in the Docs UI { #openapi-examples-in-the-docs-ui }
 
 With `openapi_examples` added to `Body()` the `/docs` would look like:
 
 <img src="/img/tutorial/body-fields/image02.png">
 
-## Technical Details
+## Technical Details { #technical-details }
 
 /// tip
 
@@ -183,7 +161,7 @@ This old OpenAPI-specific `examples` parameter is now `openapi_examples` since F
 
 ///
 
-### JSON Schema's `examples` field
+### JSON Schema's `examples` field { #json-schemas-examples-field }
 
 But then JSON Schema added an <a href="https://json-schema.org/draft/2019-09/json-schema-validation.html#rfc.section.9.5" class="external-link" target="_blank">`examples`</a> field to a new version of the specification.
 
@@ -201,7 +179,7 @@ Because of that, versions of FastAPI previous to 0.99.0 still used versions of O
 
 ///
 
-### Pydantic and FastAPI `examples`
+### Pydantic and FastAPI `examples` { #pydantic-and-fastapi-examples }
 
 When you add `examples` inside a Pydantic model, using `schema_extra` or `Field(examples=["something"])` that example is added to the **JSON Schema** for that Pydantic model.
 
@@ -211,13 +189,13 @@ In versions of FastAPI before 0.99.0 (0.99.0 and above use the newer OpenAPI 3.1
 
 But now that FastAPI 0.99.0 and above uses OpenAPI 3.1.0, that uses JSON Schema 2020-12, and Swagger UI 5.0.0 and above, everything is more consistent and the examples are included in JSON Schema.
 
-### Swagger UI and OpenAPI-specific `examples`
+### Swagger UI and OpenAPI-specific `examples` { #swagger-ui-and-openapi-specific-examples }
 
 Now, as Swagger UI didn't support multiple JSON Schema examples (as of 2023-08-26), users didn't have a way to show multiple examples in the docs.
 
 To solve that, FastAPI `0.103.0` **added support** for declaring the same old **OpenAPI-specific** `examples` field with the new parameter `openapi_examples`. 🤓
 
-### Summary
+### Summary { #summary }
 
 I used to say I didn't like history that much... and look at me now giving "tech history" lessons. 😅
 

@@ -1,0 +1,90 @@
+name: pre-commit
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+env:
+  # Forks and Dependabot don't have access to secrets
+  HAS_SECRETS: ${{ secrets.PRE_COMMIT != '' }}
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@v5
+        name: Checkout PR for own repo
+        if: env.HAS_SECRETS == 'true'
+        with:
+          # To be able to commit it needs to fetch the head of the branch, not the
+          # merge commit
+          ref: ${{ github.head_ref }}
+          # And it needs the full history to be able to compute diffs
+          fetch-depth: 0
+          # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
+          token: ${{ secrets.PRE_COMMIT }}
+      # pre-commit lite ci needs the default checkout configs to work
+      - uses: actions/checkout@v5
+        name: Checkout PR for fork
+        if: env.HAS_SECRETS == 'false'
+        with:
+        # To be able to commit it needs the head branch of the PR, the remote one
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Install Dependencies
+        run: uv sync --locked --extra all
+      - name: Run prek - pre-commit
+        id: precommit
+        run: uvx prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
+        continue-on-error: true
+      - name: Commit and push changes
+        if: env.HAS_SECRETS == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🎨 Auto format"
+            git push
+          fi
+      - uses: pre-commit-ci/lite-action@v1.1.0
+        if: env.HAS_SECRETS == 'false'
+        with:
+          msg: 🎨 Auto format
+      - name: Error out on pre-commit errors
+        if: steps.precommit.outcome == 'failure'
+        run: exit 1
+
+  # https://github.com/marketplace/actions/alls-green#why
+  pre-commit-alls-green:  # This job does nothing and is only used for the branch protection
+    if: always()
+    needs:
+      - pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Decide whether the needed jobs succeeded or failed
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}

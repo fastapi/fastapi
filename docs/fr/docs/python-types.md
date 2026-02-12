@@ -1,70 +1,68 @@
-# Introduction aux Types Python
+# Introduction aux types Python { #python-types-intro }
 
-Python supporte des annotations de type (ou *type hints*) optionnelles.
+Python prend en charge des « type hints » (aussi appelées « annotations de type ») facultatives.
 
-Ces annotations de type constituent une syntaxe spéciale qui permet de déclarer le <abbr title="par exemple : str, int, float, bool">type</abbr> d'une variable.
+Ces « type hints » ou annotations sont une syntaxe spéciale qui permet de déclarer le <abbr title="par exemple : str, int, float, bool">type</abbr> d'une variable.
 
-En déclarant les types de vos variables, cela permet aux différents outils comme les éditeurs de texte d'offrir un meilleur support.
+En déclarant les types de vos variables, les éditeurs et outils peuvent vous offrir un meilleur support.
 
-Ce chapitre n'est qu'un **tutoriel rapide / rappel** sur les annotations de type Python.
-Seulement le minimum nécessaire pour les utiliser avec **FastAPI** sera couvert... ce qui est en réalité très peu.
+Ceci est un **tutoriel rapide / rappel** à propos des annotations de type Python. Il couvre uniquement le minimum nécessaire pour les utiliser avec **FastAPI** ... ce qui est en réalité très peu.
 
-**FastAPI** est totalement basé sur ces annotations de type, qui lui donnent de nombreux avantages.
+**FastAPI** est totalement basé sur ces annotations de type, elles lui donnent de nombreux avantages et bénéfices.
 
-Mais même si vous n'utilisez pas ou n'utiliserez jamais **FastAPI**, vous pourriez bénéficier d'apprendre quelques choses sur ces dernières.
+Mais même si vous n'utilisez jamais **FastAPI**, vous auriez intérêt à en apprendre un peu à leur sujet.
 
-/// note
+/// note | Remarque
 
-Si vous êtes un expert Python, et que vous savez déjà **tout** sur les annotations de type, passez au chapitre suivant.
+Si vous êtes un expert Python, et que vous savez déjà tout sur les annotations de type, passez au chapitre suivant.
 
 ///
 
-## Motivations
+## Motivation { #motivation }
 
-Prenons un exemple simple :
+Commençons par un exemple simple :
 
-{*../../docs_src/python_types/tutorial001.py*}
+{* ../../docs_src/python_types/tutorial001_py39.py *}
 
-Exécuter ce programe affiche :
+Exécuter ce programme affiche :
 
 ```
 John Doe
 ```
 
-La fonction :
+La fonction fait ce qui suit :
 
 * Prend un `first_name` et un `last_name`.
-* Convertit la première lettre de chaque paramètre en majuscules grâce à `title()`.
-* Concatène les résultats avec un espace entre les deux.
+* Convertit la première lettre de chacun en majuscule avec `title()`.
+* <abbr title="Les met ensemble, en un seul. Avec le contenu de l'un après l'autre.">Concatène</abbr> ces deux valeurs avec un espace au milieu.
 
-{*../../docs_src/python_types/tutorial001.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001_py39.py hl[2] *}
 
-### Limitations
+### Modifier le code { #edit-it }
 
 C'est un programme très simple.
 
 Mais maintenant imaginez que vous l'écriviez de zéro.
 
-À un certain point vous auriez commencé la définition de la fonction, vous aviez les paramètres prêts.
+À un certain moment, vous auriez commencé la définition de la fonction, vous aviez les paramètres prêts ...
 
-Mais vous aviez besoin de "cette méthode qui convertit la première lettre en majuscule".
+Mais ensuite vous devez appeler « cette méthode qui convertit la première lettre en majuscule ».
 
-Était-ce `upper` ? `uppercase` ? `first_uppercase` ? `capitalize` ?
+Était-ce `upper` ? Était-ce `uppercase` ? `first_uppercase` ? `capitalize` ?
 
-Vous essayez donc d'utiliser le vieil ami du programmeur, l'auto-complétion de l'éditeur.
+Vous essayez alors avec l'ami de toujours des programmeurs, l'autocomplétion de l'éditeur.
 
-Vous écrivez le premier paramètre, `first_name`, puis un point (`.`) et appuyez sur `Ctrl+Espace` pour déclencher l'auto-complétion.
+Vous tapez le premier paramètre de la fonction, `first_name`, puis un point (`.`) et appuyez sur `Ctrl+Espace` pour déclencher l'autocomplétion.
 
-Mais malheureusement, rien d'utile n'en résulte :
+Mais, malheureusement, vous n'obtenez rien d'utile :
 
 <img src="/img/python-types/image01.png">
 
-### Ajouter des types
+### Ajouter des types { #add-types }
 
 Modifions une seule ligne de la version précédente.
 
-Nous allons changer seulement cet extrait, les paramètres de la fonction, de :
-
+Nous allons changer exactement ce fragment, les paramètres de la fonction, de :
 
 ```Python
     first_name, last_name
@@ -78,222 +76,389 @@ Nous allons changer seulement cet extrait, les paramètres de la fonction, de :
 
 C'est tout.
 
-Ce sont des annotations de types :
+Ce sont les « annotations de type » :
 
-{*../../docs_src/python_types/tutorial002.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002_py39.py hl[1] *}
 
-À ne pas confondre avec la déclaration de valeurs par défaut comme ici :
+Ce n'est pas la même chose que de déclarer des valeurs par défaut, ce qui serait :
 
 ```Python
     first_name="john", last_name="doe"
 ```
 
-C'est une chose différente.
+C'est différent.
 
-On utilise un deux-points (`:`), et pas un égal (`=`).
+Nous utilisons des deux-points (`:`), pas des signes égal (`=`).
 
-Et ajouter des annotations de types ne crée normalement pas de différence avec le comportement qui aurait eu lieu si elles n'étaient pas là.
+Et ajouter des annotations de type ne change normalement pas ce qui se passe par rapport à ce qui se passerait sans elles.
 
-Maintenant, imaginez que vous êtes en train de créer cette fonction, mais avec des annotations de type cette fois.
+Mais maintenant, imaginez que vous êtes à nouveau en train de créer cette fonction, mais avec des annotations de type.
 
-Au même moment que durant l'exemple précédent, vous essayez de déclencher l'auto-complétion et vous voyez :
+Au même moment, vous essayez de déclencher l'autocomplétion avec `Ctrl+Espace` et vous voyez :
 
 <img src="/img/python-types/image02.png">
 
-Vous pouvez donc dérouler les options jusqu'à trouver la méthode à laquelle vous pensiez.
+Avec cela, vous pouvez faire défiler en voyant les options, jusqu'à trouver celle qui « vous dit quelque chose » :
 
 <img src="/img/python-types/image03.png">
 
-## Plus de motivations
+## Plus de motivation { #more-motivation }
 
-Cette fonction possède déjà des annotations de type :
+Regardez cette fonction, elle a déjà des annotations de type :
 
-{*../../docs_src/python_types/tutorial003.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003_py39.py hl[1] *}
 
-Comme l'éditeur connaît le type des variables, vous n'avez pas seulement l'auto-complétion, mais aussi de la détection d'erreurs :
+Comme l'éditeur connaît les types des variables, vous n'obtenez pas seulement l'autocomplétion, vous obtenez aussi des vérifications d'erreurs :
 
 <img src="/img/python-types/image04.png">
 
-Maintenant que vous avez connaissance du problème, convertissez `age` en <abbr title="string">chaîne de caractères</abbr> grâce à `str(age)` :
+Vous savez maintenant qu'il faut corriger, convertir `age` en chaîne avec `str(age)` :
 
-{*../../docs_src/python_types/tutorial004.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004_py39.py hl[2] *}
 
-## Déclarer des types
+## Déclarer des types { #declaring-types }
 
-Vous venez de voir là où les types sont généralement déclarés : dans les paramètres de fonctions.
+Vous venez de voir l'endroit principal pour déclarer des annotations de type : dans les paramètres des fonctions.
 
-C'est aussi ici que vous les utiliseriez avec **FastAPI**.
+C'est aussi l'endroit principal où vous les utiliserez avec **FastAPI**.
 
-### Types simples
+### Types simples { #simple-types }
 
-Vous pouvez déclarer tous les types  de Python, pas seulement `str`.
+Vous pouvez déclarer tous les types standards de Python, pas seulement `str`.
 
-Comme par exemple :
+Vous pouvez utiliser, par exemple :
 
 * `int`
 * `float`
 * `bool`
 * `bytes`
 
-{*../../docs_src/python_types/tutorial005.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005_py39.py hl[1] *}
 
-### Types génériques avec des paramètres de types
+### Types génériques avec paramètres de type { #generic-types-with-type-parameters }
 
-Il existe certaines structures de données qui contiennent d'autres valeurs, comme `dict`, `list`, `set` et `tuple`. Et les valeurs internes peuvent elles aussi avoir leurs propres types.
+Il existe certaines structures de données qui peuvent contenir d'autres valeurs, comme `dict`, `list`, `set` et `tuple`. Et les valeurs internes peuvent aussi avoir leur propre type.
 
-Pour déclarer ces types et les types internes, on utilise le module standard de Python `typing`.
+Ces types qui ont des types internes sont appelés types « génériques ». Et il est possible de les déclarer, même avec leurs types internes.
 
-Il existe spécialement pour supporter ces annotations de types.
+Pour déclarer ces types et les types internes, vous pouvez utiliser le module standard Python `typing`. Il existe spécifiquement pour prendre en charge ces annotations de type.
 
-#### `List`
+#### Versions plus récentes de Python { #newer-versions-of-python }
 
-Par exemple, définissons une variable comme `list` de `str`.
+La syntaxe utilisant `typing` est compatible avec toutes les versions, de Python 3.6 aux plus récentes, y compris Python 3.9, Python 3.10, etc.
 
-Importez `List` (avec un `L` majuscule) depuis `typing`.
+Au fur et à mesure que Python évolue, les versions plus récentes apportent un meilleur support pour ces annotations de type et dans de nombreux cas vous n'aurez même pas besoin d'importer et d'utiliser le module `typing` pour les déclarer.
 
-{*../../docs_src/python_types/tutorial006.py hl[1] *}
+Si vous pouvez choisir une version plus récente de Python pour votre projet, vous pourrez profiter de cette simplicité supplémentaire.
 
-Déclarez la variable, en utilisant la syntaxe des deux-points (`:`).
+Dans toute la documentation, il y a des exemples compatibles avec chaque version de Python (lorsqu'il y a une différence).
 
-Et comme type, mettez `List`.
+Par exemple « Python 3.6+ » signifie que c'est compatible avec Python 3.6 ou supérieur (y compris 3.7, 3.8, 3.9, 3.10, etc.). Et « Python 3.9+ » signifie que c'est compatible avec Python 3.9 ou supérieur (y compris 3.10, etc).
 
-Les listes étant un type contenant des types internes, mettez ces derniers entre crochets (`[`, `]`) :
+Si vous pouvez utiliser les dernières versions de Python, utilisez les exemples pour la dernière version, ils auront la meilleure et la plus simple syntaxe, par exemple, « Python 3.10+ ».
 
-{*../../docs_src/python_types/tutorial006.py hl[4] *}
+#### Liste { #list }
 
-/// tip | Astuce
+Par exemple, définissons une variable comme une `list` de `str`.
 
-Ces types internes entre crochets sont appelés des "paramètres de type".
+Déclarez la variable, en utilisant la même syntaxe avec deux-points (`:`).
 
-Ici, `str` est un paramètre de type passé à `List`.
+Comme type, mettez `list`.
+
+Comme la liste est un type qui contient des types internes, mettez-les entre crochets :
+
+{* ../../docs_src/python_types/tutorial006_py39.py hl[1] *}
+
+/// info
+
+Ces types internes entre crochets sont appelés « paramètres de type ».
+
+Dans ce cas, `str` est le paramètre de type passé à `list`.
 
 ///
 
-Ce qui signifie : "la variable `items` est une `list`, et chacun de ses éléments a pour type `str`.
+Cela signifie : « la variable `items` est une `list`, et chacun des éléments de cette liste est un `str` ».
 
-En faisant cela, votre éditeur pourra vous aider, même pendant que vous traitez des éléments de la liste.
+En faisant cela, votre éditeur peut vous fournir de l'aide même pendant le traitement des éléments de la liste :
 
 <img src="/img/python-types/image05.png">
 
 Sans types, c'est presque impossible à réaliser.
 
-Vous remarquerez que la variable `item` n'est qu'un des éléments de la list `items`.
+Remarquez que la variable `item` est l'un des éléments de la liste `items`.
 
-Et pourtant, l'éditeur sait qu'elle est de type `str` et pourra donc vous aider à l'utiliser.
+Et pourtant, l'éditeur sait que c'est un `str` et fournit le support approprié.
 
-#### `Tuple` et `Set`
+#### Tuple et Set { #tuple-and-set }
 
-C'est le même fonctionnement pour déclarer un `tuple` ou un `set` :
+Vous feriez la même chose pour déclarer des `tuple` et des `set` :
 
-{*../../docs_src/python_types/tutorial007.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial007_py39.py hl[1] *}
 
-Dans cet exemple :
+Cela signifie :
 
-* La variable `items_t` est un `tuple` avec 3 éléments, un `int`, un deuxième `int`, et un `str`.
+* La variable `items_t` est un `tuple` avec 3 éléments, un `int`, un autre `int`, et un `str`.
 * La variable `items_s` est un `set`, et chacun de ses éléments est de type `bytes`.
 
-#### `Dict`
+#### Dict { #dict }
 
-Pour définir un `dict`, il faut lui passer 2 paramètres, séparés par une virgule (`,`).
+Pour définir un `dict`, vous passez 2 paramètres de type, séparés par des virgules.
 
-Le premier paramètre de type est pour les clés et le second pour les valeurs du dictionnaire (`dict`).
+Le premier paramètre de type est pour les clés du `dict`.
 
-{*../../docs_src/python_types/tutorial008.py hl[1,4] *}
+Le second paramètre de type est pour les valeurs du `dict` :
 
-Dans cet exemple :
+{* ../../docs_src/python_types/tutorial008_py39.py hl[1] *}
 
-* La variable `prices` est de type `dict` :
-    * Les clés de ce dictionnaire sont de type `str`.
-    * Les valeurs de ce dictionnaire sont de type `float`.
+Cela signifie :
 
-#### `Optional`
+* La variable `prices` est un `dict` :
+    * Les clés de ce `dict` sont de type `str` (disons, le nom de chaque article).
+    * Les valeurs de ce `dict` sont de type `float` (disons, le prix de chaque article).
 
-Vous pouvez aussi utiliser `Optional` pour déclarer qu'une variable a un type, comme `str` mais qu'il est "optionnel" signifiant qu'il pourrait aussi être `None`.
+#### Union { #union }
 
-{*../../docs_src/python_types/tutorial009.py hl[1,4] *}
+Vous pouvez déclarer qu'une variable peut être de plusieurs types, par exemple, un `int` ou un `str`.
 
-Utiliser `Optional[str]` plutôt que `str` permettra à l'éditeur de vous aider à détecter les erreurs où vous supposeriez qu'une valeur est toujours de type `str`, alors qu'elle pourrait aussi être `None`.
+Dans Python 3.6 et supérieur (y compris Python 3.10), vous pouvez utiliser le type `Union` de `typing` et mettre entre crochets les types possibles à accepter.
 
-#### Types génériques
+Dans Python 3.10, il existe aussi une nouvelle syntaxe où vous pouvez mettre les types possibles séparés par une <abbr title='aussi appelé « opérateur OU bit à bit », mais ce sens n’est pas pertinent ici'>barre verticale (`|`)</abbr>.
 
-Les types qui peuvent contenir des paramètres de types entre crochets, comme :
+//// tab | Python 3.10+
 
-* `List`
-* `Tuple`
-* `Set`
-* `Dict`
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial008b_py39.py!}
+```
+
+////
+
+Dans les deux cas, cela signifie que `item` peut être un `int` ou un `str`.
+
+#### Possiblement `None` { #possibly-none }
+
+Vous pouvez déclarer qu'une valeur peut avoir un type, comme `str`, mais qu'elle peut aussi être `None`.
+
+Dans Python 3.6 et supérieur (y compris Python 3.10), vous pouvez le déclarer en important et en utilisant `Optional` depuis le module `typing`.
+
+```Python hl_lines="1  4"
+{!../../docs_src/python_types/tutorial009_py39.py!}
+```
+
+Utiliser `Optional[str]` au lieu de simplement `str` permettra à l'éditeur de vous aider à détecter des erreurs où vous supposeriez qu'une valeur est toujours un `str`, alors qu'elle pourrait en fait aussi être `None`.
+
+`Optional[Something]` est en réalité un raccourci pour `Union[Something, None]`, ils sont équivalents.
+
+Cela signifie aussi que dans Python 3.10, vous pouvez utiliser `Something | None` :
+
+//// tab | Python 3.10+
+
+```Python hl_lines="1"
+{!> ../../docs_src/python_types/tutorial009_py310.py!}
+```
+
+////
+
+//// tab | Python 3.9+
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial009_py39.py!}
+```
+
+////
+
+//// tab | Python 3.9+ alternative
+
+```Python hl_lines="1  4"
+{!> ../../docs_src/python_types/tutorial009b_py39.py!}
+```
+
+////
+
+#### Utiliser `Union` ou `Optional` { #using-union-or-optional }
+
+Si vous utilisez une version de Python inférieure à 3.10, voici un conseil de mon point de vue très **subjectif** :
+
+* 🚨 Évitez d'utiliser `Optional[SomeType]`
+* À la place ✨ **utilisez `Union[SomeType, None]`** ✨.
+
+Les deux sont équivalents et sous le capot ce sont les mêmes, mais je recommanderais `Union` plutôt que `Optional` parce que le mot « facultatif » semble impliquer que la valeur est optionnelle, alors que cela signifie en fait « elle peut être `None` », même si elle n'est pas facultative et est toujours requise.
+
+Je pense que `Union[SomeType, None]` est plus explicite sur ce que cela signifie.
+
+Il ne s'agit que des mots et des noms. Mais ces mots peuvent influencer la manière dont vous et vos coéquipiers pensez au code.
+
+Par exemple, prenons cette fonction :
+
+{* ../../docs_src/python_types/tutorial009c_py39.py hl[1,4] *}
+
+Le paramètre `name` est défini comme `Optional[str]`, mais il n'est pas facultatif, vous ne pouvez pas appeler la fonction sans le paramètre :
+
+```Python
+say_hi()  # Oh non, cela lève une erreur ! 😱
+```
+
+Le paramètre `name` est toujours requis (pas « optionnel ») parce qu'il n'a pas de valeur par défaut. Néanmoins, `name` accepte `None` comme valeur :
+
+```Python
+say_hi(name=None)  # Cela fonctionne, None est valide 🎉
+```
+
+La bonne nouvelle est que, dès que vous êtes sur Python 3.10, vous n'avez plus à vous en soucier, car vous pourrez simplement utiliser `|` pour définir des unions de types :
+
+{* ../../docs_src/python_types/tutorial009c_py310.py hl[1,4] *}
+
+Et alors vous n'aurez plus à vous soucier de noms comme `Optional` et `Union`. 😎
+
+#### Types génériques { #generic-types }
+
+Ces types qui prennent des paramètres de type entre crochets sont appelés des **types génériques** ou **Generics**, par exemple :
+
+//// tab | Python 3.10+
+
+Vous pouvez utiliser les mêmes types intégrés comme génériques (avec des crochets et des types à l'intérieur) :
+
+* `list`
+* `tuple`
+* `set`
+* `dict`
+
+Et, comme avec les versions précédentes de Python, depuis le module `typing` :
+
+* `Union`
 * `Optional`
-* ...et d'autres.
+* ... et d'autres.
 
-sont appelés des **types génériques** ou **Generics**.
+Dans Python 3.10, comme alternative à l'utilisation des génériques `Union` et `Optional`, vous pouvez utiliser la <abbr title='aussi appelé « opérateur OU bit à bit », mais ce sens n’est pas pertinent ici'>barre verticale (`|`)</abbr> pour déclarer des unions de types, c'est bien mieux et plus simple.
 
-### Classes en tant que types
+////
+
+//// tab | Python 3.9+
+
+Vous pouvez utiliser les mêmes types intégrés comme génériques (avec des crochets et des types à l'intérieur) :
+
+* `list`
+* `tuple`
+* `set`
+* `dict`
+
+Et des génériques depuis le module `typing` :
+
+* `Union`
+* `Optional`
+* ... et d'autres.
+
+////
+
+### Classes en tant que types { #classes-as-types }
 
 Vous pouvez aussi déclarer une classe comme type d'une variable.
 
-Disons que vous avez une classe `Person`, avec une variable `name` :
+Disons que vous avez une classe `Person`, avec un nom :
 
-{*../../docs_src/python_types/tutorial010.py hl[1:3] *}
-
+{* ../../docs_src/python_types/tutorial010_py39.py hl[1:3] *}
 
 Vous pouvez ensuite déclarer une variable de type `Person` :
 
-{*../../docs_src/python_types/tutorial010.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010_py39.py hl[6] *}
 
-Et vous aurez accès, encore une fois, au support complet offert par l'éditeur :
+Et là encore, vous obtenez tout le support de l'éditeur :
 
 <img src="/img/python-types/image06.png">
 
-## Les modèles Pydantic
+Remarquez que cela signifie « `one_person` est une instance de la classe `Person` ».
+
+Cela ne signifie pas « `one_person` est la classe appelée `Person` ».
+
+## Modèles Pydantic { #pydantic-models }
 
 <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> est une bibliothèque Python pour effectuer de la validation de données.
 
-Vous déclarez la forme de la donnée avec des classes et des attributs.
+Vous déclarez la « forme » de la donnée sous forme de classes avec des attributs.
 
-Chaque attribut possède un type.
+Et chaque attribut a un type.
 
-Puis vous créez une instance de cette classe avec certaines valeurs et **Pydantic** validera les valeurs, les convertira dans le type adéquat (si c'est nécessaire et possible) et vous donnera un objet avec toute la donnée.
+Ensuite, vous créez une instance de cette classe avec certaines valeurs et elle validera les valeurs, les convertira dans le type approprié (le cas échéant) et vous donnera un objet avec toutes les données.
 
-Ainsi, votre éditeur vous offrira un support adapté pour l'objet résultant.
+Et vous obtenez tout le support de l'éditeur avec cet objet résultant.
 
-Extrait de la documentation officielle de **Pydantic** :
+Un exemple tiré de la documentation officielle de Pydantic :
 
-{*../../docs_src/python_types/tutorial011.py*}
+{* ../../docs_src/python_types/tutorial011_py310.py *}
 
 /// info
 
-Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, allez jeter un coup d'oeil à sa documentation</a>.
+Pour en savoir plus à propos de <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, consultez sa documentation</a>.
 
 ///
 
-**FastAPI** est basé entièrement sur **Pydantic**.
+**FastAPI** est entièrement basé sur Pydantic.
 
-Vous verrez bien plus d'exemples de son utilisation dans [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Vous verrez beaucoup plus de tout cela en pratique dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
 
-## Les annotations de type dans **FastAPI**
+/// tip | Astuce
 
-**FastAPI** utilise ces annotations pour faire différentes choses.
+Pydantic a un comportement spécial lorsque vous utilisez `Optional` ou `Union[Something, None]` sans valeur par défaut, vous pouvez en lire davantage dans la documentation de Pydantic à propos des <a href="https://docs.pydantic.dev/2.3/usage/models/#required-fields" class="external-link" target="_blank">champs Optionals requis</a>.
 
-Avec **FastAPI**, vous déclarez des paramètres grâce aux annotations de types et vous obtenez :
+///
 
-* **du support de l'éditeur**
-* **de la vérification de types**
+## Annotations de type avec métadonnées { #type-hints-with-metadata-annotations }
 
-...et **FastAPI** utilise ces mêmes déclarations pour :
+Python dispose également d'une fonctionnalité qui permet de mettre des **<abbr title="Données sur les données, dans ce cas, des informations sur le type, p. ex. une description.">métadonnées</abbr> supplémentaires** dans ces annotations de type en utilisant `Annotated`.
 
-* **Définir les prérequis** : depuis les paramètres de chemins des requêtes, les entêtes, les corps, les dépendances, etc.
-* **Convertir des données** : depuis la requête vers les types requis.
-* **Valider des données** : venant de chaque requête :
-    * Générant automatiquement des **erreurs** renvoyées au client quand la donnée est invalide.
+Depuis Python 3.9, `Annotated` fait partie de la bibliothèque standard, vous pouvez donc l'importer depuis `typing`.
+
+{* ../../docs_src/python_types/tutorial013_py39.py hl[1,4] *}
+
+Python lui-même ne fait rien avec ce `Annotated`. Et pour les éditeurs et autres outils, le type est toujours `str`.
+
+Mais vous pouvez utiliser cet espace dans `Annotated` pour fournir à **FastAPI** des métadonnées supplémentaires sur la façon dont vous voulez que votre application se comporte.
+
+L'important à retenir est que le premier paramètre de type que vous passez à `Annotated` est le type réel. Le reste n'est que des métadonnées pour d'autres outils.
+
+Pour l'instant, vous avez juste besoin de savoir que `Annotated` existe, et que c'est du Python standard. 😎
+
+Plus tard, vous verrez à quel point cela peut être puissant.
+
+/// tip | Astuce
+
+Le fait que ce soit du Python standard signifie que vous bénéficierez toujours de la meilleure expérience développeur possible dans votre éditeur, avec les outils que vous utilisez pour analyser et refactoriser votre code, etc. ✨
+
+Et aussi que votre code sera très compatible avec de nombreux autres outils et bibliothèques Python. 🚀
+
+///
+
+## Annotations de type dans **FastAPI** { #type-hints-in-fastapi }
+
+**FastAPI** tire parti de ces annotations de type pour faire plusieurs choses.
+
+Avec **FastAPI**, vous déclarez des paramètres avec des annotations de type et vous obtenez :
+
+* **Du support de l'éditeur**.
+* **Des vérifications de types**.
+
+... et **FastAPI** utilise les mêmes déclarations pour :
+
+* **Définir des prérequis** : à partir des paramètres de chemin de la requête, des paramètres de requête, des en-têtes, des corps, des dépendances, etc.
+* **Convertir des données** : de la requête vers le type requis.
+* **Valider des données** : provenant de chaque requête :
+    * En générant des **erreurs automatiques** renvoyées au client lorsque la donnée est invalide.
 * **Documenter** l'API avec OpenAPI :
-    * ce qui ensuite utilisé par les interfaces utilisateur automatiques de documentation interactive.
+    * ce qui est ensuite utilisé par les interfaces utilisateur de documentation interactive automatiques.
 
-Tout cela peut paraître bien abstrait, mais ne vous inquiétez pas, vous verrez tout ça en pratique dans [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
+Tout cela peut sembler abstrait. Ne vous inquiétez pas. Vous verrez tout cela en action dans le [Tutoriel - Guide utilisateur](tutorial/index.md){.internal-link target=_blank}.
 
-Ce qu'il faut retenir c'est qu'en utilisant les types standard de Python, à un seul endroit (plutôt que d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
+L'important est qu'en utilisant les types standards de Python, en un seul endroit (au lieu d'ajouter plus de classes, de décorateurs, etc.), **FastAPI** fera une grande partie du travail pour vous.
 
 /// info
 
-Si vous avez déjà lu le tutoriel et êtes revenus ici pour voir plus sur les types, une bonne ressource est la <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">"cheat sheet" de `mypy`</a>.
+Si vous avez déjà parcouru tout le tutoriel et êtes revenu pour en voir plus sur les types, une bonne ressource est <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">l'« aide-mémoire » de `mypy`</a>.
 
 ///

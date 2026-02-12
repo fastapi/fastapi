@@ -1,4 +1,4 @@
-# História, Design e Futuro
+# História, Design e Futuro { #history-design-and-future }
 
 Há algum tempo, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomment-454956920" class="external-link" target="_blank">um usuário **FastAPI** perguntou</a>:
 
@@ -6,7 +6,7 @@ Há algum tempo, <a href="https://github.com/fastapi/fastapi/issues/3#issuecomme
 
 Aqui está um pouco dessa história.
 
-## Alternativas
+## Alternativas { #alternatives }
 
 Eu tenho criado APIs com requisitos complexos por vários anos (Aprendizado de Máquina, sistemas distribuídos, tarefas assíncronas, banco de dados NoSQL etc.), liderando vários times de desenvolvedores.
 
@@ -28,7 +28,7 @@ Mas em algum ponto, não havia outra opção senão criar algo que oferecia toda
 
 </blockquote>
 
-## Investigação
+## Investigação { #investigation }
 
 Ao usar todas as alternativas anteriores, eu tive a chance de aprender com todas elas, aproveitar ideias e combiná-las da melhor maneira que encontrei para mim e para os times de desenvolvedores com os quais trabalhava.
 
@@ -38,7 +38,7 @@ Também, a melhor abordagem era usar padrões já existentes.
 
 Então, antes mesmo de começar a codificar o **FastAPI**, eu investi vários meses estudando as especificações do OpenAPI, JSON Schema, OAuth2 etc. Entendendo suas relações, sobreposições e diferenças.
 
-## Design
+## Design { #design }
 
 Eu então dediquei algum tempo projetando a "API" de desenvolvimento que eu queria como usuário (como um desenvolvedor usando o FastAPI).
 
@@ -48,23 +48,23 @@ Pela última <a href="https://www.jetbrains.com/research/python-developers-surve
 
 Isso significa que o **FastAPI** foi testado especificamente com os editores usados por 80% dos desenvolvedores Python. Como a maioria dos outros editores tendem a funcionar de forma similar, todos os seus benefícios devem funcionar para virtualmente todos os editores.
 
-Dessa forma eu pude encontrar a melhor maneira de reduzir duplicação de código o máximo possível, ter completação de texto em todos os lugares, conferência de tipos e erros etc.
+Dessa forma eu pude encontrar a melhor maneira de reduzir duplicação de código o máximo possível, ter preenchimento automático em todos os lugares, conferência de tipos e erros etc.
 
 Tudo de uma forma que oferecesse a melhor experiência de desenvolvimento para todos os desenvolvedores.
 
-## Requisitos
+## Requisitos { #requirements }
 
 Após testar várias alternativas, eu decidi que usaria o <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">**Pydantic**</a> por suas vantagens.
 
-Então eu contribuí com ele, para deixá-lo completamente de acordo com o JSON Schema, para dar suporte a diferentes maneiras de definir declarações de restrições, e melhorar o suporte a editores (conferências de tipos, auto completações) baseado nos testes em vários editores.
+Então eu contribuí com ele, para deixá-lo completamente de acordo com o JSON Schema, para dar suporte a diferentes maneiras de definir declarações de restrições, e melhorar o suporte a editores (conferências de tipos, preenchimento automático) baseado nos testes em vários editores.
 
-Durante o desenvolvimento, eu também contribuí com o <a href="https://www.starlette.io/" class="external-link" target="_blank">**Starlette**</a>, outro requisito chave.
+Durante o desenvolvimento, eu também contribuí com o <a href="https://www.starlette.dev/" class="external-link" target="_blank">**Starlette**</a>, outro requisito chave.
 
-## Desenvolvimento
+## Desenvolvimento { #development }
 
 Quando comecei a criar o **FastAPI** de fato, a maior parte das peças já estavam encaixadas, o design estava definido, os requisitos e ferramentas já estavam prontos, e o conhecimento sobre os padrões e especificações estavam claros e frescos.
 
-## Futuro
+## Futuro { #future }
 
 Nesse ponto, já está claro que o **FastAPI** com suas ideias está sendo útil para muitas pessoas.
 

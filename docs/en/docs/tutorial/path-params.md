@@ -1,8 +1,8 @@
-# Path Parameters
+# Path Parameters { #path-parameters }
 
 You can declare path "parameters" or "variables" with the same syntax used by Python format strings:
 
-{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001_py39.py hl[6:7] *}
 
 The value of the path parameter `item_id` will be passed to your function as the argument `item_id`.
 
@@ -12,11 +12,11 @@ So, if you run this example and go to <a href="http://127.0.0.1:8000/items/foo" 
 {"item_id":"foo"}
 ```
 
-## Path parameters with types
+## Path parameters with types { #path-parameters-with-types }
 
 You can declare the type of a path parameter in the function, using standard Python type annotations:
 
-{* ../../docs_src/path_params/tutorial002.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002_py39.py hl[7] *}
 
 In this case, `item_id` is declared to be an `int`.
 
@@ -26,7 +26,7 @@ This will give you editor support inside of your function, with error checks, co
 
 ///
 
-## Data <abbr title="also known as: serialization, parsing, marshalling">conversion</abbr>
+## Data <dfn title="also known as: serialization, parsing, marshalling">conversion</dfn> { #data-conversion }
 
 If you run this example and open your browser at <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a>, you will see a response of:
 
@@ -38,11 +38,11 @@ If you run this example and open your browser at <a href="http://127.0.0.1:8000/
 
 Notice that the value your function received (and returned) is `3`, as a Python `int`, not a string `"3"`.
 
-So, with that type declaration, **FastAPI** gives you automatic request <abbr title="converting the string that comes from an HTTP request into Python data">"parsing"</abbr>.
+So, with that type declaration, **FastAPI** gives you automatic request <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>.
 
 ///
 
-## Data validation
+## Data validation { #data-validation }
 
 But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a>, you will see a nice HTTP error of:
 
@@ -56,8 +56,7 @@ But if you go to the browser at <a href="http://127.0.0.1:8000/items/foo" class=
         "item_id"
       ],
       "msg": "Input should be a valid integer, unable to parse string as an integer",
-      "input": "foo",
-      "url": "https://errors.pydantic.dev/2.1/v/int_parsing"
+      "input": "foo"
     }
   ]
 }
@@ -77,7 +76,7 @@ This is incredibly helpful while developing and debugging code that interacts wi
 
 ///
 
-## Documentation
+## Documentation { #documentation }
 
 And when you open your browser at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, you will see an automatic, interactive, API documentation like:
 
@@ -91,7 +90,7 @@ Notice that the path parameter is declared to be an integer.
 
 ///
 
-## Standards-based benefits, alternative documentation
+## Standards-based benefits, alternative documentation { #standards-based-benefits-alternative-documentation }
 
 And because the generated schema is from the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standard, there are many compatible tools.
 
@@ -101,7 +100,7 @@ Because of this, **FastAPI** itself provides an alternative API documentation (u
 
 The same way, there are many compatible tools. Including code generation tools for many languages.
 
-## Pydantic
+## Pydantic { #pydantic }
 
 All the data validation is performed under the hood by <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a>, so you get all the benefits from it. And you know you are in good hands.
 
@@ -109,7 +108,7 @@ You can use the same type declarations with `str`, `float`, `bool` and many othe
 
 Several of these are explored in the next chapters of the tutorial.
 
-## Order matters
+## Order matters { #order-matters }
 
 When creating *path operations*, you can find situations where you have a fixed path.
 
@@ -119,21 +118,21 @@ And then you can also have a path `/users/{user_id}` to get data about a specifi
 
 Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:
 
-{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003_py39.py hl[6,11] *}
 
 Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, "thinking" that it's receiving a parameter `user_id` with a value of `"me"`.
 
 Similarly, you cannot redefine a path operation:
 
-{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b_py39.py hl[6,11] *}
 
 The first one will always be used since the path matches first.
 
-## Predefined values
+## Predefined values { #predefined-values }
 
 If you have a *path operation* that receives a *path parameter*, but you want the possible valid *path parameter* values to be predefined, you can use a standard Python <abbr title="Enumeration">`Enum`</abbr>.
 
-### Create an `Enum` class
+### Create an `Enum` class { #create-an-enum-class }
 
 Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
 
@@ -141,47 +140,41 @@ By inheriting from `str` the API docs will be able to know that the values must 
 
 Then create class attributes with fixed values, which will be the available valid values:
 
-{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
-
-/// info
-
-<a href="https://docs.python.org/3/library/enum.html" class="external-link" target="_blank">Enumerations (or enums) are available in Python</a> since version 3.4.
-
-///
+{* ../../docs_src/path_params/tutorial005_py39.py hl[1,6:9] *}
 
 /// tip
 
-If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <abbr title="Technically, Deep Learning model architectures">models</abbr>.
+If you are wondering, "AlexNet", "ResNet", and "LeNet" are just names of Machine Learning <dfn title="Technically, Deep Learning model architectures">models</dfn>.
 
 ///
 
-### Declare a *path parameter*
+### Declare a *path parameter* { #declare-a-path-parameter }
 
 Then create a *path parameter* with a type annotation using the enum class you created (`ModelName`):
 
-{* ../../docs_src/path_params/tutorial005.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[16] *}
 
-### Check the docs
+### Check the docs { #check-the-docs }
 
 Because the available values for the *path parameter* are predefined, the interactive docs can show them nicely:
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### Working with Python *enumerations*
+### Working with Python *enumerations* { #working-with-python-enumerations }
 
 The value of the *path parameter* will be an *enumeration member*.
 
-#### Compare *enumeration members*
+#### Compare *enumeration members* { #compare-enumeration-members }
 
 You can compare it with the *enumeration member* in your created enum `ModelName`:
 
-{* ../../docs_src/path_params/tutorial005.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[17] *}
 
-#### Get the *enumeration value*
+#### Get the *enumeration value* { #get-the-enumeration-value }
 
 You can get the actual value (a `str` in this case) using `model_name.value`, or in general, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[20] *}
 
 /// tip
 
@@ -189,13 +182,13 @@ You could also access the value `"lenet"` with `ModelName.lenet.value`.
 
 ///
 
-#### Return *enumeration members*
+#### Return *enumeration members* { #return-enumeration-members }
 
 You can return *enum members* from your *path operation*, even nested in a JSON body (e.g. a `dict`).
 
 They will be converted to their corresponding values (strings in this case) before returning them to the client:
 
-{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005_py39.py hl[18,21,23] *}
 
 In your client you will get a JSON response like:
 
@@ -206,7 +199,7 @@ In your client you will get a JSON response like:
 }
 ```
 
-## Path parameters containing paths
+## Path parameters containing paths { #path-parameters-containing-paths }
 
 Let's say you have a *path operation* with a path `/files/{file_path}`.
 
@@ -214,7 +207,7 @@ But you need `file_path` itself to contain a *path*, like `home/johndoe/myfile.t
 
 So, the URL for that file would be something like: `/files/home/johndoe/myfile.txt`.
 
-### OpenAPI support
+### OpenAPI support { #openapi-support }
 
 OpenAPI doesn't support a way to declare a *path parameter* to contain a *path* inside, as that could lead to scenarios that are difficult to test and define.
 
@@ -222,7 +215,7 @@ Nevertheless, you can still do it in **FastAPI**, using one of the internal tool
 
 And the docs would still work, although not adding any documentation telling that the parameter should contain a path.
 
-### Path convertor
+### Path convertor { #path-convertor }
 
 Using an option directly from Starlette you can declare a *path parameter* containing a *path* using a URL like:
 
@@ -234,22 +227,22 @@ In this case, the name of the parameter is `file_path`, and the last part, `:pat
 
 So, you can use it with:
 
-{* ../../docs_src/path_params/tutorial004.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004_py39.py hl[6] *}
 
 /// tip
 
-You could need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
+You might need the parameter to contain `/home/johndoe/myfile.txt`, with a leading slash (`/`).
 
 In that case, the URL would be: `/files//home/johndoe/myfile.txt`, with a double slash (`//`) between `files` and `home`.
 
 ///
 
-## Recap
+## Recap { #recap }
 
 With **FastAPI**, by using short, intuitive and standard Python type declarations, you get:
 
 * Editor support: error checks, autocompletion, etc.
-* Data "<abbr title="converting the string that comes from an HTTP request into Python data">parsing</abbr>"
+* Data "<dfn title="converting the string that comes from an HTTP request into Python data">parsing</dfn>"
 * Data validation
 * API annotation and automatic documentation
 
