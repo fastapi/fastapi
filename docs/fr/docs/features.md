@@ -1,17 +1,17 @@
-# Fonctionnalités
+# Fonctionnalités { #features }
 
-## Fonctionnalités de FastAPI
+## Fonctionnalités de FastAPI { #fastapi-features }
 
 **FastAPI** vous offre ceci :
 
-### Basé sur des standards ouverts
+### Basé sur des standards ouverts { #based-on-open-standards }
 
 * <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> pour la création d'API, incluant la déclaration de <abbr title="en français: routes. Aussi connu sous le nom anglais endpoints ou routes">path</abbr> <abbr title="Aussi connu sous le nom de méthodes HTTP. À savoir POST, GET, PUT, DELETE">operations</abbr>, paramètres, corps de requêtes, sécurité, etc.
-* Documentation automatique des modèles de données avec <a href="http://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (comme OpenAPI est aussi basée sur JSON Schema).
+* Documentation automatique des modèles de données avec <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (comme OpenAPI est aussi basée sur JSON Schema).
 * Conçue avec ces standards après une analyse méticuleuse. Plutôt qu'en rajoutant des surcouches après coup.
 * Cela permet d'utiliser de la **génération automatique de code client** dans beaucoup de langages.
 
-### Documentation automatique
+### Documentation automatique { #automatic-docs }
 
 Documentation d'API interactive et interface web d'exploration. Comme le framework est basé sur OpenAPI, de nombreuses options sont disponibles. Deux d'entre-elles sont incluses par défaut.
 
@@ -23,7 +23,7 @@ Documentation d'API interactive et interface web d'exploration. Comme le framewo
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
-### Écrit en python moderne
+### Écrit en python moderne { #just-modern-python }
 
 Tout est basé sur la déclaration de type standard de **Python 3.8** (grâce à Pydantic). Pas de nouvelles syntaxes à apprendre. Juste du Python standard et moderne.
 
@@ -70,7 +70,7 @@ Utilise les clés et valeurs du dictionnaire `second_user_data` directement comm
 
 ///
 
-### Support d'éditeurs
+### Support d'éditeurs { #editor-support }
 
 Tout le framework a été conçu pour être facile et intuitif d'utilisation, toutes les décisions de design ont été testées sur de nombreux éditeurs avant même de commencer le développement final afin d'assurer la meilleure expérience de développement possible.
 
@@ -94,13 +94,13 @@ Vous aurez des propositions de complétion que vous n'auriez jamais imaginées. 
 
 Plus jamais vous ne vous tromperez en tapant le nom d'une clé, vous ne ferez des aller-retour entre votre code et la documentation ou vous ne scrollerez de haut en bas afin d'enfin savoir si vous devez taper `username` ou `user_name`.
 
-### Court
+### Court { #short }
 
 Des **valeurs par défaut** sont définies pour tout, des configurations optionnelles sont présentent partout. Tous ces paramètres peuvent être ajustés afin de faire ce que vous voulez et définir l'API dont vous avez besoin.
 
 Mais, **tout fonctionne** par défaut.
 
-### Validation
+### Validation { #validation }
 
 * Validation pour la plupart (ou tous?) les **types de données** Python incluant:
     * objets JSON (`dict`).
@@ -116,7 +116,7 @@ Mais, **tout fonctionne** par défaut.
 
 Toutes les validations sont gérées par le bien établi et robuste **Pydantic**.
 
-### Sécurité et authentification
+### Sécurité et authentification { #security-and-authentication }
 
 La sécurité et l'authentification sont intégrées. Sans aucun compromis avec les bases de données ou les modèles de données.
 
@@ -133,7 +133,7 @@ Plus toutes les fonctionnalités de sécurités venant de Starlette (incluant le
 
 Le tout conçu en composant réutilisable facilement intégrable à vos systèmes, data stores, base de données relationnelle ou NoSQL, etc.
 
-### Injection de dépendances
+### Injection de dépendances { #dependency-injection }
 
 FastAPI contient un système simple mais extrêmement puissant d'<abbr title='aussi connus sous le nom de "composants", "ressources", "services", "providers"'><strong>Injection de Dépendances</strong></abbr>.
 
@@ -144,19 +144,19 @@ FastAPI contient un système simple mais extrêmement puissant d'<abbr title='au
 * Supporte les systèmes d'authentification d'utilisateurs complexes, les **connexions de base de données**, etc.
 * **Aucun compromis** avec les bases de données, les frontends, etc. Mais une intégration facile avec n'importe lequel d'entre eux.
 
-### "Plug-ins" illimités
+### "Plug-ins" illimités { #unlimited-plug-ins }
 
 Ou, en d'autres termes, pas besoin d'eux, importez le code que vous voulez et utilisez le.
 
 Tout intégration est conçue pour être si simple à utiliser (avec des dépendances) que vous pouvez créer un "plug-in" pour votre application en deux lignes de code utilisant la même syntaxe que celle de vos *path operations*
 
-### Testé
+### Testé { #tested }
 
 * 100% <abbr title="La quantité de code qui est testé automatiquement">de couverture de test</abbr>.
 * 100% <abbr title="Annotation de types Python, avec cela votre éditeur et autres outils externes peuvent vous fournir un meilleur support">d'annotations de type</abbr> dans le code.
 * Utilisé dans des applications mises en production.
 
-## Fonctionnalités de Starlette
+## Fonctionnalités de Starlette { #starlette-features }
 
 **FastAPI** est complètement compatible (et basé sur) <a href="https://www.starlette.dev/" class="external-link" target="_blank"><strong>Starlette</strong></a>. Le code utilisant Starlette que vous ajouterez fonctionnera donc aussi.
 
@@ -175,7 +175,7 @@ Avec **FastAPI** vous aurez toutes les fonctionnalités de **Starlette** (FastAP
 * Une couverture de test à 100 %.
 * 100 % de la base de code avec des annotations de type.
 
-## Fonctionnalités de Pydantic
+## Fonctionnalités de Pydantic { #pydantic-features }
 
 **FastAPI** est totalement compatible avec (et basé sur) <a href="https://docs.pydantic.dev/" class="external-link" target="_blank"><strong>Pydantic</strong></a>. Le code utilisant Pydantic que vous ajouterez fonctionnera donc aussi.
 
