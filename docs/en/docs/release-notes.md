@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.129.0
+
 ### Breaking Changes
 
 * ➖ Drop support for Python 3.9. PR [#14897](https://github.com/fastapi/fastapi/pull/14897) by [@tiangolo](https://github.com/tiangolo).
@@ -14,6 +16,15 @@ hide:
 ### Refactors
 
 * 🎨 Update internal types for Python 3.10. PR [#14898](https://github.com/fastapi/fastapi/pull/14898) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update highlights in webhooks docs. PR [#14905](https://github.com/fastapi/fastapi/pull/14905) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Update source examples and docs from Python 3.9 to 3.10. PR [#14900](https://github.com/fastapi/fastapi/pull/14900) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔨 Update docs.py scripts to migrate Python 3.9 to Python 3.10. PR [#14906](https://github.com/fastapi/fastapi/pull/14906) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.8
 

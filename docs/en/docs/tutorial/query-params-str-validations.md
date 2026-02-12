@@ -188,7 +188,7 @@ You can, of course, use default values other than `None`.
 
 Let's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
 /// note
 
@@ -218,7 +218,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 So, when you need to declare a value as required while using `Query`, you can simply not declare a default value:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
 ### Required, can be `None` { #required-can-be-none }
 
@@ -280,7 +280,7 @@ The interactive API docs will update accordingly, to allow multiple values:
 
 You can also define a default `list` of values if none are provided:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
 
 If you go to:
 
@@ -303,7 +303,7 @@ the default of `q` will be: `["foo", "bar"]` and your response will be:
 
 You can also use `list` directly instead of `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py39.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
 
 /// note
 

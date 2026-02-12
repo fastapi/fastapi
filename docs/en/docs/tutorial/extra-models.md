@@ -192,7 +192,7 @@ The same way, you can declare responses of lists of objects.
 
 For that, use the standard Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py39.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
 ## Response with arbitrary `dict` { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ This is useful if you don't know the valid field/attribute names (that would be 
 
 In this case, you can use `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py39.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
 
 ## Recap { #recap }
 
