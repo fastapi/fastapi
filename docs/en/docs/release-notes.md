@@ -17,6 +17,7 @@ hide:
 
 ### Docs
 
+* 📝 Update highlights in webhooks docs. PR [#14905](https://github.com/fastapi/fastapi/pull/14905) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Update source examples and docs from Python 3.9 to 3.10. PR [#14900](https://github.com/fastapi/fastapi/pull/14900) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.128.8
