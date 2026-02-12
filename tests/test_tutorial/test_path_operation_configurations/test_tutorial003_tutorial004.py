@@ -4,7 +4,7 @@ from textwrap import dedent
 import pytest
 from dirty_equals import IsList
 from fastapi.testclient import TestClient
-from inline_snapshot import snapshot
+from inline_snapshot import Is, snapshot
 
 from ...utils import needs_py310
 
@@ -75,7 +75,7 @@ def test_openapi_schema(client: TestClient, mod_name: str):
                 "/items/": {
                     "post": {
                         "summary": "Create an item",
-                        "description": DESCRIPTIONS[mod_name],
+                        "description": Is(DESCRIPTIONS[mod_name]),
                         "operationId": "create_item_items__post",
                         "requestBody": {
                             "content": {

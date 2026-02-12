@@ -6,7 +6,7 @@
 
 ### Based on open standards { #based-on-open-standards }
 
-* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <abbr title="also known as: endpoints, routes">path</abbr> <abbr title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</abbr>, parameters, request bodies, security, etc.
+* <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank"><strong>OpenAPI</strong></a> for API creation, including declarations of <dfn title="also known as: endpoints, routes">path</dfn> <dfn title="also known as HTTP methods, as POST, GET, PUT, DELETE">operations</dfn>, parameters, request bodies, security, etc.
 * Automatic data model documentation with <a href="https://json-schema.org/" class="external-link" target="_blank"><strong>JSON Schema</strong></a> (as OpenAPI itself is based on JSON Schema).
 * Designed around these standards, after a meticulous study. Instead of an afterthought layer on top.
 * This also allows using automatic **client code generation** in many languages.
@@ -136,7 +136,7 @@ All built as reusable tools and components that are easy to integrate with your 
 
 ### Dependency Injection { #dependency-injection }
 
-FastAPI includes an extremely easy to use, but extremely powerful <abbr title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></abbr> system.
+FastAPI includes an extremely easy to use, but extremely powerful <dfn title='also known as "components", "resources", "services", "providers"'><strong>Dependency Injection</strong></dfn> system.
 
 * Even dependencies can have dependencies, creating a hierarchy or **"graph" of dependencies**.
 * All **automatically handled** by the framework.
@@ -153,8 +153,8 @@ Any integration is designed to be so simple to use (with dependencies) that you 
 
 ### Tested { #tested }
 
-* 100% <abbr title="The amount of code that is automatically tested">test coverage</abbr>.
-* 100% <abbr title="Python type annotations, with this your editor and external tools can give you better support">type annotated</abbr> code base.
+* 100% <dfn title="The amount of code that is automatically tested">test coverage</dfn>.
+* 100% <dfn title="Python type annotations, with this your editor and external tools can give you better support">type annotated</dfn> code base.
 * Used in production applications.
 
 ## Starlette features { #starlette-features }
@@ -190,7 +190,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
 * **No brainfuck**:
     * No new schema definition micro-language to learn.
     * If you know Python types you know how to use Pydantic.
-* Plays nicely with your **<abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>/<abbr title="A program that checks for code errors">linter</abbr>/brain**:
+* Plays nicely with your **<abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>/<dfn title="A program that checks for code errors">linter</dfn>/brain**:
     * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
