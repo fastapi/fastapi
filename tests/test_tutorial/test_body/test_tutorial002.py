@@ -1,5 +1,4 @@
 import importlib
-from typing import Union
 
 import pytest
 from fastapi.testclient import TestClient
@@ -11,7 +10,6 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=needs_py310),
     ],
 )
@@ -23,7 +21,7 @@ def get_client(request: pytest.FixtureRequest):
 
 
 @pytest.mark.parametrize("price", ["50.5", 50.5])
-def test_post_with_tax(client: TestClient, price: Union[str, float]):
+def test_post_with_tax(client: TestClient, price: str | float):
     response = client.post(
         "/items/",
         json={"name": "Foo", "price": price, "description": "Some Foo", "tax": 0.3},
@@ -39,7 +37,7 @@ def test_post_with_tax(client: TestClient, price: Union[str, float]):
 
 
 @pytest.mark.parametrize("price", ["50.5", 50.5])
-def test_post_without_tax(client: TestClient, price: Union[str, float]):
+def test_post_without_tax(client: TestClient, price: str | float):
     response = client.post(
         "/items/", json={"name": "Foo", "price": price, "description": "Some Foo"}
     )

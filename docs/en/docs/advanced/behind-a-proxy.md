@@ -44,7 +44,7 @@ $ fastapi run --forwarded-allow-ips="*"
 
 For example, let's say you define a *path operation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
 
 If the client tries to go to `/items`, by default, it would be redirected to `/items/`.
 
@@ -115,7 +115,7 @@ In this case, the original path `/app` would actually be served at `/api/v1/app`
 
 Even though all your code is written assuming there's just `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
 And the proxy would be **"stripping"** the **path prefix** on the fly before transmitting the request to the app server (probably Uvicorn via FastAPI CLI), keeping your application convinced that it is being served at `/app`, so that you don't have to update all your code to include the prefix `/api/v1`.
 
@@ -193,7 +193,7 @@ You can get the current `root_path` used by your application for each request, i
 
 Here we are including it in the message just for demonstration purposes.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
 Then, if you start Uvicorn with:
 
@@ -220,7 +220,7 @@ The response would be something like:
 
 Alternatively, if you don't have a way to provide a command line option like `--root-path` or equivalent, you can set the `root_path` parameter when creating your FastAPI app:
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py39.py hl[3] *}
+{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
 
 Passing the `root_path` to `FastAPI` would be the equivalent of passing the `--root-path` command line option to Uvicorn or Hypercorn.
 
@@ -400,7 +400,7 @@ If you pass a custom list of `servers` and there's a `root_path` (because your A
 
 For example:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py39.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
 Will generate an OpenAPI schema like:
 
@@ -455,7 +455,7 @@ If you don't specify the `servers` parameter and `root_path` is equal to `/`, th
 
 If you don't want **FastAPI** to include an automatic server using the `root_path`, you can use the parameter `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py39.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
 
 and then it won't include it in the OpenAPI schema.
 
